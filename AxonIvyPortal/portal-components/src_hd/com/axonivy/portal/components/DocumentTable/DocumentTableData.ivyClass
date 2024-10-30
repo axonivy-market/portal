@@ -32,3 +32,5 @@ allowedUploadFileTypes String #field
 allowedUploadFileTypes PERSISTENT #fieldModifier
 uploadedFile org.primefaces.model.file.UploadedFile #field
 uploadedFile PERSISTENT #fieldModifier
+sizeLimit Long #field
+sizeLimit PERSISTENT #fieldModifier
