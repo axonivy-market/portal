@@ -9,7 +9,6 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "caze",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   } ]
 }
