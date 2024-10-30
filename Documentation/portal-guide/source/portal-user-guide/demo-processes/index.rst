@@ -74,7 +74,7 @@ Lending (Case Map)
 
    |lending-casemap-external-solvency-service|
 
-#. After finishing Internal Solvency, you will have 1 or 2 approval levels which
+#. After finishing **Internal Solvency Check**, you will have 1 or 2 approval levels which
    depend on Amount and Salary fields. If Amount is greater than or equal
    to 20% of Salary, you will have 2 approval levels.
 
