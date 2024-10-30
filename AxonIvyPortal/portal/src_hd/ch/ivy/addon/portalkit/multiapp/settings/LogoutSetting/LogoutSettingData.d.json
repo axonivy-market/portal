@@ -5,8 +5,7 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
   }, {
     "name" : "isWorkingOnATask",
     "type" : "Boolean",
