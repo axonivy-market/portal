@@ -27,7 +27,7 @@ needs. These features are described in the following sections below.
 Admin Settings
 --------------
 
-Menu entry :ref:`Admin Settings <admin-settings>` is only available for users who have role AXONIVY_PORTAL_ADMIN.
+Menu entry :ref:`Admin Settings <admin-settings>` is only available for users who have role ``AXONIVY_PORTAL_ADMIN``.
 
 My profile
 ----------

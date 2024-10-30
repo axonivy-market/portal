@@ -92,6 +92,13 @@ Available Standard Charts
     - This chart shows all tasks the user can work on.
     - Chart type: :bdg-info:`Number`
 
+- Due Today
+
+    |due-today-chart|
+
+    - This chart shows all tasks that are due today.
+    - Chart type: :bdg-info:`Number`
+
 .. |statistic-widget-list-page| image:: ../../screenshots/statistic/statistic-widget-list.png
 .. |dashboard-statistic-widget-demo| image:: ../../screenshots/statistic/dashboard-statistic-widget-demo.png
 
