@@ -195,7 +195,7 @@ public class DashboardUtils {
 
   public static List<Dashboard> collectMainDashboards() {
     List<Dashboard> collectedDashboards =
-        new ArrayList<>(collectDashboards().stream().filter(dashboard -> dashboard.getIsMenuItem()).toList());
+        new ArrayList<>(collectDashboards().stream().filter(dashboard -> dashboard.getIsTopMenu()).toList());
     return collectedDashboards;
   }
 
@@ -284,7 +284,7 @@ public class DashboardUtils {
 
   public static List<Dashboard> getDashboardsWithoutMenuItem() {
     var dashboards = collectDashboards();
-    return dashboards.stream().filter(dashboard -> !dashboard.getIsMenuItem()).toList();
+    return dashboards.stream().filter(dashboard -> !dashboard.getIsTopMenu()).toList();
   }
 
   public static String getSelectedMainDashboardIdFromSession() {
@@ -303,7 +303,7 @@ public class DashboardUtils {
     }
     boolean isMainDashboard = Optional.ofNullable(getPortalDashboardItemWrapper())
         .map(wrapper -> wrapper.dashboards()).orElse(new ArrayList<>()).stream()
-        .filter(dashboard -> dashboardId.equals(dashboard.getId())).map(dashboard -> dashboard.getIsMenuItem())
+        .filter(dashboard -> dashboardId.equals(dashboard.getId())).map(dashboard -> dashboard.getIsTopMenu())
         .findFirst().orElse(true);
     // default is true because we need extra handling for not main menu like updating selected dashboard in
     // session attribute

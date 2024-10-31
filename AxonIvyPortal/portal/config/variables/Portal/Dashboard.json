@@ -537,6 +537,6 @@
     "permissions": [
       "Everybody"
     ],
-    "isMenuItem": true
+    "isTopMenu": true
   }
 ]
