@@ -655,6 +655,11 @@ body .dashboard__table--edit.ui-datatable-resizable tbody td, .ui-datatable-resi
   white-space: normal;
 }
 
+body .dashboard__table--edit.ui-datatable-resizable .ui-datatable-scrollable-header,
+body .dashboard__table--edit.ui-datatable-resizable .ui-datatable-scrollable-footer {
+  background: transparent;
+}
+
 body .dashboard__table--preview.ui-datatable tbody tr.ui-state-highlight,
 body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   cursor: auto;

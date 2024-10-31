@@ -399,6 +399,6 @@
   max-height: 50vh;
 }
 
-.w-fit {
-  width: fit-content !important
+.w-min {
+  width: min-content !important;
 }
