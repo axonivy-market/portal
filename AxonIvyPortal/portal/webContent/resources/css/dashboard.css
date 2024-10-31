@@ -658,12 +658,6 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   margin-bottom: 5px;
 }
 
-.dashboard-cases--table table,
-.dashboard-tasks--table table {
-  min-width: 100%;
-  width: max-content;
-}
-
 .dashboard-cases--table table tbody tr:not(.ui-datatable-empty-message),
 .dashboard-tasks--table table tbody tr:not(.ui-datatable-empty-message) {
   height: 53px;
@@ -703,6 +697,13 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 
 .dashboard-tasks__start .ui-commandlink {
   padding: .5rem 1rem;
+}
+
+body .widget__content .ui-datatable thead th,
+body .widget__content .ui-datatable tbody td,
+body .dashboard__table--edit.ui-datatable-resizable thead th,
+body .dashboard__table--edit.ui-datatable-resizable tbody td, .ui-datatable-resizable tfoot td {
+  white-space: normal;
 }
 
 body .ui-datatable tbody tr td.dashboard-tasks__state,
@@ -2067,8 +2068,8 @@ body .ui-button.rounded-button.dashboard-widget-filter__remove-filter .ui-icon {
   min-width: 130px;
 }
 
-body .ui-commandlink:hover, body .ui-link:active {
-  color: var(--ivy-primary-color-command-link-hover);
+.dashboard-tasks--table .widget-column {
+  box-sizing: border-box;
 }
 
 body .ui-button.ui-widget.ui-widget-filter-btn {
