@@ -14,6 +14,7 @@
   <cc:attribute name="renderChooseUploadIcon" default="true" />
   
   <cc:attribute name="fileLimit" type="Integer" shortDescription="Number of files are in the given ICase" default="-1" />
+  <cc:attribute name="sizeLimit" type="Long" shortDescription="Individual file size limit in bytes" />
   <cc:attribute name="uploadText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Upload')}" />
   <cc:attribute name="updatedComponentAfterUploaded" />
 
@@ -43,7 +44,7 @@
   <ui:param name="messageComponentId" value="#{cc.clientId.concat(':document-messages')}" />
   <ui:param name="typeSelectionItems" value="#{not empty cc.attrs.typeSelectionItems ? cc.attrs.typeSelectionItems : documentUploadBean.documentTypes}" />
   <ui:param name="selectedType" value="#{not empty cc.attrs.selectedType ? cc.attrs.selectedType : typeSelectionItems[0]}" />
-  <f:event type="preRenderComponent" listener="#{logic.renderComponent(messageComponentId, cc.attrs.typeColumnRendered, selectedType, cc.attrs.enableScriptCheckingForUploadedDocument, cc.attrs.enableVirusScannerForUploadedDocument, cc.attrs.allowedUploadFileTypes)}" />
+  <f:event type="preRenderComponent" listener="#{logic.renderComponent(messageComponentId, cc.attrs.typeColumnRendered, selectedType, cc.attrs.enableScriptCheckingForUploadedDocument, cc.attrs.enableVirusScannerForUploadedDocument, cc.attrs.allowedUploadFileTypes, cc.attrs.sizeLimit)}" />
 
   <div id="#{cc.clientId}" class="document-table-component">
 
@@ -96,7 +97,7 @@
           listener="#{logic.upload}"
           rendered="#{cc.attrs.uploadRendered}"
           update="document-table document-messages #{cc.attrs.updatedComponentAfterUploaded}"
-          invalidSizeMessage="#{documentUploadBean.getFileUploadInvalidSizeMessage()}" 
+          invalidSizeMessage="#{documentUploadBean.getFileUploadInvalidSizeMessage(documentUploadBean.fileUploadSizeLimit)}" 
           label="#{not empty cc.attrs.uploadText ? cc.attrs.uploadText : ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Upload')}"
           cancelLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Cancel')}"
           onstart="#{logic.setFileLimit(cc.attrs.fileLimit)}" sizeLimit="#{documentUploadBean.fileUploadSizeLimit}"
