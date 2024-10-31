@@ -16,8 +16,16 @@ function createRedThickOutline($element) {
   $element.addClass("red-thick-outline");
 }
 
+function createBlackThinOutline($element) {
+  $element.addClass("black-thin-outline");
+}
+
 function createRedMediumOutline($element) {
   $element.addClass("red-medium-outline");
+}
+
+function createBlackMediumOutline($element) {
+  $element.addClass("black-medium-outline");
 }
 
 function clearRedMediumOutline($element) {
@@ -84,6 +92,10 @@ function numberingTopBar() {
 
 function highlightLogo() {
   createRedMediumOutline($(".portal-home-logo.portal-home-logo-small"));
+}
+
+function highlightElement(elementSelector) {
+  createRedMediumOutline($(elementSelector));
 }
 
 function numberingTaskItem() {

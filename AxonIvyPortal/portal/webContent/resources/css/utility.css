@@ -398,3 +398,7 @@
   overflow: auto;
   max-height: 50vh;
 }
+
+.w-fit {
+  width: fit-content !important
+}

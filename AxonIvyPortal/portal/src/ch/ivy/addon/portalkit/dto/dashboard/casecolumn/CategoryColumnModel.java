@@ -34,7 +34,7 @@ public class CategoryColumnModel extends CaseColumnModel {
   public void initDefaultValue() {
     super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.CATEGORY.getField();
-    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.styleToDisplay = initDefaultStyle();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.format = getDefaultFormat();
     this.sortable = getDefaultSortable();
@@ -57,7 +57,7 @@ public class CategoryColumnModel extends CaseColumnModel {
   }
 
   @Override
-  public String getDefaultStyle() {
+  protected int getDefaultColumnWidth() {
     return NORMAL_WIDTH;
   }
 

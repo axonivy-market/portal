@@ -136,7 +136,7 @@ var PortalSessionWarning = function() {
 
   showTimeoutDialog = function () {
     PF('timeout-warning-dialog').hide();
-    PF('view-expired-exception-dialog').show();
+    PF('portal-view-expired-exception-dialog').show();
   },
   
   getRemainingTimeInSeccond  = function () {

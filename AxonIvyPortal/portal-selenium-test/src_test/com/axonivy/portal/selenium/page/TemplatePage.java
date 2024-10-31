@@ -553,4 +553,9 @@ public abstract class TemplatePage extends AbstractPage {
   public String getURL() {
     return driver.getCurrentUrl();
   }
+  
+  public void clickOnExpandDashboardItems() {
+    $("[id$='main-menu__js__DASHBOARD-main-dashboard']").shouldBe(appear, DEFAULT_TIMEOUT)
+    .click();
+  }
 }
