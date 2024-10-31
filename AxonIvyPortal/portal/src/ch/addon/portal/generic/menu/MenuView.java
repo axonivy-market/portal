@@ -174,7 +174,7 @@ public class MenuView implements Serializable {
 
   private List<Dashboard> getSubItemDashboards() {
     var dashboards = getDashboardCache().dashboards;
-    return dashboards.stream().filter(dashboard -> !dashboard.getIsMenuItem()).toList();
+    return dashboards.stream().filter(dashboard -> !dashboard.getIsTopMenu()).toList();
   }
 
   private MenuElement buildDashboardGroupMenu(List<Dashboard> subItemDashboards, String defaultTitle,
@@ -217,7 +217,7 @@ public class MenuView implements Serializable {
         .icon(iconClass).url(dashboardLink).workingTaskId(this.workingTaskId).build();
 
     dashboardMenu.setId(String.format(SUB_DASHBOARD_MENU_PATTERN, board.getId()));
-    dashboardMenu.setRendered(!board.getIsMenuItem()); // TODO z1 consider
+    dashboardMenu.setRendered(!board.getIsTopMenu()); // TODO z1 consider
 
     return dashboardMenu;
   }

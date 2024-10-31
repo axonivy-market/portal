@@ -434,19 +434,19 @@
     "titles": [
       {
         "locale": "en",
-        "value": "My Tasks"
+        "value": "Tasks"
       },
       {
         "locale": "fr",
-        "value": "Mes tâches"
+        "value": "Tâches"
       },
       {
         "locale": "de",
-        "value": "Meine Aufgaben"
+        "value": "Aufgaben"
       },
       {
         "locale": "es",
-        "value": "Mis tareas"
+        "value": "Tareas"
       }
     ],
     "icon": "si-task-list-edit",
@@ -537,6 +537,6 @@
     "permissions": [
       "Everybody"
     ],
-    "isMenuItem": true
+    "isTopMenu": true
   }
 ]
