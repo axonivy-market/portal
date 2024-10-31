@@ -446,7 +446,7 @@
     }, {
       "id" : "f42",
       "type" : "HtmlDialogMethodStart",
-      "name" : "renderComponent(String,Boolean,DocumentType,Boolean,Boolean,String,Long,String,Long)",
+      "name" : "renderComponent(String,Boolean,DocumentType,Boolean,Boolean,String,Long)",
       "config" : {
         "signature" : "renderComponent",
         "input" : {
