@@ -1,5 +1,8 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_DASHBOARD_ID;
+import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_SUB_DASHBOARD_ID;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -37,7 +40,6 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
-import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
@@ -94,13 +96,7 @@ public class DashboardBean implements Serializable {
     }
 
     if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())) {
-      if (Ivy.request().getRequestPath().endsWith("/PortalMainDashboard.xhtml")) {
-        // TODO z1 refactor
-        selectedDashboardId =
-            (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString());
-      } else {
-        selectedDashboardId = readDashboardFromSession();
-      }
+      updateSelectedDashboardIdFromSessionAttribute();
       currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
       selectedDashboard = dashboards.get(currentDashboardIndex);
 
@@ -409,10 +405,6 @@ public class DashboardBean implements Serializable {
     this.dashboardTemplates = dashboardTemplates;
   }
 
-  private String readDashboardFromSession() {
-    return (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.toString());
-  }
-
   private int findIndexOfDashboardById(String selectedDashboardId) {
 
 
@@ -529,4 +521,14 @@ public class DashboardBean implements Serializable {
   public boolean isMainDashboardSelected() {
     return DashboardUtils.isMainDashboard(selectedDashboardId);
   }
+
+
+  private void updateSelectedDashboardIdFromSessionAttribute() {
+    if (Ivy.request().getRequestPath().endsWith("/PortalMainDashboard.xhtml")) {
+      selectedDashboardId = (String) Ivy.session().getAttribute(SELECTED_DASHBOARD_ID.name());
+    } else {
+      selectedDashboardId = (String) Ivy.session().getAttribute(SELECTED_SUB_DASHBOARD_ID.name());
+    }
+  }
+
 }

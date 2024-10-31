@@ -1,9 +1,9 @@
 package ch.addon.portal.generic.menu;
 
-import static ch.ivy.addon.portalkit.util.DashboardUtils.SUB_DASHBOARD_MENU_PATTERN;
 import static ch.ivy.addon.portalkit.util.DashboardUtils.DASHBOARD_MENU_JS_CLASS;
-import static ch.ivy.addon.portalkit.util.DashboardUtils.PARENT_DASHBOARD_MENU_PATTERN;
 import static ch.ivy.addon.portalkit.util.DashboardUtils.DASHBOARD_PAGE_URL;
+import static ch.ivy.addon.portalkit.util.DashboardUtils.PARENT_DASHBOARD_MENU_PATTERN;
+import static ch.ivy.addon.portalkit.util.DashboardUtils.SUB_DASHBOARD_MENU_PATTERN;
 import static java.util.Objects.isNull;
 
 import java.io.IOException;
@@ -183,6 +183,9 @@ public class MenuView implements Serializable {
     DefaultSubMenu dashboardGroupMenu = createDashboardGroupMenu(defaultTitle, mainMenuDisplayName, mainMenuIcon);
 
     for (Dashboard board : subItemDashboards) {
+      if (board.getIsTopMenu()) {
+        continue;
+      }
       String iconClass = determineIconClass(board);
       var dashboardMenu = createDashboardMenu(board, dashboardLink, iconClass);
 
@@ -215,10 +218,7 @@ public class MenuView implements Serializable {
   private MenuElement createDashboardMenu(Dashboard board, String dashboardLink, String iconClass) {
     var dashboardMenu = new PortalMenuBuilder(board.getTitle(), MenuKind.DASHBOARD, this.isWorkingOnATask)
         .icon(iconClass).url(dashboardLink).workingTaskId(this.workingTaskId).build();
-
     dashboardMenu.setId(String.format(SUB_DASHBOARD_MENU_PATTERN, board.getId()));
-    dashboardMenu.setRendered(!board.getIsTopMenu()); // TODO z1 consider
-
     return dashboardMenu;
   }
 
