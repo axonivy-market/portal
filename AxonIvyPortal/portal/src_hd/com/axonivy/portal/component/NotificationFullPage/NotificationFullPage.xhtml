@@ -60,7 +60,7 @@
                       </div>
                       <div class="flex notification-action-block">
                         <p:commandLink id="notification-start-task" styleClass="notification-start-task"
-                          actionListener="#{notificationBean.startTaskFromNoti(notification)}" rendered="#{notification.runAction != null}">
+                          actionListener="#{notificationBean.startTask(notification)}" rendered="#{notification.runAction != null}">
                           <i class="fa fa-play notification-start-task-icon" />
                         </p:commandLink>
                         <p:tooltip for="notification-start-task" value="#{notification.runAction.title}" />
