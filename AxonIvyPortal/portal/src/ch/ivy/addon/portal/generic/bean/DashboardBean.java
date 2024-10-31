@@ -1,5 +1,8 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_DASHBOARD_ID;
+import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_SUB_DASHBOARD_ID;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -37,7 +40,6 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
-import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
@@ -94,13 +96,7 @@ public class DashboardBean implements Serializable {
     }
 
     if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())) {
-      if (Ivy.request().getRequestPath().endsWith("/PortalMainDashboard.xhtml")) {
-        // TODO z1 refactor
-        selectedDashboardId =
-            (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString());
-      } else {
-        selectedDashboardId = readDashboardFromSession();
-      }
+      updateSelectedDashboardIdFromSessionAttribute();
       currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
       selectedDashboard = dashboards.get(currentDashboardIndex);
 
@@ -205,7 +201,7 @@ public class DashboardBean implements Serializable {
 
   public void handleStartTask(ITask task) throws IOException {
     selectedTask = task;
-    if (selectedDashboard.getIsMenuItem()) {
+    if (selectedDashboard.getIsTopMenu()) {
       TaskUtils.handleStartTask(task, PortalPage.HOME_PAGE, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG,
           selectedDashboardId);
     } else {
@@ -409,20 +405,16 @@ public class DashboardBean implements Serializable {
     this.dashboardTemplates = dashboardTemplates;
   }
 
-  private String readDashboardFromSession() {
-    return (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.toString());
-  }
-
   private int findIndexOfDashboardById(String selectedDashboardId) {
 
 
     if (StringUtils.isNotBlank(selectedDashboardId)) {
       return dashboards.stream().filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst()
-          .map(dashboards::indexOf).orElse(dashboards.stream().filter(dashboard -> !dashboard.getIsMenuItem())
+          .map(dashboards::indexOf).orElse(dashboards.stream().filter(dashboard -> !dashboard.getIsTopMenu())
               .findFirst().map(dashboards::indexOf).orElse(0));
     }
 
-    return dashboards.stream().filter(dashboard -> !dashboard.getIsMenuItem()).findFirst().map(dashboards::indexOf)
+    return dashboards.stream().filter(dashboard -> !dashboard.getIsTopMenu()).findFirst().map(dashboards::indexOf)
         .orElse(0);
   }
 
@@ -529,4 +521,14 @@ public class DashboardBean implements Serializable {
   public boolean isMainDashboardSelected() {
     return DashboardUtils.isMainDashboard(selectedDashboardId);
   }
+
+
+  private void updateSelectedDashboardIdFromSessionAttribute() {
+    if (Ivy.request().getRequestPath().endsWith("/PortalMainDashboard.xhtml")) {
+      selectedDashboardId = (String) Ivy.session().getAttribute(SELECTED_DASHBOARD_ID.name());
+    } else {
+      selectedDashboardId = (String) Ivy.session().getAttribute(SELECTED_SUB_DASHBOARD_ID.name());
+    }
+  }
+
 }

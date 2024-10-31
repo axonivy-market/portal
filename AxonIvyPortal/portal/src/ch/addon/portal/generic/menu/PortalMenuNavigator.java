@@ -57,7 +57,7 @@ public class PortalMenuNavigator {
 
     switch (selectedMenuKind) {
       case DASHBOARD:
-      case DASHBOARD_MENU_ITEM:
+      case MAIN_DASHBOARD:
       case CUSTOM:
       case EXTERNAL_LINK:
         redirectToSelectedMenuUrl(params);
@@ -223,8 +223,8 @@ private static SubMenuItem convertDashboardToSubMenuItem(Dashboard dashboard, St
         .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
 
     // Set other properties
-    item.menuKind = MenuKind.DASHBOARD_MENU_ITEM;
-    item.name = HomepageUtils.generateHomepageId(MenuKind.DASHBOARD_MENU_ITEM, dashboard.getId());
+    item.menuKind = MenuKind.MAIN_DASHBOARD;
+    item.name = HomepageUtils.generateHomepageId(MenuKind.MAIN_DASHBOARD, dashboard.getId());
     item.link = UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId());
 
     // Special case for a specific dashboard ID

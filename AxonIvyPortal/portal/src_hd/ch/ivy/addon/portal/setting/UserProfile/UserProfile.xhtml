@@ -71,7 +71,7 @@
 
                      <!-- Task List Setting -->
                      <h:panelGroup layout="block" styleClass="ui-g-12"
-                       rendered="#{userProfileBean.canAccessTaskList()}">
+                       rendered="#{false and userProfileBean.canAccessTaskList()}">
                         <div class="setting-header ui-g-12">
                            <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/TaskList')}</h2>
                         </div>
@@ -106,7 +106,7 @@
 
                      <!-- Case List Setting -->
                      <h:panelGroup layout="block" styleClass="ui-g-12"
-                       rendered="#{userProfileBean.canAccessCaseList()}">
+                       rendered="#{false and userProfileBean.canAccessCaseList()}">
                         <div class="setting-header ui-g-12">
                            <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/CaseList')}</h2>
                         </div>
