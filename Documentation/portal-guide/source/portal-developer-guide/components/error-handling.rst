@@ -3,18 +3,18 @@
 Error Handling
 ==============
 
-In this section, we want to mentions about types of errors which user may encounters when using the Portal,
+In this section, we want to mention the types of errors that users may encounter when using the Portal,
 and how to enhance error handling approaches within the Portal.
 
 -  Ajax error: These errors occur during a JSF Ajax request,
    such as when the user clicks the "Show Full Mode" button to switch the task widget to full mode.
-   Without proper error handling, users receive no feedback on whether the action was successful.
+   Without proper error handling, users receive no feedback if the action was unsuccessful.
 
 -  Non-ajax error: These errors occur when a user accesses the Portal via a URL that cannot be processed successfully by the server,
-   or when navigating a corrupt URL.
+   or when navigating to a corrupt URL.
    For example, this can happen if a user clicks a link to start a task that does not exist.
 
--  View expire error: These errors occur when a user submits a request for a page that no longer has an active view in the session,
+-  View expired error: These errors occur when a user submits a request for a page that no longer has an active view in the session,
    or when the user session has expired.
 
 .. _components-error-handling-ajax-error-handling:
@@ -108,8 +108,8 @@ Introduction
 
 Ivy provides a warning dialog for the ``ViewExpiredException``,
 located in the ``webContent/layouts/includes/exception.xhtml`` file of your project.
-If any dialog of your project using :ref:`iframe-in-portal`, and encounters a ``ViewExpiredException``,
-the default wanring dialog will be displayed.
+If any dialog of your project is using :ref:`iframe-in-portal`, and encounters a ``ViewExpiredException``,
+the default warning dialog will be displayed.
 
 How to Configure
 ^^^^^^^^^^^^^^^^
