@@ -2752,7 +2752,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .application-tab-action-buttons .new-app-btn, .create-role-container .create-role-btn {
   width: 100%;
-  height: 3rem;
+  height: 3.25rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -3187,14 +3187,15 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   line-break: anywhere;
 }
 
-.primary-color-light-button {
-  background: var(--portal-button-bg-color) !important; 
-  color: var(--portal-button-text-color) !important;
+.ui-button.primary-color-light-button {
+  background: var(--portal-accessibility-bg-color); 
+  color: var(--portal-button-text-color);
   font-weight: 600;
 }
 
-.primary-color-light-button:hover {
-  background: var(--portal-accessibility-bg-color) !important;
+.ui-button.primary-color-light-button:hover {
+  background: hsla(var(--ivy-primary-light-color-h), var(--ivy-primary-light-color-s), 89%, 1); 
+  color: var(--ivy-primary-color);
 }
 
 .add-absence-dialog .ui-dialog-titlebar {

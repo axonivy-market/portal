@@ -9,7 +9,9 @@
     <ui:define name="pageContent">
 
       <h:panelGroup id="portal-management-container" styleClass=" ui-g">
-        <p:messages redisplay="false" for="portal-management-messages-information" closable="false" id="portal-management-messages"/>
+        <div class="ui-g-12">
+          <p:messages redisplay="false" for="portal-management-messages-information" closable="false" id="portal-management-messages"/>
+        </div>
         <div id="admin-settings-container" class="admin-settings-container ui-g-12">
           <div class="card ui-g admin-setting-card">
             <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="admin-setting-component" />
