@@ -75,6 +75,7 @@ function loadGrid() {
         setupImageProcessWidgetDescription(descriptionElement);
       }
 
+      udateResizableTablesWhenResizeWidget();
       setupGridProcessWidget();
     });
 
@@ -294,7 +295,7 @@ function loadCaseAndTaskWidgetFirstTime(loadingClass, widgetClass) {
       widget.removeClass('u-display-none');
       widget.removeClass('u-invisibility');
     }
-    $('.js-resizing').find('table[role="grid"]').addClass('w-fit');
+    $('.js-resizing').find('table[role="grid"]').addClass('w-min');
   }, 50);
 }
 
@@ -481,4 +482,34 @@ function initTableWidget(table) {
     table.cfg.scrollHeight = $table.height().toString();
     table.renderDeferred(table.cfg);
   }, 500);
+}
+
+function udateResizableTablesWhenResizeWidget() {
+  const scrollableBody = document.querySelectorAll('.ui-datatable-scrollable-body');
+  scrollableBody.forEach((sb) => {
+    let tableBody = $(sb);
+    if (tableBody.parents('.js-resizing').length == 0) {
+      return;
+    }
+
+    let parentHeight = tableBody.parents('.grid-stack-item-content.card.dashboard-card').height();
+    if (!window.matchMedia("(max-width: 767px)").matches) {
+      tableBody.height(parentHeight - 100);
+    } else {
+      tableBody.height(parentHeight * 0.9);
+    }
+
+    const widgetName = tableBody.parents('.grid-stack-item').find('.js-table-widget-var').val();
+    if (widgetName === undefined) {
+      return;
+    }
+
+    // Update scrolling of the Primefaces widget
+    const widget = PF(widgetName);
+    if (widget) {
+      widget.cfg.scrollHeight = tableBody.parents('.ui-datatable-scrollable').height().toString();
+      widget.renderDeferred(widget.cfg);
+    }
+  });
+
 }
