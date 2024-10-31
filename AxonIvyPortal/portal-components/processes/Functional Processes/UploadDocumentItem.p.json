@@ -104,6 +104,8 @@
           "config" : {
             "output" : {
               "code" : [
+                "import com.axonivy.portal.components.jsf.ManagedBeans;",
+                "import com.axonivy.portal.components.bean.DocumentUploadBean;",
                 "import com.axonivy.portal.components.masterdata.MasterData;",
                 "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
                 "import org.apache.commons.io.FileUtils;",
@@ -119,10 +121,16 @@
                 "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/EmptyFileMessage\");",
                 "  in.status = UploadDocumentCheckStatus.FAIL;",
                 "} else {",
+                "  DocumentUploadBean documentUploadBean = ManagedBeans.get(\"documentUploadBean\") as DocumentUploadBean;",
                 "  Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();",
+                "  if(documentUploadBean != null) {",
+                "    maxFileUploadSize = documentUploadBean.getFileUploadSizeLimit();",
+                "  }",
+                "  ",
                 "  if (in.uploadedFile.getSize() > maxFileUploadSize) {",
                 "    in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/ErrorFileUploadSize\", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));",
                 "  }",
+                "  ",
                 "  in.status = UploadDocumentCheckStatus.FAIL;",
                 "}"
               ]

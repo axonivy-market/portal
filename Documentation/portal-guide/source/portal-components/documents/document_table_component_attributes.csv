@@ -8,6 +8,7 @@ downloadRendered,TRUE,Boolean,"Boolean value to specify the rendering of the dow
 deleteRendered,TRUE,Boolean,"Boolean value to specify the rendering of the delete icon, when set to false delete icon will not be rendered."
 messageRendered,TRUE,Boolean,"Boolean value to specify the rendering of the message, when set to false message will not be rendered."
 fileLimit,-1,Integer,Number of files are in the given ICase.
+sizeLimit,null,Long,Individual uploading file size limit in bytes.
 updatedComponentAfterUploaded,null,String,Component will be triggered the update after document is uploaded.
 downloadIcon,fa-download,String,Icon class will be displayed in download link.
 downloadStyleClass,null,String,Styles for download link.
