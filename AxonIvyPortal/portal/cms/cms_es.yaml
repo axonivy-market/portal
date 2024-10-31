@@ -861,6 +861,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
     taskStart: Iniciar tarea
     taskWidgetConfiguration: Configuración del widget de tareas
+    topMenuItemInfo: Si la casilla "Is Top Menu Item" está marcada, el tablero aparece como un elemento de nivel superior en la barra de navegación, ordenado según su posición en la lista. Si no está marcada, aparece como un subelemento en "Dashboards", también ordenado por posición en la lista.
     widgetInfo: Información del widget
     widgetInfoIcon: Icono de información del widget
     widgetTitle: Título del widget

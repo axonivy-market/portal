@@ -39,7 +39,14 @@
           <p:tooltip for="dashboard-description-group" value="#{dashboard.description}" trackMouse="true" hideEvent="mouseleave click" styleClass="dashboard-configuration-tooltip"/>
         </h:panelGroup>
       </p:column>
-      <p:column rendered="#{isPublicDashboard}" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/topMenuItem')}" width="10%">
+      <p:column rendered="#{isPublicDashboard}"  width="10%">
+      <f:facet name="header">
+        <div class="flex align-items-center gap-2">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/topMenuItem')}" />
+          <h:outputText id="quick-search-info" styleClass="si si-information-circle" />
+          <p:tooltip for="quick-search-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/topMenuItemInfo')}" />
+        </div>
+      </f:facet>
         <p:selectBooleanCheckbox value="#{dashboard.isMenuItem}" id="menu-item-checkbox" disabled="true" />
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" width="#{dashboardModificationBean.hasExportDashboardPermission() ? '120' : '210'}">
