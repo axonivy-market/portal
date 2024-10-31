@@ -418,7 +418,7 @@
             "quickSearch": true,
             "sortable": true,
             "type": "standard",
-            "width": "180"
+            "width": "600"
           },
           {
             "field": "description",
@@ -474,7 +474,7 @@
           {
             "field": "application",
             "styleClass": "dashboard-tasks__priority u-text-align-center",
-            "visible": true,
+            "visible": false,
             "quickSearch": false,
             "sortable": false,
             "type": "standard",
