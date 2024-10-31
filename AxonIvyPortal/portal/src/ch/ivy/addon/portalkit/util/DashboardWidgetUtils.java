@@ -165,7 +165,6 @@ public class DashboardWidgetUtils {
       column.setDescription(fieldMeta.get().description());
       if (column.getIsCustomAction()) {
         column.setSortable(false);
-        column.setStyle(AbstractColumn.EXTRA_WIDTH);
       }
     } else if (StringUtils.isBlank(column.getHeader())) {
       column.setHeader(field);
@@ -296,7 +295,7 @@ public class DashboardWidgetUtils {
       if (StringUtils.equals(column.getDefaultStyleClass(), column.getStyleClass())) {
         column.setStyleClass(null);
       }
-      if (StringUtils.equals(column.getDefaultStyle(), column.getStyle())) {
+      if (StringUtils.equals(column.initDefaultStyle  (), column.getStyle())) {
         column.setStyle(null);
       }
       if (column.getDefaultFormat() == column.getFormat()) {
