@@ -388,83 +388,48 @@
         "columns": [
           {
             "field": "start",
-            "styleClass": "dashboard-tasks__start u-text-align-center widget-column",
-            "visible": true,
-            "sortable": false,
             "width": "50"
           },
           {
             "field": "priority",
-            "styleClass": "dashboard-tasks__priority u-text-align-center widget-column",
-            "visible": true,
-            "sortable": true,
             "width": "60"
           },
           {
             "field": "id",
-            "styleClass": "dashboard-tasks__id u-text-align-center widget-column",
-            "visible": true,
-            "quickSearch": false,
-            "sortable": true,
             "width": "80"
           },
           {
             "field": "name",
-            "styleClass": "dashboard-tasks__name widget-column",
-            "visible": true,
             "quickSearch": true,
-            "sortable": true,
             "width": "600"
           },
           {
             "field": "description",
-            "styleClass": "dashboard-tasks__description widget-column",
-            "visible": true,
             "quickSearch": true,
-            "sortable": false,
             "width": "250"
           },
           {
             "field": "activator",
-            "styleClass": "dashboard-tasks__responsible widget-column",
-            "visible": true,
-            "quickSearch": false,
-            "sortable": true,
             "width": "125"
           },
           {
             "field": "state",
-            "styleClass": "dashboard-tasks__state u-text-align-center widget-column",
-            "visible": true,
-            "sortable": true,
             "width": "70"
           },
           {
             "field": "startTimestamp",
-            "styleClass": "dashboard-tasks__created-date u-text-align-center widget-column",
-            "visible": true,
-            "sortable": true,
             "width": "95"
           },
           {
             "field": "expiryTimestamp",
-            "styleClass": "dashboard-tasks__expiry-date u-text-align-center widget-column",
-            "visible": true,
-            "sortable": true,
             "width": "105"
           },
           {
             "field": "category",
-            "styleClass": "dashboard-tasks__category u-text-align-center  widget-column",
-            "visible": true,
-            "quickSearch": false,
-            "sortable": false,
             "width": "110"
           },
           {
             "field": "actions",
-            "visible": true,
-            "sortable": false,
             "width": "85"
           }
         ],
