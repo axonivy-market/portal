@@ -1,5 +1,6 @@
 package ch.addon.portal.generic.menu;
 
+import static ch.ivy.addon.portal.generic.navigation.PortalNavigator.DASHBOARD_ID;
 import static java.util.Objects.isNull;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
@@ -28,7 +29,7 @@ public class PortalMenuItem extends DefaultMenuItem {
   public final static String SUB_MENU_ID_FORMAT = "sub-menu-item-%s";
   public final static String THIRD_PARTY_MENU_ID_FORMAT = "thirdparty-menu-item-%s";
   public final static String EXTERNAL_MENU_ID_FORMAT = "external-menu-item-%s";
-  public final static String DASHBOARD_MENU_ITEM_ID_FORMAT = "dashboard-menu-item-%s";
+  public final static String MAIN_DASHBOARD_MENU_ID_FORMAT = "main-dashboard-menu-item-%s";
   public final static String MENU_CLASS_FORMAT = "%s %s";
   public final static String MENU_CLASS_SUFFIX = "-menu-js";
   
@@ -49,7 +50,7 @@ public class PortalMenuItem extends DefaultMenuItem {
   public PortalMenuItem() { }
 
   public PortalMenuItem(PortalMenuBuilder builder) {
-    if (MenuKind.DASHBOARD_MENU_ITEM == builder.menuKind) {
+    if (MenuKind.MAIN_DASHBOARD == builder.menuKind) {
       try {
         String dashboardId = "";
         URI uri = new URI(builder.url);
@@ -58,12 +59,12 @@ public class PortalMenuItem extends DefaultMenuItem {
 
         for (String pair : pairs) {
           String[] keyValue = pair.split("=");
-          if ("dashboardId".equals(keyValue[0])) { // TODO z1 make constant
+          if (DASHBOARD_ID.equals(keyValue[0])) {
             dashboardId = keyValue.length > 1 ? keyValue[1] : "";
             break;
           }
         }
-        this.setId(String.format(DashboardUtils.MENU_ITEM_DASHBOARD_PATTERN, dashboardId));
+        this.setId(String.format(DashboardUtils.MAIN_DASHBOARD_MENU_PATTERN, dashboardId));
 
       } catch (URISyntaxException e) {
         // Just ignore
@@ -138,8 +139,8 @@ public class PortalMenuItem extends DefaultMenuItem {
       case CUSTOM:
         menuFormat = SUB_MENU_ID_FORMAT;
         break;
-      case DASHBOARD_MENU_ITEM:
-        menuFormat = DASHBOARD_MENU_ITEM_ID_FORMAT;
+      case MAIN_DASHBOARD:
+        menuFormat = MAIN_DASHBOARD_MENU_ID_FORMAT;
       case EXTERNAL_LINK:
         menuFormat = EXTERNAL_MENU_ID_FORMAT;
         break;

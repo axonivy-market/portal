@@ -46,6 +46,7 @@ public final class PortalNavigator extends BaseNavigator{
   public static final String PORTAL_USER_PROFILE_START =  "/UserProfile.ivp";
   public static final String PORTAL_CASE_DETAILS_IN_IFRAME_START = "/CaseDetailsInIFrame.ivp";
   public static final String PORTAL_DASHBOARD_PAGE_START = "/DashboardPage.ivp";
+  public static final String DASHBOARD_ID = "dashboardId";
   private static final String UUID = "uuid";
   private static final String ID = "id";
   private static final String PORTAL_DASHBOARD_PAGE = "Start Processes/PortalStart/DashboardPage.ivp";
@@ -88,7 +89,7 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static String getDashboardPageUrl(String dashboardId) {
     Map<String, String> params = new HashMap<>();
-    params.put("dashboardId", dashboardId);
+    params.put(DASHBOARD_ID, dashboardId);
     return buildUrl(PORTAL_DASHBOARD_PAGE, params);
   }
 
@@ -96,7 +97,7 @@ public final class PortalNavigator extends BaseNavigator{
     String subMenuUrl = switch (menuKind) {
       case PROCESS -> PORTAL_PROCESS;
       case CASE -> PORTAL_CASE;
-      case DASHBOARD_MENU_ITEM -> PORTAL_DASHBOARD_PAGE;
+      case MAIN_DASHBOARD -> PORTAL_DASHBOARD_PAGE;
       default -> StringUtils.EMPTY;
     };
     return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(subMenuUrl);
@@ -118,7 +119,7 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static void navigateToPortalTask() {
     Map<String, String> params = new HashMap<>();
-    params.put("dashboardId", DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID);
+    params.put(DASHBOARD_ID, DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID);
     navigateByKeyword(PORTAL_DASHBOARD_PAGE_START, PORTAL_DASHBOARD_PAGE, params);
   }
 
@@ -182,7 +183,7 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static void navigateToDashboardDetailsPage(String dashboardId, boolean isPublicDashboard) {
     Map<String, String> params = new HashMap<>();
-    params.put("dashboardId", dashboardId);
+    params.put(DASHBOARD_ID, dashboardId);
     params.put("isPublicDashboard", Boolean.valueOf(isPublicDashboard).toString());
     navigateByKeyword("DashboardDetails.ivp", PORTAL_DASHBOARD_DETAILS, params);
   }

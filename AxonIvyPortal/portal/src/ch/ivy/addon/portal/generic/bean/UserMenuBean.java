@@ -370,6 +370,6 @@ public class UserMenuBean implements Serializable {
   }
 
   public String getInfoToHighlightMenu() {
-    return DashboardUtils.getSelectedDashboardAsMenuIdFromSession();
+    return DashboardUtils.getSelectedMainDashboardIdFromSession();
   }
 }

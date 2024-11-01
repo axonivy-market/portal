@@ -461,7 +461,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     destroyTaskHeaderText: Diese Aufgabe löschen?
     detail: Details
     display: Anzeigen
-    displayAsMenuItem: Anzeige als Menüpunkt
+    displayAsTopMenu: Als oberstes Menü anzeigen
     displayName: Name anzeigen
     dragAndDropFile: 'Ziehen und Ablegen einer Datei oder '
     dragAndDropImage: 'Ziehen und Ablegen eines Bildes oder '
@@ -576,6 +576,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: Der Prozess
     timeInformation: Zeitangaben
     timestamp: Zeitstempel
+    topMenuItem: Oberster Menüpunkt
     type: Typ
     typeAdmin: Alle Administratoren
     typeAllUsers: Alle Benutzer
@@ -861,6 +862,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Dieses Widget zeigt relevante Aufgabeninformationen gemäß der definierten Einstellungen an
     taskStart: Aufgabe starten
     taskWidgetConfiguration: Aufgaben-Widget-Konfiguration
+    topMenuItemInfo: Wenn die Checkbox „Is Top Menu Item“ aktiviert ist, erscheint das Dashboard als oberstes Element in der Navigationsleiste, sortiert nach Listenposition. Wenn sie deaktiviert ist, wird es als Unterpunkt unter „Dashboards“ angezeigt, ebenfalls nach Listenposition sortiert.
     widgetInfo: Widget-Informationen
     widgetInfoIcon: Widget-Informations-Symbol
     widgetTitle: Widget-Titel

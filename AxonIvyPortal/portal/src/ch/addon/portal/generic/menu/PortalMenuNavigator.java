@@ -57,7 +57,7 @@ public class PortalMenuNavigator {
 
     switch (selectedMenuKind) {
       case DASHBOARD:
-      case DASHBOARD_MENU_ITEM:
+      case MAIN_DASHBOARD:
       case CUSTOM:
       case EXTERNAL_LINK:
         redirectToSelectedMenuUrl(params);
@@ -171,8 +171,8 @@ public class PortalMenuNavigator {
     addDefaultSubmenuItems(subMenuItems);
 
     // Add dashboard submenu items
-    List<Dashboard> dashboardMenuItemList = DashboardUtils.collectMenuItemDashboard();
-    for (Dashboard dashboard : dashboardMenuItemList) {
+    List<Dashboard> mainDashboards = DashboardUtils.collectMainDashboards();
+    for (Dashboard dashboard : mainDashboards) {
       // Check if it's the task dashboard
       if (DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID.equalsIgnoreCase(dashboard.getId())) {
         // Only add the task dashboard if the user has permission
@@ -223,8 +223,8 @@ private static SubMenuItem convertDashboardToSubMenuItem(Dashboard dashboard, St
         .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
 
     // Set other properties
-    item.menuKind = MenuKind.DASHBOARD_MENU_ITEM;
-    item.name = HomepageUtils.generateHomepageId(MenuKind.DASHBOARD_MENU_ITEM, dashboard.getId());
+    item.menuKind = MenuKind.MAIN_DASHBOARD;
+    item.name = HomepageUtils.generateHomepageId(MenuKind.MAIN_DASHBOARD, dashboard.getId());
     item.link = UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId());
 
     // Special case for a specific dashboard ID

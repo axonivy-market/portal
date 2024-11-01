@@ -85,11 +85,11 @@
 				<c:if test="#{isPublicDashboard}">
 					<div class="ui-g-6 w-full manage-dashboard__label">
 						<p:outputLabel for="dashboard-description"  styleClass="font-semibold"
-							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayAsMenuItem')}" />
+							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayAsTopMenu')}" />
 					</div>
 					<div class="ui-g-6 w-full ui-fluid">
-						<p:selectBooleanCheckbox id="dashboard-menu-item"
-							value="#{managedBean.selectedDashboard.isMenuItem}"
+						<p:selectBooleanCheckbox id="main-dashboard-menu-item"
+							value="#{managedBean.selectedDashboard.isTopMenu}"
 							required="false" />
 					</div>
 				</c:if>

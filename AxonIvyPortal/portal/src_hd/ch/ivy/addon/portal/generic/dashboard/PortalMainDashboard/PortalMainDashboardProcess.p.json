@@ -3,7 +3,7 @@
   "id" : "192B37FB1D445500",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "ch.ivy.addon.portal.generic.dashboard.PortalDashboardAsMenu.PortalDashboardAsMenuData"
+    "data" : "ch.ivy.addon.portal.generic.dashboard.PortalMainDashboard.PortalMainDashboardData"
   },
   "elements" : [ {
       "id" : "f0",

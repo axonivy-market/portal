@@ -1,23 +1,23 @@
 {
-  "id": "dashboard-task-template",
+  "id": "default-task-list-dashboard",
   "version": "11.4.0",
   "templateId": "create-from-scratch",
   "titles": [
     {
       "locale": "en",
-      "value": "My Tasks"
+      "value": "Tasks"
     },
     {
       "locale": "fr",
-      "value": "Mes tâches"
+      "value": "Tâches"
     },
     {
       "locale": "de",
-      "value": "Meine Aufgaben"
+      "value": "Aufgaben"
     },
     {
       "locale": "es",
-      "value": "Mis tareas"
+      "value": "Tareas"
     }
   ],
   "icon": "si-task-list-edit",
@@ -60,7 +60,6 @@
           "styleClass": "dashboard-tasks__start u-text-align-center widget-column",
           "visible": true,
           "sortable": false,
-          "type": "standard",
           "width": "50"
         },
         {
@@ -68,7 +67,6 @@
           "styleClass": "dashboard-tasks__priority u-text-align-center widget-column",
           "visible": true,
           "sortable": true,
-          "type": "standard",
           "width": "60"
         },
         {
@@ -77,7 +75,6 @@
           "visible": true,
           "quickSearch": false,
           "sortable": true,
-          "type": "standard",
           "width": "80"
         },
         {
@@ -86,8 +83,7 @@
           "visible": true,
           "quickSearch": true,
           "sortable": true,
-          "type": "standard",
-          "width": "180"
+          "width": "600"
         },
         {
           "field": "description",
@@ -95,7 +91,6 @@
           "visible": true,
           "quickSearch": true,
           "sortable": false,
-          "type": "standard",
           "width": "250"
         },
         {
@@ -104,7 +99,6 @@
           "visible": true,
           "quickSearch": false,
           "sortable": true,
-          "type": "standard",
           "width": "125"
         },
         {
@@ -112,7 +106,6 @@
           "styleClass": "dashboard-tasks__state u-text-align-center widget-column",
           "visible": true,
           "sortable": true,
-          "type": "standard",
           "width": "70"
         },
         {
@@ -120,7 +113,6 @@
           "styleClass": "dashboard-tasks__created-date u-text-align-center widget-column",
           "visible": true,
           "sortable": true,
-          "type": "standard",
           "width": "95"
         },
         {
@@ -128,32 +120,20 @@
           "styleClass": "dashboard-tasks__expiry-date u-text-align-center widget-column",
           "visible": true,
           "sortable": true,
-          "type": "standard",
           "width": "105"
         },
         {
           "field": "category",
-          "styleClass": "dashboard-tasks__category u-text-align-centerwidget-column",
+          "styleClass": "dashboard-tasks__category u-text-align-center  widget-column",
           "visible": true,
           "quickSearch": false,
           "sortable": false,
-          "type": "standard",
           "width": "110"
-        },
-        {
-          "field": "application",
-          "styleClass": "dashboard-tasks__priority u-text-align-center",
-          "visible": true,
-          "quickSearch": false,
-          "sortable": false,
-          "type": "standard",
-          "width": "95"
         },
         {
           "field": "actions",
           "visible": true,
           "sortable": false,
-          "type": "standard",
           "width": "85"
         }
       ],
@@ -165,5 +145,5 @@
   "permissions": [
     "Everybody"
   ],
-  "isMenuItem": true
+  "isTopMenu": true
 }

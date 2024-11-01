@@ -134,147 +134,49 @@
             "value": "Sus casos"
           }
         ],
-        "icon": "si-task-list-edit",
-        "description": "Default Task List Dashboard",
-        "widgets": [
-            {
-                "type": "task",
-                "id": "task_e16cbee90a244f4a857d0a8c875b7b34",
-                "names": [
-                    {
-                        "locale": "en",
-                        "value": "Your Tasks"
-                    },
-                    {
-                        "locale": "fr",
-                        "value": "Your Tasks"
-                    },
-                    {
-                        "locale": "de",
-                        "value": "Your Tasks"
-                    },
-                    {
-                        "locale": "es",
-                        "value": "Your Tasks"
-                    }
-                ],
-                "layout": {
-                    "w": 12,
-                    "h": 8,
-                    "x": 0,
-                    "y": 0
-                },
-                "rowsPerPage": 5,
-                "enableQuickSearch": true,
-                "showWidgetInfo": true,
-                "showFullscreenMode": true,
-                "columns": [
-                    {
-                        "field": "start",
-                        "styleClass": "dashboard-tasks__start u-text-align-center widget-column",
-                        "visible": true,
-                        "sortable": false,
-                        "type": "standard",
-                        "width": "50"
-                    },
-                    {
-                        "field": "priority",
-                        "styleClass": "dashboard-tasks__priority u-text-align-center widget-column",
-                        "visible": true,
-                        "sortable": true,
-                        "type": "standard",
-                        "width": "60"
-                    },
-                    {
-                        "field": "id",
-                        "styleClass": "dashboard-tasks__id u-text-align-center widget-column",
-                        "visible": true,
-                        "quickSearch": false,
-                        "sortable": true,
-                        "type": "standard",
-                        "width": "80"
-                    },
-                    {
-                        "field": "name",
-                        "styleClass": "dashboard-tasks__name widget-column",
-                        "visible": true,
-                        "quickSearch": true,
-                        "sortable": true,
-                        "type": "standard",
-                        "width": "180"
-                    },
-                    {
-                        "field": "description",
-                        "styleClass": "dashboard-tasks__description widget-column",
-                        "visible": true,
-                        "quickSearch": true,
-                        "sortable": false,
-                        "type": "standard",
-                        "width": "250"
-                    },
-                    {
-                        "field": "activator",
-                        "styleClass": "dashboard-tasks__responsible widget-column",
-                        "visible": true,
-                        "quickSearch": false,
-                        "sortable": true,
-                        "type": "standard",
-                        "width": "125"
-                    },
-                    {
-                        "field": "state",
-                        "styleClass": "dashboard-tasks__state u-text-align-center widget-column",
-                        "visible": true,
-                        "sortable": true,
-                        "type": "standard",
-                        "width": "70"
-                    },
-                    {
-                        "field": "startTimestamp",
-                        "styleClass": "dashboard-tasks__created-date u-text-align-center widget-column",
-                        "visible": true,
-                        "sortable": true,
-                        "type": "standard",
-                        "width": "95"
-                    },
-                    {
-                        "field": "expiryTimestamp",
-                        "styleClass": "dashboard-tasks__expiry-date u-text-align-center widget-column",
-                        "visible": true,
-                        "sortable": true,
-                        "type": "standard",
-                        "width": "105"
-                    },
-                    {
-                        "field": "category",
-                        "styleClass": "dashboard-tasks__category u-text-align-center  widget-column",
-                        "visible": true,
-                        "quickSearch": false,
-                        "sortable": false,
-                        "type": "standard",
-                        "width": "110"
-                    },
-                    {
-                        "field": "application",
-                        "styleClass": "dashboard-tasks__priority u-text-align-center",
-                        "visible": true,
-                        "quickSearch": false,
-                        "sortable": false,
-                        "type": "standard",
-                        "width": "95"
-                    },
-                    {
-                        "field": "actions",
-                        "visible": true,
-                        "sortable": false,
-                        "type": "standard",
-                        "width": "85"
-                    }
-                ],
-                "canWorkOn": false,
-                "sortField": "id",
-                "sortDescending": true
-            }
+        "layout": {
+          "w": 9,
+          "h": 6,
+          "x": 3,
+          "y": 8
+        },
+        "rowsPerPage": 5,
+        "columns": [
+          {
+            "field": "id",
+            "quickSearch": false
+          },
+          {
+            "field": "name",
+            "quickSearch": true
+          },
+          {
+            "field": "description",
+            "visible": false,
+            "quickSearch": false
+          },
+          {
+            "field": "state"
+          },
+          {
+            "field": "creator",
+            "quickSearch": false
+          },
+          {
+            "field": "startTimestamp"
+          },
+          {
+            "field": "endTimestamp",
+            "visible": false
+          },
+          {
+            "field": "category",
+            "visible": false,
+            "quickSearch": false
+          },
+          {
+            "field": "actions"
+          }
         ],
         "sortDescending": true,
         "sortField": "startTimestamp",
@@ -428,25 +330,25 @@
     ]
   },
   {
-    "id": "dashboard-task-template",
+    "id": "default-task-list-dashboard",
     "version": "11.4.0",
     "templateId": "create-from-scratch",
     "titles": [
       {
         "locale": "en",
-        "value": "My Tasks"
+        "value": "Tasks"
       },
       {
         "locale": "fr",
-        "value": "Mes tâches"
+        "value": "Tâches"
       },
       {
         "locale": "de",
-        "value": "Meine Aufgaben"
+        "value": "Aufgaben"
       },
       {
         "locale": "es",
-        "value": "Mis tareas"
+        "value": "Tareas"
       }
     ],
     "icon": "si-task-list-edit",
@@ -485,48 +387,85 @@
         "showFullscreenMode": true,
         "columns": [
           {
-            "field": "start"
+            "field": "start",
+            "styleClass": "dashboard-tasks__start u-text-align-center widget-column",
+            "visible": true,
+            "sortable": false,
+            "width": "50"
           },
           {
-            "field": "priority"
+            "field": "priority",
+            "styleClass": "dashboard-tasks__priority u-text-align-center widget-column",
+            "visible": true,
+            "sortable": true,
+            "width": "60"
           },
           {
             "field": "id",
-            "quickSearch": false
+            "styleClass": "dashboard-tasks__id u-text-align-center widget-column",
+            "visible": true,
+            "quickSearch": false,
+            "sortable": true,
+            "width": "80"
           },
           {
             "field": "name",
-            "quickSearch": true
+            "styleClass": "dashboard-tasks__name widget-column",
+            "visible": true,
+            "quickSearch": true,
+            "sortable": true,
+            "width": "600"
           },
           {
             "field": "description",
-            "quickSearch": true
+            "styleClass": "dashboard-tasks__description widget-column",
+            "visible": true,
+            "quickSearch": true,
+            "sortable": false,
+            "width": "250"
           },
           {
             "field": "activator",
-            "quickSearch": false
+            "styleClass": "dashboard-tasks__responsible widget-column",
+            "visible": true,
+            "quickSearch": false,
+            "sortable": true,
+            "width": "125"
           },
           {
-            "field": "state"
+            "field": "state",
+            "styleClass": "dashboard-tasks__state u-text-align-center widget-column",
+            "visible": true,
+            "sortable": true,
+            "width": "70"
           },
           {
-            "field": "startTimestamp"
+            "field": "startTimestamp",
+            "styleClass": "dashboard-tasks__created-date u-text-align-center widget-column",
+            "visible": true,
+            "sortable": true,
+            "width": "95"
           },
           {
-            "field": "expiryTimestamp"
+            "field": "expiryTimestamp",
+            "styleClass": "dashboard-tasks__expiry-date u-text-align-center widget-column",
+            "visible": true,
+            "sortable": true,
+            "width": "105"
           },
           {
             "field": "category",
-            "quickSearch": false
+            "styleClass": "dashboard-tasks__category u-text-align-center  widget-column",
+            "visible": true,
+            "quickSearch": false,
+            "sortable": false,
+            "width": "110"
           },
           {
-            "field": "application",
-            "styleClass": "dashboard-tasks__priority u-text-align-center",
-            "style": "width: 80px",
-            "quickSearch": false
-          },
-          {
-            "field": "actions"
+            "field": "actions",
+            "visible": true,
+            "sortable": false,
+            "width": "85"
           }
         ],
         "canWorkOn": false,
@@ -537,6 +476,6 @@
     "permissions": [
       "Everybody"
     ],
-    "isMenuItem": true
+    "isTopMenu": true
   }
 ]

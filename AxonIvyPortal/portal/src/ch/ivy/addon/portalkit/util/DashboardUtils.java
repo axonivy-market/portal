@@ -38,17 +38,17 @@ import ch.ivyteam.ivy.security.IUser;
 public class DashboardUtils {
 
   public final static String DASHBOARD_MENU_PREFIX = "_js__";
-  public final static String DASHBOARD_MENU_POSTFIX = "-main-dashboard";
-  public final static String DASHBOARD_ITEM_POSTFIX = "-menu-item-dashboard";
-  public final static String MENU_ITEM_DASHBOARD_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + DASHBOARD_ITEM_POSTFIX;
-  public final static String DASHBOARD_MENU_ITEM_POSTFIX = "-sub-dashboard";
-  public final static String DASHBOARD_MENU_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + DASHBOARD_MENU_POSTFIX;
-  public final static String DASHBOARD_MENU_ITEM_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + DASHBOARD_MENU_ITEM_POSTFIX;
+  public final static String PARENT_DASHBOARD_MENU_POSTFIX = "-parent-dashboard";
+  public final static String MAIN_DASHBOARD_MENU_POSTFIX = "-main-dashboard";
+  public final static String SUB_DASHBOARD_MENU_POSTFIX = "-sub-dashboard";
+  public final static String PARENT_DASHBOARD_MENU_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + PARENT_DASHBOARD_MENU_POSTFIX;
+  public final static String MAIN_DASHBOARD_MENU_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + MAIN_DASHBOARD_MENU_POSTFIX;
+  public final static String SUB_DASHBOARD_MENU_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + SUB_DASHBOARD_MENU_POSTFIX;
   public final static String DASHBOARD_PAGE_URL =
       "/ch.ivy.addon.portal.generic.dashboard.PortalDashboard/PortalDashboard.xhtml";
   public final static String DASHBOARD_MENU_JS_CLASS = "js-dashboard-group";
   public final static String HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN = "highlightDashboardItem('%s')";
-  public final static String DASHBOARD_TASK_TEMPLATE_ID = "dashboard-task-template";
+  public final static String DASHBOARD_TASK_TEMPLATE_ID = "default-task-list-dashboard";
 
   public static List<Dashboard> getVisibleDashboards(String dashboardJson) {
     List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
@@ -130,8 +130,12 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> getPublicDashboards() {
+    Dashboard taskTemplateDashboard = DashboardUtils.getDefaultTaskListDashboard();
     String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
     List<Dashboard> visibleDashboards = jsonToDashboards(dashboardJson);
+    if (!visibleDashboards.contains(taskTemplateDashboard)) {
+      visibleDashboards.add(0, taskTemplateDashboard);
+    }
     setDashboardAsPublic(visibleDashboards);
     return visibleDashboards;
   }
@@ -168,7 +172,7 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> collectDashboards() {
-    Dashboard taskTemplateDashboard = getTaskTemplateDashboard();
+    Dashboard defaultTaskListDashboard = getDefaultTaskListDashboard();
     List<Dashboard> visibleDashboards = getAllVisibleDashboardsOfSessionUser();
     List<DashboardOrder> dashboardOrders = getDashboardOrdersOfSessionUser();
     Map<String, Dashboard> idToDashboard = createMapIdToDashboard(visibleDashboards);
@@ -183,15 +187,15 @@ public class DashboardUtils {
       }
     }
     collectedDashboards.addAll(idToDashboard.values());
-    if (!collectedDashboards.contains(taskTemplateDashboard)) {
-      collectedDashboards.add(0, taskTemplateDashboard);
+    if (!collectedDashboards.contains(defaultTaskListDashboard)) {
+      collectedDashboards.add(0, defaultTaskListDashboard);
     }
     return collectedDashboards;
   }
 
-  public static List<Dashboard> collectMenuItemDashboard() {
+  public static List<Dashboard> collectMainDashboards() {
     List<Dashboard> collectedDashboards =
-        new ArrayList<>(collectDashboards().stream().filter(dashboard -> dashboard.getIsMenuItem()).toList());
+        new ArrayList<>(collectDashboards().stream().filter(dashboard -> dashboard.getIsTopMenu()).toList());
     return collectedDashboards;
   }
 
@@ -201,16 +205,16 @@ public class DashboardUtils {
   }
 
   public static void updateSelectedDashboardToSession(String selectedMenuItemId) {
-    if (selectedMenuItemId != null && (selectedMenuItemId.contains(DASHBOARD_MENU_POSTFIX)
-        || selectedMenuItemId.contains(DASHBOARD_MENU_ITEM_POSTFIX)
-        || selectedMenuItemId.contains(DASHBOARD_ITEM_POSTFIX))) {
+    if (selectedMenuItemId != null && (selectedMenuItemId.contains(PARENT_DASHBOARD_MENU_POSTFIX)
+        || selectedMenuItemId.contains(SUB_DASHBOARD_MENU_POSTFIX)
+        || selectedMenuItemId.contains(MAIN_DASHBOARD_MENU_POSTFIX))) {
 
       String[] menuIds = selectedMenuItemId.split(":");
 
       String[] dashboardIds = menuIds[menuIds.length - 1].split(DASHBOARD_MENU_PREFIX);
 
-      String dashboardId = dashboardIds[dashboardIds.length - 1].replace(DASHBOARD_MENU_POSTFIX, "")
-          .replace(DASHBOARD_MENU_ITEM_POSTFIX, "").replace(DASHBOARD_ITEM_POSTFIX, "");
+      String dashboardId = dashboardIds[dashboardIds.length - 1].replace(PARENT_DASHBOARD_MENU_POSTFIX, "")
+          .replace(SUB_DASHBOARD_MENU_POSTFIX, "").replace(MAIN_DASHBOARD_MENU_POSTFIX, "");
 
       DashboardUtils.storeDashboardInSession(dashboardId);
     }
@@ -263,28 +267,28 @@ public class DashboardUtils {
   }
 
   public static void storeDashboardInSession(String id) {
-    storeDashboardInSession(id, isDashboardAsMenu(id));
+    storeDashboardInSession(id, isMainDashboard(id));
   }
 
-  public static void storeDashboardInSession(String id, boolean isDashboardAsMenu) {
-    Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_OR_DASHBOARD_AS_MENU_ID.toString(), id);
-    if (!isDashboardAsMenu) {
-      Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
+  public static void storeDashboardInSession(String id, boolean isMainDashboard) {
+    Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
+    if (!isMainDashboard) {
+      Ivy.session().setAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.toString(), id);
     }
   }
 
-  public static Dashboard getTaskTemplateDashboard() {
+  public static Dashboard getDefaultTaskListDashboard() {
     String dashboardTaskTemplate = Ivy.var().get(PortalVariable.TASK_TEMPLATE_DASHBOARD.key);
     return jsonToDashboard(dashboardTaskTemplate);
   }
 
   public static List<Dashboard> getDashboardsWithoutMenuItem() {
     var dashboards = collectDashboards();
-    return dashboards.stream().filter(dashboard -> !dashboard.getIsMenuItem()).toList();
+    return dashboards.stream().filter(dashboard -> !dashboard.getIsTopMenu()).toList();
   }
 
-  public static String getSelectedDashboardAsMenuIdFromSession() {
-    return (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_OR_DASHBOARD_AS_MENU_ID.toString());
+  public static String getSelectedMainDashboardIdFromSession() {
+    return (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString());
   }
 
   private static PortalDashboardItemWrapper getPortalDashboardItemWrapper() {
@@ -293,16 +297,16 @@ public class DashboardUtils {
         .getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
   }
 
-  public static boolean isDashboardAsMenu(String dashboardId) {
+  public static boolean isMainDashboard(String dashboardId) {
     if (StringUtils.isEmpty(dashboardId)) {
       return false;
     }
-    boolean isDashboardAsMenu = Optional.ofNullable(getPortalDashboardItemWrapper())
+    boolean isMainDashboard = Optional.ofNullable(getPortalDashboardItemWrapper())
         .map(wrapper -> wrapper.dashboards()).orElse(new ArrayList<>()).stream()
-        .filter(dashboard -> dashboardId.equals(dashboard.getId())).map(dashboard -> dashboard.getIsMenuItem())
+        .filter(dashboard -> dashboardId.equals(dashboard.getId())).map(dashboard -> dashboard.getIsTopMenu())
         .findFirst().orElse(true);
-    // default is true because we need extra handling for not dashboard as menu like updating selected dashboard in
+    // default is true because we need extra handling for not main menu like updating selected dashboard in
     // session attribute
-    return isDashboardAsMenu;
+    return isMainDashboard;
    }
 }
