@@ -392,41 +392,41 @@
           },
           {
             "field": "priority",
-            "width": "60"
+            "width": "86"
           },
           {
             "field": "id",
-            "width": "80"
+            "width": "115"
           },
           {
             "field": "name",
             "quickSearch": true,
-            "width": "600"
+            "width": "315"
           },
           {
             "field": "description",
             "quickSearch": true,
-            "width": "250"
+            "width": "190"
           },
           {
             "field": "activator",
-            "width": "125"
+            "width": "139"
           },
           {
             "field": "state",
-            "width": "70"
+            "width": "85"
           },
           {
             "field": "startTimestamp",
-            "width": "95"
+            "width": "90"
           },
           {
             "field": "expiryTimestamp",
-            "width": "105"
+            "width": "120"
           },
           {
             "field": "category",
-            "width": "110"
+            "width": "101"
           },
           {
             "field": "actions",
