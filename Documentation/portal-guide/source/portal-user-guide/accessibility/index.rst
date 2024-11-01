@@ -9,7 +9,7 @@ Why is Accessibility Important?
 .. raw:: html
 
    <p style="margin-top: 20px;"></p>
-In today's digital landscape, ensuring that front-end UIs are accessible to all users is not just a nice-to-have — it's essential. At Axon Ivy, we recognize the importance of making our portal available to everyone, regardless of their abilities or disabilities. With this in mind, we've put significant thought into enhancing the accessibility features within the Axon Ivy Portal. This is only the beginning, and we are committed to continually improving these features. To ensure the highest quality, we have used tools such as the Microsoft Lighthouse Accessibility Checker and adhered to the guidelines of the WCAG 2.1 standard to evaluate and refine our UI.
+In today's digital landscape, ensuring that front-end UIs are accessible to all users is not just a nice-to-have  —  it's essential. At Axon Ivy, we recognize the importance of making our portal available to everyone, regardless of their abilities or disabilities. With this in mind, we've put significant thought into enhancing the accessibility features within the Axon Ivy Portal. This is only the beginning, and we are committed to continually improving these features. To ensure the highest quality, we have used tools such as the Microsoft Lighthouse Accessibility Checker and adhered to the guidelines of the WCAG 2.1 standard to evaluate and refine our UI.
 
 Accessibility Approach in the Axon Ivy Portal
 =============================================
@@ -74,11 +74,11 @@ You can also use Task widget navigation to jump directly to the pop-ups for canc
 
 |reset-task-dialog|
 
-Additionally, it is possible to navigate to the actions within the widget.
+You can also navigate to the actions within the widget
 
 |task-actions-popup|
 
-By pressing the Tab key, the focus can be set to the actions of a task. Once you are in the desired row, pressing Enter will open the context menu. You can then use the keyboard shortcut again to navigate through the menu. The Esc key can be used to exit the context menu at any time.
+By pressing the Tab key, the focus can be set to the actions of a task. Once you are in the desired row, pressing **Enter** will open the context menu. You can then use the keyboard shortcut again to navigate through the menu. The **Esc** key can be used to exit the context menu at any time.
 
 Example for Task Navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -92,7 +92,7 @@ With the Case widget navigation, you can also navigate into the actions of a cas
 
 |case-actions-popup|
 
-Press the keyboard shortcut to focus on the case, then press Enter to open the context menu. You can navigate through it by pressing the shortcut again, or exit the menu by pressing Esc.
+Press the keyboard shortcut to focus on the case, then press **Enter** to open the context menu. You can navigate through it by pressing the shortcut again, or exit the menu by pressing **Esc**.
 
 Example for Case Navigation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -119,7 +119,7 @@ We rely on Microsoft Narrator to support screen readers. You can activate it via
 Descriptive Elements in the Task Widget
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The first highlighted element in the task list, which is activated by the shortcut, includes the following information:
+The shortcut activates the first highlighted element in the task list, which then reads out the following information.
 
 - **Task Name**: The name or title of the task.
 - **Priority**: The priority level of the task (e.g., High, Medium, Low).
