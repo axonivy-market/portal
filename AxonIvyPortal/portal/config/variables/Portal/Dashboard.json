@@ -472,15 +472,6 @@
             "width": "110"
           },
           {
-            "field": "application",
-            "styleClass": "dashboard-tasks__priority u-text-align-center",
-            "visible": false,
-            "quickSearch": false,
-            "sortable": false,
-            "type": "standard",
-            "width": "95"
-          },
-          {
             "field": "actions",
             "visible": true,
             "sortable": false,
