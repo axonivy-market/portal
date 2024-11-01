@@ -391,7 +391,6 @@
             "styleClass": "dashboard-tasks__start u-text-align-center widget-column",
             "visible": true,
             "sortable": false,
-            "type": "standard",
             "width": "50"
           },
           {
@@ -399,7 +398,6 @@
             "styleClass": "dashboard-tasks__priority u-text-align-center widget-column",
             "visible": true,
             "sortable": true,
-            "type": "standard",
             "width": "60"
           },
           {
@@ -408,7 +406,6 @@
             "visible": true,
             "quickSearch": false,
             "sortable": true,
-            "type": "standard",
             "width": "80"
           },
           {
@@ -417,7 +414,6 @@
             "visible": true,
             "quickSearch": true,
             "sortable": true,
-            "type": "standard",
             "width": "600"
           },
           {
@@ -426,7 +422,6 @@
             "visible": true,
             "quickSearch": true,
             "sortable": false,
-            "type": "standard",
             "width": "250"
           },
           {
@@ -435,7 +430,6 @@
             "visible": true,
             "quickSearch": false,
             "sortable": true,
-            "type": "standard",
             "width": "125"
           },
           {
@@ -443,7 +437,6 @@
             "styleClass": "dashboard-tasks__state u-text-align-center widget-column",
             "visible": true,
             "sortable": true,
-            "type": "standard",
             "width": "70"
           },
           {
@@ -451,7 +444,6 @@
             "styleClass": "dashboard-tasks__created-date u-text-align-center widget-column",
             "visible": true,
             "sortable": true,
-            "type": "standard",
             "width": "95"
           },
           {
@@ -459,7 +451,6 @@
             "styleClass": "dashboard-tasks__expiry-date u-text-align-center widget-column",
             "visible": true,
             "sortable": true,
-            "type": "standard",
             "width": "105"
           },
           {
@@ -468,14 +459,12 @@
             "visible": true,
             "quickSearch": false,
             "sortable": false,
-            "type": "standard",
             "width": "110"
           },
           {
             "field": "actions",
             "visible": true,
             "sortable": false,
-            "type": "standard",
             "width": "85"
           }
         ],
