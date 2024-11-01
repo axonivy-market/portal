@@ -3288,15 +3288,15 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     margin: auto;
   }
   
-  .primary-color-light-button {
-    background: var(--portal-button-bg-color) !important; 
-    color: var(--portal-button-text-color) !important;
-    font-weight: 600;
-  }
+/*   .primary-color-light-button { */
+/*     background: var(--portal-accessibility-bg-color) !important;  */
+/*     color: var(--portal-button-text-color) !important; */
+/*     font-weight: 600; */
+/*   } */
 
-  .primary-color-light-button:hover {
-    background: var(--portal-accessibility-bg-color) !important;
-  }
+/*   .primary-color-light-button:hover { */
+/*     background: var(--portal-accessibility-bg-color) !important; */
+/*   } */
 
   .line-clamp-text-5 {
     overflow:hidden;
