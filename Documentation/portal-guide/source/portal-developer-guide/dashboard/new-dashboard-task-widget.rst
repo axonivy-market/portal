@@ -11,7 +11,7 @@ to :ref:`Task List Widget <new-dashboard-task-list-widget>` for details.
 
 Below is a sample JSON definition of a task widget in the Portal dashboard
 
-.. code-block:: html
+.. code-block:: json
 
    {
       "type": "task",
@@ -23,7 +23,10 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
          }
       ],
       "layout": {
-         "x": 0, "y": 0, "w": 10, "h": 9,
+         "x": 0,
+         "y": 0,
+         "w": 10,
+         "h": 9,
          "style": "color: red;",
          "styleClass": "your-widget-class"
       },
@@ -48,14 +51,14 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
          {
             "field": "state",
             "headers": [
-               {
+            {
                "locale": "en",
                "value": "State"
-               },
-               {
+            },
+            {
                "locale": "de",
                "value": "Status"
-               }
+            }
             ]
          },
          {
@@ -152,17 +155,17 @@ as a column.
 
 You can predefine which column to show, and other attributes such as filter, format, and style. Below is a standard JSON of a custom column.
 
-.. code-block:: html
-
+.. code-block:: json
+   
    {
       ...
-      
+
       "columns": [
-         {
-            "type": "CUSTOM",
-            "field": "supplier",
-            "style": "width: 110px"
-         }
+            {
+               "type": "CUSTOM",
+               "field": "supplier",
+               "style": "width: 110px"
+            }
       ]
    }
 
@@ -184,13 +187,13 @@ Filter Conditions
 -----------------
 
 You can predefine filter conditions for most columns of the task widget. Each
-column has different conditions, some columns only accept a list, some only a
-string and some only a string in a special format such as date-time. Please
-refer to :ref:`Complex Filter <complex-filter>` for more details.
+column has different requirements: some accept only a list, some accept only a
+string, and others require a string in a specific format, such as date-time.
+Please refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 Base structure of filter json:
 
-   .. code-block:: html
+   .. code-block:: json
 
          {
             ...
@@ -245,11 +248,11 @@ Standard Column:
 
    - ``activator``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
-      
+
             "columns": [
                {
                   "field": "activator"
@@ -273,11 +276,11 @@ Standard Column:
 
    - ``name``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
-      
+
             "columns": [
                {
                   "field": "name"
@@ -290,7 +293,6 @@ Standard Column:
                   "operator": "contains",
                   "type": "standard"
                }
-
             ]
          }
       ..
@@ -300,11 +302,11 @@ Standard Column:
 
    - ``description``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
-      
+
             "columns": [
                {
                   "field": "description"
@@ -313,7 +315,9 @@ Standard Column:
             "filters": [
                {
                   "field": "description",
-                  "values": [ "leave request" ],
+                  "values": [
+                  "leave request"
+                  ],
                   "operator": "contains",
                   "type": "standard"
                }
@@ -326,11 +330,11 @@ Standard Column:
 
    - ``priority``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
-      
+
             "columns": [
                {
                   "field": "priority"
@@ -356,11 +360,11 @@ Standard Column:
 
    - ``state``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
-      
+
             "columns": [
                {
                   "field": "state"
@@ -386,7 +390,7 @@ Standard Column:
 
    - ``startTimestamp`` and ``expiryTimestamp`` : created date and finished date of the Task
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -434,7 +438,7 @@ Standard Column:
 
    - ``application``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -462,7 +466,7 @@ Custom Field Column :
 
    - ``type`` field must be ``custom`` for Custom Field and ``custom_case`` for Custom Case Field.
 
-   .. code-block:: html
+   .. code-block:: json
       
          {
             ...
@@ -486,7 +490,7 @@ Custom Field Column :
 Quick Search
 ------------
 
-The Quick search is a useful function for users to quickly search the tasks within the task widget.
+The quick search is a useful function for users to quickly search the tasks within the task widget.
 The configuration of the quick search has two attributes:
    
    * ``enableQuickSearch``: enables the quick search feature for the widget.
@@ -506,7 +510,7 @@ Below are the definition of these attributes:
    * ``enableQuickSearch``: to enable/disable the quick search feature, set the
      ``enableQuickSearch`` field of the Task widget as shown below.
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -528,7 +532,7 @@ Below are the definition of these attributes:
    * ``quickSearch``: to choose which columns can be searched by the quick search
      feature, set the ``quickSearch`` field for each column as shown below.
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
