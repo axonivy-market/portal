@@ -278,8 +278,9 @@ public class DashboardUtils {
   }
 
   public static Dashboard getDefaultTaskListDashboard() {
-    String dashboardTaskTemplate = Ivy.var().get(PortalVariable.TASK_TEMPLATE_DASHBOARD.key);
-    return jsonToDashboard(dashboardTaskTemplate);
+    Dashboard defautTaskListDashboard = new Dashboard();
+    defautTaskListDashboard.setId(DASHBOARD_TASK_TEMPLATE_ID);
+    return jsonToDashboard(DefaultTaskListDashboardUtils.DASHBOARD_TASK_TEMPLATE_JSON);
   }
 
   public static List<Dashboard> getDashboardsWithoutMenuItem() {
