@@ -198,7 +198,7 @@ Follow these steps to implement it:
 
    #. Create a new process that will be triggered after clicking on the custom action button. In this example, the process will destroy the case.
       
-      |custom-action-button-custom-field|
+      |custom-action-button-process-demo|
 
    #. Describe the custom action button in ``custom-fields.yaml``. 
 
