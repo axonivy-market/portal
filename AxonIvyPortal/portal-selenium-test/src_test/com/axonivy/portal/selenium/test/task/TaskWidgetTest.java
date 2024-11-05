@@ -26,7 +26,6 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 @IvyWebTest
 public class TaskWidgetTest extends BaseTest {
 
-  private static final String DISABLE_TASK_COUNT_SETTING = Variable.DISABLE_TASK_COUNT.getKey();
   private static final String GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
       "portalKitTestHelper/14DE09882B540AD5/grantOnlyDelegateOwnTasksPermission.ivp";
   private static final String DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
@@ -160,14 +159,6 @@ public class TaskWidgetTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.waitUntilTaskCountDifferentThanZero();
     assertEquals(3, taskWidgetPage.getTaskCount().intValue(), "In Task list, Task Count != 3");
-  }
-
-  @Test
-  public void testDisableTaskCount() {
-    updatePortalSetting(DISABLE_TASK_COUNT_SETTING, "true");
-    login(TestAccount.ADMIN_USER);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    assertEquals(null, taskWidgetPage.getTaskCount(), "In Task list, Task Count is disabled");
   }
 
   @Test

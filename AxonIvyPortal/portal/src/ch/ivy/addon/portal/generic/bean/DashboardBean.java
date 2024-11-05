@@ -519,7 +519,7 @@ public class DashboardBean implements Serializable {
   }
 
   public boolean isMainDashboardSelected() {
-    return DashboardUtils.isMainDashboard(selectedDashboardId);
+    return DashboardUtils.isMainDashboard(selectedDashboardId, true);
   }
 
 

@@ -267,7 +267,7 @@ public class DashboardUtils {
   }
 
   public static void storeDashboardInSession(String id) {
-    storeDashboardInSession(id, isMainDashboard(id));
+    storeDashboardInSession(id, isMainDashboard(id, true));
   }
 
   public static void storeDashboardInSession(String id, boolean isMainDashboard) {
@@ -298,16 +298,26 @@ public class DashboardUtils {
         .getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
   }
 
-  public static boolean isMainDashboard(String dashboardId) {
+  public static boolean isMainDashboard(String dashboardId, boolean defaultValue) {
     if (StringUtils.isEmpty(dashboardId)) {
       return false;
     }
     boolean isMainDashboard = Optional.ofNullable(getPortalDashboardItemWrapper())
         .map(wrapper -> wrapper.dashboards()).orElse(new ArrayList<>()).stream()
         .filter(dashboard -> dashboardId.equals(dashboard.getId())).map(dashboard -> dashboard.getIsTopMenu())
-        .findFirst().orElse(true);
-    // default is true because we need extra handling for not main menu like updating selected dashboard in
-    // session attribute
+        .findFirst().orElse(defaultValue);
     return isMainDashboard;
+  }
+
+   public static Dashboard findDashboard(String dashboardId) {
+     if (StringUtils.isEmpty(dashboardId)) {
+       return null;
+     }
+     Dashboard foundDashboard = Optional.ofNullable(getPortalDashboardItemWrapper())
+         .map(wrapper -> wrapper.dashboards()).orElse(new ArrayList<>()).stream()
+         .filter(dashboard -> dashboardId.equals(dashboard.getId())).findFirst().orElse(null);
+     boolean isGrantedDashboard = Optional.ofNullable(foundDashboard).map(Dashboard::getPermissions)
+         .orElse(new ArrayList<>()).stream().noneMatch(DashboardUtils::isSessionUserHasPermisson);
+     return isGrantedDashboard ? null : foundDashboard;
    }
 }
