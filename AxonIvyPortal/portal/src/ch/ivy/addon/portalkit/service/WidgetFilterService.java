@@ -203,7 +203,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
 
       for (var selected : widget.getUserFilterCollection().getSelectedWidgetFilters()) {
         var selectedColumn = selected.getFilterableColumns().stream()
-            .filter(compare -> compare.getField().equals(widgetColumn.getField())
+            .filter(compare -> compare.getField() != null && compare.getField().equals(widgetColumn.getField())
                 && compare.getType() == widgetColumn.getType()).findFirst().orElse(null);
         if (selectedColumn != null) {
           if (StringUtils.isNotEmpty(selectedColumn.getUserFilter())) {
