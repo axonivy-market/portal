@@ -9,10 +9,11 @@
   <body>
     <ui:composition>
       <!-- Exception Handler for ViewExpiredExceptions -->
+      <!-- This is a customized ViewExpiredException dialog -->
       <p:ajaxExceptionHandler
         type="javax.faces.application.ViewExpiredException"
         update="viewExpiredExceptionDialog"
-        onexception="PF('viewExpiredExceptionDialog').show();" />
+        onexception="parent.PF &amp;&amp; parent.PF('portal-view-expired-exception-dialog') ? parent.PF('portal-view-expired-exception-dialog').show() : PF('viewExpiredExceptionDialog').show()" />
 
       <!-- Error Dialog shown if a view or session has expired -->
       <p:dialog id="viewExpiredExceptionDialog"
