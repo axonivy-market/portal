@@ -18,7 +18,7 @@ public class DefaultTaskListDashboardUtils {
         "widgets": [
           {
             "type": "task",
-            "id": "task_1",
+            "id": "default_task_list_dashboard_task_1",
             "names": [
               { "locale": "en", "value": "Your Tasks" },
               { "locale": "fr", "value": "Vos Tâches" },
