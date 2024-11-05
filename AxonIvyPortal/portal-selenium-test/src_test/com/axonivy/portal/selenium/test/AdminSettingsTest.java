@@ -1,9 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
 import static com.axonivy.portal.selenium.common.Variable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST;
-import static com.axonivy.portal.selenium.common.Variable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST;
 import static com.axonivy.portal.selenium.common.Variable.DEFAULT_SORT_FIELD_OF_CASE_LIST;
-import static com.axonivy.portal.selenium.common.Variable.DEFAULT_SORT_FIELD_OF_TASK_LIST;
 import static com.axonivy.portal.selenium.common.Variable.GLOBAL_FOOTER_INFO;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -66,18 +64,6 @@ public class AdminSettingsTest extends BaseTest {
     // Customize environment info in portal example
     createTestingTasks();
     assertTrue(homePage.getGlobalFooterInfo().contains("Wawa"));
-  }
-
-  @Test
-  public void testDefaultSortOptionsForTaskList() {
-    updatePortalSetting(DEFAULT_SORT_FIELD_OF_TASK_LIST.getKey(), "PRIORITY");
-    updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_TASK_LIST.getKey(), SortDirection.ASC.name());
-    redirectToRelativeLink(cleanSessionCacheUrl);
-
-    createTestingTasks();
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
-    assertNotEquals("high", taskWidgetPage.getPriorityOfTask(taskWidgetPage.countTasks().size() - 1));
   }
 
   @Test

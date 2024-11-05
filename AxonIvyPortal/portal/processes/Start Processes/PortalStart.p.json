@@ -1067,7 +1067,7 @@
             "    in.isTaskStartedInDetails = taskEndInfo.isStartedInTaskDetails;",
             "    in.portalPage = taskEndInfo.portalPage;",
             "    if (StringUtils.isNotBlank(taskEndInfo.getDashboardId())) {",
-            "      in.isMainDashboard = DashboardUtils.isMainDashboard(taskEndInfo.getDashboardId());",
+            "      in.isMainDashboard = DashboardUtils.isMainDashboard(taskEndInfo.getDashboardId(), true);",
             "      DashboardUtils.storeDashboardInSession(taskEndInfo.getDashboardId(), in.isMainDashboard);",
             "    }",
             "    if (!in.isTaskStartedInDetails || in.backFromTaskDetails) {",
@@ -4019,17 +4019,21 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;",
             "import ch.ivy.addon.portalkit.util.DashboardUtils;",
             "import ch.addon.portal.generic.userprofile.homepage.HomepageType;",
             "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
             "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
             "",
-            "in.isMainDashboard = DashboardUtils.isMainDashboard(in.dashboardId);",
-            "DashboardUtils.storeDashboardInSession(in.dashboardId, in.isMainDashboard);",
-            "in.isOpenDashboardFromLink = true;",
-            "if (in.isOpenWithoutMenu) {",
-            "  SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString(), true);",
-            "  SecurityServiceUtils.setSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString(), HomepageType.DASHBOARD.toString());",
+            "Dashboard dashboard = DashboardUtils.findDashboard(in.dashboardId);",
+            "if (#dashboard != null) {",
+            "  in.isMainDashboard = dashboard.isTopMenu;",
+            "  DashboardUtils.storeDashboardInSession(in.dashboardId, in.isMainDashboard);",
+            "  in.isOpenDashboardFromLink = true;",
+            "  if (in.isOpenWithoutMenu) {",
+            "    SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString(), true);",
+            "    SecurityServiceUtils.setSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString(), HomepageType.DASHBOARD.toString());",
+            "  }",
             "}"
           ]
         }
