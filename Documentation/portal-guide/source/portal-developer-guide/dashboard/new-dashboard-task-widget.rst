@@ -141,7 +141,7 @@ The basic JSON structure of a Task widget
       Set to "false" to hide the column.
 
       ``quickSearch``: Adds this field to the search scope of the quick search. The default value is ``false``.
-      Set to ``true`` to apply search condition for the column.
+      Set it to ``true`` to apply search condition for the column.
 
    -  ``headers``: multilingual header of the column.
 
@@ -163,7 +163,7 @@ You can predefine which column to show, and other attributes such as filter, for
       "columns": [
             {
                "type": "CUSTOM",
-               "field": "supplier",
+               "field": "HIDE",
                "style": "width: 110px"
             }
       ]
