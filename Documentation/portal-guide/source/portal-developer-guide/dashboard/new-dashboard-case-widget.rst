@@ -11,23 +11,26 @@ to :ref:`Case List Widget <new-dashboard-case-list-widget>` for details.
 
 Below is a sample JSON definition of the case widget in the Portal dashboard.
 
-.. code-block:: html
+.. code-block:: json
 
    {
       "type": "case",
       "id": "case-widget",
       "names": [
          {
-         "locale": "en",
-         "value": "Your Cases"
+            "locale": "en",
+            "value": "Your Cases"
          },
          {
-         "locale": "de",
-         "value": "Ihre Vorgänge"
+            "locale": "de",
+            "value": "Ihre Vorgänge"
          }
       ],
       "layout": {
-         "x": 0, "y": 0, "w": 10, "h": 9,
+         "x": 0,
+         "y": 0,
+         "w": 10,
+         "h": 9,
          "style": "text-color: blue;",
          "styleClass": "your-widget-class"
       },
@@ -37,29 +40,29 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
       "showFullscreenMode": true,
       "columns": [
          {
-            "field": "start"
-         },
-         {
-            "field": "priority",
-            "visible": "false"
-         },
-         {
             "field": "id"
          },
          {
-            "field": "name"
+            "field": "name",
+            "visible": "false"
+         },
+         {
+            "field": "description"
+         },
+         {
+            "field": "creator"
          },
          {
             "field": "state",
             "headers": [
-               {
+            {
                "locale": "en",
                "value": "State"
-               },
-               {
+            },
+            {
                "locale": "de",
                "value": "Status"
-               }
+            }
             ]
          },
          {
@@ -140,7 +143,7 @@ The basic JSON structure of the case widget
       "false" to hide the column.
 
    -  ``quickSearch``: Adds this field to the search scope of the quick search. The default value is ``false``.
-      Set to ``true`` to apply search condition for the column.
+      Set it to ``true`` to apply search condition for the column.
 
    -  ``headers``: multilingual header of the column.
 
@@ -155,9 +158,11 @@ as a column.
 Traditional Custom Columns
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can predefine which column to show, and other attributes such as filter, format, and style. Below is a standard JSON of a custom column.
+You can predefine which columns to display, along with other attributes such as
+filters, formats, and styles. Below is a standard JSON example of a custom
+column.
 
-.. code-block:: html
+.. code-block:: json
 
    {
       ...
@@ -165,7 +170,7 @@ You can predefine which column to show, and other attributes such as filter, for
       "columns": [
          {
             "type": "CUSTOM",
-            "field": "supplier",
+            "field": "HIDE",
             "style": "width: 110px"
          }
       ]
@@ -187,7 +192,7 @@ two differences:
 
 Custom Action Button Columns
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Portal supports creating custom action buttons for specific needs. By clicking on these buttons, a custom process is triggered.
+Portal supports creating custom action buttons as a column in case widget for specific needs. By clicking on these buttons, a custom process is triggered.
 
 Follow these steps to implement it:
 
@@ -217,14 +222,14 @@ Follow these steps to implement it:
 Filter Conditions
 -----------------
 
-You can predefined filter conditions for most columns of the case widget. Each
-column has different conditions. Some columns only accept a list, some only a
-string and some only accept a string in a special format such as date-time. 
+You can predefine filter conditions for most columns of the case widget. Each
+column has different conditions: some accept only a list, some accept only a
+string, and others require a string in a specific format, such as date-time.
 Please refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 Base structure of filter json:
 
-   .. code-block:: html
+   .. code-block:: json
 
          {
             ...
@@ -260,7 +265,7 @@ Base structure of filter json:
 
      - **Date column**: today, yesterday, is, is_not, before, after, between, not_between, current, last, next, empty, not_empty
 
-   - ``type``: ``standard`` for standard column or ``custom`` for custom column
+   - ``type``: ``standard`` for a standard column or ``custom`` for a custom column
 
    - Date type additional field:
 
@@ -287,7 +292,7 @@ Standard Column:
 
    - ``name``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -313,7 +318,7 @@ Standard Column:
 
    - ``description``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -339,7 +344,7 @@ Standard Column:
 
    - ``state``: Case business state
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -367,7 +372,7 @@ Standard Column:
 
    - ``creator``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -399,7 +404,7 @@ Standard Column:
 
    - ``startTimestamp`` and ``endTimestamp``: created date and finished date of the Case
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -457,7 +462,7 @@ Standard Column:
 
    - ``category``
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
