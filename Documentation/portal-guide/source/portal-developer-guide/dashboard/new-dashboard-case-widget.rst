@@ -493,7 +493,7 @@ Custom Field Column:
 
    - ``type`` field must be ``custom``
 
-   .. code-block:: html
+   .. code-block:: json
 
       {
          ...
@@ -538,7 +538,7 @@ Below are the definition of these attributes:
    * ``enableQuickSearch``: to enable/disable the quick search feature, set the
      ``enableQuickSearch`` field of the case widget as shown below.
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
@@ -560,7 +560,7 @@ Below are the definition of these attributes:
    * ``quickSearch``: to choose which columns can be searched by the quick search
      feature, set the ``quickSearch`` field for each column as shown below.
 
-      .. code-block:: html
+      .. code-block:: json
 
          {
             ...
