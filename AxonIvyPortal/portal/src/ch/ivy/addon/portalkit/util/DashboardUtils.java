@@ -309,15 +309,4 @@ public class DashboardUtils {
     return isMainDashboard;
   }
 
-   public static Dashboard findDashboard(String dashboardId) {
-     if (StringUtils.isEmpty(dashboardId)) {
-       return null;
-     }
-     Dashboard foundDashboard = Optional.ofNullable(getPortalDashboardItemWrapper())
-         .map(wrapper -> wrapper.dashboards()).orElse(new ArrayList<>()).stream()
-         .filter(dashboard -> dashboardId.equals(dashboard.getId())).findFirst().orElse(null);
-     boolean isGrantedDashboard = Optional.ofNullable(foundDashboard).map(Dashboard::getPermissions)
-         .orElse(new ArrayList<>()).stream().noneMatch(DashboardUtils::isSessionUserHasPermisson);
-     return isGrantedDashboard ? null : foundDashboard;
-   }
 }

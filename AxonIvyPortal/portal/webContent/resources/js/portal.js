@@ -201,6 +201,9 @@ var MainMenu = {
     if ($currentPageMenu.length == 0 && window.location.pathname.indexOf("PortalMainDashboard.xhtml") > -1) {
       let selectedMainDashboardId = $("#user-menu-required-login").attr("data-selected-menu");
       $currentPageMenu = $("li[id$='" + selectedMainDashboardId + "-main-dashboard'] > a");
+      if ($currentPageMenu.length == 0) {
+        $currentPageMenu = $(".layout-menu").find('li[role="menuitem"] a.DASHBOARD');
+      }
     }
 
     if ($currentPageMenu.length > 0) {

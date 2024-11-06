@@ -4025,15 +4025,12 @@
             "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
             "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
             "",
-            "Dashboard dashboard = DashboardUtils.findDashboard(in.dashboardId);",
-            "if (#dashboard != null) {",
-            "  in.isMainDashboard = dashboard.isTopMenu;",
-            "  DashboardUtils.storeDashboardInSession(in.dashboardId, in.isMainDashboard);",
-            "  in.isOpenDashboardFromLink = true;",
-            "  if (in.isOpenWithoutMenu) {",
-            "    SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString(), true);",
-            "    SecurityServiceUtils.setSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString(), HomepageType.DASHBOARD.toString());",
-            "  }",
+            "in.isMainDashboard = DashboardUtils.isMainDashboard(in.dashboardId, true);",
+            "DashboardUtils.storeDashboardInSession(in.dashboardId, in.isMainDashboard);",
+            "in.isOpenDashboardFromLink = true;",
+            "if (in.isOpenWithoutMenu) {",
+            "  SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString(), true);",
+            "  SecurityServiceUtils.setSessionAttribute(SessionAttribute.DEFAULT_PAGE_IN_TEAMS.toString(), HomepageType.DASHBOARD.toString());",
             "}"
           ]
         }
