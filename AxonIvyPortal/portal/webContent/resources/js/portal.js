@@ -197,7 +197,6 @@ var MainMenu = {
   highlightMenuItem : function() {
     let $currentPageMenu = this.getMenuItemByCurrentPage();
     let activeMenuItemList = this.getActiveMenu();
-    // TODO z1 think about other scenarios, maybe refactor
     if ($currentPageMenu.length == 0 && window.location.pathname.indexOf("PortalMainDashboard.xhtml") > -1) {
       let selectedMainDashboardId = $("#user-menu-required-login").attr("data-selected-menu");
       $currentPageMenu = $("li[id$='" + selectedMainDashboardId + "-main-dashboard'] > a");
