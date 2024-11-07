@@ -195,7 +195,7 @@ public class DashboardUtils {
 
   public static List<Dashboard> collectMainDashboards() {
     List<Dashboard> collectedDashboards =
-        new ArrayList<>(collectDashboards().stream().filter(dashboard -> dashboard.getIsTopMenu()).toList());
+        new ArrayList<>(getPublicDashboards().stream().filter(dashboard -> dashboard.getIsTopMenu()).toList());
     return collectedDashboards;
   }
 
