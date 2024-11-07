@@ -175,7 +175,7 @@ public class PortalMenuNavigator {
     List<Dashboard> mainDashboards = DashboardUtils.collectMainDashboards();
     for (Dashboard dashboard : mainDashboards) {
       // Check if it's the task dashboard
-      if (DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID.equalsIgnoreCase(dashboard.getId())) {
+      if (DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD.equalsIgnoreCase(dashboard.getId())) {
         // Only add the task dashboard if the user has permission
         if (PermissionUtils.checkAccessFullTaskListPermission()) {
           subMenuItems.add(convertDashboardToSubMenuItem(dashboard, currentLanguage));
@@ -228,10 +228,9 @@ public class PortalMenuNavigator {
     item.link = UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId());
 
     // Special case for a specific dashboard ID
-    if (DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID.equalsIgnoreCase(dashboard.getId())) {
+    if (DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD.equalsIgnoreCase(dashboard.getId())) {
       item.label = ApplicationMultiLanguageAPI.getCmsValueByUserLocale("/ch.ivy.addon.portalkit.ui.jsf/common/tasks");
     }
-
     return item;
   }
 
