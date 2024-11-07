@@ -77,7 +77,7 @@
                   icon="si si-graphic-tablet-drawing-pen"
                   oncomplete="PF('appDialog').show()"
                   actionListener="#{logic.editApplication(app)}"
-                  update="@this :#{p:resolveFirstComponentWithId('appDialog', view).clientId}"
+                  update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}"
                   process="@this" />
                 <p:menuitem id="delete-application"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
@@ -210,7 +210,7 @@
 
   <!-- APPLICATION DIALOG-->
   <p:dialog header="#{data.dialogTitle}" id="appDialog" onShow="$('body').css({overflow:'hidden'})"
-    styleClass="app-dialog" onHide="$('body').css({overflow:'inherit'})" widgetVar="appDialog" dynamic="true"
+    styleClass="app-dialog" onHide="PF('cancelButton').jq.click(); $('body').css({overflow:'inherit'})" widgetVar="appDialog" dynamic="true"
     modal="true" resizable="false" appendTo="@(body)" closeOnEscape="true" width="500px" height="35vh"
     responsive="true" fitViewport="true" position="center center" positionType="absolute">
     <h:form prependId="false" id="appDialogForm">
@@ -264,6 +264,10 @@
             </p:column>
           </p:row>
         </p:panelGrid>
+          <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+              type="button" onclick="PF('appDialog').hide()"/>
+          <p:commandLink widgetVar="cancelButton" id="cancelButton" onclick="PF('appDialog').hide()" style="display:none" />
+              
       </p:outputPanel>
     </h:form>
     <f:facet name="footer">

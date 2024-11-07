@@ -15,7 +15,7 @@
   <c:set var="readOnly" value="#{empty cc.attrs.isReadOnly ? false : cc.attrs.isReadOnly}"/>
   <c:set var="hideIconArray" value="#{empty cc.attrs.hideIconArray ? false : cc.attrs.hideIconArray}"/>
   <f:event listener="#{iconSelectionBean.init(cc.attrs.value)}" type="preRenderComponent" />
-  <p:remoteCommand rendered="#{!hideIconArray}" oncomplete="loadIconsFirstTime('#{hideIconArray}','#{cc.clientId}', '#{cc.attrs.value}');" autoRun="true" global="false" immediate="true" partialSubmit="true"/>
+  <p:remoteCommand rendered="#{!hideIconArray}" oncomplete="loadIconsFirstTime('#{hideIconArray}','#{cc.clientId}', '#{cc.attrs.value}');" autoRun="true" global="false"/>
 
   <h:panelGroup id="awesome-icon-selection" styleClass="awesome-icon-selection-panel">
     <h:panelGroup rendered="#{!hideIconArray}" id="menu-icon-container" styleClass="menu-icon-container" layout="block">
