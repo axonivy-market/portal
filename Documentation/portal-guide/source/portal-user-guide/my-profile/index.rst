@@ -118,3 +118,4 @@ The checkbox in each event column allow you to specify
 three state of event: subscribed by default, subscribe, unsubscribe.
 
 .. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png
+   :alt: My profile page

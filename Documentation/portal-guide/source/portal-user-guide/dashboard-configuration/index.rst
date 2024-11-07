@@ -239,16 +239,30 @@ You can rearrange dashboards by dragging and dropping |reorder-dashboard-icon| i
 .. include:: ../includes/_common-icon.rst
 
 .. |dashboard-configuration| image:: ../../screenshots/settings/dashboard-configuration.png
+   :alt: Dashboard configuration menu
 .. |dashboard-configuration-page| image:: ../../screenshots/dashboard-configuration/dashboard-configuration-page.png
+   :alt: Dashboard configuration screen
 .. |private-dashboard-configuration| image:: ../../screenshots/dashboard-configuration/private-dashboard-configuration.png
+   :alt: Private dashboard configuration
 .. |create-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/create-private-dashboard-dialog.png
+   :alt: Create private dashboard dialog
 .. |edit-private-dashboards| image:: ../../screenshots/dashboard-configuration/edit-private-dashboards.png
+   :alt: Edit private dashboard dialog
 .. |reorder-your-dashboards| image:: ../../screenshots/dashboard-configuration/reorder-your-dashboards.png
+   :alt: Reorder private dashboards
 .. |public-dashboard-configuration| image:: ../../screenshots/dashboard-configuration/public-dashboard-configuration.png
+   :alt: Public dashboard configuration
 .. |create-public-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/create-public-dashboard-dialog.png
+   :alt: Create public dashboard dialog
 .. |edit-public-dashboards| image:: ../../screenshots/dashboard-configuration/edit-public-dashboards.png
+   :alt: Edit public dashboard dialog
 .. |reorder-public-dashboards| image:: ../../screenshots/dashboard-configuration/reorder-public-dashboards.png
+   :alt: Reorder public dashboards
 .. |dashboard-templates| image:: ../../screenshots/dashboard-configuration/dashboard-templates.png
+   :alt: Dashboard template selection dialog
 .. |import-public-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/import-public-dashboard-dialog.png
+   :alt: Import public dashboard dialog
 .. |import-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/import-private-dashboard-dialog.png
+   :alt: Import private dashboard dialog
 .. |share-public-dashboards| image:: ../../screenshots/dashboard-configuration/share-dashboard-dialog.png
+   :alt: Share dashboard dialog

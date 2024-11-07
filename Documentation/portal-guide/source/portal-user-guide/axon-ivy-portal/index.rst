@@ -71,6 +71,10 @@ point. The Portal Homepage has the following elements:
 
 
 .. |login-screen| image:: ../../screenshots/login/login-form.png
+   :alt: Portal Login screen
 .. |axon-ivy-portal-header| image:: ../../screenshots/dashboard/portal-header.png
+   :alt: Portal header
 .. |axon-ivy-portal-menu| image:: ../../screenshots/dashboard/expanded-left-menu.png
+   :alt: Portal expanded Left menu
 .. |axon-ivy-portal| image:: ../../screenshots/dashboard/dashboard.png
+   :alt: Portal dashboard screen

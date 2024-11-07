@@ -44,5 +44,8 @@ HowTo: Connect To the Axon Ivy Mobile application using the QR code
 #. Open the Axon Ivy mobile application and scan this QR code.
 
 .. |qr-code| image:: ../../screenshots/mobile/qr-code.png
+  :alt: Mobile app QR code
 .. |mobile-app-menu| image:: ../../screenshots/mobile/mobile-app-menu.png
+  :alt: Mobile app menu
 .. |platform-qr-code| image:: ../../screenshots/mobile/platform-qr-code.png
+  :alt: Mobile app QR code

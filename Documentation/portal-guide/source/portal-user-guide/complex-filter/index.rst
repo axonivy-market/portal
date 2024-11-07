@@ -196,7 +196,12 @@ Filter Operators
 .. include:: ../includes/_common-icon.rst
 
 .. |case-task-widget-filter-combine| image:: ../../screenshots/new-dashboard/case-task-widget-filter-combine.png
+   :alt: Complex filters combination
 .. |filter-operator-dropdown| image:: ../../screenshots/new-dashboard/filter-operator-dropdown.png
+   :alt: Complex filters's operator selection
 .. |widget-filter-management| image:: ../../screenshots/new-dashboard/widget-filter-management.png
+   :alt: Widget filter management dialog
 .. |widget-save-filter| image:: ../../screenshots/new-dashboard/widget-save-filter.png
+   :alt: Save widget's complex filters
 .. |complex-filter-example| image:: ../../screenshots/new-dashboard/complex-filter-example.png
+   :alt: Complex filter example

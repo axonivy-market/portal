@@ -179,9 +179,16 @@ You can configure these variables by :ref:`settings-admin-settings`.
 
 
 .. |portal-header| image:: ../../screenshots/dashboard/portal-header-with-numbering-annotation.png
+   :alt: Portal header items
 .. |portal-absences| image:: ../../screenshots/settings/absence.png
+   :alt: Absences page
 .. |how-to-add-an-absence| image:: ../../screenshots/settings/new-absence.png
+   :alt: Absences page: Add new absence dialog
 .. |how-to-set-absence-substitutes| image:: ../../screenshots/settings/set-deputy.png
+   :alt: Absences page: Set deputy section
 .. |portal-password-change-dialog| image:: ../../screenshots/settings/change-password.png
+   :alt: Change password dialog
 .. |portal-version-information| image:: ../../screenshots/settings/portal-version-information.png
+   :alt: Version information dialog
 .. |portal-global-search-result-page| image:: ../../screenshots/search/global-search-result.png
+   :alt: Global search results page

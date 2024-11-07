@@ -20,6 +20,6 @@ Portal notification displays all notifications based on your notification settin
 .. include:: ../includes/_common-icon.rst
 
 .. |notification-panel| image:: ../../screenshots/notification/notification-panel.png
+   :alt: Notifications panel
 .. |notification-full-page| image:: ../../screenshots/notification/notification-full-page.png
-
-
+   :alt: Full notifications page

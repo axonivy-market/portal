@@ -359,43 +359,70 @@ You can define a Notifications widget to display all Notifications based on your
 .. include:: ../includes/_common-icon.rst
 
 .. |dash-board| image:: ../../screenshots/new-dashboard/dashboard.png
+   :alt: Dashboard screen
 .. |widget-filter| image:: ../../screenshots/new-dashboard/widget-filter.png
+   :alt: Dashboard widget's filters panel
 .. |widget-info| image:: ../../screenshots/new-dashboard/widget-info.png
+   :alt: Dashboard widget's info panel
 .. |case-export-excel| image:: ../../screenshots/new-dashboard/case-export-excel.png
+   :alt: Dashboard case widget: export to Excel feature
 .. |task-export-excel| image:: ../../screenshots/new-dashboard/task-export-excel.png
+   :alt: Dashboard task widget: export to Excel feature
 .. |edit-widget| image:: ../../screenshots/new-dashboard/edit-widget.png
+   :alt: Dashboard configuration screen
 .. |add-widget| image:: ../../screenshots/new-dashboard/add-widget.png
-
+   :alt: Add new widget dialog
 .. |task-list-widget| image:: ../../screenshots/new-dashboard/task-list-widget.png
+   :alt: Dashboard task widget's configuration dialog 
 .. |task-list-widget-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-configuration.png
+   :alt: Dashboard task widget's configuration panel
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
+   :alt: Dashboard task widget's table configuration
 .. |task-column-field-type-configuration| image:: ../../screenshots/new-dashboard/task-column-field-type-configuration.png
+   :alt: Dashboard task widget's column management
 .. |task-widget-complex-filter-configuration| image:: ../../screenshots/new-dashboard/task-widget-complex-filter-configuration.png
-
+   :alt: Dashboard task widget's complex filter configuration
 .. |case-list-widget| image:: ../../screenshots/new-dashboard/case-list-widget.png
+   :alt: Dashboard case widget's configuration dialog
 .. |case-list-widget-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-configuration.png
+   :alt: Dashboard case widget's configuration panel
 .. |case-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-table-configuration.png
-
+   :alt: Dashboard case widget's table configuration
 .. |process-widget-modes| image:: ../../screenshots/new-dashboard/process-widget-modes.png
+   :alt: Dashboard process widget mode selection
 .. |process-widget-combined-mode| image:: ../../screenshots/new-dashboard/process-widget-combined-mode.png
+   :alt: Dashboard process widget's combined mode
 .. |process-widget-compact-mode| image:: ../../screenshots/new-dashboard/process-widget-compact-mode.png
+   :alt: Dashboard process widget's compact mode
 .. |process-widget-full-mode| image:: ../../screenshots/new-dashboard/process-widget-full-mode.png
+   :alt: Dashboard process widget's full mode
 .. |process-widget-image-mode| image:: ../../screenshots/new-dashboard/process-widget-image-mode.png
+   :alt: Dashboard process widget's image mode
 .. |process-viewer-widget| image:: ../../screenshots/new-dashboard/process-viewer-widget.png
+   :alt: Dashboard process viewer widget
 .. |process-viewer-widget-configuration| image:: ../../screenshots/new-dashboard/process-viewer-widget-configuration.png
+   :alt: Dashboard process viewer widget's configuration dialog
 .. |process-quick-search-textbox| image:: ../../screenshots/new-dashboard/process-quick-search-textbox.png
-
+   :alt: Quick search feature of dashboard process widget
 .. |welcome-widget-configuration| image:: ../../screenshots/new-dashboard/welcome-widget-configuration.png
+   :alt: Dashboard welcome widget's configuration dialog
 .. |news-feed-widget-configuration| image:: ../../screenshots/new-dashboard/news-feed-widget-configuration.png
+   :alt: Dashboard news feed widget's configuration dialog
 .. |news-feed-widget| image:: ../../screenshots/new-dashboard/news-feed-widget.png
+   :alt: Dashboard news feed widget
 .. |news-feed-widget-manage-content| image:: ../../screenshots/new-dashboard/news-feed-widget-manage-content.png
+   :alt: Dashboard news feed widget's Manage news dialog
 .. |news-feed-widget-overlay-panel| image:: ../../screenshots/new-dashboard/news-feed-widget-overlay-panel.png
-
+   :alt: Dashboard external page widget's overlay dialog
 .. |external-page-widget-configuration| image:: ../../screenshots/dashboard/external-page-widget-configuration.png
-
+   :alt: Dashboard external page widget's configuration dialog
 .. |add-statistic-widget| image:: ../../screenshots/new-dashboard/add-client-statistic-widget.png
-
+   :alt: Add new dashboard client statistic widget
 .. |notification-widget-configuration| image:: ../../screenshots/new-dashboard/notification-widget-configuration.png
+   :alt: Dashboard notification widget's configuration dialog
 .. |notification-widget| image:: ../../screenshots/new-dashboard/notification-widget.png
+   :alt: Dashboard notification widget
 .. |task-quick-search-textbox| image:: ../../screenshots/new-dashboard/task-quick-search-textbox.png
+   :alt: Dashboard task widget's quick search
 .. |case-quick-search-textbox| image:: ../../screenshots/new-dashboard/case-quick-search-textbox.png
+   :alt: Dashboard case widget's quick search

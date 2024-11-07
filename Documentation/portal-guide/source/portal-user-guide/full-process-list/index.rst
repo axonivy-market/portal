@@ -176,17 +176,28 @@ process so you can work more efficiently with it.
 
 
 .. |navigate-to-full-process-list| image:: ../../screenshots/process/navigate-to-full-process-list.png
+   :alt: Full process list menu
 .. |portal-full-process-list-page| image:: ../../screenshots/process/portal-full-process-list-page.png
+   :alt: Full process list page
 .. |how-to-add-a-new-external-link| image:: ../../screenshots/process/how-to-add-a-new-external-link.png
+   :alt: How to add new external link
 .. |add-external-link-dialog| image:: ../../screenshots/process/add-external-link-dialog.png
+   :alt: Add new external link dialog
 .. |portal-process-image-view-page| image:: ../../screenshots/process/portal-process-image-view-page.png
+   :alt: Full process list image mode
 .. |portal-process-grid-view-page| image:: ../../screenshots/process/portal-process-grid-view-page.png
+   :alt: Full process list grid mode
 .. |portal-process-list-view-page| image:: ../../screenshots/process/portal-process-list-view-page.png
+   :alt: Full process list compact mode
 .. |edit-process-menu-item| image:: ../../screenshots/process/edit-process-menu-item.png
+   :alt: Edit process menu item
 .. |edit-process-icon-dialog| image:: ../../screenshots/process/edit-process-dialog.png
+   :alt: Edit process dialog
 .. |process-default-image-values| image:: images/process-default-image-values.png
-
-
+   :alt: Photos of default process images
 .. |more-information-link| image:: ../../screenshots/process/information/more-information-link.png
+   :alt: Process more information link
 .. |process-overview-link| image:: ../../screenshots/process/information/process-overview-link.png
+   :alt: Process overview link
 .. |process-information| image:: ../../screenshots/process/information/process-information.png
+   :alt: Process information page
