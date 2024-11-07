@@ -4515,7 +4515,7 @@
         "output" : {
           "code" : [
             "import ch.ivy.addon.portalkit.util.DashboardUtils;",
-            "in.dashboardId = DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID;"
+            "in.dashboardId = DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD;"
           ]
         }
       },
@@ -4542,14 +4542,15 @@
       "elements" : [ {
           "id" : "S74-f26",
           "type" : "Alternative",
+          "name" : "Authorize?",
           "config" : {
             "conditions" : {
-              "S74-f27" : "\"default-task-list-dashboard\".equals(in.dashboardId) && !ch.ivy.addon.portalkit.util.PermissionUtils.checkAccessFullTaskListPermission()"
+              "S74-f27" : "ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD.equals(in.dashboardId) && !ch.ivy.addon.portalkit.util.PermissionUtils.checkAccessFullTaskListPermission()"
             }
           },
           "visual" : {
             "at" : { "x" : 152, "y" : 144 },
-            "labelOffset" : { "x" : 14, "y" : 34 }
+            "labelOffset" : { "x" : -24, "y" : -16 }
           },
           "connect" : [
             { "id" : "S74-f27", "to" : "S74-f17" },

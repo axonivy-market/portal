@@ -119,7 +119,7 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static void navigateToPortalTask() {
     Map<String, String> params = new HashMap<>();
-    params.put(DASHBOARD_ID, DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID);
+    params.put(DASHBOARD_ID, DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD);
     navigateByKeyword(PORTAL_DASHBOARD_PAGE_START, PORTAL_DASHBOARD_PAGE, params);
   }
 

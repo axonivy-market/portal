@@ -48,7 +48,7 @@ public class DashboardUtils {
       "/ch.ivy.addon.portal.generic.dashboard.PortalDashboard/PortalDashboard.xhtml";
   public final static String DASHBOARD_MENU_JS_CLASS = "js-dashboard-group";
   public final static String HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN = "highlightDashboardItem('%s')";
-  public final static String DASHBOARD_TASK_TEMPLATE_ID = "default-task-list-dashboard";
+  public final static String DEFAULT_TASK_LIST_DASHBOARD = "default-task-list-dashboard";
 
   public static List<Dashboard> getVisibleDashboards(String dashboardJson) {
     List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
@@ -279,7 +279,7 @@ public class DashboardUtils {
 
   public static Dashboard getDefaultTaskListDashboard() {
     Dashboard defautTaskListDashboard = new Dashboard();
-    defautTaskListDashboard.setId(DASHBOARD_TASK_TEMPLATE_ID);
+    defautTaskListDashboard.setId(DEFAULT_TASK_LIST_DASHBOARD);
     return jsonToDashboard(DefaultTaskListDashboardUtils.DASHBOARD_TASK_TEMPLATE_JSON);
   }
 

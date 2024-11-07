@@ -23,7 +23,7 @@ public class DefaultTaskListDashboardUtils {
               { "locale": "en", "value": "Your Tasks" },
               { "locale": "fr", "value": "Vos Tâches" },
               { "locale": "de", "value": "Ihre Aufgaben" },
-              { "locale": "es", "value": "Tus Tareas" }
+              { "locale": "es", "value": "Sus tareas" }
             ],
             "layout": { "w": 12, "h": 8, "x": 0, "y": 0 },
             "rowsPerPage": 5,

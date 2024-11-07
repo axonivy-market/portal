@@ -78,7 +78,7 @@ public class HomepageUtils {
   private static String getHomepageId() {
     String originHomepage = Ivy.session().getSessionUser().getProperty(UserProperty.HOMEPAGE);
     if (MenuKind.TASK.name().equals(originHomepage)) {
-      return generateHomepageId(MenuKind.MAIN_DASHBOARD, DashboardUtils.DASHBOARD_TASK_TEMPLATE_ID);
+      return generateHomepageId(MenuKind.MAIN_DASHBOARD, DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD);
     }
     return originHomepage;
   }
