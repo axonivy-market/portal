@@ -9,13 +9,15 @@ Why is Accessibility Important?
 .. raw:: html
 
    <p style="margin-top: 20px;"></p>
-In today's digital landscape, ensuring that front-end UIs are accessible to all users is not just a nice-to-have  —  it's essential. At Axon Ivy, we recognize the importance of making our portal available to everyone, regardless of their abilities or disabilities. With this in mind, we've put significant thought into enhancing the accessibility features within the Axon Ivy Portal. This is only the beginning, and we are committed to continually improving these features. To ensure the highest quality, we have used tools such as the Microsoft Lighthouse Accessibility Checker and adhered to the guidelines of the WCAG 2.1 standard to evaluate and refine our UI.
+
+In today's digital landscape, ensuring that front-end UIs are accessible to all users is not just a nice-to-have — it's essential. At Axon Ivy, we recognize the importance of making our portal available to everyone, regardless of their abilities or disabilities. With this in mind, we've put significant thought into enhancing the accessibility features within the Axon Ivy Portal. This is only the beginning, and we are committed to continually improving these features. To ensure the highest quality, we have used tools such as the Microsoft Lighthouse Accessibility Checker and adhered to the guidelines of the WCAG 2.1 standard to evaluate and refine our UI.
 
 Accessibility Approach in the Axon Ivy Portal
 =============================================
 .. raw:: html
 
    <p style="margin-top: 20px;"></p>
+
 We have taken a comprehensive approach to accessibility, addressing the most crucial aspects to create a more inclusive experience. Below are the key areas where we have evaluated and implemented improvements.
 
 Contrast
@@ -23,6 +25,7 @@ Contrast
 .. raw:: html
 
    <p style="margin-top: 20px;"></p>
+
 The contrast between text, buttons, and background elements is vital for users with visual impairments. We have optimized the UI for both Dark Mode and Light Mode in line with the contrast ratios set by WCAG 2.1 standards. This ensures that all components — buttons, widgets, and backgrounds — meet the necessary contrast thresholds to enhance visibility and readability.
 
 Zoom Capabilities
@@ -30,6 +33,7 @@ Zoom Capabilities
 .. raw:: html
 
    <p style="margin-top: 20px;"></p>
+
 We have revamped the zoom functionalities for both desktop and mobile versions of the portal. Users can now easily zoom in and out while maintaining the clarity and usability of the UI, ensuring accessibility for users who require larger text and images to interact comfortably with the portal.
 
 Keyboard Navigation
@@ -37,6 +41,7 @@ Keyboard Navigation
 .. raw:: html
 
    <p style="margin-top: 20px;"></p>
+
 We have introduced basic keyboard shortcuts to streamline the user experience in the portal, enabling users to quickly and effortlessly navigate between the main sections:
 
 
@@ -109,6 +114,7 @@ Extended Descriptive Elements in the Task and Case List
 .. raw:: html
 
    <p style="margin-top: 20px;"></p>
+
 To improve navigation and accessibility in the portal, we have not only implemented shortcuts for quick access to processes, tasks, and cases, but also added more descriptive elements to the widgets. These enhancements provide a clearer and more detailed display of key information, ensuring optimal support for screen readers.
 
 Support for the Microsoft Narrator Screen Reader
@@ -159,6 +165,7 @@ Accessibility Dashboard Templates
 .. raw:: html
 
    <p style="margin-top: 20px;"></p>
+
 To further enhance usability, we have created an **Accessibility Dashboard** that simplifies navigation for users with disabilities. This dashboard features a dedicated element that displays available shortcuts. When the screen is opened, this element is automatically focused and read aloud by the screen reader. Each time the dashboard is accessed, the shortcuts are read aloud to ensure accessibility.
 
 Additionally, we have enriched the **task** and **case** elements with metadata such as name, assignee, and other relevant details. These are included as descriptive elements, allowing screen readers to provide immediate feedback upon focusing on these items.
