@@ -2743,7 +2743,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   color: var(--portal-button-color)
 }
 
-.setting-tab-action-buttons, .application-tab-action-buttons, .application-selection-action-buttons,
+.application-tab-action-buttons, .application-selection-action-buttons,
 .announcement-tab-action-buttons,
 .create-role-container {
   text-align: right;
@@ -3590,6 +3590,8 @@ _:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
 
 .admin-settings-container>.card {
   min-height: 300px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .admin-settings-container .ui-panelgrid-cell.ui-grid-col-3 {

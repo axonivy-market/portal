@@ -13,7 +13,7 @@
     <span class="si si-alert-circle" />
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/permission/noPermission')}" />
   </p:outputPanel>
-  <h:panelGroup styleClass="w-full pt-2 pb-2" layout="block">
+  <h:panelGroup styleClass="w-full pt-2 pb-2 mb-4" layout="block">
     <div class="flex justify-content-between flex-wrap">
       <div class="flex align-items-center justify-content-center admin-setting-header">
          <h3>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}</h3>
@@ -49,7 +49,7 @@
         </h:panelGroup>
         <!-- Applications Table -->
         <h:panelGroup id="applicationPanel" layout="block">
-          <p:dataTable value="#{data.applicationList}" var="app" id="applicationTable" draggableRows="true"
+          <p:dataTable value="#{data.applicationList}" var="app" id="applicationTable" draggableRows="true" rowDragSelector="i.si-navigation-menu"
             reflow="true" styleClass="admin-table application-table" widgetVar="applicationTable"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" lazy="false">
             <p:ajax event="rowReorder" listener="#{adminSettingBean.onApplicationReorder}" update="applicationTable" />
@@ -65,7 +65,7 @@
 
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
               styleClass="u-text-align-center settings-table-action-buttons">
-              <p:commandButton id="applications-action-button" icon="si si-navigation-menu-horizontal"
+              <p:commandButton id="applications-action-button" icon="fa fa-ellipsis-h"
                 styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page" type="button"/>
               <p:menu id="applications-action-menu" overlay="true"
                 trigger="applications-action-button"
@@ -87,6 +87,9 @@
                   update=":#{p:resolveFirstComponentWithId('deleteConfirmationDialog', view).clientId}"
                   process="@this"/>
               </p:menu>
+              <h:panelGroup styleClass=" ui-button-outlined action-column-icon-button u-mar-right-5">
+                <i id="reorder-button-#{dashboard.id}" class="si si-navigation-menu dashboard-icon-drag-drop" />
+              </h:panelGroup>
             </p:column>
           </p:dataTable>
         </h:panelGroup>
@@ -96,7 +99,7 @@
     <!-- SETTINGS TAB -->
     <p:tab id="setting-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}">
       <h:form prependId="false" id="settingForm">
-        <h:panelGroup layout="block" styleClass="setting-tab-action-buttons">
+        <h:panelGroup layout="block" styleClass="setting-tab-action-buttons text-right">
           <p:commandButton id="restore-all-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-undo')}"
             styleClass="ui-button-flat font-medium"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreAllToDefault')}"
@@ -181,7 +184,7 @@
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/defaultLanguageRequiredMessage')}" />
           </p:column>
         </p:dataTable>
-        <div class="announcement-action flex justify-content-end gap-5 mt-6 w-full">
+        <div class="announcement-action flex justify-content-end gap-4 mt-6 w-full">
           <div class="announcement-toggle flex align-content-center flex-wrap gap-2">
             <h:outputText id="announcement-toggle-status" class="flex align-items-center justify-content-center font-medium" 
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/enable')}" />
@@ -189,7 +192,7 @@
           </div>
           <p:commandButton id="save-changes-announcement" process="announcement-form" actionListener="#{logic.saveChangesAnnouncement()}"
             update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group" 
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/saveChanges')}">
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}">
           </p:commandButton>
         </div>
       </h:form>

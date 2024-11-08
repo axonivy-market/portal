@@ -172,7 +172,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       announcementsEnabled: Los avisos están activados
       defaultLanguageRequiredMessage: 'Texto requerido en el idioma estándard de la aplicación '
       disabled: Deshabilitado
-      enable: Activar
+      enable: Activar anuncio
       information: En esta área puede anunciar una información general (ej. mantenimiento, cambios en la aplicación, etc.). Este mensaje será visible para todos los usuarios.
       saveChanges: Guardar cambios
       tabTitle: Avisos
