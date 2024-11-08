@@ -148,6 +148,8 @@ How to: add public dashboard
 #. The :guilabel:`Create new public dashboard` dialog is opened.
 
 #. Enter the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
+   If the `Top Menu Item` checkbox is checked, the dashboard appears as a top-level item in the navigation bar. 
+   If unchecked, it appears as a sub-item under `Dashboard` menu item.
 
 #. Create the public dashboard by selecting |add-icon| Create dashboard.
 
@@ -180,6 +182,8 @@ How to: import public dashboard
 #. Press the Select button and choose the JSON file that contains the dashboard you want to import.
 
 #. Edit the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
+   If the `Top Menu Item` checkbox is checked, the dashboard appears as a top-level item in the navigation bar. 
+   If unchecked, it appears as a sub-item under `Dashboard` menu item.
 
 #. Import the dashboard by selecting the Create Dashboard button.
 
