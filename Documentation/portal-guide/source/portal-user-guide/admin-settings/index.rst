@@ -13,7 +13,7 @@ Admin Settings
 
 .. hint::
    Only users who have granted the role ``AXONIVY_PORTAL_ADMIN`` can see and access 
-   the :guilabel:`Admin settings` user menu item. They can update Portal settings, 
+   the :guilabel:`Admin settings` on the user menu. They can update Portal settings, 
    as well as define, show and hide the announcement.
 
 Select the :guilabel:`Admin settings` user menu item.
@@ -50,7 +50,7 @@ HowTo: Update Portal Settings
 
    |global-settings|
 
-#. To update Portal settings, click on the |edit-icon| icon.
+#. To update value of Portal settings variable, click on the |edit-icon| icon.
 
    |edit-global-settings|
 
@@ -79,7 +79,7 @@ HowTo: Show/Hide the Announcement
 
    |announcement|
 
-#. Input your announcement text.
+#. Input your announcement text and click on :guilabel:`Save changes`
 
 #. To show the announcement, click on :guilabel:`Enable`.
 
