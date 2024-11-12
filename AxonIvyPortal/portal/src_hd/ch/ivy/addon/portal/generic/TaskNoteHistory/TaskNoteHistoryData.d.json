@@ -9,12 +9,15 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "filteredNotes",
-    "type" : "List<ch.ivyteam.ivy.workflow.note.Note>"
+    "type" : "List<ch.ivyteam.ivy.workflow.INote>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "notes",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.note.Note>"
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.INote>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask"
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }
