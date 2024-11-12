@@ -220,7 +220,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     taskConfigurationPage.cancelMultiLanguageDialogWhenAddWidget();
     taskConfigurationPage.openFilter();
     taskConfigurationPage.addFilter("name", FilterOperator.EMPTY);
-    ScreenshotUtils.captureHalfRightPageScreenShot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration");
+    ScreenshotUtils.resizeBrowserAndCaptureWholeScreen(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration", new Dimension(1366, 768));
     taskConfigurationPage.closeFilter();
     WebElement columnManagementDialog = taskConfigurationPage.openColumnManagementDialog();
     ScreenshotUtils.captureElementScreenshot(columnManagementDialog,
@@ -245,8 +245,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     ComplexFilterHelper.addFilter("Creator", FilterOperator.CURRENT_USER);
     ComplexFilterHelper.addFilter("Name", FilterOperator.CONTAINS);
     ComplexFilterHelper.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave", "Request");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigurationPage.getConfigurationFilter(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-configuration", new ScreenshotMargin(20));
+    ScreenshotUtils.resizeBrowserAndCaptureWholeScreen(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-configuration", new Dimension(1366, 768));
     caseConfigurationPage.closeFilter();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigurationPage.openColumnManagementDialog(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-table-configuration", new ScreenshotMargin(20));
@@ -502,9 +501,9 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     homePage.closeManageFilterDialog();
     caseWidget.openFilterWidget();
     homePage.clickOnManageFilterLink();
-    
+    homePage.waitForPageLoad();
     ScreenshotUtils.captureElementScreenshot(homePage.getManageFilterDialog(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-filter-management"); //#delete-saved-filter-form\:quick-filter-table > div.ui-datatable-scrollable-body
+    ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-filter-management"); //#delete-saved-filter-form\:quick-filter-table > div.ui-datatable-scrollable-body
   }
   
   @Test
