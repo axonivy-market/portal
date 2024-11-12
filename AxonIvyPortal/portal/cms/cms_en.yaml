@@ -1472,12 +1472,10 @@ Labels:
       **Process name:** {0}
       **Process description:** {1}
     ProcessInfoHeaderWithParameters: |-
-      **Process name:** {0}
-      **Process description:** {1}
-      **Number of parameters: ** {2}
-    ProcessParameterInfo: |-
-      - Name: {0}
-        Description: {1}
+      - **Process name:** {0}
+      - **Process description:** {1}
+      - **Number of parameters:** {2}
+    ProcessParameterInfo: "\t+ {0} ({1})"
     ProcessParameterInfoWithValue: |-
       - Name: {0}
         Description: {1}
