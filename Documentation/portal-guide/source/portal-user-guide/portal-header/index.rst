@@ -140,11 +140,11 @@ The Global Search is a convenient tool for you to look up
 information in the whole |ivy| Portal. You may search for any
 keyword. By default, the |ivy| Portal will search for:
 
-#. Processes
+#. Processes: name, description
 
-#. Cases
+#. Cases: id, name, description
 
-#. Tasks
+#. Tasks: id, name, description and all custom string fields
 
 When you confirm the keyword you’re looking for, the |ivy| Portal
 will route you to the **Global Search Results** page. For each category
@@ -155,13 +155,8 @@ a tab is provided, giving you the results of your search.
 HowTo: Limit search scope of Global Search
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, Global Search looks for data that match your input in these fields:
-
-   - Task fields: Id, name, and description.
-   - Case fields: Id, name, description, and any custom string field.
-
 As an administrator, you may want to limit fields which Global Search should be looking for.
-Portal provides two variables to help you:
+Portal provides three variables to help you:
 
    - ``Portal.SearchScope.ByCaseFields``: Defining the fields that the global search
      will use to find matching cases besides case Id (this can influence the performance of the search).
