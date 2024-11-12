@@ -11,7 +11,6 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -57,7 +56,7 @@ public class MenuTest extends BaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
+    NewDashboardPage taskWidgetPage = mainMenuPage.selectTaskMenu();
     assertTrue(taskWidgetPage.isMainMenuOpen());
   }
 

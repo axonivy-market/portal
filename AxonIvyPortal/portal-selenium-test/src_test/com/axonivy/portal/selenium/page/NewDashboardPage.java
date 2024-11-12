@@ -1003,7 +1003,7 @@ public class NewDashboardPage extends TemplatePage {
     return $("[id='theme-switcher']").shouldBe(appear, DEFAULT_TIMEOUT).is(Condition.cssClass("ui-state-disabled"));
   }
 
-  public TaskWidgetPage openTaskList() {
+  public NewDashboardPage openTaskList() {
     return openMainMenu().selectTaskMenu();
   }
 

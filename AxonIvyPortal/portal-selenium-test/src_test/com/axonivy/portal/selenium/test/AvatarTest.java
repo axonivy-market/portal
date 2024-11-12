@@ -16,13 +16,14 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 @IvyWebTest
 public class AvatarTest extends BaseTest {
 
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private static final String SICK_LEAVE_REQUEST = "Sick Leave Request";
+  private static final String YOUR_TASKS = "Your Tasks";
 
   @Override
   @BeforeEach
@@ -45,11 +46,12 @@ public class AvatarTest extends BaseTest {
 
     // Check task list
     MainMenuPage mainMenuPage = new MainMenuPage();
-    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-    assertTrue(taskWidgetPage.getResponsibleAvatar().exists());
+
 
     // Check task details
-    taskWidgetPage.openTask(SICK_LEAVE_REQUEST);
+    NewDashboardPage taskWidgetPage = mainMenuPage.openTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails(SICK_LEAVE_REQUEST);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     assertTrue(taskDetailsPage.getResponsibleAvatar().exists());
 

@@ -11,19 +11,19 @@ public class GlobalGrowlIframeTemplatePage extends TemplatePage {
     return "#content";
   }
 
-  public TaskWidgetPage clickCancel() {
+  public NewDashboardPage clickCancel() {
     return clickButton("content-form:cancel");
   }
 
-  public TaskWidgetPage clickProceed() {
+  public NewDashboardPage clickProceed() {
     return clickButton("content-form:proceed");
   }
 
-  private TaskWidgetPage clickButton(String idSelector) {
+  private NewDashboardPage clickButton(String idSelector) {
     waitForElementDisplayed(By.id(idSelector), true);
     $("button[id='" + idSelector + "']").click();
     switchToDefaultContent();
-    return new TaskWidgetPage();
+    return new NewDashboardPage();
   }
 
 }

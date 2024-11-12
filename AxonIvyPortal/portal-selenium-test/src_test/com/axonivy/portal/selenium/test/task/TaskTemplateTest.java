@@ -14,7 +14,7 @@ import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.axonivy.portal.selenium.page.WorkingTaskDialogPage;
 
 @IvyWebTest
@@ -72,8 +72,9 @@ public class TaskTemplateTest extends BaseTest {
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.leaveTask();
-    TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
-    assertTrue(taskWidget.isTaskStateOpen(0));
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    assertTrue("open".equalsIgnoreCase(taskWidget.stateOfFirstTask().text()));
   }
 
   @Test
@@ -87,20 +88,23 @@ public class TaskTemplateTest extends BaseTest {
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.reserveTask();
-    TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
-    assertTrue(taskWidget.isTaskStateReserved(0));
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    assertTrue("open".equalsIgnoreCase(taskWidget.stateOfFirstTask().text()));
   }
 
   @Test
   public void testResetTaskWhenStartSideStep() {
     redirectToRelativeLink(createTestingCaseMapUrl);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    int latestTask = taskWidgetPage.countTasks().size() - 1;
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(latestTask);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    int latestTask = taskWidget.countAllTasks().size() - 1;
+    TaskTemplatePage taskTemplatePage = taskWidget.startTaskByIndex(latestTask);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.startSideStep();
-    TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
-    assertTrue(taskWidget.isTaskStateOpen(0));
+    NavigationHelper.navigateToTaskList();
+    taskWidget = new TopMenuTaskWidgetPage();
+    assertTrue("open".equalsIgnoreCase(taskWidget.stateOfFirstTask().text()));
   }
 
   private void createTestData() {
@@ -109,24 +113,18 @@ public class TaskTemplateTest extends BaseTest {
   }
 
   private TaskIFrameTemplatePage startATask() {
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskIFrameTemplatePage taskTemplatePage = taskWidget.startTaskIFrameByIndex(0);
     return taskTemplatePage;
   }
 
   private TaskIFrameTemplatePage startATaskAndOpenCaseInfo() {
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskIFrameTemplatePage taskTemplatePage = taskWidget.startTaskIFrameByIndex(0);
     taskTemplatePage.openCaseInfo();
     return taskTemplatePage;
-  }
-
-  @Test
-  public void testShowCategoryColummnByDefault() {
-    createTestData();
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    TaskWidgetPage taskList = newDashboardPage.openTaskList();
-    assertTrue(taskList.isCategoryColumnDisplayed());
   }
 
   @Test

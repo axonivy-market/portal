@@ -19,6 +19,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.Condition;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -48,17 +49,20 @@ public class EscalationTaskTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
-    TaskWidgetPage taskWidgetPage = new MainMenuPage().openTaskList();
-    taskWidgetPage.openTask(SICK_LEAVE_REQUEST);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.clickOnTaskName(SICK_LEAVE_REQUEST);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.openActionPanel();
     taskDetailsPage.triggerEscalation();
     taskDetailsPage.getPriorityOfTask().shouldHave(Condition.text("EXCEPTION"));
     taskDetailsPage.getStateOfTask().shouldHave(Condition.text("Destroyed"));
     taskDetailsPage.back();
-    taskWidgetPage.filterTasksBy(SICK_LEAVE_REQUEST_ESCALATED);
-    assertTrue(taskWidgetPage.getFilterTasksByKeyword().attr("value").equalsIgnoreCase(SICK_LEAVE_REQUEST_ESCALATED));
-    taskWidgetPage.countTasks().shouldHave(size(1));
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, SICK_LEAVE_REQUEST_ESCALATED);
+    taskWidget.applyFilter();
+    taskWidget.countAllTasks().shouldHave(size(1));
   }
 
   @Test
@@ -69,7 +73,7 @@ public class EscalationTaskTest extends BaseTest {
     mainMenuPage.openTaskList();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy(SICK_LEAVE_REQUEST);
-    assertTrue(taskWidgetPage.getFilterTasksByKeyword().attr("value").equals(SICK_LEAVE_REQUEST));
+    assertTrue(SICK_LEAVE_REQUEST.equals(taskWidgetPage.getFilterTasksByKeyword().attr("value")));
     taskWidgetPage.countTasks().shouldHave(size(1));
     taskWidgetPage.clickOnTaskActionLink(0);
     taskWidgetPage.triggerEscalation();
@@ -77,9 +81,9 @@ public class EscalationTaskTest extends BaseTest {
     refreshPage();
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy(SICK_LEAVE_REQUEST_ESCALATED);
-    assertTrue(taskWidgetPage.getFilterTasksByKeyword().attr("value").equalsIgnoreCase(SICK_LEAVE_REQUEST_ESCALATED));
+    assertTrue(SICK_LEAVE_REQUEST_ESCALATED.equalsIgnoreCase(taskWidgetPage.getFilterTasksByKeyword().attr("value")));
     taskWidgetPage.countTasks().shouldHave(size(1));
-    assertTrue(taskWidgetPage.getPriorityOfTask(0).equalsIgnoreCase("high"));
+    assertTrue("high".equalsIgnoreCase(taskWidgetPage.getPriorityOfTask(0)));
   }
 
   @Test

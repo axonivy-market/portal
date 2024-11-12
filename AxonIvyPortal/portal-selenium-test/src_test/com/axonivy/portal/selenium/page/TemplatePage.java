@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -45,6 +46,8 @@ public abstract class TemplatePage extends AbstractPage {
   private static final String HOME_BREADCRUMB_SELECTOR = ".portal-breadcrumb .ui-menuitem-link:first-child";
   public static final String PORTAL_GLOBAL_GROWL_ID = "portal-global-growl_container";
   protected static final String COMPONENT_PAGE_LOCATOR = "//*[contains(@id,'theme-selection')]";
+  private static final String YOUR_TASKS = "Your Tasks";
+
 
   // If page load more than 45s, mark it failed by timeout
   protected long getTimeOutForLocator() {
@@ -213,7 +216,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public void waitForPageLoad() {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(
-        webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+        webDriver -> "complete".equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
   }
 
   public void waitForGrowlTitleDisappear() {
@@ -300,6 +303,13 @@ public abstract class TemplatePage extends AbstractPage {
     return new TaskDetailsPage();
   }
 
+  public TaskDetailsPage openDashboardTaskDetails(String taskName) {
+    $("div[id$=':task-component:dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr td span")
+        .filter(text(taskName)).first().click();
+    return new TaskDetailsPage();
+  }
+
+
   public GlobalSearch getGlobalSearch() {
     return new GlobalSearch();
   }
@@ -365,8 +375,9 @@ public abstract class TemplatePage extends AbstractPage {
 
   }
 
-  public TaskWidgetPage selectTaskMenu() {
-    return NavigationHelper.navigateToTaskList();
+  public NewDashboardPage selectTaskMenu() {
+    NewDashboardPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    return taskWidgetPage;
   }
 
   public NewDashboardPage goToHomeFromBreadcrumb() {
@@ -465,7 +476,7 @@ public abstract class TemplatePage extends AbstractPage {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(ExpectedConditions.numberOfWindowsToBe(2));
   }
 
-  public TaskWidgetPage openTaskList() {
+  public NewDashboardPage openTaskList() {
     return openMainMenu().selectTaskMenu();
   }
 

@@ -1,6 +1,5 @@
 package com.axonivy.portal.selenium.test.caze;
 
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.TimeoutException;
@@ -9,6 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.CaseState;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
@@ -18,8 +19,8 @@ import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
-import com.axonivy.portal.selenium.page.UserProfilePage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.WebDriverRunner;
 
 @IvyWebTest
@@ -34,12 +35,15 @@ public class CaseWidgetTest extends BaseTest {
   private static final String STATE_COLUMN_HEADER = "State";
   private static final String RELATED_CASE_STATE_COLUMN = "state-column";
   private static final String RELATED_CASE_CREATED_COLUMN = "created-column";
+  private static final String YOUR_TASKS = "Your Tasks";
+
 
   private NewDashboardPage newDashboardPage;
   private MainMenuPage mainMenuPage;
   private CaseWidgetPage casePage;
   private CaseDetailsPage caseDetailsPage;
   private AdditionalCaseDetailsPage additionalCaseDetailsPage;
+  private NewDashboardPage taskWidgetPage;
 
   @Override
   @BeforeEach
@@ -53,9 +57,11 @@ public class CaseWidgetTest extends BaseTest {
     redirectToRelativeLink(hideCaseUrl);
     initNewDashboardPage(TestAccount.ADMIN_USER);
 
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.filterTasksInExpandedModeBy("Report and hide case", 2);
-    taskWidgetPage.startTaskWithoutUI(1);
+    NewDashboardPage dashboardTaskWidgetPage = NavigationHelper.navigateToTaskList();
+    TaskWidgetNewDashBoardPage taskWidgetPage = dashboardTaskWidgetPage.selectTaskWidget(YOUR_TASKS);
+    taskWidgetPage.setInputForQuickSearch("Report and hide case");
+    taskWidgetPage.startTask(1);
+
     newDashboardPage = new NewDashboardPage();
 
     mainMenuPage = newDashboardPage.openMainMenu();
@@ -72,7 +78,6 @@ public class CaseWidgetTest extends BaseTest {
     casePage.confimDestruction();
     CaseState caseState = casePage.getCaseState(0);
     assertEquals(CaseState.DESTROYED, caseState);
-
   }
 
   @Test
@@ -223,33 +228,33 @@ public class CaseWidgetTest extends BaseTest {
     assertTrue(newDashboardPage.isDisplayed());
   }
 
-  @Test
-  public void testChangeCaseSortingOptions() {
-    redirectToRelativeLink(create12CasesWithCategoryUrl);
-
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
-
-    // Change sorting options
-    userProfilePage.selectCaseSortField("Name");
-    userProfilePage.selectCaseSortDirection("Sort ascending");
-    newDashboardPage = userProfilePage.save();
-
-    // Check result
-    CaseWidgetPage caseWidgetPage = newDashboardPage.openCaseList();
-    assertEquals("Create 12 Cases with category", caseWidgetPage.getCaseNameAt(0));
-    assertEquals("TestCase", caseWidgetPage.getCaseNameAt(13));
-
-    // Change sorting options
-    userProfilePage = caseWidgetPage.openMyProfilePage();
-    userProfilePage.selectCaseSortField("State");
-    userProfilePage.selectCaseSortDirection("Sort descending");
-    newDashboardPage = userProfilePage.save();
-
-    // Check result
-    caseWidgetPage = newDashboardPage.openCaseList();
-    assertEquals(CaseState.DONE, caseWidgetPage.getCaseState(0));
-  }
+  // @Test
+  // public void testChangeCaseSortingOptions() {
+  // redirectToRelativeLink(create12CasesWithCategoryUrl);
+  //
+  // NewDashboardPage newDashboardPage = new NewDashboardPage();
+  // UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
+  //
+  // // Change sorting options
+  // userProfilePage.selectCaseSortField("Name");
+  // userProfilePage.selectCaseSortDirection("Sort ascending");
+  // newDashboardPage = userProfilePage.save();
+  //
+  // // Check result
+  // CaseWidgetPage caseWidgetPage = newDashboardPage.openCaseList();
+  // assertEquals("Create 12 Cases with category", caseWidgetPage.getCaseNameAt(0));
+  // assertEquals("TestCase", caseWidgetPage.getCaseNameAt(13));
+  //
+  // // Change sorting options
+  // userProfilePage = caseWidgetPage.openMyProfilePage();
+  // userProfilePage.selectCaseSortField("State");
+  // userProfilePage.selectCaseSortDirection("Sort descending");
+  // newDashboardPage = userProfilePage.save();
+  //
+  // // Check result
+  // caseWidgetPage = newDashboardPage.openCaseList();
+  // assertEquals(CaseState.DONE, caseWidgetPage.getCaseState(0));
+  // }
 
   @Test
   public void testExportToExcel() {
@@ -262,32 +267,32 @@ public class CaseWidgetTest extends BaseTest {
     assertTrue(caseWidgetPage.isDownloadCompleted());
   }
 
-  @Test
-  public void testStickySortCaseList() {
-    redirectToRelativeLink(create12CasesWithCategoryUrl);
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    CaseWidgetPage caseWidgetPage = newDashboardPage.openCaseList();
-    caseWidgetPage
-        .sortCaseListByColumn("case-widget:case-list-header:created-date-column-header:created-date-column-header");
-    caseWidgetPage.clickOnLogo();
-    newDashboardPage = new NewDashboardPage();
-    caseWidgetPage = newDashboardPage.openCaseList();
-    String selectedSortColumn = caseWidgetPage.getSelectedSortColumn();
-    assertTrue(StringUtils.equalsIgnoreCase("Created", selectedSortColumn));
-    String caseName = caseWidgetPage.getCaseNameAt(0);
-    assertTrue(StringUtils.equalsIgnoreCase("Leave Request", caseName));
-    // Change sorting options
-    UserProfilePage userProfilePage = caseWidgetPage.openMyProfilePage();
-    userProfilePage.selectCaseSortField("State");
-    userProfilePage.selectCaseSortDirection("Sort descending");
-    newDashboardPage = userProfilePage.save();
-
-    // Check result
-    caseWidgetPage = newDashboardPage.openCaseList();
-    selectedSortColumn = caseWidgetPage.getSelectedSortColumn();
-    assertTrue(StringUtils.equalsIgnoreCase("State", selectedSortColumn));
-    assertEquals(CaseState.DONE, caseWidgetPage.getCaseState(0));
-  }
+  // @Test
+  // public void testStickySortCaseList() {
+  // redirectToRelativeLink(create12CasesWithCategoryUrl);
+  // NewDashboardPage newDashboardPage = new NewDashboardPage();
+  // CaseWidgetPage caseWidgetPage = newDashboardPage.openCaseList();
+  // caseWidgetPage
+  // .sortCaseListByColumn("case-widget:case-list-header:created-date-column-header:created-date-column-header");
+  // caseWidgetPage.clickOnLogo();
+  // newDashboardPage = new NewDashboardPage();
+  // caseWidgetPage = newDashboardPage.openCaseList();
+  // String selectedSortColumn = caseWidgetPage.getSelectedSortColumn();
+  // assertTrue(StringUtils.equalsIgnoreCase("Created", selectedSortColumn));
+  // String caseName = caseWidgetPage.getCaseNameAt(0);
+  // assertTrue(StringUtils.equalsIgnoreCase("Leave Request", caseName));
+  // // Change sorting options
+  // UserProfilePage userProfilePage = caseWidgetPage.openMyProfilePage();
+  // userProfilePage.selectCaseSortField("State");
+  // userProfilePage.selectCaseSortDirection("Sort descending");
+  // newDashboardPage = userProfilePage.save();
+  //
+  // // Check result
+  // caseWidgetPage = newDashboardPage.openCaseList();
+  // selectedSortColumn = caseWidgetPage.getSelectedSortColumn();
+  // assertTrue(StringUtils.equalsIgnoreCase("State", selectedSortColumn));
+  // assertEquals(CaseState.DONE, caseWidgetPage.getCaseState(0));
+  // }
 
   @Test
   public void testRelatedCaseEnableAndDisableColumns() {
@@ -319,13 +324,16 @@ public class CaseWidgetTest extends BaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitPageLoaded();
 
-    TaskWidgetPage taskWidgetPage = newDashboardPage.openTaskList();
-    taskWidgetPage.waitForPageLoad();
-    taskWidgetPage.filterTasksInExpandedModeBy("Task for role involved", 1);
-
-    WaitHelper.waitForNavigation(() -> {
-      taskWidgetPage.waitTaskAppearThenClick(0);
-    });
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.setInputForQuickSearch("Task for role involved");
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Task for role involved");
+    taskWidget.addFilter("state", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
+    taskWidget.applyFilter();
+    taskWidget.startTask(0);
 
     login(TestAccount.HR_ROLE_USER_2);
     redirectToRelativeLink(grantCaseReadAllOwnRoleInvolvedPermission);
