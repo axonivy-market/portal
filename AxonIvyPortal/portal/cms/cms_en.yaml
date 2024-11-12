@@ -1457,6 +1457,7 @@ Labels:
       CannotStartTask: Cannot start task has ID {0}
       InvalidTaskPriority: 'Invalid task priority. Valid task priorities are: low, normal, high, or exception.'
       InvalidTaskState: 'Invalid task state. Valid task states are: open, done, in progress, or error.'
+      NoMatchingCase: Cannot find any task matched your request
       NoMatchingProcesses: No matching processes.
       NoMatchingTask: Cannot find any task matched your request
     FindCaseAIResult: 'ID: {0}, Name: {1}, Description: {2}, State: {3}'
@@ -1465,6 +1466,7 @@ Labels:
     FindUserAIResult: 'Username: {0}, Name: {1}, Email: {2}, State: {3}'
     FoundCaseHeader: 'Found cases:'
     FoundProcessesHeader: 'Found processes:'
+    FoundTaskHeader: 'Found tasks:'
     FoundUsersHeader: 'Found users:'
     ProcessInfoHeader: |-
       **Process name:** {0}

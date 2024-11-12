@@ -92,7 +92,8 @@ public class AiService {
     }
 
     // Create result for AI based on found tasks
-    String foundTasksStr = "Found tasks:".concat(System.lineSeparator());
+    String foundTasksStr = Ivy.cms().co("/Labels/AI/FoundTaskHeader")
+        .concat(System.lineSeparator());
     for (ITask task : foundTasks) {
       foundTasksStr = foundTasksStr
           .concat(Ivy.cms().co("/Labels/AI/FindTaskAIResult",
@@ -132,6 +133,11 @@ public class AiService {
     // we only show 10 first matched results
     List<ICase> foundCases = DashboardCaseService.getInstance().findByCaseQuery(
         caseWidget.getDataModel().getCriteria().buildQuery(), 0, 10);
+
+    if (CollectionUtils.isEmpty(foundCases)) {
+      return AiAssistantAPI.generateErrorAiResult(
+          Ivy.cms().co("/Labels/AI/Error/NoMatchingCase"));
+    }
 
     // Create result for AI based on found tasks
     String foundCasesStr = Ivy.cms().co("/Labels/AI/FoundCaseHeader")
