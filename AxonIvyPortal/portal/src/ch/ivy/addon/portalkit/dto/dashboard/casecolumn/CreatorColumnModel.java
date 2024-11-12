@@ -46,7 +46,6 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
     return DashboardColumnFormat.CUSTOM;
   }
 
-  @Override
   @JsonIgnore
   protected int getDefaultColumnWidth() {
     return EXTRA_WIDTH;

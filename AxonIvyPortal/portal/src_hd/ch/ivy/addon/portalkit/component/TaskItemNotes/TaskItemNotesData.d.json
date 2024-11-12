@@ -13,17 +13,20 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "note",
-    "type" : "ch.ivyteam.ivy.workflow.note.Note"
+    "type" : "ch.ivyteam.ivy.workflow.INote",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "noteContent",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "notes",
-    "type" : "List<ch.ivyteam.ivy.workflow.note.Note>"
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.INote>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask"
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "showSystemNotes",
     "type" : "Boolean",
