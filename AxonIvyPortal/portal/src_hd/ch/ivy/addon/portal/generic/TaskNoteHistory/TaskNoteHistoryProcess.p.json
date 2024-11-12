@@ -13,7 +13,7 @@
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "notes", "type" : "List<ch.ivyteam.ivy.workflow.note.Note>", "desc" : "" },
+            { "name" : "notes", "type" : "java.util.List<ch.ivyteam.ivy.workflow.INote>", "desc" : "" },
             { "name" : "exportedFileName", "type" : "String", "desc" : "" },
             { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
           ],

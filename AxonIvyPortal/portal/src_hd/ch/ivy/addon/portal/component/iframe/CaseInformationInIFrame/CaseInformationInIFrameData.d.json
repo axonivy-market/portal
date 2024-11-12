@@ -5,7 +5,8 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "currentCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase"
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "showBackButton",
     "type" : "Boolean",
