@@ -13,12 +13,10 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "selectedCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   }, {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
   }, {
     "name" : "expiryTimestamp",
     "type" : "java.util.Date",
