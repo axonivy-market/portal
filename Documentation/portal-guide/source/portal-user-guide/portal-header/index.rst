@@ -49,10 +49,7 @@ component. Here you can enter your absence and define delegate for
 tasks assigned to you or one of the roles you hold.
 
 .. hint::
-   Although you can specify
-   delegates for a role you hold, we recommend specifying only delegates for tasks
-   assigned personally to you. Roles are normally held by a group of users, so if
-   you’re absent one of your role members is still able to pick the task.
+   Although you can specify delegates for a role you hold, we recommend specifying delegates only for tasks assigned directly to you. Roles are typically held by a group of users, so if you're absent, another member of your role can still take on the task.
 
 |portal-absences|
 
