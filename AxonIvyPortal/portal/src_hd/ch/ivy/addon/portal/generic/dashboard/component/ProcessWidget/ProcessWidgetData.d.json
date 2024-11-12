@@ -5,35 +5,28 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "tasks",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>"
   }, {
     "name" : "taskSearchCriteria",
-    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria"
   }, {
     "name" : "taskQuery",
-    "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery"
   }, {
     "name" : "taskWidget",
-    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget"
   }, {
     "name" : "filteredTasks",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>"
   }, {
     "name" : "dataModel",
-    "type" : "ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel"
   }, {
     "name" : "currentPortalPage",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "selectedTask",
-    "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
   } ]
 }
