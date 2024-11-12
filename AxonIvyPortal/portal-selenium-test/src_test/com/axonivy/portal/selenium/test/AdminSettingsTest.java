@@ -14,6 +14,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 @IvyWebTest
 public class AdminSettingsTest extends BaseTest {
 
+  @Override
   @BeforeEach
   public void setup() {
     super.setup();

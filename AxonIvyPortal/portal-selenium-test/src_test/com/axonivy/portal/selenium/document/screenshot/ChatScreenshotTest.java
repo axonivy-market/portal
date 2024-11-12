@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 
-import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
@@ -16,11 +15,14 @@ import com.axonivy.portal.selenium.page.ChatPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
-@IvyWebTest
+
 public class ChatScreenshotTest extends ScreenshotBaseTest {
 
+  private static final String YOUR_TASKS = "Your Tasks";
+
+  
   @Override
   @BeforeEach
   public void setup() {
@@ -37,15 +39,17 @@ public class ChatScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForCaseWidgetLoaded();
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 800));
-    ScreenshotUtils.executeDecorateJs("highlightChatIcon()");
+    // ScreenshotUtils.executeDecorateJs("highlightChatIcon()");
     ScreenshotUtils.captureHalfTopRightPageScreenShot(ScreenshotUtils.CHAT_FOLDER + "access-chat");
     MainMenuPage menu = new MainMenuPage();
-    TaskWidgetPage taskWidgetPage = menu.openTaskList();
-    taskWidgetPage.openTask("Maternity Leave Request");
+    NewDashboardPage taskWidgetPage = menu.openTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.setInputForQuickSearch("Maternity Leave Request");
+    taskWidget.startTask(0);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
 
     taskTemplatePage.clickActionButton();
-    ScreenshotUtils.executeDecorateJs("highlightJoinGroupChatOption()");
+    // ScreenshotUtils.executeDecorateJs("highlightJoinGroupChatOption()");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CHAT_FOLDER + "create-new-group-chat");
 
     taskTemplatePage.clickChatGroup();

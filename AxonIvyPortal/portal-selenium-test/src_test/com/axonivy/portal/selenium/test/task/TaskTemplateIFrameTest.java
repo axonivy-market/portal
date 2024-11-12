@@ -6,13 +6,15 @@ import org.openqa.selenium.By;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 @IvyWebTest
 public class TaskTemplateIFrameTest extends BaseTest {
@@ -31,9 +33,15 @@ public class TaskTemplateIFrameTest extends BaseTest {
   @Test
   public void testCustomParamsForIFrameTaskTemplate() {
     redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.filterTasksInExpandedModeBy("IFrame task with custom params");
-    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "IFrame task with custom params");
+    taskWidget.addFilter("state", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
+    taskWidget.applyFilter();
+    TaskIFrameTemplatePage taskTemplatePage = taskWidget.startTaskIFrameByIndex(0);
     assertFalse(taskTemplatePage.isTaskNameDisplayed());
     assertFalse(taskTemplatePage.isTaskActionDisplayed());
     assertFalse(taskTemplatePage.isCaseInfoButtonDisplayed());
@@ -54,9 +62,15 @@ public class TaskTemplateIFrameTest extends BaseTest {
     redirectToRelativeLink(IFRAME_TASK_URL);
     waitForTemplateRender();
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
-    TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
-    taskWidgetPage.filterTasksInExpandedModeBy("Approve Investment", 1);
-    TaskIFrameTemplatePage taskTemplatePage2 = taskWidgetPage.startTaskIFrame(0);
+    taskTemplatePage1.finishCreateInvestmentTask();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Approve Investment");
+    taskWidget.addFilter("state", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
+    taskWidget.applyFilter();
+    TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
     taskTemplatePage2.clickOnLogo();
     new NewDashboardPage();
   }
@@ -67,9 +81,15 @@ public class TaskTemplateIFrameTest extends BaseTest {
     redirectToRelativeLink(IFRAME_TASK_URL);
     waitForTemplateRender();
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
-    TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
-    taskWidgetPage.filterTasksInExpandedModeBy("Approve Investment", 1);
-    TaskIFrameTemplatePage taskTemplatePage2 = taskWidgetPage.startTaskIFrame(0);
+    taskTemplatePage1.finishCreateInvestmentTask();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Approve Investment");
+    taskWidget.addFilter("state", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
+    taskWidget.applyFilter();
+    TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
     taskTemplatePage2.backToHomeInIFrameApprovalTask();
     new NewDashboardPage();
   }
@@ -79,11 +99,17 @@ public class TaskTemplateIFrameTest extends BaseTest {
     redirectToRelativeLink(IFRAME_TASK_URL);
     waitForTemplateRender();
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
-    TaskWidgetPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
-    taskWidgetPage1 = taskWidgetPage1.openTaskList();
-    taskWidgetPage1.filterTasksInExpandedModeBy("Approve Investment", 1);
-    TaskIFrameTemplatePage taskTemplatePage2 = taskWidgetPage1.startTaskIFrame(0);
-    TaskWidgetPage taskWidgetPage2 = taskTemplatePage2.finishIFrameReviewTask();
+    NewDashboardPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
+    taskWidgetPage1.openTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Approve Investment");
+    taskWidget.addFilter("state", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
+    taskWidget.applyFilter();
+    TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
+    NewDashboardPage taskWidgetPage2 = taskTemplatePage2.finishIFrameReviewTask();
     WaitHelper
         .assertTrueWithWait(() -> taskWidgetPage2.isElementDisplayed(By.cssSelector("[id$='task-config-command']")));
   }
@@ -97,10 +123,16 @@ public class TaskTemplateIFrameTest extends BaseTest {
     redirectToRelativeLink(IFRAME_TASK_URL);
     waitForTemplateRender();
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
-    TaskWidgetPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
-    taskWidgetPage1 = taskWidgetPage1.openTaskList();
-    taskWidgetPage1.filterTasksInExpandedModeBy("Approve Investment", 1);
-    TaskIFrameTemplatePage taskTemplatePage2 = taskWidgetPage1.startTaskIFrame(0);
+    NewDashboardPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
+    taskWidgetPage1.openTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Approve Investment");
+    taskWidget.addFilter("state", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
+    taskWidget.applyFilter();
+    TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
     taskTemplatePage2.waitForIFrameContentVisible();
     assertEquals("Review Request (Skip Tasklist in IFrame)",
         taskTemplatePage2.getTaskNameOutsideIFrameWithSkipTaskList());
@@ -110,9 +142,15 @@ public class TaskTemplateIFrameTest extends BaseTest {
   public void testShowCategoryInCaseByDefaultIframe() {
     redirectToRelativeLink("InternalSupport/15B1EA24CCF377E8/saleAndInform.ivp");
     NewDashboardPage newDashboardPage = new NewDashboardPage();
-    TaskWidgetPage taskWidget = newDashboardPage.openTaskList();
-    taskWidget.filterTasksInExpandedModeBy("sale department", 1);
-    TaskIFrameTemplatePage startTask = taskWidget.startTaskIFrame(0);
+    newDashboardPage.openTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "sale department");
+    taskWidget.addFilter("state", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
+    taskWidget.applyFilter();
+    TaskIFrameTemplatePage startTask = taskWidget.startTaskIFrameByIndex(0);
     startTask.openCaseInfo();
     resizeBrowserTo2kResolution();
     assertTrue(startTask.isCategoryColumnDisplayed());

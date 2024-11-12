@@ -27,11 +27,12 @@ public class MainMenuPage extends TemplatePage {
   protected String getLoadedLocator() {
     return ".layout-menu li[role='menuitem'] a.DASHBOARD";
   }
+  //
+  // public TaskWidgetPage openTaskList() {
+  // return NavigationHelper.navigateToTaskList();
+  // }
 
-  public TaskWidgetPage openTaskList() {
-    return NavigationHelper.navigateToTaskList();
-  }
-
+  @Override
   public CaseWidgetPage openCaseList() {
     return NavigationHelper.navigateToCaseList();
   }
@@ -40,6 +41,7 @@ public class MainMenuPage extends TemplatePage {
     return NavigationHelper.navigateToProcessList();
   }
 
+  @Override
   public void openUserSettingMenu() {
     $("#top-menu").shouldBe(appear, DEFAULT_TIMEOUT);
     $("a[id='user-settings-menu']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
@@ -64,6 +66,7 @@ public class MainMenuPage extends TemplatePage {
     }
   }
 
+  @Override
   public void closeMainMenu() {
     waitLeftMenuReady();
     if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(appear)) {
