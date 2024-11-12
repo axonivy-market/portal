@@ -92,7 +92,7 @@ Available Standard Charts
     - This chart shows all tasks the user can work on.
     - Chart type: :bdg-info:`Number`
 
-- Due Today
+- Tasks Due Today
 
     |due-today-chart|
 
