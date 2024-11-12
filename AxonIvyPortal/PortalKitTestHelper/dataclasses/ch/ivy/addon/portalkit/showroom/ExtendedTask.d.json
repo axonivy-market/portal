@@ -1,19 +1,19 @@
 {
   "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
-  "simpleName" : "PortalBreadcrumbData",
-  "namespace" : "ch.ivy.addon.portal.generic.PortalBreadcrumb",
+  "simpleName" : "ExtendedTask",
+  "namespace" : "ch.ivy.addon.portalkit.showroom",
   "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "workingTask",
+    "name" : "iTask",
     "type" : "ch.ivyteam.ivy.workflow.ITask",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "linkToNavigateWhenLeaveTask",
-    "type" : "String",
+    "name" : "taskId",
+    "type" : "Number",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "isWorkingOnATask",
-    "type" : "Boolean",
+    "name" : "caseId",
+    "type" : "Number",
     "modifiers" : [ "PERSISTENT" ]
   } ]
 }

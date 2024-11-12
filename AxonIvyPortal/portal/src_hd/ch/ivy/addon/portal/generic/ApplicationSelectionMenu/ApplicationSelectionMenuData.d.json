@@ -13,7 +13,8 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "workingTask",
-    "type" : "ch.ivyteam.ivy.workflow.ITask"
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "destinationBreadcrumbPage",
     "type" : "String",

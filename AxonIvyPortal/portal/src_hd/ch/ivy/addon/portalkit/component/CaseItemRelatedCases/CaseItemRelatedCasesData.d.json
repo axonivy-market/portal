@@ -5,10 +5,12 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "caze",
-    "type" : "ch.ivyteam.ivy.workflow.ICase"
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "relatedCases",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>"
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "isTaskFinished",
     "type" : "Boolean",
@@ -23,7 +25,8 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "caseSearchCriteria",
-    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria"
+    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "startIndex",
     "type" : "Integer",
@@ -38,10 +41,12 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "caseLazyDataModel",
-    "type" : "ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel"
+    "type" : "ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "exportedFile",
-    "type" : "org.primefaces.model.StreamedContent"
+    "type" : "org.primefaces.model.StreamedContent",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "columnsVisibility",
     "type" : "java.util.List<String>",
@@ -56,6 +61,7 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "collectedCasesForExporting",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>"
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

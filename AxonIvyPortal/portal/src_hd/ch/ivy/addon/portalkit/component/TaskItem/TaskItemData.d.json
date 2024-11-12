@@ -5,14 +5,16 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask"
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "compactMode",
     "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "expandedTask",
-    "type" : "ch.ivyteam.ivy.workflow.ITask"
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "canUserResumeTask",
     "type" : "Boolean",
@@ -24,7 +26,8 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "dataModel",
-    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel"
+    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "currentPortalPage",
     "type" : "String",
