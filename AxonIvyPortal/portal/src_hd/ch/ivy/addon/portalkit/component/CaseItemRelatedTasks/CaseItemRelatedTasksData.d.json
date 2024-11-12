@@ -5,8 +5,7 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "caze",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   }, {
     "name" : "isTaskFinished",
     "type" : "Boolean",
@@ -21,8 +20,7 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
   }, {
     "name" : "canUserResumeTask",
     "type" : "Boolean",
@@ -34,24 +32,20 @@
   }, {
     "name" : "selectedTask",
     "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "comment" : "Task is selected for reset or delegate",
-    "modifiers" : [ "PERSISTENT" ]
+    "comment" : "Task is selected for reset or delegate"
   }, {
     "name" : "dataModel",
-    "type" : "ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel"
   }, {
     "name" : "relatedTaskColumnsVisibility",
     "type" : "java.util.List<String>",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "exportedFile",
-    "type" : "org.primefaces.model.StreamedContent",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "org.primefaces.model.StreamedContent"
   }, {
     "name" : "taskSearchCriteria",
-    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria"
   }, {
     "name" : "totalTasks",
     "type" : "Integer",
@@ -66,8 +60,7 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "collectedTasksForExporting",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>"
   }, {
     "name" : "count",
     "type" : "Integer",
@@ -78,8 +71,7 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "tasks",
-    "type" : "List<ch.ivyteam.ivy.workflow.ITask>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "List<ch.ivyteam.ivy.workflow.ITask>"
   }, {
     "name" : "taskUUID",
     "type" : "String",
