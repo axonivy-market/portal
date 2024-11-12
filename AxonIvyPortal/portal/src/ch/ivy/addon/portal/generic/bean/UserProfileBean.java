@@ -16,14 +16,12 @@ import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelSubcriptionDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationEventDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.notification.channel.NotificationSubscription;
@@ -64,7 +62,7 @@ public class UserProfileBean implements Serializable {
     List<String> sortFieldNames = Stream.of(TaskSortField.values()).map(Enum::name).collect(Collectors.toList());
 
     if (StringUtils.equals(sortField, DEFAULT)) {
-      String defaultSortField = "ID"; // set default value instead of variable
+      String defaultSortField = TaskSortField.ID.name(); // set default value instead of variable
 
       String displaySortField =
           sortFieldNames.contains(defaultSortField) ? TaskSortField.valueOf(defaultSortField).getLabel()
@@ -78,9 +76,7 @@ public class UserProfileBean implements Serializable {
   public String getDisplayNameOfCaseSortField(String sortField) {
     List<String> sortFieldNames = Stream.of(CaseSortField.values()).map(Enum::name).collect(Collectors.toList());
     if (StringUtils.equals(sortField, DEFAULT)) {
-      GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
-      String defaultSortField = globalSettingService
-          .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST).getValue();
+      String defaultSortField = CaseSortField.ID.name(); // set default value instead of variable
 
       String displaySortField =
           sortFieldNames.contains(defaultSortField) ? CaseSortField.valueOf(defaultSortField).getLabel()
@@ -94,7 +90,7 @@ public class UserProfileBean implements Serializable {
   public String getDisplayNameOfTaskSortDirection(String sortDirection) {
     List<String> sortDirectionNames = Stream.of(SortDirection.values()).map(Enum::name).collect(Collectors.toList());
     if (StringUtils.equals(sortDirection, DEFAULT)) {
-      String defaultDirection = "DESC";
+      String defaultDirection = SortDirection.DESC.name(); // set default value instead of variable
 
       String displayDirection =
           sortDirectionNames.contains(defaultDirection) ? SortDirection.valueOf(defaultDirection).getLabel() : "";
@@ -107,9 +103,7 @@ public class UserProfileBean implements Serializable {
   public String getDisplayNameOfCaseSortDirection(String sortDirection) {
     List<String> sortDirectionNames = Stream.of(SortDirection.values()).map(Enum::name).collect(Collectors.toList());
     if (StringUtils.equals(sortDirection, DEFAULT)) {
-      GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
-      String defaultDirection = globalSettingService
-          .findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST).getValue();
+      String defaultDirection = SortDirection.DESC.name(); // set default value instead of variable
 
       String displayDirection =
           sortDirectionNames.contains(defaultDirection) ? SortDirection.valueOf(defaultDirection).getLabel() : "";

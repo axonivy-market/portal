@@ -170,7 +170,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   @Override
   protected List<Dashboard> collectDashboards() {
     List<Dashboard> collectedDashboards = new ArrayList<>();
-    Dashboard defaultTaskListDashboard = DashboardUtils.getDefaultTaskListDashboard();
     try {
       if (isPublicDashboard) {
         collectedDashboards = DashboardUtils.getPublicDashboards();
@@ -181,9 +180,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     } catch (PortalException e) {
       Ivy.log().error(e);
     }
-    if (!collectedDashboards.contains(defaultTaskListDashboard)) {
-      collectedDashboards.add(0, defaultTaskListDashboard);
-    }
+    DashboardUtils.addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
     return collectedDashboards.stream()
         .filter(dashboard -> dashboard.getId().equals(selectedDashboardId)).collect(Collectors.toList());
   }

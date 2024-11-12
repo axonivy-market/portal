@@ -11,7 +11,6 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.CaseState;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.AdditionalCaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -184,16 +183,6 @@ public class CaseWidgetTest extends BaseTest {
     casePage = mainMenuPage.selectCaseMenu();
     casePage.waitUntilCaseCountDifferentThanZero();
     assertEquals(1, casePage.getCaseCount().intValue());
-  }
-
-  @Test
-  public void testDisableCaseCount() {
-    updatePortalSetting(Variable.DISABLE_CASE_COUNT.getKey(), "true");
-    initNewDashboardPage(TestAccount.ADMIN_USER);
-
-    mainMenuPage = newDashboardPage.openMainMenu();
-    casePage = mainMenuPage.selectCaseMenu();
-    assertEquals(null, casePage.getCaseCount());
   }
 
   @Test

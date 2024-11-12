@@ -49,6 +49,7 @@ public class DashboardUtils {
   public final static String DASHBOARD_MENU_JS_CLASS = "js-dashboard-group";
   public final static String HIGHLIGHT_DASHBOARD_ITEM_METHOD_PATTERN = "highlightDashboardItem('%s')";
   public final static String DEFAULT_TASK_LIST_DASHBOARD = "default-task-list-dashboard";
+  public final static String DEFAULT_CASE_LIST_DASHBOARD = "default-case-list-dashboard";
 
   public static List<Dashboard> getVisibleDashboards(String dashboardJson) {
     List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
@@ -130,14 +131,24 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> getPublicDashboards() {
-    Dashboard taskTemplateDashboard = DashboardUtils.getDefaultTaskListDashboard();
     String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
     List<Dashboard> visibleDashboards = jsonToDashboards(dashboardJson);
-    if (!visibleDashboards.contains(taskTemplateDashboard)) {
-      visibleDashboards.add(0, taskTemplateDashboard);
-    }
+    addDefaultTaskCaseListDashboardsIfMissing(visibleDashboards);
     setDashboardAsPublic(visibleDashboards);
     return visibleDashboards;
+  }
+
+  public static void addDefaultTaskCaseListDashboardsIfMissing(List<Dashboard> dashboards) {
+    if (!hasDashboardWithId(dashboards, DEFAULT_CASE_LIST_DASHBOARD)) {
+      dashboards.add(0, DashboardUtils.getDefaultCaseListDashboard());
+    }
+    if (!hasDashboardWithId(dashboards, DEFAULT_TASK_LIST_DASHBOARD)) {
+      dashboards.add(0, DashboardUtils.getDefaultTaskListDashboard());
+    }
+  }
+
+  private static boolean hasDashboardWithId(List<Dashboard> dashboards, String id) {
+    return dashboards.stream().map(Dashboard::getId).anyMatch(dashboardId -> id.equals(dashboardId));
   }
 
   public static List<DashboardTemplate> getDashboardTemplates() {
@@ -172,7 +183,6 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> collectDashboards() {
-    Dashboard defaultTaskListDashboard = getDefaultTaskListDashboard();
     List<Dashboard> visibleDashboards = getAllVisibleDashboardsOfSessionUser();
     List<DashboardOrder> dashboardOrders = getDashboardOrdersOfSessionUser();
     Map<String, Dashboard> idToDashboard = createMapIdToDashboard(visibleDashboards);
@@ -187,9 +197,7 @@ public class DashboardUtils {
       }
     }
     collectedDashboards.addAll(idToDashboard.values());
-    if (!collectedDashboards.contains(defaultTaskListDashboard)) {
-      collectedDashboards.add(0, defaultTaskListDashboard);
-    }
+    addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
     return collectedDashboards;
   }
 
@@ -278,9 +286,11 @@ public class DashboardUtils {
   }
 
   public static Dashboard getDefaultTaskListDashboard() {
-    Dashboard defautTaskListDashboard = new Dashboard();
-    defautTaskListDashboard.setId(DEFAULT_TASK_LIST_DASHBOARD);
-    return jsonToDashboard(DefaultTaskListDashboardUtils.DASHBOARD_TASK_TEMPLATE_JSON);
+    return jsonToDashboard(DefaultTaskListDashboardUtils.DASHBOARD_TASK_LIST_DASHBOARD_JSON);
+  }
+
+  public static Dashboard getDefaultCaseListDashboard() {
+    return jsonToDashboard(DefaultCaseListDashboardUtils.DASHBOARD_CASE_LIST_DASHBOARD_JSON);
   }
 
   public static List<Dashboard> getDashboardsWithoutMenuItem() {

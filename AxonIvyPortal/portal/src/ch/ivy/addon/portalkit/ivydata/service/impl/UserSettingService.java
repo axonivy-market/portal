@@ -40,10 +40,6 @@ public class UserSettingService {
   }
 
   public void saveDefaultSortFieldOfCaseList(String fieldName, String sortDirection) {
-    IUser user = getSessionUser();
-    user.setProperty(UserProperty.DEFAULT_SORT_FIELD_OF_CASE_LIST, fieldName);
-    user.setProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_CASE_LIST, sortDirection);
-
     UserUtils.setSessionCaseSortAttribute(null);
   }
 
@@ -67,11 +63,11 @@ public class UserSettingService {
   }
 
   public String getDefaultSortFieldOfCaseList() {
-    return getUserProperty(UserProperty.DEFAULT_SORT_FIELD_OF_CASE_LIST);
+    return EMPTY;
   }
 
   public String getDefaultSortDirectionOfCaseList() {
-    return getUserProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_CASE_LIST);
+    return EMPTY;
   }
 
   public String getDateFormat() {

@@ -26,6 +26,7 @@ import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.FilterType;
+import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
@@ -318,7 +319,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   private String getDefaultSortField() {
    String defaultSortField = UserSettingService.newInstance().getDefaultSortFieldOfTaskList();
    if (StringUtils.isBlank(defaultSortField) || UserSettingService.DEFAULT.equals(defaultSortField)) {
-     defaultSortField = "ID"; // set default value instead of variable
+     defaultSortField = TaskSortField.ID.name(); // set default value instead of variable
    }
    return defaultSortField;
   }
@@ -326,7 +327,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   private boolean isSortedDescendingByDefault() {
     String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfTaskList();
     if (StringUtils.isBlank(defaultSortDirection) || UserSettingService.DEFAULT.equals(defaultSortDirection)) {
-      defaultSortDirection = "DESC";
+      defaultSortDirection = SortDirection.DESC.name(); // set default value instead of variable
     }
 
     return !SortFieldUtil.isAscendingSort(defaultSortDirection);
