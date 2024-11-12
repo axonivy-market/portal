@@ -17,8 +17,8 @@
           </div>
 
           <div class="card">
-            <div class="flex">
-              <div class="ui-g-6 pr-5">
+            <div class="flex user-profile-card">
+              <div class="ui-g-6 ui-sm-12 pr-5 user-profile-card-left">
 
                 <!-- General Setting -->
                 <h:panelGroup layout="block" class="w-full my-profile-block">
@@ -98,9 +98,9 @@
                   </div>
                 </h:panelGroup>
               </div>
-              <p:divider layout="vertical" />
+              <p:divider layout="vertical" styleClass="responsive-divider"/>
 
-              <div class="ui-g-6 pl-5 relative">
+              <div class="ui-g-6 pl-5 ui-sm-12 relative user-profile-card-right">
                 <h:panelGroup id="language-setting-container" layout="block" styleClass="w-full my-profile-block">
                   <div class="setting-header">
                     <h5 id="language-setting-title" class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</h5>
@@ -166,18 +166,16 @@
                       </p:columns>
                     </p:dataTable>
                   </div>
-                  <div>
-                    <div class="u-text-align-right mt-3">
-                      <p:commandLink id="restore-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-undo')}" 
-                        global="false"
-                        actionListener="#{userProfileBean.resetAllChannel}"
-                        update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
-                        styleClass="ui-button-flat setting-tab-action-buttons font-medium" >
-                          <i class="si si-undo"/>
-                          <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}</span>
-                        </p:commandLink>
-                        
-                    </div>
+                  <div class="u-text-align-right mt-3 restore-to-default-button">
+                    <p:commandLink id="restore-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-undo')}" 
+                      global="false"
+                      actionListener="#{userProfileBean.resetAllChannel}"
+                      update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
+                      styleClass="ui-button-flat setting-tab-action-buttons font-medium" >
+                        <i class="si si-undo"/>
+                        <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}</span>
+                      </p:commandLink>
+                      
                   </div>
                 </h:panelGroup>
 

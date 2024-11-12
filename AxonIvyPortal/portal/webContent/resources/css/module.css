@@ -3191,6 +3191,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   background: var(--portal-accessibility-bg-color); 
   color: var(--portal-button-text-color);
   font-weight: 600;
+  height: 3.25rem;
 }
 
 .ui-button.primary-color-light-button:hover {
@@ -3220,6 +3221,29 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   .absences-management-form .portal-section-container.card {
     padding: 0;
   }
+  
+  .user-profile-card {
+    flex-direction: column;
+  }
+  
+  .responsive-divider {
+    display: none !important;
+  }
+  
+  .user-profile-card-left {
+    padding-right: .5rem !important;
+  }
+  
+  .user-profile-card-right {
+    padding-left: .5rem !important;
+    margin-top: 1.5rem;
+  }
+  
+  .user-profile-footer {
+    position: unset;
+    margin-top: 2rem;
+  }
+  
 }
 
 @media screen and (min-width: 90.063em) {
