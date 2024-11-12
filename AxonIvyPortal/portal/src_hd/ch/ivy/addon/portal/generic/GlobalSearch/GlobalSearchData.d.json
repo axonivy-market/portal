@@ -17,10 +17,12 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "caze",
-    "type" : "ch.ivyteam.ivy.workflow.ICase"
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "workingTask",
-    "type" : "ch.ivyteam.ivy.workflow.ITask"
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "taskId",
     "type" : "String",

@@ -9,7 +9,8 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "caze",
-    "type" : "ch.ivyteam.ivy.workflow.ICase"
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "isOpenInFrame",
     "type" : "Boolean",
