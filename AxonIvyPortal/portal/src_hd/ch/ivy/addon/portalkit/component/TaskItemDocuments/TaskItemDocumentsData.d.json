@@ -5,23 +5,28 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "document",
-    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument"
+    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "documentContent",
-    "type" : "javax.activation.DataHandler"
+    "type" : "javax.activation.DataHandler",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "streamedContent",
-    "type" : "org.primefaces.model.StreamedContent"
+    "type" : "org.primefaces.model.StreamedContent",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "documentId",
     "type" : "Long",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "documents",
-    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "documentUploadEvent",
-    "type" : "org.primefaces.event.FileUploadEvent"
+    "type" : "org.primefaces.event.FileUploadEvent",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "isHideUploadDocumentForDoneCase",
     "type" : "Boolean",
@@ -32,17 +37,20 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask"
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "uploadDocumentCheckMessage",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "uploadDocumentCheckStatus",
-    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus"
+    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "businessCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase"
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "deleteDocumentMessage",
     "type" : "String",

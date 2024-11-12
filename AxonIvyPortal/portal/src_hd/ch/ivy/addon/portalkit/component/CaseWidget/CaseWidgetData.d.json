@@ -9,14 +9,16 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "cases",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>"
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "filteringKeyword",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "dataModel",
-    "type" : "ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel"
+    "type" : "ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "totalCases",
     "type" : "Long",
@@ -31,14 +33,16 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "caseSearchCriteria",
-    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria"
+    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "filterSetName",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "filterType",
-    "type" : "ch.ivy.addon.portalkit.enums.FilterType"
+    "type" : "ch.ivy.addon.portalkit.enums.FilterType",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "isFilterExisted",
     "type" : "Boolean",
@@ -49,23 +53,28 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "publicFilters",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData>"
+    "type" : "java.util.List<ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "privateFilters",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData>"
+    "type" : "java.util.List<ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "filterDataToBeDeleted",
-    "type" : "ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData"
+    "type" : "ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "columnsVisibility",
     "type" : "java.util.List<String>",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "globalCaseId",
-    "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId"
+    "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "exportedFile",
-    "type" : "org.primefaces.model.StreamedContent"
+    "type" : "org.primefaces.model.StreamedContent",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "loopCounter",
     "type" : "Integer",
@@ -76,6 +85,7 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "collectedCasesForExporting",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>"
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

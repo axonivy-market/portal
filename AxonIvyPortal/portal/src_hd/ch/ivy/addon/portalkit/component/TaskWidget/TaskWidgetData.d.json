@@ -37,7 +37,8 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "latestTasks",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>"
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "selectedSort",
     "type" : "String",
@@ -76,13 +77,16 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "taskPrivateFilters",
-    "type" : "List<ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData>"
+    "type" : "List<ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "taskPublicFilters",
-    "type" : "List<ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData>"
+    "type" : "List<ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "tasks",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>"
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "taskSearchCriteria",
     "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria",
@@ -94,7 +98,8 @@
   }, {
     "name" : "selectedTask",
     "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "comment" : "Task is selected for reset or delegate"
+    "comment" : "Task is selected for reset or delegate",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "currentPortalPage",
     "type" : "String",
@@ -117,7 +122,8 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "collectedTasksForExporting",
-    "type" : "List<ch.ivyteam.ivy.workflow.ITask>"
+    "type" : "List<ch.ivyteam.ivy.workflow.ITask>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "columnsVisibility",
     "type" : "List<String>",

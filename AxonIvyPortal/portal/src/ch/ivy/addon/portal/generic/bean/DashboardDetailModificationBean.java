@@ -1044,7 +1044,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
    * Then, the result should be 1
    * 
    * @param columnKey
-   * @return column index
+   * @return
    */
   private Integer getColumnIndexFromColumnKey(String columnKey) {
     List<String> idParts = Arrays.asList(columnKey.split("\\:"));

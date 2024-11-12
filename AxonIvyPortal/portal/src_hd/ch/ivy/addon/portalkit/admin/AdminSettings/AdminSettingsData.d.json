@@ -5,10 +5,12 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "application",
-    "type" : "ch.ivy.addon.portalkit.configuration.Application"
+    "type" : "ch.ivy.addon.portalkit.configuration.Application",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "applicationList",
-    "type" : "List<ch.ivy.addon.portalkit.configuration.Application>"
+    "type" : "List<ch.ivy.addon.portalkit.configuration.Application>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "confirmMsg",
     "type" : "String",
@@ -34,13 +36,16 @@
     "type" : "List<String>"
   }, {
     "name" : "selectedApp",
-    "type" : "ch.ivy.addon.portalkit.configuration.Application"
+    "type" : "ch.ivy.addon.portalkit.configuration.Application",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "selectedSetting",
-    "type" : "ch.ivy.addon.portalkit.configuration.GlobalSetting"
+    "type" : "ch.ivy.addon.portalkit.configuration.GlobalSetting",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "settingList",
-    "type" : "List<ch.ivy.addon.portalkit.configuration.GlobalSetting>"
+    "type" : "List<ch.ivy.addon.portalkit.configuration.GlobalSetting>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "supportedLanguages",
     "type" : "List<ch.ivy.addon.portalkit.dto.DisplayName>"
@@ -50,7 +55,8 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "settingInputType",
-    "type" : "ch.ivy.addon.portalkit.enums.GlobalVariableType"
+    "type" : "ch.ivy.addon.portalkit.enums.GlobalVariableType",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "dropDownValues",
     "type" : "java.util.List<java.lang.Object>",
@@ -63,7 +69,8 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "filteredSettingList",
-    "type" : "List<ch.ivy.addon.portalkit.configuration.GlobalSetting>"
+    "type" : "List<ch.ivy.addon.portalkit.configuration.GlobalSetting>",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "isDefaultApplicationLanguage",
     "type" : "Boolean",
@@ -74,7 +81,8 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "announcement",
-    "type" : "ch.ivy.addon.portalkit.configuration.Announcement"
+    "type" : "ch.ivy.addon.portalkit.configuration.Announcement",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "selectedMultiSettings",
     "type" : "java.util.List<String>",

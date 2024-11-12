@@ -9,7 +9,8 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "selectedCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase"
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "processId",
     "type" : "String",
@@ -20,6 +21,7 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "selectedTask",
-    "type" : "ch.ivyteam.ivy.workflow.ITask"
+    "type" : "ch.ivyteam.ivy.workflow.ITask",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

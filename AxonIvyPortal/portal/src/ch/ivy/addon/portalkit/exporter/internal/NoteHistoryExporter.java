@@ -19,11 +19,11 @@ import ch.ivy.addon.portalkit.util.ExcelExport;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.note.Note;
+import ch.ivyteam.ivy.workflow.INote;
 
 public class NoteHistoryExporter {
 
-  public StreamedContent getStreamedContentOfTaskNoteHistory(List<Note> taskNoteHistory, String fileName) {
+  public StreamedContent getStreamedContentOfTaskNoteHistory(List<INote> taskNoteHistory, String fileName) {
     List<List<Object>> rows = generateDataForTaskNoteHistory(taskNoteHistory);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
@@ -88,13 +88,13 @@ public class NoteHistoryExporter {
     return headers;
   }
 
-  private List<List<Object>> generateDataForTaskNoteHistory(List<Note> taskNoteHistory) {
+  private List<List<Object>> generateDataForTaskNoteHistory(List<INote> taskNoteHistory) {
     List<List<Object>> rows = new ArrayList<>();
-    for (Note taskNote : taskNoteHistory) {
+    for (INote taskNote : taskNoteHistory) {
       List<Object> row = new ArrayList<>();
-      row.add(taskNote.content());
-      row.add(SecurityMemberDisplayNameUtils.generateBriefDisplayNameForUser(taskNote.author(), taskNote.authorName()));
-      row.add(formatDate(taskNote.createdAt()));
+      row.add(taskNote.getMessage());
+      row.add(SecurityMemberDisplayNameUtils.generateBriefDisplayNameForUser(taskNote.getWritter(), taskNote.getWritter().getName()));
+      row.add(formatDate(taskNote.getCreationTimestamp()));
       rows.add(row);
     }
     return rows;
