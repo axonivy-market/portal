@@ -75,4 +75,13 @@ public final class BusinessEntityConverter {
     }
     return objectMapper;
   }
+
+  public static String prettyPrintEntityToJsonValue(Object entity) {
+    try {
+      return getObjectMapper().writerWithDefaultPrettyPrinter()
+          .writeValueAsString(entity);
+    } catch (JsonProcessingException e) {
+      throw new PortalException(e);
+    }
+  }
 }
