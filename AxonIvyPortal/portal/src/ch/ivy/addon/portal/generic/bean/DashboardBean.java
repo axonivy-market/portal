@@ -495,7 +495,7 @@ public class DashboardBean implements Serializable {
   }
   
   public String getSelectedDashboardName() {
-    if (selectedDashboardName.isBlank()) {
+    if (StringUtils.isBlank(selectedDashboardName)) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard");
     }
     return selectedDashboardName;
@@ -506,7 +506,7 @@ public class DashboardBean implements Serializable {
   }
   
   public String getScreenReaderNotificationContent() {
-    if (ACCESSIBILITY_DASHBOARD_TEMPLATE_ID.equals(this.selectedDashboard.getTemplateId())) {
+    if (this.selectedDashboard != null && ACCESSIBILITY_DASHBOARD_TEMPLATE_ID.equals(this.selectedDashboard.getTemplateId())) {
       return Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/AccessibilityShortcuts/title");
     }
     return StringUtils.EMPTY;
