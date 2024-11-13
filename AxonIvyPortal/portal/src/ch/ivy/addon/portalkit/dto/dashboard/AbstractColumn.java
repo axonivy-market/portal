@@ -111,6 +111,8 @@ public abstract class AbstractColumn implements Serializable {
     if (isNull(this.style)) {
       this.style = getDefaultStyle();
     }
+
+    this.styleToDisplay = initDefaultStyle();
   }
 
   @JsonIgnore
