@@ -31,13 +31,13 @@
             <f:facet name="header">
               <h:outputText id="application-name" value="#{entry.key}" />
             </f:facet>
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/projectName')}" styleClass="pl-0">
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/projectName')}">
               <h:outputText id="project-name" value="#{library.getProcessModelVersion().getProcessModel().getName()}" />
             </p:column>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}" styleClass="project-version" >
               <h:outputText id="project-version" value="#{library.getQualifiedVersion().toString()}" />
             </p:column>
-            <p:column headerText="PMV" width="35" styleClass="u-text-align-center">
+            <p:column headerText="PMV" width="35" styleClass="project-pmv">
               <h:outputText id="pmv" value="#{library.getProcessModelVersion().getVersionNumber()}" />
             </p:column>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/state')}" styleClass="project-state" >

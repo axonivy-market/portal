@@ -2677,12 +2677,12 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: 150px;
 }
 
-.project-info-dialog .project-version-table .project-state {
-  width: 80px;
+.project-info-dialog .project-version-table .project-pmv {
+  text-align: center;
 }
 
-.project-info-dialog .project-version-table .ui-datatable-header {
-  padding-left: 0;
+.project-info-dialog .project-version-table .project-state {
+  width: 80px;
 }
 
 @media screen and (max-width: 64.062em) {
@@ -2691,6 +2691,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
   .project-info-dialog .project-version-table .project-state {
     width: 80px;
+  }
+  
+  .project-info-dialog .project-version-table .project-pmv {
+    text-align: inherit;
   }
 }
 /******************************** END PROJECT INFO DIALOG **************************/
