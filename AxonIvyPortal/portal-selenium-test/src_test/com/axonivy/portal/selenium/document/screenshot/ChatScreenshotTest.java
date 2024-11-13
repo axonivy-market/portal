@@ -20,7 +20,6 @@ import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 public class ChatScreenshotTest extends ScreenshotBaseTest {
 
-  private static final String YOUR_TASKS = "Your Tasks";
 
   
   @Override
@@ -39,17 +38,17 @@ public class ChatScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForCaseWidgetLoaded();
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 800));
-    // ScreenshotUtils.executeDecorateJs("highlightChatIcon()");
+    ScreenshotUtils.executeDecorateJs("highlightChatIcon()");
     ScreenshotUtils.captureHalfTopRightPageScreenShot(ScreenshotUtils.CHAT_FOLDER + "access-chat");
     MainMenuPage menu = new MainMenuPage();
-    NewDashboardPage taskWidgetPage = menu.openTaskList();
+    menu.openTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.setInputForQuickSearch("Maternity Leave Request");
     taskWidget.startTask(0);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
 
     taskTemplatePage.clickActionButton();
-    // ScreenshotUtils.executeDecorateJs("highlightJoinGroupChatOption()");
+    ScreenshotUtils.executeDecorateJs("highlightJoinGroupChatOption()");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CHAT_FOLDER + "create-new-group-chat");
 
     taskTemplatePage.clickChatGroup();
