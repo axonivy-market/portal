@@ -109,14 +109,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       TUESDAY: TUE
       WEDNESDAY: WED
   MyProfile:
-    CaseList: Case list
     DateFormat: Date Format
     General: General
     Homepage: Homepage
     ProcessList: Process list
-    SortFieldSelections:
-      defaultSortFieldLabel: Default sort field
-    TaskList: Task list
     defaultOption: Default ({0})
     defaultViewMode: Default view mode
   PortalManagement:

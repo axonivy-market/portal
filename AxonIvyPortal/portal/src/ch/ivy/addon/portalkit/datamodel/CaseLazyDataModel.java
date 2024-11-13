@@ -33,7 +33,6 @@ import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
-import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.CaseColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
@@ -449,20 +448,11 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   private String getDefaultSortField() {
-    String defaultSortField = UserSettingService.newInstance().getDefaultSortFieldOfCaseList();
-    if (StringUtils.isBlank(defaultSortField) || UserSettingService.DEFAULT.equals(defaultSortField)) {
-      defaultSortField = CaseSortField.ID.name(); // set default value instead of variable
-    }
-    return defaultSortField;
+    return CaseSortField.ID.name(); // set default value instead of variable
    }
 
   private boolean isSortedDescendingByDefault() {
-    String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfCaseList();
-    if (StringUtils.isBlank(defaultSortDirection) || UserSettingService.DEFAULT.equals(defaultSortDirection)) {
-      defaultSortDirection = SortDirection.DESC.name(); // set default value instead of variable
-    }
-
-    return !SortFieldUtil.isAscendingSort(defaultSortDirection);
+    return !SortFieldUtil.isAscendingSort(SortDirection.DESC.name());
   }
 
   private void applyCustomSettings(CaseFilterData caseFilterData) {

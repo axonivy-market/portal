@@ -1,11 +1,8 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
-import static org.apache.commons.lang3.StringUtils.EMPTY;
-
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
-import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -27,22 +24,6 @@ public class UserSettingService {
     return instance;
   }
 
-  public void saveDefaultSortFieldOfTaskList(String fieldName, String sortDirection) {
-    UserUtils.setSessionTaskSortAttribute(null);
-  }
-
-  public String getDefaultSortFieldOfTaskList() {
-    return EMPTY;
-  }
-
-  public String getDefaultSortDirectionOfTaskList() {
-    return EMPTY;
-  }
-
-  public void saveDefaultSortFieldOfCaseList(String fieldName, String sortDirection) {
-    UserUtils.setSessionCaseSortAttribute(null);
-  }
-
   public void saveDefaultTaskBehaviourWhenClickingOnLineInTaskList(String taskBehaviour) {
     IUser user = getSessionUser();
     user.setProperty(UserProperty.DEFAULT_TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST, taskBehaviour);
@@ -60,14 +41,6 @@ public class UserSettingService {
   public boolean isDefaultProcessModeOption(String processMode) {
     return StringUtils.startsWithIgnoreCase(processMode,
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption").replace("({0})", ""));
-  }
-
-  public String getDefaultSortFieldOfCaseList() {
-    return EMPTY;
-  }
-
-  public String getDefaultSortDirectionOfCaseList() {
-    return EMPTY;
   }
 
   public String getDateFormat() {

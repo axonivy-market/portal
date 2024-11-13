@@ -136,16 +136,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Heading 3
       NORMAL_TEXT: Normal Text
   MyProfile:
-    CaseList: Case list
     DateFormat: Date Format
     FormattingLanguage: Formatting language
     General: General
     Homepage: Homepage
     Language: Language
     ProcessList: Process list
-    SortFieldSelections:
-      defaultSortFieldLabel: Default sort field
-    TaskList: Task list
     byDefault: ' by default'
     defaultOption: Default ({0})
     defaultViewMode: Default view mode
