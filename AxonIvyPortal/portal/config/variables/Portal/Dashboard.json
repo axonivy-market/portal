@@ -363,16 +363,16 @@
             "value": "Your Tasks"
           },
           {
-            "locale": "fr",
-            "value": "Your Tasks"
+            "locale": "de",
+            "value": "Ihre Aufgaben"
           },
           {
-            "locale": "de",
-            "value": "Your Tasks"
+            "locale": "fr",
+            "value": "Vos tâches"
           },
           {
             "locale": "es",
-            "value": "Your Tasks"
+            "value": "Sus tareas"
           }
         ],
         "layout": {

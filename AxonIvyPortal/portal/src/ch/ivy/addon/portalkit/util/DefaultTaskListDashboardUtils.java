@@ -2,13 +2,13 @@ package ch.ivy.addon.portalkit.util;
 
 public class DefaultTaskListDashboardUtils {
 
-  public static final String DASHBOARD_TASK_LIST_DASHBOARD_JSON = """
+  public static final String DEFAULT_TASK_LIST_DASHBOARD_JSON = """
       {
         "id": "default-task-list-dashboard",
         "version": "11.4.0",
         "templateId": "create-from-scratch",
         "titles": [
-      {
+          {
             "locale": "en",
             "value": "Tasks"
           },
@@ -37,18 +37,18 @@ public class DefaultTaskListDashboardUtils {
                 "value": "Your Tasks"
               },
               {
-                "locale": "fr",
-                "value": "Your Tasks"
+                "locale": "de",
+                "value": "Ihre Aufgaben"
               },
               {
-                "locale": "de",
-                "value": "Your Tasks"
+                "locale": "fr",
+                "value": "Vos tâches"
               },
               {
                 "locale": "es",
-                "value": "Your Tasks"
+                "value": "Sus tareas"
               }
-        ],
+            ],
             "layout": {
               "w": 12,
               "h": 8,
@@ -100,15 +100,15 @@ public class DefaultTaskListDashboardUtils {
                 "field": "category",
                 "width": "101"
               },
-          {
+              {
                 "field": "actions",
                 "width": "85"
-          }
-        ],
+              }
+            ],
             "canWorkOn": false,
             "sortField": "id",
             "sortDescending": true
-      }
+          }
         ],
         "permissions": [
           "Everybody"

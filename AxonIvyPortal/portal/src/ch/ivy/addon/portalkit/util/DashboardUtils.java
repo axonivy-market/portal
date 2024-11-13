@@ -286,11 +286,11 @@ public class DashboardUtils {
   }
 
   public static Dashboard getDefaultTaskListDashboard() {
-    return jsonToDashboard(DefaultTaskListDashboardUtils.DASHBOARD_TASK_LIST_DASHBOARD_JSON);
+    return jsonToDashboard(DefaultTaskListDashboardUtils.DEFAULT_TASK_LIST_DASHBOARD_JSON);
   }
 
   public static Dashboard getDefaultCaseListDashboard() {
-    return jsonToDashboard(DefaultCaseListDashboardUtils.DASHBOARD_CASE_LIST_DASHBOARD_JSON);
+    return jsonToDashboard(DefaultCaseListDashboardUtils.DEFAULT_CASE_LIST_DASHBOARD_JSON);
   }
 
   public static List<Dashboard> getDashboardsWithoutMenuItem() {

@@ -2,7 +2,7 @@ package ch.ivy.addon.portalkit.util;
 
 public class DefaultCaseListDashboardUtils {
 
-  public static final String DASHBOARD_CASE_LIST_DASHBOARD_JSON = """
+  public static final String DEFAULT_CASE_LIST_DASHBOARD_JSON = """
       {
         "id": "default-case-list-dashboard",
         "version": "11.4.0",
