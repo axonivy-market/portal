@@ -76,7 +76,7 @@
                       currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
                       lazy="false">
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/period')}"
-                        sortBy="#{absence.period}" styleClass="absence-period pl-0">
+                        sortBy="#{absence.period}" styleClass="absence-period">
                         <h:outputText value="#{absence.period}" styleClass="absence-column-value" />
                       </p:column>
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}"
@@ -152,7 +152,7 @@
                       currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
                       lazy="false">
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}"
-                        styleClass="pl-0" sortBy="#{deputyRole.deputyRoleDisplayName}" sortOrder="ASC">
+                        sortBy="#{deputyRole.deputyRoleDisplayName}" sortOrder="ASC">
                         <h:outputText value="#{deputyRole.deputyRoleDisplayName}"
                           styleClass="substition-role-display-name absence-column-value" />
                         <span class="substition-role-type" deputy-role-type="#{deputyRole.deputyRoleType.toString()}" />
@@ -197,7 +197,6 @@
                     lazy="false">
                     <p:column
                       headerText="#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedDeputyFor' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}"
-                      styleClass="pl-0"
                       sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(substitution.ownerUser, substitution.ownerUser.name)}">
                       <pc:securityMemberNameAndAvatar
                         displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(substitution.ownerUser, substitution.ownerUser.name)}"
