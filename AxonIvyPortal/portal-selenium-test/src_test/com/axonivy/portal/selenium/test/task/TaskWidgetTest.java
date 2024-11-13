@@ -70,7 +70,7 @@ public class TaskWidgetTest extends BaseTest {
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.waitUntilTaskCountDifferentThanZero();
-    assertEquals(3, taskWidget.countAllTasks().size(), "In Task list, Task Count != 3");
+    assertEquals(4, taskWidget.countAllTasks().size(), "In Task list, Task Count != 4");
   }
 
   @Test

@@ -67,6 +67,10 @@ public class CaseMapTest extends BaseTest {
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
 
     taskWidget.waitForPageLoad();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("state", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
+    taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(0));
   }
 
@@ -103,9 +107,8 @@ public class CaseMapTest extends BaseTest {
   }
 
   private void startTaskByTaskName(String taskname) {
-    NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    taskWidget.startTaskByName(taskname);
+    taskWidget.startTaskByNameInIFrame(taskname);
   }
 
   private void assertInputData() {

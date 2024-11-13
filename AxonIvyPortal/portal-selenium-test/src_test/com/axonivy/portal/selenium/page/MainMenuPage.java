@@ -106,8 +106,14 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public void clickThirdPartyApp() {
-    waitForElementDisplayed(By.cssSelector("li[class*='thirdparty-menu-item'] > a"), true);
+    waitForElementDisplayed(By.cssSelector("li[class*='thirdparty-menu-item'] > a > span"), true);
     waitForElementClickableThenClick("li[class*='thirdparty-menu-item'] > a");
+  }
+
+  public void clickMainMenuItem(String name) {
+    WebElement element = driver.findElement(By.xpath(
+        String.format("//li[contains(@class, 'external-menu-item-main_dashboard') and .//span[text()='%s']]", name)));
+    element.click();
   }
 
   public void assertThirdPartyApp(String url) {
@@ -119,6 +125,11 @@ public class MainMenuPage extends TemplatePage {
     assertEquals(url, driver.getCurrentUrl());
   }
 
+  public void assertMainMenuItem(String name) {
+    WebDriver driver = getDriver();
+    String tilte = String.format("%s - Portal - Axon Ivy", name);
+    WaitHelper.assertTrueWithWait(() -> tilte.equals(driver.getTitle()));
+  }
 
   public boolean isProcessesDisplayed() {
     return isMenuItemDisplayed("Processes");

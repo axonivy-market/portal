@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -23,7 +24,6 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
 
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
   private String taskWidgetId;
-  private String taskWidgetName;
 
   public TopMenuTaskWidgetPage() {
     this("div[id$='dashboard-tasks']", YOUR_TASKS_WIDGET);
@@ -35,7 +35,6 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
 
   public TopMenuTaskWidgetPage(String taskWidgetId, String taskWidgetName) {
     this.taskWidgetId = taskWidgetId;
-    this.taskWidgetName = taskWidgetName;
   }
 
   @Override
@@ -48,11 +47,12 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     return new TaskTemplatePage();
   }
 
-  public void startTaskByName(String taskName) {
+  public void startTaskByNameInIFrame(String taskName) {
     int taskIndex =
         getAllTasksOfTaskWidget().asFixedIterable().stream().map(WebElement::getText).collect(Collectors.toList())
         .indexOf(taskName);
     startTaskByIndex(taskIndex);
+    switchToIFrameOfTask();
   }
 
   public boolean checkNameOfTaskAt(int taskIndex, String taskName) {
@@ -115,28 +115,38 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
 
   public TaskDetailsPage openTaskDetailsPageByAction(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
-    $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex)).filter(appear)
-        .first().shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']")
-        .filter(Condition.not(Condition.cssClass("ui-state-disabled"))).filter(text("Details")).first()
-        .shouldBe(getClickableCondition()).click();
+    clickTaskAction(taskIndex, "Details");
     return new TaskDetailsPage();
   }
 
   @Override
   public void reserveTask(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
+    clickTaskAction(taskIndex, "Reserve");
+  }
+
+  private void clickTaskAction(int taskIndex, String actionName) {
     $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex)).filter(appear)
         .first().shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']")
-        .filter(Condition.not(Condition.cssClass("ui-state-disabled"))).filter(text("Reserve")).first()
+        .filter(Condition.not(Condition.cssClass("ui-state-disabled"))).filter(text(actionName)).first()
         .shouldBe(getClickableCondition()).click();
+  }
+
+  public void destroyTask(int taskIndex) {
+    clickOnTaskActionLink(taskIndex);
+    clickTaskAction(taskIndex, "Destroy");
+    confirmDestroy();
+  }
+
+  private void confirmDestroy() {
+    $("div[id$='destroy-task-confirmation-dialog']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("button[id$='confirm-destruction-dashboard-tasks']").shouldBe(getClickableCondition()).click();
+    $("button[id$='confirm-destruction-dashboard-tasks']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
   public void openTaskDelegateDialog(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
-    $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex)).filter(appear)
-        .first().shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']")
-        .filter(Condition.not(Condition.cssClass("ui-state-disabled"))).filter(text("Delegate")).first()
-        .shouldBe(getClickableCondition()).click();;
+    clickTaskAction(taskIndex, "Delegate");
   }
 
   @Override
@@ -285,5 +295,14 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
 
   public boolean isDelegateListSelectionAvailable() {
     return $("div[id$='select-delegate-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).exists();
+  }
+
+  @Override
+  public void triggerEscalationTask(int taskIndex) {
+    getActiveTaskActions(taskIndex).filter(text("Trigger Escalation")).first().shouldBe(getClickableCondition())
+        .click();
+    $("div[id='escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("button[id='confirm-escalation-dashboard-tasks']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition()).click();
   }
 }

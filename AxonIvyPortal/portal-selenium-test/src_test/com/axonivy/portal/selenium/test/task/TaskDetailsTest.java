@@ -10,6 +10,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -109,44 +110,44 @@ public class TaskDetailsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     redirectToNewDashBoard();
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openTaskList();
+    NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
 
     taskWidget.openDashboardTaskDetails("Maternity Leave Request");
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.clickStartTask();
     redirectToNewDashBoard();
-    mainMenuPage.openTaskList();
+
+    NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails("Maternity Leave Request");
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
-    mainMenuPage.openTaskList();
+    NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Sick Leave Request");
-    taskWidget.addFilter("state", null);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
-    taskWidget.destroy();
+    taskWidget.destroyTask(0);
     taskWidget.openDashboardTaskDetails("Sick Leave Request");
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    mainMenuPage.openTaskList();
+    NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openFilterWidget();
+    taskWidget.removeFilter(0);
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, TAKE_ORDER);
-    taskWidget.addFilter("state", null);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
 
     taskWidget.startTask(0);
     redirectToNewDashBoard();
-    mainMenuPage.openTaskList();
+    NavigationHelper.navigateToTaskList();
+    taskWidget.openFilterWidget();
+    taskWidget.removeFilter(0);
+    taskWidget.applyFilter();
     taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
