@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>portalTest</artifactId>
-  <version>10.0.24</version>
+  <version>10.0.24.1</version>
   <packaging>iar</packaging>
   <properties>
     <ivy.engine.version>10.0.24</ivy.engine.version>
@@ -37,7 +37,7 @@
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
-      <version>10.0.24</version>
+      <version>10.0.24.1</version>
       <type>iar</type>
     </dependency>
   </dependencies>
