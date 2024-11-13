@@ -498,6 +498,11 @@
         "enableQuickSearch": true,
         "columns": [
           {
+            "field": "id",
+            "quickSearch": true,
+            "width": "115"
+          },
+          {
             "field": "name",
             "quickSearch": true,
             "width": "325"
@@ -506,11 +511,6 @@
             "field": "description",
             "quickSearch": true,
             "width": "200"
-          },
-          {
-            "field": "id",
-            "quickSearch": true,
-            "width": "115"
           },
           {
             "field": "creator",

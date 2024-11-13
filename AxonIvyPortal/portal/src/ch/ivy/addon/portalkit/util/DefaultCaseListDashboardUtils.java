@@ -28,27 +28,27 @@ public class DefaultCaseListDashboardUtils {
         "icon": "si-layout-bullets",
         "description": "Default Case List Dashboard",
         "widgets": [
-      {
+          {
             "type": "case",
             "id": "default_case_list_dashboard_case_1",
             "names": [
-          {
-            "locale": "en",
+              {
+                "locale": "en",
                 "value": "Your Cases"
-          },
-          {
+              },
+              {
                 "locale": "de",
                 "value": "Ihre Vorgänge"
-          },
-          {
+              },
+              {
                 "locale": "fr",
                 "value": "Vos affaires"
-          },
-          {
-            "locale": "es",
+              },
+              {
+                "locale": "es",
                 "value": "Sus casos"
-          }
-        ],
+              }
+            ],
             "layout": {
               "w": 12,
               "h": 8,
@@ -60,6 +60,11 @@ public class DefaultCaseListDashboardUtils {
             "enableQuickSearch": true,
             "columns": [
               {
+                "field": "id",
+                "quickSearch": true,
+                "width": "115"
+              },
+              {
                 "field": "name",
                 "quickSearch": true,
                 "width": "325"
@@ -70,36 +75,31 @@ public class DefaultCaseListDashboardUtils {
                 "width": "200"
               },
               {
-                "field": "id",
-                "quickSearch": true,
-                "width": "115"
-              },
-          {
                 "field": "creator",
                 "width": "139"
               },
-          {
+              {
                 "field": "startTimestamp",
                 "width": "90"
-          },
-          {
+              },
+              {
                 "field": "endTimestamp",
                 "width": "90"
-          },
-          {
+              },
+              {
                 "field": "state",
                 "width": "85"
-          },
-          {
+              },
+              {
                 "field": "category",
                 "width": "101"
               },
-          {
+              {
                 "field": "actions",
                 "width": "85"
-          }
+              }
             ]
-      }
+          }
         ],
         "permissions": [
           "Everybody"
