@@ -2082,3 +2082,12 @@ body .ui-button.ui-widget.ui-widget-filter-btn {
   color: var(--text-color);
   border: none;
 }
+
+body .widget__content .ui-datatable.dashboard-cases--table .ui-widget-header thead th.widget-column-header .ui-column-title,
+body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header thead th.widget-column-header .ui-column-title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 30px);
+  display: inline-block;
+  overflow: hidden;
+}
