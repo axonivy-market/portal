@@ -159,7 +159,7 @@ public class AbsencePage extends TemplatePage {
   }
 
   public WebElement getAbsenceForm() {
-    return $("[id$='absences-management-form']");
+    return $("[id$='absences-management-container']");
   }
 
   public SelenideElement getAddAbsenceDialog() {
