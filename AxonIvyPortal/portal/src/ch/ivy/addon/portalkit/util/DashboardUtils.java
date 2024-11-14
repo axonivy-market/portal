@@ -140,10 +140,10 @@ public class DashboardUtils {
 
   public static void addDefaultTaskCaseListDashboardsIfMissing(List<Dashboard> dashboards) {
     if (!hasDashboardWithId(dashboards, DEFAULT_CASE_LIST_DASHBOARD)) {
-      dashboards.add(0, DashboardUtils.getDefaultCaseListDashboard());
+      dashboards.add(0, DefaultDashboardUtils.getDefaultCaseListDashboard());
     }
     if (!hasDashboardWithId(dashboards, DEFAULT_TASK_LIST_DASHBOARD)) {
-      dashboards.add(0, DashboardUtils.getDefaultTaskListDashboard());
+      dashboards.add(0, DefaultDashboardUtils.getDefaultTaskListDashboard());
     }
   }
 
@@ -283,14 +283,6 @@ public class DashboardUtils {
     if (!isMainDashboard) {
       Ivy.session().setAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.toString(), id);
     }
-  }
-
-  public static Dashboard getDefaultTaskListDashboard() {
-    return jsonToDashboard(DefaultTaskListDashboardUtils.DEFAULT_TASK_LIST_DASHBOARD_JSON);
-  }
-
-  public static Dashboard getDefaultCaseListDashboard() {
-    return jsonToDashboard(DefaultCaseListDashboardUtils.DEFAULT_CASE_LIST_DASHBOARD_JSON);
   }
 
   public static List<Dashboard> getDashboardsWithoutMenuItem() {
