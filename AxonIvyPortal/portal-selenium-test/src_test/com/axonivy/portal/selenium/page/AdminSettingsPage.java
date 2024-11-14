@@ -75,12 +75,12 @@ public class AdminSettingsPage extends TemplatePage {
     waitForElementClickableThenClick("[id='admin-setting-component:save-setting']");
   }
 
-  public void clickOnbackToNewDashboardPageOnAdminSetting() {
-    WaitHelper.waitForNavigation(() -> waitForElementClickableThenClick(findElementById("back-to-home-button")));
+  public void closeConfirmationDialog() {
+    clickOnHomeLogo();
   }
 
-  public void closeConfirmationDialog() {
-    clickOnbackToNewDashboardPageOnAdminSetting();
+  public void clickOnHomeLogo() {
+    $("span[class*='si si-house-chimney-2']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
   public void setGlobalFooterInfo() {

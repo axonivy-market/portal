@@ -30,7 +30,7 @@ public class AnnouncementTest extends BaseTest {
     announcementPage.setAnnoucement(1, "Readme1");
     announcementPage.clickOnSwitchButton();
     announcementPage.clickOnSaveButton();
-    adminSettingsPage.clickOnbackToNewDashboardPageOnAdminSetting();
+    adminSettingsPage.clickOnHomeLogo();
     newDashboardPage = new NewDashboardPage();
     UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
     userProfilePage.selectLanguage(3);
@@ -64,7 +64,7 @@ public class AnnouncementTest extends BaseTest {
     announcementPage.setAnnoucement(1, "Readme1");
     announcementPage.clickOnSwitchButton();
     announcementPage.clickOnSaveButton();
-    adminSettingsPage.clickOnbackToNewDashboardPageOnAdminSetting();
+    adminSettingsPage.clickOnHomeLogo();
     newDashboardPage = new NewDashboardPage();
     assertEquals("Readme1", newDashboardPage.getAnnouncementMessage());
   }
