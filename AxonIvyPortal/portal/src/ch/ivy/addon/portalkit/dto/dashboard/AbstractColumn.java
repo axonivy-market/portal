@@ -464,7 +464,16 @@ public abstract class AbstractColumn implements Serializable {
 
   @JsonIgnore
   protected int resolveColumnWidth() {
-    return NumberUtils.toInt(this.width, getDefaultColumnWidth());
+    // Parse input width
+    int widthInt = NumberUtils.toInt(width, getDefaultColumnWidth());
+
+    // If the input width too small (less than 100px), set 100px as the default
+    // width
+    if (widthInt < SMALL_WIDTH) {
+      return SMALL_WIDTH;
+    }
+
+    return widthInt;
   }
 
   @JsonIgnore

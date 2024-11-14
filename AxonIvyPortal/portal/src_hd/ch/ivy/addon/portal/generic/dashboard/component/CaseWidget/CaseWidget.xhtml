@@ -53,7 +53,7 @@
           listener="#{dashboardDetailModificationBean.onResizeColumn}" />
         <f:attribute name="widgetId" value="#{caseWidget.id}" />
 
-        <p:columns var="column" value="#{caseWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'name' or column.field eq 'actions' ) ? 'dashboard-cases__column-small-screen' : 'u-hidden-sm-down'}"
+        <p:columns var="column" value="#{caseWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'name' or column.field eq 'actions' ) ? 'dashboard-cases__column-small-screen' : 'u-hidden-sm-down'} widget-column-header"
           visible="#{column.visible}" field="#{column.field}" filterable="false" sortBy="#{column.field}" sortable="#{!isResizing and !isPreviewMode and column.sortable}"
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay}">
 
