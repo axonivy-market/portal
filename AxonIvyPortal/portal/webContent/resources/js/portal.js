@@ -471,11 +471,11 @@ function showQuickSearchInput(index) {
  * User can press Alt + number to focus on left side menu item or search button, user setting
  *
  */
-const singleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__1-parent-dashboard"]';
+const singleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__dashboard_0-parent-dashboard"]';
 const multipleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__DASHBOARD-parent-dashboard"]';
 const processItemId = '[id^="user-menu-required-login:main-navigator:main-menu_process"]';
-const taskItemId = '[id^="user-menu-required-login:main-navigator:main-menu__js__default-task-list-dashboard-main-dashboard"]';
-const caseItemId = '[id^="user-menu-required-login:main-navigator:main-menu_case"]';
+const taskItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__default-task-list-dashboard-main-dashboard"]';
+const caseItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__default-case-list-dashboard-main-dashboard"]';
 const searchIconId = 'a#global-search-item';
 const quickSearchInputId = '[id="quick-global-search-component:global-search-data"]'
 const useSettingMenuId = 'a#user-settings-menu';
