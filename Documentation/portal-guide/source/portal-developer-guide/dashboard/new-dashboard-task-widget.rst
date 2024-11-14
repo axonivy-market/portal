@@ -429,8 +429,8 @@ Standard Column:
 
       These columns accept all operators available for Date column. Fields may
       vary depending on the operator. The JSON example above covers most use
-      cases for the Date field. Acceptable date formats: ``dd.MM.yyyy`` and
-      ``MM/dd/yyyy``.
+      cases for the Date field. Acceptable date formats: ``dd.MM.yyyy``, ``dd.MM.yyyy HH:mm``, ``MM/dd/yyyy`` and
+      ``MM/dd/yyyy HH:mm``.
 
    - ``application``
 
