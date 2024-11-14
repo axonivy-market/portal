@@ -51,7 +51,7 @@
         <f:attribute name="widgetId" value="#{taskWidget.id}" />
 
         <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}"
-          styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'}"
+          styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'} widget-column-header"
           visible="#{column.visible}" field="#{column.field}" filterable="false"
           sortBy="#{column.field}" sortable="#{!isResizing and !isPreviewMode and column.sortable}"
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay}">

@@ -1651,3 +1651,12 @@ span.new-widget-dialog__icon.si {
 .dashboard-tasks--table .widget-column {
   box-sizing: border-box;
 }
+
+body .widget__content .ui-datatable.dashboard-cases--table .ui-widget-header thead th.widget-column-header .ui-column-title,
+body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header thead th.widget-column-header .ui-column-title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: calc(100% - 30px);
+  display: inline-block;
+  overflow: hidden;
+}
