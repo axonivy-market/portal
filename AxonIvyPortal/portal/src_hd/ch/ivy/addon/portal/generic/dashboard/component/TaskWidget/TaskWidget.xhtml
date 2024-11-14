@@ -50,12 +50,16 @@
           listener="#{dashboardDetailModificationBean.onResizeColumn}" disabled="#{!isResizing}" />
         <f:attribute name="widgetId" value="#{taskWidget.id}" />
 
-        <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}"
+        <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}"
           styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'} widget-column-header"
           visible="#{column.visible}" field="#{column.field}" filterable="false"
           sortBy="#{column.field}" sortable="#{!isResizing and !isPreviewMode and column.sortable}"
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay}">
 
+          <f:facet name="header">
+           <h:outputText id="header" value="#{column.headerText}" />
+           <p:tooltip value="#{column.headerText}" for="header" />
+          </f:facet>
           <h:panelGroup rendered="#{column.field eq 'start'}" styleClass="dashboard-tasks__start-container">
             <ui:include src="StartCell.xhtml">
               <ui:param name="ariaLabel" value="#{taskBean.getAriaLabel(task, taskWidget.columns)}" />
