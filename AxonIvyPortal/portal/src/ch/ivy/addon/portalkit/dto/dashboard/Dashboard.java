@@ -33,8 +33,6 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   private List<SecurityMemberDTO> permissionDTOs;
   @JsonIgnore
   private String displayedPermission;
-  @JsonIgnore
-  private boolean isAccessibility;
   private boolean isTopMenu;
 
   public Dashboard() {}
@@ -55,14 +53,6 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     isTopMenu = dashboard.isTopMenu;
   }
   
-  public boolean isAccessibility() {
-    return isAccessibility;
-  }
-
-  public void setAccessibility(boolean isAccessibility) {
-    this.isAccessibility = isAccessibility;
-  }
-
   public String getTitle() {
     return LanguageUtils.getLocalizedName(titles, title);
   }

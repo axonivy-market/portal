@@ -1,5 +1,8 @@
 package com.axonivy.portal.selenium.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +13,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
+import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 
@@ -45,8 +49,40 @@ public class MenuTest extends BaseTest {
 
     MainMenuPage mainMenuPage = new MainMenuPage();
     String expected =
-        "Dashboard,Processes,Tasks,Cases,User Example Guide,Google,Testing link google,Testing example,A link,B link";
+        "Dashboard,Processes,Cases,Tasks,User Example Guide,Google,Testing link google,Testing example,A link,B link";
     assertEquals(expected, mainMenuPage.getMenuItemsAsString());
+  }
+
+  @Test
+  public void testAddingDashboardAsTopMenuItem() {
+    redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
+    login(TestAccount.ADMIN_USER);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitPageLoaded();
+    createJSonFile("default-dashboard.json", PortalVariable.DASHBOARD.key);
+    newDashboardPage.waitForAbsencesGrowlMessageDisplay();
+    String name = "Dashboard Menu Item";
+    String icon = "fa-coffee";
+    String description = "Dashboard Menu Item";
+    List<String> permissions = new ArrayList<>();
+    permissions.add("Everybody");
+    boolean isTopMenu = true;
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    configurationPage.openCreatePublicDashboardMenu();
+    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions, isTopMenu);
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    configurationPage = newDashboardDetailsEditPage.backToConfigurationPage();
+    newDashboardPage = configurationPage.backToHomePage();
+    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
+    mainMenuPage.clickMainMenuItem(name);
+    mainMenuPage.assertMainMenuItem(name);
+    redirectToNewDashBoard();
+    mainMenuPage = new MainMenuPage();
+    String expected =
+        "Dashboard,Processes,Cases,Tasks," + name
+            + ",User Example Guide,Google";
+    String menuItemAsString = mainMenuPage.getMenuItemsAsString();
+    assertEquals(expected, menuItemAsString);
   }
 
   @Test

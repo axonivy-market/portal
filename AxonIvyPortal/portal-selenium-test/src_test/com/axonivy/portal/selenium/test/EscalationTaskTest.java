@@ -14,11 +14,9 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
-import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.Condition;
 
@@ -69,21 +67,23 @@ public class EscalationTaskTest extends BaseTest {
   public void testTriggerEscalationTaskOnTaskList() {
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openTaskList();
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy(SICK_LEAVE_REQUEST);
-    assertTrue(SICK_LEAVE_REQUEST.equals(taskWidgetPage.getFilterTasksByKeyword().attr("value")));
-    taskWidgetPage.countTasks().shouldHave(size(1));
-    taskWidgetPage.clickOnTaskActionLink(0);
-    taskWidgetPage.triggerEscalation();
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, SICK_LEAVE_REQUEST);
+    taskWidget.applyFilter();
+    taskWidget.countAllTasks().shouldHave(size(1));
+    taskWidget.triggerEscalationTask(0);
     // Try to refresh data
     refreshPage();
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy(SICK_LEAVE_REQUEST_ESCALATED);
-    assertTrue(SICK_LEAVE_REQUEST_ESCALATED.equalsIgnoreCase(taskWidgetPage.getFilterTasksByKeyword().attr("value")));
-    taskWidgetPage.countTasks().shouldHave(size(1));
-    assertTrue("high".equalsIgnoreCase(taskWidgetPage.getPriorityOfTask(0)));
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("State", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Destroyed");
+    taskWidget.applyFilter();
+    taskWidget.countAllTasks().shouldHave(size(1));
+    assertTrue("Destroyed".equalsIgnoreCase(taskWidget.stateOfFirstTask().text()));
   }
 
   @Test

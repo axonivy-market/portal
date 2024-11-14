@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
@@ -98,8 +100,11 @@ public class TaskTemplateTest extends BaseTest {
     redirectToRelativeLink(createTestingCaseMapUrl);
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    int latestTask = taskWidget.countAllTasks().size() - 1;
-    TaskTemplatePage taskTemplatePage = taskWidget.startTaskByIndex(latestTask);
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Case Map Leave Request");
+    taskWidget.applyFilter();
+    TaskTemplatePage taskTemplatePage = taskWidget.startTaskByIndex(0);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.startSideStep();
     NavigationHelper.navigateToTaskList();

@@ -21,7 +21,7 @@ import com.axonivy.portal.selenium.page.UserProfilePage;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class PortalPermissionTest extends BaseTest {
 
   protected NewDashboardPage newDashboardPage;
@@ -145,7 +145,7 @@ public class PortalPermissionTest extends BaseTest {
     assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed(false));
     mainMenuPage.openTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    TaskDetailsPage taskDetailsPage = taskWidget.openTaskDetails(0);
+    TaskDetailsPage taskDetailsPage = taskWidget.openTaskDetailsPageByAction(0);
     assertTrue(taskDetailsPage.isAddNoteButtonDisplayed(false));
     assertTrue(taskDetailsPage.isShowMoreNoteButtonDisplayed(false));
     assertTrue(taskDetailsPage.isAddDocumentLinkDisplayed(false));
@@ -159,7 +159,7 @@ public class PortalPermissionTest extends BaseTest {
     assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed(true));
     mainMenuPage.openTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
-    taskDetailsPage = taskWidget.openTaskDetails(0);
+    taskDetailsPage = taskWidget.openTaskDetailsPageByAction(0);
     assertTrue(taskDetailsPage.isAddNoteButtonDisplayed(true));
     assertTrue(taskDetailsPage.isShowMoreNoteButtonDisplayed(true));
     assertTrue(taskDetailsPage.isAddDocumentLinkDisplayed(true));
@@ -192,8 +192,6 @@ public class PortalPermissionTest extends BaseTest {
 
     UserProfilePage userProfilePage = homePage.openMyProfilePage();
     assertFalse(userProfilePage.isProcessSettingDisplayed());
-    assertFalse(userProfilePage.isTaskListSettingDisplayed());
-    assertFalse(userProfilePage.isCaseListSettingDisplayed());
 
     grantAccessFullListPermissions();
     homePage = new NewDashboardPage();
@@ -201,8 +199,6 @@ public class PortalPermissionTest extends BaseTest {
 
     userProfilePage = homePage.openMyProfilePage();
     assertTrue(userProfilePage.isProcessSettingDisplayed());
-    assertTrue(userProfilePage.isTaskListSettingDisplayed());
-    assertTrue(userProfilePage.isCaseListSettingDisplayed());
   }
 
   private void grantAccessFullListPermissions() {
