@@ -48,7 +48,7 @@ public class AvatarTest extends BaseTest {
 
 
     // Check task details
-    NewDashboardPage taskWidgetPage = mainMenuPage.openTaskList();
+    mainMenuPage.openTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails(SICK_LEAVE_REQUEST);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
