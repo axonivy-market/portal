@@ -8,7 +8,7 @@ JSON Definition
 
 Below is a sample JSON definition of a Portal dashboard template.
 
-.. code-block:: json
+.. code-block:: javascript
 
    [
       {
