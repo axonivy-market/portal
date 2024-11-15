@@ -67,5 +67,9 @@
     "name" : "uploadedFile",
     "type" : "org.primefaces.model.file.UploadedFile",
     "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "sizeLimit",
+    "type" : "Long",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

@@ -23,6 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     editAbsence: Abwesenheiten bearbeiten
     from: Von
     noDeputy: Kein Stellvertreter
+    noPermissionToSeeThisArea: Sie haben nicht die erforderliche Erlaubnis, dieses Gebiet zu sehen.
     period: Zeitraum
     personalTaskDuringAbsenceDeputies: Vertretungen für persönlich zugewiesene Aufgaben während der Abwesenheit
     personalTaskPermanentDeputies: Ständige Stellvertreter für persönlich zugewiesene Aufgaben
@@ -170,8 +171,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       announcementsDisabled: Ankündigungen sind deaktiviert
       announcementsEnabled: Ankündigungen sind aktiviert
       defaultLanguageRequiredMessage: Ein Ankündigungstext in der standard Applikationssprache ist notwendig
-      disable: Deaktivieren
-      enable: Aktivieren
+      disabled: Deaktiviert
+      enable: Ansage einschalten
       information: Sie können eine allgemeine Ankündigung in diesem Bereich machen (z.B. Wartungsankündigung). Diese Nachricht kann von allen Benutzern gesehen werden.
       saveChanges: Änderungen speichern
       tabTitle: Ankündigungen
@@ -182,6 +183,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationHint: Die Reihenfolge kann mit Drag & Drop geändert werden.
     applicationLinkRequiredMsg: Geben Sie den Portal Link an.
     applicationList:
+      addNewApplication: Neue Anwendung hinzufügen
       applicationSelectionHeader: Anwendung auswählen
       menuIcon: Menü Symbol
     applications: Anwendungen
@@ -521,7 +523,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     note: NOTIZ
     numberFromBiggerThanTo: Nach" muss größer sein als "Von".
     numberOfSelectedFilter: Ausgewählte Filter
-    ok: Ok
+    ok: OK
     'on': am
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
     pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
@@ -545,6 +547,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Auf Standarddiagramme zurücksetzen?
     role: Rolle
     save: Speichern
+    saveAll: Speichern Sie alle
     saveSuccessfully: Daten erfolgreich gespeichert.
     search: Suche
     second: Sekunde
@@ -588,7 +591,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewExpired: Ihre aktuelle Bearbeitungsmaske ist abgelaufen und kann nicht weiter bearbeitet werden. Sie werden auf die Startseite umgeleitet.
     viewMode: Ansichtsmodus
     visible: Sichtbar
-    warning: Warnung
+    warning: Warnung!
     welcomeToPortal: Willkommen, bitte melden Sie sich an
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
     year: Jahr
@@ -1248,8 +1251,8 @@ ch.ivy.addon.portalkit.ui.jsf:
   taskWarning:
     createdTaskLeave: 'Sie verlassen die aktuelle Seite. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>&nbsp; &nbsp; Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>&nbsp; &nbsp; Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     createdTaskLogout: 'Sie verlassen die aktuelle Seite. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLeave: 'Sie verlassen die aktuelle Aufgabe. Bitte wählen Sie eine der folgenden Optionen:<UL><LI> Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI> Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI> Abbrechen: Die
-      Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLeave: '<h4>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</h4><UL><LI> Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI> Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>
+      Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     resetParkTaskBeforeLogout: 'Sie verlassen die aktuelle Aufgabe. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>&nbsp; &nbsp; Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>&nbsp; &nbsp; Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben.
       Dann abmelden.<LI>&nbsp; &nbsp; Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     taskNotFound: Die Aufgabe existiert nicht oder Sie haben ungenügende Rechte, um diese Aufgabe zu sehen.
