@@ -23,7 +23,7 @@
 
     <ui:define name="dialogFooter">
       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/refreshSession')}"
-        icon="#{visibilityBean.generateButtonIcon('si si-monitor-refresh')}" onclick="PortalSessionWarning.keepPortalAlive(); return false;" />
+        styleClass="w-full" onclick="PortalSessionWarning.keepPortalAlive(); return false;" />
     </ui:define>
   </ui:decorate>
 
