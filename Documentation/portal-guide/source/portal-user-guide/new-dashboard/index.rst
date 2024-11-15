@@ -146,6 +146,7 @@ In view mode, when quick search is enabled, a text box will appear to allow you 
 
     #. You can define the scope of the quick search feature in the configuration panel.
     #. The result of the quick search function may be affected if you apply a complex filter on the widget.
+    
 .. _new-dashboard-case-list-widget:
 
 Case list widget
