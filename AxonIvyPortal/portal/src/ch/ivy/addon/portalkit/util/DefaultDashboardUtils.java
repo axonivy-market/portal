@@ -1,5 +1,8 @@
 package ch.ivy.addon.portalkit.util;
 
+import static ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_CASE_LIST_DASHBOARD;
+import static ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD;
+
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 
 public class DefaultDashboardUtils {
@@ -238,6 +241,15 @@ public class DefaultDashboardUtils {
       defaultCaseListDashboard = DashboardUtils.jsonToDashboard(json);
     }
     return defaultCaseListDashboard;
+  }
+
+
+  public static void invalidateDefaultTaskCaseListDashboardIfNeeded(String dashboardId) {
+    if (DEFAULT_TASK_LIST_DASHBOARD.equals(dashboardId)) {
+      defaultTaskListDashboard = null;
+    } else if (DEFAULT_CASE_LIST_DASHBOARD.equals(dashboardId)) {
+      defaultCaseListDashboard = null;
+    }
   }
 
 }
