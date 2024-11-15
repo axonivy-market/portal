@@ -385,50 +385,50 @@
         "columns": [
           {
             "field": "start",
-            "width": "50"
+            "width": "75"
           },
           {
             "field": "priority",
-            "width": "86"
+            "width": "70"
           },
           {
             "field": "id",
             "quickSearch": true,
-            "width": "115"
+            "width": "90"
           },
           {
             "field": "name",
             "quickSearch": true,
-            "width": "315"
+            "width": "280"
           },
           {
             "field": "description",
             "quickSearch": true,
-            "width": "190"
+            "width": "280"
           },
           {
             "field": "activator",
-            "width": "139"
-          },
-          {
-            "field": "state",
-            "width": "85"
-          },
-          {
-            "field": "startTimestamp",
-            "width": "90"
-          },
-          {
-            "field": "expiryTimestamp",
             "width": "120"
           },
           {
+            "field": "state",
+            "width": "80"
+          },
+          {
+            "field": "startTimestamp",
+            "width": "95"
+          },
+          {
+            "field": "expiryTimestamp",
+            "width": "95"
+          },
+          {
             "field": "category",
-            "width": "101"
+            "width": "105"
           },
           {
             "field": "actions",
-            "width": "85"
+            "width": "95"
           }
         ],
         "canWorkOn": false,
@@ -500,41 +500,41 @@
           {
             "field": "id",
             "quickSearch": true,
-            "width": "115"
+            "width": "80"
           },
           {
             "field": "name",
             "quickSearch": true,
-            "width": "325"
+            "width": "300"
           },
           {
             "field": "description",
             "quickSearch": true,
-            "width": "200"
+            "width": "300"
           },
           {
             "field": "creator",
-            "width": "139"
+            "width": "120"
           },
           {
             "field": "startTimestamp",
-            "width": "90"
+            "width": "95"
           },
           {
             "field": "endTimestamp",
-            "width": "90"
+            "width": "95"
           },
           {
             "field": "state",
-            "width": "85"
+            "width": "80"
           },
           {
             "field": "category",
-            "width": "101"
+            "width": "105"
           },
           {
             "field": "actions",
-            "width": "85"
+            "width": "95"
           }
         ]
       }
