@@ -23,7 +23,6 @@ public class AvatarTest extends BaseTest {
 
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private static final String SICK_LEAVE_REQUEST = "Sick Leave Request";
-  private static final String YOUR_TASKS = "Your Tasks";
 
   @Override
   @BeforeEach

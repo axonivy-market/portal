@@ -31,7 +31,6 @@ public class BackNavigationTest extends BaseTest {
   private static final String PAYMENT_CASE_NAME = "Create New Payment";
   private static final String PAYMENT_TASK_NAME = "Do New Payment";
   private static final String SIGNAL_NEW_PAYMENT = "Signal create New Payment";
-  private static final String YOUR_TASKS = "Your Tasks";
   private static final String DASHBOARD_TASK_NAME = "Maternity Leave Request";
 
   private CaseDetailsPage caseDetailsPage;
