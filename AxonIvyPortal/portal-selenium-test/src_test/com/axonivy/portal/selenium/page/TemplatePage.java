@@ -73,6 +73,7 @@ public abstract class TemplatePage extends AbstractPage {
   public WebDriver driver = WebDriverRunner.getWebDriver();
 
   public void switchLastBrowserTab() {
+    switchToDefaultContent();
     String oldTab = WebDriverRunner.getWebDriver().getWindowHandle();
     ArrayList<String> tabs = new ArrayList<String>(WebDriverRunner.getWebDriver().getWindowHandles());
     tabs.remove(oldTab);
@@ -477,6 +478,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public NewDashboardPage openTaskList() {
+    switchToDefaultContent();
     return openMainMenu().selectTaskMenu();
   }
 

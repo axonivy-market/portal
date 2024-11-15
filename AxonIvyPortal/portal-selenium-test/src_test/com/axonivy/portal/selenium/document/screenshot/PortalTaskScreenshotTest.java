@@ -44,9 +44,9 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest {
   public void screenshotTaskList() throws IOException {
     mainMenuPage = new MainMenuPage();
     showNewDashboard();
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
+    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1440));
     mainMenuPage.openTaskList();
-    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    new TopMenuTaskWidgetPage();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "task-key-information");
   }
 

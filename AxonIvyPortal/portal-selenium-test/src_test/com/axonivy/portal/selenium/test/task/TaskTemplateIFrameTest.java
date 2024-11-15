@@ -101,8 +101,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidget.applyFilter();
     TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
     NewDashboardPage taskWidgetPage2 = taskTemplatePage2.finishIFrameReviewTask();
-    WaitHelper
-        .assertTrueWithWait(() -> taskWidgetPage2.isElementDisplayed(By.cssSelector("[id$='task-config-command']")));
+    WaitHelper.assertTrueWithWait(() -> taskWidgetPage2
+        .isElementDisplayed(By.cssSelector("[id$='task-default_task_list_dashboard_task_1:info-sidebar-link-0']")));
   }
 
   public void waitForTemplateRender() {
