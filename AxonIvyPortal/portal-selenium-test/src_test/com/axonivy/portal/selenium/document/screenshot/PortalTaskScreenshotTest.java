@@ -45,7 +45,7 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest {
     showNewDashboard();
     NavigationHelper.navigateToTaskList();
     new TopMenuTaskWidgetPage();
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1440));
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1000));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "task-key-information");
   }
 
