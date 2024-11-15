@@ -76,7 +76,7 @@ How to Configure
 
 Download the zip file below to configure on your engine (or designer).
 
-.. important:: Read README.txt
+.. important:: Extract the ZIP file and follow the instructions in the README.txt file.
 
 :download:`PortalErrorPageConfiguration.zip <documents/error-handling/portal-error-page-configuration.zip>` 
 
@@ -84,6 +84,7 @@ Download the zip file below to configure on your engine (or designer).
 
 Result
 ^^^^^^
+After setting up following the instructions, you will see the custom error page with a user-friendly design.
 
 HTTP 404 Page Not Found
 
