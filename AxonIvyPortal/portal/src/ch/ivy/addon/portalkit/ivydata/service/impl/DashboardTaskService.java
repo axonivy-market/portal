@@ -34,7 +34,7 @@ public class DashboardTaskService extends TaskService {
         subQuery.where().and(queryExcludeHiddenTasks());
         hasSubQueryChanged = true;
       }
-      var finalQuery = hasSubQueryChanged ? query.where().and(subQuery) : query; //query.where().and(subQuery);
+      var finalQuery = hasSubQueryChanged ? query.where().and(subQuery) : query;
       return executeTaskQuery(finalQuery, startIndex, count);
     });
   }
