@@ -23,6 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     editAbsence: Editar ausencia
     from: Del
     noDeputy: Sin sustituto
+    noPermissionToSeeThisArea: Usted no tiene el permiso necesario para ver esta zona.
     period: Periodo
     personalTaskDuringAbsenceDeputies: Sustituye las tareas asignadas personalmente durante la ausencia
     personalTaskPermanentDeputies: Sustitución permanente de las tareas asignadas personalmente
@@ -166,8 +167,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       announcementsDisabled: Los avisos están deactivados
       announcementsEnabled: Los avisos están activados
       defaultLanguageRequiredMessage: 'Texto requerido en el idioma estándard de la aplicación '
-      disable: Desactivar
-      enable: Activar
+      disabled: Deshabilitado
+      enable: Activar anuncio
       information: En esta área puede anunciar una información general (ej. mantenimiento, cambios en la aplicación, etc.). Este mensaje será visible para todos los usuarios.
       saveChanges: Guardar cambios
       tabTitle: Avisos
@@ -178,6 +179,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationHint: Use arrastrar y soltar para reordenar.
     applicationLinkRequiredMsg: Por favor, introduzca el enlace al portal
     applicationList:
+      addNewApplication: Añadir nueva aplicación
       applicationSelectionHeader: Seleccionar aplicación
       menuIcon: Icono de menú
     applications: Aplicaciones
@@ -518,7 +520,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     note: Nota
     numberFromBiggerThanTo: Para" debe ser mayor que "De".
     numberOfSelectedFilter: Filtros seleccionados
-    ok: Ok
+    ok: OK
     'on': en
     pleaseAddDocument: Por favor agregue documentos usando el enlace superior
     pleaseAddNote: Por favor agregue notas usando el enlace superior
@@ -542,6 +544,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: ¿Restablecer a los gráficos por defecto?
     role: Rol
     save: Guardar
+    saveAll: Guardar todos
     saveSuccessfully: Datos guardados exitosamente.
     search: Buscar
     second: segundo
@@ -585,7 +588,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewExpired: Su vista actual expiró. Serás redirigido a la página de inicio.
     viewMode: Modo de visualización
     visible: Visible
-    warning: Advertencia
+    warning: Advertencia!
     welcomeToPortal: Bienvenido, por favor inicie su sesión
     wrongDateFormat: Por favor ingrese una fecha válida.
     year: Año
@@ -1243,8 +1246,8 @@ ch.ivy.addon.portalkit.ui.jsf:
   taskWarning:
     createdTaskLeave: 'Va a salir de esta página. Por favor selecione una de las siguientes opciones:<UL><LI>&nbsp; &nbsp; Salir: No guardará sus cambios y navegará a la página seleccionada<LI>&nbsp; &nbsp; Cancelar: Continue trabajando en esta tarea.</UL>'
     createdTaskLogout: 'Va a salir de esta página. Por favor selecione una de las siguientes opciones:<UL><LI>&nbsp; &nbsp; Cerrar sesión: No guardará sus cambios y se cerrará la sesión.<LI>&nbsp;Cancelar: Continue trabajando en esta tarea.</UL>'
-    resetParkTaskBeforeLeave: 'Va a salir de esta página. Por favor selecione una de las siguientes opciones:<UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Reservar: No guardará sus cambios y esta tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando en esta
-      tarea.</UL>'
+    resetParkTaskBeforeLeave: '<h4>Va a salir de esta página.<br/>Por favor selecione una de las siguientes opciones:</h4><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Reservar: No guardará sus cambios y esta tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando
+      en esta tarea.</UL>'
     resetParkTaskBeforeLogout: 'Va a salir de esta página. Por favor selecione una de las siguientes opciones:<UL><LI>Salir: no guardará sus cambios y volverá a la página anterior.<LI>Reservar: No guardará sus cambios, volverá a la página anterior pero la tarea quedara reservada para usted.<LI>Cancelar:
       Continue trabajando en esta tarea.</UL>'
     taskNotFound: La tarea no existe o no los tiene derechos suficientes para ver esta tarea.

@@ -46,8 +46,6 @@ public abstract class TemplatePage extends AbstractPage {
   private static final String HOME_BREADCRUMB_SELECTOR = ".portal-breadcrumb .ui-menuitem-link:first-child";
   public static final String PORTAL_GLOBAL_GROWL_ID = "portal-global-growl_container";
   protected static final String COMPONENT_PAGE_LOCATOR = "//*[contains(@id,'theme-selection')]";
-  private static final String YOUR_TASKS = "Your Tasks";
-
 
   // If page load more than 45s, mark it failed by timeout
   protected long getTimeOutForLocator() {
@@ -73,6 +71,7 @@ public abstract class TemplatePage extends AbstractPage {
   public WebDriver driver = WebDriverRunner.getWebDriver();
 
   public void switchLastBrowserTab() {
+    switchToDefaultContent();
     String oldTab = WebDriverRunner.getWebDriver().getWindowHandle();
     ArrayList<String> tabs = new ArrayList<String>(WebDriverRunner.getWebDriver().getWindowHandles());
     tabs.remove(oldTab);
@@ -477,6 +476,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public NewDashboardPage openTaskList() {
+    switchToDefaultContent();
     return openMainMenu().selectTaskMenu();
   }
 

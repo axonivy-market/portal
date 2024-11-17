@@ -23,7 +23,6 @@ public class AvatarTest extends BaseTest {
 
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
   private static final String SICK_LEAVE_REQUEST = "Sick Leave Request";
-  private static final String YOUR_TASKS = "Your Tasks";
 
   @Override
   @BeforeEach
@@ -49,7 +48,7 @@ public class AvatarTest extends BaseTest {
 
 
     // Check task details
-    NewDashboardPage taskWidgetPage = mainMenuPage.openTaskList();
+    mainMenuPage.openTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openDashboardTaskDetails(SICK_LEAVE_REQUEST);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();

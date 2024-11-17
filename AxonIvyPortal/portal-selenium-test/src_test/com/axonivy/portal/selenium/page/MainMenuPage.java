@@ -27,10 +27,6 @@ public class MainMenuPage extends TemplatePage {
   protected String getLoadedLocator() {
     return ".layout-menu li[role='menuitem'] a.DASHBOARD";
   }
-  //
-  // public TaskWidgetPage openTaskList() {
-  // return NavigationHelper.navigateToTaskList();
-  // }
 
   @Override
   public CaseWidgetPage openCaseList() {
