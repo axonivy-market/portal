@@ -3061,9 +3061,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .user-profile-footer {
   text-align: right;
-  position: absolute;
-  bottom: 0;
-  right: 0.5rem;
+  margin-top: 4rem;
 }
 
 .user-profile-footer .ui-button {
