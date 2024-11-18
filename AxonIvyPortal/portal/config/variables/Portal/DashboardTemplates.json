@@ -813,7 +813,6 @@
           "sortDescending": true
         }
       ],
-      "accessibility": true,
       "permissions": [
         "Everybody"
       ]

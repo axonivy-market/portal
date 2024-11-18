@@ -21,8 +21,8 @@
         <ui:param name="dialogContent" value="#{ivy.session.isSessionUserUnknown()? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewExpired')}" />
         
         <ui:define name="dialogFooter">
-          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-            onclick="redirectDefaultPage();" icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" type="button" />
+          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" styleClass="w-full"
+            onclick="redirectDefaultPage();" type="button" />
         </ui:define>
       </ui:decorate>
     </ui:fragment>
