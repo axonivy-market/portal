@@ -32,7 +32,6 @@ public class TaskDashboardWidget extends DashboardWidget {
   private static final long serialVersionUID = 3246735956282078091L;
   protected static final String LIKE_FORMAT = "%%%s%%";
 
-  private int rowsPerPage = 5;
   @JsonIgnore
   private DashboardTaskLazyDataModel dataModel;
   @JsonIgnore
@@ -198,14 +197,6 @@ public class TaskDashboardWidget extends DashboardWidget {
   @Override
   public DashboardWidgetType getType() {
     return DashboardWidgetType.TASK;
-  }
-
-  public int getRowsPerPage() {
-    return isInConfiguration() ? 5 : rowsPerPage;
-  }
-
-  public void setRowsPerPage(int rowsPerPage) {
-    this.rowsPerPage = rowsPerPage;
   }
 
   @Override
