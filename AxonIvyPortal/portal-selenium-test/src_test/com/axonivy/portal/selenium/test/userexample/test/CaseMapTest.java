@@ -69,9 +69,9 @@ public class CaseMapTest extends BaseTest {
     taskWidget.waitForPageLoad();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("state", null);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Done");
     taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(0));
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(6));
   }
 
   @Test
@@ -99,11 +99,11 @@ public class CaseMapTest extends BaseTest {
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Name", FilterOperator.IS);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, APPROVAL_LEVEL_2);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, APPROVAL_LEVEL_1);
     taskWidget.addFilter("state", null);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Done");
     taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(0));
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
   }
 
   private void startTaskByTaskName(String taskname) {
