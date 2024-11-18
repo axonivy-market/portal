@@ -21,16 +21,19 @@ public class DashboardStatisticWidgetConverter implements IJsonConverter {
   public void convert(JsonNode jsonNode) {
     ArrayNode widgetsArray = (ArrayNode) jsonNode.get("widgets");
 
+    if (widgetsArray == null) {
+      return;
+    }
+
     // Remove widgets of type "statistic"
-    if (widgetsArray != null) {
-      Iterator<JsonNode> iterator = widgetsArray.iterator();
-      while (iterator.hasNext()) {
-        JsonNode widget = iterator.next();
-        if (widget.has("type") && "statistic".equals(widget.get("type").asText())) {
-          iterator.remove(); // Remove widget of type "statistic"
-        }
+    Iterator<JsonNode> iterator = widgetsArray.iterator();
+    while (iterator.hasNext()) {
+      JsonNode widget = iterator.next();
+      if (widget.has("type") && "statistic".equals(widget.get("type").asText())) {
+        iterator.remove(); // Remove widget of type "statistic"
       }
     }
+
   }
 
 }
