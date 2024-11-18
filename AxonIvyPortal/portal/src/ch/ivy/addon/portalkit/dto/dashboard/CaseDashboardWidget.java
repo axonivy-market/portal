@@ -31,7 +31,6 @@ public class CaseDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 3048837559125720787L;
 
-  private int rowsPerPage = 5;
   @JsonIgnore
   private DashboardCaseLazyDataModel dataModel;
   @JsonIgnore
@@ -190,14 +189,6 @@ public class CaseDashboardWidget extends DashboardWidget {
   @Override
   public DashboardWidgetType getType() {
     return DashboardWidgetType.CASE;
-  }
-
-  public int getRowsPerPage() {
-    return rowsPerPage;
-  }
-
-  public void setRowsPerPage(int rowsPerPage) {
-    this.rowsPerPage = rowsPerPage;
   }
 
   public List<DashboardFilter> getFilters() {
