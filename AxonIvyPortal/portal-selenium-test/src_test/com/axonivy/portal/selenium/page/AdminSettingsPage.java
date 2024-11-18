@@ -37,13 +37,16 @@ public class AdminSettingsPage extends TemplatePage {
     $("button[id$='admin-setting-component:adminTabView:restore-all-to-default-button']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition());
     waitForElementDisplayed(By.id("admin-setting-component:adminTabView:settingTable"), true);
-
     var variableRow = $("[id='admin-setting-component:adminTabView:settingTable']").$$(".setting-key")
         .filter(Condition.text(variableName)).get(0);
 
     if (variableRow != null) {
-      SelenideElement editButton = variableRow.ancestor("tr").$(By.cssSelector("a[id$=edit]"));
-      editButton.shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+      variableRow.ancestor("tr").scrollTo();
+      SelenideElement actionButton = variableRow.ancestor("tr").$(By.cssSelector("button[id$=settings-action-button]"));
+      actionButton.shouldBe(getClickableCondition()).click();
+      String currentElementId = actionButton.attr("id");
+      String editButtonId = currentElementId.replace("settings-action-button", "edit-application");
+      $("a[id='" + editButtonId + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
     waitForElementDisplayed(By.cssSelector("[id$=':settingDialogForm']"), true);
     saveGlobalVariable(variableValue, isBooleanType);
@@ -72,12 +75,12 @@ public class AdminSettingsPage extends TemplatePage {
     waitForElementClickableThenClick("[id='admin-setting-component:save-setting']");
   }
 
-  public void clickOnbackToNewDashboardPageOnAdminSetting() {
-    WaitHelper.waitForNavigation(() -> waitForElementClickableThenClick(findElementById("back-to-home-button")));
+  public void closeConfirmationDialog() {
+    clickOnHomeLogo();
   }
 
-  public void closeConfirmationDialog() {
-    clickOnbackToNewDashboardPageOnAdminSetting();
+  public void clickOnHomeLogo() {
+    $("span[class*='si si-house-chimney-2']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
   public void setGlobalFooterInfo() {
@@ -141,7 +144,8 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public WebElement getEditSettingDialogOfFirstRow() {
-    waitForElementClickableThenClick($(By.id("admin-setting-component:adminTabView:settingTable:0:edit")));
+    waitForElementClickableThenClick($(By.id("admin-setting-component:adminTabView:settingTable:0:settings-action-button")));
+    $("a[id='admin-setting-component:adminTabView:settingTable:0:edit-application']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     waitForElementDisplayed(By.id("admin-setting-component:settingDialog"), true);
     Sleeper.sleep(300);// Wait a bit focus effects, just only use this for capture screenshot
     return findElementById("admin-setting-component:settingDialog");
