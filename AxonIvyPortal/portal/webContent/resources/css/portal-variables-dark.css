@@ -197,12 +197,16 @@
   --admin-setting-no-permission-message-color: #e53935;
   --user-setting-container-box-shadow: rgba(43, 59, 93, 0.6);
   --email-setting-widget-header: var(--ivy-primary-color-white);
-  --portal-accessibility-bg-color: var(--ivy-primary-color-grey-light);
+  --portal-accessibility-bg-color: hsla(var(--ivy-primary-light-color-h), var(--ivy-primary-light-color-s), 95%, 1) !important;
+  --portal-button-bg-color: #293241;
+  --portal-button-text-color: var(--ivy-primary-color);
   /* Absences and Deputy */
   --substituted-user-text-color: var(--ivy-primary-color-black);
   /* Awesome Icon Selection */
   --content-link-change-awesome-icon-color: var(--primary-color);
   --select-awesome-icon-button-font-weight: bold;
+  --selected-icon-bg-color: var(--ivy-portal-color-gray-dark);
+  --icon-color: var(--ivy-primary-color-white);
   /* Start Notification */
   --notification-content-background-color: var(--ivy-tertinary-color-red-dark);
   --notification-content-action-color: var(--ivy-primary-color-white);
@@ -347,9 +351,12 @@
   --accessibility-bg-color: var(--task-state-system-color);
   --accessibility-shortcut-text-color: var(--ivy-primary-color-black);
 
-    /* Dashboard configuration*/
+  /* Confirmation dialog footer button*/
+  --ui-leave-button-color: var(--ivy-primary-color-grey-dark);
+
+  /* Dashboard configuration*/
   --dashboard-action-container-text-color: var(--ivy-primary-color-white);
   --dashboard-action-container-border-color: var(--ivy-primary-color-grey-medium);
   --dashboard-action-container-description-color: var(--ivy-primary-color-grey-medium);
-  --dashboard-icon-drag-drop-color: var(--ivy-primary-color-grey-dark);
+  --dashboard-icon-drag-drop-color: var(--ivy-primary-color-grey-medium);
 }

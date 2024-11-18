@@ -63,6 +63,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 public class DashboardBean implements Serializable {
 
   private static final long serialVersionUID = -4224901891867040688L;
+  private static final String ACCESSIBILITY_DASHBOARD_TEMPLATE_ID = "accessibility-dashboard-template";
 
   protected List<Dashboard> dashboards;
   protected Dashboard selectedDashboard;
@@ -505,7 +506,7 @@ public class DashboardBean implements Serializable {
   }
   
   public String getScreenReaderNotificationContent() {
-    if (this.selectedDashboard != null && this.selectedDashboard.isAccessibility()) {
+    if (this.selectedDashboard != null && ACCESSIBILITY_DASHBOARD_TEMPLATE_ID.equals(this.selectedDashboard.getTemplateId())) {
       return Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/AccessibilityShortcuts/title");
     }
     return StringUtils.EMPTY;
