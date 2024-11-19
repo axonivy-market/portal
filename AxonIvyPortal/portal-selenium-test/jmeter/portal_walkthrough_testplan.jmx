@@ -1057,12 +1057,12 @@
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:10:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command</stringProp>
               </elementProp>
-              <elementProp name="user-menu-required-login:global-search-component-mobile-form_SUBMIT" elementType="HTTPArgument">
+              <elementProp name="portal-breadcrumb:breadcrumb-form_SUBMIT" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value">1</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile-form_SUBMIT</stringProp>
+                <stringProp name="Argument.name">portal-breadcrumb:breadcrumb-form_SUBMIT</stringProp>
               </elementProp>
               <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
