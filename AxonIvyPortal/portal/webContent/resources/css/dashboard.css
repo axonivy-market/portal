@@ -716,6 +716,11 @@ body .dashboard__table--edit.ui-datatable tbody tr.ui-state-hover {
   cursor: move;
 }
 
+body .dashboard__table--edit.ui-datatable-resizable .ui-datatable-scrollable-header,
+body .dashboard__table--edit.ui-datatable-resizable .ui-datatable-scrollable-footer {
+  background: transparent;
+}
+
 body .dashboard__table--preview.ui-datatable tbody tr.ui-state-highlight,
 body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   cursor: auto;
@@ -2076,4 +2081,13 @@ body .ui-button.ui-widget.ui-widget-filter-btn {
   background: var(--widget-filter-background-color);
   color: var(--text-color);
   border: none;
+}
+
+body .widget__content .ui-datatable.dashboard-cases--table .ui-widget-header thead th.widget-column-header .ui-column-title,
+body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header thead th.widget-column-header .ui-column-title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 30px);
+  display: inline-block;
+  overflow: hidden;
 }

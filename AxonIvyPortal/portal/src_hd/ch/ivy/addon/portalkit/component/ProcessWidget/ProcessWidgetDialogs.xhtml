@@ -28,7 +28,7 @@
       <div id="edit-process-icon-group" class="ui-g-12 edit-process-icon-group MarTop20 u-no-padding-left u-no-padding-right">
         <p class="u-mar-right-10 edit-process-header-sub-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogCurrentIcon')}</p>
         <div class="ui-g-12 u-no-padding-left">
-          <ic:ch.ivy.addon.portalkit.component.IconSelection id="edit-process-icon"
+          <ic:ch.ivy.addon.portalkit.component.IconSelection id="edit-process-icon" hideIconArray="true"
             value="#{processWidgetBean.selectedIconProcess}"
             isReadOnly="#{!processWidgetBean.canChangeProcessIcon()}" />
         </div>
@@ -331,7 +331,7 @@
         <h:outputLabel id="external-link-icon-label" for="external-link-icon" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/icon')}" />
       </div>
       <div class="ui-g-12 u-no-padding-top external-process-icon">
-        <ic:ch.ivy.addon.portalkit.component.IconSelection id="external-link-icon" value="#{externalLinkBean.externalLink.icon}" />
+        <ic:ch.ivy.addon.portalkit.component.IconSelection id="external-link-icon" value="#{externalLinkBean.externalLink.icon}"/>
       </div>
       <!-- Image -->
       <div class="ui-g-12 MarTop10">

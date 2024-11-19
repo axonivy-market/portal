@@ -60,6 +60,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   private String caseDetailsUrl;
   private Boolean isShowShareButton;
   private boolean isHideCaseCreator;
+  private boolean showDurationTime;
 
   public void init() {
     super.initConfig();
@@ -71,6 +72,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
+    showDurationTime = Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_CASE_DURATION_TIME));
   }
 
   public void preRender(ICase selectedCase, boolean showBackButton) {
@@ -333,6 +335,14 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
 
   public void setHideCaseCreator(boolean isHideCaseCreator) {
     this.isHideCaseCreator = isHideCaseCreator;
+  }
+
+  public boolean isShowDurationTime() {
+    return showDurationTime;
+  }
+
+  public void setShowDurationTime(boolean showDurationTime) {
+    this.showDurationTime = showDurationTime;
   }
 
 }
