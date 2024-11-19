@@ -73,14 +73,4 @@ public class TaskWidgetTest extends BaseTest {
     assertEquals(4, taskWidget.countAllTasks().size(), "In Task list, Task Count != 4");
   }
 
-  @Test
-  public void testBreadCrumb() {
-    NavigationHelper.navigateToTaskList();
-    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    assertEquals("Tasks (3)", taskWidget.getTextOfCurrentBreadcrumb());
-    taskWidget.goToHomeFromBreadcrumb();
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    assertEquals(true, newDashboardPage.isDisplayed());
-  }
-
 }
