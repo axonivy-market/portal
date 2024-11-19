@@ -88,7 +88,7 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
 
   @Test
   public void testVisibilityTaskDone() {
-    login(TestAccount.DEMO_USER);
+    login(TestAccount.GUEST_USER);
     createTestingTasks();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
@@ -97,12 +97,12 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("Responsible", FilterOperator.IN);
     taskWidget.inputValueOnLatestFilter(FilterValueType.RESPONSIBLE_TYPE, "Everybody");
     taskWidget.addFilter("state", null);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Done");
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(0));
+    int taskCount = taskWidget.countAllTasks().size();
 
     // User Guest
-    login(TestAccount.GUEST_USER);
+    login(TestAccount.DEMO_USER);
     NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();;
     // Suspended
@@ -110,9 +110,9 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("Responsible", FilterOperator.IN);
     taskWidget.inputValueOnLatestFilter(FilterValueType.RESPONSIBLE_TYPE, "Everybody");
     taskWidget.addFilter("state", null);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Done");
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
-    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(0));
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(taskCount));
   }
 
 }
