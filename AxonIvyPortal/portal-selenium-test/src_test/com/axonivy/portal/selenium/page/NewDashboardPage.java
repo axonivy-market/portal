@@ -1095,7 +1095,6 @@ public class NewDashboardPage extends TemplatePage {
     searchInput.shouldBe(appear, DEFAULT_TIMEOUT).click();
     searchInput.sendKeys(keyword);
     searchInput.sendKeys(Keys.RETURN);
-    $("#search-results-tabview").shouldBe(appear, DEFAULT_TIMEOUT);
     return new GlobalSearchResultPage();
   }
   
