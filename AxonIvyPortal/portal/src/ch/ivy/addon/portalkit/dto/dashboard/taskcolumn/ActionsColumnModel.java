@@ -16,6 +16,7 @@ public class ActionsColumnModel extends TaskColumnModel implements Serializable 
     this.styleToDisplay = initDefaultStyle();
     this.sortable = defaultIfEmpty(this.sortable, getDefaultSortable());
     this.format = getDefaultFormat();
+    this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
   }
 
   @Override
