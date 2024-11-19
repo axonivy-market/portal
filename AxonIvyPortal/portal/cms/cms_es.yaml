@@ -1407,6 +1407,28 @@ Dialogs:
       invalidSizeMessage: ¡El archivo es muy grande!
       maximumFileUploadElement: Ya existe un elemento de subir documentos
 Labels:
+  AI:
+    Error:
+      CannotFindUser: ''
+      CannotStartTask: ''
+      InvalidTaskPriority: ''
+      InvalidTaskState: ''
+      NoMatchingCase: ''
+      NoMatchingProcesses: ''
+      NoMatchingTask: ''
+    FindCaseAIResult: ''
+    FindProcessAIResult: ''
+    FindTaskAIResult: ''
+    FindUserAIResult: ''
+    FoundCaseHeader: ''
+    FoundProcessesHeader: ''
+    FoundTaskHeader: ''
+    FoundUsersHeader: ''
+    ProcessInfoHeader: ''
+    ProcessInfoHeaderWithParameters: ''
+    ProcessParameterInfo: ''
+    ProcessParameterInfoWithValue: ''
+    TaskDetailsResult: ''
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
   CreateNewDashboard: Crear un nuevo cuadro de mandos
