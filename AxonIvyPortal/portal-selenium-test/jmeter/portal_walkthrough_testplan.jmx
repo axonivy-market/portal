@@ -886,8 +886,8 @@
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${redirectURL}</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
           <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
@@ -954,7 +954,7 @@
               </elementProp>
               <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:j_id_v_2_ai_1_0_2_a:quick-search-input-0</stringProp>
+                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks+task-default_task_list_dashboard_task_1:task-component:empty-message-container</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
@@ -980,12 +980,12 @@
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">task-default_task_list_dashboard_task_1:j_id_v_2_ai_1_0_2_a:quick-search-input-0</stringProp>
               </elementProp>
-              <elementProp name="task-widget:expanded-mode-filter-form_SUBMIT" elementType="HTTPArgument">
+              <elementProp name="task-default_task_list_dashboard_task_1:j_id_v_2_ai_1_0_2_a_SUBMIT" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value">1</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">task-widget:expanded-mode-filter-form_SUBMIT</stringProp>
+                <stringProp name="Argument.name">task-default_task_list_dashboard_task_1:j_id_v_2_ai_1_0_2_a_SUBMIT</stringProp>
               </elementProp>
               <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
