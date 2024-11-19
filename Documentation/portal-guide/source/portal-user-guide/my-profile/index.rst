@@ -10,8 +10,8 @@ Help you adjust your general settings, language and notification channels subscr
 General settings
 ----------------
 
-**General settings** allows you to configure some settings according to your requirements. This area
-contains :guilabel:`Selected homepage` and :guilabel:`Show Welcome Tour`.
+**General settings** allows you to configure some settings according to your
+requirements. This area allows you to select the homepage you want to display.
 
 .. _process-list-configuration:
 

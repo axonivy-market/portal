@@ -93,7 +93,7 @@ HowTo: Set substitute
 
    A substitute can only belonged to one type.
 
-#. Specify substitutes by clicking on link ends with |si-notes-quill|.
+#. Specify substitutes by clicking on link ends with |si-notes-quill|, select substitutes and click :guilabel:`Add` button to add.
 
 #. Confirm your substitutes with the button :guilabel:`Save`.
 
