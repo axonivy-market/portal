@@ -43,7 +43,7 @@
         liveScroll="true" scrollable="true" sortBy="#{(isResizing or isPreviewMode) ? null : caseWidget.sortBy}"
         showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
-        styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and caseWidget.caseCount lt 1 ? 'u-display-none' : ''} #{isResizing ? 'js-resizing' : ''}"
+        styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and caseWidget.caseCount lt 1 ? 'u-display-none' : ''} #{isResizing ? 'js-resizing' : ''} #{dashboardBean.hasResizedColumn(taskWidget.columns) ? '' : 'no-resize'}"
         rowStyleClass="dashboard-table--row-style"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" >
         
