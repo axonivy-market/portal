@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -485,9 +486,13 @@ public class DashboardBean implements Serializable {
   }
   
   public String getScreenReaderNotificationContent() {
-   if (ACCESSIBILITY_DASHBOARD_TEMPLATE_ID.equals(this.selectedDashboard.getTemplateId())) {
-     return Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/AccessibilityShortcuts/title");
-   }
+    String templateId = Optional.ofNullable(this.selectedDashboard)
+        .map(Dashboard::getTemplateId).orElse(Strings.EMPTY);
+
+    if (StringUtils.isNotBlank(templateId)
+        && ACCESSIBILITY_DASHBOARD_TEMPLATE_ID.equals(templateId)) {
+      return Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/AccessibilityShortcuts/title");
+    }
    return Strings.EMPTY;
   }
 }
