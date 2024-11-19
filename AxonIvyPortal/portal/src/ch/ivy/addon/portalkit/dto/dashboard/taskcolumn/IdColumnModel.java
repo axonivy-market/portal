@@ -25,7 +25,7 @@ public class IdColumnModel extends TaskColumnModel implements Serializable {
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__id u-text-align-center widget-column";
+    return "dashboard-tasks__id u-text-align-center u-padding-0 widget-column";
   }
 
   @Override
@@ -39,5 +39,10 @@ public class IdColumnModel extends TaskColumnModel implements Serializable {
   @Override
   public boolean canQuickSearch() {
     return true;
+  }
+
+  @Override
+  protected int getDefaultColumnWidth() {
+    return 110;
   }
 }
