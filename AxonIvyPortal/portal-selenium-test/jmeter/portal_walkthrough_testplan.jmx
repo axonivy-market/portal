@@ -816,7 +816,7 @@
               </elementProp>
               <elementProp name="menuUrl" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.value">http://localhost:8081/designer/pro/portal/1549F58C18A6C562/DashboardPage.ivp?dashboardId=default-task-list-dashboard</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">menuUrl</stringProp>
