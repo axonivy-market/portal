@@ -553,6 +553,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     second: segundo
     seconds: segundos
     seeDetail: Mostrar detalles
+    select: Seleccionar
     selectAll: Seleccionar todo
     selectUsers: Seleccione usuario(s)
     selectedDay: '{0} Día(s) selecionados'
@@ -1117,6 +1118,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processingTime: Tiempo de procesado
     setDelayTimestamp: '{0} ({1}) Ha modificado el tiempo de demora para la tarea #{2} a {3}'
     setExpiryActivatorAndTimeNotes: '{0} y asignar {1} como el usuario de la tarea escalada'
+    supportFileTypes: 'Tipos de archivos compatibles: {0}'
     taskCategory: Categoría de tarea
     taskExpiryDisable: Esta tarea no tiene manejo lógico de escalado, por lo tanto no se puede establecer el tiempo de expiración.
     technicalCase: Caso técnico

@@ -107,8 +107,11 @@
     responsive="true">
     <h:form id="document-upload-form">
       <p:messages id="upload-messages" />
+      <p:panelGrid columns="1" layout="grid" >
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}" />
-      <p:fileUpload styleClass="document-upload" id="document-upload-panel" listener="#{logic.uploadDocument}" mode="advanced" 
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/supportFileTypes',[masterDataBean.allowedUploadFileType])}" />
+      </p:panelGrid>
+      <p:fileUpload styleClass="document-upload" id="document-upload-panel" listener="#{logic.uploadDocument}" mode="advanced"
         chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
         dragDropSupport="true" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
         auto="true" multiple="true" sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
