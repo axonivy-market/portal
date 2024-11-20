@@ -30,7 +30,7 @@ public class DescriptionColumnModel extends CaseColumnModel implements Serializa
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
+  public int getDefaultColumnWidth() {
     return 200;
   }
 

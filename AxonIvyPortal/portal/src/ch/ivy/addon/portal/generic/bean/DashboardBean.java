@@ -507,4 +507,16 @@ public class DashboardBean implements Serializable {
         .filter(col -> StringUtils.isNotBlank(col.getWidth())).findFirst()
         .isPresent();
   }
+
+  public String renderDefaultWidth(List<ColumnModel> columns,
+      ColumnModel columnToCheck, boolean isResizing) {
+    boolean isEmptyWidth = StringUtils.isBlank(columnToCheck.getWidth());
+    boolean hasResizeColumns = hasResizedColumn(columns);
+    boolean hasDefaultWidth = columnToCheck.getDefaultColumnWidth() > 0;
+
+    if (isResizing && isEmptyWidth && !hasResizeColumns && !hasDefaultWidth) {
+      return "width: 100px!important";
+    }
+    return "";
+}
 }

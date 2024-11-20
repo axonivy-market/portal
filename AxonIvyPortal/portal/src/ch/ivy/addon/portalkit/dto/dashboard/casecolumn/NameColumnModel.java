@@ -42,7 +42,7 @@ public class NameColumnModel extends CaseColumnModel implements Serializable {
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
+  public int getDefaultColumnWidth() {
     return 300;
   }
 }

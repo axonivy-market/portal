@@ -38,7 +38,7 @@ public class PriorityColumnModel extends TaskColumnModel implements Serializable
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
+  public int getDefaultColumnWidth() {
     return 50;
   }
 

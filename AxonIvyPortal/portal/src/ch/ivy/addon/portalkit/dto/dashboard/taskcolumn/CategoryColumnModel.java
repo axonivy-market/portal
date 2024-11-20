@@ -58,7 +58,7 @@ public class CategoryColumnModel extends TaskColumnModel {
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
+  public int getDefaultColumnWidth() {
     return NORMAL_WIDTH;
   }
 

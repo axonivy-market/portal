@@ -30,7 +30,7 @@ public class DescriptionColumnModel extends TaskColumnModel implements Serializa
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
+  public int getDefaultColumnWidth() {
     return LARGE_WIDTH;
   }
 

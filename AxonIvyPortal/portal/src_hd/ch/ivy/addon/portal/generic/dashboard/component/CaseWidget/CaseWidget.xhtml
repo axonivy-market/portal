@@ -55,7 +55,7 @@
 
         <p:columns var="column" value="#{caseWidget.columns}" styleClass="#{column.styleClass} #{(column.field eq 'name' or column.field eq 'actions' ) ? 'dashboard-cases__column-small-screen' : 'u-hidden-sm-down'} widget-column-header"
           visible="#{column.visible}" field="#{column.field}" filterable="false" sortBy="#{column.field}" sortable="#{!isResizing and !isPreviewMode and column.sortable}"
-          style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay}">
+          style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay} #{dashboardBean.renderDefaultWidth(caseWidget.columns, column, isResizing)}">
 
           <f:facet name="header">
            <h:outputText id="header" value="#{column.headerText}" />

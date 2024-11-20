@@ -40,7 +40,7 @@ public class StateColumnModel extends TaskColumnModel implements Serializable {
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
+  public int getDefaultColumnWidth() {
     return NORMAL_WIDTH;
   }
 
