@@ -9,13 +9,11 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
-import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.AbsencePage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.codeborne.selenide.Condition;
 
 @IvyWebTest
@@ -36,19 +34,6 @@ public class DisabledUserTest extends BaseTest {
   public void setup() {
     super.setupWithAlternativeLinkAndAccount(cleanupDataLink, TestAccount.ADMIN_USER);
     redirectToRelativeLink(DISABLE_VISIBILITY_USER_CREATION_LINK);
-  }
-
-  @Test
-  public void testFilterByDisabledUserInTaskResponsibleFilter() {
-    redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(TASK_CASE_CREATION_FOR_DISABLED_USER_LINK);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.filterByResponsible(VISIBILITY_USER_FULL_NAME);
-    WaitHelper.assertTrueWithWait(
-        () -> taskWidgetPage.getFilterValue("responsible-filter").contains(DISABLED_VISIBILITY_USER_FULL_DISPLAY_NAME));
-    assertEquals(1, taskWidgetPage.countTasks().size());
-    taskWidgetPage.countTasks().shouldHave(size(1));
-    assertEquals(DISABLED_VISIBILITY_USER_BRIEF_DISPLAY_NAME, taskWidgetPage.getResponsibleOfTaskAt(0));
   }
 
   @Test

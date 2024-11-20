@@ -31,6 +31,7 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -376,6 +377,9 @@ public class UserMenuBean implements Serializable {
     return GOOGLE_PLAY_IMAGE_CMS_URL;
   }
 
+  public String getInfoToHighlightMenu() {
+    return DashboardUtils.getSelectedMainDashboardIdFromSession();
+  }
 
   public void navigateToChatBotOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
