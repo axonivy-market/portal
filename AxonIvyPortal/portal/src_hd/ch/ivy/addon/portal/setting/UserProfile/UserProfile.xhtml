@@ -47,7 +47,7 @@
                 </h:panelGroup>
 
                 <!-- Task List Setting -->
-                <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{userProfileBean.canAccessTaskList()}">
+                <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{false and userProfileBean.canAccessTaskList()}">
                   <div class="setting-header">
                     <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/TaskList')}</h5>
                   </div>
@@ -73,7 +73,7 @@
                 </h:panelGroup>
 
                 <!-- Case List Setting -->
-                <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{userProfileBean.canAccessCaseList()}">
+                <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{false and userProfileBean.canAccessCaseList()}">
                   <div class="setting-header">
                     <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/CaseList')}</h5>
                   </div>

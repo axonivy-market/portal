@@ -9,7 +9,7 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 @IvyWebTest
 public class TaskPriorityChangeTest extends BaseTest {
@@ -28,8 +28,9 @@ public class TaskPriorityChangeTest extends BaseTest {
     int firstTask = 0;
     int priorityIntValue = 2;
     String priorityStringValue = "NORMAL";
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetails(firstTask);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskDetailsPage taskDetailsPage = taskWidget.openTaskDetailsPageByAction(firstTask);
     taskDetailsPage.changePriorityOfTask(priorityIntValue);
     assertTrue(priorityStringValue.equals(taskDetailsPage.getPriorityOfTask().getText()));
   }
@@ -37,9 +38,10 @@ public class TaskPriorityChangeTest extends BaseTest {
   @Test
   public void testUserWithoutPermissionCannotChangeTaskPriority() {
     int firstTask = 0;
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.openTaskDetails(firstTask);
-    assertFalse(taskWidgetPage.isTaskPriorityChangeComponentPresented(firstTask));
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openTaskDetailsPageByAction(firstTask);
+    assertFalse(taskWidget.isTaskPriorityChangeComponentPresented(firstTask));
   }
 
 }
