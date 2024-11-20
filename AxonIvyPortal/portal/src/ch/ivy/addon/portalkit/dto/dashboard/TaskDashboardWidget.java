@@ -49,6 +49,9 @@ public class TaskDashboardWidget extends DashboardWidget {
   private boolean showWidgetInfo;
   private boolean showFullscreenMode;
 
+  @JsonIgnore
+  private List<String> errors;
+
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
     setColumns(new ArrayList<>());
@@ -295,4 +298,12 @@ public class TaskDashboardWidget extends DashboardWidget {
     setUserFilters(getUserFilters().stream().filter(filter -> !filter.isTemp()).collect(Collectors.toList()));
   }
 
+
+public List<String> getErrors() {
+	return errors;
+}
+
+public void setErrors(List<String> errors) {
+	this.errors = errors;
+}
 }

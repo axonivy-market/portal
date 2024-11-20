@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
 import static ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn.APPLICATION;
 import static ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn.CATEGORY;
+import static ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn.DESCRIPTION;
 import static ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn.NAME;
 import static ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn.TYPE;
 import static ch.ivy.addon.portalkit.enums.ProcessWidgetMode.COMPACT_MODE;
@@ -63,6 +64,11 @@ public class DashboardProcessSearchCriteria {
           final List<String> apps = applications;
           displayProcesses = ListUtilities.filterList(displayProcesses, process -> apps.contains(process.getApplication()));
         } 
+      } else if (DESCRIPTION.getField().equalsIgnoreCase(column.getField())
+          && StringUtils.isNotEmpty(column.getUserFilter())) {
+        displayProcesses = ListUtilities.filterList(displayProcesses,
+            process -> StringUtils.containsIgnoreCase(process.getDescription(),
+                column.getUserFilter()));
       }
       
     }

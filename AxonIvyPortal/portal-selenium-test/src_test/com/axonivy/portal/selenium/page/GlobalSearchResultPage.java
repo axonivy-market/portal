@@ -18,8 +18,10 @@ public class GlobalSearchResultPage extends TemplatePage {
   }
 
   public void openTaskTab() {
-    $("li[class*='task-tab-title']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $("li[class*='task-tab-title']").click();
+    $("a[href='#search-results-tabview:task-tab']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement taskTab = $("a[href='#search-results-tabview:task-tab']").parent();
+    taskTab.shouldBe(appear, DEFAULT_TIMEOUT);
+    taskTab.shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("div[id='search-results-tabview:task-tab']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
