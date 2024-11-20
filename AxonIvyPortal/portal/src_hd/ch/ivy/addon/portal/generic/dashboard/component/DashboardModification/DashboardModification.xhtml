@@ -39,10 +39,7 @@
           <p:tooltip for="dashboard-description-group" value="#{dashboard.description}" trackMouse="true" hideEvent="mouseleave click" styleClass="dashboard-configuration-tooltip"/>
         </h:panelGroup>
       </p:column>
-
-      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-        width="#{dashboardModificationBean.hasExportDashboardPermission() ? '120' : '210'}" />
-      <p:column rendered="#{isPublicDashboard}"  width="20%">
+        <p:column rendered="#{isPublicDashboard}"  width="20%">
       <f:facet name="header">
         <div class="flex align-items-center gap-2">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/topMenuItem')}" />
