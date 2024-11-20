@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 
 @IvyWebTest
@@ -21,10 +22,12 @@ public class PageRefreshingTest extends BaseTest {
 
   @Test
   public void testTasksInPortalTaskPageUpdatedAfterReloading() {
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.countTasks().shouldBe(CollectionCondition.size(3));
+    NewDashboardPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.countAllTasks().shouldBe(CollectionCondition.size(4));
     launchBrowserAndGotoRelativeLink(createTestingTasksUrl);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.countTasks().shouldBe(CollectionCondition.size(6));
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.countAllTasks().shouldBe(CollectionCondition.size(8));
   }
 }
