@@ -77,7 +77,7 @@ public class ApplicationColumnModel extends CaseColumnModel implements Serializa
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
+  public int getDefaultColumnWidth() {
     return TINY_WIDTH;
   }
 }

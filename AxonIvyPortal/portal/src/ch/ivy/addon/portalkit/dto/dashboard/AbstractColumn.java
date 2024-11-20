@@ -458,8 +458,8 @@ public abstract class AbstractColumn implements Serializable {
   }
 
   @JsonIgnore
-  protected int getDefaultColumnWidth() {
-    return SMALL_WIDTH;
+  public int getDefaultColumnWidth() {
+    return 0;
   }
 
   @JsonIgnore
@@ -469,6 +469,9 @@ public abstract class AbstractColumn implements Serializable {
 
   @JsonIgnore
   protected String initDefaultWidth() {
+    if (resolveColumnWidth() == 0) {
+      return "";
+    }
     return "width: " + resolveColumnWidth() + "px";
   }
 

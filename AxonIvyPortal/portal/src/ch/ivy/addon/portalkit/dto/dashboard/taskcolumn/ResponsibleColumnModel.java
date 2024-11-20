@@ -45,7 +45,7 @@ public class ResponsibleColumnModel extends TaskColumnModel implements Serializa
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
+  public int getDefaultColumnWidth() {
     return EXTRA_WIDTH;
   }
 

@@ -42,7 +42,7 @@ public class ExpiryDateColumnModel extends TaskColumnModel implements Serializab
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
+  public int getDefaultColumnWidth() {
     return NORMAL_WIDTH;
   }
 

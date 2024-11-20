@@ -47,7 +47,7 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
   }
 
   @JsonIgnore
-  protected int getDefaultColumnWidth() {
+  public int getDefaultColumnWidth() {
     return EXTRA_WIDTH;
   }
 

@@ -42,7 +42,7 @@ public class IdColumnModel extends TaskColumnModel implements Serializable {
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
+  public int getDefaultColumnWidth() {
     return 110;
   }
 }
