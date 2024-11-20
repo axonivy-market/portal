@@ -4,6 +4,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
 
+import com.codeborne.selenide.Condition;
+
 public class GlobalGrowlIframeTemplatePage extends TemplatePage {
 
   @Override
@@ -11,19 +13,20 @@ public class GlobalGrowlIframeTemplatePage extends TemplatePage {
     return "#content";
   }
 
-  public TaskWidgetPage clickCancel() {
+  public NewDashboardPage clickCancel() {
     return clickButton("content-form:cancel");
   }
 
-  public TaskWidgetPage clickProceed() {
+  public NewDashboardPage clickProceed() {
     return clickButton("content-form:proceed");
   }
 
-  private TaskWidgetPage clickButton(String idSelector) {
+  private NewDashboardPage clickButton(String idSelector) {
     waitForElementDisplayed(By.id(idSelector), true);
-    $("button[id='" + idSelector + "']").click();
+    $("button[id='" + idSelector + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    clickByJavaScript($("button[id='" + idSelector + "']"));
     switchToDefaultContent();
-    return new TaskWidgetPage();
+    return new NewDashboardPage();
   }
 
 }

@@ -28,10 +28,7 @@ public class MainMenuPage extends TemplatePage {
     return ".layout-menu li[role='menuitem'] a.DASHBOARD";
   }
 
-  public TaskWidgetPage openTaskList() {
-    return NavigationHelper.navigateToTaskList();
-  }
-
+  @Override
   public CaseWidgetPage openCaseList() {
     return NavigationHelper.navigateToCaseList();
   }
@@ -40,6 +37,7 @@ public class MainMenuPage extends TemplatePage {
     return NavigationHelper.navigateToProcessList();
   }
 
+  @Override
   public void openUserSettingMenu() {
     $("#top-menu").shouldBe(appear, DEFAULT_TIMEOUT);
     $("a[id='user-settings-menu']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
@@ -64,6 +62,7 @@ public class MainMenuPage extends TemplatePage {
     }
   }
 
+  @Override
   public void closeMainMenu() {
     waitLeftMenuReady();
     if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(appear)) {
@@ -103,8 +102,14 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public void clickThirdPartyApp() {
-    waitForElementDisplayed(By.cssSelector("li[class*='thirdparty-menu-item'] > a"), true);
+    waitForElementDisplayed(By.cssSelector("li[class*='thirdparty-menu-item'] > a > span"), true);
     waitForElementClickableThenClick("li[class*='thirdparty-menu-item'] > a");
+  }
+
+  public void clickMainMenuItem(String name) {
+    WebElement element = driver.findElement(By.xpath(
+        String.format("//li[contains(@class, 'external-menu-item-main_dashboard') and .//span[text()='%s']]", name)));
+    element.click();
   }
 
   public void assertThirdPartyApp(String url) {
@@ -116,6 +121,11 @@ public class MainMenuPage extends TemplatePage {
     assertEquals(url, driver.getCurrentUrl());
   }
 
+  public void assertMainMenuItem(String name) {
+    WebDriver driver = getDriver();
+    String tilte = String.format("%s - Portal - Axon Ivy", name);
+    WaitHelper.assertTrueWithWait(() -> tilte.equals(driver.getTitle()));
+  }
 
   public boolean isProcessesDisplayed() {
     return isMenuItemDisplayed("Processes");

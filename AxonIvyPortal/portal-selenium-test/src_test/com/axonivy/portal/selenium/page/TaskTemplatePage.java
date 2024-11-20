@@ -110,7 +110,7 @@ public class TaskTemplatePage extends TemplatePage {
     return isElementDisplayedById("horizontal-case-info");
   }
 
-  public TaskWidgetPage finishCreateInvestmentTask() {
+  public NewDashboardPage finishCreateInvestmentTask() {
     WaitHelper.waitForIFrameAvailable(driver, "iFrame");
     waitForElementDisplayed(By.id("form:invested-amount"), true);
     $(By.id("form:invested-amount")).sendKeys("1");
@@ -180,10 +180,10 @@ public class TaskTemplatePage extends TemplatePage {
     driver.switchTo().defaultContent();
   }
 
-  public TaskWidgetPage finishIFrameReviewTask() {
+  public NewDashboardPage finishIFrameReviewTask() {
     waitForCloseButtonDisplayAfterInputedAprrovalNote("1");
     closeReviewPage();
-    return new TaskWidgetPage();
+    return new NewDashboardPage();
   }
 
   public boolean containsCaseDetails() {
@@ -221,9 +221,9 @@ public class TaskTemplatePage extends TemplatePage {
     $(cssSelector).sendKeys(value);
   }
 
-  public TaskWidgetPage clickSubmitButton() {
+  public NewDashboardPage clickSubmitButton() {
     clickOnSubmitButton();
-    return new TaskWidgetPage();
+    return new NewDashboardPage();
   }
 
   public void clickSubmitButtonProceed() {
