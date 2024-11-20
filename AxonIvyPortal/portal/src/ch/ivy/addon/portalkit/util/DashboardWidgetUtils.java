@@ -439,6 +439,9 @@ public class DashboardWidgetUtils {
       case CATEGORY -> {
         columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.CategoryColumnModel();
       }
+      case DESCRIPTION -> {
+        columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.DescriptionColumnModel();
+      }
       default -> {
       }
       }
