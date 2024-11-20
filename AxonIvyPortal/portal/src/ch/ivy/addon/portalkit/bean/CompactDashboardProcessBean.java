@@ -5,6 +5,8 @@ import static ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn.CATEGO
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +17,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
@@ -151,14 +154,35 @@ public class CompactDashboardProcessBean
   }
 
   public void startProcessWithCompactMode(DashboardProcess process) throws IOException {
+    startProcessWithCompactMode(process, false);
+  }
+
+  public void startProcessWithCompactMode(DashboardProcess process,
+      boolean isAiResult) throws IOException {
     Objects.requireNonNull(process, "Process must not be null");
     String link = process.getStartLink();
+
+    if (isAiResult) {
+      handleNavigateAsAiResult(process, link);
+      return;
+    }
+
     if (dashboardProcessBean.isExternalLink(process)) {
       dashboardProcessBean.redirectToLink(link, false);
       return;
     }
 
     dashboardProcessBean.redirectToLink(link, true);
+  }
+
+  private void handleNavigateAsAiResult(DashboardProcess process, String link)
+      throws IOException {
+    link = dashboardProcessBean.getRedirectLink(link,
+        !dashboardProcessBean.isExternalLink(process));
+
+    String statement = "parent.parent.redirectToUrlCommand([{name: 'url', value: '"
+        + URLDecoder.decode(link, StandardCharsets.UTF_8) + "'}])";
+    PrimeFaces.current().executeScript(statement);
   }
 
   public boolean isBrokenLink(DashboardProcess dashboardProcess) {

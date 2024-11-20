@@ -1339,10 +1339,19 @@ Dialogs:
     axonivy:
       portal:
         component:
+          ChatDashboard:
+            AddTool: Werkzeug hinzufügen
+            Tools: Werkzeuge
+            WelcomeHeaderText: Willkommen auf dem Axon Ivy Portal!
+            WelcomeText: Wir freuen uns, Sie an Bord zu haben. Das Axon Ivy Portal ist Ihr Tor zu einer nahtlosen und effizienten Erfahrung. Egal, ob Sie ein neuer Benutzer sind, der die Funktionen erkundet, oder ein wiederkehrender Besucher, wir sind hier, um Sie bei jedem Schritt zu unterstützen.
           ShareLinkDialog:
             CopyLink: Link kopieren
             Link: Link
             LinkCopied: Link kopiert
+          ToolList:
+            Attributes: Attribute
+            Collection: Sammlung
+            NoAvailableTools: Es gibt keine verfügbaren Tools
         dashboard:
           component:
             AccessibilityShortcuts:
@@ -1412,11 +1421,43 @@ Dialogs:
       invalidSizeMessage: Datei zu groß!
       maximumFileUploadElement: Es gibt bereits ein Datei-Upload-Element
 Labels:
+  AI:
+    Error:
+      CannotFindUser: ''
+      CannotStartTask: ''
+      InvalidTaskPriority: ''
+      InvalidTaskState: ''
+      NoMatchingCase: ''
+      NoMatchingProcesses: ''
+      NoMatchingTask: ''
+    FindCaseAIResult: ''
+    FindProcessAIResult: ''
+    FindTaskAIResult: ''
+    FindUserAIResult: ''
+    FoundCaseHeader: ''
+    FoundProcessesHeader: ''
+    FoundTaskHeader: ''
+    FoundUsersHeader: ''
+    ProcessInfoHeader: ''
+    ProcessInfoHeaderWithParameters: ''
+    ProcessParameterInfo: ''
+    ProcessParameterInfoWithValue: ''
+    TaskDetailsResult: ''
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
   CreateNewDashboard: Neues Dashboard erstellen
   EditDescription: Beschreibung bearbeiten
   Enums:
+    ChatbotCandidateQuestion:
+      EXPLORE:
+        header: Explore
+        question: Was sind die wichtigsten Merkmale des Axon Ivy Portals?
+      INTERACT:
+        header: Interact
+        question: Listen Sie mir alle Aufgaben auf, die in der laufenden Woche erledigt werden müssen
+      TUTORIAL:
+        header: Tutorial
+        question: Wo kann ich die Dokumentation oder Tutorials für das Axon Ivy Portal finden?
     DashboardStandardCaseColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung

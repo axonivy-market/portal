@@ -1336,10 +1336,19 @@ Dialogs:
     axonivy:
       portal:
         component:
+          ChatDashboard:
+            AddTool: Ajouter un outil
+            Tools: Outils
+            WelcomeHeaderText: Bienvenue sur le portail Axon Ivy !
+            WelcomeText: Nous sommes ravis de vous compter parmi nous. Le portail Axon Ivy est votre porte d'entrée pour une expérience transparente et efficace. Que vous soyez un nouvel utilisateur qui explore les fonctionnalités ou un visiteur habituel, nous sommes là pour vous aider à chaque étape.
           ShareLinkDialog:
             CopyLink: Copier le lien
             Link: Lien
             LinkCopied: Lien copié
+          ToolList:
+            Attributes: Attributs
+            Collection: Collection
+            NoAvailableTools: Il n'y a pas d'outils disponibles
         dashboard:
           component:
             AccessibilityShortcuts:
@@ -1441,11 +1450,43 @@ Dialogs:
       invalidSizeMessage: Le fichier est trop volumineux !
       maximumFileUploadElement: Il existe déjà un élément de téléchargement de fichiers
 Labels:
+  AI:
+    Error:
+      CannotFindUser: ''
+      CannotStartTask: ''
+      InvalidTaskPriority: ''
+      InvalidTaskState: ''
+      NoMatchingCase: ''
+      NoMatchingProcesses: ''
+      NoMatchingTask: ''
+    FindCaseAIResult: ''
+    FindProcessAIResult: ''
+    FindTaskAIResult: ''
+    FindUserAIResult: ''
+    FoundCaseHeader: ''
+    FoundProcessesHeader: ''
+    FoundTaskHeader: ''
+    FoundUsersHeader: ''
+    ProcessInfoHeader: ''
+    ProcessInfoHeaderWithParameters: ''
+    ProcessParameterInfo: ''
+    ProcessParameterInfoWithValue: ''
+    TaskDetailsResult: ''
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
   CreateNewDashboard: Créer un nouveau tableau de bord
   EditDescription: Editer la description
   Enums:
+    ChatbotCandidateQuestion:
+      EXPLORE:
+        header: Explore
+        question: Quelles sont les principales caractéristiques du portail Axon Ivy ?
+      INTERACT:
+        header: Interact
+        question: Listez toutes les tâches qui doivent être accomplies dans la semaine en cours
+      TUTORIAL:
+        header: Tutorial
+        question: Où puis-je trouver la documentation ou les tutoriels pour le portail Axon Ivy ?
     DashboardStandardCaseColumn:
       ACTIONS: Actions
       APPLICATION: Application

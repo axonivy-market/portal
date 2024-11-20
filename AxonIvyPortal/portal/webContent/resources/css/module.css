@@ -5744,5 +5744,18 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page {
 body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-button {
   color: var(--widget-header-icon);
 }
-
 /* =================== PORTAL BUTTON END ====================== */
+
+/* AI logo */
+.layout-topbar-light .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li > a:hover img.topbar-item-image {
+  background-color: #E8EDF0;
+  transition: background-color 0.2s;
+}
+
+/* AI result */
+
+.iframe-body.ai-result .layout-main,
+.iframe-body.ai-result .layout-content,
+.iframe-body.ai-result .grid-stack {
+  padding: 0;
+}

@@ -41,7 +41,7 @@
       </p:column>
 
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-        width="#{dashboardModificationBean.hasExportDashboardPermission() ? '120' : '210'}">
+        width="#{dashboardModificationBean.hasExportDashboardPermission() ? '120' : '210'}" styleClass="text-center">
       <p:column rendered="#{isPublicDashboard}"  width="20%">
       <f:facet name="header">
         <div class="flex align-items-center gap-2">
@@ -56,7 +56,7 @@
         <div id="dashboard-configuration-action-group" class="dashboard-configuration-action-group">
           <h:panelGroup layout="block">
             <p:commandButton id="dashboard-configuration-action-button" icon="fa fa-ellipsis-h"
-              styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page mr-3" type="button" />
+              styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page" type="button" />
             <p:menu id="dashboard-configuration-action-menu" styleClass="w-auto" overlay="true" trigger="dashboard-configuration-action-button"
               my="right top" at="right bottom">
               <p:menuitem id="edit" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(dashboard)}"
@@ -88,9 +88,6 @@
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
             </p:menu>
           </h:panelGroup>
-          <h:panelGroup styleClass=" ui-button-outlined action-column-icon-button u-mar-right-5">
-            <i id="reorder-button-#{dashboard.id}" class="si si-navigation-menu dashboard-icon-drag-drop" />
-          </h:panelGroup>
         </div>
           <h:form style="display:none"
             rendered="#{dashboardModificationBean.hasExportDashboardPermission()}">
@@ -101,6 +98,11 @@
               <p:fileDownload value="#{dashboardModificationBean.exportToJsonFile(dashboard)}" />
             </p:commandButton>
           </h:form>
+      </p:column>
+      <p:column styleClass="settings-table-reorder w-3rem">
+        <h:panelGroup styleClass=" ui-button-outlined action-column-icon-button u-mar-right-5">
+          <i id="reorder-button-#{dashboard.id}" class="si si-navigation-menu dashboard-icon-drag-drop" />
+        </h:panelGroup>
       </p:column>
     </p:dataTable>
   </h:panelGroup>
