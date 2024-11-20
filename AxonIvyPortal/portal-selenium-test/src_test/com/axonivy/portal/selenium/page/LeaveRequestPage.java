@@ -22,6 +22,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     return "[id='content-container']";
   }
 
+  @Override
   public void waitForIFrameContentVisible() {
     $("div[id='content']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
@@ -107,11 +108,11 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     findElementById("leave-request:approver-comment").sendKeys(approverComment);
   }
 
-  public TaskWidgetPage clickApproveBtn() {
+  public NewDashboardPage clickApproveBtn() {
     waitForElementClickableThenClick(By.id("leave-request:approved-btn"));
     waitPageDisappear();
     switchBackToParent();
-    return new TaskWidgetPage();
+    return new NewDashboardPage();
   }
 
   public TaskTemplatePage finishLeaveRequest() {
@@ -121,10 +122,10 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     return new TaskTemplatePage();
   }
 
-  public TaskWidgetPage clickRejectBtn() {
+  public NewDashboardPage clickRejectBtn() {
     waitForElementClickableThenClick(By.id("leave-request:rejected-btn"));
     waitPageDisappear();
     switchBackToParent();
-    return new TaskWidgetPage();
+    return new NewDashboardPage();
   }
 }
