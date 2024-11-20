@@ -1103,7 +1103,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     toUser: User
     userSelectionWatermark: Please select a user...
   taskDetails:
-    addDocumentHelpText: To upload files, drag & drop or select files
+    addDocumentHelpText: 'To upload files, drag & drop or '
     addNoteHelpText: Write your text here.
     afterEscalation: After escalation
     businessCase: Business Case

@@ -1100,7 +1100,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     toUser: Usuario
     userSelectionWatermark: Por favor seleccione un usuario...
   taskDetails:
-    addDocumentHelpText: Para cargar archivos, arrastrar y soltar o seleccionar archivos
+    addDocumentHelpText: 'Para cargar archivos, arrastrar y soltar o '
     addNoteHelpText: Escriba su texto aquí.
     afterEscalation: Después de la escalada
     businessCase: Caso comercial

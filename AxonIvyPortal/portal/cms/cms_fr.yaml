@@ -1097,7 +1097,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     toUser: Utilisateur
     userSelectionWatermark: Veuillez sélectionner un utilisateur…
   taskDetails:
-    addDocumentHelpText: Pour ajouter des fichiers, glissez-les ou sélectionnez-les
+    addDocumentHelpText: 'Pour ajouter des fichiers, glissez-les ou '
     addNoteHelpText: Ecrivez votre texte ici
     afterEscalation: Après escalade
     businessCase: Dossier

@@ -1101,7 +1101,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     toUser: Benutzer
     userSelectionWatermark: Bitte wählen Sie einen Benutzer aus...
   taskDetails:
-    addDocumentHelpText: Zum Hochladen Dateien per Drag & Drop hier ablegen oder Dateien auswählen
+    addDocumentHelpText: 'Zum Hochladen Dateien per Drag & Drop hier ablegen oder '
     addNoteHelpText: Schreiben Sie hier Ihren Text
     afterEscalation: Nach Eskalation
     businessCase: Vorgang
