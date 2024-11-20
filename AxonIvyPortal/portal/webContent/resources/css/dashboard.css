@@ -659,8 +659,6 @@ body .dashboard__table--edit.ui-datatable tbody tr.ui-state-hover {
   cursor: move;
 }
 
-body .widget__content .ui-datatable thead th,
-body .widget__content .ui-datatable tbody td,
 body .dashboard__table--edit.ui-datatable-resizable thead th,
 body .dashboard__table--edit.ui-datatable-resizable tbody td, .ui-datatable-resizable tfoot td {
   white-space: normal;
