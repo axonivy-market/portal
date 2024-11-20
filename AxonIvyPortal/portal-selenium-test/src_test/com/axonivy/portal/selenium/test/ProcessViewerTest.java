@@ -32,7 +32,6 @@ public class ProcessViewerTest extends BaseTest {
   private static final String PROCESS_VIEWER = "Process Viewer";
   private NewDashboardPage newDashboardPage;
   private CaseWidgetPage caseWidgetPage;
-  private NewDashboardPage taskWidgetPage;
 
   @Override
   @BeforeEach
@@ -58,11 +57,10 @@ public class ProcessViewerTest extends BaseTest {
   @Test
   public void testOpenProcessViewerFromCase() {
     createTestingTasks();
-    gotoCaseList();
-    caseWidgetPage.openActionStepMenu();
-    caseWidgetPage.clickOnProcessViewerOption();
-    WaitHelper.assertTrueWithWait(() -> newDashboardPage.countBrowserTab() > 1);
-    newDashboardPage.switchLastBrowserTab();
+    caseWidgetPage = NavigationHelper.navigateToCaseList();
+    caseWidgetPage.openProcessViewer(0);
+    WaitHelper.assertTrueWithWait(() -> caseWidgetPage.countBrowserTab() > 1);
+    caseWidgetPage.switchLastBrowserTab();
     ProcessViewerPage processViewerPage = new ProcessViewerPage();
     assertTrue("Categoried Leave Request".equalsIgnoreCase(processViewerPage.getProcessRequestPath()));
   }
@@ -82,11 +80,8 @@ public class ProcessViewerTest extends BaseTest {
   @Test
   public void testCanSeeProcessViewerOptionInCaseAction() {
     createTestingTasks();
-    gotoCaseList();
-    caseWidgetPage.openActionStepMenu();
-    var steps = caseWidgetPage.getAvailableActionSteps();
-    assertTrue(steps.contains(PROCESS_VIEWER));
-
+    caseWidgetPage = NavigationHelper.navigateToCaseList();
+    assertTrue(caseWidgetPage.getActiveCaseActionsInFullCaseListPage(0).texts().contains(PROCESS_VIEWER));
     var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
     caseDetailsPage.openActionMenu();
     var detailPageSteps = caseDetailsPage.getAvailableActionSteps();
@@ -96,11 +91,9 @@ public class ProcessViewerTest extends BaseTest {
   @Test
   public void testNotShowProcessViewerForTechnicalCase() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    gotoCaseList();
-    caseWidgetPage.openActionStepMenu();
-    var steps = caseWidgetPage.getAvailableActionSteps();
-    assertTrue(steps.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_NOT_FOUND_IN_CASE_LIST);
-
+    caseWidgetPage = NavigationHelper.navigateToCaseList();
+    assertTrue(caseWidgetPage.getActiveCaseActionsInFullCaseListPage(0).texts().contains(PROCESS_VIEWER),
+        PROCESS_VIEWER_IS_NOT_FOUND_IN_CASE_LIST);
     var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Order Pizza");
     caseDetailsPage.clickRelatedCaseActionButton(0);
     var detailPageSteps = caseDetailsPage.getAvailableActionStepsOfTechnicalCase(0);
@@ -124,11 +117,9 @@ public class ProcessViewerTest extends BaseTest {
   public void testProcessViewerPermissionInCaseAction() {
     redirectToRelativeLink(processViewerPermissionExampleUrl);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
-    gotoCaseList();
-    caseWidgetPage.openActionStepMenu();
-    var steps = caseWidgetPage.getAvailableActionSteps();
-    assertTrue(!steps.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_FOUND_IN_CASE_LIST);
-
+    caseWidgetPage = NavigationHelper.navigateToCaseList();
+    assertFalse(caseWidgetPage.getActiveCaseActionsInFullCaseListPage(0).texts().contains(PROCESS_VIEWER),
+        PROCESS_VIEWER_IS_FOUND_IN_CASE_LIST);
     var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Process Viewer Permission Example Case");
     caseDetailsPage.openActionMenu();
     var detailPageSteps = caseDetailsPage.getAvailableActionSteps();
@@ -153,11 +144,9 @@ public class ProcessViewerTest extends BaseTest {
   public void testCaseMapViewerPermissionInCaseAction() {
     redirectToRelativeLink(createTestingCaseMapUrl);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
-    gotoCaseList();
-    caseWidgetPage.openActionStepMenu();
-    var steps = caseWidgetPage.getAvailableActionSteps();
-    assertTrue(steps.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_NOT_FOUND_IN_CASE_LIST);
-
+    caseWidgetPage = NavigationHelper.navigateToCaseList();
+    assertTrue(caseWidgetPage.getActiveCaseActionsInFullCaseListPage(0).texts().contains(PROCESS_VIEWER),
+        PROCESS_VIEWER_IS_NOT_FOUND_IN_CASE_LIST);
     var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Business Case Map: Leave Request");
     caseDetailsPage.openActionMenu();
     var detailPageSteps = caseDetailsPage.getAvailableActionSteps();
@@ -176,13 +165,6 @@ public class ProcessViewerTest extends BaseTest {
     var taskDetailsPage = taskWidget.openTaskDetailsPageByAction(0);
     var detailActions = taskDetailsPage.getActiveTaskAction();
     assertTrue(detailActions.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_NOT_FOUND_ON_TASK_DETAILS_PAGE);
-  }
-
-  private CaseWidgetPage gotoCaseList() {
-    newDashboardPage = new NewDashboardPage();
-    var mainMenuPage = newDashboardPage.openMainMenu();
-    caseWidgetPage = mainMenuPage.selectCaseMenu();
-    return caseWidgetPage;
   }
 
   private void gotoTaskList() {

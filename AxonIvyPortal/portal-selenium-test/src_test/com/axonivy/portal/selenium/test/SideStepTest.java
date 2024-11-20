@@ -27,7 +27,7 @@ public class SideStepTest extends BaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
-    int sideSteps = casePage.countSideStepItems();
+    int sideSteps = casePage.countSideStepItems(0, "default_case_list_dashboard_case_1");
     assertEquals(2, sideSteps);
   }
 

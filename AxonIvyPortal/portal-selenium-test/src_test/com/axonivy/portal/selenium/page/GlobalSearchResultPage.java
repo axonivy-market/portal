@@ -75,20 +75,6 @@ public class GlobalSearchResultPage extends TemplatePage {
     $("[id='search-results-tabview:process-results:process-list']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public int countCase() {
-    CaseWidgetPage caseWidgetPage = getCaseWidget();
-    return caseWidgetPage.getCasesList().size();
-  }
-
-  private CaseWidgetPage getCaseWidget() {
-    return new CaseWidgetPage("search-results-tabview:case-results");
-  }
-
-  public String getCaseResult(int index) {
-    CaseWidgetPage caseWidgetPage = getCaseWidget();
-    return caseWidgetPage.getCaseNameAt(index);
-  }
-
   public void startProcess(String name) {
     ProcessWidgetPage processWidgetPage = getProcessWidget();
     if (processWidgetPage.isImageModeActivated()) {
@@ -113,11 +99,6 @@ public class GlobalSearchResultPage extends TemplatePage {
   public String getTaskResult(int index) {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage("search-results-tabview:task-results");
     return taskWidgetPage.getNameOfTaskAt(index);
-  }
-
-  public boolean isCaseResultEmpty() {
-    CaseWidgetPage caseWidgetPage = getCaseWidget();
-    return caseWidgetPage.isEmpty();
   }
 
   public boolean isProcessGroupDisplay(String group) {

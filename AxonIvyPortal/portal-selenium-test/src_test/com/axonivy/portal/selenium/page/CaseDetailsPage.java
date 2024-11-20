@@ -458,9 +458,9 @@ public class CaseDetailsPage extends TemplatePage {
     }
   }
 
-  public boolean isRelatedCaseInfoColumnIsDisplay() {
+  public SelenideElement getRelatedCaseInfoColumn() {
     waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
-    return $("th.history-related-case").isDisplayed();
+    return $("th.history-related-case");
   }
 
   public String getCaseName() {

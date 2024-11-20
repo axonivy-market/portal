@@ -57,13 +57,8 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     refreshPage();
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 600));
     mainMenuPage.closeMainMenu();
-    caseWidgetPage.openActionStepMenu(0);
+    caseWidgetPage.clickOnCaseActionLink(0);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "case-key-information");
-
-    ScreenshotUtils.maximizeBrowser();
-    SelenideElement saveFilterDialog = caseWidgetPage.getSaveFilterDialog();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(saveFilterDialog,
-        ScreenshotUtils.CASE_WIDGET_FOLDER + "how-to-create-case-filter", new ScreenshotMargin(100, 200));
   }
 
   @Test

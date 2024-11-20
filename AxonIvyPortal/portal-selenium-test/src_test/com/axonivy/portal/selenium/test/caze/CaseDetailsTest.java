@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.test.caze;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Condition.text;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.IOException;
@@ -15,7 +16,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
-import com.axonivy.portal.selenium.common.CaseState;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
@@ -85,8 +85,6 @@ public class CaseDetailsTest extends BaseTest {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
-    // MainMenuPage mainMenuPage = new MainMenuPage();
-    // mainMenuPage.openCaseList();
     CaseWidgetPage caseWidgetPage = NavigationHelper.navigateToCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(ORDER_PIZZA);
     caseDetailsPage.getRelatedCasesComponents().shouldHave(sizeGreaterThanOrEqual(1));
@@ -147,8 +145,6 @@ public class CaseDetailsTest extends BaseTest {
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     newDashboardPage.waitPageLoaded();
-    // MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    // mainMenuPage.waitPageLoaded();
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsOfCaseHasName(LEAVE_REQUEST_CASE_NAME);
     detailsPage.waitPageLoaded();
@@ -159,7 +155,6 @@ public class CaseDetailsTest extends BaseTest {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     newDashboardPage.waitPageLoaded();
-    // MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
     detailsPage.waitPageLoaded();
@@ -173,8 +168,7 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.onClickDestroyCase();
     detailsPage.confimDestruction();
     CaseWidgetPage casePage = new CaseWidgetPage();
-    CaseState caseState = casePage.getCaseState(0);
-    assertEquals(CaseState.DESTROYED, caseState);
+    casePage.stateOfFirstCase().shouldHave(text("Destroyed"));
   }
 
   @Test
@@ -208,7 +202,6 @@ public class CaseDetailsTest extends BaseTest {
     redirectToRelativeLink(createTestingCaseMapUrl);
     login(TestAccount.DEMO_USER);
     newDashboardPage.waitPageLoaded();
-    // MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openCaseDetailsFromActionMenuByCaseName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
     // check business case information is hidden in business case details
@@ -340,20 +333,16 @@ public class CaseDetailsTest extends BaseTest {
   public void testRelatedCaseSideSteps() {
     redirectToRelativeLink(createTestingCaseMapUrl);
     newDashboardPage.waitPageLoaded();
-    // MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    // mainMenuPage.waitPageLoaded();
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsOfCaseHasName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
     assertEquals(1, detailsPage.countRelatedCases());
     detailsPage.clickRelatedCaseActionButton(0);
     detailsPage.clickRelatedCaseSubmitLeaveReason(0);
-    // mainMenuPage = newDashboardPage.openMainMenu();
     casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsOfCaseHasName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
     assertEquals(2, detailsPage.countRelatedCases());
     detailsPage.clickRelatedCaseActionButton(0);
     detailsPage.clickRelatedCaseUploadAdditionalDocument(0);
-    // mainMenuPage = newDashboardPage.openMainMenu();
     casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsOfCaseHasName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
     assertEquals(3, detailsPage.countRelatedCases());
@@ -414,7 +403,6 @@ public class CaseDetailsTest extends BaseTest {
     redirectToRelativeLink(createTestingCaseMapUrl);
     login(TestAccount.DEMO_USER);
     newDashboardPage.waitPageLoaded();
-    // MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openCaseDetailsFromActionMenuByCaseName(BUSINESS_CASE_MAP_LEAVE_REQUEST);
     assertTrue(detailsPage.checkDoneTasksOfHistory());
@@ -487,7 +475,6 @@ public class CaseDetailsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     newDashboardPage = new NewDashboardPage();
-    // MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     return casePage;
   }
@@ -529,11 +516,10 @@ public class CaseDetailsTest extends BaseTest {
     createTestingCaseContainTechnicalCases();
     assertTrue(detailsPage.isShowRelatedCaseCheckbox());
     detailsPage.clickOnRelatedCaseCheckbox(true);
-    assertTrue(detailsPage.isRelatedCaseInfoColumnIsDisplay());
+    detailsPage.getRelatedCaseInfoColumn().shouldBe(Condition.appear);
     detailsPage.clickOnRelatedCaseCheckbox(false);
-    assertFalse(detailsPage.isRelatedCaseInfoColumnIsDisplay());
+    detailsPage.getRelatedCaseInfoColumn().shouldBe(Condition.disappear);
     updateGlobalVariable(Variable.HIDE_RELATED_CASE_INFO_FROM_HISTORY.getKey(), "true");
-    // MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     CaseWidgetPage casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsOfCaseHasName(ORDER_PIZZA);
     assertFalse(detailsPage.isShowRelatedCaseCheckbox());
