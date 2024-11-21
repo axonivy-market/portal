@@ -13,7 +13,7 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
@@ -62,8 +62,9 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
     CaseWidgetPage caseWidgetPage = NavigationHelper.navigateToCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
     String caseUuid = caseDetailsPage.getCaseUuid();
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskIFrameTemplatePage taskTemplatePage = taskWidget.startTaskIFrameByIndex(0);
     taskTemplatePage.openCaseInfo();
     taskTemplatePage.addNewNote(NOTE_CONTENT);
     String caseName = taskTemplatePage.getCaseName();

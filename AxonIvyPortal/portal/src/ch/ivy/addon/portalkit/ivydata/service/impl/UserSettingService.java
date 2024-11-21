@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
@@ -26,19 +28,15 @@ public class UserSettingService {
   }
 
   public void saveDefaultSortFieldOfTaskList(String fieldName, String sortDirection) {
-    IUser user = getSessionUser();
-    user.setProperty(UserProperty.DEFAULT_SORT_FIELD_OF_TASK_LIST, fieldName);
-    user.setProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_TASK_LIST, sortDirection);
-
     UserUtils.setSessionTaskSortAttribute(null);
   }
 
   public String getDefaultSortFieldOfTaskList() {
-    return getUserProperty(UserProperty.DEFAULT_SORT_FIELD_OF_TASK_LIST);
+    return EMPTY;
   }
 
   public String getDefaultSortDirectionOfTaskList() {
-    return getUserProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_TASK_LIST);
+    return EMPTY;
   }
 
   public void saveDefaultSortFieldOfCaseList(String fieldName, String sortDirection) {

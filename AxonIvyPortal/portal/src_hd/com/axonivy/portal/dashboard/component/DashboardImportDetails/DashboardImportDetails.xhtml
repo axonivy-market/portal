@@ -150,6 +150,16 @@
                     value="#{dashboard.description}" required="false"
                     styleClass="manage-dashboard__input" />
                 </div>
+                <h:panelGroup layout="block" rendered="#{cc.attrs.isPublicDashboard}">
+                  <div class="ui-g-4 manage-dashboard__label">
+                    <p:outputLabel for="dashboard-description"
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayAsTopMenu')}" />
+                  </div>
+                  <div class="ui-g-8 ui-fluid">
+                    <p:selectBooleanCheckbox id="main-dashboard-menu-item" value="#{dashboard.isTopMenu}"
+                       required="false" />
+                  </div>
+                </h:panelGroup>
               </div>
             </p:tab>
           </p:tabView>

@@ -462,6 +462,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     destroyTaskHeaderText: Destroy this task?
     detail: Details
     display: Display
+    displayAsTopMenu: Display as top menu
     displayName: Display name
     dragAndDropFile: 'Drag and drop a file or '
     dragAndDropImage: 'Drag and drop an image or '
@@ -578,6 +579,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: The process
     timeInformation: Time Information
     timestamp: Timestamp
+    topMenuItem: Top Menu Item
     type: Type
     typeAdmin: All administrators
     typeAllUsers: All users
@@ -867,6 +869,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: This widget displays relevant task information according to defined settings.
     taskStart: Task start
     taskWidgetConfiguration: Task Widget Configuration
+    topMenuItemInfo: If the "Top Menu Item" checkbox is checked, the dashboard appears as a top-level item in the navigation bar, sorted by list position. If unchecked, it appears as a sub-item under “Dashboard”, also sorted by list position.
     widgetInfo: Widget information
     widgetInfoIcon: Widget Information Icon
     widgetTitle: Widget Title

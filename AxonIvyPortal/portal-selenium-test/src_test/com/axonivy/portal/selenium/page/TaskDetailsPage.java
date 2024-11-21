@@ -318,9 +318,9 @@ public class TaskDetailsPage extends TemplatePage {
     switchToIframeWithId("i-frame-case-details");
   }
 
-  public TaskWidgetPage goBackToTaskListFromTaskDetails() {
+  public NewDashboardPage goBackToTaskListFromTaskDetails() {
     clickBackButton();
-    return new TaskWidgetPage();
+    return new NewDashboardPage();
   }
 
   public TaskIFrameTemplatePage clickStartTask() {
