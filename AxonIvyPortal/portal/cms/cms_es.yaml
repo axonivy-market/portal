@@ -584,6 +584,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Todos los administradores
     typeAllUsers: Todos los usuarios
     typeOnlyMe: Solo yo
+    uploadHere: Cargue aquí
     uploadOneHere: Seleccionar
     user: '{0} usuario'
     users: Usuarios
