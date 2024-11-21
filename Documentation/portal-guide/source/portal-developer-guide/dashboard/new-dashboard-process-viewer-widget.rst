@@ -10,10 +10,10 @@ The Process Viewer Widget of the Portal dashboard provides a visual representati
 
 Below is a sample JSON definition of a process viewer widget in the Portal dashboard
 
-.. code-block:: html
+.. code-block:: javascript
 
    {
-      "type": "process-viewer", 
+      "type": "process-viewer",
       "id": "process_viewer_1",
       "names": [
          {
@@ -22,9 +22,12 @@ Below is a sample JSON definition of a process viewer widget in the Portal dashb
          }
       ],
       "layout": {
-         "x": 0, "y": 0, "w": 12, "h": 6
-      }, 
-      "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp",
+         "x": 0,
+         "y": 0,
+         "w": 12,
+         "h": 6
+      },
+      "processPath": "designer/portal-developer-examples/Start Processes/CreateTestData/createNewPayment.ivp",
       "showFullscreenMode": true
    }
 
