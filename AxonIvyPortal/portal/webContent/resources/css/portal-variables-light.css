@@ -368,4 +368,7 @@
   --dashboard-action-container-border-color: var(--ivy-primary-color-grey-light);
   --dashboard-action-container-description-color: var(--ivy-primary-color-grey-dark);
   --dashboard-icon-drag-drop-color: var(--ivy-primary-color-grey-medium);
+  
+  /* Leave task warning message*/
+  --warning-before-leave-task: #757575;
 }
