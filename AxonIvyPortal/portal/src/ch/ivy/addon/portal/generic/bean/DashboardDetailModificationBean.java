@@ -91,7 +91,6 @@ import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
-import ch.ivy.addon.portalkit.util.DefaultDashboardUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
@@ -693,7 +692,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     } else {
       dashboardService.save(selectedDashboard);
     }
-    DefaultDashboardUtils.invalidateDefaultTaskCaseListDashboardIfNeeded(selectedDashboard.getId());
     return selectedDashboard;
   }
 
