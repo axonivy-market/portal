@@ -3,9 +3,8 @@
 Full Task List
 **************
 
-The **Full Task List** page shows you the tasks, as well as, advanced search and filter
-capabilities. You can reach the page by using the |task-list-icon| :guilabel:`Tasks` 
-link in the |ivy| Portal menu.
+The **Full Task List** page is a dashboard featuring a single, full-width task widget. 
+You can reach the page by using the |task-list-icon| :guilabel:`Tasks` link in the |ivy| Portal menu.
 
 .. note::
 
@@ -20,14 +19,6 @@ link in the |ivy| Portal menu.
    the tasks belonging to you but 
    all open tasks.     
 
-   Visibility tasks assigned to roles depending on state:
-
-   - Open: Visible for all members
-
-   - In Progress: Visible for all members, but "parked" for working user (no actions possible for other role members)
-
-   - Done: Visible for all members
-
 |navigate-to-full-task-list-page|
 
 On the top of the **Full Task List** page you see next to the heading
@@ -39,17 +30,19 @@ For each task the following key information is shown in the list:
 
 #. Priority
 
-#. Name and Description
+#. Task ID
+
+#. Name
+
+#. Description
 
 #. Responsible user or role
 
-#. Task ID
+#. State
 
 #. Creation Date
 
 #. Expiry Date
-
-#. Status
 
 #. Category
 
@@ -57,8 +50,10 @@ For each task the following key information is shown in the list:
 
 |task-key-information|
 
-Furthermore, at the end of each row you find a side step menu of key features in
+Furthermore, at the end of each row you find the `Actions` menu of key features in
 handling tasks:
+
+#. Details
 
 #. Reset Task
 
@@ -66,11 +61,13 @@ handling tasks:
 
 #. Reserve
 
-#. Destroy Task
+#. Destroy
 
-#. Trigger Escalation Task
+#. Trigger Escalation
 
-#. Add Ad-hoc Task
+#. Workflow Events
+
+#. Process Viewer
 
 .. note::
 
@@ -80,7 +77,7 @@ handling tasks:
    :bdg-ref-warning:`🔑TaskDisplayWorkflowEventAction <TaskDisplayWorkflowEventAction>` to allow a user to see the corresponding buttons and menu items.
 
 Finally, you have the possibility to access the full set of the task
-data by clicking on the row containing the task Name and Description.
+data by clicking on `Actions` then clicking on the `Details` menu item.
 
 The task details are separated into 4 different sections:
 
@@ -105,110 +102,14 @@ The task details are separated into 4 different sections:
 
 |detailed-task-information|
 
+HowTo: Configure the full task list
+-----------------------------------
 
-HowTo: Use existing filter
---------------------------
+The full task list page functions as a dashboard accessible from the top-level menu. 
+To customize the task list, navigate to :ref:`Dashboard configuration <dashboard-configuration>`.
 
-.. hint:: 
-   If there are no public filters and you didn’t create any filters so far,
-   there might be no filters available. In this case, you must create a filter
-   first. This is described in detail in HowTo: Create new filter.   
-
-#. Click on the :guilabel:`Save Filter` dropdown menu. 
-
-#. Select the filter you want to use.
-
-HowTo: Create new filter
-------------------------
-
-#. Click on the button :guilabel:`More` to select one of the available filters.
-   For a list of available filters, see  `Task filter`_.
-
-#. Click on the newly added filter and configure it.
-
-#. Add more filters by clicking on the button :guilabel:`Filter` again.
-
-#. Drop filters by clicking on the |delete-circle-icon| icon next to
-   the filter.
-
-#. When finished defining your filter, click on the button **Save
-   filter**.
-
-#. The :guilabel:`Save filter` dialog is opened.
-
-#. Under :guilabel:`Filter name`, provide a recognizable name for the filter.
-
-#. Under :guilabel:`Filter visibility`, you can select if the filter is only
-   visible for you or shall be available to all users.
-
-#. Save the filter by clicking the button :guilabel:`Ok`.
-
-|how-to-create-task-filter|
-
-
-.. centered:: _`Task filter`
-
-+-----------------------------------+-----------------------------------+
-| Criteria                          | Description                       |
-+===================================+===================================+
-| ID                                | The filter lets you specify the   |
-|                                   | task identify number              |
-+-----------------------------------+-----------------------------------+
-| Name                              | The filter lets you specify the   |
-|                                   | task name                         |
-+-----------------------------------+-----------------------------------+
-| Completed on (from / to)          | This filter lets you specify task |
-|                                   | complete period.                  |
-+-----------------------------------+-----------------------------------+
-| Created (from / to)               | This filter lets you specify in   |
-|                                   | which time period the task was    |
-|                                   | created.                          |
-+-----------------------------------+-----------------------------------+
-| Description                       | This filter lets you search for   |
-|                                   | keywords within the task          |
-|                                   | description.                      |
-+-----------------------------------+-----------------------------------+
-| Expiry (from / to)                | This filter lets you specify in   |
-|                                   | which time period the task will   |
-|                                   | expire.                           |
-+-----------------------------------+-----------------------------------+
-| Priority                          | This filter lets you specify the  |
-|                                   | priority of the tasks to be       |
-|                                   | shown.                            |
-+-----------------------------------+-----------------------------------+
-| Responsible                       | This filter lets you specify a    |
-|                                   | user or role which is responsible |
-|                                   | for the task.                     |
-+-----------------------------------+-----------------------------------+
-| State                             | This filter lets you specify the  |
-|                                   | task state.                       |
-+-----------------------------------+-----------------------------------+
-| Category                          | This filter lets you specify      |
-|                                   | the task category.                |
-+-----------------------------------+-----------------------------------+
-| Missing Activator                 | This filter is only for Admin and |
-|                                   | lets you find tasks which have no |
-|                                   | activator, activator is not found |
-|                                   | or is disabled.                   |
-+-----------------------------------+-----------------------------------+
-| Application                       | This filter lets you select the   |
-|                                   | application                       |
-+-----------------------------------+-----------------------------------+
-
-
-
-.. hint::
-   #. You can create a new filter by selecting an existing filter, reconfiguring it, and saving it.
-
-   #. Only users with the admin role ``AXONIVY_PORTAL_ADMIN`` can save the filter for all users.
-
-HowTo: Configure displayed tasks in the Full Task List
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-#. To choose columns to display, click on :guilabel:`Manage columns`. Then you could choose displayed columns by checking the related checkboxes.
-
-#. To sort data, click on the column header. To change sort direction, click on that column header one more time.
-   Note that some columns do not support sorting.
+To restore the dashboard to its default settings, including the menu icon and task list layout, delete the dashboard. Portal will automatically 
+recreate the dashboard with the default settings.
 
 HowTo: Move and Resize Widgets in Task Details
 ----------------------------------------------
@@ -322,14 +223,6 @@ HowTo: Show Workflow Events
 
 |workflow-events-table|
 
-HowTo: Export Task List
------------------------
-
-You may export the Task List by clicking on the button **Export to Excel**.
-
-|export-to-excel-button|
-
-
 HowTo: Share Task Details
 -------------------------
 
@@ -352,15 +245,12 @@ HowTo: Share Task Details
 .. |detailed-task-information-note| image:: ../../screenshots/task-detail/detailed-task-information-note.png
 .. |detailed-task-information-documents| image:: ../../screenshots/task-detail/detailed-task-information-documents.png
 .. |detailed-task-information| image:: ../../screenshots/task-detail/detailed-task-information.png
-.. |how-to-create-task-filter| image:: ../../screenshots/task/how-to-create-task-filter.png
 .. |how-to-upload-document| image:: ../../screenshots/task-detail/how-to-upload-document.png
 .. |how-to-delete-document| image:: ../../screenshots/task-detail/how-to-delete-document.png
 .. |how-to-add-note| image:: ../../screenshots/task-detail/how-to-add-note.png
 .. |how-to-show-note-details| image:: ../../screenshots/task-detail/how-to-show-note-details.png
 .. |how-to-export-note-details| image:: ../../screenshots/task-detail/how-to-export-note-details.png
-.. |how-to-show-workflow-event| image:: ../../screenshots/task-detail/how-to-show-workflow-event.png
 .. |workflow-events-table| image:: ../../screenshots/task-detail/workflow-events-table.png
-.. |export-to-excel-button| image:: ../../screenshots/task/export-to-excel-button.png
 .. |how-to-switch-to-view-mode| image:: ../../screenshots/task-detail/how-to-switch-to-view-mode.png
 .. |how-to-switch-to-edit-mode| image:: ../../screenshots/task-detail/how-to-switch-to-edit-mode.png
 .. |how-to-reset-to-default| image:: ../../screenshots/task-detail/how-to-reset-to-default.png
