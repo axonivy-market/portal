@@ -545,12 +545,19 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 
 @media ( max-width : 767px) {
   .filter-overlay-panel.ui-widget-content .ui-overlaypanel-content {
-    width: 500px;
+    max-width: 500px;
+  }
+  
+  .dashboard-widget-filter__filter-panel {
+    flex-wrap: wrap;
+  }
+  
+  .widget-filter-panel .dashboard-widget-filter__filter-wrapper {
+    padding: 0;
   }
 }
 
 @media screen and (max-width: 40em) {
-  .filter-overlay-panel.ui-widget-content .ui-overlaypanel-content,
   .ui-widget-content.info-overlay-panel .ui-overlaypanel-content {
     max-width: 85vw;
   }
@@ -603,6 +610,10 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   .filter-overlay-panel__footer {
     padding: .5em 0;
   }
+
+  .filter-overlay-panel .filter-form {
+    width: 100%;
+  }
 }
 
 .restore-button,
@@ -615,9 +626,17 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   max-width: 450px;
 }
 
+.ui-overlaypanel-footer__cancel {
+  margin-right: 15px;
+}
+
 @media screen and (max-width: 40em) {
   .widget-info-panel {
     width: 100%;
+  }
+  
+  .ui-overlaypanel-footer__cancel {
+    margin-right: 0;
   }
 }
 
@@ -2042,6 +2061,31 @@ body .ui-widget.new-widget-dialog__introduction {
   }
 }
 
+.filter-overlay-panel__footer .footer-buttons-container {
+  margin-top: 3rem;
+}
+
+@media (max-width: 1024px) {
+  .dashboard-widget-filter__filter-panel > div:first-child {
+    width: 100px;
+    max-width: 100px;
+    margin-left: 0.5em;
+  }
+  
+  .dashboard-widget-filter__filter-panel > div {
+    min-width: 110px;
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 40em) {
+  .filter-overlay-panel__footer .footer-buttons-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+  }
+}
 
 .dashboard-widget-filter__filter-panel > div.and-text-panel span {
   margin: auto;
