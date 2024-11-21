@@ -239,7 +239,7 @@ function resizeTableBody() {
     });
     setTimeout(function() {
       resizeObserver.observe(sb);
-    }, 50);
+    }, 70);
   })
 
 }

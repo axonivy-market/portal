@@ -30,6 +30,11 @@ public class ActionsColumnModel extends TaskColumnModel implements Serializable 
   }
 
   @Override
+  public int getDefaultColumnWidth() {
+    return SMALL_WIDTH;
+  }
+
+  @Override
   public Boolean getDefaultSortable() {
     return false;
   }

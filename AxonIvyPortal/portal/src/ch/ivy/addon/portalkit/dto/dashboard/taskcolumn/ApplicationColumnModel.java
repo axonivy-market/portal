@@ -78,7 +78,7 @@ public class ApplicationColumnModel extends TaskColumnModel implements Serializa
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
+  public int getDefaultColumnWidth() {
     return TINY_WIDTH;
   }
 

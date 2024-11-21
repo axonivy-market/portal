@@ -57,7 +57,7 @@ public class CategoryColumnModel extends CaseColumnModel {
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
+  public int getDefaultColumnWidth() {
     return NORMAL_WIDTH;
   }
 

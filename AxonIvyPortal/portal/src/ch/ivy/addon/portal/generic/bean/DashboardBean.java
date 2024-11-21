@@ -495,4 +495,34 @@ public class DashboardBean implements Serializable {
     }
    return Strings.EMPTY;
   }
+
+  /**
+   * Check if a widget is using the resize column feature by checking if any
+   * visible columns has the 'width' property
+   * 
+   * @param columns
+   * @return
+   */
+  public boolean hasResizedColumn(List<ColumnModel> columns) {
+    if (CollectionUtils.isEmpty(columns)) {
+      return false;
+    }
+
+    return columns.stream()
+        .filter(col -> col.getVisible())
+        .filter(col -> StringUtils.isNotBlank(col.getWidth())).findFirst()
+        .isPresent();
+  }
+
+  public String renderDefaultWidth(List<ColumnModel> columns,
+      ColumnModel columnToCheck, boolean isResizing) {
+    boolean isEmptyWidth = StringUtils.isBlank(columnToCheck.getWidth());
+    boolean hasResizeColumns = hasResizedColumn(columns);
+    boolean hasDefaultWidth = columnToCheck.getDefaultColumnWidth() > 0;
+
+    if (isResizing && isEmptyWidth && !hasResizeColumns && !hasDefaultWidth) {
+      return "width: 100px!important";
+    }
+    return "";
+}
 }

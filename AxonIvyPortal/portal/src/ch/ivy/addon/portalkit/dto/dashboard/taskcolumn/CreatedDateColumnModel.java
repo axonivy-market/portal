@@ -42,7 +42,7 @@ public class CreatedDateColumnModel extends TaskColumnModel implements Serializa
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
+  public int getDefaultColumnWidth() {
     return SMALL_WIDTH;
   }
 

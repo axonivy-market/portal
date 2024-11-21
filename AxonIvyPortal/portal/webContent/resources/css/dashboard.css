@@ -597,6 +597,17 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   margin-bottom: 5px;
 }
 
+.dashboard-cases--table.no-resize table,
+.dashboard-tasks--table.no-resize table {
+  min-width: 100%;
+  width: max-content;
+}
+
+.js-resizing.dashboard-cases--table.no-resize table,
+.js-resizing.dashboard-tasks--table.no-resize table {
+  min-width: auto;
+}
+
 .dashboard-cases--table table tbody tr:not(.ui-datatable-empty-message),
 .dashboard-tasks--table table tbody tr:not(.ui-datatable-empty-message) {
   height: 53px;
@@ -648,8 +659,6 @@ body .dashboard__table--edit.ui-datatable tbody tr.ui-state-hover {
   cursor: move;
 }
 
-body .widget__content .ui-datatable thead th,
-body .widget__content .ui-datatable tbody td,
 body .dashboard__table--edit.ui-datatable-resizable thead th,
 body .dashboard__table--edit.ui-datatable-resizable tbody td, .ui-datatable-resizable tfoot td {
   white-space: normal;
@@ -700,7 +709,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 .dashboard-tasks__id,
 .dashboard-cases__id,
 .dashboard-cases__finished-date {
-  width: 110px;
+  width: 110px !important;
 }
 
 .widget-preview__header--description {
@@ -1648,6 +1657,28 @@ span.new-widget-dialog__icon.si {
   padding-left: 5%;
 }
 
-.dashboard-tasks--table .widget-column {
+.dashboard-tasks--table:not(.no-resize) .widget-column,
+.dashboard-cases--table:not(.no-resize) .widget-column {
   box-sizing: border-box;
+}
+body .widget__content .ui-datatable.dashboard-cases--table.no-resize .ui-widget-header thead th.widget-column-header .ui-column-title,
+body .widget__content .ui-datatable.dashboard-tasks--table.no-resize .ui-widget-header thead th.widget-column-header .ui-column-title {
+  white-space: nowrap;
+}
+
+body .widget__content .ui-datatable.dashboard-cases--table:not(.no-resize) .ui-widget-header thead th.widget-column-header .ui-column-title,
+body .widget__content .ui-datatable.dashboard-tasks--table:not(.no-resize) .ui-widget-header thead th.widget-column-header .ui-column-title,
+body .widget__content .ui-datatable.dashboard-cases--table.js-resizing .ui-widget-header thead th.widget-column-header .ui-column-title,
+body .widget__content .ui-datatable.dashboard-tasks--table.js-resizing .ui-widget-header thead th.widget-column-header .ui-column-title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 30px);
+  display: inline-block;
+  overflow: hidden;
+}
+
+body .widget__content .ui-datatable.dashboard-tasks--table.no-resize .ui-widget-header thead th.widget-column-header.dashboard-tasks__start .ui-column-title,
+body .widget__content .ui-datatable.dashboard-tasks--table.no-resize .ui-widget-header thead th.widget-column-header.dashboard-tasks__priority .ui-column-title,
+body .widget__content .ui-datatable.dashboard-cases--table.no-resize .ui-widget-header thead th.widget-column-header.dashboard-tasks__priority .ui-column-title {
+  max-width: max-content;
 }
