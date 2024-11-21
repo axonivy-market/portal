@@ -38,6 +38,7 @@ Below is a sample JSON definition of the case widget in the Portal dashboard.
       "rowsPerPage": 20,
       "showWidgetInfo": true,
       "showFullscreenMode": true,
+      "isTopMenu": false,
       "columns": [
          {
             "field": "id"
@@ -98,8 +99,8 @@ The basic JSON structure of the case widget
 
 -  ``sortField``: default sort field for the Case widget
 
--  ``sortDescending``: default sort direction of the default sort field. The
-   default value is "false" (sort direction is ascending)
+-  ``sortDescending``: sort direction of the default sort field. The 
+   default value is ``false`` (sort ascending)
 
 -  ``rowsPerPage``: maximum number of cases that are displayed on one page of
    the case widget. The default is 10 rows per page
@@ -107,6 +108,10 @@ The basic JSON structure of the case widget
 -  ``showWidgetInfo``: visibility of the widget information icon. The default value is ``true``, set to ``false`` to hide the icon
 
 -  ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
+
+-  ``isTopMenu``: if the value is ``true``, the dashboard appears as a top-level item in the navigation bar. 
+   If the value is ``false``, it appears as a sub-item under the `Dashboard` menu. 
+   The default value is ``false``.
 
 -  ``columns``: column configurations for each column in the case widget. You
    can predefine filters, styles, visibility,... of columns and define custom
