@@ -34,65 +34,65 @@ How to Configure Widgets in Case Details
 
 -  The default configuration includes five widgets:
 
-   .. code-block:: json
-
-      [
-         {
-            "id": "default-case-detail",
-            "widgets": [
-               {
-               "type": "information",
-               "id": "information",
-               "layout": {
-                  "w": 6,
-                  "h": 8,
-                  "x": 0,
-                  "y": 0
-               }
-               },
-               {
-               "type": "document",
-               "id": "document",
-               "layout": {
-                  "w": 6,
-                  "h": 8,
-                  "x": 6,
-                  "y": 0
-               }
-               },
-               {
-               "type": "technicalCase",
-               "id": "technicalCase",
-               "layout": {
-                  "w": 12,
-                  "h": 6,
-                  "x": 0,
-                  "y": 8
-               }
-               },
-               {
-               "type": "relatedTask",
-               "id": "relatedTask",
-               "layout": {
-                  "w": 12,
-                  "h": 6,
-                  "x": 0,
-                  "y": 14
-               }
-               },
-               {
-               "type": "history",
-               "id": "history",
-               "layout": {
-                  "w": 12,
-                  "h": 6,
-                  "x": 0,
-                  "y": 20
-               }
-               }
-            ]
-         }
-      ]
+   .. code-block:: javascript
+      
+         [
+            {
+               "id": "default-case-detail",
+               "widgets": [
+                  {
+                     "type": "information",
+                     "id": "information",
+                     "layout": {
+                        "w": 6,
+                        "h": 8,
+                        "x": 0,
+                        "y": 0
+                     }
+                  },
+                  {
+                     "type": "document",
+                     "id": "document",
+                     "layout": {
+                        "w": 6,
+                        "h": 8,
+                        "x": 6,
+                        "y": 0
+                     }
+                  },
+                  {
+                     "type": "technicalCase",
+                     "id": "technicalCase",
+                     "layout": {
+                        "w": 12,
+                        "h": 6,
+                        "x": 0,
+                        "y": 8
+                     }
+                  },
+                  {
+                     "type": "relatedTask",
+                     "id": "relatedTask",
+                     "layout": {
+                        "w": 12,
+                        "h": 6,
+                        "x": 0,
+                        "y": 14
+                     }
+                  },
+                  {
+                     "type": "history",
+                     "id": "history",
+                     "layout": {
+                        "w": 12,
+                        "h": 6,
+                        "x": 0,
+                        "y": 20
+                     }
+                  }
+               ]
+            }
+         ]                                                       
 
 
    -  The structure of each Case Details layout is saved in variable **Portal.CaseDetails**:
@@ -196,86 +196,85 @@ The following two steps are necessary to add new custom panels:
 
    -  This is an example **Portal.CaseDetails** configuration that includes three custom widgets:
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          [
             {
                "id": "default-case-detail",
                "widgets": [
                   {
-                  "type": "information",
-                  "id": "information",
-                  "layout": {
-                     "w": 6,
-                     "h": 8,
-                     "x": 0,
-                     "y": 0
-                  }
+                     "type": "information",
+                     "id": "information",
+                     "layout": {
+                        "w": 6,
+                        "h": 8,
+                        "x": 0,
+                        "y": 0
+                     }
                   },
                   {
-                  "type": "document",
-                  "id": "document",
-                  "layout": {
-                     "w": 6,
-                     "h": 8,
-                     "x": 6,
-                     "y": 0
-                  }
+                     "type": "document",
+                     "id": "document",
+                     "layout": {
+                        "w": 6,
+                        "h": 8,
+                        "x": 6,
+                        "y": 0
+                     }
                   },
                   {
-                  "type": "history",
-                  "id": "history",
-                  "layout": {
-                     "w": 12,
-                     "h": 6,
-                     "x": 0,
-                     "y": 8
-                  }
+                     "type": "history",
+                     "id": "history",
+                     "layout": {
+                        "w": 12,
+                        "h": 6,
+                        "x": 0,
+                        "y": 8
+                     }
                   },
                   {
-                  "type": "custom",
-                  "id": "customTop",
-                  "layout": {
-                     "x": 0,
-                     "y": 14,
-                     "w": 12,
-                     "h": 6
-                  },
-                  "data": {
-                     "type": "caseItemDetailCustomTop"
-                  }
-                  },
-                  {
-                  "type": "custom",
-                  "id": "customMiddle",
-                  "layout": {
-                     "x": 0,
-                     "y": 20,
-                     "w": 12,
-                     "h": 6
-                  },
-                  "data": {
-                     "type": "caseItemDetailCustomMiddle"
-                  }
+                     "type": "custom",
+                     "id": "customTop",
+                     "layout": {
+                        "x": 0,
+                        "y": 14,
+                        "w": 12,
+                        "h": 6
+                     },
+                     "data": {
+                        "type": "caseItemDetailCustomTop"
+                     }
                   },
                   {
-                  "type": "custom",
-                  "id": "customBottom",
-                  "layout": {
-                     "x": 0,
-                     "y": 26,
-                     "w": 12,
-                     "h": 6
+                     "type": "custom",
+                     "id": "customMiddle",
+                     "layout": {
+                        "x": 0,
+                        "y": 20,
+                        "w": 12,
+                        "h": 6
+                     },
+                     "data": {
+                        "type": "caseItemDetailCustomMiddle"
+                     }
                   },
-                  "data": {
-                     "type": "caseItemDetailCustomBottom"
-                  }
+                  {
+                     "type": "custom",
+                     "id": "customBottom",
+                     "layout": {
+                        "x": 0,
+                        "y": 26,
+                        "w": 12,
+                        "h": 6
+                     },
+                     "data": {
+                        "type": "caseItemDetailCustomBottom"
+                     }
                   }
                ]
             }
          ]
-
-
+         
 #. To customize case details using an **IFrame**, you have to define one of the following two input parameters in the ``data`` node:
 
    -  ``url`` if you want to use an external URL.
@@ -290,7 +289,7 @@ The following two steps are necessary to add new custom panels:
 
       Here is an example of a customized case details page using an external URL:
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          [
             {
@@ -332,30 +331,30 @@ The following two steps are necessary to add new custom panels:
       process start. Please refer to the ``CaseDetailsCustomWidgetExample`` process
       in ``portal-developer-examples`` for details.
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          [
             {
                "id": "case-detail",
                "widgets": [
                   {
-                  "type": "information",
-                  "id": "information",
-                  "layout": {
-                     "x": 0,
-                     "y": 0,
-                     "w": 6,
-                     "h": 8
+                     "type": "information",
+                     "id": "information",
+                     "layout": {
+                        "x": 0,
+                        "y": 0,
+                        "w": 6,
+                        "h": 8
                   }
                   },
                   {
-                  "type": "history",
-                  "id": "history",
-                  "layout": {
-                     "x": 6,
-                     "y": 0,
-                     "w": 6,
-                     "h": 8
+                     "type": "history",
+                     "id": "history",
+                     "layout": {
+                        "x": 6,
+                        "y": 0,
+                        "w": 6,
+                        "h": 8
                   }
                   },
                   {

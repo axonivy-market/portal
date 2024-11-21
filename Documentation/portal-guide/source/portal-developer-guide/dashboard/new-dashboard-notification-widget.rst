@@ -11,7 +11,7 @@ to :ref:`Notifications widget <add-new-notification-widget>` for details.
 
 Below is a sample JSON definition of a notification widget in the Portal dashboard
 
-.. code-block:: json
+.. code-block:: javascript
 
    {
       "type": "notification",

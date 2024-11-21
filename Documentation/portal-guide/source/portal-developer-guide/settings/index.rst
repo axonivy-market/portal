@@ -372,7 +372,7 @@ Filename: ``variables.Portal.Announcement.json``
 
 Data model:
 
-.. code-block:: json
+.. code-block:: javascript
 
    {
        "contents": [
@@ -401,7 +401,7 @@ Filename: ``variables.Portal.ThirdPartyApplications.json``
 
 Data model:
 
-.. code-block:: json
+.. code-block:: javascript
 
    [
       {
@@ -434,7 +434,7 @@ Filename: ``variables.Portal.ClientStatistic.json``
 
 Data model:
 
-.. code-block:: json
+.. code-block:: javascript
 
    [
       {
@@ -546,7 +546,7 @@ Filename: ``variables.Portal.Processes.ExternalLinks.json``
 
 Data model:
 
-.. code-block:: json
+.. code-block:: javascript
 
    [
       {

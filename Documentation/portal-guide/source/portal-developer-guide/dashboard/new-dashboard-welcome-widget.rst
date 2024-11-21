@@ -10,7 +10,7 @@ The Welcome widget of the Portal dashboard displays a welcome text and an image 
 
 Below is a sample JSON definition of a welcome widget in the Portal dashboard
 
-.. code-block:: json
+.. code-block:: javascript
 
    {
       "type":"welcome",

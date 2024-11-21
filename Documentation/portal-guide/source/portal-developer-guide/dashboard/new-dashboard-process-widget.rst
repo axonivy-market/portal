@@ -11,7 +11,7 @@ Refer to :ref:`Process List Widget <new-dashboard-process-list-widget>` for deta
 
 The basic structure of the JSON of a process widget is as follows:
 
-   .. code-block:: json
+   .. code-block:: javascript
 
       {
          "type": "compact-process",
@@ -68,7 +68,7 @@ Compact Mode
 
 Below is a standard JSON definition of a Process widget in compact mode
 
-   .. code-block:: json
+   .. code-block:: javascript
 
       {
          "type": "compact-process",
@@ -123,7 +123,7 @@ Combined Mode
 
 Below is a standard JSON definition of a Process widget in combined mode
 
-   .. code-block:: json
+   .. code-block:: javascript
 
       {
          "type": "combined-process",
@@ -155,7 +155,7 @@ Full mode
 
 Below is a standard JSON definition of a Process widget in full mode
 
-   .. code-block:: json
+   .. code-block:: javascript
 
       {
          "type": "full-process",
@@ -180,7 +180,7 @@ Image Mode
 
 Below is a standard JSON definition of the Process widget in image mode
 
-   .. code-block:: json
+   .. code-block:: javascript
 
       {
          "type": "image-process",

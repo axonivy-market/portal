@@ -34,7 +34,7 @@ How to configure widgets in task details
 
 -  Default configuration includes 3 widgets.
 
-   .. code-block:: json
+   .. code-block:: javascript
 
       [
          {
@@ -167,7 +167,7 @@ There are **two steps** for adding new custom panels.
    
    -  Example Portal.TaskDetails with layout configuration includes 4 custom widgets:
    
-   .. code-block:: json
+   .. code-block:: javascript
 
       [
          {
@@ -226,7 +226,7 @@ There are **two steps** for adding new custom panels.
 
       Customized task details using external URL
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          [
             {
@@ -257,7 +257,7 @@ There are **two steps** for adding new custom panels.
 
       Customized task details usingprocess start, please refer to ``TaskDetailsCustomWidgetExample`` process in ``portal-developer-examples`` for details
 
-      .. code-block:: json
+      .. code-block:: javascript
 
             [
                {
