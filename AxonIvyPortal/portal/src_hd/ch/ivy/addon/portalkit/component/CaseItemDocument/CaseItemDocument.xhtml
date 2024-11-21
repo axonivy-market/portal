@@ -106,7 +106,7 @@
   
     <p:dialog id="document-upload-dialog"
     widgetVar="document-upload-dialog" appendTo="@(body)" dynamic="true"
-    modal="true" resizable="false" showEffect="fade" hideEffect="fade"
+    modal="true" resizable="false" showEffect="fade" hideEffect="fade" fitViewport="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
     closeOnEscape="true" responsive="true" closable="true"
     width="450px">
@@ -130,7 +130,7 @@
             auto="true" multiple="true"
             sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
             invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
-            update="#{cc.clientId}:document-upload-form:upload-messages #{cc.attrs.componentToUpdate} @this"
+            update="#{cc.clientId}:document-upload-form:upload-messages #{cc.attrs.componentToUpdate} #{cc.clientId}:case-document-form @this"
             oncomplete="handleCaseDetailsTable()"
             onvalidationfailure="handleUploadFileFail();"
             dropZone="document-upload-file-panel" widgetVar="documentUpload" />
