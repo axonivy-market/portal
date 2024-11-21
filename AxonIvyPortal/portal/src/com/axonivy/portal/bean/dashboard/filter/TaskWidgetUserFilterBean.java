@@ -28,11 +28,11 @@ public class TaskWidgetUserFilterBean extends AbstractTaskWidgetFilterBean imple
   @Override
   public void preRender(TaskDashboardWidget widget) {
     super.preRender(widget);
-    initUSerFilters();
+    initUserFilters();
     originalUserFilters = widget.getUserFilters();
   }
 
-  private void initUSerFilters() {
+  private void initUserFilters() {
     if (CollectionUtils.isEmpty(Optional.ofNullable(this.widget).map(TaskDashboardWidget::getUserFilters).get())) {
       return;
     }
