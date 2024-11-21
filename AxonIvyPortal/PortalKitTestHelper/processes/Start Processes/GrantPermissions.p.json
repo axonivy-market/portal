@@ -2088,7 +2088,7 @@
       "type" : "RequestStart",
       "name" : "denyTaskDetailsShareLinkPermission.ivp",
       "config" : {
-        "signature" : "denyTaskDetailsShareLinkPermission2",
+        "signature" : "denyTaskDetailsShareLinkPermission",
         "request" : {
           "name" : "Deny Share Link Task Details Permision"
         }

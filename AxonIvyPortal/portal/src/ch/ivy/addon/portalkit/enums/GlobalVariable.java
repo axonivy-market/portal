@@ -17,7 +17,6 @@ import com.axonivy.portal.enums.SearchScopeTaskField;
 import com.axonivy.portal.enums.ThemeMode;
 
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
-import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -41,8 +40,6 @@ public enum GlobalVariable {
   CHAT_MAX_CONNECTION("Portal.Chat.MaxConnection", GlobalVariableType.SELECTION, "3", "chatMaxConnection", new Object[] { 1, 2, 3, 4, 5}),
   ENABLE_CASE_OWNER("Portal.Cases.EnableOwner", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableCaseOwner"),
   DISABLE_CASE_COUNT("Portal.Cases.DisableCount", GlobalVariableType.SELECTION, Option.FALSE.toString(), "disableCaseCount"),
-  REFRESH_TASK_LIST_INTERVAL("Portal.Tasks.RefreshInterval", GlobalVariableType.NUMBER, String.valueOf(TaskWidgetBean.DEFAULT_TASK_LIST_REFRESH_INTERVAL), "refreshTaskListIntervalNote"),
-  DISABLE_TASK_COUNT("Portal.Tasks.DisableCount", GlobalVariableType.SELECTION, Option.FALSE.toString(), "disableTaskCount"),
   SHOW_TASK_DURATION_TIME("Portal.TaskDetails.ShowDurationTime", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showTaskDurationTime"),
   HIDE_TASK_DOCUMENT("Portal.TaskDetails.HideDocument", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideTaskDocument"),
   HIDE_CASE_DOCUMENT("Portal.CaseDetails.HideDocument", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseDocument"),
@@ -61,8 +58,6 @@ public enum GlobalVariable {
   DEFAULT_PROCESS_MODE("Portal.Processes.Mode", GlobalVariableType.EXTERNAL_SELECTION, ProcessMode.IMAGE.name(), "defaultProcessMode", getProcessMode()),
   DEFAULT_PROCESS_IMAGE("Portal.Processes.DefaultImage", GlobalVariableType.EXTERNAL_SELECTION, DefaultImage.DEFAULT.name(), "defaultProcessImage", getDefaultProcessImage()),
   DEFAULT_HOMEPAGE("Portal.Homepage", GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage"),
-  DEFAULT_SORT_DIRECTION_OF_TASK_LIST("Portal.Tasks.SortDirection", GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESC.name(), "defaultSortDirectionOfTaskList", getSortDirections()),
-  DEFAULT_SORT_FIELD_OF_TASK_LIST("Portal.Tasks.SortField", GlobalVariableType.EXTERNAL_SELECTION, TaskSortField.ID.name(), "defaultSortFieldOfTaskList", getTaskListSortFields()),
   DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST("Portal.Tasks.BehaviourWhenClickingOnLineInTaskList", GlobalVariableType.EXTERNAL_SELECTION,
       BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name(), "behaviourWhenClickingOnLineInTaskList", getBehavioursWhenClickingOnLineInTaskList()),
   ENABLE_PROCESS_VIEWER("Portal.ProcessViewer", GlobalVariableType.SELECTION, Option.TRUE.toString(), "enableProcessViewer"),
@@ -211,17 +206,6 @@ public enum GlobalVariable {
 
   private static Option[] getLoggedInUserFormatOptions() {
     return new Option[] {Option.USERNAME, Option.DISPLAY_NAME, Option.DISPLAY_NAME_USERNAME, Option.USERNAME_DISPLAY_NAME};
-  }
-
-  private static Map<String, Object> getTaskListSortFields() {
-    Map<String, Object> result = new HashMap<>();
-    for (TaskSortField sortField : TaskSortField.values()) {
-      // Task sort field not available
-      if (StringUtils.isNotBlank(sortField.getLabel()) && sortField != TaskSortField.CATEGORY) {
-        result.put(sortField.name(), sortField);
-      }
-    }
-    return result;
   }
 
   private static Map<String, Object> getCaseListSortFields() {

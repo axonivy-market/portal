@@ -1,9 +1,12 @@
 package ch.ivy.addon.portalkit.enums;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -49,4 +52,7 @@ public enum DashboardStandardCaseColumn {
   public String getLabel() {
     return Ivy.cms().co(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s", this.name()));
   }
+
+  public static final Set<DashboardStandardCaseColumn> AI_RESULT_COLUMNS = Collections
+      .unmodifiableSet(EnumSet.of(ID, NAME, OWNER, STATE, ACTIONS));
 }

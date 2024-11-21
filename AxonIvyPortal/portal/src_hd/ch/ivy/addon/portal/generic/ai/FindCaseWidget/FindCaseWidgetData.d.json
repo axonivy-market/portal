@@ -1,0 +1,11 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "FindCaseWidgetData",
+  "namespace" : "ch.ivy.addon.portal.generic.ai.FindCaseWidget",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "caseWidget",
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}
