@@ -49,7 +49,7 @@ public class MenuTest extends BaseTest {
 
     MainMenuPage mainMenuPage = new MainMenuPage();
     String expected =
-        "Dashboard,Processes,Cases,Tasks,User Example Guide,Google,Testing link google,Testing example,A link,B link";
+        "Dashboard,Processes,Tasks,Cases,User Example Guide,Google,Testing link google,Testing example,A link,B link";
     assertEquals(expected, mainMenuPage.getMenuItemsAsString());
   }
 
@@ -79,7 +79,7 @@ public class MenuTest extends BaseTest {
     redirectToNewDashBoard();
     mainMenuPage = new MainMenuPage();
     String expected =
-        "Dashboard,Processes,Cases,Tasks," + name
+        "Dashboard,Processes,Tasks,Cases," + name
             + ",User Example Guide,Google";
     String menuItemAsString = mainMenuPage.getMenuItemsAsString();
     assertEquals(expected, menuItemAsString);
