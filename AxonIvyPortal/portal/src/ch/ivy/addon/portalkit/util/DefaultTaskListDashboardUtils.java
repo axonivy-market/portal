@@ -5,7 +5,7 @@ public class DefaultTaskListDashboardUtils {
   public static final String DASHBOARD_TASK_TEMPLATE_JSON = """
       {
         "id": "default-task-list-dashboard",
-        "version": "11.4.0",
+        "version": "12.0.0",
         "templateId": "create-from-scratch",
         "titles": [
           { "locale": "en", "value": "Tasks" },
@@ -26,7 +26,6 @@ public class DefaultTaskListDashboardUtils {
               { "locale": "es", "value": "Sus tareas" }
             ],
             "layout": { "w": 12, "h": 8, "x": 0, "y": 0 },
-            "rowsPerPage": 5,
             "enableQuickSearch": true,
             "showWidgetInfo": true,
             "showFullscreenMode": true,
