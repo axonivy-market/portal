@@ -130,7 +130,7 @@
             auto="true" multiple="true"
             sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
             invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
-            update="#{cc.clientId}:document-upload-form:upload-messages #{cc.attrs.componentToUpdate} #{cc.clientId}:case-document-form @this"
+            update="#{cc.clientId}:document-upload-form:upload-messages #{cc.attrs.componentToUpdate} #{cc.clientId}:case-document-form @form"
             oncomplete="handleCaseDetailsTable()"
             onvalidationfailure="handleUploadFileFail();"
             dropZone="document-upload-file-panel" widgetVar="documentUpload" />

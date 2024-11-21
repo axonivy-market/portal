@@ -128,7 +128,7 @@
             auto="true" multiple="true"
             sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
             invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
-            update="#{p:resolveFirstComponentWithId('task-document-form', view).clientId} #{cc.attrs.componentToUpdate} @this"
+            update="#{p:resolveFirstComponentWithId('task-document-form', view).clientId} #{cc.attrs.componentToUpdate} @form"
             oncomplete="handleTaskDetailsTables()" 
             onvalidationfailure="handleUploadFileFail();"
             dropZone="document-upload-file-panel" widgetVar="documentUpload" />
