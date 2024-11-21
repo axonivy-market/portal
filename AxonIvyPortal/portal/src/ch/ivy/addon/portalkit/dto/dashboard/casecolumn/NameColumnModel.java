@@ -29,11 +29,6 @@ public class NameColumnModel extends CaseColumnModel implements Serializable {
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
-    return 200;
-  }
-
-  @Override
   public Object display(ICase caze) {
     if (caze == null) {
       return null;
@@ -44,5 +39,10 @@ public class NameColumnModel extends CaseColumnModel implements Serializable {
   @Override
   public boolean canQuickSearch() {
     return true;
+  }
+
+  @Override
+  public int getDefaultColumnWidth() {
+    return 300;
   }
 }

@@ -42,7 +42,7 @@
         liveScroll="true" scrollable="true" sortBy="#{(isResizing or isPreviewMode) ? null : taskWidget.sortBy}"
         showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
-        styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'u-display-none' : ''} #{isResizing ? 'js-resizing' : ''}"
+        styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'u-display-none' : ''} #{isResizing ? 'js-resizing' : ''} #{(isResizing or dashboardBean.hasResizedColumn(taskWidget.columns)) ? '' : 'no-resize'}"
         rowStyleClass="dashboard-table--row-style"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:ajax event="rowSelect" listener="#{dashboardBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode}" />
@@ -50,12 +50,16 @@
           listener="#{dashboardDetailModificationBean.onResizeColumn}" disabled="#{!isResizing}" />
         <f:attribute name="widgetId" value="#{taskWidget.id}" />
 
-        <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}"
-          styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'}"
+        <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}"
+          styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'} widget-column-header"
           visible="#{column.visible}" field="#{column.field}" filterable="false"
           sortBy="#{column.field}" sortable="#{!isResizing and !isPreviewMode and column.sortable}"
-          style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay}">
+          style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay} #{dashboardBean.renderDefaultWidth(taskWidget.columns, column, isResizing)}">
 
+          <f:facet name="header">
+           <h:outputText id="header" value="#{column.headerText}" />
+           <p:tooltip value="#{column.headerText}" for="header" />
+          </f:facet>
           <h:panelGroup rendered="#{column.field eq 'start'}" styleClass="dashboard-tasks__start-container">
             <ui:include src="StartCell.xhtml">
               <ui:param name="ariaLabel" value="#{taskBean.getAriaLabel(task, taskWidget.columns)}" />

@@ -39,7 +39,7 @@ public class StateColumnModel extends CaseColumnModel implements Serializable {
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
+  public int getDefaultColumnWidth() {
     return NORMAL_WIDTH;
   }
 

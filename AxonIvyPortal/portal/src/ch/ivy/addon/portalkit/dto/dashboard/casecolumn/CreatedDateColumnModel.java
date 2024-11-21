@@ -47,6 +47,11 @@ public class CreatedDateColumnModel extends CaseColumnModel implements Serializa
   }
 
   @Override
+  public int getDefaultColumnWidth() {
+    return SMALL_WIDTH;
+  }
+
+  @Override
   public Object display(ICase caze) {
     if (caze == null) {
       return null;
