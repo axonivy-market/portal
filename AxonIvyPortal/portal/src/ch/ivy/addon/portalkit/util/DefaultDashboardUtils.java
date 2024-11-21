@@ -7,7 +7,7 @@ public class DefaultDashboardUtils {
   private static String DEFAULT_TASK_LIST_DASHBOARD_JSON = """
       {
         "id": "default-task-list-dashboard",
-        "version": "11.4.0",
+        "version": "12.0.0",
         "templateId": "create-from-scratch",
         "titles": [
           {
@@ -122,7 +122,7 @@ public class DefaultDashboardUtils {
   private static String DEFAULT_CASE_LIST_DASHBOARD_JSON = """
       {
         "id": "default-case-list-dashboard",
-        "version": "11.4.0",
+        "version": "12.0.0",
         "templateId": "create-from-scratch",
         "titles": [
           {
