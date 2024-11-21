@@ -8,7 +8,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
 
@@ -26,8 +26,8 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
   public void testSystemTaskVisibilityInCaseHistory() {
     updatePortalSetting(Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY.getKey(), "true");
     NewDashboardPage newDashboardPage = new NewDashboardPage();
-    CaseWidgetPage caseWidgetPage = newDashboardPage.openCaseList();
-    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName("Create New Payment");
+    CaseWidgetNewDashBoardPage caseWidgetPage = newDashboardPage.openCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Create New Payment");
     String caseUuid = caseDetailsPage.getCaseUuid();
     assertFalse(noteAuthorsContainsUser(caseUuid));
 
@@ -40,8 +40,8 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     updatePortalSetting(Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR.getKey(), "false");
     NewDashboardPage newDashboardPage = new NewDashboardPage();
-    CaseWidgetPage caseWidgetPage = newDashboardPage.openCaseList();
-    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName("Create New Payment");
+    CaseWidgetNewDashBoardPage caseWidgetPage = newDashboardPage.openCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Create New Payment");
     String caseUuid = caseDetailsPage.getCaseUuid();
     assertTrue(noteAuthorsContainsUser(caseUuid));
 

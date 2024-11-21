@@ -1006,9 +1006,9 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementClickableThenClick($("[id$='case-item-details:case-details-container:back-to-cases']"));
   }
 
-  public CaseWidgetPage goBackToCaseListFromCaseDetails() {
+  public CaseWidgetNewDashBoardPage goBackToCaseListFromCaseDetails() {
     clickBackButton();
-    return new CaseWidgetPage();
+    return new CaseWidgetNewDashBoardPage();
   }
 
   public String openDoneTask(int index) {

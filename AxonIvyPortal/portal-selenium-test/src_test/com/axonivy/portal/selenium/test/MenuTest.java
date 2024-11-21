@@ -11,7 +11,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -103,7 +103,7 @@ public class MenuTest extends BaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    CaseWidgetPage dashboardPage = mainMenuPage.openCaseList();
+    CaseWidgetNewDashBoardPage dashboardPage = mainMenuPage.openCaseList();
     dashboardPage.waitForPageLoad();
 
     dashboardPage.closeMainMenu();

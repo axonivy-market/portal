@@ -11,7 +11,6 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
@@ -55,11 +54,11 @@ public class AvatarTest extends BaseTest {
     assertTrue(taskDetailsPage.getResponsibleAvatar().exists());
 
     // Check case list
-    CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
+    CaseWidgetNewDashBoardPage caseWidgetPage = mainMenuPage.openCaseList();
     assertTrue(caseWidgetPage.getCreatorAvatar().exists());
 
     // Check case details
-    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase("Leave Request");
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
     assertTrue(caseDetailsPage.getCreatorAvatar().exists());
     assertTrue(caseDetailsPage.getHistoryAuthorAvatar().exists());
   }

@@ -7,7 +7,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessViewerPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
@@ -31,7 +31,7 @@ public class ProcessViewerTest extends BaseTest {
       "Process Viewer is NOT found on TaskDetails page";
   private static final String PROCESS_VIEWER = "Process Viewer";
   private NewDashboardPage newDashboardPage;
-  private CaseWidgetPage caseWidgetPage;
+  private CaseWidgetNewDashBoardPage caseWidgetPage;
 
   @Override
   @BeforeEach
@@ -82,7 +82,7 @@ public class ProcessViewerTest extends BaseTest {
     createTestingTasks();
     caseWidgetPage = NavigationHelper.navigateToCaseList();
     assertTrue(caseWidgetPage.getActiveCaseActionsInFullCaseListPage(0).texts().contains(PROCESS_VIEWER));
-    var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    var caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
     caseDetailsPage.openActionMenu();
     var detailPageSteps = caseDetailsPage.getAvailableActionSteps();
     assertTrue(detailPageSteps.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_NOT_FOUND_ON_CASE_DETAILS_PAGE);
@@ -94,7 +94,7 @@ public class ProcessViewerTest extends BaseTest {
     caseWidgetPage = NavigationHelper.navigateToCaseList();
     assertTrue(caseWidgetPage.getActiveCaseActionsInFullCaseListPage(0).texts().contains(PROCESS_VIEWER),
         PROCESS_VIEWER_IS_NOT_FOUND_IN_CASE_LIST);
-    var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Order Pizza");
+    var caseDetailsPage = caseWidgetPage.openDetailsCase("Order Pizza");
     caseDetailsPage.clickRelatedCaseActionButton(0);
     var detailPageSteps = caseDetailsPage.getAvailableActionStepsOfTechnicalCase(0);
     assertTrue(!detailPageSteps.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_FOUND_ON_CASE_DETAILS_PAGE);
@@ -120,7 +120,7 @@ public class ProcessViewerTest extends BaseTest {
     caseWidgetPage = NavigationHelper.navigateToCaseList();
     assertFalse(caseWidgetPage.getActiveCaseActionsInFullCaseListPage(0).texts().contains(PROCESS_VIEWER),
         PROCESS_VIEWER_IS_FOUND_IN_CASE_LIST);
-    var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Process Viewer Permission Example Case");
+    var caseDetailsPage = caseWidgetPage.openDetailsCase("Process Viewer Permission Example Case");
     caseDetailsPage.openActionMenu();
     var detailPageSteps = caseDetailsPage.getAvailableActionSteps();
     assertTrue(!detailPageSteps.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_FOUND_ON_CASE_DETAILS_PAGE);
@@ -147,7 +147,7 @@ public class ProcessViewerTest extends BaseTest {
     caseWidgetPage = NavigationHelper.navigateToCaseList();
     assertTrue(caseWidgetPage.getActiveCaseActionsInFullCaseListPage(0).texts().contains(PROCESS_VIEWER),
         PROCESS_VIEWER_IS_NOT_FOUND_IN_CASE_LIST);
-    var caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Business Case Map: Leave Request");
+    var caseDetailsPage = caseWidgetPage.openDetailsCase("Business Case Map: Leave Request");
     caseDetailsPage.openActionMenu();
     var detailPageSteps = caseDetailsPage.getAvailableActionSteps();
     assertTrue(detailPageSteps.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_NOT_FOUND_ON_CASE_DETAILS_PAGE);

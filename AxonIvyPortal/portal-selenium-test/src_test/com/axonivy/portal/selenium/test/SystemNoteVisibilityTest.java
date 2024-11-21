@@ -10,7 +10,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
@@ -122,8 +122,8 @@ public class SystemNoteVisibilityTest extends BaseTest {
   private CaseDetailsPage openCaseDetails() {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
-    return casePage.openDetailsOfCaseHasName("Create note");
+    CaseWidgetNewDashBoardPage casePage = mainMenuPage.selectCaseMenu();
+    return casePage.openDetailsCase("Create note");
   }
 
   private NoteHistoryPage openCaseNoteHistory(String uuid) {
