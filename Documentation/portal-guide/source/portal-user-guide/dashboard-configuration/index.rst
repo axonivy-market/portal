@@ -36,8 +36,6 @@ How to: add private dashboard
 #. The :guilabel:`Create new private dashboard` dialog is opened.
 
 #. Enter the mandatory title and the optional description for the private dashboard.
-   If the `Top Menu Item` checkbox is checked, the dashboard appears as a top-level item in the navigation bar. 
-   If unchecked, it appears as a sub-item under `Dashboard` menu item.
 
 #. Create your private dashboard by selecting |add-icon| Create dashboard.
 
@@ -73,8 +71,6 @@ How to: import private dashboards
 #. Drag and drop, or click on the :guilabel:`Upload one here` link to select the JSON file containing the dashboard you want to import.
 
 #. Edit the mandatory title and the optional description for the private dashboard.
-   If the `Top Menu Item` checkbox is checked, the dashboard appears as a top-level item in the navigation bar. 
-   If unchecked, it appears as a sub-item under `Dashboard` menu item.
 
 #. Import the dashboard by selecting :guilabel:`Create Dashboard` button.
 
@@ -145,6 +141,8 @@ How to: add public dashboard
 #. The :guilabel:`Create new public dashboard` dialog is opened.
 
 #. Enter the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
+   If the `Top Menu Item` checkbox is checked, the dashboard appears as a top-level item in the navigation bar. 
+   If unchecked, it appears as a sub-item under `Dashboard` menu item.
 
 #. Create the public dashboard by selecting |add-icon| Create dashboard.
 
@@ -182,6 +180,8 @@ How to: import public dashboard
 #. Drag and drop, or click on the :guilabel:`Upload one here` link to select the JSON file containing the dashboard you want to import.
 
 #. Edit the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
+   If the `Top Menu Item` checkbox is checked, the dashboard appears as a top-level item in the navigation bar. 
+   If unchecked, it appears as a sub-item under `Dashboard` menu item.
 
 #. Import the dashboard by selecting :guilabel:`Create Dashboard` button.
 
