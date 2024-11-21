@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.BooleanUtils;
 import org.primefaces.PrimeFaces;
@@ -128,7 +129,11 @@ public class MasterDataBean implements Serializable {
     return LanguageService.getInstance().getUserLanguage();
   }
   
-  public List<String> getAllowedUploadFileType() {
-    return CaseDocumentService.getAllowedUploadFileType();
+  public String getAllowedUploadFileType() {
+    List<String> extensionList = CaseDocumentService.getAllowedUploadFileType();
+    if (CollectionUtils.isEmpty(extensionList)) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allTypes");
+    } else
+      return String.join(", ", extensionList);
   }
 }

@@ -415,6 +415,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocument: Add document
     addNote: Add note
     allCategories: All Categories
+    allTypes: All types.
     allowPng: Only png types allowed
     apply: Apply
     at: at
@@ -1125,7 +1126,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processingTime: Processing Time
     setDelayTimestamp: '{0} ({1}) has set delay time to task #{2} to {3}'
     setExpiryActivatorAndTimeNotes: '{0} and assign {1} as the task escalation activator'
-    supportFileTypes: 'Supported file types: {0}'
+    supportFileTypes: ' Upload file type supported: {0}'
     taskCategory: Task Category
     taskExpiryDisable: This task does not contain any escalation handling logic, therefore no expiry time can be set.
     technicalCase: Technical Case

@@ -414,6 +414,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocument: Ajouter un document
     addNote: Ajouter une note
     allCategories: Toutes les catégories
+    allTypes: Tous les types.
     allowPng: Seulement les types .png autorisés
     apply: Utiliser
     at: le
@@ -1120,7 +1121,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processingTime: Durée de traitement
     setDelayTimestamp: '{0} ({1}) a fixé le délai d''attente de la tâche #{2} à {3}'
     setExpiryActivatorAndTimeNotes: '{0} et assigner {1} comme activateur d''escalade de tâches'
-    supportFileTypes: 'Types de fichiers pris en charge: {0}'
+    supportFileTypes: 'Types de fichiers pris en charge pour le téléchargement : {0}'
     taskCategory: Catégorie de tâche
     taskExpiryDisable: Cette tâche ne contient pas de logique d'escalade. Aucune période d'expiration ne peut donc être définie.
     technicalCase: Dossier technique

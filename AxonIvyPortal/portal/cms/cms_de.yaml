@@ -416,6 +416,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocument: Dokument hinzufügen
     addNote: Notiz hinzufügen
     allCategories: Alle Kategorien
+    allTypes: Alle Typen.
     allowPng: Nur das png Format wird unterstützt
     apply: Anwenden
     at: am
@@ -1123,7 +1124,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processingTime: Bearbeitungszeit
     setDelayTimestamp: '{0} ({1}) hat die Verzügerungszeit des Tasks #{2} auf {3} gesetzt.'
     setExpiryActivatorAndTimeNotes: '{0} und weisen Sie {1} als Aktivator für die Aufgabeneskalation zu'
-    supportFileTypes: 'Unterstützte Dateitypen: {0}'
+    supportFileTypes: 'Unterstützte Dateitypen für Uploads: {0}'
     taskCategory: Aufgabenkategorie
     taskExpiryDisable: Es kann keine Ablaufzeit gesetzt werden, da diese Aufgabe keine Eskalationslogik enthält.
     technicalCase: Technischer Vorgang

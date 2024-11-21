@@ -417,6 +417,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocument: Agregar documento
     addNote: Agregar nota
     allCategories: Todas las categorias
+    allTypes: Todos los tipos.
     allowPng: Solo se permiten los tipos png
     apply: Aplicar
     at: en
@@ -1122,7 +1123,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processingTime: Tiempo de procesado
     setDelayTimestamp: '{0} ({1}) Ha modificado el tiempo de demora para la tarea #{2} a {3}'
     setExpiryActivatorAndTimeNotes: '{0} y asignar {1} como el usuario de la tarea escalada'
-    supportFileTypes: 'Tipos de archivos compatibles: {0}'
+    supportFileTypes: 'Tipos de archivos admitidos para cargar: {0}'
     taskCategory: Categoría de tarea
     taskExpiryDisable: Esta tarea no tiene manejo lógico de escalado, por lo tanto no se puede establecer el tiempo de expiración.
     technicalCase: Caso técnico
