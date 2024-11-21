@@ -461,6 +461,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     destroyTaskHeaderText: Détruire cette tâche ?
     detail: Détails
     display: Présenter
+    displayAsTopMenu: Afficher en tant que menu principal
     displayName: Affichez le nom
     dragAndDropFile: 'Glisser-déposer un fichier ou '
     dragAndDropImage: 'Glisser-déposer une image ou '
@@ -576,6 +577,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: Le processus
     timeInformation: Informations sur le temps
     timestamp: Horodatage
+    topMenuItem: Élément du menu supérieur
     type: Type
     typeAdmin: Tous les administrateurs
     typeAllUsers: Tous les utilisateurs
@@ -859,6 +861,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Ce widget affiche des informations pertinentes sur les tâches selon les paramètres définis.
     taskStart: Commencer la tâche
     taskWidgetConfiguration: Configuration du widget de tâches
+    topMenuItemInfo: Si la case "Is Top Menu Item" est cochée, le tableau de bord apparaît comme un élément de niveau supérieur dans la barre de navigation, trié selon sa position dans la liste. Si elle n'est pas cochée, il apparaît comme un sous-élément sous "Tableaux de bord", également trié par position
+      dans la liste.
     widgetInfo: Informations sur le widget
     widgetInfoIcon: Icône d'information du widget
     widgetTitle: Titre du widget

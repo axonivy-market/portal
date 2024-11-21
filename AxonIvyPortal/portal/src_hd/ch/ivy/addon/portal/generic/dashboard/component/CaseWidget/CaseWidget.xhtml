@@ -12,8 +12,6 @@
   <cc:attribute name="onCompleteLoadWidget" />
   <cc:attribute name="isAIResult" default="false" />
   <cc:attribute name="caseWidgetVar" default="dashboard-cases" />
-  
-  
 </cc:interface>
 
 <cc:implementation>
@@ -25,7 +23,7 @@
   <p:remoteCommand id="rcLoadCaseFirstTimeAIResult" rendered="#{cc.attrs.isAIResult}"
     autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
-    oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget}; #{cc.attrs.isPreviewMode ? 'calculateFilterPaneltPosition();' : ''}" />
+    oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget};" />
   <p:inputText type="hidden" value="#{cc.attrs.caseWidgetVar}-#{caseWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
 
   <p:remoteCommand id="rcLoadCaseFirstTime" rendered="#{!cc.attrs.isAIResult}"

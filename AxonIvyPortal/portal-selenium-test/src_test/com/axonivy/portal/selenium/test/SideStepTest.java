@@ -10,7 +10,7 @@ import com.axonivy.portal.selenium.page.CaseWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 @IvyWebTest
 public class SideStepTest extends BaseTest {
@@ -40,8 +40,9 @@ public class SideStepTest extends BaseTest {
   }
 
   private TaskTemplatePage startATask() {
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskTemplatePage taskTemplatePage = taskWidget.startTaskByIndex(0);
     return taskTemplatePage;
   }
 

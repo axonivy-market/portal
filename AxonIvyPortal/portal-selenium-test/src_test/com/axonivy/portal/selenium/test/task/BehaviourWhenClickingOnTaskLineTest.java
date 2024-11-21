@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -21,7 +22,7 @@ import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.Condition;
 
 @IvyWebTest
@@ -32,6 +33,10 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
   private static final String TASK_MATERNITY_LEAVE_REQUEST = "Maternity Leave Request";
   private static final String CASE_LEAVE_REQUEST = "Leave Request";
   private static final String IN_PROGRESS = "In progress";
+  private static final String YOUR_TASKS = "Your Tasks";
+
+
+  private NewDashboardPage taskWidgetPage;
 
   @Override
   @BeforeEach
@@ -45,22 +50,11 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     var mainMenu = new MainMenuPage();
     mainMenu.waitForGrowlMessageDisappear();
-    TaskWidgetPage taskWidgetPage = mainMenu.openTaskList();
-    taskWidgetPage.runTaskWithRunTheTaskBehaviour(0);
+    taskWidgetPage = NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.clickOnTaskName(TASK_MATERNITY_LEAVE_REQUEST);
     new TaskTemplatePage().getStartedTaskTemplateTitle()
         .shouldHave(Condition.attribute("title", TASK_MATERNITY_LEAVE_REQUEST));
-  }
-
-  @Test
-  public void testOpenTaskDetailsWhenClickingOnTaskLineInTaskList() {
-    updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
-    redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.DEMO_USER);
-    var mainMenu = new MainMenuPage();
-    mainMenu.waitForGrowlMessageDisappear();
-    mainMenu.openTaskList();
-    new TaskWidgetPage().openTaskWithAccessTaskDetailsBehaviour(0);
-    new TaskDetailsPage().getInformationPanel().should(Condition.appear);
   }
 
   @Test

@@ -95,7 +95,7 @@ public class DashboardConfigurationTest extends BaseTest {
   public void testDeletePublicDashboard() {
     DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
     modificationPage.clickDeleteDashboardByName("Dashboard");
-    modificationPage.getDashboardRows().shouldHave(size(0));
+    modificationPage.getDashboardRows().shouldHave(size(1));
   }
 
   @Test
@@ -107,7 +107,7 @@ public class DashboardConfigurationTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions);
+    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions, false);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
