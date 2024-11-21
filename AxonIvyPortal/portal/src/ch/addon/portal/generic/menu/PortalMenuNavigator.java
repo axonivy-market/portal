@@ -15,24 +15,32 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.MenuActionEvent;
 import org.primefaces.model.menu.MenuItem;
 
+import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.service.CustomSubMenuItemService;
 
+import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.UrlUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -49,6 +57,7 @@ public class PortalMenuNavigator {
 
     switch (selectedMenuKind) {
       case DASHBOARD:
+      case MAIN_DASHBOARD:
       case CUSTOM:
       case EXTERNAL_LINK:
         redirectToSelectedMenuUrl(params);
@@ -122,9 +131,8 @@ public class PortalMenuNavigator {
       cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_MENU, sessionUserId);
     }
 
-    if (portalSubMenuItemWrapper == null
-        || !requestLocale.equals(portalSubMenuItemWrapper.loadedLocale)) {
-      synchronized(PortalSubMenuItemWrapper.class) {
+    if (portalSubMenuItemWrapper == null || !requestLocale.equals(portalSubMenuItemWrapper.loadedLocale)) {
+      synchronized (PortalSubMenuItemWrapper.class) {
         List<SubMenuItem> subMenuItems = new ArrayList<>();
         try {
           subMenuItems = getSubmenuList();
@@ -139,38 +147,91 @@ public class PortalMenuNavigator {
     return portalSubMenuItemWrapper.portalSubMenuItems;
   }
 
-  public static void navigateToTargetPage(boolean isClickOnBreadcrumb, String destinationPage, Map<String, List<String>> params) throws IOException {
+  public static void navigateToTargetPage(boolean isClickOnBreadcrumb, String destinationPage,
+      Map<String, List<String>> params) throws IOException {
     if (isClickOnBreadcrumb) {
       if (BreadCrumbKind.TASK.name().equals(destinationPage)) {
         PortalNavigator.navigateToPortalTask();
-      }
-      else if (BreadCrumbKind.HOME.name().equals(destinationPage)) {
+      } else if (BreadCrumbKind.HOME.name().equals(destinationPage)) {
         PortalNavigatorAPI.navigateToPortalHome();
-      }
-      else {
+      } else {
         redirectToSelectedMenuUrl(params);
       }
     }
     navigateToTargetPage(params);
   }
-  private record PortalSubMenuItemWrapper(Locale loadedLocale, List<SubMenuItem> portalSubMenuItems) {}
+
+  private record PortalSubMenuItemWrapper(Locale loadedLocale, List<SubMenuItem> portalSubMenuItems) {
+  }
 
   private static List<SubMenuItem> getSubmenuList() {
+    String currentLanguage = UserUtils.getUserLanguage();
     List<SubMenuItem> subMenuItems = new ArrayList<>();
 
-    if(PermissionUtils.checkAccessFullProcessListPermission()) {
-      subMenuItems.add(new ProcessSubMenuItem());
-    }
+    // Add default submenu items based on permissions
+    addDefaultSubmenuItems(subMenuItems);
 
-    if(PermissionUtils.checkAccessFullTaskListPermission()) {
-      subMenuItems.add(new TaskSubMenuItem());
-    }
+    // Add dashboard submenu items
+    List<Dashboard> mainDashboards = DashboardUtils.collectMainDashboards();
+    for (Dashboard dashboard : mainDashboards) {
+      // Check if it's the task dashboard
+      if (DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD.equalsIgnoreCase(dashboard.getId())) {
+        // Only add the task dashboard if the user has permission
+        if (PermissionUtils.checkAccessFullTaskListPermission()) {
+          subMenuItems.add(convertDashboardToSubMenuItem(dashboard, currentLanguage));
+        }
+        continue; // Skip adding this dashboard if no permission
+      }
 
-    if(PermissionUtils.checkAccessFullCaseListPermission()) {
-      subMenuItems.add(new CaseSubMenuItem());
+      // Add other dashboards
+      subMenuItems.add(convertDashboardToSubMenuItem(dashboard, currentLanguage));
     }
 
     subMenuItems.addAll(CustomSubMenuItemService.findAll());
+
     return subMenuItems;
   }
+
+  private static void addDefaultSubmenuItems(List<SubMenuItem> subMenuItems) {
+    // Add Process submenu item if the user has permission
+    if (PermissionUtils.checkAccessFullProcessListPermission()) {
+      subMenuItems.add(new ProcessSubMenuItem());
+    }
+
+    // Add Case submenu item if the user has permission
+    if (PermissionUtils.checkAccessFullCaseListPermission()) {
+      subMenuItems.add(new CaseSubMenuItem());
+    }
+  }
+
+  private static SubMenuItem convertDashboardToSubMenuItem(Dashboard dashboard, String currentLanguage) {
+    SubMenuItem item = new SubMenuItem();
+    String defaultTitle = dashboard.getTitle();
+
+    // Set default icon if it's blank
+    if (StringUtils.isBlank(dashboard.getIcon())) {
+      dashboard.setIcon(dashboard.getIsPublic() ? "si-network-share" : "si-single-neutral-shield");
+    }
+
+    // Set icon with the appropriate prefix
+    item.icon = (dashboard.getIcon().startsWith("fa") ? "fa " : "si ") + dashboard.getIcon();
+
+    // Set the name of the submenu item based on the current language or use default title
+    item.label = dashboard.getTitles().stream()
+        .filter(name -> StringUtils.equalsIgnoreCase(name.getLocale().toString(), currentLanguage)
+            && StringUtils.isNotBlank(name.getValue()))
+        .map(DisplayName::getValue).findFirst().orElse(defaultTitle);
+
+    // Set other properties
+    item.menuKind = MenuKind.MAIN_DASHBOARD;
+    item.name = HomepageUtils.generateHomepageId(MenuKind.MAIN_DASHBOARD, dashboard.getId());
+    item.link = UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId());
+
+    // Special case for a specific dashboard ID
+    if (DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD.equalsIgnoreCase(dashboard.getId())) {
+      item.label = ApplicationMultiLanguageAPI.getCmsValueByUserLocale("/ch.ivy.addon.portalkit.ui.jsf/common/tasks");
+    }
+    return item;
+  }
+
 }

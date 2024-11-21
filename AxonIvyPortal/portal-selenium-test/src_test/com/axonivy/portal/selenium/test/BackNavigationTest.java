@@ -14,9 +14,10 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 
 @IvyWebTest
@@ -30,10 +31,12 @@ public class BackNavigationTest extends BaseTest {
   private static final String PAYMENT_CASE_NAME = "Create New Payment";
   private static final String PAYMENT_TASK_NAME = "Do New Payment";
   private static final String SIGNAL_NEW_PAYMENT = "Signal create New Payment";
+  private static final String DASHBOARD_TASK_NAME = "Maternity Leave Request";
+
   private CaseDetailsPage caseDetailsPage;
   private CaseWidgetPage caseWidgetPage;
   private TaskDetailsPage taskDetailsPage;
-  private TaskWidgetPage taskWidgetPage;
+  private NewDashboardPage taskWidgetPage;
 
   @Override
   @BeforeEach
@@ -45,14 +48,14 @@ public class BackNavigationTest extends BaseTest {
   @Test
   public void testEnterTaskDetailAndGoBack() {
     createTestingTasks();
-    taskWidgetPage = NavigationHelper.navigateToTaskList();
-
-    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskDetailsPage = taskWidget.openDashboardTaskDetails(DASHBOARD_TASK_NAME);
     taskDetailsPage.assertPageTitle(TASK_DETAILS_TITLE);
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
     taskWidgetPage.assertPageTitle(TASK_LIST_TITLE);
-
-    taskDetailsPage = taskWidgetPage.openTaskDetailsFromActionMenu(0);
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskDetailsPage = taskWidget.openTaskDetailsPageByAction(0);
     taskDetailsPage.assertPageTitle(TASK_DETAILS_TITLE);
 
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
