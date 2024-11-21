@@ -123,7 +123,7 @@ HowTo: Add an external link
 .. include:: ../includes/_common-icon.rst
 
 HowTo: Edit process icon of External link in Image mode
---------------------------------------
+-------------------------------------------------------
 #. Click on ``More menu item`` icon in the process card item.
 #. Click on |edit-icon| :guilabel:`Edit` menu item.
 #. The dialog **Edit process information** is opened.
