@@ -56,7 +56,7 @@ an Ivy process on the dashboard through iframes.
 
 Below is a standard JSON definition of the custom widget in the Portal dashboard.
 
-   .. code-block:: json
+   .. code-block:: javascript
 
       {
          "type": "custom",
@@ -98,7 +98,7 @@ The Developer can predefine a custom widget by declaring it in a JSON file:
 
 JSON structure
 
-   .. code-block:: json
+   .. code-block:: javascript
 
       {
          "type": "custom",
@@ -158,7 +158,7 @@ Attributes explanation
            configuration dialog, the user can edit this parameter in an input
            text field.
 
-         .. code-block:: json
+         .. code-block:: javascript
 
             {
                ...
@@ -177,7 +177,7 @@ Attributes explanation
            configuration dialog, the user can edit this parameter by choosing a
            user from a dropdown. Only Ivy usernames are accepted as values.
 
-         .. code-block:: json
+         .. code-block:: javascript
 
             {
                ...
@@ -196,7 +196,7 @@ Attributes explanation
            dialog, the user can edit this parameter with a date picker. This
            type only accepts date formats dd.MM.yyyy and MM/dd/yyyy.
 
-         .. code-block:: json
+         .. code-block:: javascript
 
             {
                ...

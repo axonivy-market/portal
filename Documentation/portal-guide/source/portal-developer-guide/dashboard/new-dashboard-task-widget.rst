@@ -11,7 +11,7 @@ to :ref:`Task List Widget <new-dashboard-task-list-widget>` for details.
 
 Below is a sample JSON definition of a task widget in the Portal dashboard
 
-.. code-block:: json
+.. code-block:: javascript
 
    {
       "type": "task",
@@ -160,7 +160,7 @@ as a column.
 
 You can predefine which column to show, and other attributes such as filter, format, and style. Below is a standard JSON of a custom column.
 
-.. code-block:: json
+.. code-block:: javascript
    
    {
       ...
@@ -198,7 +198,7 @@ Please refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 Base structure of filter json:
 
-   .. code-block:: json
+   .. code-block:: javascript
 
          {
             ...
@@ -253,7 +253,7 @@ Standard Column:
 
    - ``activator``
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...
@@ -281,7 +281,7 @@ Standard Column:
 
    - ``name``
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...
@@ -307,7 +307,7 @@ Standard Column:
 
    - ``description``
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...
@@ -335,7 +335,7 @@ Standard Column:
 
    - ``priority``
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...
@@ -365,7 +365,7 @@ Standard Column:
 
    - ``state``
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...
@@ -395,7 +395,7 @@ Standard Column:
 
    - ``startTimestamp`` and ``expiryTimestamp`` : created date and finished date of the Task
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...
@@ -443,7 +443,7 @@ Standard Column:
 
    - ``application``
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...
@@ -471,7 +471,7 @@ Custom Field Column :
 
    - ``type`` field must be ``custom`` for Custom Field and ``custom_case`` for Custom Case Field.
 
-   .. code-block:: json
+   .. code-block:: javascript
       
          {
             ...
@@ -515,7 +515,7 @@ Below are the definition of these attributes:
    * ``enableQuickSearch``: to enable/disable the quick search feature, set the
      ``enableQuickSearch`` field of the Task widget as shown below.
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...
@@ -537,7 +537,7 @@ Below are the definition of these attributes:
    * ``quickSearch``: to choose which columns can be searched by the quick search
      feature, set the ``quickSearch`` field for each column as shown below.
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...

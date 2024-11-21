@@ -582,7 +582,7 @@ Changes in 9.1
 
 - Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
 
-- Introduced new Portal dialog with icon decorator. Refer to :ref:`this section <components-additional-portal-dialog-with-icon>` for detail.
+- Introduced new Portal dialog with icon decorator.
 
 - TaskTemplate-7, TaskTemplate and TwoColumnTemplate have been removed.
 

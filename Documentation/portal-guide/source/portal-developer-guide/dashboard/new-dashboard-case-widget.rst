@@ -11,7 +11,7 @@ to :ref:`Case List Widget <new-dashboard-case-list-widget>` for details.
 
 Below is a sample JSON definition of the case widget in the Portal dashboard.
 
-.. code-block:: json
+.. code-block:: javascript
 
    {
       "type": "case",
@@ -162,7 +162,7 @@ You can predefine which columns to display, along with other attributes such as
 filters, formats, and styles. Below is a standard JSON example of a custom
 column.
 
-.. code-block:: json
+.. code-block:: javascript
 
    {
       ...
@@ -177,6 +177,7 @@ column.
    }
 
 ..
+
 
 Besides the attributes explained in the previous section, a custom column has
 two differences:
@@ -229,7 +230,7 @@ Please refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 Base structure of filter json:
 
-   .. code-block:: json
+   .. code-block:: javascript
 
          {
             ...
@@ -292,7 +293,7 @@ Standard Column:
 
    - ``name``
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...
@@ -318,7 +319,7 @@ Standard Column:
 
    - ``description``
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...
@@ -344,7 +345,7 @@ Standard Column:
 
    - ``state``: Case business state
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...
@@ -372,7 +373,7 @@ Standard Column:
 
    - ``creator``
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...
@@ -404,7 +405,7 @@ Standard Column:
 
    - ``startTimestamp`` and ``endTimestamp``: created date and finished date of the Case
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...
@@ -462,7 +463,7 @@ Standard Column:
 
    - ``category``
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...
@@ -493,7 +494,7 @@ Custom Field Column:
 
    - ``type`` field must be ``custom``
 
-   .. code-block:: json
+   .. code-block:: javascript
 
       {
          ...
@@ -538,7 +539,7 @@ Below are the definition of these attributes:
    * ``enableQuickSearch``: to enable/disable the quick search feature, set the
      ``enableQuickSearch`` field of the case widget as shown below.
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...
@@ -560,7 +561,7 @@ Below are the definition of these attributes:
    * ``quickSearch``: to choose which columns can be searched by the quick search
      feature, set the ``quickSearch`` field for each column as shown below.
 
-      .. code-block:: json
+      .. code-block:: javascript
 
          {
             ...
