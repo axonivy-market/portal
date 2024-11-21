@@ -206,6 +206,8 @@ A table of public dashboards is shown with the following information:
 
 #. Dashboard description
 
+#. Display as top menu or not
+
 #. Actions: click on |actions-menu-icon| to get :guilabel:`Actions` menu for further actions: |edit-icon| Edit (name, description), |settings-icon| Configuration
    (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| Export dashboard, |share-icon| Share,
    and |trash-icon| Delete a public dashboard.
@@ -236,9 +238,6 @@ How to: reorder public dashboards
 You can rearrange dashboards by dragging and dropping |reorder-dashboard-icon| icon.
 
 |reorder-public-dashboards|
-
-.. hint::
-   - Note that this ordering does not apply to all users who ordered their dashboards. It is overridden by the personal ordering.
 
 .. include:: ../includes/_common-icon.rst
 
