@@ -6,7 +6,7 @@
   <version>10.0.24</version>
   <packaging>iar</packaging>
   <properties>
-    <ivy.engine.version>10.0.24</ivy.engine.version>
+    <ivy.engine.version>10.0.25</ivy.engine.version>
     <build.plugin.version>10.0.16</build.plugin.version>
   </properties>
   <dependencies>

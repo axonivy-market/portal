@@ -486,13 +486,14 @@ public class DashboardBean implements Serializable {
   }
   
   public String getScreenReaderNotificationContent() {
-    String templateId =
-        Optional.ofNullable(this.selectedDashboard).map(Dashboard::getTemplateId).orElse(StringUtils.EMPTY);
+    String templateId = Optional.ofNullable(this.selectedDashboard)
+        .map(Dashboard::getTemplateId).orElse(Strings.EMPTY);
 
-    if (StringUtils.isNotBlank(templateId) && ACCESSIBILITY_DASHBOARD_TEMPLATE_ID.equals(templateId)) {
+    if (StringUtils.isNotBlank(templateId)
+        && ACCESSIBILITY_DASHBOARD_TEMPLATE_ID.equals(templateId)) {
       return Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/AccessibilityShortcuts/title");
     }
-    return Strings.EMPTY;
+   return Strings.EMPTY;
   }
 
   /**
