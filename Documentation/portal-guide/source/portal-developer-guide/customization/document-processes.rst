@@ -8,9 +8,9 @@ Document Processes
 Introduction
 ------------
 
-When you upload documents but want to manage them outside of Ivy, for
-example: in a Document Management System (DMS), you should follow this
-section to customize the document functions of Portal.
+When you upload documents but you want to manage them outside of Ivy, such as in
+a Document Management System (DMS), you should follow this section to customize
+the document functions of Portal.
 
 .. _customization-document-processes-customization:
 

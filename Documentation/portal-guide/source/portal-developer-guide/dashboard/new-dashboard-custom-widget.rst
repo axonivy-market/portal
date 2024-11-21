@@ -56,7 +56,7 @@ an Ivy process on the dashboard through iframes.
 
 Below is a standard JSON definition of the custom widget in the Portal dashboard.
 
-   .. code-block:: html
+   .. code-block:: javascript
 
       {
          "type": "custom",
@@ -98,7 +98,7 @@ The Developer can predefine a custom widget by declaring it in a JSON file:
 
 JSON structure
 
-   .. code-block:: html
+   .. code-block:: javascript
 
       {
          "type": "custom",
@@ -114,7 +114,7 @@ JSON structure
             "x": 10, "y": 0, "w": 12, "h": 6
          },
          "data" : {
-           "processPath": "designer/portal-developer-examples/Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
+           "processPath": "designer/portal-user-examples/Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
            "params": [
                {
                   "type": "user",
@@ -158,7 +158,7 @@ Attributes explanation
            configuration dialog, the user can edit this parameter in an input
            text field.
 
-         .. code-block:: html
+         .. code-block:: javascript
 
             {
                ...
@@ -177,7 +177,7 @@ Attributes explanation
            configuration dialog, the user can edit this parameter by choosing a
            user from a dropdown. Only Ivy usernames are accepted as values.
 
-         .. code-block:: html
+         .. code-block:: javascript
 
             {
                ...
@@ -196,7 +196,7 @@ Attributes explanation
            dialog, the user can edit this parameter with a date picker. This
            type only accepts date formats dd.MM.yyyy and MM/dd/yyyy.
 
-         .. code-block:: html
+         .. code-block:: javascript
 
             {
                ...
@@ -205,7 +205,7 @@ Attributes explanation
                      {
                         "type": "date",
                         "name": "startDate",
-                        "value": "11/19/2021"
+                        "value": "01/01/2024"
                      }
                   ]
             }
@@ -218,7 +218,7 @@ Attributes explanation
 
 Please refer to JSON file ``variables.Portal.Dashboard.json`` and process
 ``DashboardCustomWidgetExample/investmentList.ivp`` in project
-``portal-developer-examples`` for details about how to define the Ivy process for
+``portal-user-examples`` for details about how to define the Ivy process for
 the custom widget.
 
 .. |dashboard-custom-field| image:: images/new-dashboard-custom-widget/process-custom-field.png
