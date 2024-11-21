@@ -60,6 +60,7 @@
       widgetVar="widget-filter-category-panel-#{cc.clientId}"
       styleClass="widget-configuration__category-panel"
       dismissable="false">
+      <h:form>
       <p:tree id="widget-category-filter-tree"
         value="#{widgetCategoryFilterBean.categoryTree}" var="node"
         selectionMode="checkbox"
@@ -71,7 +72,7 @@
           <h:outputText value="#{node.value}" />
         </p:treeNode>
       </p:tree>
-
+      </h:form>
       <h:panelGroup id="category-panel-footer" layout="block"
         styleClass="widget-configuration__category-panel-footer">
         <p:commandLink id="cancel-command" styleClass="portal-cancel-button u-mar-right-10"
