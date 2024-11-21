@@ -240,7 +240,11 @@ public class CaseDashboardWidget extends DashboardWidget {
     updateSavedFiltersSelection();
 
     // Don't load user filters when already loaded from session
-    if (CollectionUtils.isNotEmpty(getUserFilters())) {
+    List<DashboardFilter> userFilters = getUserFilters();
+    if (CollectionUtils.isNotEmpty(userFilters)) {
+      // Clear temporary filters
+      setUserFilters(userFilters.stream().filter(filter -> !filter.isTemp())
+          .collect(Collectors.toList()));
       return;
     }
 
