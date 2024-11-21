@@ -1,9 +1,7 @@
 package ch.ivy.addon.portalkit.exporter;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
@@ -88,12 +86,7 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
           : SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getCreatorUser(), caseItem.getCreatorUserName());
       case CREATED -> caseItem.getStartTimestamp();
       case FINISHED -> caseItem.getEndTimestamp();
-      case OWNER -> {
-        yield CollectionUtils.emptyIfNull(caseItem.owners().all())
-        .stream()
-        .map(item -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(item.member(), item.memberName()))
-        .collect(Collectors.joining(","));
-      }
+      case OWNER -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForCaseOwners(caseItem.owners());
       case CATEGORY-> caseItem.getCategory().getPath();
       case APPLICATION -> caseItem.getApplication().getName();
       default -> "";
