@@ -1500,11 +1500,6 @@ body .notification-full-scroll>.ui-datascroller-content  {
   overflow:auto;
 }
 
-body .notification-checkbox .ui-chkbox-box {
-  width: 1rem;
-  height: 1rem;
-}
-
 .notifications-item-container {
   padding: 20px 15px 5px 15px;
   display: block;
