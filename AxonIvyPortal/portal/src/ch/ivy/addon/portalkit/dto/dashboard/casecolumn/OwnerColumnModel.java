@@ -44,7 +44,7 @@ public class OwnerColumnModel extends CaseColumnModel implements Serializable {
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
+  public int getDefaultColumnWidth() {
     return EXTRA_WIDTH;
   }
 

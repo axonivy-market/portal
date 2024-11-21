@@ -28,8 +28,8 @@ public class StartColumnModel extends TaskColumnModel implements Serializable {
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
-    return TINY_WIDTH;
+  public int getDefaultColumnWidth() {
+    return 50;
   }
 
   @Override

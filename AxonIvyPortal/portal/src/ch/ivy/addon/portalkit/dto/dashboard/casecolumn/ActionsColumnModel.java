@@ -41,6 +41,11 @@ public class ActionsColumnModel extends CaseColumnModel implements Serializable 
   }
 
   @Override
+  public int getDefaultColumnWidth() {
+    return SMALL_WIDTH;
+  }
+
+  @Override
   public Object display(ICase caze) {
     if (caze == null) {
       return "";

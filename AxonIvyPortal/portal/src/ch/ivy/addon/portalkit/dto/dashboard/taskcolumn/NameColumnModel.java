@@ -37,8 +37,8 @@ public class NameColumnModel extends TaskColumnModel implements Serializable {
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
-    return 200;
+  public int getDefaultColumnWidth() {
+    return 300;
   }
 
   @Override

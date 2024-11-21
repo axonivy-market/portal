@@ -75,4 +75,9 @@ public class ApplicationColumnModel extends CaseColumnModel implements Serializa
   public boolean canQuickSearch() {
     return true;
   }
+
+  @Override
+  public int getDefaultColumnWidth() {
+    return TINY_WIDTH;
+  }
 }
