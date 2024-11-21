@@ -25,6 +25,9 @@ public class SecurityMemberDisplayNameUtils {
   private static final String FORMAT_DISABLED_USER = "%s %s";
 
   public static String generateBriefDisplayNameForCaseOwners(CaseOwners owners) {
+    if (owners == null) {
+      return "";
+    }
     return CollectionUtils.emptyIfNull(owners.all())
           .stream()
           .map(item -> generateBriefDisplayNameForSecurityMember(item.member(), item.memberName()))
