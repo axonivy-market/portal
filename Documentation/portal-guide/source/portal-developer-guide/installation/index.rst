@@ -482,6 +482,7 @@ Changes in 12
 
 - The old statistic chart is removed, use the new :ref:`statistic-chart` instead.
 - Introduce the component IFrameTaskConfig to configure IFrame tasks. Refer to :ref:`iframe-configure-template` for more information.
+- Support multiple case owners. The single case owner sort feature is removed.
 
 Changes in 11.2.0
 -----------------
