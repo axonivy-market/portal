@@ -33,6 +33,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   private List<SecurityMemberDTO> permissionDTOs;
   @JsonIgnore
   private String displayedPermission;
+  private Boolean isTopMenu = false;
 
   public Dashboard() {}
 
@@ -49,6 +50,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     permissions = dashboard.permissions;
     permissionDTOs = dashboard.permissionDTOs;
     displayedPermission = dashboard.displayedPermission;
+    isTopMenu = dashboard.isTopMenu;
   }
 
   public String getTitle() {
@@ -131,6 +133,14 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
 
   public void setTemplateId(String templateId) {
     this.templateId = templateId;
+  }
+
+  public Boolean getIsTopMenu() {
+    return isTopMenu;
+  }
+
+  public void setIsTopMenu(Boolean isTopMenu) {
+    this.isTopMenu = isTopMenu;
   }
 
   @Override

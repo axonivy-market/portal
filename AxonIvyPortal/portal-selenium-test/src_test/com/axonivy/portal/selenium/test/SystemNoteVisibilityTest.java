@@ -15,7 +15,7 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 @IvyWebTest
 public class SystemNoteVisibilityTest extends BaseTest {
@@ -114,8 +114,9 @@ public class SystemNoteVisibilityTest extends BaseTest {
   private TaskDetailsPage openTaskDetails() {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    TaskWidgetPage taskWidget = mainMenuPage.selectTaskMenu();
-    return taskWidget.openTaskDetails(0);
+    mainMenuPage.selectTaskMenu();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    return taskWidget.openTaskDetailsPageByAction(0);
   }
 
   private CaseDetailsPage openCaseDetails() {

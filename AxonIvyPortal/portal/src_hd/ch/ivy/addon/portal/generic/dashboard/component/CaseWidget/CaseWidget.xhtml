@@ -10,9 +10,8 @@
   <cc:attribute name="isReadOnlyMode" default="false"/>
   <cc:attribute name="isPreviewMode" default="false"/>
   <cc:attribute name="onCompleteLoadWidget" />
+  <cc:attribute name="isAIResult" default="false" />
   <cc:attribute name="caseWidgetVar" default="dashboard-cases" />
-  
-  
 </cc:interface>
 
 <cc:implementation>
@@ -21,10 +20,17 @@
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
   <c:set var="isResizing" value="#{!cc.attrs.isReadOnlyMode and !cc.attrs.isPreviewMode}" />
 
-  <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
+  <p:remoteCommand id="rcLoadCaseFirstTimeAIResult" rendered="#{cc.attrs.isAIResult}"
+    autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
-    oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget}; #{cc.attrs.isPreviewMode ? 'calculateFilterPaneltPosition();' : ''}" />
+    oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget};" />
   <p:inputText type="hidden" value="#{cc.attrs.caseWidgetVar}-#{caseWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
+
+  <p:remoteCommand id="rcLoadCaseFirstTime" rendered="#{!cc.attrs.isAIResult}"
+    autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
+    update="dashboard-cases-container" global="false" async="true" process="@this"
+    oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget} #{cc.attrs.isPreviewMode ? 'calculateFilterPaneltPosition();' : ''}" />
+  <p:inputText type="hidden" value="dashboard-cases-#{caseWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
   <div class="ui-g">
     <h:panelGroup layout="block"
       styleClass="js-loading-#{caseWidget.id} case-dashboard-widget__loading-message ui-g-12">
@@ -53,7 +59,7 @@
         rowStyleClass="dashboard-table--row-style"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         disabledSelection="#{isPreviewMode}">
-        <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode}" />
+        <p:ajax event="rowSelect" listener="#{dashboardCaseWidgetBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode}" />
         <p:ajax event="colResize" process="dashboard-cases" global="false" partialSubmit="true"
           listener="#{dashboardDetailModificationBean.onResizeColumn}" disabled="#{!isResizing}" />
         <f:attribute name="widgetId" value="#{caseWidget.id}" />
@@ -141,9 +147,9 @@
         </h:panelGroup>
         <h:panelGroup layout="block" id="empty-message-when-not-filter"
           rendered="#{!noCasesWhenFilter}">
-          <i class="si #{dashboardBean.noCasesMessage.icon} empty-message-icon" />
+          <i class="si #{dashboardCaseWidgetBean.noCasesMessage.icon} empty-message-icon" />
           <br />
-          <h:outputText value="#{dashboardBean.noCasesMessage.message}"
+          <h:outputText value="#{dashboardCaseWidgetBean.noCasesMessage.message}"
             styleClass="empty-message-text" />
         </h:panelGroup>
       </h:panelGroup>
