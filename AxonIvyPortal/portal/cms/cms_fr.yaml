@@ -346,7 +346,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       FINISHED_TIME: Terminé
       ID: Id du dossier
       NAME: Nom / Description
-      OWNER: Propriétaire
+      OWNER: Responsables de processus
       STATE: Etat
     deletionNoteContent: Ce dossier a été supprimé par {0}
     destroyCaseMessage: Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer ce dossier et toutes les tâches associées ?
@@ -1314,7 +1314,7 @@ Dialogs:
                 CaseDetailTitle: Détail du cas
                 DataDescription: Données et description
                 destroyCase: détruire le cas
-              CaseOwner: Responsable de processus
+              CaseOwner: Responsables de processus
               Finished: Terminé
               GlobalSearchText: Les cas contiennent le mot-clé "{0}" dans Id du dossier{1}.
               ShowBusinessDetails: Détails de l'entreprise
@@ -1497,7 +1497,7 @@ Labels:
       FINISHED: Date d'achèvement
       ID: Id
       NAME: Nom
-      OWNER: Propriétaire du dossier
+      OWNER: Responsables de processus
       STATE: État
     DashboardStandardTaskColumn:
       ACTIONS: Actions
