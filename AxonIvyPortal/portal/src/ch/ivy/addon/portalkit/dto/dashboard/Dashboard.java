@@ -33,8 +33,6 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   private List<SecurityMemberDTO> permissionDTOs;
   @JsonIgnore
   private String displayedPermission;
-  @JsonIgnore
-  private boolean isAccessibility;
 
   public Dashboard() {}
 
@@ -132,14 +130,6 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
 
   public void setTemplateId(String templateId) {
     this.templateId = templateId;
-  }
-
-  public boolean isAccessibility() {
-    return isAccessibility;
-  }
-
-  public void setAccessibility(boolean isAccessibility) {
-    this.isAccessibility = isAccessibility;
   }
 
   @Override

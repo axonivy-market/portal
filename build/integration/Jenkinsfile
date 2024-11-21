@@ -83,7 +83,6 @@ pipeline {
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Test Portal===================='
-          bat "mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml -Dtest=%testPatternToRun% -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
           bat "mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Dtest=${params.testNewDashboardPatternToRun} -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
           utils.cleanDisk()
         }
