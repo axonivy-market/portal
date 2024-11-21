@@ -416,7 +416,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocument: Dokument hinzufügen
     addNote: Notiz hinzufügen
     allCategories: Alle Kategorien
-    allTypes: Alle Typen.
+    allTypes: Alle Typen
     allowPng: Nur das png Format wird unterstützt
     apply: Anwenden
     at: am
