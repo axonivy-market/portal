@@ -2065,7 +2065,7 @@ body .ui-widget.new-widget-dialog__introduction {
   margin-top: 3rem;
 }
 
-@media (max-width: 40em) {
+@media (max-width: 1024px) {
   .dashboard-widget-filter__filter-panel > div:first-child {
     width: 100px;
     max-width: 100px;
@@ -2077,7 +2077,9 @@ body .ui-widget.new-widget-dialog__introduction {
     max-width: 100%;
     margin-bottom: 10px;
   }
-  
+}
+
+@media (max-width: 40em) {
   .filter-overlay-panel__footer .footer-buttons-container {
     display: flex;
     flex-direction: column;
