@@ -372,7 +372,9 @@ public class DashboardConfigurationPage extends TemplatePage {
   public void createPrivateDashboardFromScratch() {
     openCreatePrivateDashboardMenu();
     $("a[id$=':create-from-scratch']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    waitForElementDisplayed(getMenuIconContainer(), true);
     $$("[id$=':dashboard-title']").filter(Condition.visible).first().sendKeys("My dashboard");
+    $$("input[id$=':dashboard-description']").filter(Condition.visible).first().sendKeys("Private dashboard description");
   }
 
   public SelenideElement getDashboardCreationDialog() {
@@ -400,6 +402,13 @@ public class DashboardConfigurationPage extends TemplatePage {
   public void createPublicDashboardFromScratch() {
     openCreatePublicDashboardMenu();
     $("a[id$=':create-from-scratch']").shouldBe(getClickableCondition()).click();
+    waitForElementDisplayed(getMenuIconContainer(), true);
+    $$("[id$=':dashboard-title']").filter(Condition.visible).first().sendKeys("My dashboard");
+    $$("input[id$=':dashboard-description']").filter(Condition.visible).first().sendKeys("Public dashboard description");
+  }
+  
+  public SelenideElement getMenuIconContainer() {
+    return $("div[id$=':dashboard-creation-details-dialog']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$=':custom-array-icon']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getDashboardTemplates() {
