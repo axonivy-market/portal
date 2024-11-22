@@ -11,13 +11,7 @@ your HTML dialog independent of the  **Portal**. It is rendered automatically in
 
 .. _iframe-usage:
 
-Templates to use with IFrame:
-
-#. frame-8 template (Provided by core, uses Serenity theme)
-
-#. frame-10 templates (Provided by core, uses Freya theme)
-
-These templates fully support responsiveness.
+Templates to use with IFrame: frame-10 templates (Provided by core, uses Freya theme). This template fully supports responsiveness.
 
 How To Use
 ==========
@@ -34,7 +28,7 @@ Follow these steps to use the IFrame approach:
 #. If you don't want to use the default configuration, apply one of the following three
    levels to open your task(s) in an IFrame:
 
-   - Task level: in Task custom fields, set the ``embedInFrame`` String field to
+   - Task level: in Task custom fields, set the ``embedInFrame`` field to
    
    	- ``true``: start inside IFrame
    	- ``false``: not start inside IFrame
@@ -117,7 +111,6 @@ You could configure UI in either of these two ways:
                window.isHideCaseInfo = false;
                window.currentProcessStep = 0;
                window.currentProcessStep = #{data.currentProcessStep};
-               window.currentProcessStep = "#{data.currentProcessStep}";
                // Set process steps directly as Array.
                window.processSteps = ["Create Investment Request", "Approve Investment Request"];
                // If process steps are set in HTML dialog logic or java code, convert it to JSON format
@@ -261,8 +254,9 @@ Example using IFrameTaskConfig:
 Developer tips
 ==============
 
-In case your project has a navigation button that does not complete a task, e.g.,Cancel, redirect in your HTML dialog 
-to the page you want to display (i.e., default pages like application home, task list, process list, etc.)
+If your project has a navigation button that does not complete a task (e.g.,
+Cancel), redirect the user to the desired page (e.g., the application home, task
+list, process list, etc.) in the HTML dialog.
 
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png

@@ -232,6 +232,7 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewExternalLinkHeader')}" closeOnEscape="true" modal="true"
     appendTo="@(body)" resizable="false" responsive="true" positionType="absolute" fitViewport="true" styleClass="add-external-link-dialog">
     <p:ajax event="close" update="add-external-link-dialog" resetValues="true" />
+    <div style="display: none;" id="error-message" />
     <h:form id="add-external-link-form" styleClass="add-external-link-form ui-g">
       <p:defaultCommand target="external-link-name"/>
       <p:messages styleClass="ui-g-12"/>
@@ -342,7 +343,7 @@
       <h:panelGroup id="file-upload-panel" layout="block"
         styleClass="#{empty externalLinkBean.externalLink.imageLocation ? 'ui-g-12 ':'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
         <p:fileUpload id="external-link-image-upload"
-          style="display: none;"
+          onvalidationfailure="handleUploadFileFail();" style="display: none;"
           widgetVar="externalLinkUpload"
           rendered="#{empty externalLinkBean.externalLink.imageLocation}"
           listener="#{externalLinkBean.handleImageUpload}"
@@ -389,7 +390,7 @@
         icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" process="#{cc.clientId}:add-external-link-form"
         form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink()}"
         update="#{cc.clientId}:add-external-link-form"
-        oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); updateProcessListOnSaveSuccessful();} else {hideExtendLinkPreviewLabel();}" />
+        oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); updateProcessListOnSaveSuccessful();}" />
     </f:facet>
   </p:dialog>
   <!-- End External Link Dialogs -->

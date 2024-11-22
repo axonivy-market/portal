@@ -417,6 +417,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocument: Agregar documento
     addNote: Agregar nota
     allCategories: Todas las categorias
+    allTypes: Todos los tipos
     allowPng: Solo se permiten los tipos png
     apply: Aplicar
     at: en
@@ -554,6 +555,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     second: segundo
     seconds: segundos
     seeDetail: Mostrar detalles
+    select: Seleccionar
     selectAll: Seleccionar todo
     selectUsers: Seleccione usuario(s)
     selectedDay: '{0} Día(s) selecionados'
@@ -585,6 +587,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Todos los administradores
     typeAllUsers: Todos los usuarios
     typeOnlyMe: Solo yo
+    uploadHere: Cargue aquí
     uploadOneHere: Seleccionar
     user: '{0} usuario'
     users: Usuarios
@@ -1102,7 +1105,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     toUser: Usuario
     userSelectionWatermark: Por favor seleccione un usuario...
   taskDetails:
-    addDocumentHelpText: Para cargar archivos, arrastrar y soltar o seleccionar archivos
+    addDocumentHelpText: 'Para cargar archivos, arrastrar y soltar o '
     addNoteHelpText: Escriba su texto aquí.
     afterEscalation: Después de la escalada
     businessCase: Caso comercial
@@ -1120,6 +1123,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processingTime: Tiempo de procesado
     setDelayTimestamp: '{0} ({1}) Ha modificado el tiempo de demora para la tarea #{2} a {3}'
     setExpiryActivatorAndTimeNotes: '{0} y asignar {1} como el usuario de la tarea escalada'
+    supportFileTypes: 'Tipos de archivos admitidos para cargar: {0}'
     taskCategory: Categoría de tarea
     taskExpiryDisable: Esta tarea no tiene manejo lógico de escalado, por lo tanto no se puede establecer el tiempo de expiración.
     technicalCase: Caso técnico
@@ -1248,11 +1252,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Mostrar lista de tareas completa
     sort: Ordenar
   taskWarning:
-    createdTaskLeave: 'Va a salir de esta página. Por favor selecione una de las siguientes opciones:<UL><LI>&nbsp; &nbsp; Salir: No guardará sus cambios y navegará a la página seleccionada<LI>&nbsp; &nbsp; Cancelar: Continue trabajando en esta tarea.</UL>'
-    createdTaskLogout: 'Va a salir de esta página. Por favor selecione una de las siguientes opciones:<UL><LI>&nbsp; &nbsp; Cerrar sesión: No guardará sus cambios y se cerrará la sesión.<LI>&nbsp;Cancelar: Continue trabajando en esta tarea.</UL>'
-    resetParkTaskBeforeLeave: '<h4>Va a salir de esta página.<br/>Por favor selecione una de las siguientes opciones:</h4><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Reservar: No guardará sus cambios y esta tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando
+    createdTaskLeave: '<div>Va a salir de esta página. Por favor selecione una de las siguientes opciones:</div><UL><LI>&nbsp; &nbsp; Salir: No guardará sus cambios y navegará a la página seleccionada<LI>&nbsp; &nbsp; Cancelar: Continue trabajando en esta tarea.</UL>'
+    createdTaskLogout: '<div>Va a salir de esta página.<br/> Por favor selecione una de las siguientes opciones:</div><UL><LI>&nbsp; &nbsp; Cerrar sesión: No guardará sus cambios y se cerrará la sesión.<LI>&nbsp;Cancelar: Continue trabajando en esta tarea.</UL>'
+    resetParkTaskBeforeLeave: '<div>Va a salir de esta página.<br/>Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Reservar: No guardará sus cambios y esta tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando
       en esta tarea.</UL>'
-    resetParkTaskBeforeLogout: 'Va a salir de esta página. Por favor selecione una de las siguientes opciones:<UL><LI>Salir: no guardará sus cambios y volverá a la página anterior.<LI>Reservar: No guardará sus cambios, volverá a la página anterior pero la tarea quedara reservada para usted.<LI>Cancelar:
+    resetParkTaskBeforeLogout: '<div>Va a salir de esta página.</br> Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: no guardará sus cambios y volverá a la página anterior.<LI>Reservar: No guardará sus cambios, volverá a la página anterior pero la tarea quedara reservada para usted.<LI>Cancelar:
       Continue trabajando en esta tarea.</UL>'
     taskNotFound: La tarea no existe o no los tiene derechos suficientes para ver esta tarea.
   userProfile:
