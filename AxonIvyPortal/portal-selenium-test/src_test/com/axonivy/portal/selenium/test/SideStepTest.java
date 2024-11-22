@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
@@ -26,8 +26,8 @@ public class SideStepTest extends BaseTest {
   public void testSideStepInCaseList() {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
-    int sideSteps = casePage.countSideStepItems();
+    CaseWidgetNewDashBoardPage casePage = mainMenuPage.selectCaseMenu();
+    int sideSteps = casePage.countSideStepItems(0, "default_case_list_dashboard_case_1");
     assertEquals(2, sideSteps);
   }
 

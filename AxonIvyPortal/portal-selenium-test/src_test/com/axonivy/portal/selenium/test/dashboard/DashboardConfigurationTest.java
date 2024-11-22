@@ -95,7 +95,7 @@ public class DashboardConfigurationTest extends BaseTest {
   public void testDeletePublicDashboard() {
     DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
     modificationPage.clickDeleteDashboardByName("Dashboard");
-    modificationPage.getDashboardRows().shouldHave(size(1));
+    modificationPage.getDashboardRows().shouldHave(size(2));
   }
 
   @Test

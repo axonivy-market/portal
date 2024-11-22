@@ -137,16 +137,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rubrik 3
       NORMAL_TEXT: Normaler Text
   MyProfile:
-    CaseList: Liste der Vorgänge
     DateFormat: Datum Format
     FormattingLanguage: Sprache der Formatierung
     General: Allgemeine
     Homepage: Homepage
     Language: Sprache
     ProcessList: Prozess-Liste
-    SortFieldSelections:
-      defaultSortFieldLabel: Standard-Sortierfeld
-    TaskList: Aufgabenliste
     byDefault: '  standardmäßig'
     defaultOption: Standard ({0})
     defaultViewMode: Standardanzeige
@@ -416,6 +412,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocument: Dokument hinzufügen
     addNote: Notiz hinzufügen
     allCategories: Alle Kategorien
+    allTypes: Alle Typen
     allowPng: Nur das png Format wird unterstützt
     apply: Anwenden
     at: am
@@ -553,6 +550,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     second: Sekunde
     seconds: Sekunden
     seeDetail: Details anzeigen
+    select: Auswählen
     selectAll: Alle selektieren
     selectUsers: Benutzer auswählen
     selectedDay: '{0} ausgewählte Tag(e)'
@@ -584,6 +582,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Alle Administratoren
     typeAllUsers: Alle Benutzer
     typeOnlyMe: Nur für mich
+    uploadHere: Hier hochladen
     uploadOneHere: Auswählen
     user: '{0} Benutzer'
     users: Benutzer
@@ -1103,7 +1102,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     toUser: Benutzer
     userSelectionWatermark: Bitte wählen Sie einen Benutzer aus...
   taskDetails:
-    addDocumentHelpText: Zum Hochladen Dateien per Drag & Drop hier ablegen oder Dateien auswählen
+    addDocumentHelpText: 'Zum Hochladen Dateien per Drag & Drop hier ablegen oder '
     addNoteHelpText: Schreiben Sie hier Ihren Text
     afterEscalation: Nach Eskalation
     businessCase: Vorgang
@@ -1121,6 +1120,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processingTime: Bearbeitungszeit
     setDelayTimestamp: '{0} ({1}) hat die Verzügerungszeit des Tasks #{2} auf {3} gesetzt.'
     setExpiryActivatorAndTimeNotes: '{0} und weisen Sie {1} als Aktivator für die Aufgabeneskalation zu'
+    supportFileTypes: 'Unterstützte Dateitypen für Uploads: {0}'
     taskCategory: Aufgabenkategorie
     taskExpiryDisable: Es kann keine Ablaufzeit gesetzt werden, da diese Aufgabe keine Eskalationslogik enthält.
     technicalCase: Technischer Vorgang
@@ -1249,12 +1249,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Komplette Aufgabenliste anzeigen
     sort: Sortieren
   taskWarning:
-    createdTaskLeave: 'Sie verlassen die aktuelle Seite. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>&nbsp; &nbsp; Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>&nbsp; &nbsp; Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    createdTaskLogout: 'Sie verlassen die aktuelle Seite. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLeave: '<h4>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</h4><UL><LI> Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI> Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>
+    createdTaskLeave: '<div>Sie verlassen die aktuelle Seite.<br/>  Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    createdTaskLogout: '<div>Sie verlassen die aktuelle Seite.<br/> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLeave: '<div>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI> Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI> Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>
       Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLogout: 'Sie verlassen die aktuelle Aufgabe. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>&nbsp; &nbsp; Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>&nbsp; &nbsp; Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben.
-      Dann abmelden.<LI>&nbsp; &nbsp; Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLogout: '<div>Sie verlassen die aktuelle Aufgabe.</br> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>&nbsp; &nbsp; Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>&nbsp; &nbsp; Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste
+      verschieben. Dann abmelden.<LI>&nbsp; &nbsp; Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     taskNotFound: Die Aufgabe existiert nicht oder Sie haben ungenügende Rechte, um diese Aufgabe zu sehen.
   userProfile:
     myProfileTitle: Mein Profil
