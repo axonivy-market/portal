@@ -8,6 +8,7 @@
   <cc:attribute name="isInConfiguration" default="false" />
   <cc:attribute name="index" />
   <cc:attribute name="onLoadProcessComplete" />
+  <cc:attribute name="isAIResult" default="false" />
 </cc:interface>
 
 <cc:implementation>
@@ -15,9 +16,21 @@
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
   <c:set var="displayMode" value="#{widget.displayMode}" />
   <c:set var="index" value="#{cc.attrs.index}" />
-  <p:remoteCommand id="rcLoadProcessFirstTime" autoRun="true" update="dashboard-processes-container" global="false" async="true" process="@this"
+
+  <h:form rendered="#{cc.attrs.isAIResult}">
+    <p:remoteCommand id="rcLoadProcessFirstTimeAIResult"
+      autoRun="true" actionListener="#{widget.buildProcessDataFirstTime(cc.attrs.isInConfiguration)}"
+      process="@this" update=":#{p:resolveFirstComponentWithId('dashboard-processes-container', view).clientId}"
+      global="false" async="true" 
+      oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-processes-container-#{widget.id}'); #{cc.attrs.onLoadProcessComplete}; respondProcessWidget('#{displayMode}')" />
+  </h:form>
+
+  <p:remoteCommand id="rcLoadProcessFirstTime" rendered="#{!cc.attrs.isAIResult}"
+    autoRun="true" actionListener="#{widget.buildProcessDataFirstTime(cc.attrs.isInConfiguration)}"
+    update="dashboard-processes-container" process="@this"
+    global="false" async="true" 
     oncomplete="loadWidgetFirstTime('js-loading-#{widget.id}', 'js-dashboard-processes-container-#{widget.id}'); #{cc.attrs.onLoadProcessComplete}; respondProcessWidget('#{displayMode}')"
-    actionListener="#{widget.buildProcessDataFirstTime(cc.attrs.isInConfiguration)}" />
+     />
 
   <div class="ui-g widget-height-100 #{displayMode eq 'COMBINED_MODE' ? 'widget-overflow-auto' : ''} #{displayMode eq 'IMAGE_MODE' ? 'image-process-container' : ''}">
     <h:panelGroup layout="block"

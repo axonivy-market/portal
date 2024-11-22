@@ -81,7 +81,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return $$("div.widget__header").filter(text(taskWidgetName));
   }
 
-  private SelenideElement getColumnOfTaskHasIndex(int index, String columnName) {
+  protected SelenideElement getColumnOfTaskHasIndex(int index, String columnName) {
     int startIndex = getIndexWidgetByColumn(columnName);
     return getColumnOfTableWidget(index).get(startIndex);
   }
@@ -308,7 +308,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(getClickableCondition()).click();
   }
 
-  private ElementsCollection getColumnsOfTableWidget() {
+  protected ElementsCollection getColumnsOfTableWidget() {
     return $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr td");
   }
 
@@ -320,7 +320,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     getAllTasksOfTaskWidget().filter(text(taskName)).first().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     }
 
-  private ElementsCollection getAllTasksOfTaskWidget() {
+    protected ElementsCollection getAllTasksOfTaskWidget() {
     return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-tasks__name"));
   }
 

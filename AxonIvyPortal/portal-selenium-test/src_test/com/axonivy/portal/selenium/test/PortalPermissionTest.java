@@ -1,23 +1,22 @@
 package com.axonivy.portal.selenium.test;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -70,16 +69,20 @@ public class PortalPermissionTest extends BaseTest {
     redirectToRelativeLink(createSystemTaskUrl);
 
     // Navigate full task list to check system task
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.waitPageLoaded();
-    taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Delayed"));
-    boolean systemTaskAppear = taskWidgetPage.checkNameOfTaskAt(0, "I'm a system task with delay");
+    NewDashboardPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.waitPageLoaded();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("state", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Delayed");
+    taskWidget.applyFilter();
+    boolean systemTaskAppear = taskWidget.checkNameOfTaskAt(0, "I'm a system task with delay");
     assertTrue(systemTaskAppear);
 
     // Navigate to Dashboard widget to check system task
-    CaseWidgetPage caseWidgetPage = NavigationHelper.navigateToCaseList();
+    CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
     caseWidgetPage.waitPageLoaded();
-    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase("Create System Task");
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Create System Task");
     caseDetailsPage.waitPageLoaded();
     int countTask = caseDetailsPage.countRelatedTasks().size();
     assertTrue(countTask == 3);
@@ -88,13 +91,17 @@ public class PortalPermissionTest extends BaseTest {
     denySpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     taskWidgetPage = NavigationHelper.navigateToTaskList();
     taskWidgetPage.waitPageLoaded();
-    taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Delayed"));
-    countTask = taskWidgetPage.countTasks().size();
-    assertEquals(countTask, 0);
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("state", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Delayed");
+    taskWidget.applyFilter();
+    // return table without any task
+    assertTrue(taskWidget.isTableHidden());
 
     caseWidgetPage = NavigationHelper.navigateToCaseList();
     caseWidgetPage.waitPageLoaded();
-    caseDetailsPage = caseWidgetPage.openCase("Create System Task");
+    caseDetailsPage = caseWidgetPage.openDetailsCase("Create System Task");
     caseDetailsPage.waitPageLoaded();
     countTask = caseDetailsPage.countRelatedTasks().size();
     assertTrue(countTask == 1);
@@ -104,18 +111,23 @@ public class PortalPermissionTest extends BaseTest {
   public void testShowHideTaskActions() {
     denyTaskActionsPermissions();
     createTestingTasks();
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.waitPageLoaded();
-    assertTrue(taskWidgetPage.isTaskResetDisplayed(false));
-    assertTrue(taskWidgetPage.isTaskDelegateDisplayed(false));
-    assertTrue(taskWidgetPage.isTaskReserverDisplayed(false));
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.waitPageLoaded();
+    assertTrue(taskWidget.isTaskResetNotDisplayed(0));
+    taskWidget.clickOnTaskActionLink(0);
+    assertTrue(taskWidget.isTaskDelegateNotDisplayed(0));
+    taskWidget.clickOnTaskActionLink(0);
+    assertTrue(taskWidget.isTaskReserverNotDisplayed(0));
 
     grantTaskActionsPermissions();
-    taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.sideStepMenuOnActionButton(0);
-    assertTrue(taskWidgetPage.isTaskResetDisplayed(true));
-    assertTrue(taskWidgetPage.isTaskDelegateDisplayed(true));
-    assertTrue(taskWidgetPage.isTaskReserverDisplayed(true));
+    NavigationHelper.navigateToTaskList();
+    taskWidget = new TopMenuTaskWidgetPage();
+    assertFalse(taskWidget.isTaskResetNotDisplayed(0));
+    taskWidget.clickOnTaskActionLink(0);
+    assertFalse(taskWidget.isTaskDelegateNotDisplayed(0));
+    taskWidget.clickOnTaskActionLink(0);
+    assertFalse(taskWidget.isTaskReserverNotDisplayed(0));
   }
 
   @Test
@@ -126,13 +138,14 @@ public class PortalPermissionTest extends BaseTest {
     denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser();
     newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
-    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    CaseWidgetNewDashBoardPage caseWidgetPage = mainMenuPage.openCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
     assertTrue(caseDetailsPage.isAddNoteButtonDisplayed(false));
     assertTrue(caseDetailsPage.isShowMoreNoteButtonDisplayed(false));
     assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed(false));
-    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-    TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    mainMenuPage.openTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskDetailsPage taskDetailsPage = taskWidget.openTaskDetailsPageByAction(0);
     assertTrue(taskDetailsPage.isAddNoteButtonDisplayed(false));
     assertTrue(taskDetailsPage.isShowMoreNoteButtonDisplayed(false));
     assertTrue(taskDetailsPage.isAddDocumentLinkDisplayed(false));
@@ -140,12 +153,13 @@ public class PortalPermissionTest extends BaseTest {
     grantShowHideNotePermissions();
     grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
     mainMenuPage.openCaseList();
-    caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
     assertTrue(caseDetailsPage.isAddNoteButtonDisplayed(true));
     assertTrue(caseDetailsPage.isShowMoreNoteButtonDisplayed(true));
     assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed(true));
     mainMenuPage.openTaskList();
-    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskDetailsPage = taskWidget.openTaskDetailsPageByAction(0);
     assertTrue(taskDetailsPage.isAddNoteButtonDisplayed(true));
     assertTrue(taskDetailsPage.isShowMoreNoteButtonDisplayed(true));
     assertTrue(taskDetailsPage.isAddDocumentLinkDisplayed(true));
@@ -156,13 +170,13 @@ public class PortalPermissionTest extends BaseTest {
     createTestingTasks();
     denyCasePermissions();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
-    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    CaseWidgetNewDashBoardPage caseWidgetPage = mainMenuPage.openCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
     assertTrue(caseDetailsPage.isShowDetailsDisplayed(false));
 
     grantCasePermissions();
     mainMenuPage.openCaseList();
-    caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
     caseDetailsPage.openActionMenu();
     assertTrue(caseDetailsPage.isShowDetailsDisplayed(true));
   }
@@ -178,8 +192,6 @@ public class PortalPermissionTest extends BaseTest {
 
     UserProfilePage userProfilePage = homePage.openMyProfilePage();
     assertFalse(userProfilePage.isProcessSettingDisplayed());
-    assertFalse(userProfilePage.isTaskListSettingDisplayed());
-    assertFalse(userProfilePage.isCaseListSettingDisplayed());
 
     grantAccessFullListPermissions();
     homePage = new NewDashboardPage();
@@ -187,8 +199,6 @@ public class PortalPermissionTest extends BaseTest {
 
     userProfilePage = homePage.openMyProfilePage();
     assertTrue(userProfilePage.isProcessSettingDisplayed());
-    assertTrue(userProfilePage.isTaskListSettingDisplayed());
-    assertTrue(userProfilePage.isCaseListSettingDisplayed());
   }
 
   private void grantAccessFullListPermissions() {

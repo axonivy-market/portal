@@ -2,7 +2,6 @@ package com.axonivy.portal.selenium.test;
 
 
 import java.time.LocalDateTime;
-
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
@@ -12,11 +11,13 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.DateTimePattern;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.LeaveRequestPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 @IvyWebTest
 public class LeaveRequestTest extends BaseTest {
@@ -26,7 +27,6 @@ public class LeaveRequestTest extends BaseTest {
   private static final String CREATE_LEAVE_REQUEST_TITLE = "Create leave request - Axon Ivy";
   
   private LeaveRequestPage leaveRequestPage;
-  private TaskWidgetPage taskWidgetPage;
 
   @BeforeEach
   @Override
@@ -49,6 +49,7 @@ public class LeaveRequestTest extends BaseTest {
     assertEquals("'To' must be later than 'From'.", leaveRequestPage.clickSubmitAndGetValidationMsg());
   }
 
+  @SuppressWarnings("deprecation")
   @Test
   public void testApproveScenario() {
     leaveRequestPage = startLeaveRequestProcess();
@@ -67,24 +68,30 @@ public class LeaveRequestTest extends BaseTest {
     dashboardPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
 
-    taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.startTaskIFrame(0);
+    NewDashboardPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.startTaskIFrameByIndex(0);
     leaveRequestPage.assertPageTitle(APPROVAL_TITLE);
     leaveRequestPage.enterApproverComment("Approved");
     leaveRequestPage.clickApproveBtn();
 
-    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage = new NewDashboardPage();
     taskWidgetPage.waitPageLoaded();
     taskWidgetPage.clickOnLogout();
     login(TestAccount.DEMO_USER);
     redirectToNewDashBoard();
 
     taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is approved");
-    taskWidgetPage.startTaskIFrame(0);
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Your leave request is approved");
+    taskWidget.applyFilter();
+    taskWidget.startTaskIFrameByIndex(0);
     leaveRequestPage.assertPageTitle(APPROVAL_RESULT_TITLE);
   }
 
+  @SuppressWarnings("deprecation")
   @Test
   public void testRejectScenario() {
     leaveRequestPage = startLeaveRequestProcess();
@@ -103,21 +110,26 @@ public class LeaveRequestTest extends BaseTest {
     dashboardPage.clickOnLogout();
     login(TestAccount.ADMIN_USER);
 
-    taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.startTaskIFrame(0);
+    NewDashboardPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.startTaskIFrameByIndex(0);
     leaveRequestPage.assertPageTitle(APPROVAL_TITLE);
 
     leaveRequestPage.enterApproverComment("Rejected");
     leaveRequestPage.clickRejectBtn();
 
-    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage = new NewDashboardPage();
     taskWidgetPage.waitPageLoaded();
     taskWidgetPage.clickOnLogout();
     login(TestAccount.DEMO_USER);
 
     taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.filterTasksInExpandedModeBy("Your leave request is rejected");
-    taskWidgetPage.startTaskIFrame(0);
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Your leave request is rejected");
+    taskWidget.applyFilter();
+    taskWidget.startTaskIFrameByIndex(0);
     leaveRequestPage.assertPageTitle(APPROVAL_RESULT_TITLE);
   }
 

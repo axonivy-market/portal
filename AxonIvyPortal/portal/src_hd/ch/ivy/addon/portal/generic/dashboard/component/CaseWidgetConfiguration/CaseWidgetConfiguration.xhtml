@@ -50,7 +50,7 @@
         componentToUpdate="#{cc.attrs.componentToUpdate}" />
       <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseWidget id="case-widget-preview" isReadOnlyMode="#{cc.attrs.isReadOnlyMode}"
         caseWidget="#{widget}" renderColumnConfiguration="false" isPreviewMode="true" caseWidgetVar="dashboard-cases-configuration" componentToUpdateCaseWidget="@widgetVar(dashboard-cases-configuration-#{widget.id})"
-        onCompleteLoadWidget="setTimeout(function() { PF('new-widget-configuration-dialog').initPosition(); }, 100); initTableWidget(PF('dashboard-cases-configuration-#{widget.id}'))"/>
+        onCompleteLoadWidget="setTimeout(function() { PF('new-widget-configuration-dialog').initPosition(); }, 100); initTableWidget(PF('dashboard-cases-configuration-#{widget.id}'));"/>
     </ui:define>
 
     <ui:define name="multiLanguageDialog">

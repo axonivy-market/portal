@@ -32,7 +32,7 @@
         pageLinks="5" sortBy="#{widget.sortByName}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''}">
-        <p:ajax event="rowSelect" listener="#{dashboardBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode or isPreviewMode}" />
+        <p:ajax event="rowSelect" listener="#{dashboardTaskWidgetBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode or isPreviewMode}" />
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortable="true" sortBy="#{name}" field="name" filterable="false"
           styleClass="relevant-tasks__name">
@@ -57,7 +57,7 @@
           <div id="action-cell-#{rowIndex}" class="task-header-action-cell">
             <div class="action-container">
               <p:commandLink id="task-action-component" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task) or isPreviewMode or !isReadOnlyMode}"
-                onstart="event.stopPropagation();" styleClass="task-action-item start-task-action"  actionListener="#{dashboardBean.handleStartTask(task)}">
+                onstart="event.stopPropagation();" styleClass="task-action-item start-task-action"  actionListener="#{dashboardTaskWidgetBean.handleStartTask(task)}">
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label u-hidden-lg-down" />
                 <i class="si si-arrow-right-1 icon-compact-mode" />
               </p:commandLink>
