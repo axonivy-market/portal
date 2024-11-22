@@ -174,6 +174,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
 
   private void mergeUserFilterInput(WidgetFilterModel userFilterOptions, ColumnModel column) {
     userFilterOptions.getFilterableColumns().stream()
+        .filter(userSelected -> userSelected.getField() != null)
     .filter(userSelected -> userSelected.getField().equals(column.getField()) 
         && userSelected.getType( )== column.getType()).findFirst()
     .ifPresent(selectedColumn -> {

@@ -11,7 +11,7 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 
 @IvyWebTest
@@ -36,8 +36,9 @@ public class DateTimeDisplayTest extends BaseTest {
 
   @Test
   public void testDisplayDateTime() {
-    TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
-    TaskDetailsPage taskDetailsPage = taskWidget.openTaskDetails(0);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskDetailsPage taskDetailsPage = taskWidget.openTaskDetailsPageByAction(0);
     String createdDateLiteral = taskDetailsPage.getCreatedOnDateText();
     boolean matches = Pattern.matches(DATE_TIME_REGEX_PATTERN, createdDateLiteral);
 

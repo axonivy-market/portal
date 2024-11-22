@@ -1,0 +1,235 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "18DBCE02273EB5B1",
+  "config" : {
+    "data" : "portalkit.PortalToolsData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "findTasksTool",
+      "config" : {
+        "signature" : "findTasksTool",
+        "input" : {
+          "params" : [
+            { "name" : "taskName", "type" : "String", "desc" : "Name of the task" },
+            { "name" : "taskDescription", "type" : "String", "desc" : "Description of the task" },
+            { "name" : "taskPriority", "type" : "String", "desc" : "Priority of a task. Valid values for this attribute: low, normal, high, exception" },
+            { "name" : "taskState", "type" : "String", "desc" : "state of the task. Valid values for this attribute: open, in progress, done" },
+            { "name" : "taskExpiryDateFrom", "type" : "String", "desc" : "" },
+            { "name" : "taskExpiryDateTo", "type" : "String", "desc" : "" },
+            { "name" : "onlyMyTask", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.description" : "param.taskDescription",
+            "out.name" : "param.taskName",
+            "out.onlyMyTask" : "param.onlyMyTask",
+            "out.priority" : "param.taskPriority",
+            "out.state" : "param.taskState",
+            "out.taskExpiryDateFrom" : "param.taskExpiryDateFrom",
+            "out.taskExpiryDateTo" : "param.taskExpiryDateTo"
+          }
+        },
+        "request" : {
+          "name" : "FindTask",
+          "description" : "This is a tool to handle request from user, don't use it to answer question. Helpful when user want to find tasks by attributes.",
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f5" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "DialogCall",
+      "name" : "FindTaskWidget",
+      "config" : {
+        "dialog" : "ch.ivy.addon.portal.generic.ai.FindTaskWidget:start(ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget)",
+        "call" : {
+          "map" : {
+            "param.taskWidget" : "in.taskDashboardWidget"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "Script",
+      "name" : "Initialize task widget",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.util.AiToolUtils;",
+            "",
+            "in.taskDashboardWidget = AiToolUtils.convertIvyToolToTaskDashboardWidget(",
+            "  in.name, in.description, in.priority, in.state, in.taskExpiryDateFrom, in.taskExpiryDateTo, in.onlyMyTask);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "RequestStart",
+      "name" : "findCasesTool",
+      "config" : {
+        "signature" : "findCasesTool",
+        "input" : {
+          "params" : [
+            { "name" : "caseName", "type" : "String", "desc" : "" },
+            { "name" : "caseDescription", "type" : "String", "desc" : "" },
+            { "name" : "caseState", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.description" : "param.caseDescription",
+            "out.name" : "param.caseName",
+            "out.state" : "param.caseState"
+          }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 200 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 200 }
+      }
+    }, {
+      "id" : "f9",
+      "type" : "DialogCall",
+      "name" : "FindCaseWidget",
+      "config" : {
+        "dialog" : "ch.ivy.addon.portal.generic.ai.FindCaseWidget:start(ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget)",
+        "call" : {
+          "map" : {
+            "param.caseWidget" : "in.caseDashboardWidget"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 200 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f8" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Initialize case widget",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.util.AiToolUtils;",
+            "",
+            "in.caseDashboardWidget = AiToolUtils.convertIvyToolToCaseDashboardWidget(",
+            "  in.name, in.description, in.state);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 200 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "RequestStart",
+      "name" : "findProcessesTool",
+      "config" : {
+        "signature" : "findProcessesTool",
+        "input" : {
+          "params" : [
+            { "name" : "processName", "type" : "String", "desc" : "" },
+            { "name" : "processDescription", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.description" : "param.processDescription",
+            "out.name" : "param.processName"
+          }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 88, "y" : 336 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f15" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "Script",
+      "name" : "Initialize process widget",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.util.AiToolUtils;",
+            "",
+            "in.processDashboardWidget = AiToolUtils.convertIvyToolToProcessDashboardWidget(in.name, in.description);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 336 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f17" }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "DialogCall",
+      "name" : "FindProcessWidget",
+      "config" : {
+        "dialog" : "ch.ivy.addon.portal.generic.ai.FindProcessWidget:start(ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget)",
+        "call" : {
+          "map" : {
+            "param.processWidget" : "in.processDashboardWidget"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 400, "y" : 336 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f19" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 336 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    } ]
+}

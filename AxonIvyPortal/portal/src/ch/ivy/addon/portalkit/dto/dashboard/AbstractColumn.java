@@ -112,6 +112,8 @@ public abstract class AbstractColumn implements Serializable {
     if (isNull(this.style)) {
       this.style = getDefaultStyle();
     }
+
+    this.styleToDisplay = initDefaultStyle();
   }
 
   @JsonIgnore
@@ -456,7 +458,7 @@ public abstract class AbstractColumn implements Serializable {
 
   @JsonIgnore
   protected int resolveColumnWidth() {
-    return NumberUtils.toInt(this.width, getDefaultColumnWidth());
+    return NumberUtils.toInt(width, getDefaultColumnWidth());
   }
 
   @JsonIgnore

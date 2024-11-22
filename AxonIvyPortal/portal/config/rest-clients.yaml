@@ -14,3 +14,11 @@ RestClients:
       SpecUrl: https://raw.githubusercontent.com/DeepLcom/openapi/main/openapi.yaml
       Namespace: com.deepl.api.v2.client
       ResolveFully: true
+  PortalAI (LangChain Server):
+    UUID: 43e90b1f-7c7d-4a12-be4a-f4ee87d23e0a
+    Url: http://localhost:8018/
+    Features:
+    - ch.ivyteam.ivy.rest.client.mapper.JsonFeature
+    OpenAPI:
+      SpecUrl: http://localhost:8018/openapi.json
+      Namespace: localhost.client

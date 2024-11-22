@@ -35,7 +35,7 @@ public class RegisteredApplicationService extends JsonConfigurationService<Appli
 
   @Override
   public List<Application> saveAllPublicConfig(List<Application> application) {
-    return super.saveAllPublicConfig(getPublicConfig());
+    return super.saveAllPublicConfig(application);
   }
 
   @Override

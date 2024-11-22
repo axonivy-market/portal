@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseMapPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
@@ -23,7 +25,6 @@ public class CaseMapTest extends BaseTest {
   private static final String APPROVAL_LEVEL_2 = "Approve Level 2";
 
   private CaseMapPage caseMapPage;
-  private TaskWidgetPage taskWidgetPage;
 
   @Override
   @BeforeEach
@@ -62,9 +63,15 @@ public class CaseMapTest extends BaseTest {
     startTaskByTaskName(CREATE_CONTRACT);
     assertInputData();
     caseMapPage.clickSubmitContractButton();
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.waitForPageLoad();
-    taskWidgetPage.countTasks().shouldHave(CollectionCondition.size(0));
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+
+    taskWidget.waitForPageLoad();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("state", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Done");
+    taskWidget.applyFilter();
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(6));
   }
 
   @Test
@@ -88,15 +95,20 @@ public class CaseMapTest extends BaseTest {
     caseMapPage.getVerifierComment().shouldHave(Condition.value("Ok"));
     caseMapPage.getInternalCreditComment().shouldHave(Condition.value("Fail"));
     caseMapPage.clickRejectButton();
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksInExpandedModeBy(APPROVAL_LEVEL_2, 0);
-    taskWidgetPage.countTasks().shouldHave(CollectionCondition.size(0));
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, APPROVAL_LEVEL_1);
+    taskWidget.addFilter("state", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Done");
+    taskWidget.applyFilter();
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
   }
 
   private void startTaskByTaskName(String taskname) {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksInExpandedModeBy(taskname);
-    taskWidgetPage.clickOnStartTaskLink(0);
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.startTaskByNameInIFrame(taskname);
   }
 
   private void assertInputData() {

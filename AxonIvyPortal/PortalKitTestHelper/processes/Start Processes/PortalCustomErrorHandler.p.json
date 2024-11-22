@@ -9,7 +9,12 @@
       "type" : "RequestStart",
       "name" : "testPortalCustomErrorHandler.ivp",
       "config" : {
-        "signature" : "testPortalCustomErrorHandler"
+        "signature" : "testPortalCustomErrorHandler",
+        "task" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
