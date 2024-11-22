@@ -42,7 +42,7 @@
             appendTo="@(body)" dynamic="true"
             styleClass="widget-configuration__category-panel #{cc.attrs.overlayCategoryStyleClass}"
             onHide="$(this.targetElement).parents('.widget-configuration__category').find('.portal-cancel-button').click();">
-  
+            <h:form>
             <p:tree id="widget-category-filter-tree"
               value="#{cc.attrs.categoryTree}" var="node"
               selectionMode="checkbox"
@@ -54,7 +54,7 @@
                 <h:outputText value="#{node.value}" />
               </p:treeNode>
             </p:tree>
-  
+            </h:form>
             <h:panelGroup id="category-panel-footer" layout="block"
               styleClass="widget-configuration__category-panel-footer">
               <p:commandLink id="cancel-command" styleClass="portal-cancel-button u-mar-right-10"

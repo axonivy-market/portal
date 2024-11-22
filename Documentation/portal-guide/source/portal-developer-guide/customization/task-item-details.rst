@@ -30,11 +30,11 @@ How to configure widgets in task details
 
 -  Settings of all visible widgets on task details page are saved in **variable Portal.TaskDetails**.
 -  Cockpit Administrator can configure widgets via variable **Portal.TaskDetails** on Cockpit settings page.
-   |edit-variable-portal-task-case-details|
+   |edit-variable-portal-task-details|
 
 -  Default configuration includes 3 widgets.
 
-   .. code-block:: html
+   .. code-block:: javascript
 
       [
          {
@@ -167,7 +167,7 @@ There are **two steps** for adding new custom panels.
    
    -  Example Portal.TaskDetails with layout configuration includes 4 custom widgets:
    
-   .. code-block:: html
+   .. code-block:: javascript
 
       [
          {
@@ -226,7 +226,7 @@ There are **two steps** for adding new custom panels.
 
       Customized task details using external URL
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          [
             {
@@ -257,7 +257,7 @@ There are **two steps** for adding new custom panels.
 
       Customized task details usingprocess start, please refer to ``TaskDetailsCustomWidgetExample`` process in ``portal-developer-examples`` for details
 
-      .. code-block:: html
+      .. code-block:: javascript
 
             [
                {
@@ -308,7 +308,7 @@ There are **two steps** for adding new custom panels.
 
 
 .. |task-standard| image:: ../../screenshots/task-detail/customization/task-standard.png
-.. |edit-variable-portal-task-case-details| image:: images/customization/edit-variable-portal-task-case-details.png
+.. |edit-variable-portal-task-details| image:: images/customization/edit-variable-portal-task-details.png
 .. |task-customized-iframe-url| image:: ../../screenshots/task-detail/customization/task-customized-iframe-url.png
 .. |task-customized-iframe-process| image:: ../../screenshots/task-detail/customization/task-customized-iframe-process.png
 .. |task-customized-iframe-process-custom-field| image:: images/customization/task-customized-iframe-process-custom-field.png
