@@ -45,58 +45,6 @@
                     </p:selectOneMenu>
                   </div>
                 </h:panelGroup>
-
-                <!-- Task List Setting -->
-                <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{false and userProfileBean.canAccessTaskList()}">
-                  <div class="setting-header">
-                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/TaskList')}</h5>
-                  </div>
-                  <div class="ui-fluid">
-                    <div class="user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}</div>
-                    <div class="flex flex-wrap justify-content-between gap-2">
-                      <div class="flex flex-1">
-                        <p:selectOneMenu id="task-sort-field-selection" value="#{data.selectedTaskListSortField}"
-                          styleClass="sort-field-selection my-profile-selection-menu">
-                          <f:selectItems value="#{data.taskListSortFields}" var="taskSortField" itemValue="#{taskSortField}"
-                            itemLabel="#{userProfileBean.getDisplayNameOfTaskSortField(taskSortField)}" />
-                        </p:selectOneMenu>
-                      </div>
-                      <div class="flex flex-1">
-                        <p:selectOneMenu id="task-sort-direction-selection" value="#{data.selectedTaskListSortDirection}"
-                          styleClass="my-profile-selection-menu">
-                          <f:selectItems value="#{data.sortDirections}" var="direction" itemValue="#{direction}"
-                            itemLabel="#{userProfileBean.getDisplayNameOfTaskSortDirection(direction)}" />
-                        </p:selectOneMenu>
-                      </div>
-                    </div>
-                  </div>
-                </h:panelGroup>
-
-                <!-- Case List Setting -->
-                <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{false and userProfileBean.canAccessCaseList()}">
-                  <div class="setting-header">
-                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/CaseList')}</h5>
-                  </div>
-                  <div class="ui-fluid">
-                    <div class="user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}</div>
-                    <div class="flex flex-wrap justify-content-between gap-2">
-                      <div class="flex flex-1">
-                        <p:selectOneMenu id="case-sort-field-selection" value="#{data.selectedCaseListSortField}"
-                          styleClass="sort-field-selection my-profile-selection-menu">
-                          <f:selectItems value="#{data.caseListSortFields}" var="caseSortField" itemValue="#{caseSortField}"
-                            itemLabel="#{userProfileBean.getDisplayNameOfCaseSortField(caseSortField)}" />
-                        </p:selectOneMenu>
-                      </div>
-                      <div class="flex flex-1">
-                        <p:selectOneMenu id="case-sort-direction-selection" value="#{data.selectedCaseListSortDirection}"
-                          styleClass="ui-sm-12 my-profile-selection-menu">
-                          <f:selectItems value="#{data.sortDirections}" var="direction" itemValue="#{direction}"
-                            itemLabel="#{userProfileBean.getDisplayNameOfCaseSortDirection(direction)}" />
-                        </p:selectOneMenu>
-                      </div>
-                    </div>
-                  </div>
-                </h:panelGroup>
               </div>
               <p:divider layout="vertical" styleClass="responsive-divider"/>
 

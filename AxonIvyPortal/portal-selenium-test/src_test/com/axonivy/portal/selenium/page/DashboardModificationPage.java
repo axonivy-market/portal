@@ -10,7 +10,6 @@ import org.openqa.selenium.interactions.Actions;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.ElementsCollection.SelenideElementIterable;
 import com.codeborne.selenide.SelenideElement;
 
 public class DashboardModificationPage extends TemplatePage {

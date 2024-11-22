@@ -29,7 +29,7 @@ public class MainMenuPage extends TemplatePage {
   }
 
   @Override
-  public CaseWidgetPage openCaseList() {
+  public CaseWidgetNewDashBoardPage openCaseList() {
     return NavigationHelper.navigateToCaseList();
   }
 
@@ -79,11 +79,11 @@ public class MainMenuPage extends TemplatePage {
         .map(SelenideElement::getText).collect(Collectors.toList()));
   }
 
-  public CaseWidgetPage selectCaseMenu() {
+  public CaseWidgetNewDashBoardPage selectCaseMenu() {
     $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
-    WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-case"))
+    WaitHelper.waitForNavigation(() -> $(By.cssSelector("li[id$='default-case-list-dashboard-main-dashboard']"))
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
-    return new CaseWidgetPage();
+    return new CaseWidgetNewDashBoardPage();
   }
 
   private void waitForProcessesPageAfterSelectProcessesCategory() {
