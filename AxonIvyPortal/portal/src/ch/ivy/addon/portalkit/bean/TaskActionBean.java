@@ -53,24 +53,7 @@ public class TaskActionBean implements Serializable {
   }
 
   public boolean canReset(ITask task) {
-    if (task == null) {
-      return false;
-    }
-    
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.READY_FOR_JOIN,
-        TaskState.FAILED);
-    if (!taskStates.contains(task.getState())) {
-      return false;
-    }
-    
-    if (task.getState() == TaskState.READY_FOR_JOIN) {
-      IPermission resetTaskReadyForJoin = IPermissionRepository.instance().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());
-      return hasPermission(task, resetTaskReadyForJoin);
-    }
-  
-
-    return (hasPermission(task, IPermission.TASK_RESET_OWN_WORKING_TASK) && canResume(task))
-        || hasPermission(task, IPermission.TASK_RESET);
+    return TaskUtils.canReset(task);
   }
 
   public boolean canDelegate(ITask task) {
