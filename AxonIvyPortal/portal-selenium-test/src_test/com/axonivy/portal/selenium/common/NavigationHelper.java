@@ -2,7 +2,7 @@ package com.axonivy.portal.selenium.common;
 
 import static com.codeborne.selenide.Selenide.open;
 
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 
@@ -24,9 +24,9 @@ public class NavigationHelper {
     return new NewDashboardPage();
   }
 
-  public static CaseWidgetPage navigateToCaseList() {
+  public static CaseWidgetNewDashBoardPage navigateToCaseList() {
     navigateToRelativeLink(CASE_LIST_PAGE_URL);
-    return new CaseWidgetPage();
+    return new CaseWidgetNewDashBoardPage();
   }
 
   public static ProcessWidgetPage navigateToProcessList() {

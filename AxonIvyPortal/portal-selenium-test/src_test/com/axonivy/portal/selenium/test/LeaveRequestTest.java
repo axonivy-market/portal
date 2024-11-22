@@ -49,6 +49,7 @@ public class LeaveRequestTest extends BaseTest {
     assertEquals("'To' must be later than 'From'.", leaveRequestPage.clickSubmitAndGetValidationMsg());
   }
 
+  @SuppressWarnings("deprecation")
   @Test
   public void testApproveScenario() {
     leaveRequestPage = startLeaveRequestProcess();
@@ -90,6 +91,7 @@ public class LeaveRequestTest extends BaseTest {
     leaveRequestPage.assertPageTitle(APPROVAL_RESULT_TITLE);
   }
 
+  @SuppressWarnings("deprecation")
   @Test
   public void testRejectScenario() {
     leaveRequestPage = startLeaveRequestProcess();
