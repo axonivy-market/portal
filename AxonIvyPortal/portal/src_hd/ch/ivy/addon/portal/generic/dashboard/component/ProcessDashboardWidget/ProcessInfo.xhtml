@@ -20,8 +20,18 @@
             styleClass="dashboard-processes__type-text--#{entry.key.name().toLowerCase()} dashboard-processes__type-text" />
         </div>
         <div class="ui-g-4">
-          <h:outputText rendered="#{entry.value gt 1}">#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</h:outputText>
-          <h:outputText rendered="#{entry.value le 1}">#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}</h:outputText>
+          <h:panelGroup rendered="#{entry.value gt 1}">
+            <h:outputText value="#{entry.value}">
+              <f:convertNumber locale="#{localeBean.locale}" />
+            </h:outputText>
+            <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" />
+          </h:panelGroup>
+          <h:panelGroup rendered="#{entry.value le 1}">
+            <h:outputText value="#{entry.value}">
+              <f:convertNumber locale="#{localeBean.locale}" />
+            </h:outputText>
+            <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}" />
+          </h:panelGroup>
         </div>
       </ui:repeat>
     </div>
