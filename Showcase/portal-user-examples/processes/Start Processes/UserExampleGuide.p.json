@@ -12,7 +12,7 @@
         "signature" : "userExampleGuide",
         "request" : {
           "name" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/name\")%>",
-          "description" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/processDescription\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/description\")%>",
           "customFields" : [
             { "name" : "cssIcon", "value" : "si si-help-wheel" },
             { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/process/HELPDESK2\")%>" }
@@ -415,7 +415,7 @@
     } ],
   "layout" : {
     "lanes" : [ {
-        "name" : "User example guide",
+        "name" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/name\")%>",
         "offset" : 32,
         "size" : 544,
         "lanes" : [ ]

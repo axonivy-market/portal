@@ -461,7 +461,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     detail: Details
     display: Anzeigen
     displayAsTopMenu: Als oberstes Menü anzeigen
-    displayName: Name anzeigen
+    displayName: Anzeigename
     dragAndDropFile: 'Ziehen und Ablegen einer Datei oder '
     dragAndDropImage: 'Ziehen und Ablegen eines Bildes oder '
     edit: Bearbeiten
@@ -1469,7 +1469,7 @@ Labels:
       ID: Id
       NAME: Name
       OWNER: Eigentümer des Falles
-      STATE: Staat
+      STATE: Status
     DashboardStandardTaskColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
@@ -1482,7 +1482,7 @@ Labels:
       PRIORITY: Priorität
       RESPONSIBLE: Verantwortlich
       START: Start
-      STATE: Staat
+      STATE: Status
     FilterOperator:
       AFTER: Ist nach
       BEFORE: Ist vor
@@ -1544,7 +1544,7 @@ Labels:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Berechtigungen
-  Share: Aktie
+  Share: Teilen
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
   TaskUser-Explain: Kommaseparierte Liste von Benutzern
