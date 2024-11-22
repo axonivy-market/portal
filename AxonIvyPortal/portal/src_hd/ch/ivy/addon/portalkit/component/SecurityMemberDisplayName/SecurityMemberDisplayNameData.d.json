@@ -5,8 +5,7 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "memberNames",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
   }, {
     "name" : "roleName",
     "type" : "String",
@@ -25,7 +24,6 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "securityMember",
-    "type" : "ch.ivyteam.ivy.security.ISecurityMember",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.security.ISecurityMember"
   } ]
 }
