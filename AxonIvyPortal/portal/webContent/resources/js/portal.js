@@ -63,11 +63,14 @@ var Portal = {
       $('.js-left-sidebar').css({'height': 'calc(100vh - ' + (headerFooterHeight - envHeight) + 'px)','top': headerHeight + 'px'});
     }
 
-    if (headerFooterHeight === 0 && envHeight === 0) {
-      $layoutMain.removeAttr('style');
-    } else {
-      const layoutMainPaddingTop = headerHeight + layoutTopbarHeight + 20; // By default, Freya buffer 20px from topbar, refer to .layout-main class
-      $layoutMain.css({'padding-top': layoutMainPaddingTop + 'px', 'padding-bottom' : footerHeight + 'px'});
+    // Don't update layout if rendering AI result
+    if (!$layoutMain.parent('.iframe-body').hasClass('ai-result')) {
+      if (headerFooterHeight === 0 && envHeight === 0) {
+        $layoutMain.removeAttr('style');
+      } else {
+        const layoutMainPaddingTop = headerHeight + layoutTopbarHeight + 20; // By default, Freya buffer 20px from topbar, refer to .layout-main class
+        $layoutMain.css({'padding-top': layoutMainPaddingTop + 'px', 'padding-bottom' : footerHeight + 'px'});
+      }
     }
 
     var chatPanel = $('.js-chat-panel');
@@ -173,7 +176,6 @@ var MainMenu = {
       ["Processes.xhtml", "PROCESS"],
       ["PortalTasks.xhtml", "TASK"],
       ["TaskWidget.xhtml", "TASK"],
-      ["PortalTaskDetails.xhtml", "TASK"],
       ["PortalCases.xhtml", "CASE"],
       ["CaseWidget.xhtml", "CASE"],
       ["PortalCaseDetails.xhtml", "CASE"],
@@ -198,12 +200,19 @@ var MainMenu = {
   highlightMenuItem : function() {
     let $currentPageMenu = this.getMenuItemByCurrentPage();
     let activeMenuItemList = this.getActiveMenu();
+    if ($currentPageMenu.length == 0 && window.location.pathname.indexOf("PortalMainDashboard.xhtml") > -1) {
+      let selectedMainDashboardId = $("#user-menu-required-login").attr("data-selected-menu");
+      $currentPageMenu = $("li[id$='" + selectedMainDashboardId + "-main-dashboard'] > a");
+      if ($currentPageMenu.length == 0) {
+        $currentPageMenu = $(".layout-menu").find('li[role="menuitem"] a.DASHBOARD');
+      }
+    }
 
     if ($currentPageMenu.length > 0) {
       var $dashboardGroup = $(".js-dashboard-group");
       if ($currentPageMenu.hasClass("DASHBOARD") && $dashboardGroup.length > 0) {
         $.each( activeMenuItemList, function( i, menuItem ) {
-            if (!(menuItem.id.includes('-main-dashboard'))) {
+            if (!(menuItem.id.includes('-parent-dashboard'))) {
               deactivateMenuItemOnLeftMenu(menuItem.id);
             }
         });
@@ -379,6 +388,14 @@ function getWidgetVarById(id) {
   return null;
 }
 
+
+function reloadIframes() {
+  var iframes = document.querySelectorAll('iframe');
+  iframes.forEach(function(iframe) {
+      iframe.contentWindow.location.reload();
+  });
+}
+
 function handleKeyDown(event) {
   if (event.key === 'Enter') {
     event.preventDefault();
@@ -465,11 +482,11 @@ function showQuickSearchInput(index) {
  * User can press Alt + number to focus on left side menu item or search button, user setting
  *
  */
-const singleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__1-main-dashboard"]';
-const multipleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__DASHBOARD-main-dashboard"]';
+const singleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__dashboard_0-parent-dashboard"]';
+const multipleDashboardId = '[id="user-menu-required-login:main-navigator:main-menu__js__DASHBOARD-parent-dashboard"]';
 const processItemId = '[id^="user-menu-required-login:main-navigator:main-menu_process"]';
-const taskItemId = '[id^="user-menu-required-login:main-navigator:main-menu_task"]';
-const caseItemId = '[id^="user-menu-required-login:main-navigator:main-menu_case"]';
+const taskItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__default-task-list-dashboard-main-dashboard"]';
+const caseItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__default-case-list-dashboard-main-dashboard"]';
 const searchIconId = 'a#global-search-item';
 const quickSearchInputId = '[id="quick-global-search-component:global-search-data"]'
 const useSettingMenuId = 'a#user-settings-menu';

@@ -115,7 +115,7 @@
   --hovered-user-process-start-list-item-icon-color: var(--primary-color);
   --process-warning-icon-color: var(--ivy-tertinary-color-red-medium);
   --active-switch-label-font-weight: 700;
-  --process-list-item-background-color: var(--ivy-primary-color-white);
+  --process-list-item-background-color: hsl(180, 1%, 95%);
   --process-list-compact-mode-background-color: var(--ivy-primary-color-grey-pale);
   --process-list-item-border-color: hsl(0,0%,92.2%);
   --process-list-widget-item-background-color:  var(--ivy-primary-color-grey-pale);
@@ -297,7 +297,7 @@
   --ui-data-picker-header-color: var(--ivy-primary-color-grey-pale);
   --ui-data-picker-title-border-color: var(--ivy-primary-color-grey-pale);
   --ui-data-picker-title-background-color: var(--ivy-primary-color-grey-pale);
-  --ui-fileupload-buttonbar-background-color: var(--ivy-primary-color-grey-light);
+  --ui-fileupload-buttonbar-background-color: var(--ivy-portal-color-gray-spaces);
   --ui-transparent-button-hover-background-color: transparent;
   --menu-item-link-color: var(--ivy-primary-color-black);
   --menu-item-link-hover-background-color: var(--ivy-primary-color-grey-pale);
@@ -368,4 +368,7 @@
   --dashboard-action-container-border-color: var(--ivy-primary-color-grey-light);
   --dashboard-action-container-description-color: var(--ivy-primary-color-grey-dark);
   --dashboard-icon-drag-drop-color: var(--ivy-primary-color-grey-medium);
+  
+  /* Leave task warning message*/
+  --warning-before-leave-task: #757575;
 }

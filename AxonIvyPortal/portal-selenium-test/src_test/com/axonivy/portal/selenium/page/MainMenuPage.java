@@ -28,11 +28,8 @@ public class MainMenuPage extends TemplatePage {
     return ".layout-menu li[role='menuitem'] a.DASHBOARD";
   }
 
-  public TaskWidgetPage openTaskList() {
-    return NavigationHelper.navigateToTaskList();
-  }
-
-  public CaseWidgetPage openCaseList() {
+  @Override
+  public CaseWidgetNewDashBoardPage openCaseList() {
     return NavigationHelper.navigateToCaseList();
   }
 
@@ -40,6 +37,7 @@ public class MainMenuPage extends TemplatePage {
     return NavigationHelper.navigateToProcessList();
   }
 
+  @Override
   public void openUserSettingMenu() {
     $("#top-menu").shouldBe(appear, DEFAULT_TIMEOUT);
     $("a[id='user-settings-menu']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
@@ -64,6 +62,7 @@ public class MainMenuPage extends TemplatePage {
     }
   }
 
+  @Override
   public void closeMainMenu() {
     waitLeftMenuReady();
     if ($("a[id$='user-menu-required-login:toggle-menu']").shouldBe(Condition.exist, DEFAULT_TIMEOUT).is(appear)) {
@@ -80,11 +79,11 @@ public class MainMenuPage extends TemplatePage {
         .map(SelenideElement::getText).collect(Collectors.toList()));
   }
 
-  public CaseWidgetPage selectCaseMenu() {
+  public CaseWidgetNewDashBoardPage selectCaseMenu() {
     $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
-    WaitHelper.waitForNavigation(() -> $(By.cssSelector(".layout-menu li.sub-menu-item-case"))
+    WaitHelper.waitForNavigation(() -> $(By.cssSelector("li[id$='default-case-list-dashboard-main-dashboard']"))
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
-    return new CaseWidgetPage();
+    return new CaseWidgetNewDashBoardPage();
   }
 
   private void waitForProcessesPageAfterSelectProcessesCategory() {
@@ -103,8 +102,14 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public void clickThirdPartyApp() {
-    waitForElementDisplayed(By.cssSelector("li[class*='thirdparty-menu-item'] > a"), true);
+    waitForElementDisplayed(By.cssSelector("li[class*='thirdparty-menu-item'] > a > span"), true);
     waitForElementClickableThenClick("li[class*='thirdparty-menu-item'] > a");
+  }
+
+  public void clickMainMenuItem(String name) {
+    WebElement element = driver.findElement(By.xpath(
+        String.format("//li[contains(@class, 'external-menu-item-main_dashboard') and .//span[text()='%s']]", name)));
+    element.click();
   }
 
   public void assertThirdPartyApp(String url) {
@@ -116,6 +121,11 @@ public class MainMenuPage extends TemplatePage {
     assertEquals(url, driver.getCurrentUrl());
   }
 
+  public void assertMainMenuItem(String name) {
+    WebDriver driver = getDriver();
+    String tilte = String.format("%s - Portal - Axon Ivy", name);
+    WaitHelper.assertTrueWithWait(() -> tilte.equals(driver.getTitle()));
+  }
 
   public boolean isProcessesDisplayed() {
     return isMenuItemDisplayed("Processes");
@@ -142,7 +152,7 @@ public class MainMenuPage extends TemplatePage {
   
   public String getIconClassMainMenuEntryAsString() {
 	  return $("div[id='user-menu-required-login']").shouldBe(appear, DEFAULT_TIMEOUT)
-			  .$("li[id*='main-menu__js__DASHBOARD-main-dashboard']").shouldBe(appear, DEFAULT_TIMEOUT)
+			  .$("li[id*='main-menu__js__DASHBOARD-parent-dashboard']").shouldBe(appear, DEFAULT_TIMEOUT)
 			  .$("a").shouldBe(appear, DEFAULT_TIMEOUT)
 			  .$("i").shouldBe(appear, DEFAULT_TIMEOUT)
 			  .getAttribute("class").toString();	  
@@ -150,7 +160,7 @@ public class MainMenuPage extends TemplatePage {
   
   public String getMainMenuName() {
 	  return $("div[id='user-menu-required-login']").shouldBe(appear, DEFAULT_TIMEOUT)
-			  .$("li[id*='main-menu__js__DASHBOARD-main-dashboard']").shouldBe(appear, DEFAULT_TIMEOUT)
+			  .$("li[id*='main-menu__js__DASHBOARD-parent-dashboard']").shouldBe(appear, DEFAULT_TIMEOUT)
 			  .$("a").shouldBe(appear, DEFAULT_TIMEOUT)
 			  .$("span").shouldBe(appear, DEFAULT_TIMEOUT)
 			  .getText();	  

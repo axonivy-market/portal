@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -70,6 +71,7 @@ public abstract class TemplatePage extends AbstractPage {
   public WebDriver driver = WebDriverRunner.getWebDriver();
 
   public void switchLastBrowserTab() {
+    switchToDefaultContent();
     String oldTab = WebDriverRunner.getWebDriver().getWindowHandle();
     ArrayList<String> tabs = new ArrayList<String>(WebDriverRunner.getWebDriver().getWindowHandles());
     tabs.remove(oldTab);
@@ -213,7 +215,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public void waitForPageLoad() {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(
-        webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+        webDriver -> "complete".equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
   }
 
   public void waitForGrowlTitleDisappear() {
@@ -300,6 +302,13 @@ public abstract class TemplatePage extends AbstractPage {
     return new TaskDetailsPage();
   }
 
+  public TaskDetailsPage openDashboardTaskDetails(String taskName) {
+    $("div[id$=':task-component:dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr td span")
+        .filter(text(taskName)).first().click();
+    return new TaskDetailsPage();
+  }
+
+
   public GlobalSearch getGlobalSearch() {
     return new GlobalSearch();
   }
@@ -365,8 +374,9 @@ public abstract class TemplatePage extends AbstractPage {
 
   }
 
-  public TaskWidgetPage selectTaskMenu() {
-    return NavigationHelper.navigateToTaskList();
+  public NewDashboardPage selectTaskMenu() {
+    NewDashboardPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    return taskWidgetPage;
   }
 
   public NewDashboardPage goToHomeFromBreadcrumb() {
@@ -375,7 +385,7 @@ public abstract class TemplatePage extends AbstractPage {
     return new NewDashboardPage();
   }
 
-  public CaseWidgetPage openCaseList() {
+  public CaseWidgetNewDashBoardPage openCaseList() {
     return openMainMenu().selectCaseMenu();
   }
 
@@ -465,7 +475,8 @@ public abstract class TemplatePage extends AbstractPage {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(ExpectedConditions.numberOfWindowsToBe(2));
   }
 
-  public TaskWidgetPage openTaskList() {
+  public NewDashboardPage openTaskList() {
+    switchToDefaultContent();
     return openMainMenu().selectTaskMenu();
   }
 

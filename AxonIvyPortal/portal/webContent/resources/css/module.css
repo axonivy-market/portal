@@ -1165,7 +1165,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 .process-start-list-item-icon .fa {
   text-align: center;
-  width: 100%;
 }
 
 .process-start-list .process-start-list-item-icon {
@@ -3061,9 +3060,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .user-profile-footer {
   text-align: right;
-  position: absolute;
-  bottom: 0;
-  right: 0.5rem;
+  margin-top: 4rem;
 }
 
 .user-profile-footer .ui-button {
@@ -3132,22 +3129,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding-top: 2px;
 }
 
-.my-profile-container .sort-field-selection {
-  width: 160px;
-}
-
-.my-profile-container .my-profile-selection-menu .ui-selectonemenu-label {
-  text-overflow: ellipsis;
-}
-
 .my-profile-container .notification-channel-reset {
   font-size: 2rem;
-}
-
-@media screen and (max-width: 40em) {
-  .my-profile-container .sort-field-selection {
-    width: 100%;
-  }
 }
 
 .my-profile-block:not(:last-child) {
@@ -5617,7 +5600,17 @@ a.dashboard-action-container label {
   display: flex;
 }
 
-.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label, .ui-dashboard-upload-file-panel > .ui-dashboard-upload-file-label {
+.ui-document-upload-file-panel {
+  width: 100%;
+  border: 1px solid var(--process-list-item-border-color);
+  background-color: var(--ui-fileupload-buttonbar-background-color);
+  border-radius: 10px;
+  height: 20em;
+  align-items: center;
+  display: flex;
+}
+
+.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label, .ui-dashboard-upload-file-panel > .ui-dashboard-upload-file-label, .ui-document-upload-file-panel > .ui-document-upload-file-label {
   width: 42%;
   display: block;
   text-align: center;
@@ -5626,7 +5619,7 @@ a.dashboard-action-container label {
   top: 12px;
 }
 
-.ui-external-link-preview-image-label > #ui-external-link-preview-image-icon, .ui-dashboard-upload-file-label > #ui-dashboard-upload-file-icon {
+.ui-external-link-preview-image-label > #ui-external-link-preview-image-icon, .ui-dashboard-upload-file-label > #ui-dashboard-upload-file-icon,  .ui-document-upload-file-label > #ui-document-upload-file-icon {
   width: 100%;
   font-size: 2em;
   top: -20px;
@@ -5744,5 +5737,18 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page {
 body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-button {
   color: var(--widget-header-icon);
 }
-
 /* =================== PORTAL BUTTON END ====================== */
+
+/* AI logo */
+.layout-topbar-light .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li > a:hover img.topbar-item-image {
+  background-color: #E8EDF0;
+  transition: background-color 0.2s;
+}
+
+/* AI result */
+
+.iframe-body.ai-result .layout-main,
+.iframe-body.ai-result .layout-content,
+.iframe-body.ai-result .grid-stack {
+  padding: 0;
+}
