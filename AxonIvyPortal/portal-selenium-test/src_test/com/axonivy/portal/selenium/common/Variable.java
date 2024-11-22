@@ -15,8 +15,6 @@ public enum Variable {
   ENABLE_GROUP_CHAT("Portal.Chat.EnableGroup"),
   ENABLE_PRIVATE_CHAT("Portal.Chat.EnablePrivate"), CHAT_RESPONSE_TIMEOUT("Portal.Chat.ResponseTimeout"),
   CHAT_MAX_CONNECTION("Portal.Chat.MaxConnection"), ENABLE_CASE_OWNER("Portal.Cases.EnableOwner"),
-  DISABLE_CASE_COUNT("Portal.Cases.DisableCount"), DEFAULT_SORT_FIELD_OF_CASE_LIST("Portal.Cases.SortField"),
-  DEFAULT_SORT_DIRECTION_OF_CASE_LIST("Portal.Cases.SortDirection"),
   SHOW_TASK_DURATION_TIME("Portal.TaskDetails.ShowDurationTime"), HIDE_TASK_DOCUMENT("Portal.TaskDetails.HideDocument"),
   HIDE_CASE_DOCUMENT("Portal.CaseDetails.HideDocument"), SHOW_CASE_DURATION_TIME("Portal.CaseDetails.ShowDurationTime"),
   HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE("Portal.CaseDetails.HideUploadDocumentForDoneCase"),
