@@ -205,4 +205,8 @@ public class NotificationBean implements Serializable {
     }
   }
 
+  public boolean isActionAvailible(NotificationDto dto) {
+    return dto.getRunAction() != null;
+  }
+
 }
