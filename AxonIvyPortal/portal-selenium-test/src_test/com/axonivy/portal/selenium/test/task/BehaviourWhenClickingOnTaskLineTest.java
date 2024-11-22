@@ -13,7 +13,7 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -33,10 +33,6 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
   private static final String TASK_MATERNITY_LEAVE_REQUEST = "Maternity Leave Request";
   private static final String CASE_LEAVE_REQUEST = "Leave Request";
   private static final String IN_PROGRESS = "In progress";
-  private static final String YOUR_TASKS = "Your Tasks";
-
-
-  private NewDashboardPage taskWidgetPage;
 
   @Override
   @BeforeEach
@@ -50,7 +46,7 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     var mainMenu = new MainMenuPage();
     mainMenu.waitForGrowlMessageDisappear();
-    taskWidgetPage = NavigationHelper.navigateToTaskList();
+    NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.clickOnTaskName(TASK_MATERNITY_LEAVE_REQUEST);
     new TaskTemplatePage().getStartedTaskTemplateTitle()
@@ -63,8 +59,8 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     var mainMenu = new MainMenuPage();
     mainMenu.waitForGrowlMessageDisappear();
-    CaseWidgetPage caseWidgetPage = mainMenu.openCaseList();
-    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase(CASE_LEAVE_REQUEST);
+    CaseWidgetNewDashBoardPage caseWidgetPage = mainMenu.openCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase(CASE_LEAVE_REQUEST);
     caseDetailsPage.openTaskWithRunTheTaskBehaviour(TASK_MATERNITY_LEAVE_REQUEST);
     new TaskTemplatePage().getStartedTaskTemplateTitle()
         .shouldHave(Condition.attribute("title", TASK_MATERNITY_LEAVE_REQUEST));
@@ -77,7 +73,7 @@ public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     var mainMenu = new MainMenuPage();
     mainMenu.waitForGrowlMessageDisappear();
-    CaseDetailsPage caseDetailsPage = mainMenu.openCaseList().openCase(CASE_LEAVE_REQUEST);
+    CaseDetailsPage caseDetailsPage = mainMenu.openCaseList().openDetailsCase(CASE_LEAVE_REQUEST);
     caseDetailsPage.openTaskWithRunTheTaskBehaviour(TASK_MATERNITY_LEAVE_REQUEST);
     new TaskDetailsPage().getInformationPanel().should(Condition.appear);
   }

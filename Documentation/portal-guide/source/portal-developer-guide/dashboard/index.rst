@@ -9,12 +9,11 @@ Introduction
 ------------
 
 Portal Dashboard is a flexible page where you can add, remove and edit widgets and filters.
-Users can customize the layout just by dragging & dropping between multiple dashboards.
+Users can customize the layout simply by dragging and dropping between multiple dashboards.
 
-There is an easy way for users to predefine a lot of details for each dashboard,
-each widget such as predefined filters, columns, UI, and styles.
+There is an easy way for users to predefine many details for each dashboard and widget, such as predefined filters, columns, UI elements, and styles.
 
-Available widgets of Portal dashboard are:
+Available widgets of Portal dashboard:
 
 - Task widget
 - Case widget
@@ -40,60 +39,113 @@ Portal allows for multiple dashboards. They will be displayed as tabs.
 You can predefine dashboard id, title, permissions to access, and widgets
 for each dashboard separately.
 
-Below find a JSON example for the configuration of dashboards.
+Below is a JSON example for configuring a dashboard with one task widget
 
-.. code-block:: html
+.. code-block:: javascript
 
    [
       {
-         "id": "default-dashboard",
-         "templateId": "template-id"
+         "id": "1",
+         "version": "12.0.0",
+         "templateId": "default-portal-dashboard-template",
          "titles": [
             {
             "locale": "en",
             "value": "Dashboard"
+            },
+            {
+            "locale": "fr",
+            "value": "Tableau de bord"
             },
             {
             "locale": "de",
             "value": "Dashboard"
-            }
-         ],
-         "widgets": [
-            {
-               "type": "task",
-               "id": "task_10",
-               "layout": {
-                  "x": 0, "y": 0, "w": 10, "h": 9,
-                  "styleClass": "your-widget-class"
-               }
             },
             {
-               "type": "case",
-               "id": "case_10",
-               "layout": {
-                  "x": 0, "y": 10, "w": 10, "h": 9
-               }
-            }
-         ]
-      },
-      {
-         "id": "general-dashboard",
-         "titles": [
-            {
-            "locale": "en",
-            "value": "General Dashboard"
+            "locale": "es",
+            "value": "Tablero de mandos"
             }
          ],
-         "permissions": ["Employee", "CIO", "#daniel"],
+         "icon": "fa-play",
          "widgets": [
             {
-               "type": "task",
-               "id": "task_20",
-               "layout": {
-                  "x": 0, "y": 0, "w": 10, "h": 9
+            "type": "task",
+            "id": "task_18459642ba614d79bddea3f57e800bcf",
+            "names": [
+               {
+                  "locale": "en",
+                  "value": "Your Tasks"
+               },
+               {
+                  "locale": "fr",
+                  "value": "Your Tasks"
+               },
+               {
+                  "locale": "de",
+                  "value": "Your Tasks"
+               },
+               {
+                  "locale": "es",
+                  "value": "Your Tasks"
                }
+            ],
+            "layout": {
+               "w": 12,
+               "h": 5,
+               "x": 0,
+               "y": 5
+            },
+            "columns": [
+               {
+                  "field": "start"
+               },
+               {
+                  "field": "priority"
+               },
+               {
+                  "field": "id",
+                  "quickSearch": false
+               },
+               {
+                  "field": "name",
+                  "quickSearch": true
+               },
+               {
+                  "field": "description",
+                  "quickSearch": true
+               },
+               {
+                  "field": "activator",
+                  "quickSearch": false
+               },
+               {
+                  "field": "state"
+               },
+               {
+                  "field": "startTimestamp"
+               },
+               {
+                  "field": "expiryTimestamp"
+               },
+               {
+                  "field": "category",
+                  "quickSearch": false
+               },
+               {
+                  "field": "application",
+                  "styleClass": "dashboard-tasks__priority u-text-align-center widget-column",
+                  "quickSearch": false
+               },
+               {
+                  "field": "actions"
+               }
+            ]
             }
-         ]
+         ],
+         "permissions": [
+            "Everybody"
+         ],
+         "accessibility": false
       }
    ]
 
@@ -103,9 +155,13 @@ Structure of the JSON for each dashboard:
 
    ``id``: ID to identifying dashboard.
 
+   ``version``: version of dashboard
+
    ``templateId``: the key to identify the predefined template this dashboard is referring to.
 
    ``titles``: multilingual title of dashboard.
+
+   ``icon``: dashboard icon.
 
    ``permissions``: roles can access the dashboard.
 
@@ -122,8 +178,9 @@ Structure of the JSON for each dashboard:
 Configure Dashboard Widgets
 ---------------------------
 
-Below are details of the JSON configuration for each widget of the Portal dashboard.
-They will help you understand how to configure the widget efficiency.
+Below are the details of the JSON configuration for each widget on the Portal
+dashboard. They will help you understand how to configure the widgets
+efficiently.
 
 .. toctree::
    :maxdepth: 1
@@ -145,7 +202,7 @@ They will help you understand how to configure the widget efficiency.
    - Refer to ``variables.Portal.Dashboard.json`` file in ``portal-developer-examples/resources/files`` project.
    - Copy to the corresponding application folder located in the designer.
 
-      - e.g: AxonIvyDesigner9.3.0/configuration/applications/designer
+      - e.g: AxonIvyDesigner12.0.0/configuration/applications/designer
 
    - Start the process ``Start Processes/CreateTestData/CreateTestDataForCustomizedDashboard.ivp`` in the ``portal-developer-examples`` project.
    - Open the new Portal dashboard to check the new custom layout.
@@ -173,7 +230,7 @@ Portal supports customizing the main menu entry of dashboards.
 To customize the menu, you can edit the Portal variable
 ``Portal.Dashboard.MainMenuEntry.json``. Below is an example JSON of a custom menu.
 
-.. code-block:: html
+.. code-block:: javascript
 
       {
          "names": [
