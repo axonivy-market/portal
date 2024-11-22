@@ -352,8 +352,17 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     if (selectedCase == null || CollectionUtils.isEmpty(selectedCase.owners().all())) {
       return "";
     }
-    CaseOwner first = selectedCase.owners().all().getFirst();
-    return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(first.member(), first.memberName());
+    final var owners = selectedCase.owners();
+    final var size = owners.all().size();
+    if (size <= 2 ) {
+      return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForCaseOwners(owners);
+    }
+    CaseOwner first = owners.all().get(0);
+    CaseOwner second = owners.all().get(1);
+    
+    return String.format("%s, %s,..", 
+        SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(first.member(), first.memberName()), 
+        SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(second.member(), second.memberName()));
   }
 
   public List<CaseOwner> getCaseOwners() {
