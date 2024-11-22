@@ -72,8 +72,8 @@ Variables:
       # Set URL to download Axon Ivy mobile app on Google Play.
       GooglePlayURL: 'https://play.google.com/store/apps/details?id=com.axonivy&pli=1'
 
-    # You can configure the look and feel for dashboard according to your needs via this json file.
-    # This setting will be taken over for all other dashboard.
+    # You can configure the look and feel of the dashboard according to your needs via this JSON file.
+    # These settings will apply to all other dashboards.
     # [file: json]
     Dashboard:
       # You can customize the name and icon of the main menu entry for Portal dashboards via this JSON file.
