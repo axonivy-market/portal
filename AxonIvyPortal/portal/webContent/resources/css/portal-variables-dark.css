@@ -334,7 +334,6 @@
   /* News Widget */
   --news-item-background: rgb(62, 71, 84);
   /* Notification */
-  --notification-title-color: var(--notification-background-color);
   --notification-panel-color: var(--notification-background-color);
   --notification-hover-message-color: #394457;
     /*Notification channels*/

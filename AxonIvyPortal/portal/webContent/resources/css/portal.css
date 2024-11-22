@@ -1504,7 +1504,6 @@ body .notification-full-scroll>.ui-datascroller-content  {
   padding: 20px 15px 5px 15px;
   display: block;
   overflow: hidden;
-  background-color: var(--notification-title-color)
 }
 
 .notifications-icon {
