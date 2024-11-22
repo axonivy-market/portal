@@ -60,12 +60,20 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
     criteria.setSortDescending(false);
     this.getCriteria().setKeyword(StringUtils.EMPTY);
     this.setQueryByBusinessCaseId(true);
-    boolean isOwner = iCase != null && iCase.getOwner() != null ? iCase.getOwner().isMember(Ivy.session(), true) : false;
+    boolean isOwner = isCaseOwnerUser(iCase);
     this.setAdminQuery(PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner);
 
     if (HiddenTasksCasesConfig.isHiddenTasksCasesExcluded()) {
       criteria.setCustomTaskQuery(TaskQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull());
     }
+  }
+  
+  private boolean isCaseOwnerUser(ICase caze) {
+    return caze != null && caze.owners() != null && caze
+        .owners()
+        .all()
+        .stream()
+        .anyMatch(item -> item.member().isMember(Ivy.session(), true));
   }
 
   @Override
