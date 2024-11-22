@@ -12,7 +12,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
@@ -80,9 +80,9 @@ public class PortalPermissionTest extends BaseTest {
     assertTrue(systemTaskAppear);
 
     // Navigate to Dashboard widget to check system task
-    CaseWidgetPage caseWidgetPage = NavigationHelper.navigateToCaseList();
+    CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
     caseWidgetPage.waitPageLoaded();
-    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCase("Create System Task");
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Create System Task");
     caseDetailsPage.waitPageLoaded();
     int countTask = caseDetailsPage.countRelatedTasks().size();
     assertTrue(countTask == 3);
@@ -101,7 +101,7 @@ public class PortalPermissionTest extends BaseTest {
 
     caseWidgetPage = NavigationHelper.navigateToCaseList();
     caseWidgetPage.waitPageLoaded();
-    caseDetailsPage = caseWidgetPage.openCase("Create System Task");
+    caseDetailsPage = caseWidgetPage.openDetailsCase("Create System Task");
     caseDetailsPage.waitPageLoaded();
     countTask = caseDetailsPage.countRelatedTasks().size();
     assertTrue(countTask == 1);
@@ -138,8 +138,8 @@ public class PortalPermissionTest extends BaseTest {
     denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser();
     newDashboardPage.waitPageLoaded();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
-    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    CaseWidgetNewDashBoardPage caseWidgetPage = mainMenuPage.openCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
     assertTrue(caseDetailsPage.isAddNoteButtonDisplayed(false));
     assertTrue(caseDetailsPage.isShowMoreNoteButtonDisplayed(false));
     assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed(false));
@@ -153,7 +153,7 @@ public class PortalPermissionTest extends BaseTest {
     grantShowHideNotePermissions();
     grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
     mainMenuPage.openCaseList();
-    caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
     assertTrue(caseDetailsPage.isAddNoteButtonDisplayed(true));
     assertTrue(caseDetailsPage.isShowMoreNoteButtonDisplayed(true));
     assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed(true));
@@ -170,13 +170,13 @@ public class PortalPermissionTest extends BaseTest {
     createTestingTasks();
     denyCasePermissions();
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
-    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    CaseWidgetNewDashBoardPage caseWidgetPage = mainMenuPage.openCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
     assertTrue(caseDetailsPage.isShowDetailsDisplayed(false));
 
     grantCasePermissions();
     mainMenuPage.openCaseList();
-    caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
     caseDetailsPage.openActionMenu();
     assertTrue(caseDetailsPage.isShowDetailsDisplayed(true));
   }

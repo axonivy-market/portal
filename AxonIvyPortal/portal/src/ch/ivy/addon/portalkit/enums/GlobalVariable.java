@@ -39,7 +39,6 @@ public enum GlobalVariable {
   CHAT_RESPONSE_TIMEOUT("Portal.Chat.ResponseTimeout", GlobalVariableType.NUMBER, "0", "chatResponseTimeout"),
   CHAT_MAX_CONNECTION("Portal.Chat.MaxConnection", GlobalVariableType.SELECTION, "3", "chatMaxConnection", new Object[] { 1, 2, 3, 4, 5}),
   ENABLE_CASE_OWNER("Portal.Cases.EnableOwner", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableCaseOwner"),
-  DISABLE_CASE_COUNT("Portal.Cases.DisableCount", GlobalVariableType.SELECTION, Option.FALSE.toString(), "disableCaseCount"),
   SHOW_TASK_DURATION_TIME("Portal.TaskDetails.ShowDurationTime", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showTaskDurationTime"),
   HIDE_TASK_DOCUMENT("Portal.TaskDetails.HideDocument", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideTaskDocument"),
   HIDE_CASE_DOCUMENT("Portal.CaseDetails.HideDocument", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseDocument"),
@@ -53,8 +52,6 @@ public enum GlobalVariable {
   DISPLAY_USERS_OF_ROLE("Portal.DisplayUsersOfRole", GlobalVariableType.SELECTION, Option.FALSE.toString(), "displayAllUsersOfTaskActivator"),
   SHOW_PROCESS_INFORMATION("Portal.Processes.ShowInformation", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showProcessInformation"),
   LOGGED_IN_USER_FORMAT("Portal.LoggedInUserFormat", GlobalVariableType.SELECTION, Option.DISPLAY_NAME.name(), "loggedInUserFormat", getLoggedInUserFormatOptions()),
-  DEFAULT_SORT_FIELD_OF_CASE_LIST("Portal.Cases.SortField", GlobalVariableType.EXTERNAL_SELECTION, CaseSortField.ID.name(), "defaultSortFieldOfCaseList", getCaseListSortFields()),
-  DEFAULT_SORT_DIRECTION_OF_CASE_LIST("Portal.Cases.SortDirection", GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESC.name(), "defaultSortDirectionOfCaseList", getSortDirections()),
   DEFAULT_PROCESS_MODE("Portal.Processes.Mode", GlobalVariableType.EXTERNAL_SELECTION, ProcessMode.IMAGE.name(), "defaultProcessMode", getProcessMode()),
   DEFAULT_PROCESS_IMAGE("Portal.Processes.DefaultImage", GlobalVariableType.EXTERNAL_SELECTION, DefaultImage.DEFAULT.name(), "defaultProcessImage", getDefaultProcessImage()),
   DEFAULT_HOMEPAGE("Portal.Homepage", GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage"),
@@ -206,25 +203,6 @@ public enum GlobalVariable {
 
   private static Option[] getLoggedInUserFormatOptions() {
     return new Option[] {Option.USERNAME, Option.DISPLAY_NAME, Option.DISPLAY_NAME_USERNAME, Option.USERNAME_DISPLAY_NAME};
-  }
-
-  private static Map<String, Object> getCaseListSortFields() {
-    Map<String, Object> result = new HashMap<>();
-    for (CaseSortField sortField : CaseSortField.values()) {
-      // Case sort field not available
-      if (StringUtils.isNotBlank(sortField.getLabel()) && sortField != CaseSortField.CATEGORY) {
-        result.put(sortField.name(), sortField);
-      }
-    }
-    return result;
-  }
-
-  private static Map<String, Object> getSortDirections() {
-    Map<String, Object> result = new HashMap<>();
-    for (SortDirection direction : SortDirection.values()) {
-      result.put(direction.name(), direction);
-    }
-    return result;
   }
 
   private static Map<String, Object> getProcessMode() {
