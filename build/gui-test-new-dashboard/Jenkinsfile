@@ -1,14 +1,14 @@
 pipeline {
-  agent {label 'tung-pc'}
+  agent {label 'portal-slave'}
 
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
   }
 
-  /*triggers {
+  triggers {
     pollSCM '0 7 * * *'
     cron('0 11 * * *')
-  }*/
+  }
 
   tools {
     maven '3.9'
@@ -56,7 +56,7 @@ pipeline {
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Execute maven for testing===================='
-          bat "mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500"
+          bat "mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500 -Dsurefire.rerunFailingTestsCount=2"
           utils.cleanDisk()
           
           echo '====================Archive consoleText file===================='

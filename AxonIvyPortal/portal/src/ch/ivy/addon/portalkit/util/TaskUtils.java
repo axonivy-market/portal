@@ -309,10 +309,6 @@ public final class TaskUtils {
     return notification;
   }
 
-  private static void storeEndInfo(ITask task, RelatedTaskLazyDataModel dataModel, PortalPage currentPortalPage) {
-    storeEndInfo(task, dataModel, currentPortalPage, null);
-  }
-
   private static void storeEndInfo(ITask task, RelatedTaskLazyDataModel dataModel, PortalPage currentPortalPage,
       String dashboardId) {
     TaskEndInfo taskEndInfo = new TaskEndInfo();
