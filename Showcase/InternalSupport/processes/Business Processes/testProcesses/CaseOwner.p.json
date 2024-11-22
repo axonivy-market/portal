@@ -41,7 +41,7 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "ivy.case.setOwner(ISecurityContext.current().users().find(\"demo\"));"
+            "ivy.case.owners().add(ISecurityContext.current().users().find(\"demo\"));"
           ]
         },
         "sudo" : true
@@ -132,7 +132,7 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "ivy.case.setOwner(ISecurityContext.current().roles().find(\"CaseOwner\"));"
+            "ivy.case.owners().add(ISecurityContext.current().roles().find(\"CaseOwner\"));"
           ]
         },
         "sudo" : true
@@ -144,5 +144,73 @@
       "connect" : [
         { "id" : "f12", "to" : "f8", "var" : "in1" }
       ]
+    }, {
+      "id" : "f14",
+      "type" : "RequestStart",
+      "name" : "multipleOwners",
+      "config" : {
+        "signature" : "multipleOwners",
+        "request" : {
+          "name" : "Create case with multiple owners",
+          "description" : "Create case with multiple owners"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f15" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "Script",
+      "name" : "Set multiple case owners",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "ivy.case.owners().add(ISecurityContext.current().users().find(\"demo\"));",
+            "ivy.case.owners().add(ISecurityContext.current().users().find(\"admin\"));",
+            "ivy.case.owners().add(ISecurityContext.current().roles().find(\"CaseOwner\"));",
+            "ivy.case.owners().add(ISecurityContext.current().roles().find(\"HR\"));",
+            "ivy.case.owners().add(ISecurityContext.current().users().find(\"Developer\"));",
+            "ivy.case.owners().add(ISecurityContext.current().users().find(\"david\"));",
+            "ivy.case.owners().add(ISecurityContext.current().users().find(\"peter\"));",
+            "ivy.case.owners().add(ISecurityContext.current().roles().find(\"Sales\"));",
+            "ivy.case.owners().add(ISecurityContext.current().users().find(\"guest\"));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f17" }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Task with multiple case owners"
+        },
+        "case" : {
+          "name" : "Case with multiple owners"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 280 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f19" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 280 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
     } ]
 }

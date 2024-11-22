@@ -17,7 +17,6 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
-import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ICase;
 
 public class OwnerColumnModel extends CaseColumnModel implements Serializable {
@@ -55,11 +54,10 @@ public class OwnerColumnModel extends CaseColumnModel implements Serializable {
 
   @Override
   public Object display(ICase caze) {
-    if (caze == null || caze.getOwner() == null) {
+    if (caze == null || CollectionUtils.isEmpty(caze.owners().all())) {
       return StringUtils.EMPTY;
     }
-    ISecurityMember member = caze.getOwner();
-    return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(member, member.getMemberName());
+    return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForCaseOwners(caze.owners());
   }
   
   @JsonIgnore
@@ -71,9 +69,9 @@ public class OwnerColumnModel extends CaseColumnModel implements Serializable {
   public void setOwners(List<SecurityMemberDTO> owner) {
     if (owner != null) {
       this.filterList = owner.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
-    } else {
-      this.filterList = new ArrayList<>();
-    }
+      return;
+    } 
+    this.filterList = new ArrayList<>();
   }
   
   @JsonIgnore
@@ -85,9 +83,9 @@ public class OwnerColumnModel extends CaseColumnModel implements Serializable {
   public void setUserFilterOwners(List<SecurityMemberDTO> owners) {
     if (owners != null) {
       this.userFilterList = owners.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
-    } else {
-      this.userFilterList = new ArrayList<>();
-    }
+      return;
+    } 
+    this.userFilterList = new ArrayList<>();
   }
   
   public List<SecurityMemberDTO> completeUserFilterOwners(String query) {
@@ -111,4 +109,10 @@ public class OwnerColumnModel extends CaseColumnModel implements Serializable {
   private SecurityMemberDTO findSecurityMember(String memberName) {
     return ServiceUtilities.findSecurityMemberByName(memberName);
   }
+  
+  @Override
+  public Boolean getDefaultSortable() {
+    return false;
+  }
+
 }
