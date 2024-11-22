@@ -8,14 +8,14 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 @IvyWebTest
 public class UploadDeleteDocumentVisibilityTest extends BaseTest {
 
-  private CaseWidgetPage casePage;
+  private CaseWidgetNewDashBoardPage casePage;
   private CaseDetailsPage caseDetailsPage;
   private TopMenuTaskWidgetPage taskWidget;
 
@@ -33,7 +33,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
 
     denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser();
     casePage = NavigationHelper.navigateToCaseList();
-    caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
+    caseDetailsPage = casePage.openDetailsCase("SupportTicket");
 
     assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed(false));
     assertTrue(caseDetailsPage.isDeleteDocumentButtonPresented(false));
@@ -51,7 +51,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
 
     casePage = NavigationHelper.navigateToCaseList();
-    caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
+    caseDetailsPage = casePage.openDetailsCase("SupportTicket");
 
     assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed(false));
     assertTrue(caseDetailsPage.isDeleteDocumentButtonPresented(false));
@@ -66,7 +66,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
     grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     casePage = NavigationHelper.navigateToCaseList();
-    caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
+    caseDetailsPage = casePage.openDetailsCase("SupportTicket");
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
   }
 

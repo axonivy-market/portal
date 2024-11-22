@@ -1,5 +1,7 @@
 package ch.addon.portal.generic.menu;
 
+import static ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_CASE_LIST_DASHBOARD;
+import static ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD;
 import static java.util.Objects.isNull;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
@@ -19,7 +21,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.MenuActionEvent;
 import org.primefaces.model.menu.MenuItem;
 
-import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.service.CustomSubMenuItemService;
 
@@ -64,12 +65,6 @@ public class PortalMenuNavigator {
         break;
       case PROCESS:
         PortalNavigator.navigateToPortalProcess();
-        break;
-      case TASK:
-        PortalNavigator.navigateToPortalTask();
-        break;
-      case CASE:
-        PortalNavigator.navigateToPortalCase();
         break;
       default:
         break;
@@ -168,22 +163,13 @@ public class PortalMenuNavigator {
     String currentLanguage = UserUtils.getUserLanguage();
     List<SubMenuItem> subMenuItems = new ArrayList<>();
 
-    // Add default submenu items based on permissions
-    addDefaultSubmenuItems(subMenuItems);
+    addProcessSubmenuItems(subMenuItems);
 
-    // Add dashboard submenu items
     List<Dashboard> mainDashboards = DashboardUtils.collectMainDashboards();
     for (Dashboard dashboard : mainDashboards) {
-      // Check if it's the task dashboard
-      if (DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD.equalsIgnoreCase(dashboard.getId())) {
-        // Only add the task dashboard if the user has permission
-        if (PermissionUtils.checkAccessFullTaskListPermission()) {
-          subMenuItems.add(convertDashboardToSubMenuItem(dashboard, currentLanguage));
-        }
-        continue; // Skip adding this dashboard if no permission
+      if (isDefaultTaskCaseListDashboardButNoAccessPermission(dashboard)) {
+        continue;
       }
-
-      // Add other dashboards
       subMenuItems.add(convertDashboardToSubMenuItem(dashboard, currentLanguage));
     }
 
@@ -192,15 +178,16 @@ public class PortalMenuNavigator {
     return subMenuItems;
   }
 
-  private static void addDefaultSubmenuItems(List<SubMenuItem> subMenuItems) {
-    // Add Process submenu item if the user has permission
+  private static boolean isDefaultTaskCaseListDashboardButNoAccessPermission(Dashboard dashboard) {
+    return (DEFAULT_TASK_LIST_DASHBOARD.equals(dashboard.getId())
+        && !PermissionUtils.checkAccessFullTaskListPermission())
+        || (DEFAULT_CASE_LIST_DASHBOARD.equals(dashboard.getId())
+            && !PermissionUtils.checkAccessFullCaseListPermission());
+  }
+
+  private static void addProcessSubmenuItems(List<SubMenuItem> subMenuItems) {
     if (PermissionUtils.checkAccessFullProcessListPermission()) {
       subMenuItems.add(new ProcessSubMenuItem());
-    }
-
-    // Add Case submenu item if the user has permission
-    if (PermissionUtils.checkAccessFullCaseListPermission()) {
-      subMenuItems.add(new CaseSubMenuItem());
     }
   }
 
@@ -227,10 +214,6 @@ public class PortalMenuNavigator {
     item.name = HomepageUtils.generateHomepageId(MenuKind.MAIN_DASHBOARD, dashboard.getId());
     item.link = UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId());
 
-    // Special case for a specific dashboard ID
-    if (DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD.equalsIgnoreCase(dashboard.getId())) {
-      item.label = ApplicationMultiLanguageAPI.getCmsValueByUserLocale("/ch.ivy.addon.portalkit.ui.jsf/common/tasks");
-    }
     return item;
   }
 
