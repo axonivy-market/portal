@@ -154,7 +154,7 @@ public class ChatTest extends BaseTest {
 
   private void joinChatGroupWhichAlreadyHadChatGroup(TestAccount userJoined) {
     login(userJoined);
-    NewDashboardPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.setInputForQuickSearch("Sick Leave Request Default Case Details Page");
     TaskTemplatePage taskTemplatePage = taskWidget.startTaskByIndex(0);
