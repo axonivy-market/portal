@@ -234,7 +234,16 @@ public final class TaskUtils {
     if (task.getBusinessState() == TaskBusinessState.IN_PROGRESS) {
       handleStartResumedTask(task, dialog);
     } else {
-      startTask(task, portalpage);
+      startTask(task, portalpage, null);
+    }
+  }
+
+  public static void handleStartTask(ITask task, PortalPage portalpage, String dialog, String dashboardId)
+      throws IOException {
+    if (task.getBusinessState() == TaskBusinessState.IN_PROGRESS) {
+      handleStartResumedTask(task, dialog);
+    } else {
+      startTask(task, portalpage, dashboardId);
     }
   }
 
@@ -254,10 +263,10 @@ public final class TaskUtils {
     return sessionUser != null ? task.canUserResumeTask(sessionUser.getUserToken()).wasSuccessful() : false;
   }
 
-  private static void startTask(ITask task, PortalPage currentPortalPage) throws IOException {
+  private static void startTask(ITask task, PortalPage currentPortalPage, String dashboardId) throws IOException {
     if (isStartableTask(task)) {
       if (currentPortalPage != null) {
-        storeEndInfo(task, null, currentPortalPage);
+        storeEndInfo(task, null, currentPortalPage, dashboardId);
       }
       FacesContext.getCurrentInstance().getExternalContext().redirect(task.getStartLinkEmbedded().getRelative());
     }
@@ -300,10 +309,14 @@ public final class TaskUtils {
     return notification;
   }
 
-  private static void storeEndInfo(ITask task, RelatedTaskLazyDataModel dataModel, PortalPage currentPortalPage) {
+  private static void storeEndInfo(ITask task, RelatedTaskLazyDataModel dataModel, PortalPage currentPortalPage,
+      String dashboardId) {
     TaskEndInfo taskEndInfo = new TaskEndInfo();
     taskEndInfo.setDataModel(dataModel);
     taskEndInfo.setPortalPage(currentPortalPage);
+    if (StringUtils.isNotBlank(dashboardId)) {
+      taskEndInfo.setDashboardId(dashboardId);
+    }
     String taskEndInfoSessionAttributeKey =
         StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(task.getId());
     SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEndInfo);

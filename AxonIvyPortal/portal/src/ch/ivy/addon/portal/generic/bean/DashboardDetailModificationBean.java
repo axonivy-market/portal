@@ -9,6 +9,8 @@ import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS_VIEWER;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.TASK;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
+import static ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_CASE_LIST_DASHBOARD;
+import static ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.beans.PropertyChangeEvent;
@@ -178,9 +180,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         collectedDashboards = getVisibleDashboards(dashboardInUserProperty);
       }
     } catch (PortalException e) {
-      // If errors like parsing JSON errors, ignore them
       Ivy.log().error(e);
     }
+    DashboardUtils.addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
     return collectedDashboards.stream()
         .filter(dashboard -> dashboard.getId().equals(selectedDashboardId)).collect(Collectors.toList());
   }
@@ -673,10 +675,24 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       DashboardWidgetUtils.simplifyWidgetColumnData(widget);
     });
 
-    DashboardService.getInstance().save(selectedDashboard);
+    saveDashboardsWithHandlingDefaultDashboards();
     selectedDashboard.getWidgets().forEach(widget -> {
       DashboardWidgetUtils.buildWidgetColumns(widget);
     });
+  }
+
+  private Dashboard saveDashboardsWithHandlingDefaultDashboards() {
+    DashboardService dashboardService = DashboardService.getInstance();
+    boolean isAddingDefaultTaskListDashboard = (DEFAULT_TASK_LIST_DASHBOARD.equals(selectedDashboard.getId()))
+        && dashboardService.findById(DEFAULT_TASK_LIST_DASHBOARD) == null;
+    boolean isAddingDefaultCaseListDashboard = (DEFAULT_CASE_LIST_DASHBOARD.equals(selectedDashboard.getId()))
+        && dashboardService.findById(DEFAULT_CASE_LIST_DASHBOARD) == null;
+    if (isAddingDefaultTaskListDashboard || isAddingDefaultCaseListDashboard) {
+      dashboardService.saveDefaultDashboardAsFirstDashboard(selectedDashboard);
+    } else {
+      dashboardService.save(selectedDashboard);
+    }
+    return selectedDashboard;
   }
 
   protected Map<String, String> getRequestParameterMap() {
@@ -1035,7 +1051,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
           event.getWidth());
     }
 
-    selectedDashboard = DashboardService.getInstance().save(selectedDashboard);
+    selectedDashboard = saveDashboardsWithHandlingDefaultDashboards();
   }
 
   /**

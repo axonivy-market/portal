@@ -61,9 +61,9 @@
             cache="true" maxResults="100" multiple="true"
             moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true" forceSelection="true">
             <p:ajax event="itemSelect" listener="#{managedBean.onSelectPermissionForDashboard}"
-              update="dashboard-permission" global="false" process="@this"/>
+              update="dashboard-permission" global="false" process="@this" immediate="true"/>
             <p:ajax event="itemUnselect" listener="#{managedBean.onUnSelectPermissionForDashboard}"
-              global="false" process="@this" />
+              global="false" process="@this" immediate="true"/>
             <p:column>
               <pc:securityMemberNameAndAvatar
                 displayName="#{dashboardTaskFilterBean.formatName(responsible)}" securityMember="#{responsible}">
@@ -82,7 +82,15 @@
           <p:inputText id="dashboard-description" value="#{managedBean.selectedDashboard.description}"
             required="false" styleClass="manage-dashboard__input " />
         </div>
-      </div>
+          <c:if test="#{isPublicDashboard}">
+             <div class="ui-g-6 w-full manage-dashboard__label">
+               <p:outputLabel for="dashboard-description"  styleClass="font-semibold" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayAsTopMenu')}" />
+             </div>
+             <div class="ui-g-6 w-full ui-fluid">
+               <p:selectBooleanCheckbox id="main-dashboard-menu-item" value="#{managedBean.selectedDashboard.isTopMenu}" required="false" />
+             </div>
+          </c:if>
+        </div>
     </h:form>
     <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="title-language-config"
       titles="#{managedBean.getTitles()}" 

@@ -137,16 +137,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Heading 3
       NORMAL_TEXT: Normal Text
   MyProfile:
-    CaseList: Case list
     DateFormat: Date Format
     FormattingLanguage: Formatting language
     General: General
     Homepage: Homepage
     Language: Language
     ProcessList: Process list
-    SortFieldSelections:
-      defaultSortFieldLabel: Default sort field
-    TaskList: Task list
     byDefault: ' by default'
     defaultOption: Default ({0})
     defaultViewMode: Default view mode
@@ -415,6 +411,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocument: Add document
     addNote: Add note
     allCategories: All Categories
+    allTypes: All types
     allowPng: Only png types allowed
     apply: Apply
     at: at
@@ -462,6 +459,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     destroyTaskHeaderText: Destroy this task?
     detail: Details
     display: Display
+    displayAsTopMenu: Display as top menu
     displayName: Display name
     dragAndDropFile: 'Drag and drop a file or '
     dragAndDropImage: 'Drag and drop an image or '
@@ -551,6 +549,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     second: second
     seconds: seconds
     seeDetail: See details
+    select: Select
     selectAll: Select All
     selectUsers: Select user(s)
     selectedDay: '{0} selected day(s)'
@@ -577,10 +576,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: The process
     timeInformation: Time Information
     timestamp: Timestamp
+    topMenuItem: Top Menu Item
     type: Type
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
+    uploadHere: Upload here
     uploadOneHere: Upload one here
     user: '{0} user'
     users: Users
@@ -865,6 +866,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: This widget displays relevant task information according to defined settings.
     taskStart: Task start
     taskWidgetConfiguration: Task Widget Configuration
+    topMenuItemInfo: If the "Top Menu Item" checkbox is checked, the dashboard appears as a top-level item in the navigation bar, sorted by list position. If unchecked, it appears as a sub-item under “Dashboard”, also sorted by list position.
     widgetInfo: Widget information
     widgetInfoIcon: Widget Information Icon
     widgetTitle: Widget Title
@@ -1102,7 +1104,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     toUser: User
     userSelectionWatermark: Please select a user...
   taskDetails:
-    addDocumentHelpText: To upload files, drag & drop or select files
+    addDocumentHelpText: 'To upload files, drag & drop or '
     addNoteHelpText: Write your text here.
     afterEscalation: After escalation
     businessCase: Business Case
@@ -1120,6 +1122,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processingTime: Processing Time
     setDelayTimestamp: '{0} ({1}) has set delay time to task #{2} to {3}'
     setExpiryActivatorAndTimeNotes: '{0} and assign {1} as the task escalation activator'
+    supportFileTypes: ' Upload file type supported: {0}'
     taskCategory: Task Category
     taskExpiryDisable: This task does not contain any escalation handling logic, therefore no expiry time can be set.
     technicalCase: Technical Case
@@ -1248,11 +1251,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Show full task list
     sort: Sort
   taskWarning:
-    createdTaskLeave: 'You are about to leave this page. Please choose one of the following options:<UL><LI>&nbsp; &nbsp; Leave: Discard your changes and move to the selected page.<LI>&nbsp; &nbsp; Cancel: Continue working this task.</UL>'
-    createdTaskLogout: 'You are about to leave this page. Please choose one of the following options:<UL><LI>&nbsp;Logout: Discard your changes and logout.<LI>&nbsp;Cancel: Continue working this task.</UL>'
-    resetParkTaskBeforeLeave: '<h4>You are about to leave a task In progress.<br/>Please choose one of the following options:</h4><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Reserve: Discard your changes and keep the task in your task list.<LI>Cancel: Continue working this task.</UL>'
-    resetParkTaskBeforeLogout: 'You are about to leave a task in progress. Please choose one of the following options:<UL><LI>&nbsp; &nbsp; Logout: Discard your changes and logout.<LI>&nbsp; &nbsp; Reserve: Discard your changes and keep the task in your personal task list. Then logout.<LI>&nbsp; &nbsp;
-      Cancel: Continue working this task.</UL>'
+    createdTaskLeave: '<div>You are about to leave this page.<br/> Please choose one of the following options:</div><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Cancel: Continue working this task.</UL>'
+    createdTaskLogout: '<div>You are about to leave this page.<br/> Please choose one of the following options:</div><UL><LI>&nbsp;Logout: Discard your changes and logout.<LI>&nbsp;Cancel: Continue working this task.</UL>'
+    resetParkTaskBeforeLeave: '<div>You are about to leave a task In progress.<br/>Please choose one of the following options:</div><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Reserve: Discard your changes and keep the task in your task list.<LI>Cancel: Continue working this
+      task.</UL>'
+    resetParkTaskBeforeLogout: '<div>You are about to leave a task in progress.</br> Please choose one of the following options:</div><UL><LI>&nbsp; &nbsp; Logout: Discard your changes and logout.<LI>&nbsp; &nbsp; Reserve: Discard your changes and keep the task in your personal task list. Then logout.<LI>&nbsp;
+      &nbsp; Cancel: Continue working this task.</UL>'
     taskNotFound: The task does not exist or you have insufficient rights to see this task.
   userProfile:
     myProfileTitle: My profile
@@ -1337,10 +1341,19 @@ Dialogs:
     axonivy:
       portal:
         component:
+          ChatDashboard:
+            AddTool: Add tool
+            Tools: Tools
+            WelcomeHeaderText: Welcome to the Axon Ivy Portal!
+            WelcomeText: We are delighted to have you on board. The Axon Ivy Portal is your gateway to a seamless and efficient experience. Whether you are a new user exploring the features or a returning visitor, we're here to assist you every step of the way.
           ShareLinkDialog:
             CopyLink: Copy link
             Link: Link
             LinkCopied: Link copied
+          ToolList:
+            Attributes: Attributes
+            Collection: Collection
+            NoAvailableTools: There are no available tools
         dashboard:
           component:
             AccessibilityShortcuts:
@@ -1445,11 +1458,53 @@ Dialogs:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
 Labels:
+  AI:
+    Error:
+      CannotFindUser: Sorry, cannot find any user matched your request. Please try again.
+      CannotStartTask: Cannot start task has ID {0}
+      InvalidTaskPriority: 'Invalid task priority. Valid task priorities are: low, normal, high, or exception.'
+      InvalidTaskState: 'Invalid task state. Valid task states are: open, done, in progress, or error.'
+      NoMatchingCase: Cannot find any task matched your request
+      NoMatchingProcesses: No matching processes.
+      NoMatchingTask: Cannot find any task matched your request
+    FindCaseAIResult: 'ID: {0}, Name: {1}, Description: {2}, State: {3}'
+    FindProcessAIResult: '   - ID: {0}, Name: {1}, Description: {2}'
+    FindTaskAIResult: 'ID: {0}, Name: {1}, Description: {2}, State: {3}, Priority {4}'
+    FindUserAIResult: 'Username: {0}, Name: {1}, Email: {2}, State: {3}'
+    FoundCaseHeader: 'Found cases:'
+    FoundProcessesHeader: 'Found processes:'
+    FoundTaskHeader: 'Found tasks:'
+    FoundUsersHeader: 'Found users:'
+    ProcessInfoHeader: |-
+      **Process name:** {0}
+      **Process description:** {1}
+    ProcessInfoHeaderWithParameters: |-
+      - **Process name:** {0}
+      - **Process description:** {1}
+      - **Number of parameters:** {2}
+    ProcessParameterInfo: "\t+ {0} ({1})"
+    ProcessParameterInfoWithValue: |-
+      - Name: {0}
+        Description: {1}
+        Value:
+    TaskDetailsResult: |-
+      Details of task **{0} (#{1})**:
+      {2}
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
   CreateNewDashboard: Create new dashboard
   EditDescription: Edit description
   Enums:
+    ChatbotCandidateQuestion:
+      EXPLORE:
+        header: Explore
+        question: What are the key features of the Axon Ivy Portal?
+      INTERACT:
+        header: Interact
+        question: List me all the tasks that need completion within the current week
+      TUTORIAL:
+        header: Tutorial
+        question: Where can I find the documentation or tutorials for the Axon Ivy Portal?
     DashboardStandardCaseColumn:
       ACTIONS: Actions
       APPLICATION: Application
