@@ -141,6 +141,8 @@ How to: add public dashboard
 #. The :guilabel:`Create new public dashboard` dialog is opened.
 
 #. Enter the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
+   If the `Top Menu Item` checkbox is checked, the dashboard appears as a top-level item in the navigation bar. 
+   If unchecked, it appears as a sub-item under `Dashboard` menu item.
 
 #. Create the public dashboard by selecting |add-icon| Create dashboard.
 
@@ -178,6 +180,8 @@ How to: import public dashboard
 #. Drag and drop, or click on the :guilabel:`Upload one here` link to select the JSON file containing the dashboard you want to import.
 
 #. Edit the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
+   If the `Top Menu Item` checkbox is checked, the dashboard appears as a top-level item in the navigation bar. 
+   If unchecked, it appears as a sub-item under `Dashboard` menu item.
 
 #. Import the dashboard by selecting :guilabel:`Create Dashboard` button.
 
@@ -201,6 +205,8 @@ A table of public dashboards is shown with the following information:
 #. Dashboard permissions
 
 #. Dashboard description
+
+#. Display as top menu or not
 
 #. Actions: click on |actions-menu-icon| to get :guilabel:`Actions` menu for further actions: |edit-icon| Edit (name, description), |settings-icon| Configuration
    (see: :ref:`Dashboards <new-dashboard>` ), |download-icon| Export dashboard, |share-icon| Share,
@@ -232,9 +238,6 @@ How to: reorder public dashboards
 You can rearrange dashboards by dragging and dropping |reorder-dashboard-icon| icon.
 
 |reorder-public-dashboards|
-
-.. hint::
-   - Note that this ordering does not apply to all users who ordered their dashboards. It is overridden by the personal ordering.
 
 .. include:: ../includes/_common-icon.rst
 
