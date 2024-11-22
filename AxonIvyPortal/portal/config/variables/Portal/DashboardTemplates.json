@@ -1,6 +1,6 @@
 [
   {
-    "version": "11.4.0",
+    "version": "12.0.0",
     "id": "default-portal-dashboard-template",
     "titles": [
       {
@@ -71,7 +71,6 @@
             "y": 2
           },
           "enableQuickSearch": true,
-          "rowsPerPage": 5,
           "canWorkOn": true,
           "columns": [
             {
@@ -82,37 +81,30 @@
             },
             {
               "field": "id",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
-              "field": "name",
-              "quickSearch": true
+              "field": "name"
             },
             {
               "field": "description",
-              "visible": false,
-              "quickSearch": false
-            },
-            {
-              "field": "activator",
-              "quickSearch": false
-            },
-            {
-              "field": "state",
               "visible": false
             },
             {
-              "field": "startTimestamp",
-              "visible": false
+              "field": "activator"
+            },
+            {
+              "field": "state"
+            },
+            {
+              "field": "startTimestamp"
             },
             {
               "field": "expiryTimestamp"
             },
             {
               "field": "category",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "actions"
@@ -160,27 +152,23 @@
             "x": 3,
             "y": 8
           },
-          "rowsPerPage": 5,
+          "enableQuickSearch": true,
           "columns": [
             {
-              "field": "id",
-              "quickSearch": false
+              "field": "id"
             },
             {
-              "field": "name",
-              "quickSearch": true
+              "field": "name"
             },
             {
               "field": "description",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "state"
             },
             {
-              "field": "creator",
-              "quickSearch": false
+              "field": "creator"
             },
             {
               "field": "startTimestamp"
@@ -191,8 +179,7 @@
             },
             {
               "field": "category",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "actions"
@@ -351,7 +338,7 @@
     }
   },
   {
-    "version": "11.4.0",
+    "version": "12.0.0",
     "id": "two-task-widget-dashboard-template",
     "titles": [
       {
@@ -410,7 +397,7 @@
             "x": 0,
             "y": 0
           },
-          "rowsPerPage": 5,
+          "enableQuickSearch": true,
           "sortDescending": true,
           "columns": [
             {
@@ -427,8 +414,7 @@
             },
             {
               "field": "description",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "activator",
@@ -473,7 +459,7 @@
             "x": 0,
             "y": 5
           },
-          "rowsPerPage": 5,
+          "enableQuickSearch": true,
           "sortDescending": true,
           "columns": [
             {
@@ -490,8 +476,7 @@
             },
             {
               "field": "description",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "activator",
@@ -536,7 +521,8 @@
             "h": 10,
             "x": 9,
             "y": 0
-          }
+          },
+          "enableQuickSearch": true
         }
       ],
       "permissions": [
@@ -545,7 +531,7 @@
     }
   },
   {
-    "version": "11.4.0",
+    "version": "12.0.0",
     "id": "accessibility-dashboard-template",
     "titles": [
       {
@@ -591,7 +577,7 @@
       "widgets": [
         {
           "type": "task",
-          "id": "task_d898829cd7a745a0812f44923e3596d1",
+          "id": "task_1",
           "names": [
             {
               "locale": "en",
@@ -616,9 +602,7 @@
             "x": 3,
             "y": 3
           },
-          "rowsPerPage": 5,
-          "enableQuickSearch": false,
-          "showWidgetInfo": true,
+          "enableQuickSearch": true,
           "showFullscreenMode": false,
           "columns": [
             {
@@ -628,15 +612,13 @@
               "field": "actions"
             },
             {
-              "field": "name",
-              "quickSearch": false
+              "field": "name"
             },
             {
               "field": "priority"
             },
             {
-              "field": "activator",
-              "quickSearch": false
+              "field": "activator"
             },
             {
               "field": "state"
@@ -649,18 +631,15 @@
             },
             {
               "field": "id",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "description",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "category",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             }
           ],
           "sortField": "id",
@@ -669,7 +648,7 @@
         },
         {
           "type": "compact-process",
-          "id": "process_de6d9dc244334aeeafeef353d5f70488",
+          "id": "process_1",
           "names": [
             {
               "locale": "en",
@@ -695,13 +674,11 @@
             "y": 3
           },
           "showFullscreenMode": false,
-          "showWidgetInfo": true,
-          "sorting": "BY_ALPHABETICALLY",
-          "enableQuickSearch": false
+          "enableQuickSearch": true
         },
         {
           "type": "custom",
-          "id": "custom_e736fea7d4044b21b17a21a5b694e6a9",
+          "id": "custom_1",
           "names": [
             {
               "locale": "en",
@@ -733,7 +710,7 @@
         },
         {
           "type": "case",
-          "id": "case_46a4814004424383872bf5c19098d657",
+          "id": "case_1",
           "names": [
             {
               "locale": "en",
@@ -758,31 +735,25 @@
             "x": 3,
             "y": 7
           },
-          "rowsPerPage": 5,
-          "enableQuickSearch": false,
-          "showWidgetInfo": true,
+          "enableQuickSearch": true,
           "showFullscreenMode": false,
           "columns": [
             {
               "field": "id",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
-              "field": "name",
-              "quickSearch": false
+              "field": "name"
             },
             {
               "field": "description",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "state"
             },
             {
-              "field": "creator",
-              "quickSearch": false
+              "field": "creator"
             },
             {
               "field": "startTimestamp"
@@ -795,15 +766,11 @@
             },
             {
               "field": "category",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "application",
-              "styleClass": "dashboard-tasks__priority u-text-align-center",
-              "style": "width: 80px",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "actions"

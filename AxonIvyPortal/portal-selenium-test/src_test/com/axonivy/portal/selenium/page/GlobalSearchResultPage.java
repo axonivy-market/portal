@@ -18,8 +18,10 @@ public class GlobalSearchResultPage extends TemplatePage {
   }
 
   public void openTaskTab() {
-    $("li[class*='task-tab-title']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $("li[class*='task-tab-title']").click();
+    $("a[href='#search-results-tabview:task-tab']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement taskTab = $("a[href='#search-results-tabview:task-tab']").parent();
+    taskTab.shouldBe(appear, DEFAULT_TIMEOUT);
+    taskTab.shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("div[id='search-results-tabview:task-tab']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -75,20 +77,6 @@ public class GlobalSearchResultPage extends TemplatePage {
     $("[id='search-results-tabview:process-results:process-list']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public int countCase() {
-    CaseWidgetPage caseWidgetPage = getCaseWidget();
-    return caseWidgetPage.getCasesList().size();
-  }
-
-  private CaseWidgetPage getCaseWidget() {
-    return new CaseWidgetPage("search-results-tabview:case-results");
-  }
-
-  public String getCaseResult(int index) {
-    CaseWidgetPage caseWidgetPage = getCaseWidget();
-    return caseWidgetPage.getCaseNameAt(index);
-  }
-
   public void startProcess(String name) {
     ProcessWidgetPage processWidgetPage = getProcessWidget();
     if (processWidgetPage.isImageModeActivated()) {
@@ -113,11 +101,6 @@ public class GlobalSearchResultPage extends TemplatePage {
   public String getTaskResult(int index) {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage("search-results-tabview:task-results");
     return taskWidgetPage.getNameOfTaskAt(index);
-  }
-
-  public boolean isCaseResultEmpty() {
-    CaseWidgetPage caseWidgetPage = getCaseWidget();
-    return caseWidgetPage.isEmpty();
   }
 
   public boolean isProcessGroupDisplay(String group) {

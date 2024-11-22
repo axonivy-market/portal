@@ -30,48 +30,69 @@ How to Configure Widgets in Case Details
 
 -  Settings of all visible widgets on the Case Details page are saved in the **variable Portal.CaseDetails**.
 -  In the Engine Cockpit, an administrator can configure widgets in the variable **Portal.CaseDetails** on the Settings page.
-   |edit-variable-portal-task-case-details|
+   |edit-variable-portal-case-details|
 
 -  The default configuration includes five widgets:
 
-   .. code-block:: html
-
-    [{
-       "id": "default-case-detail",
-       "widgets": [{
-             "type": "information",
-             "id": "information",
-             "layout": {
-                "w": 6, "h": 8, "x": 0, "y": 0
-               }
-          }, {
-             "type": "document",
-             "id": "document",
-             "layout": {
-                "w": 6, "h": 8, "x": 6, "y": 0
-               }
-          }, {
-             "type": "technicalCase",
-             "id": "technicalCase",
-             "layout": {
-                "w": 12, "h": 6, "x": 0, "y": 8
-               }
-          }, {
-             "type": "relatedTask",
-             "id": "relatedTask",
-             "layout": {
-                "w": 12, "h": 6, "x": 0, "y": 14
-               }
-          }, {
-             "type": "history",
-             "id": "history",
-             "layout": {
-                "w": 12, "h": 6, "x": 0, "y": 20
-               }
+   .. code-block:: javascript
+      
+         [
+            {
+               "id": "default-case-detail",
+               "widgets": [
+                  {
+                     "type": "information",
+                     "id": "information",
+                     "layout": {
+                        "w": 6,
+                        "h": 8,
+                        "x": 0,
+                        "y": 0
+                     }
+                  },
+                  {
+                     "type": "document",
+                     "id": "document",
+                     "layout": {
+                        "w": 6,
+                        "h": 8,
+                        "x": 6,
+                        "y": 0
+                     }
+                  },
+                  {
+                     "type": "technicalCase",
+                     "id": "technicalCase",
+                     "layout": {
+                        "w": 12,
+                        "h": 6,
+                        "x": 0,
+                        "y": 8
+                     }
+                  },
+                  {
+                     "type": "relatedTask",
+                     "id": "relatedTask",
+                     "layout": {
+                        "w": 12,
+                        "h": 6,
+                        "x": 0,
+                        "y": 14
+                     }
+                  },
+                  {
+                     "type": "history",
+                     "id": "history",
+                     "layout": {
+                        "w": 12,
+                        "h": 6,
+                        "x": 0,
+                        "y": 20
+                     }
+                  }
+               ]
             }
-          ]
-       }
-    ]
+         ]                                                       
 
 
    -  The structure of each Case Details layout is saved in variable **Portal.CaseDetails**:
@@ -157,7 +178,7 @@ For the custom widget, we have a new node is ``data`` inside of case details wid
           - e.g: AxonIvyDesigner/configuration/applications/designer.
 
       - Create some destroyed case or start the process ``Start Processes/CaseDetailsCustomWidgetExample/CreateEventTest.ivp`` in ``portal-developer-examples`` project.
-      - Go to the example homepage by the process ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp``.
+      - Go to the homepage.
       - And then go to case details to check the new custom layout.
    
       About how to configure Variables, refer to :dev-url:`|ivy| Variables </doc/|version|/designer-guide/configuration/variables.html>`
@@ -175,61 +196,85 @@ The following two steps are necessary to add new custom panels:
 
    -  This is an example **Portal.CaseDetails** configuration that includes three custom widgets:
 
-      .. code-block:: html
+      .. code-block:: javascript
 
-         [{
-            "id": "default-case-detail",
-            "widgets": [{
-                  "type": "information",
-                  "id": "information",
-                  "layout": {
-                     "w": 6, "h": 8, "x": 0, "y": 0
-                  }
-               }, {
-                  "type": "document",
-                  "id": "document",
-                  "layout": {
-                     "w": 6, "h": 8, "x": 6, "y": 0
-                  }
-               }, {
-                  "type": "history",
-                  "id": "history",
-                  "layout": {
-                     "w": 12, "h": 6, "x": 0, "y": 8
-                  }
-               }, {
-                  "type": "custom",
-                  "id": "customTop",
-                  "layout": {
-                     "x": 0, "y": 14, "w": 12, "h": 6
+         [
+            {
+               "id": "default-case-detail",
+               "widgets": [
+                  {
+                     "type": "information",
+                     "id": "information",
+                     "layout": {
+                        "w": 6,
+                        "h": 8,
+                        "x": 0,
+                        "y": 0
+                     }
                   },
-                  "data" : {
-                     "type": "caseItemDetailCustomTop"
-                  }
-               }, {
-                  "type": "custom",
-                  "id": "customMiddle",
-                  "layout": {
-                     "x": 0, "y": 20, "w": 12, "h": 6
+                  {
+                     "type": "document",
+                     "id": "document",
+                     "layout": {
+                        "w": 6,
+                        "h": 8,
+                        "x": 6,
+                        "y": 0
+                     }
                   },
-                  "data" : {
-                     "type": "caseItemDetailCustomMiddle"
-                  }
-               }, {
-                  "type": "custom",
-                  "id": "customBottom",
-                  "layout": {
-                     "x": 0, "y": 26, "w": 12, "h": 6
+                  {
+                     "type": "history",
+                     "id": "history",
+                     "layout": {
+                        "w": 12,
+                        "h": 6,
+                        "x": 0,
+                        "y": 8
+                     }
                   },
-                  "data" : {
-                     "type": "caseItemDetailCustomBottom"
-                   }
-                }
-             ]
-           }
-        ]
-
-
+                  {
+                     "type": "custom",
+                     "id": "customTop",
+                     "layout": {
+                        "x": 0,
+                        "y": 14,
+                        "w": 12,
+                        "h": 6
+                     },
+                     "data": {
+                        "type": "caseItemDetailCustomTop"
+                     }
+                  },
+                  {
+                     "type": "custom",
+                     "id": "customMiddle",
+                     "layout": {
+                        "x": 0,
+                        "y": 20,
+                        "w": 12,
+                        "h": 6
+                     },
+                     "data": {
+                        "type": "caseItemDetailCustomMiddle"
+                     }
+                  },
+                  {
+                     "type": "custom",
+                     "id": "customBottom",
+                     "layout": {
+                        "x": 0,
+                        "y": 26,
+                        "w": 12,
+                        "h": 6
+                     },
+                     "data": {
+                        "type": "caseItemDetailCustomBottom"
+                     }
+                  }
+               ]
+            }
+         ]
+         
 #. To customize case details using an **IFrame**, you have to define one of the following two input parameters in the ``data`` node:
 
    -  ``url`` if you want to use an external URL.
@@ -239,37 +284,43 @@ The following two steps are necessary to add new custom panels:
       node.
 
       .. important::
-         Use only one of ``processPath`` and ``url``.
+         Use only one of ``processPath`` or ``url``.
 
 
       Here is an example of a customized case details page using an external URL:
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          [
             {
-            "id": "case-detail",
-            "widgets": [
-               {
+               "id": "case-detail",
+               "widgets": [
+                  {
                   "type": "information",
                   "id": "information",
                   "layout": {
-                     "x": 0, "y": 0, "w": 6, "h": 8
+                     "x": 0,
+                     "y": 0,
+                     "w": 6,
+                     "h": 8
                   }
-               },
-               {
+                  },
+                  {
                   "type": "custom",
                   "id": "customURL",
                   "layout": {
-                     "x": 6, "y": 0, "w": 6, "h": 8
+                     "x": 6,
+                     "y": 0,
+                     "w": 6,
+                     "h": 8
                   },
-                  "data" : {
-                      "url": "https://www.axonivy.com/"
+                  "data": {
+                     "url": "https://www.axonivy.com/"
                   }
-               }
-             ]
-          }
-        ]
+                  }
+               ]
+            }
+         ]
       ..
 
       Result:
@@ -280,30 +331,40 @@ The following two steps are necessary to add new custom panels:
       process start. Please refer to the ``CaseDetailsCustomWidgetExample`` process
       in ``portal-developer-examples`` for details.
 
-      .. code-block:: html
+      .. code-block:: javascript
 
-       [{
-            "id": "case-detail",
-            "widgets": [
-               {
-                  "type": "information",
-                  "id": "information",
-                  "layout": {
-                     "x": 0, "y": 0, "w": 6, "h": 8
+         [
+            {
+               "id": "case-detail",
+               "widgets": [
+                  {
+                     "type": "information",
+                     "id": "information",
+                     "layout": {
+                        "x": 0,
+                        "y": 0,
+                        "w": 6,
+                        "h": 8
                   }
-               },
-               {
-                  "type": "history",
-                  "id": "history",
-                  "layout": {
-                     "x": 6, "y": 0, "w": 6, "h": 8
+                  },
+                  {
+                     "type": "history",
+                     "id": "history",
+                     "layout": {
+                        "x": 6,
+                        "y": 0,
+                        "w": 6,
+                        "h": 8
                   }
-               },
-               {
+                  },
+                  {
                   "type": "custom",
                   "id": "customIvyProcess",
                   "layout": {
-                     "x": 0, "y": 6, "w": 12, "h": 8
+                     "x": 0,
+                     "y": 6,
+                     "w": 12,
+                     "h": 8
                   },
                   "data": {
                      "processPath": "Start Processes/CaseDetailsCustomWidgetExample/startReview.ivp",
@@ -314,10 +375,10 @@ The following two steps are necessary to add new custom panels:
                         "investmentDescription": "case.customFields.investmentDescription"
                      }
                   }
-               }
-             ]
-           }
-        ]
+                  }
+               ]
+            }
+         ]
       ..
 
       Provide case custom fields:
@@ -335,7 +396,7 @@ The following two steps are necessary to add new custom panels:
 
 .. |case-standard-1| image:: ../../screenshots/case-detail/customization/case-standard-1.png
 .. |case-standard-2| image:: ../../screenshots/case-detail/customization/case-standard-2.png
-.. |edit-variable-portal-task-case-details| image:: images/customization/edit-variable-portal-task-case-details.png
+.. |edit-variable-portal-case-details| image:: images/customization/edit-variable-portal-case-details.png
 .. |case-customized-iframe-url| image:: ../../screenshots/case-detail/customization/case-customized-iframe-url.png
 .. |case-customized-iframe-process-custom-field| image:: images/case-details/Review-Request-Start.png
 .. |case-customized-iframe-process-input-mapping| image:: images/case-details/Mapping-ReviewRequest-Start.png

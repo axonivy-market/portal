@@ -8,8 +8,8 @@ Business Details Page
 Introduction
 ------------
 
-The default business details page shows all custom fields of a case. It is opened
-by clicking on ``Business details`` in the case details page.
+The default business details page shows all custom fields of a case. Clicking on
+``Business details`` in the case details page to open.
 
 Portal supports customizing this page for each case.
 
