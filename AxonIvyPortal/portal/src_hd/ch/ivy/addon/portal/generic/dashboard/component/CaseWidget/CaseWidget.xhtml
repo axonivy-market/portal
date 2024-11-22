@@ -84,7 +84,8 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'owner'}">
-            <pc:securityMemberNameAndAvatar displayName="#{column.display(caseItem)}" securityMember="#{caseItem.getOwner()}" />
+            <h:outputText id="owners" value="#{column.display(caseItem)}" />
+            <p:tooltip value="#{column.display(caseItem)}" for="owners" />
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'name'}">
