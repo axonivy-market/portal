@@ -334,7 +334,6 @@
   /* News Widget */
   --news-item-background: rgb(62, 71, 84);
   /* Notification */
-  --notification-title-color: var(--notification-background-color);
   --notification-panel-color: var(--notification-background-color);
   --notification-hover-message-color: #394457;
     /*Notification channels*/
@@ -359,4 +358,7 @@
   --dashboard-action-container-border-color: var(--ivy-primary-color-grey-medium);
   --dashboard-action-container-description-color: var(--ivy-primary-color-grey-medium);
   --dashboard-icon-drag-drop-color: var(--ivy-primary-color-grey-medium);
+  
+    /* Leave task warning message*/
+  --warning-before-leave-task: var(--ivy-primary-color-grey-medium);
 }
