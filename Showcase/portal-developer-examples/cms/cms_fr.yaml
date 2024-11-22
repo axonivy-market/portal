@@ -177,5 +177,5 @@ Processes:
         name: Commande de pizzas
     description: Créez 3 tâches, chaque tâche a le nom du client et la date d'expédition.
     name: Créer des tâches pour la personnalisation de la liste de tâches
-  UserExampleGuide: Guide d'exemple d'utilisation
+  UserExampleGuide: Guide d'utilisation
   google: FR Google
