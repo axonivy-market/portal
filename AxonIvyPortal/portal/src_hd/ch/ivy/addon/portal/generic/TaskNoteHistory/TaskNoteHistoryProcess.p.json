@@ -8,7 +8,7 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(List<INote>,String,ITask)",
+      "name" : "start(List<Note>,String,ITask)",
       "config" : {
         "signature" : "start",
         "input" : {
