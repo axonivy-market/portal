@@ -34,7 +34,7 @@ item.
 
 Below is a JSON example for the configuration of user items.
 
-.. code-block:: json
+.. code-block:: javascript
 
   [
       {

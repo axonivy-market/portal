@@ -41,7 +41,7 @@ for each dashboard separately.
 
 Below is a JSON example for configuring a dashboard with one task widget
 
-.. code-block:: json
+.. code-block:: javascript
 
    [
       {
@@ -230,7 +230,7 @@ Portal supports customizing the main menu entry of dashboards.
 To customize the menu, you can edit the Portal variable
 ``Portal.Dashboard.MainMenuEntry.json``. Below is an example JSON of a custom menu.
 
-.. code-block:: json
+.. code-block:: javascript
 
       {
          "names": [

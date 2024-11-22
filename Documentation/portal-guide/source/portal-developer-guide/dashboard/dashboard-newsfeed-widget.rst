@@ -10,7 +10,7 @@ The news widget shares relevant information as a News Feed into |ivy|.
 
 Below is a sample JSON definition of a news widget in the Portal dashboard
 
-.. code-block:: json
+.. code-block:: javascript
 
    {
       "type": "news",

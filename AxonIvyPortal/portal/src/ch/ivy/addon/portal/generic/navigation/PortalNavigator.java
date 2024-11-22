@@ -4,6 +4,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -14,15 +15,18 @@ import com.axonivy.portal.components.util.ProcessStartUtils;
 
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
+import ch.ivy.addon.portalkit.service.AiProcessService;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.model.value.WebLink;
 import ch.ivyteam.ivy.request.IHttpRequest;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_DASHBOARD = "Start Processes/PortalStart/DefaultDashboardPage.ivp";
   private static final String PORTAL_PROCESS = "Start Processes/PortalStart/DefaultProcessStartListPage.ivp";
-  private static final String PORTAL_TASK = "Start Processes/PortalStart/DefaultTaskListPage.ivp";
   private static final String PORTAL_CASE = "Start Processes/PortalStart/CaseListPage.ivp";
   private static final String PORTAL_CASE_DETAILS = "Start Processes/PortalStart/DefaultCaseDetailPage.ivp";
   private static final String PORTAL_RELATED_TASKS_OF_CASE = "Start Processes/PortalStart/RelatedTasksOfCasePage.ivp";
@@ -42,10 +46,11 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static final String PORTAL_DASHBOARD_START = "/DefaultDashboardPage.ivp";
   public static final String PORTAL_PROCESS_START = "/DefaultProcessStartListPage.ivp";
-  public static final String PORTAL_TASK_START = "/DefaultTaskListPage.ivp";
   public static final String PORTAL_CASE_START = "/CaseListPage.ivp";
   public static final String PORTAL_USER_PROFILE_START =  "/UserProfile.ivp";
   public static final String PORTAL_CASE_DETAILS_IN_IFRAME_START = "/CaseDetailsInIFrame.ivp";
+  public static final String PORTAL_DASHBOARD_PAGE_START = "/DashboardPage.ivp";
+  public static final String DASHBOARD_ID = "dashboardId";
   private static final String UUID = "uuid";
   private static final String ID = "id";
   private static final String PORTAL_DASHBOARD_PAGE = "Start Processes/PortalStart/DashboardPage.ivp";
@@ -85,18 +90,18 @@ public final class PortalNavigator extends BaseNavigator{
   public static void redirect(String url) {
     redirectURL(url);
   }
-  
+
   public static String getDashboardPageUrl(String dashboardId) {
     Map<String, String> params = new HashMap<>();
-    params.put("dashboardId", dashboardId);
+    params.put(DASHBOARD_ID, dashboardId);
     return buildUrl(PORTAL_DASHBOARD_PAGE, params);
   }
 
   public static String getSubMenuItemUrlOfCurrentApplication(MenuKind menuKind) {
     String subMenuUrl = switch (menuKind) {
       case PROCESS -> PORTAL_PROCESS;
-      case TASK -> PORTAL_TASK;
       case CASE -> PORTAL_CASE;
+      case MAIN_DASHBOARD -> PORTAL_DASHBOARD_PAGE;
       default -> StringUtils.EMPTY;
     };
     return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(subMenuUrl);
@@ -117,7 +122,9 @@ public final class PortalNavigator extends BaseNavigator{
   }
 
   public static void navigateToPortalTask() {
-    navigateByKeyword(PORTAL_TASK_START, PORTAL_TASK, new HashMap<>());
+    Map<String, String> params = new HashMap<>();
+    params.put(DASHBOARD_ID, DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD);
+    navigateByKeyword(PORTAL_DASHBOARD_PAGE_START, PORTAL_DASHBOARD_PAGE, params);
   }
 
   public static void navigateToPortalCaseDetails(String uuid) {
@@ -180,7 +187,7 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static void navigateToDashboardDetailsPage(String dashboardId, boolean isPublicDashboard) {
     Map<String, String> params = new HashMap<>();
-    params.put("dashboardId", dashboardId);
+    params.put(DASHBOARD_ID, dashboardId);
     params.put("isPublicDashboard", Boolean.valueOf(isPublicDashboard).toString());
     navigateByKeyword("DashboardDetails.ivp", PORTAL_DASHBOARD_DETAILS, params);
   }
@@ -269,5 +276,12 @@ public final class PortalNavigator extends BaseNavigator{
   
   public static String buildNotificationFullPageUrl() {
     return buildUrlByKeyword(PORTAL_NOTIFICATION_FULLPAGE_START, PORTAL_NOTIFICATION_FULLPAGE, new HashMap<>());
+  }
+
+  public static String buildAssistantDashboardUrl() {
+    IProcessStart process = AiProcessService.getInstance()
+        .findAssistantDashboardProcess();
+    return Optional.ofNullable(process).map(IProcessStart::getLinkEmbedded)
+        .map(WebLink::getRelative).orElse("");
   }
 }

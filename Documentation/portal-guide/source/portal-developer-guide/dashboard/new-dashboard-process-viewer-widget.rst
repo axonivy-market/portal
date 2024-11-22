@@ -10,7 +10,7 @@ The Process Viewer Widget of the Portal dashboard provides a visual representati
 
 Below is a sample JSON definition of a process viewer widget in the Portal dashboard
 
-.. code-block:: json
+.. code-block:: javascript
 
    {
       "type": "process-viewer",

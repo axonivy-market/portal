@@ -26,7 +26,7 @@ Define An External Page Widget Using JSON
 
 The JSON structure is the following:
 
-   .. code-block:: json
+   .. code-block:: javascript
 
       {
          "type": "custom",
