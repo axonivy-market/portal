@@ -415,6 +415,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocument: Add document
     addNote: Add note
     allCategories: All Categories
+    allTypes: All types
     allowPng: Only png types allowed
     apply: Apply
     at: at
@@ -552,6 +553,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     second: second
     seconds: seconds
     seeDetail: See details
+    select: Select
     selectAll: Select All
     selectUsers: Select user(s)
     selectedDay: '{0} selected day(s)'
@@ -583,6 +585,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
+    uploadHere: Upload here
     uploadOneHere: Upload one here
     user: '{0} user'
     users: Users
@@ -1105,7 +1108,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     toUser: User
     userSelectionWatermark: Please select a user...
   taskDetails:
-    addDocumentHelpText: To upload files, drag & drop or select files
+    addDocumentHelpText: 'To upload files, drag & drop or '
     addNoteHelpText: Write your text here.
     afterEscalation: After escalation
     businessCase: Business Case
@@ -1123,6 +1126,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processingTime: Processing Time
     setDelayTimestamp: '{0} ({1}) has set delay time to task #{2} to {3}'
     setExpiryActivatorAndTimeNotes: '{0} and assign {1} as the task escalation activator'
+    supportFileTypes: ' Upload file type supported: {0}'
     taskCategory: Task Category
     taskExpiryDisable: This task does not contain any escalation handling logic, therefore no expiry time can be set.
     technicalCase: Technical Case
