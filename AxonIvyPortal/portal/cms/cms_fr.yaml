@@ -137,16 +137,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rubrique 3
       NORMAL_TEXT: Texte normal
   MyProfile:
-    CaseList: Liste de cas
     DateFormat: Format de la date
     FormattingLanguage: Langue de mise en forme
     General: Généraux
     Homepage: Page d'accueil
     Language: Langue
     ProcessList: Liste des processus
-    SortFieldSelections:
-      defaultSortFieldLabel: Champ de tri par défaut
-    TaskList: Liste des tâches
     byDefault: ' par défaut'
     defaultOption: Par défaut ({0})
     defaultViewMode: Mode de vue par défaut
@@ -414,6 +410,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocument: Ajouter un document
     addNote: Ajouter une note
     allCategories: Toutes les catégories
+    allTypes: Tous les types
     allowPng: Seulement les types .png autorisés
     apply: Utiliser
     at: le
@@ -551,6 +548,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     second: seconde
     seconds: secondes
     seeDetail: Afficher les détails
+    select: Sélectionner
     selectAll: Sélectionner tout
     selectUsers: Sélectionnez un ou plusieurs utilisateurs
     selectedDay: '{0} jour(s) sélectionné(s)'
@@ -582,6 +580,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Tous les administrateurs
     typeAllUsers: Tous les utilisateurs
     typeOnlyMe: Seulement pour moi
+    uploadHere: Téléchargez ici
     uploadOneHere: Téléchargez-en un ici
     user: '{0} utilisateur'
     users: Utilisateurs
@@ -1100,7 +1099,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     toUser: Utilisateur
     userSelectionWatermark: Veuillez sélectionner un utilisateur…
   taskDetails:
-    addDocumentHelpText: Pour ajouter des fichiers, glissez-les ou sélectionnez-les
+    addDocumentHelpText: 'Pour ajouter des fichiers, glissez-les ou '
     addNoteHelpText: Ecrivez votre texte ici
     afterEscalation: Après escalade
     businessCase: Dossier
@@ -1118,6 +1117,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processingTime: Durée de traitement
     setDelayTimestamp: '{0} ({1}) a fixé le délai d''attente de la tâche #{2} à {3}'
     setExpiryActivatorAndTimeNotes: '{0} et assigner {1} comme activateur d''escalade de tâches'
+    supportFileTypes: 'Types de fichiers pris en charge pour le téléchargement : {0}'
     taskCategory: Catégorie de tâche
     taskExpiryDisable: Cette tâche ne contient pas de logique d'escalade. Aucune période d'expiration ne peut donc être définie.
     technicalCase: Dossier technique
@@ -1246,12 +1246,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Voir la liste complète des tâches
     sort: Trier
   taskWarning:
-    createdTaskLeave: 'Vous êtes sur le point de quitter cette page. Choisissez l&apos;&apos;une des options suivantes : <UL><LI>    Quitter : abandonnez vos modifications et allez à la page choisie. <LI>    Annuler : continuez à travailler sur cette tâche. </UL>'
-    createdTaskLogout: 'Vous êtes sur le point de quitter cette page. Choisissez l&apos;&apos;une des options suivantes : <UL> <LI> &nbsp; Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI> &nbsp; Annuler : continuez à travailler sur cette tâche. </UL>'
-    resetParkTaskBeforeLeave: '<h4>Vous êtes sur le point de laisser une tâche en cours.<br/>Choisissez l&apos;&apos;une des options suivantes :</h4><UL> <LI> Quitter : abandonnez vos modifications et allez à la page choisie. <LI> Enregistrer : abandonnez vos modifications et conservez la tâche dans votre
-      liste de tâches personnelles. Ensuite déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
-    resetParkTaskBeforeLogout: 'Vous êtes sur le point de laisser une tâche en cours. Choisissez l&apos;&apos;une des options suivantes : <UL> <LI> &nbsp; &nbsp; Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI> &nbsp; &nbsp; Enregistrer : annulez vos modifications et conservez la tâche
-      dans votre liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> &nbsp; &nbsp; Annuler : continuez à travailler sur cette tâche. </UL>'
+    createdTaskLeave: '<div>Vous êtes sur le point de quitter cette page.<br/>  Choisissez l&apos;&apos;une des options suivantes :</div> <UL><LI>Quitter : abandonnez vos modifications et allez à la page choisie. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
+    createdTaskLogout: '<div>Vous êtes sur le point de quitter cette page.<br/> Choisissez l&apos;&apos;une des options suivantes :</div> <UL> <LI> &nbsp; Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI> &nbsp; Annuler : continuez à travailler sur cette tâche. </UL>'
+    resetParkTaskBeforeLeave: '<div>Vous êtes sur le point de laisser une tâche en cours.<br/>Choisissez l&apos;&apos;une des options suivantes :</div><UL> <LI> Quitter : abandonnez vos modifications et allez à la page choisie. <LI> Enregistrer : abandonnez vos modifications et conservez la tâche dans
+      votre liste de tâches personnelles. Ensuite déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
+    resetParkTaskBeforeLogout: '<div>Vous êtes sur le point de laisser une tâche en cours.</br> Choisissez l&apos;&apos;une des options suivantes : </div><UL> <LI> &nbsp; &nbsp; Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI> &nbsp; &nbsp; Enregistrer : annulez vos modifications et
+      conservez la tâche dans votre liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> &nbsp; &nbsp; Annuler : continuez à travailler sur cette tâche. </UL>'
     taskNotFound: cette tâche n'existe pas ou vous n'avez pas l'autorisation de la voir.
   userProfile:
     myProfileTitle: Mon profil

@@ -319,7 +319,6 @@ public class MenuView implements Serializable {
     }
     BreadCrumbKind breadCrumbKind = BreadCrumbKind.valueOf(viewName);
     switch (breadCrumbKind) {
-      case CASE -> buildBreadCrumbForCaseList();
       case TECHNICAL_CASE -> buildBreadCrumbForTechnicalCaseList(userCase);
       case RELATED_TASK -> buildBreadCrumbForRelatedTask(userCase);
       case PROCESS -> buildBreadCrumbForProcess();
@@ -361,14 +360,6 @@ public class MenuView implements Serializable {
   private void buildBreadCrumbForAbsences() {
     setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/absenceAndDeputy"));
-  }
-
-  private void buildBreadCrumbForCaseList() {
-    setPortalHomeMenuToBreadcrumbModel();
-
-    DefaultMenuItem caseListSubmenuItem = buildCaseListMenuItem();
-    caseListSubmenuItem.setDisabled(true);
-    breadcrumbModel.getElements().add(caseListSubmenuItem);
   }
 
   private void buildBreadCrumbForTechnicalCaseList(ICase userCase) {
@@ -428,30 +419,25 @@ public class MenuView implements Serializable {
       .build();
   }
 
-  private DefaultMenuItem buildMenuItemFromPortalSubMenuItem(SubMenuItem subMenuItem) {
-    return DefaultMenuItem.builder()
-      .value(subMenuItem.getLabel())
-      .url(null)
-      .build();
+  private DefaultMenuItem buildMenuItemFromPortalSubMenuItem(String cmsOfMenuItemLabel) {
+    return DefaultMenuItem.builder().value(ApplicationMultiLanguageAPI.getCmsValueByUserLocale(cmsOfMenuItemLabel))
+        .url(null).build();
   }
 
   private DefaultMenuItem buildTaskListMenuItem() {
-    TaskSubMenuItem taskSubMenuItem = new TaskSubMenuItem();
-    DefaultMenuItem taskMenu = buildMenuItemFromPortalSubMenuItem(taskSubMenuItem);
+    DefaultMenuItem taskMenu = buildMenuItemFromPortalSubMenuItem("/ch.ivy.addon.portalkit.ui.jsf/common/tasks");
     taskMenu.setOnclick("navigateToTaskList();");
     return taskMenu;
   }
 
   private DefaultMenuItem buildCaseListMenuItem() {
-    CaseSubMenuItem caseSubMenuItem = new CaseSubMenuItem();
-    DefaultMenuItem caseMenuItem = buildMenuItemFromPortalSubMenuItem(caseSubMenuItem);
+    DefaultMenuItem caseMenuItem = buildMenuItemFromPortalSubMenuItem("/ch.ivy.addon.portalkit.ui.jsf/caseList/cases");
     caseMenuItem.setOnclick("navigateToCaseList();");
     return caseMenuItem;
   }
 
   private DefaultMenuItem buildProcessListMenuItem() {
-    ProcessSubMenuItem processSubMenuItem = new ProcessSubMenuItem();
-    return buildMenuItemFromPortalSubMenuItem(processSubMenuItem);
+    return buildMenuItemFromPortalSubMenuItem("/ch.ivy.addon.portalkit.ui.jsf/common/processes");
   }
 
   private MenuItem buildTaskDetailsMenuItem(ITask userTask) {
