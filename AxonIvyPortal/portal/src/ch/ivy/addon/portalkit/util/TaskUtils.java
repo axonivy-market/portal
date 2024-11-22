@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,14 +22,17 @@ import com.axonivy.portal.components.util.FacesMessageUtils;
 import ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.enums.PortalPage;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.service.TaskInforActionService;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.exec.Sudo;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
@@ -365,4 +369,33 @@ public final class TaskUtils {
 
     return Ivy.cms().co(PRIORITY_CMS_PATH + priority);
   }
+  
+  public static boolean canReset(ITask task) {
+    if (task == null) {
+      return false;
+    }
+    
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.READY_FOR_JOIN,
+        TaskState.FAILED);
+    if (!taskStates.contains(task.getState())) {
+      return false;
+    }
+    
+    if (task.getState() == TaskState.READY_FOR_JOIN) {
+      IPermission resetTaskReadyForJoin = IPermissionRepository.instance().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());
+      return hasPermission(task, resetTaskReadyForJoin);
+    }
+  
+
+    return (hasPermission(task, IPermission.TASK_RESET_OWN_WORKING_TASK) && canResume(task))
+        || hasPermission(task, IPermission.TASK_RESET);
+  }
+  
+  private static boolean hasPermission(ITask task, IPermission permission) {
+    if (task == null || permission == null) {
+      return false;
+    }
+    return PermissionUtils.hasPermission(permission);
+  }
+
 }
