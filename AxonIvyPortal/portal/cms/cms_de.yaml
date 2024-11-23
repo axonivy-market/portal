@@ -344,7 +344,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       FINISHED_TIME: Erledigt
       ID: Vorgangs Id
       NAME: Name / Beschreibung
-      OWNER: Verantwortlich
+      OWNER: Prozessverantwortlichen
       STATE: Status
     deletionNoteContent: Der Vorgang wurde durch {0} gelöscht.
     destroyCaseMessage: Diese Operation kann nicht rückgängig gemacht werden. Sind Sie sicher, dass dieser komplette Vorgang gelöscht werden soll?
@@ -461,7 +461,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     detail: Details
     display: Anzeigen
     displayAsTopMenu: Als oberstes Menü anzeigen
-    displayName: Anzeigename
+    displayName: Name anzeigen
     dragAndDropFile: 'Ziehen und Ablegen einer Datei oder '
     dragAndDropImage: 'Ziehen und Ablegen eines Bildes oder '
     edit: Bearbeiten
@@ -1317,7 +1317,7 @@ Dialogs:
                 CaseDetailTitle: Vorgangsdetails
                 DataDescription: Daten und Beschreibung
                 destroyCase: Vorgang löschen
-              CaseOwner: Prozessverantwortlicher
+              CaseOwner: Prozessverantwortlichen
               Finished: Erledigt
               GlobalSearchText: Die Vorgänge enthalten das Schlüsselwort "{0}" in Vorgangs Id{1}.
               ShowBusinessDetails: Geschäftsinformationen anzeigen
@@ -1468,8 +1468,8 @@ Labels:
       FINISHED: Beendetes Datum
       ID: Id
       NAME: Name
-      OWNER: Eigentümer des Falles
-      STATE: Status
+      OWNER: Prozessverantwortlichen
+      STATE: Staat
     DashboardStandardTaskColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
@@ -1482,7 +1482,7 @@ Labels:
       PRIORITY: Priorität
       RESPONSIBLE: Verantwortlich
       START: Start
-      STATE: Status
+      STATE: Staat
     FilterOperator:
       AFTER: Ist nach
       BEFORE: Ist vor
@@ -1544,7 +1544,7 @@ Labels:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Berechtigungen
-  Share: Teilen
+  Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
   TaskUser-Explain: Kommaseparierte Liste von Benutzern

@@ -343,7 +343,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       FINISHED_TIME: Finished
       ID: Case Id
       NAME: Name / Description
-      OWNER: Owner
+      OWNER: Case Owners
       STATE: State
     deletionNoteContent: The case was destroyed by {0}
     destroyCaseMessage: This operation cannot be undone. Are you sure you want to destroy this case and all of its tasks?
@@ -1319,7 +1319,7 @@ Dialogs:
                 CaseDetailTitle: Case Details
                 DataDescription: Data and Description
                 destroyCase: Destroy case
-              CaseOwner: Case Owner
+              CaseOwner: Case Owners
               Finished: Finished
               GlobalSearchText: Cases contain the keyword "{0}" in Case Id{1}.
               ShowBusinessDetails: Business details
@@ -1515,7 +1515,7 @@ Labels:
       FINISHED: Finished Date
       ID: Id
       NAME: Name
-      OWNER: Case Owner
+      OWNER: Case Owners
       STATE: State
     DashboardStandardTaskColumn:
       ACTIONS: Actions
