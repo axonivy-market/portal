@@ -97,34 +97,23 @@ public class CaseExporter extends Exporter{
     }
 
     CaseSortField sortField = CaseSortField.valueOf(column);
-    switch (sortField) {
-      case NAME:
-        return StringUtils.isEmpty(caseItem.names().current()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : caseItem.names().current();
-      case ID:
-        return String.valueOf(caseItem.getId());
-      case CREATOR:
+    return switch (sortField) {
+      case NAME -> StringUtils.isEmpty(caseItem.names().current()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : caseItem.names().current();
+      case ID -> String.valueOf(caseItem.getId());
+      case CREATOR -> {
         if (caseItem.getCreatorUserName() == null) {
-          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
+          yield Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
-        return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getCreatorUser(), caseItem.getCreatorUserName());
-      case OWNER:
-        if (caseItem.getOwnerName() == null) {
-          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
-        }
-        return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getOwner(), caseItem.getOwnerName());
-      case CREATION_TIME:
-        return caseItem.getStartTimestamp();
-      case FINISHED_TIME:
-        return caseItem.getEndTimestamp();
-      case STATE:
-        return CaseUtils.convertToUserFriendlyCaseState(caseItem.getBusinessState());
-      case CATEGORY:
-        return caseItem.getCategory().getPath();
-      case APPLICATION:
-        return caseItem.getApplication().getName();
-      default:
-        return "";
-    }
+        yield SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getCreatorUser(), caseItem.getCreatorUserName());
+      }
+      case OWNER -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForCaseOwners(caseItem.owners());
+      case CREATION_TIME -> caseItem.getStartTimestamp();
+      case FINISHED_TIME -> caseItem.getEndTimestamp();
+      case STATE -> CaseUtils.convertToUserFriendlyCaseState(caseItem.getBusinessState());
+      case CATEGORY -> caseItem.getCategory().getPath();
+      case APPLICATION -> caseItem.getApplication().getName();
+      default -> "";
+    };
   }
 
   /**
