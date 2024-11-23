@@ -52,7 +52,7 @@ public class DocumentIconBean implements Serializable {
    * @param documentName is a name of file
    * @return return CSS class for icon
    */
-  public static String getIconCssClass(String documentName) {
+  public String getIconCssClass(String documentName) {
     String iconClass = StringUtils.EMPTY;
     if (StringUtils.isNotEmpty(documentName)) {
       String fileExtension = getExtensionByFileName(documentName);
@@ -84,7 +84,7 @@ public class DocumentIconBean implements Serializable {
     return iconClass;
   }
 
-  private static String getExtensionByFileName(String documentName) {
+  private String getExtensionByFileName(String documentName) {
     String fileName = StringUtils.trimToEmpty(documentName);
     fileName = RegExUtils.removeAll(fileName, FILE_NAME_REGEX);
     return FilenameUtils.getExtension(StringUtils.lowerCase(fileName));

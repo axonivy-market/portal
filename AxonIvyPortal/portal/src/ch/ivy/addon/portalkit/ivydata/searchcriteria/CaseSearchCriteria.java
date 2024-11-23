@@ -163,7 +163,6 @@ public class CaseSearchCriteria {
       appendSortByStartTimeIfSet(criteria);
       appendSortByEndTimeIfSet(criteria);
       appendSortByCreatorIfSet(criteria);
-      appendSortByOwnerIfSet(criteria);
       appendSortByStateIfSet(criteria);
       return this;
     }
@@ -222,16 +221,6 @@ public class CaseSearchCriteria {
       }
     }
     
-    private void appendSortByOwnerIfSet(CaseSearchCriteria criteria) {
-      if (!CaseSortField.OWNER.toString().equalsIgnoreCase(criteria.getSortField())) {
-        return;
-      }
-      OrderByColumnQuery orderByName = query.orderBy().ownerDisplayName();
-      if (criteria.isSortDescending()) {
-        orderByName.descending();
-      }
-    }
-
     private void appendSortByStateIfSet(CaseSearchCriteria criteria) {
       if (!CaseSortField.STATE.toString().equalsIgnoreCase(criteria.getSortField())) {
         return;
