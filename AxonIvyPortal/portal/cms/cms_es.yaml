@@ -483,7 +483,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     finish: Terminar
     general: General
     generalInformation: Información general
-    globalSearch: Búsqueda ...
+    globalSearch: Buscar ...
     goToDetail: Ir a detalles
     hasPrecondition: Este proceso tiene una precondición
     height: altura
@@ -564,7 +564,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showSystemNotes: Notas del sistema
     showSystemTasks: Tareas del sistema
     sorting: Sorting
-    start: Abrir
+    start: Iniciar
     startProcess: Iniciar el proceso
     state: Estatus
     status: Estado
