@@ -240,7 +240,7 @@
       },
       {
         "locale": "fr",
-        "value": "Durée moyenne des affaires par Catégorie"
+        "value": "Durée moyenne des affaires par catégorie"
       },
       {
         "locale": "es",
@@ -499,7 +499,7 @@
       },
       {
         "locale": "fr",
-        "value": "Cas en Cours"
+        "value": "Cas en cours"
       },
       {
         "locale": "es",
@@ -652,11 +652,11 @@
       },
       {
         "locale": "fr",
-        "value": "Tâches Ouvertes"
+        "value": "Tâches ouvertes"
       },
       {
         "locale": "es",
-        "value": "Tareas Abiertas"
+        "value": "Tareas Pendientes"
       }
     ],
     "descriptions": [
