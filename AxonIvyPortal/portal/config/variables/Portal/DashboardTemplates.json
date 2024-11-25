@@ -739,11 +739,11 @@
           "showFullscreenMode": false,
           "columns": [
             {
-              "field": "id",
-              "visible": false
+              "field": "name"
             },
             {
-              "field": "name"
+              "field": "id",
+              "visible": false
             },
             {
               "field": "description",

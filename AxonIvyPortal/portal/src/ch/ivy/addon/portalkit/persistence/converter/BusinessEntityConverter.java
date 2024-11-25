@@ -20,7 +20,9 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 
+import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 
 /**
  * This class provides method to convert Business entity object into JSON value and reverse
@@ -126,4 +128,14 @@ public class BusinessEntityConverter {
     return new ArrayList<>();
 
   }
+
+  public static String entityToJsonValue(List<Dashboard> dashboards) {
+    DashboardUtils.updatePropertiesToNullIfCurrentValueIsDefaultValue(dashboards);
+    try {
+      return getObjectMapper().writeValueAsString(dashboards);
+    } catch (JsonProcessingException e) {
+      throw new PortalException(e);
+    }
+  }
+
 }

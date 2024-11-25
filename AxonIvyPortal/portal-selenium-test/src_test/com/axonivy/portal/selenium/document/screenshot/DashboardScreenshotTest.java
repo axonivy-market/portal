@@ -220,8 +220,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     taskConfigurationPage.cancelMultiLanguageDialogWhenAddWidget();
     taskConfigurationPage.openFilter();
     taskConfigurationPage.addFilter("name", FilterOperator.EMPTY);
-    ScreenshotUtils.captureElementScreenshot(taskConfigurationPage.getConfigurationFilter(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration");
+    ScreenshotUtils.resizeBrowserAndCaptureWholeScreen(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-configuration", new Dimension(1366, 768));
     taskConfigurationPage.closeFilter();
     WebElement columnManagementDialog = taskConfigurationPage.openColumnManagementDialog();
     ScreenshotUtils.captureElementScreenshot(columnManagementDialog,
@@ -246,8 +245,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     ComplexFilterHelper.addFilter("Creator", FilterOperator.CURRENT_USER);
     ComplexFilterHelper.addFilter("Name", FilterOperator.CONTAINS);
     ComplexFilterHelper.inputValueOnLatestFilter(FilterValueType.TEXT, "Leave", "Request");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigurationPage.getConfigurationFilter(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-configuration", new ScreenshotMargin(20));
+    ScreenshotUtils.resizeBrowserAndCaptureWholeScreen(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-configuration", new Dimension(1366, 768));
     caseConfigurationPage.closeFilter();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseConfigurationPage.openColumnManagementDialog(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-table-configuration", new ScreenshotMargin(20));
@@ -424,19 +422,11 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.executeDecorateJs("removeHighlightShowFilterButton();");
     resizeBrowserTo2kResolution();
     caseConfig.openColumnManagementDialog();
-    caseConfig.addCustomColumnByName("InvoiceQualityNumber");
+    caseConfig.addCustomColumnByName("AccountNumber");
     caseConfig.saveColumn();
     caseConfig.waitPreviewTableLoaded();
     caseConfig.openFilter();
     caseConfig.addFilter("Creator", FilterOperator.CURRENT_USER);
-    caseConfig.addFilter("Name", FilterOperator.CONTAINS);
-    caseConfig.inputValueOnLatestFilter(FilterValueType.TEXT, "Ticket", "Request");
-    
-    caseConfig.addFilter("State", null);
-    caseConfig.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN", "DONE");
-    
-    caseConfig.addFilter("Invoice quality number", FilterOperator.BETWEEN);
-    caseConfig.inputValueOnLatestFilter(FilterValueType.NUMBER_BETWEEN, 1, 40);
     
     caseConfig.closeFilter();
     caseConfig.save();
@@ -445,6 +435,14 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     homePage = new NewDashboardPage();
     caseWidget = homePage.selectCaseWidget("Your Cases");
     caseWidget.openFilterWidget();
+    caseWidget.addFilter("Name", FilterOperator.CONTAINS);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Ticket", "Request");
+    
+    caseWidget.addFilter("State", null);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN", "DONE");
+    
+    caseWidget.addFilter("Account Number", FilterOperator.EQUAL);
+    caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER, 40);
 
     caseWidget.addFilter("Created Date", FilterOperator.WITHIN_LAST);
     caseWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "2", "Year(s)");
@@ -503,9 +501,9 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     homePage.closeManageFilterDialog();
     caseWidget.openFilterWidget();
     homePage.clickOnManageFilterLink();
-    
+    homePage.waitForPageLoad();
     ScreenshotUtils.captureElementScreenshot(homePage.getManageFilterDialog(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-filter-management"); //#delete-saved-filter-form\:quick-filter-table > div.ui-datatable-scrollable-body
+    ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-filter-management"); //#delete-saved-filter-form\:quick-filter-table > div.ui-datatable-scrollable-body
   }
   
   @Test
@@ -524,8 +522,8 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     caseWidget.addFilter("Created Date", FilterOperator.TODAY);
     
     caseWidget.removeFocusFilterDialog();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(caseWidget.getConfigurationFilter(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "complex-filter-example", new ScreenshotMargin(10));
+    ScreenshotUtils.captureElementScreenshot(caseWidget.getConfigurationFilter(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "complex-filter-example");
   }
   
   @Test

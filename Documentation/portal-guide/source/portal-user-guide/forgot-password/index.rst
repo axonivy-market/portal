@@ -32,6 +32,10 @@ Click on :guilabel:`Back To Login Page` and log in again with your account and t
 .. include:: ../includes/_common-icon.rst
 
 .. |login-screen| image:: ../../screenshots/login/login-form.png
+   :alt: Portal login page
 .. |send-email-screen| image:: ../../screenshots/forgot-password/send-email-screen.png
+   :alt: "Send reset password email" page
 .. |reset-password-screen| image:: ../../screenshots/forgot-password/reset-password-screen.png
+   :alt: New password page
 .. |reset-password-success-screen| image:: ../../screenshots/forgot-password/reset-password-success-screen.png
+   :alt: Reset password successful page

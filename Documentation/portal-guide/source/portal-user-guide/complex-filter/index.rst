@@ -19,7 +19,7 @@ This feature is available for the Case Widget and the Task Widget in Dashboard.
 How to use
 ----------
 
-- The Filters dialog can be accessed by clicking on the 'Available Filters' button within the Task/Case Widget on the Dashboard, or by clicking on the 'Filter' button within the Edit Widget on the Edit Dashboard. 
+- The Filters dialog can be accessed by clicking on the :guilabel:`Filters` button within the Task/Case Widget on the Dashboard, or by clicking on the :guilabel:`Filter` button within the Edit Widget Configuration panel on the Edit Dashboard. 
   Please refer to :ref:`new-dashboard` for more details. 
 
 - To add a filter, select ``Add filter``, then select the column and operator, and input value if needed.  
@@ -38,7 +38,7 @@ How to use
 
       |complex-filter-example|
 
-    This filter configuration finds all cases in state OPEN, with their name containing 'Mike', created today.
+    This filter configuration finds all cases in state OPEN, with case name containing 'Mike', created today.
 
 If the task/case widget has been pre-configured with filters in the dashboard configuration, these filters will be displayed as read-only filters.
 
@@ -64,11 +64,11 @@ Filter Set Management
 
 You can manage your saved filter set in the Widget Filter Management dialog.
 
-- In the ``Available Filters`` dialog, select ``Manage filters`` link.
+- In the ``Available Filters`` dialog, select ``Manage filters``.
 
 - To search for a filter set, type the search value into the input field at the top of every column.
 
-- To delete filters, select the checkbox next to the filter set and then click the ``Remove`` button
+- To delete filters, select the checkbox next to the filter set and then click :guilabel:`Remove selection` button
 
     |widget-filter-management|
 
@@ -196,7 +196,12 @@ Filter Operators
 .. include:: ../includes/_common-icon.rst
 
 .. |case-task-widget-filter-combine| image:: ../../screenshots/new-dashboard/case-task-widget-filter-combine.png
+   :alt: Complex filters combination
 .. |filter-operator-dropdown| image:: ../../screenshots/new-dashboard/filter-operator-dropdown.png
+   :alt: Complex filters's operator selection
 .. |widget-filter-management| image:: ../../screenshots/new-dashboard/widget-filter-management.png
+   :alt: Widget filter management dialog
 .. |widget-save-filter| image:: ../../screenshots/new-dashboard/widget-save-filter.png
+   :alt: Save widget's complex filters
 .. |complex-filter-example| image:: ../../screenshots/new-dashboard/complex-filter-example.png
+   :alt: Complex filter example
