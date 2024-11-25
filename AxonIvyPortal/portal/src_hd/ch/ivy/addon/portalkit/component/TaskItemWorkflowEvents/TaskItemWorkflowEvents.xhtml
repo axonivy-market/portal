@@ -14,12 +14,10 @@
 
   <p:dialog id="workflow-events-dialog" widgetVar="workflow-events-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/workflowEventDialog', [cc.attrs.taskId])}"
-    dynamic="true"
+    dynamic="true" closable="true"
     appendTo="@(body)"
     modal="true" responsive="true" fitViewport="true"
     styleClass="workflow-events-dialog">
-    <p:ajax event="close" update="workflow-events-dialog" />
-
     <p:dataTable id="events-table" widgetVar="events-table" var="event" value="#{data.workflowEvents}"
       sortBy="#{taskBean.taskWorkflowEventSortByTimestamp}"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
@@ -68,10 +66,6 @@
         </h:outputText>
       </p:column>
     </p:dataTable>
-
-    <f:facet name="footer">
-      <p:commandButton value="Close" oncomplete="PF('workflow-events-dialog').hide()" global="false" />
-    </f:facet>
   </p:dialog>
 
 </cc:implementation>

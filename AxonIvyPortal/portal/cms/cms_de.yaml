@@ -461,7 +461,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     detail: Details
     display: Anzeigen
     displayAsTopMenu: Als oberstes Menü anzeigen
-    displayName: Name anzeigen
+    displayName: Anzeigename
     dragAndDropFile: 'Ziehen und Ablegen einer Datei oder '
     dragAndDropImage: 'Ziehen und Ablegen eines Bildes oder '
     edit: Bearbeiten
@@ -1305,7 +1305,7 @@ Dialogs:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
                   CustomWidgetIFrameTitle: '{0} Rahmen'
                 DashboardModification:
-                  Share: Aktie
+                  Share: Teilen
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: ziehen und ablegen zum ändern der Reihenfolge.
                   DragAndDropTooltip: Klicken Sie auf die Vorschau und ändern Sie die Reihenfolge durch Ziehen und Ableg
@@ -1471,7 +1471,7 @@ Labels:
       ID: Id
       NAME: Name
       OWNER: Prozessverantwortlichen
-      STATE: Staat
+      STATE: Status
     DashboardStandardTaskColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
@@ -1484,7 +1484,7 @@ Labels:
       PRIORITY: Priorität
       RESPONSIBLE: Verantwortlich
       START: Start
-      STATE: Staat
+      STATE: Status
     FilterOperator:
       AFTER: Ist nach
       BEFORE: Ist vor
