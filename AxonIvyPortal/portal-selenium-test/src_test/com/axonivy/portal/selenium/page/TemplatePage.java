@@ -385,7 +385,7 @@ public abstract class TemplatePage extends AbstractPage {
     return new NewDashboardPage();
   }
 
-  public CaseWidgetPage openCaseList() {
+  public CaseWidgetNewDashBoardPage openCaseList() {
     return openMainMenu().selectCaseMenu();
   }
 

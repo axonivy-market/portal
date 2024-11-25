@@ -16,8 +16,8 @@ import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
+import ch.ivyteam.ivy.workflow.note.Note;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public final class CaseUtils {
@@ -39,12 +39,12 @@ public final class CaseUtils {
     });
   }
 
-  public static List<INote> findNotes(ICase iCase, boolean excludeSystemNotes) {
+  public static List<Note> findNotes(ICase iCase, boolean excludeSystemNotes) {
     Objects.requireNonNull(iCase, "Case must not be null");
-    List<INote> notes = iCase.getNotes();
+    List<Note> notes = iCase.notes().all();
     if (excludeSystemNotes) {
       notes = notes.stream()
-          .filter(n -> !StringUtils.equals(n.getWritterName(), ISecurityConstants.SYSTEM_USER_NAME))
+          .filter(n -> !StringUtils.equals(n.authorName(), ISecurityConstants.SYSTEM_USER_NAME))
           .collect(Collectors.toList());
     }
     return new ArrayList<>(notes);

@@ -52,25 +52,8 @@ public class TaskActionBean implements Serializable {
     isShowReadWorkflowEvent = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_WORKFLOW_EVENT_ACTION);
   }
 
-  public static boolean canReset(ITask task) {
-    if (task == null) {
-      return false;
-    }
-    
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.READY_FOR_JOIN,
-        TaskState.FAILED);
-    if (!taskStates.contains(task.getState())) {
-      return false;
-    }
-    
-    if (task.getState() == TaskState.READY_FOR_JOIN) {
-      IPermission resetTaskReadyForJoin = IPermissionRepository.instance().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());
-      return hasPermission(task, resetTaskReadyForJoin);
-    }
-  
-
-    return (hasPermission(task, IPermission.TASK_RESET_OWN_WORKING_TASK) && canResume(task))
-        || hasPermission(task, IPermission.TASK_RESET);
+  public boolean canReset(ITask task) {
+    return TaskUtils.canReset(task);
   }
 
   public boolean canDelegate(ITask task) {
@@ -104,7 +87,7 @@ public class TaskActionBean implements Serializable {
     return hasPermission(task, permission) && !hasPermission(task, IPermission.TASK_WRITE_ACTIVATOR);
   }
 
-  public static boolean canResume(ITask task) {
+  public boolean canResume(ITask task) {
     return TaskUtils.canResume(task);
   }
 

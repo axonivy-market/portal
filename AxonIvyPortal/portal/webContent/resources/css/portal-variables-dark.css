@@ -287,7 +287,7 @@
   --ui-data-picker-header-color: var(--ivy-primary-color-grey-pale);
   --ui-data-picker-title-border-color: var(--ivy-primary-color-grey-pale);
   --ui-data-picker-title-background-color: var(--ivy-primary-color-grey-pale);
-  --ui-fileupload-buttonbar-background-color: var(--ivy-primary-color-grey-light);
+  --ui-fileupload-buttonbar-background-color: var(--ivy-portal-color-gray-20);
   --ui-transparent-button-hover-background-color: transparent;
   --menu-item-link-color: var(--ivy-primary-color-black);
   --menu-item-link-hover-background-color: var(--ivy-primary-color-grey-pale);
@@ -334,7 +334,6 @@
   /* News Widget */
   --news-item-background: rgb(62, 71, 84);
   /* Notification */
-  --notification-title-color: var(--notification-background-color);
   --notification-panel-color: var(--notification-background-color);
   --notification-hover-message-color: #394457;
     /*Notification channels*/
@@ -359,4 +358,7 @@
   --dashboard-action-container-border-color: var(--ivy-primary-color-grey-medium);
   --dashboard-action-container-description-color: var(--ivy-primary-color-grey-medium);
   --dashboard-icon-drag-drop-color: var(--ivy-primary-color-grey-medium);
+  
+    /* Leave task warning message*/
+  --warning-before-leave-task: var(--ivy-primary-color-grey-medium);
 }

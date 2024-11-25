@@ -6,10 +6,7 @@ import org.junit.jupiter.api.Test;
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
-import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
-import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.SearchResultPage;
 import com.axonivy.portal.selenium.page.TemplatePage.GlobalSearch;
@@ -18,7 +15,6 @@ import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 @IvyWebTest
 public class BusinessCaseTest extends BaseTest {
 
-  private static final String TECHNICAL_CASE_NAME = "TECH: Update checkin time";
   private static final String BUSINESS_CASE_NAME = "Update checkin time";
 
 
@@ -27,27 +23,6 @@ public class BusinessCaseTest extends BaseTest {
   public void setup() {
     super.setup();
     redirectToRelativeLink(businessCaseUrl);
-  }
-
-  @Test
-  public void testOnlyDisplayBusinessCaseOnCaseList() {
-
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
-    assertTrue(casePage.isCaseDisplayed(BUSINESS_CASE_NAME));
-    assertFalse(casePage.isCaseDisplayed(TECHNICAL_CASE_NAME));
-  }
-
-  @Test
-  public void testOnlyDisplayBusinessCaseOnCaseListWithAdmin() {
-    login(TestAccount.ADMIN_USER);
-
-    NewDashboardPage newDashboardPage = new NewDashboardPage();
-    MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
-    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
-    assertTrue(casePage.isCaseDisplayed(BUSINESS_CASE_NAME));
-    assertFalse(casePage.isCaseDisplayed(TECHNICAL_CASE_NAME));
   }
 
   @Test

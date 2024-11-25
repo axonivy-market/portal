@@ -5,7 +5,6 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "ivyCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   } ]
 }

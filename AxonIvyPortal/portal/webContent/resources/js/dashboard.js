@@ -232,6 +232,12 @@ function resizeTableBody() {
         widget.init(widget.cfg);
       }
       widget.setupScrolling();
+
+      // Remove focus state of header after sort it
+      if (widget.headerTable.length == 1) {
+        var widgetHeader = widget.headerTable[0];
+        $(widgetHeader).find('th.ui-state-focus').removeClass('ui-state-focus');
+      }
     });
     setTimeout(function() {
       resizeObserver.observe(sb);
