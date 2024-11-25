@@ -26,6 +26,7 @@
     fitViewport="true" responsive="true" modal="true" width="70%"
     styleClass="import-dashboard-dialog"
     onShow="PF('#{cc.attrs.importDialogId}').initPosition()">
+    <div style="display: none;" id="error-message" />
     <h:form id="import-dashboard-form" onkeypress="if (event.keyCode == 13) { return false; }">
       <h:panelGroup id="dashboard-upload-panel" layout="block"
         styleClass="ui-g">
@@ -34,7 +35,7 @@
         </div>
         <div class="ui-g-12">
           <p:fileUpload id="dashboard-upload" chooseIcon="#{visibilityBean.generateButtonIcon('si si-touchpad-finger')}"
-            dragDropSupport="true" fileLimit="1" widgetVar="dashboardUpload" style="display: none;"
+            dragDropSupport="true" fileLimit="1" widgetVar="dashboardUpload" style="display: none;" onvalidationfailure="handleUploadFileFail();"
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
             styleClass="dashboard-upload" mode="advanced"
             listener="#{managedBean.loadImportedFile}"
@@ -185,5 +186,14 @@
       </h:panelGroup>
     </f:facet>
   </p:dialog>
+<script type="text/javascript">
+    function handleUploadFileFail() {
+      let errorMessageElement = document.getElementById('error-message');
+      let uploadError = document.getElementsByClassName('ui-messages ui-widget ui-helper-hidden ui-fileupload-messages');
+      let uploadErrorElement = uploadError[0];
+      errorMessageElement.style.display = 'block';
+      errorMessageElement.appendChild(uploadErrorElement);
+    }
+</script>
 </cc:implementation>
 </html>

@@ -16,34 +16,6 @@
     "type" : "java.util.List<ch.addon.portal.generic.userprofile.homepage.Homepage>",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "taskListSortFields",
-    "type" : "java.util.List<String>",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "selectedTaskListSortField",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "caseListSortFields",
-    "type" : "java.util.List<String>",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "selectedCaseListSortField",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "sortDirections",
-    "type" : "java.util.List<String>",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "selectedTaskListSortDirection",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "selectedCaseListSortDirection",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
     "name" : "selectedDateFormat",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]

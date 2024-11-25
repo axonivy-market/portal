@@ -339,3 +339,10 @@ function hideLoadingText() {
 function hideExtendLinkPreviewLabel() {
   $('span.ui-external-link-preview-image-label').css('display', 'none');
 }
+
+function handleUploadFileFail() {
+  let errorMessageElement = document.getElementById('error-message');
+  let uploadErrorElement = document.getElementsByClassName('ui-messages ui-widget ui-helper-hidden ui-fileupload-messages')[1];
+  errorMessageElement.style.display = 'block';
+  errorMessageElement.appendChild(uploadErrorElement);
+}
