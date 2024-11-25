@@ -74,6 +74,7 @@
                       <p:commandLink id="notification-message"
                         styleClass="notification-message"
                         actionListener="#{notificationBean.goToNotificationDetail(notification, isWorkingOnATask, task)}">
+                        <h:outputText value="#{htmlSanitizerBean.sanitize(notification.message)}" />
                       </p:commandLink>
                       <p:tooltip for="notification-message" value="#{notification.infoAction.title}" />
                     </h:panelGroup>
