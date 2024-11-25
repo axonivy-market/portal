@@ -983,6 +983,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     newNoteHeader: Neue Notiz hinzufügen
     wroteAt: Erstellt am
   notifications:
+    errorNotificationMessage: |
+      Die Details für die neue Aufgabe konnten nicht angezeigt werden. Bitte wenden Sie sich an Ihren Administrator, um Unterstützung zu erhalten
     linkToFullScreen: Link zum Vollbild
     linkToNotificationSettings: Benachrichtigungseinstellungen
     markAllAsRead: Alle als gelesen markieren

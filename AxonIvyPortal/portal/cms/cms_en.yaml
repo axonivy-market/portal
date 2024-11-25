@@ -985,6 +985,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     newNoteHeader: Add new note
     wroteAt: wrote at
   notifications:
+    errorNotificationMessage: We couldn't display the details for the new task. Please contact your administrator for assistance
     linkToFullScreen: Link to full screen
     linkToNotificationSettings: Notification settings
     markAllAsRead: Mark all as read
