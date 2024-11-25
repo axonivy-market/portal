@@ -79,7 +79,7 @@
                       <p:tooltip for="notification-message" value="#{notification.infoAction.title}" />
                     </h:panelGroup>
                     <h:panelGroup rendered="#{notification.infoAction == null}">
-                      <h:outputText value="#{htmlSanitizerBean.sanitize(notification.message)}" />
+                      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/errorNotificationMessage')}" />
                     </h:panelGroup>
                     <h:outputText value="#{notification.timeSince}" styleClass="font-normal notifications-item-time-since" />
                   </div>

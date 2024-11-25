@@ -980,6 +980,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     newNoteHeader: Ajouter une nouvelle note
     wroteAt: Ajoutée le
   notifications:
+    errorNotificationMessage: Nous n'avons pas pu afficher les détails de la nouvelle tâche. Veuillez contacter votre administrateur pour obtenir de l'aide
     linkToFullScreen: Lien vers le plein écran
     linkToNotificationSettings: Paramètres de notification
     markAllAsRead: Marquer tous les textes comme lus
