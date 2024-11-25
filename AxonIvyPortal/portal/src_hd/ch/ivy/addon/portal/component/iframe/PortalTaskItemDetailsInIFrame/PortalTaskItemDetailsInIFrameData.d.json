@@ -5,20 +5,17 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "dataModel",
-    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel"
   }, {
     "name" : "isFromTaskList",
     "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "portalPage",
-    "type" : "ch.ivy.addon.portalkit.enums.PortalPage",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.enums.PortalPage"
   }, {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
   }, {
     "name" : "isTaskStartedInDetails",
     "type" : "Boolean",

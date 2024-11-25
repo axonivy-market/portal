@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -12,6 +13,7 @@ import com.axonivy.portal.components.dto.UserDTO;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.workflow.caze.owner.CaseOwners;
 
 public class SecurityMemberDisplayNameUtils {
 
@@ -22,7 +24,17 @@ public class SecurityMemberDisplayNameUtils {
   private static final String FORMAT_WITHOUT_DISPLAY_NAME = "<%s> (%s)";
   private static final String FORMAT_DISABLED_USER = "%s %s";
 
-
+  public static String generateBriefDisplayNameForCaseOwners(CaseOwners owners) {
+    if (owners == null) {
+      return "";
+    }
+    return CollectionUtils.emptyIfNull(owners.all())
+          .stream()
+          .map(item -> generateBriefDisplayNameForSecurityMember(item.member(), item.memberName()))
+          .collect(Collectors.joining(", "));
+  }
+  
+  
   public static String generateBriefDisplayNameForSecurityMember(ISecurityMember securityMember, String securityMemberName) {
     if(StringUtils.isBlank(securityMemberName)) {
       return Ivy.cms().co(NOT_AVAILABLE_CMS);

@@ -9,32 +9,26 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "users",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
   }, {
     "name" : "roles",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"
   }, {
     "name" : "selectedActivator",
-    "type" : "ch.ivyteam.ivy.security.ISecurityMember",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.security.ISecurityMember"
   }, {
     "name" : "queryAutoComplete",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
   }, {
     "name" : "selectedUser",
-    "type" : "com.axonivy.portal.components.dto.UserDTO",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "com.axonivy.portal.components.dto.UserDTO"
   }, {
     "name" : "selectedRole",
-    "type" : "com.axonivy.portal.components.dto.RoleDTO",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "com.axonivy.portal.components.dto.RoleDTO"
   }, {
     "name" : "comment",
     "type" : "String",

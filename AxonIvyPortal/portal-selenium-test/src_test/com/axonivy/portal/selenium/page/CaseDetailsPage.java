@@ -1019,9 +1019,16 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickShowOnlyOpenTasks() {
-
     $("div[id$=':show-only-open-tasks'] .ui-chkbox-box")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+  
+  public void clickShowCaseOwners() {
+    $("a[id$=':show-case-owner-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+  
+  public int countCaseOwners() {
+    return $$("div[id$=':security-member-container']").size();
   }
 }
 

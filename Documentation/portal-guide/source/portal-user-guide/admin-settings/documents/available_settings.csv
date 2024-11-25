@@ -3,21 +3,16 @@ Portal.ApplicationName,"Axon Ivy",The default application name that will be disp
 Portal.CaseDetails.HideDocument,FALSE,"Set to true, the document section in case detail page will be hidden, otherwise it will be shown."
 Portal.CaseDetails.HideUploadDocumentForDoneCase,FALSE,Set to true to deny upload (also delete) document after a case is done.
 Portal.CaseDetails.ShowDurationTime,TRUE,For switch on/off the display of the duration time in case details page.
-Portal.Cases.DisableCount,FALSE,Set to true to disable counting case in case list.
 Portal.Cases.EnableOwner,FALSE,"| Set to true to enable filtering case owner when cases are queried. This setting affects all case 
-| queries e.g. for case list, global search."
-Portal.Cases.SortDirection,Sort descending,Default sort direction of case list.
-Portal.Cases.SortField,Case Id,Default sort field of the case list.
+| queries e.g. for case widget, global search."
+Portal.Cases.HideCaseCreator,FALSE,"Set to true to hide case creator in case widget, case widget and case details. This setting affects all case queries, e.g. for case widget, global search."
 Portal.Chat.EnableGroup,FALSE,Set this property to true to enable group chat function.
 Portal.Chat.EnablePrivate,FALSE,Set this property to true to enable private chat function.
 Portal.Chat.MaxConnection,3,"| The set number controls the amount of tabs allowed with active chat. If more tabs are opened,
 | the chat will be disabled in inactive tabs. Allowed values are 1 to 5."
 Portal.Chat.ResponseTimeout,0,"| Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through 
 | the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds."
-Portal.ClientSideTimeout,0,"| Client side timeout in minutes. Has to be more than 0 and less than the server side timeout (e.g. 25 minutes).
-| Default value is 0, which means that the default client side timeout is applied.
-| Default client side timeout is server side timeout minus 3 minutes."
-Portal.DateTimeFormat.DateFilterWithTime,FALSE,"Set to true to enable date filtering with time. This setting affects task list and case list."
+Portal.DateTimeFormat.DateFilterWithTime,FALSE,"Set to true to enable date filtering with time. This setting affects task widget and case widget."
 Portal.DateTimeFormat.HideTime,FALSE,Set to true to hide hours and minutes next to date.
 Portal.DateTimeFormat.HideYear,FALSE,"Set to true, year will be hidden, otherwise it will be shown."
 Portal.DisplayMessageAfterFinishTask,TRUE,A feedback message will be displayed after user finishes or leaves a task.
@@ -45,12 +40,8 @@ Portal.ShowButtonIcon,TRUE,"If true, show icons in buttons."
 Portal.ShowGlobalSearch,TRUE,"If true, display the global search box."
 Portal.TaskDetails.HideDocument,FALSE,"If true, the document section in task detail page will be hidden, otherwise it will be shown."
 Portal.TaskDetails.ShowDurationTime,TRUE,For switch on/off the display of the duration time in task details page.
-Portal.Tasks.DisableCount,FALSE,Set to true to disable counting task in task list.
-Portal.Tasks.RefreshInterval,10000,Task list refresh interval in seconds.
-Portal.Tasks.SortDirection,Sort descending,Default sort direction of task list.
-Portal.Tasks.SortField,Task Id,Default sort field of task list.
-Portal.Tasks.BehaviorWhenClickingOnLineInTaskList,Run the task,"| Default behaviors (run the task or access task details) when clicking.
-| on a line in the task list, task widget of the dashboard or on related tasks in the case details page."
+Portal.Tasks.BehaviourWhenClickingOnLineInTaskList,Run the task,"| Default behaviors (run the task or access task details) when clicking.
+| on a line in the task widget, task widget of the dashboard or on related tasks in the case details page."
 Portal.UserMenu.HideChangePasswordMenu,FALSE,"Set this variable to true to hide the ""Change Password"" option in the top menu and the ""Forgotten Password"" option on the login page. If set to false, these options will be shown."
 Portal.UserMenu.HideLogoutMenu,FALSE,"If true, the logout button on top menu will be hidden, otherwise it will be shown."
 Portal.ProcessViewer,TRUE,"Set this property to true to display process viewer option in Task/Case actions. If a process is designed to not allow users to view it, the option in related Task/Case actions will be hidden."
@@ -75,4 +66,3 @@ Portal.UserMenu.BaseQRCodeUrl,"",Set Base URL for QR code to display.
 Portal.UserMenu.AppleStoreURL,"",Set URL to download Axon Ivy mobile app on Apple Store.
 Portal.UserMenu.GooglePlayURL,"",Set URL to download Axon Ivy mobile app on Google Play.
 Portal.GlobalSearchScopeCategories,"PROCESSES,TASKS,CASES",Defining the types that the global search will search for.
-Portal.Cases.HideCaseCreator,FALSE,"Set to true to hide case creator in case list, case widget and case details.This setting affects all case queries, e.g. for case list, global search."
