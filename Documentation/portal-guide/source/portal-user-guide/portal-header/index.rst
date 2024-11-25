@@ -27,12 +27,12 @@ needs. These features are described in the following sections below.
 Admin Settings
 --------------
 
-Menu entry :ref:`Admin Settings <admin-settings>` is only available for users who have role AXONIVY_PORTAL_ADMIN.
+Menu entry :ref:`Admin Settings <admin-settings>` is only available for users who have role ``AXONIVY_PORTAL_ADMIN``.
 
 My profile
 ----------
 
-Menu entry :ref:`my-profile` contains general setting, user language and email settings.
+Menu entry :ref:`my-profile` contains general setting, user language and notification channels subscription settings.
 
 Dashboard Configuration
 -----------------------
@@ -49,10 +49,7 @@ component. Here you can enter your absence and define delegate for
 tasks assigned to you or one of the roles you hold.
 
 .. hint::
-   Although you can specify
-   delegates for a role you hold, we recommend specifying only delegates for tasks
-   assigned personally to you. Roles are normally held by a group of users, so if
-   you’re absent one of your role members is still able to pick the task.
+   Although you can specify delegates for a role you hold, we recommend specifying delegates only for tasks assigned directly to you. Roles are typically held by a group of users, so if you're absent, another member of your role can still take on the task.
 
 |portal-absences|
 
@@ -96,7 +93,7 @@ HowTo: Set substitute
 
    A substitute can only belonged to one type.
 
-#. Specify substitutes by clicking on link ends with |si-notes-quill|.
+#. Specify substitutes by clicking on link ends with |si-notes-quill|, select substitutes and click :guilabel:`Add` button to add.
 
 #. Confirm your substitutes with the button :guilabel:`Save`.
 
@@ -143,11 +140,11 @@ The Global Search is a convenient tool for you to look up
 information in the whole |ivy| Portal. You may search for any
 keyword. By default, the |ivy| Portal will search for:
 
-#. Processes
+#. Processes: name, description
 
-#. Cases
+#. Cases: id, name, description
 
-#. Tasks
+#. Tasks: id, name, description and all custom string fields
 
 When you confirm the keyword you’re looking for, the |ivy| Portal
 will route you to the **Global Search Results** page. For each category
@@ -158,13 +155,8 @@ a tab is provided, giving you the results of your search.
 HowTo: Limit search scope of Global Search
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-By default, Global Search looks for data that match your input in these fields:
-
-   - Task fields: Id, name, and description.
-   - Case fields: Id, name, description, and any custom string field.
-
 As an administrator, you may want to limit fields which Global Search should be looking for.
-Portal provides two variables to help you:
+Portal provides three variables to help you:
 
    - ``Portal.SearchScope.ByCaseFields``: Defining the fields that the global search
      will use to find matching cases besides case Id (this can influence the performance of the search).
@@ -179,9 +171,16 @@ You can configure these variables by :ref:`settings-admin-settings`.
 
 
 .. |portal-header| image:: ../../screenshots/dashboard/portal-header-with-numbering-annotation.png
+   :alt: Portal header items
 .. |portal-absences| image:: ../../screenshots/settings/absence.png
+   :alt: Absences page
 .. |how-to-add-an-absence| image:: ../../screenshots/settings/new-absence.png
+   :alt: Absences page: Add new absence dialog
 .. |how-to-set-absence-substitutes| image:: ../../screenshots/settings/set-deputy.png
+   :alt: Absences page: Set deputy section
 .. |portal-password-change-dialog| image:: ../../screenshots/settings/change-password.png
+   :alt: Change password dialog
 .. |portal-version-information| image:: ../../screenshots/settings/portal-version-information.png
+   :alt: Version information dialog
 .. |portal-global-search-result-page| image:: ../../screenshots/search/global-search-result.png
+   :alt: Global search results page

@@ -6,22 +6,20 @@ User Guide
    :caption: Portal User Guide
 
    axon-ivy-portal/index
-   forgot-password/index
    new-dashboard/index
    dashboard-configuration/index
-   portal-header/index
+   complex-filter/index
    full-process-list/index
-   process-information/index
    full-task-list/index
    full-case-list/index
-   my-profile/index
-   admin-settings/index
-   portal-chat/index
-   notification/index
-   demo-processes/index
-   portal-multi-language/index
-   qr-code/index
-   complex-filter/index
    statistic-chart/index
+   portal-header/index
+   my-profile/index
+   notification/index
+   portal-chat/index
+   admin-settings/index
+   forgot-password/index
+   portal-multi-language/index
    accessibility/index
-   ai-assistant/index
+   demo-processes/index
+   qr-code/index

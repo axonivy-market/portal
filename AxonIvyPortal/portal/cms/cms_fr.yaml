@@ -980,6 +980,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     newNoteHeader: Ajouter une nouvelle note
     wroteAt: Ajoutée le
   notifications:
+    errorNotificationMessage: Nous n'avons pas pu afficher les détails de la nouvelle tâche. Veuillez contacter votre administrateur pour obtenir de l'aide
     linkToFullScreen: Lien vers le plein écran
     linkToNotificationSettings: Paramètres de notification
     markAllAsRead: Marquer tous comme lus
@@ -1247,11 +1248,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     sort: Trier
   taskWarning:
     createdTaskLeave: '<div>Vous êtes sur le point de quitter cette page.<br/>  Choisissez l&apos;&apos;une des options suivantes :</div> <UL><LI>Quitter : abandonnez vos modifications et allez à la page choisie. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
-    createdTaskLogout: '<div>Vous êtes sur le point de quitter cette page.<br/> Choisissez l&apos;&apos;une des options suivantes :</div> <UL> <LI> &nbsp; Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI> &nbsp; Annuler : continuez à travailler sur cette tâche. </UL>'
+    createdTaskLogout: '<div>Vous êtes sur le point de quitter cette page.<br/> Choisissez l&apos;&apos;une des options suivantes :</div> <UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
     resetParkTaskBeforeLeave: '<div>Vous êtes sur le point de laisser une tâche en cours.<br/>Choisissez l&apos;&apos;une des options suivantes :</div><UL> <LI> Quitter : abandonnez vos modifications et allez à la page choisie. <LI> Enregistrer : abandonnez vos modifications et conservez la tâche dans
       votre liste de tâches personnelles. Ensuite déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
-    resetParkTaskBeforeLogout: '<div>Vous êtes sur le point de laisser une tâche en cours.</br> Choisissez l&apos;&apos;une des options suivantes : </div><UL> <LI> &nbsp; &nbsp; Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI> &nbsp; &nbsp; Enregistrer : annulez vos modifications et
-      conservez la tâche dans votre liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> &nbsp; &nbsp; Annuler : continuez à travailler sur cette tâche. </UL>'
+    resetParkTaskBeforeLogout: '<div>Vous êtes sur le point de laisser une tâche en cours.</br> Choisissez l&apos;&apos;une des options suivantes : </div><UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Enregistrer : annulez vos modifications et conservez la tâche dans votre
+      liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
     taskNotFound: cette tâche n'existe pas ou vous n'avez pas l'autorisation de la voir.
   userProfile:
     myProfileTitle: Mon profil
