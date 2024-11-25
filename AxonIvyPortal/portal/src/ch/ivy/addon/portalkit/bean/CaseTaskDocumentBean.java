@@ -15,7 +15,6 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.INoteable;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 
@@ -33,33 +32,31 @@ public class CaseTaskDocumentBean implements Serializable {
     return PermissionUtils.hasPermission(IPermission.DOCUMENT_READ);
   }
 
-  public boolean canWriteDocument(INoteable iNoteable) {
-    ICase currentCase = getCurrentBusinessCase(iNoteable);
+  public boolean canWriteDocument(ICase caze) {
+    if (caze == null) {
+      return false;
+    }
+    var isHideUploadDocForDoneCase = GlobalSettingService.getInstance()
+        .findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE);
+    return !(caze.getBusinessState() == CaseBusinessState.DONE && isHideUploadDocForDoneCase) && hasPermissionWriteDocument(caze);
+  }
+  
+  public boolean canWriteDocument(ITask task) {
+    ICase currentCase = task.getCase().getBusinessCase();
     if (currentCase == null) {
       return false;
     }
     var isHideUploadDocForDoneCase = GlobalSettingService.getInstance()
         .findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE);
-    return !(currentCase.getBusinessState() == CaseBusinessState.DONE && isHideUploadDocForDoneCase) && hasPermissionWriteDocument(iNoteable);
+    return !(currentCase.getBusinessState() == CaseBusinessState.DONE && isHideUploadDocForDoneCase) && hasPermissionWriteDocument(task);
   }
 
-  private ICase getCurrentBusinessCase(INoteable iNoteable) {
-    if (iNoteable instanceof ICase) {
-      return (ICase) iNoteable;
-    }
-    if (iNoteable instanceof ITask) {
-      var task = (ITask) iNoteable;
-      return task.getCase().getBusinessCase();
-    }
-    return null;
-  }
-
-  public boolean hasPermissionWriteDocument(INoteable iNoteable) {
+  private boolean hasPermissionWriteDocument(Object iNoteable) {
     return hasPermission(iNoteable, IPermission.DOCUMENT_WRITE)
         || hasPermission(iNoteable, IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
   }
 
-  private boolean hasPermission(INoteable iNoteable, IPermission permission) {
+  private boolean hasPermission(Object iNoteable, IPermission permission) {
     if (iNoteable == null || permission == null) {
       return false;
     }

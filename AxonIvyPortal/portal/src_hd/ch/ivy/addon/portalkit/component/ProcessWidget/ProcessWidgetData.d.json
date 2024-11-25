@@ -5,7 +5,6 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "processes",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable>"
   } ]
 }

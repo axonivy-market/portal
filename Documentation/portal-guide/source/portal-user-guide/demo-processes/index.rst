@@ -74,7 +74,7 @@ Lending (Case Map)
 
    |lending-casemap-external-solvency-service|
 
-#. After finishing Internal Solvency, you will have 1 or 2 approval levels which
+#. After finishing **Internal Solvency Check**, you will have 1 or 2 approval levels which
    depend on Amount and Salary fields. If Amount is greater than or equal
    to 20% of Salary, you will have 2 approval levels.
 
@@ -86,9 +86,16 @@ Lending (Case Map)
 
 
 .. |example-overview-leave-request| image:: ../../screenshots/demo-processes/example-overview-leave-request.png
+   :alt: Portal examples: Leave request example
 .. |leave-request-creation| image:: ../../screenshots/demo-processes/leave-request-creation.png
+   :alt: Portal examples: Create leave request example
 .. |user-example-guide-link| image:: ../../screenshots/demo-processes/user-example-guide-link.png
+   :alt: Link to the user example guide
 .. |example-overview-lending-case| image:: ../../screenshots/demo-processes/example-overview-lending-case.png
+   :alt: Portal examples: Lending
 .. |lending-casemap-collect-personal-data| image:: ../../screenshots/demo-processes/lending-casemap-collect-personal-data.png
+   :alt: Portal examples: Lending case map - collect personal data
 .. |lending-casemap-external-solvency-service| image:: ../../screenshots/demo-processes/lending-casemap-external-solvency-service.png
+   :alt: Portal examples: Lending case map - external solvency service
 .. |lending-casemap-approval-task| image:: ../../screenshots/demo-processes/lending-casemap-approval-task.png
+   :alt: Portal examples: Lending casemap - approval task
