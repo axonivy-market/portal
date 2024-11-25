@@ -5,8 +5,7 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "widget",
-    "type" : "ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget"
   }, {
     "name" : "totalCases",
     "type" : "Long",
@@ -21,12 +20,10 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "collectedCasesForExporting",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>"
   }, {
     "name" : "exportedFile",
-    "type" : "org.primefaces.model.StreamedContent",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "org.primefaces.model.StreamedContent"
   }, {
     "name" : "columnsVisibility",
     "type" : "java.util.List<String>",

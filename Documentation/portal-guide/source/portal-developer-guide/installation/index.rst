@@ -144,9 +144,14 @@ In Engine
 Migrate 11.3.2 To 12.0.0
 ------------------------
 
-Custom field values for business details pages are migrated silently from the process link relative path 
+1. Custom field values for business details pages are migrated silently from the process link relative path 
 to its :dev-url:`IWebStartable ID </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`. 
 You don't need to do anything, this is just for your information.
+
+2. We implemented a new feature to adjusting column widths in the Task and Case widgets.
+This change may slightly impact the column widths of Task and Case widgets from previous versions.
+To manually adjust column widths, please refer to the :ref:`Task widget configuraiton <new-dashboard-task-list-widget>`,
+and :ref:`Case widget configuraiton <new-dashboard-case-list-widget>` guides.
 
 Migrate 11.1.0 To 11.2.0
 ------------------------
@@ -484,6 +489,7 @@ Changes in 12.0.0
 - Introduce the component IFrameTaskConfig to configure IFrame tasks. Refer to :ref:`iframe-configure-template` for more information.
 - The :ref:`full task list page <full-task-list>` and :ref:`full case list page <full-case-list>` have been redesigned to align with the concept of a dashboard widget. 
   It now functions as a dashboard with a single, full-width widget. To configure it, you can adjust it like any other widgets.
+- Support multiple case owners. The single case owner sort feature is removed.
 
 Changes in 11.2.0
 -----------------

@@ -13,6 +13,7 @@ import java.util.UUID;
 import java.util.function.Consumer;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
@@ -309,6 +310,21 @@ public class DashboardUtils {
         .filter(dashboard -> dashboardId.equals(dashboard.getId())).map(dashboard -> dashboard.getIsTopMenu())
         .findFirst().orElse(defaultValue);
     return isMainDashboard;
+  }
+
+
+  /**
+   * Uses this method before saving a dashboard to simplify generated json from the dashboard
+   */
+  public static void updatePropertiesToNullIfCurrentValueIsDefaultValue(List<Dashboard> dashboards) {
+    if (CollectionUtils.isEmpty(dashboards)) {
+      return;
+    }
+    for (Dashboard dashboard : dashboards) {
+      if (BooleanUtils.isFalse(dashboard.getIsTopMenu())) {
+        dashboard.setIsTopMenu(null);
+      }
+    }
   }
 
 }

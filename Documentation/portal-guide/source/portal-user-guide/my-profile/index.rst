@@ -10,11 +10,13 @@ Help you adjust your general settings, language and notification channels subscr
 General settings
 ----------------
 
-**General settings** allows you to configure some settings according to your requirements. This area
-contains :guilabel:`Selected homepage` and :guilabel:`Show Welcome Tour`.
+**General settings** allows you to configure some settings according to your
+requirements. This area allows you to select the homepage you want to display.
+
+.. _process-list-configuration:
 
 Process list configuration
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 This section has available options which help you to configure your Process list.
 These are options you can modify:
@@ -27,45 +29,6 @@ These are options you can modify:
    | Default view mode     | Standard view mode when you open the process  |
    |                       | list.                                         |
    +-----------------------+-----------------------------------------------+
-
-Portal will use the default value defined by the administrator if you don't select an option.  
-
-Task list configuration
-^^^^^^^^^^^^^^^^^^^^^^^
-
-This section has available options which help you to modify your Task list.
-These are options you can modify:
-
-.. table:: 
-
-   +-----------------------+-----------------------------------------------+
-   | Option                | Description                                   |
-   +=======================+===============================================+
-   | Default sort field    | Default sort field when you open a task list. |
-   +-----------------------+-----------------------------------------------+
-   | Default sort direction| Default sort direction when you open a task   |
-   |                       | list.                                         |
-   +-----------------------+-----------------------------------------------+
-
-
-Portal will use the default value defined by the administrator if you don't select an option.  
-
-Case list configuration
-^^^^^^^^^^^^^^^^^^^^^^^
-
-This section has available options which help you to modify your Case list.
-These are options you can modify:
-
-.. table:: 
-
-   +-----------------------+------------------------------------------------+
-   | Option                | Description                                    |
-   +=======================+================================================+
-   | Default sort field    | Default sort field when you open a case list.  |
-   +-----------------------+------------------------------------------------+
-   | Default sort direction| Default sort direction when you open a case    |
-   |                       | list.                                          |
-   +-----------------------+------------------------------------------------+
 
 Portal will use the default value defined by the administrator if you don't select an option.  
 
@@ -100,6 +63,8 @@ Portal:
    application specific dialogs will
    still be shown in English.    
 
+.. _notification-channels:
+
 Notification Channels
 ---------------------
 
@@ -114,3 +79,4 @@ The checkbox in each event column allow you to specify
 three state of event: subscribed by default, subscribe, unsubscribe.
 
 .. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png
+   :alt: My profile page
