@@ -1160,7 +1160,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   display: flex;
   align-items: center;
   padding-left: 12px;
-  width: 4.2rem;
+  padding-right: 17px;
 }
 
 .process-start-list-item-icon .fa {
@@ -1195,7 +1195,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .process-start-list-item-name {
   overflow: hidden;
   display: inline-grid;
-  width: calc(100% - 75px);
+  flex-grow: 1;
   align-items: center;
   padding:0 15px;
 }
@@ -1260,6 +1260,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .process-start-list-item .ui-commandlink.process-item {
+  display: flex;
+  justify-content: space-between;
   margin: 0;
   padding: 0 5px;
   max-width: 100%;
@@ -1928,7 +1930,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .options-panel .ui-state-disabled.option-item {
-  display: inline-block;
   opacity: 0.5;
   text-decoration: none;
 }
