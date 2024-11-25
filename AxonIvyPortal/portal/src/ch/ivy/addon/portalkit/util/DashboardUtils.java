@@ -311,4 +311,19 @@ public class DashboardUtils {
     return isMainDashboard;
   }
 
+
+  /**
+   * Uses this method before saving a dashboard to simplify generated json from the dashboard
+   */
+  public static void updatePropertiesToNullIfCurrentValueIsDefaultValue(List<Dashboard> dashboards) {
+    if (CollectionUtils.isEmpty(dashboards)) {
+      return;
+    }
+    for (Dashboard dashboard : dashboards) {
+      if (!dashboard.getIsTopMenu()) {
+        dashboard.setIsTopMenu(null);
+      }
+    }
+  }
+
 }
