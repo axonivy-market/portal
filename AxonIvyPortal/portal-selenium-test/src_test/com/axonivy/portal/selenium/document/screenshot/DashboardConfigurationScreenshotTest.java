@@ -49,7 +49,7 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-multi-language-dialog", new ScreenshotMargin(10));
     dashboardConfigurationPage.cancelMultiLanguageDialog();
     dashboardConfigurationPage.cancelCreateDashboard();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPageWithActionsMenu(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "edit-private-dashboards", new ScreenshotMargin(10));
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "reorder-your-dashboards", new ScreenshotMargin(10));
@@ -61,28 +61,44 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "create-public-dashboard-dialog", new ScreenshotMargin(10));
     dashboardConfigurationPage.cancelCreateDashboard();
     dashboardConfigurationPage.openEditPublicDashboardsPage();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPageWithActionsMenu(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "edit-public-dashboards", new ScreenshotMargin(10));
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "reorder-public-dashboards", new ScreenshotMargin(10));
     dashboardConfigurationPage.openCreatePublicDashboardMenu();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardTemplates(),
-        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-templates", new ScreenshotMargin(10));
+    ScreenshotUtils.captureElementScreenshot(dashboardConfigurationPage.getDashboardTemplates(),
+        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-templates");
     // screenshot highlight for accessibility template
     ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
     ScreenshotUtils.executeDecorateJs("createBlackMediumOutline($($('.dashboard-action-container')[4]));");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardTemplates(),
             ScreenshotUtils.ACCESSIBILITY_DASHBOARD_FOLDER + "accessibility-dashboard-creation", new ScreenshotMargin(10));
-    dashboardConfigurationPage.openImportPublicDashboards();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getImportDialog(),
-        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "import-public-dashboard-dialog", new ScreenshotMargin(10));
-    dashboardConfigurationPage.cancelImportDashboard();
-    dashboardConfigurationPage.openImportPrivateDashboards();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getImportDialog(),
-        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "import-private-dashboard-dialog", new ScreenshotMargin(10));
-    dashboardConfigurationPage.cancelImportDashboard();
+    dashboardConfigurationPage.closeAddDashboardDialog();
     dashboardConfigurationPage.openEditPublicDashboardsPage();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getShareDashboardDialog(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "share-dashboard-dialog", new ScreenshotMargin(10));
+  }
+  
+  @Test
+  public void screenshotImportPublicDashboard() throws IOException {
+    showNewDashboard();
+    newDashboardPage = new NewDashboardPage();
+    DashboardConfigurationPage dashboardConfigurationPage = newDashboardPage.openDashboardConfigurationPage();
+    dashboardConfigurationPage.openCreatePublicDashboardMenu();
+    dashboardConfigurationPage.openImportPublicDashboards();
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
+    ScreenshotUtils.captureElementScreenshot(dashboardConfigurationPage.getImportDialog(),
+        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "import-public-dashboard-dialog");
+  }
+  
+  @Test
+  public void screenshotImportPrivateDashboard() throws IOException {
+    showNewDashboard();
+    newDashboardPage = new NewDashboardPage();
+    DashboardConfigurationPage dashboardConfigurationPage = newDashboardPage.openDashboardConfigurationPage();
+    dashboardConfigurationPage.openImportPrivateDashboards();
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
+    ScreenshotUtils.captureElementScreenshot(dashboardConfigurationPage.getImportDialog(),
+        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "import-private-dashboard-dialog");
   }
 }
