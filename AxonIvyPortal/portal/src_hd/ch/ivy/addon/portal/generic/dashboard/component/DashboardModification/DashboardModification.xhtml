@@ -72,7 +72,7 @@
                 icon="si si-download-bottom"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
                 rendered="#{dashboardModificationBean.hasExportDashboardPermission()}"
-                onclick="PF('exportDashboardBtn').jq.click()"/>
+                onclick="PF('exportDashboardBtn-#{dashboard.id}').jq.click()"/>
               <p:menuitem id="share-dashboard" rendered="#{dashboardModificationBean.isShowShareButtonOnConfig(isPublicDashboard)}"
                 styleClass="rounded-button ui-button-outlined" actionListener="#{dashboardModificationBean.initShareDashboardLink(dashboard)}"
                 oncomplete="PF('share-dashboard-dialog').show()"
@@ -90,7 +90,7 @@
           <h:form style="display:none"
             rendered="#{dashboardModificationBean.hasExportDashboardPermission()}">
             <p:commandButton id="export-dashboard"
-              widgetVar="exportDashboardBtn"
+              widgetVar="exportDashboardBtn-#{dashboard.id}"
               style="display:none"
               update="@this" immediate="true" ajax="false">
               <p:fileDownload value="#{dashboardModificationBean.exportToJsonFile(dashboard)}" />
