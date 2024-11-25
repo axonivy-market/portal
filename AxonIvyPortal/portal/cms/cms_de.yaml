@@ -590,6 +590,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewExpired: Ihre aktuelle Bearbeitungsmaske ist abgelaufen und kann nicht weiter bearbeitet werden. Sie werden auf die Startseite umgeleitet.
     viewMode: Ansichtsmodus
     visible: Sichtbar
+    waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
     warning: Warnung!
     welcomeToPortal: Willkommen, bitte melden Sie sich an
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
