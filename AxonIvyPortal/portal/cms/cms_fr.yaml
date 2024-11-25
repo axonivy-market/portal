@@ -39,7 +39,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       removedAbsences: Absence supprimée pour {0}
       saveAbsenceSetting: Les paramètres d'absence ont été sauvegardés avec succès.
       updateAbsence: Mise à jour des absences réussie
-    absenceAndDeputy: Absences et remplaçant
+    absenceAndDeputy: Absences et remplacements
     allAbsences: Absences de tous les utilisateurs
     applicationAndRole: Application et rôle
     definedDeputies: Remplaçant définis
