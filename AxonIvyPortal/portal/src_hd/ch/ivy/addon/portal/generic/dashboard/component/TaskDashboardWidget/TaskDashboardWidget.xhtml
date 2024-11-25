@@ -4,16 +4,15 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="index" required="true" />
   <cc:attribute name="widget" required="true" />
-  <cc:attribute name="componentToUpdateOnEdit" />
   <cc:attribute name="isReadOnlyMode" default="false" />
-  <c:set var="isResizable" value="#{cc.attrs.widget.isResizable}"/>
-  <c:set var="isResizing" value="#{cc.attrs.widget.isResizing}"/>
 </cc:interface>
 
 <cc:implementation>
   <c:set var="index" value="#{cc.attrs.index}" />
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}"/>
+  <c:set var="isResizable" value="#{cc.attrs.widget.isResizable}"/>
+  <c:set var="isResizing" value="#{cc.attrs.widget.isResizing}"/>
 
   <ui:decorate template="/layouts/restricted/decorator/TableWidget.xhtml">
     <ui:param name="index" value="#{index}" />
