@@ -1160,7 +1160,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   display: flex;
   align-items: center;
   padding-left: 12px;
-  width: 4.2rem;
+  padding-right: 17px;
 }
 
 .process-start-list-item-icon .fa {
