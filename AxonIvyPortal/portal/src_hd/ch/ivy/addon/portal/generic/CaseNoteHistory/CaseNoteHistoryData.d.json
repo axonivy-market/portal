@@ -5,20 +5,16 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "histories",
-    "type" : "List<ch.ivy.addon.portalkit.bo.History>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "List<ch.ivy.addon.portalkit.bo.History>"
   }, {
     "name" : "exportedFileName",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "String"
   }, {
     "name" : "filteredHistories",
-    "type" : "List<ch.ivy.addon.portalkit.bo.History>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "List<ch.ivy.addon.portalkit.bo.History>"
   }, {
     "name" : "ivyCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   }, {
     "name" : "showRelatedCaseInfo",
     "type" : "Boolean",

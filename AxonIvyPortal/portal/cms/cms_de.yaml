@@ -344,7 +344,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       FINISHED_TIME: Erledigt
       ID: Vorgangs Id
       NAME: Name / Beschreibung
-      OWNER: Verantwortlich
+      OWNER: Prozessverantwortlichen
       STATE: Status
     deletionNoteContent: Der Vorgang wurde durch {0} gelöscht.
     destroyCaseMessage: Diese Operation kann nicht rückgängig gemacht werden. Sind Sie sicher, dass dieser komplette Vorgang gelöscht werden soll?
@@ -983,6 +983,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     newNoteHeader: Neue Notiz hinzufügen
     wroteAt: Erstellt am
   notifications:
+    errorNotificationMessage: |
+      Die Details für die neue Aufgabe konnten nicht angezeigt werden. Bitte wenden Sie sich an Ihren Administrator, um Unterstützung zu erhalten
     linkToFullScreen: Link zum Vollbild
     linkToNotificationSettings: Benachrichtigungseinstellungen
     markAllAsRead: Alle als gelesen markieren
@@ -1317,7 +1319,7 @@ Dialogs:
                 CaseDetailTitle: Vorgangsdetails
                 DataDescription: Daten und Beschreibung
                 destroyCase: Vorgang löschen
-              CaseOwner: Prozessverantwortlicher
+              CaseOwner: Prozessverantwortlichen
               Finished: Erledigt
               GlobalSearchText: Die Vorgänge enthalten das Schlüsselwort "{0}" in Vorgangs Id{1}.
               ShowBusinessDetails: Geschäftsinformationen anzeigen
@@ -1468,7 +1470,7 @@ Labels:
       FINISHED: Beendetes Datum
       ID: Id
       NAME: Name
-      OWNER: Eigentümer des Falles
+      OWNER: Prozessverantwortlichen
       STATE: Staat
     DashboardStandardTaskColumn:
       ACTIONS: Aktionen
