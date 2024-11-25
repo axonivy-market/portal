@@ -588,6 +588,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewExpired: Votre vue actuelle a expiré. Vous allez être redirigé vers la page d'accueil.
     viewMode: Mode d'affichage
     visible: Visible
+    waitingDownloadMessage: Nous créons l'export, cela peut prendre quelques minutes
     warning: Attention!
     welcomeToPortal: Bienvenue, veuillez vous connecter
     wrongDateFormat: Veuillez entrer une date valide
