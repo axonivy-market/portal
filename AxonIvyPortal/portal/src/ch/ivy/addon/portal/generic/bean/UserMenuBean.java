@@ -95,7 +95,13 @@ public class UserMenuBean implements Serializable {
 
   public boolean isHiddenChangePassword() {
     return loggedByExternalSecuritySystem()
-        || GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON);
+        || GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(
+            GlobalVariable.HIDE_CHANGE_PASSWORD_BUTTON)
+        || !hasChangePasswordPermission();
+  }
+
+  private boolean hasChangePasswordPermission() {
+    return PermissionUtils.checkUserSetOwnPasswordPermission();
   }
   
   private boolean loggedByExternalSecuritySystem() {
