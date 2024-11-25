@@ -144,9 +144,14 @@ In Engine
 Migrate 11.3.2 To 12.0.0
 ------------------------
 
-Custom field values for business details pages are migrated silently from the process link relative path 
+1. Custom field values for business details pages are migrated silently from the process link relative path 
 to its :dev-url:`IWebStartable ID </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`. 
 You don't need to do anything, this is just for your information.
+
+2. We implemented a new feature to adjusting column widths in the Task and Case widgets.
+This change may slightly impact the column widths of Task and Case widgets from previous versions.
+To manually adjust column widths, please refer to the :ref:`Task widget configuraiton <new-dashboard-task-list-widget>`,
+and :ref:`Case widget configuraiton <new-dashboard-case-list-widget>` guides.
 
 Migrate 11.1.0 To 11.2.0
 ------------------------
