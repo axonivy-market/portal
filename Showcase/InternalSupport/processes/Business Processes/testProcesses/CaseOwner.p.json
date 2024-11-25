@@ -169,41 +169,31 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "ivy.case.owners().add(ISecurityContext.current().users().find(\"demo\"));",
-            "ivy.case.owners().add(ISecurityContext.current().users().find(\"admin\"));",
-            "ivy.case.owners().add(ISecurityContext.current().roles().find(\"CaseOwner\"));",
-            "ivy.case.owners().add(ISecurityContext.current().roles().find(\"HR\"));",
-            "ivy.case.owners().add(ISecurityContext.current().users().find(\"Developer\"));",
-            "ivy.case.owners().add(ISecurityContext.current().users().find(\"david\"));",
-            "ivy.case.owners().add(ISecurityContext.current().users().find(\"peter\"));",
-            "ivy.case.owners().add(ISecurityContext.current().roles().find(\"Sales\"));",
-            "ivy.case.owners().add(ISecurityContext.current().users().find(\"guest\"));"
+            "if (ISecurityContext.current().users().find(\"demo\") != null){",
+            "  ivy.case.owners().add(ISecurityContext.current().users().find(\"demo\"));  ",
+            "}",
+            "",
+            "if (ISecurityContext.current().users().find(\"admin\") != null){",
+            "  ivy.case.owners().add(ISecurityContext.current().users().find(\"admin\"));",
+            "}",
+            "",
+            "if (ISecurityContext.current().roles().find(\"CaseOwner\") != null){",
+            "  ivy.case.owners().add(ISecurityContext.current().roles().find(\"CaseOwner\"));",
+            "",
+            "}",
+            "",
+            "if (ISecurityContext.current().roles().find(\"HR\") != null){",
+            "  ivy.case.owners().add(ISecurityContext.current().roles().find(\"HR\"));",
+            "}"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 280 }
       },
       "connect" : [
-        { "id" : "f18", "to" : "f17" }
-      ]
-    }, {
-      "id" : "f17",
-      "type" : "TaskSwitchEvent",
-      "config" : {
-        "task" : {
-          "name" : "Task with multiple case owners"
-        },
-        "case" : {
-          "name" : "Case with multiple owners"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 352, "y" : 280 },
-        "labelOffset" : { "x" : 14, "y" : 34 }
-      },
-      "connect" : [
-        { "id" : "f20", "to" : "f19" }
+        { "id" : "f18", "to" : "f22", "var" : "in1" }
       ]
     }, {
       "id" : "f19",
@@ -212,5 +202,26 @@
         "at" : { "x" : 448, "y" : 280 },
         "labelOffset" : { "x" : 13, "y" : 33 }
       }
+    }, {
+      "id" : "f22",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "Task with multiple case owners",
+            "responsible" : {
+              "activator" : "CREATOR"
+            }
+          } ],
+        "case" : {
+          "name" : "Case with multiple owners"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f19", "condition" : "ivp==\"TaskA.ivp\"" }
+      ]
     } ]
 }
