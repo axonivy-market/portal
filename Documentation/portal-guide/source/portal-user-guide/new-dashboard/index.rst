@@ -146,7 +146,19 @@ In view mode, when quick search is enabled, a text box will appear to allow you 
 
     #. You can define the scope of the quick search feature in the configuration panel.
     #. The result of the quick search function may be affected if you apply a complex filter on the widget.
-    
+
+**Adjust column width**
+
+In edit mode, you can adjust the width of each column directly within the widget table.
+
+|task-list-widget-edit-mode|
+
+You may also notice gridlines on the table which implemented by Portal to help you adjust the column widths more efficiently.
+
+  .. important::
+
+    If the total width of the columns is less than the widget’s width, the Portal will automatically adjust the column widths to match the widget’s width.
+
 .. _new-dashboard-case-list-widget:
 
 Case list widget
@@ -213,6 +225,18 @@ In view mode, when quick search is enabled, a text box will appear to allow you 
 
     #. You can define the scope of the quick search feature in the configuration panel.
     #. The result of the quick search function may be affected if you apply a complex filter on the widget.
+
+**Adjust column width**
+
+In edit mode, you can adjust the width of each column directly within the widget table.
+
+|case-list-widget-edit-mode|
+
+You may also notice gridlines on the table which implemented by Portal to help you adjust the column widths more efficiently.
+
+  .. important::
+
+    If the total width of the columns is less than the widget’s width, the Portal will automatically adjust the column widths to match the widget’s width.
 
 .. _new-dashboard-process-list-widget:
 
@@ -427,3 +451,7 @@ You can define a Notifications widget to display all Notifications based on your
    :alt: Dashboard task widget's quick search
 .. |case-quick-search-textbox| image:: ../../screenshots/new-dashboard/case-quick-search-textbox.png
    :alt: Dashboard case widget's quick search
+.. |task-list-widget-edit-mode| image:: ../../screenshots/new-dashboard/task-list-widget-edit-mode.png
+   :alt: Dashboard task widget in the Edit mode
+.. |case-list-widget-edit-mode| image:: ../../screenshots/new-dashboard/case-list-widget-edit-mode.png
+   :alt: Dashboard case widget in the Edit mode
