@@ -1,5 +1,8 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+import static com.codeborne.selenide.Selenide.$;
+
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -40,8 +43,6 @@ import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
-import static com.codeborne.selenide.Selenide.$;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
@@ -204,6 +205,17 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
     detailsEditPage.waitForCaseWidgetLoaded();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-widget");
+
+    // Take screenshot of task widget table in edit mode
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    ScreenshotUtils.captureElementScreenshot(
+        newDashboardPage.getTaskWidgetTable(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-edit-mode");
+
+    // Take screenshot of case widget table in edit mode
+    ScreenshotUtils.captureElementScreenshot(
+        newDashboardPage.getCaseWidgetTable(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-edit-mode");
 
     // Take screenshot of Add new widget dialog
     WebElement newWidgetDialog = detailsEditPage.addWidget();
