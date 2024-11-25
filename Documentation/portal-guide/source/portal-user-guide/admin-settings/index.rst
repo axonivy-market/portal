@@ -79,11 +79,11 @@ HowTo: Show/Hide the Announcement
 
    |announcement|
 
-#. Input your announcement text and click on :guilabel:`Save changes`
+#. Input your announcement text and click on :guilabel:`Save` button.
 
-#. To show the announcement, click on :guilabel:`Enable`.
+#. Turn on the :guilabel:`Enable announcement` option to display the announcement.
 
-#. If the announcement is enabled, hide it again by clicking on :guilabel:`Disable`.
+#. Turn off the :guilabel:`Enable announcement` option to hide the announcement.
 
 HowTo: Manage Roles
 ------------------------------
