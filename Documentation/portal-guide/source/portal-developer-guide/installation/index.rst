@@ -484,6 +484,7 @@ Changes in 12.0.0
 - Introduce the component IFrameTaskConfig to configure IFrame tasks. Refer to :ref:`iframe-configure-template` for more information.
 - The :ref:`full task list page <full-task-list>` and :ref:`full case list page <full-case-list>` have been redesigned to align with the concept of a dashboard widget. 
   It now functions as a dashboard with a single, full-width widget. To configure it, you can adjust it like any other widgets.
+- Support multiple case owners. The single case owner sort feature is removed.
 
 Changes in 11.2.0
 -----------------
