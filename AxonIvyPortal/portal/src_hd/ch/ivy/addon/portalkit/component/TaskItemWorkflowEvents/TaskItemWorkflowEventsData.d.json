@@ -9,7 +9,6 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
   } ]
 }

@@ -13,8 +13,7 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "task",
-    "type" : "ch.ivyteam.ivy.workflow.ITask",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
   }, {
     "name" : "canUserResumeTask",
     "type" : "Boolean",
@@ -25,13 +24,11 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "dataModel",
-    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel"
   }, {
     "name" : "portalPage",
     "type" : "ch.ivy.addon.portalkit.enums.PortalPage",
-    "comment" : "Page opened Task Details",
-    "modifiers" : [ "PERSISTENT" ]
+    "comment" : "Page opened Task Details"
   }, {
     "name" : "isHideTaskDocument",
     "type" : "Boolean",

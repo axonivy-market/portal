@@ -345,7 +345,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       FINISHED_TIME: Terminado
       ID: ID del caso
       NAME: Nombre / Descripción
-      OWNER: Propietario
+      OWNER: Responsables del proceso
       STATE: 'Estatus '
     deletionNoteContent: El caso fue destruido por {0}
     destroyCaseMessage: Esta operación no se puede deshacer. ¿Está seguro de que quiere destruir este caso y todas sus tareas?
@@ -982,6 +982,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     newNoteHeader: Agregar nueva nota
     wroteAt: escribió en
   notifications:
+    errorNotificationMessage: |
+      No pudimos mostrar los detalles de la nueva tarea. Por favor, contacte con su administrador para obtener ayuda
     linkToFullScreen: Enlace a la pantalla completa
     linkToNotificationSettings: Ajustes de notificación
     markAllAsRead: Marcar todo como leído
@@ -1316,7 +1318,7 @@ Dialogs:
                 CaseDetailTitle: Detalles del caso
                 DataDescription: Datos y Descripción
                 destroyCase: Borrar caso
-              CaseOwner: Responsable del proceso
+              CaseOwner: Responsables del proceso
               Finished: Terminado
               GlobalSearchText: Los casos contienen la palabra clave "{0}" en ID del caso{1}.
               ShowBusinessDetails: Detalles del negocio
@@ -1447,7 +1449,7 @@ Labels:
       FINISHED: Fecha de finalización
       ID: Id
       NAME: Nombre
-      OWNER: Propietario del caso
+      OWNER: Responsables del proceso
       STATE: Estado
     DashboardStandardTaskColumn:
       ACTIONS: Acciones

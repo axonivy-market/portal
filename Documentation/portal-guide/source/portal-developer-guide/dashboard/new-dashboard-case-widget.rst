@@ -135,7 +135,7 @@ The basic JSON structure of the case widget
 
             - ``endTimestamp``: end date and time of the case
 
-            - ``owner``: case owner
+            - ``owner``: list of case owners
 
             - ``actions``: for further actions like ``access case details``,
               ``case business details``, ``destroy case``

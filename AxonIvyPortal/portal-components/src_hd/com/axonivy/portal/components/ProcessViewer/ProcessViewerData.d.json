@@ -21,20 +21,17 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "webStartable",
-    "type" : "ch.ivyteam.ivy.workflow.start.IWebStartable",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.start.IWebStartable"
   }, {
     "name" : "webLink",
-    "type" : "ch.ivyteam.ivy.model.value.WebLink",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.model.value.WebLink"
   }, {
     "name" : "activatorName",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "activator",
-    "type" : "ch.ivyteam.ivy.security.ISecurityMember",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.security.ISecurityMember"
   }, {
     "name" : "category",
     "type" : "String",

@@ -41,29 +41,29 @@
                 emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                 reflow="true" scrollable="true" lazy="false">
 
-                <p:column sortBy="#{note.message}" filterBy="#{note.message}" filterMatchMode="contains"
+                <p:column sortBy="#{note.content()}" filterBy="#{note.content()}" filterMatchMode="contains"
                   width="65%">
                   <f:facet name="header">
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" />
                   </f:facet>
-                  <h:outputText value="#{note.message}" styleClass="case-task-note-histories" />
+                  <h:outputText value="#{note.content()}" styleClass="case-task-note-histories" />
                 </p:column>
 
-                <p:column width="15%" sortBy="#{note.writter.fullName}" filterBy="#{note.writter.fullName}" filterMatchMode="contains"
+                <p:column width="15%" sortBy="#{note.author().fullName}" filterBy="#{note.author().fullName}" filterMatchMode="contains"
                   styleClass="note-history-fullname-column">
                   <f:facet name="header">
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}" />
                   </f:facet>
                   <pc:securityMemberNameAndAvatar
-                    securityMember="#{note.writter}"
-                    displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(note.writter, note.writter.name)}" />
+                    securityMember="#{note.author()}"
+                    displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(note.author(), note.authorName())}" />
                 </p:column>
 
-                <p:column width="20%" sortBy="#{note.creationTimestamp.time}" field="creationTimestamp.time" filterable="false" styleClass="u-hidden-sm-down">
+                <p:column width="20%" sortBy="#{note.createdAt().time}" field="creationTimestamp.time" filterable="false" styleClass="u-hidden-sm-down">
                   <f:facet name="header">
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />
                   </f:facet>
-                  <h:outputText value="#{note.creationTimestamp.time}">
+                  <h:outputText value="#{note.createdAt().time}">
                     <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
                   </h:outputText>
                 </p:column>
