@@ -18,11 +18,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       userNameRequired: Le nom d'utilisateur doit être indiqué.
     absences: Absences
     addAbsence: Ajouter une absence
-    deputies: Substituts
+    deputies: Remplaçant
     description: Veuillez inscrire vos vacances, maladies ou autres obligations extérieures conduisant à une absence.
     editAbsence: Editer les absences
     from: Du
-    noDeputy: Aucun substitut
+    noDeputy: Aucun remplaçant
     noPermissionToSeeThisArea: Vous n'avez pas l'autorisation requise pour visiter cette zone.
     period: Période
     personalTaskDuringAbsenceDeputies: Remplacer les tâches assignées personnellement pendant l'absence
@@ -39,15 +39,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       removedAbsences: Absence supprimée pour {0}
       saveAbsenceSetting: Les paramètres d'absence ont été sauvegardés avec succès.
       updateAbsence: Mise à jour des absences réussie
-    absenceAndDeputy: Absences et suppléances
+    absenceAndDeputy: Absences et remplacements
     allAbsences: Absences de tous les utilisateurs
     applicationAndRole: Application et rôle
-    definedDeputies: Substituts définis
+    definedDeputies: Remplaçant définis
     deputyFor: Je suis remplaçant pour
     myAbsences: Mon absence
     myDeputies: Mes substituts
     nextAbsence: Absence à venir
-    selectedDeputyFor: L'utilisateur sélectionné est un substitut de
+    selectedDeputyFor: L'utilisateur sélectionné est un remplaçant de
     selectedUser: Utilisateur sélectionné
   AccessibilityShortcuts:
     processName: Raccourcis d'accessibilité Widgets
@@ -139,7 +139,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   MyProfile:
     DateFormat: Format de la date
     FormattingLanguage: Langue de mise en forme
-    General: Généraux
+    General: Général
     Homepage: Page d'accueil
     Language: Langue
     ProcessList: Liste des processus
@@ -983,7 +983,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorNotificationMessage: Nous n'avons pas pu afficher les détails de la nouvelle tâche. Veuillez contacter votre administrateur pour obtenir de l'aide
     linkToFullScreen: Lien vers le plein écran
     linkToNotificationSettings: Paramètres de notification
-    markAllAsRead: Marquer tous les textes comme lus
+    markAllAsRead: Marquer tous comme lus
     markAsRead: Marquer comme lu
     noNotificationText: Pas de notification
     notificationTitle: Notifications
