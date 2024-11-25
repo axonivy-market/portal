@@ -144,10 +144,10 @@ In the case list, additional information is also integrated into the highlighted
 - **State**: The current state of the case (e.g., Open, Done, Deleted).
 - **Created On**: The creation date of the case.
 - **Finished On**: The completion date of the case.
-- **Owner**: The current owner of the case.
+- **Owners**: The current owners of the case.
 
 When a user jumps to the first case element using a shortcut, the screen reader reads the information in the following format:
-"Case Name: `<case name>` - State: `<state>` - Created On: `<creation date>` - Finished On: `<finish date>` - Owner: `<owner name>`."
+"Case Name: `<case name>` - State: `<state>` - Created On: `<creation date>` - Finished On: `<finish date>` - Owners: `<first owner name>`."
 If the selected task or case is not in the "Completed" state, all relevant details are read aloud to inform the user of the current status.
 
 Language Support for Screen Readers
