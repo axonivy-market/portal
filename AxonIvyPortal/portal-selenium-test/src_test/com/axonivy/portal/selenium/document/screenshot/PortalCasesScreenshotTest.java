@@ -11,6 +11,7 @@ import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
@@ -58,6 +59,7 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 600));
     mainMenuPage.closeMainMenu();
     caseWidgetPage.clickOnCaseActionLink(0);
+    Sleeper.sleep(500); // use Sleeper to wait actions memu display clearly
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "case-key-information");
   }
 
