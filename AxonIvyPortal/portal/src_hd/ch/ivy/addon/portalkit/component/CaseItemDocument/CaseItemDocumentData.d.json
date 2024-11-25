@@ -5,20 +5,16 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "document",
-    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument"
   }, {
     "name" : "documents",
-    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
   }, {
     "name" : "documentUploadEvent",
-    "type" : "org.primefaces.event.FileUploadEvent",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "org.primefaces.event.FileUploadEvent"
   }, {
     "name" : "caze",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   }, {
     "name" : "isHideUploadDocumentForDoneCase",
     "type" : "Boolean",
@@ -29,16 +25,14 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "streamedContent",
-    "type" : "org.primefaces.model.StreamedContent",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "org.primefaces.model.StreamedContent"
   }, {
     "name" : "uploadDocumentCheckMessage",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "uploadDocumentCheckStatus",
-    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus"
   }, {
     "name" : "deleteDocumentMessage",
     "type" : "String",

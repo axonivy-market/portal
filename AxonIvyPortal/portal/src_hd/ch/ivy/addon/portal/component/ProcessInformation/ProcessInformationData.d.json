@@ -5,20 +5,17 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "processSteps",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.bo.ProcessStep>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<ch.ivy.addon.portalkit.bo.ProcessStep>"
   }, {
     "name" : "processId",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "userProcesses",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable>"
   }, {
     "name" : "selectedProcess",
-    "type" : "ch.ivy.addon.portalkit.configuration.UserProcess",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.configuration.UserProcess"
   }, {
     "name" : "portalProcessInformation",
     "type" : "String",

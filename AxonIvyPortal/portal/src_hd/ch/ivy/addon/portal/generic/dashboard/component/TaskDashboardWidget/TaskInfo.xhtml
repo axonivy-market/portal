@@ -18,15 +18,30 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/expireToday')}" />
     </div>
     <h:panelGroup styleClass="ui-g-4 text-right" id="expire-today" layout="block">
-      <h:outputText styleClass="expire-today" value="#{widget.numberOfTasksExpireToday}"></h:outputText>
+      <h:outputText styleClass="expire-today" value="#{widget.numberOfTasksExpireToday}">
+        <f:convertNumber locale="#{localeBean.locale}" />
+      </h:outputText>
     </h:panelGroup>
-    <p:tooltip for="expire-today" value="#{widget.numberOfTasksExpireToday} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}" trackMouse="true" />    <div class="ui-g-8">
+    <p:tooltip for="expire-today" trackMouse="true">
+      <h:outputText value="#{widget.numberOfTasksExpireToday}">
+        <f:convertNumber locale="#{localeBean.locale}" />
+      </h:outputText>
+      <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}" />
+    </p:tooltip>
+    <div class="ui-g-8">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/expiryThisWeek')}" />
     </div>
     <h:panelGroup styleClass="ui-g-4 text-right" id="expire-this-week" layout="block">
-      <h:outputText styleClass="expire-this-week" value="#{widget.numberOfTasksExpireThisWeek}"></h:outputText>
+      <h:outputText styleClass="expire-this-week" value="#{widget.numberOfTasksExpireThisWeek}">
+        <f:convertNumber locale="#{localeBean.locale}" />
+      </h:outputText>
     </h:panelGroup>
-    <p:tooltip for="expire-this-week" value="#{widget.numberOfTasksExpireThisWeek} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}" trackMouse="true" />
+    <p:tooltip for="expire-this-week" trackMouse="true">
+      <h:outputText value="#{widget.numberOfTasksExpireThisWeek}">
+        <f:convertNumber locale="#{localeBean.locale}" />
+      </h:outputText>
+      <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}"/>
+    </p:tooltip>
   </h:panelGroup>
 </p:tab>
 
@@ -47,9 +62,16 @@
           alwaysShowState="true" responsiveStyleClass="" />
       </div>
       <h:panelGroup styleClass="ui-g-4 text-right" id="tasks-by-state" layout="block">
-        <h:outputText styleClass="tasks-by-state" value="#{entry.value}"></h:outputText>
+        <h:outputText styleClass="tasks-by-state" value="#{entry.value}">
+          <f:convertNumber locale="#{localeBean.locale}" />
+        </h:outputText>
       </h:panelGroup>
-      <p:tooltip for="tasks-by-state" value="#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}" trackMouse="true" />
+      <p:tooltip for="tasks-by-state" value="#{entry.value} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}" trackMouse="true">
+        <h:outputText value="#{entry.value}">
+          <f:convertNumber locale="#{localeBean.locale}" />
+        </h:outputText>
+        <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}"/>
+      </p:tooltip>
     </ui:repeat>
   </h:panelGroup>
 </p:tab>
@@ -73,9 +95,16 @@
         <p:tooltip for="category" value="#{empty entry.categoryDisplayPath ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : entry.categoryDisplayPath}"
           trackMouse="true" />
         <h:panelGroup styleClass="ui-g-4 text-right" id="task-summary" layout="block">
-          <h:outputText styleClass="task-summary" value="#{entry.summary}"></h:outputText>
+          <h:outputText styleClass="task-summary" value="#{entry.summary}">
+            <f:convertNumber locale="#{localeBean.locale}" />
+          </h:outputText>
         </h:panelGroup>
-        <p:tooltip for="task-summary" value="#{entry.summary} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}" trackMouse="true" />
+        <p:tooltip for="task-summary" trackMouse="true">
+          <h:outputText value="#{entry.summary}">
+            <f:convertNumber locale="#{localeBean.locale}" />
+          </h:outputText>
+          <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}" />
+        </p:tooltip>
       </ui:repeat>
     </div>
     <div class="ui-g" jsf:rendered="#{empty widget.taskByCategoryStatistic}">
