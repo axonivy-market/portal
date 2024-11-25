@@ -5,20 +5,17 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "documents",
-    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
   }, {
     "name" : "event",
-    "type" : "org.primefaces.event.FileUploadEvent",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "org.primefaces.event.FileUploadEvent"
   }, {
     "name" : "fileLimit",
     "type" : "Integer",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "ivyCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   }, {
     "name" : "message",
     "type" : "String",
@@ -29,28 +26,23 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "selectedDocument",
-    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument"
   }, {
     "name" : "streamedContent",
-    "type" : "org.primefaces.model.StreamedContent",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "org.primefaces.model.StreamedContent"
   }, {
     "name" : "typeColumnRendered",
     "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "typeSelection",
-    "type" : "com.axonivy.portal.components.enums.DocumentType",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "com.axonivy.portal.components.enums.DocumentType"
   }, {
     "name" : "uploadDocumentCheckStatus",
-    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus"
   }, {
     "name" : "uploadedDocument",
-    "type" : "ch.ivyteam.ivy.workflow.document.IDocument",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.document.IDocument"
   }, {
     "name" : "enableVirusScannerForUploadedDocument",
     "type" : "Boolean",

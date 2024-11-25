@@ -5,8 +5,7 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "widget",
-    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget"
   }, {
     "name" : "totalTasks",
     "type" : "Long",
@@ -21,15 +20,13 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "collectedTasksForExporting",
-    "type" : "List<ch.ivyteam.ivy.workflow.ITask>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "List<ch.ivyteam.ivy.workflow.ITask>"
   }, {
     "name" : "columnsVisibility",
     "type" : "List<String>",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "exportedFile",
-    "type" : "org.primefaces.model.StreamedContent",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "org.primefaces.model.StreamedContent"
   } ]
 }

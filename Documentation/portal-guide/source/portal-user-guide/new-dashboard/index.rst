@@ -38,7 +38,7 @@ The following default widgets are available:
 
 In addition, a developer can provide custom widgets to add relevant project information to your dashboard.
 
-**Task list widget, Case list widget, Process list widget (compact mode)** has the following standard features:
+**Task list widget, Case list widget, Process list widget (compact mode)** have the following standard features:
 
    - Saved filters and Filter options
 
@@ -49,7 +49,7 @@ In addition, a developer can provide custom widgets to add relevant project info
    |widget-info|
 
 If you have the permission, you can re-size, re-arrange, create, or delete widgets
-using the **Edit** button in the upper right corner of your dashboard:
+using :guilabel:`Edit` button in the upper right corner of your dashboard:
 
 |edit-widget|
 
@@ -57,7 +57,7 @@ In edit mode, you can:
 
    - **Move widgets using drag-and-drop**: click on the widget you want to move and drop again. Helper lines will support you.
 
-   - **Edit existing widgets**: the configuration panel for a specific widget will open to edit it.
+   - **Edit existing widgets**: open the configuration panel to edit widget by clicking on :guilabel:`Edit` button.
 
    - **Delete existing widgets**: the widget will be deleted.
 
@@ -87,29 +87,25 @@ see and how.
 
 On the widget configuration panel, you can define the widget name, enable the
 quick search function, show or hide the widget information and fullscreen
-mode icons, and manage columns and filters.
+mode icons, manage columns and filters, edit the default sort order of the table columns by clicking on the column headers.
 
 **Filters panel**
 
-By clicking on the ``Filter`` button, you can configure the complex filter for
-your widget and get a preview of it by clicking on the ``apply`` button. Please
+By clicking on the :guilabel:`Filter` button, you can configure the complex filter for
+your widget and get a preview of it by clicking on the :guilabel:`Apply` button. Please
 refer to :ref:`Complex Filter <complex-filter>` for more details.
 
-|task-widget-complex-filter-configuration|
+|task-list-widget-configuration|
 
 **Column Management**
 
-This panel allows you to:
-
--  Edit the default sort order of the table rows by clicking on the column headers
--  Define the order of the columns 
--  Define the displayed set of columns by clicking on the link ``Manage Columns`` at the top right. You get the following dialog:
+By clicking on the :guilabel:`Manage Columns` button at the top right of the configuration panel. You get the following dialog:
 
 |task-list-widget-table-configuration|
 
-In the table configuration panel, you find two sections:
+In the column management dialog, you find two sections to configure the table columns:
 
-   #. Add field section: add any available field to your widget table
+   #. Add field section: add any available fields to your widget table
    #. Columns section: configure the widget table itself as follows:
  
       - Enable visibility
@@ -133,7 +129,7 @@ Portal supports to display **custom case fields** within the task list.
 
 **Excel export**
 
-You can export all data of the task widget by clicking on the link ``Export to Excel`` at the bottom left corner of the widget information panel.
+In view mode, you can export all data of the task widget by clicking on the link ``Export to Excel`` at the bottom left corner of the widget information panel.
 
 |task-export-excel|
 
@@ -148,8 +144,20 @@ In view mode, when quick search is enabled, a text box will appear to allow you 
 
   .. important::
 
-    #. The quick search function is unaffected by widget filters.
     #. You can define the scope of the quick search feature in the configuration panel.
+    #. The result of the quick search function may be affected if you apply a complex filter on the widget.
+
+**Adjust column width**
+
+In edit mode, you can adjust the width of each column directly within the widget table.
+
+|task-list-widget-edit-mode|
+
+You may also notice gridlines on the table which implemented by Portal to help you adjust the column widths more efficiently.
+
+  .. important::
+
+    If the total width of the columns is less than the widget’s width, the Portal will automatically adjust the column widths to match the widget’s width.
 
 .. _new-dashboard-case-list-widget:
 
@@ -163,27 +171,23 @@ see and how.
 
 On the widget configuration panel, you can define the widget name, enable the
 quick search function, show or hide the widget information and fullscreen
-mode icons, and manage columns and filters.
+mode icons, manage columns and filters, edit the default sort order of the table columns by clicking on the column headers.
 
 **Filters panel**
 
-By clicking on the ``Filter`` button, you can configure the complex filter for
-your widget and get a preview of it by clicking on the ``apply`` button. Please
+By clicking on the :guilabel:`Filter` button, you can configure the complex filter for
+your widget and get a preview of it by clicking on the :guilabel:`Apply` button. Please
 refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 |case-list-widget-configuration|
 
 **Column Management**
 
-This panel allows you to:
-
--  Edit the default sort order of the table rows by clicking on the column headers
--  define the order of the columns 
--  define the displayed set of columns by clicking on the link ``Manage Columns`` at the top right. You get the following dialog:
+By clicking on the :guilabel:`Manage Columns` button at the top right of the configuration panel. You get the following dialog:
 
 |case-list-widget-table-configuration|
 
-In the table configuration panel, you find two sections:
+In the column management dialog, you find two sections to configure the table columns:
 
    #. Add field section: add any available field to your widget table
    #. Columns section: configure the widget table itself as follows:
@@ -204,7 +208,7 @@ In the table configuration panel, you find two sections:
 
 **Excel export**
 
-You can export all data of the case widget by clicking on the link ``Export to Excel`` at the end of the widget information panel.
+In view mode, you can export all data of the case widget by clicking on the link ``Export to Excel`` at the end of the widget information panel.
 
 |case-export-excel|
 
@@ -213,14 +217,26 @@ files and put them into a single zip file.
 
 **Quick search**
 
-In the view mode, when quick search is enabled, a text box will appear to allow you to search.
+In view mode, when quick search is enabled, a text box will appear to allow you to search.
 
 |case-quick-search-textbox|
 
   .. important::
 
-    #. The quick search function is unaffected by widget filters.
     #. You can define the scope of the quick search feature in the configuration panel.
+    #. The result of the quick search function may be affected if you apply a complex filter on the widget.
+
+**Adjust column width**
+
+In edit mode, you can adjust the width of each column directly within the widget table.
+
+|case-list-widget-edit-mode|
+
+You may also notice gridlines on the table which implemented by Portal to help you adjust the column widths more efficiently.
+
+  .. important::
+
+    If the total width of the columns is less than the widget’s width, the Portal will automatically adjust the column widths to match the widget’s width.
 
 .. _new-dashboard-process-list-widget:
 
@@ -335,13 +351,13 @@ In manage news, the user can:
 
 #. Create one entry in multiple languages. When creating the entry, the user can switch between the available languages with a click on the tab view header.
 
-#. Translate the title by clicking on the input label. Translate the content by clicking on the |translate-icon| icon.
+#. Translate the title by clicking on the input label. Translate the content by clicking on the |translate-icon| icon. If you see something wrong with the translation, please prefer to :ref:`enable-translation`
 
 #. Choose an icon for the news by clicking directly on the icon, the :guilabel:`Icon browser` browser will be shown.
 
 #. Define the news title. Its length is limited to 200 characters.
 
-#. Provide news content, i.e., the main information for the newsfeed. The content is limited to 1000 characters, max.
+#. Provide news content, i.e., the main information for the news feed. The content is limited to a maximum of 1,000 characters.
 
 After setting up everything, simply click on the :guilabel:`Share this dashboard` link at the bottom of your dashboard to share it with colleagues.
 
@@ -368,43 +384,74 @@ You can define a Notifications widget to display all Notifications based on your
 .. include:: ../includes/_common-icon.rst
 
 .. |dash-board| image:: ../../screenshots/new-dashboard/dashboard.png
+   :alt: Dashboard screen
 .. |widget-filter| image:: ../../screenshots/new-dashboard/widget-filter.png
+   :alt: Dashboard widget's filters panel
 .. |widget-info| image:: ../../screenshots/new-dashboard/widget-info.png
+   :alt: Dashboard widget's info panel
 .. |case-export-excel| image:: ../../screenshots/new-dashboard/case-export-excel.png
+   :alt: Dashboard case widget: export to Excel feature
 .. |task-export-excel| image:: ../../screenshots/new-dashboard/task-export-excel.png
+   :alt: Dashboard task widget: export to Excel feature
 .. |edit-widget| image:: ../../screenshots/new-dashboard/edit-widget.png
+   :alt: Dashboard configuration screen
 .. |add-widget| image:: ../../screenshots/new-dashboard/add-widget.png
-
+   :alt: Add new widget dialog
 .. |task-list-widget| image:: ../../screenshots/new-dashboard/task-list-widget.png
+   :alt: Dashboard task widget's configuration dialog 
 .. |task-list-widget-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-configuration.png
+   :alt: Dashboard task widget's configuration panel
 .. |task-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/task-list-widget-table-configuration.png
+   :alt: Dashboard task widget's table configuration
 .. |task-column-field-type-configuration| image:: ../../screenshots/new-dashboard/task-column-field-type-configuration.png
+   :alt: Dashboard task widget's column management
 .. |task-widget-complex-filter-configuration| image:: ../../screenshots/new-dashboard/task-widget-complex-filter-configuration.png
-
+   :alt: Dashboard task widget's complex filter configuration
 .. |case-list-widget| image:: ../../screenshots/new-dashboard/case-list-widget.png
+   :alt: Dashboard case widget's configuration dialog
 .. |case-list-widget-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-configuration.png
+   :alt: Dashboard case widget's configuration panel
 .. |case-list-widget-table-configuration| image:: ../../screenshots/new-dashboard/case-list-widget-table-configuration.png
-
+   :alt: Dashboard case widget's table configuration
 .. |process-widget-modes| image:: ../../screenshots/new-dashboard/process-widget-modes.png
+   :alt: Dashboard process widget mode selection
 .. |process-widget-combined-mode| image:: ../../screenshots/new-dashboard/process-widget-combined-mode.png
+   :alt: Dashboard process widget's combined mode
 .. |process-widget-compact-mode| image:: ../../screenshots/new-dashboard/process-widget-compact-mode.png
+   :alt: Dashboard process widget's compact mode
 .. |process-widget-full-mode| image:: ../../screenshots/new-dashboard/process-widget-full-mode.png
+   :alt: Dashboard process widget's full mode
 .. |process-widget-image-mode| image:: ../../screenshots/new-dashboard/process-widget-image-mode.png
+   :alt: Dashboard process widget's image mode
 .. |process-viewer-widget| image:: ../../screenshots/new-dashboard/process-viewer-widget.png
+   :alt: Dashboard process viewer widget
 .. |process-viewer-widget-configuration| image:: ../../screenshots/new-dashboard/process-viewer-widget-configuration.png
+   :alt: Dashboard process viewer widget's configuration dialog
 .. |process-quick-search-textbox| image:: ../../screenshots/new-dashboard/process-quick-search-textbox.png
-
+   :alt: Quick search feature of dashboard process widget
 .. |welcome-widget-configuration| image:: ../../screenshots/new-dashboard/welcome-widget-configuration.png
+   :alt: Dashboard welcome widget's configuration dialog
 .. |news-feed-widget-configuration| image:: ../../screenshots/new-dashboard/news-feed-widget-configuration.png
+   :alt: Dashboard news feed widget's configuration dialog
 .. |news-feed-widget| image:: ../../screenshots/new-dashboard/news-feed-widget.png
+   :alt: Dashboard news feed widget
 .. |news-feed-widget-manage-content| image:: ../../screenshots/new-dashboard/news-feed-widget-manage-content.png
+   :alt: Dashboard news feed widget's Manage news dialog
 .. |news-feed-widget-overlay-panel| image:: ../../screenshots/new-dashboard/news-feed-widget-overlay-panel.png
-
+   :alt: Dashboard external page widget's overlay dialog
 .. |external-page-widget-configuration| image:: ../../screenshots/dashboard/external-page-widget-configuration.png
-
+   :alt: Dashboard external page widget's configuration dialog
 .. |add-statistic-widget| image:: ../../screenshots/new-dashboard/add-client-statistic-widget.png
-
+   :alt: Add new dashboard client statistic widget
 .. |notification-widget-configuration| image:: ../../screenshots/new-dashboard/notification-widget-configuration.png
+   :alt: Dashboard notification widget's configuration dialog
 .. |notification-widget| image:: ../../screenshots/new-dashboard/notification-widget.png
+   :alt: Dashboard notification widget
 .. |task-quick-search-textbox| image:: ../../screenshots/new-dashboard/task-quick-search-textbox.png
+   :alt: Dashboard task widget's quick search
 .. |case-quick-search-textbox| image:: ../../screenshots/new-dashboard/case-quick-search-textbox.png
+   :alt: Dashboard case widget's quick search
+.. |task-list-widget-edit-mode| image:: ../../screenshots/new-dashboard/task-list-widget-edit-mode.png
+   :alt: Dashboard task widget in the Edit mode
+.. |case-list-widget-edit-mode| image:: ../../screenshots/new-dashboard/case-list-widget-edit-mode.png
+   :alt: Dashboard case widget in the Edit mode

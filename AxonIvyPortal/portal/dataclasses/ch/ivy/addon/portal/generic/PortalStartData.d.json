@@ -94,7 +94,7 @@
     "type" : "Long"
   }, {
     "name" : "notes",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.INote>"
+    "type" : "List<ch.ivyteam.ivy.workflow.note.Note>"
   }, {
     "name" : "isAuthorized",
     "type" : "Boolean"

@@ -84,13 +84,18 @@
                               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
                           </div>
                           <div class="flex notification-message-block flex-column">
-                            <p:commandLink id="notification-message" styleClass="notification-message"
-                              actionListener="#{notificationBean.goToNotificationDetail(notification, isWorkingOnATask, task)}"
-                              rendered="#{notification.infoAction != null}">
-                            </p:commandLink>
+                            <h:panelGroup rendered="#{notification.infoAction != null}">
+                              <p:commandLink id="notification-message" styleClass="notification-message"
+                                actionListener="#{notificationBean.goToNotificationDetail(notification, isWorkingOnATask, task)}">
+                                <h:outputText value="#{htmlSanitizerBean.sanitize(notification.message)}" />
+                              </p:commandLink>
                             <h:outputText value="#{htmlSanitizerBean.sanitize(notification.message)}" />
                             <p:tooltip for="notification-message" value="#{notification.infoAction.title}" />
-                            <h:outputText value="#{notification.timeSince}" styleClass="font-normal notifications-item-time-since" />
+                           </h:panelGroup>
+                           <h:panelGroup rendered="#{notification.infoAction == null}">
+                             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/errorNotificationMessage')}" />
+                           </h:panelGroup>
+                           <h:outputText value="#{notification.timeSince}" styleClass="font-normal notifications-item-time-since" />
                           </div>
                           <p:outputPanel rendered="#{notificationBean.isActionAvailible(notification)}" styleClass="flex notification-action-block">
                             <p:commandLink id="notification-start-task"

@@ -70,12 +70,16 @@
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
                   </div>
                   <div class="flex notification-message-block flex-column">
-                      <p:commandLink id="notification-message" styleClass="notification-message" actionListener="#{widget.goToTaskDetail(notification)}"
-                         rendered="#{notification.infoAction != null}" disabled="#{!isReadOnlyMode}" >
+                    <h:panelGroup rendered="#{notification.infoAction != null}">
+                      <p:commandLink id="notification-message"
+                        styleClass="notification-message"
+                        actionListener="#{notificationBean.goToNotificationDetail(notification, isWorkingOnATask, task)}">
                       </p:commandLink>
-                      <h:outputText value="#{htmlSanitizerBean.sanitize(notification.message)}" />
-                      <p:tooltip for="notification-message" value="#{notification.infoAction.title}" /> 
-                    <p:tooltip for="notification-message" value="#{notification.infoAction.title}" />
+                      <p:tooltip for="notification-message" value="#{notification.infoAction.title}" />
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{notification.infoAction == null}">
+                      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/errorNotificationMessage')}" />
+                    </h:panelGroup>
                     <h:outputText value="#{notification.timeSince}" styleClass="font-normal notifications-item-time-since" />
                   </div>
                   <p:outputPanel rendered="#{notificationBean.isActionAvailible(notification)}" styleClass="flex notification-action-block">

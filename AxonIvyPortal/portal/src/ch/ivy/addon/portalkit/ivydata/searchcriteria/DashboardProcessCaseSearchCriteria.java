@@ -87,7 +87,6 @@ public class DashboardProcessCaseSearchCriteria {
       appendSortByIdIfSet(criteria);
       appendSortByCreationDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
-      appendSortByOwnerIfSet(criteria);
       appendSortByEndDateIfSet(criteria);
       if (criteria.isSortDescending()) {
         order.descending();
@@ -98,12 +97,6 @@ public class DashboardProcessCaseSearchCriteria {
     private void appendSortByEndDateIfSet(DashboardProcessCaseSearchCriteria criteria) {
       if (DashboardStandardCaseColumn.FINISHED.getField().equalsIgnoreCase(criteria.getSortField())) {
         order = query.orderBy().endTimestamp();
-      }
-    }
-
-    private void appendSortByOwnerIfSet(DashboardProcessCaseSearchCriteria criteria) {
-      if (DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(criteria.getSortField())) {
-        order = query.orderBy().ownerDisplayName();
       }
     }
 

@@ -38,9 +38,14 @@ public class TaskWidgetUserFilterBean extends AbstractTaskWidgetFilterBean imple
     }
 
     for (DashboardFilter filter : this.widget.getUserFilters()) {
+      if (Optional.ofNullable(filter).map(DashboardFilter::getFilterType)
+          .isEmpty()) {
+        return;
+      }
+
       FilterField filterField = TaskFilterFieldFactory
-          .findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""),
-              Optional.ofNullable(filter).map(DashboardFilter::getFilterType).orElse(null));
+          .findBy(Optional.ofNullable(filter).map(DashboardFilter::getField)
+              .orElse(""), filter.getFilterType());
       if (filterField != null) {
         filterField.initFilter(filter);
       }
