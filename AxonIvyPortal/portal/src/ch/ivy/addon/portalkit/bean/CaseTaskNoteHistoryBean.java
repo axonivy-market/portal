@@ -19,8 +19,8 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.note.Note;
 
 @ManagedBean(name = "caseTaskNoteHistoryBean")
 public class CaseTaskNoteHistoryBean implements Serializable {
@@ -73,7 +73,7 @@ public class CaseTaskNoteHistoryBean implements Serializable {
     return String.format("%s: %s", Ivy.cms().co(taskStateCmsUrl), content);
   }
     
-  public StreamedContent getExportedFileOfTaskNoteHistory(List<INote> taskNoteHistory, String fileName) {
+  public StreamedContent getExportedFileOfTaskNoteHistory(List<Note> taskNoteHistory, String fileName) {
     NoteHistoryExporter exporter = new NoteHistoryExporter();
     return exporter.getStreamedContentOfTaskNoteHistory(taskNoteHistory, fileName + ".xlsx");
   }

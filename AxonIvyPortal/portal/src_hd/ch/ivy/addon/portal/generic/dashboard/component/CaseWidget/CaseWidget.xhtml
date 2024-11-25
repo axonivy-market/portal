@@ -65,7 +65,7 @@
         <f:attribute name="widgetId" value="#{caseWidget.id}" />
         <p:ajax event="sort" update="dashboard-cases" onstart="liveScroll()" />
 
-        <p:columns var="column" value="#{caseWidget.columns}" styleClass="#{column.styleClass} #{(column.field eq 'name' or column.field eq 'actions' ) ? 'dashboard-cases__column-small-screen' : 'u-hidden-sm-down'} widget-column-header"
+        <p:columns id="dashboard-cases-columns" var="column" value="#{caseWidget.columns}" styleClass="#{column.styleClass} #{(column.field eq 'name' or column.field eq 'actions' ) ? 'dashboard-cases__column-small-screen' : 'u-hidden-sm-down'} widget-column-header"
           visible="#{column.visible}" field="#{column.field}" filterable="false" sortBy="#{column.field}" sortable="#{!isResizing and !isPreviewMode and column.sortable}"
           style="#{column.isCustomAction or column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay}">
 
@@ -84,7 +84,8 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'owner'}">
-            <pc:securityMemberNameAndAvatar displayName="#{column.display(caseItem)}" securityMember="#{caseItem.getOwner()}" />
+            <h:outputText id="owners" value="#{column.display(caseItem)}" />
+            <p:tooltip value="#{column.display(caseItem)}" for="owners" />
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'name'}">

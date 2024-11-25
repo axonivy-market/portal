@@ -313,14 +313,21 @@ a.left-sidebar-menu-icon {
 .ui-confirm-dialog-message li {
   font-size: 16px;
   font-weight: 400;
+  color: var(--warning-before-leave-task);
 }
 
 .ui-confirm-dialog-message ul {
-  line-height: 19px
+  line-height: 19px;
+  margin-bottom: 0;
 }
 
-.ui-confirm-dialog-message h4 {
+.ui-confirm-dialog-message div {
   text-align: center;
+  font-size: 18px;
+}
+
+.warning-before-leaving-task .ui-dialog-content.ui-widget-content {
+  padding-top: 0;
 }
 /******** CHAT ********/
 .chat-add-assignee-button-grid, .chat-action-container {

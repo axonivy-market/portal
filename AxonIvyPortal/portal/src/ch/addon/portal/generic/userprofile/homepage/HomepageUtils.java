@@ -1,5 +1,8 @@
 package ch.addon.portal.generic.userprofile.homepage;
 
+import static ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_CASE_LIST_DASHBOARD;
+import static ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -19,7 +22,6 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -75,10 +77,20 @@ public class HomepageUtils {
     return String.format(HOMEPAGE_ID_PATTERN, menuKind.name(), dashboardId);
   }
 
+  public static String generateDefaultCaseListDashboardHomepageId() {
+    return generateHomepageId(MenuKind.MAIN_DASHBOARD, DEFAULT_CASE_LIST_DASHBOARD);
+  }
+
+  public static String generateDefaultTaskListDashboardHomepageId() {
+    return generateHomepageId(MenuKind.MAIN_DASHBOARD, DEFAULT_TASK_LIST_DASHBOARD);
+  }
+
   private static String getHomepageId() {
     String originHomepage = Ivy.session().getSessionUser().getProperty(UserProperty.HOMEPAGE);
-    if (MenuKind.TASK.name().equals(originHomepage)) {
-      return generateHomepageId(MenuKind.MAIN_DASHBOARD, DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD);
+    if ("TASK".equals(originHomepage)) { // for backward compatible
+      return generateDefaultTaskListDashboardHomepageId();
+    } else if ("CASE".equals(originHomepage)) { // for backward compatible
+      return generateDefaultCaseListDashboardHomepageId();
     }
     return originHomepage;
   }
@@ -107,7 +119,6 @@ public class HomepageUtils {
   private static void adjustHomepageStartLink(Homepage homepage) {
     String relativeUrl = switch (homepage.getType()) {
       case PROCESS -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_PROCESS_START);
-      case CASE -> findRelativeUrlByKeywork(PortalNavigator.PORTAL_CASE_START);
       default -> "";
     };
     if (StringUtils.isNotEmpty(relativeUrl)) {
@@ -148,10 +159,6 @@ public class HomepageUtils {
 
   public static boolean isShowDashboard(Homepage homepage, boolean isClickOnDashboard) {
     return homepage == null || homepage.getType() == HomepageType.DASHBOARD || isClickOnDashboard;
-  }
-
-  public static boolean isShowTaskDashboard(Homepage homepage) {
-    return homepage.getType() == HomepageType.TASK;
   }
 
 }

@@ -186,8 +186,15 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public ElementsCollection getActiveCaseActions(int caseIndex) {
+    return getActiveCaseActions(caseIndex, "case_1");
+  }
+  public ElementsCollection getActiveCaseActionsInFullCaseListPage(int caseIndex) {
+    return getActiveCaseActions(caseIndex, "default_case_list_dashboard_case_1");
+  }
+  private ElementsCollection getActiveCaseActions(int caseIndex, String widgetId) {
     clickOnCaseActionLink(caseIndex);
-    return $$(String.format("div.js-case-side-steps-panel-case_1-%d", caseIndex)).filter(appear).first()
+    return $$(String.format("div.js-case-side-steps-panel-" + widgetId
+        + "-%d", caseIndex)).filter(appear).first()
         .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='action-step-item']");
   }
 
@@ -377,4 +384,25 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public boolean isWidgetInfomationIconAppear() {
     return getCaseWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
   }
+
+  public int countSideStepItems(int caseIndex, String widgetId) {
+    clickOnCaseActionLink(caseIndex);
+    return $$(String.format("div.js-case-side-steps-panel-" + widgetId + "-%d", caseIndex)).filter(appear).first()
+        .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content")
+        .$$("span[id$=':side-steps'] > a[class*='action-step-item']").size();
+  }
+
+  public void openProcessViewer(int caseIndex) {
+    clickActionItem(caseIndex, "Process Viewer");
+  }
+
+  private void clickActionItem(int caseIndex, String actionName) {
+    getActiveCaseActionsInFullCaseListPage(caseIndex).filter(text(actionName)).first().shouldBe(getClickableCondition())
+        .click();
+  }
+  public String getCaseId(int caseIndex) {
+    String elementIdSuffixForCaseId = caseIndex + ":dashboard-cases-columns:0:custom-column";
+    return $("span[id$='" + elementIdSuffixForCaseId + "']").getText();
+  }
+
 }

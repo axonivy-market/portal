@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -513,7 +514,11 @@ public class DashboardBean implements Serializable {
   }
 
   public String getScreenReaderNotificationContent() {
-    if (this.selectedDashboard != null && ACCESSIBILITY_DASHBOARD_TEMPLATE_ID.equals(this.selectedDashboard.getTemplateId())) {
+    String templateId = Optional.ofNullable(this.selectedDashboard)
+        .map(Dashboard::getTemplateId).orElse(StringUtils.EMPTY);
+
+    if (StringUtils.isNotBlank(templateId)
+        && ACCESSIBILITY_DASHBOARD_TEMPLATE_ID.equals(templateId)) {
       return Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/AccessibilityShortcuts/title");
     }
     return StringUtils.EMPTY;
