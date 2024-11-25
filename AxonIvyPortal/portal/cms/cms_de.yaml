@@ -1253,10 +1253,10 @@ ch.ivy.addon.portalkit.ui.jsf:
   taskWarning:
     createdTaskLeave: '<div>Sie verlassen die aktuelle Seite.<br/>  Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     createdTaskLogout: '<div>Sie verlassen die aktuelle Seite.<br/> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLeave: '<div>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI> Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI> Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>
-      Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLogout: '<div>Sie verlassen die aktuelle Aufgabe.</br> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>&nbsp; &nbsp; Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>&nbsp; &nbsp; Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste
-      verschieben. Dann abmelden.<LI>&nbsp; &nbsp; Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLeave: '<div>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>Abbrechen:
+      Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLogout: '<div>Sie verlassen die aktuelle Aufgabe.</br> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben. Dann abmelden.<LI>Abbrechen:
+      Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     taskNotFound: Die Aufgabe existiert nicht oder Sie haben ungenügende Rechte, um diese Aufgabe zu sehen.
   userProfile:
     myProfileTitle: Mein Profil
