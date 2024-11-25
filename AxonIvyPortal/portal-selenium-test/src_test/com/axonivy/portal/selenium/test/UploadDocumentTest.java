@@ -91,14 +91,17 @@ public class UploadDocumentTest extends BaseTest {
     updateFileExtensionWhiteListInPortalSetting();
     initNewDashboardPage(TestAccount.ADMIN_USER);
     casePage = menuPage.openCaseList();
-
     caseDetailsPage = casePage.openDetailsCase("Leave Request");
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(pdfFile));
     isCorrectIconExtension(pdfFile, "si si-office-file-pdf-1");
 
+    casePage = menuPage.openCaseList();
+    caseDetailsPage = casePage.openDetailsCase("Leave Request");
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(wordFile));
     isCorrectIconExtension(wordFile, "si si-office-file-doc-1");
 
+    casePage = menuPage.openCaseList();
+    caseDetailsPage = casePage.openDetailsCase("Leave Request");
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(unsupportFile));
     isCorrectIconExtension(unsupportFile, "si si-common-file-empty");
   }
