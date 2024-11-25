@@ -1,14 +1,15 @@
-package com.axonivy.portal.migration.dashboardtemplate.converter.v114;
+package com.axonivy.portal.migration.dashboard.converter.v120;
 
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
-import com.axonivy.portal.bo.jsonversion.DashboardTemplateJsonVersion;
+import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
+import com.axonivy.portal.migration.common.search.JsonWidgetSearch;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 
-public class DashboardTemplateProcessWidgetConverter implements IJsonConverter {
-  private static final String WIDGETS_NODE = "widgets";
+public class DashboardProcessWidgetConverter implements IJsonConverter {
+
   private static final String TYPE = "type";
   private static final String PROCESS = "process";
   private static final String DISPLAY_MODE = "displayMode";
@@ -43,18 +44,13 @@ public class DashboardTemplateProcessWidgetConverter implements IJsonConverter {
 
   @Override
   public AbstractJsonVersion version() {
-    return new DashboardTemplateJsonVersion("11.4.0");
+    return new DashboardJsonVersion("12.0.0");
   }
 
   @Override
   public void convert(JsonNode jsonNode) {
-    jsonNode.forEach(dashboard -> {
-      JsonNode widgetsNode = dashboard.get(WIDGETS_NODE);
-      if (widgetsNode != null) {
-        widgetsNode.forEach(widget -> {
-          migrateOldProcessWidgetTypes((ObjectNode) widget);
-        });
-      }
+    (new JsonWidgetSearch(jsonNode)).findWidgets().forEach(widget -> {
+        migrateOldProcessWidgetTypes((ObjectNode) widget);
     });
   }
 
