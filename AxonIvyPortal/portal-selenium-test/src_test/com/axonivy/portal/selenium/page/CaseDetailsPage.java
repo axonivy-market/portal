@@ -458,9 +458,9 @@ public class CaseDetailsPage extends TemplatePage {
     }
   }
 
-  public boolean isRelatedCaseInfoColumnIsDisplay() {
+  public SelenideElement getRelatedCaseInfoColumn() {
     waitForElementDisplayed(By.cssSelector("[id$=':history-container']"), true);
-    return $("th.history-related-case").isDisplayed();
+    return $("th.history-related-case");
   }
 
   public String getCaseName() {
@@ -1005,9 +1005,9 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementClickableThenClick($("[id$='case-item-details:case-details-container:back-to-cases']"));
   }
 
-  public CaseWidgetPage goBackToCaseListFromCaseDetails() {
+  public CaseWidgetNewDashBoardPage goBackToCaseListFromCaseDetails() {
     clickBackButton();
-    return new CaseWidgetPage();
+    return new CaseWidgetNewDashBoardPage();
   }
 
   public String openDoneTask(int index) {
@@ -1018,9 +1018,16 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void clickShowOnlyOpenTasks() {
-
     $("div[id$=':show-only-open-tasks'] .ui-chkbox-box")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+  
+  public void clickShowCaseOwners() {
+    $("a[id$=':show-case-owner-link']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+  
+  public int countCaseOwners() {
+    return $$("div[id$=':security-member-container']").size();
   }
 }
 

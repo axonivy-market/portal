@@ -24,6 +24,7 @@ public class DashboardDefaultListFilterValidator implements Validator {
 
   private static final String MESSAGE_PREFIX_PATTERN = "%s(%d)";
 
+  @Override
   @SuppressWarnings("unchecked")
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 

@@ -48,6 +48,7 @@ public class ScreenshotUtils {
   public static final String DASHBOARD_CONFIGURATION_FOLDER = "/dashboard-configuration/";
   public static final String NOTIFICATION_FOLDER = "/notification/";
   public static final String MOBILE_FOLDER = "/mobile/";
+  public static final String ACCESSIBILITY_DASHBOARD_FOLDER = "/accessibility/";
 
   @PostConstruct
   public void initFolder() {

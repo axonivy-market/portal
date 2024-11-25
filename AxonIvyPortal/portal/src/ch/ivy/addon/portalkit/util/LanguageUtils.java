@@ -14,7 +14,6 @@ import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.language.LanguageManager;
 import ch.ivyteam.ivy.security.ISecurityContext;
-import ch.ivyteam.ivy.security.ISessionInternal;
 
 public final class LanguageUtils {
 
@@ -58,7 +57,7 @@ public final class LanguageUtils {
   }
 
   public static Locale getUserLocale() {
-    return ((ISessionInternal) Ivy.session()).getContentLocale();
+    return Ivy.session().getContentLocale();
   }
 
   public static NameResult collectMultilingualNames(List<DisplayName> names, String name) {

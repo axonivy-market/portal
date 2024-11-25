@@ -28,8 +28,9 @@ public class AnnouncementTest extends BaseTest {
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();
     announcementPage.setAnnoucement(0, "lies mich");
     announcementPage.setAnnoucement(1, "Readme1");
-    announcementPage.publish();
-    adminSettingsPage.clickOnbackToNewDashboardPageOnAdminSetting();
+    announcementPage.clickOnSwitchButton();
+    announcementPage.clickOnSaveButton();
+    adminSettingsPage.clickOnHomeLogo();
     newDashboardPage = new NewDashboardPage();
     UserProfilePage userProfilePage = newDashboardPage.openMyProfilePage();
     userProfilePage.selectLanguage(3);
@@ -47,7 +48,8 @@ public class AnnouncementTest extends BaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     AdminSettingsPage adminSettingsPage = newDashboardPage.openAdminSettings();
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();
-    announcementPage.publish();
+    announcementPage.clickOnSwitchButton();
+    announcementPage.clickOnSaveButton();
     assertEquals("Announcement for application default language is required.", announcementPage.getInfoSummary());
   }
 
@@ -60,8 +62,9 @@ public class AnnouncementTest extends BaseTest {
     assertTrue(announcementPage.isDisplayed());
 
     announcementPage.setAnnoucement(1, "Readme1");
-    announcementPage.publish();
-    adminSettingsPage.clickOnbackToNewDashboardPageOnAdminSetting();
+    announcementPage.clickOnSwitchButton();
+    announcementPage.clickOnSaveButton();
+    adminSettingsPage.clickOnHomeLogo();
     newDashboardPage = new NewDashboardPage();
     assertEquals("Readme1", newDashboardPage.getAnnouncementMessage());
   }
@@ -77,8 +80,9 @@ public class AnnouncementTest extends BaseTest {
     announcementPage.setAnnoucement(1, "Readme1");
     announcementPage.setAnnoucement(2, "Readme2");
     announcementPage.setAnnoucement(3, "Readme3");
-    announcementPage.publish();
-    announcementPage.dePublish();
+    announcementPage.clickOnSwitchButton();
+    announcementPage.clickOnSwitchButton();
+    announcementPage.clickOnSaveButton();
     assertTrue(newDashboardPage.isAnnouncementMessageNotDisplayed());
   }
 }

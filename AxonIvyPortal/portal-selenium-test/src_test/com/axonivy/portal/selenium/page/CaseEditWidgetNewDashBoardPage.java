@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterOperator;
@@ -414,4 +415,13 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
   public void clickOnExpandModeCheckbox() {
     getExpandModeCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   } 
+  
+  public void resizeColumn() {
+    ElementsCollection elements = $("[id=\"task-task_1:task-component:dashboard-tasks:dashboard-tasks-columns:1\"]")
+    .$$(".ui-column-resizer.ui-draggable.ui-draggable-handle");
+    WebElement element = elements.get(0);
+    new Actions(driver)
+    .clickAndHold(element)
+    .perform();
+  }
 }

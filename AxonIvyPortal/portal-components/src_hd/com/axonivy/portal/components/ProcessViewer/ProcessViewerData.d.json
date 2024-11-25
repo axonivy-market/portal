@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "ProcessViewerData",
   "namespace" : "com.axonivy.portal.components.ProcessViewer",
   "isBusinessCaseData" : false,
@@ -21,20 +21,17 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "webStartable",
-    "type" : "ch.ivyteam.ivy.workflow.start.IWebStartable",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.start.IWebStartable"
   }, {
     "name" : "webLink",
-    "type" : "ch.ivyteam.ivy.model.value.WebLink",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.model.value.WebLink"
   }, {
     "name" : "activatorName",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "activator",
-    "type" : "ch.ivyteam.ivy.security.ISecurityMember",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.security.ISecurityMember"
   }, {
     "name" : "category",
     "type" : "String",

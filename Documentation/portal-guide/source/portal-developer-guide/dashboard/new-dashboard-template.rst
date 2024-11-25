@@ -8,7 +8,7 @@ JSON Definition
 
 Below is a sample JSON definition of a Portal dashboard template.
 
-.. code-block:: html
+.. code-block:: javascript
 
    [
       {
@@ -26,11 +26,11 @@ Below is a sample JSON definition of a Portal dashboard template.
          "descriptions": [
             {
             "locale": "en",
-            "value": "Create dashboard with 1 Task list, 1 Case list, and 1 Process list"
+            "value": "Create dashboard with 1 Task list"
             },
             {
             "locale": "de",
-            "value": "Dashboard mit 1 Aufgabenliste, 1 Vorgangsliste und 1 Prozessliste erstellen"
+            "value": "Dashboard mit 1 Aufgabenliste"
             }
          ],
          "icon": "si-cog-double-2",
@@ -39,6 +39,7 @@ Below is a sample JSON definition of a Portal dashboard template.
             "templateId": "template-id",
             "title": "Default dashboard",
             "permissions": ["Everybody"]
+            ...
          }
       }
    ]

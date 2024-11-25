@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -33,13 +34,17 @@ public abstract class AbstractColumn implements Serializable {
 
   private static final long serialVersionUID = -8430449835327597359L;
   @JsonIgnore
-  public static final String TINY_WIDTH = "width: 80px";
+  private static final String DEFAULT_WIDTH_UNIT = "px";
   @JsonIgnore
-  public static final String SMALL_WIDTH = "width: 100px";
+  public static final int TINY_WIDTH = 80;
   @JsonIgnore
-  public static final String NORMAL_WIDTH = "width: 120px";
+  public static final int SMALL_WIDTH = 100;
   @JsonIgnore
-  public static final String EXTRA_WIDTH = "width: 150px";
+  public static final int NORMAL_WIDTH = 120;
+  @JsonIgnore
+  public static final int EXTRA_WIDTH = 150;
+  @JsonIgnore
+  public static final int LARGE_WIDTH = 200;
 
   @Deprecated(since = "10.0", forRemoval = true)
   @JsonProperty(access = Access.WRITE_ONLY)
@@ -77,6 +82,10 @@ public abstract class AbstractColumn implements Serializable {
   protected Date userDateFilterFrom;
   protected Date userDateFilterTo;
   protected List<String> userFilterListOptions;
+  protected String width;  
+  
+  @JsonIgnore
+  protected String styleToDisplay;
 
   public void initDefaultValue() {
     if (isNull(this.visible)) {
@@ -100,6 +109,11 @@ public abstract class AbstractColumn implements Serializable {
     if (isNull(this.userFilterList)) {
       this.userFilterList = new ArrayList<>();
     }
+    if (isNull(this.style)) {
+      this.style = getDefaultStyle();
+    }
+
+    this.styleToDisplay = initDefaultStyle();
   }
 
   @JsonIgnore
@@ -129,7 +143,7 @@ public abstract class AbstractColumn implements Serializable {
 
   @JsonIgnore
   public String getDefaultStyle() {
-    return SMALL_WIDTH;
+    return "";
   }
 
   @JsonIgnore
@@ -330,6 +344,25 @@ public abstract class AbstractColumn implements Serializable {
   public void setUserFilterTo(String userFilterTo) {
     this.userFilterTo = userFilterTo;
   }
+  
+  public String getWidth() {
+    return width;
+  }
+
+  public void setWidth(String width) {
+    this.width = width;
+  }
+
+  @JsonIgnore
+  public String getStyleToDisplay() {
+    return styleToDisplay;
+  }
+
+  @JsonIgnore
+  public void setStyleToDisplay(String styleToDisplay) {
+    this.styleToDisplay = styleToDisplay;
+  }
+
 
   @JsonIgnore
   public String getHeaderText() {
@@ -416,6 +449,27 @@ public abstract class AbstractColumn implements Serializable {
     setUserFilterTo(StringUtils.EMPTY);
     setUserDateFilterFrom(null);
     setUserDateFilterTo(null);
+  }
+  
+  @JsonIgnore
+  protected int getDefaultColumnWidth() {
+    return SMALL_WIDTH;
+  }
+
+  @JsonIgnore
+  protected int resolveColumnWidth() {
+    return NumberUtils.toInt(width, getDefaultColumnWidth());
+  }
+
+  @JsonIgnore
+  protected String initDefaultWidth() {
+    return "width: " + resolveColumnWidth() + "px";
+  }
+
+  @JsonIgnore
+  public String initDefaultStyle() {
+    return String.join(";", initDefaultWidth(),
+        StringUtils.defaultIfBlank(this.style, ""));
   }
 
   @JsonIgnore

@@ -20,6 +20,7 @@ public class TaskFilterFieldCategory extends FilterField {
     super(DashboardStandardTaskColumn.CATEGORY.getField());
   }
 
+  @Override
   public String getLabel() {
     return DashboardStandardTaskColumn.CATEGORY.getLabel();
   }

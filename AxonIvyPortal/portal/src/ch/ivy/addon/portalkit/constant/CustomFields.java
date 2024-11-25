@@ -2,7 +2,7 @@ package ch.ivy.addon.portalkit.constant;
 
 public class CustomFields {
 
-  @Deprecated(forRemoval = true, since = "9.4")
+  @Deprecated(since = "9.4")
   public static final String CUSTOM_TIMESTAMP_FIELD5 = "CustomTimestampField5";
 
   public static final String EMBED_IN_FRAME = "embedInFrame";

@@ -109,8 +109,8 @@ public class LanguageService {
   /**
    * From IVYPORTAL-16987
    * We use session cache to reduce loading time in new dashboard template
+   * @return content locales
    * 
-   * @return
    */
   @SuppressWarnings("unchecked")
   public List<Locale> getContentLocales() {
@@ -130,8 +130,8 @@ public class LanguageService {
   /**
    * From IVYPORTAL-16987
    * We use session cache to reduce loading time in new dashboard template
+   * @return formatting locales
    * 
-   * @return
    */
   @SuppressWarnings("unchecked")
   public List<Locale> getFormattingLocales() {

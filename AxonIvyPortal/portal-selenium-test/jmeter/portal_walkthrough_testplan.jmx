@@ -13,17 +13,17 @@
     </TestPlan>
     <hashTree>
       <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="10Users" enabled="true">
+        <stringProp name="ThreadGroup.num_threads">${__P(portal.thread.numberOfUser)}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${__P(portal.thread.rampup)}</stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
           <stringProp name="LoopController.loops">${__P(portal.thread.loop)}</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">${__P(portal.thread.numberOfUser)}</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">${__P(portal.thread.rampup)}</stringProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration"></stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
-        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
       </ThreadGroup>
       <hashTree>
         <com.tag.jmeter.ext.config.PropertyReader guiclass="TestBeanGUI" testclass="com.tag.jmeter.ext.config.PropertyReader" testname="Property File Reader" enabled="true">
@@ -809,7 +809,7 @@
               </elementProp>
               <elementProp name="menuKind" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task</stringProp>
+                <stringProp name="Argument.value">main_dashboard</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">menuKind</stringProp>
@@ -823,7 +823,7 @@
               </elementProp>
               <elementProp name="user-menu-required-login:main-navigator:main-menu_menuid" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task_2</stringProp>
+                <stringProp name="Argument.value">_js__default-task-list-dashboard-main-dashboard</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">user-menu-required-login:main-navigator:main-menu_menuid</stringProp>
@@ -928,7 +928,7 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PortalTaskLst_LazyUpdateTaskCount" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="LoadTaskListFirstTime" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="javax.faces.partial.ajax" elementType="HTTPArgument">
@@ -940,38 +940,38 @@
               </elementProp>
               <elementProp name="javax.faces.source" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-widget:update-task-count-rc-form:update-task-count-remote-cmd</stringProp>
+                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:task-component:rcLoadTaskFirstTime</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.source</stringProp>
               </elementProp>
               <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-widget:update-task-count-rc-form:update-task-count-remote-cmd</stringProp>
+                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:task-component:rcLoadTaskFirstTime</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
               </elementProp>
               <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-widget:task-widget-title</stringProp>
+                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks-container</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
               </elementProp>
-              <elementProp name="task-widget:update-task-count-rc-form:update-task-count-remote-cmd" elementType="HTTPArgument">
+              <elementProp name="task-default_task_list_dashboard_task_1:task-component:rcLoadTaskFirstTime" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-widget:update-task-count-rc-form:update-task-count-remote-cmd</stringProp>
+                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:task-component:rcLoadTaskFirstTime</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">task-widget:update-task-count-rc-form:update-task-count-remote-cmd</stringProp>
+                <stringProp name="Argument.name">task-default_task_list_dashboard_task_1:task-component:rcLoadTaskFirstTime</stringProp>
               </elementProp>
-              <elementProp name="task-widget:update-task-count-rc-form_SUBMIT" elementType="HTTPArgument">
+              <elementProp name="portal-breadcrumb:breadcrumb-form_SUBMIT" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value">1</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">task-widget:update-task-count-rc-form_SUBMIT</stringProp>
+                <stringProp name="Argument.name">portal-breadcrumb:breadcrumb-form_SUBMIT</stringProp>
               </elementProp>
               <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -997,10 +997,6 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
-            <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
-          </DurationAssertion>
-          <hashTree/>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
@@ -1010,6 +1006,10 @@
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
+          <hashTree/>
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
+            <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
+          </DurationAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="TaskListSearch" enabled="true">
@@ -1024,52 +1024,52 @@
               </elementProp>
               <elementProp name="javax.faces.source" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter</stringProp>
+                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:quick-search-form:quick-search-input-0</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.source</stringProp>
               </elementProp>
               <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter</stringProp>
+                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:quick-search-form:quick-search-input-0</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
               </elementProp>
               <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-widget:filter-selection-container task-widget:task-view-container</stringProp>
+                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks task-default_task_list_dashboard_task_1:task-component:empty-message-container</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
               </elementProp>
               <elementProp name="javax.faces.behavior.event" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">keyup</stringProp>
+                <stringProp name="Argument.value">keydown</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.behavior.event</stringProp>
               </elementProp>
               <elementProp name="javax.faces.partial.event" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">keyup</stringProp>
+                <stringProp name="Argument.value">keydown</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.event</stringProp>
               </elementProp>
-              <elementProp name="task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter" elementType="HTTPArgument">
+              <elementProp name="task-default_task_list_dashboard_task_1:quick-search-form:quick-search-input-0" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value">leave</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">task-widget:expanded-mode-filter-form:expanded-mode-filter-container:ajax-keyword-filter</stringProp>
+                <stringProp name="Argument.name">task-default_task_list_dashboard_task_1:quick-search-form:quick-search-input-0</stringProp>
               </elementProp>
-              <elementProp name="task-widget:expanded-mode-filter-form_SUBMIT" elementType="HTTPArgument">
+              <elementProp name="task-default_task_list_dashboard_task_1:quick-search-form_SUBMIT" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value">1</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">task-widget:expanded-mode-filter-form_SUBMIT</stringProp>
+                <stringProp name="Argument.name">task-default_task_list_dashboard_task_1:quick-search-form_SUBMIT</stringProp>
               </elementProp>
               <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -1110,83 +1110,6 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="TaskListSearch_LazyUpdateTaskCount" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="javax.faces.partial.ajax" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">true</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.partial.ajax</stringProp>
-              </elementProp>
-              <elementProp name="javax.faces.source" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-widget:update-task-count-rc-form:update-task-count-remote-cmd</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.source</stringProp>
-              </elementProp>
-              <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-widget:task-widget-title</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
-              </elementProp>
-              <elementProp name="task-widget:update-task-count-rc-form:update-task-count-remote-cmd" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-widget:update-task-count-rc-form:update-task-count-remote-cmd</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">task-widget:update-task-count-rc-form:update-task-count-remote-cmd</stringProp>
-              </elementProp>
-              <elementProp name="task-widget:update-task-count-rc-form_SUBMIT" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">1</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">task-widget:update-task-count-rc-form_SUBMIT</stringProp>
-              </elementProp>
-              <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${viewState}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.ViewState</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain"></stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.protocol"></stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">${url}</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
-            <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
-          </DurationAssertion>
-          <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
-            <collectionProp name="Asserion.test_strings">
-              <stringProp name="49586">200</stringProp>
-            </collectionProp>
-            <stringProp name="Assertion.custom_message"></stringProp>
-            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
-            <boolProp name="Assertion.assume_success">false</boolProp>
-            <intProp name="Assertion.test_type">8</intProp>
-          </ResponseAssertion>
-          <hashTree/>
-        </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NavigateToTaskDetail" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments">
@@ -1199,45 +1122,31 @@
               </elementProp>
               <elementProp name="javax.faces.source" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-widget:task-list-scroller:0:task-item:task-info</stringProp>
+                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:10:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.source</stringProp>
               </elementProp>
               <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-widget:task-list-scroller:0:task-item:task-info</stringProp>
+                <stringProp name="Argument.value">@all</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
               </elementProp>
-              <elementProp name="javax.faces.behavior.event" elementType="HTTPArgument">
+              <elementProp name="task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:10:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">click</stringProp>
+                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:10:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.behavior.event</stringProp>
+                <stringProp name="Argument.name">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:10:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command</stringProp>
               </elementProp>
-              <elementProp name="javax.faces.partial.event" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">click</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.partial.event</stringProp>
-              </elementProp>
-              <elementProp name="user-menu-required-login:global-search-component-mobile:global-search-data" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value"></stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile:global-search-data</stringProp>
-              </elementProp>
-              <elementProp name="user-menu-required-login:global-search-component-mobile-form_SUBMIT" elementType="HTTPArgument">
+              <elementProp name="portal-breadcrumb:breadcrumb-form_SUBMIT" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value">1</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile-form_SUBMIT</stringProp>
+                <stringProp name="Argument.name">portal-breadcrumb:breadcrumb-form_SUBMIT</stringProp>
               </elementProp>
               <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -1297,8 +1206,8 @@
           <stringProp name="HTTPSampler.contentEncoding"></stringProp>
           <stringProp name="HTTPSampler.path">${redirectURL}</stringProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
           <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
           <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
@@ -1377,13 +1286,6 @@
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">user-menu-required-login:main-navigator:main-menu</stringProp>
               </elementProp>
-              <elementProp name="user-menu-required-login:main-navigator_SUBMIT" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">1</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">user-menu-required-login:main-navigator_SUBMIT</stringProp>
-              </elementProp>
               <elementProp name="taskId" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value"></stringProp>
@@ -1400,7 +1302,7 @@
               </elementProp>
               <elementProp name="menuKind" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case</stringProp>
+                <stringProp name="Argument.value">main_dashboard</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">menuKind</stringProp>
@@ -1414,7 +1316,7 @@
               </elementProp>
               <elementProp name="user-menu-required-login:main-navigator:main-menu_menuid" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case_3</stringProp>
+                <stringProp name="Argument.value">_js__default-case-list-dashboard-main-dashboard</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">user-menu-required-login:main-navigator:main-menu_menuid</stringProp>
@@ -1519,7 +1421,7 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PortalCaseList_LazyUpdateCaseCount" enabled="true">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="LoadCaseListFirstTime" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments">
               <elementProp name="javax.faces.partial.ajax" elementType="HTTPArgument">
@@ -1531,31 +1433,38 @@
               </elementProp>
               <elementProp name="javax.faces.source" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:update-case-count-rc-form:update-case-count-remote-cmd</stringProp>
+                <stringProp name="Argument.value">case-default_case_list_dashboard_case_1:case-component:rcLoadCaseFirstTime</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.source</stringProp>
               </elementProp>
+              <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">case-default_case_list_dashboard_case_1:case-component:rcLoadCaseFirstTime</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
+              </elementProp>
               <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:case-widget-title</stringProp>
+                <stringProp name="Argument.value">case-default_case_list_dashboard_case_1:case-component:dashboard-cases-container</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
               </elementProp>
-              <elementProp name="case-widget:update-case-count-rc-form:update-case-count-remote-cmd" elementType="HTTPArgument">
+              <elementProp name="case-default_case_list_dashboard_case_1:case-component:rcLoadCaseFirstTime" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:update-case-count-rc-form:update-case-count-remote-cmd</stringProp>
+                <stringProp name="Argument.value">case-default_case_list_dashboard_case_1:case-component:rcLoadCaseFirstTime</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">case-widget:update-case-count-rc-form:update-case-count-remote-cmd</stringProp>
+                <stringProp name="Argument.name">case-default_case_list_dashboard_case_1:case-component:rcLoadCaseFirstTime</stringProp>
               </elementProp>
-              <elementProp name="case-widget:update-case-count-rc-form_SUBMIT" elementType="HTTPArgument">
+              <elementProp name="portal-breadcrumb:breadcrumb-form_SUBMIT" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value">1</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">case-widget:update-case-count-rc-form_SUBMIT</stringProp>
+                <stringProp name="Argument.name">portal-breadcrumb:breadcrumb-form_SUBMIT</stringProp>
               </elementProp>
               <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -1581,10 +1490,6 @@
           <stringProp name="HTTPSampler.response_timeout"></stringProp>
         </HTTPSamplerProxy>
         <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
-            <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
-          </DurationAssertion>
-          <hashTree/>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
             <collectionProp name="Asserion.test_strings">
               <stringProp name="49586">200</stringProp>
@@ -1594,6 +1499,10 @@
             <boolProp name="Assertion.assume_success">false</boolProp>
             <intProp name="Assertion.test_type">8</intProp>
           </ResponseAssertion>
+          <hashTree/>
+          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
+            <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
+          </DurationAssertion>
           <hashTree/>
         </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="CaseListSearch" enabled="true">
@@ -1608,52 +1517,52 @@
               </elementProp>
               <elementProp name="javax.faces.source" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:case-basic-filter-form:case-filter-component:ajax-keyword-filter</stringProp>
+                <stringProp name="Argument.value">case-default_case_list_dashboard_case_1:quick-search-form:quick-search-input-0</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.source</stringProp>
               </elementProp>
               <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:case-basic-filter-form:case-filter-component:ajax-keyword-filter</stringProp>
+                <stringProp name="Argument.value">case-default_case_list_dashboard_case_1:quick-search-form:quick-search-input-0</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
               </elementProp>
               <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:case-list</stringProp>
+                <stringProp name="Argument.value">case-default_case_list_dashboard_case_1:case-component:dashboard-cases case-default_case_list_dashboard_case_1:case-component:empty-message-container</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
               </elementProp>
               <elementProp name="javax.faces.behavior.event" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">keyup</stringProp>
+                <stringProp name="Argument.value">keydown</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.behavior.event</stringProp>
               </elementProp>
               <elementProp name="javax.faces.partial.event" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">keyup</stringProp>
+                <stringProp name="Argument.value">keydown</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.event</stringProp>
               </elementProp>
-              <elementProp name="case-widget:case-basic-filter-form:case-filter-component:ajax-keyword-filter" elementType="HTTPArgument">
+              <elementProp name="case-default_case_list_dashboard_case_1:quick-search-form:quick-search-input-0" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value">leave</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">case-widget:case-basic-filter-form:case-filter-component:ajax-keyword-filter</stringProp>
+                <stringProp name="Argument.name">case-default_case_list_dashboard_case_1:quick-search-form:quick-search-input-0</stringProp>
               </elementProp>
-              <elementProp name="case-widget:case-basic-filter-form_SUBMIT" elementType="HTTPArgument">
+              <elementProp name="case-default_case_list_dashboard_case_1:quick-search-form_SUBMIT" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value">1</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">case-widget:case-basic-filter-form_SUBMIT</stringProp>
+                <stringProp name="Argument.name">case-default_case_list_dashboard_case_1:quick-search-form_SUBMIT</stringProp>
               </elementProp>
               <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -1681,90 +1590,6 @@
         <hashTree>
           <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Normal Duration Assertion" enabled="false">
             <stringProp name="DurationAssertion.duration">${__P(portal.duration.normal)}</stringProp>
-          </DurationAssertion>
-          <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
-            <collectionProp name="Asserion.test_strings">
-              <stringProp name="49586">200</stringProp>
-            </collectionProp>
-            <stringProp name="Assertion.custom_message"></stringProp>
-            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
-            <boolProp name="Assertion.assume_success">false</boolProp>
-            <intProp name="Assertion.test_type">8</intProp>
-          </ResponseAssertion>
-          <hashTree/>
-        </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="CaseListSearch_LazyUpdateCaseCount" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="javax.faces.partial.ajax" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">true</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.partial.ajax</stringProp>
-              </elementProp>
-              <elementProp name="javax.faces.source" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:update-case-count-rc-form:update-case-count-remote-cmd</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.source</stringProp>
-              </elementProp>
-              <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:update-case-count-rc-form:update-case-count-remote-cmd</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
-              </elementProp>
-              <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:case-widget-title</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
-              </elementProp>
-              <elementProp name="case-widget:update-case-count-rc-form:update-case-count-remote-cmd" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:update-case-count-rc-form:update-case-count-remote-cmd</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">case-widget:update-case-count-rc-form:update-case-count-remote-cmd</stringProp>
-              </elementProp>
-              <elementProp name="case-widget:update-case-count-rc-form_SUBMIT" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">1</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">case-widget:update-case-count-rc-form_SUBMIT</stringProp>
-              </elementProp>
-              <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${viewState}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.ViewState</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain"></stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.protocol"></stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">${url}</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
-            <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
           </DurationAssertion>
           <hashTree/>
           <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
@@ -1790,52 +1615,52 @@
               </elementProp>
               <elementProp name="javax.faces.source" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:case-basic-filter-form:case-filter-component:ajax-keyword-filter</stringProp>
+                <stringProp name="Argument.value">case-default_case_list_dashboard_case_1:quick-search-form:quick-search-input-0</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.source</stringProp>
               </elementProp>
               <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:case-basic-filter-form:case-filter-component:ajax-keyword-filter</stringProp>
+                <stringProp name="Argument.value">case-default_case_list_dashboard_case_1:quick-search-form:quick-search-input-0</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
               </elementProp>
               <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:case-list</stringProp>
+                <stringProp name="Argument.value">case-default_case_list_dashboard_case_1:case-component:dashboard-cases case-default_case_list_dashboard_case_1:case-component:empty-message-container</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
               </elementProp>
               <elementProp name="javax.faces.behavior.event" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">keyup</stringProp>
+                <stringProp name="Argument.value">keydown</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.behavior.event</stringProp>
               </elementProp>
               <elementProp name="javax.faces.partial.event" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">keyup</stringProp>
+                <stringProp name="Argument.value">keydown</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.event</stringProp>
               </elementProp>
-              <elementProp name="case-widget:case-basic-filter-form:case-filter-component:ajax-keyword-filter" elementType="HTTPArgument">
+              <elementProp name="case-default_case_list_dashboard_case_1:quick-search-form:quick-search-input-0" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value">Create test data with category attach to one business case</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">case-widget:case-basic-filter-form:case-filter-component:ajax-keyword-filter</stringProp>
+                <stringProp name="Argument.name">case-default_case_list_dashboard_case_1:quick-search-form:quick-search-input-0</stringProp>
               </elementProp>
-              <elementProp name="case-widget:case-basic-filter-form_SUBMIT" elementType="HTTPArgument">
+              <elementProp name="case-default_case_list_dashboard_case_1:quick-search-form_SUBMIT" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value">1</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">case-widget:case-basic-filter-form_SUBMIT</stringProp>
+                <stringProp name="Argument.name">case-default_case_list_dashboard_case_1:quick-search-form_SUBMIT</stringProp>
               </elementProp>
               <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -1876,83 +1701,6 @@
           </ResponseAssertion>
           <hashTree/>
         </hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="CaseListFilterLargeBusinessCase_LazyUpdateCaseCount" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="javax.faces.partial.ajax" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">true</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.partial.ajax</stringProp>
-              </elementProp>
-              <elementProp name="javax.faces.source" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:update-case-count-rc-form:update-case-count-remote-cmd</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.source</stringProp>
-              </elementProp>
-              <elementProp name="javax.faces.partial.render" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:case-widget-title</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
-              </elementProp>
-              <elementProp name="case-widget:update-case-count-rc-form:update-case-count-remote-cmd" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:update-case-count-rc-form:update-case-count-remote-cmd</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">case-widget:update-case-count-rc-form:update-case-count-remote-cmd</stringProp>
-              </elementProp>
-              <elementProp name="case-widget:update-case-count-rc-form_SUBMIT" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">1</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">case-widget:update-case-count-rc-form_SUBMIT</stringProp>
-              </elementProp>
-              <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${viewState}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.ViewState</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain"></stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.protocol"></stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path">${url}</stringProp>
-          <stringProp name="HTTPSampler.method">POST</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree>
-          <DurationAssertion guiclass="DurationAssertionGui" testclass="DurationAssertion" testname="Ajax Duration Assertion" enabled="false">
-            <stringProp name="DurationAssertion.duration">${__P(portal.duration.ajax)}</stringProp>
-          </DurationAssertion>
-          <hashTree/>
-          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Code Assertion" enabled="true">
-            <collectionProp name="Asserion.test_strings">
-              <stringProp name="49586">200</stringProp>
-            </collectionProp>
-            <stringProp name="Assertion.custom_message"></stringProp>
-            <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
-            <boolProp name="Assertion.assume_success">false</boolProp>
-            <intProp name="Assertion.test_type">8</intProp>
-          </ResponseAssertion>
-          <hashTree/>
-        </hashTree>
         <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NavigateToCaseDetail" enabled="true">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
             <collectionProp name="Arguments.arguments">
@@ -1965,45 +1713,31 @@
               </elementProp>
               <elementProp name="javax.faces.source" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:case-list-scroller:0:case-item:case-info-row</stringProp>
+                <stringProp name="Argument.value">case-default_case_list_dashboard_case_1:case-component:dashboard-cases:0:dashboard-cases-columns:8:dashboard-actions-case-default_case_list_dashboard_case_1:case-item-open-detail-link</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.source</stringProp>
               </elementProp>
               <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:case-list-scroller:0:case-item:case-info-row</stringProp>
+                <stringProp name="Argument.value">@all</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
               </elementProp>
-              <elementProp name="javax.faces.behavior.event" elementType="HTTPArgument">
+              <elementProp name="case-default_case_list_dashboard_case_1:case-component:dashboard-cases:0:dashboard-cases-columns:8:dashboard-actions-case-default_case_list_dashboard_case_1:case-item-open-detail-link" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">click</stringProp>
+                <stringProp name="Argument.value">case-default_case_list_dashboard_case_1:case-component:dashboard-cases:0:dashboard-cases-columns:8:dashboard-actions-case-default_case_list_dashboard_case_1:case-item-open-detail-link</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.behavior.event</stringProp>
+                <stringProp name="Argument.name">case-default_case_list_dashboard_case_1:case-component:dashboard-cases:0:dashboard-cases-columns:8:dashboard-actions-case-default_case_list_dashboard_case_1:case-item-open-detail-link</stringProp>
               </elementProp>
-              <elementProp name="javax.faces.partial.event" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">click</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.partial.event</stringProp>
-              </elementProp>
-              <elementProp name="user-menu-required-login:global-search-component-mobile:global-search-data" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value"></stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile:global-search-data</stringProp>
-              </elementProp>
-              <elementProp name="user-menu-required-login:global-search-component-mobile-form_SUBMIT" elementType="HTTPArgument">
+              <elementProp name="portal-breadcrumb:breadcrumb-form_SUBMIT" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value">1</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile-form_SUBMIT</stringProp>
+                <stringProp name="Argument.name">portal-breadcrumb:breadcrumb-form_SUBMIT</stringProp>
               </elementProp>
               <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -2160,8 +1894,8 @@
             <hashTree/>
           </hashTree>
           <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="NewDashboard_FirstTab" enabled="true">
-            <boolProp name="TransactionController.parent">false</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
+            <boolProp name="TransactionController.parent">false</boolProp>
           </TransactionController>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Dashboard_FirstTab_YourTasks" enabled="true">
@@ -2439,8 +2173,8 @@
             </hashTree>
           </hashTree>
           <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="NewDashboard_SecondTab" enabled="true">
-            <boolProp name="TransactionController.parent">false</boolProp>
             <boolProp name="TransactionController.includeTimers">false</boolProp>
+            <boolProp name="TransactionController.parent">false</boolProp>
           </TransactionController>
           <hashTree>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="NavigateToDashboard_SecondTab_StoreSelectedMenuItem" enabled="true">

@@ -15,7 +15,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.test.caze.CaseDetailsTest;
@@ -48,7 +48,7 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotCasesNavigate() throws IOException {
-    CaseWidgetPage caseWidgetPage = mainMenuPage.openCaseList();
+    CaseWidgetNewDashBoardPage caseWidgetPage = mainMenuPage.openCaseList();
     mainMenuPage.expandMainMenu();
     ScreenshotUtils.executeDecorateJs("highlightCaseMenuItem()");
     ScreenshotUtils
@@ -57,20 +57,15 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     refreshPage();
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 600));
     mainMenuPage.closeMainMenu();
-    caseWidgetPage.openActionStepMenu(0);
+    caseWidgetPage.clickOnCaseActionLink(0);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_WIDGET_FOLDER + "case-key-information");
-
-    ScreenshotUtils.maximizeBrowser();
-    SelenideElement saveFilterDialog = caseWidgetPage.getSaveFilterDialog();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(saveFilterDialog,
-        ScreenshotUtils.CASE_WIDGET_FOLDER + "how-to-create-case-filter", new ScreenshotMargin(100, 200));
   }
 
   @Test
   public void screenshotCaseDetails() throws IOException {
-    CaseWidgetPage caseWidget = mainMenuPage.openCaseList();
+    CaseWidgetNewDashBoardPage caseWidget = mainMenuPage.openCaseList();
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1400));
-    WaitHelper.waitForNavigation(() -> caseWidget.openDetailsOfCaseHasName("Order Pizza"));
+    WaitHelper.waitForNavigation(() -> caseWidget.openDetailsCase("Order Pizza"));
     CaseDetailsPage detailsPage = new CaseDetailsPage();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.getGeneralInforBox(),
         ScreenshotUtils.CASE_DETAIL_FOLDER + "case-details-data-description", new ScreenshotMargin(50, 10, 10, 10));
@@ -122,9 +117,9 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
   public void screenshotCustomizeCaseDetails() throws IOException {
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 1200));
     redirectToRelativeLink(createNewPaymentUrl);
-    CaseWidgetPage caseWidget = mainMenuPage.openCaseList();
+    CaseWidgetNewDashBoardPage caseWidget = mainMenuPage.openCaseList();
 
-    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Create New Payment");
+    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsCase("Create New Payment");
     caseDetailsPage.waitForCaseDetailsDisplay();
     ScreenshotUtils.executeDecorateJs("highlightCaseDetailComponents()");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-standard-1");
@@ -163,14 +158,14 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
 
   public CaseDetailsPage setupCustomWidgetByJSONFile(String configFile) throws IOException {
     ConfigurationJsonUtils.updateJSONSetting(configFile, Variable.CASE_DETAIL);
-    CaseDetailsPage detailsPage = goToCaseList().openDetailsOfCaseHasName(CaseDetailsTest.CUSTOM_CASE_WIDGET_NAME);
+    CaseDetailsPage detailsPage = goToCaseList().openDetailsCase(CaseDetailsTest.CUSTOM_CASE_WIDGET_NAME);
     return detailsPage;
   }
 
-  public CaseWidgetPage goToCaseList() {
+  public CaseWidgetNewDashBoardPage goToCaseList() {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
-    CaseWidgetPage casePage = mainMenuPage.openCaseList();
+    CaseWidgetNewDashBoardPage casePage = mainMenuPage.openCaseList();
     return casePage;
   }
 
@@ -179,8 +174,8 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1440));
     login(TestAccount.ADMIN_USER);
     showNewDashboard();
-    CaseWidgetPage caseWidget = mainMenuPage.openCaseList();
-    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Order Pizza");
+    CaseWidgetNewDashBoardPage caseWidget = mainMenuPage.openCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsCase("Order Pizza");
     caseDetailsPage.waitForCaseDetailsDisplay();
 
     ScreenshotUtils.executeDecorateJs("highlightSharePageButton()");
@@ -220,9 +215,10 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     processWidget.startProcessByName("Process With Process Steps");
     showNewDashboard();
 
-    CaseWidgetPage caseWidget = mainMenuPage.openCaseList();
-    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Process With Process Steps");
+    CaseWidgetNewDashBoardPage caseWidget = mainMenuPage.openCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsCase("Process With Process Steps");
     caseDetailsPage.waitForCaseDetailsDisplay();
+    caseDetailsPage.openActionPanel();
 
     ScreenshotUtils.executeDecorateJs("highlightProcessOverviewLink()");
     ScreenshotUtils

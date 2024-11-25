@@ -81,7 +81,7 @@ public class TaskWidgetPage extends TemplatePage {
     $("div[id$=':application-filter:filter-input-form:advanced-filter-panel'").shouldBe(appear, DEFAULT_TIMEOUT);
     final ElementsCollection checkboxLabel = $$("span.ui-chkbox-label");
     for (int i = 0; i < checkboxLabel.size(); i++) {
-      if (checkboxLabel.get(i).getText().equals("Select All")) {
+      if ("Select All".equals(checkboxLabel.get(i).getText())) {
         checkboxLabel.get(i).click();
       }
     }
@@ -288,7 +288,8 @@ public class TaskWidgetPage extends TemplatePage {
     input.click();
     input.sendKeys(text);
     waitForElementClickableThenClick($("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar"));
-    $("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar").shouldBe(disappear,
+        DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(
         $(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']")));
   }
@@ -360,11 +361,8 @@ public class TaskWidgetPage extends TemplatePage {
     clickOnTaskActionLink(taskIndex);
     WebElement actionPanel = findElementByCssSelector(String.format(
         "div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel']", taskIndex));
-    return actionPanel.findElements(By.cssSelector("a[class*='option-item']"))
-        .stream()
-        .filter(
-            elem -> !elem.getAttribute("class").contains("ui-state-disabled"))
-        .map(WebElement::getText)
+    return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream()
+        .filter(elem -> !elem.getAttribute("class").contains("ui-state-disabled")).map(WebElement::getText)
         .collect(Collectors.toList());
   }
 
@@ -384,6 +382,7 @@ public class TaskWidgetPage extends TemplatePage {
     $(By.id(TASK_ACTION)).shouldBe(appear, DEFAULT_TIMEOUT);
     return new TaskTemplatePage();
   }
+
   public boolean isTaskStateReserved(int index) {
     try {
       $(By.id(String.format(TASK_STATE_COMPONENT_ID, index))).$(By.className("open-task-state"));

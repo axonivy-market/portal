@@ -12,18 +12,10 @@
         <div class="ui-g-12">
           <p:messages redisplay="false" for="portal-management-messages-information" closable="false" id="portal-management-messages"/>
         </div>
-
         <div id="admin-settings-container" class="admin-settings-container ui-g-12">
-          <div class="card ui-g">
+          <div class="card ui-g admin-setting-card">
             <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="admin-setting-component" />
           </div>
-        </div>
-        <div class="admin-settings-footer ui-g-12 u-text-align-right MarTop10">
-          <p:commandButton id="back-to-home-button"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
-            icon="si si-house-chimney-2"
-            actionListener="#{logic.backToHome}"
-            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"/>
         </div>
       </h:panelGroup>
     </ui:define>

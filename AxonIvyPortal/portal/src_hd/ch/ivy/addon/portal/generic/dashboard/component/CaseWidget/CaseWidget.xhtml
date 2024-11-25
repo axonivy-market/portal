@@ -10,20 +10,27 @@
   <cc:attribute name="isReadOnlyMode" default="false"/>
   <cc:attribute name="isPreviewMode" default="false"/>
   <cc:attribute name="onCompleteLoadWidget" />
+  <cc:attribute name="isAIResult" default="false" />
   <cc:attribute name="caseWidgetVar" default="dashboard-cases" />
-  
-  
 </cc:interface>
 
 <cc:implementation>
   <c:set var="caseWidget" value="#{cc.attrs.caseWidget}" />
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
+  <c:set var="isResizing" value="#{!cc.attrs.isReadOnlyMode and !cc.attrs.isPreviewMode}" />
 
-  <p:remoteCommand id="rcLoadCaseFirstTime" autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
+  <p:remoteCommand id="rcLoadCaseFirstTimeAIResult" rendered="#{cc.attrs.isAIResult}"
+    autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
-    oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget}; #{cc.attrs.isPreviewMode ? 'calculateFilterPaneltPosition();' : ''}" />
+    oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget};" />
   <p:inputText type="hidden" value="#{cc.attrs.caseWidgetVar}-#{caseWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
+
+  <p:remoteCommand id="rcLoadCaseFirstTime" rendered="#{!cc.attrs.isAIResult}"
+    autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
+    update="dashboard-cases-container" global="false" async="true" process="@this"
+    oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget} #{cc.attrs.isPreviewMode ? 'calculateFilterPaneltPosition();' : ''}" />
+  <p:inputText type="hidden" value="dashboard-cases-#{caseWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
   <div class="ui-g">
     <h:panelGroup layout="block"
       styleClass="js-loading-#{caseWidget.id} case-dashboard-widget__loading-message ui-g-12">
@@ -45,18 +52,27 @@
 
       <p:dataTable id="dashboard-cases" widgetVar="#{cc.attrs.caseWidgetVar}-#{caseWidget.id}" value="#{caseWidget.dataModel}" var="caseItem"
         lazy="true" scrollRows="25"
-        liveScroll="true" scrollable="true" sortBy="#{caseWidget.sortBy}"
+        liveScroll="true" scrollable="true" sortBy="#{(isResizing or isPreviewMode) ? null : caseWidget.sortBy}"
+        showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
-        styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and caseWidget.caseCount lt 1 ? 'u-display-none' : ''}"
+        styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and caseWidget.caseCount lt 1 ? 'u-display-none' : ''} #{isResizing ? 'js-resizing' : ''}"
         rowStyleClass="dashboard-table--row-style"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         disabledSelection="#{isPreviewMode}">
-        <p:ajax event="rowSelect" listener="#{dashboardBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode}" />
+        <p:ajax event="rowSelect" listener="#{dashboardCaseWidgetBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode}" />
+        <p:ajax event="colResize" process="dashboard-cases" global="false" partialSubmit="true"
+          listener="#{dashboardDetailModificationBean.onResizeColumn}" disabled="#{!isResizing}" />
+        <f:attribute name="widgetId" value="#{caseWidget.id}" />
         <p:ajax event="sort" update="dashboard-cases" onstart="liveScroll()" />
 
-        <p:columns var="column" value="#{caseWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'name' or column.field eq 'actions' ) ? 'dashboard-cases__column-small-screen' : 'u-hidden-sm-down'}"
-          visible="#{column.visible}" field="#{column.field}" filterable="false" sortBy="#{column.field}" sortable="#{column.sortable}"
-          style="#{column.isCustomAction or column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
+        <p:columns id="dashboard-cases-columns" var="column" value="#{caseWidget.columns}" styleClass="#{column.styleClass} #{(column.field eq 'name' or column.field eq 'actions' ) ? 'dashboard-cases__column-small-screen' : 'u-hidden-sm-down'} widget-column-header"
+          visible="#{column.visible}" field="#{column.field}" filterable="false" sortBy="#{column.field}" sortable="#{!isResizing and !isPreviewMode and column.sortable}"
+          style="#{column.isCustomAction or column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay}">
+
+          <f:facet name="header">
+           <h:outputText id="header" value="#{column.headerText}" />
+           <p:tooltip value="#{column.headerText}" for="header" />
+          </f:facet>
 
           <h:panelGroup rendered="#{column.field eq 'creator'}">
             <pc:securityMemberNameAndAvatar displayName="#{column.display(caseItem)}" securityMember="#{caseItem.getCreatorUser()}" />
@@ -68,7 +84,8 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'owner'}">
-            <pc:securityMemberNameAndAvatar displayName="#{column.display(caseItem)}" securityMember="#{caseItem.getOwner()}" />
+            <h:outputText id="owners" value="#{column.display(caseItem)}" />
+            <p:tooltip value="#{column.display(caseItem)}" for="owners" />
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'name'}">
@@ -111,7 +128,9 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">
-            <ui:include src="ActionsCell.xhtml" />
+            <ui:include src="ActionsCell.xhtml">
+              <ui:param name="ariaLabel" value="#{caseBean.getAriaLabel(caseItem, caseWidget.columns)}"></ui:param>
+            </ui:include>
           </h:panelGroup>
         </p:columns>
       </p:dataTable>
@@ -129,9 +148,9 @@
         </h:panelGroup>
         <h:panelGroup layout="block" id="empty-message-when-not-filter"
           rendered="#{!noCasesWhenFilter}">
-          <i class="si #{dashboardBean.noCasesMessage.icon} empty-message-icon" />
+          <i class="si #{dashboardCaseWidgetBean.noCasesMessage.icon} empty-message-icon" />
           <br />
-          <h:outputText value="#{dashboardBean.noCasesMessage.message}"
+          <h:outputText value="#{dashboardCaseWidgetBean.noCasesMessage.message}"
             styleClass="empty-message-text" />
         </h:panelGroup>
       </h:panelGroup>

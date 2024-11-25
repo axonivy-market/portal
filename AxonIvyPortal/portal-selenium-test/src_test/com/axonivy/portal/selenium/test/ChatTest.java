@@ -15,7 +15,7 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.ChatPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 import ch.ivyteam.ivy.project.portal.test.Responsible;
 
@@ -127,8 +127,9 @@ public class ChatTest extends BaseTest {
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPage = new NewDashboardPage().getChat();
     // Create chat group via task
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskTemplatePage taskTemplatePage = taskWidget.startTaskByIndex(0);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.clickChatGroup();
     if (participants.length != 0) {
@@ -153,9 +154,10 @@ public class ChatTest extends BaseTest {
 
   private void joinChatGroupWhichAlreadyHadChatGroup(TestAccount userJoined) {
     login(userJoined);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.filterTasksInExpandedModeBy("Sick Leave Request Default Case Details Page");
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.setInputForQuickSearch("Sick Leave Request Default Case Details Page");
+    TaskTemplatePage taskTemplatePage = taskWidget.startTaskByIndex(0);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.clickChatGroup();
     taskTemplatePage.joinProcessChatAlreadyCreated();

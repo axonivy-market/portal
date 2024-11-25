@@ -68,6 +68,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.previewImageModeProcess(CATEGORIED_LEAVE_REQUEST);
     editProcessWidgetConfiguration.getStartButton().shouldBe(Condition.disabled);
+    editProcessWidgetConfiguration.save();
     editProcessWidgetConfiguration.getDisabledMoreInformationLink().shouldBe(Condition.appear);
     editProcessWidgetConfiguration.getImageModeProcessImage()
         .shouldHave(Condition.attributeMatching(NewDashboardPage.SRC_ATTRIBUTE, NewDashboardPage.IMAGE_URI_PATTERN));
@@ -129,7 +130,8 @@ public class DashboardProcessWidgetTest extends BaseTest {
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.previewFullModeProcess(CATEGORIED_LEAVE_REQUEST);
     editProcessWidgetConfiguration.getStartButton().shouldBe(Condition.disabled);
-    editProcessWidgetConfiguration.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    editProcessWidgetConfiguration.save();
+    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
   }
 
   @Test

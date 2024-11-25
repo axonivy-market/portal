@@ -31,7 +31,6 @@ public class CaseDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 3048837559125720787L;
 
-  private int rowsPerPage = 5;
   @JsonIgnore
   private DashboardCaseLazyDataModel dataModel;
   @JsonIgnore
@@ -192,14 +191,6 @@ public class CaseDashboardWidget extends DashboardWidget {
     return DashboardWidgetType.CASE;
   }
 
-  public int getRowsPerPage() {
-    return rowsPerPage;
-  }
-
-  public void setRowsPerPage(int rowsPerPage) {
-    this.rowsPerPage = rowsPerPage;
-  }
-
   public List<DashboardFilter> getFilters() {
     return this.dataModel.getCriteria().getFilters();
   }
@@ -234,12 +225,17 @@ public class CaseDashboardWidget extends DashboardWidget {
     this.dataModel.getCriteria().setUserFilters(userFilters);
   }
 
+  @Override
   @JsonIgnore
   public void loadUserFilter() {
     updateSavedFiltersSelection();
 
     // Don't load user filters when already loaded from session
-    if (CollectionUtils.isNotEmpty(getUserFilters())) {
+    List<DashboardFilter> userFilters = getUserFilters();
+    if (CollectionUtils.isNotEmpty(userFilters)) {
+      // Clear temporary filters
+      setUserFilters(userFilters.stream().filter(filter -> !filter.isTemp())
+          .collect(Collectors.toList()));
       return;
     }
 

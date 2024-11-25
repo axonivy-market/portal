@@ -21,7 +21,7 @@ public class LibraryService{
 
   public Map<String, List<ILibrary>> collectLibraries() {
     Map<String, List<ILibrary>> libraries = new HashMap<>();
-    List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
+    List<IApplication> applicationsInSecurityContext = IApplicationRepository.of(ISecurityContext.current()).all();
     List<ReleaseState> displayStates = Arrays.asList(ReleaseState.RELEASED, ReleaseState.DEPRECATED);
     
     for (IApplication currentApp : applicationsInSecurityContext) {

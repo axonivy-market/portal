@@ -43,7 +43,7 @@
               <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewMode')}" for="view-mode-selection" styleClass="view-mode-text"/>
               <p:selectOneButton value="#{processWidgetBean.viewMode}" unselectable="false" id="view-mode-selection" widgetVar="view-mode-selection">
                 <f:selectItems value="#{processWidgetBean.processViewModes}"  var="mode" itemValue="#{mode}" itemLabel="#{mode.label}" />
-                <p:ajax update="process-view-mode #{cc.clientId}:process-list #{cc.clientId}:process-nav"
+                <p:ajax update="process-view-mode #{cc.clientId}:process-list"
                   oncomplete="processWidget.setup(); processWidget.hideLoadingText(); return false;" />
               </p:selectOneButton>
             </h:form>
@@ -53,7 +53,7 @@
 
       <p:remoteCommand id="init-process-data-cmd" autoRun="true" actionListener="#{processWidgetBean.initProcesses()}"
         async="true" process="@this"
-        update="process-list process-nav process-view-mode"
+        update="process-list process-view-mode"
         onstart="processWidget.removeStyleOnProcessStartList();"
         oncomplete="processWidget.setupScrollbar();processWidget.filter();processWidget.hideLoadingText();"/>
       <!-- Lazy loading -->
@@ -124,32 +124,13 @@
           </ui:repeat>
         </h:panelGroup>
       </h:panelGroup>
-
-        <!-- Process navigator -->
-      <h:panelGroup id="process-nav" layout="block" styleClass="process-nav js-process-nav u-invisibility" rendered="#{cc.attrs.hideProcessNavigation}">
-        <div class="js-character-container character-container">
-          <p:commandLink styleClass="process-nav-item js-process-nav-item js-process-starts-with-reset" value="All"
-            onclick="resetGridViewProcesses(event)" global="false" rendered="#{processWidgetBean.viewMode ne 'COMPACT'}" />
-          <p:commandLink id="expand-all-btn" rendered="#{processWidgetBean.compactMode}" onclick="expandOrCollapseAllCategories(true); return false;"
-            styleClass="si si-add expand-collapse-btn process-nav-item"
-            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ExpandAll')}" />
-          <p:commandLink id="collapse-all-btn" rendered="#{processWidgetBean.compactMode}" onclick="expandOrCollapseAllCategories(false); return false;"
-            styleClass="si si-subtract expand-collapse-btn process-nav-item"
-            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/CollapseAll')}" />
-
-          <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character">
-            <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-nav-item js-process-starts-with-#{character.key}"
-              onclick="jumpToProcessGroupByCharacter(event, #{processWidgetBean.compactMode})" global="false" />
-          </ui:repeat>
-        </div>
-      </h:panelGroup>
     </div>
   </div>
 
   <ui:include src="ProcessWidgetDialogs.xhtml" />
 
   <h:form>
-    <p:remoteCommand name="updateProcessListOnSaveSuccessful" update="#{cc.clientId}:process-list #{cc.clientId}:process-nav"
+    <p:remoteCommand name="updateProcessListOnSaveSuccessful" update="#{cc.clientId}:process-list #{cc.clientId}"
       oncomplete="processWidget.setup();processWidget.hideLoadingText();"/>
   </h:form>
 

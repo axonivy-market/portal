@@ -673,7 +673,7 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 
 .not-display-result-tab-view {
   font-size: var(--default-font-size); }
-
+  
 /** Style for Task Template * --------------------------------------*/
 .task-template-title {
   font-size: var(--large-font-size);
@@ -965,9 +965,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   font-size: var(--delete-deputy-icon-font-size); }
 
 /*Awesome Icon Selection--------------------------*/
-.ui-commandlink.select-awesome-icon-button {
-  font-weight: var(--select-awesome-icon-button-font-weight);
-  font-size: var(--small-font-size); }
 
 .icon-selection-dialog-selecting-icon:hover {
   border: solid 1px; }
@@ -1178,7 +1175,8 @@ ul.users-in-role {
   font-size: var(--header-font-size); }
 
 .action-link span {
-  font-weight: var(--task-action-item-label-font-weight); }
+  font-weight: var(--task-action-item-label-font-weight);
+}
 
 .task-action-item.start-task-action .task-action-item-label {
   font-weight: var(--task-start-action-font-weight);
@@ -1273,6 +1271,10 @@ color: var(--button-text-color);
 
 .portal-dialog-info-icon {
   color: var(--primary-color);
+}
+
+.dasboard-configuration-action-menu-icon {
+  color: white;
 }
 
 .portal-dialog-warning-icon {
@@ -1374,8 +1376,7 @@ body.in-dialog .ui-widget-overlay {
 }
 
 .dashboard-action-container {
-  box-shadow:  var(--item-widget-box-shadow);
-  background-color: var(--item-widget-background-color);
+  border: 1px solid var(--dashboard-action-container-border-color);
 }
 
 .dashboard-action-container:hover {
@@ -1384,15 +1385,15 @@ body.in-dialog .ui-widget-overlay {
 }
 
 .dashboard-action-container-label {
-  color: var(--primary-dark-text-color);
+  color: var(--dashboard-action-container-text-color);
 }
 
 .dashboard-action-container-description {
-  color: var(--primary-dark-text-color);
+  color: var(--dashboard-action-container-description-color);
 }
 
 .dashboard-action-container-icon {
-  color: var(--primary-dark-text-color);
+  color: var(--dashboard-action-container-text-color);
 }
 
 .dashboard-type-list li a {
@@ -1499,16 +1500,10 @@ body .notification-full-scroll>.ui-datascroller-content  {
   overflow:auto;
 }
 
-body .notification-checkbox .ui-chkbox-box {
-  width: 1rem;
-  height: 1rem;
-}
-
 .notifications-item-container {
   padding: 20px 15px 5px 15px;
   display: block;
   overflow: hidden;
-  background-color: var(--notification-title-color)
 }
 
 .notifications-icon {
@@ -1607,8 +1602,7 @@ body .notification-checkbox .ui-chkbox-box {
 }
 
 i.dashboard-icon-drag-drop {
-    border: 1px solid var(--ivy-primary-color);
-    color: var(--ivy-primary-color);
+    color: var(--dashboard-icon-drag-drop-color);
     width: 2.357rem;
     border-radius: 50%;
     text-align: center;
@@ -1769,3 +1763,27 @@ body.light .focused {
 body.dark .focused {
   outline: 2px solid white;
 }
+
+.screenreader-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* ============== DIALOG FOOTER - CONFIRMATION DIALOG ============================  **/
+.ui-leave-button {
+  color: var(--text-color) !important;
+  background-color: var(--ui-leave-button-color) !important;
+  border: 1px solid var(--ui-leave-button-color) !important;
+}
+.ui-leave-button,
+.ui-reserve-task-button,
+.ui-cancel-button {
+  font-weight: 600;
+}
+/* ====END OF==== DIALOG FOOTER - CONFIRMATION DIALOG ============================  **/

@@ -67,13 +67,16 @@
             style="float: right; margin-top: 20px;" />
         </div>
       </h:form>
-      <script>
-        window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};
-        window.currentProcessStep = 0;
-        window.processChainDirection = "VERTICAL";
-        window.processChainShape = "LINE";
-        window.viewName = "TASK_DETAIL";
-      </script>
+      <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="0"
+        processChainDirection="VERTICAL" processChainShape="LINE" viewName="TASK_DETAIL"/>
+      <!-- You could also configure by Javascript -->
+      <!-- <script> -->
+      <!--   window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)}; -->
+      <!--   window.currentProcessStep = 0; -->
+      <!--   window.processChainDirection = "VERTICAL"; -->
+      <!--   window.processChainShape = "LINE"; -->
+      <!--   window.viewName = "TASK_DETAIL"; -->
+      <!-- </script> -->
     </ui:define>
   </ui:composition>
 </h:body>

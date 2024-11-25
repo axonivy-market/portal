@@ -1,9 +1,14 @@
 package com.axonivy.portal.selenium.page;
 
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
+import java.util.List;
 
 import org.openqa.selenium.By;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class SearchResultPage extends TemplatePage {
@@ -50,22 +55,26 @@ public class SearchResultPage extends TemplatePage {
   }
 
   public String getCaseResult(int index) {
-    CaseWidgetPage caseWidgetPage = getCaseWidget();
-    return caseWidgetPage.getCaseNameAt(index);
+    waitCaseWidgetLoaded();
+    waitForElementDisplayed(By.className("js-case-list"), true);
+    SelenideElement name =
+        $("[id$='case-list-scroller:" + index + ":case-item:case-name-component:case-header-name-cell']");
+    return name.getText();
   }
 
   public int countCase() {
-    CaseWidgetPage caseWidgetPage = getCaseWidget();
-    return caseWidgetPage.getNumberOfCases();
+    waitCaseWidgetLoaded();
+    ElementsCollection caseItems = $$("li[class='ui-datascroller-item']");
+    return caseItems.size();
   }
 
-  private CaseWidgetPage getCaseWidget() {
-    return new CaseWidgetPage("search-results-tabview:case-results");
+  private void waitCaseWidgetLoaded() {
+    $(".js-case-widget-header").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public boolean isCaseResultEmpty() {
-    CaseWidgetPage caseWidgetPage = getCaseWidget();
-    return caseWidgetPage.isEmpty();
+    waitCaseWidgetLoaded();
+    return isElementDisplayed(By.id("search-results-tabview:case-results:case-empty-message"));
   }
 
   public boolean isProcessGroupDisplay(String group) {

@@ -18,6 +18,7 @@
   --cancel-button-background-color: var(--ivy-primary-color-grey-light);
   --cancel-button-state-hover-or-focus-background-color: var(--ivy-primary-color-grey-pale);
   --portal-button-color: var(--ivy-primary-color-white);
+  --saved-filter-button-background-color: var(--ivy-primary-color-grey-light);
   
   /* Color of secondary button */
   --button-secondary-bg-color: var(--ivy-primary-color-white);
@@ -79,6 +80,7 @@
   --filter-name-label-color: var(--ivy-primary-color-grey-medium);
   --filter-selection-container-group-border-color: var(--ivy-primary-color-grey-medium);
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
+  --widget-filter-background-color: var(--ivy-primary-color-grey-dark);
 
   /* Item in Widget List */
   --item-widget-background-color: var(--ivy-primary-color-grey-dark);
@@ -195,11 +197,16 @@
   --admin-setting-no-permission-message-color: #e53935;
   --user-setting-container-box-shadow: rgba(43, 59, 93, 0.6);
   --email-setting-widget-header: var(--ivy-primary-color-white);
+  --portal-accessibility-bg-color: hsla(var(--ivy-primary-light-color-h), var(--ivy-primary-light-color-s), 95%, 1) !important;
+  --portal-button-bg-color: #293241;
+  --portal-button-text-color: var(--ivy-primary-color);
   /* Absences and Deputy */
   --substituted-user-text-color: var(--ivy-primary-color-black);
   /* Awesome Icon Selection */
   --content-link-change-awesome-icon-color: var(--primary-color);
   --select-awesome-icon-button-font-weight: bold;
+  --selected-icon-bg-color: var(--ivy-portal-color-gray-dark);
+  --icon-color: var(--ivy-primary-color-white);
   /* Start Notification */
   --notification-content-background-color: var(--ivy-tertinary-color-red-dark);
   --notification-content-action-color: var(--ivy-primary-color-white);
@@ -280,7 +287,7 @@
   --ui-data-picker-header-color: var(--ivy-primary-color-grey-pale);
   --ui-data-picker-title-border-color: var(--ivy-primary-color-grey-pale);
   --ui-data-picker-title-background-color: var(--ivy-primary-color-grey-pale);
-  --ui-fileupload-buttonbar-background-color: var(--ivy-primary-color-grey-light);
+  --ui-fileupload-buttonbar-background-color: var(--ivy-portal-color-gray-20);
   --ui-transparent-button-hover-background-color: transparent;
   --menu-item-link-color: var(--ivy-primary-color-black);
   --menu-item-link-hover-background-color: var(--ivy-primary-color-grey-pale);
@@ -291,6 +298,8 @@
   --place-holder-text-color: var(--ivy-primary-color-grey-medium);
   --text-tab-default-color: var(--ivy-primary-color-grey-medium);
   --no-item-icon-color: var(--ivy-primary-color-grey-light);
+  --user-menu-items-border-color: var(--ivy-portal-color-gray-dark);
+  
   /* Portal breadcrumb */
   --breadcrumb-background-color: transparent;
   --breadcrumb-home-icon-color: var(--primary-color);
@@ -325,7 +334,6 @@
   /* News Widget */
   --news-item-background: rgb(62, 71, 84);
   /* Notification */
-  --notification-title-color: var(--notification-background-color);
   --notification-panel-color: var(--notification-background-color);
   --notification-hover-message-color: #394457;
     /*Notification channels*/
@@ -337,4 +345,20 @@
   
     /* Dashboard widgets empty message*/
   --dashboard-widget-empty-message: var(--ivy-primary-color-grey-pale);
+  
+  --accessibility-shortcut-bg-color: var(--ivy-primary-color-grey-dark);
+  --accessibility-bg-color: var(--task-state-system-color);
+  --accessibility-shortcut-text-color: var(--ivy-primary-color-black);
+
+  /* Confirmation dialog footer button*/
+  --ui-leave-button-color: var(--ivy-primary-color-grey-dark);
+
+  /* Dashboard configuration*/
+  --dashboard-action-container-text-color: var(--ivy-primary-color-white);
+  --dashboard-action-container-border-color: var(--ivy-primary-color-grey-medium);
+  --dashboard-action-container-description-color: var(--ivy-primary-color-grey-medium);
+  --dashboard-icon-drag-drop-color: var(--ivy-primary-color-grey-medium);
+  
+    /* Leave task warning message*/
+  --warning-before-leave-task: var(--ivy-primary-color-grey-medium);
 }

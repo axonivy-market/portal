@@ -202,7 +202,7 @@ a.left-sidebar-menu-icon {
   position: absolute;
   top: 0;
   right: 0;
-  transform: translate(-25%, 30%);
+  transform: translate(-10%, 30%);
 }
 /* END APPLICATION MENU */
 
@@ -311,11 +311,23 @@ a.left-sidebar-menu-icon {
 }
 
 .ui-confirm-dialog-message li {
-  list-style-type: circle;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--warning-before-leave-task);
 }
 
 .ui-confirm-dialog-message ul {
-  line-height: 19px
+  line-height: 19px;
+  margin-bottom: 0;
+}
+
+.ui-confirm-dialog-message div {
+  text-align: center;
+  font-size: 18px;
+}
+
+.warning-before-leaving-task .ui-dialog-content.ui-widget-content {
+  padding-top: 0;
 }
 /******** CHAT ********/
 .chat-add-assignee-button-grid, .chat-action-container {

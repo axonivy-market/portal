@@ -6,12 +6,12 @@ Configure Notifications Widget
 Define Notifications Widget
 ---------------------------
 
-The Notifications widget of the Portal dashboard displays all Notifications based on your notification settings. Refer
+The Notifications widget of the Portal dashboard displays all notifications based on your notification settings. Refer
 to :ref:`Notifications widget <add-new-notification-widget>` for details.
 
 Below is a sample JSON definition of a notification widget in the Portal dashboard
 
-.. code-block:: html
+.. code-block:: javascript
 
    {
       "type": "notification",

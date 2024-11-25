@@ -31,6 +31,7 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -84,7 +85,7 @@ public class UserMenuBean implements Serializable {
     boolean isShowGlobalSearchByTasks = GlobalSearchService.getInstance().isShowGlobalSearchByTasks();
     boolean isShowGlobalSearchByCases = GlobalSearchService.getInstance().isShowGlobalSearchByCases();
     isShowGlobalSearch = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_GLOBAL_SEARCH)
-        && (isShowGlobalSearchByProcesses || isShowGlobalSearchByCases || isShowGlobalSearchByTasks);;
+        && (isShowGlobalSearchByProcesses || isShowGlobalSearchByCases || isShowGlobalSearchByTasks);
     isShowQuickGlobalSearch = GlobalSettingService.getInstance()
         .findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_QUICK_GLOBAL_SEARCH)
         && (isShowGlobalSearchByProcesses || isShowGlobalSearchByCases || isShowGlobalSearchByTasks);
@@ -210,7 +211,7 @@ public class UserMenuBean implements Serializable {
   private void executeJSResetPortalMenuState() {
     PrimeFaces.current().executeScript("resetPortalLeftMenuState()");
   }
-  
+
   private void openTaskLosingConfirmationDialog() {
     PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
   }
@@ -257,13 +258,21 @@ public class UserMenuBean implements Serializable {
   public void navigateToUserProfile() throws IOException {
     getExternalContext().redirect(getUserProfileUrl());
   }
-  
+
+  public void navigateToAssistantDashboard() throws IOException {
+    getExternalContext().redirect(getAssistantDashboardUrl());
+  }
+
   private void navigateToTargetPage() throws IOException {
     getExternalContext().redirect(targetPage);
   }
   
   private String getUserProfileUrl() {
     return PortalNavigator.buildUserProfileUrl();
+  }
+
+  private String getAssistantDashboardUrl() {
+    return PortalNavigator.buildAssistantDashboardUrl();
   }
 
   private void navigateToPortalManagement() throws IOException {
@@ -368,4 +377,17 @@ public class UserMenuBean implements Serializable {
     return GOOGLE_PLAY_IMAGE_CMS_URL;
   }
 
+  public String getInfoToHighlightMenu() {
+    return DashboardUtils.getSelectedMainDashboardIdFromSession();
+  }
+
+  public void navigateToChatBotOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      openTaskLosingConfirmationDialog();
+      targetPage = getAssistantDashboardUrl();
+    } else {
+      executeJSResetPortalMenuState();
+      navigateToAssistantDashboard();
+    }
+  }
 }

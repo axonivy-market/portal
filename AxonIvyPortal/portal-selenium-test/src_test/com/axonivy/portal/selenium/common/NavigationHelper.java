@@ -2,9 +2,9 @@ package com.axonivy.portal.selenium.common;
 
 import static com.codeborne.selenide.Selenide.open;
 
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
 
 public class NavigationHelper {
   private static final String TASK_LIST_PAGE_URL = "portal/1549F58C18A6C562/DefaultTaskListPage.ivp";
@@ -19,14 +19,14 @@ public class NavigationHelper {
     }
   }
 
-  public static TaskWidgetPage navigateToTaskList() {
+  public static NewDashboardPage navigateToTaskList() {
     navigateToRelativeLink(TASK_LIST_PAGE_URL);
-    return new TaskWidgetPage();
+    return new NewDashboardPage();
   }
 
-  public static CaseWidgetPage navigateToCaseList() {
+  public static CaseWidgetNewDashBoardPage navigateToCaseList() {
     navigateToRelativeLink(CASE_LIST_PAGE_URL);
-    return new CaseWidgetPage();
+    return new CaseWidgetNewDashBoardPage();
   }
 
   public static ProcessWidgetPage navigateToProcessList() {

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "150F0B4F8F3CB2CB",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -939,87 +939,6 @@
         { "id" : "f70", "to" : "f190" }
       ]
     }, {
-      "id" : "f64",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "publishAnnouncement()",
-      "config" : {
-        "signature" : "publishAnnouncement",
-        "guid" : "16A29A0E1F97DE40"
-      },
-      "visual" : {
-        "at" : { "x" : 320, "y" : 1376 },
-        "labelOffset" : { "x" : 15, "y" : -15 }
-      },
-      "connect" : [
-        { "id" : "f82", "to" : "f81" }
-      ]
-    }, {
-      "id" : "f65",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "depublishAnnouncement()",
-      "config" : {
-        "signature" : "depublishAnnouncement",
-        "guid" : "16A29A0F2F82745C"
-      },
-      "visual" : {
-        "at" : { "x" : 512, "y" : 1376 },
-        "labelOffset" : { "x" : 15, "y" : -15 }
-      },
-      "connect" : [
-        { "id" : "f86", "to" : "f85" }
-      ]
-    }, {
-      "id" : "f81",
-      "type" : "Script",
-      "name" : "publish",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
-            "import ch.ivy.addon.portalkit.service.AnnouncementService;",
-            "AnnouncementService service = AnnouncementService.getInstance();",
-            "in.announcement.setEnabled(true);",
-            "service.save(in.announcement);",
-            "out.isAnnouncementActivated = true;",
-            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
-            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"), null));"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 320, "y" : 1472 }
-      },
-      "connect" : [
-        { "id" : "f27", "to" : "f16", "via" : [ { "x" : 320, "y" : 1568 } ] }
-      ]
-    }, {
-      "id" : "f85",
-      "type" : "Script",
-      "name" : "depublish",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
-            "import ch.ivy.addon.portalkit.service.AnnouncementService;",
-            "AnnouncementService service = AnnouncementService.getInstance();",
-            "service.deactivateAnnouncement();",
-            "out.isAnnouncementActivated = false;",
-            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
-            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled\"), null));"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 512, "y" : 1472 }
-      },
-      "connect" : [
-        { "id" : "f58", "to" : "f16" }
-      ]
-    }, {
       "id" : "f87",
       "type" : "HtmlDialogMethodStart",
       "name" : "isApplicationDefaultEmailLanguage(String)",
@@ -1046,7 +965,7 @@
         "guid" : "16A33CB19C2E90CF"
       },
       "visual" : {
-        "at" : { "x" : 920, "y" : 1384 },
+        "at" : { "x" : 656, "y" : 1376 },
         "labelOffset" : { "x" : 47, "y" : -16 }
       },
       "connect" : [
@@ -1056,7 +975,7 @@
       "id" : "f89",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 920, "y" : 1560 }
+        "at" : { "x" : 656, "y" : 1568 }
       }
     }, {
       "id" : "f31",
@@ -1175,7 +1094,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 128, "y" : 1472 }
+        "at" : { "x" : 128, "y" : 1456 }
       },
       "connect" : [
         { "id" : "f84", "to" : "f83" }
@@ -1229,7 +1148,7 @@
         "labelOffset" : { "x" : 17, "y" : -11 }
       },
       "connect" : [
-        { "id" : "f52", "to" : "f56" }
+        { "id" : "f27", "to" : "f56" }
       ]
     }, {
       "id" : "f83",
@@ -1262,28 +1181,10 @@
         "at" : { "x" : 704, "y" : 1264 }
       }
     }, {
-      "id" : "f16",
-      "type" : "Script",
-      "name" : "update messages",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.bean.AdminSettingBean;",
-            "AdminSettingBean.updatePortalManagementMessages();"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 512, "y" : 1568 }
-      },
-      "connect" : [
-        { "id" : "f25", "to" : "f24" }
-      ]
-    }, {
       "id" : "f24",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 512, "y" : 1664 }
+        "at" : { "x" : 392, "y" : 1568 }
       }
     }, {
       "id" : "f61",
@@ -1326,18 +1227,33 @@
             "import javax.faces.application.FacesMessage;",
             "import javax.faces.context.FacesContext;",
             "import ch.ivy.addon.portalkit.service.AnnouncementService;",
+            "import ch.ivy.addon.portalkit.bean.AdminSettingBean;",
+            "",
             "AnnouncementService service = AnnouncementService.getInstance();",
-            "service.saveValueChangeAnnouncement(in.announcement);",
-            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
-            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"), null));"
+            "",
+            "if (in.isAnnouncementActivated) {",
+            "  in.announcement.setEnabled(true);",
+            "  service.save(in.announcement);",
+            "  out.isAnnouncementActivated = true;",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
+            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled\"), null));",
+            "} else {",
+            "  service.deactivateAnnouncement();",
+            "  service.saveValueChangeAnnouncement(in.announcement);",
+            "  out.isAnnouncementActivated = false;",
+            "  FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, ",
+            "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled\"), null));",
+            "}",
+            "",
+            "AdminSettingBean.updatePortalManagementMessages();"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 728, "y" : 1472 }
+        "at" : { "x" : 392, "y" : 1456 }
       },
       "connect" : [
-        { "id" : "f78", "to" : "f16", "via" : [ { "x" : 728, "y" : 1568 } ] }
+        { "id" : "f16", "to" : "f24" }
       ]
     }, {
       "id" : "f28",
@@ -1348,7 +1264,7 @@
         "guid" : "19131B2C06569468"
       },
       "visual" : {
-        "at" : { "x" : 728, "y" : 1376 },
+        "at" : { "x" : 392, "y" : 1376 },
         "labelOffset" : { "x" : 11, "y" : -13 }
       },
       "connect" : [

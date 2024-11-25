@@ -1,24 +1,20 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "CaseNoteHistoryData",
   "namespace" : "ch.ivy.addon.portal.generic.CaseNoteHistory",
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "histories",
-    "type" : "List<ch.ivy.addon.portalkit.bo.History>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "List<ch.ivy.addon.portalkit.bo.History>"
   }, {
     "name" : "exportedFileName",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "String"
   }, {
     "name" : "filteredHistories",
-    "type" : "List<ch.ivy.addon.portalkit.bo.History>",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "List<ch.ivy.addon.portalkit.bo.History>"
   }, {
     "name" : "ivyCase",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   }, {
     "name" : "showRelatedCaseInfo",
     "type" : "Boolean",

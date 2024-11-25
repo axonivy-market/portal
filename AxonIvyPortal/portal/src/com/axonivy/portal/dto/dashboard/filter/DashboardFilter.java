@@ -46,11 +46,17 @@ public class DashboardFilter implements Serializable {
   public static final String CREATED_DATE = "startTimestamp";
 
   @JsonIgnore
-  public static final String DATE_FORMAT = "MM/dd/yyyy";
+  public static final String DATE_FORMAT = "MM/dd/yyyy HH:mm";
   
   @JsonIgnore
-  public static final String DMY_DATE_FORMAT = "dd.MM.yyyy";
-
+  public static final String DATE_FORMAT_WITHOUT_TIME = "MM/dd/yyyy";
+  
+  @JsonIgnore
+  public static final String DMY_DATE_FORMAT = "dd.MM.yyyy HH:mm";
+  
+  @JsonIgnore
+  public static final String DMY_DATE_FORMAT_WITHOUT_TIME = "dd.MM.yyyy";
+  
   @JsonIgnore
   private static final String DEFAULT = "default";
 
@@ -230,7 +236,7 @@ public class DashboardFilter implements Serializable {
   public Date getFromDate() {
     if (fromDate == null && StringUtils.isNotBlank(from)) {
       try {
-        fromDate = DateUtils.parseDate(from, DATE_FORMAT, DMY_DATE_FORMAT);
+        fromDate = DateUtils.parseDate(from, DATE_FORMAT, DMY_DATE_FORMAT, DATE_FORMAT_WITHOUT_TIME, DMY_DATE_FORMAT_WITHOUT_TIME);
       } catch (ParseException e) {
         throw new PortalException("Cannot parse date " + from, e);
       }
@@ -247,7 +253,7 @@ public class DashboardFilter implements Serializable {
   public Date getToDate() {
     if (toDate == null && StringUtils.isNotBlank(to)) {
       try {
-        toDate = DateUtils.parseDate(to, DATE_FORMAT, DMY_DATE_FORMAT);
+        toDate = DateUtils.parseDate(to, DATE_FORMAT, DMY_DATE_FORMAT, DATE_FORMAT_WITHOUT_TIME, DMY_DATE_FORMAT_WITHOUT_TIME);
       } catch (ParseException e) {
         throw new PortalException("Cannot parse date " + to, e);
       }

@@ -8,7 +8,7 @@ User Menu
 Introduction
 ------------
 
-The user menu is configurable. The user can add, remove and edit user items.
+User menu is configurable. The user can add, remove and edit user items.
 
 These types of user items are available:
 
@@ -34,7 +34,7 @@ item.
 
 Below is a JSON example for the configuration of user items.
 
-.. code-block:: html
+.. code-block:: javascript
 
   [
       {

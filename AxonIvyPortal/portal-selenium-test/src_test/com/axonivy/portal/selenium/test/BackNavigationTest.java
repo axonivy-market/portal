@@ -13,10 +13,11 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 
 @IvyWebTest
@@ -30,10 +31,12 @@ public class BackNavigationTest extends BaseTest {
   private static final String PAYMENT_CASE_NAME = "Create New Payment";
   private static final String PAYMENT_TASK_NAME = "Do New Payment";
   private static final String SIGNAL_NEW_PAYMENT = "Signal create New Payment";
+  private static final String DASHBOARD_TASK_NAME = "Maternity Leave Request";
+
   private CaseDetailsPage caseDetailsPage;
-  private CaseWidgetPage caseWidgetPage;
+  private CaseWidgetNewDashBoardPage caseWidgetPage;
   private TaskDetailsPage taskDetailsPage;
-  private TaskWidgetPage taskWidgetPage;
+  private NewDashboardPage taskWidgetPage;
 
   @Override
   @BeforeEach
@@ -45,14 +48,14 @@ public class BackNavigationTest extends BaseTest {
   @Test
   public void testEnterTaskDetailAndGoBack() {
     createTestingTasks();
-    taskWidgetPage = NavigationHelper.navigateToTaskList();
-
-    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskDetailsPage = taskWidget.openDashboardTaskDetails(DASHBOARD_TASK_NAME);
     taskDetailsPage.assertPageTitle(TASK_DETAILS_TITLE);
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
     taskWidgetPage.assertPageTitle(TASK_LIST_TITLE);
-
-    taskDetailsPage = taskWidgetPage.openTaskDetailsFromActionMenu(0);
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskDetailsPage = taskWidget.openTaskDetailsPageByAction(0);
     taskDetailsPage.assertPageTitle(TASK_DETAILS_TITLE);
 
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
@@ -64,7 +67,7 @@ public class BackNavigationTest extends BaseTest {
     createTestingTasks();
     caseWidgetPage = NavigationHelper.navigateToCaseList();
 
-    caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName(LEAVE_REQUEST_CASE_NAME);
+    caseDetailsPage = caseWidgetPage.openDetailsCase(LEAVE_REQUEST_CASE_NAME);
     caseDetailsPage.waitPageLoaded();
     caseDetailsPage.assertPageTitle(CASE_DETAILS_TITLE);
     caseWidgetPage = caseDetailsPage.goBackToCaseListFromCaseDetails();
@@ -76,7 +79,7 @@ public class BackNavigationTest extends BaseTest {
     createTestingTasks();
     caseWidgetPage = NavigationHelper.navigateToCaseList();
 
-    caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName(LEAVE_REQUEST_CASE_NAME);
+    caseDetailsPage = caseWidgetPage.openDetailsCase(LEAVE_REQUEST_CASE_NAME);
     caseDetailsPage.waitPageLoaded();
 
     TaskDetailsPage taskDetailsPage = caseDetailsPage.openTasksOfCasePage("Sick Leave Request");
@@ -102,7 +105,7 @@ public class BackNavigationTest extends BaseTest {
     redirectToRelativeLink(createNewPaymentUrl);
     caseWidgetPage = NavigationHelper.navigateToCaseList();
 
-    caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName(PAYMENT_CASE_NAME);
+    caseDetailsPage = caseWidgetPage.openDetailsCase(PAYMENT_CASE_NAME);
     caseDetailsPage.gotoCaseDetailsPageOfRelatedCase(SIGNAL_NEW_PAYMENT);
     caseDetailsPage.waitPageLoaded();
     assertEquals(SIGNAL_NEW_PAYMENT, caseDetailsPage.getCaseName());
@@ -120,7 +123,7 @@ public class BackNavigationTest extends BaseTest {
     redirectToRelativeLink(simplePaymentUrl);
     caseWidgetPage = NavigationHelper.navigateToCaseList();
 
-    caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName(PAYMENT_CASE_NAME);
+    caseDetailsPage = caseWidgetPage.openDetailsCase(PAYMENT_CASE_NAME);
 
     assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
@@ -151,7 +154,7 @@ public class BackNavigationTest extends BaseTest {
     redirectToRelativeLink(simplePaymentUrl);
     caseWidgetPage = NavigationHelper.navigateToCaseList();
 
-    caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName(PAYMENT_CASE_NAME);
+    caseDetailsPage = caseWidgetPage.openDetailsCase(PAYMENT_CASE_NAME);
 
     taskDetailsPage = caseDetailsPage.openTasksOfCasePage(PAYMENT_TASK_NAME);
 

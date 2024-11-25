@@ -46,7 +46,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
     var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     configurationPage.openCreatePublicDashboardMenu();
     configurationPage.createPublicDashboardFromScratch(DASHBOARD_NAME, ICON, DASHBOARD_DESCRIPTION,
-        DASHBOARD_PERMISSION);
+        DASHBOARD_PERMISSION, false);
     verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.empty);
     addNewCaseWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();

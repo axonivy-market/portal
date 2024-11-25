@@ -1,62 +1,11 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "172546E1FDEB1FF7",
   "kind" : "HTML_DIALOG",
   "config" : {
     "data" : "ch.ivy.addon.portal.setting.UserProfile.UserProfileData"
   },
   "elements" : [ {
-      "id" : "S90",
-      "type" : "EmbeddedProcess",
-      "name" : "Save Sort Setting",
-      "elements" : [ {
-          "id" : "S90-f17",
-          "type" : "Script",
-          "name" : "Save sort fields",
-          "config" : {
-            "output" : {
-              "code" : [
-                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
-                "UserSettingService.newInstance().saveDefaultSortFieldOfTaskList(in.selectedTaskListSortField, in.selectedTaskListSortDirection);",
-                "UserSettingService.newInstance().saveDefaultSortFieldOfCaseList(in.selectedCaseListSortField, in.selectedCaseListSortDirection);"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 192, "y" : 160 }
-          },
-          "connect" : [
-            { "id" : "S90-f1", "to" : "S90-g1" }
-          ]
-        }, {
-          "id" : "S90-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 18, "y" : 25 }
-          },
-          "parentConnector" : "f5",
-          "connect" : [
-            { "id" : "S90-f0", "to" : "S90-f17" }
-          ]
-        }, {
-          "id" : "S90-g1",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 320, "y" : 160 },
-            "labelOffset" : { "x" : 21, "y" : 25 }
-          },
-          "parentConnector" : "f9"
-        } ],
-      "visual" : {
-        "at" : { "x" : 640, "y" : 280 }
-      },
-      "connect" : [
-        { "id" : "f9", "to" : "S00" }
-      ]
-    }, {
       "id" : "S70",
       "type" : "EmbeddedProcess",
       "name" : "Save General Setting",
@@ -110,7 +59,7 @@
         "size" : { "width" : 128 }
       },
       "connect" : [
-        { "id" : "f5", "to" : "S90" }
+        { "id" : "f5", "to" : "S00" }
       ]
     }, {
       "id" : "S60",
@@ -168,7 +117,7 @@
             "at" : { "x" : 3, "y" : 160 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
-          "parentConnector" : "f20",
+          "parentConnector" : "f4",
           "connect" : [
             { "id" : "S60-f0", "to" : "S60-f11" }
           ]
@@ -187,133 +136,6 @@
       },
       "connect" : [
         { "id" : "f26", "to" : "f8" }
-      ]
-    }, {
-      "id" : "S20",
-      "type" : "EmbeddedProcess",
-      "name" : "Init Sort Setting",
-      "elements" : [ {
-          "id" : "S20-f10",
-          "type" : "Script",
-          "name" : "Init sort directions",
-          "config" : {
-            "output" : {
-              "code" : [
-                "import org.apache.commons.lang3.StringUtils;",
-                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
-                "import ch.ivy.addon.portalkit.enums.SortDirection;",
-                "import java.util.ArrayList;",
-                "",
-                "if (in.sortDirections == null || in.sortDirections.isEmpty()) {",
-                "  String defaultOption = UserSettingService.DEFAULT;",
-                "",
-                "  in.sortDirections = new ArrayList();",
-                "  in.sortDirections.add(defaultOption);",
-                "  for (SortDirection direction : SortDirection.values()) {",
-                "    in.sortDirections.add(direction.name());",
-                "  }",
-                "",
-                "  in.selectedTaskListSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfTaskList();",
-                "  if (StringUtils.isBlank(in.selectedTaskListSortDirection)) {",
-                "    in.selectedTaskListSortDirection = defaultOption;",
-                "  }",
-                "",
-                "  in.selectedCaseListSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfCaseList();",
-                "  if (StringUtils.isBlank(in.selectedCaseListSortDirection)) {",
-                "    in.selectedCaseListSortDirection = defaultOption;",
-                "  }",
-                "}"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 192, "y" : 160 }
-          },
-          "connect" : [
-            { "id" : "S20-f23", "to" : "S20-f20" }
-          ]
-        }, {
-          "id" : "S20-f20",
-          "type" : "Script",
-          "name" : "Init sort fields",
-          "config" : {
-            "output" : {
-              "code" : [
-                "import ch.ivy.addon.portalkit.enums.CaseSortField;",
-                "import ch.ivy.addon.portalkit.enums.TaskSortField;",
-                "import org.apache.commons.lang3.StringUtils;",
-                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
-                "import java.util.Optional;",
-                "import ch.ivy.addon.portalkit.enums.CaseSortField;",
-                "import ch.ivy.addon.portalkit.enums.TaskSortField;",
-                "import java.util.ArrayList;",
-                "",
-                "String defaultOption = UserSettingService.DEFAULT;",
-                "",
-                "if (in.taskListSortFields == null || in.taskListSortFields.isEmpty()) {",
-                "  in.taskListSortFields = new ArrayList();",
-                "  in.taskListSortFields.add(defaultOption);",
-                "",
-                "  for (TaskSortField sortField : TaskSortField.values()) {",
-                "     // Task category sort not yet available",
-                "    if (StringUtils.isNotBlank(sortField.getLabel()) && sortField != TaskSortField.CATEGORY) {",
-                "      in.taskListSortFields.add(sortField.name());",
-                "    }",
-                "  }",
-                "",
-                "  in.selectedTaskListSortField = Optional.ofNullable(UserSettingService.newInstance().getDefaultSortFieldOfTaskList()).orElse(defaultOption) as String;",
-                "}",
-                "",
-                "if (in.caseListSortFields == null || in.caseListSortFields.isEmpty()) {",
-                "  in.caseListSortFields = new ArrayList();",
-                "  in.caseListSortFields.add(defaultOption);",
-                "",
-                "  ",
-                "  for (CaseSortField sortField : CaseSortField.values()) {",
-                "    // Case category sort not yet available",
-                "    if (StringUtils.isNotBlank(sortField.getLabel()) && sortField != CaseSortField.CATEGORY) {",
-                "      in.caseListSortFields.add(sortField.name());",
-                "    }",
-                "  }",
-                "",
-                "  in.selectedCaseListSortField = Optional.ofNullable(UserSettingService.newInstance().getDefaultSortFieldOfCaseList()).orElse(defaultOption) as String;",
-                "}"
-              ]
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 352, "y" : 160 }
-          },
-          "connect" : [
-            { "id" : "S20-f1", "to" : "S20-g1" }
-          ]
-        }, {
-          "id" : "S20-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 160 },
-            "labelOffset" : { "x" : 18, "y" : 25 }
-          },
-          "parentConnector" : "f4",
-          "connect" : [
-            { "id" : "S20-f0", "to" : "S20-f10" }
-          ]
-        }, {
-          "id" : "S20-g1",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 480, "y" : 160 },
-            "labelOffset" : { "x" : 21, "y" : 25 }
-          },
-          "parentConnector" : "f20"
-        } ],
-      "visual" : {
-        "at" : { "x" : 624, "y" : 144 }
-      },
-      "connect" : [
-        { "id" : "f20", "to" : "S60" }
       ]
     }, {
       "id" : "S40",
@@ -365,18 +187,12 @@
           "connect" : [
             { "id" : "S40-f1", "to" : "S40-g1" }
           ]
-        }, {
-          "id" : "S40-g2",
-          "type" : "EmbeddedStart",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 256 }
-          }
         } ],
       "visual" : {
         "at" : { "x" : 416, "y" : 144 }
       },
       "connect" : [
-        { "id" : "f4", "to" : "S20" }
+        { "id" : "f4", "to" : "S60" }
       ]
     }, {
       "id" : "S30",
@@ -655,7 +471,7 @@
           "visual" : {
             "at" : { "y" : 256 }
           },
-          "parentConnector" : "f9",
+          "parentConnector" : "f5",
           "connect" : [
             { "id" : "S00-f2", "to" : "S00-f1" }
           ]

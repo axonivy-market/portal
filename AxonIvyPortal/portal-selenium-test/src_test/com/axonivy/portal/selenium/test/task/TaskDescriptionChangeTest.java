@@ -9,13 +9,13 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 
 @IvyWebTest
 public class TaskDescriptionChangeTest extends BaseTest {
 
-  private TaskWidgetPage taskWidgetPage;
 
   @Override
   @BeforeEach
@@ -29,19 +29,21 @@ public class TaskDescriptionChangeTest extends BaseTest {
   public void testChangeTaskDescription() {
     login(TestAccount.ADMIN_USER);
     int firstTask = 0;
-    taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.openTaskDetails(firstTask);
-    testChangeTaskDescription("Hello World!", "Hello World!", taskWidgetPage);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+
+    taskWidget.openTaskDetailsPageByAction(firstTask);
+    testChangeTaskDescription("Hello World!", "Hello World!", taskWidget);
     testChangeTaskDescription(
         "<b>HTML</b> description could contain malicious script <script>alert('Attacking')</script> but it will be sanitized.",
-        "HTML description could contain malicious script but it will be sanitized.", taskWidgetPage);
-    testChangeTaskDescription("", "No description", taskWidgetPage);
+        "HTML description could contain malicious script but it will be sanitized.", taskWidget);
+    testChangeTaskDescription("", "No description", taskWidget);
     testChangeTaskDescription("And you can change description if it is empty",
-        "And you can change description if it is empty", taskWidgetPage);
+        "And you can change description if it is empty", taskWidget);
   }
 
   private void testChangeTaskDescription(String newDescription, String shownDescriptionInDetails,
-      TaskWidgetPage taskWidgetPage) {
+      TopMenuTaskWidgetPage taskWidgetPage) {
     taskWidgetPage.changeDescriptionOfTask(newDescription);
     assertEquals(taskWidgetPage.getTaskDescription(), shownDescriptionInDetails);
   }
@@ -49,17 +51,19 @@ public class TaskDescriptionChangeTest extends BaseTest {
   @Test
   public void testUserWithoutPermissionCannotChangeTaskName() {
     int firstTask = 0;
-    taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.openTaskDetails(firstTask);
-    assertFalse(taskWidgetPage.isTaskNameChangeComponentPresented(firstTask));
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openTaskDetailsPageByAction(firstTask);
+    assertFalse(taskWidget.isTaskNameChangeComponentPresented(firstTask));
   }
 
 
   public void changeLanguage(int index) {
-    UserProfilePage userProfilePage = taskWidgetPage.openMyProfilePage();
+    NewDashboardPage taskList = NavigationHelper.navigateToTaskList();
+    UserProfilePage userProfilePage = taskList.openMyProfilePage();
     userProfilePage.selectLanguage(index);
     userProfilePage.save();
-    taskWidgetPage = NavigationHelper.navigateToTaskList();
+    NavigationHelper.navigateToTaskList();
   }
 
   @AfterEach

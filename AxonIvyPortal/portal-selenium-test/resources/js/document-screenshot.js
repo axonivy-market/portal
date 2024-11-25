@@ -141,8 +141,8 @@ function highlightAddExternalDialogItem() {
   var icon = $("[id$='add-external-link-form:external-link-icon:awesome-icon-selection']");
   appendStepAnnotation(icon, "9", -10, icon.width());
   
-  var uploadButton = $("[id$='add-external-link-form:external-link-image-upload']");
-  appendStepAnnotation(uploadButton, "10", 0, 80);
+  var uploadImage = $("[id$='add-external-link-form:external-link-image-label']");
+  appendStepAnnotation(uploadImage, "10", 0, 40);
   
   var addButton = $("[id$='process-widget:adding-new-external-link-command']");
   appendStepAnnotation(addButton, "11", -25, -5);
@@ -159,6 +159,10 @@ function highlightProcessItems() {
   
   createRedMediumOutline($('[id$="process-widget:process-view-mode:view-mode-selection"]'));
   appendStepAnnotation($("[id$='process-widget:process-view-mode:view-mode-selection'] div[class$='ui-state-active']"), "3", -10, -40);
+  
+  var processActions = $('[id$="image-process-action-component:process-action-button"]').eq(0);
+  createRedMediumOutline(processActions);
+  appendStepAnnotation(processActions, "4", -5, processActions.width() - 80);
 }
 
 function highlightEditProcessIcon() {
@@ -518,14 +522,18 @@ function highlightAndNumberingTaskTemplate() {
   appendStepAnnotation(other, "3", 27, -20);
 }
 
-function highlightNotificationFullPageIcon(){
-  var icon = $("#notification-full-page");
-  icon.addClass("red-medium-border");
-}
-
 function highlightNotificationIcon(){
   var icon = $("#open-notifications-panel");
   icon.addClass("red-medium-border");
+  appendStepAnnotation(icon, "1", 20, -20);
+
+  var moreOptionsIcon = $("button[id$=':notification-more-option_button']");
+  icon.addClass("red-medium-border");
+  appendStepAnnotation(moreOptionsIcon, "2", 20, -20);
+
+  var fullPageOption = $("a[id$=':notification-full-page']");
+  icon.addClass("red-medium-border");
+  appendStepAnnotation(fullPageOption, "3", 20, -20);
 }
 
 function highlightMobileApp() {
@@ -542,4 +550,16 @@ function removeHighlightShowFilterButton() {
 
 function highlightQuickSearchTextbox() {
   createRedMediumOutline($(".widget__header .widget-header-quick-search > form"));
+}
+
+function createBlackThinOutline($element) {
+  $element.addClass("black-thin-outline");
+}
+
+function createBlackMediumOutline($element) {
+  $element.addClass("black-medium-outline");
+}
+
+function highlightElement(elementSelector) {
+  createRedMediumOutline($(elementSelector));
 }

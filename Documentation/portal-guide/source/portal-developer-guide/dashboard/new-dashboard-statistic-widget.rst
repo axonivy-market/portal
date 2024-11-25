@@ -12,7 +12,7 @@ The Statistic widget of the Portal dashboard displays statistic and charts.
 
 Below is a sample JSON definition of a statistic widget in the Portal dashboard
 
-.. code-block:: html
+.. code-block:: javascript
 
    {
       "type": "client-statistic",

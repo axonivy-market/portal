@@ -14,7 +14,7 @@ public class ActionsColumnModel extends CaseColumnModel implements Serializable 
   public void initDefaultValue() {
     super.initDefaultValue();
     this.field = DashboardStandardCaseColumn.ACTIONS.getField();
-    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.styleToDisplay = initDefaultStyle();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.sortable = getDefaultSortable();
     this.format = getDefaultFormat();
@@ -33,11 +33,6 @@ public class ActionsColumnModel extends CaseColumnModel implements Serializable 
   @Override
   public Boolean getDefaultSortable() {
     return false;
-  }
-
-  @Override
-  public String getDefaultStyle() {
-    return SMALL_WIDTH;
   }
 
   @Override

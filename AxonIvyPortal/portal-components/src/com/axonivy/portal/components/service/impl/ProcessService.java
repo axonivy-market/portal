@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
@@ -34,6 +33,14 @@ public class ProcessService {
   public List<IWebStartable> findProcesses() {
     return Sudo.get(() -> {
       return findStartablesWithoutPortalHomeAndMSTeamsProcess(Ivy.session());
+    });
+  }
+
+  public List<IWebStartable> findAllProcesses() {
+    return Sudo.get(() -> {
+      return Ivy.session().getAllStartables()
+          .filter(process -> isNotPortalHomeAndMSTeamsProcess(process))
+          .collect(Collectors.toList());
     });
   }
 

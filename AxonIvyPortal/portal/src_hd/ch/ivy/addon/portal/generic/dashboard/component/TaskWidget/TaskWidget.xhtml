@@ -14,14 +14,22 @@
   <cc:attribute name="isPreviewMode" default="false"/>
   <cc:attribute name="onCompleteLoadWidget" />
   <cc:attribute name="componentToUpdateTaskWidget" />
+  <cc:attribute name="isAIResult" default="false" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="taskWidget" value="#{cc.attrs.taskWidget}" />
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
   <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
+  <c:set var="isResizing" value="#{!cc.attrs.isReadOnlyMode and !cc.attrs.isPreviewMode}" />
 
-  <p:remoteCommand id="rcLoadTaskFirstTime" autoRun="true" actionListener="#{taskWidget.dataModel.loadFirstTime()}"
+    <p:remoteCommand id="rcLoadTaskFirstTimeAIResult" rendered="#{cc.attrs.isAIResult}"
+                   autoRun="true" actionListener="#{taskWidget.dataModel.loadFirstTime()}"
+                   update="dashboard-tasks-container" global="false" async="true" process="@this"
+                   oncomplete="loadWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); #{cc.attrs.onCompleteLoadWidget};" />
+
+  <p:remoteCommand id="rcLoadTaskFirstTime" rendered="#{!cc.attrs.isAIResult}"
+                   autoRun="true" actionListener="#{taskWidget.dataModel.loadFirstTime()}"
                    update="dashboard-tasks-container" global="false" async="true" process="@this"
                    oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); #{cc.attrs.onCompleteLoadWidget}; #{cc.attrs.isPreviewMode ? 'calculateFilterPaneltPosition();' : ''}" />
   <p:inputText type="hidden" value="#{cc.attrs.taskWidgetVar}-#{taskWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
@@ -44,20 +52,33 @@
       <p:dataTable id="dashboard-tasks" widgetVar="#{cc.attrs.taskWidgetVar}-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task"
         lazy="true" scrollRows="25"
         disabledSelection="#{isPreviewMode}"
-        liveScroll="true" scrollable="true" sortBy="#{taskWidget.sortBy}"
+        liveScroll="true" scrollable="true" sortBy="#{(isResizing or isPreviewMode) ? null : taskWidget.sortBy}"
+        showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
-        styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'u-display-none' : ''}"
+        styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'u-display-none' : ''} #{isResizing ? 'js-resizing' : ''}"
         rowStyleClass="dashboard-table--row-style"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
-        <p:ajax event="rowSelect" listener="#{dashboardBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode}" />
-        
-        <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" headerText="#{column.headerText}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'}"
+        <p:ajax event="rowSelect" listener="#{dashboardTaskWidgetBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode}" />
+        <p:ajax event="colResize" process="dashboard-tasks" global="false" partialSubmit="true"
+          listener="#{dashboardDetailModificationBean.onResizeColumn}" disabled="#{!isResizing}" />
+        <f:attribute name="widgetId" value="#{taskWidget.id}" />
+
+        <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'} widget-column-header"
           visible="#{column.visible}" field="#{column.field}" filterable="false"
-          sortBy="#{column.field}" sortable="#{column.sortable}"
-          style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
+          sortBy="#{column.field}" sortable="#{!isResizing and !isPreviewMode and column.sortable}"
+          style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay}">
+
+          <f:facet name="header">
+           <h:outputText id="header" value="#{column.headerText}" />
+           <p:tooltip value="#{column.headerText}" for="header" />
+          </f:facet>
 
           <h:panelGroup rendered="#{column.field eq 'start'}" styleClass="dashboard-tasks__start-container">
-            <ui:include src="StartCell.xhtml" />
+            <ui:include src="StartCell.xhtml">
+              <ui:param name="isResizing" value="#{isResizing}" />
+              <ui:param name="isPreviewMode" value="#{isPreviewMode}" />
+              <ui:param name="ariaLabel" value="#{taskBean.getAriaLabel(task, taskWidget.columns)}" />
+            </ui:include>
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.field eq 'priority'}">
@@ -78,7 +99,7 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{(column.format eq 'STRING' or column.format eq 'TEXT') and column.field ne 'name'}">
-            <h:outputText id="custom-column" value="#{dashboardBean.createParseTextFromHtml(column.display(task))}" styleClass="dashboard-widget-column__custom #{column.fieldStyleClass}" style="#{column.fieldStyle}" />
+            <h:outputText id="custom-column" value="#{dashboardTaskWidgetBean.createParseTextFromHtml(column.display(task))}" styleClass="dashboard-widget-column__custom #{column.fieldStyleClass}" style="#{column.fieldStyle}" />
             <p:tooltip for="custom-column" value="#{column.display(task)}" trackMouse="true" hideEvent="mouseleave click"/>
           </h:panelGroup>
           
@@ -123,9 +144,9 @@
         </h:panelGroup>
         <h:panelGroup layout="block" id="empty-message-when-not-filter"
           rendered="#{!noTasksWhenFilter}">
-          <i class="si #{dashboardBean.noTasksMessage.icon} empty-message-icon" />
+          <i class="si #{dashboardTaskWidgetBean.noTasksMessage.icon} empty-message-icon" />
           <br />
-          <h:outputText value="#{dashboardBean.noTasksMessage.message}"
+          <h:outputText value="#{dashboardTaskWidgetBean.noTasksMessage.message}"
             styleClass="empty-message-text" />
         </h:panelGroup>
       </h:panelGroup>
@@ -144,7 +165,7 @@
       <h:form id="reset-task-confirmation-form" rendered="#{!isPreviewMode}">
         <p:commandLink onclick="PF('reset-task-confirmation-dialog').hide()"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
-        <p:commandButton actionListener="#{dashboardBean.resetAndOpenTask}"
+        <p:commandButton actionListener="#{dashboardTaskWidgetBean.resetAndOpenTask}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}"
           onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>

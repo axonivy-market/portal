@@ -125,6 +125,13 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
     FacesContext.getCurrentInstance().getExternalContext().redirect(link);
   }
   
+  protected String getRedirectLink(String link, boolean isEmbedInFrame) {
+    if (isEmbedInFrame) {
+      link += (link.contains("?") ? "&" : "?" + "embedInFrame");
+    }
+    return link;
+  }
+
   public boolean isCaseMap(DashboardProcess process) {
     return !Objects.isNull(process) && process.getStartLink().endsWith(".icm");
   }

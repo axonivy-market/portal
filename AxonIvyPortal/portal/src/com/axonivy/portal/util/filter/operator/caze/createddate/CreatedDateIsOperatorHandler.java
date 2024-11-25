@@ -1,8 +1,11 @@
 package com.axonivy.portal.util.filter.operator.caze.createddate;
 
+import java.util.Date;
+
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.PortalDateUtils;
 
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class CreatedDateIsOperatorHandler {
@@ -20,8 +23,11 @@ public class CreatedDateIsOperatorHandler {
       return null;
     }
 
-    return CaseQuery.create().where().startTimestamp().isGreaterOrEqualThan(PortalDateUtils.getStartOfDate(filter.getFromDate()))
-        .and().startTimestamp().isLowerOrEqualThan(PortalDateUtils.getEndOfDate(filter.getFromDate()));
+    Date fromDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getStartOfMinute(filter.getFromDate()) : PortalDateUtils.getStartOfDate(filter.getFromDate());
+    Date endDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getFromDate()) : PortalDateUtils.getEndOfDate(filter.getFromDate());
+
+    return CaseQuery.create().where().startTimestamp().isGreaterOrEqualThan(fromDate)
+        .and().startTimestamp().isLowerOrEqualThan(endDate);
   }
 
   public CaseQuery buildIsNotQuery(DashboardFilter filter) {
@@ -29,7 +35,10 @@ public class CreatedDateIsOperatorHandler {
       return null;
     }
 
-    return CaseQuery.create().where().startTimestamp().isGreaterThan(PortalDateUtils.getEndOfDate(filter.getFromDate()))
-        .or().startTimestamp().isLowerThan(PortalDateUtils.getStartOfDate(filter.getFromDate()));
+    Date fromDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getStartOfMinute(filter.getFromDate()) : PortalDateUtils.getStartOfDate(filter.getFromDate());
+    Date endDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getFromDate()) : PortalDateUtils.getEndOfDate(filter.getFromDate());
+
+    return CaseQuery.create().where().startTimestamp().isGreaterThan(endDate)
+        .or().startTimestamp().isLowerThan(fromDate);
   }
 }

@@ -25,6 +25,7 @@ public class CaseFilterFieldFinishedDate extends FilterField {
     super(DashboardStandardCaseColumn.FINISHED.getField());
   }
 
+  @Override
   public String getLabel() {
     return DashboardStandardCaseColumn.FINISHED.getLabel();
   }

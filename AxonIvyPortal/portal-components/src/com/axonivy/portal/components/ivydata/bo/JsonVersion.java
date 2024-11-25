@@ -5,7 +5,7 @@ import java.util.Arrays;
 import org.apache.commons.lang3.StringUtils;
 
 public class JsonVersion implements Comparable<JsonVersion> {
-    public static final JsonVersion LATEST = new JsonVersion("10.0.0");
+  public static final JsonVersion LATEST = new JsonVersion("12.0.0");
 
     private String value;
 

@@ -1,0 +1,505 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "18DD4CF26C1CCE45",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "portalkit.PortalCallableToolsData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "findUsers(String,String)",
+      "config" : {
+        "signature" : "findUsers",
+        "input" : {
+          "params" : [
+            { "name" : "username", "type" : "String", "desc" : "name of user" },
+            { "name" : "role", "type" : "String", "desc" : "role of user" }
+          ],
+          "map" : {
+            "out.role" : "param.role",
+            "out.username" : "param.username"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "com.axonivy.portal.components.dto.AiResultDTO", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Find users",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.service.AiService;",
+            "",
+            "in.result = AiService.getInstance().generateFindUsersAiResult(in.username, in.role);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "CallSubStart",
+      "name" : "findTasks(String,String,String,String,String,String,String,String)",
+      "config" : {
+        "signature" : "findTasks",
+        "input" : {
+          "params" : [
+            { "name" : "taskName", "type" : "String", "desc" : "" },
+            { "name" : "taskDescription", "type" : "String", "desc" : "" },
+            { "name" : "taskPriority", "type" : "String", "desc" : "" },
+            { "name" : "taskState", "type" : "String", "desc" : "" },
+            { "name" : "taskExpiryDateFrom", "type" : "String", "desc" : "" },
+            { "name" : "taskExpiryDateTo", "type" : "String", "desc" : "" },
+            { "name" : "onlyMyTask", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.dateFrom" : "param.taskExpiryDateFrom",
+            "out.dateTo" : "param.taskExpiryDateTo",
+            "out.onlyMyTask" : "param.onlyMyTask",
+            "out.taskDescription" : "param.taskDescription",
+            "out.taskName" : "param.taskName",
+            "out.taskPriority" : "param.taskPriority",
+            "out.taskState" : "param.taskState"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "com.axonivy.portal.components.dto.AiResultDTO", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 176 },
+        "labelOffset" : { "x" : 31, "y" : 51 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 176 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Validate and find tasks",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.service.AiService;",
+            "import com.axonivy.portal.components.publicapi.AiAssistantAPI;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import com.axonivy.portal.util.AiToolUtils;",
+            "",
+            "in.validationError = AiToolUtils.validateTaskState(in.taskState);",
+            "if (StringUtils.isBlank(in.validationError)) {",
+            "  in.validationError = AiToolUtils.validateTaskPriority(in.taskPriority);",
+            "}",
+            "",
+            "if(StringUtils.isNotBlank(in.validationError)) {",
+            "  in.result = AiAssistantAPI.generateErrorAiResult(in.validationError);",
+            "} else {",
+            "  in.result = AiService.getInstance().generateFindTasksAiResult(in.taskName, in.taskDescription, in.taskState, in.taskPriority, in.dateFrom, in.dateTo, in.onlyMyTask);",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "CallSubStart",
+      "name" : "findCases(String,String,String)",
+      "config" : {
+        "signature" : "findCases",
+        "input" : {
+          "params" : [
+            { "name" : "caseName", "type" : "String", "desc" : "" },
+            { "name" : "caseDescription", "type" : "String", "desc" : "" },
+            { "name" : "caseState", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.taskDescription" : "param.caseDescription",
+            "out.taskName" : "param.caseName",
+            "out.taskState" : "param.caseState"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "com.axonivy.portal.components.dto.AiResultDTO", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 296 },
+        "labelOffset" : { "x" : 31, "y" : 51 }
+      },
+      "connect" : [
+        { "id" : "f23", "to" : "f18" }
+      ]
+    }, {
+      "id" : "f18",
+      "type" : "Script",
+      "name" : "Validate and find cases",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.service.AiService;",
+            "import com.axonivy.portal.components.publicapi.AiAssistantAPI;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import com.axonivy.portal.util.AiToolUtils;",
+            "",
+            "in.validationError = AiToolUtils.validateCaseState(in.taskState);",
+            "if(StringUtils.isNotBlank(in.validationError)) {",
+            "  in.result = AiAssistantAPI.generateErrorAiResult(in.validationError);",
+            "} else {",
+            "  in.result = AiService.getInstance().generateFindCasesAiResult(in.taskName, in.taskDescription, in.taskState);",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 296 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f22" }
+      ]
+    }, {
+      "id" : "f22",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 296 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "CallSubStart",
+      "name" : "startTask(String)",
+      "config" : {
+        "signature" : "startTask",
+        "input" : {
+          "params" : [
+            { "name" : "taskId", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.taskId" : "param.taskId"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "com.axonivy.portal.components.dto.AiResultDTO", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 424 },
+        "labelOffset" : { "x" : 41, "y" : 49 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f12" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "Script",
+      "name" : "Start task",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.service.AiService;",
+            "import com.axonivy.portal.components.publicapi.AiAssistantAPI;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import com.axonivy.portal.util.AiToolUtils;",
+            "",
+            "in.result = AiService.getInstance().generateStartTasksAiResult(in.taskId);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 424 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f13" }
+      ]
+    }, {
+      "id" : "f13",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 424 }
+      }
+    }, {
+      "id" : "f16",
+      "type" : "CallSubStart",
+      "name" : "findProcesses(String,String)",
+      "config" : {
+        "signature" : "findProcesses",
+        "input" : {
+          "params" : [
+            { "name" : "processName", "type" : "String", "desc" : "" },
+            { "name" : "processDescription", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.taskDescription" : "param.processDescription",
+            "out.taskName" : "param.processName"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "com.axonivy.portal.components.dto.AiResultDTO", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 536, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f20", "to" : "f19" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "Script",
+      "name" : "Find processes",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.environment.Ivy;",
+            "import com.axonivy.portal.service.AiService;",
+            "",
+            "in.result = AiService.getInstance().generateFindProcessesAiResult(in.taskName, in.taskDescription);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 736, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f24", "to" : "f21" }
+      ]
+    }, {
+      "id" : "f21",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 920, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f25",
+      "type" : "CallSubStart",
+      "name" : "startProcess(String,String)",
+      "config" : {
+        "signature" : "startProcess",
+        "input" : {
+          "params" : [
+            { "name" : "processId", "type" : "String", "desc" : "" },
+            { "name" : "parameters", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.parameters" : "param.parameters",
+            "out.processId" : "param.processId"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "com.axonivy.portal.components.dto.AiResultDTO", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 536, "y" : 296 }
+      },
+      "connect" : [
+        { "id" : "f28", "to" : "f26" }
+      ]
+    }, {
+      "id" : "f26",
+      "type" : "Script",
+      "name" : "Generate a link to start the process",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.environment.Ivy;",
+            "import com.axonivy.portal.service.AiService;",
+            "",
+            "in.result = AiService.getInstance().generateAiResultForStartProcess(in.processId, in.parameters);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 736, "y" : 296 }
+      },
+      "connect" : [
+        { "id" : "f29", "to" : "f27" }
+      ]
+    }, {
+      "id" : "f27",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 920, "y" : 296 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f30",
+      "type" : "CallSubStart",
+      "name" : "getProcessInfo(String)",
+      "config" : {
+        "signature" : "getProcessInfo",
+        "input" : {
+          "params" : [
+            { "name" : "processId", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.processId" : "param.processId"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "com.axonivy.portal.components.dto.AiResultDTO", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 536, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f33", "to" : "f31" }
+      ]
+    }, {
+      "id" : "f31",
+      "type" : "Script",
+      "name" : "Get process info",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.service.AiService;",
+            "",
+            "in.result = AiService.getInstance().generateAIResultForWebstartableInfoById(in.processId);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 736, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f34", "to" : "f32" }
+      ]
+    }, {
+      "id" : "f32",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 920, "y" : 176 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f35",
+      "type" : "CallSubStart",
+      "name" : "findTaskDetails(String)",
+      "config" : {
+        "signature" : "findTaskDetails",
+        "input" : {
+          "params" : [
+            { "name" : "taskId", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.taskId" : "param.taskId"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "result", "type" : "com.axonivy.portal.components.dto.AiResultDTO", "desc" : "" }
+          ],
+          "map" : {
+            "result.result" : "in.result"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 560 },
+        "labelOffset" : { "x" : 31, "y" : 51 }
+      },
+      "connect" : [
+        { "id" : "f38", "to" : "f36" }
+      ]
+    }, {
+      "id" : "f36",
+      "type" : "Script",
+      "name" : "Generate task details link",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.service.AiService;",
+            "import com.axonivy.portal.components.publicapi.AiAssistantAPI;",
+            "import org.apache.commons.lang3.StringUtils;",
+            "import com.axonivy.portal.util.AiToolUtils;",
+            "",
+            "in.result = AiService.getInstance().generateFindTaskDetailsAiResult(in.taskId);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 560 }
+      },
+      "connect" : [
+        { "id" : "f39", "to" : "f37" }
+      ]
+    }, {
+      "id" : "f37",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 560 }
+      }
+    } ]
+}

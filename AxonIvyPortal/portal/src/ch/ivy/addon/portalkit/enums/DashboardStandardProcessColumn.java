@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum DashboardStandardProcessColumn {
-  ID("id"), NAME("name"), TYPE("type"), CATEGORY("category"), APPLICATION("application");
+  ID("id"), NAME("name"), TYPE("type"), CATEGORY("category"),
+  APPLICATION("application"), DESCRIPTION("description");
 
   private final String field;
 

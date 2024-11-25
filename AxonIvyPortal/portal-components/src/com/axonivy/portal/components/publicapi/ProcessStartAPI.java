@@ -38,8 +38,7 @@ public final class ProcessStartAPI {
 	 */
 	public static String findStartableLinkByUserFriendlyRequestPath(String friendlyRequestPath) {
 		return Sudo.get(() -> {
-			List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance()
-					.allOf(ISecurityContext.current());
+			List<IApplication> applicationsInSecurityContext = IApplicationRepository.of(ISecurityContext.current()).all();
 			for (IApplication app : applicationsInSecurityContext) {
 				IProcessStart processStart = findStartableProcessStartByUserFriendlyRequestPath(friendlyRequestPath,
 						app);

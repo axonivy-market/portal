@@ -1,0 +1,55 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "PortalCallableToolsData",
+  "namespace" : "portalkit",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "username",
+    "type" : "String"
+  }, {
+    "name" : "role",
+    "type" : "String"
+  }, {
+    "name" : "users",
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
+  }, {
+    "name" : "taskName",
+    "type" : "String"
+  }, {
+    "name" : "taskPriority",
+    "type" : "String"
+  }, {
+    "name" : "taskDescription",
+    "type" : "String"
+  }, {
+    "name" : "taskState",
+    "type" : "String"
+  }, {
+    "name" : "taskDashboardWidget",
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget"
+  }, {
+    "name" : "result",
+    "type" : "com.axonivy.portal.components.dto.AiResultDTO"
+  }, {
+    "name" : "validationError",
+    "type" : "String"
+  }, {
+    "name" : "taskId",
+    "type" : "String"
+  }, {
+    "name" : "dateFrom",
+    "type" : "String"
+  }, {
+    "name" : "dateTo",
+    "type" : "String"
+  }, {
+    "name" : "processId",
+    "type" : "String"
+  }, {
+    "name" : "parameters",
+    "type" : "String"
+  }, {
+    "name" : "onlyMyTask",
+    "type" : "String"
+  } ]
+}

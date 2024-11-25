@@ -21,6 +21,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     editAbsence: Edit absence
     from: From
     noDeputy: No substitute
+    noPermissionToSeeThisArea: You do not have the required permission to see this area.
     period: Period
     personalTaskDuringAbsenceDeputies: Substitutes for personally assigned tasks during the absence
     personalTaskPermanentDeputies: Permanent substitutes for personally assigned tasks
@@ -109,14 +110,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       TUESDAY: TUE
       WEDNESDAY: WED
   MyProfile:
-    CaseList: Case list
     DateFormat: Date Format
     General: General
     Homepage: Homepage
     ProcessList: Process list
-    SortFieldSelections:
-      defaultSortFieldLabel: Default sort field
-    TaskList: Task list
     defaultOption: Default ({0})
     defaultViewMode: Default view mode
   PortalManagement:
@@ -135,7 +132,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       announcementsDisabled: Announcements are disabled.
       announcementsEnabled: Announcements are enabled.
       defaultLanguageRequiredMessage: Announcement for application default language is required.
-      disable: Disable
+      disabled: Disabled
       enable: Enable
       information: You can announce a general information (e.g. Downtime, Changes, etc.) in this area. This message can be seen by all portal users.
       tabTitle: Announcements
@@ -450,7 +447,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     notAvailable: N/A
     note: NOTE
     numberOfSelectedFilter: selected filters
-    ok: Ok
+    ok: OK
     'on': 'on'
     pleaseAddDocument: Please add a document with the link above.
     pleaseAddNote: Please add a note with the link above.
@@ -460,11 +457,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes: Processes
     public: Public
     remove: Remove
+    removeSelection: Remove selection
     reorder: Reorder
     requiredFieldMessage: This field is required
     reserve: Reserve
     reset: Reset
-    resetSettingHeaderText: Reset setting?
+    resetSettingHeaderText: Reset setting
     resetTaskHeaderText: Reset this task?
     resetToDefaultMessage: This operation cannot be undone. Are you sure you want to reset to default settings?
     resetToStandardFilterHeaderText: 'Reset to standard filter? '
@@ -472,6 +470,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Restore to default charts?
     role: Role
     save: Save
+    saveAll: Save all
     saveSuccessfully: Data saved successfully.
     search: Search
     second: second
@@ -511,7 +510,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewExpired: Your current view expired. You will be redirected to the home page.
     viewMode: View mode
     visible: Visible
-    warning: Warning
+    warning: Warning!
     welcomeToPortal: Welcome, please login
     wrongDateFormat: Please enter valid date.
     year: year
@@ -870,7 +869,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     toUser: User
     userSelectionWatermark: Please select a user...
   taskDetails:
-    addDocumentHelpText: To upload files, drag & drop or select files
+    addDocumentHelpText: 'To upload files, drag & drop or '
     addNoteHelpText: Write your text here.
     afterEscalation: After escalation
     businessCase: Business Case
@@ -1014,11 +1013,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Show full task list
     sort: Sort
   taskWarning:
-    createdTaskLeave: 'You are about to leave this page. Please choose one of the following options:<UL><LI>&nbsp; &nbsp; Leave: Discard your changes and move to the selected page.<LI>&nbsp; &nbsp; Cancel: Continue working this task.</UL>'
-    createdTaskLogout: 'You are about to leave this page. Please choose one of the following options:<UL><LI>&nbsp;Logout: Discard your changes and logout.<LI>&nbsp;Cancel: Continue working this task.</UL>'
-    resetParkTaskBeforeLeave: 'You are about to leave a task in progress. Please choose one of the following options:<UL><LI>Leave: Discard your changes and move to the selected page.<LI>Reserve: Discard your changes and keep the task in your task list.<LI>Cancel: Continue working this task.</UL>'
-    resetParkTaskBeforeLogout: 'You are about to leave a task in progress. Please choose one of the following options:<UL><LI>&nbsp; &nbsp; Logout: Discard your changes and logout.<LI>&nbsp; &nbsp; Reserve: Discard your changes and keep the task in your personal task list. Then logout.<LI>&nbsp; &nbsp;
-      Cancel: Continue working this task.</UL>'
+    createdTaskLeave: '<div>You are about to leave this page.<br/>  Please choose one of the following options:</div><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Cancel: Continue working this task.</UL>'
+    createdTaskLogout: '<div>You are about to leave this page.<br/> Please choose one of the following options:</div><UL><LI>&nbsp;Logout: Discard your changes and logout.<LI>&nbsp;Cancel: Continue working this task.</UL>'
+    resetParkTaskBeforeLeave: '<div>You are about to leave a task in progress.<br/>Please choose one of the following options:</div><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Reserve: Discard your changes and keep the task in your task list.<LI>Cancel: Continue working this
+      task.</UL>'
+    resetParkTaskBeforeLogout: '<div>You are about to leave a task in progress.</br> Please choose one of the following options:</div><UL><LI>&nbsp; &nbsp; Logout: Discard your changes and logout.<LI>&nbsp; &nbsp; Reserve: Discard your changes and keep the task in your personal task list. Then logout.<LI>&nbsp;
+      &nbsp; Cancel: Continue working this task.</UL>'
     taskNotFound: The task does not exist or you have insufficient rights to see this task.
   userProfile:
     myProfileTitle: My profile
@@ -1060,7 +1060,7 @@ Dialogs:
               noResultsText: There are no results.
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: New Dashboard
+                NewDashboard: Add new dashboard
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!

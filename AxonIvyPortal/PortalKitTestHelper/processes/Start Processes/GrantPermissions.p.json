@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "14DE09882B540AD5",
   "config" : {
     "data" : "portalKit_test.GrantPermissionsData"
@@ -2088,7 +2088,7 @@
       "type" : "RequestStart",
       "name" : "denyTaskDetailsShareLinkPermission.ivp",
       "config" : {
-        "signature" : "denyTaskDetailsShareLinkPermission2",
+        "signature" : "denyTaskDetailsShareLinkPermission",
         "request" : {
           "name" : "Deny Share Link Task Details Permision"
         }

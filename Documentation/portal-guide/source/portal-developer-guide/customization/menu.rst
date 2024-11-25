@@ -115,7 +115,7 @@ Besides the callable subprocess approach, you can also define custom menu items 
 
 Here's an example of custom menu items in the Portal.CustomMenuItems variable.
 
-   .. code-block:: json
+   .. code-block:: javascript
 
         [
             {

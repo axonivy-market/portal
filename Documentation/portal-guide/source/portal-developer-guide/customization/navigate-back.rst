@@ -5,7 +5,7 @@ Navigate Back
 
 .. _customization-navigateback.introduction:
 
-When a task finishes, the Portal navigates back to the previous page. For
+When a task is completed, the Portal navigates back to the previous page. For
 example, if a task is started from the homepage, it redirects to the homepage.
 If a task is started from a task list, it redirects to that task list
 after the task is finished.

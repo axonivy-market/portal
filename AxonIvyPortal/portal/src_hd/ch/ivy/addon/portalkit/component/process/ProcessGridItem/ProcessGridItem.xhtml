@@ -48,6 +48,8 @@
           hideActionButton="#{cc.attrs.isInConfiguration}"
           isProcessGridMode="true"
           isInProcessList="false"
+          isReadOnlyMode="#{!cc.attrs.readOnlyMode}"
+          isInConfiguration="#{cc.attrs.isInConfiguration}"
           />
 
         <p:commandLink id="start-process-link" styleClass="process-grid__header"
@@ -78,12 +80,6 @@
             ajax="#{!isExternalLink}"
             disabled="#{cc.attrs.readOnlyMode}" />
         </div>
-          <div class="more-information-wrapper" >
-            <p:link id="more-information" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
-              href="#{managedBean.getProcessInformationPageUrl(process)}"
-              rendered="#{cc.attrs.showInformationLink and !isExternalLink and !isCaseMap}"
-              disabled="#{cc.attrs.readOnlyMode}" styleClass="process-more-info-link"/>
-          </div>
         <p:tooltip for="process-name" value="#{process.name}" trackMouse="true" hideEvent="mouseleave click" styleClass="process-tooltip"/>
       </h:form>
     </div>

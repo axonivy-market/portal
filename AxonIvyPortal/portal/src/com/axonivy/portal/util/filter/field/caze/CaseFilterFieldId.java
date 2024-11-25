@@ -18,6 +18,7 @@ public class CaseFilterFieldId extends FilterField {
     super(DashboardStandardCaseColumn.ID.getField());
   }
 
+  @Override
   public String getLabel() {
     return DashboardStandardCaseColumn.ID.getLabel();
   }

@@ -23,6 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     editAbsence: Edit absence
     from: From
     noDeputy: No substitute
+    noPermissionToSeeThisArea: You do not have the required permission to see this area.
     period: Period
     personalTaskDuringAbsenceDeputies: Substitutes for personally assigned tasks during the absence
     personalTaskPermanentDeputies: Permanent substitutes for personally assigned tasks
@@ -48,6 +49,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     nextAbsence: Upcoming absence
     selectedDeputyFor: Selected user is substitute for
     selectedUser: Selected user
+  AccessibilityShortcuts:
+    processName: Accessibility shortcuts process
   AllTasks:
     caseDescription: Case description
     taskDescription: Task description
@@ -134,16 +137,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Heading 3
       NORMAL_TEXT: Normal Text
   MyProfile:
-    CaseList: Case list
     DateFormat: Date Format
     FormattingLanguage: Formatting language
     General: General
     Homepage: Homepage
     Language: Language
     ProcessList: Process list
-    SortFieldSelections:
-      defaultSortFieldLabel: Default sort field
-    TaskList: Task list
     byDefault: ' by default'
     defaultOption: Default ({0})
     defaultViewMode: Default view mode
@@ -168,8 +167,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       announcementsDisabled: Announcements are disabled.
       announcementsEnabled: Announcements are enabled.
       defaultLanguageRequiredMessage: Announcement for application default language is required.
-      disable: Disable
-      enable: Enable
+      disabled: Disabled
+      enable: Enable announcement
       information: You can announce a general information (e.g. Downtime, Changes, etc.) in this area. This message can be seen by all portal users.
       saveChanges: Save changes
       tabTitle: Announcements
@@ -180,6 +179,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationHint: Use drag & drop to reorder.
     applicationLinkRequiredMsg: Please enter portal link.
     applicationList:
+      addNewApplication: Add new application
       applicationSelectionHeader: Select application
       menuIcon: Menu icon
     applications: Applications
@@ -343,7 +343,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       FINISHED_TIME: Finished
       ID: Case Id
       NAME: Name / Description
-      OWNER: Owner
+      OWNER: Case Owners
       STATE: State
     deletionNoteContent: The case was destroyed by {0}
     destroyCaseMessage: This operation cannot be undone. Are you sure you want to destroy this case and all of its tasks?
@@ -411,6 +411,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocument: Add document
     addNote: Add note
     allCategories: All Categories
+    allTypes: All types
     allowPng: Only png types allowed
     apply: Apply
     at: at
@@ -458,8 +459,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     destroyTaskHeaderText: Destroy this task?
     detail: Details
     display: Display
+    displayAsTopMenu: Display as top menu
     displayName: Display name
-    dragAndDrop: 'Drag and drop an image or '
+    dragAndDropFile: 'Drag and drop a file or '
+    dragAndDropImage: 'Drag and drop an image or '
     edit: Edit
     errorAjaxMessage: There is a general exception.
     errorFileUploadSize: The file size must be lower than {0}
@@ -516,7 +519,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     note: NOTE
     numberFromBiggerThanTo: '''To'' must be bigger than ''From''.'
     numberOfSelectedFilter: selected filters
-    ok: Ok
+    ok: OK
     'on': 'on'
     pleaseAddDocument: Please add a document with the link above.
     pleaseAddNote: Please add a note with the link above.
@@ -526,10 +529,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes: Processes
     public: Public
     remove: Remove
+    removeSelection: Remove selection
     reorder: Reorder
     requiredFieldMessage: This field is required
     reserve: Reserve
     reset: Reset
+    resetFilters: Reset filters
     resetSettingHeaderText: Reset setting?
     resetTaskHeaderText: Reset this task?
     resetToDefaultMessage: This operation cannot be undone. Are you sure you want to reset to default settings?
@@ -538,11 +543,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Restore to default charts?
     role: Role
     save: Save
+    saveAll: Save all
     saveSuccessfully: Data saved successfully.
     search: Search
     second: second
     seconds: seconds
     seeDetail: See details
+    select: Select
     selectAll: Select All
     selectUsers: Select user(s)
     selectedDay: '{0} selected day(s)'
@@ -569,10 +576,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: The process
     timeInformation: Time Information
     timestamp: Timestamp
+    topMenuItem: Top Menu Item
     type: Type
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
+    uploadHere: Upload here
     uploadOneHere: Upload one here
     user: '{0} user'
     users: Users
@@ -580,7 +589,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewExpired: Your current view expired. You will be redirected to the home page.
     viewMode: View mode
     visible: Visible
-    warning: Warning
+    warning: Warning!
     welcomeToPortal: Welcome, please login
     wrongDateFormat: Please enter valid date.
     year: year
@@ -791,6 +800,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardIcon: Dashboard icon
       dashboardPermission: Dashboard permission
       dashboardTitle: Dashboard title
+      deleteDashboardMessage: Are you sure you want to delete the "{0}" dashboard?
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
@@ -856,6 +866,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: This widget displays relevant task information according to defined settings.
     taskStart: Task start
     taskWidgetConfiguration: Task Widget Configuration
+    topMenuItemInfo: If the "Top Menu Item" checkbox is checked, the dashboard appears as a top-level item in the navigation bar, sorted by list position. If unchecked, it appears as a sub-item under “Dashboard”, also sorted by list position.
     widgetInfo: Widget information
     widgetInfoIcon: Widget Information Icon
     widgetTitle: Widget Title
@@ -1093,7 +1104,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     toUser: User
     userSelectionWatermark: Please select a user...
   taskDetails:
-    addDocumentHelpText: To upload files, drag & drop or select files
+    addDocumentHelpText: 'To upload files, drag & drop or '
     addNoteHelpText: Write your text here.
     afterEscalation: After escalation
     businessCase: Business Case
@@ -1111,6 +1122,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processingTime: Processing Time
     setDelayTimestamp: '{0} ({1}) has set delay time to task #{2} to {3}'
     setExpiryActivatorAndTimeNotes: '{0} and assign {1} as the task escalation activator'
+    supportFileTypes: ' Upload file type supported: {0}'
     taskCategory: Task Category
     taskExpiryDisable: This task does not contain any escalation handling logic, therefore no expiry time can be set.
     technicalCase: Technical Case
@@ -1239,11 +1251,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Show full task list
     sort: Sort
   taskWarning:
-    createdTaskLeave: 'You are about to leave this page. Please choose one of the following options:<UL><LI>&nbsp; &nbsp; Leave: Discard your changes and move to the selected page.<LI>&nbsp; &nbsp; Cancel: Continue working this task.</UL>'
-    createdTaskLogout: 'You are about to leave this page. Please choose one of the following options:<UL><LI>&nbsp;Logout: Discard your changes and logout.<LI>&nbsp;Cancel: Continue working this task.</UL>'
-    resetParkTaskBeforeLeave: 'You are about to leave a task in progress. Please choose one of the following options:<UL><LI>Leave: Discard your changes and move to the selected page.<LI>Reserve: Discard your changes and keep the task in your task list.<LI>Cancel: Continue working this task.</UL>'
-    resetParkTaskBeforeLogout: 'You are about to leave a task in progress. Please choose one of the following options:<UL><LI>&nbsp; &nbsp; Logout: Discard your changes and logout.<LI>&nbsp; &nbsp; Reserve: Discard your changes and keep the task in your personal task list. Then logout.<LI>&nbsp; &nbsp;
-      Cancel: Continue working this task.</UL>'
+    createdTaskLeave: '<div>You are about to leave this page.<br/> Please choose one of the following options:</div><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Cancel: Continue working this task.</UL>'
+    createdTaskLogout: '<div>You are about to leave this page.<br/> Please choose one of the following options:</div><UL><LI>&nbsp;Logout: Discard your changes and logout.<LI>&nbsp;Cancel: Continue working this task.</UL>'
+    resetParkTaskBeforeLeave: '<div>You are about to leave a task In progress.<br/>Please choose one of the following options:</div><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Reserve: Discard your changes and keep the task in your task list.<LI>Cancel: Continue working this
+      task.</UL>'
+    resetParkTaskBeforeLogout: '<div>You are about to leave a task in progress.</br> Please choose one of the following options:</div><UL><LI>&nbsp; &nbsp; Logout: Discard your changes and logout.<LI>&nbsp; &nbsp; Reserve: Discard your changes and keep the task in your personal task list. Then logout.<LI>&nbsp;
+      &nbsp; Cancel: Continue working this task.</UL>'
     taskNotFound: The task does not exist or you have insufficient rights to see this task.
   userProfile:
     myProfileTitle: My profile
@@ -1286,7 +1299,7 @@ Dialogs:
               noResultsText: There are no results.
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: New Dashboard
+                NewDashboard: Add new dashboard
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
@@ -1306,7 +1319,7 @@ Dialogs:
                 CaseDetailTitle: Case Details
                 DataDescription: Data and Description
                 destroyCase: Destroy case
-              CaseOwner: Case Owner
+              CaseOwner: Case Owners
               Finished: Finished
               GlobalSearchText: Cases contain the keyword "{0}" in Case Id{1}.
               ShowBusinessDetails: Business details
@@ -1328,11 +1341,63 @@ Dialogs:
     axonivy:
       portal:
         component:
+          ChatDashboard:
+            AddTool: Add tool
+            Tools: Tools
+            WelcomeHeaderText: Welcome to the Axon Ivy Portal!
+            WelcomeText: We are delighted to have you on board. The Axon Ivy Portal is your gateway to a seamless and efficient experience. Whether you are a new user exploring the features or a returning visitor, we're here to assist you every step of the way.
           ShareLinkDialog:
             CopyLink: Copy link
+            Link: Link
             LinkCopied: Link copied
+          ToolList:
+            Attributes: Attributes
+            Collection: Collection
+            NoAvailableTools: There are no available tools
         dashboard:
           component:
+            AccessibilityShortcuts:
+              content: |-
+                <div class="ui-g">
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 1</span>Focus on to the Dashboard Tab
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 4</span>Focus on to the Case Tab
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + A</span>Focus on to the first Process
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Tab</span>Sequential tabbing through elements
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 2</span>Focus on to the Process Tab
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 5</span>Focus on to the Search
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + W</span>Focus on to the first Task
+                   </div>
+                   <div class="ui-g-3 shortcut-content">
+                      <span class="shortcut-key">Esc</span>Close expanded Widgets
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 3</span>Focus on to the Tasks Tab
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 6</span>Focus on to the User Settings
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + Q</span>Focus on to the first Case
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Enter</span>Confirm selection
+                   </div>
+                </div>
+              title: 'Accessibility Shortcuts. Alt + 1: Focus on to the Dashboard tab. Alt + 2: Focus on to the Process tab. Alt + 3: Focus on to the Tasks tab. Alt + 4: Focus on to the Case tab. Alt + 5: Focus on to the search. Alt + 6: Focus on to the User settings. Alt + A: Focus on to the first Process.
+                Alt + W: Focus on to the first task. Alt + Q: Focus on to the first case. Tab: Sequential tabbing through elements. Esc: Close expanded widgets. Enter: Confirm selection.'
             CaseWidgetConfiguration:
               AddFilter: Add filter
             ClientStatisticWidget:
@@ -1393,11 +1458,53 @@ Dialogs:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
 Labels:
+  AI:
+    Error:
+      CannotFindUser: Sorry, cannot find any user matched your request. Please try again.
+      CannotStartTask: Cannot start task has ID {0}
+      InvalidTaskPriority: 'Invalid task priority. Valid task priorities are: low, normal, high, or exception.'
+      InvalidTaskState: 'Invalid task state. Valid task states are: open, done, in progress, or error.'
+      NoMatchingCase: Cannot find any task matched your request
+      NoMatchingProcesses: No matching processes.
+      NoMatchingTask: Cannot find any task matched your request
+    FindCaseAIResult: 'ID: {0}, Name: {1}, Description: {2}, State: {3}'
+    FindProcessAIResult: '   - ID: {0}, Name: {1}, Description: {2}'
+    FindTaskAIResult: 'ID: {0}, Name: {1}, Description: {2}, State: {3}, Priority {4}'
+    FindUserAIResult: 'Username: {0}, Name: {1}, Email: {2}, State: {3}'
+    FoundCaseHeader: 'Found cases:'
+    FoundProcessesHeader: 'Found processes:'
+    FoundTaskHeader: 'Found tasks:'
+    FoundUsersHeader: 'Found users:'
+    ProcessInfoHeader: |-
+      **Process name:** {0}
+      **Process description:** {1}
+    ProcessInfoHeaderWithParameters: |-
+      - **Process name:** {0}
+      - **Process description:** {1}
+      - **Number of parameters:** {2}
+    ProcessParameterInfo: "\t+ {0} ({1})"
+    ProcessParameterInfoWithValue: |-
+      - Name: {0}
+        Description: {1}
+        Value:
+    TaskDetailsResult: |-
+      Details of task **{0} (#{1})**:
+      {2}
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
   CreateNewDashboard: Create new dashboard
   EditDescription: Edit description
   Enums:
+    ChatbotCandidateQuestion:
+      EXPLORE:
+        header: Explore
+        question: What are the key features of the Axon Ivy Portal?
+      INTERACT:
+        header: Interact
+        question: List me all the tasks that need completion within the current week
+      TUTORIAL:
+        header: Tutorial
+        question: Where can I find the documentation or tutorials for the Axon Ivy Portal?
     DashboardStandardCaseColumn:
       ACTIONS: Actions
       APPLICATION: Application
@@ -1408,7 +1515,7 @@ Labels:
       FINISHED: Finished Date
       ID: Id
       NAME: Name
-      OWNER: Case Owner
+      OWNER: Case Owners
       STATE: State
     DashboardStandardTaskColumn:
       ACTIONS: Actions

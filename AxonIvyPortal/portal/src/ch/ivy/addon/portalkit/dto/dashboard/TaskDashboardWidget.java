@@ -32,7 +32,6 @@ public class TaskDashboardWidget extends DashboardWidget {
   private static final long serialVersionUID = 3246735956282078091L;
   protected static final String LIKE_FORMAT = "%%%s%%";
 
-  private int rowsPerPage = 5;
   @JsonIgnore
   private DashboardTaskLazyDataModel dataModel;
   @JsonIgnore
@@ -48,6 +47,9 @@ public class TaskDashboardWidget extends DashboardWidget {
   private boolean enableQuickSearch;
   private boolean showWidgetInfo;
   private boolean showFullscreenMode;
+
+  @JsonIgnore
+  private List<String> errors;
 
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
@@ -200,14 +202,6 @@ public class TaskDashboardWidget extends DashboardWidget {
     return DashboardWidgetType.TASK;
   }
 
-  public int getRowsPerPage() {
-    return isInConfiguration() ? 5 : rowsPerPage;
-  }
-
-  public void setRowsPerPage(int rowsPerPage) {
-    this.rowsPerPage = rowsPerPage;
-  }
-
   @Override
   public void setQuickSearchKeyword() {
     if (BooleanUtils.isTrue(this.enableQuickSearch)) {
@@ -259,12 +253,17 @@ public class TaskDashboardWidget extends DashboardWidget {
     return showFullscreenMode;
   }
 
+  @Override
   @JsonIgnore
   public void loadUserFilter() {
     updateSavedFiltersSelection();
 
     // Don't load user filters when already loaded from session
-    if (CollectionUtils.isNotEmpty(getUserFilters())) {
+    List<DashboardFilter> userFilters = getUserFilters();
+    if (CollectionUtils.isNotEmpty(userFilters)) {
+      // Clear temporary filters
+      setUserFilters(userFilters.stream().filter(filter -> !filter.isTemp())
+          .collect(Collectors.toList()));
       return;
     }
 
@@ -294,4 +293,12 @@ public class TaskDashboardWidget extends DashboardWidget {
     setUserFilters(getUserFilters().stream().filter(filter -> !filter.isTemp()).collect(Collectors.toList()));
   }
 
+
+public List<String> getErrors() {
+	return errors;
+}
+
+public void setErrors(List<String> errors) {
+	this.errors = errors;
+}
 }

@@ -1,286 +1,145 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-   xmlns:f="http://xmlns.jcp.org/jsf/core"
-   xmlns:h="http://xmlns.jcp.org/jsf/html"
-   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-   xmlns:ic="http://ivyteam.ch/jsf/component"
-   xmlns:p="http://primefaces.org/ui"
-   xmlns:pe="http://primefaces.org/ui/extensions"
-   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
-   <ui:composition template="/layouts/BasicTemplate.xhtml">
-      <ui:param name="viewName" value="USER_PROFILE" />
-      <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}</ui:define>
-      <ui:define name="pageContent">
-         <f:event listener="#{logic.initSettings}"
-            type="preRenderComponent" />
-         <f:event listener="#{userProfileBean.init}"
-            type="preRenderComponent" />
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="viewName" value="USER_PROFILE" />
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}</ui:define>
+    <ui:define name="pageContent">
+      <f:event listener="#{logic.initSettings}" type="preRenderComponent" />
+      <f:event listener="#{userProfileBean.init}" type="preRenderComponent" />
 
-         <h:form id="my-profile-form" styleClass="my-profile-form ">
-            <div id="my-profile-container"
-               class="ui-g my-profile-container">
-               <div class="ui-g-12">
-                  <p:messages id="errors-message" severity="warn,error"
-                     showDetail="true" escape="false" closable="true" />
-                  <p:growl id="user-setting-info" showDetail="true"
-                     severity="info" for="user-profile-message"
-                     sticky="true" />
-               </div>
+      <h:form id="my-profile-form" styleClass="my-profile-form ">
+        <div id="my-profile-container" class="ui-g my-profile-container">
+          <div class="ui-g-12">
+            <p:messages id="errors-message" severity="warn,error" showDetail="true" escape="false" closable="true" />
+            <p:growl id="user-setting-info" showDetail="true" severity="info" for="user-profile-message" sticky="true" />
+          </div>
 
-               <!-- General Setting card -->
-               <div class="ui-g-6 ui-lg-6 ui-md-12 ui-sm-12">
-                  <div class="portal-section-container card general-section-container">
-                     <div class="ui-g-12">
-                        <div class="setting-header ui-g-12">
-                           <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/General')}</h2>
-                        </div>
+          <div class="card">
+            <div class="flex user-profile-card">
+              <div class="ui-g-6 ui-sm-12 pr-5 user-profile-card-left">
 
-                <div class="ui-g-12 u-no-padding-top">
-                  <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage')}</span>
-                  <div class="ui-g ui-g-12 u-padding-0">
-                    <div class="ui-g-6 ui-sm-12 ui-fluid">
-                      <p:selectOneMenu id="homepage" value="#{data.selectedHomepage}" converter="pojoConverter">
-                        <f:selectItems value="#{data.homepages}" var="homepage" itemValue="#{homepage}"
-                          itemLabel="#{homepage.label}" />
+                <!-- General Setting -->
+                <h:panelGroup layout="block" class="w-full my-profile-block">
+                  <div class="setting-header">
+                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/General')}</h5>
+                  </div>
+                  <div class="user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage')}</div>
+                  <div class="ui-fluid">
+                    <p:selectOneMenu id="homepage" value="#{data.selectedHomepage}" converter="pojoConverter">
+                      <f:selectItems value="#{data.homepages}" var="homepage" itemValue="#{homepage}" itemLabel="#{homepage.label}" />
+                    </p:selectOneMenu>
+                  </div>
+                </h:panelGroup>
+
+                <!-- Process List Setting -->
+                <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{userProfileBean.canAccessProcessList()}">
+                  <div class="setting-header">
+                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/ProcessList')}</h5>
+                  </div>
+                  <div class="user-profile-setting-title">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultViewMode")}</div>
+                  <div class="ui-fluid">
+                    <p:selectOneMenu id="process-mode-selection" value="#{data.selectedProcessMode}">
+                      <f:selectItems value="#{data.processModes}" var="mode" itemValue="#{mode}" itemLabel="#{mode}" />
+                    </p:selectOneMenu>
+                  </div>
+                </h:panelGroup>
+              </div>
+              <p:divider layout="vertical" styleClass="responsive-divider"/>
+
+              <div class="ui-g-6 pl-5 ui-sm-12 relative user-profile-card-right">
+                <h:panelGroup id="language-setting-container" layout="block" styleClass="w-full my-profile-block">
+                  <div class="setting-header">
+                    <h5 id="language-setting-title" class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</h5>
+                  </div>
+                  <!-- Language Setting -->
+                  <div class="language-selection w-full">
+                    <div id="language-selection-label" class="language-selection-label user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</div>
+                    <div class="ui-fluid">
+                      <p:selectOneMenu id="language-selection" value="#{data.language.userLanguage}">
+                        <f:selectItems value="#{data.language.languages}" />
                       </p:selectOneMenu>
                     </div>
                   </div>
+                  <!-- Format language Setting -->
+                  <div class="language-selection w-full">
+                    <div id="format-language-selection-label" class="language-selection-label user-profile-setting-title mt-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/FormattingLanguage')}</div>
+                    <div class="ui-fluid">
+                      <p:autoComplete id="format-language-selection" scrollHeight="210" dropdown="true" size="35"
+                        completeMethod="#{logic.completeFormattingLanguage}" value="#{data.language.itemFormattingLanguage}" var="language"
+                        itemValue="#{language}" itemLabel="#{language.label}" converter="pojoConverter" cache="true" maxResults="100"
+                        moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/MoreItemsAvailable')}" dynamic="true"
+                        appendTo="@(.portal-layout-container)" />
+                    </div>
+                  </div>
+                </h:panelGroup>
+
+                <!-- Notification Setting -->
+                <h:panelGroup id="notification-channels" class="w-full my-profile-block">
+                  <div class="u-mar-right-5">
+                    <p:growl for="notification-Message">
+                      <p:autoUpdate />
+                    </p:growl>
+                  </div>
+                  <div class="setting-header">
+                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</h5>
+                  </div>
+                  <div class="w-full">
+                    <p:dataTable paginator="true" rows="10" paginatorPosition="bottom" paginatorAlwaysVisible="false" var="event"
+                      value="#{userProfileBean.events}" id="notification-Channels-Table" rowIndexVar="rowIndex" lazy="false" styleClass="ui-fluid">
+                      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/event')}" sortBy="#{event.displayName}">
+                        <h:outputText id="event" value="#{event.displayName}" />
+                        <p:tooltip for="my-profile-form:notification-Channels-Table:#{rowIndex}:event" value="#{event.description}" position="top" />
+                      </p:column>
+                      <p:columns id="channels" var="channel" value="#{userProfileBean.channels}">
+                        <div>
+                          <f:facet name="header">
+                            <div class="flex">
+                              <i class="#{channel.channel.displayIcon()} table-icon mr-2 mt-1" />
+                              <h:outputText value="#{channel.channel.displayName()}">
+                              </h:outputText>
+                            </div>
+                          </f:facet>
+                        </div>
+                        <c:set var="subscription" value="#{channel.getSubscription(event)}" />
+                        <div class="flex align-content-center gap-3">
+                          <i class="flex align-items-center si table-icon si-#{subscription.icon} subscription-icon " title="#{subscription.title}" />
+                          <p:triStateCheckbox id="subscriptionCheckbox" value="#{subscription.stateAsString}" styleClass="flex align-items-center">
+                            <p:ajax event="change" global="false"
+                              update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
+                              listener="#{channel.setSubscriptionIconAndTitle(event.event)}" />
+                          </p:triStateCheckbox>
+                        </div>
+                      </p:columns>
+                    </p:dataTable>
+                  </div>
+                  <div class="u-text-align-right mt-3 restore-to-default-button">
+                    <p:commandLink id="restore-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-undo')}" 
+                      global="false"
+                      actionListener="#{userProfileBean.resetAllChannel}"
+                      update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
+                      styleClass="ui-button-flat setting-tab-action-buttons font-medium" >
+                        <i class="si si-undo"/>
+                        <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}</span>
+                      </p:commandLink>
+                      
+                  </div>
+                </h:panelGroup>
+
+                <div class="user-profile-footer w-full">
+                  <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15"
+                    actionListener="#{logic.backToHome}" />
+                  <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
+                    actionListener="#{userProfileBean.saveAllChannel}"
+                    action="#{logic.save}" update="errors-message" />
                 </div>
               </div>
-
-                     <!-- Process List Setting -->
-                     <h:panelGroup layout="block" styleClass="ui-g-12"
-                       rendered="#{userProfileBean.canAccessProcessList()}">
-                        <div class="setting-header ui-g-12">
-                           <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/ProcessList')}</h2>
-                        </div>
-                        <div class="ui-g-12 u-no-padding-top">
-                           <span class="ui-g-12">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultViewMode")}</span>
-                           <div class="ui-g-6 ui-sm-12 ui-fluid">
-                              <p:selectOneMenu
-                                 id="process-mode-selection"
-                                 value="#{data.selectedProcessMode}">
-                                 <f:selectItems
-                                    value="#{data.processModes}"
-                                    var="mode" itemValue="#{mode}"
-                                    itemLabel="#{mode}" />
-                              </p:selectOneMenu>
-                           </div>
-                        </div>
-                     </h:panelGroup>
-
-                     <!-- Task List Setting -->
-                     <h:panelGroup layout="block" styleClass="ui-g-12"
-                       rendered="#{userProfileBean.canAccessTaskList()}">
-                        <div class="setting-header ui-g-12">
-                           <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/TaskList')}</h2>
-                        </div>
-                        <div class="ui-g-12 u-no-padding-top ui-fluid">
-                           <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}</span>
-                           <div class="ui-g-6 ui-sm-12">
-                              <p:selectOneMenu
-                                 id="task-sort-field-selection"
-                                 value="#{data.selectedTaskListSortField}"
-                                 styleClass="sort-field-selection my-profile-selection-menu">
-                                 <f:selectItems
-                                    value="#{data.taskListSortFields}"
-                                    var="taskSortField"
-                                    itemValue="#{taskSortField}"
-                                    itemLabel="#{userProfileBean.getDisplayNameOfTaskSortField(taskSortField)}" />
-                              </p:selectOneMenu>
-                           </div>
-                           <div class="ui-g-6 ui-sm-12">
-                              <p:selectOneMenu
-                                 id="task-sort-direction-selection"
-                                 value="#{data.selectedTaskListSortDirection}"
-                                 styleClass="my-profile-selection-menu">
-                                 <f:selectItems
-                                    value="#{data.sortDirections}"
-                                    var="direction"
-                                    itemValue="#{direction}"
-                                    itemLabel="#{userProfileBean.getDisplayNameOfTaskSortDirection(direction)}" />
-                              </p:selectOneMenu>
-                           </div>
-                        </div>
-                     </h:panelGroup>
-
-                     <!-- Case List Setting -->
-                     <h:panelGroup layout="block" styleClass="ui-g-12"
-                       rendered="#{userProfileBean.canAccessCaseList()}">
-                        <div class="setting-header ui-g-12">
-                           <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/CaseList')}</h2>
-                        </div>
-                        <div class="ui-g-12 u-no-padding-top ui-fluid">
-                           <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}</span>
-                           <div class="ui-g-6 ui-sm-12">
-                              <p:selectOneMenu
-                                 id="case-sort-field-selection"
-                                 value="#{data.selectedCaseListSortField}"
-                                 styleClass="sort-field-selection my-profile-selection-menu">
-                                 <f:selectItems
-                                    value="#{data.caseListSortFields}"
-                                    var="caseSortField"
-                                    itemValue="#{caseSortField}"
-                                    itemLabel="#{userProfileBean.getDisplayNameOfCaseSortField(caseSortField)}" />
-                              </p:selectOneMenu>
-                           </div>
-                           <div class="ui-g-6 ui-sm-12">
-                              <p:selectOneMenu
-                                 id="case-sort-direction-selection"
-                                 value="#{data.selectedCaseListSortDirection}"
-                                 styleClass="ui-sm-12 my-profile-selection-menu">
-                                 <f:selectItems
-                                    value="#{data.sortDirections}"
-                                    var="direction"
-                                    itemValue="#{direction}"
-                                    itemLabel="#{userProfileBean.getDisplayNameOfCaseSortDirection(direction)}" />
-                              </p:selectOneMenu>
-                           </div>
-                        </div>
-                     </h:panelGroup>
-                  </div>
-               </div>
-
-               <!-- Language and Notification setting card -->
-               <div class="ui-g-6 ui-lg-6 ui-md-12 ui-sm-12">
-
-                  <div class="portal-section-container card">
-                     <div id="language-setting-container"
-                        class="ui-g-12 ui-fluid">
-                        <div class="setting-header ui-g-12">
-                           <h2 id="language-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</h2>
-                        </div>
-                           <!-- Language Setting -->
-                        <div class="ui-g ui-g-12 u-padding-0">
-                           <div
-                              class="language-selection ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-right">
-                              <h:outputText
-                                 id="language-selection-label"
-                                 styleClass="language-selection-label ui-g-12"
-                                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}" />
-                              <div class="ui-g-12">
-                                 <p:selectOneMenu
-                                    id="language-selection"
-                                    value="#{data.language.userLanguage}">
-                                    <f:selectItems
-                                       value="#{data.language.languages}" />
-                                 </p:selectOneMenu>
-                              </div>
-                           </div>
-                           <!-- Format language Setting -->
-                           <div
-                              class="language-selection ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-left">
-                              <h:outputText
-                                 id="format-language-selection-label"
-                                 styleClass="language-selection-label ui-g-12"
-                                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/FormattingLanguage')}" />
-                              <div class="ui-g-12">
-                                 <p:autoComplete
-                                    id="format-language-selection"
-                                    scrollHeight="210" dropdown="true"
-                                    size="35"
-                                    completeMethod="#{logic.completeFormattingLanguage}"
-                                    value="#{data.language.itemFormattingLanguage}"
-                                    var="language"
-                                    itemValue="#{language}"
-                                    itemLabel="#{language.label}"
-                                    converter="pojoConverter"
-                                    cache="true" maxResults="100"
-                                    moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/MoreItemsAvailable')}"
-                                    dynamic="true"
-                                    appendTo="@(.portal-layout-container)" />
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  
-                                  <!--Notification Channels -->
-                  <div class="portal-section-container card">
-                     <div id="notification-channels" class="ui-g-12">
-                        <div class="ui-g-12">
-                           <div class="u-mar-right-5">
-                              <p:growl for="notification-Message">
-                                 <p:autoUpdate />
-                              </p:growl>
-                           </div>
-                               <div class="setting-header ui-g-12">
-                                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/notificationChannels')}</h2>
-                               </div>
-                              <div class="ui-g-12">
-                              <p:dataTable paginator="true" rows="10"
-                                 paginatorPosition="bottom"
-                                 paginatorAlwaysVisible="false"
-                                 var="event"
-                                 value="#{userProfileBean.events}"
-                                 id="notification-Channels-Table"
-                                 rowIndexVar="rowIndex"
-                                 lazy="false" styleClass="ui-fluid">
-                                 <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/event')}"
-                                    sortBy="#{event.displayName}">
-                                    <h:outputText id="event" value="#{event.displayName}" />
-                                    <p:tooltip for ="my-profile-form:notification-Channels-Table:#{rowIndex}:event" value="#{event.description}" position="top"/>
-                                 </p:column>
-                                 <p:columns id="channels" var="channel"
-                                    value="#{userProfileBean.channels}">
-                                    <div>
-                                       <f:facet name="header">
-                                          <div class="flex">
-                                             <i
-                                                class="#{channel.channel.displayIcon()} table-icon mr-2 mt-1" />
-                                             <h:outputText
-                                                value="#{channel.channel.displayName()}">
-                                             </h:outputText>
-                                          </div>
-                                       </f:facet>
-                                    </div>
-                                    <c:set var="subscription"
-                                       value="#{channel.getSubscription(event)}" />
-                                    <div class="flex">
-                                       <i
-                                          class="mr-2 mt-1 si table-icon si-#{subscription.icon} subscription-icon "
-                                          title="#{subscription.title}" />
-                                       <p:triStateCheckbox
-                                          id="subscriptionCheckbox"
-                                          value="#{subscription.stateAsString}">
-                                          <p:ajax event="change" global="false"
-                                             update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
-                                             listener="#{channel.setSubscriptionIconAndTitle(event.event)}" />
-                                       </p:triStateCheckbox>
-                                    </div>
-                                 </p:columns>
-                              </p:dataTable>
-                              </div>
-                              <div>
-                                 <div class="u-text-align-right ui-g-12">
-                                    <p:commandButton id="restore-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
-                                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}"
-                                       global="false"
-                                       actionListener="#{userProfileBean.resetAllChannel}" update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
-                                       styleClass="setting-tab-action-buttons" />
-                                </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                   </div>
-
-               <div class="user-profile-footer ui-g-12">
-                  <p:commandLink
-                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                     styleClass="u-mar-right-15"
-                     actionListener="#{logic.backToHome}" />
-
-                  <p:commandButton id="save-settings"
-                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-                     icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
-                     actionListener="#{userProfileBean.saveAllChannel}"
-                     action="#{logic.save}"
-                     update="errors-message" />
-               </div>
             </div>
-         </h:form>
-      </ui:define>
-   </ui:composition>
+          </div>
+        </div>
+      </h:form>
+    </ui:define>
+  </ui:composition>
 </h:body>
 </html>

@@ -44,7 +44,7 @@ public class FullProcessPageTest extends BaseTest {
   @Test
   public void testChangeProcessViewMode() {
     String currentView = processWidgetPage.getCurrentViewMode();
-    processWidgetPage.selectViewMode(ProcessWidgetPage.GRID_MODE);
+    processWidgetPage.selectGridMode();
     String newView = processWidgetPage.getCurrentViewMode();
     assertFalse(StringUtils.equals(currentView, newView));
   }
@@ -57,11 +57,12 @@ public class FullProcessPageTest extends BaseTest {
     processWidgetPage = mainMenuPage.selectProcessesMenu();
     createPublicExternalTestProcess(AAGOOGLE_LINK, AAGOOGLE_LINK, TestRole.TESTER_ROLE);
 
-    processWidgetPage.selectViewMode(ProcessWidgetPage.GRID_MODE);
+    refreshPage();
+    processWidgetPage.selectGridMode();
     processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
     String currentIcon = processWidgetPage.getProcessItemIcon(0);
-    processWidgetPage.selectViewMode(ProcessWidgetPage.IMAGE_MODE);
+    processWidgetPage.selectImageMode();
     processWidgetPage.waitForImageProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
     processWidgetPage.clickMoreButtonOfFirstImageProcess();
@@ -69,7 +70,9 @@ public class FullProcessPageTest extends BaseTest {
     processWidgetPage.changeProcessIcon();
     processWidgetPage.addNewRolePermission(TestRole.HR_ROLE);
     processWidgetPage.saveEditProcessDialog();
-    processWidgetPage.selectViewMode(ProcessWidgetPage.GRID_MODE);
+    
+    refreshPage();
+    processWidgetPage.selectGridMode();
     processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
     String newIcon = processWidgetPage.getProcessItemIcon(0);
@@ -93,7 +96,7 @@ public class FullProcessPageTest extends BaseTest {
     newDashboardPage = new NewDashboardPage();
     mainMenuPage = newDashboardPage.openMainMenu();
     processWidgetPage = mainMenuPage.selectProcessesMenu();
-    processWidgetPage.selectViewMode(ProcessWidgetPage.GRID_MODE);
+    processWidgetPage.selectGridMode();
     processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword(AAGOOGLE_LINK);
     processWidgetPage.clickMoreButtonOfGridProcess(AAGOOGLE_LINK);

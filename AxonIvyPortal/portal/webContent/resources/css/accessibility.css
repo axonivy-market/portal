@@ -1,0 +1,36 @@
+/* Accessibility shortcuts */
+.shortcuts-container {
+    width: 100%;
+    margin: 0 auto;
+}
+.shortcut-key {
+    padding: 5px 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    display: inline-block;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.shortcut {
+    background-color: var(--accessibility-bg-color);
+    padding: 10px 15px;
+    align-items: center;
+}
+
+.shortcut-content {
+    font-size: 16px;
+    white-space: nowrap;
+    display: inline;
+}
+
+.shortcut-key {
+  background-color : var(--surface-b);
+}
+
+body.dark .shortcut-key {
+  background-color : var(--accessibility-shortcut-bg-color-dark);
+}
+
+:root {
+  --accessibility-shortcut-bg-color-dark: var(--surface-d);
+}

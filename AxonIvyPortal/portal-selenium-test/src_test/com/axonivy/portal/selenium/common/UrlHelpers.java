@@ -33,6 +33,7 @@ public class UrlHelpers {
     return Optional.ofNullable(applicationName).orElse(PropertyLoader.getApplicationName());
   }
 
+  @SuppressWarnings("deprecation")
   private static String getEngineUrl() {
     String vmArgUrl = System.getProperty("test.engine.url");
     if (vmArgUrl != null) {

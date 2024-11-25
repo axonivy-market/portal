@@ -43,7 +43,7 @@ public class TaskTreeUtils {
   public static CheckboxTreeNode<CategoryNode> buildTaskCategoryCheckboxTreeRootWithoutAllCategoriesNode(){
     CheckboxTreeNode<CategoryNode> root = buildRootWithoutAllCategoriesNode();
     CategoryTree allTaskCategories = findAllCategories();
-    convertToCheckboxTreeNode((CheckboxTreeNode<CategoryNode>) root, allTaskCategories);
+    convertToCheckboxTreeNode(root, allTaskCategories);
     sortNode(root);
     return root;
   }

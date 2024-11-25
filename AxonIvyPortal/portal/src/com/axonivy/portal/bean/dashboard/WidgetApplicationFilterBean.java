@@ -29,7 +29,7 @@ public class WidgetApplicationFilterBean implements Serializable {
 
   @SuppressWarnings("unchecked")
   public void init(DashboardFilter filter) {
-    this.applications = ListUtilities.transformList(IApplicationRepository.instance().allOf(ISecurityContext.current()),
+    this.applications = ListUtilities.transformList(IApplicationRepository.of(ISecurityContext.current()).all(),
         IApplication::getName);
 
     this.applicationString = String.join(", ",

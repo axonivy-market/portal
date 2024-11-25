@@ -17,7 +17,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
-import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.ListUtilities;
@@ -31,8 +30,9 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
   @Override
   public void initDefaultValue() {
     super.initDefaultValue();
-    this.field = DashboardStandardProcessColumn.APPLICATION.getField();
-    this.style = defaultIfEmpty(this.style, TINY_WIDTH);
+    this.styleToDisplay = initDefaultStyle();
+    this.styleClass = defaultIfEmpty(this.styleClass,
+        "dashboard-tasks__priority u-text-align-center widget-column");
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__priority u-text-align-center");
     this.format = DashboardColumnFormat.CUSTOM;
   }
@@ -44,7 +44,7 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
 
   @JsonIgnore
   public List<String> getApplications() {
-    return ListUtilities.transformList(IApplicationRepository.instance().allOf(ISecurityContext.current()), IApplication::getName);
+    return ListUtilities.transformList(IApplicationRepository.of(ISecurityContext.current()).all(), IApplication::getName);
   }
   
   @JsonIgnore
@@ -55,6 +55,11 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
   @Override
   public Boolean getDefaultSortable() {
     return false;
+  }
+  
+  @Override
+  protected int getDefaultColumnWidth() {
+    return TINY_WIDTH;
   }
   
   public void initializeApplications(ProcessDashboardWidget widget) {
@@ -89,10 +94,10 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
 
     if (widget instanceof CompactProcessDashboardWidget) {
       ((CompactProcessDashboardWidget) widget).setProcesses(null);
-      final List<ColumnModel> filterableColumns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
+      final List<ColumnModel> filterableColumns = widget.getFilterableColumns();
       for (ColumnModel column : filterableColumns) {
         if (column instanceof CategoryColumnModel) {
-          ((CategoryColumnModel) column).setFilterList(new ArrayList<>());
+          column.setFilterList(new ArrayList<>());
           ((CategoryColumnModel) column).setSelectionCategoryNodes(null);
         }
       }

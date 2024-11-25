@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "1633E7FE0C8BCFA6",
   "config" : {
     "data" : "ch.ivy.add.portalkit.Data"

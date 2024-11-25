@@ -13,7 +13,7 @@ Admin Settings
 
 .. hint::
    Only users who have granted the role ``AXONIVY_PORTAL_ADMIN`` can see and access 
-   the :guilabel:`Admin settings` user menu item. They can update Portal settings, 
+   the :guilabel:`Admin settings` on the user menu. They can update Portal settings, 
    as well as define, show and hide the announcement.
 
 Select the :guilabel:`Admin settings` user menu item.
@@ -50,7 +50,7 @@ HowTo: Update Portal Settings
 
    |global-settings|
 
-#. To update Portal settings, click on the |edit-icon| icon.
+#. To update value of Portal settings variable, click on the |edit-icon| icon.
 
    |edit-global-settings|
 
@@ -79,7 +79,7 @@ HowTo: Show/Hide the Announcement
 
    |announcement|
 
-#. Input your announcement text.
+#. Input your announcement text and click on :guilabel:`Save changes`
 
 #. To show the announcement, click on :guilabel:`Enable`.
 
@@ -133,11 +133,20 @@ Portal provides the :guilabel:`Password Validation` section in the :guilabel:`Ad
 .. include:: ../includes/_common-icon.rst
 
 .. |applications| image:: ../../screenshots/settings/applications.png
+   :alt: Admin setting: applications
 .. |add-application| image:: ../../screenshots/settings/add-application.png
+   :alt: Admin setting: Add application dialog
 .. |announcement| image:: ../../screenshots/settings/announcement.png
+   :alt: Admin setting: Announcement
 .. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
+   :alt: Admin setting menu
 .. |global-settings| image:: ../../screenshots/settings/global-settings.png
+   :alt: Admin setting: Global settings
 .. |edit-global-settings| image:: ../../screenshots/settings/edit-global-settings.png
+   :alt: Admin setting: Edit global setting dialog
 .. |role-assignment-tab| image:: ../../screenshots/settings/role-assignment-tab.png
+   :alt: Admin setting: Role management
 .. |role-assignment-creation-dialog| image:: ../../screenshots/settings/role-assignment-creation-dialog.png
+   :alt: Admin setting: role creation dialog
 .. |password-validation-tab| image:: ../../screenshots/settings/password-validation-tab.png
+   :alt: Admin setting: Password Validation

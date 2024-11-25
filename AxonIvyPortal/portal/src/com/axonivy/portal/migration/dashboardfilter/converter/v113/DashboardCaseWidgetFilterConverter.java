@@ -171,11 +171,11 @@ public class DashboardCaseWidgetFilterConverter implements IJsonConverter {
     newFilterNode.set("operator", new TextNode(FilterOperator.BETWEEN.getOperator()));
 
     if (!isEmptyFilterFrom) {
-      newFilterNode.set("from", new TextNode(filterFrom.asText()));
+      newFilterNode.set("from", new TextNode(filterFrom == null ? "" : filterFrom.asText()));
     }
 
     if (!isEmptyFilterTo) {
-      newFilterNode.set("to", new TextNode(filterTo.asText()));
+      newFilterNode.set("to", new TextNode(filterTo == null ? "" : filterTo.asText()));
     }
   }
 

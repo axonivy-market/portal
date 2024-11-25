@@ -13,7 +13,7 @@ The Portal allows you to customize:
 
 .. tip::
 
-   Refer to process ``CustomLogoutFeatures`` in project ``portal-developer-examples``
+   Refer to process ``CustomLogoutPage`` in project ``portal-developer-examples``
    for an example of how to customize the logout process.
 
 Customize the logout function

@@ -137,20 +137,23 @@ public class NotificationBean implements Serializable {
       return false;
   }
   
+  public void startTask(NotificationDto dto) {
+    markAsRead(dto);
+    PortalNavigator.redirect(dto.getRunAction().getLink().getRelative());
+  }
+  
   public void startTaskFromNotification(NotificationDto dto, boolean isWorkingTask, ITask task) {
     if (isWorkingTask && task.getState() != TaskState.DONE) {
       PrimeFaces.current().executeScript(String.format("checkWarningLogForTaskStart('%s', '%s')", dto.getId(), task.getId()));
       return;
     }
-    markAsRead(dto);
-    PortalNavigator.redirect(dto.getRunAction().getLink().getRelative());
+    startTask(dto);
   }
   
   public void startTaskFromNotiId() {
     String notificationId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("notificationId");
     NotificationDto dto = dataModel.findById(notificationId);
-    markAsRead(dto);
-    PortalNavigator.redirect(dto.getRunAction().getLink().getRelative());
+    startTask(dto);
   }
   
   public void goToNotificationDetail(NotificationDto dto, boolean isWorkingTask, ITask task) {
@@ -158,8 +161,7 @@ public class NotificationBean implements Serializable {
       PrimeFaces.current().executeScript(String.format("checkWarningLogForTaskDetail('%s', '%s')", dto.getId(), task.getId()));
       return;
     }
-    markAsRead(dto);
-    PortalNavigator.redirect(dto.getInfoAction().getLink().getRelative());
+    goToTaskDetail(dto);
   }
   
   public void goToTaskDetail(NotificationDto dto) {

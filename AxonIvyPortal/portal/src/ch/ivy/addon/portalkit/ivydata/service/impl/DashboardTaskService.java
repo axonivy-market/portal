@@ -25,16 +25,20 @@ public class DashboardTaskService extends TaskService {
   public List<ITask> findByTaskQuery(TaskQuery query, int startIndex, int count) {
     return Sudo.get(() -> {
       var subQuery = TaskQuery.create();
+      boolean hasSubQueryChanged = false;
       if (!PermissionUtils.checkReadAllTasksPermission()) {
         subQuery.where().and(queryInvolvedTasks());
+        hasSubQueryChanged = true;
       }
       if (isHiddenTasksCasesExcluded()) {
         subQuery.where().and(queryExcludeHiddenTasks());
+        hasSubQueryChanged = true;
       }
       if (!PermissionUtils.hasSystemTaskReadAllPermission()) {
         subQuery.where().and(queryExcludeSystemTasks());
+        hasSubQueryChanged = true;
       }
-      var finalQuery = query.where().and(subQuery);
+      var finalQuery = hasSubQueryChanged ? query.where().and(subQuery) : query;
       return executeTaskQuery(finalQuery, startIndex, count);
     });
   }
@@ -42,16 +46,20 @@ public class DashboardTaskService extends TaskService {
   public Long countByTaskQuery(TaskQuery query) {
     return Sudo.get(() ->{
       TaskQuery subQuery = TaskQuery.create();
+      boolean hasSubQueryChanged = false;
       if(!PermissionUtils.checkReadAllTasksPermission()) {
         subQuery.where().and(queryInvolvedTasks());
+        hasSubQueryChanged = true;
       }
       if (isHiddenTasksCasesExcluded()) {
         subQuery.where().and(queryExcludeHiddenTasks());
+        hasSubQueryChanged = true;
       }
       if (!PermissionUtils.hasSystemTaskReadAllPermission()) {
         subQuery.where().and(queryExcludeSystemTasks());
+        hasSubQueryChanged = true;
       }
-      var finalQuery = query.where().and(subQuery);
+      var finalQuery = hasSubQueryChanged ? query.where().and(subQuery) : query;
       
       return countTasks(finalQuery);
     });

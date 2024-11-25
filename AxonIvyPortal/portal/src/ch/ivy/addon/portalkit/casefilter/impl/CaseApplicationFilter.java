@@ -25,7 +25,7 @@ public class CaseApplicationFilter extends CaseFilter {
   private boolean isSelectedAll;
   
   public CaseApplicationFilter() {
-    this.filteredApplications = IApplicationRepository.instance().allOf(ISecurityContext.current()).stream().map(IApplication::getName).collect(Collectors.toList());
+    this.filteredApplications = IApplicationRepository.of(ISecurityContext.current()).all().stream().map(IApplication::getName).collect(Collectors.toList());
     this.selectedFilteredApplications = new ArrayList<>();
   }
 
@@ -61,7 +61,7 @@ public class CaseApplicationFilter extends CaseFilter {
     CaseQuery query = CaseUtils.createBusinessCaseQuery();
     IFilterQuery filterQuery = query.where();
     selectedFilteredApplications.forEach(applicationName -> {
-      final List<IApplication> allApps = IApplicationRepository.instance().allOf(ISecurityContext.current());
+      final List<IApplication> allApps = IApplicationRepository.of(ISecurityContext.current()).all();
       for (IApplication app : allApps) {
         if (app.getName().equals(applicationName)) {
           filterQuery.or().applicationId().isEqual(app.getId());

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+    <ui:param name="loadPortalScript" value="false" />
+  <ui:composition template="/layouts/restricted/IFrameWithoutMenuTemplate.xhtml">
+    <ui:param name="loadSerenityScript" value="false" />
+    <ui:param name="loadOptionalSerenityCss" value="false" />
+    <ui:define name="pageContent">
+        <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack ui-g-12 u-no-padding-left js-frame-result card dashboard-card">
+          <div class="ui-g">
+            <div class="ui-g-12">
+              <ic:ch.ivy.addon.portal.generic.dashboard.component.ProcessWidget id="process-component" processWidget="#{data.processWidget}"
+                isReadOnlyMode="#{true}" isAIResult="true" isInConfiguration="false" />
+            </div>
+          </div>
+        </h:panelGroup>
+
+        <h:outputScript library="js" name="portal.js" />
+        <h:outputScript library="js" name="dashboard.js" />
+        <script type="text/javascript">
+            var dashboardToolKit = new DashboardToolKit();
+            $(function() {
+              var simpleScreen = new DashboardScreenHandler();
+              var responsiveToolkit = ResponsiveToolkit(simpleScreen);
+              Portal.init(responsiveToolkit);
+            });
+        </script>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

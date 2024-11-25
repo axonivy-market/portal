@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
@@ -334,5 +335,34 @@ public class DashboardCaseWidgetTest extends BaseTest {
     newDashboardDetailsEditPage.backToConfigurationPage();
     redirectToNewDashBoard();
     assertFalse(caseWidget.isExpandButtonAppear());
+  }
+  
+  @Test
+  public void testResizeColumnWidth() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    int oldSize = modificationPage.getPriorityColumnSize();
+    modificationPage.resizeColumn();
+    int newSize = modificationPage.getPriorityColumnSize();
+    assertTrue(newSize > oldSize);
+    redirectToNewDashBoard();
+  }
+  
+  @Test
+  public void testCaseOwners() {
+    redirectToRelativeLink(multipleOwnersUrl);
+    login(TestAccount.ADMIN_USER);
+    updatePortalSetting(Variable.ENABLE_CASE_OWNER.getKey(), "true");
+    redirectToNewDashBoard();
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
+    CaseDetailsPage detailsCase = caseWidget.openDetailsCase("Case with multiple owners");
+    detailsCase.clickShowCaseOwners();
+    assertTrue(detailsCase.countCaseOwners() > 0);
+    updatePortalSetting(Variable.ENABLE_CASE_OWNER.getKey(), "false");
   }
 }

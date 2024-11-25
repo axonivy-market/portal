@@ -1,0 +1,11 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "simpleName" : "FindTaskWidgetData",
+  "namespace" : "ch.ivy.addon.portal.generic.ai.FindTaskWidget",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "taskWidget",
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

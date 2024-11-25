@@ -82,7 +82,7 @@ To install Dashboard JSON configuration file to the Axon Ivy Engine, you can cho
    ..
 
    The JSON file name has to be Portal.Dashboard.json. Refer to :dev-url:`Engine Deployment</doc/|version|/engine-guide/deployment/index.html>` 
-- Copy the Dashboard.json file directly into the engine folder ``<engine>/configuration/applications/<application>``. The Json file name has to be named ``variables.Portal.Dashboard.json``
+- Copy the Dashboard.json file directly into your ``<application>`` folder following this path ``<engine>/configuration/applications/<application>``. The Json file name has to be named ``variables.Portal.Dashboard.json``
 
 - Use the import dashboard feature of the Portal. Refer to :ref:`How to import your public dashboards<howto-import-your-public-dashboards>`
 
@@ -477,10 +477,14 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of |ivy|.
 
-Changes in 12
--------------
+Changes in 12.0.0
+-----------------
 
 - The old statistic chart is removed, use the new :ref:`statistic-chart` instead.
+- Introduce the component IFrameTaskConfig to configure IFrame tasks. Refer to :ref:`iframe-configure-template` for more information.
+- The :ref:`full task list page <full-task-list>` and :ref:`full case list page <full-case-list>` have been redesigned to align with the concept of a dashboard widget. 
+  It now functions as a dashboard with a single, full-width widget. To configure it, you can adjust it like any other widgets.
+- Support multiple case owners. The single case owner sort feature is removed.
 
 Changes in 11.2.0
 -----------------
@@ -579,7 +583,7 @@ Changes in 9.1
 
 - Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
 
-- Introduced new Portal dialog with icon decorator. Refer to :ref:`this section <components-additional-portal-dialog-with-icon>` for detail.
+- Introduced new Portal dialog with icon decorator.
 
 - TaskTemplate-7, TaskTemplate and TwoColumnTemplate have been removed.
 

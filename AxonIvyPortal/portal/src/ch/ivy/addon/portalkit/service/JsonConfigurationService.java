@@ -10,11 +10,15 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
+import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
 import com.axonivy.portal.migration.dashboardfilter.migrator.JsonDashboardFilterMigrator;
+import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemplateMigrator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
+import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -59,7 +63,8 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
     if (StringUtils.isBlank(jsonValue)) {
       return new ArrayList<>();
     }
-    List<T> entities = BusinessEntityConverter.jsonValueToEntities(jsonValue, getType());
+    List<T> entities = Optional.ofNullable(convertToLatestVersion(jsonValue))
+      .orElseGet(() -> BusinessEntityConverter.jsonValueToEntities(jsonValue, getType()));
     entities.forEach(e -> e.setIsPublic(true));
     return entities;
   }
@@ -74,14 +79,22 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
   }
 
   private List<T> convertToLatestVersion(String jsonValue) {
-    if (getType() == WidgetFilterModel.class) {
-      try {
-        ObjectMapper mapper = new ObjectMapper();
+    ObjectMapper mapper = new ObjectMapper();
+    try {
+      if (getType() == WidgetFilterModel.class) {
         JsonDashboardFilterMigrator migrator = new JsonDashboardFilterMigrator(mapper.readTree(jsonValue));
         return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), getType());
-      } catch (JsonProcessingException ex) {
-        Ivy.log().error("Failed to read dashboard template from JSON {0}", ex, jsonValue);
       }
+      if (getType() == Dashboard.class) {
+        JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(jsonValue));
+        return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), getType());
+      }
+      if (getType() == DashboardTemplate.class) {
+        JsonDashboardTemplateMigrator migrator = new JsonDashboardTemplateMigrator(mapper.readTree(jsonValue));
+        return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), getType());
+      }
+    } catch (JsonProcessingException ex) {
+      Ivy.log().error("Failed to read dashboard template from JSON {0}", ex, jsonValue);
     }
     return null;
   }

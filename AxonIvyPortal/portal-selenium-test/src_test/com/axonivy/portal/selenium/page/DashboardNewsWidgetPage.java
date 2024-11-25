@@ -123,7 +123,7 @@ public class DashboardNewsWidgetPage extends TemplatePage {
   }
 
   public SelenideElement getNewsItemIcon(int index) {
-    return getNewsItem(index).$(String.format(NEWS_ITEM_ATTR_FORMAT, index, "news-icon:awesome-icon-display"))
+    return getNewsItem(index).$(String.format(NEWS_ITEM_ATTR_FORMAT, index, "news-icon:current-icon-display"))
         .shouldBe(appear, DEFAULT_TIMEOUT);
   }
 

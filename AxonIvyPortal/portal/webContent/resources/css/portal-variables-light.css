@@ -18,6 +18,8 @@
   --cancel-button-background-color: var(--ivy-primary-color-grey-light);
   --cancel-button-state-hover-or-focus-background-color: var(--ivy-primary-color-grey-pale);
   --portal-button-color: var(--ivy-primary-color-black);
+  --saved-filter-button-background-color: var(--widget-filter-background-color);
+
   /* Color of secondary button */
   --button-secondary-bg-color: var(--ivy-primary-color-white);
   --button-secondary-text-color: var(--primary-color);
@@ -88,6 +90,7 @@
   --filter-name-label-color: var(--ivy-primary-color-grey-medium);
   --filter-selection-container-group-border-color: var(--ivy-primary-color-grey-medium);
   --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
+  --widget-filter-background-color: var(--ivy-primary-color-grey-pale);
 
   /* Item in Widget List */
   --item-widget-background-color: var(--ivy-primary-color-grey-pale);
@@ -112,7 +115,7 @@
   --hovered-user-process-start-list-item-icon-color: var(--primary-color);
   --process-warning-icon-color: var(--ivy-tertinary-color-red-medium);
   --active-switch-label-font-weight: 700;
-  --process-list-item-background-color: var(--ivy-primary-color-white);
+  --process-list-item-background-color: hsl(180, 1%, 95%);
   --process-list-compact-mode-background-color: var(--ivy-primary-color-grey-pale);
   --process-list-item-border-color: hsl(0,0%,92.2%);
   --process-list-widget-item-background-color:  var(--ivy-primary-color-grey-pale);
@@ -204,11 +207,16 @@
   --admin-setting-no-permission-message-color: #e53935;
   --user-setting-container-box-shadow: rgba(43, 59, 93, 0.6);
   --email-setting-widget-header: var(--ivy-primary-color-white);
+  --portal-accessibility-bg-color: var(--primary-lighter-color);
+  --portal-button-bg-color: var(--ivy-primary-text-color);
+  --portal-button-text-color: var(--ivy-primary-color);
   /* Absences and Deputy */
   --substituted-user-text-color: var(--ivy-primary-color-black);
   /* Awesome Icon Selection */
   --content-link-change-awesome-icon-color: var(--primary-color);
   --select-awesome-icon-button-font-weight: bold;
+  --selected-icon-bg-color: hsla(0, 0%, 97%, 1);
+  --icon-color: var(--ivy-primary-color-black);
   /* Start Notification */
   --notification-content-background-color: var(--ivy-tertinary-color-red-dark);
   --notification-content-action-color: var(--ivy-primary-color-white);
@@ -289,7 +297,7 @@
   --ui-data-picker-header-color: var(--ivy-primary-color-grey-pale);
   --ui-data-picker-title-border-color: var(--ivy-primary-color-grey-pale);
   --ui-data-picker-title-background-color: var(--ivy-primary-color-grey-pale);
-  --ui-fileupload-buttonbar-background-color: var(--ivy-primary-color-grey-light);
+  --ui-fileupload-buttonbar-background-color: var(--ivy-portal-color-gray-spaces);
   --ui-transparent-button-hover-background-color: transparent;
   --menu-item-link-color: var(--ivy-primary-color-black);
   --menu-item-link-hover-background-color: var(--ivy-primary-color-grey-pale);
@@ -300,6 +308,7 @@
   --place-holder-text-color: var(--ivy-primary-color-grey-medium);
   --text-tab-default-color: var(--ivy-primary-color-grey-medium);
   --no-item-icon-color: var(--ivy-primary-color-grey-light);
+  --user-menu-items-border-color: var(--ivy-primary-color-grey-pale);
   /* Portal breadcrumb */
   --breadcrumb-background-color: transparent;
   --breadcrumb-home-icon-color: var(--primary-color);
@@ -347,4 +356,19 @@
   /* Dashboard widgets empty message*/
   --dashboard-widget-empty-message: var(--ivy-primary-color-grey-dark);
   
+  --accessibility-shortcut-bg-color: var(--ivy-primary-color-grey-pale);
+  --accessibility-bg-color: var(--ivy-primary-color-white);
+  --accessibility-shortcut-text-color: var(--ivy-primary-color-black);
+
+  /* Confirmation dialog footer button*/
+  --ui-leave-button-color: var(--ivy-primary-color-grey-pale);
+  
+  /* Dashboard configuration*/
+  --dashboard-action-container-text-color: var(--ivy-primary-color-black);
+  --dashboard-action-container-border-color: var(--ivy-primary-color-grey-light);
+  --dashboard-action-container-description-color: var(--ivy-primary-color-grey-dark);
+  --dashboard-icon-drag-drop-color: var(--ivy-primary-color-grey-medium);
+  
+  /* Leave task warning message*/
+  --warning-before-leave-task: #757575;
 }

@@ -62,6 +62,7 @@ public class TaskSearchCriteria {
   private boolean isGlobalSearch;
   private boolean isGlobalSearchScope;
 
+  @SuppressWarnings("deprecation")
   public TaskQuery createQueryToFindLatestTasks(TaskQuery taskQuery, Date timeStamp) {
     if (isAdminQuery) {
       taskQuery.where().and(TaskQuery.create().where().startTimestamp().isGreaterThan(timeStamp));

@@ -23,6 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     editAbsence: Abwesenheiten bearbeiten
     from: Von
     noDeputy: Kein Stellvertreter
+    noPermissionToSeeThisArea: Sie haben nicht die erforderliche Erlaubnis, dieses Gebiet zu sehen.
     period: Zeitraum
     personalTaskDuringAbsenceDeputies: Vertretungen für persönlich zugewiesene Aufgaben während der Abwesenheit
     personalTaskPermanentDeputies: Ständige Stellvertreter für persönlich zugewiesene Aufgaben
@@ -48,6 +49,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     nextAbsence: Bevorstehende Abwesenheit
     selectedDeputyFor: Ausgewählter Benutzer ist Stellvertreter für
     selectedUser: Ausgewählter Benutzer
+  AccessibilityShortcuts:
+    processName: Barrierefreiheit Kürzel Widgets
   AllTasks:
     caseDescription: Beschreibung des Vorgangs
     taskDescription: Aufgabenbeschreibung
@@ -134,16 +137,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rubrik 3
       NORMAL_TEXT: Normaler Text
   MyProfile:
-    CaseList: Liste der Vorgänge
     DateFormat: Datum Format
     FormattingLanguage: Sprache der Formatierung
     General: Allgemeine
     Homepage: Homepage
     Language: Sprache
     ProcessList: Prozess-Liste
-    SortFieldSelections:
-      defaultSortFieldLabel: Standard-Sortierfeld
-    TaskList: Aufgabenliste
     byDefault: '  standardmäßig'
     defaultOption: Standard ({0})
     defaultViewMode: Standardanzeige
@@ -168,8 +167,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       announcementsDisabled: Ankündigungen sind deaktiviert
       announcementsEnabled: Ankündigungen sind aktiviert
       defaultLanguageRequiredMessage: Ein Ankündigungstext in der standard Applikationssprache ist notwendig
-      disable: Deaktivieren
-      enable: Aktivieren
+      disabled: Deaktiviert
+      enable: Ansage einschalten
       information: Sie können eine allgemeine Ankündigung in diesem Bereich machen (z.B. Wartungsankündigung). Diese Nachricht kann von allen Benutzern gesehen werden.
       saveChanges: Änderungen speichern
       tabTitle: Ankündigungen
@@ -180,6 +179,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationHint: Die Reihenfolge kann mit Drag & Drop geändert werden.
     applicationLinkRequiredMsg: Geben Sie den Portal Link an.
     applicationList:
+      addNewApplication: Neue Anwendung hinzufügen
       applicationSelectionHeader: Anwendung auswählen
       menuIcon: Menü Symbol
     applications: Anwendungen
@@ -344,7 +344,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       FINISHED_TIME: Erledigt
       ID: Vorgangs Id
       NAME: Name / Beschreibung
-      OWNER: Verantwortlich
+      OWNER: Prozessverantwortlichen
       STATE: Status
     deletionNoteContent: Der Vorgang wurde durch {0} gelöscht.
     destroyCaseMessage: Diese Operation kann nicht rückgängig gemacht werden. Sind Sie sicher, dass dieser komplette Vorgang gelöscht werden soll?
@@ -412,6 +412,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addDocument: Dokument hinzufügen
     addNote: Notiz hinzufügen
     allCategories: Alle Kategorien
+    allTypes: Alle Typen
     allowPng: Nur das png Format wird unterstützt
     apply: Anwenden
     at: am
@@ -459,8 +460,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     destroyTaskHeaderText: Diese Aufgabe löschen?
     detail: Details
     display: Anzeigen
+    displayAsTopMenu: Als oberstes Menü anzeigen
     displayName: Name anzeigen
-    dragAndDrop: 'Ziehen und Ablegen eines Bildes oder '
+    dragAndDropFile: 'Ziehen und Ablegen einer Datei oder '
+    dragAndDropImage: 'Ziehen und Ablegen eines Bildes oder '
     edit: Bearbeiten
     errorAjaxMessage: Es gibt einen allgemeinen Fehler!
     errorFileUploadSize: Die Dateigrösse muss kleiner als {0} sein.
@@ -517,7 +520,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     note: NOTIZ
     numberFromBiggerThanTo: Nach" muss größer sein als "Von".
     numberOfSelectedFilter: Ausgewählte Filter
-    ok: Ok
+    ok: OK
     'on': am
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
     pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
@@ -527,10 +530,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes: Prozesse
     public: Öffentlich
     remove: Entfernen
+    removeSelection: Selektion entfernen
     reorder: Neu anordnen
     requiredFieldMessage: Dies ist ein Pflichtfeld
     reserve: Reservieren
     reset: Zurücksetzen
+    resetFilters: Filter zurücksetzen
     resetSettingHeaderText: Einstellung zurücksetzen?
     resetTaskHeaderText: Diese Aufgabe zurücksetzen?
     resetToDefaultMessage: Dieser Vorgang kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie auf die Standard-Einstellungen zurücksetzen möchten?
@@ -539,11 +544,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Auf Standarddiagramme zurücksetzen?
     role: Rolle
     save: Speichern
+    saveAll: Speichern Sie alle
     saveSuccessfully: Daten erfolgreich gespeichert.
     search: Suche
     second: Sekunde
     seconds: Sekunden
     seeDetail: Details anzeigen
+    select: Auswählen
     selectAll: Alle selektieren
     selectUsers: Benutzer auswählen
     selectedDay: '{0} ausgewählte Tag(e)'
@@ -570,10 +577,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: Der Prozess
     timeInformation: Zeitangaben
     timestamp: Zeitstempel
+    topMenuItem: Oberster Menüpunkt
     type: Typ
     typeAdmin: Alle Administratoren
     typeAllUsers: Alle Benutzer
     typeOnlyMe: Nur für mich
+    uploadHere: Hier hochladen
     uploadOneHere: Auswählen
     user: '{0} Benutzer'
     users: Benutzer
@@ -581,7 +590,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewExpired: Ihre aktuelle Bearbeitungsmaske ist abgelaufen und kann nicht weiter bearbeitet werden. Sie werden auf die Startseite umgeleitet.
     viewMode: Ansichtsmodus
     visible: Sichtbar
-    warning: Warnung
+    warning: Warnung!
     welcomeToPortal: Willkommen, bitte melden Sie sich an
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
     year: Jahr
@@ -789,6 +798,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardIcon: Dashboard-Symbol
       dashboardPermission: Dashboard Berechtigung
       dashboardTitle: Dashboard Titel
+      deleteDashboardMessage: Sind Sie sicher, dass Sie die "{0}" dashboard?
       editDashboard: Dashboard editieren
       manageDashboard: Dashboard verwalten
       removeDashboardHeader: Dashboard "{0}" entfernen
@@ -854,6 +864,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Dieses Widget zeigt relevante Aufgabeninformationen gemäß der definierten Einstellungen an
     taskStart: Aufgabe starten
     taskWidgetConfiguration: Aufgaben-Widget-Konfiguration
+    topMenuItemInfo: Wenn die Checkbox „Oberster Menüpunkt“ aktiviert ist, erscheint das Dashboard als oberstes Element in der Navigationsleiste, sortiert nach Listenposition. Wenn sie deaktiviert ist, wird es als Unterpunkt unter „Dashboards“ angezeigt, ebenfalls nach Listenposition sortiert.
     widgetInfo: Widget-Informationen
     widgetInfoIcon: Widget-Informations-Symbol
     widgetTitle: Widget-Titel
@@ -1091,7 +1102,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     toUser: Benutzer
     userSelectionWatermark: Bitte wählen Sie einen Benutzer aus...
   taskDetails:
-    addDocumentHelpText: Zum Hochladen Dateien per Drag & Drop hier ablegen oder Dateien auswählen
+    addDocumentHelpText: 'Zum Hochladen Dateien per Drag & Drop hier ablegen oder '
     addNoteHelpText: Schreiben Sie hier Ihren Text
     afterEscalation: Nach Eskalation
     businessCase: Vorgang
@@ -1109,6 +1120,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processingTime: Bearbeitungszeit
     setDelayTimestamp: '{0} ({1}) hat die Verzügerungszeit des Tasks #{2} auf {3} gesetzt.'
     setExpiryActivatorAndTimeNotes: '{0} und weisen Sie {1} als Aktivator für die Aufgabeneskalation zu'
+    supportFileTypes: 'Unterstützte Dateitypen für Uploads: {0}'
     taskCategory: Aufgabenkategorie
     taskExpiryDisable: Es kann keine Ablaufzeit gesetzt werden, da diese Aufgabe keine Eskalationslogik enthält.
     technicalCase: Technischer Vorgang
@@ -1237,12 +1249,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Komplette Aufgabenliste anzeigen
     sort: Sortieren
   taskWarning:
-    createdTaskLeave: 'Sie verlassen die aktuelle Seite. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>&nbsp; &nbsp; Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>&nbsp; &nbsp; Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    createdTaskLogout: 'Sie verlassen die aktuelle Seite. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLeave: 'Sie verlassen die aktuelle Aufgabe. Bitte wählen Sie eine der folgenden Optionen:<UL><LI> Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI> Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI> Abbrechen: Die
-      Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLogout: 'Sie verlassen die aktuelle Aufgabe. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>&nbsp; &nbsp; Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>&nbsp; &nbsp; Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben.
-      Dann abmelden.<LI>&nbsp; &nbsp; Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    createdTaskLeave: '<div>Sie verlassen die aktuelle Seite.<br/>  Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    createdTaskLogout: '<div>Sie verlassen die aktuelle Seite.<br/> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLeave: '<div>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI> Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI> Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>
+      Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLogout: '<div>Sie verlassen die aktuelle Aufgabe.</br> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>&nbsp; &nbsp; Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>&nbsp; &nbsp; Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste
+      verschieben. Dann abmelden.<LI>&nbsp; &nbsp; Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     taskNotFound: Die Aufgabe existiert nicht oder Sie haben ungenügende Rechte, um diese Aufgabe zu sehen.
   userProfile:
     myProfileTitle: Mein Profil
@@ -1285,7 +1297,7 @@ Dialogs:
               noResultsText: Es liegen keine Ergebnisse vor.
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: Neues Dashboard
+                NewDashboard: Neues Dashboard hinzufügen
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
@@ -1305,7 +1317,7 @@ Dialogs:
                 CaseDetailTitle: Vorgangsdetails
                 DataDescription: Daten und Beschreibung
                 destroyCase: Vorgang löschen
-              CaseOwner: Prozessverantwortlicher
+              CaseOwner: Prozessverantwortlichen
               Finished: Erledigt
               GlobalSearchText: Die Vorgänge enthalten das Schlüsselwort "{0}" in Vorgangs Id{1}.
               ShowBusinessDetails: Geschäftsinformationen anzeigen
@@ -1327,11 +1339,31 @@ Dialogs:
     axonivy:
       portal:
         component:
+          ChatDashboard:
+            AddTool: Werkzeug hinzufügen
+            Tools: Werkzeuge
+            WelcomeHeaderText: Willkommen auf dem Axon Ivy Portal!
+            WelcomeText: Wir freuen uns, Sie an Bord zu haben. Das Axon Ivy Portal ist Ihr Tor zu einer nahtlosen und effizienten Erfahrung. Egal, ob Sie ein neuer Benutzer sind, der die Funktionen erkundet, oder ein wiederkehrender Besucher, wir sind hier, um Sie bei jedem Schritt zu unterstützen.
           ShareLinkDialog:
             CopyLink: Link kopieren
+            Link: Link
             LinkCopied: Link kopiert
+          ToolList:
+            Attributes: Attribute
+            Collection: Sammlung
+            NoAvailableTools: Es gibt keine verfügbaren Tools
         dashboard:
           component:
+            AccessibilityShortcuts:
+              content: "<div class=\"ui-g\">\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 1</span>Fokus auf die Dashboards\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 4</span>Fokus auf die Fälle\n   </div>\n\
+                \   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + A</span>Fokus auf den ersten Prozess\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Tab</span>Sequentielles Durchlaufen von Elementen\n   </div>\n   <div\
+                \ class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 2</span>Fokus auf die Prozesse\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 5</span>Fokus auf die Suche\n   </div>\n   <div class=\"ui-g-3 shortcut-content\
+                \ \">\n      <span class=\"shortcut-key\">Alt + W</span>Fokus auf die erste Aufgabe\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Esc</span>Erweiterte Widgets schließen/Kontext Menüs schließen\n   </div>\n   <div class=\"ui-g-3 shortcut-content\
+                \ \">\n      <span class=\"shortcut-key\">Alt + 3</span>Fokus auf die Aufgaben\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 6</span>Fokus auf die User Einstellungen\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span\
+                \ class=\"shortcut-key\">Alt + Q</span>Fokus auf den ersten Fall\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Enter</span>Auswahl bestätigen   \n   </div>\n</div>"
+              title: 'Barrierefreiheitskürzel. Alt + 1: Se focaliser sur l’onglet du Dashboard. Alt + 2: Se focaliser sur l’onglet des processus. Alt + 3: Se focaliser sur l’onglet des tâches. Alt + 4: Se focaliser sur l’onglet des cas. Alt + 5: Se focaliser sur la recherche. Alt + 6: Se focaliser sur
+                les paramètres utilisateur. Alt + A: Se focaliser sur le premier processus. Alt + W: Se focaliser sur la première tâche. Alt + Q: Se focaliser sur le premier cas. Tab: Navigation séquentielle entre les éléments. Esc: Fermer les widgets agrandis/Fermer les menus contextuels. Enter: Confirmer
+                la sélection'
             CaseWidgetConfiguration:
               AddFilter: Filter hinzufügen
             ClientStatisticWidget:
@@ -1389,11 +1421,43 @@ Dialogs:
       invalidSizeMessage: Datei zu groß!
       maximumFileUploadElement: Es gibt bereits ein Datei-Upload-Element
 Labels:
+  AI:
+    Error:
+      CannotFindUser: ''
+      CannotStartTask: ''
+      InvalidTaskPriority: ''
+      InvalidTaskState: ''
+      NoMatchingCase: ''
+      NoMatchingProcesses: ''
+      NoMatchingTask: ''
+    FindCaseAIResult: ''
+    FindProcessAIResult: ''
+    FindTaskAIResult: ''
+    FindUserAIResult: ''
+    FoundCaseHeader: ''
+    FoundProcessesHeader: ''
+    FoundTaskHeader: ''
+    FoundUsersHeader: ''
+    ProcessInfoHeader: ''
+    ProcessInfoHeaderWithParameters: ''
+    ProcessParameterInfo: ''
+    ProcessParameterInfoWithValue: ''
+    TaskDetailsResult: ''
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
   CreateNewDashboard: Neues Dashboard erstellen
   EditDescription: Beschreibung bearbeiten
   Enums:
+    ChatbotCandidateQuestion:
+      EXPLORE:
+        header: Explore
+        question: Was sind die wichtigsten Merkmale des Axon Ivy Portals?
+      INTERACT:
+        header: Interact
+        question: Listen Sie mir alle Aufgaben auf, die in der laufenden Woche erledigt werden müssen
+      TUTORIAL:
+        header: Tutorial
+        question: Wo kann ich die Dokumentation oder Tutorials für das Axon Ivy Portal finden?
     DashboardStandardCaseColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
@@ -1404,7 +1468,7 @@ Labels:
       FINISHED: Beendetes Datum
       ID: Id
       NAME: Name
-      OWNER: Eigentümer des Falles
+      OWNER: Prozessverantwortlichen
       STATE: Staat
     DashboardStandardTaskColumn:
       ACTIONS: Aktionen

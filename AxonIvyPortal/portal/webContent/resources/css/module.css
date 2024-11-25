@@ -655,6 +655,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   line-height: 1.4rem;
   box-sizing: content-box;
   text-align: left;
+  color: var(--text-color);
+  width: 87%;
 }
 
 .case-detail-header {
@@ -1163,7 +1165,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 .process-start-list-item-icon .fa {
   text-align: center;
-  width: 100%;
 }
 
 .process-start-list .process-start-list-item-icon {
@@ -1915,10 +1916,15 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   align-items: center;
   clear: both;
   float: left;
-  padding: 10px 18px 10px 20px;
+  padding: 10px 18px 10px 0px;
   margin: 0;
   width: 160px;
   box-sizing: content-box;
+  color: var(--text-color);
+}
+
+.options-panel .option-item.color-destroy, .action-steps-panel .action-step-item.color-destroy, .ui-menu-list .ui-menuitem > .ui-menuitem-link.color-destroy > span {
+  color: var(--ivy-tertinary-color-red-medium) !important;
 }
 
 .options-panel .ui-state-disabled.option-item {
@@ -2272,21 +2278,6 @@ _:-ms-fullscreen, :root .additional-case-details-link {
 }
 
 /* Override Primefaces styles */
-.icon-selection-dialog-selecting-icon {
-  display: inline-flex;
-  width: 35px;
-  height: 35px;
-  cursor: pointer;
-}
-
-.icon-selection-dialog-selecting-icon .fa, .icon-selection-dialog-selecting-icon .si {
-  margin: auto;
-}
-
-_:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
-  top: 50%;
-  transform: translateY(25%);
-}
 
 a[id*=application-menu-item]>span.ui-menuitem-text {
   min-width: 5ex !important;
@@ -2672,34 +2663,68 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 @media screen and (min-width: 64.062em) {
   .project-info-dialog {
-    min-width: 1000px;
+    min-width: 600px;
   }
 }
 
 /******************************** PROJECT INFO DIALOG ******************************/
 .project-info-dialog {
-  max-width: 1000px;
+  max-width: 600px;
 }
 
 .project-info-dialog .project-version-table .project-version {
-  width: 180px;
+  width: 150px;
+}
+
+.project-info-dialog .project-version-table .project-pmv {
+  text-align: center;
 }
 
 .project-info-dialog .project-version-table .project-state {
-  width: 120px;
+  width: 80px;
 }
 
 @media screen and (max-width: 64.062em) {
-  .project-info-dialog .project-version-table .project-version,
-  .project-info-dialog .project-version-table .project-state {
+  .project-info-dialog .project-version-table .project-version {
     width: auto;
+  }
+  .project-info-dialog .project-version-table .project-state {
+    width: 80px;
+  }
+  
+  .project-info-dialog .project-version-table .project-pmv {
+    text-align: inherit;
   }
 }
 /******************************** END PROJECT INFO DIALOG **************************/
 
 /********************************** ADMIN SETTING **********************************/
+.admin-setting-card {
+  padding: 30px;
+}
+
+.admin-setting-card .admin-setting-header h2{
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.admin-setting-card .applications-setting-info {
+  color: var(--ivy-primary-color);
+  font-size: large;
+}
+
+.admin-setting-card .application-table {
+  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+}
+
 .admin-ui-dialog {
   max-width: 80vw;
+}
+
+.admin-setting-tab .ui-tabs-panel.ui-widget-content.ui-corner-bottom {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 @media screen and (max-height: 615px) {
@@ -2712,15 +2737,30 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   text-align: left !important;
 }
 
-.action-column-icon-button {
-  margin: 0 5px;
+.applications-setting-info-circle {
+  margin: auto 0;
 }
 
-.setting-tab-action-buttons, .application-tab-action-buttons, .application-selection-action-buttons,
+.action-column-icon-button i {
+  margin: 0 5px;
+  color: var(--portal-button-color)
+}
+
+.application-tab-action-buttons, .application-selection-action-buttons,
 .announcement-tab-action-buttons,
 .create-role-container {
   text-align: right;
   margin: .5em 0;
+}
+
+.application-tab-action-buttons .new-app-btn, .create-role-container .create-role-btn {
+  width: 100%;
+  height: 3.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.5rem;
 }
 
 .admin-settings-form-input-label {
@@ -2728,9 +2768,15 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   padding-top: 5px;
 }
 
-.admin-settings-portal-link-label, .admin-settings-display-name-3rd-label {
-  float: right;
-  padding-top: 2px;
+.admin-settings-portal-link-label, .admin-settings-display-name-3rd-label,
+.admin-settings-application-icon {
+  font-weight: 500;
+}
+
+
+.application-name-language.ui-dialog .ui-dialog-titlebar,.app-dialog.ui-dialog .ui-dialog-titlebar,
+.role-details-dialog.ui-dialog .ui-dialog-titlebar, .setting-dialog.ui-dialog .ui-dialog-titlebar {
+  padding-bottom: 1rem;
 }
 
 .app-icon {
@@ -2796,7 +2842,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin: 10px !important;
 }
 
-.new-app, .ui-dialog-footer button {
+.ui-dialog-footer button {
   min-width: 90px;
   margin-bottom: 6px;
 }
@@ -2813,9 +2859,12 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 .absences-table-action-column,
 .ui-datatable thead th.absences-table-action-column {
   text-align: center;
-  width: 130px;
+  width: 90px;
 }
 
+.absence-table .ui-datatable-empty-message td {
+  padding-left: 0 !important;
+}
 @media (max-width: 768px) {
   .absences-table-action-column-icon-button {
     margin: 0 5px !important;
@@ -2925,7 +2974,11 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .choose-deputy-dialog .deputy-selection-panel .add-deputy-button {
   float: right;
-  margin-top: 15px;
+}
+
+.choose-deputy-dialog .deputy-selection-panel .selected-deputy-panel {
+  border: none;
+  padding: 1rem 0;
 }
 
 .choose-deputy-dialog .deputy-selection-panel .selected-deputy-panel .deputy-selection {
@@ -2952,6 +3005,9 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin-top: 10px;
 }
 
+.choose-deputy-dialog .ui-dialog-titlebar {
+  padding: 1.5rem 1.5rem 1rem 28px !important;
+}
 /**********************************END ABSENCES AND DEPUTY **********************************/
 .application-language-header {
   width: 20%;
@@ -2977,6 +3033,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   width: 300px;
 }
 
+.change-password-dialog .ui-dialog-titlebar {
+  padding: 1.5rem 1.5rem 18px 1.5rem !important;
+}
+
 @media screen and (max-width: 40em) {
   .change-password-dialog {
     max-width: 96vw;
@@ -2999,8 +3059,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .user-profile-footer {
-  margin-top: 25px;
   text-align: right;
+  margin-top: 4rem;
 }
 
 .user-profile-footer .ui-button {
@@ -3039,6 +3099,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   height: auto;
   float: left;
   width: 100%;
+  padding: 2.25rem;
 }
 
 .my-profile-container .portal-section-container.general-section-container {
@@ -3068,22 +3129,16 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding-top: 2px;
 }
 
-.my-profile-container .sort-field-selection {
-  width: 160px;
-}
-
-.my-profile-container .my-profile-selection-menu .ui-selectonemenu-label {
-  text-overflow: ellipsis;
-}
-
 .my-profile-container .notification-channel-reset {
   font-size: 2rem;
 }
 
-@media screen and (max-width: 40em) {
-  .my-profile-container .sort-field-selection {
-    width: 100%;
-  }
+.my-profile-block:not(:last-child) {
+  margin-bottom: 2.25rem;
+}
+
+.user-profile-setting-title {
+  margin-bottom: 0.5rem;
 }
 
 /********************************** END USER PROFILE SETTING **********************************/
@@ -3100,16 +3155,16 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   height: 100%;
 }
 
-.absences-management-form .add-absence-panel {
-  text-align: right;
-}
-
 .deputy-for-next-absence {
   width: inherit;
 }
 
 .substitute-table .substition-role-type {
   display: none;
+}
+
+.substitution-table .ui-datatable-empty-message td {
+  padding-left: 0 !important;
 }
 
 .absences-management-container .substitute-table tbody.ui-datatable-data .substition-role-display-name,
@@ -3119,13 +3174,23 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   line-break: anywhere;
 }
 
+.ui-button.primary-color-light-button {
+  background: var(--portal-accessibility-bg-color); 
+  color: var(--portal-button-text-color);
+  font-weight: 600;
+  height: 3.25rem;
+}
+
+.ui-button.primary-color-light-button:hover {
+  background: hsla(var(--ivy-primary-light-color-h), var(--ivy-primary-light-color-s), 89%, 1); 
+  color: var(--ivy-primary-color);
+}
+
+.add-absence-dialog .ui-dialog-titlebar {
+  padding: 1.5rem 1.5rem 0 1.5rem !important;
+}
+
 @media screen and (max-width: 40em) {
-  .absences-management-form .add-absence-panel {
-    text-align: left;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 
   .add-absence-dialog {
     max-width: 98vw;
@@ -3143,6 +3208,29 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   .absences-management-form .portal-section-container.card {
     padding: 0;
   }
+  
+  .user-profile-card {
+    flex-direction: column;
+  }
+  
+  .responsive-divider {
+    display: none !important;
+  }
+  
+  .user-profile-card-left {
+    padding-right: .5rem !important;
+  }
+  
+  .user-profile-card-right {
+    padding-left: .5rem !important;
+    margin-top: 1.5rem;
+  }
+  
+  .user-profile-footer {
+    position: unset;
+    margin-top: 2rem;
+  }
+  
 }
 
 @media screen and (min-width: 90.063em) {
@@ -3210,6 +3298,16 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     -webkit-box-orient: vertical;
     margin: auto;
   }
+  
+/*   .primary-color-light-button { */
+/*     background: var(--portal-accessibility-bg-color) !important;  */
+/*     color: var(--portal-button-text-color) !important; */
+/*     font-weight: 600; */
+/*   } */
+
+/*   .primary-color-light-button:hover { */
+/*     background: var(--portal-accessibility-bg-color) !important; */
+/*   } */
 
   .line-clamp-text-5 {
     overflow:hidden;
@@ -3239,6 +3337,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   text-overflow: ellipsis;
   white-space: normal;
   padding-right: .5em;}
+
+.ui-dialog .ui-dialog-titlebar > span[id*=':share-dashboard-dialog_title'], span[id*=':configuration-dashboard-detail-dialog_title'] {
+  padding-left: 7px;
+}
 
 .process-widget .process-input-switch-selection,
 .ui-inputswitch.ui-widget.ui-widget-content.process-input-switch-selection.ui-inputswitch-checked {
@@ -3304,9 +3406,58 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 /********************************** END TASK INFORMATION **********************************/
 
 /********************************** AWESOME ICON SELECTION **********************************/
+.icon-selection-dialog-selecting-icon {
+  display: inline-flex;
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.icon-selection-dialog-selecting-icon .fa, .icon-selection-dialog-selecting-icon .si, .icon-selection-array-selecting-icon .fa, .icon-selection-array-selecting-icon .si {
+  margin: auto;
+}
+
+_:-ms-input-placeholder, :root .icon-selection-dialog-selecting-icon .fa {
+  top: 50%;
+  transform: translateY(25%);
+}
+
+.icon-selection-array-selecting-icon {
+  display: inline-flex;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
 .select-awesome-icon-button {
-  margin-left: 10px;
-  text-decoration: underline !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  text-decoration: none !important;
+}
+
+.menu-icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.custom-array-icon {
+    width: 100%;
+    height: 25px;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: column wrap;
+    overflow: hidden;
+}
+
+.icon-color {
+    color: var(--icon-color) !important;
+}
+
+.highlight-selected-icon {
+    background-color: var(--selected-icon-bg-color) !important;
+    border-radius: 3px;
 }
 
 /********************************** STATISTIC WIDGET **********************************/
@@ -3450,6 +3601,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .admin-settings-container>.card {
   min-height: 300px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .admin-settings-container .ui-panelgrid-cell.ui-grid-col-3 {
@@ -3545,7 +3698,8 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   white-space: nowrap;
 }
 
-.change-password-column input {
+.change-password-column input, 
+.change-password-column button {
   width: 100%;
 }
 
@@ -4224,6 +4378,10 @@ body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled .ui
   overflow: hidden;
 }
 
+body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link .ui-menuitem-icon {
+  color: var(--text-color);
+}
+
 body .portal-breadcrumb.ui-breadcrumb ul li {
   line-height: 2rem;
 }
@@ -4411,6 +4569,10 @@ border-top: 0.14rem dashed;
 .portal-dialog-content {
   margin:20px 0;
 }
+
+.portal-dialog .ui-dialog-titlebar {
+ padding: 1.5rem 1.5rem 0.5rem 1.5rem !important; 
+}
 /** Portal dialog ---- end-----**/
 
 /* =================== START EXCEPTION ===================== */
@@ -4427,6 +4589,10 @@ border-top: 0.14rem dashed;
 .portal-exception-detail-group .error-label,
 .portal-exception-detail-group .error-value {
   padding: 6px 0;
+}
+
+.portal-exception-dialog-content {
+  font-size: 1.3rem;
 }
 
 .message-details {
@@ -4810,7 +4976,8 @@ body .process-compact-mode > .ui-fieldset-content {
 }
 
 .image-view-form .start-process > button > span, .image-process-actions > button > span{
-  color: var(--ivy-primary-light-color);
+  color: var(--primary-color);
+  font-weight: 500;
 }
 
 .image-view-form .start-process-image-widget {
@@ -4851,16 +5018,19 @@ body .process-compact-mode > .ui-fieldset-content {
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-container {
   width: inherit;
   position: relative;
-  height: 100% !important;
-  max-height: 296px;
+  height: 45% !important;
+  max-height: 155px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image {
-  max-height: 296px;
-  height: 0px;
+  height: 135%;
+}
+
+.card.widget-preview .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image {
+  height: 185%;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .overlay-title {
@@ -4877,14 +5047,17 @@ body .process-compact-mode > .ui-fieldset-content {
   top: 0px;
   z-index: 1;
 }
-
+.card.widget-preview .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form {
+  padding-top: 17%;
+}
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form {
   min-height: 25%;
-  height: 100%;
+  height: 75%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-top: 5%;
+  bottom: -40px;
+  padding-bottom: 40px;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description,
@@ -4892,6 +5065,17 @@ body .process-compact-mode > .ui-fieldset-content {
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .more-information-image-widget {
   position: static;
   top: 0px;
+}
+
+body.light .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image.default-image-mode-process,
+body.dark .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image.default-image-mode-process-dark {
+  display: block;
+  padding: 8px;
+}
+
+body.dark .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image.default-image-mode-process,
+body.light .image-process-container .image-process-item .card-item.card.image-widget-mode .image-process-item-image.default-image-mode-process-dark {
+  display: none;
 }
 
 .image-process-container .image-process-item .card-item.card.image-widget-mode .image-view-form .process-description {
@@ -4996,13 +5180,21 @@ body .process-compact-mode > .ui-fieldset-content {
 }
  
 .layout-topbar-light .image-process-item .default-process-image, 
-.layout-topbar-dark .image-process-item .default-process-image-dark {
+.layout-topbar-dark .image-process-item .default-process-image-dark,
+.layout-topbar-light .image-process-item-container > .default-image-mode-process,
+.layout-topbar-dark .image-process-item-container > .default-image-mode-process-dark,
+.layout-topbar-light .card.widget-preview.widget-preview--process .image-process-item-container > .default-image-mode-process,
+.layout-topbar-dark .card.widget-preview.widget-preview--process .image-process-item-container > .default-image-mode-process-dark {
   display: block;
   padding: 8px;
 }
 
 .layout-topbar-dark .image-process-item .default-process-image, 
-.layout-topbar-light .image-process-item .default-process-image-dark {
+.layout-topbar-light .image-process-item .default-process-image-dark,
+.layout-topbar-dark .image-process-item-container > .default-image-mode-process,
+.layout-topbar-light .image-process-item-container > .default-image-mode-process-dark,
+.layout-topbar-dark .card.widget-preview.widget-preview--process .image-process-item-container > .default-image-mode-process,
+.layout-topbar-light .card.widget-preview.widget-preview--process .image-process-item-container > .default-image-mode-process-dark {
   display: none;
 }
 
@@ -5153,7 +5345,8 @@ body .process-compact-mode > .ui-fieldset-content {
 }
 
 .dashboard-configuration__export-button-form .export-dashboard {
-  margin-left: 0.1em;
+  left: -6px;
+  color: var(--text-color);
 }
 
 .dashboard-configuration__content {
@@ -5291,9 +5484,15 @@ a.dashboard-action-container label {
 
 .role-management-title {
   margin: auto;
+  font-size: 16px;
+}
+
+.role-details-header {
+  font-size: large;
 }
 
 .role-details-dialog {
+  min-width: 450px;
   max-width: 750px;
 }
 
@@ -5391,7 +5590,7 @@ a.dashboard-action-container label {
   border-radius: 50%;
 }
 
-.ui-external-link-preview-image-panel {
+.ui-external-link-preview-image-panel, .ui-dashboard-upload-file-panel {
   width: 100%;
   border: 1px solid var(--process-list-item-border-color);
   background-color: var(--process-list-item-background-color);
@@ -5401,7 +5600,17 @@ a.dashboard-action-container label {
   display: flex;
 }
 
-.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label {
+.ui-document-upload-file-panel {
+  width: 100%;
+  border: 1px solid var(--process-list-item-border-color);
+  background-color: var(--ui-fileupload-buttonbar-background-color);
+  border-radius: 10px;
+  height: 20em;
+  align-items: center;
+  display: flex;
+}
+
+.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label, .ui-dashboard-upload-file-panel > .ui-dashboard-upload-file-label, .ui-document-upload-file-panel > .ui-document-upload-file-label {
   width: 42%;
   display: block;
   text-align: center;
@@ -5410,7 +5619,7 @@ a.dashboard-action-container label {
   top: 12px;
 }
 
-.ui-external-link-preview-image-label > #ui-external-link-preview-image-icon {
+.ui-external-link-preview-image-label > #ui-external-link-preview-image-icon, .ui-dashboard-upload-file-label > #ui-dashboard-upload-file-icon,  .ui-document-upload-file-label > #ui-document-upload-file-icon {
   width: 100%;
   font-size: 2em;
   top: -20px;
@@ -5442,14 +5651,14 @@ a.dashboard-action-container label {
 
 /* ============ DASHBOARD ======== */
 body .ui-dialog.ui-widget.import-dashboard-dialog{
-  min-width: 450px;
-  max-width: 1000px;
+  min-width: 10rem;
+  max-width: 40rem;
 }
 
 @media screen and (max-width: 40em) {
   body .ui-dialog.ui-widget.import-dashboard-dialog {
     min-width: 85vw;
-    max-width: 95%;
+    max-width: 35rem;
   }	
 }
 
@@ -5506,7 +5715,8 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
   width: 100%;
 }
 
-body .ui-link.ui-sidestep-action {
+/* =================== PORTAL BUTTON ====================== */
+body .ui-link.ui-sidestep-action, .action-container > .ui-sidestep-action {
   color: var(--sidestep-action-text-color);
 }
 
@@ -5526,6 +5736,19 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page {
 
 body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-button {
   color: var(--widget-header-icon);
-  
+}
+/* =================== PORTAL BUTTON END ====================== */
+
+/* AI logo */
+.layout-topbar-light .layout-topbar .layout-topbar-wrapper .layout-topbar-right .layout-topbar-actions > li > a:hover img.topbar-item-image {
+  background-color: #E8EDF0;
+  transition: background-color 0.2s;
 }
 
+/* AI result */
+
+.iframe-body.ai-result .layout-main,
+.iframe-body.ai-result .layout-content,
+.iframe-body.ai-result .grid-stack {
+  padding: 0;
+}

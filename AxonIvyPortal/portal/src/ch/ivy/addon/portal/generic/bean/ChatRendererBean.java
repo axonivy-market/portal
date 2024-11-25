@@ -2,6 +2,7 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -12,8 +13,11 @@ import org.primefaces.PrimeFaces;
 import com.axonivy.portal.components.service.IvyAdapterService;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.service.AiProcessService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.model.value.WebLink;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 
 @ManagedBean
 @ViewScoped
@@ -23,6 +27,7 @@ public class ChatRendererBean implements Serializable {
   
   private Boolean isGroupChatRendered;
   private Boolean isPrivateChatRendered;
+  private IProcessStart assistantDashboardProcess;
   
   public boolean getIsChatRendered() {
     return getIsGroupChatRendered() || getIsPrivateChatRendered();
@@ -55,4 +60,15 @@ public class ChatRendererBean implements Serializable {
     String groupChatName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case") + "-{caseId}" + " {caseName}";
     PrimeFaces.current().executeScript("var groupChatFormat = '" + groupChatName + "'");
   }
+
+  public boolean getIsAssistantDashboardRendered() {
+    if (this.assistantDashboardProcess == null) {
+      this.assistantDashboardProcess = AiProcessService.getInstance()
+          .findAssistantDashboardProcess();
+    }
+    return StringUtils.isNotBlank(Optional.ofNullable(assistantDashboardProcess)
+        .map(IProcessStart::getLinkEmbedded).map(WebLink::getRelative)
+        .orElse(""));
+  }
+
 }

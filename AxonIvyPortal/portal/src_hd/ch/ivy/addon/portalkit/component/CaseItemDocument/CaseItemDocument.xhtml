@@ -31,7 +31,7 @@
           <p:commandLink id="add-document-command"
             styleClass="case-details-document-add-link u-mar-right-10"
             rendered="#{caseTaskDocumentBean.canWriteDocument(case)}"
-            actionListener="#{data.setICase(case)}" oncomplete="PF('document-upload-dialog').show()">
+            onclick="PF('document-upload-dialog').show()">
             <span class="si si-common-file-add" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
@@ -103,30 +103,59 @@
       </div>
     </h:form>
   </div>
-
-  <p:dialog id="document-upload-dialog" widgetVar="document-upload-dialog" appendTo="@(body)"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" modal="true" resizable="false"
-    showEffect="fade" hideEffect="fade" styleClass="case-upload-dialog" dynamic="true" fitViewport="true"
-    responsive="true">
-    <h:form id="document-upload-form">
-      <p:messages id="upload-messages" />
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocumentHelpText')}" />
-      <p:fileUpload styleClass="document-upload" id="document-upload-panel" listener="#{logic.uploadDocument}"
-        chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
-        mode="advanced" dragDropSupport="true" multiple="true"
-        update="#{cc.clientId}:document-upload-form:upload-messages #{cc.attrs.componentToUpdate} #{cc.clientId}:case-document-form"
-        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true"
-        invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
-        sizeLimit="#{masterDataBean.fileUploadSizeLimit}" oncomplete="handleCaseDetailsTable()"/>
-    </h:form>
-    <f:facet name="footer">
-      <p:commandButton id="document-upload-close-command" type="button"
-        icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        onclick="PF('document-upload-dialog').hide();" />
-    </f:facet>
-    <p:ajax event="close" global="false" listener="#{logic.resetDataUploadDialog()}"
-      update="#{cc.clientId}:document-upload-form:upload-messages" />
+  
+    <p:dialog id="document-upload-dialog"
+    widgetVar="document-upload-dialog" appendTo="@(body)" dynamic="true"
+    modal="true" resizable="false" showEffect="fade" hideEffect="fade" fitViewport="true"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
+    closeOnEscape="true" responsive="true" closable="true"
+    width="450px">
+    <div class="ui-g">
+      <h:form id="document-upload-form" style="width: 450px">
+      <div class="w-full">
+          <p:messages id="upload-messages" />
+          <div style="display: none;" id="error-message" />
+        </div>
+       <div class="w-full">
+        <h6 class="import-header-title">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/supportFileTypes',[masterDataBean.allowedUploadFileType])}" />
+        </h6>
+        </div>
+        <div class="w-full">
+          <p:fileUpload id="document-upload-panel"
+            listener="#{logic.uploadDocument}" mode="advanced"
+            chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
+            style="display: none;" dragDropSupport="true"
+            label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
+            auto="true" multiple="true"
+            sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
+            invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
+            update="#{cc.clientId}:document-upload-form:upload-messages #{cc.attrs.componentToUpdate} #{cc.clientId}:case-document-form @form"
+            oncomplete="handleCaseDetailsTable()"
+            onvalidationfailure="handleUploadFileFail();"
+            dropZone="document-upload-file-panel" widgetVar="documentUpload" />
+        </div>
+        <div class="ui-g-12">
+          <p:outputPanel id="document-upload-file-panel" styleClass="ui-document-upload-file-panel">
+            <span class="ui-document-upload-file-label"> 
+            <i class="si si-file-code-upload-1" id="ui-document-upload-file-icon" />
+              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}">
+                <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadHere')}"
+                  onclick="PF('documentUpload').show();return false" />
+              </p:outputLabel>
+            </span>
+          </p:outputPanel>
+        </div>
+      </h:form>
+      <div class="ui-g-12">
+        <p:commandButton id="document-upload-close-command" type="button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+          onclick="PF('document-upload-dialog').hide();" styleClass="w-full" />
+      </div>
+      <p:ajax event="close" global="false"
+        listener="#{logic.resetDataUploadDialog()}"
+        update="#{cc.clientId}:document-upload-form:upload-messages @this" />
+    </div>
   </p:dialog>
 
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
@@ -147,6 +176,14 @@
         oncomplete="PF('document-deletion-dialog').hide();handleCaseDetailsTable();" />
     </ui:define>
   </ui:decorate>
-
+  <script type="text/javascript">
+    function handleUploadFileFail() {
+      let errorMessageElement = document.getElementById('error-message');
+      let uploadError = document.getElementsByClassName('ui-messages ui-widget ui-helper-hidden ui-fileupload-messages');
+      let uploadErrorElement = uploadError[0];
+      errorMessageElement.style.display = 'block';
+      errorMessageElement.appendChild(uploadErrorElement);
+    }
+    </script>
 </cc:implementation>
 </html>

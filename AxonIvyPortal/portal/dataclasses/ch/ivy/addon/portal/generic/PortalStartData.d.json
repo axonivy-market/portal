@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/11.4.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
   "simpleName" : "PortalStartData",
   "namespace" : "ch.ivy.addon.portal.generic",
   "isBusinessCaseData" : false,
@@ -94,7 +94,7 @@
     "type" : "Long"
   }, {
     "name" : "notes",
-    "type" : "java.util.List<ch.ivyteam.ivy.workflow.INote>"
+    "type" : "List<ch.ivyteam.ivy.workflow.note.Note>"
   }, {
     "name" : "isAuthorized",
     "type" : "Boolean"
@@ -120,5 +120,8 @@
   }, {
     "name" : "id",
     "type" : "String"
+  }, {
+    "name" : "isMainDashboard",
+    "type" : "Boolean"
   } ]
 }
