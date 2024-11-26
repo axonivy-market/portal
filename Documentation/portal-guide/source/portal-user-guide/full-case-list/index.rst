@@ -70,7 +70,7 @@ HowTo: Move and Resize Widgets in Case Details
 ----------------------------------------------
 1. Open the case details
 
-2. Click on the **Switch to Edit Mode** button to drag, drop and resize widgets.
+2. Click on the :guilabel:`Edit` button to drag, drop and resize widgets.
 
 |how-to-switch-to-edit-mode|
 
@@ -87,7 +87,7 @@ HowTo: Move and Resize Widgets in Case Details
 
 .. _howto-attach-a-document-to-the-case-1:
 
-HowTo: Attach a Document to the Case
+HowTo: Attach a document to a case
 ------------------------------------
 
 #. Open the case details
@@ -96,8 +96,8 @@ HowTo: Attach a Document to the Case
 
 #. The :guilabel:`Add document` dialog is opened
 
-#. To upload a file, click :guilabel:`Select` or simply drag the file into the
-   dialog.
+#. Upload a file by clicking :guilabel:`Upload here` or by dragging the
+   file into the dialog
 
 #. Click :guilabel:`Close` close the dialog
 
@@ -279,7 +279,7 @@ HowTo: Show Process Viewer
    - Full case list
    - Full task list
 
-#. Click on :guilabel:`Action`
+#. Click on :guilabel:`Actions`
 
 #. Click on :guilabel:`Process Viewer`
 
