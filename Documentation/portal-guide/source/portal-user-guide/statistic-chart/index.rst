@@ -15,7 +15,7 @@ To utilize the Statistic feature on the Dashboard Configuration, follow these st
 
 - Navigate to Dashboard Configuration of the dashboard where you want to add the widget and select :guilabel:`Add Widget`.
 
-- From the dropdown menu labeled "Statistic Widget," choose from a variety of insightful charts.
+- From the dropdown menu labeled **Statistic Widgets**, choose from a variety of insightful charts.
 
 |statistic-widget-list-page|
 

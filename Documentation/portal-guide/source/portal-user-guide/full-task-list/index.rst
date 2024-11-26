@@ -130,7 +130,7 @@ HowTo: Move and Resize Widgets in Task Details
    |how-to-reset-to-default|
 
 
-HowTo: Attach a document to the case
+HowTo: Attach a document to a case
 ------------------------------------
 
 #. Open the task details of a task
@@ -138,8 +138,8 @@ HowTo: Attach a document to the case
 
 #. The :guilabel:`Add document` dialog is opened
 
-#. Upload a file by using the :guilabel:`Select` button or by simply dragging
-   the file into the dialog
+#. Upload a file by clicking :guilabel:`Upload here` or by dragging the
+   file into the dialog
 
 #. Click the button :guilabel:`Close` to close the dialog
 
