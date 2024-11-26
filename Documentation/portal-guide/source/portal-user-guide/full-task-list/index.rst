@@ -138,7 +138,7 @@ HowTo: Attach a document to a case
 
 #. The :guilabel:`Add document` dialog is opened
 
-#. Upload a file by clicking :guilabel:`Upload here` or by simply dragging the
+#. Upload a file by clicking :guilabel:`Upload here` or by dragging the
    file into the dialog
 
 #. Click the button :guilabel:`Close` to close the dialog
