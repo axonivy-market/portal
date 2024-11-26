@@ -1170,9 +1170,9 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .process-grid-item__action--combined {
-  padding: 20px;
-  padding-bottom: 0;
+  padding: 8px;
   float: right;
+  height: 10%
 }
 
 .process-widget--combined {
