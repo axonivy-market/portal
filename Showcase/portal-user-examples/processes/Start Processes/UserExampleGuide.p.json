@@ -16,7 +16,7 @@
           ]
         },
         "outLink" : "userExampleGuide.ivp",
-        "startDescription" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/processDescription\")%>",
+        "startDescription" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/description\")%>",
         "startCustomFields" : [
           { "name" : "cssIcon", "value" : "si si-help-wheel" },
           { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/process/HELPDESK2\")%>" }
@@ -99,7 +99,8 @@
         "startCustomFields" : [
           { "name" : "cssIcon", "value" : "si si-login-3" }
         ],
-        "startName" : "Access Portal login page"
+        "startName" : "Access Portal login page",
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 192, "y" : 224 },

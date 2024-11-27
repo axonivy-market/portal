@@ -146,7 +146,7 @@ Dialogs:
                   Representation: Représentation
                   To: À l'adresse suivante
 Labels:
-  UserExampleGuide: Guide d'exemple d'utilisation
+  UserExampleGuide: Guide d'utilisation
   address: Rue/No.
   cancel: Annuler
   caseId: Identification du cas

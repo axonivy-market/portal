@@ -124,9 +124,9 @@ Processes:
     name: Processus d'absence
     rejectedTask: Votre demande de congé est rejetée
   MarketingCampaign:
-    name: Marketing campaign coordination
+    name: Coordination des campagnes marketing
   Procurement:
-    name: Procurement
+    name: Approvisionnement
   UserExampleGuide:
     comingSoon: A venir…
     description: 'Bienvenue ! Dans ce guide d''exemple d''utilisateur, vous trouverez quelques processus de démonstration disponibles dans le Axon Ivy Portal. Il vous suffit de cliquer sur le lien correspondant ci-dessous pour obtenir plus d''informations. '
