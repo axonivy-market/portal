@@ -146,7 +146,7 @@ Dialogs:
                   Representation: Representante
                   To: Hasta
 Labels:
-  UserExampleGuide: Guía de ejemplos de uso
+  UserExampleGuide: Guía de ejemplos para el usuario
   address: Calle / Número
   cancel: Cancelar
   caseId: ID del caso
