@@ -114,6 +114,12 @@ The menu entry :guilabel:`Change password` allows you to set a new password.
 
 |portal-password-change-dialog|
 
+.. note::
+
+   Grant permission: :bdg-ref-warning:`🔑UserSetOwnPassword` to allow a user to change their password.
+   Configure permissions in the :dev-url:`Engine Cockpit
+   </doc/|version|/engine-guide/reference/engine-cockpit/security.html>`. In the security area, open PersonalPermissions -> PersonalSecurityPermissions -> UserSetOwnPassword.
+
 Info
 ----
 
