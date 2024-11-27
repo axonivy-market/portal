@@ -29,7 +29,10 @@
           </p:panelGrid>
         </div>
       </h:form>
-          <ic:com.axonivy.portal.components.IFrameTaskConfig isHideCaseInfo="true" isHideTaskAction="true" isWorkingOnATask="false" />
+      <script>
+         window.isHideTaskAction = true;
+         window.isWorkingOnATask = false;
+      </script>
     </ui:define>
   </ui:composition>
 </h:body>

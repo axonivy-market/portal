@@ -672,12 +672,12 @@
           "showFullscreenMode": false,
           "columns": [
             {
-              "field": "id",
-              "visible": false,
+              "field": "name",
               "quickSearch": false
             },
             {
-              "field": "name",
+              "field": "id",
+              "visible": false,
               "quickSearch": false
             },
             {
