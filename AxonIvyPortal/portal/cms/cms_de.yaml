@@ -497,7 +497,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     destroyTaskHeaderText: Diese Aufgabe löschen?
     detail: Details
     display: Anzeigen
-    displayName: Name anzeigen
+    displayName: Anzeigename
     edit: Bearbeiten
     errorAjaxMessage: Es gibt einen allgemeinen Fehler!
     errorFileUploadSize: Die Dateigrösse muss kleiner als {0} sein.
@@ -1773,7 +1773,7 @@ Labels:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Berechtigungen
-  Share: Share
+  Share: Teilen
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
   TaskUser-Explain: Kommaseparierte Liste von Benutzern
