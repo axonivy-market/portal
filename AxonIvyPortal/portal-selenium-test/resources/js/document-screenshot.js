@@ -1,4 +1,21 @@
 /***UTILITY FUNCTIONS FOR ANNOTATION AND HIGHLIGHT****/
+function appendStepAnnotation($element, number, top, left) {
+  var $marker = $("<span></span>", {"class": "marker"}).text(number);
+  var markerTop = $element.offset().top;
+  var markerLeft = $element.offset().left;
+  if(top !== undefined) {
+    $marker.css('top', markerTop + top);
+  }
+  if(left !== undefined) {
+    $marker.css('left', markerLeft + left);
+  }
+  $('body').append($marker);
+}
+
+function createRedThickOutline($element) {
+  $element.addClass("red-thick-outline");
+}
+
 function createBlackThinOutline($element) {
   $element.addClass("black-thin-outline");
 }
@@ -9,6 +26,19 @@ function createRedMediumOutline($element) {
 
 function createBlackMediumOutline($element) {
   $element.addClass("black-medium-outline");
+}
+
+function clearRedMediumOutline($element) {
+  $element.removeClass("red-medium-outline");
+}
+
+function createRedMediumBorder($element) {
+  $element.addClass("red-medium-border");
+}
+
+function createRedThickOutlineWithOffset($element) {
+  $element.addClass("red-thick-outline");
+  $element.addClass("red-outline-thick-offset");
 }
 
 /***IMPLEMENTATION TO DECORATE PAGES - WHICH ARE CALLED IN SELENIUM****/
@@ -52,10 +82,6 @@ function numberingTopBar() {
   appendStepAnnotation(userSetting, "1", -10, userSetting.width() - 10);
   var globalSearch = $("#global-search-component\\:global-search-data");
   appendStepAnnotation(globalSearch, "2", -10, globalSearch.width()-30);
-}
-
-function highlightLogo() {
-  createRedMediumOutline($(".portal-home-logo.portal-home-logo-small"));
 }
 
 function numberingTaskItem() {
