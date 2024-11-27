@@ -1081,6 +1081,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     minSpecialCharacterRequired: contenir au moins {0} caractère spécial
     minUppercaseCharacterRequired: contenir au moins {0} un caractère majuscule
     newPassword: Nouveau mot de passe
+    noPermission: Vous n'avez pas les autorisations nécessaires pour changer le mot de passe. Veuillez contacter votre administrateur pour obtenir de l'aide.
     passwordMust: Le mot de passe doit
     requireConfirmPassword: Veuillez confirmer votre mot de passe
     requireCurrentPassword: Veuillez indiquer votre mot de passe actuel

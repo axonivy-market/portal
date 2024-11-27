@@ -289,4 +289,12 @@ public class PermissionUtils {
   public static boolean checkReadAllWorkflowEventPermission() {
     return hasPermission(IPermission.WORKFLOW_EVENT_READ_ALL);
   }
+
+  /**
+   * Check if current user has permission to set/change their account password
+   * @return true if current user has permission.
+   */
+  public static boolean checkUserSetOwnPasswordPermission() {
+    return hasPermission(IPermission.USER_SET_OWN_PASSWORD);
+  }
 }
