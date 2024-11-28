@@ -77,9 +77,7 @@ public class CombinedDashboardProcessBean
     if (CollectionUtils.isEmpty(startableProcessStarts)) {
       initStartableProcessStarts();
     }
-
-    if (getWidget() != null && getWidget().getProcess() != null
-        && getWidget().getProcess().getType() != ProcessType.EXPRESS_PROCESS) {
+    if (getWidget() != null && getWidget().getProcess() != null) {
       String startLink = getWidget().getProcess().getStartLink();
       IProcessStart processStart = startableProcessStarts.stream()
           .filter(process -> process.getLink().getRelative().equals(startLink)).findFirst().get();

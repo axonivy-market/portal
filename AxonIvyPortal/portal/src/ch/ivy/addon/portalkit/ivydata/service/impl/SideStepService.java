@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvySideStep;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria;
-import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -34,29 +33,9 @@ public class SideStepService {
       List<IStartableSideStep> startableSideSteps = getSideSteps(iCase);
       List<IvySideStep> ivySideSteps = startableSideSteps.stream().map(this::toIvySideStep).collect(Collectors.toList());
       
-      if (!criteria.isAdhocExcluded()) {
-        IvySideStep adhocSideStep = createAdhocSideStep();
-        if (adhocSideStep != null) {
-          ivySideSteps.add(adhocSideStep);
-        }
-      }
-      
       ivySideSteps.sort((s1, s2) -> StringUtils.compareIgnoreCase(s1.getName(), s2.getName()));
       return ivySideSteps;
     });
-  }
-
-  private IvySideStep createAdhocSideStep() {
-    String expressAdhocWFLink = ExpressProcessService.getInstance().findExpressAdhocWFLink();
-    if (StringUtils.isBlank(expressAdhocWFLink)) {
-      return null;
-    }
-    
-    IvySideStep adhoc = new IvySideStep();
-    adhoc.setName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/sidestep/addAdhocTask"));
-    adhoc.setStartLink(expressAdhocWFLink);
-    adhoc.setAdhoc(true);
-    return adhoc;
   }
 
   private IvySideStep toIvySideStep(IStartableSideStep startableSideStep) {

@@ -8,13 +8,15 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
-import com.axonivy.portal.selenium.common.TaskState;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.Condition;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -49,8 +51,8 @@ public class TaskDetailsTest extends BaseTest {
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.openTask(ORDER_PIZZA);
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails(ORDER_PIZZA);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_BUSINESS_CASE);
     taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_BUSINESS_CASE).shouldHave(size(1));
@@ -67,8 +69,8 @@ public class TaskDetailsTest extends BaseTest {
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.openTask(TAKE_ORDER);
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.addNote(NOTE_TASK_DETAIL_TECHNICAL_CASE);
     taskDetailsPage.getNotesWithContent(NOTE_TASK_DETAIL_TECHNICAL_CASE).shouldHave(size(1));
@@ -88,8 +90,8 @@ public class TaskDetailsTest extends BaseTest {
     redirectToNewDashBoard();
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.openTaskList();
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.openTask(TAKE_ORDER);
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.getShareButton().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     taskDetailsPage.getShareDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
@@ -97,7 +99,8 @@ public class TaskDetailsTest extends BaseTest {
     redirectToRelativeLink(denyShareLinkTaskDetailsPermission);
     redirectToNewDashBoard();
     mainMenuPage.openTaskList();
-    taskWidgetPage.openTask(TAKE_ORDER);
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     taskDetailsPage.getShareButton().shouldBe(Condition.disappear);
   }
 
@@ -105,37 +108,47 @@ public class TaskDetailsTest extends BaseTest {
   public void testShowTaskStatusBannerOnTaskDetails() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
+    grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     redirectToNewDashBoard();
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openTaskList();
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
 
-    taskWidgetPage.openTask("Maternity Leave Request");
+    taskWidget.openDashboardTaskDetails("Maternity Leave Request");
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.clickStartTask();
     redirectToNewDashBoard();
-    mainMenuPage.openTaskList();
-    taskWidgetPage.openTask("Maternity Leave Request");
+
+    NavigationHelper.navigateToTaskList();
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("Maternity Leave Request");
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
-    mainMenuPage.openTaskList();
-    taskWidgetPage.filterTasksBy("Sick Leave Request");
-    taskWidgetPage.waitTillNameOfFirstTaskToBe("Sick Leave Request");
-    taskWidgetPage.isTaskDestroyEnabled(0);
-    taskWidgetPage.destroyTask(0);
-    taskWidgetPage.confimDestruction();
-    taskWidgetPage.checkTaskState(0, TaskState.DESTROYED.getValue());
-    taskWidgetPage.openTask("Sick Leave Request");
+    NavigationHelper.navigateToTaskList();
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Sick Leave Request");
+    taskWidget.applyFilter();
+    taskWidget.destroyTask(0);
+    taskWidget.openDashboardTaskDetails("Sick Leave Request");
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
 
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
-    mainMenuPage.openTaskList();
-    taskWidgetPage.filterTasksBy(TAKE_ORDER);
-    taskWidgetPage.waitTillNameOfFirstTaskToBe(TAKE_ORDER);
-    taskWidgetPage.startTaskWithoutUI(0);
+    NavigationHelper.navigateToTaskList();
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.removeFilter(0);
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, TAKE_ORDER);
+    taskWidget.applyFilter();
+
+    taskWidget.startTask(0);
     redirectToNewDashBoard();
-    mainMenuPage.openTaskList();
-    taskWidgetPage.openTask(TAKE_ORDER);
+    NavigationHelper.navigateToTaskList();
+    taskWidget.openFilterWidget();
+    taskWidget.removeFilter(0);
+    taskWidget.applyFilter();
+    taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }

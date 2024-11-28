@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "17236DB1D3DA14C0",
   "config" : {
     "data" : "com.axonivy.portal.userexamples.UserExampleGuideData"
@@ -12,7 +12,7 @@
         "signature" : "userExampleGuide",
         "request" : {
           "name" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/name\")%>",
-          "description" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/processDescription\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/description\")%>",
           "customFields" : [
             { "name" : "cssIcon", "value" : "si si-help-wheel" },
             { "name" : "processImage", "value" : "<%=ivy.cms.cr(\"/Images/process/HELPDESK2\")%>" }
@@ -415,7 +415,7 @@
     } ],
   "layout" : {
     "lanes" : [ {
-        "name" : "User example guide",
+        "name" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/name\")%>",
         "offset" : 32,
         "size" : 544,
         "lanes" : [ ]

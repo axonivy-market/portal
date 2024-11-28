@@ -1,7 +1,11 @@
 package com.axonivy.portal.util.filter.operator.task.customfield;
 
+import java.util.Date;
+
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.PortalDateUtils;
+
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -19,20 +23,24 @@ public class CustomTimestampIsOperatorHandler {
     if (filter.getFromDate() == null) {
       return null;
     }
+    Date fromDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getStartOfMinute(filter.getFromDate()) : PortalDateUtils.getStartOfDate(filter.getFromDate());
+    Date endDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getFromDate()) : PortalDateUtils.getEndOfDate(filter.getFromDate());
 
     return TaskQuery.create().where().customField().timestampField(filter.getField())
-        .isGreaterOrEqualThan(PortalDateUtils.getStartOfDate(filter.getFromDate()))
-        .and().customField().timestampField(filter.getField()).isLowerOrEqualThan(PortalDateUtils.getEndOfDate(filter.getFromDate()));
+        .isGreaterOrEqualThan(fromDate)
+        .and().customField().timestampField(filter.getField()).isLowerOrEqualThan(endDate);
   }
 
   public TaskQuery buildIsNotQuery(DashboardFilter filter) {
     if (filter.getFromDate() == null) {
       return null;
     }
+    Date fromDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getStartOfMinute(filter.getFromDate()) : PortalDateUtils.getStartOfDate(filter.getFromDate());
+    Date endDate = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getFromDate()) : PortalDateUtils.getEndOfDate(filter.getFromDate());
 
     return TaskQuery.create().where().customField().timestampField(filter.getField())
-        .isGreaterThan(PortalDateUtils.getEndOfDate(filter.getFromDate()))
-        .or().customField().timestampField(filter.getField()).isLowerThan(PortalDateUtils.getStartOfDate(filter.getFromDate()));
+        .isGreaterThan(endDate)
+        .or().customField().timestampField(filter.getField()).isLowerThan(fromDate);
   }
 
   public TaskQuery buildIsQueryByCase(DashboardFilter filter) {

@@ -1,6 +1,0 @@
-GlobalSearchLeftMenuData #class
-ch.ivy.addon.portal.generic.GlobalSearchLeftMenu #namespace
-keyword String #field
-keyword PERSISTENT #fieldModifier
-activeTabIndex String #field
-activeTabIndex PERSISTENT #fieldModifier

@@ -1,6 +1,0 @@
-InvoiceDetailsData #class
-com.axonivy.portal.developerexamples.customization.InvoiceDetails #namespace
-invoice com.axonivy.portal.developerexamples.Invoice #field
-invoice PERSISTENT #fieldModifier
-customer com.axonivy.portal.developerexamples.Customer #field
-customer PERSISTENT #fieldModifier

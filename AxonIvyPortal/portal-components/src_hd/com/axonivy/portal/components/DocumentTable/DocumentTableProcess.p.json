@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "16B1B70EE89C4939",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -446,7 +446,7 @@
     }, {
       "id" : "f42",
       "type" : "HtmlDialogMethodStart",
-      "name" : "renderComponent(String,Boolean,DocumentType,Boolean,Boolean,String)",
+      "name" : "renderComponent(String,Boolean,DocumentType,Boolean,Boolean,String,Long)",
       "config" : {
         "signature" : "renderComponent",
         "input" : {
@@ -456,13 +456,15 @@
             { "name" : "selectedType", "type" : "com.axonivy.portal.components.enums.DocumentType", "desc" : "" },
             { "name" : "enableScriptCheckingForUploadedDocument", "type" : "Boolean", "desc" : "" },
             { "name" : "enableVirusScannerForUploadedDocument", "type" : "Boolean", "desc" : "" },
-            { "name" : "allowedUploadFileTypes", "type" : "String", "desc" : "" }
+            { "name" : "allowedUploadFileTypes", "type" : "String", "desc" : "" },
+            { "name" : "sizeLimit", "type" : "Long", "desc" : "" }
           ],
           "map" : {
             "out.allowedUploadFileTypes" : "param.allowedUploadFileTypes",
             "out.enableScriptCheckingForUploadedDocument" : "param.enableScriptCheckingForUploadedDocument",
             "out.enableVirusScannerForUploadedDocument" : "param.enableVirusScannerForUploadedDocument",
             "out.messageComponentId" : "param.messageComponentId",
+            "out.sizeLimit" : "param.sizeLimit",
             "out.typeColumnRendered" : "param.typeColumnRendered",
             "out.typeSelection" : "param.selectedType"
           }
@@ -471,10 +473,10 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 },
-        "labelOffset" : { "x" : 121, "y" : 37 }
+        "labelOffset" : { "x" : 123, "y" : 43 }
       },
       "connect" : [
-        { "id" : "f44", "to" : "f43" }
+        { "id" : "f44", "to" : "f15" }
       ]
     }, {
       "id" : "f43",
@@ -499,6 +501,30 @@
       },
       "connect" : [
         { "id" : "f14", "to" : "f51" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "Script",
+      "name" : "Set size limit into bean",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.jsf.ManagedBeans;",
+            "import com.axonivy.portal.components.bean.DocumentUploadBean;",
+            "",
+            "DocumentUploadBean documentUploadBean = ManagedBeans.get(\"documentUploadBean\") as DocumentUploadBean;",
+            "",
+            "if(documentUploadBean != null) {",
+            "    documentUploadBean.setCustomFileSizeLimit(in.sizeLimit);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f43", "color" : "default" }
       ]
     } ]
 }

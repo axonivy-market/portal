@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "153361016FE4213A",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -33,10 +33,10 @@
         "signature" : "initData",
         "input" : {
           "params" : [
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+            { "name" : "caze", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
           ],
           "map" : {
-            "out.iCase" : "param.iCase"
+            "out.caze" : "param.caze"
           }
         },
         "guid" : "167E9DF0DE4FEF32"
@@ -293,7 +293,7 @@
         "processCall" : "Functional Processes/GetDocumentList:getDocumentList(ch.ivyteam.ivy.workflow.ICase)",
         "call" : {
           "map" : {
-            "param.businessCase" : "in.iCase"
+            "param.businessCase" : "in.caze"
           }
         },
         "output" : {
@@ -317,7 +317,7 @@
         "processCall" : "Functional Processes/GetDocumentList:getDocumentList(ch.ivyteam.ivy.workflow.ICase)",
         "call" : {
           "map" : {
-            "param.businessCase" : "in.iCase"
+            "param.businessCase" : "in.caze"
           }
         },
         "output" : {
@@ -341,7 +341,7 @@
         "processCall" : "Functional Processes/GetDocumentList:getDocumentList(ch.ivyteam.ivy.workflow.ICase)",
         "call" : {
           "map" : {
-            "param.businessCase" : "in.iCase"
+            "param.businessCase" : "in.caze"
           }
         },
         "output" : {
@@ -365,7 +365,7 @@
         "processCall" : "Functional Processes/UploadDocument:uploadDocument(ch.ivyteam.ivy.workflow.ICase,org.primefaces.model.file.UploadedFile,Boolean,Boolean,String)",
         "call" : {
           "map" : {
-            "param.businessCase" : "in.iCase",
+            "param.businessCase" : "in.caze",
             "param.uploadedFile" : "in.documentUploadEvent.getFile()"
           }
         },
@@ -391,7 +391,7 @@
         "processCall" : "Functional Processes/DownloadDocument:downloadDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "call" : {
           "map" : {
-            "param.bussinessCase" : "in.iCase",
+            "param.bussinessCase" : "in.caze",
             "param.document" : "in.document"
           }
         },
@@ -417,7 +417,7 @@
         "processCall" : "Functional Processes/DeleteDocument:deleteDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
         "call" : {
           "map" : {
-            "param.businessCase" : "in.iCase",
+            "param.businessCase" : "in.caze",
             "param.document" : "in.document"
           }
         },

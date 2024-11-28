@@ -2,11 +2,8 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
@@ -19,6 +16,7 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
   private String processPath;
   @JsonIgnore
   private DashboardProcess process;
+  private boolean showFullscreenMode;
 
   @Override
   public DashboardWidgetType getType() {
@@ -42,6 +40,7 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
     result.getLayout().setHeight(6);
     result.getLayout().setAxisX(0);
     result.getLayout().setAxisY(0);
+    result.setShowFullscreenMode(true);
     return result;
   }
 
@@ -54,19 +53,6 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
 
   public void setProcessPath(String processPath) {
     this.processPath = processPath;
-  }
-
-  /**
-   * @param processStart 
-   * @deprecated use {@link #setProcessPath(String)} instead
-   * The processStart is replaced by processPath
-   */
-  @Deprecated(forRemoval = true, since = "10.0.3")
-  @JsonProperty("processStart")
-  public void setProcessStart(String processStart) {
-    if (StringUtils.isBlank(processPath)) {
-      this.processPath = processStart;
-    }
   }
 
   public DashboardProcess getProcess() {
@@ -85,4 +71,13 @@ public class ProcessViewerDashboardWidget extends DashboardWidget {
 
   @Override
   public void cancelUserFilter() {}
+
+  public void setShowFullscreenMode(boolean showFullscreenMode) {
+    this.showFullscreenMode = showFullscreenMode;
+  }
+
+  public boolean isShowFullscreenMode() {
+    return showFullscreenMode;
+  }
+
 }

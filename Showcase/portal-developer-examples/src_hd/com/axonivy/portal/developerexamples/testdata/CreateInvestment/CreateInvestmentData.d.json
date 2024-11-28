@@ -1,0 +1,15 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "CreateInvestmentData",
+  "namespace" : "com.axonivy.portal.developerexamples.testdata.CreateInvestment",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "steps",
+    "type" : "java.util.List<String>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "investmentRequest",
+    "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

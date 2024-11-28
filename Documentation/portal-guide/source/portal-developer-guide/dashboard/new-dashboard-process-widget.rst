@@ -11,7 +11,7 @@ Refer to :ref:`Process List Widget <new-dashboard-process-list-widget>` for deta
 
 The basic structure of the JSON of a process widget is as follows:
 
-   .. code-block:: html
+   .. code-block:: javascript
 
       {
          "type": "compact-process",
@@ -24,15 +24,17 @@ The basic structure of the JSON of a process widget is as follows:
          ],
          "layout": {
             "x": 10, "y": 0, "w": 2, "h": 4
-         }
+         },
+         "showFullscreenMode" : true,
+         "showWidgetInfo" : true
       }
    ..
 
 The basic structure of the JSON of a Process widget
 
-``type``: type of the process widget. There are four types for related display
-modes: ``compact-process`` (compact mode), ``combined-process`` (combined mode),
-``full-process`` (full mode), and ``image-process`` (image mode).
+   ``type``: type of the process widget. There are four types for related display
+   modes: ``compact-process`` (compact mode), ``combined-process`` (combined mode),
+   ``full-process`` (full mode), and ``image-process`` (image mode).
 
    ``id``: ID of the widget
 
@@ -51,6 +53,12 @@ modes: ``compact-process`` (compact mode), ``combined-process`` (combined mode),
       ``styleClass`` (optional): add CSS Classes to HTML DOM of the widget
 
       ``style`` (optional): add inline style to HTML DOM of the widget
+      
+   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default
+   value is ``true``, set to ``false`` to hide the icon.
+   
+   ``showWidgetInfo``: visibility of the widget information icon. The default
+   value is ``true``, set to ``false`` to hide the icon.
 
 Each mode has differences in its JSON definition. Refer to the below sections to
 understand how to define the process widget in these modes properly.
@@ -58,9 +66,9 @@ understand how to define the process widget in these modes properly.
 Compact Mode
 ------------
 
-Below is a standard JSON definition of aProcess widget in compact mode
+Below is a standard JSON definition of a Process widget in compact mode
 
-   .. code-block:: html
+   .. code-block:: javascript
 
       {
          "type": "compact-process",
@@ -76,7 +84,10 @@ Below is a standard JSON definition of aProcess widget in compact mode
          },
          "processPaths": ["designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp", "designer/portal-developer-examples/Start Processes/Request/collectDataRequest.ivp"],
          "categories": ["/Categories/Showcase/Customized", "/Categories/Showcase/PortalDialogExample"],
-         "sorting": "SORTING_INDEX"
+         "sorting": "SORTING_INDEX",
+         "enableQuickSearch": false,
+         "showFullscreenMode" : true,
+         "showWidgetInfo" : true
       }
    ..
 
@@ -98,12 +109,21 @@ processes by default.
 
    |dashboard-process-sort-index|
 
+``enableQuickSearch``: enable the quick search feature for the widget. By default, this
+feature is activated and searches for ``the process name``.
+
+      Valid values:
+
+      - ``true``: show the quick search text box.
+      - ``false``: hide the quick search text box.
+      - ``not defined``: show the quick search text box as default.
+
 Combined Mode
 -------------
 
 Below is a standard JSON definition of a Process widget in combined mode
 
-   .. code-block:: html
+   .. code-block:: javascript
 
       {
          "type": "combined-process",
@@ -115,10 +135,12 @@ Below is a standard JSON definition of a Process widget in combined mode
             }
          ],
          "layout": {
-            "x": 10, "y": 0, "w": 2, "h": 4
+            "x": 0, "y": 0, "w": 6, "h": 7
          },
-         "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp",
-         "rowsPerPage": 5
+         "processPath": "designer/portal-developer-examples/Start Processes/CreateTestData/createNewPayment.ivp",
+         "rowsPerPage": 5,
+         "showFullscreenMode" : true,
+         "showWidgetInfo" : true
       }
    ..
 
@@ -133,7 +155,7 @@ Full mode
 
 Below is a standard JSON definition of a Process widget in full mode
 
-   .. code-block:: html
+   .. code-block:: javascript
 
       {
          "type": "full-process",
@@ -145,9 +167,11 @@ Below is a standard JSON definition of a Process widget in full mode
             }
          ],
          "layout": {
-            "x": 10, "y": 0, "w": 2, "h": 4
+            "x": 0, "y": 0, "w": 6, "h": 7
          },
-         "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp"
+         "processPath": "designer/portal-developer-examples/Start Processes/CreateTestData/createNewPayment.ivp",
+         "showFullscreenMode" : true,
+         "showWidgetInfo" : true
       }
    ..
 
@@ -156,7 +180,7 @@ Image Mode
 
 Below is a standard JSON definition of the Process widget in image mode
 
-   .. code-block:: html
+   .. code-block:: javascript
 
       {
          "type": "image-process",
@@ -168,9 +192,11 @@ Below is a standard JSON definition of the Process widget in image mode
             }
          ],
          "layout": {
-            "x": 10, "y": 0, "w": 2, "h": 4
+            "x": 0, "y": 0, "w": 6, "h": 7
          },
-         "processPath": "designer/portal-developer-examples/Start Processes/Request/createNewRequest.ivp"
+         "processPath": "designer/portal-developer-examples/Start Processes/CreateTestData/createNewPayment.ivp",
+         "showFullscreenMode" : true,
+         "showWidgetInfo" : true
       }
    ..
 

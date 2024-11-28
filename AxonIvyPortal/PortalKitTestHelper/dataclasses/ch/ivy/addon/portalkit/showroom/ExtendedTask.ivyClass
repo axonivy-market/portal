@@ -1,8 +1,0 @@
-ExtendedTask #class
-ch.ivy.addon.portalkit.showroom #namespace
-iTask ch.ivyteam.ivy.workflow.ITask #field
-iTask PERSISTENT #fieldModifier
-taskId Number #field
-taskId PERSISTENT #fieldModifier
-caseId Number #field
-caseId PERSISTENT #fieldModifier

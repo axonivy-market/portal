@@ -1,8 +1,6 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
-import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
-import ch.ivyteam.ivy.workflow.category.CategoryPath;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.OrderByColumnQuery;
@@ -10,13 +8,11 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.OrderByColumnQuery;
 public class DashboardProcessTaskSearchCriteria {
 
   private Long processStartId;
-  private String processName;
   private String sortField;
   private boolean sortDescending;
   
-  public DashboardProcessTaskSearchCriteria(Long processStartId, String processName) {
+  public DashboardProcessTaskSearchCriteria(Long processStartId) {
     this.processStartId = processStartId;
-    this.processName = processName;
   }
 
   public TaskQuery buildQuery() {
@@ -28,7 +24,10 @@ public class DashboardProcessTaskSearchCriteria {
 
   public TaskQuery buildQueryWithoutOrderByClause() {
     TaskQuery query = TaskQuery.create();
-    CaseQuery caseQuery = this.processStartId != null ? queryProcessStartId() : queryExpressProcessCasesByCategoryPath();
+    CaseQuery caseQuery = CaseQuery.businessCases();
+    if (this.processStartId != null) {
+      queryProcessStartId();
+    }
     query.where().cases(caseQuery);
     queryCanWorkOn(query);
     return query;
@@ -36,14 +35,6 @@ public class DashboardProcessTaskSearchCriteria {
 
   private CaseQuery queryProcessStartId() {
     return CaseQuery.businessCases().where().taskStartId().isEqual(processStartId);
-  }
-
-  private CaseQuery queryExpressProcessCasesByCategoryPath() {
-    String categoryPath = new CategoryPath("ExpressWorkflow/" + this.processName).getValidRawPath();
-    CaseQuery caseQuery = CaseQuery.businessCases();
-    caseQuery.where().customField().stringField(CustomFields.IS_EXPRESS_PROCESS).isEqual("true");
-    caseQuery.where().category().isEqual(categoryPath);
-    return caseQuery;
   }
 
   private void queryCanWorkOn(TaskQuery query) {

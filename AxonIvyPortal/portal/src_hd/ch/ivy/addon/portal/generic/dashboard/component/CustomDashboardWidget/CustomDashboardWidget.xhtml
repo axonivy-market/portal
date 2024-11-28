@@ -18,7 +18,7 @@
     <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
     <ui:param name="isRenderFilter" value="false" />
     <ui:param name="isRenderInfo" value="#{empty widget.info ? 'false' : 'true'}" />
-    <ui:param name="isRenderExpandCollapse" value="true" />
+    <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
     <ui:param name="isHeaderHidden" value="#{empty widget.name and cc.attrs.isReadOnlyMode}" />
     <ui:param name="panelStyleClass" value="#{isHeaderHidden ? 'custom-widget-panel no-header' : 'custom-widget-panel'}" />
 
@@ -40,7 +40,8 @@
               <c:forEach var="param" items="#{widget.data.params}">
                 <input type="hidden" name="#{dashboardCustomWidgetBean.generateParamName(param)}" value="#{param.value}" />
               </c:forEach>
-              <iframe id="id-custom-widget-iframe-#{index}" name="custom-widget-iframe-#{index}" class="dashboard-custom-iframe u-hidden" />
+              <iframe id="id-custom-widget-iframe-#{index}" name="custom-widget-iframe-#{index}" class="dashboard-custom-iframe u-hidden" 
+                title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/CustomDashboardWidget/CustomWidgetIFrameTitle', [widget.name])}" />
             </h:form>
             <script type="text/javascript">
                    $(function() {
@@ -73,7 +74,8 @@
         <ui:fragment rendered="#{empty widget.data.processPath}">
           <iframe name="custom-widget-iframe-#{index}" src="#{widget.data.url}"
             id="id-custom-widget-iframe-#{index}"
-            class="dashboard-custom-iframe u-hidden" />
+            class="dashboard-custom-iframe u-hidden" 
+            title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/CustomDashboardWidget/CustomWidgetIFrameTitle', [widget.name])}" />
           <script type="text/javascript">
               setTimeout(function(){
                $(`#id-custom-widget-iframe-${index}`).removeClass('u-hidden');

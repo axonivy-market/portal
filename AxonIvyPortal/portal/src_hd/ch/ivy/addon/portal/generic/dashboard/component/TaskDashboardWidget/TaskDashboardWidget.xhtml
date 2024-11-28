@@ -4,7 +4,6 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="index" required="true" />
   <cc:attribute name="widget" required="true" />
-  <cc:attribute name="componentToUpdateOnEdit" />
   <cc:attribute name="isReadOnlyMode" default="false" />
 </cc:interface>
 
@@ -12,6 +11,8 @@
   <c:set var="index" value="#{cc.attrs.index}" />
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}"/>
+  <c:set var="isResizable" value="#{cc.attrs.widget.isResizable}"/>
+  <c:set var="isResizing" value="#{cc.attrs.widget.isResizing}"/>
 
   <ui:decorate template="/layouts/restricted/decorator/TableWidget.xhtml">
     <ui:param name="index" value="#{index}" />
@@ -21,7 +22,7 @@
     <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}" />
     <ui:param name="onStatisticTabShow" value="handleFilterCategoryHeight(this);" />
     <ui:param name="componentToProcessOnApplyFilter" value="filter-container" />
-    <ui:param name="componentToUpdateOnApplyFilter" value="#{component.parent.namingContainer.clientId}:task-component:dashboard-tasks #{component.parent.namingContainer.clientId}:task-component:empty-message-container" />
+    <ui:param name="componentToUpdateOnApplyFilter" value="#{cc.clientId}:task-component:dashboard-tasks #{cc.clientId}:task-component:empty-message-container" />
     <ui:param name="componentToUpdateOnResetFilter" value="#{cc.clientId}:task-component:dashboard-tasks #{cc.clientId}:task-component:empty-message-container" />
     <ui:param name="onCompleteApplyFilters" value="PF('dashboard-tasks-#{widget.id}').filter()" />
     <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />

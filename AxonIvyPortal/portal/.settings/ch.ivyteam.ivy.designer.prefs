@@ -1,4 +1,3 @@
-ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:DEFAULT_DATA_CLASS=ch.ivy.add.portalkit.Data
 ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:DEFAULT_NAMESPACE=portalkit
 ch.ivyteam.ivy.designer.preferences.DataClassPreferencePage\:useProjectSettings=true
 ch.ivyteam.ivy.designer.preferences.ProcessEnginePreferencePage\:ACTIVATE_PROCESS_DATA_HISTORY=true
@@ -17,5 +16,5 @@ ch.ivyteam.ivy.designer.preferences.editor.ProcessEditorPreferencePage\:SHOW_GRI
 ch.ivyteam.ivy.designer.preferences.editor.ProcessEditorPreferencePage\:useProjectSettings=true
 ch.ivyteam.ivy.project.preferences\:PORTAL_VERSION=10
 ch.ivyteam.ivy.project.preferences\:PRIMEFACES_VERSION=13
-ch.ivyteam.ivy.project.preferences\:PROJECT_VERSION=114004
+ch.ivyteam.ivy.project.preferences\:PROJECT_VERSION=120001
 eclipse.preferences.version=1

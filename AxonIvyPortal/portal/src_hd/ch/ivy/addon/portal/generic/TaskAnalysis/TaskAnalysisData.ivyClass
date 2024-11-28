@@ -1,4 +1,0 @@
-TaskAnalysisData #class
-ch.ivy.addon.portal.generic.TaskAnalysis #namespace
-taskView ch.ivy.addon.portal.generic.view.TaskAnalysisView #field
-taskView PERSISTENT #fieldModifier

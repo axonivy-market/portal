@@ -98,16 +98,6 @@ def cleanDisk() {
   """
 }
 
-def downloadExpress() {
-  echo '====================Download Express===================='
-  def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
-  branchName = 'develop'
-  withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
-    bat "curl --user ${credentials} --output archive.zip ${env.JENKINS_URL}job/axonivy-express/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
-  }
-  unzip zipFile: 'archive.zip', quiet: true
-}
-
 def getJenkinsMasterDomain() {
   return env.BUILD_URL.split('/')[2].split(':')[0]
 }

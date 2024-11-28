@@ -1,0 +1,26 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "ApplicationSelectionMenuData",
+  "namespace" : "ch.ivy.addon.portal.generic.ApplicationSelectionMenu",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "isNotRequiredLogin",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isWorkingOnATask",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "workingTask",
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
+  }, {
+    "name" : "destinationBreadcrumbPage",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isClickOnBreadcrumb",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

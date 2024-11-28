@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "18B031C59C3C7814",
   "config" : {
     "data" : "portalKit_test.Data"
@@ -30,9 +30,13 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.elasticsearch.index.IndexInfo;",
-            "import ch.ivyteam.ivy.elasticsearch.client.IndexName;",
-            "import ch.ivyteam.ivy.elasticsearch.IElasticsearchManager;",
+            "import ch.ivyteam.ivy.searchengine.ISearchEngineManager;",
+            "import ch.ivyteam.ivy.searchengine.client.IndexName;",
+            "import ch.ivyteam.ivy.searchengine.index.IndexInfo;",
+            "",
+            "//import ch.ivyteam.ivy.elasticsearch.index.IndexInfo;",
+            "//import ch.ivyteam.ivy.elasticsearch.client.IndexName;",
+            "//import ch.ivyteam.ivy.elasticsearch.IElasticsearchManager;",
             "// via APi change that triggers the sync, e.g. CustomField",
             "// also applies to tasks ",
             "",
@@ -40,11 +44,11 @@
             "",
             "//Alternativ is via api with which to trigger reindexing. ",
             "",
-            "for (int i = 0; i < IElasticsearchManager.instance().indicesCount(); i++) {",
+            "for (int i = 0; i < ISearchEngineManager.instance().indicesCount(); i++) {",
             "  ",
-            "  IndexInfo indexInfo = IElasticsearchManager.instance().indices(0, 1000).get(i);",
+            "  IndexInfo indexInfo = ISearchEngineManager.instance().indices(0, 1000).get(i);",
             "  ivy.log.info(\"Reindexing STARTED for: \" + indexInfo.indexName().toString());",
-            "  IElasticsearchManager.instance().reindexSync(indexInfo.indexName());",
+            "  ISearchEngineManager.instance().reindexSync(indexInfo.indexName());",
             "  ivy.log.info(\"Reindexing DONE for: \" + indexInfo.indexName().toString());",
             "  ",
             "}",
@@ -1897,9 +1901,12 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.elasticsearch.index.IndexInfo;",
-            "import ch.ivyteam.ivy.elasticsearch.client.IndexName;",
-            "import ch.ivyteam.ivy.elasticsearch.IElasticsearchManager;",
+            "import ch.ivyteam.ivy.searchengine.ISearchEngineManager;",
+            "import ch.ivyteam.ivy.searchengine.client.IndexName;",
+            "import ch.ivyteam.ivy.searchengine.index.IndexInfo;",
+            "//import ch.ivyteam.ivy.elasticsearch.index.IndexInfo;",
+            "//import ch.ivyteam.ivy.elasticsearch.client.IndexName;",
+            "//import ch.ivyteam.ivy.elasticsearch.IElasticsearchManager;",
             "// via APi change that triggers the sync, e.g. CustomField",
             "// also applies to tasks ",
             "",
@@ -1907,11 +1914,11 @@
             "",
             "//Alternativ is via api with which to trigger reindexing. ",
             "",
-            "for (int i = 0; i < IElasticsearchManager.instance().indicesCount(); i++) {",
+            "for (int i = 0; i < ISearchEngineManager.instance().indicesCount(); i++) {",
             "  ",
-            "  IndexInfo indexInfo = IElasticsearchManager.instance().indices(0, 1000).get(i);",
+            "  IndexInfo indexInfo = ISearchEngineManager.instance().indices(0, 1000).get(i);",
             "  ivy.log.info(\"Reindexing STARTED for: \" + indexInfo.indexName().toString());",
-            "  IElasticsearchManager.instance().reindexSync(indexInfo.indexName());",
+            "  ISearchEngineManager.instance().reindexSync(indexInfo.indexName());",
             "  ivy.log.info(\"Reindexing DONE for: \" + indexInfo.indexName().toString());",
             "  ",
             "}",

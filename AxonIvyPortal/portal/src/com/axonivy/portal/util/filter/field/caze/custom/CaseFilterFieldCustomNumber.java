@@ -1,8 +1,8 @@
 package com.axonivy.portal.util.filter.field.caze.custom;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
+import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.CustomFilterField;
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomNumberBetweenOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomNumberEmptyOperatorHandler;
@@ -26,6 +26,7 @@ public class CaseFilterFieldCustomNumber extends CustomFilterField {
     this.customField = customField;
   }
 
+  @Override
   public String getLabel() {
     return customField.label();
   }

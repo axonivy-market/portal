@@ -45,7 +45,7 @@
               styleClass="u-truncate-text ui-sm-12" width="65%"
               filterBy="#{document.name}" filterMatchMode="contains">
               <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="task-document-name">
-                <p:commandLink ajax="false" id="download" styleClass="download-command task-document-name-text u-truncate-text">
+                <p:commandLink ajax="false" id="download" styleClass="download-command task-document-name-text u-truncate-text" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
                   <p:fileDownload value="#{logic.downloadDocument(document)}"/>
                   <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}"
                     fileSize="#{masterDataBean.getReadableFileSize(document.size)}"
@@ -54,6 +54,7 @@
                     fileSizeStyleClass="document-size" />
                 </p:commandLink>
                 <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"
                   rendered="#{caseTaskDocumentBean.canWriteDocument(data.task)}"
                   styleClass="si si-remove Fright task-document-download" oncomplete="PF('document-deletion-dialog').show()">
                   <p:tooltip for="delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"

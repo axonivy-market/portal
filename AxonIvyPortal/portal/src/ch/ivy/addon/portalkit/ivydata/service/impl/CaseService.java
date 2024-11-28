@@ -28,7 +28,6 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -435,9 +434,9 @@ public class CaseService{
   private void putNode(CaseCategoryStatistic caseCategoryStatistic, CategoryTree category) {
     StringBuilder categoryPath = new StringBuilder(category.getCategory().getPath());
     if (!category.getChildren().isEmpty()) {
-      categoryPath.append(StatisticChartConstants.PARENT_CATEGORY_DELIMITER); //parent Node
+      categoryPath.append(CategoryUtils.PARENT_CATEGORY_DELIMITER); //parent Node
     } else {
-      categoryPath.append(StatisticChartConstants.CHILD_CATEGORY_DELIMITER); // child Node
+      categoryPath.append(CategoryUtils.CHILD_CATEGORY_DELIMITER); // child Node
     }
     categoryPath.append(category.getRawPath());
     caseCategoryStatistic.getNumberOfCasesByCategory().put(categoryPath.toString(), category.count());

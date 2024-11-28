@@ -10,7 +10,7 @@
   <h:panelGroup layout="block" styleClass="u-hidden-md-up">
     <h:outputText value="#{empty task.names().current() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.names().current()}" 
       title="#{column.display(task)}" styleClass="dashboard-tasks__column-small-screen-name"/>
-    <h:outputText value="#{dashboardBean.createExtractedTextFromHtml(task.descriptions().current())}" styleClass="dashboard-tasks__column-small-screen-description"/>
+    <h:outputText value="#{dashboardTaskWidgetBean.createExtractedTextFromHtml(task.descriptions().current())}" styleClass="dashboard-tasks__column-small-screen-description"/>
   </h:panelGroup>
 
 </html>

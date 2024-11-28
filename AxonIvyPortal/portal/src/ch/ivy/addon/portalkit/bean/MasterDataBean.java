@@ -2,12 +2,14 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.BooleanUtils;
 import org.primefaces.PrimeFaces;
@@ -20,8 +22,10 @@ import ch.ivy.addon.portalkit.enums.ApplicationType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 import ch.ivy.addon.portalkit.masterdata.MasterData;
+import ch.ivy.addon.portalkit.service.CaseDocumentService;
 import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -119,5 +123,17 @@ public class MasterDataBean implements Serializable {
   public String getApplicationName() {
     String applicationName = Ivy.var().get(APPLICATION_NAME);
     return applicationName.isBlank() ? DEFAULT_APPLICATION_NAME : applicationName;
+  }
+
+  public String getUserLanguage() {
+    return LanguageService.getInstance().getUserLanguage();
+  }
+  
+  public String getAllowedUploadFileType() {
+    List<String> extensionList = CaseDocumentService.getAllowedUploadFileType();
+    if (CollectionUtils.isEmpty(extensionList)) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allTypes");
+    } else
+      return String.join(", ", extensionList);
   }
 }

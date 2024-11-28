@@ -35,6 +35,8 @@
   --ivy-portal-blue-dark: #007095;
   --ivy-portal-color-black: #1B1B1B;
   --ivy-portal-color-gray-dark: #565656;
+  --ivy-portal-color-gray-spaces: #FAFAFA;
+  --ivy-portal-color-gray-20: #333333;
 
   /* Default Portal styles */
   --header-font-size: 2rem;
@@ -114,8 +116,6 @@
   --notification-badge-icon-font-size: 2rem;
 
   --delete-deputy-icon-font-size: var(--large-font-size);
-  --express-import-status-font-weight: bold;
-  --express-helper-loading-container-si-lg-font-size: 1.2em;
 
   --no-item-icon-font-size: 8rem;
   --no-item-header-font-size: 2rem;
@@ -161,9 +161,12 @@
   --statistics-8-color: #00232f;
   
   /* Notification */
-  --notification-background-color: #293241;
+  --notification-background-color: #2c2c2c;
   --notification-label-font-size: 12px;
   --notification-label-item-font-size: 0.75em;
   --notifications-title-header-font-weight: bold;
   --notification-indicator-size: 0.65rem
+
+  /* Chatbot */
+  --candidate-question-header-font-size: 1.5rem;
 }

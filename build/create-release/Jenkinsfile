@@ -12,7 +12,7 @@ pipeline {
 
   parameters {
       string(name: 'releaseVersion', defaultValue: '1.0.0-m1', description: 'The release version.')
-      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
+      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
         -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip for nightly master
         -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine-windows.zip for dev master
         -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
@@ -34,7 +34,7 @@ pipeline {
           powershell '''
             #find all pom file of portal project and change their versions and their portal dependencies to releaseVersion
             $utf8WithoutBom = New-Object System.Text.UTF8Encoding($false)
-            $files = get-childitem AxonIvyPortal/*/pom.xml,Showcase/*/pom.xml,AxonIvyPortal/PortalTest/customized_pom.xml,AxonIvyPortal/portal-selenium-test/customized_pom.xml,AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml,Documentation/public-api/pom.xml
+            $files = get-childitem AxonIvyPortal/*/pom.xml,Showcase/*/pom.xml,AxonIvyPortal/portal-selenium-test/customized_pom.xml,AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml,Documentation/public-api/pom.xml
             foreach($file in $files) {
               $xml = new-object xml
               $xml.load($file)

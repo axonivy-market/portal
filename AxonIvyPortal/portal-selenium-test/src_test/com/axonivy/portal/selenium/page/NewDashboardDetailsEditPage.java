@@ -17,7 +17,6 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public static final String PROCESS_WIDGET = "Process List";
   public static final String PROCESS_VIEWER_WIDGET = "Process Viewer";
   public static final String CUSTOM_WIDGET = "Custom Widget";
-  public static final String STATISTIC_WIDGET = "Statistic chart";
   public static final String WELCOME_WIDGET = "Welcome widget";
   public static final String NEWS_WIDGET = "News feed widget";
   public static final String TASK_BY_PRIORITY = "Tasks by Priority";
@@ -103,12 +102,19 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public void deleteImageModeProcess() {
-    $("button[id$=':process-action-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("[id$=':process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span.si-bin-1")
+    getProcessActionMenu().shouldBe(Condition.appear, DEFAULT_TIMEOUT).$("span.si-bin-1")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetDialog().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     getRemoveWidgetButton().click();
     getRemoveWidgetDialog().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+  
+  private SelenideElement getProcessActionMenu() {
+    if (!$("[id$=':process-action-menu']").isDisplayed()) {
+      $("button[id$=':process-action-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+      .click();
+    }
+    return $("div[id$='process-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 
   public void deleteFullModeProcess() {
@@ -141,7 +147,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public ProcessEditWidgetNewDashBoardPage editFullModeProcess() {
-    $("button[id$=':process-action-button']").shouldBe(Condition.appear).click();
+    getProcessActionMenu();
     $("[id$=':process-item:grid-process-action-component:edit-process']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .$("span.si-graphic-tablet-drawing-pen").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     $("div[id='new-widget-configuration-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
@@ -159,10 +165,6 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public StatisticEditWidgetNewDashboardPage addNewStatisticWidget() {
     addWidgetByName("Statistic chart");
     return new StatisticEditWidgetNewDashboardPage();
-  }
-
-  public StatisticWidgetDashboardPage selectStatisticWidget() {
-    return new StatisticWidgetDashboardPage();
   }
 
   public SelenideElement getTitleByIndex(int index) {
@@ -241,4 +243,9 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public void scrollToStatistic() {
     $(byText("Statistic Widgets")).shouldBe(Condition.appear, DEFAULT_TIMEOUT).scrollIntoView("{block: \"start\", inline: \"start\"}");
   }
+  
+  public SelenideElement getAccessibilityWidget() {
+    return $("[id^='id-custom-widget-iframe']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
 }

@@ -10,36 +10,43 @@ The Welcome widget of the Portal dashboard displays a welcome text and an image 
 
 Below is a sample JSON definition of a welcome widget in the Portal dashboard
 
-.. code-block:: html
+.. code-block:: javascript
 
    {
-      "type": "welcome", 
-      "id": "welcome_1", 
-      "layout": {
-         "x": 0, "y": 0, "w": 12, "h": 3
+      "type":"welcome",
+      "id":"welcome_1",
+      "layout":{
+         "x":0,
+         "y":0,
+         "w":12,
+         "h":3
       },
-      "welcomeTexts" : [{
-            "locale" : "en",
-            "value" : "Welcome"
-         }, {
-            "locale" : "fr",
-            "value" : "Bienvenue"
-         }, {
-            "locale" : "de",
-            "value" : "Willkommen"
-         }, {
-            "locale" : "es",
-            "value" : "Bienvenido"
+      "welcomeTexts":[
+         {
+            "locale":"en",
+            "value":"Welcome"
+         },
+         {
+            "locale":"fr",
+            "value":"Bienvenue"
+         },
+         {
+            "locale":"de",
+            "value":"Willkommen"
+         },
+         {
+            "locale":"es",
+            "value":"Bienvenido"
          }
       ],
-      "welcomeTextPosition" : "BOTTOM_LEFT",
-      "welcomeTextSize" : "NORMAL_TEXT",
-      "welcomeTextColor" : "000000",
-      "greeting" : false,
-      "welcomeTextStyleClass" : "custom-text",
-      "imageStyleClass" : "custom-image",
-      "welcomeImageFit" : "COVER",
-      "imageInlineStyle" : "background-color:red; border:solid;"
+      "welcomeTextPosition":"BOTTOM_LEFT",
+      "welcomeTextSize":"NORMAL_TEXT",
+      "welcomeTextColor":"000000",
+      "greeting":false,
+      "welcomeTextStyleClass":"custom-text",
+      "imageStyleClass":"custom-image",
+      "welcomeImageFit":"COVER",
+      "imageInlineStyle":"background-color:red; border:solid;"
    }
 
 The basic JSON structure of a welcome widget

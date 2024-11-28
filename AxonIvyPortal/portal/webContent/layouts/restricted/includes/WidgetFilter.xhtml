@@ -12,11 +12,8 @@
   actionListener="#{widget.searchSavedFilters()}" partialSubmit="true" global="false"
   process="@this search-saved-filter-input" update="widget-saved-filters-items"/>
 
-<div class="ui-g-12 filter-overlay-panel__header">
+<div class="ui-g-12 filter-overlay-panel__header pt-3">
   <strong class="ui-g-12 u-no-padding-left">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/SavedFilterHeader')}</strong>
-  <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ManageFilter')}"
-    styleClass="ui-sm-hidden saved-filter__manage-filter" global="false"
-    onclick="hideAllDashboardOverlayPanels(); PF('manage-filter-dialog').show();" />
 </div>
 <div class="ui-g-12 ui-fluid">
   <div class="ui-g-12 saved-filter--search-container">

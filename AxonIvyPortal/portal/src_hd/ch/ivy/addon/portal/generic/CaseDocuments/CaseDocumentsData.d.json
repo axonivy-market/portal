@@ -1,0 +1,26 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "CaseDocumentsData",
+  "namespace" : "ch.ivy.addon.portal.generic.CaseDocuments",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "selectedCase",
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
+  }, {
+    "name" : "documents",
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
+  }, {
+    "name" : "filteredDocuments",
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
+  }, {
+    "name" : "document",
+    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument"
+  }, {
+    "name" : "streamedContent",
+    "type" : "org.primefaces.model.StreamedContent"
+  }, {
+    "name" : "deleteDocumentMessage",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

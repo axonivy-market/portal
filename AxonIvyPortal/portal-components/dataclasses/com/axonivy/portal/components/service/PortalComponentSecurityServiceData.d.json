@@ -1,0 +1,46 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "PortalComponentSecurityServiceData",
+  "namespace" : "com.axonivy.portal.components.service",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "application",
+    "type" : "ch.ivyteam.ivy.application.IApplication"
+  }, {
+    "name" : "apps",
+    "type" : "List<String>"
+  }, {
+    "name" : "count",
+    "type" : "Integer"
+  }, {
+    "name" : "errors",
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.exception.PortalIvyDataException>"
+  }, {
+    "name" : "query",
+    "type" : "String"
+  }, {
+    "name" : "roleDTOs",
+    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"
+  }, {
+    "name" : "fromRoles",
+    "type" : "java.util.List<String>"
+  }, {
+    "name" : "roles",
+    "type" : "java.util.List<ch.ivyteam.ivy.security.IRole>"
+  }, {
+    "name" : "securityMembers",
+    "type" : "java.util.List<com.axonivy.portal.components.dto.SecurityMemberDTO>"
+  }, {
+    "name" : "startIndex",
+    "type" : "Integer"
+  }, {
+    "name" : "username",
+    "type" : "String"
+  }, {
+    "name" : "users",
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
+  }, {
+    "name" : "excludedUsernames",
+    "type" : "java.util.List<String>"
+  } ]
+}

@@ -16,7 +16,7 @@ import com.axonivy.portal.dto.ClientStatisticDto;
 import com.axonivy.portal.service.ClientStatisticService;
 
 import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
-import ch.ivyteam.ivy.elasticsearch.client.agg.AggregationResult;
+import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;

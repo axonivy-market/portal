@@ -5,9 +5,8 @@
 <h:body>
   <ui:composition template="/layouts/frame-10-full-width.xhtml">
     <ui:define name="title">Task: #{ivy.task.names().current()}</ui:define>
-    <ui:param name="isNotRequiredLogin" value="false" />
-    <ui:param name="task" value="#{ivy.task}" />
     <ui:define name="content">
+      <ic:com.axonivy.portal.components.IFrameTaskConfig viewName="TASK_DETAIL" />
       <h3>This is private page for Sale employees</h3>
 
       <h:form id="form">
@@ -20,9 +19,7 @@
           <p:commandButton actionListener="#{logic.close}" value="Proceed" update="form" icon="ui-icon-check" />
         </h:panelGrid>
       </h:form>
-      <script>
-        window.taskName = 'nam mai';
-      </script>
+      <ic:com.axonivy.portal.components.IFrameTaskConfig taskName="nam mai" />
 
     </ui:define>
   </ui:composition>

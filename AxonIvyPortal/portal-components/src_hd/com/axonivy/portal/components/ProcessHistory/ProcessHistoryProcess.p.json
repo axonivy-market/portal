@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "180F979F5AF44684",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -33,7 +33,7 @@
         "processCall" : "Functional Processes/OpenCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean,Boolean)",
         "call" : {
           "map" : {
-            "param.caseView" : "in.iCase",
+            "param.caseView" : "in.caze",
             "param.isShowBackButton" : "true",
             "param.isOpenInFrame" : "in.isOpenInFrame"
           }
@@ -59,11 +59,11 @@
         "signature" : "openDetails",
         "input" : {
           "params" : [
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "caze", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
             { "name" : "isOpenInFrame", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
-            "out.iCase" : "param.iCase",
+            "out.caze" : "param.caze",
             "out.isOpenInFrame" : "param.isOpenInFrame"
           }
         },

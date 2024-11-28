@@ -15,9 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portal.generic.util.ProcessStepUtils;
-import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
-import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.bo.ProcessStep;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
@@ -26,10 +24,8 @@ import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.mapper.UserProcessMapper;
-import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public abstract class AbstractProcessBean implements Serializable {
@@ -44,7 +40,6 @@ public abstract class AbstractProcessBean implements Serializable {
   public synchronized void init() {
     List<Process> processes = new ArrayList<>();
     processes.addAll(findProcesses());
-    processes.addAll(findExpressProcesses());
     processes.addAll(findExternalLink());
     portalProcesses = new CopyOnWriteArrayList<Process>(sortProcesses(processes));
   }
@@ -56,26 +51,10 @@ public abstract class AbstractProcessBean implements Serializable {
     if (nestedProcess instanceof IWebStartable) {
       processId = ((IWebStartable) nestedProcess).getId();
     }
-    return PortalNavigator.buildProcessInfoUrl(processId);
+    return PortalNavigator.buildProcessInfoUrl(processId.isEmpty() ? process.getId() : processId );
   }
 
   protected abstract List<Process> findProcesses();
-
-  protected List<Process> findExpressProcesses() {
-    List<ExpressProcess> processes = new ArrayList<>();
-    String expressStartLink = ExpressProcessService.getInstance().findExpressWorkflowStartLink();
-    if (StringUtils.isNotBlank(expressStartLink)) {
-      List<ExpressProcess> workflows = ExpressProcessService.getInstance().findReadyToExecuteProcessOrderByName();
-      for (ExpressProcess wf : workflows) {
-        if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf)) {
-          processes.add(wf);
-        }
-      }
-    }
-    List<Process> defaultPortalProcesses = new ArrayList<>();
-    processes.forEach(process -> defaultPortalProcesses.add(new PortalExpressProcess(process)));
-    return defaultPortalProcesses;
-  }
 
   protected List<Process> findExternalLink() {
     List<ExternalLink> privateExternalLinks = ExternalLinkService.getInstance().getPrivateConfig();
@@ -98,7 +77,7 @@ public abstract class AbstractProcessBean implements Serializable {
 
   public void startProcess(Process process) throws IOException {
     String link = process.getStartLink();
-    if (process.getType() == ProcessType.EXPRESS_PROCESS || process.getType() == ProcessType.EXTERNAL_LINK) {
+    if (process.getType() == ProcessType.EXTERNAL_LINK) {
       FacesContext.getCurrentInstance().getExternalContext().redirect(link);
       return;
     }
@@ -111,10 +90,6 @@ public abstract class AbstractProcessBean implements Serializable {
 
   public boolean isIvyProcess(Process process) {
     return !Objects.isNull(process) && process.getType() == ProcessType.IVY_PROCESS;
-  }
-
-  public boolean isExpressProcess(Process process) {
-    return !Objects.isNull(process) && process.getType() == ProcessType.EXPRESS_PROCESS;
   }
 
   public boolean isExternalLink(Process process) {

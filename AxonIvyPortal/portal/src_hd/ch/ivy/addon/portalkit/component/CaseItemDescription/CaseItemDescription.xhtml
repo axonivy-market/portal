@@ -17,7 +17,7 @@
   <div class="ui-g case-details-description-title">
     <div class="case-detail-title #{cc.attrs.labelStyleClasses} text-ellipsis">
       #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}
-      <p:commandLink onclick="showWidgetDescriptionInplaceEditor();"
+      <p:commandLink onclick="showWidgetDescriptionInplaceEditor();" ariaLabel="#{ivy.cms.co('/Labels/EditDescription')}"
         rendered="#{caseActionBean.canChangeDescription(case) and !cc.attrs.readOnly}" id="edit-description-link">
         <i class="si si-graphic-tablet-drawing-pen" />
       </p:commandLink>
@@ -44,10 +44,10 @@
               <h:outputText escape="false" value="#{caseWidgetBean.sanitizeHTML(case.descriptions().current())}" />
              </h:panelGroup>
           </div>
-          <p:commandLink onclick="displayMoreText()" id="icon-more-link" styleClass="icon-more-link" global="false" process="@this" immediate="true" partialSubmit="true">
+          <p:commandLink onclick="displayMoreText()" id="icon-more-link" styleClass="icon-more-link" global="false" process="@this" immediate="true" partialSubmit="true" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ExpandAll')}">
             <i class="si si-add-circle si-add-circle-case-description" />
           </p:commandLink>
-          <p:commandLink onclick="displayLessText()" id="icon-less-link" styleClass="icon-less-link" global="false" process="@this" immediate="true" partialSubmit="true">
+          <p:commandLink onclick="displayLessText()" id="icon-less-link" styleClass="icon-less-link" global="false" process="@this" immediate="true" partialSubmit="true" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/CollapseAll')}">
             <i class="si si-subtract-circle" />
           </p:commandLink>
         </div>

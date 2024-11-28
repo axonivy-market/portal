@@ -15,6 +15,7 @@ public class IdColumnModel extends CaseColumnModel implements Serializable {
     this.field = DashboardStandardCaseColumn.ID.getField();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.quickSearch = defaultIfEmpty(this.quickSearch, false);
+    this.styleToDisplay = initDefaultStyle();
   }
 
   @Override

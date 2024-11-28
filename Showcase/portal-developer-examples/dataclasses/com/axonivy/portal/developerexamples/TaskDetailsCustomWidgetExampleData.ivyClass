@@ -1,7 +1,0 @@
-TaskDetailsCustomWidgetExampleData #class
-com.axonivy.portal.developerexamples #namespace
-invoice com.axonivy.portal.developerexamples.Invoice #field
-invoiceId String #field
-invoiceDescription String #field
-taskId String #field
-taskCategory String #field

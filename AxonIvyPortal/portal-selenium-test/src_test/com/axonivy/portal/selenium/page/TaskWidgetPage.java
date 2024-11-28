@@ -81,7 +81,7 @@ public class TaskWidgetPage extends TemplatePage {
     $("div[id$=':application-filter:filter-input-form:advanced-filter-panel'").shouldBe(appear, DEFAULT_TIMEOUT);
     final ElementsCollection checkboxLabel = $$("span.ui-chkbox-label");
     for (int i = 0; i < checkboxLabel.size(); i++) {
-      if (checkboxLabel.get(i).getText().equals("Select All")) {
+      if ("Select All".equals(checkboxLabel.get(i).getText())) {
         checkboxLabel.get(i).click();
       }
     }
@@ -288,7 +288,8 @@ public class TaskWidgetPage extends TemplatePage {
     input.click();
     input.sendKeys(text);
     waitForElementClickableThenClick($("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar"));
-    $("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("span[id$='responsible-filter:filter-input-form:responsible_panel'] .gravatar").shouldBe(disappear,
+        DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(
         $(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']")));
   }
@@ -360,22 +361,13 @@ public class TaskWidgetPage extends TemplatePage {
     clickOnTaskActionLink(taskIndex);
     WebElement actionPanel = findElementByCssSelector(String.format(
         "div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel']", taskIndex));
-    return actionPanel.findElements(By.cssSelector("a[class*='option-item']"))
-        .stream()
-        .filter(
-            elem -> !elem.getAttribute("class").contains("ui-state-disabled"))
-        .map(WebElement::getText)
+    return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream()
+        .filter(elem -> !elem.getAttribute("class").contains("ui-state-disabled")).map(WebElement::getText)
         .collect(Collectors.toList());
   }
 
   public boolean isActionLinkEnable() {
     return !$(".action-link").getAttribute("class").contains("ui-state-disabled");
-  }
-
-  public ExpressTaskPage startExpressTask(int index) {
-    waitTaskAppearThenClick(index);
-    $(By.id(TASK_ACTION)).shouldBe(appear, DEFAULT_TIMEOUT);
-    return new ExpressTaskPage();
   }
 
   public TaskIFrameTemplatePage startTaskIFrame(int index) {
@@ -390,6 +382,7 @@ public class TaskWidgetPage extends TemplatePage {
     $(By.id(TASK_ACTION)).shouldBe(appear, DEFAULT_TIMEOUT);
     return new TaskTemplatePage();
   }
+
   public boolean isTaskStateReserved(int index) {
     try {
       $(By.id(String.format(TASK_STATE_COMPONENT_ID, index))).$(By.className("open-task-state"));
@@ -415,10 +408,6 @@ public class TaskWidgetPage extends TemplatePage {
 
   public boolean isTaskReserverDisplayed(boolean expected) {
     return isTaskActionDisplayed("task-reserve-command", 0, expected);
-  }
-
-  public boolean isAdhocSideStepDisplayed(boolean expected) {
-    return isElementDisplayed(By.cssSelector("a[id$='adhoc-side-step-item']"), expected);
   }
 
   public void sideStepMenuOnActionButton(int index) {
@@ -759,13 +748,6 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement cell = findElementById(
         String.format(taskWidgetId + ":task-list-scroller:%d:task-item:%s-component:%s", index, columnId, columnId));
     return cell.getText();
-  }
-
-  public AdhocPage addAdhoc(int taskIndex) {
-    waitForElementClickableThenClick("[id$=':task-side-steps-menu']");
-    waitForElementClickableThenClick("[id$=':adhoc-side-step-item']");
-    waitForElementPresent(By.id(TASK_ACTION), true);
-    return new AdhocPage();
   }
 
   public void clearFilterInput() {

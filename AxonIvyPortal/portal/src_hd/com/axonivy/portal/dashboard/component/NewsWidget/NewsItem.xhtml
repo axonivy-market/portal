@@ -9,7 +9,7 @@
   <div id="#{newsItemId}" class="news-item">
     <div class="news-item__header">
       <span class="news__icon">
-        <ic:ch.ivy.addon.portalkit.component.IconSelection id="news-icon"
+        <ic:ch.ivy.addon.portalkit.component.IconSelection id="news-icon" hideIconArray="true"
           value="#{news.icon}" isReadOnly="true" />
       </span>
       <h:outputText id="news__title" styleClass="news__title line-clamp-text-2" value="#{news.name}" />
@@ -33,11 +33,13 @@
         global="false" process="@none" update="@this" immediate="true" partialSubmit="true"/>
       <h:panelGroup rendered="#{newsWidgetBean.canManageNews and isReadOnlyMode}" styleClass="news__manage-actions">
         <p:commandLink id="news-item-edit-link"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
           styleClass="si si-pencil u-mar-right-10 ui-sm-hidden"
           actionListener="#{newsWidgetBean.preEditingNews(news)}" oncomplete="PF('manage-news-dialog').show()"
           update="#{cc.clientId}:management-news-group #{cc.clientId}:manage-news-dialog"/>
         <p:commandLink id="news-item-delete-link"
           styleClass="si si-bin-1" actionListener="#{newsWidgetBean.setSelectedNews(news)}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
           oncomplete="PF('delete-news-dialog').show()" update="news-#{widget.id}:delete-news-dialog" />
       </h:panelGroup>
     </div>

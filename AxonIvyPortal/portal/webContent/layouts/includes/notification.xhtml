@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://primefaces.org/ui"
-  xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:ic="http://ivyteam.ch/jsf/component">
+  xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:ic="http://ivyteam.ch/jsf/component">
 
 <h:body>
   <ui:composition>
@@ -84,20 +84,26 @@
                               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}" />
                           </div>
                           <div class="flex notification-message-block flex-column">
-                            <p:commandLink id="notification-message" styleClass="notification-message"
-                              actionListener="#{notificationBean.goToTaskDetail(notification)}" rendered="#{notification.infoAction != null}">
-                              <h:outputText value="#{htmlSanitizerBean.sanitize(notification.message)}" />
-                            </p:commandLink>
+                            <h:panelGroup rendered="#{notification.infoAction != null}">
+                              <p:commandLink id="notification-message" styleClass="notification-message"
+                                actionListener="#{notificationBean.goToNotificationDetail(notification, isWorkingOnATask, task)}">
+                                <h:outputText value="#{htmlSanitizerBean.sanitize(notification.message)}" />
+                              </p:commandLink>
                             <p:tooltip for="notification-message" value="#{notification.infoAction.title}" />
-                            <h:outputText value="#{notification.timeSince}" styleClass="font-normal notifications-item-time-since" />
+                           </h:panelGroup>
+                           <h:panelGroup rendered="#{notification.infoAction == null}">
+                             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/errorNotificationMessage')}" />
+                           </h:panelGroup>
+                           <h:outputText value="#{notification.timeSince}" styleClass="font-normal notifications-item-time-since" />
                           </div>
-                          <div class="flex notification-action-block">
-                            <p:commandLink id="notification-start-task" styleClass="notification-start-task"
-                              actionListener="#{notificationBean.startTaskFromNoti(notification)}" rendered="#{notification.runAction != null}">
+                          <p:outputPanel rendered="#{notificationBean.isActionAvailible(notification)}" styleClass="flex notification-action-block">
+                            <p:commandLink id="notification-start-task"
+                              styleClass="notification-start-task"
+                              actionListener="#{notificationBean.startTaskFromNotification(notification, isWorkingOnATask, task)}">
                               <i class="fa fa-play notification-start-task-icon" />
                             </p:commandLink>
                             <p:tooltip for="notification-start-task" value="#{notification.runAction.title}" />
-                          </div>
+                          </p:outputPanel>
                         </div>
                       </div>
                     </p:dataScroller>
@@ -112,6 +118,25 @@
 
       </div>
     </h:panelGroup>
+    
+    <p:remoteCommand id="notification-leave-task-rc" name="leaveTaskNotification"
+      actionListener="#{notificationBean.leaveTask()}" immediate="true"
+      process="@this" partialSubmit="true" />
+
+    <p:remoteCommand id="notification-reserve-task-rc"
+      name="reserveTaskNotification" actionListener="#{notificationBean.reserveTask()}"
+      immediate="true" process="@this" partialSubmit="true" />
+
+    <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask
+            id="notification-warning-before-leaving-task-component"
+            componentId="notification-task-leave-warning-dialog"
+            widgetVar="notification-task-losing-confirmation-dialog" rendered="#{isWorkingOnATask}"
+            taskState="#{task.state}"
+            leaveActionListener="fireEventClick();"
+            leaveOnComplete="leaveTaskNotification([{name: 'redirectType', value: redirectType}, {name: 'notificationId', value: notificationId}, {name: 'taskId', value: notiTaskId}]);"
+            reserveActionListener="fireEventClick();"
+            reserveOnComplete="reserveTaskNotification([{name: 'redirectType', value: redirectType}, {name: 'notificationId', value: notificationId}, {name: 'taskId', value: notiTaskId}]);">
+    </ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask>
 
   </ui:composition>
 </h:body>

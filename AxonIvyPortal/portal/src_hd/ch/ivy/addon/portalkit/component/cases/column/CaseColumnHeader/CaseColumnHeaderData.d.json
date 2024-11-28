@@ -1,0 +1,19 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "CaseColumnHeaderData",
+  "namespace" : "ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "dataModel",
+    "type" : "ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "sortedField",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isSortingDescending",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "Data",
+  "namespace" : "com.axonivy.portal.developerexamples.showcase",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "processChainDirection",
+    "type" : "String"
+  }, {
+    "name" : "processChainShape",
+    "type" : "String"
+  }, {
+    "name" : "actuaStepIndex",
+    "type" : "Integer"
+  } ]
+}

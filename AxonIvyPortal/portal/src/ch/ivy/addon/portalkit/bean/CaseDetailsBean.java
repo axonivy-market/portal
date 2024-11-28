@@ -9,6 +9,7 @@ import java.util.Objects;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.SelectEvent;
@@ -33,12 +34,14 @@ import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
+import ch.ivyteam.ivy.workflow.caze.owner.CaseOwner;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 @ManagedBean
@@ -59,16 +62,20 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   private String caseDetailsDescription;
   private String caseDetailsUrl;
   private Boolean isShowShareButton;
+  private boolean isHideCaseCreator;
+  private boolean showDurationTime;
 
   public void init() {
     super.initConfig();
-    isHideCaseDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT);
+    isHideCaseDocument = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT);
     caseActionBean = ManagedBeans.get("caseActionBean");
     isFirstTime = true;
     isShowShareButton = PermissionUtils.hasShareCaseDetailsPermission();
-    isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
+    isHideCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
+    isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
+    showDurationTime = Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_CASE_DURATION_TIME));
   }
 
   public void preRender(ICase selectedCase, boolean showBackButton) {
@@ -323,5 +330,42 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
 
   public void setIsShowShareButton(Boolean isShowShareButton) {
     this.isShowShareButton = isShowShareButton;
+  }
+
+  public boolean isHideCaseCreator() {
+    return isHideCaseCreator;
+  }
+
+  public void setHideCaseCreator(boolean isHideCaseCreator) {
+    this.isHideCaseCreator = isHideCaseCreator;
+  }
+
+  public boolean isShowDurationTime() {
+    return showDurationTime;
+  }
+
+  public void setShowDurationTime(boolean showDurationTime) {
+    this.showDurationTime = showDurationTime;
+  }
+  
+  public String getFirstCaseOwner() {
+    if (selectedCase == null || CollectionUtils.isEmpty(selectedCase.owners().all())) {
+      return "";
+    }
+    final var owners = selectedCase.owners();
+    final var size = owners.all().size();
+    if (size <= 2 ) {
+      return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForCaseOwners(owners);
+    }
+    CaseOwner first = owners.all().get(0);
+    CaseOwner second = owners.all().get(1);
+    
+    return String.format("%s, %s,..", 
+        SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(first.member(), first.memberName()), 
+        SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(second.member(), second.memberName()));
+  }
+
+  public List<CaseOwner> getCaseOwners() {
+    return selectedCase.owners().all();
   }
 }

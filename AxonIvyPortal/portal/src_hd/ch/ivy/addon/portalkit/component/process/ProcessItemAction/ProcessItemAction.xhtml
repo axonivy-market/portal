@@ -12,6 +12,12 @@
   <cc:attribute name="onCompleteDeleteProcess"/>
   <cc:attribute name="componentToUpdateOnDeleteProcess"/>
   <cc:attribute name="outlinedButtonStyle" default="true"/>
+  <cc:attribute name="isProcessGridMode" default="false"/>
+  <cc:attribute name="isDashboardProcessWidget" default="false"/>
+  <cc:attribute name="status"/>
+  <cc:attribute name="isInProcessList" default="true" />
+  <cc:attribute name="isReadOnlyMode" default="true"/>
+  <cc:attribute name="isInConfiguration" default="false" />
 </cc:interface>
 
 <cc:implementation>
@@ -19,18 +25,14 @@
   <c:set var="canModify" value="#{cc.attrs.canModify}" />
   <c:set var="showProcessViewer" value="#{processItemActionBean.isShowProcessViewer(process)}"/>
   <c:set var="hideActionButton" value="#{cc.attrs.hideActionButton or (!canModify and !showProcessViewer)}"/>
-  <c:set var="buttonStyle" value="#{cc.attrs.outlinedButtonStyle ? 'ui-button-outlined':'ui-button-raised ui-button-secondary'}"/>
+  <c:set var="buttonStyle" value="#{cc.attrs.outlinedButtonStyle ? 'ui-button-outlined':'ui-button-raised '}"/>
+  <c:set var="isExternalLink" value="#{dashboardProcessBean.isExternalLink(process)}" />
+  <c:set var="isCaseMap" value="#{dashboardProcessBean.isCaseMap(process)}" />
 
   <div id="process-action-group" class="process-action-group">
-    <p:commandButton id="process-category" rendered="#{processItemActionBean.isRenderedCategory(process.category)}"
-      styleClass="rounded-button process-category #{buttonStyle}"
-      value="#{processItemActionBean.getDisplayProcessCategory(process)}"
-      readonly="true" type="button" onclick="return false;"/>
-    <p:tooltip for="process-category" value="#{process.category}" trackMouse="true" hideEvent="mouseleave click" />
-
     <h:panelGroup layout="block" rendered="#{!hideActionButton}">
       <p:commandButton id="process-action-button" icon="si si-navigation-menu-horizontal"
-        styleClass="rounded-button icon-more-menu-button #{buttonStyle}" type="button"/>
+        styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page" type="button"/>
 
       <p:menu id="process-action-menu" overlay="true"
         trigger="process-action-button"
@@ -56,8 +58,18 @@
           actionListener="#{cc.attrs.actionListenerOnDeleteProcess}"
           update="#{cc.attrs.componentToUpdateOnDeleteProcess}"
           rendered="#{canModify}" />
+        <p:menuitem id="more-information"
+          icon="si si-information-circle"
+          url="#{processWidgetBean.getProcessInformationPageUrl(process)}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
+          disabled="#{!cc.attrs.isReadOnlyMode or cc.attrs.isInConfiguration}"
+          rendered="#{processWidgetBean.isShowInformationLink(process) and !isExternalLink and !isCaseMap}"/>
       </p:menu>
     </h:panelGroup>
+    <div class="start-process" id="start-button-wrap-#{cc.attrs.status.index}" >
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')}" id="start-button" actionListener="#{processWidgetBean.startProcess(process)}" styleClass="ui-no-rounded-button-process-page"
+            icon="si si-arrow-right-1" iconPos="right" ajax="#{!isExternalLink}" rendered="#{!cc.attrs.isProcessGridMode and !cc.attrs.isDashboardProcessWidget}" />
+    </div>
   </div>
 </cc:implementation>
 

@@ -15,17 +15,17 @@
   <!-- Configuration -->
   <h:panelGroup id="filter-container" layout="block" styleClass="card dashboard-card widget-configuration news-widget-configuration">
     <div class="filter-container ui-g">
-      <div id="news-widget-configuration-header" class="w-full filter-container__header">
+      <div id="news-widget-configuration-header" class="ui-g-12 filter-container__header">
         <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}</h2>
         <p>#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsWidgetDescription')}</p>
       </div>
 
       <h:panelGroup id="widget-title-group" styleClass="w-full ui-fluid display-inline-flex-center">
-        <div class="ui-g-4 u-no-padding-left">
+        <div class="ui-g-4">
           <p:outputLabel for="widget-title"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
         </div>
-        <div class="ui-g-8 u-no-padding-right ui-inputgroup">
+        <div class="ui-g-8 ui-inputgroup">
           <p:inputText id="widget-title" styleClass="widget-configuration__input-text" value="#{widget.name}" />
            <!-- Add language button -->
           <p:commandButton styleClass="app-setting-button"
@@ -34,6 +34,22 @@
             process="widget-title"
             update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
             oncomplete="PF('multiple-languages-dialog').show();" />
+        </div>
+      </h:panelGroup>
+      
+      <h:panelGroup id="fullscreen-mode-group" rendered="#{managedBean.displayFullscreenModeOption()}"
+        styleClass="ui-g-12 u-padding-0 ui-fluid w-full display-inline-flex-center">
+        <div class="ui-g-4">
+          <p:outputLabel for="fullscreen-option"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/fullscreenMode')}"
+            styleClass="u-mar-right-5" />
+        </div>
+        <div class="ui-g-8 ui-inputgroup">
+          <p:selectBooleanCheckbox id="fullscreen-option"
+            value="#{widget.showFullscreenMode}">
+            <p:ajax process="fullscreen-mode-group"
+              update="fullscreen-mode-group" partialSubmit="true"/>
+          </p:selectBooleanCheckbox>
         </div>
       </h:panelGroup>
     </div>

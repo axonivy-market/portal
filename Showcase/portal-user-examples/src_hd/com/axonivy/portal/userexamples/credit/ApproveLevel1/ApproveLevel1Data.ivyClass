@@ -1,4 +1,0 @@
-ApproveLevel1Data #class
-com.axonivy.portal.userexamples.credit.ApproveLevel1 #namespace
-dossier com.axonivy.portal.userexamples.credit.CreditDossier #field
-dossier PERSISTENT #fieldModifier

@@ -22,13 +22,15 @@ public class DocumentUploadBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
+  private Long customFileSizeLimit;
+
   public Long getFileUploadSizeLimit() {
-    return MasterData.getFileUploadSizeLimit();
+    return (customFileSizeLimit != null && customFileSizeLimit > 0) ? customFileSizeLimit : MasterData.getFileUploadSizeLimit();
   }
   
-  public String getFileUploadInvalidSizeMessage() {
+  public String getFileUploadInvalidSizeMessage(Long fileUploadSizeLimit) {
     return Ivy.cms().co("/Dialogs/com/axonivy/portal/components/DocumentTable/ErrorFileUploadSize",
-        Arrays.asList(FileUtils.byteCountToDisplaySize(getFileUploadSizeLimit())));
+        Arrays.asList(FileUtils.byteCountToDisplaySize(fileUploadSizeLimit)));
   }
   
   public DocumentType[] getDocumentTypes() {
@@ -45,5 +47,13 @@ public class DocumentUploadBean implements Serializable {
 
   public String getPortalAllowedUploadFileTypesSettingOrDefault(String defaultIfEmpty) {
     return GlobalSettingService.getInstance().findGlobalSettingValueAsString(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION, defaultIfEmpty);
+  }
+
+  public Long getCustomFileSizeLimit() {
+    return customFileSizeLimit;
+  }
+
+  public void setCustomFileSizeLimit(Long customFileSizeLimit) {
+    this.customFileSizeLimit = customFileSizeLimit;
   }
 }

@@ -5,4 +5,3 @@
 # please add a 'variables.yaml' in the sub directory '_<environment>'.
 #
 Variables:
-  #myVariable: value

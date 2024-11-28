@@ -55,14 +55,14 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
 
   /**
    * Get header text from the custom column
-   * Custom column format: fieldType__fieldName__header
+   * Custom column format: fieldFormat__fieldName__header__fieldType
    * 
    * @param column
    * @return header text
    */
   private String getCustomColumnName(String column) {
     String[] columnParts = getCustomColumnParts(column);
-    if (columnParts.length != 3) {
+    if (columnParts.length != 4) {
       return "";
     }
     return columnParts[2];
@@ -86,9 +86,7 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
           : SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getCreatorUser(), caseItem.getCreatorUserName());
       case CREATED -> caseItem.getStartTimestamp();
       case FINISHED -> caseItem.getEndTimestamp();
-      case OWNER -> caseItem.getOwnerName() == null
-          ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable")
-          : SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getOwner(), caseItem.getOwnerName());
+      case OWNER -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForCaseOwners(caseItem.owners());
       case CATEGORY-> caseItem.getCategory().getPath();
       case APPLICATION -> caseItem.getApplication().getName();
       default -> "";
@@ -97,7 +95,7 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
 
   /**
    * Get custom column value
-   * Custom column format: fieldType__fieldName__header
+   * Custom column format: fieldFormat__fieldName__header__fieldType
    * 
    * @param column
    * @param caseItem
@@ -105,7 +103,7 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
    */
   private Object getCustomColumnValue(String column, ICase caseItem) {
     String[] columnParts = getCustomColumnParts(column);
-    if (columnParts.length != 3) {
+    if (columnParts.length != 4) {
       return "";
     }
 
@@ -115,18 +113,13 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
       return "";
     }
 
-    switch (fieldFormat) {
-      case NUMBER: 
-        return caseItem.customFields().numberField(fieldName).getOrNull();
-      case STRING:
-        return caseItem.customFields().stringField(fieldName).getOrNull();
-      case TEXT:
-        return caseItem.customFields().textField(fieldName).getOrNull();
-      case TIMESTAMP:
-        return caseItem.customFields().timestampField(fieldName).getOrNull();
-      default:
-        return "";
-    }
+    return switch (fieldFormat) {
+      case NUMBER -> caseItem.customFields().numberField(fieldName).getOrNull();
+      case STRING -> caseItem.customFields().stringField(fieldName).getOrNull();
+      case TEXT -> caseItem.customFields().textField(fieldName).getOrNull();
+      case TIMESTAMP -> caseItem.customFields().timestampField(fieldName).getOrNull();
+      default -> "";
+    };
   }
 
   /**

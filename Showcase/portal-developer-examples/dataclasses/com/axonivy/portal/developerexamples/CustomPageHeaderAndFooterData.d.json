@@ -1,0 +1,15 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "CustomPageHeaderAndFooterData",
+  "namespace" : "com.axonivy.portal.developerexamples",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "pageHeader",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "pageFooter",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

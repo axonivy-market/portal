@@ -94,7 +94,6 @@
                   panelWidgetVar="case-details-action-panel"
                   case="#{case}" inFrame="#{inFrame}" readOnly="#{readOnly}"
                   renderShowDetailAction="false"
-                  isAdhocExcluded="true"
                   onDestroyComplete="PF('destroy-case-dialog').show()" />
               </h:panelGroup>
             </div>
@@ -229,6 +228,14 @@
           iframes.remove();
         }
         if (window.history.length > 2) {
+          // handle for bug https://1ivy.atlassian.net/browse/IVYPORTAL-17122
+          // when user open case detail from dashboard or full case list -> related task -> start task in iFrame -> cancel
+          // if url of current document is openning task in iFrame
+          if (document.referrer.includes('TaskTemplateIFrame.xhtml?taskUrl=')){
+            // back to case list to avoid go error: click back will navigate to openning task
+            backToCasesList();
+            return;
+          }
           window.history.back();
         } else {
           // if no history or back from a page in Frame

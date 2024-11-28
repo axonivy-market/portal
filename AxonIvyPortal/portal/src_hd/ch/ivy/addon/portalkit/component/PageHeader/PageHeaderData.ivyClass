@@ -1,4 +1,0 @@
-PageHeaderData #class
-ch.ivy.addon.portalkit.component.PageHeader #namespace
-content String #field
-content PERSISTENT #fieldModifier

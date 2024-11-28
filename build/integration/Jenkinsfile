@@ -11,8 +11,8 @@ pipeline {
   }
 
   parameters {
-      string(name: 'testPatternToRun', defaultValue: 'com.axonivy.portal.selenium.test.**.*Test,!*Express*Test', description: 'Test pattern to run')
-      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
+      string(name: 'testPatternToRun', defaultValue: 'com.axonivy.portal.selenium.test.**.*Test', description: 'Test pattern to run')
+      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
         -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip for nightly master
         -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine-windows.zip for dev master
         -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
@@ -64,14 +64,12 @@ pipeline {
               Copy-Item $env:releaseDir/Showcase/portal-demo-app/target/*zip -Destination $DEPLOYMENT
               Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
               Copy-Item $env:releaseDir/Showcase/portal-components-examples/target/*iar -Destination $DEPLOYMENT
-              Copy-Item $env:releaseDir/axonivy-express/target/*iar -Destination $DEPLOYMENT
             '''
           } else {
             powershell '''
               $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
               Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
               Copy-Item $env:releaseDir/Showcase/portal-components-examples/target/*iar -Destination $DEPLOYMENT
-              Copy-Item $env:releaseDir/axonivy-express/target/*iar -Destination $DEPLOYMENT
             '''
           }
 
@@ -84,7 +82,7 @@ pipeline {
           utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Test Portal===================='
-          bat "mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Dtest=${params.testPatternToRun} -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
+          bat "mvn clean test -f AxonIvyPortal/portal-selenium-test/customized_pom.xml -Dtest=${params.testPatternToRun} -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500"
           utils.cleanDisk()
         }
       }
@@ -104,8 +102,6 @@ def downloadPortalRelease() {
   def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
   withCredentials([usernameColonPassword(credentialsId: 'wawa-jenkins', variable: 'credentials')]) {
     bat "curl --user ${credentials} --output archive.zip ${env.JENKINS_URL}job/portal-release/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
-    bat "curl --user ${credentials} --output archive-express.zip ${env.JENKINS_URL}job/axonivy-express-integration/job/develop/lastSuccessfulBuild/artifact/*zip*/archive.zip"
   }
   unzip zipFile: 'archive.zip', quiet: true
-  unzip zipFile: 'archive-express.zip', quiet: true
 }

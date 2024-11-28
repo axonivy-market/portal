@@ -13,11 +13,11 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.ChatPage;
-import com.axonivy.portal.selenium.page.ExpressTaskPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TaskTemplatePage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
-import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
+import ch.ivyteam.ivy.project.portal.test.Responsible;
 
 @IvyWebTest
 public class ChatTest extends BaseTest {
@@ -39,7 +39,7 @@ public class ChatTest extends BaseTest {
 
   @Test
   public void chatAddGroup() {
-    ExpressResponsible chatUser1 = setExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
+    Responsible chatUser1 = setResponsible(TestAccount.ADMIN_USER.getUsername(), false);
     ChatPage chatPage = enableChatGroup();
     createChatGroup(TestAccount.DEMO_USER);
     joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
@@ -52,7 +52,7 @@ public class ChatTest extends BaseTest {
     openNewTabOrWindow(WindowType.WINDOW);
     launchBrowserAndGotoRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
 
-    ExpressResponsible chatGroupEveryBody = setExpressResponsible("Everybody", true);
+    Responsible chatGroupEveryBody = setResponsible("Everybody", true);
     createChatGroup(TestAccount.GUEST_USER, chatUser1, chatGroupEveryBody);
 
     login(TestAccount.ADMIN_USER);
@@ -121,14 +121,15 @@ public class ChatTest extends BaseTest {
     new NewDashboardPage().getChat().isNotificationContactChat();
   }
 
-  private ChatPage createChatGroup(TestAccount creatorChatGroup, ExpressResponsible... participants) {
+  private ChatPage createChatGroup(TestAccount creatorChatGroup, Responsible... participants) {
     redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
     login(creatorChatGroup);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPage = new NewDashboardPage().getChat();
     // Create chat group via task
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    ExpressTaskPage taskTemplatePage = taskWidgetPage.startExpressTask(0);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskTemplatePage taskTemplatePage = taskWidget.startTaskByIndex(0);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.clickChatGroup();
     if (participants.length != 0) {
@@ -153,9 +154,10 @@ public class ChatTest extends BaseTest {
 
   private void joinChatGroupWhichAlreadyHadChatGroup(TestAccount userJoined) {
     login(userJoined);
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.filterTasksInExpandedModeBy("Sick Leave Request Default Case Details Page");
-    ExpressTaskPage taskTemplatePage = taskWidgetPage.startExpressTask(0);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.setInputForQuickSearch("Sick Leave Request Default Case Details Page");
+    TaskTemplatePage taskTemplatePage = taskWidget.startTaskByIndex(0);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.clickChatGroup();
     taskTemplatePage.joinProcessChatAlreadyCreated();

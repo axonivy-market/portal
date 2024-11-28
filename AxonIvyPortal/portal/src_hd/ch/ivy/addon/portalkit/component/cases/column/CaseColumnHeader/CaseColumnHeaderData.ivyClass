@@ -1,8 +1,0 @@
-CaseColumnHeaderData #class
-ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader #namespace
-dataModel ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel #field
-dataModel PERSISTENT #fieldModifier
-sortedField String #field
-sortedField PERSISTENT #fieldModifier
-isSortingDescending Boolean #field
-isSortingDescending PERSISTENT #fieldModifier

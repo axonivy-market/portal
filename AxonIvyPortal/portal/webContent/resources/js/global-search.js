@@ -191,7 +191,6 @@ if (document) {
   }
 
   function search(keyword, tabCategory) {
-    console.log('tabCategory ', tabCategory)
     if (PROCESS_TAB === tabCategory) {
       searchProcess(keyword);
     } else if (TASK_TAB === tabCategory) {

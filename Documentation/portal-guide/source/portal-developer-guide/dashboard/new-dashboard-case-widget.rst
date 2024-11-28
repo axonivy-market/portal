@@ -11,55 +11,59 @@ to :ref:`Case List Widget <new-dashboard-case-list-widget>` for details.
 
 Below is a sample JSON definition of the case widget in the Portal dashboard.
 
-.. code-block:: html
+.. code-block:: javascript
 
    {
       "type": "case",
       "id": "case-widget",
       "names": [
          {
-         "locale": "en",
-         "value": "Your Cases"
+            "locale": "en",
+            "value": "Your Cases"
          },
          {
-         "locale": "de",
-         "value": "Ihre Vorgänge"
+            "locale": "de",
+            "value": "Ihre Vorgänge"
          }
       ],
       "layout": {
-         "x": 0, "y": 0, "w": 10, "h": 9,
+         "x": 0,
+         "y": 0,
+         "w": 10,
+         "h": 9,
          "style": "text-color: blue;",
          "styleClass": "your-widget-class"
       },
       "sortField": "name",
       "rowsPerPage": 20,
       "showWidgetInfo": true,
-      "showExpandMode": true,
+      "showFullscreenMode": true,
+      "isTopMenu": false,
       "columns": [
-         {
-            "field": "start"
-         },
-         {
-            "field": "priority",
-            "visible": "false"
-         },
          {
             "field": "id"
          },
          {
-            "field": "name"
+            "field": "name",
+            "visible": "false"
+         },
+         {
+            "field": "description"
+         },
+         {
+            "field": "creator"
          },
          {
             "field": "state",
             "headers": [
-               {
+            {
                "locale": "en",
                "value": "State"
-               },
-               {
+            },
+            {
                "locale": "de",
                "value": "Status"
-               }
+            }
             ]
          },
          {
@@ -95,15 +99,19 @@ The basic JSON structure of the case widget
 
 -  ``sortField``: default sort field for the Case widget
 
--  ``sortDescending``: default sort direction of the default sort field. The
-   default value is "false" (sort direction is ascending)
+-  ``sortDescending``: sort direction of the default sort field. The 
+   default value is ``false`` (sort ascending)
 
 -  ``rowsPerPage``: maximum number of cases that are displayed on one page of
    the case widget. The default is 10 rows per page
 
 -  ``showWidgetInfo``: visibility of the widget information icon. The default value is ``true``, set to ``false`` to hide the icon
 
--  ``showExpandMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
+-  ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
+
+-  ``isTopMenu``: if the value is ``true``, the dashboard appears as a top-level item in the navigation bar. 
+   If the value is ``false``, it appears as a sub-item under the `Dashboard` menu. 
+   The default value is ``false``.
 
 -  ``columns``: column configurations for each column in the case widget. You
    can predefine filters, styles, visibility,... of columns and define custom
@@ -127,7 +135,7 @@ The basic JSON structure of the case widget
 
             - ``endTimestamp``: end date and time of the case
 
-            - ``owner``: case owner
+            - ``owner``: list of case owners
 
             - ``actions``: for further actions like ``access case details``,
               ``case business details``, ``destroy case``
@@ -140,7 +148,7 @@ The basic JSON structure of the case widget
       "false" to hide the column.
 
    -  ``quickSearch``: Adds this field to the search scope of the quick search. The default value is ``false``.
-      Set to ``true`` to apply search condition for the column.
+      Set it to ``true`` to apply search condition for the column.
 
    -  ``headers``: multilingual header of the column.
 
@@ -155,9 +163,11 @@ as a column.
 Traditional Custom Columns
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can predefine which column to show, and other attributes such as filter, format, and style. Below is a standard JSON of a custom column.
+You can predefine which columns to display, along with other attributes such as
+filters, formats, and styles. Below is a standard JSON example of a custom
+column.
 
-.. code-block:: html
+.. code-block:: javascript
 
    {
       ...
@@ -165,13 +175,14 @@ You can predefine which column to show, and other attributes such as filter, for
       "columns": [
          {
             "type": "CUSTOM",
-            "field": "supplier",
+            "field": "HIDE",
             "style": "width: 110px"
          }
       ]
    }
 
 ..
+
 
 Besides the attributes explained in the previous section, a custom column has
 two differences:
@@ -187,7 +198,7 @@ two differences:
 
 Custom Action Button Columns
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Portal supports creating custom action buttons for specific needs. By clicking on these buttons, a custom process is triggered.
+Portal supports creating custom action buttons as a column in case widget for specific needs. By clicking on these buttons, a custom process is triggered.
 
 Follow these steps to implement it:
 
@@ -195,7 +206,7 @@ Follow these steps to implement it:
    When the ``Custom Action`` button on the case details page is clicked, Portal will call this process and pass the case UUID as 
    the ``uuid`` parameter.
       
-      |custom-action-button-custom-field-start|
+      |custom-action-button-process-demo|
 
    #. Design and implement the action/script for the custom action within this process.
    
@@ -223,14 +234,14 @@ Follow these steps to implement it:
 Filter Conditions
 -----------------
 
-You can predefined filter conditions for most columns of the case widget. Each
-column has different conditions. Some columns only accept a list, some only a
-string and some only accept a string in a special format such as date-time. 
+You can predefine filter conditions for most columns of the case widget. Each
+column has different conditions: some accept only a list, some accept only a
+string, and others require a string in a specific format, such as date-time.
 Please refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 Base structure of filter json:
 
-   .. code-block:: html
+   .. code-block:: javascript
 
          {
             ...
@@ -266,7 +277,7 @@ Base structure of filter json:
 
      - **Date column**: today, yesterday, is, is_not, before, after, between, not_between, current, last, next, empty, not_empty
 
-   - ``type``: ``standard`` for standard column or ``custom`` for custom column
+   - ``type``: ``standard`` for a standard column or ``custom`` for a custom column
 
    - Date type additional field:
 
@@ -293,7 +304,7 @@ Standard Column:
 
    - ``name``
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...
@@ -319,7 +330,7 @@ Standard Column:
 
    - ``description``
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...
@@ -345,7 +356,7 @@ Standard Column:
 
    - ``state``: Case business state
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...
@@ -373,7 +384,7 @@ Standard Column:
 
    - ``creator``
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...
@@ -405,7 +416,7 @@ Standard Column:
 
    - ``startTimestamp`` and ``endTimestamp``: created date and finished date of the Case
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...
@@ -459,11 +470,11 @@ Standard Column:
       ..
 
       This column accepts all operators available for Date column. Fields may vary depending on the operator. The JSON example above covers most use cases for the Date field.
-      Acceptable date formats: ``dd.MM.yyyy`` and ``MM/dd/yyyy``.
+      Acceptable date formats: ``dd.MM.yyyy``, ``dd.MM.yyyy HH:mm``, ``MM/dd/yyyy`` and ``MM/dd/yyyy HH:mm``.
 
    - ``category``
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...
@@ -494,7 +505,7 @@ Custom Field Column:
 
    - ``type`` field must be ``custom``
 
-   .. code-block:: html
+   .. code-block:: javascript
 
       {
          ...
@@ -539,7 +550,7 @@ Below are the definition of these attributes:
    * ``enableQuickSearch``: to enable/disable the quick search feature, set the
      ``enableQuickSearch`` field of the case widget as shown below.
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...
@@ -561,7 +572,7 @@ Below are the definition of these attributes:
    * ``quickSearch``: to choose which columns can be searched by the quick search
      feature, set the ``quickSearch`` field for each column as shown below.
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...

@@ -1,4 +1,0 @@
-CreateHiddenTasksAndCasesData #class
-ch.ivy.addon.portalkit.test.CreateHiddenTasksAndCases #namespace
-numberOfCases Integer #field
-numberOfCases PERSISTENT #fieldModifier

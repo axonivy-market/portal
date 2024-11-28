@@ -7,13 +7,13 @@
     <c:set var="isPortalInTeams" value="#{masterDataBean.portalInTeams}" />
     <ui:fragment rendered="#{!isPortalInTeams}">
       <!-- Exception Handler for ViewExpiredExceptions -->
-      <p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException" update="view-expired-exception-dialog"
+      <p:ajaxExceptionHandler type="javax.faces.application.ViewExpiredException"
         onexception="PortalSessionWarning.showTimeoutDialog();" />
 
       <!-- Error Dialog shown if a view or session has expired -->
       <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
-        <ui:param name="id" value="view-expired-exception-dialog" />
-        <ui:param name="widgetVar" value="view-expired-exception-dialog" />
+        <ui:param name="id" value="portal-view-expired-exception-dialog" />
+        <ui:param name="widgetVar" value="portal-view-expired-exception-dialog" />
         <ui:param name="appendTo" value="@(body)" />
         <ui:param name="iconClass" value="si si-road-sign-warning" />
         <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
@@ -21,8 +21,8 @@
         <ui:param name="dialogContent" value="#{ivy.session.isSessionUserUnknown()? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewExpired')}" />
         
         <ui:define name="dialogFooter">
-          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-            onclick="redirectDefaultPage();" icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" type="button" />
+          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" styleClass="w-full"
+            onclick="redirectDefaultPage();" type="button" />
         </ui:define>
       </ui:decorate>
     </ui:fragment>

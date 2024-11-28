@@ -20,7 +20,6 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
 public class TaskIFrameTemplatePage extends TemplatePage {
-  private static final String ADHOC_HISTORY_TABLE_CSS_SELECTOR = "div[id*='adhoc-task-history-table'] table>tbody>tr";
 
   @Override
   protected String getLoadedLocator() {
@@ -80,29 +79,6 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     $("div[id$='horizontal-task-action-form:horizontal-task-action-menu']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public void clickOnStartAdhocLink() {
-    $("div[id$='horizontal-task-action-form:horizontal-task-action-menu']").$("a[id$='start-adhoc']")
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("div[id$='adhoc-task-reset-confirmation-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
-  public void clickAdhocOkButton() {
-    $("button[id$='start-adhoc-ok-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("div[id$='adhoc-task-reset-confirmation-dialog_content']").shouldBe(disappear, DEFAULT_TIMEOUT);
-  }
-
-  public void closeAdhocHistoryDialog() {
-    $("button[id$='close-adhoc-dialog-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("div[id$='adhoc-task-history-dialog']").shouldBe(disappear, DEFAULT_TIMEOUT);
-  }
-
-  public WebElement openAdhocHistoryDialog() {
-    clickActionButton();
-    $("[id='horizontal-task-action-form:show-adhoc-history']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
-        .click();
-    return $("div[id$='adhoc-task-history-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
   // moved
   public void clickChatGroup() {
     $("a[id$='chat-group']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
@@ -139,7 +115,7 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     return isElementDisplayedById("horizontal-case-info");
   }
 
-  public TaskWidgetPage finishCreateInvestmentTask() {
+  public NewDashboardPage finishCreateInvestmentTask() {
     WaitHelper.waitForIFrameAvailable(driver, "iFrame");
     waitForElementDisplayed(By.id("form:invested-amount"), true);
     $(By.id("form:invested-amount")).sendKeys("1");
@@ -208,10 +184,10 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     switchToDefaultContent();
   }
 
-  public TaskWidgetPage finishIFrameReviewTask() {
+  public NewDashboardPage finishIFrameReviewTask() {
     waitForCloseButtonDisplayAfterInputedAprrovalNote("1");
     closeReviewPage();
-    return new TaskWidgetPage();
+    return new NewDashboardPage();
   }
 
   public boolean containsCaseDetails() {
@@ -250,9 +226,9 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     $(cssSelector).shouldBe(Condition.appear).shouldBe(Condition.editable).sendKeys(value);
   }
 
-  public TaskWidgetPage clickSubmitButton() {
+  public NewDashboardPage clickSubmitButton() {
     clickOnSubmitButton();
-    return new TaskWidgetPage();
+    return new NewDashboardPage();
   }
 
   public void clickSubmitButtonProceed() {
@@ -268,50 +244,6 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   public void clickOnCancelButton() {
     clickByJavaScript($("a[id$=':button-cancel']"));
     switchBackToParent();
-  }
-
-  public void clickAdhocCreationButton() {
-    clickTaskActionMenu();
-    clickOnStartAdhocLink();
-  }
-
-  public boolean isShowAdhocHistoryBtnNotExist() {
-    String adhocHistoryBtnCSSSelection = "a[id$='show-adhoc-history']";
-    return !$(By.cssSelector(adhocHistoryBtnCSSSelection)).exists();
-  }
-
-  public boolean isStartAdhocBtnNotExist() {
-    String startAdhocBtnCSSSelection = "a[id$='start-adhoc']";
-    return !$(By.cssSelector(startAdhocBtnCSSSelection)).exists();
-  }
-
-  public boolean isAdhocHistoryDialogExistWhenOpenTaskFirstTime() {
-    return findElementByCssSelector("div[id$='adhoc-task-history-dialog']").isDisplayed();
-  }
-
-  public SelenideElement getAdhocHistoryDialog() {
-    return $("div[id$='adhoc-task-history-dialog']");
-  }
-
-  public void clickShowAdhocHistoryBtn() {
-    waitForElementClickableThenClick("#horizontal-task-actions");
-    waitForElementDisplayed(By.cssSelector("a[id$='show-adhoc-history']"), true);
-    waitForElementClickableThenClick("a[id$='show-adhoc-history']");
-  }
-
-  public String getAdhocCreationMessage() {
-    String adhocCreationMessageCSSSelector = "div[id$='adhoc-creation-message']";
-    return findDisplayedElementByCssSelector(adhocCreationMessageCSSSelector).getText();
-  }
-
-  public String getTaskNameOfAdhocHistoryRow(int index) {
-    SelenideElement elem = $$(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
-    return elem.findAll(By.xpath("td")).get(2).getText();
-  }
-
-  public String getCommentOfAdhocHistoryRow(int index) {
-    SelenideElement elem = $$(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
-    return elem.findAll(By.xpath("td")).get(3).getText();
   }
 
   // moved

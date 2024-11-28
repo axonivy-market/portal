@@ -1,0 +1,31 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "Person",
+  "namespace" : "com.axonivy.portal.developerexamples.showcase",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "name",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "firstname",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "billingAddress",
+    "type" : "com.axonivy.portal.developerexamples.showcase.Address",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "deliveryAddress",
+    "type" : "com.axonivy.portal.developerexamples.showcase.Address",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "birthYear",
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "id",
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

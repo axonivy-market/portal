@@ -10,7 +10,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 @IvyWebTest
 public class ShowTaskNoteHistoryTest extends BaseTest {
@@ -28,11 +28,13 @@ public class ShowTaskNoteHistoryTest extends BaseTest {
   @Test
   public void testShowTaskNoteHistory() {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
-    TaskWidgetPage taskWidgetPage = newDashboardPage.openTaskList();
-    TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetailsFromActionMenu(0);
+    newDashboardPage.openTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskDetailsPage taskDetailsPage = taskWidget.openTaskDetailsPageByAction(0);
     String taskUuid = taskDetailsPage.getTaskUuid();
     NavigationHelper.navigateToTaskList();
-    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
+    taskWidget = new TopMenuTaskWidgetPage();
+    TaskIFrameTemplatePage taskTemplatePage = taskWidget.startTaskIFrameByIndex(0);
     taskTemplatePage.openCaseInfo();
     taskTemplatePage.addNewNote(NOTE_CONTENT);
 

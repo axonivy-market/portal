@@ -1,20 +1,12 @@
 package ch.ivy.addon.portalkit.util;
 
-import java.util.Collection;
 import java.util.Objects;
 
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
-
-import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
-import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityDescriptor;
-import ch.ivyteam.ivy.security.ISecurityMember;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -22,7 +14,6 @@ import ch.ivyteam.ivy.workflow.ITask;
 
 public class PermissionUtils {
   private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
-  private static final String EXTERNAL_ID_PREFIX = " externalId:";
 
   private PermissionUtils() {}
 
@@ -83,62 +74,6 @@ public class PermissionUtils {
     return hasPermission(IPermission.TASK_DESTROY);
   }
 
-  /**
-   * Check if user can start an Express workflow
-   * and set permission if user able to edit/delete express WF
-   *
-   * @param workflow
-   * @return True: has permission to start Express workflow, False: Do not have permission to start Express workflow
-   */
-  public static boolean checkAbleToStartAndAbleToEditExpressWorkflow(ExpressProcess workflow) {
-    String validProcessOwnerName = ExpressManagementUtils.getValidMemberName(workflow.getProcessOwner());
-    boolean isWorkflowOwner = StringUtils.isNotBlank(validProcessOwnerName) ? Ivy.session().canActAsUser(
-        ISecurityContext.current().users().find(validProcessOwnerName.substring(1))) : false;
-    boolean hasAdminRole = isSessionUserHasAdminRole();
-
-    if (isWorkflowOwner || hasAdminRole) {
-      workflow.setAbleToEdit(true);
-      return true;
-    }
-    Collection<String> ableToStartResponsibles = CollectionUtils.emptyIfNull(workflow.getProcessPermissions());
-    Collection<String> processOwners = CollectionUtils.emptyIfNull(workflow.getProcessCoOwners());
-
-    for (String memberName : processOwners) {
-      if(isSessionUserBelongsToPermissionGroup(memberName)) {
-        workflow.setAbleToEdit(true);
-        return true;
-      }
-    }
-
-    for (String memberName : ableToStartResponsibles) {
-      if(isSessionUserBelongsToPermissionGroup(memberName)) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  private static boolean isSessionUserBelongsToPermissionGroup(String memberName) {
-    if(memberName == null) {
-      return false;
-    }
-
-    String memberNameWithoutExternalId = getMemberNameWithoutExternalId(memberName);
-    ISecurityMember member = ISecurityContext.current().members().find(memberNameWithoutExternalId);
-    if(member != null) {
-      boolean isAssignedUser = member.isUser() && Ivy.session().canActAsUser((IUser) member);
-      boolean hasAssignedRole = !member.isUser() && Ivy.session().hasRole((IRole) member, false);
-      return isAssignedUser || hasAssignedRole;
-    }
-    return false;
-  }
-
-  private static String getMemberNameWithoutExternalId(String memberName) {
-    int indexOfExternalId = memberName.indexOf(EXTERNAL_ID_PREFIX);
-    return indexOfExternalId > -1 ? memberName.substring(0, indexOfExternalId) : memberName;
-  }
-  
   public static boolean isSessionUserHasAdminRole() {
     return doesSessionUserHaveRole(ADMIN_ROLE);
   }
@@ -189,15 +124,6 @@ public class PermissionUtils {
   }
 
   /**
-   * Check if current user has permission to see full statistic list
-   *
-   * @return true if current user has permission to see full statistic list
-   */
-  public static boolean checkAccessFullStatisticsListPermission() {
-    return hasPortalPermission(PortalPermission.ACCESS_FULL_STATISTICS_LIST);
-  }
-
-  /**
    * Check if current user has permission to create public external link
    *
    * @return true if current user has permission to create public external link
@@ -240,6 +166,10 @@ public class PermissionUtils {
   
   public static boolean hasShareCaseDetailsPermission() {
     return hasPortalPermission(PortalPermission.CASE_DETAILS_SHARE_LINK);
+  }
+
+  public static boolean hasSystemTaskReadAllPermission() {
+    return hasPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
   }
 
   public static String getCaseName(ICase iCase) {
@@ -288,5 +218,13 @@ public class PermissionUtils {
    */
   public static boolean checkReadAllWorkflowEventPermission() {
     return hasPermission(IPermission.WORKFLOW_EVENT_READ_ALL);
+  }
+
+  /**
+   * Check if current user has permission to set/change their account password
+   * @return true if current user has permission.
+   */
+  public static boolean checkUserSetOwnPasswordPermission() {
+    return hasPermission(IPermission.USER_SET_OWN_PASSWORD);
   }
 }

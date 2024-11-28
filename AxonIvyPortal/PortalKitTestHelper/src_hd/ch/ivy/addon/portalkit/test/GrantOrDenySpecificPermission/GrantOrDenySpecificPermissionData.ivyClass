@@ -1,6 +1,0 @@
-GrantOrDenySpecificPermissionData #class
-ch.ivy.addon.portalkit.test.GrantOrDenySpecificPermission #namespace
-isGrantPermission Boolean #field
-isGrantPermission PERSISTENT #fieldModifier
-permission String #field
-permission PERSISTENT #fieldModifier

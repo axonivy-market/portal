@@ -1,0 +1,11 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "ApproveData",
+  "namespace" : "com.axonivy.portal.developerexamples.testdata.Approve",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "investmentRequest",
+    "type" : "com.axonivy.portal.developerexamples.ExampleIFrameData",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

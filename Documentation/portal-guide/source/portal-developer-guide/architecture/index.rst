@@ -23,10 +23,11 @@ The Portal and Projects using it should be deployed in different applications bu
 .. _architecture-portal-process-modules-structure:
 
 
-The Portal App consists of the following modules: portal-components, portal and axonivy-express.
-While axonivy-express is optional, all other modules are mandatory.
+The Portal App consists of the following modules: portal-components, portal.
 
 |process-module-structure|
+
+.. warning:: We highly recommend running only one portal per security context.
 
 .. _architecture-portal-components:
 
@@ -37,7 +38,7 @@ portal-components
 
 This module contains Ivy components such as User Selection, Role Selection,
 Document Table, Process Chain, Process History, and Process Viewer,... These components provide the public API for the portal, but are independent
-of the modules portal and axonivy-express. You can use them in your own applications.
+of the modules portal. You can use them in your own applications.
 
 .. _architecture-portal:
 
@@ -53,23 +54,6 @@ The templates offer features like top
 menu, application menu and user menu. It also contains start process links to
 default pages like Portal home, Portal task list, Portal case list etc..
 
-.. _architecture-axonivy-express:
-
-axonivy-express
-===============
-
-**No Code Process Management**
-
-This tool set allows end users to create their own processes and manage them easily.
-It gives users more flexibility when working with the Portal.
-
-This project has been extended from portal. It allows the end user to
-
--  Create his own workflow
--  Create and modify a web form for this workflow
-
-|ivy| Express also provides an ad hoc process feature. When Express is deployed, users can start an ad hoc process from any task.
-Ad hoc allows users to define additional process steps which will be executed before the current task.
 
 .. |process-module-structure| image:: images/process-module-structure.png
 .. |multi-app-structure| image:: images/multi-app-structure.png

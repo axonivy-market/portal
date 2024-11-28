@@ -121,7 +121,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     configurationPage = newDashboardDetailsEditPage.backToConfigurationPage();
     newDashboardPage = configurationPage.backToHomePage();
-    newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"), DEFAULT_TIMEOUT);
+    newDashboardPage.getDashboardActive().shouldBe(Condition.text("New private dashboard 3"), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -138,11 +138,11 @@ public class StickyNavigationDashboardTest extends BaseTest {
     permissions.add("Everybody");
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions);
+    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions, false);
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     configurationPage = newDashboardDetailsEditPage.backToConfigurationPage();
     newDashboardPage = configurationPage.backToHomePage();
-    newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 1"), DEFAULT_TIMEOUT);
+    newDashboardPage.getDashboardActive().shouldBe(Condition.text("New public dashboard 3"), DEFAULT_TIMEOUT);
   }
 
 }

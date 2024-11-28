@@ -12,6 +12,7 @@ public class FilterFieldDefault extends FilterField {
     super(FilterFieldFactory.DEFAULT_FILTER_FIELD);
   }
 
+  @Override
   public String getLabel() {
     return Ivy.cms()
         .co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/pleaseSelect");

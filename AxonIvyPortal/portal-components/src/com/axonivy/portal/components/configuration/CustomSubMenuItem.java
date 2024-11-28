@@ -62,4 +62,5 @@ public class CustomSubMenuItem {
   public void setVersion(String version) {
     this.version = version;
   }
+
 }

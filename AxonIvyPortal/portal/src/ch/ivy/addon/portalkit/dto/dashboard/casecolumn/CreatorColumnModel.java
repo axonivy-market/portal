@@ -15,6 +15,7 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -26,9 +27,10 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
 
   @Override
   public void initDefaultValue() {
+    this.setVisible(!GlobalSettingService.getInstance().isHideCaseCreator());
     super.initDefaultValue();
     this.field = DashboardStandardCaseColumn.CREATOR.getField();
-    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.styleToDisplay = initDefaultStyle();
     this.format = getDefaultFormat();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.quickSearch = defaultIfEmpty(this.quickSearch, false);
@@ -45,7 +47,8 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
   }
 
   @Override
-  public String getDefaultStyle() {
+  @JsonIgnore
+  protected int getDefaultColumnWidth() {
     return EXTRA_WIDTH;
   }
 

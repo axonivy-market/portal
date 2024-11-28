@@ -1,7 +1,7 @@
 package ch.addon.portal.generic.userprofile.homepage;
 
 public enum HomepageType {
-  DASHBOARD, PROCESS, TASK, CASE, STATISTICS, CUSTOM;
+  DASHBOARD, PROCESS, CUSTOM, MAIN_DASHBOARD;
 
   public static HomepageType getType(String typeName) {
     for (HomepageType type : HomepageType.values()) {

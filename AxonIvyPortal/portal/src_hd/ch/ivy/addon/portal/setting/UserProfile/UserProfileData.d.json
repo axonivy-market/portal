@@ -1,0 +1,43 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "UserProfileData",
+  "namespace" : "ch.ivy.addon.portal.setting.UserProfile",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "language",
+    "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedHomepage",
+    "type" : "ch.addon.portal.generic.userprofile.homepage.Homepage",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "homepages",
+    "type" : "java.util.List<ch.addon.portal.generic.userprofile.homepage.Homepage>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedDateFormat",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "dateFormats",
+    "type" : "java.util.List<String>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "processModes",
+    "type" : "java.util.List<String>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedProcessMode",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "queryLanguage",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "formatLanguages",
+    "type" : "java.util.List<javax.faces.model.SelectItem>",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

@@ -32,7 +32,7 @@ public class CaseCategoryFilter extends CaseFilter {
 
   @Override
   public String label() {
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseCategory");
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/caseCategory");
   }
 
   @Override

@@ -91,6 +91,9 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
       selectedDashboard.setId(DashboardUtils.generateId());
       selectedDashboard.setPermissionDTOs(new ArrayList<>());
       findAndSetPermissions();
+      if (!isPublicDashboard) {
+        selectedDashboard.setIsTopMenu(false);
+      }
     });
 
 

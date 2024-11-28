@@ -1,5 +1,0 @@
-VerifyPersonalDataData #class
-ch.ivyteam.ivy.business.data.store.context.BusinessCaseData #classAnnotation
-com.axonivy.portal.userexamples.credit.VerifyPersonalData #namespace
-dossier com.axonivy.portal.userexamples.credit.CreditDossier #field
-dossier PERSISTENT #fieldModifier

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "160451A075522446",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -8,12 +8,12 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(List<INote>,String,ITask)",
+      "name" : "start(List<Note>,String,ITask)",
       "config" : {
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "notes", "type" : "java.util.List<ch.ivyteam.ivy.workflow.INote>", "desc" : "" },
+            { "name" : "notes", "type" : "List<ch.ivyteam.ivy.workflow.note.Note>", "desc" : "" },
             { "name" : "exportedFileName", "type" : "String", "desc" : "" },
             { "name" : "task", "type" : "ch.ivyteam.ivy.workflow.ITask", "desc" : "" }
           ],

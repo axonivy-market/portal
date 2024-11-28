@@ -24,8 +24,6 @@ public class ScreenshotUtils {
   public static final String FORGOT_PASSWORD = "/forgot-password/";
   public static final String DASHBOARD_FOLDER = "/dashboard/";
   public static final String NEW_DASHBOARD_FOLDER = "/new-dashboard/";
-  public static final String EXPRESS_FOLDER = "/express/";
-  public static final String EXPRESS_MANAGEMENT_FOLDER = "/express-management/";
   public static final String PROCESSES_WIDGET_FOLDER = "/process/";
   public static final String PROCESSES_INFORMATION_WIDGET_FOLDER = "/process/information/";
   public static final String PROCESSES_PROCESS_IMAGE_FOLDER = "/process-image/customization/";
@@ -38,7 +36,6 @@ public class ScreenshotUtils {
   public static final String CASE_DETAIL_FOLDER = "/case-detail/";
   public static final String CASE_DETAIL_CUSTOMIZATION_FOLDER = "/case-detail/customization/";
   public static final String STATISTIC_WIDGET_FOLDER = "/statistic/";
-  public static final String TASK_ANALYSIS_FOLDER = "/statistic/task-analysis/";
   public static final String SEARCH_FOLDER = "/search/";
   public static final String SETTINGS_FOLDER = "/settings/";
   public static final String MY_PROFILE_FOLDER = "/my-profile/";
@@ -51,6 +48,7 @@ public class ScreenshotUtils {
   public static final String DASHBOARD_CONFIGURATION_FOLDER = "/dashboard-configuration/";
   public static final String NOTIFICATION_FOLDER = "/notification/";
   public static final String MOBILE_FOLDER = "/mobile/";
+  public static final String ACCESSIBILITY_DASHBOARD_FOLDER = "/accessibility/";
 
   @PostConstruct
   public void initFolder() {

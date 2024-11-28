@@ -48,7 +48,16 @@
 
             <h:panelGroup id="dashboard-configuration-content" layout="block" rendered="#{!dashboardConfigurationBean.mobileDevice}"
               styleClass="ui-g-12 dashboard-configuration__content u-no-padding-top #{isPublicDashboard ? 'js-public-dashboard-configuration':'js-private-dashboard-configuration'}">
-
+              <h:panelGroup>
+                <div class="u-text-align-right ui-g-12">
+                  <p:commandButton id="create-dashboard-action" actionListener="#{dashboardConfigurationBean.addNewDashboard(isPublicDashboard)}"
+                    value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard')}" 
+                    styleClass="dashboard-action-container-icon #{selectedDashboardTypeStyleClass} w-full primary-color-light-button"
+                    partialSubmit="true"
+                    oncomplete="PF('create-new-dashboard-dialog').show();"
+                    title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard')}" />
+                </div>
+              </h:panelGroup>
               <ui:fragment>
                 <ic:ch.ivy.addon.portal.generic.dashboard.component.DashboardModification id="dashboard-modification-component"
                   listenerOnBackAction="#{dashboardConfigurationBean.backToConfigurationTab()}"
@@ -59,22 +68,6 @@
             </h:panelGroup>
             <h:panelGroup layout="block" rendered="#{dashboardConfigurationBean.mobileDevice}" styleClass="ui-g-12">
               <h:outputText styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/DoNotSupportMobile')}"/>
-            </h:panelGroup>
-            <h:panelGroup>
-              <div class="u-text-align-right ui-g-12">
-               <p:commandButton id="back-to-home-button" actionListener="#{logic.backToHome()}"
-                  styleClass="u-mar-right-5 ui-button-secondary dashboard__restore-button"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}" update="dashboard-configuration-content"
-                  icon="#{visibilityBean.generateButtonIcon('si si-house-chimney-2')}"
-                  title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}" />
-                <p:commandButton id="create-dashboard-action" 
-                  actionListener="#{dashboardConfigurationBean.addNewDashboard(isPublicDashboard)}"
-                  value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard')}" 
-                  styleClass="dashboard-action-container-icon #{selectedDashboardTypeStyleClass}"
-                  icon="si si-add" partialSubmit="true"
-                  oncomplete="PF('create-new-dashboard-dialog').show();"
-                  title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard')}" />
-              </div>
             </h:panelGroup>
           </h:panelGroup>
 

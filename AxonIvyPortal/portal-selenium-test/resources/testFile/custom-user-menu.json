@@ -5,15 +5,7 @@
         "permissions": [
             "#demo"
         ],
-        "url": "https://www.axonivy.com/"
-    },
-    {
-        "id": "express",
-        "title": "Portal Express process",
-        "permissions": [
-            "Everybody"
-        ],
-        "url": "Portal Express process"
+        "url": "https://www.example.com"
     },
     {
         "id": "create-invesment",

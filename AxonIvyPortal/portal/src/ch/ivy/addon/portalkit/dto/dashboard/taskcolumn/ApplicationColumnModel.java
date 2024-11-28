@@ -23,8 +23,8 @@ public class ApplicationColumnModel extends TaskColumnModel implements Serializa
   public void initDefaultValue() {
     super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.APPLICATION.getField();
-    this.style = defaultIfEmpty(this.style, TINY_WIDTH);
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__priority u-text-align-center");
+    this.styleToDisplay = initDefaultStyle();
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__priority u-text-align-center widget-column");
     this.format = DashboardColumnFormat.CUSTOM;
     this.quickSearch = defaultIfEmpty(this.quickSearch, false);
   }
@@ -32,6 +32,11 @@ public class ApplicationColumnModel extends TaskColumnModel implements Serializa
   @Override
   public String getDefaultHeaderCMS() {
     return "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/APPLICATION";
+  }
+  
+  @Override
+  protected int getDefaultColumnWidth() {
+    return TINY_WIDTH;
   }
   
   @Override
@@ -44,7 +49,7 @@ public class ApplicationColumnModel extends TaskColumnModel implements Serializa
   
   @JsonIgnore
   public List<String> getApplications() {
-    return ListUtilities.transformList(IApplicationRepository.instance().allOf(ISecurityContext.current()), IApplication::getName);
+    return ListUtilities.transformList(IApplicationRepository.of(ISecurityContext.current()).all(), IApplication::getName);
   }
   
   @JsonIgnore

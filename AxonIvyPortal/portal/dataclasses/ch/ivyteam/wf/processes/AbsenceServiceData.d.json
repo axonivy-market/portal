@@ -1,0 +1,19 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "AbsenceServiceData",
+  "namespace" : "ch.ivyteam.wf.processes",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "absence",
+    "type" : "ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence"
+  }, {
+    "name" : "absences",
+    "type" : "java.util.Set"
+  }, {
+    "name" : "absencesByUser",
+    "type" : "java.util.Map"
+  }, {
+    "name" : "username",
+    "type" : "String"
+  } ]
+}

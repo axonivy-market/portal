@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "15C7B30FB93C827E",
   "config" : {
     "data" : "internaltest.Data"
@@ -12,11 +12,6 @@
         "signature" : "start",
         "task" : {
           "name" : "Approve Leave Request"
-        },
-        "case" : {
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
         }
       },
       "visual" : {
@@ -61,10 +56,7 @@
           }
         },
         "case" : {
-          "name" : "Fix Hardware",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
+          "name" : "Fix Hardware"
         }
       },
       "visual" : {
@@ -96,10 +88,7 @@
           }
         },
         "case" : {
-          "name" : "Install Operation System",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
+          "name" : "Install Operation System"
         }
       },
       "visual" : {
@@ -168,11 +157,6 @@
         "signature" : "Appraisal",
         "request" : {
           "name" : "Appraisal"
-        },
-        "case" : {
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
         }
       },
       "visual" : {
@@ -214,11 +198,6 @@
           "responsible" : {
             "activator" : "SYSTEM"
           }
-        },
-        "case" : {
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
         }
       },
       "visual" : {
@@ -300,11 +279,6 @@
         },
         "request" : {
           "name" : "Create 12 Cases with category"
-        },
-        "case" : {
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
         }
       },
       "visual" : {

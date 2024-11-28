@@ -1,0 +1,116 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "178A0F7DD8A74A94",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame.GlobalGrowlIFrameData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(Boolean)",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "isCustomized", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "out.isCustomized" : "param.isCustomized"
+          }
+        },
+        "guid" : "178A0F7DDBA91996"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 },
+        "labelOffset" : { "x" : 31, "y" : 35 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f13",
+      "type" : "Script",
+      "name" : "reset task",
+      "config" : {
+        "output" : {
+          "code" : "ivy.task.reset();"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f19", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f7",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "178A0FAB70F306AE"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 128 },
+        "labelOffset" : { "x" : 9, "y" : 35 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEventStart",
+      "name" : "cancel",
+      "config" : {
+        "guid" : "178A0FAB70F5A1A7"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 },
+        "labelOffset" : { "x" : 12, "y" : 35 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f13" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "Script",
+      "name" : [
+        "back to task list",
+        "iframe logic"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;",
+            "",
+            "PortalNavigatorInFrameAPI.navigateToPortalEndPage();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 424, "y" : 192 },
+        "size" : { "width" : 128 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f12" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 192 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 128 }
+      }
+    } ]
+}

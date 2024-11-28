@@ -81,7 +81,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return $$("div.widget__header").filter(text(taskWidgetName));
   }
 
-  private SelenideElement getColumnOfTaskHasIndex(int index, String columnName) {
+  protected SelenideElement getColumnOfTaskHasIndex(int index, String columnName) {
     int startIndex = getIndexWidgetByColumn(columnName);
     return getColumnOfTableWidget(index).get(startIndex);
   }
@@ -183,8 +183,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnManageFilterLink() {
-    var savedFilterContainer = getSavedFilterContainer();
-    savedFilterContainer.$(".ui-commandlink.saved-filter__manage-filter").shouldBe(getClickableCondition()).click();
+    $("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("button").shouldBe(getClickableCondition()).click();
     $("[id$='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -309,7 +308,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(getClickableCondition()).click();
   }
 
-  private ElementsCollection getColumnsOfTableWidget() {
+  protected ElementsCollection getColumnsOfTableWidget() {
     return $(taskWidgetId).shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr td");
   }
 
@@ -321,7 +320,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     getAllTasksOfTaskWidget().filter(text(taskName)).first().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     }
 
-  private ElementsCollection getAllTasksOfTaskWidget() {
+    protected ElementsCollection getAllTasksOfTaskWidget() {
     return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-tasks__name"));
   }
 
@@ -531,8 +530,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void openManageFiltersDialog() {
-    $("div.saved-filter-content").shouldBe(appear, DEFAULT_TIMEOUT)
-    .$("a[class*='saved-filter__manage-filter']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("button").shouldBe(getClickableCondition()).click();
   }
   
   public void removeAllFilterItems() {
@@ -650,5 +648,9 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   
   public boolean isWidgetInfomationIconAppear() {
     return getTaskWidgetHeader().$(".widget__info-sidebar-link").isDisplayed();
+  }
+  
+  public void clickOnWidgetFilterHeader() {
+    $$("strong").filter(Condition.text("Filter options")).first().click();
   }
 }

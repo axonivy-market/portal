@@ -1,0 +1,10 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "FindApplicationsByUserData",
+  "namespace" : "ch.ivyteam.wf.processes",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "applications",
+    "type" : "List<ch.ivy.addon.portalkit.configuration.Application>"
+  } ]
+}

@@ -39,7 +39,7 @@ public class CaseTreeUtils {
   public static CheckboxTreeNode<CategoryNode> buildCaseCategoryCheckboxTreeRootWithoutAllCategoriesNode() {
     CheckboxTreeNode<CategoryNode> root = buildRootWithoutAllCategoriesNode();
     CategoryTree allCaseCategories = findAllCategories();
-    convertToCheckboxTreeNode((CheckboxTreeNode<CategoryNode>) root, allCaseCategories);
+    convertToCheckboxTreeNode(root, allCaseCategories);
     sortNode(root);
     return root;
   }

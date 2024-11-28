@@ -8,11 +8,15 @@ function openFilterPanel(event) {
   calculateFilterPaneltPosition();
 }
 
-function closeFilterPanel() {
+function closeFilterPanelWithValidation() {
   if (filterHasValidationError()) {
     return;
   }
 
+  closeFilterPanel();
+}
+
+function closeFilterPanel() {
   $('#new-widget-configuration-dialog').find('#widget-configuration-save-button').show();
   document.getElementById(filterPanelId).classList.remove("active");
 }

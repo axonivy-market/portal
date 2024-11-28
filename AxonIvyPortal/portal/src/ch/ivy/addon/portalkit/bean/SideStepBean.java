@@ -28,39 +28,38 @@ public class SideStepBean implements Serializable {
   
   private List<IvySideStep> currentSideSteps = new ArrayList<>(); 
   
-  public void getSideSteps(Long taskId, Long caseId, boolean isAdhocExcluded) {
+  public void getSideSteps(Long taskId, Long caseId) {
     currentSideSteps.clear();
     if(isNullOrZero(taskId)) {
-      currentSideSteps.addAll(getSideStepsOfCases(caseId, isAdhocExcluded));
+      currentSideSteps.addAll(getSideStepsOfCases(caseId));
     } else {
-      currentSideSteps.addAll(getSideStepsOfTasks(caseId, isAdhocExcluded));
+      currentSideSteps.addAll(getSideStepsOfTasks(caseId));
     }
   }
   
-  private List<IvySideStep> getSideStepsOfCases(Long caseId, boolean isAdhocExcluded) {
+  private List<IvySideStep> getSideStepsOfCases(Long caseId) {
     if (sideStepOfCases.containsKey(caseId)) {
       return sideStepOfCases.get(caseId);
     }
     
-    List<IvySideStep> sideSteps = getSideStepsByCriteria(caseId, isAdhocExcluded);
+    List<IvySideStep> sideSteps = getSideStepsByCriteria(caseId);
     sideStepOfCases.put(caseId, sideSteps);
     return sideSteps;
   }
   
-  private List<IvySideStep> getSideStepsOfTasks(Long caseId, boolean isAdhocExcluded) {
+  private List<IvySideStep> getSideStepsOfTasks(Long caseId) {
     if (sideStepOfTasks.containsKey(caseId)) {
       return sideStepOfTasks.get(caseId);
     }
     
-    List<IvySideStep> sideSteps = getSideStepsByCriteria(caseId, isAdhocExcluded);
+    List<IvySideStep> sideSteps = getSideStepsByCriteria(caseId);
     sideStepOfTasks.put(caseId, sideSteps);
     return sideSteps;
   }
 
-  private List<IvySideStep> getSideStepsByCriteria(Long caseId, boolean isAdhocExcluded) {
+  private List<IvySideStep> getSideStepsByCriteria(Long caseId) {
     SideStepSearchCriteria criteria = new SideStepSearchCriteria();
     criteria.setCaseId(caseId);
-    criteria.setAdhocExcluded(isAdhocExcluded);
     
     Map<String, Object> params = new HashMap<>();
     params.put("sideStepSearchCriteria", criteria);
@@ -76,11 +75,6 @@ public class SideStepBean implements Serializable {
   
   public void startSideStep(IvySideStep sideStep) throws IOException {
     String url = UrlUtils.formatLinkWithEmbedInFrameParam(sideStep.getStartLink());
-    FacesContext.getCurrentInstance().getExternalContext().redirect(url);
-  }
-  
-  public void startAdhoc(IvySideStep sideStep, long taskId) throws IOException {
-    String url = sideStep.getStartLink() + "?originalTaskId=" + taskId;
     FacesContext.getCurrentInstance().getExternalContext().redirect(url);
   }
 

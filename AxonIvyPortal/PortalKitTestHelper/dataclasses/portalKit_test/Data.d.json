@@ -1,0 +1,41 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "Data",
+  "namespace" : "portalKit_test",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "taskId",
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "taskCounter",
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "caseuuid",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "times",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "createdDate",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "date",
+    "type" : "java.util.Date",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "cases",
+    "type" : "List<ch.ivyteam.ivy.workflow.ICase>"
+  }, {
+    "name" : "count",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "workingCase",
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
+  } ]
+}

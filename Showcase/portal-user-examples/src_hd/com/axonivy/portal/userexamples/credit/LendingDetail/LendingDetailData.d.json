@@ -1,0 +1,23 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "LendingDetailData",
+  "namespace" : "com.axonivy.portal.userexamples.credit.LendingDetail",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "caseMapDetail",
+    "type" : "com.axonivy.portal.userexamples.dto.CaseMapDetail",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "stageIndex",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "userProcess",
+    "type" : "com.axonivy.portal.userexamples.dto.UserProcess",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "state",
+    "type" : "com.axonivy.portal.userexamples.enums.RequestState",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

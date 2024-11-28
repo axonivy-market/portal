@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "16583F0F73864543",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -298,12 +298,90 @@
         { "id" : "f36", "to" : "f30", "condition" : "ivp==\"TaskA.ivp\"" },
         { "id" : "f33", "to" : "f29", "via" : [ { "x" : 472, "y" : 560 }, { "x" : 728, "y" : 560 } ], "condition" : "ivp==\"TaskB.ivp\"" }
       ]
+    }, {
+      "id" : "f7",
+      "type" : "RequestStart",
+      "name" : "createSystemTask.ivp",
+      "config" : {
+        "signature" : "createSystemTask",
+        "request" : {
+          "name" : "Create System Task"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 136, "y" : 768 }
+      },
+      "connect" : [
+        { "id" : "f25", "to" : "f24" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 728, "y" : 768 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f24",
+      "type" : "TaskSwitchEvent",
+      "name" : "System task 1",
+      "config" : {
+        "task" : {
+          "name" : " I'm a system task",
+          "description" : "A System task is hidden as default, grant SystemTaskReadAll permission to display all system task",
+          "category" : "SystemTask/Hide",
+          "responsible" : {
+            "activator" : "SYSTEM"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 296, "y" : 768 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f28", "to" : "f35" }
+      ]
+    }, {
+      "id" : "f32",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This example demonstrates the hide system task feature of Portal",
+        "",
+        "HOW TO RUN THIS EXAMPLE",
+        "Run createSystemTask.ivp to create a task named \"I'm a system task\". But the task is hidden as default. Grant SystemTaskReadAll permission to see the task. "
+      ],
+      "visual" : {
+        "at" : { "x" : 1288, "y" : 760 },
+        "size" : { "width" : 960, "height" : 108 }
+      }
+    }, {
+      "id" : "f35",
+      "type" : "TaskSwitchEvent",
+      "name" : "System task 2",
+      "config" : {
+        "task" : {
+          "name" : " I'm a system task with delay",
+          "description" : "A System task is hidden as default, grant SystemTaskReadAll permission to display all system task",
+          "responsible" : {
+            "activator" : "SYSTEM"
+          },
+          "delay" : "ivy.cal.getWorkDayIn(new DateTime(), 3).getDurationFromNow()"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 512, "y" : 768 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f37", "to" : "f8", "color" : "default" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {
         "name" : "Hide Technical Stuffs",
         "offset" : 32,
-        "size" : 640,
+        "size" : 832,
         "lanes" : [ {
             "name" : "Hide technical roles",
             "size" : 192
@@ -313,6 +391,9 @@
           }, {
             "name" : "Hide technical cases",
             "size" : 256
+          }, {
+            "name" : "System task is hidden as default",
+            "size" : 192
           } ]
       } ]
   }

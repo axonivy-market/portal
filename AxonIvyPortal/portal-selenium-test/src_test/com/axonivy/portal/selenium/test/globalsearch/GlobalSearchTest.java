@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test.globalsearch;
 
+import static com.codeborne.selenide.Condition.appear;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +12,6 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.GlobalSearchResultPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.SelenideElement;
-import static com.codeborne.selenide.Condition.appear;
 
 @IvyWebTest
 public class GlobalSearchTest extends BaseTest {

@@ -1,0 +1,11 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "ApproveLevel2Data",
+  "namespace" : "com.axonivy.portal.userexamples.credit.ApproveLevel2",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "dossier",
+    "type" : "com.axonivy.portal.userexamples.credit.CreditDossier",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

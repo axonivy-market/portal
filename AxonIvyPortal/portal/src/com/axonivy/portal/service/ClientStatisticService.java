@@ -20,8 +20,8 @@ import com.axonivy.portal.enums.AdditionalChartConfig;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.service.JsonConfigurationService;
 import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
-import ch.ivyteam.ivy.elasticsearch.client.agg.AggregationResult;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
 
 public class ClientStatisticService extends JsonConfigurationService<ClientStatistic> {
@@ -62,7 +62,7 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
   private void validateChart(String chartId, ClientStatistic chart)
       throws NotFoundException, NoPermissionException {
     if (chart == null) {
-      throw new NotFoundException(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/exception/idNotFound",
+      throw new NotFoundException(Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/ClientStatisticWidget/IdNotFound",
           Arrays.asList(chartId)));
     }
 

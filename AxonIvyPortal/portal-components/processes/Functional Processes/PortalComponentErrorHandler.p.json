@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "18098C74EBB97195",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -43,11 +43,12 @@
       "config" : {
         "output" : {
           "code" : [
+            "import org.apache.log4j.Level;",
             "import com.axonivy.portal.components.ivydata.exception.PortalIvyDataException;",
             "import com.axonivy.portal.components.util.ErrorHandler;",
             "",
             "for (PortalIvyDataException exception : in.exceptions) {",
-            "  ErrorHandler.addError(org.apache.log4j.Priority.ERROR, exception);",
+            "  ErrorHandler.addError(exception);",
             "}"
           ]
         }

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "16E3F9428CFA3D20",
   "config" : {
     "data" : "internaltest.CaseMapCreateLeaveRequestData"
@@ -15,10 +15,7 @@
         },
         "case" : {
           "name" : "Case Map: Leave Request",
-          "description" : "Case Map: Leave Request",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
+          "description" : "Case Map: Leave Request"
         }
       },
       "visual" : {
@@ -41,10 +38,7 @@
       "config" : {
         "dialog" : "internaltest.ui.NewLeaveRequest:start()",
         "task" : {
-          "name" : "Case Map Leave Request",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
-          ]
+          "name" : "Case Map Leave Request"
         },
         "case" : {
           "name" : "Case Map: Leave Request",

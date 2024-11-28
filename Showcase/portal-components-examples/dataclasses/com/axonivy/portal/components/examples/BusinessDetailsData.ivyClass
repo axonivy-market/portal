@@ -1,4 +1,0 @@
-BusinessDetailsData #class
-com.axonivy.portal.components.examples #namespace
-caze ch.ivyteam.ivy.workflow.ICase #field
-uuid String #field

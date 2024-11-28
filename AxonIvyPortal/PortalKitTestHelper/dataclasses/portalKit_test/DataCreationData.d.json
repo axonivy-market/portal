@@ -1,0 +1,64 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "DataCreationData",
+  "namespace" : "portalKit_test",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "taskStructureInfo",
+    "type" : "String",
+    "comment" : "contain information of category, sub category of tasks. E.g. CAT1/SUBCAT1"
+  }, {
+    "name" : "numOfCats",
+    "type" : "Integer"
+  }, {
+    "name" : "numOfSubCats",
+    "type" : "Integer"
+  }, {
+    "name" : "numOfCasesPerSubCat",
+    "type" : "Integer"
+  }, {
+    "name" : "caseName",
+    "type" : "String"
+  }, {
+    "name" : "handler",
+    "type" : "ch.ivy.addon.portalkit.test.util.DataCreationHandler",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "counter",
+    "type" : "Integer"
+  }, {
+    "name" : "numerOfUsers",
+    "type" : "Integer"
+  }, {
+    "name" : "numberOfUsersInApplication",
+    "type" : "Integer"
+  }, {
+    "name" : "numberOfCases",
+    "type" : "Integer"
+  }, {
+    "name" : "caseStructureInfo",
+    "type" : "String",
+    "comment" : "contain information of category, sub category of tasks. E.g. CAT1/SUBCAT1"
+  }, {
+    "name" : "attachToBusinessCase",
+    "type" : "Boolean"
+  }, {
+    "name" : "caseCatagories",
+    "type" : "java.util.List<String>"
+  }, {
+    "name" : "caseCategory",
+    "type" : "String"
+  }, {
+    "name" : "selectedTaskId",
+    "type" : "Long"
+  }, {
+    "name" : "expressExportFilePath",
+    "type" : "String"
+  }, {
+    "name" : "jsonFilePath",
+    "type" : "String"
+  }, {
+    "name" : "jsonKey",
+    "type" : "String"
+  } ]
+}

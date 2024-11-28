@@ -2,7 +2,7 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components"  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="isNotRequiredLogin" value="false" />
@@ -22,10 +22,10 @@
           <div class="u-text-align-left ui-g-10 ui-lg-11 ui-md-10 ui-sm-8">
             <h:outputText id="case-id" value="#{data.ivyCase.id}" />
           </div>
-          <div class="u-text-align-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4">
+          <div jsf:rendered="#{!visibilityBean.hideCaseCreator}" class="u-text-align-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
           </div>
-          <div class="u-text-align-left ui-g-10 ui-lg-11 ui-md-10 ui-sm-8">
+          <div jsf:rendered="#{!visibilityBean.hideCaseCreator}" class="u-text-align-left ui-g-10 ui-lg-11 ui-md-10 ui-sm-8">
             <pc:securityMemberNameAndAvatar securityMember="#{data.ivyCase.creatorUser}"
               displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(data.ivyCase.creatorUser, data.ivyCase.creatorUser.name)}" />
           </div>

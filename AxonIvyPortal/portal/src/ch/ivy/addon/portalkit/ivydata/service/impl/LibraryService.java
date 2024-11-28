@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.application.ReleaseState;
@@ -17,12 +17,11 @@ import ch.ivyteam.ivy.application.app.IApplicationRepository;
 import ch.ivyteam.ivy.security.ISecurityContext;
 
 public class LibraryService{
-  final List<String> portalLibraryStrings = Stream.of(PortalLibrary.values()).map(PortalLibrary::getValue)
-      .collect(Collectors.toList());
+  final List<String> portalLibraryStrings = Stream.of(PortalConstants.PORTAL_LIBRARY_ID).collect(Collectors.toList());
 
   public Map<String, List<ILibrary>> collectLibraries() {
     Map<String, List<ILibrary>> libraries = new HashMap<>();
-    List<IApplication> applicationsInSecurityContext = IApplicationRepository.instance().allOf(ISecurityContext.current());
+    List<IApplication> applicationsInSecurityContext = IApplicationRepository.of(ISecurityContext.current()).all();
     List<ReleaseState> displayStates = Arrays.asList(ReleaseState.RELEASED, ReleaseState.DEPRECATED);
     
     for (IApplication currentApp : applicationsInSecurityContext) {

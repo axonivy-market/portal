@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "1475D5F3DD0B29B3",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -13,34 +13,34 @@
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "Mitarbeiter", "type" : "String", "desc" : "" },
-            { "name" : "Von", "type" : "Date", "desc" : "" },
-            { "name" : "Bis", "type" : "Date", "desc" : "" },
+            { "name" : "mitarbeiter", "type" : "String", "desc" : "" },
+            { "name" : "von", "type" : "Date", "desc" : "" },
+            { "name" : "bis", "type" : "Date", "desc" : "" },
             { "name" : "beantragt", "type" : "Boolean", "desc" : "" },
-            { "name" : "Vertretung", "type" : "String", "desc" : "" },
+            { "name" : "vertretung", "type" : "String", "desc" : "" },
             { "name" : "processStatus", "type" : "internalPortal.ProcessStatus", "desc" : "" }
           ],
           "map" : {
             "out.actualStepIndex" : "param.processStatus.actualStepIndex",
             "out.beantragt" : "param.beantragt",
-            "out.Bis" : "param.Bis",
-            "out.Mitarbeiter" : "param.Mitarbeiter",
+            "out.bis" : "param.bis",
+            "out.mitarbeiter" : "param.mitarbeiter",
             "out.steps" : "param.processStatus.steps",
-            "out.Vertretung" : "param.Vertretung",
-            "out.Von" : "param.Von"
+            "out.vertretung" : "param.vertretung",
+            "out.von" : "param.von"
           }
         },
         "result" : {
           "params" : [
-            { "name" : "Mitarbeiter", "type" : "String", "desc" : "" },
+            { "name" : "mitarbeiter", "type" : "String", "desc" : "" },
             { "name" : "genehmigt", "type" : "Boolean", "desc" : "" },
-            { "name" : "Ablehnungsgrund", "type" : "String", "desc" : "" },
+            { "name" : "ablehnungsgrund", "type" : "String", "desc" : "" },
             { "name" : "processStatus", "type" : "internalPortal.ProcessStatus", "desc" : "" }
           ],
           "map" : {
-            "result.Mitarbeiter" : "in.Mitarbeiter",
+            "result.mitarbeiter" : "in.mitarbeiter",
             "result.genehmigt" : "in.genehmigt",
-            "result.Ablehnungsgrund" : "in.Ablehnungsgrund",
+            "result.ablehnungsgrund" : "in.ablehnungsgrund",
             "result.processStatus.actualStepIndex" : "in.actualStepIndex",
             "result.processStatus.steps" : "in.steps"
           }

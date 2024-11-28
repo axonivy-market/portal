@@ -45,6 +45,7 @@
           value="#{cc.attrs.caseFilter.label()}: #{cc.attrs.caseFilter.value()}"
           styleClass="advanced-filter-command #{cc.attrs.buttonStyleClass} #{facesContext.validationFailed ? 'error-filter' : ''} #{cc.attrs.buttonStyleClass}" />
         <p:commandLink id="advanced-filter-remove-command"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
           styleClass="si si-delete-2 advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
           actionListener="#{dataModel.removeFilter(caseFilter)}" global="false"
           update="@(.filter-container) @(.advanced-filter-container) @(.filter-add-container) @(.filter-selection-form) @(.case-list) @(.hidden-case-count)"

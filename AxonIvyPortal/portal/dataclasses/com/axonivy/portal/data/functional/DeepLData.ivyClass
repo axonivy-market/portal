@@ -1,8 +1,0 @@
-DeepLData #class
-com.axonivy.portal.data.functional #namespace
-input String #field
-output com.deepl.api.v2.client.InlineResponse200 #field
-targetLanguage com.deepl.api.v2.client.TargetLanguage #field
-sourceLanguage com.deepl.api.v2.client.SourceLanguage #field
-preserveFormatting String #field
-tagHandling String #field

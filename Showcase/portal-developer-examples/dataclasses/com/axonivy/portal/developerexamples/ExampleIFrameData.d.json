@@ -1,0 +1,19 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "ExampleIFrameData",
+  "namespace" : "com.axonivy.portal.developerexamples",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "investment",
+    "type" : "com.axonivy.portal.developerexamples.Investment",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "decision",
+    "type" : "com.axonivy.portal.developerexamples.Decision",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isReadOnly",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

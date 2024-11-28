@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "1773DD760B7F094F",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -162,7 +162,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel;",
             "",
-            "in.caseLazyDataModel = new RelatedCaseLazyDataModel(in.iCase.getId());"
+            "in.caseLazyDataModel = new RelatedCaseLazyDataModel(in.caze.getId());"
           ]
         }
       },
@@ -187,10 +187,10 @@
         "signature" : "initData",
         "input" : {
           "params" : [
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+            { "name" : "caze", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
           ],
           "map" : {
-            "out.iCase" : "param.iCase"
+            "out.caze" : "param.caze"
           }
         },
         "guid" : "177F659A0ABC7738"

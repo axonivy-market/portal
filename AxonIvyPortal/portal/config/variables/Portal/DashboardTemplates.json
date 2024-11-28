@@ -1,5 +1,6 @@
 [
   {
+    "version": "12.0.0",
     "id": "default-portal-dashboard-template",
     "titles": [
       {
@@ -70,51 +71,51 @@
             "y": 2
           },
           "enableQuickSearch": true,
-          "rowsPerPage": 5,
           "canWorkOn": true,
           "columns": [
             {
-              "field": "start"
+              "field": "start",
+              "width": "53"
             },
             {
-              "field": "priority"
+              "field": "priority",
+              "width": "50"
             },
             {
               "field": "id",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
               "field": "name",
-              "quickSearch": true
+              "width": "185"
             },
             {
               "field": "description",
-              "visible": false,
-              "quickSearch": true
+              "visible": false
             },
             {
               "field": "activator",
-              "quickSearch": false
+              "width": "85"
             },
             {
               "field": "state",
-              "visible": false
+              "width": "60"
             },
             {
               "field": "startTimestamp",
-              "visible": false
+              "width": "80"
             },
             {
-              "field": "expiryTimestamp"
+              "field": "expiryTimestamp",
+              "width": "80"
             },
             {
               "field": "category",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
-              "field": "actions"
+              "field": "actions",
+              "width": "65"
             }
           ],
           "sortField": "startTimestamp",
@@ -142,7 +143,7 @@
             },
             {
               "locale": "de",
-              "value": "Ihre Fälle"
+              "value": "Ihre Vorgänge"
             },
             {
               "locale": "fr",
@@ -159,30 +160,31 @@
             "x": 3,
             "y": 8
           },
-          "rowsPerPage": 5,
+          "enableQuickSearch": true,
           "columns": [
             {
               "field": "id",
-              "quickSearch": false
+              "width": "60"
             },
             {
               "field": "name",
-              "quickSearch": true
+              "width": "320"
             },
             {
               "field": "description",
-              "visible": false,
-              "quickSearch": true
+              "visible": false
             },
             {
-              "field": "state"
+              "field": "state",
+              "width": "50"
             },
             {
               "field": "creator",
-              "quickSearch": false
+              "width": "90"
             },
             {
-              "field": "startTimestamp"
+              "field": "startTimestamp",
+              "width": "80"
             },
             {
               "field": "endTimestamp",
@@ -190,11 +192,11 @@
             },
             {
               "field": "category",
-              "visible": false,
-              "quickSearch": false
+              "visible": false
             },
             {
-              "field": "actions"
+              "field": "actions",
+              "width": "55"
             }
           ],
           "sortField": "startTimestamp",
@@ -350,6 +352,7 @@
     }
   },
   {
+    "version": "12.0.0",
     "id": "two-task-widget-dashboard-template",
     "titles": [
       {
@@ -408,20 +411,24 @@
             "x": 0,
             "y": 0
           },
-          "rowsPerPage": 5,
+          "enableQuickSearch": true,
           "sortDescending": true,
           "columns": [
             {
-              "field": "start"
+              "field": "start",
+              "width": "50"
             },
             {
-              "field": "priority"
+              "field": "priority",
+              "width": "50"
             },
             {
-              "field": "id"
+              "field": "id",
+              "width": "60"
             },
             {
-              "field": "name"
+              "field": "name",
+              "width": "300"
             },
             {
               "field": "description",
@@ -433,12 +440,14 @@
             },
             {
               "field": "state",
+              "width": "60",
               "filterList": [
                 "OPEN"
               ]
             },
             {
-              "field": "startTimestamp"
+              "field": "startTimestamp",
+              "width": "90"
             },
             {
               "field": "expiryTimestamp",
@@ -449,7 +458,8 @@
               "visible": false
             },
             {
-              "field": "actions"
+              "field": "actions",
+              "width": "60"
             }
           ],
           "canWorkOn": true,
@@ -470,20 +480,24 @@
             "x": 0,
             "y": 5
           },
-          "rowsPerPage": 5,
+          "enableQuickSearch": true,
           "sortDescending": true,
           "columns": [
             {
-              "field": "start"
+              "field": "start",
+              "width": "50"
             },
             {
-              "field": "priority"
+              "field": "priority",
+              "width": "50"
             },
             {
-              "field": "id"
+              "field": "id",
+              "width": "60"
             },
             {
-              "field": "name"
+              "field": "name",
+              "width": "300"
             },
             {
               "field": "description",
@@ -495,13 +509,15 @@
             },
             {
               "field": "state",
+              "width": "60",
               "filterList": [
                 "OPEN",
                 "IN_PROGRESS"
               ]
             },
             {
-              "field": "startTimestamp"
+              "field": "startTimestamp",
+              "width": "90"
             },
             {
               "field": "expiryTimestamp",
@@ -512,7 +528,8 @@
               "visible": false
             },
             {
-              "field": "actions"
+              "field": "actions",
+              "width": "60"
             }
           ],
           "canWorkOn": false,
@@ -532,7 +549,278 @@
             "h": 10,
             "x": 9,
             "y": 0
-          }
+          },
+          "enableQuickSearch": true
+        }
+      ],
+      "permissions": [
+        "Everybody"
+      ]
+    }
+  },
+  {
+    "version": "12.0.0",
+    "id": "accessibility-dashboard-template",
+    "titles": [
+      {
+        "locale": "en",
+        "value": "Accessibility dashboard"
+      },
+      {
+        "locale": "fr",
+        "value": "Tableau de bord d'accessibilité "
+      },
+      {
+        "locale": "de",
+        "value": "Dashboard für Barrierefreiheit"
+      },
+      {
+        "locale": "es",
+        "value": "Panel de accesibilidad"
+      }
+    ],
+    "descriptions": [
+      {
+        "locale": "en",
+        "value": "Optimized reduced Dashboard for Accessibility Use"
+      },
+      {
+        "locale": "fr",
+        "value": "Tableau de bord réduit optimisé pour une utilisation accessible"
+      },
+      {
+        "locale": "de",
+        "value": "Optimiertes, reduziertes Dashboard für die barrierefreie Nutzung"
+      },
+      {
+        "locale": "es",
+        "value": "Panel de control reducido optimizado para uso de accesibilidad"
+      }
+    ],
+    "icon": "si-layout-dashboard",
+    "dashboard": {
+      "id": "",
+      "templateId": "accessibility-dashboard-template",
+      "title": "Accessibility dashboard",
+      "widgets": [
+        {
+          "type": "task",
+          "id": "task_1",
+          "names": [
+            {
+              "locale": "en",
+              "value": "Your Tasks"
+            },
+            {
+              "locale": "de",
+              "value": "Ihre Aufgaben"
+            },
+            {
+              "locale": "fr",
+              "value": "Vos tâches"
+            },
+            {
+              "locale": "es",
+              "value": "Sus tareas"
+            }
+          ],
+          "layout": {
+            "w": 9,
+            "h": 4,
+            "x": 3,
+            "y": 3
+          },
+          "enableQuickSearch": true,
+          "showFullscreenMode": false,
+          "columns": [
+            {
+              "field": "start",
+              "width": "50"
+            },
+            {
+              "field": "actions",
+              "width": "70"
+            },
+            {
+              "field": "name",
+              "width": "200"
+            },
+            {
+              "field": "priority",
+              "width": "60"
+            },
+            {
+              "field": "activator",
+              "width": "90"
+            },
+            {
+              "field": "state",
+              "width": "60"
+            },
+            {
+              "field": "startTimestamp",
+              "width": "90"
+            },
+            {
+              "field": "expiryTimestamp",
+              "width": "90"
+            },
+            {
+              "field": "id",
+              "visible": false
+            },
+            {
+              "field": "description",
+              "visible": false
+            },
+            {
+              "field": "category",
+              "visible": false
+            }
+          ],
+          "sortField": "id",
+          "sortDescending": true,
+          "canWorkOn": true
+        },
+        {
+          "type": "compact-process",
+          "id": "process_1",
+          "names": [
+            {
+              "locale": "en",
+              "value": "Your Processes"
+            },
+            {
+              "locale": "de",
+              "value": "Ihre Prozesse"
+            },
+            {
+              "locale": "fr",
+              "value": "Vos processus"
+            },
+            {
+              "locale": "es",
+              "value": "Sus procesos"
+            }
+          ],
+          "layout": {
+            "w": 3,
+            "h": 9,
+            "x": 0,
+            "y": 3
+          },
+          "showFullscreenMode": false,
+          "enableQuickSearch": true
+        },
+        {
+          "type": "custom",
+          "id": "custom_1",
+          "names": [
+            {
+              "locale": "en",
+              "value": "Accessibility Shortcuts"
+            },
+            {
+              "locale": "fr",
+              "value": "Raccourcis d’accessibilité"
+            },
+            {
+              "locale": "de",
+              "value": "Barrierefreiheitskürzel"
+            },
+            {
+              "locale": "es",
+              "value": "Atajos de accesibilidad"
+            }
+          ],
+          "layout": {
+            "w": 12,
+            "h": 3,
+            "x": 0,
+            "y": 0
+          },
+          "data": {
+            "processPath": "Functional Processes/AccessibilityShortcutCustomWidget/accessibilityShortcut.ivp"
+          },
+          "showFullscreenMode": false
+        },
+        {
+          "type": "case",
+          "id": "case_1",
+          "names": [
+            {
+              "locale": "en",
+              "value": "Your Cases"
+            },
+            {
+              "locale": "de",
+              "value": "Ihre Vorgänge"
+            },
+            {
+              "locale": "fr",
+              "value": "Vos affaires"
+            },
+            {
+              "locale": "es",
+              "value": "Sus casos"
+            }
+          ],
+          "layout": {
+            "w": 9,
+            "h": 5,
+            "x": 3,
+            "y": 7
+          },
+          "enableQuickSearch": true,
+          "showFullscreenMode": false,
+          "columns": [
+            {
+              "field": "id",
+              "visible": false
+            },
+            {
+              "field": "name",
+              "width": "280"
+            },
+            {
+              "field": "description",
+              "visible": false
+            },
+            {
+              "field": "state",
+              "width": "60"
+            },
+            {
+              "field": "creator",
+              "width": "100"
+            },
+            {
+              "field": "startTimestamp",
+              "width": "100"
+            },
+            {
+              "field": "endTimestamp",
+              "width": "100"
+            },
+            {
+              "field": "owner",
+              "width": "100"
+            },
+            {
+              "field": "category",
+              "visible": false
+            },
+            {
+              "field": "application",
+              "visible": false
+            },
+            {
+              "field": "actions",
+              "width": "70"
+            }
+          ],
+          "sortField": "id",
+          "sortDescending": true
         }
       ],
       "permissions": [

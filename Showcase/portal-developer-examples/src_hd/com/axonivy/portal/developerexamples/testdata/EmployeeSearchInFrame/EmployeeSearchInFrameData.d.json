@@ -1,0 +1,15 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "EmployeeSearchInFrameData",
+  "namespace" : "com.axonivy.portal.developerexamples.testdata.EmployeeSearchInFrame",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "employees",
+    "type" : "java.util.List<com.axonivy.portal.developerexamples.Employee>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "employeeId",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

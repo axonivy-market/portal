@@ -30,11 +30,6 @@ public class CaseSearchCriteria {
   public final static List<CaseBusinessState> STANDARD_BUSINESS_STATES = Arrays.asList(CaseBusinessState.OPEN);
   public final static List<CaseBusinessState> ADVANCE_BUSINESS_STATES = Arrays.asList(CaseBusinessState.DONE, CaseBusinessState.DESTROYED);
 
-  /**
-   * @deprecated not used anymore, will get current login user for query
-   */
-  @Deprecated(since = "9.2", forRemoval = true)
-  private String involvedUsername;
   private List<CaseState> includedStates;
   private String keyword;
   private Long caseId;
@@ -168,7 +163,6 @@ public class CaseSearchCriteria {
       appendSortByStartTimeIfSet(criteria);
       appendSortByEndTimeIfSet(criteria);
       appendSortByCreatorIfSet(criteria);
-      appendSortByOwnerIfSet(criteria);
       appendSortByStateIfSet(criteria);
       return this;
     }
@@ -227,16 +221,6 @@ public class CaseSearchCriteria {
       }
     }
     
-    private void appendSortByOwnerIfSet(CaseSearchCriteria criteria) {
-      if (!CaseSortField.OWNER.toString().equalsIgnoreCase(criteria.getSortField())) {
-        return;
-      }
-      OrderByColumnQuery orderByName = query.orderBy().ownerDisplayName();
-      if (criteria.isSortDescending()) {
-        orderByName.descending();
-      }
-    }
-
     private void appendSortByStateIfSet(CaseSearchCriteria criteria) {
       if (!CaseSortField.STATE.toString().equalsIgnoreCase(criteria.getSortField())) {
         return;
@@ -317,24 +301,6 @@ public class CaseSearchCriteria {
 
   public void setCategory(String category) {
     this.category = category;
-  }
-
-  /**
-   * @return String
-   * @deprecated not used anymore, will get current login user for query
-   */
-  @Deprecated(since = "9.2", forRemoval = true)
-  public String getInvolvedUsername() {
-    return involvedUsername;
-  }
-
-  /**
-   * @param involvedUsername 
-   * @deprecated not used anymore, will get current login user for query
-   */
-  @Deprecated(since = "9.2", forRemoval = true)
-  public void setInvolvedUsername(String involvedUsername) {
-    this.involvedUsername = involvedUsername;
   }
 
   public boolean isBusinessCase() {

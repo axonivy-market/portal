@@ -1,0 +1,16 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "ExportTaskToExcelData",
+  "namespace" : "portalkit",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "columnsVisibility",
+    "type" : "List<String>"
+  }, {
+    "name" : "collectedTasksForExporting",
+    "type" : "List<ch.ivyteam.ivy.workflow.ITask>"
+  }, {
+    "name" : "exportedFile",
+    "type" : "org.primefaces.model.StreamedContent"
+  } ]
+}

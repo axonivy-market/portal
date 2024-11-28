@@ -16,10 +16,12 @@ import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
+import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery.ICustomFieldOrderBy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.OrderByColumnQuery;
 
 public class DashboardTaskSearchCriteria {
@@ -194,9 +196,11 @@ public class DashboardTaskSearchCriteria {
       appendSortByNameIfSet(criteria);
       appendSortByResponsibleIfSet(criteria);
       appendSortByIdIfSet(criteria);
+      appendSortByCreatedDateIfSet(criteria);
       appendSortByExpiryDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
       appendSortByPriorityIfSet(criteria);
+      appendSortByCustomFieldIfSet(criteria);
       if (criteria.isSortDescending() && order != null) {
         order.descending();
       }
@@ -245,6 +249,31 @@ public class DashboardTaskSearchCriteria {
       }
     }
 
+    private void appendSortByCreatedDateIfSet(DashboardTaskSearchCriteria criteria) {
+      if (DashboardStandardTaskColumn.CREATED.getField().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().startTimestamp();
+        sortStandardColumn = true;
+      }
+    }
+
+    private void appendSortByCustomFieldIfSet(DashboardTaskSearchCriteria criteria) {
+      if (!sortStandardColumn) {
+        String sortField = criteria.getSortField();
+        if (StringUtils.isNotBlank(sortField)) {
+          DashboardColumnFormat format =
+              columns.stream().filter(c -> StringUtils.equalsIgnoreCase(sortField, c.getField()))
+                  .map(ColumnModel::getFormat).findFirst().orElse(DashboardColumnFormat.STRING);
+          final ICustomFieldOrderBy customField = query.orderBy().customField();
+          if (format == DashboardColumnFormat.NUMBER) {
+            order = customField.numberField(sortField);
+          } else if (format == DashboardColumnFormat.TIMESTAMP) {
+            order = customField.timestampField(sortField);
+          } else {
+            order = customField.stringField(sortField);
+          }
+        }
+      }
+    }
   }
 
   public boolean getCanWorkOn() {

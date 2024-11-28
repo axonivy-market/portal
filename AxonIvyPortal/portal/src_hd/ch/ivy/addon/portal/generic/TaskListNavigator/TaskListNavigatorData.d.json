@@ -1,0 +1,15 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "TaskListNavigatorData",
+  "namespace" : "ch.ivy.addon.portal.generic.TaskListNavigator",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "taskDataModel",
+    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "taskView",
+    "type" : "ch.ivy.addon.portal.generic.view.TaskView",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

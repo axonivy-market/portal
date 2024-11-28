@@ -4,8 +4,6 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/frame-10.xhtml">
-    <ui:param name="items" value="#{exampleHomeBean.processes}" />
-    <ui:param name="isFullScreen" value="false" />
     <ui:define name="title">#{ivy.cms.co('/Processes/UserExampleGuide/name')}</ui:define>
     <ui:define name="content">
       <h:outputStylesheet library="css" name="portal-root-variables.css" />
@@ -29,7 +27,7 @@
                 <div style="padding: 2rem;" id="panel-#{itemStatus.index}">
 
                   <div class="ui-g-12 TexAlCenter">
-                    <p:graphicImage library="ivy-cms" name="#{item.icon}" id="icon" />
+                    <i class="#{item.icon} text-8xl" id="icon" />
                   </div>
                   <div class="ui-g-12 TexAlCenter" style="height: 8rem;">
                     <h2>#{item.processName}</h2>
@@ -56,7 +54,15 @@
           </ui:repeat>
         </h:form>
       </div>
-
+      <!-- <script> 
+        window.isWorkingOnATask = false; 
+        window.announcementInvisible = false; 
+        window.viewName="TASK_DETAIL";
+        window.taskName = "hola";
+        window.isHideCaseInfo = true;
+        window.isHideTaskAction = true;
+       </script> -->
+      <ic:com.axonivy.portal.components.IFrameTaskConfig isWorkingOnATask="false" viewName="PROCESS" taskName="#{ivy.cms.co('/Processes/UserExampleGuide/name')}" />
     </ui:define>
   </ui:composition>
 

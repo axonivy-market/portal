@@ -1,0 +1,13 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "OpenPortalTasksData",
+  "namespace" : "ch.ivy.addon.portal.generic",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "taskView",
+    "type" : "ch.ivy.addon.portal.generic.view.TaskView"
+  }, {
+    "name" : "taskQuery",
+    "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery"
+  } ]
+}

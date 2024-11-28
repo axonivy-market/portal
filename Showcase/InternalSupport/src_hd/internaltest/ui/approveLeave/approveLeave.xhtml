@@ -4,8 +4,6 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/frame-10-full-width.xhtml">
-    <ui:param name="actualStepIndex" value="#{data.actualStepIndex}" />
-    <ui:param name="steps" value="#{data.steps}" />
     <ui:define name="errorsZone">
       <h:form id="messageForm">
         <p:messages></p:messages>
@@ -23,14 +21,14 @@
           </f:facet>
 
           <p:outputLabel for="mitarbeiter" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/employee')}" />
-          <p:inputText id="mitarbeiter" value="#{data.Mitarbeiter}"></p:inputText>
+          <p:inputText id="mitarbeiter" value="#{data.mitarbeiter}"></p:inputText>
 
           <p:outputLabel for="von" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/from')}" />
-          <p:datePicker id="von" value="#{data.Von}" locale="#{localeBean.locale}"
+          <p:datePicker id="von" value="#{data.von}" locale="#{localeBean.locale}"
             showTime="#{!dateTimePatternBean.isTimeHidden}" size="10" />
 
           <p:outputLabel for="bis" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/to')}" />
-          <p:datePicker id="bis" value="#{data.Bis}" locale="#{localeBean.locale}"
+          <p:datePicker id="bis" value="#{data.bis}" locale="#{localeBean.locale}"
             showTime="#{!dateTimePatternBean.isTimeHidden}" size="10" />
 
           <p:outputLabel for="genehmigt" value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/approved')}" />
@@ -38,11 +36,11 @@
 
           <p:outputLabel for="ablehnungsgrund"
             value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/rejectionReason')}" />
-          <p:inputText id="ablehnungsgrund" value="#{data.Ablehnungsgrund}"></p:inputText>
+          <p:inputText id="ablehnungsgrund" value="#{data.ablehnungsgrund}"></p:inputText>
 
           <p:outputLabel for="vertretung"
             value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/representation')}" />
-          <p:inputText id="vertretung" value="#{data.Vertretung}"></p:inputText>
+          <p:inputText id="vertretung" value="#{data.vertretung}"></p:inputText>
 
           <br />
         </h:panelGrid>

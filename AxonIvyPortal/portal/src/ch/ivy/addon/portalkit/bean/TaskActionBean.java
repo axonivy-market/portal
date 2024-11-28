@@ -28,7 +28,6 @@ import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
-import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 @ManagedBean
 @ViewScoped
@@ -38,7 +37,7 @@ public class TaskActionBean implements Serializable {
   private boolean isShowResetTask;
   private boolean isShowReserveTask;
   private boolean isShowDelegateTask;
-  //This variable control display of side step and create adhoc
+  //This variable control display of side step
   private boolean isShowAdditionalOptions;
   private boolean isShowDestroyTask;
   private boolean isShowReadWorkflowEvent;
@@ -53,25 +52,8 @@ public class TaskActionBean implements Serializable {
     isShowReadWorkflowEvent = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_WORKFLOW_EVENT_ACTION);
   }
 
-  public static boolean canReset(ITask task) {
-    if (task == null) {
-      return false;
-    }
-    
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.READY_FOR_JOIN,
-        TaskState.FAILED);
-    if (!taskStates.contains(task.getState())) {
-      return false;
-    }
-    
-    if (task.getState() == TaskState.READY_FOR_JOIN) {
-      IPermission resetTaskReadyForJoin = IPermissionRepository.instance().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());
-      return hasPermission(task, resetTaskReadyForJoin);
-    }
-  
-
-    return (hasPermission(task, IPermission.TASK_RESET_OWN_WORKING_TASK) && canResume(task))
-        || hasPermission(task, IPermission.TASK_RESET);
+  public boolean canReset(ITask task) {
+    return TaskUtils.canReset(task);
   }
 
   public boolean canDelegate(ITask task) {
@@ -105,7 +87,7 @@ public class TaskActionBean implements Serializable {
     return hasPermission(task, permission) && !hasPermission(task, IPermission.TASK_WRITE_ACTIVATOR);
   }
 
-  public static boolean canResume(ITask task) {
+  public boolean canResume(ITask task) {
     return TaskUtils.canResume(task);
   }
 
@@ -130,11 +112,34 @@ public class TaskActionBean implements Serializable {
     return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_ORIGINAL_PRIORITY);
   }
 
+  /**
+   * Logic to check if user can change task expiry date:
+   * - Task not null
+   * - Task state is different from DONE, DESTROYED
+   * - User has permission TaskWriteExpiryTimestamp
+   * - The task has expiry handler or has expiry option 'Nobody & delete'
+   * 
+   * @param task
+   * @return condition whether the user can change expiry time
+   */
+  
   public boolean canChangeExpiry(ITask task) {
-    List<TaskBusinessState> taskStates = Arrays.asList(TaskBusinessState.DONE, TaskBusinessState.DESTROYED);
-    return (hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
-        || (task != null && StringUtils.isNotBlank(task.getExpiryTaskStartElementPid())))
-        && !taskStates.contains(task.getBusinessState());
+    List<TaskState> nonChangeableExpiryStates = Arrays.asList(TaskState.DONE,
+        TaskState.DESTROYED);
+
+    if (task == null || nonChangeableExpiryStates.contains(task.getState())) {
+      return false;
+    }
+
+    boolean isAutoDeleteAfterExpiry = StringUtils
+        .isBlank(task.getExpiryActivatorName())
+        && StringUtils.isBlank(task.getExpiryTaskStartElementPid());
+
+    boolean hasExpiryHandler = StringUtils
+        .isNotBlank(task.getExpiryTaskStartElementPid());
+
+    return hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
+        && (isAutoDeleteAfterExpiry || hasExpiryHandler);
   }
   
   public boolean canChangeDelayTimestamp(ITask task) {

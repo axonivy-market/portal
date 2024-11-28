@@ -15,6 +15,7 @@ public class IdColumnModel extends TaskColumnModel implements Serializable {
     this.field = DashboardStandardTaskColumn.ID.getField();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.quickSearch = defaultIfEmpty(this.quickSearch, false);
+    this.styleToDisplay = initDefaultStyle();
   }
 
   @Override
@@ -24,7 +25,7 @@ public class IdColumnModel extends TaskColumnModel implements Serializable {
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__id u-text-align-center u-padding-0";
+    return "dashboard-tasks__id u-text-align-center widget-column";
   }
 
   @Override

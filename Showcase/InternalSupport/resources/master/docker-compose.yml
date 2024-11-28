@@ -6,11 +6,12 @@ services:
     ports:
      - 8000:8080
     volumes:
-     - ./ivy.yaml:/etc/axonivy-engine/ivy.yaml
-     - ./applications:/usr/lib/axonivy-engine/applications
-     - ./configuration:/usr/lib/axonivy-engine/configuration
-     - ./data:/usr/lib/axonivy-engine/data
-     - ./logs:/usr/lib/axonivy-engine/logs
+     - ./applications:/ivy/applications
+     - ./data:/ivy/data
+     - ./logs:/ivy/logs
+     - ./configuration/applications:/ivy/configuration/applications
+     - ./configuration/ivy.yaml:/ivy/configuration/ivy.yaml
+     - ./configuration/licence-11.lic:/ivy/configuration/licence-11.lic
     networks:
      - postgres_network
 networks:

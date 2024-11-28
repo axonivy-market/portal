@@ -1,14 +1,18 @@
 package ch.addon.portal.generic.menu;
 
+import static ch.ivy.addon.portal.generic.navigation.PortalNavigator.DASHBOARD_ID;
 import static java.util.Objects.isNull;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.menu.DefaultMenuItem;
 
 import ch.ivy.addon.portalkit.enums.MenuKind;
+import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class PortalMenuItem extends DefaultMenuItem {
@@ -25,6 +29,7 @@ public class PortalMenuItem extends DefaultMenuItem {
   public final static String SUB_MENU_ID_FORMAT = "sub-menu-item-%s";
   public final static String THIRD_PARTY_MENU_ID_FORMAT = "thirdparty-menu-item-%s";
   public final static String EXTERNAL_MENU_ID_FORMAT = "external-menu-item-%s";
+  public final static String MAIN_DASHBOARD_MENU_ID_FORMAT = "main-dashboard-menu-item-%s";
   public final static String MENU_CLASS_FORMAT = "%s %s";
   public final static String MENU_CLASS_SUFFIX = "-menu-js";
   
@@ -45,7 +50,29 @@ public class PortalMenuItem extends DefaultMenuItem {
   public PortalMenuItem() { }
 
   public PortalMenuItem(PortalMenuBuilder builder) {
-    this.setId(String.format(MENU_ITEM_ID_FORMAT, builder.menuKind.toString(), builder.menuIndex));
+    if (MenuKind.MAIN_DASHBOARD == builder.menuKind) {
+      try {
+        String dashboardId = "";
+        URI uri = new URI(builder.url);
+        String query = uri.getQuery();
+        String[] pairs = query.split("&");
+
+        for (String pair : pairs) {
+          String[] keyValue = pair.split("=");
+          if (DASHBOARD_ID.equals(keyValue[0])) {
+            dashboardId = keyValue.length > 1 ? keyValue[1] : "";
+            break;
+          }
+        }
+        this.setId(String.format(DashboardUtils.MAIN_DASHBOARD_MENU_PATTERN, dashboardId));
+
+      } catch (URISyntaxException e) {
+        // Just ignore
+      }
+    }
+    if (StringUtils.isEmpty(this.getId())) {
+      this.setId(String.format(MENU_ITEM_ID_FORMAT, builder.menuKind.toString(), builder.menuIndex));
+    }
     this.setValue(builder.name);
     this.setIcon(builder.icon);
     this.setIconPos(DEFAULT_ICON_POSITION);
@@ -107,12 +134,11 @@ public class PortalMenuItem extends DefaultMenuItem {
         menuFormat = MENU_ID_FORMAT;
         break;
       case PROCESS:
-      case TASK:
-      case CASE:
-      case STATISTICS:
       case CUSTOM:
         menuFormat = SUB_MENU_ID_FORMAT;
         break;
+      case MAIN_DASHBOARD:
+        menuFormat = MAIN_DASHBOARD_MENU_ID_FORMAT;
       case EXTERNAL_LINK:
         menuFormat = EXTERNAL_MENU_ID_FORMAT;
         break;

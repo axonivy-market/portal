@@ -11,13 +11,7 @@ your HTML dialog independent of the  **Portal**. It is rendered automatically in
 
 .. _iframe-usage:
 
-Templates to use with IFrame:
-
-#. frame-8 template (Provided by core, uses Serenity theme)
-
-#. frame-10 templates (Provided by core, uses Freya theme)
-
-These templates fully support responsiveness.
+Templates to use with IFrame: frame-10 templates (Provided by core, uses Freya theme). This template fully supports responsiveness.
 
 How To Use
 ==========
@@ -34,7 +28,7 @@ Follow these steps to use the IFrame approach:
 #. If you don't want to use the default configuration, apply one of the following three
    levels to open your task(s) in an IFrame:
 
-   - Task level: in Task custom fields, set the ``embedInFrame`` String field to
+   - Task level: in Task custom fields, set the ``embedInFrame`` field to
    
    	- ``true``: start inside IFrame
    	- ``false``: not start inside IFrame
@@ -57,52 +51,83 @@ Follow these steps to use the IFrame approach:
        ``Portal.EmbedInFrame`` Portal setting. refer to
        :ref:`update-portal-settings`
 
+.. _iframe-configure-template:
+
 Configure template
 ==================
 
-**Portal** supports some layout options for the templates mentioned above.
+**Portal** supports some configurations for templates like:
 
-#. ``Task name``: name of the working task.
+#. Name and icon of the working task.
 
-#. ``Process steps``: Refer to :ref:`components-portal-components-process-chain`.
+#. Configuration of :ref:`components-portal-components-process-chain`.
 
-#. ``Show Information``: button to show Case details and other actions.
+#. Show/hide case details and other actions.
 
 |task-name-template|
 
-You can configure those options by using Javascript from your HTML dialog as follows:
+You could configure UI in either of these two ways:
 
-.. code-block:: xml
+#. Using the component IFrameTaskConfig (recommended)
 
-   <h:body>
-      <ui:composition template="/layouts/frame-10.xhtml">
-         ...
-         <script>
-            // Set the process steps directly as Array.
-            window.processSteps = ["Create Investment Request", "Approve Investment Request"];
+   .. code-block:: xml
 
-            // If the process steps are set in HTML dialog logic or java code, convert it to JSON format
-            // Use this code if the process steps are a Java String list
-            window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};
+      <h:body>
+         <ui:composition template="/layouts/frame-10.xhtml">
+            ...
+            <ic:com.axonivy.portal.components.IFrameTaskConfig 
+               taskName="Approve Investment" 
+               taskIcon="si si-bulb"
+               isHideTaskName="false"
+               caseId="123456"
+               isHideCaseInfo="false"
+               currentProcessStep="0"
+               processSteps='["Create Investment Request", "Approve Investment Request"]'
+               isShowAllSteps="true"
+               processChainDirection="VERTICAL"
+               processChainShape="LINE"
+               isHideTaskAction="true"
+               isWorkingOnATask="false"
+               announcementInvisible="false"
+               isCardFrame="true"
+               viewName="TASK_DETAIL"
+            />
+            ...
+         </ui:composition>
+      </h:body>
 
-            window.currentProcessStep = 0;
-            window.currentProcessStep = #{data.currentProcessStep};
-            window.isHideTaskName= false;
-            window.isHideCaseInfo = false;
-            window.isWorkingOnATask = false;
-            window.taskName = "Your New Task Name";
-            // Define task icon using Streamline or Awesome font
-            window.taskIcon = "si si-arrow-right";
+#. Using Javascript
 
-            // show case details of a case different from current case.
-            window.caseId = "Case-Id";
+   .. code-block:: xml
 
-            // Display content of the IFrame inside a card style.
-            window.isCardFrame = true;
-         </script>
-         ...
-      </ui:composition>
-   </h:body>
+      <h:body>
+         <ui:composition template="/layouts/frame-10.xhtml">
+            ...   
+            <script>
+               window.taskName = "Approve Investment";
+               window.taskIcon = "si si-bulb";
+               window.isHideTaskName = false;
+               window.caseId = "123456";
+               window.isHideCaseInfo = false;
+               window.currentProcessStep = 0;
+               window.currentProcessStep = #{data.currentProcessStep};
+               // Set process steps directly as Array.
+               window.processSteps = ["Create Investment Request", "Approve Investment Request"];
+               // If process steps are set in HTML dialog logic or java code, convert it to JSON format
+               // Use this code if process steps are a java String list
+               window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};
+               window.isShowAllSteps = true;
+               window.processChainDirection = "VERTICAL";
+               window.processChainShape = "LINE";
+               window.isHideTaskAction = true;
+               window.isWorkingOnATask = false;
+               window.announcementInvisible = false;
+               window.isCardFrame = true;
+               window.viewName = TASK_DETAIL;
+            </script>
+            ...
+         </ui:composition>
+      </h:body>
 
 Configure Task name
 -------------------
@@ -117,16 +142,16 @@ Options for ``Task name``
   :header-rows: 1
   :class: longtable
 
-Example:
+Example using IFrameTaskConfig:
 
 .. code-block:: xml
 
    <h:body>
       <ui:composition template="/layouts/frame-10.xhtml">
          ...
-         <script>
-            window.taskName = "Your New Task Name";
-         </script>
+         <ic:com.axonivy.portal.components.IFrameTaskConfig 
+            taskName="Approve Investment"
+         />
          ...
       </ui:composition>
    </h:body>
@@ -148,16 +173,16 @@ Options for ``Show Information``
   :header-rows: 1
   :class: longtable
 
-Example:
+Example using IFrameTaskConfig:
 
 .. code-block:: xml
 
    <h:body>
       <ui:composition template="/layouts/frame-10.xhtml">
          ...
-         <script>
-            window.caseId = "Case-Id";
-         </script>
+         <ic:com.axonivy.portal.components.IFrameTaskConfig 
+            caseId="123456"
+         />
          ...
       </ui:composition>
    </h:body>
@@ -181,19 +206,19 @@ Options for ``Process steps``
        When defining parameter ``processSteps``, please make sure that you add this JSP function tag to your HTML dialog:
        ``xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"``
 
-Example:
+Example using IFrameTaskConfig:
 
 .. code-block:: xml
 
    <h:body>
       <ui:composition template="/layouts/frame-10.xhtml">
          ...
-         <script>
-            window.currentProcessStep = 0;
-            window.processSteps = ["Create Investment Request", "Approve Investment Request"];
-            window.processChainDirection = "VERTICAL";
-            window.processChainShape = "LINE";
-         </script>
+         <ic:com.axonivy.portal.components.IFrameTaskConfig 
+            currentProcessStep="0"
+            processSteps='["Create Investment Request", "Approve Investment Request"]'
+            processChainDirection="VERTICAL"
+            processChainShape="LINE"
+         />
          ...
       </ui:composition>
    </h:body>
@@ -209,17 +234,19 @@ Various options can affect functions and layout.
   :header-rows: 1
   :class: longtable
 
-Example:
+Example using IFrameTaskConfig:
 
 .. code-block:: xml
 
    <h:body>
       <ui:composition template="/layouts/frame-10.xhtml">
          ...
-         <script>
-            window.isHideTaskAction = true;
-            window.isWorkingOnATask = false;
-         </script>
+         <ic:com.axonivy.portal.components.IFrameTaskConfig 
+            isHideTaskAction="true"
+            isWorkingOnATask="false"
+            announcementInvisible="false"
+            isCardFrame="true"
+         />
          ...
       </ui:composition>
    </h:body>
@@ -227,8 +254,9 @@ Example:
 Developer tips
 ==============
 
-In case your project has a navigation button that does not complete a task, e.g.,Cancel, redirect in your HTML dialog 
-to the page you want to display (i.e., default pages like application home, task list, process list, etc.)
+If your project has a navigation button that does not complete a task (e.g.,
+Cancel), redirect the user to the desired page (e.g., the application home, task
+list, process list, etc.) in the HTML dialog.
 
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png

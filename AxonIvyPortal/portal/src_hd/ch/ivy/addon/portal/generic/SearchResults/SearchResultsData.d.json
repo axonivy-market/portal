@@ -1,0 +1,16 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "SearchResultsData",
+  "namespace" : "ch.ivy.addon.portal.generic.SearchResults",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "dataModel",
+    "type" : "ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel",
+    "comment" : "For customization: change this attribute's type to <YOUR_CUSTOMIZED_DATA_MODEL>, for example: CustomizedSearchResultsDataModel",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "activeTabIndex",
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

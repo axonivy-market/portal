@@ -1,0 +1,32 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "Data",
+  "namespace" : "internaltest",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "apps",
+    "type" : "List<String>"
+  }, {
+    "name" : "expiredDate",
+    "type" : "Duration"
+  }, {
+    "name" : "taskPriority",
+    "type" : "ch.ivyteam.ivy.workflow.WorkflowPriority"
+  }, {
+    "name" : "taskName",
+    "type" : "String"
+  }, {
+    "name" : "caseName",
+    "type" : "String"
+  }, {
+    "name" : "caseNumber",
+    "type" : "Integer"
+  }, {
+    "name" : "count",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "category",
+    "type" : "String"
+  } ]
+}

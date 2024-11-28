@@ -1,0 +1,14 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "PortalFinishTaskHandleData",
+  "namespace" : "ch.ivy.addon.portal.generic.PortalFinishTaskHandle",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "isTaskFinished",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "caze",
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
+  } ]
+}

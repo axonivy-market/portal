@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "162511D2577DBA88",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -605,14 +605,14 @@
               "level" : "HIGH"
             },
             "expiry" : {
-              "timeout" : "new Duration(\"1D\")"
+              "timeout" : "new Duration(\"1D\")",
+              "error" : "f88"
             },
             "customFields" : [
               { "name" : "AccountNumber", "type" : "NUMBER", "value" : "14" },
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Tung Le\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
-              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
             ]
           }, {
             "id" : "TaskA",
@@ -624,14 +624,14 @@
               "activator" : "\"demo\""
             },
             "expiry" : {
-              "timeout" : "new Duration(\"3H\")"
+              "timeout" : "new Duration(\"3H\")",
+              "error" : "f88"
             },
             "customFields" : [
               { "name" : "AccountNumber", "type" : "NUMBER", "value" : "7" },
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Long Do\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Exterior\"" },
-              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
             ]
           }, {
             "id" : "TaskC",
@@ -642,14 +642,14 @@
               "level" : "LOW"
             },
             "expiry" : {
-              "timeout" : "new Duration(\"2D\")"
+              "timeout" : "new Duration(\"2D\")",
+              "error" : "f88"
             },
             "customFields" : [
               { "name" : "AccountNumber", "type" : "NUMBER", "value" : "13" },
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Anh Nguyen\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
-              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
             ]
           } ],
         "case" : {
@@ -698,8 +698,7 @@
             { "name" : "ProcessCategoryName", "type" : "STRING", "value" : "\"Publication Requested\"" },
             { "name" : "ProcessCode", "type" : "STRING", "value" : "\"pubRequested\"" },
             { "name" : "ProcessName", "type" : "STRING", "value" : "\"Publication Requested\"" },
-            { "name" : "SupportData", "type" : "STRING", "value" : "\"Leave Request SupportData\"" },
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+            { "name" : "SupportData", "type" : "STRING", "value" : "\"Leave Request SupportData\"" }
           ]
         }
       },
@@ -937,7 +936,6 @@
               "level" : "HIGH"
             },
             "customFields" : [
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" },
               { "name" : "employee", "type" : "STRING", "value" : "\"Tung Le\"" }
             ]
           }, {
@@ -950,7 +948,6 @@
             },
             "customFields" : [
               { "name" : "days", "type" : "TIMESTAMP", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" },
               { "name" : "employee", "type" : "STRING", "value" : "\"Long Do\"" }
             ]
           }, {
@@ -965,7 +962,6 @@
               "level" : "LOW"
             },
             "customFields" : [
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" },
               { "name" : "employee", "type" : "STRING", "value" : "\"Anh Nguyen\"" }
             ]
           } ],
@@ -1053,8 +1049,7 @@
             { "name" : "ProcessCategoryName", "type" : "STRING", "value" : "\"Publication Requested\"" },
             { "name" : "ProcessCode", "type" : "STRING", "value" : "\"pubRequested\"" },
             { "name" : "ProcessName", "type" : "STRING", "value" : "\"Publication Requested\"" },
-            { "name" : "SupportData", "type" : "STRING", "value" : "\"Leave Request SupportData\"" },
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+            { "name" : "SupportData", "type" : "STRING", "value" : "\"Leave Request SupportData\"" }
           ]
         }
       },

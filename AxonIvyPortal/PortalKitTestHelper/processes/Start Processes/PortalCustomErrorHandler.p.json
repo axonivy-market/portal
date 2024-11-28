@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "18D596926C35B1DB",
   "config" : {
     "data" : "portalKit_test.Data"
@@ -9,7 +9,12 @@
       "type" : "RequestStart",
       "name" : "testPortalCustomErrorHandler.ivp",
       "config" : {
-        "signature" : "testPortalCustomErrorHandler"
+        "signature" : "testPortalCustomErrorHandler",
+        "task" : {
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }

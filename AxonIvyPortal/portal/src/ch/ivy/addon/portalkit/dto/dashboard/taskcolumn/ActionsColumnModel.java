@@ -13,10 +13,10 @@ public class ActionsColumnModel extends TaskColumnModel implements Serializable 
   public void initDefaultValue() {
     super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.ACTIONS.getField();
-    this.style = defaultIfEmpty(this.style, getDefaultStyle());
-    this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
+    this.styleToDisplay = initDefaultStyle();
     this.sortable = defaultIfEmpty(this.sortable, getDefaultSortable());
     this.format = getDefaultFormat();
+    this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
   }
 
   @Override
@@ -28,6 +28,11 @@ public class ActionsColumnModel extends TaskColumnModel implements Serializable 
   public DashboardColumnFormat getDefaultFormat() {
     return DashboardColumnFormat.CUSTOM;
   }
+  
+  @Override
+  public int getDefaultColumnWidth() {
+    return TINY_WIDTH;
+  }
 
   @Override
   public Boolean getDefaultSortable() {
@@ -35,12 +40,7 @@ public class ActionsColumnModel extends TaskColumnModel implements Serializable 
   }
 
   @Override
-  public String getDefaultStyle() {
-    return SMALL_WIDTH;
-  }
-
-  @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__actions u-text-align-center";
+    return "dashboard-tasks__actions u-text-align-center widget-column";
   }
 }

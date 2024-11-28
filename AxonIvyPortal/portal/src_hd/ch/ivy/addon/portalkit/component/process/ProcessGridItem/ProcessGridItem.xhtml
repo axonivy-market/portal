@@ -25,7 +25,6 @@
 <cc:implementation>
   <c:set var="process" value="#{cc.attrs.process}" />
   <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
-  <c:set var="isExpress" value="#{managedBean.isExpressProcess(process)}" />
   <c:set var="isExternalLink" value="#{managedBean.isExternalLink(process)}" />
   <c:set var="isCaseMap" value="#{managedBean.isCaseMap(process)}" />
   <c:set var="processTarget" value="#{managedBean.targetToStartProcess(process)}"/>
@@ -34,9 +33,9 @@
 
   <h:panelGroup layout="block"
     styleClass=" #{cc.attrs.processStyleClass} process-grid-item #{groupCode}">
-    <div class="card ui-g-12 #{isExpress ? 'express-workflow' : ''} #{isExternalLink ? 'js-external-link-process-item' : ''}">
+    <div class="card ui-g-12 #{isExternalLink ? 'js-external-link-process-item' : ''}">
       <h:form id="process-item" target="#{processTarget}"
-        styleClass="grid-view-form u-text-align-center #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
+        styleClass="grid-view-form u-text-align-center #{isExternalLink ? 'is-external-link' : ''}">
         <!-- Action -->
         <ic:ch.ivy.addon.portalkit.component.process.ProcessItemAction id="grid-process-action-component" process="#{process}"
           canModify="#{cc.attrs.ableToEdit}"
@@ -46,7 +45,12 @@
           actionListenerOnDeleteProcess="#{cc.attrs.removeActionListener}"
           onCompleteDeleteProcess="#{cc.attrs.oncompleteRemoveProcess}"
           componentToUpdateOnDeleteProcess="#{cc.attrs.componentToUpdateOnRemoveProcess}"
-          hideActionButton="#{cc.attrs.isInConfiguration}"/>
+          hideActionButton="#{cc.attrs.isInConfiguration}"
+          isProcessGridMode="true"
+          isInProcessList="false"
+          isReadOnlyMode="#{!cc.attrs.readOnlyMode}"
+          isInConfiguration="#{cc.attrs.isInConfiguration}"
+          />
 
         <p:commandLink id="start-process-link" styleClass="process-grid__header"
           actionListener="#{managedBean.startProcess(process)}"
@@ -75,12 +79,6 @@
             id="start-button" actionListener="#{managedBean.startProcess(process)}" icon="si si-arrow-right-1"
             ajax="#{!isExternalLink}"
             disabled="#{cc.attrs.readOnlyMode}" />
-          <div class="more-information-wrapper" >
-            <p:link id="more-information" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
-              href="#{managedBean.getProcessInformationPageUrl(process)}"
-              rendered="#{cc.attrs.showInformationLink and !isExpress and !isExternalLink and !isCaseMap}"
-              disabled="#{cc.attrs.readOnlyMode}" styleClass="process-more-info-link"/>
-          </div>
         </div>
         <p:tooltip for="process-name" value="#{process.name}" trackMouse="true" hideEvent="mouseleave click" styleClass="process-tooltip"/>
       </h:form>

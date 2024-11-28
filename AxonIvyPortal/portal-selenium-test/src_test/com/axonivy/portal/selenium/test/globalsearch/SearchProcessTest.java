@@ -8,8 +8,8 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.SearchResultPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.TemplatePage.GlobalSearch;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 @IvyWebTest
 public class SearchProcessTest extends BaseTest {
@@ -37,9 +37,10 @@ public class SearchProcessTest extends BaseTest {
 
     searchResultPage.startProcess(processName);
     newDashboardPage = new NewDashboardPage();
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     refreshPage();
-    assertTrue(taskWidgetPage.getNameOfTaskAt(0).contains("Payment"));
+    assertTrue(taskWidget.getNameOfTaskAt(0).contains("Payment"));
   }
 
   @Test

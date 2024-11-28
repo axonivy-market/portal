@@ -18,8 +18,6 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 
 public class IvyLanguage {
 
-  @Deprecated(forRemoval = true, since = "9.4")
-  private String appName;
   private String userLanguage;
   private List<String> supportedLanguages;
   private List<SelectItem> items = new ArrayList<>();
@@ -67,26 +65,6 @@ public class IvyLanguage {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption", Arrays.asList(systemLanguage) );
     }
     return Locale.forLanguageTag(languageTag).getDisplayName(contentLocale);
-  }
-
-  /**
-   * Gets the appName
-   * 
-   * @return Returns the appName
-   */
-  @Deprecated(forRemoval = true, since = "9.4")
-  public String getAppName() {
-    return appName;
-  }
-
-  /**
-   * Sets the appName
-   * 
-   * @param appName The appName to set
-   */
-  @Deprecated(forRemoval = true, since = "9.4")
-  public void setAppName(String appName) {
-    this.appName = appName;
   }
 
   /**

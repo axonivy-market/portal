@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.bean;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.text.Collator;
 import java.util.ArrayList;
@@ -29,28 +28,24 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
-import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.components.util.RoleUtils;
-import com.axonivy.portal.enums.GlobalSearchScopeCategory;
+import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.service.GlobalSearchService;
 import com.axonivy.portal.util.ExternalLinkUtils;
 
-import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.IvyProcess;
-import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.configuration.GlobalSetting;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.ProcessMode;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
-import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
@@ -58,8 +53,6 @@ import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.exec.Sudo;
-import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import ch.ivyteam.util.Pair;
 
@@ -82,7 +75,6 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   private List<SecurityMemberDTO> selectedSecurityMemberDTOsWhenEditingExternalLink;
   private List<String> selectedPermissionsWhenEditingExternalLink;
   private List<String> selectedPermissionsForSavingEditedExternalLink;
-  private IProcessStart createExpressWorkflowProcessStart;
   private Map<String, List<Process>> processesByAlphabet;
   
   private String warningText;
@@ -90,7 +82,6 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   public void initConfiguration() {
     initProcessViewMode();
-    createExpressWorkflowProcessStart = ExpressProcessService.getInstance().findExpressCreationProcess();
   }
 
   public void initProcesses() {
@@ -238,28 +229,15 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     return String.join(", ", displayNames);
   }
 
-  public void editExpressWorkflow(ExpressProcess process) throws IOException {
-    String editLink = ExpressProcessService.getInstance().findExpressWorkflowEditLink(process.getId());
-    FacesContext.getCurrentInstance().getExternalContext().redirect(editLink);
-  }
-
   public void deleteProcessWorkflow() {
     if (this.deletedProcess == null) {
       return;
     }
 
     switch (deletedProcess.getType()) {
-      case EXPRESS_PROCESS -> deleteExpressWorkflow();
       case EXTERNAL_LINK -> deleteExternalLink();
       default -> {}
     }
-  }
-
-  public void deleteExpressWorkflow() {
-    String workflowId = this.deletedProcess.getId();
-    ExpressProcessService.getInstance().delete(workflowId);
-    getPortalProcesses().removeIf(process -> process.getId().equals(deletedProcess.getId()));
-    groupProcessesByAlphabetIndex(getPortalProcesses());
   }
 
   public void updateProcessData() {
@@ -268,10 +246,6 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     }
     String oldProcessName = this.editedProcess.getName();
     switch (this.editedProcess.getType()) {
-      case EXPRESS_PROCESS -> {
-        ExpressProcess expressProcess = updateExpressProcess(editedProcess.getId());
-        this.editedProcess = new PortalExpressProcess(expressProcess);
-      }
       case EXTERNAL_LINK -> {
         ExternalLink externalLink = updateExternalLink(editedProcess.getId());
         this.editedProcess = new ExternalLinkProcessItem(externalLink);
@@ -281,17 +255,6 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     selectedIconProcess = null;
     updateStartProcessesList(oldProcessName);
     this.editedProcess = null;
-  }
-
-  private ExpressProcess updateExpressProcess(String processId) {
-    ExpressProcessService service = ExpressProcessService.getInstance();
-    ExpressProcess expressProcess = service.findById(processId);
-    if (expressProcess != null) {
-      expressProcess.setIcon(this.selectedIconProcess);
-      service.save(expressProcess);
-    }
-    PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(expressProcess);
-    return expressProcess;
   }
 
   private ExternalLink updateExternalLink(String processId) {
@@ -404,23 +367,6 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     groupProcessesByAlphabetIndex(getPortalProcesses());
   }
 
-  public String getCreateExpessWorkflowLink() {
-    return Sudo.get(() -> {
-      return (createExpressWorkflowProcessStart != null) ? createExpressWorkflowProcessStart.getLink().getRelative()
-          : StringUtils.EMPTY;
-    });
-  }
-
-  public void startExpressWorkflowCreationLink() throws IOException {
-    FacesContext.getCurrentInstance().getExternalContext().redirect(getCreateExpessWorkflowLink());
-    return;
-  }
-
-  public boolean canCreateExpessWorkflow() {
-    return createExpressWorkflowProcessStart != null
-        && PermissionUtils.hasPortalPermission(PortalPermission.EXPRESS_CREATE_WORKFLOW);
-  }
-
   public Process getDeletedProcess() {
     return deletedProcess;
   }
@@ -492,10 +438,6 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
 
   public void setUserProcessByAlphabet(Map<String, List<Process>> processesByAlphabet) {
     this.processesByAlphabet = processesByAlphabet;
-  }
-
-  public IProcessStart getCreateExpressWorkflowProcessStart() {
-    return createExpressWorkflowProcessStart;
   }
 
   public Map<String, String> getAllAlphabeticalCharacters() {
@@ -668,16 +610,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
   
   public boolean isShowGlobalSearchScope() {
-    String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());
-    if (StringUtils.isNotBlank(globalSearchScopeCategoriesString)) {
-      String[] fieldArray = globalSearchScopeCategoriesString.split(",");
-      for (String field : fieldArray) {
-        GlobalSearchScopeCategory fieldEnum = GlobalSearchScopeCategory.valueOf(field.toUpperCase());
-        if (fieldEnum != null && fieldEnum.equals(GlobalSearchScopeCategory.PROCESSES)) {
-          return true;
-        }
-      }
-    }
-    return false;
+    return GlobalSearchService.getInstance().isShowGlobalSearchByProcesses();
   }
+
 }

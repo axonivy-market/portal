@@ -1,26 +1,11 @@
-Categories:
-  AdhocExpressTasks:
-    name: Adhoc Express Aufgaben
-  CreateExpressWorkflow:
-    name: Express Workflow erstellen
-  ExpressWorkflow:
-    name: Express-Workflow
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
     noCaseId: Keine Vorgangs-ID spezifiziert
     requestTabTitle: Anfrage
     statusTabTitle: Vorgangsinformationen
   OpenTaskTemplate:
-    adhocHistory: AdHoc Prozesshistorie
-    adhocHistoryTooltip: AdHoc Prozesshistorie anzeigen
     browserTabClosingWarning: Durch diese Aktion gehen ungespeicherte Änderungen verloren. Möchten Sie wirklich fortfahren?
-    goToAdhocWarning: Beim starten von Ad-hoc Prozess gehen Ihre nicht gespeicherte Eingaben verloren. Möchten Sie weiter?
     goToSidestepWarning: Bei starten eines Sidestep Prozesses werden die aktuelle Eingaben nicht gespeichert. Möchten Sie sich trotzdem fortsetzen?
-    noteOfResultFromAdhocProcess: 'Achtung: alle Einträge sind auch in der Vorgangshistorie'
-    reCreateAdhocWarning: Es gibt bereits einen AdHoc Prozess zu dieser Aufgabe. Möchten Sie einen neuen erstellen?
-    resultFromAdhocProcess: Ergebnisse aus dem Ad-Hoc Prozess
-    startAdHoc: Start Adhoc
-    startAdHocTooltip: Neue Aufgabe hinzufügen, und den aktuellen Prozess umleiten.
   PortalName:
     PortalName: Portal
 ch.ivy.addon.portalkit.ui.jsf:
@@ -38,6 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     editAbsence: Abwesenheiten bearbeiten
     from: Von
     noDeputy: Kein Stellvertreter
+    noPermissionToSeeThisArea: Sie haben nicht die erforderliche Erlaubnis, dieses Gebiet zu sehen.
     period: Zeitraum
     personalTaskDuringAbsenceDeputies: Vertretungen für persönlich zugewiesene Aufgaben während der Abwesenheit
     personalTaskPermanentDeputies: Ständige Stellvertreter für persönlich zugewiesene Aufgaben
@@ -63,6 +49,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     nextAbsence: Bevorstehende Abwesenheit
     selectedDeputyFor: Ausgewählter Benutzer ist Stellvertreter für
     selectedUser: Ausgewählter Benutzer
+  AccessibilityShortcuts:
+    processName: Barrierefreiheit Kürzel Widgets
   AllTasks:
     caseDescription: Beschreibung des Vorgangs
     taskDescription: Aufgabenbeschreibung
@@ -83,7 +71,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXTERNAL_URL: Externe URL
       PROCESS: Axon Ivy Prozess
     DashboardWidgetType:
-      CASE: Vorfall-Widget
+      CASE: Vorgangs-Widget
       CLIENT_STATISTIC: Statistik-Widget
       CUSTOM: Benutzerdefiniertes Widget
       NEW: Neues Widget
@@ -111,7 +99,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       BY_CUSTOM_ORDER: Benutzerdefinierte Reihenfolge
       BY_INDEX: Sortierindex
     ProcessType:
-      EXPRESS_PROCESS: Express Workflow
       EXTERNAL_LINK: External Link
       IVY_PROCESS: Geschäftsprozess
     ProcessWidgetMode:
@@ -150,16 +137,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rubrik 3
       NORMAL_TEXT: Normaler Text
   MyProfile:
-    CaseList: Liste der Fälle
     DateFormat: Datum Format
     FormattingLanguage: Sprache der Formatierung
     General: Allgemeine
     Homepage: Homepage
     Language: Sprache
     ProcessList: Prozess-Liste
-    SortFieldSelections:
-      defaultSortFieldLabel: Standard-Sortierfeld
-    TaskList: Aufgabenliste
     byDefault: '  standardmäßig'
     defaultOption: Standard ({0})
     defaultViewMode: Standardanzeige
@@ -184,9 +167,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       announcementsDisabled: Ankündigungen sind deaktiviert
       announcementsEnabled: Ankündigungen sind aktiviert
       defaultLanguageRequiredMessage: Ein Ankündigungstext in der standard Applikationssprache ist notwendig
-      disable: Deaktivieren
-      enable: Aktivieren
+      disabled: Deaktiviert
+      enable: Ansage einschalten
       information: Sie können eine allgemeine Ankündigung in diesem Bereich machen (z.B. Wartungsankündigung). Diese Nachricht kann von allen Benutzern gesehen werden.
+      saveChanges: Änderungen speichern
       tabTitle: Ankündigungen
     appDisplayName: Anzeigename
     appDisplayNameRequiredMsg: Geben Sie einen Anzeigename an.
@@ -195,6 +179,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationHint: Die Reihenfolge kann mit Drag & Drop geändert werden.
     applicationLinkRequiredMsg: Geben Sie den Portal Link an.
     applicationList:
+      addNewApplication: Neue Anwendung hinzufügen
       applicationSelectionHeader: Anwendung auswählen
       menuIcon: Menü Symbol
     applications: Anwendungen
@@ -222,7 +207,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       GooglePlayURL: Legen Sie die URL fest, um die Axon Ivy-Mobilanwendung auf Google Play herunterzuladen.
       RoleDirectChildrenLimit: 'Die eingestellte Zahl steuert die Anzahl der direkten untergeordneten Rollen, die auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 10, 50, 100'
       RoleParentLimit: 'Die eingestellte Zahl steuert die Anzahl der übergeordneten Rollen, die beim Filtern von Rollen auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 5, 10, 20'
-      SearchScopeCaseFields: Festlegung der Felder, die bei der globalen Suche verwendet werden sollen, um neben der Fallnummer übereinstimmende Fälle zu finden (dies kann die Leistung der Suche beeinflussen)
+      SearchScopeCaseFields: Festlegung der Felder, die bei der globalen Suche verwendet werden sollen, um neben der Fallnummer übereinstimmende Vorgänge zu finden (dies kann die Leistung der Suche beeinflussen)
       SearchScopeTaskFields: Festlegung der Felder, die die globale Suche neben der Aufgabenkennung verwendet, um passende Aufgaben zu finden (dies kann die Leistung der Suche beeinflussen)
       ShowLoginPageFooter: Zum Ein-/Ausschalten der Anzeige der Fußzeile auf der Anmeldeseite.
       ShowQRCode: Zum Ein- und Ausschalten der Anzeige des QR-Codes.
@@ -251,12 +236,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option in Aufgaben-/Vorgang-Aktionen zu aktivieren
       enableScriptCheckingForUploadedDocumentNote: 'Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt. '
       enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
-      expressEndPageNote: Anzeigen der angepassten Endseite nach dem Ende eines Express Prozesses.
+      hideCaseCreator: |
+        Auf true setzen, um den Fallersteller in der Fallliste, dem Fall-Widget und den Falldetails auszublenden.
+        Diese Einstellung wirkt sich auf alle Fallabfragen aus, z. B. für Fallliste, globale Suche, Statistik.
       hideCaseDocument: Auf "true" setzen, um die Dokumentensektion in Vorgangsdetails auszublenden.
       hideChangePasswordButtonNote: Setzen Sie diese Variable auf true, um die Option "Passwort ändern" im oberen Menü und die Option "Passwort vergessen" auf der Anmeldeseite auszublenden. Wenn sie auf false gesetzt ist, werden diese Optionen angezeigt.
       hideLogoutButtonNote: 'Auf "true" setzen, um die Logout Funktion im Top Menu zu deaktivieren. '
       hideRelatedCaseInfoFromHistory: Wenn diese Option auf "true" gesetzt ist, werden die zugehörigen Fallinformationen nicht in der Tabelle "Historie" angezeigt.
-      hideStatisticWidget: Setzen Sie den Wert auf "true", um das Statistik-Widget auf der Startseite und im Anwendungsmenü auszublenden.
       hideSystemNotesFromHistory: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Benutzer ohne Administratorrechte angezeigt.
       hideSystemNotesFromHistoryAdministrator: Wenn diese Option aktiviert ist, werden in den Vorgangs-/Aufgabennotizen keine Systemnotizen für Administratoren angezeigt.
       hideSystemTasksFromHistory: Wenn diese Option aktiviert ist, zeigt die Vorgangs- / Aufgabennotiz keine technischen Verlaufseinträge für Benutzer ohne Administratorrechte an.
@@ -275,7 +261,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Auf "false" setzen, um die Verknüpfung zu Informationen des Prozesses auf der Seite Prozesse (Gittermodus) und Falldetails anzeigen zu deaktivieren.
       showQuickGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Schnellsuche.
       showTaskDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Aufgabendetailseite.
-      statisticChartScalingInterval: Intervall in Sekunden, in dem die Skalierung des statistischen Diagramms regelmäßig angefordert wird. Ist der Intervallwert kleiner als 10, wird die periodische Skalierung des statistischen Diagramms deaktiviert.
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
     key: Schlüssel
     link: Link
@@ -308,6 +293,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     value: Wert
   applicationMenuHeader:
     MobileApp: Herunterladen und Verbinden mit der Axon Ivy Mobile App
+    ThemeSwitcher: Themenumschalter
     adminSettings: Administration
     changePassword: Passwort ändern
   businessCaseState:
@@ -358,13 +344,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       FINISHED_TIME: Erledigt
       ID: Vorgangs Id
       NAME: Name / Beschreibung
-      OWNER: Verantwortlich
+      OWNER: Prozessverantwortlichen
       STATE: Status
     deletionNoteContent: Der Vorgang wurde durch {0} gelöscht.
     destroyCaseMessage: Diese Operation kann nicht rückgängig gemacht werden. Sind Sie sicher, dass dieser komplette Vorgang gelöscht werden soll?
     destroyfail: Beim Löschen des Vorgangs ist ein Fehler aufgetreten.
     destroysucceed: Vorgang wurde erfolgreich gelöscht.
-    downloadZipFileExplanation: Die Anzahl der zu exportierenden Fälle überschreitet die Grenze der Excel-Zeilen. Daher werden die Daten in mehrere Excel-Dateien aufgeteilt und dann in einer ZIP-Datei zum Herunterladen komprimiert.
+    downloadZipFileExplanation: Die Anzahl der zu exportierenden Vorgänge überschreitet die Grenze der Excel-Zeilen. Daher werden die Daten in mehrere Excel-Dateien aufgeteilt und dann in einer ZIP-Datei zum Herunterladen komprimiert.
     error: Fehler
     exportedCasesFileName: AXONIVY_Dataset_Cases_{0}.{1}
     headerTitle:
@@ -405,6 +391,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processChatIsCreated: Gruppenchat - {0} - wurde erstellt
     processChatWasCreated: Gruppenchat - {0} - wurde bereits erstellt. Sie können keinen weiteren Chat erstellen.
     selectedAssignees: Ausgewählte Genehmiger
+    toggleChat: Chat-Panel umschalten
     typeMessage: Schreiben Sie hier eine Nachricht...
     viewParticipant: Teilnehmer anzeigen
   common:
@@ -418,14 +405,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     ResetToDefaultHeaderText: Auf Standard-Einstellungen zurücksetzen?
     RoleUserInformation: Rollen- und Benutzerinformationen
     TaskCaseInformation: Informationen zu Aufgabe und Vorgang
-    Update: Update
+    Update: Aktualisieren
     action: Aktionen
     active: Aktiviert
     add: Hinzufügen
     addDocument: Dokument hinzufügen
     addNote: Notiz hinzufügen
-    adhoc: Adhoc
     allCategories: Alle Kategorien
+    allTypes: Alle Typen
     allowPng: Nur das png Format wird unterstützt
     apply: Anwenden
     at: am
@@ -435,6 +422,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     backgroundColor: Hintergrundfarbe
     cancel: Abbrechen
     case: Vorgang
+    caseCategory: Vorgangskategorie
     caseInformation: Vorgangsinformationen
     caseName: Vorgangsname
     categories: Kategorien
@@ -472,7 +460,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     destroyTaskHeaderText: Diese Aufgabe löschen?
     detail: Details
     display: Anzeigen
-    displayName: Name anzeigen
+    displayAsTopMenu: Als oberstes Menü anzeigen
+    displayName: Anzeigename
+    dragAndDropFile: 'Ziehen und Ablegen einer Datei oder '
+    dragAndDropImage: 'Ziehen und Ablegen eines Bildes oder '
     edit: Bearbeiten
     errorAjaxMessage: Es gibt einen allgemeinen Fehler!
     errorFileUploadSize: Die Dateigrösse muss kleiner als {0} sein.
@@ -529,7 +520,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     note: NOTIZ
     numberFromBiggerThanTo: Nach" muss größer sein als "Von".
     numberOfSelectedFilter: Ausgewählte Filter
-    ok: Ok
+    ok: OK
     'on': am
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
     pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
@@ -539,10 +530,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes: Prozesse
     public: Öffentlich
     remove: Entfernen
+    removeSelection: Selektion entfernen
     reorder: Neu anordnen
     requiredFieldMessage: Dies ist ein Pflichtfeld
     reserve: Reservieren
     reset: Zurücksetzen
+    resetFilters: Filter zurücksetzen
     resetSettingHeaderText: Einstellung zurücksetzen?
     resetTaskHeaderText: Diese Aufgabe zurücksetzen?
     resetToDefaultMessage: Dieser Vorgang kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie auf die Standard-Einstellungen zurücksetzen möchten?
@@ -551,6 +544,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Auf Standarddiagramme zurücksetzen?
     role: Rolle
     save: Speichern
+    saveAll: Speichern Sie alle
     saveSuccessfully: Daten erfolgreich gespeichert.
     search: Suche
     second: Sekunde
@@ -570,6 +564,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showSystemTasks: Systemaufgaben
     sorting: Sortierung
     start: Start
+    startProcess: Prozess starten
     state: Status
     status: Status
     switchToDesktopVersion: Zur Desktop-Version wechseln
@@ -582,17 +577,20 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: Der Prozess
     timeInformation: Zeitangaben
     timestamp: Zeitstempel
+    topMenuItem: Oberster Menüpunkt
     type: Typ
     typeAdmin: Alle Administratoren
     typeAllUsers: Alle Benutzer
     typeOnlyMe: Nur für mich
+    uploadHere: Hier hochladen
+    uploadOneHere: Auswählen
     user: '{0} Benutzer'
     users: Benutzer
     via: schrieb
     viewExpired: Ihre aktuelle Bearbeitungsmaske ist abgelaufen und kann nicht weiter bearbeitet werden. Sie werden auf die Startseite umgeleitet.
     viewMode: Ansichtsmodus
     visible: Sichtbar
-    warning: Warnung
+    warning: Warnung!
     welcomeToPortal: Willkommen, bitte melden Sie sich an
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
     year: Jahr
@@ -646,45 +644,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       noUser: Es sind keine Benutzer vorhanden.
       tooltipHelper: Klicken Sie hier, um alle Benutzer anzuzeigen, die diese Rolle direkt oder indirekt besitzen
       userOfRoleTitle: Benutzer der Gruppe {0}
-    expressManagement:
-      deployButton: Hochladen
-      deployMessage: Prozesse werden deployt
-      exportExpress: Export Express
-      exportExpressProcessTitle: Export Express Prozesse
-      expressExportName: AXONIVY_Dataset_ExpressWorkflow_{0}.json
-      expressManagement: Express Management
-      expressMessages:
-        deployErrorLog: Fehler beim Deployen {0}
-        deploymentFinishedLog: Prozess(e) der Datei {0} erfolgreich im Portal deployt in {1}ms
-        endDeployLog: Express Deployment beendet
-        invalidVersionLog: Nicht unterstützte Version {0} von Express
-        process:
-          duplicateProcessNameLog: '- Duplizierter Prozessname {0}'
-          installProcessFailedLog: '- Prozessdeployment {0} fehlgeschlagen'
-          installProcessFinishedLog: Installation von Prozess {0} erfolgreich
-          installedProcessLog: Prozess installiert {0}
-          startDeployProcessLog: Start des Deployments von Prozess {0}
-        startDeployLog: Start des Deployments des/der Express-Prozesses(e) der Datei {0} ins Portal
-        status:
-          error: Fehler
-          failed: Fehlgeschlagen
-          info: Info
-          successful: Erfolg
-          warning: Warnung
-        validate:
-          validateExpressVersion: Die Variable Express-Version konnte im System nicht gefunden werden. Bitte kontaktieren Sie Ihren Administrator.
-          validateProcessCoOwnerLog: '- Validierung des Prozesses Co-Owner von {0}, Benutzer {1} ist nicht im System verfügbar'
-          validateProcessOwnerLog: '- Validierung des Prozesses Owner von {0}, Benutzer {1} ist nicht im System verfügbar, ändern Sie den Prozesseigner auf {2}'
-          validateProcessPermissionLog: '- Validierung der Prozessberechtigung von {0}, Benutzer {1} ist im System nicht verfügbar'
-          validateTaskDefUserLog: '- Validierung der Task-Definition Verantwortliche von {0},Benutzer {1} ist im System nicht verfügbar'
-        versionLog: 'Express Version: {0}'
-      fileEmptyMessage: Datei ist leer
-      importDialogHeaderTitle: Wählen Sie ein Dataset für den Express-Workflow, es sollte eine JSON-Datei sein.
-      importExpress: Express importieren
-      importExpressProcessTitle: Express Prozess importieren
-      importHeaderTitle: 'Liste von Express Prozessen werden exportiert:'
-      processCount: Prozess(e)
-      waitingMessage: Daten werden gesammelt…
     passwordValidation:
       criteria: Kriterien
       enablePasswordValidation: Kennwortüberprüfung einschalten
@@ -697,11 +656,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       titlePage: Passwort-Überprüfung
     processChain:
       currentStepIsNotDefined: Aktueller Schritt ({0}) der Prozesskette ist nicht definiert
-    statisticWidget:
-      chartDeletionConfirmation: Wollen Sie dieses Diagramm wirklich löschen?
-      contextMenuDrilldown: Drilldown
-      contextMenuToCaseList: Zur Fallliste gehen
-      contextMenuToTaskList: Zur Aufgabenliste
     taskStart:
       cannotDelegateTaskMessage: Diese Aufgabe kann an keinen anderen Benutzer oder keine andere Gruppe delegiert werden.
       cannotStartMessages:
@@ -717,6 +671,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       taskDescriptionNotAvailable: '[Keine Beschreibung]'
       taskNameNotAvailable: '[Kein Aufgabenname verfügbar]'
     taskView:
+      DeleteFilter: Filter löschen
       adminFilterSetWarning: Ihr Filter enthält Status, die nur von Administratoren gesehen werden können.
       appliedFilters: Angewendete Filter
       exportedTasksCasesFileName: AXONIVY_Dataset_Statistics_{0}.{1}
@@ -767,20 +722,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     QuickSearch: Schnellsuche
     QuickSearchInfo: Sie können den Bereich der Schnellsuche in der Spaltenverwaltung der Widgets anpassen. Die Suche erfolgt nach dem Kriterium "enthält", aber achten Sie darauf, die Leistung nicht zu beeinträchtigen, wenn Sie viele Spalten hinzufügen.
     RestoreDefaultDashboardMessage: Wenn Sie fortfahren, verlieren Sie alle von Ihnen erstellten Widgets. Es werden die Standardeinstellungen von <span class="dashboard-template-name-message">{0}</span> wiederhergestellt.
-    SaveNewWidgetFilterHeader: Speichere neuen Widget-Filter
+    SaveNewWidgetFilterHeader: Einen neuen Widget-Filter speichern
     SavedFilterHeader: Gespeicherte Filter
-    SearchForFilter: Suche nach Filter
+    SearchForFilter: Nach Filter suchen
     ShareThisDashboard: Teilen Sie dieses Dashboard
     StandardWidgets: Standard-Widgets
     StatisticWidget:
-      AvailableCharts: Verfügbare Statistikdiagramme
-      Charts: 'Diagramm(e): {0}'
-      ConfigurationDescription: Sie können Ihr Widget in diesem Konfigurationsbereich konfigurieren. Bitte definieren Sie die Grafik, die auf Ihrem Dashboard angezeigt werden soll.
       EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
-      FilterChartText: Filtern eines Diagramms nach Name
-      PlaceholderChartOption: Wählen Sie ein Diagramm
-      PleaseSelectChart: Bitte wählen Sie ein Diagramm aus
-      PreviewText: Bitte wählen Sie ein Diagramm aus, um die Canvas-Daten zu sehen
     WelcomeWidgetIntroduction: Dieses Widget zeigt einen Willkommenstext und ein Bild auf dem Dashboard an.
     WelcomeWidgetNotFoundMessage: Wir können das Bild des Widgets nicht finden, bitte konfigurieren Sie Ihr Bild neu!
     WidgetFilterName: Name des Widget-Filters
@@ -793,15 +741,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseList: Vorfall-Liste
     caseListIntroduction: Dieses Widget zeigt relevante Vorgangsinformationen entsprechend einiger definierter Parameter an
     caseWidgetInfo:
-      casesByCategory: Anzahl der Fälle nach Kategorie
-      casesByState: Anzahl der Fälle nach Bundesland
+      casesByCategory: Anzahl der Vorgänge nach Kategorie
+      casesByState: Anzahl der Vorgänge nach Status
       numberOfCase: Vorfälle
     category: Kategorie
     columnManagement: Spaltenverwaltung
     columnType:
       CUSTOM: Benutzerdefiniertes Feld
       CUSTOM_CASE: Benutzerdefiniertes Fallfeld
-      STANDARD: Standard-Säule
+      STANDARD: Standard-Feld
     configuration:
       CustomWidgetExternalLinkWarning: Einige Websites sind aufgrund von Sicherheitsbedenken nicht mit iframe kompatibel. Bitte wenden Sie sich an Ihren Administrator, wenn die externe Website nicht ordnungsgemäß funktioniert.
       CustomWidgetTitlePlaceholder: Lassen Sie es leer, um die Kopfzeile des Widgets auszublenden
@@ -850,6 +798,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardIcon: Dashboard-Symbol
       dashboardPermission: Dashboard Berechtigung
       dashboardTitle: Dashboard Titel
+      deleteDashboardMessage: Sind Sie sicher, dass Sie die "{0}" dashboard?
       editDashboard: Dashboard editieren
       manageDashboard: Dashboard verwalten
       removeDashboardHeader: Dashboard "{0}" entfernen
@@ -868,26 +817,16 @@ ch.ivy.addon.portalkit.ui.jsf:
     fullscreenMode: Vollbildmodus
     iconMessage:
       caseWidget:
-        BEACH_PALM_SUNBED: Sie sind großartig - alle Vorgänge sind erledigt. Lehnen Sie sich zurück und genießen Sie.
-        CHARGING_BATTERY_FULL_1: Zurzeit gibt es keine Vorgänge. Zeit, die Batterien ein wenig aufzuladen.
-        COFFEE_OF_HOT: Wahnsinn! Gut gemacht! Alle Vorgänge sind abgeschlossen. Wie wäre es mit einer kurzen Kaffeepause?
-        RANKING_WINNER_MEDAL: Spiel, Satz und Sieg! Du hast es geschafft, alle Vorgänge sind abgeschlossen!
-        SOCCER_PLAYER: Ziel erreicht! Du hast es geschafft, alle Vorgänge sind abgeschlossen. Kurze Halbzeitpause.
-        YOGA_MEDITATE: Gut gemacht! Alle Vorgänge sind erledigt. Einatmen, ausatmen, entspannen.
+        EMPTY_MESSAGE: Aktuell sind keine weiteren Cases vorhanden.
         noCasesFoundWhenFilter: Derzeit gibt es keine Vorgänge nach dem angewandten Filter.
       taskWidget:
-        BEACH_PALM_SUNBED: Sie sind großartig - alle Aufgaben sind erledigt. Lehnen Sie sich zurück und genießen Sie.
-        CHARGING_BATTERY_FULL_1: Derzeit gibt es keine Aufgaben. Zeit, die Batterien ein wenig aufzuladen.
-        COFFEE_OF_HOT: Wahnsinn! Gut gemacht! Alle Aufgaben sind erledigt. Wie wäre es mit einer kurzen Kaffeepause?
-        RANKING_WINNER_MEDAL: Spiel, Satz und Sieg! Du hast es geschafft, alle Aufgaben sind erledigt!
-        SOCCER_PLAYER: Ziel erreicht! Du hast es geschafft, alle Aufgaben sind erledigt. Kurze Halbzeitpause.
-        YOGA_MEDITATE: Gut gemacht! Alle Aufgaben sind erledigt. Einatmen, ausatmen, entspannen.
+        EMPTY_MESSAGE: Aktuell sind keine weiteren Aufgaben vorhanden.
         noTasksFoundWhenFilter: Derzeit gibt es keine Aufgaben nach dem angewandten Filter.
     loading: Laden...
     noCategory: Es gibt keine Kategorien
     noDashboard: Keine Dashboards vorhanden. Fügen Sie mindestens ein Dashboard und anschließend Widgets hinzu.
     noPermission: Sie haben keine Berechtigung, Dashboards zu sehen.
-    noWidget: Es sind keine Widgets für dieses Dashboard vorgesehen
+    noWidget: Es sind aktuell keine Widgets auf diesem Dashboard vorhanden
     numberPattern: Zahlen-Muster
     preview: Vorschau
     processList: Prozessliste
@@ -910,7 +849,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     select: Wählen Sie
     selectEditAction: Welche Aktion möchten Sie durchführen?
     showFullWidget: Vollständiges Widget anzeigen
-    startATask: Aufgabe starten
     statisticChartIntroduction: Dieses Widget zeigt die verfügbaren statistischen Diagramme an.
     statisticChartWidget: Statistisches Diagramm
     statisticWidgets: Statistik-Widgets
@@ -924,7 +862,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       predefinedFilters: Vordefinierte Filter
     taskList: Aufgabenliste
     taskListIntroduction: Dieses Widget zeigt relevante Aufgabeninformationen gemäß der definierten Einstellungen an
+    taskStart: Aufgabe starten
     taskWidgetConfiguration: Aufgaben-Widget-Konfiguration
+    topMenuItemInfo: Wenn die Checkbox „Oberster Menüpunkt“ aktiviert ist, erscheint das Dashboard als oberstes Element in der Navigationsleiste, sortiert nach Listenposition. Wenn sie deaktiviert ist, wird es als Unterpunkt unter „Dashboards“ angezeigt, ebenfalls nach Listenposition sortiert.
     widgetInfo: Widget-Informationen
     widgetInfoIcon: Widget-Informations-Symbol
     widgetTitle: Widget-Titel
@@ -934,7 +874,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourNotifications: Ihre Benachrichtigungen
     yourProcessViewer: Ihr Prozessbetrachter
     yourProcesses: Ihre Prozesse
-    yourStatistics: Ihre Statistiken
     yourTasks: Ihre Aufgaben
   documentFiles:
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
@@ -976,6 +915,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processElementId: Prozesselement Id
     stackTrace: StackTrace
   forgotPassword:
+    EmailAddress: E-Mail Adresse
     empty: Leer
     forgotPassword: Ich habe mein Passwort vergessen.
     forgotPasswordError: Bei der Bearbeitung Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.
@@ -1031,7 +971,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     caseHistoriesTitle: Historie
     caseHistoryPageTitle: Verlauf Vorgangsnotizen
     columnContent: Inhalte
-    curentReportOf: vom
+    curentReportOf: von
     eventType: Ereignis-Typ
     exportButton: Nach Excel exportieren
     relatedCase: Zugehöriger Vorgang
@@ -1043,6 +983,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     newNoteHeader: Neue Notiz hinzufügen
     wroteAt: Erstellt am
   notifications:
+    errorNotificationMessage: |
+      Die Details für die neue Aufgabe konnten nicht angezeigt werden. Bitte wenden Sie sich an Ihren Administrator, um Unterstützung zu erhalten
     linkToFullScreen: Link zum Vollbild
     linkToNotificationSettings: Benachrichtigungseinstellungen
     markAllAsRead: Alle als gelesen markieren
@@ -1061,7 +1003,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   passwordSetting:
     changePasswordWSError: Ein Fehler ist während der Passwortänderung aufgetreten. Bitte, kontaktieren Sie Ihren Administrator falls das Problem nach mehreren Versuchen besteht.
     confirmNewPassword: Neues Password bestätigen
-    confirmPasswordHaveMatch: Das eingegebene Passwort stimmt nicht mit dem Bestätigungspasswort überein.
+    confirmPasswordHaveMatch: Das eingegebene neue Passwort stimmt nicht mit dem bestätigten Passwort überein.
     currentPassword: Aktuelles Passwort
     minCharacterRequired: mindestens {0} Zeichen lang sein
     minLowercaseCharacterRequired: mindestens {0} Kleinbuchstaben enthalten
@@ -1069,6 +1011,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     minSpecialCharacterRequired: mindestens {0} Sonderzeichen enthalten
     minUppercaseCharacterRequired: mindestens {0} Großbuchstaben enthalten
     newPassword: Neues Passwort
+    noPermission: Sie haben nicht die erforderlichen Berechtigungen, um das Passwort zu ändern. Bitte wenden Sie sich an Ihren Administrator, um Unterstützung zu erhalten.
     passwordMust: Das Passwort muss
     requireConfirmPassword: Wiederholen Sie Ihr Passwort, bitte
     requireCurrentPassword: Bitte geben Sie Ihr Passwort an
@@ -1084,7 +1027,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcess: Prozess hinzufügen
     addNewProcessDialogHeader: Neuen Prozess hinzufügen
     backToOverview: Zurück zur Übersicht
-    deleteExpressWorkflowTooltip: Express Workflow entfernen
     deleteExternalLinkTooltip: Externen Link löschen
     deleteProcess: Prozess löschen
     deleteProcessItemConfirmation: Sind sie sicher das Sie folgenden Prozess löschen wollen?
@@ -1095,9 +1037,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogEditInfoTitle: '{0} Informationen'
       dialogHeaderDescription: In diesem Bereich können Sie einige Informationen bearbeiten, die sich auf den ausgewählten Prozess beziehen.
       dialogHeaderTitle: Informationen bearbeiten für {0}
-    editExpressWorkflowTooltip: Express Workflow bearbeiten
     editProcesses: Prozesse bearbeiten
-    expressWorkflow: Express Workflow
     externalLink: Externer Link
     externalLinkVisibility: Sichtbarkeit
     goTo: 'Gehe zu: '
@@ -1134,153 +1074,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     process: Prozess
     searchResults: Suchresultate
     searchResultsFor: '{0} Suchresultate für "{1}"'
-  sidestep:
-    addAdhocTask: Ad-hoc Aufgabe hinzufügen
-  statistic:
-    chart:
-      ExpandOrCollapseColumn: Spalten auf-/zuklappen
-      addChart: Neues Diagramm hinzufügen
-      addChartDialogHeader: Diagramm zum Dashboard hinzufügen
-      backToDashboard: Zurück zum Dashboard
-      barchart:
-        Percentage: Prozent
-        daysOfWeek:
-          friday: Freitag
-          monday: Montag
-          saturday: Samstag
-          sunday: Sonntag
-          thursday: Donnerstag
-          tuesday: Dienstag
-          wednesday: Mittwoch
-        expired: Abgelaufen
-        in2Days: In 2 Tagen
-        in3Days: In 3 Tagen
-        monthsOfYear:
-          April: April
-          August: August
-          December: Dezember
-          February: Februar
-          January: Januar
-          July: Juli
-          June: Juni
-          March: März
-          May: Mai
-          November: November
-          October: Oktober
-          September: September
-        today: Heute
-        tomorrow: Morgen
-        weeksOfMonth:
-          fifthWeek: Fünfte Woche
-          firstWeek: Erste Woche
-          fourthWeek: Vierte Woche
-          secondWeek: Zweite Woche
-          sixthWeek: Sechste Woche
-          thirdWeek: Dritte Woche
-      caseCategory: Vorgangskategorie
-      chartCreationSuccessDetailMsg: Diagramm mit Name {0} wurde erfolgreich erstellt
-      chartCreationSuccessTitle: Diagramm wurde erfolgreich erstellt
-      elapsedTime: Verstrichene Zeit
-      elapsedTimeChart:
-        compareButton: Vergleichen
-        compareRole: Rollen vergleichen
-        elapsedTimeInHours: Laufzeit in Std.
-        noEntriesFound: Keine übereinstimmende Kriterien gefunden
-        taskCategory: Aufgabenkategorie
-        withRole: 'Mit Rolle:'
-      emptystate:
-        defaultEmptyMessages: Es sind keine Auswertungen vorhanden.
-      exception:
-        idNotFound: 'Chart Id not found with id: {0}'
-        noPermission: You do not have the permission to send this request!
-      expiryPeriod: Fristende
-      loadingCharts: Bitte warten während die Diagramme geladen werden…
-      notAllowedToCreateChart: Sie haben die Filtereinstellungen geändert. Bitte aktualisieren Sie gesetzten Filter mit "Filter anwenden", um das Diagramm anschließend erstellen zu können
-      other: Andere
-      restoreDefaultChart: Wenn Sie fortfahren, werden alle selbsterstellten Diagramme gelöscht. Die Standardeinstellung wird angewendet.
-      second: sek
-      showAllCharts: Alle Diagramme anzeigen
-      statisticCarousel: Statistik-Karussell
-      statistics: Statistiken
-      taskByExpiry:
-        hour: (Stunde)
-        thisMonth: Diesen Monat
-        thisWeek: Diese Woche
-        thisYear: Dieses Jahr
-      taskByPriority:
-        addToDashboardLink: Zum Dashboard hinzufügen
-        exception: Ausnahme
-        high: Hoch
-        low: Niedrig
-        normal: Normal
-      taskExpiry: Aufgabenfristen
-    chartInfo:
-      chartDetailsHeader: Diagrammdetails
-      chartName: Diagrammname
-      chartType: Diagrammtyp
-    chartType:
-      caseByFinishedTask: Bearbeitete Vorgänge im Zeitraum
-      caseByFinishedTaskDescription: Vorgänge, in denen eine Aufgabe in der ausgewählten Zeitspanne abgeschlossen wurde
-      caseByFinishedTime: Abgeschlossene Vorgänge im Zeitraum
-      caseByFinishedTimeDescription: Vorgänge die in der ausgewählten Zeitspanne abgeschlossen wurden
-      caseByState: Vorgänge nach Status
-      casesByCategory: Fälle nach Kategorie
-      elapsedTimeByCaseCategory: Durchlaufzeit abgeschlossener Vorgänge
-      elapsedTimeByCaseCategoryDescription: Durchlaufszeit (Start bis Ende des Vorgangs) abgeschlossener Vorgänge nach Kategorie
-      taskByExpiry: Aufgaben nach Ablaufdatum
-      taskByPriority: Aufgaben nach Priorität
-    defaultChart:
-      newChart: Neues Diagramm
-      tasksByPriority: Aufgaben nach Priorität
-    filter:
-      affectedCharts: Betroffene Diagramme
-      allSelected: Alle
-      caseCategoriesLabel: Vorgangskategorien
-      caseCategoryFilterDescription: Hier sehen Sie alle verfügbaren Vorgangskategorien. Nur ausgewählte Vorgangskategorien werden in den betroffenen Diagrammen berücksichtigt.
-      caseStateFilterDescription: Nur ausgewählte Status werden in den betroffenen Diagrammen berücksichtigt.
-      filter: Filter
-      noRoles: Keine Rollen vorhanden
-      noSelectionCustomVarChar: Keine Auswahl
-      noneSelected: Keine
-      roleFilterDescription: Hier sehen Sie alle verfügbaren Prozessrollen. Nur ausgewählte Rollen werden in den betroffenen Diagrammen berücksichtigt.
-      rolesLabel: Rollen
-      selectAll: Alle selektieren
-      taskPrioritiesLabel: Aufgabenprioritäten
-      taskPriorityFilterDescription: Aufgaben können nach Ihrer Priorität gefiltert werden.
-      timePeriod: Zeitspanne
-      timePeriodFilterDescription: 'Schränkt den Zeitraum der Vorgänge und Aufgaben ein. '
-      workflowStatesLabel: Workflowstatus
-    taskAnalysis:
-      applyFilter: Filter anwenden
-      caseCategory: Vorgangskategorie
-      caseCreator: Ersteller
-      caseDescription: Vorgangsbeschreibung
-      caseFilter: Vorgangsfilter
-      caseID: Vorgangs Id
-      caseName: Vorgangsname
-      caseOwner: Vorgangs Owner
-      caseState: Vorgangsstatus
-      downloadZipFileExplanation: Die Anzahl der zu exportierenden Aufgaben überschreitet die Grenze der Excel-Zeilen. Daher werden die Daten in mehrere Excel-Dateien aufgeteilt und dann in einer ZIP-Datei zum Herunterladen komprimiert.
-      taskAnalysis: Aufgabenanalyse
-      taskCategory: Aufgabenkategorie
-      taskCreationTime: Aufgabe erstellt
-      taskDescription: Aufgabenbeschreibung
-      taskExpiryTime: Aufgabenfälligkeit
-      taskFilter: Aufgabenfilter
-      taskFinishedTime: Aufgabe abgeschlossen am
-      taskID: Aufgabe Id
-      taskPriority: Aufgabenpriorität
-      taskResponsible: Aufgabenverantwortlicher
-      taskState: Aufgabenstatus
-      taskWorker: Aufgabenbearbeiter
-      waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
-    timePeriod:
-      custom: Benutzerdefiniert
-      last6Month: Letzte 6 Monate
-      lastMonth: Letzter Monat
-      lastWeek: Letzte Woche
-    validationErrors:
-      nameIsExisted: Ein Diagramm mit dem selben Namen existiert bereits
   taskActivator:
     assign: Zuweisen
     cannotAssignTask: Diese Aufgabe kann keinem anderen Benutzer oder keiner anderen Gruppe zugewiesen werden.
@@ -1312,7 +1105,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     toUser: Benutzer
     userSelectionWatermark: Bitte wählen Sie einen Benutzer aus...
   taskDetails:
-    addDocumentHelpText: Zum Hochladen Dateien per Drag & Drop hier ablegen oder Dateien auswählen
+    addDocumentHelpText: 'Zum Hochladen Dateien per Drag & Drop hier ablegen oder '
     addNoteHelpText: Schreiben Sie hier Ihren Text
     afterEscalation: Nach Eskalation
     businessCase: Vorgang
@@ -1325,12 +1118,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiry: Ablauffrist
     failedDelayValidation: Der Zeitstempel der Aufgabenverzögerung darf kein leerer Wert oder ungültiges Datumsformat sein
     failedExpiryValidation: Der Ablauf der Aufgabe darf nicht in der Vergangenheit liegen.
-    noAdhoc: AdHoc nicht verfügbar
     noDescription: Keine Beschreibung vorhanden
     noNotes: Keine Notizen
     processingTime: Bearbeitungszeit
     setDelayTimestamp: '{0} ({1}) hat die Verzügerungszeit des Tasks #{2} auf {3} gesetzt.'
     setExpiryActivatorAndTimeNotes: '{0} und weisen Sie {1} als Aktivator für die Aufgabeneskalation zu'
+    supportFileTypes: 'Unterstützte Dateitypen für Uploads: {0}'
     taskCategory: Aufgabenkategorie
     taskExpiryDisable: Es kann keine Ablaufzeit gesetzt werden, da diese Aufgabe keine Eskalationslogik enthält.
     technicalCase: Technischer Vorgang
@@ -1438,10 +1231,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     OPEN: Offen
     OPEN_UPPERCASE: OFFEN
     PARKED: Reserviert
-    READY_FOR_JOIN: Bereit für Zusammenführung
+    READY_FOR_JOIN: Bereit zum Beitritt
     READY_FOR_JOINING: Bereit für Zusammenführung
     READY_FOR_JOINING_UPPERCASE: BEREIT FÜR ZUSAMMENFÜHRUNG
-    READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
+    READY_FOR_JOIN_UPPERCASE: BEREIT ZUM BEITRITT
     RESERVED: RESERVIERT
     RESUMED: In Bearbeitung
     SUSPENDED: Zugewiesen
@@ -1459,12 +1252,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Komplette Aufgabenliste anzeigen
     sort: Sortieren
   taskWarning:
-    createdTaskLeave: 'Sie verlassen die aktuelle Seite. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>&nbsp; &nbsp; Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>&nbsp; &nbsp; Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    createdTaskLogout: 'Sie verlassen die aktuelle Seite. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLeave: 'Sie verlassen die aktuelle Aufgabe. Bitte wählen Sie eine der folgenden Optionen:<UL><LI> Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI> Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI> Abbrechen: Die
-      Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLogout: 'Sie verlassen die aktuelle Aufgabe. Bitte wählen Sie eine der folgenden Optionen:<UL><LI>&nbsp; &nbsp; Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>&nbsp; &nbsp; Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben.
-      Dann abmelden.<LI>&nbsp; &nbsp; Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    createdTaskLeave: '<div>Sie verlassen die aktuelle Seite.<br/>  Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    createdTaskLogout: '<div>Sie verlassen die aktuelle Seite.<br/> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLeave: '<div>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>Abbrechen:
+      Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLogout: '<div>Sie verlassen die aktuelle Aufgabe.</br> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben. Dann abmelden.<LI>Abbrechen:
+      Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     taskNotFound: Die Aufgabe existiert nicht oder Sie haben ungenügende Rechte, um diese Aufgabe zu sehen.
   userProfile:
     myProfileTitle: Mein Profil
@@ -1477,60 +1270,13 @@ Dialogs:
       CaseDescription: Bearbeiten eines existierenden Workflows
       CaseName: Workflow editieren
   Tasks:
-    CreateWorkflow:
-      TaskDescription: Workflow wurde angelegt
-      TaskName: Workflow wurde angelegt
-    EditWorkflow:
-      TaskDescription: Ein Prozess wurde bearbeitet
-      TaskName: Prozess bearbeitet
-    FinalReview:
-      TaskName: Schlusskontrolle
-    FinalWorkflowTask:
-      taskDescription: Der Prozess {0} wurde beendet!
-    FormDefinition:
-      TaskDescription: Bitte definieren Sie das Formular!
-      TaskName: Formulardefinition!
-    ProcessLoaded:
-      TaskName: Aufgabe für die Adhoc Konfiguration
-    SaveWorkflow:
-      TaskName: Ein Express Workflowprozess ist gerade am Entstehen
     TaskDetail:
       DataDescription: Daten und Beschreibung
       restoreToDefaultSettings: Standardeinstellungen wiederherstellen
       switchToEditMode: Bearbeiten
       switchToViewMode: Speichern
-    WorkflowProperties:
-      TaskDescription: Bitte definieren Sie die Workfloweigenschaften!
-      TaskName: Workflow Einstellungen
-  WorkflowExecution:
-    ApprovalForm:
-      Approve: Genehmigen!
-      ApproveComment: Genehmigen
-      CommentLabel: Kommentar des Genehmigers
-      FieldSetApplicant: Antragssteller
-      FieldSetForm: Formular
-      FinishedTasks: Erledigte Aufgaben
-      Fullname: vollständiger Name
-      Reject: Ablehnen!
-      RejectComment: Ablehnen
-    FinalReviewForm:
-      approvalStatus: Freigabestatus
-      approver: Genehmiger
-      noticed: Zur Kenntnis genommen!
-    FinishedTasksForm:
-      Applicant: Antragssteller
-      ApprovalResult: Freigabestatus
-      FinishedTasks: Erledigte Aufgaben
-      FormDetails: Formulardetails
-    UserTaskForm:
-      ApprovalResult:
-        Approved: Genehmigt
-        Rejected: Abgelehnt
-      Formular: Formular
   agileBPM:
-    TooltipForOriginalTask: Ihre aktuelle Aufgabe wird wieder auftauchen sobald der Ad hoc Workflow fertiggestellt ist.
     define_WF:
-      AdhocWorkflowTasks: Workflow Aufgaben
       ErrorSelectInvalidAssignee: Der Beauftragte ist bereits ausgewählt oder ungültig
       ListOfSelectedUser: Liste ausgewählter Benutzer
       ResponsibleDialogHeader: Verantwortliche Benutzer
@@ -1547,14 +1293,6 @@ Dialogs:
   ch:
     ivy:
       addon:
-        express:
-          generic:
-            endpage:
-              subtitle: Die letzte Aufgabe wurde erfolgreich abgeschlossen
-              title: Aufgabe erfolgreich abgeschlossen!
-            expressNoItem: Es gibt noch keine abgeschlossene Express Aufgabe
-            expressNoItemDescription: Hier werden die Ergebnisse der abgeschlossenen Aufgaben angezeigt
-            expressWorkflowName: 'Business Details des Vorgangs: #{0}'
         portal:
           generic:
             GlobalSearch:
@@ -1562,31 +1300,34 @@ Dialogs:
               noResultsText: Es liegen keine Ergebnisse vor.
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: Neues Dashboard
+                NewDashboard: Neues Dashboard hinzufügen
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
+                  CustomWidgetIFrameTitle: '{0} Rahmen'
                 DashboardModification:
-                  Share: Aktie
+                  Share: Teilen
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: ziehen und ablegen zum ändern der Reihenfolge.
                   DragAndDropTooltip: Klicken Sie auf die Vorschau und ändern Sie die Reihenfolge durch Ziehen und Ableg
         portalkit:
           component:
             CaseItemDetails:
-              ShareCaseDetails: Teilen Sie Falldetails mit
+              ShareCaseDetails: Falldetails teilen
             CaseWidget:
               CaseCategory: Vorgangskategorie
               CaseDetail:
                 CaseDetailTitle: Vorgangsdetails
                 DataDescription: Daten und Beschreibung
                 destroyCase: Vorgang löschen
-              CaseOwner: Prozessverantwortlicher
+              CaseOwner: Prozessverantwortlichen
               Finished: Erledigt
-              GlobalSearchText: Die Fälle enthalten das Schlüsselwort "{0}" in Vorgangs Id{1}.
-              ShowBusinessDetails: Business Details
+              GlobalSearchText: Die Vorgänge enthalten das Schlüsselwort "{0}" in Vorgangs Id{1}.
+              ShowBusinessDetails: Geschäftsinformationen anzeigen
               caseNameNotAvailable: '[Kein Vorgangsname verfügbar]'
               defaultEmptyMessage: Keine Vorgänge verfügbar
+            CustomIFrameWidget:
+              CustomWidgetIFrameTitle: Benutzerdefinierter Widget-Rahmen
             IconSelection:
               IconLinkTooltip: Zum Ändern des Symbols anklicken
             TaskItemDetails:
@@ -1601,14 +1342,35 @@ Dialogs:
     axonivy:
       portal:
         component:
+          ChatDashboard:
+            AddTool: Werkzeug hinzufügen
+            Tools: Werkzeuge
+            WelcomeHeaderText: Willkommen auf dem Axon Ivy Portal!
+            WelcomeText: Wir freuen uns, Sie an Bord zu haben. Das Axon Ivy Portal ist Ihr Tor zu einer nahtlosen und effizienten Erfahrung. Egal, ob Sie ein neuer Benutzer sind, der die Funktionen erkundet, oder ein wiederkehrender Besucher, wir sind hier, um Sie bei jedem Schritt zu unterstützen.
           ShareLinkDialog:
             CopyLink: Link kopieren
-            LinkCopied: Link kopiert!
+            Link: Link
+            LinkCopied: Link kopiert
+          ToolList:
+            Attributes: Attribute
+            Collection: Sammlung
+            NoAvailableTools: Es gibt keine verfügbaren Tools
         dashboard:
           component:
+            AccessibilityShortcuts:
+              content: "<div class=\"ui-g\">\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 1</span>Fokus auf die Dashboards\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 4</span>Fokus auf die Fälle\n   </div>\n\
+                \   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + A</span>Fokus auf den ersten Prozess\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Tab</span>Sequentielles Durchlaufen von Elementen\n   </div>\n   <div\
+                \ class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 2</span>Fokus auf die Prozesse\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 5</span>Fokus auf die Suche\n   </div>\n   <div class=\"ui-g-3 shortcut-content\
+                \ \">\n      <span class=\"shortcut-key\">Alt + W</span>Fokus auf die erste Aufgabe\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Esc</span>Erweiterte Widgets schließen/Kontext Menüs schließen\n   </div>\n   <div class=\"ui-g-3 shortcut-content\
+                \ \">\n      <span class=\"shortcut-key\">Alt + 3</span>Fokus auf die Aufgaben\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 6</span>Fokus auf die User Einstellungen\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span\
+                \ class=\"shortcut-key\">Alt + Q</span>Fokus auf den ersten Fall\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Enter</span>Auswahl bestätigen   \n   </div>\n</div>"
+              title: 'Barrierefreiheitskürzel. Alt + 1: Se focaliser sur l’onglet du Dashboard. Alt + 2: Se focaliser sur l’onglet des processus. Alt + 3: Se focaliser sur l’onglet des tâches. Alt + 4: Se focaliser sur l’onglet des cas. Alt + 5: Se focaliser sur la recherche. Alt + 6: Se focaliser sur
+                les paramètres utilisateur. Alt + A: Se focaliser sur le premier processus. Alt + W: Se focaliser sur la première tâche. Alt + Q: Se focaliser sur le premier cas. Tab: Navigation séquentielle entre les éléments. Esc: Fermer les widgets agrandis/Fermer les menus contextuels. Enter: Confirmer
+                la sélection'
             CaseWidgetConfiguration:
               AddFilter: Filter hinzufügen
             ClientStatisticWidget:
+              IdNotFound: Diagramm mit ID {0} nicht gefunden
               NoPermissionChartMessage: Sie haben nicht die erforderliche Berechtigung, um diese Karte zu sehen.
             DashboardImportDetails:
               FileInfomation: Dateiinformationen
@@ -1644,6 +1406,11 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen
+        layouts:
+          AbstractTaskTemplate:
+            CaseDetailsIFrameTitle: Falldetails Rahmen
+          IFrameTaskTemplate:
+            TaskIFrameTitle: Aufgabenrahmen
   components:
     CaseDocument:
       FileDate: Änderungsdatum
@@ -1656,120 +1423,56 @@ Dialogs:
       invalidFileMessage: Dateityp nicht gültig!
       invalidSizeMessage: Datei zu groß!
       maximumFileUploadElement: Es gibt bereits ein Datei-Upload-Element
-  workflowCreation:
-    AdhocProcessName: AdHoc Prozess für Aufgabe {0} - {1}
-    FormDefinition:
-      AddCheckboxField: Neues Feld hinzufügen
-      AddOptionboxField: Neue Option hinzufügen
-      AllowedFiletypes: Erlaubte Dateiformate
-      BroadFooterArea: Breiter Footer Bereich
-      BroadHeaderArea: Breiter Header Bereich
-      CheckboxFields: Auswahlfelder
-      CreateField: Erstellen
-      DataProvider: Datenanbieter
-      DragAndDropTooltip: Ziehen Sie per Drag and Drop die verfügbaren Elemente in den Header, die linke Spalte, die rechte Spalte oder in den Footer um sie zu platzieren!
-      ElementLabel: Label
-      ElementName: Elementbezeichnung
-      Email:
-        Attachment: Anhang
-        EmailAddress: E-Mail Adresse
-        EmailText: Emailnachricht
-        ResponseTo: Antwort an
-        Subject: Betreff
-      ExecuteWorkflow: Workflow direkt ausführen
-      ExecuteWorkflowWarning: Sie müssen alle Aufgaben ausführen, bevor Sie diesen Workflow ausführen können
-      FieldSetAvailableFormelements: Formularelemente
-      FieldSetFormelements: Formularelemente erstellen
-      FieldSetFormelementsPlacing: Platzierung der Formularelemente
-      FieldSetPreviewArea: Formularvorschau
-      FinishWorkflow: Workflowende
-      InputArea: Eingabebereich
-      InputCheckbox: Auswahlfeld
-      InputField: Eingabefeld
-      InputFileUpload: Dateiupload
-      InputOptions: Optionsfeld
-      InputType: Eingabe-Typ
-      InputTypes:
-        DateSelection: Datumsauswahl
-        NumberField: Nummernfeld
-        TextBox: Textfeld
-      LeftColumn: Linke Spalte
-      NoCheckboxFieldYet: Bisher keine Auswahlfelder angelegt
-      NoDataProvider: 'Daten Provider '
-      NoFormelementsAvailable: Keine Formularelemente verfügbar!
-      NoOptionboxFieldsYet: Bisher keine Auswahloptionen angelegt
-      NumberOfFiles: Dateianzahl
-      NumberOfRows: Zeilenanzahl
-      OptionboxFields: Optionsfelder
-      OptionboxPlaceholder: Option
-      Preview: Vorschau
-      RightColumn: Rechte Spalte
-      SaveWorkflow: Workflow speichern
-      UploadFileFormat:
-        Excel: Excel (xls/xlsx)
-        OtherFormats: Andere Dateiformate
-        PDF: PDF (pdf)
-        Word: Word (doc/docx)
-      cancelCreateForm: Wollen Sie wirklich abbrechen? Alle  Daten gehen verloren!
-      otherFiletype: Andere Dateiformate
-    ProcessName: Express Workflow erstellen
-    TaskType:
-      Approval: Genehmigung
-      Email: Information E-Mail
-      Review: Überprüfung
-      UserTask: Aufgabe
-      UserTaskWithEmail: Aufgabe mit E-Mail Schritt
-    WorkflowDefinition:
-      AbleToStart: Startberechtigung
-      AddProcessStep: Prozessschritt hinzufügen
-      ChooseAssignee:
-        AddUserOrRole: 'Wählen Sie eine Gruppe oder Benutzer aus, bitte:'
-        SelectedAssigneesFieldSet: Ausgewählte Genehmiger
-        UserTooltip: Benutzer
-      DefaultTemplateDescription: Unten befindet sich das Standard Template
-      DeleteProcessStep: Prozessschritt löschen
-      Description: Beschriben Sie Ihren Prozess
-      DueTimeInDays: Fälligkeitsfrist in Tagen
-      EndStep: Ende
-      FormDefinitionStep: Formular-definition
-      ProcessNameExists: Dieser Prozessname wurde bereits benutzt
-      ProcessOwner: Prozessverantwortliche
-      Processdescription: Prozessbeschreibung
-      Processdetails: Prozesseigenschaften
-      Processflow: Prozessfluss
-      Processstep: Prozessschritt
-      Processtype: Prozessart
-      ProcesstypeAdHoc: Einmalig
-      ProcesstypeRepeating: Wiederkehrend
-      TaskType: Aufgabentyp
-      UntilDaysTooltip: Nach Ablauf wird die Aufgabe an die Rolle Everybody zugeteilt, und ihre Priorität auf Hoch gesetzt.
-      UserInterface:
-        ChangeSettingWarning: Alle definierten Aufgaben werden gelöscht. Sind Sie sicher?
-        CreateOwn: Erstellen
-        UseDefault: Standardoberfläche
-        UserInterface: Benutzeroberfläche
-      WorkflowPropertiesStep: Workfloweigenschaften
-      requiredMsgs:
-        ReqMsgGeneric: ' ist ein erforderliches Feld!'
-    processStep: Prozessschritt
 Labels:
-  AdhocWorkflow: Beschreiben Sie Ihren Workflow
+  AI:
+    Error:
+      CannotFindUser: ''
+      CannotStartTask: ''
+      InvalidTaskPriority: ''
+      InvalidTaskState: ''
+      NoMatchingCase: ''
+      NoMatchingProcesses: ''
+      NoMatchingTask: ''
+    FindCaseAIResult: ''
+    FindProcessAIResult: ''
+    FindTaskAIResult: ''
+    FindUserAIResult: ''
+    FoundCaseHeader: ''
+    FoundProcessesHeader: ''
+    FoundTaskHeader: ''
+    FoundUsersHeader: ''
+    ProcessInfoHeader: ''
+    ProcessInfoHeaderWithParameters: ''
+    ProcessParameterInfo: ''
+    ProcessParameterInfoWithValue: ''
+    TaskDetailsResult: ''
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
   CreateNewDashboard: Neues Dashboard erstellen
+  EditDescription: Beschreibung bearbeiten
   Enums:
+    ChatbotCandidateQuestion:
+      EXPLORE:
+        header: Explore
+        question: Was sind die wichtigsten Merkmale des Axon Ivy Portals?
+      INTERACT:
+        header: Interact
+        question: Listen Sie mir alle Aufgaben auf, die in der laufenden Woche erledigt werden müssen
+      TUTORIAL:
+        header: Tutorial
+        question: Wo kann ich die Dokumentation oder Tutorials für das Axon Ivy Portal finden?
     DashboardStandardCaseColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
       CATEGORY: Kategorie
       CREATED: Erstellt am
-      CREATOR: Schöpfer
+      CREATOR: Ersteller
       DESCRIPTION: Beschreibung
       FINISHED: Beendetes Datum
       ID: Id
       NAME: Name
-      OWNER: Eigentümer des Falles
-      STATE: Staat
+      OWNER: Prozessverantwortlichen
+      STATE: Status
     DashboardStandardTaskColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
@@ -1782,7 +1485,7 @@ Labels:
       PRIORITY: Priorität
       RESPONSIBLE: Verantwortlich
       START: Start
-      STATE: Staat
+      STATE: Status
     FilterOperator:
       AFTER: Ist nach
       BEFORE: Ist vor
@@ -1795,13 +1498,13 @@ Labels:
       END_WITH: Endet mit
       EQUAL: Gleichberechtigt
       GREATER: Greater
-      GREATER_OR_EQUAL: Greater or equal
+      GREATER_OR_EQUAL: Größer oder gleich
       IN: Unter
       IS: Ist
       IS_NOT: Ist nicht
       LAST: In den letzten
       LESS: Less
-      LESS_OR_EQUAL: Less or equal
+      LESS_OR_EQUAL: Kleiner oder gleich
       NEXT: Innerhalb der nächsten
       NOT_BETWEEN: Nicht zwischen
       NOT_CONTAINS: Enthält nicht
@@ -1813,7 +1516,7 @@ Labels:
       NO_CATEGORY: Keine Kategorie
       START_WITH: Beginnt mit
       TODAY: Heute
-      YESTERDAY: Yesterday
+      YESTERDAY: Gestern
     FilterPeriodType:
       DAY: Tag
       MONTH: Monat
@@ -1825,7 +1528,7 @@ Labels:
       WEEK: Woche
       YEAR: Jahr
     GlobalSearchScopeCategory:
-      CASES: Fälle
+      CASES: Vorgänge
       PROCESSES: Prozesse
       TASKS: Aufgaben
     SearchScopeCaseField:
@@ -1848,10 +1551,9 @@ Labels:
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
   TaskUser-Explain: Kommaseparierte Liste von Benutzern
+  ToggleMenu: Menü umschalten
   ViewAllResults: Alle Ergebnisse anzeigen
-  adhocTaskRequired: Zumindest eine Aufgabe ist erforderlich.
   disabledUserPrefix: (inaktiv)
-  title: Self Service Ad-hoc Workflow
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm
@@ -1881,12 +1583,7 @@ Processes:
       SynchronizeServerConfigurationCaseName: Server Konfiguration synchronisieren
   portalHome: Portal Home
   portalSettingSaved: Portaleinstellungen sind gespeichert
-ProcessPages:
-  selfServiceAdhocProcess: Axon Ivy Self Service
-  selfServiceDescription: 'Self Service Prozess: ein ad-hoc Workflow starten'
 Texts:
-  Adhoc-Explain: '<P>  <B>Geben Sie Ihren Kommentar ein </B>und drücken Sie <B>Senden</B> um weiterzufahren.  </P>  '
-  AdhocWF-Explain: "<P>\n\nDefinieren und starten Sie einen Workflow auf Knopfdruck. \n\n</P>\n\n"
   Approval-Explain: "<P>\n\n<B>Treffen Sie Ihre Entscheidung</B> und klicken Sie auf <B>Senden </B>um weiterzufahren. \n\n</P>\n\n"
   QA-Explain: |+
     <P>

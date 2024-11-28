@@ -1,0 +1,15 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "GlobalSearchLeftMenuData",
+  "namespace" : "ch.ivy.addon.portal.generic.GlobalSearchLeftMenu",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "keyword",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "activeTabIndex",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

@@ -75,6 +75,7 @@ function loadGrid() {
       if (descriptionElement.length > 0) {
         setupImageProcessWidgetDescription(descriptionElement);
       }
+      udateResizableTablesWhenResizeWidget();
       setupGridProcessWidget();
     });
 
@@ -227,7 +228,16 @@ function resizeTableBody() {
       // Update scrolling of the Primefaces widget
       const widget = PF(widgetName);
       widget.cfg.scrollHeight = tableBody.parents('.ui-datatable-scrollable').height().toString();
+	  if (tableBody.parents('.js-resizing').length > 0) {
+        widget.init(widget.cfg);
+      }
       widget.setupScrolling();
+
+      // Remove focus state of header after sort it
+      if (widget.headerTable.length == 1) {
+        var widgetHeader = widget.headerTable[0];
+        $(widgetHeader).find('th.ui-state-focus').removeClass('ui-state-focus');
+      }
     });
     setTimeout(function() {
       resizeObserver.observe(sb);
@@ -287,7 +297,20 @@ function loadCaseAndTaskWidgetFirstTime(loadingClass, widgetClass) {
       widget.removeClass('u-display-none');
       widget.removeClass('u-invisibility');
     }
+    $('.js-resizing').find('table[role="grid"]').addClass('w-min');
   }, 50);
+}
+
+function initTableWidget(table) {
+  if (table === undefined || table.cfg === undefined) {
+    return;
+  }
+
+  setTimeout(function(){
+    var $table = $(document.getElementById(table.id));
+    table.cfg.scrollHeight = $table.height().toString();
+    table.init(table.cfg);
+  }, 500);
 }
 
 function hideAllDashboardOverlayPanels() {
@@ -309,10 +332,7 @@ function hideAllDashboardOverlayPanels() {
 
 // Start Process Dashboard Widget
 function respondProcessWidget(displayMode) {
-  if (displayMode === 'IMAGE_MODE') {
-    setupImageProcessWidget();
-  }
-  else if (displayMode === 'FULL_MODE') {
+ if (displayMode === 'FULL_MODE') {
     setupGridProcessWidget();
   }
 }
@@ -484,4 +504,34 @@ function searchNewWidgetByNameOrDescription(input) {
   });
 
   noResult ? $('.js-no-widget').removeClass('u-hidden') : $('.js-no-widget').addClass('u-hidden');
+}
+
+function udateResizableTablesWhenResizeWidget() {
+  const scrollableBody = document.querySelectorAll('.ui-datatable-scrollable-body');
+  scrollableBody.forEach((sb) => {
+    let tableBody = $(sb);
+    if (tableBody.parents('.js-resizing').length == 0) {
+      return;
+    }
+
+    let parentHeight = tableBody.parents('.grid-stack-item-content.card.dashboard-card').height();
+    if (!window.matchMedia("(max-width: 767px)").matches) {
+      tableBody.height(parentHeight - 100);
+    } else {
+      tableBody.height(parentHeight * 0.9);
+    }
+
+    const widgetName = tableBody.parents('.grid-stack-item').find('.js-table-widget-var').val();
+    if (widgetName === undefined) {
+      return;
+    }
+
+    // Update scrolling of the Primefaces widget
+    const widget = PF(widgetName);
+    if (widget) {
+      widget.cfg.scrollHeight = tableBody.parents('.ui-datatable-scrollable').height().toString();
+      widget.renderDeferred(widget.cfg);
+    }
+  });
+
 }

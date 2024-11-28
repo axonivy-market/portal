@@ -92,7 +92,14 @@ public class NotificationLazyModel extends LazyDataModel<NotificationDto> {
   }
 
   public void markAsRead(WebNotification dto) {
-    webNotifications.markAsRead(dto);
+    if (!dto.isRead()) {
+      webNotifications.markAsRead(dto);
+    }
+  }
+  
+  public NotificationDto findById(String notificationId) {
+    WebNotification notification =  webNotifications.find(notificationId);
+    return new NotificationDto(notification);
   }
 
   public boolean isOnlyUnread() {

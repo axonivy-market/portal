@@ -1,6 +1,0 @@
-CustomVarFieldData #class
-ch.ivy.addon.portalkit.component.statistic.CustomVarField #namespace
-selectedCustomValue String #field
-selectedCustomValue PERSISTENT #fieldModifier
-tempSelectedCustomValues List<String> #field
-tempSelectedCustomValues PERSISTENT #fieldModifier

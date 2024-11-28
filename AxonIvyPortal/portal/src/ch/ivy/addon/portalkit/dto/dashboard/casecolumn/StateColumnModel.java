@@ -23,7 +23,7 @@ public class StateColumnModel extends CaseColumnModel implements Serializable {
   public void initDefaultValue() {
     super.initDefaultValue();
     this.field = DashboardStandardCaseColumn.STATE.getField();
-    this.style = defaultIfEmpty(this.style, getDefaultStyle());
+    this.styleToDisplay = initDefaultStyle();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.format = getDefaultFormat();
   }
@@ -39,7 +39,7 @@ public class StateColumnModel extends CaseColumnModel implements Serializable {
   }
 
   @Override
-  public String getDefaultStyle() {
+  protected int getDefaultColumnWidth() {
     return NORMAL_WIDTH;
   }
 

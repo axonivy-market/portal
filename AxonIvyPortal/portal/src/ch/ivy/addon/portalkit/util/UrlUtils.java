@@ -19,7 +19,7 @@ public class UrlUtils {
   public static String getServerUrl() {
     URL url;
     try {
-      url = new URL(Ivy.html().applicationHomeRef());
+      url = Ivy.html().applicationHomeLink().toAbsoluteUri().toURL();
     } catch (MalformedURLException e) {
       throw new PortalException(e);
     }

@@ -40,11 +40,6 @@ public class TaskSearchCriteria {
       TaskBusinessState.IN_PROGRESS, TaskBusinessState.DONE, TaskBusinessState.DESTROYED, TaskBusinessState.DELAYED,
       TaskBusinessState.ERROR);
 
-  /**
-   * No need since 9.2, this value is always session username
-   */
-  @Deprecated(forRemoval = true, since = "9.2")
-  private String involvedUsername;
   private List<TaskState> includedStates;
   private boolean isAdminQuery;
   private String keyword;
@@ -65,9 +60,9 @@ public class TaskSearchCriteria {
 
   private List<SearchScopeTaskField> searchScopeTaskFields;
   private boolean isGlobalSearch;
-  private boolean isQuickGlobalSearch;
   private boolean isGlobalSearchScope;
 
+  @SuppressWarnings("deprecation")
   public TaskQuery createQueryToFindLatestTasks(TaskQuery taskQuery, Date timeStamp) {
     if (isAdminQuery) {
       taskQuery.where().and(TaskQuery.create().where().startTimestamp().isGreaterThan(timeStamp));
@@ -383,24 +378,6 @@ public class TaskSearchCriteria {
     this.sortDescending = sortDescending;
   }
 
-  /**
-   * No need since 9.2, always use session username
-   * @return empty String
-   */
-  @Deprecated(forRemoval = true, since = "9.2")
-  public String getInvolvedUsername() {
-    return "";
-  }
-
-  /**
-   * No need since 9.2, always use session username
-   * @param involvedUsername
-   */
-  @Deprecated(forRemoval = true, since = "9.2")
-  public void setInvolvedUsername(String involvedUsername) {
-    this.involvedUsername = involvedUsername;
-  }
-
   public boolean isAdminQuery() {
     return isAdminQuery;
   }
@@ -468,15 +445,6 @@ public class TaskSearchCriteria {
   public boolean hasCategory() {
     return StringUtils.isNotBlank(category);
   }
-
-  /**
-   * No need since 9.2, always true
-   * @return username
-   */
-  @Deprecated(forRemoval = true, since = "9.2")
-  public boolean hasInvolvedUsername() {
-    return StringUtils.isNotBlank(involvedUsername);
-  }
   
   public boolean isSorted() {
     return isSorted;
@@ -517,9 +485,6 @@ public class TaskSearchCriteria {
     return isGlobalSearch;
   }
 
-  public void setQuickGlobalSearch(boolean isQuickGlobalSearch) {
-    this.isQuickGlobalSearch = isQuickGlobalSearch;
-  }
   public List<SearchScopeTaskField> getSearchScopeTaskFields() {
     return searchScopeTaskFields;
   }

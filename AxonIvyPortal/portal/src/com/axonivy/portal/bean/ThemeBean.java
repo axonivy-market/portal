@@ -46,7 +46,7 @@ public class ThemeBean implements Serializable {
 
   private String getDefaultThemeMode() {
     return StringUtils.defaultIfBlank(
-        new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DEFAULT_THEME_MODE),
+        GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.DEFAULT_THEME_MODE),
         ThemeMode.LIGHT.toString());
   }
 
@@ -56,7 +56,7 @@ public class ThemeBean implements Serializable {
   }
 
   public boolean isEnableSwitchThemeButton() {
-    return new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_SWITCH_THEME_BUTTON);
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_SWITCH_THEME_BUTTON);
   }
 
   public void toggleTheme() {

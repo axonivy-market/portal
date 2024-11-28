@@ -1,6 +1,0 @@
-CustomPageHeaderAndFooterData #class
-com.axonivy.portal.developerexamples #namespace
-pageHeader String #field
-pageHeader PERSISTENT #fieldModifier
-pageFooter String #field
-pageFooter PERSISTENT #fieldModifier

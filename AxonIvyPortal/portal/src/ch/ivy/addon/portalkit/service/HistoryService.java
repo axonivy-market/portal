@@ -14,26 +14,19 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.History;
 import ch.ivy.addon.portalkit.bo.History.HistoryType;
-import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.IWorkflowEvent;
+import ch.ivyteam.ivy.workflow.note.Note;
 
 public class HistoryService {
 
   private static final String CASE_NAME_FORMAT = "#%d %s";
-
-  public List<History> getHistories(List<ITask> tasks, List<INote> notes, boolean excludeSystemTasks, boolean excludeSystemNotes) {
-    List<History> historiesRelatedToTasks = createHistoriesFromITasks(tasks, excludeSystemTasks);
-    List<History> historiesRelatedToNotes = createHistoriesFromINotes(notes, excludeSystemNotes);
-    return sortHistoriesByTimeStampDescending(Arrays.asList(historiesRelatedToTasks, historiesRelatedToNotes));
-  }
 
   public List<History> getCaseHistories(Long selectedCaseId, List<ITask> tasks, List<ICase> cases,
       boolean excludeSystemTasks, boolean excludeSystemNotes) {
@@ -47,7 +40,7 @@ public class HistoryService {
 
   private List<History> createCaseHistories(boolean excludeSystemNotes, ICase caseHistory, Long selectedCaseId) {
     var histories = new ArrayList<History>();
-    for (var note : caseHistory.getNotes()) {
+    for (var note : caseHistory.notes().all()) {
       if(excludeSystemNotes && !isNotSystemNote(note)) {
         continue;
       }
@@ -69,13 +62,11 @@ public class HistoryService {
   }
 
   private List<History> createHistoriesFromITasks(List<ITask> tasks, boolean excludeSystemTasks, long selectedCaseId) {
-    List<ITask> refineTasks = new ArrayList<>();
-    refineTasks = tasks.stream().filter(isNotExpressTask()).collect(Collectors.toList());
     if (excludeSystemTasks) {
-      refineTasks = refineTasks.stream().filter(isNotSystemTaskNote()).collect(Collectors.toList());
+      tasks = tasks.stream().filter(isNotSystemTaskNote()).collect(Collectors.toList());
     }
     var histories = new ArrayList<History>();
-    CollectionUtils.emptyIfNull(refineTasks).forEach(task -> {
+    CollectionUtils.emptyIfNull(tasks).forEach(task -> {
       var history = createHistoryFrom(task);
       buildDisplayCaseNameForNote(selectedCaseId, task.getCase(), history);
       histories.add(history);
@@ -92,16 +83,7 @@ public class HistoryService {
     return allHistories;
   }
 
-  private List<History> createHistoriesFromITasks(List<ITask> tasks, boolean excludeSystemTasks) {
-    if (excludeSystemTasks) {
-      return tasks.stream().filter(isNotSystemTaskNote()).filter(isNotExpressTask())
-          .map(this::createHistoryFrom).collect(Collectors.toList());
-    }
-    return tasks.stream().filter(isNotExpressTask())
-        .map(this::createHistoryFrom).collect(Collectors.toList());
-  }
-
-  public List<History> createHistoriesFromINotes(List<INote> notes, boolean excludeSystemNotes) {
+  public List<History> createHistoriesFromINotes(List<Note> notes, boolean excludeSystemNotes) {
     if(excludeSystemNotes) {
       return notes.stream().filter(note -> isNotSystemNote(note))
           .map(this::createHistoryFrom).collect(Collectors.toList());
@@ -113,12 +95,8 @@ public class HistoryService {
     return task -> !StringUtils.equals(task.getWorkerUserName(), ISecurityConstants.SYSTEM_USER_NAME);
   }
 
-  private Predicate<? super ITask> isNotExpressTask() {
-    return task -> task.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).getOrNull() == null;
-  }
-
-  private boolean isNotSystemNote(INote note) {
-    return !StringUtils.equals(note.getWritterName(), ISecurityConstants.SYSTEM_USER_NAME);
+  private boolean isNotSystemNote(Note note) {
+    return !StringUtils.equals(note.authorName(), ISecurityConstants.SYSTEM_USER_NAME);
   }
 
   public History createHistoryFrom(ITask task) {
@@ -173,13 +151,13 @@ public class HistoryService {
     });
   }
 
-  public History createHistoryFrom(INote note) {
+  public History createHistoryFrom(Note note) {
     History history = new History();
-    history.setId(note.getId());
-    history.setContent(note.getMessage());
-    history.setInvolvedUser(note.getWritter());
-    history.setInvolvedUsername(note.getWritterName());
-    history.setTimestamp(new Timestamp(note.getCreationTimestamp().getTime()));
+    history.setId(note.id());
+    history.setContent(note.content());
+    history.setInvolvedUser(note.author());
+    history.setInvolvedUsername(note.authorName());
+    history.setTimestamp(new Timestamp(note.createdAt().getTime()));
     history.setType(HistoryType.NOTE);
     return history;
   }

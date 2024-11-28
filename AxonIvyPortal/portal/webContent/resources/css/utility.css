@@ -143,6 +143,10 @@
   visibility: hidden;
 }
 
+.u-mar-right-2 {
+  margin-right: 2px !important;
+}
+
 .u-mar-right-5 {
   margin-right: 5px !important;
 }
@@ -392,4 +396,13 @@
 
 .w-full {
   width: 100%;
+}
+
+.scroll-table{
+  overflow: auto;
+  max-height: 50vh;
+}
+
+.w-min {
+  width: min-content !important;
 }

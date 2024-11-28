@@ -11,7 +11,7 @@ import com.axonivy.portal.selenium.common.FileHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.Condition;
@@ -24,7 +24,7 @@ public class UploadDocumentTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
   private MainMenuPage menuPage;
-  private CaseWidgetPage casePage;
+  private CaseWidgetNewDashBoardPage casePage;
   private CaseDetailsPage caseDetailsPage;
 
   @Override
@@ -38,7 +38,7 @@ public class UploadDocumentTest extends BaseTest {
   public void uploadNormalDocument() {
     initNewDashboardPage(TestAccount.ADMIN_USER);
     casePage = menuPage.openCaseList();
-    caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
+    caseDetailsPage = casePage.openDetailsCase("Leave Request");
     int numberOfDocument = caseDetailsPage.countNumberOfDocument();
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
     caseDetailsPage.checkNumberOfDocument(numberOfDocument + 1);
@@ -50,7 +50,7 @@ public class UploadDocumentTest extends BaseTest {
     initNewDashboardPage(TestAccount.ADMIN_USER);
     casePage = menuPage.openCaseList();
 
-    caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
+    caseDetailsPage = casePage.openDetailsCase("Leave Request");
     caseDetailsPage.openAddDocumentDialogAndUploadDocument(FileHelper.getAbsolutePathToTestFile("test-with-macro.doc"));
     caseDetailsPage
         .checkUploadDocumentErrorContent("This file is not allowed to upload because it contains some script!");
@@ -74,7 +74,7 @@ public class UploadDocumentTest extends BaseTest {
     initNewDashboardPage(TestAccount.ADMIN_USER);
     casePage = menuPage.openCaseList();
 
-    caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
+    caseDetailsPage = casePage.openDetailsCase("Leave Request");
     caseDetailsPage
         .openAddDocumentDialogAndUploadDocument(FileHelper.getAbsolutePathToTestFile("unsupportedExtension.abc"));
     caseDetailsPage.checkUploadDocumentErrorContent("This file type is not accepted!");
@@ -91,14 +91,17 @@ public class UploadDocumentTest extends BaseTest {
     updateFileExtensionWhiteListInPortalSetting();
     initNewDashboardPage(TestAccount.ADMIN_USER);
     casePage = menuPage.openCaseList();
-
-    caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
+    caseDetailsPage = casePage.openDetailsCase("Leave Request");
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(pdfFile));
     isCorrectIconExtension(pdfFile, "si si-office-file-pdf-1");
 
+    casePage = menuPage.openCaseList();
+    caseDetailsPage = casePage.openDetailsCase("Leave Request");
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(wordFile));
     isCorrectIconExtension(wordFile, "si si-office-file-doc-1");
 
+    casePage = menuPage.openCaseList();
+    caseDetailsPage = casePage.openDetailsCase("Leave Request");
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(unsupportFile));
     isCorrectIconExtension(unsupportFile, "si si-common-file-empty");
   }
@@ -124,7 +127,7 @@ public class UploadDocumentTest extends BaseTest {
     initNewDashboardPage(TestAccount.ADMIN_USER);
     casePage = menuPage.openCaseList();
 
-    caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
+    caseDetailsPage = casePage.openDetailsCase("Leave Request");
     int numberOfDocument = caseDetailsPage.countNumberOfDocument();
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile("unsupportedExtension.abc"));
     caseDetailsPage.checkNumberOfDocument(numberOfDocument + 1);

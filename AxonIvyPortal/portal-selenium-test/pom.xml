@@ -7,8 +7,8 @@
   <version>9.1.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
-    <ivy.engine.version>11.4.0</ivy.engine.version>
-    <build.plugin.version>11.4.0-SNAPSHOT</build.plugin.version>
+    <ivy.engine.version>12.0.0</ivy.engine.version>
+    <build.plugin.version>12.0.0</build.plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>

@@ -1,6 +1,0 @@
-ExampleHomePageData #class
-com.axonivy.portal.userexamples.ExampleHomePage #namespace
-process com.axonivy.portal.userexamples.dto.UserProcess #field
-process PERSISTENT #fieldModifier
-state com.axonivy.portal.userexamples.enums.RequestState #field
-state PERSISTENT #fieldModifier

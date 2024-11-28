@@ -83,10 +83,15 @@ Dialogs:
             ProcessNotFound: No se encuentra el proceso definido.
             ProcessType:
               CASE_MAP: Mapa del caso
-              EXPRESS_PROCESS: Flujo de trabajo exprés
               EXTERNAL_LINK: Link externo
               IVY_PROCESS: Proceso de negocio
+            ProcessViewerIFrameTitle: Marco del visor de procesos
 Labels:
+  AI:
+    Error:
+      CanceledFlow: You have canceled the flow. If you have any requests, please let me know.
+      ErrorWhenProceedRequest: An error has occurred while trying to process your request. Please try again later.
+      SomethingWentWrong: Something went wrong when proceed your request. Please try again later.
   DisabledUserPrefix: (inactivo)
   NoName: Sin nombre
   NoResults: Sin resultados

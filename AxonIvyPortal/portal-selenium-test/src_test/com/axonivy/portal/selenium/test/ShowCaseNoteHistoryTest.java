@@ -8,12 +8,12 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
@@ -39,8 +39,8 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
 
   @Test
   public void testShowCaseNoteHistory() {
-    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
-    detailsPage = casePage.openDetailsOfCaseHasName(CASE_NAME);
+    CaseWidgetNewDashBoardPage casePage = mainMenuPage.selectCaseMenu();
+    detailsPage = casePage.openDetailsCase(CASE_NAME);
     resizeBrowserTo2kResolution();
     String caseId = detailsPage.getCaseId();
     String uuid = detailsPage.getCaseUuid();
@@ -59,11 +59,12 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
   @Test
   public void testShowCaseNoteHistoryInTask() {
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
-    CaseWidgetPage caseWidgetPage = NavigationHelper.navigateToCaseList();
-    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName("Leave Request");
+    CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase("Leave Request");
     String caseUuid = caseDetailsPage.getCaseUuid();
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrame(0);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskIFrameTemplatePage taskTemplatePage = taskWidget.startTaskIFrameByIndex(0);
     taskTemplatePage.openCaseInfo();
     taskTemplatePage.addNewNote(NOTE_CONTENT);
     String caseName = taskTemplatePage.getCaseName();

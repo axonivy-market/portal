@@ -15,8 +15,7 @@ public class UrlHelpers {
     // project
     if (!relativeProcessStartLink.contains("portal/") && !relativeProcessStartLink.contains("portal-developer-examples")
         && !relativeProcessStartLink.contains("portal-user-examples")
-        && !relativeProcessStartLink.contains("portal-components-examples")
-        && !relativeProcessStartLink.contains("axonivy-express")) {
+        && !relativeProcessStartLink.contains("portal-components-examples")) {
       relativeProcessStartLink = WordUtils.capitalize(relativeProcessStartLink);
     }
     if (relativeProcessStartLink.endsWith(".icm")) {
@@ -34,6 +33,7 @@ public class UrlHelpers {
     return Optional.ofNullable(applicationName).orElse(PropertyLoader.getApplicationName());
   }
 
+  @SuppressWarnings("deprecation")
   private static String getEngineUrl() {
     String vmArgUrl = System.getProperty("test.engine.url");
     if (vmArgUrl != null) {

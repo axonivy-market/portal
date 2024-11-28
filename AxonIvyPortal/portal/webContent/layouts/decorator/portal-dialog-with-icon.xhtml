@@ -6,8 +6,8 @@
   widgetVar="#{widgetVar}"
   id="#{not empty id? id : widgetVar}"
   modal="true"
-  closable="#{not empty closeable? closeable : 'false'}"
-  closeOnEscape="#{not empty closeOnEscape ? closeOnEscape : 'true'}"
+  closable="true"
+  closeOnEscape="true"
   style="max-width: #{not empty maxWidth ? maxWidth : '500px'}"
   styleClass="#{styleClass} portal-dialog"
   responsive="#{not empty repsonsive? responsive : 'true'}" 
@@ -17,13 +17,12 @@
   appendTo="#{not empty appendTo ? appendTo : ''}">
   
   <div class="u-text-align-center">
-    <i class="#{not empty iconClass ? iconClass : 'si si-information-circle'} #{not empty iconStyleClass? iconStyleClass : 'portal-dialog-info-icon'} portal-dialog-icon" />
-    <h2>#{not empty headerText? headerText : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmationHeaderText')}</h2>
+    <h3>#{not empty headerText? headerText : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmationHeaderText')}</h3>
   </div>
   
   <ui:insert name="dialogContentSection" />
   
-  <h:panelGroup layout="block" rendered="#{not empty dialogContent}" class="u-text-align-center portal-dialog-content">
+  <h:panelGroup layout="block" rendered="#{not empty dialogContent}" class="u-text-align-center portal-dialog-content portal-exception-dialog-content">
     <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(dialogContent)}" />
   </h:panelGroup>
   

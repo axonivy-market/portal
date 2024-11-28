@@ -1,26 +1,11 @@
-Categories:
-  AdhocExpressTasks:
-    name: Adhoc Express Tasks
-  CreateExpressWorkflow:
-    name: Create Express Workflow
-  ExpressWorkflow:
-    name: Express Workflow
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
     noCaseId: No case-Id specified
     requestTabTitle: Request
     statusTabTitle: Case Information
   OpenTaskTemplate:
-    adhocHistory: Adhoc history
-    adhocHistoryTooltip: Show adhoc history
     browserTabClosingWarning: You may lose your work in progress. Do you want to continue?
-    goToAdhocWarning: You may lose your work in progress and start the Ad-hoc process. Do you want to continue?
     goToSidestepWarning: Your current modifications will not be saved, when a sidestep process is started directly from a task. Do you want to continue?
-    noteOfResultFromAdhocProcess: 'Note: You will find all these entries also in the process history'
-    reCreateAdhocWarning: There is already an adhoc process for this task, do you want to create another one?
-    resultFromAdhocProcess: Results from the Ad-Hoc Process
-    startAdHoc: Start Adhoc
-    startAdHocTooltip: Reroute this process using ad-hoc steps
   PortalName:
     PortalName: Portal
 ch.ivy.addon.portalkit.ui.jsf:
@@ -38,6 +23,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     editAbsence: Edit absence
     from: From
     noDeputy: No substitute
+    noPermissionToSeeThisArea: You do not have the required permission to see this area.
     period: Period
     personalTaskDuringAbsenceDeputies: Substitutes for personally assigned tasks during the absence
     personalTaskPermanentDeputies: Permanent substitutes for personally assigned tasks
@@ -63,6 +49,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     nextAbsence: Upcoming absence
     selectedDeputyFor: Selected user is substitute for
     selectedUser: Selected user
+  AccessibilityShortcuts:
+    processName: Accessibility shortcuts process
   AllTasks:
     caseDescription: Case description
     taskDescription: Task description
@@ -111,7 +99,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       BY_CUSTOM_ORDER: Custom order
       BY_INDEX: Sorting index
     ProcessType:
-      EXPRESS_PROCESS: Express Workflow
       EXTERNAL_LINK: External Link
       IVY_PROCESS: Business Process
     ProcessWidgetMode:
@@ -150,16 +137,12 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Heading 3
       NORMAL_TEXT: Normal Text
   MyProfile:
-    CaseList: Case list
     DateFormat: Date Format
     FormattingLanguage: Formatting language
     General: General
     Homepage: Homepage
     Language: Language
     ProcessList: Process list
-    SortFieldSelections:
-      defaultSortFieldLabel: Default sort field
-    TaskList: Task list
     byDefault: ' by default'
     defaultOption: Default ({0})
     defaultViewMode: Default view mode
@@ -184,9 +167,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       announcementsDisabled: Announcements are disabled.
       announcementsEnabled: Announcements are enabled.
       defaultLanguageRequiredMessage: Announcement for application default language is required.
-      disable: Disable
-      enable: Enable
+      disabled: Disabled
+      enable: Enable announcement
       information: You can announce a general information (e.g. Downtime, Changes, etc.) in this area. This message can be seen by all portal users.
+      saveChanges: Save changes
       tabTitle: Announcements
     appDisplayName: Display name
     appDisplayNameRequiredMsg: Please enter application display name.
@@ -195,6 +179,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationHint: Use drag & drop to reorder.
     applicationLinkRequiredMsg: Please enter portal link.
     applicationList:
+      addNewApplication: Add new application
       applicationSelectionHeader: Select application
       menuIcon: Menu icon
     applications: Applications
@@ -250,12 +235,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
       enableVirusScannerForUploadedDocumentNote: Set to true to enable virus scanner for uploaded document. Currently this function is using API VIRUSTOTAL.
-      expressEndPageNote: Display the custom end page at the end of each Express process.
+      hideCaseCreator: |-
+        Set to true to hide case creator in case list, case widget and case details.
+        This setting affects all case queries, e.g. for case list, global search, statistic.
       hideCaseDocument: Set to true, the document section in case detail page will be hidden, otherwise it will be shown.
       hideChangePasswordButtonNote: Set this variable to true to hide the "Change Password" option in the top menu and the "Forgotten Password" option on the login page. If set to false, these options will be shown.
       hideLogoutButtonNote: If true, the logout button on top menu will be hidden, otherwise it will be shown.
       hideRelatedCaseInfoFromHistory: If true, case history does not display the related case information in the history table.
-      hideStatisticWidget: Set to true to hide Statistic widget from homepage and application menu.
       hideSystemNotesFromHistory: If true, case/task note does not display any system notes for non-administrator users.
       hideSystemNotesFromHistoryAdministrator: If true, case/task note does not display any system notes for administrator.
       hideSystemTasksFromHistory: If true, case note does not display any system tasks for non-administrator users.
@@ -274,7 +260,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details.
       showQuickGlobalSearch: For switch on/off the display of the quick global search.
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
-      statisticChartScalingInterval: Interval in seconds to do periodic statistic chart scaling requests. If the interval value is less than 10, periodic statistic chart scaling is disabled.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
     key: Key
     link: Link
@@ -307,6 +292,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     value: Value
   applicationMenuHeader:
     MobileApp: Download and Connect to Axon Ivy Mobile App
+    ThemeSwitcher: Theme Switcher
     adminSettings: Admin settings
     changePassword: Change password
   businessCaseState:
@@ -357,7 +343,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       FINISHED_TIME: Finished
       ID: Case Id
       NAME: Name / Description
-      OWNER: Owner
+      OWNER: Case Owners
       STATE: State
     deletionNoteContent: The case was destroyed by {0}
     destroyCaseMessage: This operation cannot be undone. Are you sure you want to destroy this case and all of its tasks?
@@ -404,6 +390,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processChatIsCreated: 'Process Chat: {0} is created'
     processChatWasCreated: 'Process Chat: {0} was created. You can not create it again.'
     selectedAssignees: Selected assignees
+    toggleChat: Toggle chat panel
     typeMessage: Type your message here...
     viewParticipant: View participants
   common:
@@ -423,8 +410,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     add: Add
     addDocument: Add document
     addNote: Add note
-    adhoc: Adhoc
     allCategories: All Categories
+    allTypes: All types
     allowPng: Only png types allowed
     apply: Apply
     at: at
@@ -434,6 +421,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     backgroundColor: Background color
     cancel: Cancel
     case: Case
+    caseCategory: Case category
     caseInformation: Case Information
     caseName: Case name
     categories: Categories
@@ -471,7 +459,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     destroyTaskHeaderText: Destroy this task?
     detail: Details
     display: Display
+    displayAsTopMenu: Display as top menu
     displayName: Display name
+    dragAndDropFile: 'Drag and drop a file or '
+    dragAndDropImage: 'Drag and drop an image or '
     edit: Edit
     errorAjaxMessage: There is a general exception.
     errorFileUploadSize: The file size must be lower than {0}
@@ -528,7 +519,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     note: NOTE
     numberFromBiggerThanTo: '''To'' must be bigger than ''From''.'
     numberOfSelectedFilter: selected filters
-    ok: Ok
+    ok: OK
     'on': 'on'
     pleaseAddDocument: Please add a document with the link above.
     pleaseAddNote: Please add a note with the link above.
@@ -538,10 +529,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     processes: Processes
     public: Public
     remove: Remove
+    removeSelection: Remove selection
     reorder: Reorder
     requiredFieldMessage: This field is required
     reserve: Reserve
     reset: Reset
+    resetFilters: Reset filters
     resetSettingHeaderText: Reset setting?
     resetTaskHeaderText: Reset this task?
     resetToDefaultMessage: This operation cannot be undone. Are you sure you want to reset to default settings?
@@ -550,6 +543,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Restore to default charts?
     role: Role
     save: Save
+    saveAll: Save all
     saveSuccessfully: Data saved successfully.
     search: Search
     second: second
@@ -569,6 +563,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showSystemTasks: System tasks
     sorting: Sorting
     start: Start
+    startProcess: Start process
     state: State
     status: Status
     switchToDesktopVersion: Switch to desktop version
@@ -581,17 +576,20 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: The process
     timeInformation: Time Information
     timestamp: Timestamp
+    topMenuItem: Top Menu Item
     type: Type
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
+    uploadHere: Upload here
+    uploadOneHere: Upload one here
     user: '{0} user'
     users: Users
     via: via
     viewExpired: Your current view expired. You will be redirected to the home page.
     viewMode: View mode
     visible: Visible
-    warning: Warning
+    warning: Warning!
     welcomeToPortal: Welcome, please login
     wrongDateFormat: Please enter valid date.
     year: year
@@ -650,45 +648,6 @@ ch.ivy.addon.portalkit.ui.jsf:
         <ul style="margin: auto; {1}">{2}</ul>
       tooltipHelper: Click to show all users which own this role directly or indirectly
       userOfRoleTitle: User of {0} group
-    expressManagement:
-      deployButton: Deploy
-      deployMessage: 'Deploying processes  ... '
-      exportExpress: Export Express
-      exportExpressProcessTitle: Export Express Processes
-      expressExportName: AXONIVY_Dataset_ExpressWorkflow_{0}.json
-      expressManagement: Express Management
-      expressMessages:
-        deployErrorLog: Error while deploying {0}
-        deploymentFinishedLog: Process(es) of file {0} successful deployed into Portal in {1}ms
-        endDeployLog: Deployment Express finished
-        invalidVersionLog: Non supported version  {0} of Express
-        process:
-          duplicateProcessNameLog: '- Duplicate process name {0}'
-          installProcessFailedLog: '- Deploy process {0} failed'
-          installProcessFinishedLog: Installing process {0} successfully
-          installedProcessLog: Process installed {0}
-          startDeployProcessLog: Start deploying process {0}
-        startDeployLog: Start deploying the Express process(es) of file {0} to Portal
-        status:
-          error: Error
-          failed: Failed
-          info: Info
-          successful: Success
-          warning: Warning
-        validate:
-          validateExpressVersion: Could not find the Express Version variable in System. Please contact your adminstrator.
-          validateProcessCoOwnerLog: '- Validate Process Co-Owner of {0}, user {1} is not available in system'
-          validateProcessOwnerLog: '- Validate Process Owner of {0}, user {1} is not available in system, change process owner to {2}'
-          validateProcessPermissionLog: '- Validate Process Permission of {0}, user {1} is not available in system'
-          validateTaskDefUserLog: '- Validate Task Definition Responsibles of {0}, user {1} is not available in system'
-        versionLog: 'Version of Express: {0}'
-      fileEmptyMessage: File is empty
-      importDialogHeaderTitle: Choose a Dataset of Express workflow, it should be a JSON file.
-      importExpress: Import Express
-      importExpressProcessTitle: Import Express Processes
-      importHeaderTitle: 'List of Express processes will be exported:'
-      processCount: process(es)
-      waitingMessage: 'Data is collecting ... '
     passwordValidation:
       criteria: Criteria
       enablePasswordValidation: Enable password validation
@@ -701,11 +660,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       titlePage: Password Validation
     processChain:
       currentStepIsNotDefined: Current step ({0}) of process chain is not defined
-    statisticWidget:
-      chartDeletionConfirmation: Are you sure you want to delete this statistic chart?
-      contextMenuDrilldown: Drilldown
-      contextMenuToCaseList: Go to case list
-      contextMenuToTaskList: Go to task list
     taskStart:
       cannotDelegateTaskMessage: This task cannot be delegated to any other user or group.
       cannotStartMessages:
@@ -719,6 +673,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       taskDescriptionNotAvailable: '[No description is available]'
       taskNameNotAvailable: '[Task name not available]'
     taskView:
+      DeleteFilter: Delete filter
       adminFilterSetWarning: Your filter set contains states which can only be seen by administrators.
       appliedFilters: Applied filters
       exportedTasksCasesFileName: AXONIVY_Dataset_Statistics_{0}.{1}
@@ -775,14 +730,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ShareThisDashboard: Share this dashboard
     StandardWidgets: Standard Widgets
     StatisticWidget:
-      AvailableCharts: Available statistics charts
-      Charts: 'Chart(s): {0}'
-      ConfigurationDescription: You can configure your widget in this configuration area. Please define the chart which will be shown on  your dashboard.
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
-      FilterChartText: Filter a chart by name
-      PlaceholderChartOption: Select a chart
-      PleaseSelectChart: Please select a chart
-      PreviewText: Please select a chart to see the canvas data
     WelcomeWidgetIntroduction: This widget displays a welcome text and image on dashboard.
     WelcomeWidgetNotFoundMessage: We cannot find the image of widget, please reconfigure your image!
     WidgetFilterName: Widget filter name
@@ -852,6 +800,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardIcon: Dashboard icon
       dashboardPermission: Dashboard permission
       dashboardTitle: Dashboard title
+      deleteDashboardMessage: Are you sure you want to delete the "{0}" dashboard?
       editDashboard: Edit dashboard
       manageDashboard: Manage dashboard
       removeDashboardHeader: Remove the "{0}" dashboard
@@ -870,20 +819,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     fullscreenMode: Fullscreen Mode
     iconMessage:
       caseWidget:
-        BEACH_PALM_SUNBED: You are awesome - all cases are done. Lean back and enjoy.
-        CHARGING_BATTERY_FULL_1: There are currently no cases. Time to recharge the batteries a little.
-        COFFEE_OF_HOT: Wow! Good job! All cases are completed. How about a quick coffee break?
-        RANKING_WINNER_MEDAL: Game, set and match! You did it, all cases are completed!
-        SOCCER_PLAYER: Goal! You did it, all cases completed. Short half-time break.
-        YOGA_MEDITATE: Well done! All cases are done. Inhale, exhale, relax.
+        EMPTY_MESSAGE: Currently, there are no cases available.
         noCasesFoundWhenFilter: There are currently no cases after applied filter.
       taskWidget:
-        BEACH_PALM_SUNBED: You are awesome - all tasks are done. Lean back and enjoy.
-        CHARGING_BATTERY_FULL_1: There are currently no tasks. Time to recharge the batteries a little.
-        COFFEE_OF_HOT: Wow! Good job! All tasks are completed. How about a quick coffee break?
-        RANKING_WINNER_MEDAL: Game, set and match! You did it, all tasks are completed!
-        SOCCER_PLAYER: Goal! You did it, all tasks completed. Short half-time break.
-        YOGA_MEDITATE: Well done! All tasks are done. Inhale, exhale, relax.
+        EMPTY_MESSAGE: Currently, there are no tasks available.
         noTasksFoundWhenFilter: There are currently no tasks after applied filter.
     loading: Loading...
     noCategory: There are no categories
@@ -912,7 +851,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     select: Select
     selectEditAction: Which action do you want to procced?
     showFullWidget: Show full widget
-    startATask: Start task
     statisticChartIntroduction: This widget displays available statistic charts.
     statisticChartWidget: Statistic chart
     statisticWidgets: Statistic Widgets
@@ -926,7 +864,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       predefinedFilters: Predefined filters
     taskList: Task List
     taskListIntroduction: This widget displays relevant task information according to defined settings.
+    taskStart: Task start
     taskWidgetConfiguration: Task Widget Configuration
+    topMenuItemInfo: If the "Top Menu Item" checkbox is checked, the dashboard appears as a top-level item in the navigation bar, sorted by list position. If unchecked, it appears as a sub-item under “Dashboard”, also sorted by list position.
     widgetInfo: Widget information
     widgetInfoIcon: Widget Information Icon
     widgetTitle: Widget Title
@@ -936,7 +876,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourNotifications: Your Notifications
     yourProcessViewer: Your Process Viewer
     yourProcesses: Your Processes
-    yourStatistics: Your Statistics
     yourTasks: Your Tasks
   documentFiles:
     deleteDocumentNote: '{0} has deleted {1}'
@@ -978,6 +917,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processElementId: Process element Id
     stackTrace: StackTrace
   forgotPassword:
+    EmailAddress: E-Mail address
     empty: Empty
     forgotPassword: Forgot my password
     forgotPasswordError: An error occurred while processing your request. Please try again later.
@@ -1045,6 +985,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     newNoteHeader: Add new note
     wroteAt: wrote at
   notifications:
+    errorNotificationMessage: We couldn't display the details for the new task. Please contact your administrator for assistance
     linkToFullScreen: Link to full screen
     linkToNotificationSettings: Notification settings
     markAllAsRead: Mark all as read
@@ -1071,6 +1012,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     minSpecialCharacterRequired: contain at least {0} special character
     minUppercaseCharacterRequired: contain at least {0} uppercase character
     newPassword: New password
+    noPermission: You do not have the required permissions to change the password. Please contact your administrator for assistance.
     passwordMust: Password must
     requireConfirmPassword: Password confirmation was missing
     requireCurrentPassword: Please specify the current password
@@ -1086,7 +1028,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewProcess: Add new process
     addNewProcessDialogHeader: Add new user process
     backToOverview: Back to overview
-    deleteExpressWorkflowTooltip: Delete Express Workflow
     deleteExternalLinkTooltip: Delete external link
     deleteProcess: Delete Process
     deleteProcessItemConfirmation: Are you sure you want to delete the following process?
@@ -1097,9 +1038,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       dialogEditInfoTitle: '{0} Information'
       dialogHeaderDescription: In this area you can edit some information related to the selected process.
       dialogHeaderTitle: Edit information for {0}
-    editExpressWorkflowTooltip: Edit Express Workflow
     editProcesses: Edit processes
-    expressWorkflow: Express workflow
     externalLink: External link
     externalLinkVisibility: Visibility
     goTo: 'Go to: '
@@ -1136,153 +1075,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     process: Process
     searchResults: Search Results
     searchResultsFor: '{0} search results for "{1}"'
-  sidestep:
-    addAdhocTask: Add Ad-hoc Task
-  statistic:
-    chart:
-      ExpandOrCollapseColumn: Expand/Collapse Columns
-      addChart: Add new chart
-      addChartDialogHeader: Add statistic chart to dashboard
-      backToDashboard: Back to dashboard
-      barchart:
-        Percentage: Percentage
-        daysOfWeek:
-          friday: Friday
-          monday: Monday
-          saturday: Saturday
-          sunday: Sunday
-          thursday: Thursday
-          tuesday: Tuesday
-          wednesday: Wednesday
-        expired: Expired
-        in2Days: In 2 days
-        in3Days: In 3 days
-        monthsOfYear:
-          April: April
-          August: August
-          December: December
-          February: February
-          January: January
-          July: July
-          June: June
-          March: March
-          May: May
-          November: November
-          October: October
-          September: September
-        today: Today
-        tomorrow: Tomorrow
-        weeksOfMonth:
-          fifthWeek: Fifth week
-          firstWeek: First week
-          fourthWeek: Fourth week
-          secondWeek: Second week
-          sixthWeek: Sixth week
-          thirdWeek: Third week
-      caseCategory: Case category
-      chartCreationSuccessDetailMsg: Chart with name {0} was created successfully
-      chartCreationSuccessTitle: Chart was created successfully
-      elapsedTime: Elapsed Time
-      elapsedTimeChart:
-        compareButton: Compare
-        compareRole: 'Compare Role:'
-        elapsedTimeInHours: Elapsed time in hours
-        noEntriesFound: No entries found with given criteria
-        taskCategory: Task category
-        withRole: 'With Role:'
-      emptystate:
-        defaultEmptyMessages: No statistic chart to display.
-      exception:
-        idNotFound: 'Chart Id not found with id: {0}'
-        noPermission: You do not have the permission to send this request!
-      expiryPeriod: Expiry period
-      loadingCharts: Please wait, charts are loading...
-      notAllowedToCreateChart: You are not allowed to create a chart before clicking Apply Filters button
-      other: Others
-      restoreDefaultChart: If you proceed, you will loose all charts created by yourself. The standard settings will be applied.
-      second: sec
-      showAllCharts: Show all charts
-      statisticCarousel: Statistics Carousel
-      statistics: Statistics
-      taskByExpiry:
-        hour: (Hour)
-        thisMonth: This Month
-        thisWeek: This Week
-        thisYear: This Year
-      taskByPriority:
-        addToDashboardLink: Add to dashboard
-        exception: Exception
-        high: High
-        low: Low
-        normal: Normal
-      taskExpiry: Task expiry
-    chartInfo:
-      chartDetailsHeader: Chart Details
-      chartName: Chart Name
-      chartType: Chart Type
-    chartType:
-      caseByFinishedTask: Processed cases in time period
-      caseByFinishedTaskDescription: Cases where a task was finished in the selected time period
-      caseByFinishedTime: Done cases in time period
-      caseByFinishedTimeDescription: Cases which are done in the selected time period
-      caseByState: Case by state
-      casesByCategory: Cases by category
-      elapsedTimeByCaseCategory: Elapsed time of done cases
-      elapsedTimeByCaseCategoryDescription: Elapsed time of finished cases by category
-      taskByExpiry: Task by expiry
-      taskByPriority: Task by priority
-    defaultChart:
-      newChart: New chart
-      tasksByPriority: Tasks by Priority
-    filter:
-      affectedCharts: Affected charts
-      allSelected: All
-      caseCategoriesLabel: Case Categories
-      caseCategoryFilterDescription: You can find all available case categories here. Only selected Case Categories are considered in the affected charts.
-      caseStateFilterDescription: Only selected States are considered in the affected charts.
-      filter: Filters
-      noRoles: There are no roles
-      noSelectionCustomVarChar: No selection.
-      noneSelected: None
-      roleFilterDescription: You can find all available process roles here. Only selected roles are considered in the affected charts
-      rolesLabel: Roles
-      selectAll: Select All
-      taskPrioritiesLabel: Task Priorities
-      taskPriorityFilterDescription: Tasks can be selected depending on their priority.
-      timePeriod: Time period
-      timePeriodFilterDescription: Restricts the time period for cases and tasks.
-      workflowStatesLabel: Workflow States
-    taskAnalysis:
-      applyFilter: Apply filters
-      caseCategory: Case category
-      caseCreator: Case creator
-      caseDescription: Case description
-      caseFilter: Case filters
-      caseID: Case ID
-      caseName: Case name
-      caseOwner: Case owner
-      caseState: Case state
-      downloadZipFileExplanation: The number of tasks to export exceeds the limit of Excel rows. Therefore, data will be split to multiple Excel files, then compressed in a Zip file to download.
-      taskAnalysis: Task Analysis
-      taskCategory: Task category
-      taskCreationTime: Task created
-      taskDescription: Task description
-      taskExpiryTime: Task expiry
-      taskFilter: Task filters
-      taskFinishedTime: Task completed on
-      taskID: Task ID
-      taskPriority: Task priority
-      taskResponsible: Task responsible
-      taskState: Task state
-      taskWorker: Task editor
-      waitingDownloadMessage: We are creating the Export, this can take a few minutes
-    timePeriod:
-      custom: Custom
-      last6Month: Last 6 month
-      lastMonth: Last month
-      lastWeek: Last week
-    validationErrors:
-      nameIsExisted: A chart with this name already exists
   taskActivator:
     assign: Assign
     cannotAssignTask: This task cannot be assigned to any other user or group.
@@ -1314,7 +1106,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     toUser: User
     userSelectionWatermark: Please select a user...
   taskDetails:
-    addDocumentHelpText: To upload files, drag & drop or select files
+    addDocumentHelpText: 'To upload files, drag & drop or '
     addNoteHelpText: Write your text here.
     afterEscalation: After escalation
     businessCase: Business Case
@@ -1327,12 +1119,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     expiry: Expiry
     failedDelayValidation: Task delay timestamp cannot be an empty value or invalid date format
     failedExpiryValidation: Task expiry timestamp cannot be in the past.
-    noAdhoc: No Adhoc available
     noDescription: No description
     noNotes: No notes
     processingTime: Processing Time
     setDelayTimestamp: '{0} ({1}) has set delay time to task #{2} to {3}'
     setExpiryActivatorAndTimeNotes: '{0} and assign {1} as the task escalation activator'
+    supportFileTypes: ' Upload file type supported: {0}'
     taskCategory: Task Category
     taskExpiryDisable: This task does not contain any escalation handling logic, therefore no expiry time can be set.
     technicalCase: Technical Case
@@ -1440,7 +1232,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     OPEN: Open
     OPEN_UPPERCASE: OPEN
     PARKED: Reserved
-    READY_FOR_JOIN: Ready for joining
+    READY_FOR_JOIN: Ready for join
     READY_FOR_JOINING: Ready for joining
     READY_FOR_JOINING_UPPERCASE: READY FOR JOINING
     READY_FOR_JOIN_UPPERCASE: READY FOR JOIN
@@ -1461,11 +1253,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Show full task list
     sort: Sort
   taskWarning:
-    createdTaskLeave: 'You are about to leave this page. Please choose one of the following options:<UL><LI>&nbsp; &nbsp; Leave: Discard your changes and move to the selected page.<LI>&nbsp; &nbsp; Cancel: Continue working this task.</UL>'
-    createdTaskLogout: 'You are about to leave this page. Please choose one of the following options:<UL><LI>&nbsp;Logout: Discard your changes and logout.<LI>&nbsp;Cancel: Continue working this task.</UL>'
-    resetParkTaskBeforeLeave: 'You are about to leave a task in progress. Please choose one of the following options:<UL><LI>Leave: Discard your changes and move to the selected page.<LI>Reserve: Discard your changes and keep the task in your task list.<LI>Cancel: Continue working this task.</UL>'
-    resetParkTaskBeforeLogout: 'You are about to leave a task in progress. Please choose one of the following options:<UL><LI>&nbsp; &nbsp; Logout: Discard your changes and logout.<LI>&nbsp; &nbsp; Reserve: Discard your changes and keep the task in your personal task list. Then logout.<LI>&nbsp; &nbsp;
-      Cancel: Continue working this task.</UL>'
+    createdTaskLeave: '<div>You are about to leave this page.<br/> Please choose one of the following options:</div><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Cancel: Continue working this task.</UL>'
+    createdTaskLogout: '<div>You are about to leave this page.<br/> Please choose one of the following options:</div><UL><LI>Logout: Discard your changes and logout.<LI>Cancel: Continue working this task.</UL>'
+    resetParkTaskBeforeLeave: '<div>You are about to leave a task In progress.<br/>Please choose one of the following options:</div><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Reserve: Discard your changes and keep the task in your task list.<LI>Cancel: Continue working this
+      task.</UL>'
+    resetParkTaskBeforeLogout: '<div>You are about to leave a task in progress.</br> Please choose one of the following options:</div><UL><LI> Logout: Discard your changes and logout.<LI> Reserve: Discard your changes and keep the task in your personal task list. Then logout.<LI> Cancel: Continue working
+      this task.</UL>'
     taskNotFound: The task does not exist or you have insufficient rights to see this task.
   userProfile:
     myProfileTitle: My profile
@@ -1478,60 +1271,13 @@ Dialogs:
       CaseDescription: Edit an existing workflow
       CaseName: Edit workflow
   Tasks:
-    CreateWorkflow:
-      TaskDescription: Workflow has been created
-      TaskName: Workflow has been created
-    EditWorkflow:
-      TaskDescription: A process has been edited.
-      TaskName: Process edited
-    FinalReview:
-      TaskName: Final Review
-    FinalWorkflowTask:
-      taskDescription: The workflow {0} has been finished!
-    FormDefinition:
-      TaskDescription: Please define the form!
-      TaskName: Form creation!
-    ProcessLoaded:
-      TaskName: AdHoc Configuration Task
-    SaveWorkflow:
-      TaskName: Express workflow creation in progress
     TaskDetail:
       DataDescription: Data and Description
       restoreToDefaultSettings: Restore to default settings
       switchToEditMode: Edit
       switchToViewMode: Save
-    WorkflowProperties:
-      TaskDescription: Please configure the workflow properties!
-      TaskName: Workflow properties
-  WorkflowExecution:
-    ApprovalForm:
-      Approve: Approve!
-      ApproveComment: Approved
-      CommentLabel: Comment of approver
-      FieldSetApplicant: Requester
-      FieldSetForm: Form
-      FinishedTasks: Finished Tasks
-      Fullname: Full name
-      Reject: Reject!
-      RejectComment: Rejected
-    FinalReviewForm:
-      approvalStatus: Approval status
-      approver: Approver
-      noticed: Acknowledged!
-    FinishedTasksForm:
-      Applicant: Applicant
-      ApprovalResult: Approval result
-      FinishedTasks: Finished Tasks
-      FormDetails: Form Details
-    UserTaskForm:
-      ApprovalResult:
-        Approved: Approved
-        Rejected: Rejected
-      Formular: Form
   agileBPM:
-    TooltipForOriginalTask: Your current task will return once previous steps of the ad hoc workflow are finished.
     define_WF:
-      AdhocWorkflowTasks: Workflow Tasks
       ErrorSelectInvalidAssignee: Assignee is already selected or invalid
       ListOfSelectedUser: List of selected users
       ResponsibleDialogHeader: Responsible Users
@@ -1548,14 +1294,6 @@ Dialogs:
   ch:
     ivy:
       addon:
-        express:
-          generic:
-            endpage:
-              subtitle: The last task was completed successfully
-              title: Task completed successfully!
-            expressNoItem: There is no completed Express Task yet
-            expressNoItemDescription: The results of completed tasks are displayed here
-            expressWorkflowName: 'Business Details of Case #{0}'
         portal:
           generic:
             GlobalSearch:
@@ -1563,10 +1301,11 @@ Dialogs:
               noResultsText: There are no results.
             dashboard:
               PortalDashboardConfiguration:
-                NewDashboard: New Dashboard
+                NewDashboard: Add new dashboard
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
+                  CustomWidgetIFrameTitle: '{0} frame'
                 DashboardModification:
                   Share: Share
                 ProcessWidgetConfiguration:
@@ -1582,12 +1321,14 @@ Dialogs:
                 CaseDetailTitle: Case Details
                 DataDescription: Data and Description
                 destroyCase: Destroy case
-              CaseOwner: Case Owner
+              CaseOwner: Case Owners
               Finished: Finished
               GlobalSearchText: Cases contain the keyword "{0}" in Case Id{1}.
               ShowBusinessDetails: Business details
               caseNameNotAvailable: '[Case name not available]'
               defaultEmptyMessage: There are no cases
+            CustomIFrameWidget:
+              CustomWidgetIFrameTitle: Custom widget frame
             IconSelection:
               IconLinkTooltip: Click to change icon
             TaskItemDetails:
@@ -1602,14 +1343,67 @@ Dialogs:
     axonivy:
       portal:
         component:
+          ChatDashboard:
+            AddTool: Add tool
+            Tools: Tools
+            WelcomeHeaderText: Welcome to the Axon Ivy Portal!
+            WelcomeText: We are delighted to have you on board. The Axon Ivy Portal is your gateway to a seamless and efficient experience. Whether you are a new user exploring the features or a returning visitor, we're here to assist you every step of the way.
           ShareLinkDialog:
             CopyLink: Copy link
-            LinkCopied: Link copied!
+            Link: Link
+            LinkCopied: Link copied
+          ToolList:
+            Attributes: Attributes
+            Collection: Collection
+            NoAvailableTools: There are no available tools
         dashboard:
           component:
+            AccessibilityShortcuts:
+              content: |-
+                <div class="ui-g">
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 1</span>Focus on to the Dashboard Tab
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 4</span>Focus on to the Case Tab
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + A</span>Focus on to the first Process
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Tab</span>Sequential tabbing through elements
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 2</span>Focus on to the Process Tab
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 5</span>Focus on to the Search
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + W</span>Focus on to the first Task
+                   </div>
+                   <div class="ui-g-3 shortcut-content">
+                      <span class="shortcut-key">Esc</span>Close expanded Widgets
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 3</span>Focus on to the Tasks Tab
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + 6</span>Focus on to the User Settings
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Alt + Q</span>Focus on to the first Case
+                   </div>
+                   <div class="ui-g-3 shortcut-content ">
+                      <span class="shortcut-key">Enter</span>Confirm selection
+                   </div>
+                </div>
+              title: 'Accessibility Shortcuts. Alt + 1: Focus on to the Dashboard tab. Alt + 2: Focus on to the Process tab. Alt + 3: Focus on to the Tasks tab. Alt + 4: Focus on to the Case tab. Alt + 5: Focus on to the search. Alt + 6: Focus on to the User settings. Alt + A: Focus on to the first Process.
+                Alt + W: Focus on to the first task. Alt + Q: Focus on to the first case. Tab: Sequential tabbing through elements. Esc: Close expanded widgets. Enter: Confirm selection.'
             CaseWidgetConfiguration:
               AddFilter: Add filter
             ClientStatisticWidget:
+              IdNotFound: Chart with ID {0} not found
               NoPermissionChartMessage: You do not have the required permission to see this chart.
             DashboardImportDetails:
               FileInfomation: File Infomation
@@ -1645,6 +1439,11 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Add filter
               ResetFilter: Reset filter
+        layouts:
+          AbstractTaskTemplate:
+            CaseDetailsIFrameTitle: Case details frame
+          IFrameTaskTemplate:
+            TaskIFrameTitle: Task frame
   components:
     CaseDocument:
       FileDate: Modified at
@@ -1660,108 +1459,54 @@ Dialogs:
   general:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
-  workflowCreation:
-    AdhocProcessName: AdHoc Process for Task {0} - {1}
-    FormDefinition:
-      AddCheckboxField: Add new field
-      AddOptionboxField: Append new option
-      AllowedFiletypes: Allowed file types
-      BroadFooterArea: Wide footer
-      BroadHeaderArea: Wide Header
-      CheckboxFields: Checkbox fields
-      CreateField: Create
-      DataProvider: Data provider
-      DragAndDropTooltip: Drag and Drop the available elements to the Header, left column, right column or to the Footer!
-      ElementLabel: Label
-      ElementName: Name of element
-      Email:
-        Attachment: Attachment
-        EmailAddress: E-Mail address
-        EmailText: Email text
-        ResponseTo: Response to
-        Subject: Subject
-      ExecuteWorkflow: Execute workflow directly
-      ExecuteWorkflowWarning: You have to fulfil all tasks before execute this workflow
-      FieldSetAvailableFormelements: Form elements
-      FieldSetFormelements: Create form element
-      FieldSetFormelementsPlacing: Placement of form elements
-      FieldSetPreviewArea: Preview of the defined form
-      FinishWorkflow: Finish Workflow
-      InputArea: Input area
-      InputCheckbox: Checkbox
-      InputField: Input field
-      InputFileUpload: File upload
-      InputOptions: Radio button
-      InputType: Input type
-      InputTypes:
-        DateSelection: Date picker
-        NumberField: Number field
-        TextBox: Text field
-      LeftColumn: left column
-      NoCheckboxFieldYet: No checkbox field types are defined yet
-      NoDataProvider: Special static data provider
-      NoFormelementsAvailable: No form elements are available!
-      NoOptionboxFieldsYet: No checkbox types are defined yet
-      NumberOfFiles: Number of files
-      NumberOfRows: Number of rows
-      OptionboxFields: Radio buttons
-      OptionboxPlaceholder: Option
-      Preview: Preview
-      RightColumn: right column
-      SaveWorkflow: Save Workflow
-      UploadFileFormat:
-        Excel: Excel (xls/xlsx)
-        OtherFormats: Other file formats
-        PDF: PDF (pdf)
-        Word: Word (doc/docx)
-      cancelCreateForm: Do you really want to cancel? All your data will be lost!
-      otherFiletype: Other file types
-    ProcessName: Create Express Workflow
-    TaskType:
-      Approval: Approval
-      Email: Information E-mail
-      Review: Review
-      UserTask: User task
-      UserTaskWithEmail: User task with E-mail
-    WorkflowDefinition:
-      AbleToStart: Able to Start
-      AddProcessStep: Add process step
-      ChooseAssignee:
-        AddUserOrRole: 'Select a group or a user, please:'
-        SelectedAssigneesFieldSet: Selected assignees
-        UserTooltip: User
-      DefaultTemplateDescription: Below is the default template
-      DeleteProcessStep: Remove process step
-      Description: Describe your process
-      DueTimeInDays: Expiry in days
-      EndStep: End
-      FormDefinitionStep: Form definition
-      ProcessNameExists: This process name was used before
-      ProcessOwner: Process Owner
-      Processdescription: Process description
-      Processdetails: Process properties
-      Processflow: Process flow
-      Processstep: Process step
-      Processtype: Type of process
-      ProcesstypeAdHoc: One time
-      ProcesstypeRepeating: Repeatable
-      TaskType: Task Type
-      UntilDaysTooltip: After expiry, the task will be assigned to Everybody and its priority becomes High.
-      UserInterface:
-        ChangeSettingWarning: All defined tasks will be deleted. Are you sure?
-        CreateOwn: Create own
-        UseDefault: Use default
-        UserInterface: User Interface
-      WorkflowPropertiesStep: Workflow properties
-      requiredMsgs:
-        ReqMsgGeneric: ' is a required field!'
-    processStep: Process Step
 Labels:
-  AdhocWorkflow: Describe your Workflow
+  AI:
+    Error:
+      CannotFindUser: Sorry, cannot find any user matched your request. Please try again.
+      CannotStartTask: Cannot start task has ID {0}
+      InvalidTaskPriority: 'Invalid task priority. Valid task priorities are: low, normal, high, or exception.'
+      InvalidTaskState: 'Invalid task state. Valid task states are: open, done, in progress, or error.'
+      NoMatchingCase: Cannot find any task matched your request
+      NoMatchingProcesses: No matching processes.
+      NoMatchingTask: Cannot find any task matched your request
+    FindCaseAIResult: 'ID: {0}, Name: {1}, Description: {2}, State: {3}'
+    FindProcessAIResult: '   - ID: {0}, Name: {1}, Description: {2}'
+    FindTaskAIResult: 'ID: {0}, Name: {1}, Description: {2}, State: {3}, Priority {4}'
+    FindUserAIResult: 'Username: {0}, Name: {1}, Email: {2}, State: {3}'
+    FoundCaseHeader: 'Found cases:'
+    FoundProcessesHeader: 'Found processes:'
+    FoundTaskHeader: 'Found tasks:'
+    FoundUsersHeader: 'Found users:'
+    ProcessInfoHeader: |-
+      **Process name:** {0}
+      **Process description:** {1}
+    ProcessInfoHeaderWithParameters: |-
+      - **Process name:** {0}
+      - **Process description:** {1}
+      - **Number of parameters:** {2}
+    ProcessParameterInfo: "\t+ {0} ({1})"
+    ProcessParameterInfoWithValue: |-
+      - Name: {0}
+        Description: {1}
+        Value:
+    TaskDetailsResult: |-
+      Details of task **{0} (#{1})**:
+      {2}
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
   CreateNewDashboard: Create new dashboard
+  EditDescription: Edit description
   Enums:
+    ChatbotCandidateQuestion:
+      EXPLORE:
+        header: Explore
+        question: What are the key features of the Axon Ivy Portal?
+      INTERACT:
+        header: Interact
+        question: List me all the tasks that need completion within the current week
+      TUTORIAL:
+        header: Tutorial
+        question: Where can I find the documentation or tutorials for the Axon Ivy Portal?
     DashboardStandardCaseColumn:
       ACTIONS: Actions
       APPLICATION: Application
@@ -1772,7 +1517,7 @@ Labels:
       FINISHED: Finished Date
       ID: Id
       NAME: Name
-      OWNER: Case Owner
+      OWNER: Case Owners
       STATE: State
     DashboardStandardTaskColumn:
       ACTIONS: Actions
@@ -1852,10 +1597,9 @@ Labels:
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users
+  ToggleMenu: Toggle menu
   ViewAllResults: View all results
-  adhocTaskRequired: You must add at least one new task.
   disabledUserPrefix: (disabled)
-  title: Self Service Ad-hoc Workflow
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm
@@ -1885,18 +1629,7 @@ Processes:
       SynchronizeServerConfigurationCaseName: Synchronize server configuration
   portalHome: Portal Home
   portalSettingSaved: Portal settings are saved
-ProcessPages:
-  selfServiceAdhocProcess: Axon Ivy Self Service
-  selfServiceDescription: 'Self Service Prozess: Launch an ad-hoc Workflow based on a predefined flow pattern.'
 Texts:
-  Adhoc-Explain: |+
-    <P>
-
-    <B>Enter your comment </B>and press <B>Send</B> to proceed the workflow.
-
-    </P>
-
-  AdhocWF-Explain: "<P>\n\nDefine and launch a Workflow at your fingertip: Select a flow pattern, add some tasks and start the Workflow. \n\n</P>\n\n<P>\n\n\n\n</P>\n\n"
   Approval-Explain: |+
     <P>
 

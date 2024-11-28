@@ -8,8 +8,8 @@ Business Details Page
 Introduction
 ------------
 
-The default business details page shows all custom fields of a case. It is opened
-by clicking on ``Business details`` in the case details page.
+The default business details page shows all custom fields of a case. Clicking on
+``Business details`` in the case details page to open.
 
 Portal supports customizing this page for each case.
 
@@ -44,16 +44,7 @@ How to customize the business details page
 
 Customization
 -------------
--  If your custom Business Details page uses an IFrame, you may want to set some additional
-   Window properties on your page: 
-
-   - window.isHideCaseInfo = true;
-   - window.isHideTaskAction = true;
-   - window.isHideTaskName = true;
-   - window.isWorkingOnATask = false;
-   - window.viewName = '';
-
-   |customization-business-details-page-iframe|
+-  If your custom Business Details page uses an IFrame, you could configure the UI accordingly. Refer to :ref:`iframe-configure-template` for more information.
 
 -  Using the Public API, you can control whether the business details page will start inside IFrame or not by setting the ``BusinessDetailsDTO.builder().isEmbedInFrame(Boolean)`` value to 
    
@@ -86,7 +77,6 @@ Or search :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>` in the permis
 
 
 .. |start-business-details-page-iframe| image:: images/business-details-page/start-business-details-page-iframe.png
-.. |customization-business-details-page-iframe| image:: images/business-details-page/customization-business-details-page-iframe.png
 .. |set-business-details-page-callable-process| image:: images/business-details-page/set-business-details-page-callable-process.png
 .. |customize-business-details-with-public-api| image:: images/business-details-page/customize-business-details-with-public-api.png
 .. |customization-business-details-page-start-request| image:: images/business-details-page/customization-business-details-page-start-request.png

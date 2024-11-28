@@ -1,0 +1,31 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "Invoice",
+  "namespace" : "com.axonivy.portal.developerexamples",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "customer",
+    "type" : "com.axonivy.portal.developerexamples.Customer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "items",
+    "type" : "java.util.List<com.axonivy.portal.developerexamples.Item>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "id",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "description",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "taskId",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "taskCategory",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

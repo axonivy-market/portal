@@ -1,0 +1,23 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "LeaveRequestFormData",
+  "namespace" : "com.axonivy.portal.developerexamples.testdata.LeaveRequestForm",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "treeNode",
+    "type" : "org.primefaces.model.TreeNode",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "steps",
+    "type" : "List<String>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "actualStepIndex",
+    "type" : "Number",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "homeCaseId",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

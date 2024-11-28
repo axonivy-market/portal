@@ -61,7 +61,11 @@ public class LanguageService {
   }
 
   public String getUserLanguage() {
-    return loadLanguage(IUser::getLanguage);
+    String languageTag = loadLanguage(IUser::getLanguage);
+    if (languageTag == StringUtils.EMPTY) {
+    return getDefaultLanguage().toLanguageTag();
+    }
+    return languageTag;
   }
   
   public String getUserFormatLanguage() {
@@ -69,12 +73,13 @@ public class LanguageService {
   }
 
   private String loadLanguage(Function<IUser, Locale> userLocaleLoader) {
-    var languageTag = "";
+    String languageTag = "";
     if (Ivy.session().isSessionUserUnknown()) {
       languageTag = "";
     } else {
       Locale apply = userLocaleLoader.apply(Ivy.session().getSessionUser());
       languageTag = Objects.nonNull(apply) ? apply.toLanguageTag() : languageTag;
+
     }
     return languageTag;
   }
@@ -104,8 +109,8 @@ public class LanguageService {
   /**
    * From IVYPORTAL-16987
    * We use session cache to reduce loading time in new dashboard template
+   * @return content locales
    * 
-   * @return
    */
   @SuppressWarnings("unchecked")
   public List<Locale> getContentLocales() {
@@ -125,8 +130,8 @@ public class LanguageService {
   /**
    * From IVYPORTAL-16987
    * We use session cache to reduce loading time in new dashboard template
+   * @return formatting locales
    * 
-   * @return
    */
   @SuppressWarnings("unchecked")
   public List<Locale> getFormattingLocales() {
@@ -160,14 +165,14 @@ public class LanguageService {
     return loader.apply(languageManager.languages(securityContext));
   }
 
-  public Locale getDefaultEmailLanguage() {
+  public Locale getDefaultLanguage() {
     return getLanguageConfigurator().content();
   }
 
   public Locale getDefaultFormattingLanguage() {
     return getLanguageConfigurator().formatting();
   }
-  
+
   private LanguageConfigurator getLanguageConfigurator() {
     return new LanguageConfigurator(ISecurityContext.current());
   }

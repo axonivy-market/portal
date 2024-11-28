@@ -38,4 +38,37 @@ $(document).ready(function () {
         }
     })
 });
-
+var notificationId;
+function setNotificationId(id) {
+    notificationId = id;
+}
+var notiTaskId;
+function setNotiTaskId(id) {
+    notiTaskId = id;
+}
+var redirectType;
+function setRedirectType(type) {
+    redirectType = type;
+}
+function checkWarningLogForTaskDetail(notificationId, taskId) {
+    setNotificationId(notificationId);
+    setNotiTaskId(taskId);
+    setRedirectType('TASK_DETAIL');
+    showNotificationConfirmationDialog();
+}
+function checkWarningLogForTaskStart(notificationId, taskId) {
+    setNotificationId(notificationId);
+    setNotiTaskId(taskId);
+    setRedirectType('TASK_START');
+    showNotificationConfirmationDialog();
+}
+function showNotificationConfirmationDialog() {
+    if (PrimeFaces.widgets['notification-task-losing-confirmation-dialog']) {
+        PF('notification-task-losing-confirmation-dialog').show();
+        return false;
+    }
+    return true;
+}
+function fireEventClick() {
+    // do nothing
+}

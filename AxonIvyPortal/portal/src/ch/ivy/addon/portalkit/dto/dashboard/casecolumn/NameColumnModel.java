@@ -16,6 +16,12 @@ public class NameColumnModel extends CaseColumnModel implements Serializable {
     this.field = DashboardStandardCaseColumn.NAME.getField();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.quickSearch = defaultIfEmpty(this.quickSearch, true);
+    this.styleToDisplay = initDefaultStyle();
+  }
+  
+  @Override
+  protected int getDefaultColumnWidth() {
+    return 200;
   }
 
   @Override

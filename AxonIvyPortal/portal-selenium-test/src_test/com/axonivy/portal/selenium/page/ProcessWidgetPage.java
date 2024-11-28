@@ -112,7 +112,8 @@ public class ProcessWidgetPage extends TemplatePage {
 
     $("input[id$=':search-icon-name-field']").sendKeys(iconClass);
 
-    $("a[title='" + iconClass + "']").click();
+    $("div[id='process-widget:add-external-link-form:external-link-icon:icons-selection-form:icons']")
+        .$("a[title='" + iconClass + "']").click();
     $("div[id$='process-widget:add-external-link-form:external-link-icon:select-icon-dialog']")
         .shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
 
@@ -197,14 +198,6 @@ public class ProcessWidgetPage extends TemplatePage {
     return $("[id='process-widget:process-search:non-ajax-keyword-filter']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public ExpressProcessPage openExpressPage() {
-    WaitHelper.waitForNavigation(() -> {
-      clickByJavaScript(
-          $("[id='process-widget:create-express-workflow']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
-    });
-    return new ExpressProcessPage();
-  }
-
   public void startProcessByName(String processName) {
     WaitHelper.waitForNavigation(() -> getProcessItem(processName).$("[id$=':start-button']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
@@ -247,7 +240,7 @@ public class ProcessWidgetPage extends TemplatePage {
     for (SelenideElement process : processItems) {
       SelenideElement processNameElement = process.$(".js-process-start-list-item-name");
       if (processNameElement.isDisplayed() && processName.equalsIgnoreCase(processNameElement.getText())) {
-        startProcessItemElement = process.$("[id$=':process-item:start-button']");
+        startProcessItemElement = process.$("button[id$=':start-button']");
         break;
       }
     }
@@ -359,13 +352,24 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public void clickMoreInformationLinkImage(String processName) {
-    SelenideElement processItem = getProcessItem(processName);
-    processItem.$(By.cssSelector(".more-information-wrapper")).click();
+    getProcessActionMenu(processName)
+    .$("ul[class*='ui-helper-reset']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    .$$("li > a > span").filter(Condition.exactText("More Information")).first().click();;
   }
 
   public void clickMoreInformationLink(String processName) {
+    enterSearchKeyword(processName);
+    getProcessActionMenu(processName).$("ul[class*='ui-helper-reset']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li > a > span").filter(Condition.exactText("More Information")).first().click();
+  }
+  
+  private SelenideElement getProcessActionMenu(String processName) {
+    clickProcessMoreActionMenu(processName);
+    return $$("div[id$='process-action-menu']").filter(Condition.appear).first();
+  }
+
+  public void clickProcessMoreActionMenu(String processName) {
     SelenideElement processItem = getProcessItem(processName);
-    processItem.$(By.cssSelector(".more-information")).click();
+    processItem.$("button[id*=':process-action-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public SelenideElement getProcessItem(String processName) {
@@ -440,43 +444,6 @@ public class ProcessWidgetPage extends TemplatePage {
 
   private void loadLiveSearchTextField() {
     liveSearchTextField = findElementById(processWidgetId + ":process-search:non-ajax-keyword-filter");
-  }
-
-  public ExpressProcessPage editExpressWF(String wfName) {
-    int numberOfRefesh = 5;
-    for (int i = 0; i < numberOfRefesh; i++) {
-      waitForElementDisplayed(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"), true);
-      enterSearchKeyword(wfName);
-      if (isImageModeActivated()) {
-        SelenideElement processForm = $("form.image-view-form.is-express");
-        var processFormID = processForm.getAttribute("id");
-        waitForElementClickableThenClick(
-            "[id$='" + processFormID + ":image-process-action-component:process-action-button']");
-        waitForElementDisplayed(By.cssSelector(".process-action-menu.ui-connected-overlay-enter-done"), true);
-        if (isElementDisplayed(
-            By.cssSelector("div[id$='" + processFormID + ":image-process-action-component:process-action-menu']"))) {
-          SelenideElement actionMenu =
-              $("div[id$='" + processFormID + ":image-process-action-component:process-action-menu']");
-          SelenideElement icon = actionMenu.$("a[id$=':process-item:image-process-action-component:edit-process']");
-          icon.click();
-          waitForElementDisplayed(By.cssSelector("[id$='process-widget:edit-process-dialog']"), true);
-          waitForElementClickableThenClick("a[id$='process-widget:edit-process-form:edit-express-workflow']");
-          break;
-        }
-      } else {
-        if (isElementDisplayed(By.cssSelector("[id$='edit-express-workflow']"))) {
-          waitForElementClickableThenClick($("[id$='edit-express-workflow']"));
-          break;
-        }
-      }
-
-      // refresh();
-    }
-    return new ExpressProcessPage();
-  }
-
-  public boolean hasCreateNewExpressWorkflowLink() {
-    return isElementPresent(By.id("process-widget:create-express-workflow"));
   }
 
 }

@@ -1,0 +1,83 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "AdminSettingsData",
+  "namespace" : "ch.ivy.addon.portalkit.admin.AdminSettings",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "application",
+    "type" : "ch.ivy.addon.portalkit.configuration.Application"
+  }, {
+    "name" : "applicationList",
+    "type" : "List<ch.ivy.addon.portalkit.configuration.Application>"
+  }, {
+    "name" : "confirmMsg",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "dialogTitle",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "displayNameInCurrentLanguage",
+    "type" : "String",
+    "comment" : "Display application name in current portal language"
+  }, {
+    "name" : "duplicateApp",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isAddMode",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "languages",
+    "type" : "List<String>"
+  }, {
+    "name" : "selectedApp",
+    "type" : "ch.ivy.addon.portalkit.configuration.Application"
+  }, {
+    "name" : "selectedSetting",
+    "type" : "ch.ivy.addon.portalkit.configuration.GlobalSetting"
+  }, {
+    "name" : "settingList",
+    "type" : "List<ch.ivy.addon.portalkit.configuration.GlobalSetting>"
+  }, {
+    "name" : "supportedLanguages",
+    "type" : "List<ch.ivy.addon.portalkit.dto.DisplayName>"
+  }, {
+    "name" : "resetAllSettings",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "settingInputType",
+    "type" : "ch.ivy.addon.portalkit.enums.GlobalVariableType"
+  }, {
+    "name" : "dropDownValues",
+    "type" : "java.util.List<java.lang.Object>",
+    "comment" : "internal options, for example: FALSE, TRUE",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "externalDropDownValues",
+    "type" : "java.util.Map",
+    "comment" : "external options, for example: homepages, task/case columns sorting",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "filteredSettingList",
+    "type" : "List<ch.ivy.addon.portalkit.configuration.GlobalSetting>"
+  }, {
+    "name" : "isDefaultApplicationLanguage",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isAnnouncementActivated",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "announcement",
+    "type" : "ch.ivy.addon.portalkit.configuration.Announcement"
+  }, {
+    "name" : "selectedMultiSettings",
+    "type" : "java.util.List<String>",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

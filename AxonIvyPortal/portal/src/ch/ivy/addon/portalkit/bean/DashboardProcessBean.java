@@ -110,10 +110,6 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
     this.displayModes = displayModes;
   }
 
-  public boolean isExpressProcess(DashboardProcess process) {
-    return process != null && process.getType() == ProcessType.EXPRESS_PROCESS;
-  }
-
   public boolean isExternalLink(DashboardProcess process) {
     return process != null && process.getType() == ProcessType.EXTERNAL_LINK;
   }
@@ -129,6 +125,13 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
     FacesContext.getCurrentInstance().getExternalContext().redirect(link);
   }
   
+  protected String getRedirectLink(String link, boolean isEmbedInFrame) {
+    if (isEmbedInFrame) {
+      link += (link.contains("?") ? "&" : "?" + "embedInFrame");
+    }
+    return link;
+  }
+
   public boolean isCaseMap(DashboardProcess process) {
     return !Objects.isNull(process) && process.getStartLink().endsWith(".icm");
   }

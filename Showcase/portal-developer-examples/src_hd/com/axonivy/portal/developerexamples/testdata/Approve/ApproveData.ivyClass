@@ -1,4 +1,0 @@
-ApproveData #class
-com.axonivy.portal.developerexamples.testdata.Approve #namespace
-investmentRequest com.axonivy.portal.developerexamples.ExampleIFrameData #field
-investmentRequest PERSISTENT #fieldModifier

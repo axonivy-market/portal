@@ -1,0 +1,11 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "VerifyPersonalDataData",
+  "namespace" : "com.axonivy.portal.userexamples.credit.VerifyPersonalData",
+  "isBusinessCaseData" : true,
+  "fields" : [ {
+    "name" : "dossier",
+    "type" : "com.axonivy.portal.userexamples.credit.CreditDossier",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

@@ -133,16 +133,15 @@ body .layout-wrapper .menu-wrapper .sidebar-logo .portal-home-logo-small img {
 /*Style For Color Header --------------------------------------------------------------------------------------*/
 .first-header-bar {
   width: 70%;
-  background-color: var(--first-header-bar-color); }
+}
 
 .second-header-bar {
   width: 15%;
-  background-color: var(--second-header-bar-color); }
+}
 
 .third-header-bar {
   width: 15%;
-  background-color: var(--third-header-bar-color); }
-
+}
 /*Style for Top bar -------------------------------------------------------------------------------------- */
 @media screen and (max-width: 40em) {
   .task-template-container {
@@ -165,14 +164,14 @@ body .portal-breadcrumb.ui-breadcrumb ul li .ui-menuitem-link.ui-state-disabled 
 .process-start-list-item,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item,
 a.compact-task-start-link .task-start-list-item {
-  box-shadow: var(--item-widget-box-shadow);
   border: 1px solid transparent; }
 
-.dashboard-widget-panel-container .process-start-list-item,
-.ui-fieldset-content .process-start-list-item {
-  background-color: var(--item-widget-background-color);
-  box-shadow: var(--item-widget-box-shadow);
+.dashboard-widget-panel-container .process-start-list-item, .process-start-list-item {
+  background-color: var(--process-list-widget-item-background-color);
 }
+.ui-fieldset-content .process-start-list-item {
+  background-color: var(--process-list-item-background-color);
+  border: 1px solid var(--process-list-item-border-color);}
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
   background-color: var(--item-widget-background-color); }
@@ -195,7 +194,7 @@ a.compact-task-start-link .task-start-list-item {
 }
 
 .process-start-list-item-icon {
-  font-size: 2rem; }
+  font-size: var(--large-font-size); }
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-icon {
   color: var(--hovered-user-process-start-list-item-icon-color); }
@@ -247,8 +246,7 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
   font-weight: var(--widget-header-font-weight);
   font-size: var(--large-font-size); }
 
-.edit-process-icon-group .awesome-icon-selection-panel span,
-.external-process-icon .awesome-icon-selection-panel span {
+.edit-process-icon-group .awesome-icon-selection-panel span {
   font-size: var(--process-grid-icon-font-size); }
 
 .edit-process-info-group .edit-process-detail-1st-cell,
@@ -314,44 +312,8 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
   line-height: var(--task-item-name-line-height); }
 
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
-body .statistic-carousel .ui-widget-header.ui-carousel-header {
-  background-color: var(--statistic-panel-header) !important;
-  border-color: var(--statistic-panel-header-border); }
-
-.statistic-carousel .ui-carousel-header .ui-carousel-button.ui-icon {
-  color: var(--statistic-carousel-header-button-color); }
-
-.statistic-carousel .ui-carousel-header .ui-carousel-next-button:hover,
-.statistic-carousel .ui-carousel-header .ui-carousel-prev-button:hover {
-  color: var(--statistic-carousel-header-button-hover-color); }
-
-.statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info,
-.dashboard-chart-panel .chart-actions-container .chart-action,
-.dashboard-chart-panel .chart-info {
-  font-size: 1.5rem !important; }
-
-.statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info:hover,
-.dashboard-chart-panel .chart-info:hover,
-.dashboard-chart-panel .chart-actions-container .chart-action:hover {
-  color: var(--statistic-carousel-header-button-hover-color); }
-
-.chart-filter-header-text,
-.statistic-carousel .ui-carousel-header-title .chart-name,
-.dashboard-chart-panel .chart-name,
-.edit-statistic-container .chart-list .chart-container .label {
-  font-size: var(--chart-name-font-size);
-  font-weight: var(--chart-name-font-weight);
-  line-height: var(--chart-name-line-height); }
-
 .ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-item label {
   font-size: var(--default-font-size); }
-
-.chart-info-header {
-  font-size: var(--large-font-size);
-  font-weight: var(--chart-info-header-font-weight); }
-
-.chart-info-container label {
-  font-weight: var(--chart-name-font-weight); }
 
 .statistic-filter-accordion-panel .ui-accordion-content {
   border: solid 1px var(--statistic-filter-accordion-panel-border); }
@@ -387,25 +349,6 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
 .ui-widget.ui-button.context-button.ui-state-hover,
 .ui-widget.ui-button.context-button.ui-state-focus {
   background-color: var(--context-button-state-hover-or-focus-background-color); }
-
-/*Style for table --------------------------------------------------------------------------------------*/
-.express-many-checkbox-options.ui-datatable tbody tr ui-datatable tbody tr td:last-child {
-  border-top: 1px solid var(--top-border-body-express-many-checkbox-table-color); }
-
-/*Style for express --------------------------------------------------------------------------------------*/
-.process-start-list-item .process-start-list-item-action .ui-commandlink.express-workflow:hover {
-  color: var(--hovered-process-start-list-item-i-con-color); }
-
-.ui-widget.ui-button.defined-task-button.active,
-.ui-widget.ui-button.defined-task-button.visited {
-  border: solid 2px var(--defined-task-button-actived-border-color);
-  background-color: var(--defined-task-button-actived-or-hover-background-color); }
-
-.ui-widget.ui-button.defined-task-button.active:before {
-  border-color: var(--defined-task-button-actived-border-color); }
-
-.ui-widget.ui-button.defined-task-button.ui-state-hover {
-  background-color: var(--defined-task-button-actived-or-hover-background-color); }
 
 /*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
 .stages-chain .current i {
@@ -730,7 +673,7 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 
 .not-display-result-tab-view {
   font-size: var(--default-font-size); }
-
+  
 /** Style for Task Template * --------------------------------------*/
 .task-template-title {
   font-size: var(--large-font-size);
@@ -931,14 +874,6 @@ body .ui-inputfield.case-detail-name-input {
   font-family: var(--icon-font-family);
   font-size: var(--large-font-size); }
 
-.process-header .create-express-workflow-icon {
-  font-size: 1.6rem !important; }
-
-.process-header .create-express-workflow-icon {
-  padding-right: 2px;
-  margin-top: -1px;
-}
-
 .process-item-action-container .si {
   font-size: var(--large-font-size); }
 
@@ -1030,9 +965,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   font-size: var(--delete-deputy-icon-font-size); }
 
 /*Awesome Icon Selection--------------------------*/
-.ui-commandlink.select-awesome-icon-button {
-  font-weight: var(--select-awesome-icon-button-font-weight);
-  font-size: var(--small-font-size); }
 
 .icon-selection-dialog-selecting-icon:hover {
   border: solid 1px; }
@@ -1096,94 +1028,19 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .message .message-header {
   color: var(--error-message-header-color); }
 
-/* Express */
-.ui-widget.ui-button.defined-task-button {
-  border: solid 2px var(--defined-task-button-border-color);
-  background-color: var(--defined-task-button-background-color); }
-
-.ui-widget.ui-button.defined-task-button span {
-  color: var(--defined-task-button-text-color); }
-
-.ui-widget.ui-button.defined-task-button.ui-state-hover span,
-.ui-widget.ui-button.defined-task-button.active span {
-  color: var(--active-defined-task-button-text-color); }
-
-.express-work-flow .express-input-switch-selection,
-.ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked,
-.process-widget .process-input-switch-selection,
-.ui-inputswitch.ui-widget.ui-widget-content.process-input-switch-selection.ui-inputswitch-checked {
-  background-color: var(--express-input-switch-selection-background-color);
-  border-color: var(--express-input-switch-selection-border); }
-
-.ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked .ui-inputswitch-handle {
-  background: var(--ivy-primary-color-white);
-}
-
-.available-elements-action-btn button:hover, .available-elements-action-btn button:focus, .express-add-option-panel button:hover, .express-add-option-panel button:focus {
-  background-color:transparent;}
-
-.task-responsible-label.ui-state-error {
-  color: var(--task-responsible-label-state-error-color); }
-
-.selected-formelements-panel.hover-drop-section {
-  background-color: var(--form-elements-panel-hover-drop-section-background-color); }
-
-.review-content-title {
-  font-weight: var(--express-review-content-title-font-weight);
-  border-bottom: 1px solid var(--express-review-content-title-border-color); }
-
-.defined-task-label {
-  background: var(--defined-task-label-background-color); }
-
-.defined-task-label label {
-  font-size: var(--small-font-size);
-  color: var(--defined-task-label-text-color); }
-
-.defined-task-label.active label {
-  color: var(--defined-task-label-text-color); }
-
-.defined-task-button-container .ui-state-hover ~ span.defined-task-label,
-.defined-task-button-container .active ~ span.defined-task-label,
-.defined-task-button-container .visited ~ span.defined-task-label {
-  background: var(--defined-task-button-container-background-color); }
-
-.defined-task-button-container .ui-state-hover ~ span.defined-task-label label,
-.defined-task-button-container .active ~ span.defined-task-label label,
-.defined-task-button-container .visited ~ span.defined-task-label label {
-  color: var(--active-defined-task-label-text-color); }
-
-.form-definition-table .ui-state-highlight,
-.form-definition-table .hover-drop-section {
-  color: var(--form-elements-panel-hover-drop-section-label-color); }
-
-.form-definition-table .selected-formelements-panel {
-  border: dashed 2px var(--form-definition-table-selected-panel-border); }
-
-.form-definition-table .selected-formelements-panel .ui-datagrid {
-  background: var(--form-definition-table-selected-panel-background-color); }
-
-.email-attachment .ui-fileupload-buttonbar.ui-widget-header.ui-corner-top {
-  background-color: var(--email-file-upload-corner-top-background-color); }
-
+/* Absence */
 .task-responsible-link {
   font-size: var(--large-font-size); }
 
 .task-responsible-link:after {
   font-family: var(--icon-font-family); }
 
-.express-work-flow label.switch-active,
 .process-widget label.switch-active {
-  font-weight: var(--express-workflow-active-switch-label-font-weight);
+  font-weight: var(--active-switch-label-font-weight);
   color: var(--primary-color); }
 
 .process-widget label.switch-off {
   color: var(--ivy-primary-color-grey-medium);}
-
-.finished-task-label {
-  font-weight: var(--express-finished-task-label-font-weight); }
-
-.ui-widget.ui-button.defined-task-button.active {
-  font-weight: var(--express-active-defined-task-button-font-weight); }
 
 /* Chat*/
 .layout-wrapper .layout-topbar .topbar-menu > li > a.notification-badge i.fa.fa-comment {
@@ -1299,7 +1156,12 @@ ul.users-in-role {
 .options-panel .option-item:hover {
   text-decoration: none;
   color: var(--menu-action-hover-text-color);
-  background-color: var(--item-background-hover);}
+  background-color: var(--item-background-hover);
+}
+
+.options-panel .pointer-event-none {
+  pointer-events: none;
+}
 
 .process-widget-action .name-sort-command,
 .process-widget-action .editing-switch-command,
@@ -1313,7 +1175,8 @@ ul.users-in-role {
   font-size: var(--header-font-size); }
 
 .action-link span {
-  font-weight: var(--task-action-item-label-font-weight); }
+  font-weight: var(--task-action-item-label-font-weight);
+}
 
 .task-action-item.start-task-action .task-action-item-label {
   font-weight: var(--task-start-action-font-weight);
@@ -1339,44 +1202,6 @@ ul.users-in-role {
 
 .upload-container .ui-widget.ui-fileupload .ui-fileupload-content .ui-fileupload-messages {
   margin-top: 30px; }
-
-/* Express Management */
-.import-express-dialog .import-status {
-  font-weight: var(--express-import-status-font-weight); }
-  .import-express-dialog .import-status.Success {
-    color: var(--express-import-status-success); }
-  .import-express-dialog .import-status.Warning {
-    color: var(--express-import-status-warning); }
-  .import-express-dialog .import-status.Failed {
-    color: var(--express-import-status-failed); }
-
-.express-workflow-summary-table .ui-paginator.ui-paginator-top {
-  background-color: var(--express-import-paginator-background-color);
-  border-color: var(--express-import-paginator-background-color);
-  color: var(--express-import-paginator-text-color); }
-  .express-workflow-summary-table .ui-paginator.ui-paginator-top a {
-    color: var(--express-import-paginator-text-color); }
-    .express-workflow-summary-table .ui-paginator.ui-paginator-top a.ui-state-hover {
-      background-color: var(--express-import-paginator-hover-button-background-color); }
-  .express-workflow-summary-table .ui-paginator.ui-paginator-top .ui-paginator-pages {
-    color: var(--express-import-paginator-text-color); }
-    .express-workflow-summary-table .ui-paginator.ui-paginator-top .ui-paginator-pages a.ui-paginator-page.ui-state-active {
-      background-color: var(--express-import-paginator-hover-button-background-color); }
-    .express-workflow-summary-table .ui-paginator.ui-paginator-top .ui-paginator-pages a.ui-paginator-page.ui-state-hover {
-      background-color: var(--express-import-paginator-hover-button-background-color); }
-
-.express-workflow-summary-table tr.ui-datatable-selectable.ui-state-highlight td,
-.express-workflow-summary-table tr.ui-datatable-selectable.ui-state-hover td {
-  border-bottom-color: var(--ivy-primary-color-grey-medium); }
-
-.express-workflow-summary-table tr.ui-datatable-selectable.ui-state-highlight th:not(:last-child), .express-workflow-summary-table tr.ui-datatable-selectable.ui-state-highlight td:not(:last-child),
-.express-workflow-summary-table tr.ui-datatable-selectable.ui-state-hover th:not(:last-child),
-.express-workflow-summary-table tr.ui-datatable-selectable.ui-state-hover td:not(:last-child) {
-  border-right-color: var(--ivy-primary-color-grey-medium); }
-
-.express-helper-loading-container .si-lg {
-  font-size: var(--express-helper-loading-container-si-lg-font-size);
-}
 
 body .ui-slider .ui-slider-handle {
   background-color: var(--accent-light-color);
@@ -1446,6 +1271,10 @@ color: var(--button-text-color);
 
 .portal-dialog-info-icon {
   color: var(--primary-color);
+}
+
+.dasboard-configuration-action-menu-icon {
+  color: white;
 }
 
 .portal-dialog-warning-icon {
@@ -1547,8 +1376,7 @@ body.in-dialog .ui-widget-overlay {
 }
 
 .dashboard-action-container {
-  box-shadow:  var(--item-widget-box-shadow);
-  background-color: var(--item-widget-background-color);
+  border: 1px solid var(--dashboard-action-container-border-color);
 }
 
 .dashboard-action-container:hover {
@@ -1557,15 +1385,15 @@ body.in-dialog .ui-widget-overlay {
 }
 
 .dashboard-action-container-label {
-  color: var(--primary-dark-text-color);
+  color: var(--dashboard-action-container-text-color);
 }
 
 .dashboard-action-container-description {
-  color: var(--primary-dark-text-color);
+  color: var(--dashboard-action-container-description-color);
 }
 
 .dashboard-action-container-icon {
-  color: var(--primary-dark-text-color);
+  color: var(--dashboard-action-container-text-color);
 }
 
 .dashboard-type-list li a {
@@ -1574,16 +1402,6 @@ body.in-dialog .ui-widget-overlay {
 
 #reorder-button:hover {
   cursor: move;
-}
-
-.statistic-chart-cases-by-category {
-  width: 100%;
-  height: 340px;
-}
-
-.dashboard-statistic-chart-cases-by-category {
-  width: 100%;
-  height: 400px;
 }
 
 .option-item-long-label {
@@ -1682,16 +1500,10 @@ body .notification-full-scroll>.ui-datascroller-content  {
   overflow:auto;
 }
 
-body .notification-checkbox .ui-chkbox-box {
-  width: 1rem;
-  height: 1rem;
-}
-
 .notifications-item-container {
   padding: 20px 15px 5px 15px;
   display: block;
   overflow: hidden;
-  background-color: var(--notification-title-color)
 }
 
 .notifications-icon {
@@ -1790,8 +1602,7 @@ body .notification-checkbox .ui-chkbox-box {
 }
 
 i.dashboard-icon-drag-drop {
-    border: 1px solid var(--ivy-primary-color);
-    color: var(--ivy-primary-color);
+    color: var(--dashboard-icon-drag-drop-color);
     width: 2.357rem;
     border-radius: 50%;
     text-align: center;
@@ -1938,3 +1749,41 @@ i.dashboard-icon-drag-drop {
 	max-width: 50%;
 	margin: -15px 0;
 }
+
+.focusable {
+  padding: 10px;
+  border: 1px solid black;
+  margin: 5px;
+  cursor: pointer;
+}
+body.light .focused {
+  outline: 2px solid black;
+}
+
+body.dark .focused {
+  outline: 2px solid white;
+}
+
+.screenreader-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* ============== DIALOG FOOTER - CONFIRMATION DIALOG ============================  **/
+.ui-leave-button {
+  color: var(--text-color) !important;
+  background-color: var(--ui-leave-button-color) !important;
+  border: 1px solid var(--ui-leave-button-color) !important;
+}
+.ui-leave-button,
+.ui-reserve-task-button,
+.ui-cancel-button {
+  font-weight: 600;
+}
+/* ====END OF==== DIALOG FOOTER - CONFIRMATION DIALOG ============================  **/

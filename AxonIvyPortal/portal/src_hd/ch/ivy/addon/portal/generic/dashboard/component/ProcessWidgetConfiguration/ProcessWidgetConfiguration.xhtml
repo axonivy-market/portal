@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="processWidget" />
@@ -62,6 +62,54 @@
         </div>
       </h:panelGroup>
 
+        <h:panelGroup id="quick-search-group"
+          rendered="#{isCompact and managedBean.canEnableQuickSearch()}"
+          styleClass="ui-g-12 u-padding-0 ui-fluid">
+          <div class="ui-g-6">
+            <p:outputLabel for="quick-search" styleClass="u-mar-right-5"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" />
+          </div>
+          <div class="ui-g-6 ui-inputgroup">
+            <p:selectBooleanCheckbox id="quick-search"
+              value="#{widget.enableQuickSearch}">
+              <p:ajax process="quick-search-group" update="quick-search-group"
+                partialSubmit="true" />
+            </p:selectBooleanCheckbox>
+          </div>
+        </h:panelGroup>
+
+      <h:panelGroup id="widget-info-icon-group" rendered="#{managedBean.displayWidgetInfoOption()}"
+        styleClass="ui-g-12 u-padding-0 ui-fluid">
+        <div class="ui-g-6">
+          <p:outputLabel for="widget-info"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfoIcon')}"
+            styleClass="u-mar-right-5" />
+        </div>
+        <div class="ui-g-6 ui-inputgroup">
+          <p:selectBooleanCheckbox id="widget-info"
+            value="#{widget.showWidgetInfo}">
+            <p:ajax process="widget-info-icon-group"
+              update="widget-info-icon-group" partialSubmit="true"/>
+          </p:selectBooleanCheckbox>
+        </div>
+      </h:panelGroup>
+      
+      <h:panelGroup id="fullscreen-mode-group" rendered="#{managedBean.displayFullscreenModeOption()}"
+        styleClass="ui-g-12 u-padding-0 ui-fluid">
+        <div class="ui-g-6">
+          <p:outputLabel for="fullscreen-option"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/fullscreenMode')}"
+            styleClass="u-mar-right-5" />
+        </div>
+        <div class="ui-g-6 ui-inputgroup">
+          <p:selectBooleanCheckbox id="fullscreen-option"
+            value="#{widget.showFullscreenMode}">
+            <p:ajax process="fullscreen-mode-group"
+              update="fullscreen-mode-group"/>
+          </p:selectBooleanCheckbox>
+        </div>
+      </h:panelGroup>
+      
       <div class="ui-g-12 MarTop20 u-padding-0">
         <div class="ui-g-4">
           <strong>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters")}</strong>

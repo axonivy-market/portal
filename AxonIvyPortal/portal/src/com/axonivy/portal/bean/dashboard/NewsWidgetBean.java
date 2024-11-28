@@ -79,7 +79,7 @@ public class NewsWidgetBean implements Serializable {
     if (CollectionUtils.isEmpty(supportLanguages)) {
       supportLanguages = LanguageService.getInstance().getContentLocales().stream()
           .filter(distinctBylanguageTag(Locale::toLanguageTag)).collect(Collectors.toList());
-      defaultLanguage = LanguageService.getInstance().getDefaultEmailLanguage();
+      defaultLanguage = LanguageService.getInstance().getDefaultLanguage();
     }
   }
 

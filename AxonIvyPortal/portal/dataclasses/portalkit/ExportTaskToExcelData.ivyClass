@@ -1,5 +1,0 @@
-ExportTaskToExcelData #class
-portalkit #namespace
-columnsVisibility List<String> #field
-collectedTasksForExporting List<ch.ivyteam.ivy.workflow.ITask> #field
-exportedFile org.primefaces.model.StreamedContent #field

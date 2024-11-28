@@ -1,0 +1,67 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "DocumentTableData",
+  "namespace" : "com.axonivy.portal.components.DocumentTable",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "documents",
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
+  }, {
+    "name" : "event",
+    "type" : "org.primefaces.event.FileUploadEvent"
+  }, {
+    "name" : "fileLimit",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "ivyCase",
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
+  }, {
+    "name" : "message",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "messageComponentId",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedDocument",
+    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument"
+  }, {
+    "name" : "streamedContent",
+    "type" : "org.primefaces.model.StreamedContent"
+  }, {
+    "name" : "typeColumnRendered",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "typeSelection",
+    "type" : "com.axonivy.portal.components.enums.DocumentType"
+  }, {
+    "name" : "uploadDocumentCheckStatus",
+    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus"
+  }, {
+    "name" : "uploadedDocument",
+    "type" : "ch.ivyteam.ivy.workflow.document.IDocument"
+  }, {
+    "name" : "enableVirusScannerForUploadedDocument",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "enableScriptCheckingForUploadedDocument",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "allowedUploadFileTypes",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "uploadedFile",
+    "type" : "org.primefaces.model.file.UploadedFile",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "sizeLimit",
+    "type" : "Long",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

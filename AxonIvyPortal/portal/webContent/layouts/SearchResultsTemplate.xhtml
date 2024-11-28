@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:pe="http://primefaces.org/ui/extensions"
+  lang="#{masterDataBean.userLanguage}"
+  >
 <h:body>
     
     <!-- WARNING: -->
@@ -42,7 +44,7 @@
             rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink and compactProcessWidgetBean.globalSearchScope}">
             <div class="js-process-list-container">
               <ic:ch.ivy.addon.portalkit.component.ProcessWidget id="process-results" hideProcessNavigation="true" hideHeader="true"
-                hideExpressCreation="true" processListStyleClass="process-in-search" />
+                processListStyleClass="process-in-search" />
             </div>
           </p:tab>
           
@@ -129,7 +131,7 @@
   	                    case="#{case}" dataModel="#{dataModel.caseDataModel}" />
   	                </div>
   	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseId componentId="case-id-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" />
-  	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" />
+  	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" rendered="#{!caseBean.isHideCaseCreator()}"/>
                     <ic:ch.ivy.addon.portalkit.component.cases.column.CaseOwner componentId="case-owner-cell"
                       case="#{case}" dataModel="#{dataModel.caseDataModel}" rendered="#{caseBean.isCaseOwnerEnabled()}"
                       responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down" />

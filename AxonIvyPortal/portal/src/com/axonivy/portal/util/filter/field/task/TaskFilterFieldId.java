@@ -18,6 +18,7 @@ public class TaskFilterFieldId extends FilterField {
     super(DashboardStandardTaskColumn.ID.getField());
   }
 
+  @Override
   public String getLabel() {
     return DashboardStandardTaskColumn.ID.getLabel();
   }

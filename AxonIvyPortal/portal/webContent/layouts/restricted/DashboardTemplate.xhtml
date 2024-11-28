@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions" xmlns:jsf="http://xmlns.jcp.org/jsf"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <h:body>
@@ -77,6 +77,7 @@
                     <c:if test="#{widget.type eq 'TASK'}">
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        isResizable="#{managedBean.resizable}"
                         index="#{status.index}"
                         id="task-#{widget.id}" />
                     </c:if>
@@ -85,6 +86,7 @@
                     <c:if test="#{widget.type eq 'CASE'}">
                       <ic:ch.ivy.addon.portal.generic.dashboard.component.CaseDashboardWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        isResizable="#{managedBean.resizable}"
                         index="#{status.index}"
                         id="case-#{widget.id}" />
                     </c:if>
@@ -97,15 +99,6 @@
                         id="process-#{widget.id}"
                         isPublicDashboard="#{managedBean.selectedDashboard.isPublic}"
                         isInConfiguration="#{isInConfiguration}" />
-                    </c:if>
-
-                    <!-- Statistic widget -->
-                    <c:if test="#{widget.type eq 'STATISTIC'}">
-                      <ic:ch.ivy.addon.portal.generic.dashboard.component.StatisticChartWidget id="chart-#{widget.id}"
-                        chart="#{widget.chart}"
-                        widget="#{widget}"
-                        index="#{status.index}"
-                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"/>
                     </c:if>
 
                     <!-- Custom widget -->
@@ -276,7 +269,7 @@
           <p:dialog id="manage-filter-dialog" widgetVar="manage-filter-dialog"
             header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/ManageWidgetFilterHeader')}"
             modal="true" fitViewport="true" styleClass="manage-filter-dialog"
-            dynamic="true" appendTo="@(body)" closable="false"
+            dynamic="true" appendTo="@(body)" closable="true" closeOnEscape="true"
             onShow="loadAllWidgetSavedFilters();">
             <h:form id="delete-saved-filter-form" styleClass="ui-g">
               <div class="ui-g-12">
@@ -284,8 +277,8 @@
                   widgetVar="quick-filter-table" scrollHeight="300" scrollable="true" reflow="true"
                   selection="#{dashboardBean.deleteFilters}" rowKey="#{quickFilter.name}"
                   emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/EmptyFilterMessage')}" lazy="false">
-
-                  <p:column selectionMode="multiple" styleClass="saved-filter-selection-column" width="40"/>
+                  
+                  <p:column selectionMode="multiple" styleClass="saved-filter-selection-column u-text-align-center" width="20"/>
 
                   <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" width="200"
                     filterBy="#{quickFilter.name}" sortBy="#{quickFilter.name}" filterMatchMode="contains">
@@ -305,19 +298,15 @@
                 </p:dataTable>
               </div>
               <h:panelGroup id="manage-filter-action" layout="block" styleClass="ui-g-12 u-text-align-right">
-                <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-                  onclick="PF('manage-filter-dialog').hide();"
-                  styleClass="u-mar-right-15" global="false"/>
-                <p:commandButton id="delete-widget-filter-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+                <p:commandButton id="delete-widget-filter-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/removeSelection')}"
                   process="delete-saved-filter-form" update="delete-saved-filter-form:quick-filter-table"
                   actionListener="#{dashboardBean.deleteSavedFilter()}"
-                  oncomplete="PF('quick-filter-table').clearFilters()"
-                  icon="si si-remove" />
+                  oncomplete="PF('quick-filter-table').clearFilters()" />
               </h:panelGroup>
             </h:form>
           </p:dialog>
 
-		  <h:panelGroup rendered="#{managedBean.isShowShareButtonOnDashboard()}" layout="block" styleClass="u-text-align-center">
+          <h:panelGroup rendered="#{managedBean.isShowShareButtonOnDashboard() and not managedBean.isMainDashboardSelected()}" layout="block" styleClass="u-text-align-center">
             <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShareThisDashboard')}" 
                   onclick="PF('share-dashboard-dialog').show(); return false;" />
           </h:panelGroup>

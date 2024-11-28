@@ -13,12 +13,14 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
+import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreator;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomNumber;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 
 public abstract class AbstractCaseWidgetFilterBean implements Serializable {
@@ -40,22 +42,26 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
     this.filterFields.add(FilterFieldFactory.getDefaultFilterField());
     this.filterFields.addAll(FilterFieldFactory.getStandardFilterableFields());
 
+    // Remove Case Creator filter when the HideCaseCreator variable is enable.
+    this.filterFields = filterFields.stream().filter(
+        field -> !(field instanceof CaseFilterFieldCreator && GlobalSettingService.getInstance().isHideCaseCreator()))
+        .collect(Collectors.toList());
+
     // Add custom fields which are selected by user.
-    this.widget.getFilterableColumns()
-      .stream().filter(col -> col.getType() == DashboardColumnType.CUSTOM)
-      .forEach(customColumn -> this.filterFields.add(FilterFieldFactory.findCustomFieldBy(customColumn.getField())));
+    this.widget.getFilterableColumns().stream().filter(col -> col.getType() == DashboardColumnType.CUSTOM)
+        .forEach(customColumn -> this.filterFields.add(FilterFieldFactory.findCustomFieldBy(customColumn.getField())));
   }
 
   private void initFilters() {
-    if (CollectionUtils.isEmpty(Optional.ofNullable(this.widget)
-        .map(CaseDashboardWidget::getFilters).get())) {
+    if (CollectionUtils.isEmpty(Optional.ofNullable(this.widget).map(CaseDashboardWidget::getFilters).get())) {
       return;
     }
 
     // If the filter available in the filter list, initialize it
     for (DashboardFilter filter : this.widget.getFilters()) {
       if (isFilterAvaliable(filter)) {
-        FilterField filterField = FilterFieldFactory.findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));
+        FilterField filterField =
+            FilterFieldFactory.findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));
         if (filterField != null) {
           filterField.initFilter(filter);
         }
@@ -65,12 +71,12 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
 
   /**
    * Check if the filter is existing in the filter list or not
+   * 
    * @param filter
-   * @return
    */
   private boolean isFilterAvaliable(DashboardFilter filter) {
-    return Optional.ofNullable(filter).map(DashboardFilter::getField).isPresent()
-        && filterFields.stream().filter(field -> filter.getField().contentEquals(filter.getField())).findFirst().isPresent();
+    return Optional.ofNullable(filter).map(DashboardFilter::getField).isPresent() && filterFields.stream()
+        .filter(field -> filter.getField().contentEquals(filter.getField())).findFirst().isPresent();
   }
 
   public List<FilterField> getFilterFields() {
@@ -82,8 +88,7 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
         .orElse(StringUtils.EMPTY);
     FilterField filterField = FilterFieldFactory.findBy(field);
 
-    if (filterField.getName()
-        .contentEquals(FilterFieldFactory.DEFAULT_FILTER_FIELD)) {
+    if (filterField.getName().contentEquals(FilterFieldFactory.DEFAULT_FILTER_FIELD)) {
       filterField.addNewFilter(filter);
       return;
     }
@@ -94,8 +99,8 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
 
   private void initCustomFieldNumberPattern(DashboardFilter filter, String field, FilterField filterField) {
     if (filterField instanceof CaseFilterFieldCustomNumber) {
-      ColumnModel column = widget.getFilterableColumns().stream()
-          .filter(col -> col.getField().contentEquals(field)).findFirst().orElse(new ColumnModel());
+      ColumnModel column = widget.getFilterableColumns().stream().filter(col -> col.getField().contentEquals(field))
+          .findFirst().orElse(new ColumnModel());
       filter.setNumberPattern(column.getPattern());
     }
   }

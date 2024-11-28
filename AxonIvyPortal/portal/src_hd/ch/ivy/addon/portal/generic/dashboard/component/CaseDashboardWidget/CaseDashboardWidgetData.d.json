@@ -1,0 +1,32 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "CaseDashboardWidgetData",
+  "namespace" : "ch.ivy.addon.portal.generic.dashboard.component.CaseDashboardWidget",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "widget",
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget"
+  }, {
+    "name" : "totalCases",
+    "type" : "Long",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "loopCounter",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "maxResultNumberPerQuery",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "collectedCasesForExporting",
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>"
+  }, {
+    "name" : "exportedFile",
+    "type" : "org.primefaces.model.StreamedContent"
+  }, {
+    "name" : "columnsVisibility",
+    "type" : "java.util.List<String>",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

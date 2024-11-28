@@ -35,7 +35,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
@@ -166,7 +165,6 @@ public class DashboardWidgetUtils {
       column.setDescription(fieldMeta.get().description());
       if (column.getIsCustomAction()) {
         column.setSortable(false);
-        column.setStyle(AbstractColumn.EXTRA_WIDTH);
       }
     } else if (StringUtils.isBlank(column.getHeader())) {
       column.setHeader(field);
@@ -239,9 +237,14 @@ public class DashboardWidgetUtils {
           .collect(Collectors.toList());
     }
     var enableCaseOwner = GlobalSettingService.getInstance().isCaseOwnerEnabled();
+    boolean disableCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
     if (!enableCaseOwner) {
       filterableColumns
           .removeIf(col -> StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.OWNER.name()));
+    }
+    if (disableCaseCreator) {
+      filterableColumns
+          .removeIf(col -> StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.CREATOR.name()));
     }
     return filterableColumns;
   }
@@ -292,7 +295,7 @@ public class DashboardWidgetUtils {
       if (StringUtils.equals(column.getDefaultStyleClass(), column.getStyleClass())) {
         column.setStyleClass(null);
       }
-      if (StringUtils.equals(column.getDefaultStyle(), column.getStyle())) {
+      if (StringUtils.equals(column.initDefaultStyle  (), column.getStyle())) {
         column.setStyle(null);
       }
       if (column.getDefaultFormat() == column.getFormat()) {
@@ -380,21 +383,15 @@ public class DashboardWidgetUtils {
       case TASK -> buildDefaultTaskWidget(id, name);
       case CASE -> buildDefaultCaseWidget(id, name);
       case PROCESS -> buildDefaultProcessWidget(id, name);
-      case STATISTIC, 
-           CLIENT_STATISTIC -> buildDefaultStatisticWidget(id, name, type);
+      case CLIENT_STATISTIC -> buildDefaultStatisticWidget(id, name, type);
       default -> null;
     };
   }
 
 
-  private static DashboardWidget buildDefaultStatisticWidget(String id, String name, DashboardWidgetType widgetType) {
+  private static DashboardWidget buildDefaultStatisticWidget(String id, @SuppressWarnings("unused") String name, @SuppressWarnings("unused") DashboardWidgetType widgetType) {
     DashboardWidget widget = null;
-    if (widgetType == DashboardWidgetType.CLIENT_STATISTIC) {
-      widget = new ClientStatisticDashboardWidget();
-    } else {
-      widget = new StatisticDashboardWidget();
-      widget.setName(name);
-    }
+    widget = new ClientStatisticDashboardWidget();
     widget.setId(id);
     var layout = new WidgetLayout();
     layout.setWidth(5);
@@ -441,6 +438,9 @@ public class DashboardWidgetUtils {
       }
       case CATEGORY -> {
         columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.CategoryColumnModel();
+      }
+      case DESCRIPTION -> {
+        columnModel = new ch.ivy.addon.portalkit.dto.dashboard.process.DescriptionColumnModel();
       }
       default -> {
       }
@@ -579,7 +579,7 @@ public class DashboardWidgetUtils {
     List<DashboardProcess> processes = getCompactProcesses(processWidget);
     processWidget.setDisplayProcesses(processes);
     processWidget.setOriginalDisplayProcesses(processes);
-    if (!processWidget.getCriteria().isInConfiguration()) {
+    if (!processWidget.getCriteria().isInConfiguration() || processWidget.isEnableQuickSearch()) {
       processWidget.filterProcessesByUser();
     }
   }

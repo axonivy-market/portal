@@ -16,8 +16,8 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.enums.GlobalSearchScopeCategory;
 import com.axonivy.portal.enums.SearchScopeTaskField;
+import com.axonivy.portal.service.GlobalSearchService;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
@@ -51,18 +51,17 @@ public class TaskWidgetBean implements Serializable {
 
   public TaskWidgetBean() {
     expandedTaskId = -1L;
-    String taskListRefreshIntervalUserSetting =
-        new GlobalSettingService().findGlobalSettingValue(GlobalVariable.REFRESH_TASK_LIST_INTERVAL);
+    String taskListRefreshIntervalUserSetting = "10000"; // set default value instead of variable
     taskListRefreshInterval =
         StringUtils.isNumeric(taskListRefreshIntervalUserSetting) ? Long.parseLong(taskListRefreshIntervalUserSetting)
             : DEFAULT_TASK_LIST_REFRESH_INTERVAL;
     isShowFullTaskList = PermissionUtils.checkAccessFullTaskListPermission();
-    isRunningTaskWhenClickingOnTaskInList = new GlobalSettingService()
+    isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
   }
   
-  public void preRender(TaskLazyDataModel dataModel) {}
+  public void preRender(@SuppressWarnings("unused") TaskLazyDataModel dataModel) {}
 
   public Long getExpandedTaskId() {
     return expandedTaskId;
@@ -210,16 +209,6 @@ public class TaskWidgetBean implements Serializable {
   }
   
   public boolean isShowGlobalSearchScope() {
-    String globalSearchScopeCategoriesString = Ivy.var().get(GlobalVariable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey());
-    if (StringUtils.isNotBlank(globalSearchScopeCategoriesString)) {
-      String[] fieldArray = globalSearchScopeCategoriesString.split(",");
-      for (String field : fieldArray) {
-        GlobalSearchScopeCategory fieldEnum = GlobalSearchScopeCategory.valueOf(field.toUpperCase());
-        if (fieldEnum != null && fieldEnum.equals(GlobalSearchScopeCategory.TASKS)) {
-          return true;
-        }
-      }
-    }
-    return false;
+    return GlobalSearchService.getInstance().isShowGlobalSearchByTasks();
   }
 }

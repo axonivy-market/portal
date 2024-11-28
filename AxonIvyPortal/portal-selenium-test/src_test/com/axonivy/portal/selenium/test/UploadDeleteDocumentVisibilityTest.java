@@ -8,16 +8,16 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 @IvyWebTest
 public class UploadDeleteDocumentVisibilityTest extends BaseTest {
 
-  private CaseWidgetPage casePage;
+  private CaseWidgetNewDashBoardPage casePage;
   private CaseDetailsPage caseDetailsPage;
-  private TaskWidgetPage taskWidgetPage;
+  private TopMenuTaskWidgetPage taskWidget;
 
   @Test
   public void testShowUploadDeleteDocumentWhenHasDocumentOfInvolvedCaseWritePemission() {
@@ -33,7 +33,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
 
     denyDocumentOfInvolvedCaseWritePemissionFromCurrentUser();
     casePage = NavigationHelper.navigateToCaseList();
-    caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
+    caseDetailsPage = casePage.openDetailsCase("SupportTicket");
 
     assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed(false));
     assertTrue(caseDetailsPage.isDeleteDocumentButtonPresented(false));
@@ -43,14 +43,15 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
   public void testSettingHideUploadDeleteDocumentForDoneCase() {
     createCaseAndUploadDocumentByUser(TestAccount.ADMIN_USER);
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
-    taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.startTaskWithoutUI(0);
-    taskWidgetPage = NavigationHelper.navigateToTaskList();
+    NavigationHelper.navigateToTaskList();
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.startTask(0);
+    NavigationHelper.navigateToTaskList();
     updatePortalSetting(Variable.HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE.getKey(), "true");
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
 
     casePage = NavigationHelper.navigateToCaseList();
-    caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
+    caseDetailsPage = casePage.openDetailsCase("SupportTicket");
 
     assertTrue(caseDetailsPage.isAddDocumentLinkDisplayed(false));
     assertTrue(caseDetailsPage.isDeleteDocumentButtonPresented(false));
@@ -65,7 +66,7 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
     grantDocumentOfInvolvedCaseWritePemissionToCurrentUser();
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     casePage = NavigationHelper.navigateToCaseList();
-    caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
+    caseDetailsPage = casePage.openDetailsCase("SupportTicket");
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
   }
 

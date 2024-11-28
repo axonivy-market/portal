@@ -1,0 +1,127 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "PortalStartData",
+  "namespace" : "ch.ivy.addon.portal.generic",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "portalPage",
+    "type" : "ch.ivy.addon.portalkit.enums.PortalPage"
+  }, {
+    "name" : "caseView",
+    "type" : "ch.ivy.addon.portal.generic.view.CaseView"
+  }, {
+    "name" : "taskView",
+    "type" : "ch.ivy.addon.portal.generic.view.TaskView"
+  }, {
+    "name" : "endedTaskId",
+    "type" : "Number"
+  }, {
+    "name" : "dataModel",
+    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel"
+  }, {
+    "name" : "selectedTaskId",
+    "type" : "Number"
+  }, {
+    "name" : "callbackUrl",
+    "type" : "String"
+  }, {
+    "name" : "caseDataModel",
+    "type" : "ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel"
+  }, {
+    "name" : "searchResultsDataModel",
+    "type" : "ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel"
+  }, {
+    "name" : "caseId",
+    "type" : "Long"
+  }, {
+    "name" : "isTaskStartedInDetails",
+    "type" : "Boolean"
+  }, {
+    "name" : "isTaskFinished",
+    "type" : "Boolean"
+  }, {
+    "name" : "taskSelected",
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
+  }, {
+    "name" : "caseSelected",
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
+  }, {
+    "name" : "backFromTaskDetails",
+    "type" : "Boolean"
+  }, {
+    "name" : "isFirstTask",
+    "type" : "Boolean"
+  }, {
+    "name" : "isBusinessCase",
+    "type" : "Boolean"
+  }, {
+    "name" : "caseName",
+    "type" : "String"
+  }, {
+    "name" : "keyword",
+    "type" : "String",
+    "comment" : "used in global search process"
+  }, {
+    "name" : "embedInIFrame",
+    "type" : "Boolean"
+  }, {
+    "name" : "homepage",
+    "type" : "ch.addon.portal.generic.userprofile.homepage.Homepage",
+    "comment" : "selected homepage of user"
+  }, {
+    "name" : "passwordResetToken",
+    "type" : "String"
+  }, {
+    "name" : "passwordResetUsername",
+    "type" : "String"
+  }, {
+    "name" : "isValidResetUrl",
+    "type" : "Boolean"
+  }, {
+    "name" : "passwordResetMessage",
+    "type" : "String"
+  }, {
+    "name" : "isShowDashboard",
+    "type" : "Boolean"
+  }, {
+    "name" : "processId",
+    "type" : "String"
+  }, {
+    "name" : "histories",
+    "type" : "java.util.List<ch.ivy.addon.portalkit.bo.History>"
+  }, {
+    "name" : "taskId",
+    "type" : "Long"
+  }, {
+    "name" : "notes",
+    "type" : "List<ch.ivyteam.ivy.workflow.note.Note>"
+  }, {
+    "name" : "isAuthorized",
+    "type" : "Boolean"
+  }, {
+    "name" : "isPublicDashboard",
+    "type" : "Boolean",
+    "comment" : "used in configuring new dashboard"
+  }, {
+    "name" : "dashboardId",
+    "type" : "String"
+  }, {
+    "name" : "uuid",
+    "type" : "String"
+  }, {
+    "name" : "isOpenWithoutMenu",
+    "type" : "Boolean"
+  }, {
+    "name" : "isOpenDashboardFromLink",
+    "type" : "Boolean"
+  }, {
+    "name" : "activeTabIndex",
+    "type" : "String"
+  }, {
+    "name" : "id",
+    "type" : "String"
+  }, {
+    "name" : "isMainDashboard",
+    "type" : "Boolean"
+  } ]
+}

@@ -17,6 +17,7 @@ import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.ProcessInformationPage;
+import com.axonivy.portal.selenium.page.ProcessWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
@@ -25,7 +26,8 @@ import com.codeborne.selenide.Condition;
 
 @IvyWebTest
 public class DashboardProcessWidgetTest extends BaseTest {
-  private static final String EXPRESS_PROCESS = "EXPRESS_PROCESS";
+  private static final String YOUR_PROCESSES = "Your Processes";
+  private static final String EXTERNAL_LINK = "EXTERNAL_LINK";
   private static final String CASE_LEAVE_REQUEST_TEST_FOR_IVYPORTAL_3369 =
       "Case: Leave Request Test For IVYPORTAL-3369";
   private static final String TASK_SICK_LEAVE_REQUEST = "Task: Sick Leave Request";
@@ -66,6 +68,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.previewImageModeProcess(CATEGORIED_LEAVE_REQUEST);
     editProcessWidgetConfiguration.getStartButton().shouldBe(Condition.disabled);
+    editProcessWidgetConfiguration.save();
     editProcessWidgetConfiguration.getDisabledMoreInformationLink().shouldBe(Condition.appear);
     editProcessWidgetConfiguration.getImageModeProcessImage()
         .shouldHave(Condition.attributeMatching(NewDashboardPage.SRC_ATTRIBUTE, NewDashboardPage.IMAGE_URI_PATTERN));
@@ -127,7 +130,8 @@ public class DashboardProcessWidgetTest extends BaseTest {
         newDashboardPage.editProcessWidgetConfiguration();
     editProcessWidgetConfiguration.previewFullModeProcess(CATEGORIED_LEAVE_REQUEST);
     editProcessWidgetConfiguration.getStartButton().shouldBe(Condition.disabled);
-    editProcessWidgetConfiguration.getDisabledMoreInformationLink().shouldBe(Condition.appear);
+    editProcessWidgetConfiguration.save();
+    newDashboardPage.getDisabledMoreInformationLink().shouldBe(Condition.appear);
   }
 
   @Test
@@ -528,7 +532,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   public void testFilterCompactModeProcessFilterProcessType() {
     newDashboardPage.checkCompactModeProcessDisplayedProcessItem(CREATE_INVESTMENT_IFRAME);
 
-    newDashboardPage.applyFilterCompactModeProcessProcessType(EXPRESS_PROCESS);
+    newDashboardPage.applyFilterCompactModeProcessProcessType(EXTERNAL_LINK);
 
     newDashboardPage.checkCompactModeProcessDisappearedProcessItem(CREATE_INVESTMENT_IFRAME);
   }
@@ -538,7 +542,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.checkCompactModeProcessDisplayedProcessItem(CREATE_INVESTMENT_IFRAME);
 
     newDashboardPage.expandCompactModeProcess();
-    newDashboardPage.applyFilterCompactModeProcessProcessTypeWhenExpanded(EXPRESS_PROCESS);
+    newDashboardPage.applyFilterCompactModeProcessProcessTypeWhenExpanded(EXTERNAL_LINK);
 
     newDashboardPage.checkCompactModeProcessDisappearedProcessItem(CREATE_INVESTMENT_IFRAME);
   }
@@ -613,7 +617,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.checkDisplayedCompactModeProcessContainer();
 
     newDashboardPage.openCompactModeProcessInforPanel();
-    newDashboardPage.getCompactModeProcessInfoProcessTypes().shouldHave(size(3), DEFAULT_TIMEOUT);
+    newDashboardPage.getCompactModeProcessInfoProcessTypes().shouldHave(size(2), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -622,7 +626,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
     newDashboardPage.expandCompactModeProcess();
 
     newDashboardPage.openCompactModeProcessInforPanelWhenExpanded();
-    newDashboardPage.getCompactModeProcessInfoProcessTypesWhenExpanded().shouldHave(size(3), DEFAULT_TIMEOUT);
+    newDashboardPage.getCompactModeProcessInfoProcessTypesWhenExpanded().shouldHave(size(2), DEFAULT_TIMEOUT);
   }
 
   @Test
@@ -698,6 +702,28 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.selectFullMode();
     editProcessWidgetConfiguration.getFullModeProcessSelectedProcessInput()
         .shouldNotHave(Condition.value(CATEGORIED_LEAVE_REQUEST));
+  }
+
+  @Test
+  public void testHideExpandMode() {
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
+        newDashboardPage.editProcessWidgetConfiguration();
+    editProcessWidgetConfiguration.clickOnExpandModeCheckbox();;
+    editProcessWidgetConfiguration.save();
+    backToNewDashboardPage();
+    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget(YOUR_PROCESSES);
+    assertFalse(processWidget.isExpandButtonAppear());
+  }
+
+  @Test
+  public void testHideWidgetInfoIcon() {
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
+        newDashboardPage.editProcessWidgetConfiguration();
+    editProcessWidgetConfiguration.clickOnWidgetInfoIconCheckbox();
+    editProcessWidgetConfiguration.save();
+    backToNewDashboardPage();
+    ProcessWidgetNewDashBoardPage processWidget = newDashboardPage.selectProcessWidget(YOUR_PROCESSES);
+    assertFalse(processWidget.isWidgetInfoIconAppear());
   }
 
   private void backToNewDashboardPage() {

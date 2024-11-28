@@ -1,0 +1,26 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "OpenPortalTaskDetailsData",
+  "namespace" : "ch.ivy.addon.portal.generic",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "task",
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
+  }, {
+    "name" : "dataModel",
+    "type" : "ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel"
+  }, {
+    "name" : "portalPage",
+    "type" : "ch.ivy.addon.portalkit.enums.PortalPage"
+  }, {
+    "name" : "isFromTaskList",
+    "type" : "Boolean",
+    "comment" : "true: opened from TASK_LIST or SEARCH_RESULTS; false: back from Task Start page"
+  }, {
+    "name" : "dashboardDataModel",
+    "type" : "ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel"
+  }, {
+    "name" : "showItemDetailsHeader",
+    "type" : "Boolean"
+  } ]
+}

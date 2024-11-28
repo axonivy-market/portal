@@ -6,12 +6,14 @@ Portal Multi Language
 The document translation shows how easy it has become, to translate from the pure text, into the language of your end user.
 Say goodbye to language barriers in process automation with Axon Ivy's translation service powered by DeepL.
 
+.. _enable-translation:
+
 HowTo: Enable the translation
 -----------------------------
 
 To use DeepL powered translations:
 
-- Open :ref:`admin-settings`, set :guilabel:`Portal.DeepL.Enable` to true.
+- Open :ref:`Admin Settings <admin-settings>`, set :guilabel:`Portal.DeepL.Enable` to true.
 
 - Get a `free developer account <https://www.deepl.com/pro#developer/>`__ from DeepL.com, then copy the API-Key of your account into this Portal setting: :guilabel:`Portal.DeepL.AuthKey`.
 
@@ -40,5 +42,8 @@ HowTo: Translate a pure text
 .. include:: ../includes/_common-icon.rst
 
 .. |create-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/create-private-dashboard-dialog-ml.png
+   :alt: Multi language usage when create private dashboard
 .. |overlay-panel-translation| image:: ../../screenshots/dashboard-configuration/overlay-panel-translation-ml.png
+   :alt: Multi language: Translation panel 
 .. |dashboard-multi-language-dialog| image:: ../../screenshots/dashboard-configuration/dashboard-multi-language-dialog-ml.png
+   :alt: Multi language dialog

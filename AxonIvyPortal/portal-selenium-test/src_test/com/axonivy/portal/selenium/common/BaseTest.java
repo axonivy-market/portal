@@ -22,7 +22,7 @@ import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
-import ch.ivyteam.ivy.project.portal.test.ExpressResponsible;
+import ch.ivyteam.ivy.project.portal.test.Responsible;
 
 /**
  * A base test that other tests extend it. It will test on browser IE by default. It provides feature to take screenshot
@@ -55,6 +55,7 @@ public class BaseTest {
   protected String create12CasesWithCategoryUrl = "internalSupport/15C7B30FB93C827E/create12CasesWithCategory.ivp";
   protected String businessCaseUrl = "internalSupport/15B1EA24CCF377E8/updateCheckInTime.ivp";
   protected String hideCaseUrl = "portal-developer-examples/16583F0F73864543/createHiddenTechnicalCase.ivp";
+  protected String createSystemTaskUrl = "portal-developer-examples/16583F0F73864543/createSystemTask.ivp";
   protected String createTestingCaseMapUrl = "internalSupport/764871e4-cf70-401f-83fb-9e99fa897fc4.icm";
   protected String createTestingCaseUrlForCustomizationAdditionalCaseDetails =
       "portal-components-examples/176465FBFE257CF3/createInvestmentRequest.ivp";
@@ -64,7 +65,6 @@ public class BaseTest {
   protected String createTaskWithNotExistedActivatorUrl =
       "internalSupport/14B2FC03D2E87141/createTaskWithNotExistedActivator.ivp";
   protected String createTaskForRoleInvolved = "InternalSupport/171E2BB0DB49C362/roleInvolved.ivp";
-  protected String expressStartLink = "axonivy-express/15798655494F25E1/AxonIvyExpressWF.ivp";
   protected String cleanupDataLink = "portalKitTestHelper/1511A66AF619A768/cleanData.ivp";
   protected String complexPaymentUrl = "portal-developer-examples/162511D2577DBA88/complexPayment.ivp";
   protected String createAlphaCompanyUrl = "portal-components-examples/1818977D467E3129/createAlphaCompany.ivp";
@@ -154,6 +154,7 @@ public class BaseTest {
   protected String createDataFinishedDate = "portalKitTestHelper/18B031C59C3C7814/CreateDataForFinishedDate.ivp";
   protected String grantCaseReadAllOwnRoleInvolvedPermission = "PortalKitTestHelper/14DE09882B540AD5/grantCaseReadAllOwnRoleInvolvedPermission.ivp";
   protected String denyCaseReadAllOwnRoleInvolvedPermission = "PortalKitTestHelper/14DE09882B540AD5/denyCaseReadAllOwnRoleInvolvedPermission.ivp";
+  protected String multipleOwnersUrl = "InternalSupport/16A68510A341BE6E/multipleOwners.ivp";
   
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));
@@ -343,7 +344,7 @@ public class BaseTest {
     }
     redirectToRelativeLink(String.format(createJSonFileUrl, filepath, key));
   }
-
+  
   protected void showNewDashboard() {
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
   }
@@ -360,8 +361,8 @@ public class BaseTest {
     return new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT);
   }
 
-  public ExpressResponsible setExpressResponsible(String userName, boolean isGroup) {
-    ExpressResponsible user = new ExpressResponsible();
+  public Responsible setResponsible(String userName, boolean isGroup) {
+    Responsible user = new Responsible();
     user.setResponsibleName(userName);
     user.setIsGroup(isGroup);
     return user;

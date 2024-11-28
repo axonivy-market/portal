@@ -65,6 +65,7 @@
               </pc:securityMemberNameAndAvatar>
               <p:commandLink id="chat-delete-assignee" styleClass="si si-bin-1 chat-delete-assignee"
                 rendered="#{assignee ne ivy.session.getSessionUser()}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                 actionListener="#{chatAssigneeBean.removeAssignee(assignee)}" update="#{p:resolveFirstComponentWithId('chat-assignee-selection-panel', view).clientId}" />
             </div>
           </div>

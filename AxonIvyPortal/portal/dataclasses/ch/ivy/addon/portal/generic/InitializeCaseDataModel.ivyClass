@@ -1,3 +1,0 @@
-InitializeCaseDataModel #class
-ch.ivy.addon.portal.generic #namespace
-dataModel ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel #field

@@ -1,0 +1,61 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "CaseItemRelatedCasesData",
+  "namespace" : "ch.ivy.addon.portalkit.component.CaseItemRelatedCases",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "caze",
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
+  }, {
+    "name" : "relatedCases",
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>"
+  }, {
+    "name" : "isTaskFinished",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isWorkingOnTask",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "inFrame",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "caseSearchCriteria",
+    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria"
+  }, {
+    "name" : "startIndex",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "count",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "totalCases",
+    "type" : "Long",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "caseLazyDataModel",
+    "type" : "ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel"
+  }, {
+    "name" : "exportedFile",
+    "type" : "org.primefaces.model.StreamedContent"
+  }, {
+    "name" : "columnsVisibility",
+    "type" : "java.util.List<String>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "loopCounter",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "maxResultNumberPerQuery",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "collectedCasesForExporting",
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ICase>"
+  } ]
+}

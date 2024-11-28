@@ -1,0 +1,40 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "Data",
+  "namespace" : "ch.ivy.addon.portal.generic",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "caseId",
+    "type" : "Number"
+  }, {
+    "name" : "taskId",
+    "type" : "Number"
+  }, {
+    "name" : "url",
+    "type" : "String"
+  }, {
+    "name" : "appName",
+    "type" : "String"
+  }, {
+    "name" : "errorCode",
+    "type" : "String"
+  }, {
+    "name" : "keyword",
+    "type" : "String"
+  }, {
+    "name" : "serverId",
+    "type" : "Long"
+  }, {
+    "name" : "processStartLink",
+    "type" : "String"
+  }, {
+    "name" : "caseName",
+    "type" : "String"
+  }, {
+    "name" : "caseView",
+    "type" : "ch.ivy.addon.portal.generic.view.CaseView"
+  }, {
+    "name" : "taskView",
+    "type" : "ch.ivy.addon.portal.generic.view.TaskView"
+  } ]
+}

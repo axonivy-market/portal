@@ -27,8 +27,8 @@ public class DashboardProcessCaseLazyDataModel extends LazyDataModel7<ICase> {
   private List<ICase> cases;
   private CompletableFuture<Void> future;
 
-  public DashboardProcessCaseLazyDataModel(Long processStartId, String processName) {
-    criteria = new DashboardProcessCaseSearchCriteria(processStartId, processName);
+  public DashboardProcessCaseLazyDataModel(Long processStartId) {
+    criteria = new DashboardProcessCaseSearchCriteria(processStartId);
     cases = new ArrayList<>();
   }
 

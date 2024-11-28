@@ -1,195 +1,21 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "16A7BB2ADC9580A8",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.GlobalGrowlData"
   },
   "elements" : [ {
-      "id" : "f7",
-      "type" : "DialogCall",
-      "name" : "GlobalGrowlIFrame8",
-      "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8:start(Boolean)",
-        "call" : {
-          "map" : {
-            "param.isCustomized" : "true"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 320, "y" : 128 },
-        "size" : { "width" : 128 }
-      },
-      "connect" : [
-        { "id" : "f24", "to" : "f18" }
-      ]
-    }, {
-      "id" : "f36",
-      "type" : "RequestStart",
-      "name" : "frame8CustomizedMessage.ivp",
-      "config" : {
-        "signature" : "frame8CustomizedMessage",
-        "request" : {
-          "name" : "Display growl customized message for task using IFrame"
-        },
-        "task" : {
-          "name" : "frame8CustomizedMessage"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 192 },
-        "labelOffset" : { "x" : 74, "y" : 37 }
-      },
-      "connect" : [
-        { "id" : "f37", "to" : "f35" }
-      ]
-    }, {
-      "id" : "f18",
-      "type" : "TaskSwitchEvent",
-      "config" : {
-        "task" : {
-          "name" : "frame8CustomizedMessageAndSkipTasklist",
-          "skipTasklist" : true
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 448, "y" : 128 }
-      },
-      "connect" : [
-        { "id" : "f40", "to" : "f19" }
-      ]
-    }, {
-      "id" : "f8",
-      "type" : "RequestStart",
-      "name" : "frame8CustomizedMessageAndSkipTasklist.ivp",
-      "config" : {
-        "signature" : "frame8CustomizedMessageAndSkipTasklist",
-        "request" : {
-          "name" : "Display growl customized message for task using IFrame and enable Skip Tasklist"
-        },
-        "task" : {
-          "name" : "frame8CustomizedMessageAndSkipTasklist"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 128 },
-        "labelOffset" : { "x" : 118, "y" : 37 }
-      },
-      "connect" : [
-        { "id" : "f20", "to" : "f13" }
-      ]
-    }, {
-      "id" : "f22",
-      "type" : "DialogCall",
-      "name" : "GlobalGrowlIFrame8",
-      "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8:start(Boolean)",
-        "call" : {
-          "map" : {
-            "param.isCustomized" : "true"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 824, "y" : 128 },
-        "size" : { "width" : 128 }
-      },
-      "connect" : [
-        { "id" : "f25", "to" : "f11", "via" : [ { "x" : 896, "y" : 128 } ] }
-      ]
-    }, {
-      "id" : "f34",
-      "type" : "DialogCall",
-      "name" : "GlobalGrowlIFrame8",
-      "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8:start(Boolean)",
-        "call" : {
-          "map" : {
-            "param.isCustomized" : "true"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 320, "y" : 192 },
-        "size" : { "width" : 128 }
-      },
-      "connect" : [
-        { "id" : "f39", "to" : "f11", "via" : [ { "x" : 888, "y" : 192 } ] }
-      ]
-    }, {
-      "id" : "f19",
-      "type" : "DialogCall",
-      "name" : "GlobalGrowlIFrame8",
-      "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8:start(Boolean)",
-        "call" : {
-          "map" : {
-            "param.isCustomized" : "true"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 576, "y" : 128 },
-        "size" : { "width" : 128 }
-      },
-      "connect" : [
-        { "id" : "f17", "to" : "f21" }
-      ]
-    }, {
       "id" : "f11",
       "type" : "TaskEnd",
       "visual" : {
         "at" : { "x" : 960, "y" : 216 }
       }
     }, {
-      "id" : "f13",
-      "type" : "TaskSwitchEvent",
-      "config" : {
-        "task" : {
-          "name" : "frame8CustomizedMessageAndSkipTasklist"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 192, "y" : 128 }
-      },
-      "connect" : [
-        { "id" : "f15", "to" : "f7" }
-      ]
-    }, {
-      "id" : "f35",
-      "type" : "TaskSwitchEvent",
-      "config" : {
-        "task" : {
-          "name" : "frame8CustomizedMessage"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 192, "y" : 192 }
-      },
-      "connect" : [
-        { "id" : "f38", "to" : "f34" }
-      ]
-    }, {
-      "id" : "f21",
-      "type" : "TaskSwitchEvent",
-      "config" : {
-        "task" : {
-          "name" : "frame8CustomizedMessageAndSkipTasklist",
-          "skipTasklist" : true
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 696, "y" : 128 }
-      },
-      "connect" : [
-        { "id" : "f23", "to" : "f22" }
-      ]
-    }, {
       "id" : "f9",
       "type" : "DialogCall",
-      "name" : "GlobalGrowlIFrame8",
+      "name" : "GlobalGrowlIFrame",
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8:start(Boolean)",
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame:start(Boolean)",
         "call" : {
           "map" : {
             "param.isCustomized" : "false"
@@ -197,28 +23,28 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 824, "y" : 256 },
+        "at" : { "x" : 824, "y" : 216 },
         "size" : { "width" : 128 }
       },
       "connect" : [
-        { "id" : "f44", "to" : "f11", "via" : [ { "x" : 896, "y" : 256 } ] }
+        { "id" : "f44", "to" : "f11" }
       ]
     }, {
       "id" : "f10",
       "type" : "RequestStart",
-      "name" : "frame8StandardMessageAndSkipTasklist.ivp",
+      "name" : "frameStandardMessageAndSkipTasklist.ivp",
       "config" : {
-        "signature" : "frame8StandardMessageAndSkipTasklist",
+        "signature" : "frameStandardMessageAndSkipTasklist",
         "request" : {
           "name" : "Display growl standard message for task using IFrame and enable Skip Tasklist"
         },
         "task" : {
-          "name" : "frame8StandardMessageAndSkipTasklist"
+          "name" : "frameStandardMessageAndSkipTasklist"
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 256 },
-        "labelOffset" : { "x" : 110, "y" : 37 }
+        "at" : { "x" : 96, "y" : 216 },
+        "labelOffset" : { "x" : 105, "y" : 49 }
       },
       "connect" : [
         { "id" : "f32", "to" : "f26" }
@@ -226,9 +52,9 @@
     }, {
       "id" : "f12",
       "type" : "DialogCall",
-      "name" : "GlobalGrowlIFrame8",
+      "name" : "GlobalGrowlIFrame",
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8:start(Boolean)",
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame:start(Boolean)",
         "call" : {
           "map" : {
             "param.isCustomized" : "false"
@@ -236,7 +62,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 576, "y" : 256 },
+        "at" : { "x" : 576, "y" : 216 },
         "size" : { "width" : 128 }
       },
       "connect" : [
@@ -247,12 +73,12 @@
       "type" : "TaskSwitchEvent",
       "config" : {
         "task" : {
-          "name" : "frame8StandardMessageAndSkipTasklist",
+          "name" : "Growl Standard Message And Skip Task List",
           "skipTasklist" : true
         }
       },
       "visual" : {
-        "at" : { "x" : 448, "y" : 256 }
+        "at" : { "x" : 448, "y" : 216 }
       },
       "connect" : [
         { "id" : "f43", "to" : "f12" }
@@ -262,12 +88,12 @@
       "type" : "TaskSwitchEvent",
       "config" : {
         "task" : {
-          "name" : "frame8StandardMessageAndSkipTasklist",
+          "name" : "Growl Standard Message And Skip Task List",
           "skipTasklist" : true
         }
       },
       "visual" : {
-        "at" : { "x" : 696, "y" : 256 }
+        "at" : { "x" : 696, "y" : 216 }
       },
       "connect" : [
         { "id" : "f41", "to" : "f9" }
@@ -277,11 +103,11 @@
       "type" : "TaskSwitchEvent",
       "config" : {
         "task" : {
-          "name" : "frame8StandardMessageAndSkipTasklist"
+          "name" : "Growl Standard Message And Skip Task List"
         }
       },
       "visual" : {
-        "at" : { "x" : 192, "y" : 256 }
+        "at" : { "x" : 192, "y" : 216 }
       },
       "connect" : [
         { "id" : "f42", "to" : "f29" }
@@ -289,14 +115,14 @@
     }, {
       "id" : "f27",
       "type" : "RequestStart",
-      "name" : "frame8StandardMessage.ivp",
+      "name" : "frameStandardMessage.ivp",
       "config" : {
-        "signature" : "frame8StandardMessage",
+        "signature" : "frameStandardMessage",
         "request" : {
           "name" : "Display growl standard message for task using IFrame"
         },
         "task" : {
-          "name" : "frame8StandardMessage"
+          "name" : "frameStandardMessage"
         }
       },
       "visual" : {
@@ -311,7 +137,7 @@
       "type" : "TaskSwitchEvent",
       "config" : {
         "task" : {
-          "name" : "frame8StandardMessage"
+          "name" : "Growl Standard Message"
         }
       },
       "visual" : {
@@ -323,9 +149,9 @@
     }, {
       "id" : "f29",
       "type" : "DialogCall",
-      "name" : "GlobalGrowlIFrame8",
+      "name" : "GlobalGrowlIFrame",
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8:start(Boolean)",
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame:start(Boolean)",
         "call" : {
           "map" : {
             "param.isCustomized" : "false"
@@ -333,7 +159,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 320, "y" : 256 },
+        "at" : { "x" : 320, "y" : 216 },
         "size" : { "width" : 128 }
       },
       "connect" : [
@@ -342,9 +168,9 @@
     }, {
       "id" : "f46",
       "type" : "DialogCall",
-      "name" : "GlobalGrowlIFrame8",
+      "name" : "GlobalGrowlIFrame",
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8:start(Boolean)",
+        "dialog" : "com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame:start(Boolean)",
         "call" : {
           "map" : {
             "param.isCustomized" : "false"

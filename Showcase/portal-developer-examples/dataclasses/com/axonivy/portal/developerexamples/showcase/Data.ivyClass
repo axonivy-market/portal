@@ -1,5 +1,0 @@
-Data #class
-com.axonivy.portal.developerexamples.showcase #namespace
-processChainDirection String #field
-processChainShape String #field
-actuaStepIndex Integer #field

@@ -5,14 +5,17 @@ import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
-import com.axonivy.portal.selenium.page.CaseWidgetPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessInformationPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
+import com.codeborne.selenide.CollectionCondition;
 
 @IvyWebTest
 public class ProcessInformationTest extends BaseTest {
@@ -44,9 +47,15 @@ public class ProcessInformationTest extends BaseTest {
 
     processInformationPage.startProcess();
     newDashboardPage = new NewDashboardPage();
-    TaskWidgetPage taskWidget = NavigationHelper.navigateToTaskList();
-    taskWidget.filterTasksInExpandedModeBy(PROCESS_NAME, 1);
-    assertEquals(1, taskWidget.countTasks().size());
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Name", FilterOperator.IS);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, PROCESS_NAME);
+    taskWidget.addFilter("State", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
+    taskWidget.applyFilter();
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
   }
 
   @Test
@@ -65,8 +74,8 @@ public class ProcessInformationTest extends BaseTest {
     processWidget.startProcess(PROCESS_NAME);
 
     newDashboardPage = new NewDashboardPage();
-    CaseWidgetPage caseWidget = newDashboardPage.openCaseList();
-    CaseDetailsPage caseDetails = caseWidget.openCaseDetailsFromActionMenuByCaseName(PROCESS_NAME);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.openCaseList();
+    CaseDetailsPage caseDetails = caseWidget.openDetailsCase(PROCESS_NAME);
     caseDetails.openActionMenu();
     caseDetails.openProcessOverviewPage();
 

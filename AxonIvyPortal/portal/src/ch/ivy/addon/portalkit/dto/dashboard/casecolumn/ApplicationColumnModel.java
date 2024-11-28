@@ -23,7 +23,7 @@ public class ApplicationColumnModel extends CaseColumnModel implements Serializa
   public void initDefaultValue() {
     super.initDefaultValue();
     this.field = DashboardStandardCaseColumn.APPLICATION.getField();
-    this.style = defaultIfEmpty(this.style, TINY_WIDTH);
+    this.styleToDisplay = initDefaultStyle();
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__priority u-text-align-center");
     this.format = DashboardColumnFormat.CUSTOM;
     this.quickSearch = defaultIfEmpty(this.quickSearch, false);
@@ -44,7 +44,7 @@ public class ApplicationColumnModel extends CaseColumnModel implements Serializa
   
   @JsonIgnore
   public List<String> getApplications() {
-    return ListUtilities.transformList(IApplicationRepository.instance().allOf(ISecurityContext.current()), IApplication::getName);
+    return ListUtilities.transformList(IApplicationRepository.of(ISecurityContext.current()).all(), IApplication::getName);
   }
   
   @JsonIgnore

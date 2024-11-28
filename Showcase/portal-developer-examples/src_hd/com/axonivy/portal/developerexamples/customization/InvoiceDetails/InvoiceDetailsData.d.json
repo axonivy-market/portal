@@ -1,0 +1,15 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "InvoiceDetailsData",
+  "namespace" : "com.axonivy.portal.developerexamples.customization.InvoiceDetails",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "invoice",
+    "type" : "com.axonivy.portal.developerexamples.Invoice",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "customer",
+    "type" : "com.axonivy.portal.developerexamples.Customer",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

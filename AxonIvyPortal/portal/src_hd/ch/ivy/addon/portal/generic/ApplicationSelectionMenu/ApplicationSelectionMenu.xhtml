@@ -4,7 +4,7 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
   xmlns:pm="http://primefaces.org/freya-ivy">
 
 <cc:interface componentType="IvyComponent">
@@ -28,7 +28,7 @@
       <p:graphicImage styleClass="portal-home-logo portal-home-logo-small" name="logo_small" library="ivy-branding" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
     
-    <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false"
+    <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false" ariaLabel="#{ivy.cms.co('/Labels/ToggleMenu')}"
       onclick="hideBreadcrumb()" oncomplete="Portal.updateBreadcrumb();" >
       <span class="pin"></span>
     </p:commandLink>
@@ -36,7 +36,7 @@
 
   <!-- APPLICATION MENU -->
   <h:panelGroup id="main-navigator-container" layout="block" styleClass="layout-menu-container">
-    <div id="#{cc.clientId}" class="sidebar-scroll-content">
+    <div id="#{cc.clientId}" class="sidebar-scroll-content" data-selected-menu="#{userMenuBean.getInfoToHighlightMenu()}">
       <!-- Application menu -->
       <h:form id="main-navigator">
         <!-- Portal Main Menu -->

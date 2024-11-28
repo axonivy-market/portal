@@ -1,0 +1,25 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "DeepLData",
+  "namespace" : "com.axonivy.portal.data.functional",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "input",
+    "type" : "String"
+  }, {
+    "name" : "output",
+    "type" : "com.deepl.api.v2.client.InlineResponse200"
+  }, {
+    "name" : "targetLanguage",
+    "type" : "com.deepl.api.v2.client.TargetLanguage"
+  }, {
+    "name" : "sourceLanguage",
+    "type" : "com.deepl.api.v2.client.SourceLanguage"
+  }, {
+    "name" : "preserveFormatting",
+    "type" : "String"
+  }, {
+    "name" : "tagHandling",
+    "type" : "String"
+  } ]
+}

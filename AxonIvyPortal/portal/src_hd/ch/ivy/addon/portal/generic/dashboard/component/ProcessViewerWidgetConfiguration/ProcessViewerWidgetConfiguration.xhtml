@@ -58,6 +58,22 @@
           </p:autoComplete>
         </div>
       </h:panelGroup>
+      
+      <h:panelGroup id="fullscreen-mode-group" rendered="#{managedBean.displayFullscreenModeOption()}"
+        styleClass="ui-g-12 u-padding-0 ui-fluid">
+        <div class="ui-g-4">
+          <p:outputLabel for="fullscreen-option"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/fullscreenMode')}"
+            styleClass="u-mar-right-5" />
+        </div>
+        <div class="ui-g-6 ui-inputgroup">
+          <p:selectBooleanCheckbox id="fullscreen-option"
+            value="#{widget.showFullscreenMode}">
+            <p:ajax process="fullscreen-mode-group"
+              update="fullscreen-mode-group" partialSubmit="true"/>
+          </p:selectBooleanCheckbox>
+        </div>
+      </h:panelGroup>
     </div>
   </h:panelGroup>
   <!-- Multi language dialog-->

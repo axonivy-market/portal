@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="taskName" shortDescription="Custom text for task name" />
+  <cc:attribute name="taskIcon" shortDescription="Task icon to be displayed, using Streamline or Awesome font, e.g., `si si-arrow-right`" />
+  <cc:attribute name="isHideTaskName" shortDescription="Hide task name, false (default) or true" />
+  <cc:attribute name="caseId" shortDescription="ID of case to be displayed in case information dialog" />
+  <cc:attribute name="isHideCaseInfo" shortDescription="Hide `Show Information` button, false (default) or true" />
+  <cc:attribute name="currentProcessStep" shortDescription="Current process step, could be the index of the step or the step name" />
+  <cc:attribute name="processSteps" shortDescription="List of process steps, e.g., `[&quot;Create Investment Request&quot;, &quot;Approve Investment Reques&quot;]`
+    or `# {portalComponentUtilsBean.convertToJSON(data.steps)}`" />
+  <cc:attribute name="isShowAllSteps" shortDescription="Shows all steps on large screens, false (default) or true" />
+  <cc:attribute name="processChainDirection" shortDescription="HORIZONTAL (default) or VERTICAL" />
+  <cc:attribute name="processChainShape" shortDescription="CIRCLE (default) or LINE" />
+  <cc:attribute name="isHideTaskAction" shortDescription="Hide task action button, false (default) or true" />
+  <cc:attribute name="isWorkingOnATask" shortDescription="Working on a task in order to display warning when leaving page, true (default) or false" />
+  <cc:attribute name="announcementInvisible" shortDescription="Make announcement invisible, true (default) or false" />
+  <cc:attribute name="isCardFrame" shortDescription="Display content of the IFrame inside a card style" />
+  <cc:attribute name="viewName" shortDescription="Custom breadcrum, value could be HOME, PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, RELATED_TASK, USER_PROFILE,
+    ABSENCES_MANAGEMENT, DASHBOARD_CONFIGURATION, EDIT_DASHBOARD_DETAILS, PROCESS_VIEWER, PORTAL_MANAGEMENT, NOTIFICATION" />
+</cc:interface> 
+
+<cc:implementation>
+  <ui:fragment rendered="#{not empty cc.attrs.taskName}"><script>window.taskName = `#{cc.attrs.taskName}`;</script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.taskIcon}"><script>window.taskIcon = `#{cc.attrs.taskIcon}`;</script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.isHideTaskName}"><script>
+    window.isHideTaskName = (`#{cc.attrs.isHideTaskName}`.toLowerCase() === "true");
+  </script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.caseId}"><script>window.caseId = `#{cc.attrs.caseId}`;</script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.isHideCaseInfo}"><script>
+    window.isHideCaseInfo = (`#{cc.attrs.isHideCaseInfo}`.toLowerCase() === "true");
+  </script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.currentProcessStep}"><script>
+    window.currentProcessStep = `#{cc.attrs.currentProcessStep}`;
+    if (!isNaN(Number(window.currentProcessStep))) {
+      window.currentProcessStep = Number(window.currentProcessStep);
+    }
+  </script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.processSteps}"><script>
+    try {
+      window.processSteps = JSON.parse(`#{cc.attrs.processSteps}`);
+    } catch (error) {
+      // Just ignore parsing JSON processSteps
+    }
+  </script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.isShowAllSteps}"><script>
+    window.isShowAllSteps = (`#{cc.attrs.isShowAllSteps}`.toLowerCase() === "true");
+  </script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.processChainDirection}"><script>window.processChainDirection = `#{cc.attrs.processChainDirection}`;</script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.processChainShape}"><script>window.processChainShape = `#{cc.attrs.processChainShape}`;</script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.isHideTaskAction}"><script>
+    window.isHideTaskAction = (`#{cc.attrs.isHideTaskAction}`.toLowerCase() === "true");
+  </script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.isWorkingOnATask}"><script>
+    window.isWorkingOnATask = (`#{cc.attrs.isWorkingOnATask}`.toLowerCase() === "true");
+  </script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.announcementInvisible}"><script>
+    window.announcementInvisible = (`#{cc.attrs.announcementInvisible}`.toLowerCase() === "true");
+  </script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.isCardFrame}"><script>
+    window.isCardFrame = (`#{cc.attrs.isCardFrame}`.toLowerCase() === "true");
+  </script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.viewName}"><script>window.viewName = `#{cc.attrs.viewName}`;</script></ui:fragment>
+</cc:implementation>
+
+</html>

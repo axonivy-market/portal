@@ -11,7 +11,7 @@ to :ref:`Task List Widget <new-dashboard-task-list-widget>` for details.
 
 Below is a sample JSON definition of a task widget in the Portal dashboard
 
-.. code-block:: html
+.. code-block:: javascript
 
    {
       "type": "task",
@@ -23,14 +23,18 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
          }
       ],
       "layout": {
-         "x": 0, "y": 0, "w": 10, "h": 9,
+         "x": 0,
+         "y": 0,
+         "w": 10,
+         "h": 9,
          "style": "color: red;",
          "styleClass": "your-widget-class"
       },
       "sortField": "name",
       "rowsPerPage": 20,
       "showWidgetInfo": true,
-      "showExpandMode": true,
+      "showFullscreenMode": true,
+      "isTopMenu": false,
       "columns": [
          {
             "field": "start"
@@ -48,14 +52,14 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
          {
             "field": "state",
             "headers": [
-               {
+            {
                "locale": "en",
                "value": "State"
-               },
-               {
+            },
+            {
                "locale": "de",
                "value": "Status"
-               }
+            }
             ]
          },
          {
@@ -92,14 +96,18 @@ The basic JSON structure of a Task widget
 
    ``sortField``: default sort field for the widget
 
-   ``sortDescending``: sort direction of the default sort field. The default value is "false" (sort ascending)
+   ``sortDescending``: sort direction of the default sort field. The default value is ``false`` (sort ascending)
 
    ``rowsPerPage``: maximum number of tasks can be displayed on one page of the task widget. 
    The default value is 10 rows per page
 
    ``showWidgetInfo``: visibility of the widget information icon. The default value is ``true``, set to ``false`` to hide the icon
 
-   ``showExpandMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
+   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
+
+   ``isTopMenu``: if the value is ``true``, the dashboard appears as a top-level item in the navigation bar. 
+   If the value is ``false``, it appears as a sub-item under the `Dashboard` menu. 
+   The default value is ``false``.
 
    ``columns``: column configurations for each of the columns in the widget. You
    can predefine filters, styles, visibility,... of columns and define custom
@@ -138,7 +146,7 @@ The basic JSON structure of a Task widget
       Set to "false" to hide the column.
 
       ``quickSearch``: Adds this field to the search scope of the quick search. The default value is ``false``.
-      Set to ``true`` to apply search condition for the column.
+      Set it to ``true`` to apply search condition for the column.
 
    -  ``headers``: multilingual header of the column.
 
@@ -152,17 +160,17 @@ as a column.
 
 You can predefine which column to show, and other attributes such as filter, format, and style. Below is a standard JSON of a custom column.
 
-.. code-block:: html
-
+.. code-block:: javascript
+   
    {
       ...
-      
+
       "columns": [
-         {
-            "type": "CUSTOM",
-            "field": "supplier",
-            "style": "width: 110px"
-         }
+            {
+               "type": "CUSTOM",
+               "field": "HIDE",
+               "style": "width: 110px"
+            }
       ]
    }
 
@@ -184,13 +192,13 @@ Filter Conditions
 -----------------
 
 You can predefine filter conditions for most columns of the task widget. Each
-column has different conditions, some columns only accept a list, some only a
-string and some only a string in a special format such as date-time. Please
-refer to :ref:`Complex Filter <complex-filter>` for more details.
+column has different requirements: some accept only a list, some accept only a
+string, and others require a string in a specific format, such as date-time.
+Please refer to :ref:`Complex Filter <complex-filter>` for more details.
 
 Base structure of filter json:
 
-   .. code-block:: html
+   .. code-block:: javascript
 
          {
             ...
@@ -245,11 +253,11 @@ Standard Column:
 
    - ``activator``
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...
-      
+
             "columns": [
                {
                   "field": "activator"
@@ -273,11 +281,11 @@ Standard Column:
 
    - ``name``
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...
-      
+
             "columns": [
                {
                   "field": "name"
@@ -290,7 +298,6 @@ Standard Column:
                   "operator": "contains",
                   "type": "standard"
                }
-
             ]
          }
       ..
@@ -300,11 +307,11 @@ Standard Column:
 
    - ``description``
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...
-      
+
             "columns": [
                {
                   "field": "description"
@@ -313,7 +320,9 @@ Standard Column:
             "filters": [
                {
                   "field": "description",
-                  "values": [ "leave request" ],
+                  "values": [
+                  "leave request"
+                  ],
                   "operator": "contains",
                   "type": "standard"
                }
@@ -326,11 +335,11 @@ Standard Column:
 
    - ``priority``
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...
-      
+
             "columns": [
                {
                   "field": "priority"
@@ -356,11 +365,11 @@ Standard Column:
 
    - ``state``
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...
-      
+
             "columns": [
                {
                   "field": "state"
@@ -386,7 +395,7 @@ Standard Column:
 
    - ``startTimestamp`` and ``expiryTimestamp`` : created date and finished date of the Task
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...
@@ -429,12 +438,12 @@ Standard Column:
 
       These columns accept all operators available for Date column. Fields may
       vary depending on the operator. The JSON example above covers most use
-      cases for the Date field. Acceptable date formats: ``dd.MM.yyyy`` and
-      ``MM/dd/yyyy``.
+      cases for the Date field. Acceptable date formats: ``dd.MM.yyyy``, ``dd.MM.yyyy HH:mm``, ``MM/dd/yyyy`` and
+      ``MM/dd/yyyy HH:mm``.
 
    - ``application``
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...
@@ -462,7 +471,7 @@ Custom Field Column :
 
    - ``type`` field must be ``custom`` for Custom Field and ``custom_case`` for Custom Case Field.
 
-   .. code-block:: html
+   .. code-block:: javascript
       
          {
             ...
@@ -486,7 +495,7 @@ Custom Field Column :
 Quick Search
 ------------
 
-The Quick search is a useful function for users to quickly search the tasks within the task widget.
+The quick search is a useful function for users to quickly search the tasks within the task widget.
 The configuration of the quick search has two attributes:
    
    * ``enableQuickSearch``: enables the quick search feature for the widget.
@@ -506,7 +515,7 @@ Below are the definition of these attributes:
    * ``enableQuickSearch``: to enable/disable the quick search feature, set the
      ``enableQuickSearch`` field of the Task widget as shown below.
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...
@@ -528,7 +537,7 @@ Below are the definition of these attributes:
    * ``quickSearch``: to choose which columns can be searched by the quick search
      feature, set the ``quickSearch`` field for each column as shown below.
 
-      .. code-block:: html
+      .. code-block:: javascript
 
          {
             ...

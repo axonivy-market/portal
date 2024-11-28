@@ -1,0 +1,32 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "TaskDashboardWidgetData",
+  "namespace" : "ch.ivy.addon.portal.generic.dashboard.component.TaskDashboardWidget",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "widget",
+    "type" : "ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget"
+  }, {
+    "name" : "totalTasks",
+    "type" : "Long",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "loopCounter",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "maxResultNumberPerQuery",
+    "type" : "Integer",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "collectedTasksForExporting",
+    "type" : "List<ch.ivyteam.ivy.workflow.ITask>"
+  }, {
+    "name" : "columnsVisibility",
+    "type" : "List<String>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "exportedFile",
+    "type" : "org.primefaces.model.StreamedContent"
+  } ]
+}

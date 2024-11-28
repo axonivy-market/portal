@@ -1,6 +1,0 @@
-TemplateExampleInFrameData #class
-com.axonivy.portal.developerexamples.testdata.TemplateExampleInFrame #namespace
-steps List<String> #field
-steps PERSISTENT #fieldModifier
-investmentRequest com.axonivy.portal.developerexamples.ExampleIFrameData #field
-investmentRequest PERSISTENT #fieldModifier

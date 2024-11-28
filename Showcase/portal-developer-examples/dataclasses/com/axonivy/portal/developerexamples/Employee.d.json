@@ -1,0 +1,75 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "Employee",
+  "namespace" : "com.axonivy.portal.developerexamples",
+  "isBusinessCaseData" : false,
+  "entity" : {
+    "tableName" : "Employee"
+  },
+  "fields" : [ {
+    "name" : "id",
+    "type" : "Integer",
+    "comment" : "Identifier",
+    "modifiers" : [ "PERSISTENT", "ID", "GENERATED" ],
+    "entity" : {
+      "cascadeTypes" : [ "PERSIST", "MERGE" ],
+      "orphanRemoval" : false
+    }
+  }, {
+    "name" : "firstName",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ],
+    "entity" : {
+      "cascadeTypes" : [ "PERSIST", "MERGE" ],
+      "orphanRemoval" : false
+    }
+  }, {
+    "name" : "lastName",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ],
+    "entity" : {
+      "cascadeTypes" : [ "PERSIST", "MERGE" ],
+      "orphanRemoval" : false
+    }
+  }, {
+    "name" : "birthDay",
+    "type" : "java.util.Date",
+    "modifiers" : [ "PERSISTENT" ],
+    "entity" : {
+      "cascadeTypes" : [ "PERSIST", "MERGE" ],
+      "orphanRemoval" : false
+    }
+  }, {
+    "name" : "city",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ],
+    "entity" : {
+      "cascadeTypes" : [ "PERSIST", "MERGE" ],
+      "orphanRemoval" : false
+    }
+  }, {
+    "name" : "country",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ],
+    "entity" : {
+      "cascadeTypes" : [ "PERSIST", "MERGE" ],
+      "orphanRemoval" : false
+    }
+  }, {
+    "name" : "email",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ],
+    "entity" : {
+      "cascadeTypes" : [ "PERSIST", "MERGE" ],
+      "orphanRemoval" : false
+    }
+  }, {
+    "name" : "title",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ],
+    "entity" : {
+      "cascadeTypes" : [ "PERSIST", "MERGE" ],
+      "orphanRemoval" : false
+    }
+  } ]
+}

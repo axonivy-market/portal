@@ -1,0 +1,6 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "NumberFilterColumnData",
+  "namespace" : "ch.ivy.addon.portalkit.component.dashboard.widget.NumberFilterColumn",
+  "isBusinessCaseData" : false
+}

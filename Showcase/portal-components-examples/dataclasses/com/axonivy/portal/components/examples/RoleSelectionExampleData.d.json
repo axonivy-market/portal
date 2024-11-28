@@ -1,0 +1,10 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "RoleSelectionExampleData",
+  "namespace" : "com.axonivy.portal.components.examples",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "selectedRole",
+    "type" : "com.axonivy.portal.components.dto.RoleDTO"
+  } ]
+}

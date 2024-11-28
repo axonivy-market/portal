@@ -1,6 +1,0 @@
-LogoutSettingData #class
-ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting #namespace
-task ch.ivyteam.ivy.workflow.ITask #field
-task PERSISTENT #fieldModifier
-isWorkingOnATask Boolean #field
-isWorkingOnATask PERSISTENT #fieldModifier

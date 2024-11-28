@@ -172,7 +172,6 @@ public class DashboardCaseSearchCriteria {
       appendSortByIdIfSet(criteria);
       appendSortByCreationDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
-      appendSortByOwnerIfSet(criteria);
       appendSortByEndDateIfSet(criteria);
       appendSortByCustomFieldIfSet(criteria);
       if (criteria.isSortDescending()) {
@@ -188,14 +187,6 @@ public class DashboardCaseSearchCriteria {
       }
     }
 
-    private void appendSortByOwnerIfSet(DashboardCaseSearchCriteria criteria) {
-      if (DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(criteria.getSortField())
-          && GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
-        order = query.orderBy().ownerDisplayName();
-        sortStandardColumn = true;
-      }
-    }
-
     private void appendSortByNameIfSet(DashboardCaseSearchCriteria criteria) {
       if (DashboardStandardCaseColumn.NAME.getField().equalsIgnoreCase(criteria.getSortField())) {
         order = query.orderBy().name();
@@ -204,7 +195,8 @@ public class DashboardCaseSearchCriteria {
     }
 
     private void appendSortByCreatorIfSet(DashboardCaseSearchCriteria criteria) {
-      if (DashboardStandardCaseColumn.CREATOR.getField().equalsIgnoreCase(criteria.getSortField())) {
+      if (DashboardStandardCaseColumn.CREATOR.getField().equalsIgnoreCase(criteria.getSortField())
+          && !GlobalSettingService.getInstance().isHideCaseCreator()) {
         order = query.orderBy().creatorUserDisplayName();
         sortStandardColumn = true;
       }

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "15B1EA24CCF377E8",
   "config" : {
     "data" : "internaltest.Data"
@@ -321,10 +321,7 @@
           "description" : "Task with UI and trigger signal"
         },
         "case" : {
-          "name" : "Sale and inform",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
+          "name" : "Sale and inform"
         }
       },
       "visual" : {
@@ -342,15 +339,7 @@
         "dialog" : "internaltest.ui.SaleDepartment:start()",
         "task" : {
           "name" : "Work with sale department",
-          "category" : "SALE/SIGNCONTRACT",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
-          ]
-        },
-        "case" : {
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
+          "category" : "SALE/SIGNCONTRACT"
         }
       },
       "visual" : {

@@ -20,7 +20,6 @@ on each module, refer to :ref:`architecture`.
 
 -  portal-components
 -  portal
--  axonivy-express
 
 The deployment of Ivy projects is described in :dev-url:`project
 deployment </doc/|version|/engine-guide/deployment/index.html>`
@@ -33,8 +32,6 @@ Designer
 ^^^^^^^^
 
 Import Portal modules to Designer.
-axonivy-express is excluded from the Portal application. If you want to use axonivy-express, you should import it from Axon Ivy Market.
-
 
 Engine Without License (Demo Mode)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -85,7 +82,7 @@ To install Dashboard JSON configuration file to the Axon Ivy Engine, you can cho
    ..
 
    The JSON file name has to be Portal.Dashboard.json. Refer to :dev-url:`Engine Deployment</doc/|version|/engine-guide/deployment/index.html>` 
-- Copy the Dashboard.json file directly into the engine folder ``<engine>/configuration/applications/<application>``. The Json file name has to be named ``variables.Portal.Dashboard.json``
+- Copy the Dashboard.json file directly into your ``<application>`` folder following this path ``<engine>/configuration/applications/<application>``. The Json file name has to be named ``variables.Portal.Dashboard.json``
 
 - Use the import dashboard feature of the Portal. Refer to :ref:`How to import your public dashboards<howto-import-your-public-dashboards>`
 
@@ -97,7 +94,7 @@ Setup Portal multi applications
 
 All applications are in the same security context and the **portal-components** should be the only part being deployed in the other applications. See :ref:`The Portal multi applications <multi-app-structure>` overview.
 
--  Create a new application. Deploy Portal (portal, portal-components, optionally AxonIvyExpress) to this application.
+-  Create a new application. Deploy Portal (portal, portal-components) to this application.
 
 -  Create new applications: App 1, App 2,... Deploy your projects to the new applications.
 
@@ -147,9 +144,14 @@ In Engine
 Migrate 11.3.2 To 12.0.0
 ------------------------
 
-Custom field values for business details pages are migrated silently from the process link relative path 
+1. Custom field values for business details pages are migrated silently from the process link relative path 
 to its :dev-url:`IWebStartable ID </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>`. 
 You don't need to do anything, this is just for your information.
+
+2. We implemented a new feature to adjusting column widths in the Task and Case widgets.
+This change may slightly impact the column widths of Task and Case widgets from previous versions.
+To manually adjust column widths, please refer to the :ref:`Task widget configuraiton <new-dashboard-task-list-widget>`,
+and :ref:`Case widget configuraiton <new-dashboard-case-list-widget>` guides.
 
 Migrate 11.1.0 To 11.2.0
 ------------------------
@@ -328,7 +330,6 @@ Migrate 9.3 To 9.4
 
 #. The ``DefaultChartColor.p.json`` subprocess has been removed, in case you use it in your project, please remove override this subprocess and switch to using
    :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` to customize chart, data labels, legend color.
-   Refer to :ref:`Default chart colors <customization-default-chart-colors>`.
 
 #. Deploy :download:`portal-migration-9.4.0.iar <documents/portal-migration-9.4-9.4.0.iar>` project to your Ivy application and run it by access link
    ``your_host/your_application/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp``
@@ -355,7 +356,6 @@ Migrate 9.2 To 9.3
       * Run migration process only once
 
 #. We changed the way to navigate to Task Analysis component. Process ``Start Processes/TaskAnalysis/start.ivp`` is moved to new place ``Start Processes/PortalStart/showTaskAnalysis.ivp``.
-   Refer to :ref:`Task Analysis call<components-additional-component-task-analysis-how-to-use>` for details.
 
 #. We moved the configuration of announcement, thirdparty applications, default statistic charts, application favorite processes, public external links and express processes from the BusinessData tovariables.
 
@@ -482,6 +482,15 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of |ivy|.
 
+Changes in 12.0.0
+-----------------
+
+- The old statistic chart is removed, use the new :ref:`statistic-chart` instead.
+- Introduce the component IFrameTaskConfig to configure IFrame tasks. Refer to :ref:`iframe-configure-template` for more information.
+- The :ref:`full task list page <full-task-list>` and :ref:`full case list page <full-case-list>` have been redesigned to align with the concept of a dashboard widget. 
+  It now functions as a dashboard with a single, full-width widget. To configure it, you can adjust it like any other widgets.
+- Support multiple case owners. The single case owner sort feature is removed.
+
 Changes in 11.2.0
 -----------------
 
@@ -525,7 +534,7 @@ Changes in 9.4
 
 - Introduced the ``Formatting language setting`` to format values, for example the decimal separator is displayed differently in different regions of the world.
 
-- Removed subprocess ``DefaultChartColor.p.json``, introduced some Portal variables for customizing the default chart color. See details: :ref:`Default chart colors <customization-default-chart-colors>`.
+- Removed subprocess ``DefaultChartColor.p.json``, introduced some Portal variables for customizing the default chart color.
 
 - Introduce some components in new ``portal-components`` project.
 
@@ -579,7 +588,7 @@ Changes in 9.1
 
 - Introduced new Portal Setting ``Portal.ShowButtonIcon`` to control visibility of icon of button in Portal.
 
-- Introduced new Portal dialog with icon decorator. Refer to :ref:`this section <components-additional-portal-dialog-with-icon>` for detail.
+- Introduced new Portal dialog with icon decorator.
 
 - TaskTemplate-7, TaskTemplate and TwoColumnTemplate have been removed.
 

@@ -1,0 +1,10 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "OpenPortalCasesData",
+  "namespace" : "ch.ivy.addon.portal.generic",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "view",
+    "type" : "ch.ivy.addon.portal.generic.view.CaseView"
+  } ]
+}

@@ -1,0 +1,35 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "RoleSelectionExampleSerenityData",
+  "namespace" : "com.axonivy.portal.components.examples.serenity.RoleSelectionExampleSerenity",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "selectedRoleForDefinedRoles",
+    "type" : "com.axonivy.portal.components.dto.RoleDTO",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedRoleForReadOnlyField",
+    "type" : "com.axonivy.portal.components.dto.RoleDTO",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedRoleForExcludingRoles",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "excludedRoleNames",
+    "type" : "List<String>",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedRoleForInsertChildren",
+    "type" : "com.axonivy.portal.components.dto.RoleDTO",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedRole",
+    "type" : "com.axonivy.portal.components.dto.RoleDTO",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "definedRoleNames",
+    "type" : "List<String>",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

@@ -71,7 +71,6 @@ public class PortalProcessesScreenshotTest extends ScreenshotBaseTest {
     login(TestAccount.ADMIN_USER);
     MainMenuPage mainMenuPage = new MainMenuPage();
     processWidget = mainMenuPage.openProcessList();
-    processWidget.navigateToProcessIndex("A");
     ScreenshotUtils.executeDecorateJs("highlightProcessMoreMenuButton()");
 
     processWidget.clickMoreButtonOfFirstImageProcess();
@@ -110,10 +109,12 @@ public class PortalProcessesScreenshotTest extends ScreenshotBaseTest {
 
     processWidget.getFilterTextfield().sendKeys(processName);
     processWidget.waitUntilProcessDisplayed(processName);
-
+    processWidget.clickProcessMoreActionMenu(processName);
     ScreenshotUtils.executeDecorateJs("highlightProcessMoreInformationLink()");
     ScreenshotUtils
         .captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_INFORMATION_WIDGET_FOLDER + "more-information-link");
+    // Close process more menu item
+    processWidget.clickProcessMoreActionMenu(processName);
 
     processWidget.clickMoreInformationLinkImage(processName);
     ProcessInformationPage processInformationPage = new ProcessInformationPage();

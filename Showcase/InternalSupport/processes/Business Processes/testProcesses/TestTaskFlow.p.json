@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "14B2FC03D2E87141",
   "config" : {
     "data" : "internaltest.Data"
@@ -213,8 +213,7 @@
             "customFields" : [
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Other Leave/Sick/Long\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Sick CustomerType\"" },
-              { "name" : "SupportData", "type" : "STRING", "value" : "\"Sick SupportData\"" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+              { "name" : "SupportData", "type" : "STRING", "value" : "\"Sick SupportData\"" }
             ]
           }, {
             "id" : "TaskC",
@@ -234,13 +233,13 @@
           } ]
       },
       "visual" : {
-        "at" : { "x" : 1510, "y" : 180 },
+        "at" : { "x" : 1512, "y" : 176 },
         "labelOffset" : { "x" : 52, "y" : -1 }
       },
       "connect" : [
-        { "id" : "f37", "to" : "f26", "via" : [ { "x" : 1382, "y" : 180 } ], "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f37", "to" : "f26", "via" : [ { "x" : 1382, "y" : 176 } ], "condition" : "ivp==\"TaskA.ivp\"" },
         { "id" : "f35", "to" : "f28", "condition" : "ivp==\"TaskB.ivp\"" },
-        { "id" : "f31", "to" : "f24", "via" : [ { "x" : 1646, "y" : 180 } ], "condition" : "ivp==\"TaskC.ivp\"" }
+        { "id" : "f31", "to" : "f24", "via" : [ { "x" : 1646, "y" : 176 } ], "condition" : "ivp==\"TaskC.ivp\"" }
       ]
     }, {
       "id" : "f28",
@@ -278,8 +277,7 @@
             { "name" : "ProcessCategoryName", "type" : "STRING", "value" : "\"Publication Requested\"" },
             { "name" : "ProcessCode", "type" : "STRING", "value" : "\"pubRequested\"" },
             { "name" : "ProcessName", "type" : "STRING", "value" : "\"Publication Requested\"" },
-            { "name" : "SupportData", "type" : "STRING", "value" : "\"Leave Request SupportData\"" },
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+            { "name" : "SupportData", "type" : "STRING", "value" : "\"Leave Request SupportData\"" }
           ]
         }
       },
@@ -695,8 +693,7 @@
             { "name" : "ProcessCode", "type" : "STRING", "value" : "\"pubRequested\"" },
             { "name" : "ProcessName", "type" : "STRING", "value" : "\"Publication Requested\"" },
             { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime(2018, 1, 1, 1, 1, 1)" },
-            { "name" : "SupportData", "type" : "STRING", "value" : "\"CustomizationAdditionalCaseDetails SupportData\"" },
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+            { "name" : "SupportData", "type" : "STRING", "value" : "\"CustomizationAdditionalCaseDetails SupportData\"" }
           ]
         }
       },
@@ -785,10 +782,7 @@
         "signature" : "SaleDepartment",
         "case" : {
           "name" : "Sale Information",
-          "description" : "Sale Information",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
+          "description" : "Sale Information"
         }
       },
       "visual" : {
@@ -868,11 +862,6 @@
         "signature" : "ProcessWithSkipTaskListTask",
         "request" : {
           "name" : "Start Sprint meetings"
-        },
-        "case" : {
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
         }
       },
       "visual" : {
@@ -1073,11 +1062,6 @@
         "signature" : "processWithSystemNote",
         "request" : {
           "name" : "Create note"
-        },
-        "case" : {
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
-          ]
         }
       },
       "visual" : {
@@ -1329,8 +1313,7 @@
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Tung Le\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
               { "name" : "InvoiceTotalAmount", "type" : "NUMBER", "value" : "14" },
-              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
             ]
           }, {
             "id" : "TaskA",
@@ -1348,8 +1331,7 @@
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Long Do\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Exterior\"" },
               { "name" : "InvoiceTotalAmount", "type" : "NUMBER", "value" : "7" },
-              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
             ]
           }, {
             "id" : "TaskC",
@@ -1366,8 +1348,7 @@
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Anh Nguyen\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
               { "name" : "InvoiceTotalAmount", "type" : "NUMBER", "value" : "13" },
-              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" },
-              { "name" : "embedInFrame", "type" : "STRING", "value" : "\"false\"" }
+              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
             ]
           } ],
         "case" : {
@@ -1395,10 +1376,7 @@
         "signature" : "IFrameInCaseLevel",
         "case" : {
           "name" : "Sale Information In Iframe",
-          "description" : "Sale Information  In Iframe",
-          "customFields" : [
-            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
-          ]
+          "description" : "Sale Information  In Iframe"
         }
       },
       "visual" : {

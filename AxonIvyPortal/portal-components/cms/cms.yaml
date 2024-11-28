@@ -22,7 +22,6 @@ Dialogs:
             ProcessIsHidden: The current process is hidden!
             ProcessType:
               CASE_MAP: Case Map
-              EXPRESS_PROCESS: Express Workflow
               EXTERNAL_LINK: External Link
               IVY_PROCESS: Business Process
 Labels:

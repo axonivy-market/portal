@@ -1,0 +1,31 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "CreditDossier",
+  "namespace" : "com.axonivy.portal.userexamples.credit",
+  "isBusinessCaseData" : true,
+  "fields" : [ {
+    "name" : "customer",
+    "type" : "com.axonivy.portal.userexamples.credit.Person",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "request",
+    "type" : "com.axonivy.portal.userexamples.credit.CreditRequest",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "decision",
+    "type" : "com.axonivy.portal.userexamples.credit.Decision",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "verifierComment",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "internalCreditComment",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "externalCreditComment",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

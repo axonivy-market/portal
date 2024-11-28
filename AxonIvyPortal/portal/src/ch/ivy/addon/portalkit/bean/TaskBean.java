@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
@@ -12,6 +13,9 @@ import javax.faces.bean.ManagedBean;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.SortMeta;
 
+import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -115,5 +119,34 @@ public class TaskBean implements Serializable {
 
   public SortMeta getTaskWorkflowEventSortByTimestamp() {
     return SortFieldUtil.buildSortMeta("timestamp", true);
+  }
+  
+  public String getAriaLabel(ITask task, List<TaskColumnModel> columns) {
+    List<String> displayTexts = new ArrayList<>();
+    for (TaskColumnModel col : columns) {
+      if (col.getVisible()) {
+        if (DashboardStandardTaskColumn.START.getField().equalsIgnoreCase(col.getField())) {
+          displayTexts.add(cms("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskStart"));
+        } else if (DashboardStandardTaskColumn.PRIORITY.getField().equalsIgnoreCase(col.getField())) {
+          displayTexts.add(col.getHeaderText() + ": " + getPriority(task.getPriority()));
+        } else if (DashboardStandardTaskColumn.STATE.getField().equalsIgnoreCase(col.getField())) {
+          displayTexts.add(col.getHeaderText() + ": " + getTaskBusinessState(task.getBusinessState()));
+        } else if (DashboardStandardTaskColumn.CREATED.getField().equalsIgnoreCase(col.getField())) {
+          String createdDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(task.getStartTimestamp());
+          displayTexts.add(col.getHeaderText() + ": " + createdDateString);
+        } else if (DashboardStandardTaskColumn.EXPIRY.getField().equalsIgnoreCase(col.getField())) {
+          if (task.getExpiryTimestamp() != null) {
+            String expiryDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(task.getExpiryTimestamp());
+            displayTexts.add(col.getHeaderText() + ": " + expiryDateString);
+          }
+        } else {
+          Object displayObject = col.display(task);
+          if (displayObject != null && StringUtils.isNotEmpty(displayObject.toString())) {
+            displayTexts.add(col.getHeaderText() + ": " + displayObject.toString());
+          }
+        }
+      }
+    }
+    return String.join(" - ", displayTexts);
   }
 }

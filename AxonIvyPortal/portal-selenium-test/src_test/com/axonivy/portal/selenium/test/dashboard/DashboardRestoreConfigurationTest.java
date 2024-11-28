@@ -45,7 +45,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
     var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     configurationPage.openCreatePublicDashboardMenu();
     configurationPage.createPublicDashboardFromScratch(DASHBOARD_NAME, ICON, DASHBOARD_DESCRIPTION,
-        DASHBOARD_PERMISSION);
+        DASHBOARD_PERMISSION, false);
     verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.empty);
     addNewCaseWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
@@ -73,7 +73,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
   @Test
   public void testCannotRestoreDashboardWhenTemplateNotFound() {
     var dashboardName = "Dashboard";
-    createJSonFile("dashboard-has-one-chart-example.json", PortalVariable.DASHBOARD.key);
+    createJSonFile("dashboard-has-newsfeed.json", PortalVariable.DASHBOARD.key);
     newDashboardPage.waitForAbsencesGrowlMessageDisplay();
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     var modificationPage = configurationPage.openEditPublicDashboardsPage();

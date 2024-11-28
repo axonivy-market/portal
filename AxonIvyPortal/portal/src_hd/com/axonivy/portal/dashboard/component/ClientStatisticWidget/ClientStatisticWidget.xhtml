@@ -12,7 +12,6 @@
 </cc:interface>
 
 <cc:implementation>
-  <h:outputScript library="js" name="statistic-widget.js" />
   <h:outputScript library="chartjs-plugin" name="chartjs-plugin-datalabels.min.js"/>
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <c:set var="index" value="#{cc.attrs.index}" />
@@ -27,6 +26,7 @@
     <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode or isPreviewMode}" />
     <ui:param name="isRenderInfo" value="false" />
     <ui:param name="isRenderEdit" value="false" />
+    <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
     <ui:param name="widgetContentStyleClass" value="client-statistic" />
 
     <ui:define name="widgetContent">

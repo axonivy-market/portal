@@ -1,7 +1,12 @@
 .. _configure-new-dashboard-custom-widget:
 
 Configure Custom Widget
-========================
+=======================
+
+Portal offers a variety of widgets, such as task, case, and process widgets. But what if you need a widget like a 
+weather widget? Fortunately, Portal allows you to create custom widgets as well. These custom widgets utilize 
+an IFrame to display content, which you can define. The content can be an Ivy process or the URL of an external 
+webpage.
 
 .. _define-an-ivy-process-for-the-custom-widget:
 
@@ -51,11 +56,12 @@ an Ivy process on the dashboard through iframes.
 
 Below is a standard JSON definition of the custom widget in the Portal dashboard.
 
-   .. code-block:: html
+   .. code-block:: javascript
 
       {
          "type": "custom",
          "id": "custom-widget",
+         "showFullscreenMode": true,
          "names": [
             {
                "locale": "en",
@@ -83,6 +89,8 @@ The basic JSON structure of the custom widget
    ``data``: data for customization. Please refer to the following sections to
    understand how to use this field.
 
+   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon
+
 Define Ivy Process
 ------------------
 
@@ -90,11 +98,12 @@ The Developer can predefine a custom widget by declaring it in a JSON file:
 
 JSON structure
 
-   .. code-block:: html
+   .. code-block:: javascript
 
       {
          "type": "custom",
          "id": "custom-widget",
+         "showFullscreenMode": true,
          "names": [
             {
                "locale": "en",
@@ -105,7 +114,7 @@ JSON structure
             "x": 10, "y": 0, "w": 12, "h": 6
          },
          "data" : {
-           "processPath": "designer/portal-developer-examples/Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
+           "processPath": "designer/portal-user-examples/Start Processes/DashboardCustomWidgetExample/investmentList.ivp",
            "params": [
                {
                   "type": "user",
@@ -149,7 +158,7 @@ Attributes explanation
            configuration dialog, the user can edit this parameter in an input
            text field.
 
-         .. code-block:: html
+         .. code-block:: javascript
 
             {
                ...
@@ -168,7 +177,7 @@ Attributes explanation
            configuration dialog, the user can edit this parameter by choosing a
            user from a dropdown. Only Ivy usernames are accepted as values.
 
-         .. code-block:: html
+         .. code-block:: javascript
 
             {
                ...
@@ -187,7 +196,7 @@ Attributes explanation
            dialog, the user can edit this parameter with a date picker. This
            type only accepts date formats dd.MM.yyyy and MM/dd/yyyy.
 
-         .. code-block:: html
+         .. code-block:: javascript
 
             {
                ...
@@ -196,7 +205,7 @@ Attributes explanation
                      {
                         "type": "date",
                         "name": "startDate",
-                        "value": "11/19/2021"
+                        "value": "01/01/2024"
                      }
                   ]
             }
@@ -209,7 +218,7 @@ Attributes explanation
 
 Please refer to JSON file ``variables.Portal.Dashboard.json`` and process
 ``DashboardCustomWidgetExample/investmentList.ivp`` in project
-``portal-developer-examples`` for details about how to define the Ivy process for
+``portal-user-examples`` for details about how to define the Ivy process for
 the custom widget.
 
 .. |dashboard-custom-field| image:: images/new-dashboard-custom-widget/process-custom-field.png

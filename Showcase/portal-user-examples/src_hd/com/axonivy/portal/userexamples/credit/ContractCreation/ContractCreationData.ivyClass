@@ -1,6 +1,0 @@
-ContractCreationData #class
-com.axonivy.portal.userexamples.credit.ContractCreation #namespace
-dossier com.axonivy.portal.userexamples.credit.CreditDossier #field
-dossier PERSISTENT #fieldModifier
-contractDate java.util.Date #field
-contractDate PERSISTENT #fieldModifier

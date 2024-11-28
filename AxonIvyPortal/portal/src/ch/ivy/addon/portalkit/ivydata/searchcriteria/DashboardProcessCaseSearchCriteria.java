@@ -1,9 +1,7 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
-import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.util.CaseUtils;
-import ch.ivyteam.ivy.workflow.category.CategoryPath;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
@@ -12,13 +10,11 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
 public class DashboardProcessCaseSearchCriteria {
 
   private Long processStartId;
-  private String processName;
   private String sortField;
   private boolean sortDescending;
   
-  public DashboardProcessCaseSearchCriteria(Long processStartId, String processName) {
+  public DashboardProcessCaseSearchCriteria(Long processStartId) {
     this.processStartId = processStartId;
-    this.processName = processName;
   }
 
   public CaseQuery buildQuery() {
@@ -32,8 +28,6 @@ public class DashboardProcessCaseSearchCriteria {
     CaseQuery query = CaseQuery.businessCases();
     if (this.processStartId != null) {
       queryProcessStartId(query);
-    } else {
-      queryExpressProcessCasesByCategoryPath(query);
     }
     queryStates(query);
     queryIsInvolved(query);
@@ -52,12 +46,6 @@ public class DashboardProcessCaseSearchCriteria {
 
   private void queryProcessStartId(CaseQuery query) {
     query.where().taskStartId().isEqual(processStartId);
-  }
-
-  private void queryExpressProcessCasesByCategoryPath(CaseQuery query) {
-    String categoryPath = new CategoryPath("ExpressWorkflow/" + this.processName).getValidRawPath();
-    query.where().customField().stringField(CustomFields.IS_EXPRESS_PROCESS).isEqual("true");
-    query.where().category().isEqual(categoryPath);
   }
 
   private void queryIsInvolved(CaseQuery query) {
@@ -99,7 +87,6 @@ public class DashboardProcessCaseSearchCriteria {
       appendSortByIdIfSet(criteria);
       appendSortByCreationDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
-      appendSortByOwnerIfSet(criteria);
       appendSortByEndDateIfSet(criteria);
       if (criteria.isSortDescending()) {
         order.descending();
@@ -110,12 +97,6 @@ public class DashboardProcessCaseSearchCriteria {
     private void appendSortByEndDateIfSet(DashboardProcessCaseSearchCriteria criteria) {
       if (DashboardStandardCaseColumn.FINISHED.getField().equalsIgnoreCase(criteria.getSortField())) {
         order = query.orderBy().endTimestamp();
-      }
-    }
-
-    private void appendSortByOwnerIfSet(DashboardProcessCaseSearchCriteria criteria) {
-      if (DashboardStandardCaseColumn.OWNER.getField().equalsIgnoreCase(criteria.getSortField())) {
-        order = query.orderBy().ownerDisplayName();
       }
     }
 

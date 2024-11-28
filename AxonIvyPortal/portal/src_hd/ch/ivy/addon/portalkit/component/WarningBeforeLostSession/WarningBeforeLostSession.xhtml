@@ -2,7 +2,7 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:c="http://java.sun.com/jsp/jstl/core">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="serverSideTimeout" />
@@ -23,7 +23,7 @@
 
     <ui:define name="dialogFooter">
       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/refreshSession')}"
-        icon="#{visibilityBean.generateButtonIcon('si si-monitor-refresh')}" onclick="PortalSessionWarning.keepPortalAlive(); return false;" />
+        styleClass="w-full" onclick="PortalSessionWarning.keepPortalAlive(); return false;" />
     </ui:define>
   </ui:decorate>
 

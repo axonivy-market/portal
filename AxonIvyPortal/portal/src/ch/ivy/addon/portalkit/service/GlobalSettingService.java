@@ -20,9 +20,16 @@ public class GlobalSettingService {
 
   private static GlobalSettingService instance;
 
+  public GlobalSettingService() {
+  }
+
   public static GlobalSettingService getInstance() {
-    if (instance == null) {
-      instance = new GlobalSettingService();
+    if (instance == null) { // First check (no locking)
+      synchronized (GlobalSettingService.class) {
+        if (instance == null) { // Second check (with locking)
+          instance = new GlobalSettingService();
+        }
+      }
     }
     return instance;
   }
@@ -34,16 +41,6 @@ public class GlobalSettingService {
 
   public boolean findBooleanGlobalSettingValue(GlobalVariable variable) {
     return Optional.ofNullable(Ivy.var().get(variable.getKey())).map(Boolean::parseBoolean).orElse(false);
-  }
-
-  /**
-   * @param name
-   * @return global setting value
-   * @deprecated use {@link #findGlobalSettingValue(GlobalVariable)} instead
-   */
-  @Deprecated(forRemoval = true, since = "9.3")
-  public String findGlobalSettingValue(String name) {
-    return findGlobalSettingValue(GlobalVariable.valueOf(name));
   }
 
   public GlobalSetting findGlobalSettingByGlobalVariable(GlobalVariable variable) {
@@ -76,6 +73,10 @@ public class GlobalSettingService {
     return findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_CASE_OWNER);
   }
   
+  public boolean isHideCaseCreator() {
+    return findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_CREATOR);
+  }
+
   public GlobalSetting save(GlobalSetting entity) {
     if (entity.getIsPublic()) {
       Ivy.var().set(entity.getKey(), entity.getValue());

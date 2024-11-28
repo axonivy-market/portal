@@ -1,8 +1,0 @@
-Company #class
-com.axonivy.portal.userexamples.dashboardcustomwidget #namespace
-id String #field
-id PERSISTENT #fieldModifier
-name String #field
-name PERSISTENT #fieldModifier
-description String #field
-description PERSISTENT #fieldModifier

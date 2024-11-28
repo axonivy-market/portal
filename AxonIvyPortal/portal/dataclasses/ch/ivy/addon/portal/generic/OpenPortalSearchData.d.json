@@ -1,0 +1,16 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "OpenPortalSearchData",
+  "namespace" : "ch.ivy.addon.portal.generic",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "keyword",
+    "type" : "String"
+  }, {
+    "name" : "searchResultsDataModel",
+    "type" : "ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel"
+  }, {
+    "name" : "activeTabIndex",
+    "type" : "Number"
+  } ]
+}

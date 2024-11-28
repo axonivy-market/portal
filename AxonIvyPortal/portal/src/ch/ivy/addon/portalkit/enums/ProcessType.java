@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum ProcessType {
-  EXPRESS_PROCESS("ExpressProcess"),
   EXTERNAL_LINK("ExternalLink"),
   IVY_PROCESS("IvyProcess");
   

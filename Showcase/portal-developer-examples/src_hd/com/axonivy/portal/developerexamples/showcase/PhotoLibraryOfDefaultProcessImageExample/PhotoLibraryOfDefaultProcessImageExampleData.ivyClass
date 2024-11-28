@@ -1,6 +1,0 @@
-PhotoLibraryOfDefaultProcessImageExampleData #class
-com.axonivy.portal.developerexamples.showcase.PhotoLibraryOfDefaultProcessImageExample #namespace
-photoNames java.util.ArrayList<com.axonivy.portal.developerexamples.enums.DefaultImage> #field
-photoNames PERSISTENT #fieldModifier
-photoName com.axonivy.portal.developerexamples.enums.DefaultImage #field
-photoName PERSISTENT #fieldModifier

@@ -1,0 +1,25 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "TaskItemGeneralInfoData",
+  "namespace" : "ch.ivy.addon.portalkit.component.TaskItemGeneralInfo",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "changeDeadlineNoteContent",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "globalCaseId",
+    "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "selectedCase",
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
+  }, {
+    "name" : "task",
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
+  }, {
+    "name" : "expiryTimestamp",
+    "type" : "java.util.Date",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

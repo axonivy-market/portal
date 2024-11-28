@@ -177,3 +177,5 @@ Processes:
         name: Pedido de pizza
     description: Crear 3 tareas, cada tarea tiene CustomerName y ShipmentDate
     name: Crear tareas para la personalización de la lista de tareas
+  UserExampleGuide: Guía de ejemplos para el usuario
+  google: SP Google

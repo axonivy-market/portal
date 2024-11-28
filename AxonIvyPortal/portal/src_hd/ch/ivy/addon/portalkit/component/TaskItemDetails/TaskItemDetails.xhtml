@@ -109,7 +109,7 @@
                 </p:commandLink>
 
                 <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" buttonStyleClass="task-action-item-position"
-                  actionLinkId="task-detail-more-step" panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false"
+                  actionLinkId="task-detail-more-step" panelWidgetVar="task-side-steps-panel-#{rowIndex}"
                   renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}" task="#{task}"
                   isDisabled="#{taskActionBean.noActionAvailable(task) or cc.attrs.readOnly}"
                   componentToUpdate="#{informationWidgetComponent} #{historyWidgetComponent}" onDestroyComplete="PF('destroy-task-dialog').show()"

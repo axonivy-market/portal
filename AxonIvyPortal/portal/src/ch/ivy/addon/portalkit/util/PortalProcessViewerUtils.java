@@ -21,14 +21,14 @@ public class PortalProcessViewerUtils {
   public static final String DEFAULT_LINK = "#";
 
   public static String getStartProcessViewerPageUri(ICase selectedCase) {
-    if (Objects.isNull(selectedCase) || Objects.isNull(selectedCase.getProcessStart()) || ProcessViewerUtils.isExpressCase(selectedCase)) {
+    if (Objects.isNull(selectedCase) || Objects.isNull(selectedCase.getProcessStart())) {
       return DEFAULT_LINK;
     }
     return buildPortalProcessViewerUrl(null, selectedCase.getId(), selectedCase.getProcessStart().getLink().getRelative());
   }
 
   public static String getStartProcessViewerPageUri(ITask selectedTask) {
-    if (Objects.isNull(selectedTask) || Objects.isNull(selectedTask.getCase()) || Objects.isNull(selectedTask.getCase().getProcessStart()) || ProcessViewerUtils.isExpressCase(selectedTask.getCase())) {
+    if (Objects.isNull(selectedTask) || Objects.isNull(selectedTask.getCase()) || Objects.isNull(selectedTask.getCase().getProcessStart())) {
       return DEFAULT_LINK;
     }
     return buildPortalProcessViewerUrl(selectedTask.getId(), null, null);

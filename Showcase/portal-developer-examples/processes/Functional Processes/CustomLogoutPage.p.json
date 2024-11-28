@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "1657EA461CE412A1",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -49,7 +49,7 @@
       "name" : "Set logout page",
       "config" : {
         "output" : {
-          "code" : "in.logoutPage = ivy.html.applicationHomeRef();"
+          "code" : "in.logoutPage = ivy.html.applicationHomeLink().getAbsoluteEncoded();"
         }
       },
       "visual" : {

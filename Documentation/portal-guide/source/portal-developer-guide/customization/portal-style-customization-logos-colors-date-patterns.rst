@@ -11,9 +11,9 @@ Change Logos in Portal
 You can change both the top-left corner logo in the menu and the login logo by
 using :dev-url:`Engine Branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>`.
 
-We allow for two different logo graphics for the expanded and the collapsed
+We have two different logo graphics for the expanded and the collapsed
 menu. You can use one "pure" logo for the small, quadratic format (default: 42x42 pixels), and a logo
-with a slogan for the bigger one. This one is intended to have a 4:1
+with a slogan for the bigger one. The larger logo is intended to have a 4:1
 width:height ratio (default: 168x42 pixels).
 
 The best graphics format for logos is SVG (Scalable Vector Graphics) as it
@@ -23,8 +23,8 @@ window size and zoom as well as the screen resolution. In addition, SVG files
 are usually pretty small because they are text files. All modern browsers can
 render SVG graphics.
 
-On the other hand, PNG logos blur if expanded, and are big files if supplied in
-high resolution to prevent the blurring. 
+On the other hand, PNG logos may blur when expanded, and they result in large
+file sizes if supplied in high resolution to prevent the blurring.
 
 We recommend using images with a transparent background, if your Corporate
 Identity does not define a mandatory background color. 
@@ -110,10 +110,6 @@ You can customize the Portal styles in ``custom.css``.
 
 .. warning::
    - Do not change ``font-family`` property values.
-
-   - Limitation: the task priority color customization hasn't changed the task priority colors in statistic.
-
-   If you want to custom color of statistics please refer to :ref:`Override Statistic color <override-Statistic-colors>`
 
 .. |css_variable| raw:: html
 

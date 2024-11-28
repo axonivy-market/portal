@@ -5,8 +5,8 @@
   <artifactId>public-api</artifactId>
   <version>9.1.0.0-SNAPSHOT</version>
   <properties>
-    <build.plugin.version>11.4.0-SNAPSHOT</build.plugin.version>
-    <ivy.engine.version>11.4.0</ivy.engine.version>
+    <build.plugin.version>12.0.0</build.plugin.version>
+    <ivy.engine.version>12.0.0</ivy.engine.version>
   </properties>
   <distributionManagement>
     <repository>
@@ -22,7 +22,7 @@
     <dependency>
       <groupId>org.jsoup</groupId>
       <artifactId>jsoup</artifactId>
-      <version>1.15.3</version>
+      <version>1.18.1</version>
     </dependency>
   </dependencies>
   <build>

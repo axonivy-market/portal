@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "1612B5181308632F",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -33,10 +33,10 @@
         "signature" : "leave",
         "input" : {
           "params" : [
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+            { "name" : "caze", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
           ],
           "map" : {
-            "out.iCase" : "param.iCase"
+            "out.caze" : "param.caze"
           }
         },
         "guid" : "16FA866C14936E0D"
@@ -56,10 +56,10 @@
         "signature" : "reserve",
         "input" : {
           "params" : [
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+            { "name" : "caze", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
           ],
           "map" : {
-            "out.iCase" : "param.iCase"
+            "out.caze" : "param.caze"
           }
         },
         "guid" : "16FA866CC3BA9742"
@@ -83,7 +83,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.util.GrowlMessageUtils;",
             "",
-            "GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.iCase);"
+            "GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.caze);"
           ]
         }
       },

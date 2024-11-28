@@ -1,4 +1,0 @@
-DestroyTaskPageData #class
-ch.ivy.addon.portalkit.showroom.multiapp.tasks.DestroyTaskPage #namespace
-taskId Long #field
-taskId PERSISTENT #fieldModifier

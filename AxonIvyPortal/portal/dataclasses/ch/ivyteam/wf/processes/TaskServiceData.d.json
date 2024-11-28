@@ -1,0 +1,46 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "TaskServiceData",
+  "namespace" : "ch.ivyteam.wf.processes",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "categoryTree",
+    "type" : "ch.ivyteam.ivy.workflow.category.CategoryTree"
+  }, {
+    "name" : "count",
+    "type" : "Integer"
+  }, {
+    "name" : "elapsedTimeStatistic",
+    "type" : "ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic"
+  }, {
+    "name" : "expiryStatistic",
+    "type" : "ch.ivy.addon.portalkit.bo.ExpiryStatistic"
+  }, {
+    "name" : "priorityStatistic",
+    "type" : "ch.ivy.addon.portalkit.bo.PriorityStatistic"
+  }, {
+    "name" : "startIndex",
+    "type" : "Integer"
+  }, {
+    "name" : "taskCategorySearchCriteria",
+    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria"
+  }, {
+    "name" : "tasks",
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>"
+  }, {
+    "name" : "taskSearchCriteria",
+    "type" : "ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria"
+  }, {
+    "name" : "totalTasks",
+    "type" : "Long"
+  }, {
+    "name" : "taskStateStatistic",
+    "type" : "ch.ivy.addon.portalkit.bo.TaskStateStatistic"
+  }, {
+    "name" : "taskQuery",
+    "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery"
+  }, {
+    "name" : "taskByCategoryStatistics",
+    "type" : "List<com.axonivy.portal.bo.ItemByCategoryStatistic>"
+  } ]
+}

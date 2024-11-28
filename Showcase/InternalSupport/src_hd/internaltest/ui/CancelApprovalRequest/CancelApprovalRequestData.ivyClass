@@ -1,6 +1,0 @@
-CancelApprovalRequestData #class
-internaltest.ui.CancelApprovalRequest #namespace
-cancelReason String #field
-cancelReason PERSISTENT #fieldModifier
-caseId Long #field
-caseId PERSISTENT #fieldModifier

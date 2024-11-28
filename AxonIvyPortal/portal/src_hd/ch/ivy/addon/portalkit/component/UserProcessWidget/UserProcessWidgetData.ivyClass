@@ -1,4 +1,0 @@
-UserProcessWidgetData #class
-ch.ivy.addon.portalkit.component.UserProcessWidget #namespace
-userProcesses java.util.List<ch.ivy.addon.portalkit.configuration.UserProcess> #field
-userProcesses PERSISTENT #fieldModifier

@@ -1,6 +1,0 @@
-ProcessWidgetConfigurationData #class
-ch.ivy.addon.portal.generic.dashboard.component.ProcessWidgetConfiguration #namespace
-taskWidget ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget #field
-taskWidget PERSISTENT #fieldModifier
-widgetId String #field
-widgetId PERSISTENT #fieldModifier

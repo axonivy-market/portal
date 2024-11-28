@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "16A68510A341BE6E",
   "config" : {
     "data" : "internaltest.CaseOwnerData"
@@ -41,7 +41,7 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "ivy.case.setOwner(ISecurityContext.current().users().find(\"demo\"));"
+            "ivy.case.owners().add(ISecurityContext.current().users().find(\"demo\"));"
           ]
         },
         "sudo" : true
@@ -132,7 +132,7 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "ivy.case.setOwner(ISecurityContext.current().roles().find(\"CaseOwner\"));"
+            "ivy.case.owners().add(ISecurityContext.current().roles().find(\"CaseOwner\"));"
           ]
         },
         "sudo" : true
@@ -143,6 +143,85 @@
       },
       "connect" : [
         { "id" : "f12", "to" : "f8", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "RequestStart",
+      "name" : "multipleOwners",
+      "config" : {
+        "signature" : "multipleOwners",
+        "request" : {
+          "name" : "Create case with multiple owners",
+          "description" : "Create case with multiple owners"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f15" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "Script",
+      "name" : "Set multiple case owners",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "if (ISecurityContext.current().users().find(\"demo\") != null){",
+            "  ivy.case.owners().add(ISecurityContext.current().users().find(\"demo\"));  ",
+            "}",
+            "",
+            "if (ISecurityContext.current().users().find(\"admin\") != null){",
+            "  ivy.case.owners().add(ISecurityContext.current().users().find(\"admin\"));",
+            "}",
+            "",
+            "if (ISecurityContext.current().roles().find(\"CaseOwner\") != null){",
+            "  ivy.case.owners().add(ISecurityContext.current().roles().find(\"CaseOwner\"));",
+            "",
+            "}",
+            "",
+            "if (ISecurityContext.current().roles().find(\"HR\") != null){",
+            "  ivy.case.owners().add(ISecurityContext.current().roles().find(\"HR\"));",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f22", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f19",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 280 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f22",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "Task with multiple case owners",
+            "responsible" : {
+              "activator" : "CREATOR"
+            }
+          } ],
+        "case" : {
+          "name" : "Case with multiple owners"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f19", "condition" : "ivp==\"TaskA.ivp\"" }
       ]
     } ]
 }

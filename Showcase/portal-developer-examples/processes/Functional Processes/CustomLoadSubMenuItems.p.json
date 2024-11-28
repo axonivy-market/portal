@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "1657E6622F0C0122",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -40,6 +40,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;",
             "import com.axonivy.portal.components.configuration.CustomSubMenuItem;",
             "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
             "import org.apache.commons.lang3.StringUtils;",
@@ -48,7 +49,7 @@
             "if (!StringUtils.isEmpty(userExampleGuideLink)){  ",
             "  CustomSubMenuItem userExampleGuide = new CustomSubMenuItem();",
             "  userExampleGuide.setIcon(\"si si-bulb\");",
-            "  userExampleGuide.setLabel(\"User example guide\");",
+            "  userExampleGuide.setLabel(ivy.cms.co(\"/Processes/UserExampleGuide\"));",
             "  userExampleGuide.setLink(userExampleGuideLink + \"?embedInFrame\");",
             "  userExampleGuide.setIndex(0);",
             "  in.subMenuItems.add(userExampleGuide);",
@@ -56,7 +57,7 @@
             "",
             "CustomSubMenuItem google = new CustomSubMenuItem();",
             "google.setIcon(\"si si-information-circle\");",
-            "google.setLabel(\"Google\");",
+            "google.setLabel(ApplicationMultiLanguageAPI.getCmsValueByUserLocale(\"/Processes/google\"));",
             "google.setLink(\"www.google.com\");",
             "google.setIsExternalLink(true);",
             "google.setIndex(1);",

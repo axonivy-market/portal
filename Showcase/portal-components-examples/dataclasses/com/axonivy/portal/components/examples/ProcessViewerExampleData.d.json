@@ -1,0 +1,16 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "ProcessViewerExampleData",
+  "namespace" : "com.axonivy.portal.components.examples",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "selectedTaskId",
+    "type" : "Long"
+  }, {
+    "name" : "selectedCaseId",
+    "type" : "Long"
+  }, {
+    "name" : "selectedProcessLink",
+    "type" : "String"
+  } ]
+}

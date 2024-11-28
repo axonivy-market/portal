@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -26,7 +27,14 @@ public class CaseExporter extends Exporter{
    * @param columnsVisibility list of columns to export
    */
   public CaseExporter(List<String> columnsVisibility) {
-    super(columnsVisibility);
+    List<String> columns = new ArrayList<>();
+    for (String column : columnsVisibility) {
+      if (CaseSortField.CREATOR.toString().equals(column) && GlobalSettingService.getInstance().isHideCaseCreator()) {
+        continue;
+      }
+      columns.add(column);
+    }
+    setColumnsVisibility(columns);
   }
 
   /**
@@ -59,7 +67,7 @@ public class CaseExporter extends Exporter{
    */
   protected String getSpecialColumnName(String column) {
     if (CaseSortField.NAME.name().equals(column)) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName");
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/caseName");
     } else if (CaseLazyDataModel.DESCRIPTION.equals(column)) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/description");
     }
@@ -89,34 +97,23 @@ public class CaseExporter extends Exporter{
     }
 
     CaseSortField sortField = CaseSortField.valueOf(column);
-    switch (sortField) {
-      case NAME:
-        return StringUtils.isEmpty(caseItem.names().current()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : caseItem.names().current();
-      case ID:
-        return String.valueOf(caseItem.getId());
-      case CREATOR:
+    return switch (sortField) {
+      case NAME -> StringUtils.isEmpty(caseItem.names().current()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : caseItem.names().current();
+      case ID -> String.valueOf(caseItem.getId());
+      case CREATOR -> {
         if (caseItem.getCreatorUserName() == null) {
-          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
+          yield Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
-        return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getCreatorUser(), caseItem.getCreatorUserName());
-      case OWNER:
-        if (caseItem.getOwnerName() == null) {
-          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
-        }
-        return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getOwner(), caseItem.getOwnerName());
-      case CREATION_TIME:
-        return caseItem.getStartTimestamp();
-      case FINISHED_TIME:
-        return caseItem.getEndTimestamp();
-      case STATE:
-        return CaseUtils.convertToUserFriendlyCaseState(caseItem.getBusinessState());
-      case CATEGORY:
-        return caseItem.getCategory().getPath();
-      case APPLICATION:
-        return caseItem.getApplication().getName();
-      default:
-        return "";
-    }
+        yield SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getCreatorUser(), caseItem.getCreatorUserName());
+      }
+      case OWNER -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForCaseOwners(caseItem.owners());
+      case CREATION_TIME -> caseItem.getStartTimestamp();
+      case FINISHED_TIME -> caseItem.getEndTimestamp();
+      case STATE -> CaseUtils.convertToUserFriendlyCaseState(caseItem.getBusinessState());
+      case CATEGORY -> caseItem.getCategory().getPath();
+      case APPLICATION -> caseItem.getApplication().getName();
+      default -> "";
+    };
   }
 
   /**

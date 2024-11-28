@@ -155,7 +155,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
         case PROCESS:
           var processWidget = (ProcessDashboardWidget) widget;
           if (ProcessWidgetMode.COMPACT_MODE == processWidget.getDisplayMode()) {
-            widgetFilterableColumns.addAll(((CompactProcessDashboardWidget) processWidget).getFilterableColumns());
+            widgetFilterableColumns.addAll(processWidget.getFilterableColumns());
           }
           break;
         default:
@@ -174,6 +174,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
 
   private void mergeUserFilterInput(WidgetFilterModel userFilterOptions, ColumnModel column) {
     userFilterOptions.getFilterableColumns().stream()
+        .filter(userSelected -> userSelected.getField() != null)
     .filter(userSelected -> userSelected.getField().equals(column.getField()) 
         && userSelected.getType( )== column.getType()).findFirst()
     .ifPresent(selectedColumn -> {
@@ -203,7 +204,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
 
       for (var selected : widget.getUserFilterCollection().getSelectedWidgetFilters()) {
         var selectedColumn = selected.getFilterableColumns().stream()
-            .filter(compare -> compare.getField().equals(widgetColumn.getField())
+            .filter(compare -> compare.getField() != null && compare.getField().equals(widgetColumn.getField())
                 && compare.getType() == widgetColumn.getType()).findFirst().orElse(null);
         if (selectedColumn != null) {
           if (StringUtils.isNotEmpty(selectedColumn.getUserFilter())) {

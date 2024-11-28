@@ -35,8 +35,8 @@ create a callable subprocess with:
 The parameters of the callable subprocess data contain the
 ``currentUser`` and the current ``task`` to be delegated.
 
-Get the users and roles the task can be delegated to from
-the lists ``users`` and ``roles``. Modify those two to create
+Get the users and roles to which the task can be delegated to from
+the lists ``users`` and ``roles``. Modify these lists to create
 your delegate list.
 
 Portal will call subprocesses with the details above and then combine all

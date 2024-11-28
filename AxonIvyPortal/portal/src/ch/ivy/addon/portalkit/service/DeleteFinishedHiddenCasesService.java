@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.service;
 
+import static ch.ivy.addon.portalkit.constant.PortalConstants.PORTAL_LIBRARY_ID;
+
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -7,7 +9,6 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.application.IProcessModel;
@@ -28,7 +29,7 @@ public class DeleteFinishedHiddenCasesService {
     Ivy.log().info("***Job for deleting finished hidden system cases started at: " + currentDate + " by user: " + Ivy.session().getSessionUserName());
 
     boolean shouldDeleteAllCases = Boolean.parseBoolean(Ivy.var().get(DELETE_ALL_FINISHED_HIDDEN_CASES));
-    IProcessModelVersion portalPMV = findPortalPMVByLibraryId(IApplication.current(), PortalLibrary.PORTAL.getValue());
+    IProcessModelVersion portalPMV = findPortalPMVByLibraryId(IApplication.current(), PORTAL_LIBRARY_ID);
     if (portalPMV == null) {
       Ivy.log().warn("Can not retrieve portal PMV");
       return ;

@@ -8,23 +8,17 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
-import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivy.addon.portalkit.service.ExpressProcessService;
-import ch.ivy.addon.portalkit.util.CategoryUtils;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.category.Category;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DashboardProcess implements Process {
-  private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   private String id;
   @Deprecated(forRemoval = true, since = "11.2.0")
   private Long processStartId;
@@ -69,16 +63,6 @@ public class DashboardProcess implements Process {
     this.imageUrl = collectProcessImage(process);
     this.sortIndex = getSortIndexInCustomField(process);
     this.portalProcessInformation = getPortalProcessInformation(process);
-  }
-
-  public DashboardProcess(ExpressProcess process) {
-    this.id = process.getId();
-    this.type = ProcessType.EXPRESS_PROCESS;
-    this.name = process.getProcessName();
-    this.description = process.getProcessDescription();
-    this.icon = process.getIcon();
-    this.category = CategoryUtils.buildExpressCategory(process.getProcessName());
-    this.application = IApplication.current().getName();
   }
 
   @Override
@@ -130,9 +114,6 @@ public class DashboardProcess implements Process {
 
   @Override
   public String getStartLink() {
-    if (this.type == ProcessType.EXPRESS_PROCESS) {
-      return generateWorkflowStartLink();
-    }
     return startLink;
   }
 
@@ -145,8 +126,6 @@ public class DashboardProcess implements Process {
     if (StringUtils.isBlank(icon)) {
       if (this.type == ProcessType.IVY_PROCESS) {
         return Process.DEFAULT_PROCESS_ICON;
-      } else if (this.type == ProcessType.EXPRESS_PROCESS) {
-        return PortalExpressProcess.DEFAULT_ICON;
       } else if (this.type == ProcessType.EXTERNAL_LINK) {
         return ExternalLinkProcessItem.DEFAULT_ICON;
       }
@@ -162,10 +141,6 @@ public class DashboardProcess implements Process {
     Locale currentLocale = Ivy.session().getContentLocale();
     return names.stream().filter(displayName -> displayName.getLocale().equals(currentLocale))
         .map(DisplayName::getValue).findFirst().orElse(this.name);
-  }
-
-  private String generateWorkflowStartLink() {
-    return ExpressProcessService.getInstance().findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + this.id;
   }
 
   /**
@@ -199,7 +174,7 @@ public class DashboardProcess implements Process {
   @Override
   public String getImageUrl() {
     if (StringUtils.isEmpty(imageUrl)) {
-      imageUrl = getContentImageUrl(DefaultImage.PROCESSMODELING.getPath());
+      imageUrl = getContentImageUrl( DefaultImage.PROCESSMODELING.getPath());
     }
     return imageUrl;
   }
@@ -234,5 +209,9 @@ public class DashboardProcess implements Process {
   @Override
   public String getPortalProcessInformation() {
     return portalProcessInformation;
+  }
+  
+  public String getDefaultImageDarkLink() {
+    return getContentImageUrl(DefaultImage.PROCESSMODELINGDARK.getPath());
   }
 }

@@ -8,7 +8,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.axonivy.portal.selenium.page.WorkingTaskDialogFromUserProfilePage;
 
@@ -24,10 +24,11 @@ public class LanguageSettingTest extends BaseTest {
 
   @Test
   public void testChangeLanguageWhenWorkingOnTask() {
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    taskWidgetPage.startTaskIFrame(0);
-    taskWidgetPage.switchBackToParent();
-    taskWidgetPage.clickOnMyProfile();
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.startTaskIFrameByIndex(0);
+    taskWidget.switchBackToParent();
+    taskWidget.clickOnMyProfile();
     WorkingTaskDialogFromUserProfilePage workingTaskDialogPage = new WorkingTaskDialogFromUserProfilePage();
     workingTaskDialogPage.leaveTask();
     UserProfilePage userProfilePage = new UserProfilePage();
@@ -54,5 +55,4 @@ public class LanguageSettingTest extends BaseTest {
   private void createTestData() {
     redirectToRelativeLink(createTestingTasksUrl);
   }
-
 }

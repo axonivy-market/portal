@@ -12,7 +12,7 @@ The Statistic widget of the Portal dashboard displays statistic and charts.
 
 Below is a sample JSON definition of a statistic widget in the Portal dashboard
 
-.. code-block:: html
+.. code-block:: javascript
 
    {
       "type": "client-statistic",
@@ -23,7 +23,8 @@ Below is a sample JSON definition of a statistic widget in the Portal dashboard
          "x" : 8,
          "y" : 2
       },
-      "chartId": "10"
+      "chartId": "10",
+      "showFullscreenMode": true
    }
 ..
 
@@ -44,3 +45,5 @@ The basic JSON structure of a statistic widget
       - ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
    
    ``chartId``: ID of the standard client statistic chart. For more information, please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>`.
+
+   ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon.

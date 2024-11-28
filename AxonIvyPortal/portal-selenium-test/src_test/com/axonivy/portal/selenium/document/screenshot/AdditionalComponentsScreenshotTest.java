@@ -17,7 +17,6 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessHistoryPage;
 import com.axonivy.portal.selenium.page.ProcessViewerPage;
-import com.axonivy.portal.selenium.page.StatisticWidgetPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.component.DocumentTableComponentPage;
 import com.axonivy.portal.selenium.page.component.ProcessViewerComponentPage;
@@ -92,21 +91,6 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     refreshPage();
     documentTableComponentPage.waitForDocumentTableComponentPageLoaded();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "document-table");
-  }
-
-  @Test
-  public void captureScreenshotTaskAnalysisComponent() throws IOException {
-    redirectToRelativeLink(create12CasesWithCategoryUrl);
-    redirectToRelativeLink(createTestingTasksUrl);
-    login(TestAccount.ADMIN_USER);
-    showNewDashboard();
-    NewDashboardPage homepage = new NewDashboardPage();
-    homepage.waitForCaseWidgetLoaded();
-    MainMenuPage mainMenuPage = new MainMenuPage();
-    StatisticWidgetPage statisticWidgetDashboardPage = mainMenuPage.openStatisticPage();
-    statisticWidgetDashboardPage.navigateToTaskAnalysisPage();
-    ScreenshotUtils.resizeBrowser(new Dimension(1500, 1000));
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.COMPONENTS_FOLDER + "task-analysis");
   }
 
   @Test

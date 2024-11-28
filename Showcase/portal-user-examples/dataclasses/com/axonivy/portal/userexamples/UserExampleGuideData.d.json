@@ -1,0 +1,19 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "UserExampleGuideData",
+  "namespace" : "com.axonivy.portal.userexamples",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "state",
+    "type" : "com.axonivy.portal.userexamples.enums.RequestState"
+  }, {
+    "name" : "process",
+    "type" : "com.axonivy.portal.userexamples.dto.UserProcess"
+  }, {
+    "name" : "caseMapDetail",
+    "type" : "com.axonivy.portal.userexamples.dto.CaseMapDetail"
+  }, {
+    "name" : "stageIndex",
+    "type" : "Integer"
+  } ]
+}

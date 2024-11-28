@@ -6,17 +6,11 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 public class GlobalSearchResultPage extends TemplatePage {
-
-  private final String INFO_EXPRESS_WORKFlOW = "span[id$='info-workflow']";
-  private final String EDIT_EXPRESS_WORKFlOW = "a[id$='edit-express-workflow']";
-  private final String DELETE_EXPRESS_WORKFlOW = "a[id$='delete-express-workflow']";
-  private final String EXPRESS_PROCESS_LOGO = "span[id$='express-process-logo']";
 
   @Override
   protected String getLoadedLocator() {
@@ -24,8 +18,10 @@ public class GlobalSearchResultPage extends TemplatePage {
   }
 
   public void openTaskTab() {
-    $("li[class*='task-tab-title']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $("li[class*='task-tab-title']").click();
+    $("a[href='#search-results-tabview:task-tab']").shouldBe(appear, DEFAULT_TIMEOUT);
+    SelenideElement taskTab = $("a[href='#search-results-tabview:task-tab']").parent();
+    taskTab.shouldBe(appear, DEFAULT_TIMEOUT);
+    taskTab.shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("div[id='search-results-tabview:task-tab']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -81,20 +77,6 @@ public class GlobalSearchResultPage extends TemplatePage {
     $("[id='search-results-tabview:process-results:process-list']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public int countCase() {
-    CaseWidgetPage caseWidgetPage = getCaseWidget();
-    return caseWidgetPage.getCasesList().size();
-  }
-
-  private CaseWidgetPage getCaseWidget() {
-    return new CaseWidgetPage("search-results-tabview:case-results");
-  }
-
-  public String getCaseResult(int index) {
-    CaseWidgetPage caseWidgetPage = getCaseWidget();
-    return caseWidgetPage.getCaseNameAt(index);
-  }
-
   public void startProcess(String name) {
     ProcessWidgetPage processWidgetPage = getProcessWidget();
     if (processWidgetPage.isImageModeActivated()) {
@@ -121,11 +103,6 @@ public class GlobalSearchResultPage extends TemplatePage {
     return taskWidgetPage.getNameOfTaskAt(index);
   }
 
-  public boolean isCaseResultEmpty() {
-    CaseWidgetPage caseWidgetPage = getCaseWidget();
-    return caseWidgetPage.isEmpty();
-  }
-
   public boolean isProcessGroupDisplay(String group) {
     ProcessWidgetPage processWidgetPage = getProcessWidget();
     return processWidgetPage.isProcessGroupDisplay(group);
@@ -133,56 +110,6 @@ public class GlobalSearchResultPage extends TemplatePage {
 
   private ProcessWidgetPage getProcessWidget() {
     return new ProcessWidgetPage("search-results-tabview:process-results");
-  }
-
-  public boolean isInfoWorkflowIcon() {
-    ProcessWidgetPage processWidget = getProcessWidget();
-    if (processWidget.isImageModeActivated()) {
-      SelenideElement icon = $(".express-workflow").$(".process-image-view-icon");
-      return icon.getAttribute("class").contains("si si si-startup-launch");
-    }
-
-    WebElement element = findElementByCssSelector(INFO_EXPRESS_WORKFlOW);
-    return element.getAttribute("class").contains("si-information-circle");
-  }
-
-  public boolean isEditExpressWorkflow(String processName) {
-    ProcessWidgetPage processWidget = getProcessWidget();
-    if (processWidget.isImageModeActivated()) {
-      SelenideElement actionMenu = getImageProcessActionMenuPanel(processName);
-      SelenideElement icon = actionMenu.$("a[id$=':image-process-action-component:edit-process']");
-      return icon != null;
-    }
-    SelenideElement element = findElementByCssSelector(EDIT_EXPRESS_WORKFlOW);
-    return element.getAttribute("class").contains("si-graphic-tablet-drawing-pen");
-  }
-
-  private SelenideElement getImageProcessActionMenuPanel(String processName) {
-    var selectedProcess = $$("span.process-image-view-name").asFixedIterable().stream()
-        .filter(process -> processName.equalsIgnoreCase(process.getText())).findFirst().orElse(null);
-    var processActionMenuId = selectedProcess.getAttribute(ID_PROPERTY).replace("process-item-name", "");
-    processActionMenuId = processActionMenuId.concat("process-item:image-process-action-component:process-action-menu");
-    return findElementByCssSelector(String.format("div[id$='%s']", processActionMenuId));
-  }
-
-  public boolean isDeleteExpressWorkflown(String processName) {
-    ProcessWidgetPage processWidget = getProcessWidget();
-    if (processWidget.isImageModeActivated()) {
-      SelenideElement actionMenu = getImageProcessActionMenuPanel(processName);
-      SelenideElement icon = actionMenu.$("a[id$=':image-process-action-component:delete-process']");
-      return icon != null;
-    }
-    SelenideElement element = findElementByCssSelector(DELETE_EXPRESS_WORKFlOW);
-    return element.getAttribute("class").contains("si-bin-1");
-  }
-
-  public boolean isExpressProcessLogo() {
-    ProcessWidgetPage processWidget = getProcessWidget();
-    if (processWidget.isImageModeActivated()) {
-      return isInfoWorkflowIcon();
-    }
-    SelenideElement element = findElementByCssSelector(EXPRESS_PROCESS_LOGO);
-    return element.getAttribute("class").contains("si-startup-launch");
   }
 
   public boolean isTaskCategoryColumnDisplayed() {
@@ -198,10 +125,6 @@ public class GlobalSearchResultPage extends TemplatePage {
     waitForElementDisplayed(By.className("js-process-start-list-container"), true);
   }
 
-  public void clickOnActionButton(String processName) {
-    $(".express-workflow").$("button[id$=':process-action-button']").shouldBe(getClickableCondition()).click();
-  }
-  
   public void caseTabShouldBeDisappear() {
     $("li[class*='case-tab-title']").shouldBe(disappear, DEFAULT_TIMEOUT);
   }

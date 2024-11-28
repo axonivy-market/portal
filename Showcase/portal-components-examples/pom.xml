@@ -17,8 +17,9 @@
     </snapshotRepository>
   </distributionManagement>
   <properties>
-    <ivy.engine.version>11.4.0</ivy.engine.version>
-    <build.plugin.version>11.4.0-SNAPSHOT</build.plugin.version>
+    <ivy.engine.version>12.0.0</ivy.engine.version>
+    <build.plugin.version>12.0.0</build.plugin.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
     <dependency>

@@ -1,0 +1,27 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "Address",
+  "namespace" : "com.axonivy.portal.userexamples.credit",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "street",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "zip",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "city",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "state",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "country",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

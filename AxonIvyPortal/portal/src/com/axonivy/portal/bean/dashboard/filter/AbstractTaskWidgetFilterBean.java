@@ -73,7 +73,6 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
    * Check if the filter is existing in the filter list or not
    * 
    * @param filter
-   * @return
    */
   private boolean isFilterAvaliable(DashboardFilter filter) {
     return Optional.ofNullable(filter).map(DashboardFilter::getField).isPresent() && filterFields.stream()

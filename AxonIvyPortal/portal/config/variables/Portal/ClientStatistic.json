@@ -161,7 +161,7 @@
       }
     ],
     "descriptions": [
-      { 
+      {
         "locale": "de",
         "value": "Dieses Balkendiagramm zeigt alle Aufgaben an, die der Benutzer bearbeiten kann, gruppiert nach Priorität."
       },
@@ -240,7 +240,7 @@
       },
       {
         "locale": "fr",
-        "value": "Durée moyenne des affaires par Catégorie"
+        "value": "Durée moyenne des affaires par catégorie"
       },
       {
         "locale": "es",
@@ -250,7 +250,7 @@
     "descriptions": [
       {
         "locale": "de",
-        "value": "Dieses Diagramm zeigt die durchschnittliche Bearbeitungszeit der Fälle nach Kategorien."
+        "value": "Dieses Diagramm zeigt die durchschnittliche Bearbeitungszeit der Vorgänge nach Kategorien."
       },
       {
         "locale": "en",
@@ -376,7 +376,7 @@
       "yTitles": [
         {
           "locale": "de",
-          "value": "Anzahl der Fälle"
+          "value": "Anzahl der Vorgänge"
         },
         {
           "locale": "en",
@@ -405,7 +405,7 @@
     "names": [
       {
         "locale": "de",
-        "value": "Abgeschlossene Fälle pro Tag"
+        "value": "Abgeschlossene Vorgänge pro Tag"
       },
       {
         "locale": "en",
@@ -423,7 +423,7 @@
     "descriptions": [
       {
         "locale": "de",
-        "value": "Diese Grafik zeigt die Anzahl der abgeschlossenen Fälle pro Tag für die letzten 5 Tage."
+        "value": "Diese Grafik zeigt die Anzahl der abgeschlossenen Vorgänge pro Tag für die letzten 5 Tage."
       },
       {
         "locale": "en",
@@ -462,7 +462,7 @@
       "yTitles": [
         {
           "locale": "de",
-          "value": "Abgeschlossene Fälle"
+          "value": "Abgeschlossene Vorgänge"
         },
         {
           "locale": "en",
@@ -499,7 +499,7 @@
       },
       {
         "locale": "fr",
-        "value": "Cas en Cours"
+        "value": "Cas en cours"
       },
       {
         "locale": "es",
@@ -652,11 +652,11 @@
       },
       {
         "locale": "fr",
-        "value": "Tâches Ouvertes"
+        "value": "Tâches ouvertes"
       },
       {
         "locale": "es",
-        "value": "Tareas Abiertas"
+        "value": "Tareas Pendientes"
       }
     ],
     "descriptions": [
@@ -696,19 +696,19 @@
     "names": [
       {
         "locale": "de",
-        "value": "Fällig Heute"
+        "value": "Heute fällige Aufgaben"
       },
       {
         "locale": "en",
-        "value": "Due Today"
+        "value": "Tasks Due Today"
       },
       {
         "locale": "fr",
-        "value": "Dû Aujourd'hui"
+        "value": "Tâches à effectuer aujourd'hui"
       },
       {
         "locale": "es",
-        "value": "Vence Hoy"
+        "value": "Tareas para hoy"
       }
     ],
     "descriptions": [

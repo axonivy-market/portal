@@ -21,9 +21,8 @@ import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.NoteHistoryPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
-import com.axonivy.portal.selenium.page.TaskWidgetPage;
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
-import com.codeborne.selenide.SelenideElement;
 
 
 @IvyWebTest
@@ -43,14 +42,10 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotTaskList() throws IOException {
-    mainMenuPage = new MainMenuPage();
     showNewDashboard();
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
-    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-    SelenideElement saveTaskFilterDialog = taskWidgetPage.getSaveFilterDialog();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(saveTaskFilterDialog,
-        ScreenshotUtils.TASK_WIDGET_FOLDER + "how-to-create-task-filter", new ScreenshotMargin(100, 200));
-    taskWidgetPage.closeSaveFilterDialog();
+    NavigationHelper.navigateToTaskList();
+    new TopMenuTaskWidgetPage();
+    ScreenshotUtils.resizeBrowser(new Dimension(2560, 1000));
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "task-key-information");
   }
 
@@ -61,10 +56,11 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest {
     showNewDashboard();
     NewDashboardPage homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
-    TaskWidgetPage taskWidget = mainMenuPage.openTaskList();
-    taskWidget.startTask(0);
     mainMenuPage.openTaskList();
-    WaitHelper.waitForNavigation(() -> taskWidget.openTaskDetail(0));
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.startTaskIFrameByIndex(0);
+    mainMenuPage.openTaskList();
+    WaitHelper.waitForNavigation(() -> taskWidget.openTaskDetailsPageByAction(0));
     TaskDetailsPage detailsPage = new TaskDetailsPage();
     detailsPage.waitUtilsTaskDetailsDisplayed();
     mainMenuPage.expandMainMenu();
@@ -83,8 +79,9 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest {
     showNewDashboard();
     NewDashboardPage homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
-    TaskWidgetPage taskWidget = mainMenuPage.openTaskList();
-    WaitHelper.waitForNavigation(() -> taskWidget.openTaskDetail(0));
+    mainMenuPage.openTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    WaitHelper.waitForNavigation(() -> taskWidget.openTaskDetailsPageByAction(0));
     TaskDetailsPage taskDetails = new TaskDetailsPage();
 
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1440));
@@ -123,11 +120,12 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest {
     showNewDashboard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForCaseWidgetLoaded();
-    TaskWidgetPage taskWidget = mainMenuPage.openTaskList();
-    taskWidget.startTask(0);
+    mainMenuPage.openTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.startTaskByIndex(0);
     showNewDashboard();
     mainMenuPage.openTaskList();
-    TaskDetailsPage taskDetails = taskWidget.openTaskDetail(0);
+    TaskDetailsPage taskDetails = taskWidget.openTaskDetailsPageByAction(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
 
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1440));
@@ -184,8 +182,9 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest {
     mainMenuPage = new MainMenuPage();
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1000));
     showNewDashboard();
-    TaskWidgetPage taskWidget = mainMenuPage.openTaskList();
-    TaskDetailsPage taskDetails = taskWidget.openTaskDetail(0);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskDetailsPage taskDetails = taskWidget.openTaskDetailsPageByAction(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
     taskDetails.openAddNoteDialog();
     taskDetails.addNoteToTaskWithContent("Add a note for this task");
@@ -205,17 +204,6 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest {
     noteHistoryPage.waitDocumentReady();
     ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.TASK_DETAIL_FOLDER + "how-to-export-note-details",
         new Dimension(SCREENSHOT_WIDTH, 1000));
-  }
-
-  @Test
-  public void screenshotExportToExcel() throws IOException {
-    mainMenuPage = new MainMenuPage();
-    showNewDashboard();
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
-    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-    taskWidgetPage.waitDocumentReady();
-    ScreenshotUtils.executeDecorateJs("highlightTaskExportToExcelButton()");
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.TASK_WIDGET_FOLDER + "export-to-excel-button");
   }
 
   @Test
@@ -242,8 +230,9 @@ public class PortalTaskScreenshotTest extends ScreenshotBaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 1200));
-    TaskWidgetPage taskWidgetPage = NavigationHelper.navigateToTaskList();
-    TaskDetailsPage taskDetails = taskWidgetPage.openTaskDetail(0);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    TaskDetailsPage taskDetails = taskWidget.openTaskDetailsPageByAction(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
     return taskDetails;
   }

@@ -1,0 +1,48 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "ProcessViewerData",
+  "namespace" : "com.axonivy.portal.components.ProcessViewer",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "caseId",
+    "type" : "Long",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "processId",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isError",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "errorMessage",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "webStartable",
+    "type" : "ch.ivyteam.ivy.workflow.start.IWebStartable"
+  }, {
+    "name" : "webLink",
+    "type" : "ch.ivyteam.ivy.model.value.WebLink"
+  }, {
+    "name" : "activatorName",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "activator",
+    "type" : "ch.ivyteam.ivy.security.ISecurityMember"
+  }, {
+    "name" : "category",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "errorIcon",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "taskId",
+    "type" : "Long",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

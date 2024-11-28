@@ -95,7 +95,7 @@ public class DashboardConfigurationTest extends BaseTest {
   public void testDeletePublicDashboard() {
     DashboardModificationPage modificationPage = navigateToConfigurationAndEditDashboards(true);
     modificationPage.clickDeleteDashboardByName("Dashboard");
-    modificationPage.getDashboardRows().shouldHave(size(0));
+    modificationPage.getDashboardRows().shouldHave(size(2));
   }
 
   @Test
@@ -107,7 +107,7 @@ public class DashboardConfigurationTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions);
+    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions, false);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
@@ -466,4 +466,25 @@ public class DashboardConfigurationTest extends BaseTest {
 
     configurationPage.saveImportDashboard(name, newGermanName, description, icon);
   }
+  
+  @Test
+  public void testAddNewAcccessibilityDashboard() {
+    String name = "Accessibility shortcuts dashboard";
+    String icon = "fa-coffee";
+    String description = "Accessibility shortcuts dashboard description";
+    List<String> permissions = Arrays.asList("Cost Object (CostObject)");
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    configurationPage.openCreatePublicDashboardMenu();
+    configurationPage.createPublicDashboardFromTemplate(name, icon, description, permissions, 2);
+
+    NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
+    newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
+    newDashboardDetailsEditPage.getIconByIndex(0, icon).shouldBe(Condition.appear);
+    assertEquals( newDashboardDetailsEditPage.getWidgets().size(), 4);
+
+    SelenideElement element = newDashboardDetailsEditPage.getAccessibilityWidget();
+    assertEquals(element.getAttribute("title"), "Accessibility Shortcuts frame");
+  }
+  
 }

@@ -281,7 +281,7 @@ public class TaskDetailsPage extends TemplatePage {
 
   public void waitForIFrameURLWidgetLoad() {
     switchToIframeWithNameOrId("custom-widget-iframe-url");
-    $("a[href='https://www.axonivy.com']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    $("a[href='https://www.iana.org/domains/example']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
     switchBackToParent();
 
   }
@@ -318,9 +318,9 @@ public class TaskDetailsPage extends TemplatePage {
     switchToIframeWithId("i-frame-case-details");
   }
 
-  public TaskWidgetPage goBackToTaskListFromTaskDetails() {
+  public NewDashboardPage goBackToTaskListFromTaskDetails() {
     clickBackButton();
-    return new TaskWidgetPage();
+    return new NewDashboardPage();
   }
 
   public TaskIFrameTemplatePage clickStartTask() {

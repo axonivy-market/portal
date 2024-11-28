@@ -1,6 +1,0 @@
-GlobalGrowlIFrame8Data #class
-com.axonivy.portal.developerexamples.showcase.GlobalGrowlIFrame8 #namespace
-field String #field
-field PERSISTENT #fieldModifier
-isCustomized Boolean #field
-isCustomized PERSISTENT #fieldModifier

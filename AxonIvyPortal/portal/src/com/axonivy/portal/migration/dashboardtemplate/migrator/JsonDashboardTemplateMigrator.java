@@ -38,8 +38,7 @@ public class JsonDashboardTemplateMigrator {
    */
   private static AbstractJsonVersion readVersion(JsonNode node) {
     return Optional.ofNullable(node)
-        .map(jsonNode -> jsonNode.get("dashboard"))
-        .map(dashboard -> dashboard.get(AbstractJsonVersion.VERSION_FIELD_NAME))
+        .map(template -> template.get(AbstractJsonVersion.VERSION_FIELD_NAME))
         .map(field -> new DashboardTemplateJsonVersion(field.asText()))
         .orElse(DashboardTemplateJsonVersion.OLDEST_VERSION);
   }
@@ -60,8 +59,8 @@ public class JsonDashboardTemplateMigrator {
   }
 
   private void run(IJsonConverter converter, JsonNode template) {
-    Ivy.log().info("Converting Portal dashboard template " + template.get("id") + " to version "+converter.version().getValue()
-        +" using "+converter.getClass().getSimpleName());
+    Ivy.log().info("Converting Portal dashboard template " + template.get("id") + " to version "+ converter.version().getValue()
+        + " using "+ converter.getClass().getSimpleName());
 
     Optional.ofNullable(template).map(t -> t.get("dashboard")).ifPresent(dashboard -> {
       converter.convert(dashboard);

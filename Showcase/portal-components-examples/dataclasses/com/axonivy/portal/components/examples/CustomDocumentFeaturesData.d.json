@@ -1,0 +1,43 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "CustomDocumentFeaturesData",
+  "namespace" : "com.axonivy.portal.components.examples",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "businessCase",
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
+  }, {
+    "name" : "message",
+    "type" : "String"
+  }, {
+    "name" : "status",
+    "type" : "String"
+  }, {
+    "name" : "uploadedDocument",
+    "type" : "ch.ivyteam.ivy.workflow.document.IDocument"
+  }, {
+    "name" : "uploadedFile",
+    "type" : "org.primefaces.model.file.UploadedFile"
+  }, {
+    "name" : "enableVirusScannerForUploadedDocument",
+    "type" : "Boolean"
+  }, {
+    "name" : "enableScriptCheckingForUploadedDocument",
+    "type" : "Boolean"
+  }, {
+    "name" : "allowedUploadFileTypes",
+    "type" : "String"
+  }, {
+    "name" : "document",
+    "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument"
+  }, {
+    "name" : "streamedContent",
+    "type" : "org.primefaces.model.StreamedContent"
+  }, {
+    "name" : "documents",
+    "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>"
+  }, {
+    "name" : "skip",
+    "type" : "Boolean"
+  } ]
+}

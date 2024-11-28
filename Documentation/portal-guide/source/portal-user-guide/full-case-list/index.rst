@@ -3,10 +3,8 @@
 Full Case List
 **************
 
-The **Full Case List** page shows you all cases you are involved in.
-This page provides you with extended information on the cases as well
-as advanced search and filter capabilities. You can reach the page by
-selecting |case-icon| :guilabel:`Cases` in the |ivy| Portal menu.
+The **Full Case List** page is a dashboard featuring a single, full-width task widget. 
+You can reach the page by using the |case-icon| :guilabel:`Cases` link in the |ivy| Portal menu.
 
 .. note::
 
@@ -14,21 +12,17 @@ selecting |case-icon| :guilabel:`Cases` in the |ivy| Portal menu.
 
 .. hint:: 
    The set of cases you see in the Portal depends on the roles you hold 
-   in both the application and the |ivy| Portal. Administrators 
-   (having role AXONIVY_PORTAL_ADMIN) see all cases.                      
+   in in your applications.                      
 
 |navigate-to-full-cases-list-page|
 
-On the top of the **Full Case List** page, next to the heading
-:guilabel:`Cases`, you see the overall number of cases shown to you, in
-brackets. Below, you find the filter feature. Their usage will be explained below in
-the HowTo’s section. Finally, you see the list of cases.
-
 For each case, the list shows the following key information:
 
-#. Name and Description
-
 #. Case ID
+
+#. Name
+
+#. Description
 
 #. Creator
 
@@ -36,19 +30,13 @@ For each case, the list shows the following key information:
 
 #. Finished Date
 
-#. Status
+#. State
 
 #. Category
 
-#. Application (This column is not displayed by default)
-
 |case-key-information|
 
-At the end of each row you find a set of key features to handle cases:
-
-#. Detail
-
-#. :guilabel:`Actions` for further actions
+At the end of each row you find a set of key features to handle cases by clicking on :guilabel:`Actions`.
 
 To access the full set of case data, click on the case Name/Description.
 
@@ -78,99 +66,11 @@ The case details are separated into four different sections:
 
 .. _howto-use-existing-filter-1:
 
-HowTo: Use Existing Filter
---------------------------
-
-.. hint:: 
-   If there are no public filters and you didn’t create any filters so far,
-   there might be no filters available. In this case, you have to create a filter
-   first. This is described in detail in :ref:`howto-create-new-filter-1`.
-   
-
-#. Click on the :guilabel:`Save Filter` dropdown menu.
-
-#. Select the filter you want to use.
-
-.. _howto-create-new-filter-1:
-
-HowTo: Create New Filter
-------------------------
-
-#. Click on :guilabel:`More` to select one of the available filters.
-   For a list of available filters, see Table 3: Case filter criteria.
-
-#. Click on the newly added filter and configure it.
-
-#. Add more filters by clicking on :guilabel:`More` again.
-
-#. Drop filters by clicking on |delete-circle-icon| next to the filter.
-
-#. When finished, click on :guilabel:`Save filter`.
-
-#. The dialog :guilabel:`Save filter` is opened.
-
-#. In :guilabel:`Filter name`, provide a descriptive name for the filter.
-
-#. In :guilabel:`Filter visibility`, define if the filter is only
-   visible to you or to all users.
-
-#. Save the filter by clicking :guilabel:`Ok`.
-
-|how-to-create-case-filter|
-
-
-.. centered:: Case filter criteria
-
-+-----------------------+-----------------------------------+
-| Criteria              | Description                       |
-+=======================+===================================+
-|  ID                   |  Specify the ID of the case       |
-|                       |                                   |
-+-----------------------+-----------------------------------+
-|  Name                 |  Specify the case name            |
-|                       |                                   |
-+-----------------------+-----------------------------------+
-|  Created (from / to)  |  Specify the period in which the  |
-|                       |  case has been created.           |
-|                       |                                   |
-+-----------------------+-----------------------------------+
-|  Creator              |  Specify the user who has created |
-|                       |  the case.                        |
-+-----------------------+-----------------------------------+
-|  Description          |  Search for keywords within the   |
-|                       |  case description.                |
-|                       |                                   |
-+-----------------------+-----------------------------------+
-|  Finished (from / to) |  Specify the period in which the  |
-|                       |  case has been finished.          |
-+-----------------------+-----------------------------------+
-|  State                |  Specify the case state           |
-|                       |                                   |
-+-----------------------+-----------------------------------+
-|  Application          |  This filter lets you select      |
-|                       |  the application                  |
-+-----------------------+-----------------------------------+
-
-.. hint::
-   #. You can create a new filter by selecting an existing filter, reconfiguring it, and saving it.
-
-   #. Only users with the admin role ``AXONIVY_PORTAL_ADMIN`` can save the filter for all users.
-
-HowTo: Configure Displayed Cases in the Full Case List
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-#. To choose columns to display, click on :guilabel:`Manage columns`. Select
-   columns to display by checking the related checkboxes.
-
-#. To sort data, click on the column header. To change sort direction, click on
-   that column header one more time. Note that some columns do not support
-   sorting.
-
 HowTo: Move and Resize Widgets in Case Details
 ----------------------------------------------
 1. Open the case details
 
-2. Click on the **Switch to Edit Mode** button to drag, drop and resize widgets.
+2. Click on the :guilabel:`Edit` button to drag, drop and resize widgets.
 
 |how-to-switch-to-edit-mode|
 
@@ -187,7 +87,7 @@ HowTo: Move and Resize Widgets in Case Details
 
 .. _howto-attach-a-document-to-the-case-1:
 
-HowTo: Attach a Document to the Case
+HowTo: Attach a document to a case
 ------------------------------------
 
 #. Open the case details
@@ -196,8 +96,8 @@ HowTo: Attach a Document to the Case
 
 #. The :guilabel:`Add document` dialog is opened
 
-#. To upload a file, click :guilabel:`Select` or simply drag the file into the
-   dialog.
+#. Upload a file by clicking :guilabel:`Upload here` or by dragging the
+   file into the dialog
 
 #. Click :guilabel:`Close` close the dialog
 
@@ -268,13 +168,6 @@ HowTo: Export a Case History
 
    |export-case-history|
 
-HowTo: Export Case List
------------------------
-
-To export the Case List, click on **Export to Excel**.
-
-|export-to-excel-button|
-
 HowTo: Manipulate Related Tasks Inside Case Details
 ---------------------------------------------------
 
@@ -312,6 +205,8 @@ following columns:
 
 - Expiry Date
 
+- Finished date
+
 - State
 
 At the end of each row, a side step menu is available. It offers the following
@@ -327,7 +222,7 @@ actions:
 
 - Trigger Escalation Task
 
-- Add Ad-hoc Task
+- Workflow Events
 
 To access the full set of the task data, click on the row containing the
 task.
@@ -384,7 +279,7 @@ HowTo: Show Process Viewer
    - Full case list
    - Full task list
 
-#. Click on :guilabel:`Action`
+#. Click on :guilabel:`Actions`
 
 #. Click on :guilabel:`Process Viewer`
 
@@ -409,21 +304,36 @@ HowTo: Share Case Details
 .. include:: ../includes/_common-icon.rst
 
 .. |navigate-to-full-cases-list-page| image:: ../../screenshots/case/navigate-to-full-cases-list-page.png
+   :alt: Menu to navigate to the Full case list page
 .. |case-key-information| image:: ../../screenshots/case/case-key-information.png
+   :alt: Full case list: key informations
 .. |case-details| image:: ../../screenshots/case-detail/case-details.png
+   :alt: The Case Details page
 .. |case-details-data-description| image:: ../../screenshots/case-detail/case-details-data-description.png
+   :alt: Case Details: General section
 .. |case-details-related-tasks-cases| image:: ../../screenshots/case-detail/case-details-related-tasks-cases.png
+   :alt: Case Details: Related Tasks of Case section
 .. |case-details-histories| image:: ../../screenshots/case-detail/case-details-histories.png
+   :alt: Case Details: Histories section
 .. |case-details-documents| image:: ../../screenshots/case-detail/case-details-documents.png
-.. |how-to-create-case-filter| image:: ../../screenshots/case/how-to-create-case-filter.png
+   :alt: Case Details: Documents section
 .. |how-to-attach-document-to-case| image:: ../../screenshots/case-detail/how-to-attach-document-to-case.png
+   :alt: Case Details: Add document dialog
 .. |how-to-delete-an-attachment-from-case| image:: ../../screenshots/case-detail/how-to-delete-an-attachment-from-case.png
+   :alt: Case Details: Delete document confirm dialog
 .. |how-to-add-task-note| image:: ../../screenshots/case-detail/how-to-add-task-note.png
+   :alt: Case Details: Add note dialog
 .. |how-to-show-note-details| image:: ../../screenshots/case-detail/how-to-show-note-details.png
+   :alt: Case Details: Link to show more notes details
 .. |export-case-history| image:: ../../screenshots/case/export-case-history.png
-.. |export-to-excel-button| image:: ../../screenshots/case/export-to-excel-button.png
+   :alt: Case Business Information page: Link to export case history
 .. |how-to-switch-to-view-mode| image:: ../../screenshots/case-detail/how-to-switch-to-view-mode.png
+   :alt: Case Details: save button
 .. |how-to-switch-to-edit-mode| image:: ../../screenshots/case-detail/how-to-switch-to-edit-mode.png
+   :alt: Case Details: button to switch to the edit mode
 .. |how-to-reset-to-default| image:: ../../screenshots/case-detail/how-to-reset-to-default.png
+   :alt: Case Details: button to reset to the default configurations
 .. |portal-process-viewer| image:: ../../screenshots/case/portal-process-viewer.png
+   :alt: Process Viewer page
 .. |how-to-share-case-details| image:: ../../screenshots/case-detail/share-page-button.png
+   :alt: Case Details: button to get the shareable link of the case details

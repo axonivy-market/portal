@@ -2,12 +2,11 @@ Customization
 *************
 
 Portal provides an easy way to customize features, the user interface, the user
-experience and many more aspects. In addition to this documentation, please refer to project ``portal-developer-examples`` for customization examples.
-You find ``portal-developer-examples`` in the engine demo mode or import them into your designer under ``Ivy Projects``.
-
-|engine-demo-mode|
-
-|import-portal-examples|
+experience and many more aspects. In addition to this documentation, please
+refer to project ``portal-developer-examples`` for customization examples. You
+can find ``portal-developer-examples`` by visiting `Portal download page
+<https://market.axonivy.com/portal>`_. Click download and choose the preferred
+arftifact, or import them into your designer under ``Ivy Projects``.
 
 .. toctree::
    :maxdepth: 1
@@ -18,8 +17,6 @@ You find ``portal-developer-examples`` in the engine demo mode or import them in
    task-delegation
    task-item-details
    case-item-details
-   default-chart
-   default-chart-colors
    change-password-process
    logout-process
    navigate-back
@@ -28,6 +25,3 @@ You find ``portal-developer-examples`` in the engine demo mode or import them in
    document-processes
    process-image
    process-information
-
-.. |engine-demo-mode| image:: images/customization/engine-demo-mode.png
-.. |import-portal-examples| image:: images/customization/import-portal-examples.png

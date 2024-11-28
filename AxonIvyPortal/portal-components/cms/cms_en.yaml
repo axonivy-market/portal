@@ -83,10 +83,15 @@ Dialogs:
             ProcessNotFound: The defined process cannot be found.
             ProcessType:
               CASE_MAP: Case Map
-              EXPRESS_PROCESS: Express Workflow
               EXTERNAL_LINK: External Link
               IVY_PROCESS: Business Process
+            ProcessViewerIFrameTitle: Process viewer frame
 Labels:
+  AI:
+    Error:
+      CanceledFlow: You have canceled the flow. If you have any requests, please let me know.
+      ErrorWhenProceedRequest: An error has occurred while trying to process your request. Please try again later.
+      SomethingWentWrong: Something went wrong when proceed your request. Please try again later.
   DisabledUserPrefix: (disabled)
   NoName: no name
   NoResults: No results

@@ -31,8 +31,8 @@
           }
         ],
         "layout": {
-          "w": 9,
-          "h": 4,
+          "w": 10,
+          "h": 6,
           "x": 0,
           "y": 4
         },
@@ -49,7 +49,8 @@
           },
           {
             "field": "description",
-            "visible": false
+            "visible": false,
+            "quickSearch": false
           },
           {
             "field": "state"

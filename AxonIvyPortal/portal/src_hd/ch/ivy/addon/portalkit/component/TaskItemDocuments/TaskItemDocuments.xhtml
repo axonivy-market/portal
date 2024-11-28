@@ -55,14 +55,14 @@
             sortBy="#{document.name}"
             styleClass="">
             <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="task-document-name">
-              <p:commandLink ajax="false" id="download" styleClass="download-command task-document-name-text u-truncate-text">
+              <p:commandLink ajax="false" id="download" styleClass="download-command task-document-name-text u-truncate-text" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
                 <p:fileDownload value="#{logic.downloadDocument(document)}" />
                 <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}" fileSize="#{masterDataBean.getReadableFileSize(document.size)}"
                   symbolStyleClass="task-details-document-download-icon"
                   fileNameStyleClass="document-name"
                   fileSizeStyleClass="document-size" />
               </p:commandLink>
-              <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
+              <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"
                 rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
                 styleClass="si si-remove Fright task-document-download" oncomplete="PF('document-deletion-dialog').show()">
                 <p:tooltip for="delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"
@@ -102,25 +102,58 @@
     </h:form>
   </div>
 
-  <p:dialog id="document-upload-dialog" widgetVar="document-upload-dialog" appendTo="@(body)" dynamic="true" styleClass="document-upload-dialog"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" modal="true" resizable="false" showEffect="fade" hideEffect="fade"
-    responsive="true">
-    <h:form id="document-upload-form">
-      <p:messages id="upload-messages" />
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}" />
-      <p:fileUpload styleClass="document-upload" id="document-upload-panel" listener="#{logic.uploadDocument}" mode="advanced" 
-        chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
-        dragDropSupport="true" label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
-        auto="true" multiple="true" sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
-        invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
-        update="upload-messages #{p:resolveFirstComponentWithId('task-document-form', view).clientId} #{cc.attrs.componentToUpdate}"
-        oncomplete="handleTaskDetailsTables()" />
-    </h:form>
-    <f:facet name="footer">
-      <p:commandButton id="document-upload-close-command" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('document-upload-dialog').hide();" />
-    </f:facet>
-    <p:ajax event="close" global="false" listener="#{logic.resetMessageUploadDocument}" update="#{p:resolveFirstComponentWithId('upload-messages', view).clientId}" />
+  <p:dialog id="document-upload-dialog"
+    widgetVar="document-upload-dialog" appendTo="@(body)" dynamic="true"
+    modal="true" resizable="false" showEffect="fade" hideEffect="fade"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
+    closeOnEscape="true" responsive="true" closable="true" fitViewport="true"
+    width="450px">
+    <div class="ui-g">
+      <h:form id="document-upload-form" styleClass="w-full">
+        <div class="w-full">
+          <p:messages id="upload-messages" />
+          <div style="display: none;" id="error-message" />
+        </div>
+       <div class="w-full">
+        <h6 class="import-header-title">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/supportFileTypes',[masterDataBean.allowedUploadFileType])}" />
+        </h6>
+        </div>
+        <div class="w-full">
+          <p:fileUpload id="document-upload-panel"
+            listener="#{logic.uploadDocument}" mode="advanced"
+            chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
+            style="display: none;" dragDropSupport="true"
+            label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
+            auto="true" multiple="true"
+            sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
+            invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
+            update="#{p:resolveFirstComponentWithId('task-document-form', view).clientId} #{cc.attrs.componentToUpdate} @form"
+            oncomplete="handleTaskDetailsTables()" 
+            onvalidationfailure="handleUploadFileFail();"
+            dropZone="document-upload-file-panel" widgetVar="documentUpload" />
+        </div>
+        <div class="ui-g-12">
+          <p:outputPanel id="document-upload-file-panel" styleClass="ui-document-upload-file-panel">
+            <span class="ui-document-upload-file-label"> 
+            <i class="si si-file-code-upload-1" id="ui-document-upload-file-icon" />
+              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}">
+                <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadHere')}"
+                  onclick="PF('documentUpload').show();return false" />
+              </p:outputLabel>
+            </span>
+          </p:outputPanel>
+        </div>
+      </h:form>
+      <div class="ui-g-12">
+        <p:commandButton id="document-upload-close-command" type="button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+          onclick="PF('document-upload-dialog').hide(); " styleClass="w-full" />
+      </div>
+      <p:ajax event="close" global="false"
+        listener="#{logic.resetMessageUploadDocument}"
+        update="#{p:resolveFirstComponentWithId('upload-messages', view).clientId} @this" />
+    </div>
   </p:dialog>
 
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
@@ -141,5 +174,14 @@
         actionListener="#{logic.deleteDocument}" oncomplete="PF('document-deletion-dialog').hide();handleTaskDetailsTables();" />
     </ui:define>
   </ui:decorate>
+  <script type="text/javascript">
+    function handleUploadFileFail() {
+      let errorMessageElement = document.getElementById('error-message');
+      let uploadError = document.getElementsByClassName('ui-messages ui-widget ui-helper-hidden ui-fileupload-messages');
+      let uploadErrorElement = uploadError[0];
+      errorMessageElement.style.display = 'block';
+      errorMessageElement.appendChild(uploadErrorElement);
+    }
+    </script>
 </cc:implementation>
 </html>

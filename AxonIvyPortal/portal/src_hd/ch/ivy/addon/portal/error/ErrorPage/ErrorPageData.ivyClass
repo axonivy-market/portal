@@ -1,4 +1,0 @@
-ErrorPageData #class
-ch.ivy.addon.portal.error.ErrorPage #namespace
-errorCode String #field
-errorCode PERSISTENT #fieldModifier

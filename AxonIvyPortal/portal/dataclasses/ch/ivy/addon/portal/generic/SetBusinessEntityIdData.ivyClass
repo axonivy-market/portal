@@ -1,3 +1,0 @@
-SetBusinessEntityIdData #class
-ch.ivy.addon.portal.generic #namespace
-businessEntityId String #field

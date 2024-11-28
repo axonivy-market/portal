@@ -1,0 +1,19 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "ProcessViewerExampleSerenityData",
+  "namespace" : "com.axonivy.portal.components.examples.serenity.ProcessViewerExampleSerenity",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "caseId",
+    "type" : "Long",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "processLink",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "taskId",
+    "type" : "Long",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

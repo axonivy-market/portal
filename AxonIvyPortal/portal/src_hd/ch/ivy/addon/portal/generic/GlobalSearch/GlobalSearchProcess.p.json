@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "163AFDE4C30836BD",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -44,7 +44,7 @@
             "import ch.ivy.addon.portalkit.util.GrowlMessageUtils;",
             "",
             "if(in.isWorkingOnTask) {",
-            "  GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.iCase);",
+            "  GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.caze);",
             "}"
           ]
         }
@@ -65,10 +65,10 @@
         "input" : {
           "params" : [
             { "name" : "isWorkingOnTask", "type" : "Boolean", "desc" : "" },
-            { "name" : "iCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+            { "name" : "caze", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
           ],
           "map" : {
-            "out.iCase" : "param.iCase",
+            "out.caze" : "param.caze",
             "out.isWorkingOnTask" : "param.isWorkingOnTask"
           }
         },

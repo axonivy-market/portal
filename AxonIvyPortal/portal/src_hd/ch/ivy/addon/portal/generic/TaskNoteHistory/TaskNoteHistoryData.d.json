@@ -1,0 +1,20 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "TaskNoteHistoryData",
+  "namespace" : "ch.ivy.addon.portal.generic.TaskNoteHistory",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "exportedFileName",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "filteredNotes",
+    "type" : "List<ch.ivyteam.ivy.workflow.note.Note>"
+  }, {
+    "name" : "notes",
+    "type" : "java.util.List<ch.ivyteam.ivy.workflow.note.Note>"
+  }, {
+    "name" : "task",
+    "type" : "ch.ivyteam.ivy.workflow.ITask"
+  } ]
+}

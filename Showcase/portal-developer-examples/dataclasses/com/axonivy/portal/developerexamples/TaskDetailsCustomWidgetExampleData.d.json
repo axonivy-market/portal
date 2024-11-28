@@ -1,0 +1,22 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "TaskDetailsCustomWidgetExampleData",
+  "namespace" : "com.axonivy.portal.developerexamples",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "invoice",
+    "type" : "com.axonivy.portal.developerexamples.Invoice"
+  }, {
+    "name" : "invoiceId",
+    "type" : "String"
+  }, {
+    "name" : "invoiceDescription",
+    "type" : "String"
+  }, {
+    "name" : "taskId",
+    "type" : "String"
+  }, {
+    "name" : "taskCategory",
+    "type" : "String"
+  } ]
+}

@@ -19,7 +19,6 @@ import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -33,10 +32,8 @@ public class AdminSettingBean implements Serializable {
   public static final String APPLICATION_TAB_ID = "application-tab";
   public static final String ADMIN_SETTING_TAB_ID = "setting-tab";
   public static final String ANNOUNCEMENT_SETTING_TAB_ID = "announcement-tab";
-  public static final String EXPRESS_MANAGEMENT_TAB_ID = "express-management-tab";
   public static final String ROLE_MANAGEMENT_TAB_ID = "role-management-tab";
   public static final String PASSWORD_VALIDATION_TAB_ID = "password-validation-tab";
-  private boolean isShowExpressManagementTab;
   private boolean isShowRoleManagementTab;
   private boolean isTabChangeEventTriggered;
   private boolean isShowPasswordValidationTab;
@@ -46,7 +43,6 @@ public class AdminSettingBean implements Serializable {
       isTabChangeEventTriggered = false;
       return;
     }
-    isShowExpressManagementTab = ExpressProcessService.getInstance().findExpressCreationProcess() != null;
     isShowRoleManagementTab = canSeeRoleManagement();
     isShowPasswordValidationTab = canSeePasswordValidation();
     initApplicationTab();
@@ -65,11 +61,6 @@ public class AdminSettingBean implements Serializable {
         case ANNOUNCEMENT_SETTING_TAB_ID:
           initAnnouncementTab();
           break;
-        case EXPRESS_MANAGEMENT_TAB_ID:
-          if (isShowExpressManagementTab) {
-            initExpressManagementTab();
-          }
-          break;
         case ROLE_MANAGEMENT_TAB_ID:
           break;
         case PASSWORD_VALIDATION_TAB_ID:
@@ -83,10 +74,6 @@ public class AdminSettingBean implements Serializable {
 
   private void initApplicationTab() {
     invokeAdminSettingsComponentLogic("#{logic.initApplicationSettings}", new Object[] {});
-  }
-
-  private void initExpressManagementTab() {
-    PrimeFacesUtils.executeScript("refreshExpressManagement()");
   }
 
   private void initAnnouncementTab() {
@@ -141,15 +128,6 @@ public class AdminSettingBean implements Serializable {
     }
     return String.valueOf(item);
   }
-
-  public boolean isShowExpressManagementTab() {
-    return isShowExpressManagementTab;
-  }
-
-  public void setShowExpressManagementTab(boolean isShowExpressManagementTab) {
-    this.isShowExpressManagementTab = isShowExpressManagementTab;
-  }
-
 
   public boolean isShowRoleManagementTab() {
     return isShowRoleManagementTab;
