@@ -42,12 +42,6 @@ function createRedThickOutlineWithOffset($element) {
 }
 
 /***IMPLEMENTATION TO DECORATE PAGES - WHICH ARE CALLED IN SELENIUM****/
-function highlightDashboardWidget() {
-  createRedMediumOutline($("#task-widget"));
-  createRedMediumOutline($("#statistic-widget-container"));
-  createRedMediumOutline($("#process-widget"));
-}
-
 function highlightAndNumberingDashboardSections() {
   var processWidget = $("#process-widget");
   createRedMediumOutline(processWidget);
@@ -88,14 +82,6 @@ function numberingTopBar() {
   appendStepAnnotation(userSetting, "1", -10, userSetting.width() - 10);
   var globalSearch = $("#global-search-component\\:global-search-data");
   appendStepAnnotation(globalSearch, "2", -10, globalSearch.width()-30);
-}
-
-function highlightLogo() {
-  createRedMediumOutline($(".portal-home-logo.portal-home-logo-small"));
-}
-
-function highlightElement(elementSelector) {
-  createRedMediumOutline($(elementSelector));
 }
 
 function numberingTaskItem() {
@@ -445,34 +431,8 @@ function scrollToMiddleOfLayoutContent() {
   window.scrollTo(0, document.body.scrollHeight/2);
 }
 
-function scrollToMiddleOfLayoutContent2() {
-  window.scrollTo(0, document.body.scrollHeight/4);
-}
-
 function scrollToBottomOfLayoutContent() {
   window.scrollTo(0, document.body.scrollHeight);
-}
-
-function highlightCustomTaskDetail() {
-  var customTop = $('.custom-task-details-panel-top');
-  appendStepAnnotation(customTop, 1, -45, customTop.width()/2);
-  
-  var customBottom = $('.custom-task-details-panel-bottom');
-  appendStepAnnotation(customBottom, 2, -45, customBottom.width()/2);
-}
-
-function highlightCustomTaskDetailWithNewStyle() {
-  var customPanel1 = $('.custom-task-panel-1');
-  appendStepAnnotation(customPanel1, 1, -10, customPanel1.width()/2);
-  
-  var customPanel2 = $('.custom-task-panel-2');
-  appendStepAnnotation(customPanel2, 2, -10, customPanel2.width()/2);
-
-  var customPanel3 = $('.custom-task-panel-3');
-  appendStepAnnotation(customPanel3, 3, -10, customPanel3.width()/2);
-  
-  var customPanel4 = $('.custom-task-panel-4');
-  appendStepAnnotation(customPanel4, 4, -10, customPanel4.width()/2);
 }
 
 function highlightCaseDetailComponents() {
