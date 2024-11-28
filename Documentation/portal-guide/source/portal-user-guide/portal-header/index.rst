@@ -54,7 +54,7 @@ tasks assigned to you or one of the roles you hold.
 |portal-absences|
 
 The dialog shows you all current and upcoming absences. You may show also past
-absences by activating the option :guilabel:`Show absences in the past`. Furthermore,
+absences by activating the option :guilabel:`Display absences in the past`. Furthermore,
 you can edit or delete absences by using the |edit-icon| **Edit** or |trash-icon|
 **Delete** action in the row of the respective absence.
 
@@ -65,7 +65,7 @@ HowTo: Add absence
 
 #. The :guilabel:`Add absence` dialog is opened
 
-#. Enter :guilabel:`From` and :guilabel:`To`
+#. Enter :guilabel:`From` and :guilabel:`Until`
 
 #. You may provide an explanatory comment
 
@@ -110,6 +110,12 @@ Change Password
 The menu entry :guilabel:`Change password` allows you to set a new password.
 
 |portal-password-change-dialog|
+
+.. note::
+
+   Grant permission: :bdg-ref-warning:`🔑UserSetOwnPassword` to allow a user to change their password.
+   Configure permissions in the :dev-url:`Engine Cockpit
+   </doc/|version|/engine-guide/reference/engine-cockpit/security.html>`. In the security area, open PersonalPermissions -> PersonalSecurityPermissions -> UserSetOwnPassword.
 
 Info
 ----
