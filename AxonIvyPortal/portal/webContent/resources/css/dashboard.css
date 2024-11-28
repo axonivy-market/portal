@@ -941,7 +941,7 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .new-widget-configuration-dialog .ui-dialog-content.ui-widget-content {
-  max-height: calc(90vh - 100px) !important;
+  max-height: calc(90% - 100px) !important;
   transition: all .3s;
 }
 
