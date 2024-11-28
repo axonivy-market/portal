@@ -562,6 +562,7 @@ public class DashboardWidgetUtils {
   private static void loadProcessByPath(SingleProcessDashboardWidget processWidget) {
     String processPath = processWidget.getProcessPath();
     if (processPath == null || processWidget.getProcess() != null) {
+      processWidget.setEmptyProcessMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processes/noProcessSelected"));
       return;
     }
 
