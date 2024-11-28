@@ -72,7 +72,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     String dashboardInUserProperty = readDashboardBySessionUser();
     if (isPublicDashboard) {
       this.dashboards = DashboardUtils.getPublicDashboards();
-      DashboardUtils.addDefaultTaskCaseListDashboardsIfMissing(this.dashboards);
+      DashboardUtils.addDefaultDashboardsIfMissing(this.dashboards);
     } else if (StringUtils.isNoneEmpty(dashboardInUserProperty)) {
       List<Dashboard> myDashboards = getVisibleDashboards(dashboardInUserProperty);
       this.dashboards.addAll(myDashboards);
