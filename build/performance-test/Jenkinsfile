@@ -11,7 +11,7 @@ pipeline {
 
   environment {
     engineVersion = '10'
-    jmeterSourceDir = 'AxonIvyPortal/PortalTest/jmeter'
+    jmeterSourceDir = 'AxonIvyPortal/portal-selenium-test/jmeter'
     ivyDir = '/var/tools/ivy'
   }
 
