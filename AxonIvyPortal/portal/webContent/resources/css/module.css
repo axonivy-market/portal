@@ -656,7 +656,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   box-sizing: content-box;
   text-align: left;
   color: var(--text-color);
-  width: 87%;
+  min-width: 160px;
 }
 
 .case-detail-header {
@@ -1912,8 +1912,9 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   display: grid;
 }
 
-.options-panel.ui-overlaypanel .ui-overlaypanel-content {
-  padding: 1rem 0;
+.options-panel.ui-overlaypanel .ui-overlaypanel-content,
+.ui-overlaypanel .ui-overlaypanel-content{
+  padding: 1rem 0 !important;
 }
 
 .options-panel .option-item  {
