@@ -1912,13 +1912,17 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   display: grid;
 }
 
+.options-panel.ui-overlaypanel .ui-overlaypanel-content {
+  padding: 1rem 0;
+}
+
 .options-panel .option-item  {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
   clear: both;
   float: left;
-  padding: 10px 18px 10px 0px;
+  padding: 10px 18px 10px 10px;
   margin: 0;
   width: 160px;
   box-sizing: content-box;
