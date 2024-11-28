@@ -84,6 +84,9 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.openAddAttachmentDialog(),
         ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-attach-document-to-case", new ScreenshotMargin(10));
     detailsPage.closeAddAttachmentDialog();
+
+    refreshPage();
+    detailsPage.waitForCaseDetailsDisplay();
     detailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
 
     refreshPage();
