@@ -101,7 +101,7 @@ HowTo: Set substitute
 
 .. note::
 
-   Grant either permission :bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>` or :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` 
+   Grant either permission :bdg-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>` or :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`
    to allow a user to create their own substitute definitions or create substitute definitions for all users, respectively.
 
 Change Password
