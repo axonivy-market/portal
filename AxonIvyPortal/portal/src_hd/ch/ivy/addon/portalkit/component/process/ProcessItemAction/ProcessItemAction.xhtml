@@ -51,19 +51,19 @@
           actionListener="#{cc.attrs.actionListenerOnEditProcess}"
           update="#{cc.attrs.componentToUpdateOnEditProcess}"
           rendered="#{canModify}" />
-        <p:menuitem id="delete-process"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-          icon="si si-bin-1"
-          oncomplete="#{cc.attrs.onCompleteDeleteProcess}"
-          actionListener="#{cc.attrs.actionListenerOnDeleteProcess}"
-          update="#{cc.attrs.componentToUpdateOnDeleteProcess}"
-          rendered="#{canModify}" />
         <p:menuitem id="more-information"
           icon="si si-information-circle"
           url="#{processWidgetBean.getProcessInformationPageUrl(process)}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/MoreInformation')}"
           disabled="#{!cc.attrs.isReadOnlyMode or cc.attrs.isInConfiguration}"
           rendered="#{processWidgetBean.isShowInformationLink(process) and !isExternalLink and !isCaseMap}"/>
+        <p:menuitem id="delete-process"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+          icon="si si-bin-1" styleClass="color-destroy"
+          oncomplete="#{cc.attrs.onCompleteDeleteProcess}"
+          actionListener="#{cc.attrs.actionListenerOnDeleteProcess}"
+          update="#{cc.attrs.componentToUpdateOnDeleteProcess}"
+          rendered="#{canModify}" />
       </p:menu>
     </h:panelGroup>
     <div class="start-process" id="start-button-wrap-#{cc.attrs.status.index}" >
