@@ -341,8 +341,8 @@
         </script>
 
         <p:dialog modal="true" id="download-status-dialog" widgetVar="download-status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false" responsive="true">
-          <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/waitingDownloadMessage')}</div>
-          <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/downloadZipFileExplanation')}</div>
+          <div class="p-2">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/waitingDownloadMessage")}</div>
+          <div class="p-2">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/downloadZipFileExplanation')}</div>
         </p:dialog>
 
       </ui:fragment>

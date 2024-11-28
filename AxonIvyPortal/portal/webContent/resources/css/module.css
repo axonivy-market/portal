@@ -1773,7 +1773,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .no-task-message, .case-widget-empty-message {
-  padding-left: 1em;
+  padding-left: .5em;
 }
 
 .compact-task-widget .no-task-message {
