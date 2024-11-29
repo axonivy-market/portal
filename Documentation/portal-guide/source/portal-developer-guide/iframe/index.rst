@@ -195,7 +195,7 @@ Customize how case details are displayed and whether to show the "Show Informati
 **Parameters:**
    - ``caseId``: The ID of the case to display in the information dialog.
    - ``isHideCaseInfo``: Set to ``true`` to hide the "Show Information" button.
-      Default is ``false``.
+     Default is ``false``.
 
 **Example:**
 
