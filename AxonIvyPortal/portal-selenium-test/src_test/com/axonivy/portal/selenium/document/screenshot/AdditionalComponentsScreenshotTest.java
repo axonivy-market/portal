@@ -53,6 +53,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(cleanupDataLink);
     updatePortalSetting(Variable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), "true");
     redirectToRelativeLink(createTestingTasksUrl);
+    newDashboardPage = new NewDashboardPage();
     WaitHelper.waitForNavigation(() -> new NewDashboardPage().startTask(1));
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.switchToIFrameOfTask();
