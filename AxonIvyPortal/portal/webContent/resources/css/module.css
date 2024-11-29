@@ -656,7 +656,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   box-sizing: content-box;
   text-align: left;
   color: var(--text-color);
-  width: 87%;
+  min-width: 160px;
 }
 
 .case-detail-header {
@@ -1912,17 +1912,26 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   display: grid;
 }
 
+.options-panel.ui-overlaypanel .ui-overlaypanel-content,
+.ui-overlaypanel .ui-overlaypanel-content{
+  padding: 1rem 0 !important;
+}
+
 .options-panel .option-item  {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
   clear: both;
   float: left;
-  padding: 10px 18px 10px 0px;
+  padding: 10px 18px 10px 10px;
   margin: 0;
   width: 160px;
   box-sizing: content-box;
   color: var(--text-color);
+}
+
+ .options-panel .option-item:hover .option-item-label {
+  text-decoration: underline;
 }
 
 .options-panel .option-item.color-destroy, .action-steps-panel .action-step-item.color-destroy, .ui-menu-list .ui-menuitem > .ui-menuitem-link.color-destroy > span {
