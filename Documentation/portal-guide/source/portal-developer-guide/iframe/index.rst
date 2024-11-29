@@ -71,7 +71,8 @@ The following parameters are available for this template:
 **Task Details**
 
 - ``taskName`` (String): Custom text for the task name.
-- ``taskIcon`` (String): Icon for the task, using Streamline or Awesome font (e.g., ``si si-arrow-right``).
+- ``taskIcon`` (String): Icon for the task, using Streamline 
+   or Awesome font (e.g., ``si si-arrow-right``).
 - ``isHideTaskName`` (Boolean): Hides the task name when true. Default is ``false``.
 
 **Case Information**
@@ -81,26 +82,32 @@ The following parameters are available for this template:
 
 **Process Steps**
 
-- ``currentProcessStep`` (Number/String): Current step in the process, either as an index or step name.
-- ``processSteps`` (Array/String): List of process steps (e.g., ``["Create Investment Request", "Approve Investment Request"]``)  
-  or JSON (e.g., ``#{portalComponentUtilsBean.convertToJSON(data.steps)}``).
+- ``currentProcessStep`` (Number/String): Current step in the process, 
+   either as an index or step name.
+- ``processSteps`` (Array/String): List of process steps 
+   (e.g., ``["Create Investment Request", "Approve Investment Request"]``)  
+   or JSON (e.g., ``#{portalComponentUtilsBean.convertToJSON(data.steps)}``).
 - ``isShowAllSteps`` (Boolean): Displays all steps on large screens when true. Default is ``false``.
-- ``processChainDirection`` (String): Orientation of the process chain, either ``VERTICAL`` or ``HORIZONTAL`` (default).
+- ``processChainDirection`` (String): Orientation of the process chain, 
+   either ``VERTICAL`` or ``HORIZONTAL`` (default).
 - ``processChainShape`` (String): Shape of the process chain, either ``LINE`` or ``CIRCLE`` (default).
 
 **Task Actions**
 
 - ``isHideTaskAction`` (Boolean): Hides the task action button when true. Default is ``false``.
-- ``isWorkingOnATask`` (Boolean): Indicates if a task is currently being worked on, useful for displaying a warning when leaving the page. Default is ``true``.
+- ``isWorkingOnATask`` (Boolean): Indicates if a task is currently being worked on, 
+   useful for displaying a warning when leaving the page. Default is ``true``.
 
 **Miscellaneous**
 
 - ``announcementInvisible`` (Boolean): Makes the announcement invisible when true. Default is ``false``.
-- ``isCardFrame`` (Boolean): Displays content of the IFrame inside a card-style container when "true".
-- ``viewName`` (String): Defines a custom breadcrumb view. Possible values:  
-  ``HOME, PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, RELATED_TASK, USER_PROFILE, 
-  ABSENCES_MANAGEMENT, DASHBOARD_CONFIGURATION, EDIT_DASHBOARD_DETAILS, PROCESS_VIEWER, 
-  PORTAL_MANAGEMENT, NOTIFICATION``.
+- ``isCardFrame`` (Boolean): Displays content of the IFrame inside a
+    card-style container when "true".
+- ``viewName`` (String): Defines a custom breadcrumb view. 
+Possible values:  
+   ``HOME, PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, RELATED_TASK, USER_PROFILE, 
+   ABSENCES_MANAGEMENT, DASHBOARD_CONFIGURATION, EDIT_DASHBOARD_DETAILS, PROCESS_VIEWER, 
+   PORTAL_MANAGEMENT, NOTIFICATION``.
 
 Configuration Methods
 ---------------------
@@ -171,7 +178,7 @@ You can customize task details, such as the task name and icon.
 
 **Parameters:**
    - ``taskName``: Custom text for the task name.
-   - ``taskIcon``: Icon for the task, using Streamline or Awesome font (e.g., `si si-arrow-right`).
+   - ``taskIcon``: Icon for the task, using Streamline or Awesome font.
    - ``isHideTaskName``: Set to ``true`` to hide the task name. Default is ``false``.
 
 **Example:**
