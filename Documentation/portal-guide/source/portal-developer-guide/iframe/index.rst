@@ -170,9 +170,9 @@ Configure Task Details
 You can customize task details, such as the task name and icon. 
 
 **Parameters:**
-- ``taskName``: Custom text for the task name.
-- ``taskIcon``: Icon for the task, using Streamline or Awesome font (e.g., `si si-arrow-right`).
-- ``isHideTaskName``: Set to ``true`` to hide the task name. Default is ``false``.
+   - ``taskName``: Custom text for the task name.
+   - ``taskIcon``: Icon for the task, using Streamline or Awesome font (e.g., `si si-arrow-right`).
+   - ``isHideTaskName``: Set to ``true`` to hide the task name. Default is ``false``.
 
 **Example:**
 
@@ -195,7 +195,7 @@ Configure Case Information
 --------------------------
 Customize how case details are displayed and whether to show the "Show Information" button.
 
-- **Parameters:**
+**Parameters:**
    - ``caseId``: The ID of the case to display in the information dialog.
    - ``isHideCaseInfo``: Set to ``true`` to hide the "Show Information" button. Default is ``false``.
 
@@ -218,7 +218,7 @@ Configure Task Actions
 ----------------------
 Control the visibility and behavior of task-related buttons and actions.
 
-- **Parameters:**
+**Parameters:**
    - ``isHideTaskAction``: Set to ``true`` to hide the task action button. Default is ``false``.
    - ``isWorkingOnATask``: Indicates if the task is active. Useful for displaying a warning when leaving the page. Default is ``true``.
 
@@ -242,7 +242,7 @@ Configure Miscellaneous Options
 -------------------------------
 Additional settings can influence the layout and visibility of elements.
 
-- **Parameters:**
+**Parameters:**
    - ``announcementInvisible``: Set to ``true`` to hide announcements. Default is ``false``.
    - ``isCardFrame``: Set to ``true`` to display the IFrame content inside a card-style container.
    - ``viewName``: Defines the breadcrumb view.
