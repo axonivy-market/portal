@@ -1930,6 +1930,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   color: var(--text-color);
 }
 
+ .options-panel .option-item:hover .option-item-label {
+  text-decoration: underline;
+}
+
 .options-panel .option-item.color-destroy, .action-steps-panel .action-step-item.color-destroy, .ui-menu-list .ui-menuitem > .ui-menuitem-link.color-destroy > span {
   color: var(--ivy-tertinary-color-red-medium) !important;
 }
