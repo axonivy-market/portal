@@ -91,7 +91,7 @@ The following parameters are available for this template:
 
 - ``isHideTaskAction``: Hides the task action button when true.
 - ``isWorkingOnATask``: Indicates if a task is currently being worked on, 
-   useful for displaying a warning when leaving the page.
+  useful for displaying a warning when leaving the page.
 
 **Miscellaneous**
 
@@ -195,7 +195,7 @@ Customize how case details are displayed and whether to show the "Show Informati
 **Parameters:**
    - ``caseId``: The ID of the case to display in the information dialog.
    - ``isHideCaseInfo``: Set to ``true`` to hide the "Show Information" button.
-       Default is ``false``.
+      Default is ``false``.
 
 **Example:**
 
@@ -218,9 +218,9 @@ Control the visibility and behavior of task-related buttons and actions.
 
 **Parameters:**
    - ``isHideTaskAction``: Set to ``true`` to hide the task action button. 
-      Default is ``false``.
+     Default is ``false``.
    - ``isWorkingOnATask``: Indicates if the task is active. 
-      Useful for displaying a warning when leaving the page. Default is ``true``.
+     Useful for displaying a warning when leaving the page. Default is ``true``.
 
 **Example:**
 
@@ -244,13 +244,13 @@ Additional settings can influence the layout and visibility of elements.
 
 **Parameters:**
    - ``announcementInvisible``: Set to ``true`` to hide announcements. 
-      Default is ``false``.
+     Default is ``false``.
    - ``isCardFrame``: Set to ``true`` to display the IFrame 
-      content inside a card-style container.
+     content inside a card-style container.
    - ``viewName``: Custom breadcrumb view. Possible values are: 
-      ``HOME, PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, RELATED_TASK, 
-      USER_PROFILE, ABSENCES_MANAGEMENT, DASHBOARD_CONFIGURATION, EDIT_DASHBOARD_DETAILS, 
-      PROCESS_VIEWER, PORTAL_MANAGEMENT, NOTIFICATION``.
+     ``HOME, PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, RELATED_TASK, 
+     USER_PROFILE, ABSENCES_MANAGEMENT, DASHBOARD_CONFIGURATION, EDIT_DASHBOARD_DETAILS, 
+     PROCESS_VIEWER, PORTAL_MANAGEMENT, NOTIFICATION``.
 
 **Example:**   
 
