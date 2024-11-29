@@ -70,44 +70,34 @@ The following parameters are available for this template:
 
 **Task Details**
 
-- ``taskName`` (String): Custom text for the task name.
-- ``taskIcon`` (String): Icon for the task, using Streamline 
-   or Awesome font (e.g., ``si si-arrow-right``).
-- ``isHideTaskName`` (Boolean): Hides the task name when true. Default is ``false``.
+- ``taskName``: Custom text for the task name.
+- ``taskIcon``: Icon for the task, using Streamline or Awesome font.
+- ``isHideTaskName``: Hides the task name when true.
 
 **Case Information**
 
-- ``caseId`` (String): ID of the case to be displayed in the case information dialog.
-- ``isHideCaseInfo`` (Boolean): Hides the ``Show Information`` button when true. Default is ``false``.
+- ``caseId``: ID of the case to be displayed in the case information dialog.
+- ``isHideCaseInfo``: Hides the ``Show Information`` button when true.
 
 **Process Steps**
 
-- ``currentProcessStep`` (Number/String): Current step in the process, 
-   either as an index or step name.
-- ``processSteps`` (Array/String): List of process steps 
-   (e.g., ``["Create Investment Request", "Approve Investment Request"]``)  
-   or JSON (e.g., ``#{portalComponentUtilsBean.convertToJSON(data.steps)}``).
-- ``isShowAllSteps`` (Boolean): Displays all steps on large screens when true. Default is ``false``.
-- ``processChainDirection`` (String): Orientation of the process chain, 
-   either ``VERTICAL`` or ``HORIZONTAL`` (default).
-- ``processChainShape`` (String): Shape of the process chain, either ``LINE`` or ``CIRCLE`` (default).
+- ``currentProcessStep``: Current step in the process, either as an index or step name.
+- ``processSteps``: List of process steps or JSON.
+- ``isShowAllSteps``: Displays all steps on large screens when true.
+- ``processChainDirection``: Orientation of the process chain, either ``VERTICAL`` or ``HORIZONTAL``.
+- ``processChainShape``: Shape of the process chain, either ``LINE`` or ``CIRCLE``.
 
 **Task Actions**
 
-- ``isHideTaskAction`` (Boolean): Hides the task action button when true. Default is ``false``.
-- ``isWorkingOnATask`` (Boolean): Indicates if a task is currently being worked on, 
-   useful for displaying a warning when leaving the page. Default is ``true``.
+- ``isHideTaskAction``: Hides the task action button when true.
+- ``isWorkingOnATask``: Indicates if a task is currently being worked on, 
+   useful for displaying a warning when leaving the page.
 
 **Miscellaneous**
 
-- ``announcementInvisible`` (Boolean): Makes the announcement invisible when true. Default is ``false``.
-- ``isCardFrame`` (Boolean): Displays content of the IFrame inside a
-    card-style container when "true".
-- ``viewName`` (String): Defines a custom breadcrumb view. 
-Possible values:  
-   ``HOME, PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, RELATED_TASK, USER_PROFILE, 
-   ABSENCES_MANAGEMENT, DASHBOARD_CONFIGURATION, EDIT_DASHBOARD_DETAILS, PROCESS_VIEWER, 
-   PORTAL_MANAGEMENT, NOTIFICATION``.
+- ``announcementInvisible``: Makes the announcement invisible.
+- ``isCardFrame``: Displays content of the IFrame inside a card-style container.
+- ``viewName``: Defines a custom breadcrumb view.
 
 Configuration Methods
 ---------------------
@@ -178,7 +168,7 @@ You can customize task details, such as the task name and icon.
 
 **Parameters:**
    - ``taskName``: Custom text for the task name.
-   - ``taskIcon``: Icon for the task, using Streamline or Awesome font.
+   - ``taskIcon``: Using Streamline or Awesome font (e.g., `si si-arrow-right`).
    - ``isHideTaskName``: Set to ``true`` to hide the task name. Default is ``false``.
 
 **Example:**
@@ -204,7 +194,8 @@ Customize how case details are displayed and whether to show the "Show Informati
 
 **Parameters:**
    - ``caseId``: The ID of the case to display in the information dialog.
-   - ``isHideCaseInfo``: Set to ``true`` to hide the "Show Information" button. Default is ``false``.
+   - ``isHideCaseInfo``: Set to ``true`` to hide the "Show Information" button.
+       Default is ``false``.
 
 **Example:**
 
@@ -226,8 +217,10 @@ Configure Task Actions
 Control the visibility and behavior of task-related buttons and actions.
 
 **Parameters:**
-   - ``isHideTaskAction``: Set to ``true`` to hide the task action button. Default is ``false``.
-   - ``isWorkingOnATask``: Indicates if the task is active. Useful for displaying a warning when leaving the page. Default is ``true``.
+   - ``isHideTaskAction``: Set to ``true`` to hide the task action button. 
+      Default is ``false``.
+   - ``isWorkingOnATask``: Indicates if the task is active. 
+      Useful for displaying a warning when leaving the page. Default is ``true``.
 
 **Example:**
 
@@ -250,9 +243,14 @@ Configure Miscellaneous Options
 Additional settings can influence the layout and visibility of elements.
 
 **Parameters:**
-   - ``announcementInvisible``: Set to ``true`` to hide announcements. Default is ``false``.
-   - ``isCardFrame``: Set to ``true`` to display the IFrame content inside a card-style container.
-   - ``viewName``: Defines the breadcrumb view.
+   - ``announcementInvisible``: Set to ``true`` to hide announcements. 
+      Default is ``false``.
+   - ``isCardFrame``: Set to ``true`` to display the IFrame 
+      content inside a card-style container.
+   - ``viewName``: Custom breadcrumb view. Possible values are: 
+      ``HOME, PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, RELATED_TASK, 
+      USER_PROFILE, ABSENCES_MANAGEMENT, DASHBOARD_CONFIGURATION, EDIT_DASHBOARD_DETAILS, 
+      PROCESS_VIEWER, PORTAL_MANAGEMENT, NOTIFICATION``.
 
 **Example:**   
 
