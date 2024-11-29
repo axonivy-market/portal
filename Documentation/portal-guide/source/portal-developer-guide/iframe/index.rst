@@ -96,12 +96,11 @@ The following parameters are available for this template:
 **Miscellaneous**
 
 - ``announcementInvisible`` (Boolean): Makes the announcement invisible when true. Default is ``false``.
-- ``isCardFrame`` (Boolean): Displays content of the IFrame inside a card-style container when true.
+- ``isCardFrame`` (Boolean): Displays content of the IFrame inside a card-style container when "true".
 - ``viewName`` (String): Defines a custom breadcrumb view. Possible values:  
-  ``HOME, PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, RELATED_TASK, USER_PROFILE,  
-   ABSENCES_MANAGEMENT, DASHBOARD_CONFIGURATION, EDIT_DASHBOARD_DETAILS, PROCESS_VIEWER, PORTAL_MANAGEMENT, NOTIFICATION``.
-
----
+  ``HOME, PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, RELATED_TASK, USER_PROFILE, 
+  ABSENCES_MANAGEMENT, DASHBOARD_CONFIGURATION, EDIT_DASHBOARD_DETAILS, PROCESS_VIEWER, 
+  PORTAL_MANAGEMENT, NOTIFICATION``.
 
 Configuration Methods
 ---------------------
@@ -246,10 +245,9 @@ Additional settings can influence the layout and visibility of elements.
 **Parameters:**
 - ``announcementInvisible``: Set to ``true`` to hide announcements. Default is ``false``.
 - ``isCardFrame``: Set to ``true`` to display the IFrame content inside a card-style container.
-- ``viewName``: Defines the breadcrumb view. Possible values are:
-  ``HOME, PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, RELATED_TASK, USER_PROFILE, ABSENCES_MANAGEMENT, DASHBOARD_CONFIGURATION, EDIT_DASHBOARD_DETAILS, PROCESS_VIEWER, PORTAL_MANAGEMENT, NOTIFICATION``.
+- ``viewName``: Defines the breadcrumb view.
 
-**Example:**
+**Example:**   
 
 .. code-block:: xml
 
