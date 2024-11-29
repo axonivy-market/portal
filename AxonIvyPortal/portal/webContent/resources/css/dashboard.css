@@ -1096,6 +1096,7 @@ body .ui-widget.new-widget-dialog__introduction {
   align-content: center;
   width: 100%;
   height: 90%;
+  display: grid;
 }
 
 .process-dashboard-widget__empty-process.empty-message-container {
@@ -1170,9 +1171,9 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 .process-grid-item__action--combined {
-  padding: 20px;
-  padding-bottom: 0;
+  padding: 8px;
   float: right;
+  height: 10%
 }
 
 .process-widget--combined {

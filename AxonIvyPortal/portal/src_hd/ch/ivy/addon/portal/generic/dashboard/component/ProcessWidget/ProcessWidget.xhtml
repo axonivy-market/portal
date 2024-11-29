@@ -120,7 +120,7 @@
         </ui:include>
       </ui:fragment>
 
-      <h:panelGroup id="empty-process"
+      <h:panelGroup id="empty-process" styleClass="h-full"
         rendered="#{(displayMode eq 'COMBINED_MODE' or displayMode eq 'FULL_MODE' or displayMode eq 'IMAGE_MODE') and widget.process eq null}">
         <h:panelGroup id="empty-process-actions" rendered="#{!isReadOnlyMode}" styleClass="process-grid-item__action--combined">
           <p:commandButton id="empty-process-edit-widget" styleClass="rounded-button ui-button-outlined u-mar-right-5" global="false" icon="si si-pencil"
@@ -136,7 +136,7 @@
             trackMouse="true" hideEvent="mouseleave click" />
         </h:panelGroup>
 
-        <h:panelGroup styleClass="process-dashboard-widget__empty-process empty-message-container" layout="block">
+        <h:panelGroup styleClass="process-dashboard-widget__empty-process empty-message-container static" layout="block">
           <i class="#{widget.hasPermissionToSee ? 'si si-alert-circle' : 'si si-lock-1'} empty-message-icon" />
           <br />
           <h:outputText value="#{widget.emptyProcessMessage}" styleClass="empty-message-text" />

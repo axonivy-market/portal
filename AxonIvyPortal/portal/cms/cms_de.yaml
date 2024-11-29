@@ -590,6 +590,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewExpired: Ihre aktuelle Bearbeitungsmaske ist abgelaufen und kann nicht weiter bearbeitet werden. Sie werden auf die Startseite umgeleitet.
     viewMode: Ansichtsmodus
     visible: Sichtbar
+    waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
     warning: Warnung!
     welcomeToPortal: Willkommen, bitte melden Sie sich an
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
@@ -1011,6 +1012,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     minSpecialCharacterRequired: mindestens {0} Sonderzeichen enthalten
     minUppercaseCharacterRequired: mindestens {0} Großbuchstaben enthalten
     newPassword: Neues Passwort
+    noPermission: Sie haben nicht die erforderlichen Berechtigungen, um das Passwort zu ändern. Bitte wenden Sie sich an Ihren Administrator, um Unterstützung zu erhalten.
     passwordMust: Das Passwort muss
     requireConfirmPassword: Wiederholen Sie Ihr Passwort, bitte
     requireCurrentPassword: Bitte geben Sie Ihr Passwort an

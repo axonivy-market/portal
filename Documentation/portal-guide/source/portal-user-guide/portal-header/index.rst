@@ -101,7 +101,7 @@ HowTo: Set substitute
 
 .. note::
 
-   Grant either permission :bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>` or :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` 
+   Grant either permission :bdg-ref-warning:`🔑UserCreateOwnSubstitute <UserCreateOwnSubstitute>` or :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`
    to allow a user to create their own substitute definitions or create substitute definitions for all users, respectively.
 
 Change Password
@@ -110,6 +110,12 @@ Change Password
 The menu entry :guilabel:`Change password` allows you to set a new password.
 
 |portal-password-change-dialog|
+
+.. note::
+
+   Grant permission: :bdg-warning:`🔑UserSetOwnPassword` to allow a user to change their password.
+   Configure permissions in the :dev-url:`Engine Cockpit
+   </doc/|version|/engine-guide/reference/engine-cockpit/security.html>`. In the security area, open PersonalPermissions -> PersonalSecurityPermissions -> UserSetOwnPassword.
 
 Info
 ----
