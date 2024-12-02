@@ -19,7 +19,7 @@ import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
 import ch.ivyteam.ivy.project.portal.test.Responsible;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class ChatTest extends BaseTest {
   private static final String ENABLE_PRIVATE_CHAT_SETTING = Variable.ENABLE_PRIVATE_CHAT.getKey();
   private static final String ENABLE_GROUP_CHAT_SETTING = Variable.ENABLE_GROUP_CHAT.getKey();
