@@ -40,9 +40,10 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     updatePortalSetting(Variable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.getKey(), "true");
     redirectToRelativeLink(createTestingCaseContainOneTask);
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
-
+    redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
-    WaitHelper.waitForNavigation(() -> new NewDashboardPage().startTask(0));
+    newDashboardPage.waitForTaskWidgetLoaded();
+    newDashboardPage.startTask(0);
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForGrowlMessageDisplayClearly();
