@@ -586,7 +586,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     TaskTemplatePage taskIframePage = new TaskTemplatePage();
     taskIframePage.switchToIFrameOfTask();
     taskIframePage.clickCancelAndLeftButton();
-    taskIframePage.switchBackToParent();
+
     
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForTaskWidgetLoaded();

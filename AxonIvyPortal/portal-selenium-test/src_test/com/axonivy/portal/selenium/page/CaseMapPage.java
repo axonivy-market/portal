@@ -10,6 +10,7 @@ import com.codeborne.selenide.SelenideElement;
 
 public class CaseMapPage extends TaskTemplatePage {
 
+  @Override
   public void waitForIFrameContentVisible() {
     $("button[id='form:submit-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
@@ -22,7 +23,7 @@ public class CaseMapPage extends TaskTemplatePage {
 
   public void clickSubmitButtonAndBackToTaskList() {
     $("button[id$='submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    switchBackToParent();
+    switchToDefaultContent();
   }
 
   public String getHeader() {
@@ -85,6 +86,7 @@ public class CaseMapPage extends TaskTemplatePage {
     return findElementByCssSelector("textarea[id$='internal-comment']");
   }
 
+  @Override
   public void inputField(String id, String value) {
     $(By.id(id)).clear();
     $(By.id(id)).sendKeys(value);
