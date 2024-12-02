@@ -124,4 +124,8 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
     switchToDefaultContent();
     return NavigationHelper.navigateToTaskList();
   }
+  
+  public void waitForLeaveRequestFormVisible() {
+    $("form[id='leave-request']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
 }
