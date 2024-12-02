@@ -589,6 +589,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewExpired: Your current view expired. You will be redirected to the home page.
     viewMode: View mode
     visible: Visible
+    waitingDownloadMessage: We are creating the Export, this can take a few minutes
     warning: Warning!
     welcomeToPortal: Welcome, please login
     wrongDateFormat: Please enter valid date.
@@ -985,6 +986,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     newNoteHeader: Add new note
     wroteAt: wrote at
   notifications:
+    errorNotificationMessage: We couldn't display the details for the new task. Please contact your administrator for assistance
     linkToFullScreen: Link to full screen
     linkToNotificationSettings: Notification settings
     markAllAsRead: Mark all as read
@@ -1011,6 +1013,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     minSpecialCharacterRequired: contain at least {0} special character
     minUppercaseCharacterRequired: contain at least {0} uppercase character
     newPassword: New password
+    noPermission: You do not have the required permissions to change the password. Please contact your administrator for assistance.
     passwordMust: Password must
     requireConfirmPassword: Password confirmation was missing
     requireCurrentPassword: Please specify the current password
@@ -1252,11 +1255,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     sort: Sort
   taskWarning:
     createdTaskLeave: '<div>You are about to leave this page.<br/> Please choose one of the following options:</div><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Cancel: Continue working this task.</UL>'
-    createdTaskLogout: '<div>You are about to leave this page.<br/> Please choose one of the following options:</div><UL><LI>&nbsp;Logout: Discard your changes and logout.<LI>&nbsp;Cancel: Continue working this task.</UL>'
+    createdTaskLogout: '<div>You are about to leave this page.<br/> Please choose one of the following options:</div><UL><LI>Logout: Discard your changes and logout.<LI>Cancel: Continue working this task.</UL>'
     resetParkTaskBeforeLeave: '<div>You are about to leave a task In progress.<br/>Please choose one of the following options:</div><UL><LI>Leave: Discard your changes and move to the selected page.<LI>Reserve: Discard your changes and keep the task in your task list.<LI>Cancel: Continue working this
       task.</UL>'
-    resetParkTaskBeforeLogout: '<div>You are about to leave a task in progress.</br> Please choose one of the following options:</div><UL><LI>&nbsp; &nbsp; Logout: Discard your changes and logout.<LI>&nbsp; &nbsp; Reserve: Discard your changes and keep the task in your personal task list. Then logout.<LI>&nbsp;
-      &nbsp; Cancel: Continue working this task.</UL>'
+    resetParkTaskBeforeLogout: '<div>You are about to leave a task in progress.</br> Please choose one of the following options:</div><UL><LI> Logout: Discard your changes and logout.<LI> Reserve: Discard your changes and keep the task in your personal task list. Then logout.<LI> Cancel: Continue working
+      this task.</UL>'
     taskNotFound: The task does not exist or you have insufficient rights to see this task.
   userProfile:
     myProfileTitle: My profile

@@ -70,7 +70,7 @@ HowTo: Move and Resize Widgets in Case Details
 ----------------------------------------------
 1. Open the case details
 
-2. Click on the **Switch to Edit Mode** button to drag, drop and resize widgets.
+2. Click on the :guilabel:`Edit` button to drag, drop and resize widgets.
 
 |how-to-switch-to-edit-mode|
 
@@ -87,7 +87,7 @@ HowTo: Move and Resize Widgets in Case Details
 
 .. _howto-attach-a-document-to-the-case-1:
 
-HowTo: Attach a Document to the Case
+HowTo: Attach a document to a case
 ------------------------------------
 
 #. Open the case details
@@ -96,8 +96,8 @@ HowTo: Attach a Document to the Case
 
 #. The :guilabel:`Add document` dialog is opened
 
-#. To upload a file, click :guilabel:`Select` or simply drag the file into the
-   dialog.
+#. Upload a file by clicking :guilabel:`Upload here` or by dragging the
+   file into the dialog
 
 #. Click :guilabel:`Close` close the dialog
 
@@ -279,7 +279,7 @@ HowTo: Show Process Viewer
    - Full case list
    - Full task list
 
-#. Click on :guilabel:`Action`
+#. Click on :guilabel:`Actions`
 
 #. Click on :guilabel:`Process Viewer`
 
@@ -304,20 +304,36 @@ HowTo: Share Case Details
 .. include:: ../includes/_common-icon.rst
 
 .. |navigate-to-full-cases-list-page| image:: ../../screenshots/case/navigate-to-full-cases-list-page.png
+   :alt: Menu to navigate to the Full case list page
 .. |case-key-information| image:: ../../screenshots/case/case-key-information.png
+   :alt: Full case list: key informations
 .. |case-details| image:: ../../screenshots/case-detail/case-details.png
+   :alt: The Case Details page
 .. |case-details-data-description| image:: ../../screenshots/case-detail/case-details-data-description.png
+   :alt: Case Details: General section
 .. |case-details-related-tasks-cases| image:: ../../screenshots/case-detail/case-details-related-tasks-cases.png
+   :alt: Case Details: Related Tasks of Case section
 .. |case-details-histories| image:: ../../screenshots/case-detail/case-details-histories.png
+   :alt: Case Details: Histories section
 .. |case-details-documents| image:: ../../screenshots/case-detail/case-details-documents.png
+   :alt: Case Details: Documents section
 .. |how-to-attach-document-to-case| image:: ../../screenshots/case-detail/how-to-attach-document-to-case.png
-.. |how-to-create-case-filter| image:: ../../screenshots/case/how-to-create-case-filter.png
+   :alt: Case Details: Add document dialog
 .. |how-to-delete-an-attachment-from-case| image:: ../../screenshots/case-detail/how-to-delete-an-attachment-from-case.png
+   :alt: Case Details: Delete document confirm dialog
 .. |how-to-add-task-note| image:: ../../screenshots/case-detail/how-to-add-task-note.png
+   :alt: Case Details: Add note dialog
 .. |how-to-show-note-details| image:: ../../screenshots/case-detail/how-to-show-note-details.png
+   :alt: Case Details: Link to show more notes details
 .. |export-case-history| image:: ../../screenshots/case/export-case-history.png
+   :alt: Case Business Information page: Link to export case history
 .. |how-to-switch-to-view-mode| image:: ../../screenshots/case-detail/how-to-switch-to-view-mode.png
+   :alt: Case Details: save button
 .. |how-to-switch-to-edit-mode| image:: ../../screenshots/case-detail/how-to-switch-to-edit-mode.png
+   :alt: Case Details: button to switch to the edit mode
 .. |how-to-reset-to-default| image:: ../../screenshots/case-detail/how-to-reset-to-default.png
+   :alt: Case Details: button to reset to the default configurations
 .. |portal-process-viewer| image:: ../../screenshots/case/portal-process-viewer.png
+   :alt: Process Viewer page
 .. |how-to-share-case-details| image:: ../../screenshots/case-detail/share-page-button.png
+   :alt: Case Details: button to get the shareable link of the case details

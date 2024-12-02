@@ -483,7 +483,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     finish: Terminar
     general: General
     generalInformation: Información general
-    globalSearch: Búsqueda ...
+    globalSearch: Buscar ...
     goToDetail: Ir a detalles
     hasPrecondition: Este proceso tiene una precondición
     height: altura
@@ -564,7 +564,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     showSystemNotes: Notas del sistema
     showSystemTasks: Tareas del sistema
     sorting: Sorting
-    start: Abrir
+    start: Iniciar
     startProcess: Iniciar el proceso
     state: Estatus
     status: Estado
@@ -591,6 +591,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewExpired: Su vista actual expiró. Serás redirigido a la página de inicio.
     viewMode: Modo de visualización
     visible: Visible
+    waitingDownloadMessage: Estamos creando la Exportación, esto puede tardar unos minutos
     warning: Advertencia!
     welcomeToPortal: Bienvenido, por favor inicie su sesión
     wrongDateFormat: Por favor ingrese una fecha válida.
@@ -982,6 +983,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     newNoteHeader: Agregar nueva nota
     wroteAt: escribió en
   notifications:
+    errorNotificationMessage: |
+      No pudimos mostrar los detalles de la nueva tarea. Por favor, contacte con su administrador para obtener ayuda
     linkToFullScreen: Enlace a la pantalla completa
     linkToNotificationSettings: Ajustes de notificación
     markAllAsRead: Marcar todo como leído
@@ -1008,6 +1011,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     minSpecialCharacterRequired: contienen al menos {0} un carácter especial
     minUppercaseCharacterRequired: contener al menos {0} caracteres en mayúscula
     newPassword: Nueva contraseña
+    noPermission: No tienes los permisos necesarios para cambiar la contraseña. Por favor, contacta con tu administrador para obtener ayuda.
     passwordMust: La contraseña debe
     requireConfirmPassword: Falta la confirmación de la contraseña
     requireCurrentPassword: Por favor, especifique la contraseña actual
@@ -1248,8 +1252,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Mostrar lista de tareas completa
     sort: Ordenar
   taskWarning:
-    createdTaskLeave: '<div>Va a salir de esta página. Por favor selecione una de las siguientes opciones:</div><UL><LI>&nbsp; &nbsp; Salir: No guardará sus cambios y navegará a la página seleccionada<LI>&nbsp; &nbsp; Cancelar: Continue trabajando en esta tarea.</UL>'
-    createdTaskLogout: '<div>Va a salir de esta página.<br/> Por favor selecione una de las siguientes opciones:</div><UL><LI>&nbsp; &nbsp; Cerrar sesión: No guardará sus cambios y se cerrará la sesión.<LI>&nbsp;Cancelar: Continue trabajando en esta tarea.</UL>'
+    createdTaskLeave: '<div>Va a salir de esta página. Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
+    createdTaskLogout: '<div>Va a salir de esta página.<br/> Por favor selecione una de las siguientes opciones:</div><UL><LI> Cerrar sesión: No guardará sus cambios y se cerrará la sesión.<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
     resetParkTaskBeforeLeave: '<div>Va a salir de esta página.<br/>Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Reservar: No guardará sus cambios y esta tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando
       en esta tarea.</UL>'
     resetParkTaskBeforeLogout: '<div>Va a salir de esta página.</br> Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: no guardará sus cambios y volverá a la página anterior.<LI>Reservar: No guardará sus cambios, volverá a la página anterior pero la tarea quedara reservada para usted.<LI>Cancelar:

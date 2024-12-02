@@ -241,7 +241,7 @@
 
   <!-- Preview -->
   <h:panelGroup id="widget-preview" styleClass="card widget-preview widget-preview--process" layout="block">
-    <div class="ui-g #{isCompact ? 'widget-preview--compact' : ''} #{isFull ? 'widget-preview--full' : ''} #{isCombined ? 'widget-preview--combined' : ''} #{isImage ? 'widget-preview--image-width' : ''}">
+    <div class="ui-g #{isCompact ? 'widget-preview--compact' : ''} #{isFull ? 'widget-preview--full h-full' : ''} #{isCombined ? 'widget-preview--combined h-full' : ''} #{isImage ? 'widget-preview--image-width' : ''}">
       <div class="ui-g-12 widget-preview__header">
         <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}</h2>
         <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/ProcessWidgetConfiguration/DragAndDropToChangeOrder')}" 

@@ -34,6 +34,10 @@ public class BusinessEntityConverter {
   public BusinessEntityConverter() {}
 
   public static String entityToJsonValue(Object entity) {
+    return objectEntityToJsonValue(entity);
+  }
+
+  private static String objectEntityToJsonValue(Object entity) {
     try {
       return getObjectMapper().writeValueAsString(entity);
     } catch (JsonProcessingException e) {
@@ -42,6 +46,10 @@ public class BusinessEntityConverter {
   }
 
   public static String prettyPrintEntityToJsonValue(Object entity) {
+    return prettyPrintObjectEntityToJsonValue(entity);
+  }
+
+  private static String prettyPrintObjectEntityToJsonValue(Object entity) {
     try {
       return getObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(entity);
     } catch (JsonProcessingException e) {
@@ -131,11 +139,11 @@ public class BusinessEntityConverter {
 
   public static String entityToJsonValue(List<Dashboard> dashboards) {
     DashboardUtils.updatePropertiesToNullIfCurrentValueIsDefaultValue(dashboards);
-    try {
-      return getObjectMapper().writeValueAsString(dashboards);
-    } catch (JsonProcessingException e) {
-      throw new PortalException(e);
-    }
+    return objectEntityToJsonValue(dashboards);
   }
 
+  public static String prettyPrintEntityToJsonValue(List<Dashboard> dashboards) {
+    DashboardUtils.updatePropertiesToNullIfCurrentValueIsDefaultValue(dashboards);
+    return prettyPrintObjectEntityToJsonValue(dashboards);
+  }
 }

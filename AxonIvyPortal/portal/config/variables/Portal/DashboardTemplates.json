@@ -74,40 +74,48 @@
           "canWorkOn": true,
           "columns": [
             {
-              "field": "start"
+              "field": "start",
+              "width": "53"
             },
             {
-              "field": "priority"
+              "field": "priority",
+              "width": "50"
             },
             {
               "field": "id",
               "visible": false
             },
             {
-              "field": "name"
+              "field": "name",
+              "width": "185"
             },
             {
               "field": "description",
               "visible": false
             },
             {
-              "field": "activator"
+              "field": "activator",
+              "width": "85"
             },
             {
-              "field": "state"
+              "field": "state",
+              "width": "60"
             },
             {
-              "field": "startTimestamp"
+              "field": "startTimestamp",
+              "width": "80"
             },
             {
-              "field": "expiryTimestamp"
+              "field": "expiryTimestamp",
+              "width": "80"
             },
             {
               "field": "category",
               "visible": false
             },
             {
-              "field": "actions"
+              "field": "actions",
+              "width": "65"
             }
           ],
           "sortField": "startTimestamp",
@@ -155,23 +163,28 @@
           "enableQuickSearch": true,
           "columns": [
             {
-              "field": "id"
+              "field": "id",
+              "width": "60"
             },
             {
-              "field": "name"
+              "field": "name",
+              "width": "320"
             },
             {
               "field": "description",
               "visible": false
             },
             {
-              "field": "state"
+              "field": "state",
+              "width": "50"
             },
             {
-              "field": "creator"
+              "field": "creator",
+              "width": "90"
             },
             {
-              "field": "startTimestamp"
+              "field": "startTimestamp",
+              "width": "80"
             },
             {
               "field": "endTimestamp",
@@ -182,7 +195,8 @@
               "visible": false
             },
             {
-              "field": "actions"
+              "field": "actions",
+              "width": "55"
             }
           ],
           "sortField": "startTimestamp",
@@ -401,16 +415,20 @@
           "sortDescending": true,
           "columns": [
             {
-              "field": "start"
+              "field": "start",
+              "width": "50"
             },
             {
-              "field": "priority"
+              "field": "priority",
+              "width": "50"
             },
             {
-              "field": "id"
+              "field": "id",
+              "width": "60"
             },
             {
-              "field": "name"
+              "field": "name",
+              "width": "300"
             },
             {
               "field": "description",
@@ -422,12 +440,14 @@
             },
             {
               "field": "state",
+              "width": "60",
               "filterList": [
                 "OPEN"
               ]
             },
             {
-              "field": "startTimestamp"
+              "field": "startTimestamp",
+              "width": "90"
             },
             {
               "field": "expiryTimestamp",
@@ -438,7 +458,8 @@
               "visible": false
             },
             {
-              "field": "actions"
+              "field": "actions",
+              "width": "60"
             }
           ],
           "canWorkOn": true,
@@ -463,16 +484,20 @@
           "sortDescending": true,
           "columns": [
             {
-              "field": "start"
+              "field": "start",
+              "width": "50"
             },
             {
-              "field": "priority"
+              "field": "priority",
+              "width": "50"
             },
             {
-              "field": "id"
+              "field": "id",
+              "width": "60"
             },
             {
-              "field": "name"
+              "field": "name",
+              "width": "300"
             },
             {
               "field": "description",
@@ -484,13 +509,15 @@
             },
             {
               "field": "state",
+              "width": "60",
               "filterList": [
                 "OPEN",
                 "IN_PROGRESS"
               ]
             },
             {
-              "field": "startTimestamp"
+              "field": "startTimestamp",
+              "width": "90"
             },
             {
               "field": "expiryTimestamp",
@@ -501,7 +528,8 @@
               "visible": false
             },
             {
-              "field": "actions"
+              "field": "actions",
+              "width": "60"
             }
           ],
           "canWorkOn": false,
@@ -558,7 +586,7 @@
       },
       {
         "locale": "fr",
-        "value": "Tableau de bord réduit optimisé pour une utilisation en accessibilité"
+        "value": "Tableau de bord réduit optimisé pour une utilisation accessible"
       },
       {
         "locale": "de",
@@ -606,28 +634,36 @@
           "showFullscreenMode": false,
           "columns": [
             {
-              "field": "start"
+              "field": "start",
+              "width": "50"
             },
             {
-              "field": "actions"
+              "field": "actions",
+              "width": "70"
             },
             {
-              "field": "name"
+              "field": "name",
+              "width": "200"
             },
             {
-              "field": "priority"
+              "field": "priority",
+              "width": "60"
             },
             {
-              "field": "activator"
+              "field": "activator",
+              "width": "90"
             },
             {
-              "field": "state"
+              "field": "state",
+              "width": "60"
             },
             {
-              "field": "startTimestamp"
+              "field": "startTimestamp",
+              "width": "90"
             },
             {
-              "field": "expiryTimestamp"
+              "field": "expiryTimestamp",
+              "width": "90"
             },
             {
               "field": "id",
@@ -739,30 +775,36 @@
           "showFullscreenMode": false,
           "columns": [
             {
-              "field": "name"
-            },
-            {
               "field": "id",
               "visible": false
+            },
+            {
+              "field": "name",
+              "width": "280"
             },
             {
               "field": "description",
               "visible": false
             },
             {
-              "field": "state"
+              "field": "state",
+              "width": "60"
             },
             {
-              "field": "creator"
+              "field": "creator",
+              "width": "100"
             },
             {
-              "field": "startTimestamp"
+              "field": "startTimestamp",
+              "width": "100"
             },
             {
-              "field": "endTimestamp"
+              "field": "endTimestamp",
+              "width": "100"
             },
             {
-              "field": "owner"
+              "field": "owner",
+              "width": "100"
             },
             {
               "field": "category",
@@ -773,7 +815,8 @@
               "visible": false
             },
             {
-              "field": "actions"
+              "field": "actions",
+              "width": "70"
             }
           ],
           "sortField": "id",

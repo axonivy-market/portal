@@ -656,7 +656,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   box-sizing: content-box;
   text-align: left;
   color: var(--text-color);
-  width: 87%;
+  min-width: 160px;
 }
 
 .case-detail-header {
@@ -1160,7 +1160,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   display: flex;
   align-items: center;
   padding-left: 12px;
-  width: 4.2rem;
+  padding-right: 17px;
 }
 
 .process-start-list-item-icon .fa {
@@ -1195,7 +1195,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .process-start-list-item-name {
   overflow: hidden;
   display: inline-grid;
-  width: calc(100% - 75px);
+  flex-grow: 1;
   align-items: center;
   padding:0 15px;
 }
@@ -1260,6 +1260,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .process-start-list-item .ui-commandlink.process-item {
+  display: flex;
+  justify-content: space-between;
   margin: 0;
   padding: 0 5px;
   max-width: 100%;
@@ -1771,7 +1773,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .no-task-message, .case-widget-empty-message {
-  padding-left: 1em;
+  padding-left: .5em;
 }
 
 .compact-task-widget .no-task-message {
@@ -1910,17 +1912,26 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   display: grid;
 }
 
+.options-panel.ui-overlaypanel .ui-overlaypanel-content,
+.ui-overlaypanel .ui-overlaypanel-content{
+  padding: 1rem 0 !important;
+}
+
 .options-panel .option-item  {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
   clear: both;
   float: left;
-  padding: 10px 18px 10px 0px;
+  padding: 10px 18px 10px 10px;
   margin: 0;
   width: 160px;
   box-sizing: content-box;
   color: var(--text-color);
+}
+
+ .options-panel .option-item:hover .option-item-label {
+  text-decoration: underline;
 }
 
 .options-panel .option-item.color-destroy, .action-steps-panel .action-step-item.color-destroy, .ui-menu-list .ui-menuitem > .ui-menuitem-link.color-destroy > span {
@@ -1928,7 +1939,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .options-panel .ui-state-disabled.option-item {
-  display: inline-block;
   opacity: 0.5;
   text-decoration: none;
 }

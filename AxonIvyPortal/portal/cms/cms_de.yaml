@@ -461,7 +461,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     detail: Details
     display: Anzeigen
     displayAsTopMenu: Als oberstes Menü anzeigen
-    displayName: Name anzeigen
+    displayName: Anzeigename
     dragAndDropFile: 'Ziehen und Ablegen einer Datei oder '
     dragAndDropImage: 'Ziehen und Ablegen eines Bildes oder '
     edit: Bearbeiten
@@ -590,6 +590,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     viewExpired: Ihre aktuelle Bearbeitungsmaske ist abgelaufen und kann nicht weiter bearbeitet werden. Sie werden auf die Startseite umgeleitet.
     viewMode: Ansichtsmodus
     visible: Sichtbar
+    waitingDownloadMessage: Bitte um Geduld. Wir erstellen gerade den Export. Das kann einige Minuten dauern.
     warning: Warnung!
     welcomeToPortal: Willkommen, bitte melden Sie sich an
     wrongDateFormat: Bitte geben Sie ein gültiges Datum ein.
@@ -983,6 +984,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     newNoteHeader: Neue Notiz hinzufügen
     wroteAt: Erstellt am
   notifications:
+    errorNotificationMessage: |
+      Die Details für die neue Aufgabe konnten nicht angezeigt werden. Bitte wenden Sie sich an Ihren Administrator, um Unterstützung zu erhalten
     linkToFullScreen: Link zum Vollbild
     linkToNotificationSettings: Benachrichtigungseinstellungen
     markAllAsRead: Alle als gelesen markieren
@@ -1009,6 +1012,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     minSpecialCharacterRequired: mindestens {0} Sonderzeichen enthalten
     minUppercaseCharacterRequired: mindestens {0} Großbuchstaben enthalten
     newPassword: Neues Passwort
+    noPermission: Sie haben nicht die erforderlichen Berechtigungen, um das Passwort zu ändern. Bitte wenden Sie sich an Ihren Administrator, um Unterstützung zu erhalten.
     passwordMust: Das Passwort muss
     requireConfirmPassword: Wiederholen Sie Ihr Passwort, bitte
     requireCurrentPassword: Bitte geben Sie Ihr Passwort an
@@ -1251,10 +1255,10 @@ ch.ivy.addon.portalkit.ui.jsf:
   taskWarning:
     createdTaskLeave: '<div>Sie verlassen die aktuelle Seite.<br/>  Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     createdTaskLogout: '<div>Sie verlassen die aktuelle Seite.<br/> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLeave: '<div>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI> Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI> Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>
-      Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLogout: '<div>Sie verlassen die aktuelle Aufgabe.</br> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>&nbsp; &nbsp; Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>&nbsp; &nbsp; Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste
-      verschieben. Dann abmelden.<LI>&nbsp; &nbsp; Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLeave: '<div>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>Abbrechen:
+      Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLogout: '<div>Sie verlassen die aktuelle Aufgabe.</br> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben. Dann abmelden.<LI>Abbrechen:
+      Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     taskNotFound: Die Aufgabe existiert nicht oder Sie haben ungenügende Rechte, um diese Aufgabe zu sehen.
   userProfile:
     myProfileTitle: Mein Profil
@@ -1303,7 +1307,7 @@ Dialogs:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
                   CustomWidgetIFrameTitle: '{0} Rahmen'
                 DashboardModification:
-                  Share: Aktie
+                  Share: Teilen
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: ziehen und ablegen zum ändern der Reihenfolge.
                   DragAndDropTooltip: Klicken Sie auf die Vorschau und ändern Sie die Reihenfolge durch Ziehen und Ableg
@@ -1469,7 +1473,7 @@ Labels:
       ID: Id
       NAME: Name
       OWNER: Prozessverantwortlichen
-      STATE: Staat
+      STATE: Status
     DashboardStandardTaskColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
@@ -1482,7 +1486,7 @@ Labels:
       PRIORITY: Priorität
       RESPONSIBLE: Verantwortlich
       START: Start
-      STATE: Staat
+      STATE: Status
     FilterOperator:
       AFTER: Ist nach
       BEFORE: Ist vor

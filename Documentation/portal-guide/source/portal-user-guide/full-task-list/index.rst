@@ -130,7 +130,7 @@ HowTo: Move and Resize Widgets in Task Details
    |how-to-reset-to-default|
 
 
-HowTo: Attach a document to the case
+HowTo: Attach a document to a case
 ------------------------------------
 
 #. Open the task details of a task
@@ -138,8 +138,8 @@ HowTo: Attach a document to the case
 
 #. The :guilabel:`Add document` dialog is opened
 
-#. Upload a file by using the :guilabel:`Select` button or by simply dragging
-   the file into the dialog
+#. Upload a file by clicking :guilabel:`Upload here` or by dragging the
+   file into the dialog
 
 #. Click the button :guilabel:`Close` to close the dialog
 
@@ -240,19 +240,36 @@ HowTo: Share Task Details
 
 
 .. |navigate-to-full-task-list-page| image:: ../../screenshots/dashboard/expanded-left-menu.png
+   :alt: Menu to navigate to the Full task list
 .. |task-key-information| image:: ../../screenshots/task/task-key-information.png
+   :alt: Full task list: key informations
 .. |detailed-task-information-data-description| image:: ../../screenshots/task-detail/detailed-task-information-data-description.png
+   :alt: Task Details: General section
 .. |detailed-task-information-note| image:: ../../screenshots/task-detail/detailed-task-information-note.png
+   :alt: Task Details: Notes section
 .. |detailed-task-information-documents| image:: ../../screenshots/task-detail/detailed-task-information-documents.png
+   :alt: Task Details: Documents section
 .. |detailed-task-information| image:: ../../screenshots/task-detail/detailed-task-information.png
+   :alt: The Task Details page
 .. |how-to-upload-document| image:: ../../screenshots/task-detail/how-to-upload-document.png
+   :alt: Task Details:Add document dialog
 .. |how-to-delete-document| image:: ../../screenshots/task-detail/how-to-delete-document.png
+   :alt: Task Details: Delete document confirm dialog
 .. |how-to-add-note| image:: ../../screenshots/task-detail/how-to-add-note.png
+   :alt: Task Details: Add note dialog
 .. |how-to-show-note-details| image:: ../../screenshots/task-detail/how-to-show-note-details.png
+   :alt: Task Details: Link to show more notes details
 .. |how-to-export-note-details| image:: ../../screenshots/task-detail/how-to-export-note-details.png
+   :alt: Link to export task notes
 .. |workflow-events-table| image:: ../../screenshots/task-detail/workflow-events-table.png
+   :alt: Workflow events of task dialog
 .. |how-to-switch-to-view-mode| image:: ../../screenshots/task-detail/how-to-switch-to-view-mode.png
+   :alt: Task Details: save button
 .. |how-to-switch-to-edit-mode| image:: ../../screenshots/task-detail/how-to-switch-to-edit-mode.png
+   :alt: Task Details: button to switch to the edit mode
 .. |how-to-reset-to-default| image:: ../../screenshots/task-detail/how-to-reset-to-default.png
+   :alt: Task Details: button to reset to the default configurations
 .. |how-to-share-task-details| image:: ../../screenshots/task-detail/share-page-button.png
+   :alt: Task Details: button to get the shareable link of the task details
 .. |task-status-banner| image:: ../../screenshots/task-detail/task-status-banner.png
+   :alt: Task Details: the Status banner
