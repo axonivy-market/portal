@@ -67,6 +67,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   public void clickCancelButton() {
     $("a[id$='button-cancel']").shouldBe(getClickableCondition()).click();
+    switchToDefaultContent();
   }
 
   public void clickActionButton() {
