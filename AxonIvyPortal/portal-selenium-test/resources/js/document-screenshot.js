@@ -324,6 +324,10 @@ function highlightProcessMoreInformationLink() {
            return $(this);
   });
   
+  // highlight border over the button
+  // z-index value is random choice
+  displayingProcessItem.find(".process-more-info-link")[0].style.position = "relative";
+  displayingProcessItem.find(".process-more-info-link")[0].style.zIndex = "9";
   createRedMediumOutline(displayingProcessItem.find(".process-more-info-link"));
 }
 
