@@ -42,6 +42,8 @@ function highlightTopBar() {
   $(themeSwitchIcon).addClass("red-topbottom-medium-border");
   var chatItem = topMenu.find("li.topbar-item.chat-item");
   $(chatItem).addClass("red-topbottom-medium-border");
+  var notificationIcon = $("#open-notifications-panel")[0].parentElement;
+  $(notificationIcon).addClass("red-topbottom-medium-border");
   var userNameItem = topMenu.find("li.topbar-item.user-profile.setting-container");
   $(userNameItem).addClass("red-topbottomright-medium-border");
 }

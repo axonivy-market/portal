@@ -52,6 +52,7 @@ public class SettingScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(adminSettingsPage.getEditSettingDialogOfFirstRow(),
         ScreenshotUtils.SETTINGS_FOLDER + "edit-global-settings", new ScreenshotMargin(20));
     adminSettingsPage.closeEditSettingDialog();
+    refreshPage();
 
     adminSettingsPage.openAnnouncementTab();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingContainer(),
