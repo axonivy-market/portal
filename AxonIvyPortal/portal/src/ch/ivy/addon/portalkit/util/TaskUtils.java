@@ -217,10 +217,12 @@ public final class TaskUtils {
   }
 
   public static void handleStartTask(ITask task, PortalPage portalpage, String dialog) throws IOException {
-    if (task.getState() == TaskState.RESUMED) {
-      handleStartResumedTask(task, dialog);
+    // refresh task
+    ITask taskToStart = Ivy.wf().findTask(task.getId());
+    if (taskToStart.getState() == TaskState.RESUMED) {
+      handleStartResumedTask(taskToStart, dialog);
     } else {
-      startTask(task, portalpage);
+      startTask(taskToStart, portalpage);
     }
   }
 
