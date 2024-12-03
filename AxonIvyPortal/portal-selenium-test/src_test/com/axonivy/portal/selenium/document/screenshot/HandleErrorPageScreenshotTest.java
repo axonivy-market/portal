@@ -25,7 +25,7 @@ public class HandleErrorPageScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotErrorPages() throws IOException {
-    ScreenshotUtils.resizeBrowser(new Dimension(1200, 800));
+    ScreenshotUtils.resizeBrowser(new Dimension(1280, 720));
     redirectToRelativeLink(portalCustomErrorUrl);
     $("[id$=':test-error-method']").shouldBe(exist, DEFAULT_TIMEOUT).shouldBe(visible, DEFAULT_TIMEOUT).click();
     $(".notification-container").shouldBe(appear, DEFAULT_TIMEOUT);
