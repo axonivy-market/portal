@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class SearchResultPage extends TemplatePage {
@@ -63,7 +64,7 @@ public class SearchResultPage extends TemplatePage {
 
   public int countCase() {
     waitCaseWidgetLoaded();
-    List<SelenideElement> caseItems = $$("li[class='ui-datascroller-item']");
+    ElementsCollection caseItems = $$("li[class='ui-datascroller-item']");
     return caseItems.size();
   }
 
