@@ -253,7 +253,8 @@ public class TaskTemplatePage extends TemplatePage {
 
   public void clickCancelAndLeftButton() {
     waitForElementClickableThenClick("a[id$='button-cancel']");
-    switchToDefaultContent();
+    clickByJavaScript($(By.linkText("Cancel")));
+    switchBackToParent();
   }
 
   public int countSideSteps() {

@@ -60,7 +60,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
     taskTemplatePage.switchToIFrameOfTask();
     taskTemplatePage.clickCancelButton();
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));
-    // taskTemplatePage.switchToDefaultContent();
+    taskTemplatePage.switchToDefaultContent();
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForGrowlMessageDisplayClearly();
     ScreenshotUtils
