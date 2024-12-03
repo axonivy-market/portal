@@ -108,8 +108,6 @@ public class CaseMapPage extends TemplatePage {
     $("button[id$='form:submit-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     switchBackToParent();
-    // return new NewDashboardPage();
-    // $("button[id$='form:submit-button']").shouldBe(getClickableCondition()).click();
     return NavigationHelper.navigateToTaskList();
   }
 
@@ -143,5 +141,8 @@ public class CaseMapPage extends TemplatePage {
     return getValidationMsg();
   }
 
+  public void waitForCollectPersonalDataFormVisible() {
+    $("form[id='form']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
 
 }

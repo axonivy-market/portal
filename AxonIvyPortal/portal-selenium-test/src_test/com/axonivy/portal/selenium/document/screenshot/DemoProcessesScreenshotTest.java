@@ -74,6 +74,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     LeaveRequestPage leaveRequestPage = new LeaveRequestPage();
     leaveRequestPage.switchToIFrameOfTask();
     leaveRequestPage.waitForIFrameContentVisible();
+    leaveRequestPage.waitForLeaveRequestFormVisible();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "leave-request-creation");
   }
 
@@ -84,6 +85,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     CaseMapPage caseMapPage = new CaseMapPage();
     caseMapPage.switchToIFrameOfTask();
     caseMapPage.waitForIFrameContentVisible();
+    caseMapPage.waitForCollectPersonalDataFormVisible();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-collect-personal-data");
 
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
