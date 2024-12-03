@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Selenide.$$;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -68,14 +68,14 @@ public class AbsencePage extends TemplatePage {
   }
 
   public String getIAMDeputyFor() {
-    List<SelenideElement> noteAuthorElements = $$("tbody[id*='substitution-table_data'] > tr > td");
-    return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.joining());
+    ElementsCollection noteAuthorElements = $$("tbody[id*='substitution-table_data'] > tr > td");
+    return noteAuthorElements.asFixedIterable().stream().map(w -> w.getText()).collect(Collectors.joining());
   }
 
   public int indexOfDeputyRole(DeputyRoleType deputyRoleType) {
     String deputyRoleTypeSelector = ".substitute-table .substition-role-type";
-    List<SelenideElement> elements = $$(deputyRoleTypeSelector);
-    if (CollectionUtils.isNotEmpty(elements)) {
+    ElementsCollection elements = $$(deputyRoleTypeSelector);
+    if (!elements.isEmpty()) {
       for (int index = 0; index < elements.size(); index++) {
         SelenideElement element = elements.get(index);
         String deputyRoleTypeValue = element.getAttribute("deputy-role-type");

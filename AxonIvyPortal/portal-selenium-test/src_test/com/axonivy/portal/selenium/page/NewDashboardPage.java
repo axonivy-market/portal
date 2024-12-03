@@ -6,8 +6,6 @@ import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -971,7 +969,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public int findNumberOfNotificationsItem(WebElement notificationsPanel) {
-    List<SelenideElement> item = $$(".ui-datascroller-item");
+    ElementsCollection item = $$(".ui-datascroller-item");
     return item.size();
   }
 

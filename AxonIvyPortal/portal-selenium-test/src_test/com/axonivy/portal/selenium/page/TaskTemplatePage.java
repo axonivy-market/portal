@@ -5,7 +5,6 @@ import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import java.util.List;
 import java.util.stream.IntStream;
 
 import org.openqa.selenium.By;
@@ -15,6 +14,7 @@ import org.openqa.selenium.WebElement;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class TaskTemplatePage extends TemplatePage {
@@ -169,7 +169,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public Integer getTaskRowIndex(String taskName) {
-    List<SelenideElement> taskNames = $$(".task-name-value");
+    ElementsCollection taskNames = $$(".task-name-value");
     int taskIndex = IntStream.range(0, taskNames.size()).filter(i -> taskNames.get(i).getText().equals(taskName))
         .findFirst().getAsInt();
     return taskIndex;
