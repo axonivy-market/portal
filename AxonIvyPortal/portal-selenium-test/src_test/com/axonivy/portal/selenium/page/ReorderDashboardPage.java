@@ -4,12 +4,13 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 
-import com.codeborne.selenide.DragAndDropOptions;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
+
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class ReorderDashboardPage extends TemplatePage {
-  private static final String ID_SELECTOR_PATTERN = "[id$='%s']";
-
   @Override
   protected String getLoadedLocator() {
     return "i.dashboard-icon-drag-drop";
@@ -28,8 +29,14 @@ public class ReorderDashboardPage extends TemplatePage {
   }
 
   private void dragAndDropTo(SelenideElement toRow, SelenideElement fromRow) {
-    var targetCssSelector = String.format(ID_SELECTOR_PATTERN, toRow.getAttribute("id"));
-    fromRow.dragAndDropTo(targetCssSelector, DragAndDropOptions.usingActions());
+    SelenideElement targetCssSelector = $("[id$='" + toRow.getAttribute("id") + "']");
+    Actions builder = new Actions(WebDriverRunner.getWebDriver());
+    Action dragAndDrop = builder.clickAndHold(fromRow).pause(500)
+        .moveToElement(targetCssSelector, 50, 20).pause(500).release(targetCssSelector)
+        .pause(500)
+        .build();
+    dragAndDrop.perform();
+
   }
 
   public void reorderPublicDashboard(String fromDashboardName, String toDashboardName) {
