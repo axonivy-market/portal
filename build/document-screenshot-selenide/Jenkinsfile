@@ -1,8 +1,12 @@
 pipeline {
-  agent {label 'vu-pc'}
+  agent {label 'portal-slave'}
 
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
+  }
+
+  triggers {
+    cron('0 15 * * *')
   }
 
   tools {
