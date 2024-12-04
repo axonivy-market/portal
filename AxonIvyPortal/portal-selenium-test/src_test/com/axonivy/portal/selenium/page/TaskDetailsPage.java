@@ -311,6 +311,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void clickBackButton() {
+    $("[id$=':task-detail-title-form:back-to-previous-page']").scrollIntoView(false);
     waitForElementClickableThenClick($("[id$=':task-detail-title-form:back-to-previous-page']"));
   }
 
@@ -329,6 +330,11 @@ public class TaskDetailsPage extends TemplatePage {
     });
     switchToIFrameOfTask();
     return new TaskIFrameTemplatePage();
+  }
+
+  public CaseDetailsPage clickStartTaskWithoutDialog() {
+    $("[id$=':task-detail-start-command']").shouldBe(appear).click();
+    return new CaseDetailsPage();
   }
 
   public void changePriorityOfTask(int priorityValue) {

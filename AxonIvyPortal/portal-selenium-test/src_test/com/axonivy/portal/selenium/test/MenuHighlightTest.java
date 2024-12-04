@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
 import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -27,6 +28,14 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 @IvyWebTest
 public class MenuHighlightTest extends BaseTest {
 
+  private static final String MAIN_MENU_PROCESS = ".*main-menu_process_1";
+  private static final String DASHBOARD_PARENT_DASHBOARD_PATTERN = ".*DASHBOARD-parent-dashboard";
+  private static final String DEFAULT_CASE_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN =
+      ".*default-case-list-dashboard-main-dashboard";
+  private static final String DASHBOARD_0_PARENT_DASHBOARD_PATTERN = ".*dashboard_0-parent-dashboard";
+  private static final String DEFAULT_TASK_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN =
+      ".*default-task-list-dashboard-main-dashboard";
+
   @Override
   @BeforeEach
   public void setup() {
@@ -36,71 +45,53 @@ public class MenuHighlightTest extends BaseTest {
   }
 
   @Test
-  public void testHighlightTaskList() {
-    executeHighlightMenuScenario();
-    assertMenuHighlighted(".*dashboard_0-parent-dashboard");
-
-  }
-
-  private void executeHighlightMenuScenario() {
-    NavigationHelper.navigateToTaskList();
-    $("li[id$='default-task-list-dashboard-main-dashboard']").shouldHave(Condition.cssClass("active-menuitem"));
-    assertTaskListMenuHighlighted();
-    TopMenuTaskWidgetPage taskWidgetPage = new TopMenuTaskWidgetPage();
-    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrameByIndex(0);
-    getMenuItems().shouldBe(size(0));
-    taskTemplatePage.clickOnCancelButton();
-    ElementsCollection menuItems = getMenuItems();
-    menuItems.shouldBe(size(1));
-    taskWidgetPage = new TopMenuTaskWidgetPage();
-    TaskDetailsPage taskDetailsPage = taskWidgetPage.openDashboardTaskDetails("Categoried Leave Request");
-    assertTaskListMenuHighlighted();
-    taskDetailsPage.gotoBusinessCase();
-    CaseDetailsPage caseDetailsPage = new CaseDetailsPage();
-    assertTaskListMenuHighlighted();
-    caseDetailsPage.clickBackButton();
-    taskDetailsPage = new TaskDetailsPage();
-    assertTaskListMenuHighlighted();
-    $("[id$=':task-detail-title-form:back-to-previous-page']").scrollIntoView(false);
-    taskDetailsPage.clickBackButton();
-    taskWidgetPage = new TopMenuTaskWidgetPage();
-    assertTaskListMenuHighlighted();
-    $(".sidebar-logo").shouldBe(Condition.appear).click();
-  }
-
-  private void assertTaskListMenuHighlighted() {
-    assertMenuHighlighted(".*default-task-list-dashboard-main-dashboard");
-  }
-
-  private void assertMenuHighlighted(String highlightedMenuItemPattern) {
-    ElementsCollection menuItems = getMenuItems();
-    menuItems.shouldBe(size(1));
-    menuItems.first().shouldHave(Condition.attributeMatching("id", highlightedMenuItemPattern));
-  }
-  private ElementsCollection getMenuItems() {
-    return $$("ul[id$=':main-menu'] > li.active-menuitem").filter(Condition.appear);
-  }
-
-  @Test
-  public void testHighlightDefaultMenu() {
-    showNewDashboard();
-    assertMenuHighlighted(".*dashboard_0-parent-dashboard");
+  public void testHighlightDefaultMenus() {
+    assertMenuHighlighted(DASHBOARD_0_PARENT_DASHBOARD_PATTERN);
     MainMenuPage menuPage = new MainMenuPage();
     menuPage.selectProcessesMenu();
-    assertMenuHighlighted(".*main-menu_process_1");
-    menuPage.selectTaskMenu();
-    assertTaskListMenuHighlighted();
+    assertMenuHighlighted(MAIN_MENU_PROCESS);
+    menuPage.clickTaskMenu();
+    assertMenuHighlighted(DEFAULT_TASK_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
     menuPage.selectCaseMenu();
-    assertMenuHighlighted(".*default-case-list-dashboard-main-dashboard");
+    assertMenuHighlighted(DEFAULT_CASE_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
     menuPage.selectDashboardMenu();
-    assertMenuHighlighted(".*dashboard_0-parent-dashboard");
+    assertMenuHighlighted(DASHBOARD_0_PARENT_DASHBOARD_PATTERN);
+    NavigationHelper.navigateToProcessList();
+    assertMenuHighlighted(MAIN_MENU_PROCESS);
+    NavigationHelper.navigateToTaskList();
+    assertMenuHighlighted(DEFAULT_TASK_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
+    NavigationHelper.navigateToCaseList();
+    assertMenuHighlighted(DEFAULT_CASE_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
+    createJSonFile("complex-dashboard.json", PortalVariable.DASHBOARD.key);
+    clickLogo();
+    assertMenuHighlighted(DASHBOARD_PARENT_DASHBOARD_PATTERN);
+    $("li[id$='1-sub-dashboard'].active-menuitem").shouldBe(Condition.appear);
   }
 
   @Test
-  public void testHighlightMenu() {
+  public void testHighlightTaskListWithoutSubDashboards() {
+    executeHighlightMenuScenario();
+    assertMenuHighlighted(DASHBOARD_0_PARENT_DASHBOARD_PATTERN);
+  }
+
+  @Test
+  public void testHighlightTaskListWithSubDashboards() {
     createJSonFile("complex-dashboard.json", PortalVariable.DASHBOARD.key);
     executeHighlightMenuScenario();
-    assertMenuHighlighted(".*DASHBOARD-parent-dashboard");
+    assertMenuHighlighted(DASHBOARD_PARENT_DASHBOARD_PATTERN);
+  }
+
+  @Test
+  public void testHighlightCaseList() {
+    new NewDashboardPage();
+    MainMenuPage menuPage = new MainMenuPage();
+    CaseWidgetNewDashBoardPage caseListPage = menuPage.selectCaseMenu();
+    assertMenuHighlighted(DEFAULT_CASE_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
+    CaseDetailsPage caseDetailsPage = caseListPage.openDetailsFirstCase();
+    assertMenuHighlighted(DEFAULT_CASE_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
+    caseDetailsPage.clickBackButton();
+    caseListPage = new CaseWidgetNewDashBoardPage();
+    assertMenuHighlighted(DEFAULT_CASE_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
   }
 
   @Test
@@ -113,5 +104,68 @@ public class MenuHighlightTest extends BaseTest {
     profilePage.changeNewDashboardPageToCase();
     profilePage.saveWithoutWaitingNavigation();
     new CaseWidgetNewDashBoardPage();
+    MainMenuPage menuPage = new MainMenuPage();
+    menuPage.clickTaskMenu();
+    assertMenuHighlighted(DEFAULT_TASK_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
+    TopMenuTaskWidgetPage taskWidgetPage = new TopMenuTaskWidgetPage();
+    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrameByIndex(0);
+    getActiveMenuItems().shouldBe(size(0));
+    taskTemplatePage.clickOnCancelButton();
+    ElementsCollection menuItems = getActiveMenuItems();
+    menuItems.shouldBe(size(1));
+    redirectToRelativeLink(createAlphaCompanyUrl);
+    new CaseWidgetNewDashBoardPage();
+    assertMenuHighlighted(DEFAULT_CASE_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
+    menuPage.clickTaskMenu();
+    $("td.dashboard-tasks__state").shouldBe(Condition.text("Open"));
+    taskWidgetPage.startTask(0);
+    $("td.dashboard-tasks__state").shouldBe(Condition.text("Done"));
+    taskWidgetPage.getTheFirstTaskWidgetByColumn("State").shouldHave(Condition.text("Done"));
+    assertMenuHighlighted(DEFAULT_TASK_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
+    clickLogo();
+    assertMenuHighlighted(DEFAULT_CASE_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
+  }
+
+  private void executeHighlightMenuScenario() {
+    NavigationHelper.navigateToTaskList();
+    assertMenuHighlighted(DEFAULT_TASK_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
+    TopMenuTaskWidgetPage taskWidgetPage = new TopMenuTaskWidgetPage();
+    TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrameByIndex(0);
+    getActiveMenuItems().shouldBe(size(0));
+    taskTemplatePage.clickOnCancelButton();
+    ElementsCollection menuItems = getActiveMenuItems();
+    menuItems.shouldBe(size(1));
+    taskWidgetPage = new TopMenuTaskWidgetPage();
+    TaskDetailsPage taskDetailsPage = taskWidgetPage.openDashboardTaskDetails("Categoried Leave Request");
+    assertMenuHighlighted(DEFAULT_TASK_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
+    taskDetailsPage.gotoBusinessCase();
+    CaseDetailsPage caseDetailsPage = new CaseDetailsPage();
+    assertMenuHighlighted(DEFAULT_TASK_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
+    caseDetailsPage.clickBackButton();
+    taskDetailsPage = new TaskDetailsPage();
+    assertMenuHighlighted(DEFAULT_TASK_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
+    taskDetailsPage.clickBackButton();
+    taskWidgetPage = new TopMenuTaskWidgetPage();
+    assertMenuHighlighted(DEFAULT_TASK_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
+    redirectToRelativeLink(createAlphaCompanyUrl);
+    NavigationHelper.navigateToTaskList();
+    taskDetailsPage = taskWidgetPage.openDashboardTaskDetails("Alpha Company");
+    taskDetailsPage.clickStartTaskWithoutDialog();
+    getActiveMenuItems().shouldBe(size(0));
+    clickLogo();
+  }
+
+  private void assertMenuHighlighted(String highlightedMenuItemPattern) {
+    ElementsCollection menuItems = getActiveMenuItems();
+    menuItems.shouldBe(size(1));
+    menuItems.first().shouldHave(Condition.attributeMatching("id", highlightedMenuItemPattern));
+  }
+
+  private ElementsCollection getActiveMenuItems() {
+    return $$("ul[id$=':main-menu'] > li.active-menuitem").filter(appear);
+  }
+
+  private void clickLogo() {
+    $(".sidebar-logo").shouldBe(appear).click();
   }
 }
