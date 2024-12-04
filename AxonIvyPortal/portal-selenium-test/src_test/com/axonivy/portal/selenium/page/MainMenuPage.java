@@ -79,6 +79,14 @@ public class MainMenuPage extends TemplatePage {
         .map(SelenideElement::getText).collect(Collectors.toList()));
   }
 
+
+  public TaskWidgetNewDashBoardPage clickTaskMenu() {
+    $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
+    WaitHelper.waitForNavigation(() -> $(By.cssSelector("li[id$='default-task-list-dashboard-main-dashboard']"))
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    return new TaskWidgetNewDashBoardPage();
+  }
+  
   public CaseWidgetNewDashBoardPage selectCaseMenu() {
     $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
     WaitHelper.waitForNavigation(() -> $(By.cssSelector("li[id$='default-case-list-dashboard-main-dashboard']"))
@@ -145,9 +153,11 @@ public class MainMenuPage extends TemplatePage {
     return isMenuItemDisplayed("Cases");
   }
 
-  public WorkingTaskDialogPageOfApplicationMenu selectDashboardMenu() {
-    waitForElementClickableThenClick(".layout-menu li[role='menuitem'] a.DASHBOARD");
-    return new WorkingTaskDialogPageOfApplicationMenu();
+  public NewDashboardPage selectDashboardMenu() {
+    $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
+    WaitHelper.waitForNavigation(() -> $(By.cssSelector("li[id$='dashboard_0-parent-dashboard']"))
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    return new NewDashboardPage();
   }
   
   public String getIconClassMainMenuEntryAsString() {
