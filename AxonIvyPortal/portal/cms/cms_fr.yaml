@@ -1,6 +1,6 @@
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
-    noCaseId: Aucun numéro de dossier n'a été indiqué
+    noCaseFound: Cas non trouvé ou vous n'avez pas la permission de voir ce cas.
     requestTabTitle: Demande
     statusTabTitle: Informations sur le dossier
   OpenTaskTemplate:

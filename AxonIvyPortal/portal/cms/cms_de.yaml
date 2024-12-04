@@ -1,6 +1,6 @@
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
-    noCaseId: Keine Vorgangs-ID spezifiziert
+    noCaseFound: Fall nicht gefunden oder Sie haben keine Berechtigung, diesen Fall zu sehen.
     requestTabTitle: Anfrage
     statusTabTitle: Vorgangsinformationen
   OpenTaskTemplate:
