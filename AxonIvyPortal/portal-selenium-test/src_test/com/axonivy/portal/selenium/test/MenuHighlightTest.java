@@ -50,7 +50,7 @@ public class MenuHighlightTest extends BaseTest {
     MainMenuPage menuPage = new MainMenuPage();
     menuPage.selectProcessesMenu();
     assertMenuHighlighted(MAIN_MENU_PROCESS);
-    menuPage.clickTaskMenu();
+    menuPage.selectTaskMenuItem();
     assertMenuHighlighted(DEFAULT_TASK_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
     menuPage.selectCaseMenu();
     assertMenuHighlighted(DEFAULT_CASE_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
@@ -105,7 +105,7 @@ public class MenuHighlightTest extends BaseTest {
     profilePage.saveWithoutWaitingNavigation();
     new CaseWidgetNewDashBoardPage();
     MainMenuPage menuPage = new MainMenuPage();
-    menuPage.clickTaskMenu();
+    menuPage.selectTaskMenuItem();
     assertMenuHighlighted(DEFAULT_TASK_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
     TopMenuTaskWidgetPage taskWidgetPage = new TopMenuTaskWidgetPage();
     TaskIFrameTemplatePage taskTemplatePage = taskWidgetPage.startTaskIFrameByIndex(0);
@@ -116,7 +116,7 @@ public class MenuHighlightTest extends BaseTest {
     redirectToRelativeLink(createAlphaCompanyUrl);
     new CaseWidgetNewDashBoardPage();
     assertMenuHighlighted(DEFAULT_CASE_LIST_DASHBOARD_MAIN_DASHBOARD_PATTERN);
-    menuPage.clickTaskMenu();
+    menuPage.selectTaskMenuItem();
     $("td.dashboard-tasks__state").shouldBe(Condition.text("Open"));
     taskWidgetPage.startTask(0);
     $("td.dashboard-tasks__state").shouldBe(Condition.text("Done"));

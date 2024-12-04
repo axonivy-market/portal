@@ -79,14 +79,6 @@ public class MainMenuPage extends TemplatePage {
         .map(SelenideElement::getText).collect(Collectors.toList()));
   }
 
-
-  public TaskWidgetNewDashBoardPage clickTaskMenu() {
-    $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
-    WaitHelper.waitForNavigation(() -> $(By.cssSelector("li[id$='default-task-list-dashboard-main-dashboard']"))
-        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
-    return new TaskWidgetNewDashBoardPage();
-  }
-  
   public CaseWidgetNewDashBoardPage selectCaseMenu() {
     $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
     WaitHelper.waitForNavigation(() -> $(By.cssSelector("li[id$='default-case-list-dashboard-main-dashboard']"))
@@ -159,7 +151,14 @@ public class MainMenuPage extends TemplatePage {
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
     return new NewDashboardPage();
   }
-  
+
+  public TaskWidgetNewDashBoardPage selectTaskMenuItem() {
+    $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
+    WaitHelper.waitForNavigation(() -> $(By.cssSelector("li[id$='default-task-list-dashboard-main-dashboard']"))
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    return new TaskWidgetNewDashBoardPage();
+  }
+
   public String getIconClassMainMenuEntryAsString() {
 	  return $("div[id='user-menu-required-login']").shouldBe(appear, DEFAULT_TIMEOUT)
 			  .$("li[id*='main-menu__js__DASHBOARD-parent-dashboard']").shouldBe(appear, DEFAULT_TIMEOUT)
