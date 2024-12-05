@@ -189,8 +189,8 @@
           </f:facet>
           <ui:insert name="caseDetails">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseFound')}"
-              rendered="#{caseWidgetBean.isHiddenCase(case) or case eq null}" styleClass="no-case-found"/>
-            <h:panelGroup id="case-details-panel" layout="block" rendered="#{!caseWidgetBean.isHiddenCase(case) and case ne null}"
+              rendered="#{caseWidgetBean.isHiddenCase(case) or !caseWidgetBean.isCaseFound(case)}" styleClass="no-case-found"/>
+            <h:panelGroup id="case-details-panel" layout="block" rendered="#{!caseWidgetBean.isHiddenCase(case) and caseWidgetBean.isCaseFound(case)}"
               styleClass="case-default-widget-container case-details case-details-panel">
               <div class="ui-g js-iframe-container">
                 <div class="ui-g-12 u-padding-0">
