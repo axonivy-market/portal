@@ -579,13 +579,11 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     taskWidget.filterTaskName(taskName, FilterOperator.IS);
     taskWidget.applyFilter();
 
-    newDashboardPage = new NewDashboardPage();
     newDashboardPage.startTask(0);
     TaskTemplatePage taskIframePage = new TaskTemplatePage();
     taskIframePage.switchToIFrameOfTask();
     taskIframePage.clickCancelAndLeftButton();
-    taskIframePage.switchBackToParent();
-    
+
     newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitForTaskWidgetLoaded();
     newDashboardPage.startTask(0);
