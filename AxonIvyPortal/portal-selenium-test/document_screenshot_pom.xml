@@ -6,8 +6,8 @@
   <version>9.1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
-    <build.plugin.version>12.0.0</build.plugin.version>
-    <ivy.engine.version>12.0.0</ivy.engine.version>
+    <build.plugin.version>12.0.0-SNAPSHOT</build.plugin.version>
+    <ivy.engine.version>12.0.1</ivy.engine.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <distributionManagement>
@@ -30,7 +30,7 @@
     <dependency>
       <groupId>com.axonivy.ivy.webtest</groupId>
       <artifactId>web-tester</artifactId>
-      <version>10.0.0</version>
+      <version>11.3.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

@@ -39,7 +39,7 @@ HowTo: Add a Third Party Application
 
 #. Enter its URL in :guilabel:`Link`, e.g. http://www.google.com.
 
-#. Click on :guilabel:`Ok`.
+#. Click on :guilabel:`Save`.
 
 .. _update-portal-settings:
 

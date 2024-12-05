@@ -322,7 +322,7 @@ public class TaskWidgetPage extends TemplatePage {
               "table[id$=':filter-input-form:state-selection'] div.ui-chkbox-box span.ui-chkbox-icon.ui-icon-blank"))
           .size() == labelList.size();
     });
-    List<SelenideElement> checkBoxList = getStateFilterPanel()
+    ElementsCollection checkBoxList = getStateFilterPanel()
         .$$(By.cssSelector("table[id$=':filter-input-form:state-selection'] div.ui-chkbox-box.ui-state-default"));
     statesSelectedIndex.forEach(index -> {
       waitForElementClickableThenClick(checkBoxList.get(index));
@@ -540,7 +540,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public boolean isTaskDelegateOptionDisable(String taskName) {
     int index = 1;
-    List<SelenideElement> taskElements = $$("span[id$=':task-item:task-name-component:task-name']");
+    ElementsCollection taskElements = $$("span[id$=':task-item:task-name-component:task-name']");
     for (int i = 0; i < taskElements.size(); i++) {
       if (taskElements.get(i).getText().equals(taskName)) {
         index = i;
@@ -590,7 +590,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getResponsibleOfTaskAt(int index) {
-    List<SelenideElement> responsibles = $$(".responsible-cell .name-after-avatar");
+    ElementsCollection responsibles = $$(".responsible-cell .name-after-avatar");
     return responsibles.get(index).getText();
   }
 
@@ -637,7 +637,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public boolean isCategoryColumnDisplayed() {
-    List<SelenideElement> taskCategoryCells = $$("span[id$=':task-category-cell']");
+    ElementsCollection taskCategoryCells = $$("span[id$=':task-category-cell']");
     for (SelenideElement categoryCell : taskCategoryCells) {
       if (categoryCell.isDisplayed()) {
         return true;
@@ -694,7 +694,7 @@ public class TaskWidgetPage extends TemplatePage {
       responsibleElement.click();
       responsibleElement.sendKeys(responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
-      List<SelenideElement> foundRoles = $$("span[id$='group-activator-select_panel'] .gravatar");
+      ElementsCollection foundRoles = $$("span[id$='group-activator-select_panel'] .gravatar");
       waitForElementClickableThenClick(foundRoles.get(0));
     } else {
       waitForElementDisplayed(By.cssSelector("input[id$='user-activator-select_input']"), true);
@@ -702,7 +702,7 @@ public class TaskWidgetPage extends TemplatePage {
       responsibleElement.click();
       responsibleElement.sendKeys(responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
-      List<SelenideElement> foundUsers = $$("span[id$='user-activator-select_panel'] .name-after-avatar");
+      ElementsCollection foundUsers = $$("span[id$='user-activator-select_panel'] .name-after-avatar");
       waitForElementClickableThenClick(foundUsers.get(0));
     }
     waitForElementClickableThenClick(By.cssSelector("button[id$='proceed-task-delegate-command']"));
