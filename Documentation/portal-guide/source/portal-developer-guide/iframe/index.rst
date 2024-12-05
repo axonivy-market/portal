@@ -25,14 +25,16 @@ How To Use
 
 Follow these steps to use the IFrame approach:
  
-#. **HTML Dialog Independence**  
-   Ensure your HTML User Dialog is independent of the **Portal**. You can use the ``frame-_x_`` template in the designer or your own custom template.  
-   **Portal** will automatically render it in an IFrame.
+#. **HTML Dialog Independence**
+
+   Ensure your HTML User Dialog is independent of the **Portal**. You can use the ``frame-_x_`` 
+   template in the designer or your own custom template. **Portal** will automatically render it in an IFrame.
 
 #. **Configuration Levels**  
    If you want custom behavior, configure at one of the following levels to open your tasks in an IFrame:
 
    - **Task Level**: Set the ``embedInFrame`` field in Task custom fields to:
+
      - ``true``: Start inside IFrame.
      - ``false``: Do not start inside IFrame.
      - Leave unset to use case or engine-level configuration.
@@ -40,13 +42,15 @@ Follow these steps to use the IFrame approach:
      |task-embedInFrame|
 
    - **Case Level**: Set the ``embedInFrame`` String field in Case custom fields to:
+
      - ``true``: Start inside IFrame.
      - ``false``: Do not start inside IFrame.
      - Leave unset to use engine-level configuration.
 
      |case-embedInFrame|
 
-   - **Engine Level**:  
+   - **Engine Level**:
+
      The **Portal Administrator** can globally configure all tasks to start inside IFrames by setting the ``Portal.EmbedInFrame`` value in the Portal settings.  
      Refer to :ref:`update-portal-settings`.
 
