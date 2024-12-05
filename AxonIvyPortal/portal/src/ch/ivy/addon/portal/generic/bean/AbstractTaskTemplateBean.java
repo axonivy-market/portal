@@ -159,7 +159,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   }
 
   public void generateCaseDetailInFrame(ICase currentCase) {
-    setCaseDetailsLink(PortalNavigator.buildPortalCaseDetailInFrameUrl(currentCase != null ? currentCase.uuid() : null));
+    setCaseDetailsLink(PortalNavigator.buildPortalCaseDetailInFrameUrl(currentCase != null ? currentCase.uuid() : ""));
   }
 
   public Long getIntervalForPollingWhenOpenCaseDetails() {
