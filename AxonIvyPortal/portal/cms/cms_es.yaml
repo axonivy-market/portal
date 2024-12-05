@@ -7,7 +7,7 @@ Categories:
     name: Flujo de trabajo exprés
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
-    noCaseId: No hay ID de caso especificado
+    noCaseFound: Caso no encontrado o no tienes permiso para ver este caso.
     requestTabTitle: Solicitud
     statusTabTitle: Información del caso
   CustomLinkGenerator:
