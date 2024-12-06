@@ -145,11 +145,20 @@ public class MainMenuPage extends TemplatePage {
     return isMenuItemDisplayed("Cases");
   }
 
-  public WorkingTaskDialogPageOfApplicationMenu selectDashboardMenu() {
-    waitForElementClickableThenClick(".layout-menu li[role='menuitem'] a.DASHBOARD");
-    return new WorkingTaskDialogPageOfApplicationMenu();
+  public NewDashboardPage selectDashboardMenu() {
+    $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
+    WaitHelper.waitForNavigation(() -> $(By.cssSelector("li[id$='dashboard_0-parent-dashboard']"))
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    return new NewDashboardPage();
   }
-  
+
+  public TaskWidgetNewDashBoardPage selectTaskMenuItem() {
+    $(By.id("left-menu")).shouldBe(appear, DEFAULT_TIMEOUT).hover().scrollTo();
+    WaitHelper.waitForNavigation(() -> $(By.cssSelector("li[id$='default-task-list-dashboard-main-dashboard']"))
+        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
+    return new TaskWidgetNewDashBoardPage();
+  }
+
   public String getIconClassMainMenuEntryAsString() {
 	  return $("div[id='user-menu-required-login']").shouldBe(appear, DEFAULT_TIMEOUT)
 			  .$("li[id*='main-menu__js__DASHBOARD-parent-dashboard']").shouldBe(appear, DEFAULT_TIMEOUT)
