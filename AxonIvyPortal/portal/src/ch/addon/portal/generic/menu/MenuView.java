@@ -91,6 +91,8 @@ public class MenuView implements Serializable {
     mainMenuModel = new DefaultMenuModel();
     mainMenuModel.getElements().add(buildDashboardItem()); // menuIndex = 0
 
+
+
     List<SubMenuItem> subMenuItems = PortalMenuNavigator.callSubMenuItemsProcess();
     int menuIndex = 1;
     for (SubMenuItem subMenu : subMenuItems) {

@@ -182,7 +182,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     } catch (PortalException e) {
       Ivy.log().error(e);
     }
-    DashboardUtils.addDefaultDashboardsIfMissing(collectedDashboards);
+    DashboardUtils.addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
     return collectedDashboards.stream()
         .filter(dashboard -> dashboard.getId().equals(selectedDashboardId)).collect(Collectors.toList());
   }

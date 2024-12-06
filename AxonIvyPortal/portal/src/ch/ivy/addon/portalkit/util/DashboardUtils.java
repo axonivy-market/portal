@@ -134,16 +134,12 @@ public class DashboardUtils {
   public static List<Dashboard> getPublicDashboards() {
     String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
     List<Dashboard> visibleDashboards = jsonToDashboards(dashboardJson);
-    addDefaultDashboardsIfMissing(visibleDashboards);
+    addDefaultTaskCaseListDashboardsIfMissing(visibleDashboards);
     setDashboardAsPublic(visibleDashboards);
     return visibleDashboards;
   }
 
-  public static void addDefaultDashboardsIfMissing(List<Dashboard> dashboards) {
-    List<Dashboard> dashboardsWithoutItem = dashboards.stream().filter(dashboard -> !dashboard.getIsTopMenu()).toList();
-    if (dashboardsWithoutItem.size() == 0) {
-      dashboards.add(0,DefaultDashboardUtils.getDefaultDashboard());
-    }
+  public static void addDefaultTaskCaseListDashboardsIfMissing(List<Dashboard> dashboards) {
     if (!hasDashboardWithId(dashboards, DEFAULT_CASE_LIST_DASHBOARD)) {
       dashboards.add(0, DefaultDashboardUtils.getDefaultCaseListDashboard());
     }
@@ -202,7 +198,7 @@ public class DashboardUtils {
       }
     }
     collectedDashboards.addAll(idToDashboard.values());
-    addDefaultDashboardsIfMissing(collectedDashboards);
+    addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
     return collectedDashboards;
   }
 
