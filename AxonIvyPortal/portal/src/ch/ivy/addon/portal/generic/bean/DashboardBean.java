@@ -91,40 +91,94 @@ public class DashboardBean implements Serializable {
     currentDashboardIndex = 0;
     dashboards = collectDashboards();
 
-
     if (isReadOnlyMode) {
-      MenuView menuView = (MenuView) ManagedBeans.get("menuView");
-      menuView.updateDashboardCache(dashboards);
+      updateDashboardCache();
     }
 
     if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())) {
-      updateSelectedDashboardIdFromSessionAttribute();
-      currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
-      selectedDashboard = dashboards.get(currentDashboardIndex);
-
-      String selectedDashboardName = selectedDashboard.getTitles().stream()
-          .filter(displayName -> displayName.getLocale().equals(Ivy.session().getContentLocale()))
-          .findFirst()
-          .orElseGet(() -> selectedDashboard.getTitles().get(0)).getValue();
-      setSelectedDashboardName(selectedDashboardName);
-      initShareDashboardLink(selectedDashboard);
-      // can not find dashboard by dashboard id session in view mode
-      if (StringUtils.isBlank(selectedDashboardId)
-          || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId())
-              && DashboardUtils.getDashboardsWithoutMenuItem().size() > 1)) {
-        DashboardUtils.storeDashboardInSession(selectedDashboard.getId());
-      }
-      if (isReadOnlyMode) {
-        DashboardUtils.highlightDashboardMenuItem(selectedDashboard.getId());
-      }
+      handleDashboardsWithoutMenuItem();
+    } else if (isRequestPathForMainOrDetailModification()) {
+      handleRequestPathSpecificDashboard();
     }
+
     buildWidgetModels(selectedDashboard);
+    initializeTaskBehavior();
+    buildClientStatisticApiUri();
+  }
+
+  /**
+   * Updates the dashboard cache in read-only mode.
+   */
+  private void updateDashboardCache() {
+    MenuView menuView = (MenuView) ManagedBeans.get("menuView");
+    menuView.updateDashboardCache(dashboards);
+  }
+
+  /**
+   * Handles the scenario where dashboards do not have menu items.
+   */
+  private void handleDashboardsWithoutMenuItem() {
+    updateSelectedDashboardIdFromSessionAttribute();
+    updateSelectedDashboard();
+    storeAndHighlightDashboardIfRequired();
+  }
+
+  /**
+   * Handles scenarios for specific request paths.
+   */
+  private void handleRequestPathSpecificDashboard() {
+    updateSelectedDashboardIdFromSessionAttribute();
+    updateSelectedDashboard();
+    storeAndHighlightDashboardIfRequired();
+  }
+
+  /**
+   * Updates the selected dashboard based on the session attribute and index.
+   */
+  private void updateSelectedDashboard() {
+    currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
+    selectedDashboard = dashboards.get(currentDashboardIndex);
+
+    String selectedDashboardName = selectedDashboard.getTitles().stream()
+        .filter(displayName -> displayName.getLocale().equals(Ivy.session().getContentLocale())).findFirst()
+        .orElseGet(() -> selectedDashboard.getTitles().get(0)).getValue();
+    setSelectedDashboardName(selectedDashboardName);
+    initShareDashboardLink(selectedDashboard);
+  }
+
+  /**
+   * Stores the dashboard ID in the session and highlights it if required.
+   */
+  private void storeAndHighlightDashboardIfRequired() {
+    if (StringUtils.isBlank(selectedDashboardId) || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId())
+        && DashboardUtils.getDashboardsWithoutMenuItem().size() > 1)) {
+        DashboardUtils.storeDashboardInSession(selectedDashboard.getId());
+    }
+    if (isReadOnlyMode) {
+        DashboardUtils.highlightDashboardMenuItem(selectedDashboard.getId());
+    }
+  }
+
+  /**
+   * Checks if the current request path matches the main or detail modification views.
+   *
+   * @return true if the request path matches, false otherwise
+   */
+  private boolean isRequestPathForMainOrDetailModification() {
+    String requestPath = Ivy.request().getRequestPath();
+    return requestPath.endsWith("/PortalMainDashboard.xhtml")
+        || requestPath.endsWith("/PortalDashboardDetailModification.xhtml");
+  }
+
+  /**
+   * Initializes the behavior for task clicks.
+   */
+  private void initializeTaskBehavior() {
     isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
-
-    buildClientStatisticApiUri();
   }
+
 
   private void buildClientStatisticApiUri() {
     this.clientStatisticApiUri = FacesContext.getCurrentInstance()
