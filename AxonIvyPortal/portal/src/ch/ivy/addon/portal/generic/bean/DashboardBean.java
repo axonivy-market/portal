@@ -92,49 +92,35 @@ public class DashboardBean implements Serializable {
     dashboards = collectDashboards();
 
     if (isReadOnlyMode) {
-      updateDashboardCache();
+      MenuView menuView = (MenuView) ManagedBeans.get("menuView");
+      menuView.updateDashboardCache(dashboards);
     }
 
-    if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())) {
-      handleDashboardsWithoutMenuItem();
-    } else if (isRequestPathForMainOrDetailModification()) {
-      handleRequestPathSpecificDashboard();
-    }
-
+    if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())
+        || isRequestPathForMainOrDetailModification()) {
+      updateSelectedDashboardIdFromSessionAttribute();
+      updateSelectedDashboard();
+      storeAndHighlightDashboardIfRequired();
+  }
     buildWidgetModels(selectedDashboard);
-    initializeTaskBehavior();
+    isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
+        .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
+        .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
+
     buildClientStatisticApiUri();
   }
 
-  /**
-   * Updates the dashboard cache in read-only mode.
-   */
-  private void updateDashboardCache() {
-    MenuView menuView = (MenuView) ManagedBeans.get("menuView");
-    menuView.updateDashboardCache(dashboards);
+  private void buildClientStatisticApiUri() {
+    this.clientStatisticApiUri = FacesContext.getCurrentInstance()
+        .getExternalContext().getRequestContextPath() + "/api/statistics/data";
   }
 
-  /**
-   * Handles the scenario where dashboards do not have menu items.
-   */
-  private void handleDashboardsWithoutMenuItem() {
-    updateSelectedDashboardIdFromSessionAttribute();
-    updateSelectedDashboard();
-    storeAndHighlightDashboardIfRequired();
+  private boolean isRequestPathForMainOrDetailModification() {
+    String requestPath = Ivy.request().getRequestPath();
+    return requestPath.endsWith("/PortalMainDashboard.xhtml")
+        || requestPath.endsWith("/PortalDashboardDetailModification.xhtml");
   }
 
-  /**
-   * Handles scenarios for specific request paths.
-   */
-  private void handleRequestPathSpecificDashboard() {
-    updateSelectedDashboardIdFromSessionAttribute();
-    updateSelectedDashboard();
-    storeAndHighlightDashboardIfRequired();
-  }
-
-  /**
-   * Updates the selected dashboard based on the session attribute and index.
-   */
   private void updateSelectedDashboard() {
     currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
     selectedDashboard = dashboards.get(currentDashboardIndex);
@@ -146,43 +132,14 @@ public class DashboardBean implements Serializable {
     initShareDashboardLink(selectedDashboard);
   }
 
-  /**
-   * Stores the dashboard ID in the session and highlights it if required.
-   */
   private void storeAndHighlightDashboardIfRequired() {
     if (StringUtils.isBlank(selectedDashboardId) || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId())
         && DashboardUtils.getDashboardsWithoutMenuItem().size() > 1)) {
-        DashboardUtils.storeDashboardInSession(selectedDashboard.getId());
+      DashboardUtils.storeDashboardInSession(selectedDashboard.getId());
     }
     if (isReadOnlyMode) {
-        DashboardUtils.highlightDashboardMenuItem(selectedDashboard.getId());
+      DashboardUtils.highlightDashboardMenuItem(selectedDashboard.getId());
     }
-  }
-
-  /**
-   * Checks if the current request path matches the main or detail modification views.
-   *
-   * @return true if the request path matches, false otherwise
-   */
-  private boolean isRequestPathForMainOrDetailModification() {
-    String requestPath = Ivy.request().getRequestPath();
-    return requestPath.endsWith("/PortalMainDashboard.xhtml")
-        || requestPath.endsWith("/PortalDashboardDetailModification.xhtml");
-  }
-
-  /**
-   * Initializes the behavior for task clicks.
-   */
-  private void initializeTaskBehavior() {
-    isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
-        .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
-        .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
-  }
-
-
-  private void buildClientStatisticApiUri() {
-    this.clientStatisticApiUri = FacesContext.getCurrentInstance()
-        .getExternalContext().getRequestContextPath() + "/api/statistics/data";
   }
 
   protected List<Dashboard> collectDashboards() {
