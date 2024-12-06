@@ -253,7 +253,7 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
       responsibleElement.click();
       responsibleElement.sendKeys(responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
-      List<SelenideElement> foundRoles = $$("span[id$='group-activator-select_panel'] .gravatar");
+      ElementsCollection foundRoles = $$("span[id$='group-activator-select_panel'] .gravatar");
       waitForElementClickableThenClick(foundRoles.get(0));
     } else {
       waitForElementDisplayed(By.cssSelector("input[id$='user-activator-select_input']"), true);
@@ -261,7 +261,7 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
       responsibleElement.click();
       responsibleElement.sendKeys(responsibleName);
       waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
-      List<SelenideElement> foundUsers = $$("span[id$='user-activator-select_panel'] .name-after-avatar");
+      ElementsCollection foundUsers = $$("span[id$='user-activator-select_panel'] .name-after-avatar");
       waitForElementClickableThenClick(foundUsers.get(0));
     }
     waitForElementClickableThenClick(By.cssSelector("button[id$='proceed-task-delegate-command']"));

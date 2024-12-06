@@ -299,18 +299,19 @@ public class TaskDetailsPage extends TemplatePage {
   public List<String> getTaskNoteHasAuthors() {
     ScreenshotUtils.resizeBrowser(new Dimension(2560, 1600));
     $("th.task-document-author").shouldBe(appear);
-    List<SelenideElement> noteAuthorElements =
+    ElementsCollection noteAuthorElements =
         $$("td.task-document-author .name-after-avatar").shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1));
-    return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
+    return noteAuthorElements.asFixedIterable().stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
   public List<String> getTaskNoteAuthors() {
-    List<SelenideElement> noteAuthorElements = $$("td.task-document-author .name-after-avatar")
+    ElementsCollection noteAuthorElements = $$("td.task-document-author .name-after-avatar")
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(0), DEFAULT_TIMEOUT);
-    return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
+    return noteAuthorElements.asFixedIterable().stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
   public void clickBackButton() {
+    $("[id$=':task-detail-title-form:back-to-previous-page']").scrollIntoView(false);
     waitForElementClickableThenClick($("[id$=':task-detail-title-form:back-to-previous-page']"));
   }
 
@@ -329,6 +330,11 @@ public class TaskDetailsPage extends TemplatePage {
     });
     switchToIFrameOfTask();
     return new TaskIFrameTemplatePage();
+  }
+
+  public CaseDetailsPage clickStartTaskWithoutDialog() {
+    $("[id$=':task-detail-start-command']").shouldBe(appear).click();
+    return new CaseDetailsPage();
   }
 
   public void changePriorityOfTask(int priorityValue) {

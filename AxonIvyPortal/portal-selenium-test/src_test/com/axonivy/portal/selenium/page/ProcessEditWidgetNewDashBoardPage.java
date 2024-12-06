@@ -435,7 +435,7 @@ public class ProcessEditWidgetNewDashBoardPage extends TemplatePage {
   public void dragAndDropProcess(int fromIndex, int toIndex) {
     SelenideElement processList = $("ul.ui-widget-content");
     processList.shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    List<SelenideElement> findAll = processList.findAll("li.ui-orderlist-item");
+    ElementsCollection findAll = processList.findAll("li.ui-orderlist-item");
     if (findAll.size() > toIndex) {
       SelenideElement fromElement = findAll.get(fromIndex)
           .$(".process-start-list-item").shouldBe(clickable(), DEFAULT_TIMEOUT);

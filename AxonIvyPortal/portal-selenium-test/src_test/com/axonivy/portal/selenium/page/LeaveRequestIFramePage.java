@@ -3,7 +3,6 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -13,7 +12,7 @@ import org.openqa.selenium.WebElement;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ElementsCollection;
 
 public class LeaveRequestIFramePage extends TaskTemplateIFramePage {
 
@@ -46,8 +45,8 @@ public class LeaveRequestIFramePage extends TaskTemplateIFramePage {
   }
 
   public String getValidationMsg() {
-    List<SelenideElement> messages = $$("span.ui-messages-error-summary");
-    return StringUtils.join(messages.stream().map(WebElement::getText).collect(Collectors.toList()), ",");
+    ElementsCollection messages = $$("span.ui-messages-error-summary");
+    return StringUtils.join(messages.asFixedIterable().stream().map(WebElement::getText).collect(Collectors.toList()), ",");
   }
 
   public void enterLeaveRequestInformation(String leaveType, String from, String to, String approver,

@@ -42,7 +42,6 @@ import com.axonivy.portal.selenium.page.WelcomeEditWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
@@ -354,10 +353,8 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     NewDashboardDetailsEditPage newDashboard = new NewDashboardDetailsEditPage();
     newDashboard.waitPageLoaded();
 
-    SelenideElement clientStatisticWidget = newDashboard.getStatisticWidgetConfigurationDialog();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-statistic-widget");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(clientStatisticWidget,
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-widget-configuration", new ScreenshotMargin(20));
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-widget-configuration");
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     homePage = new NewDashboardPage();
     ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetClientStatisticChart(0),

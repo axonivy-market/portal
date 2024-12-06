@@ -15,7 +15,7 @@
     <dependency>
       <groupId>com.axonivy.ivy.webtest</groupId>
       <artifactId>web-tester</artifactId>
-      <version>10.0.0</version>
+      <version>11.3.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>

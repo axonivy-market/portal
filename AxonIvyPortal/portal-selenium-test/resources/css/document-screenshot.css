@@ -1,3 +1,12 @@
+/*****CSS FOR DECORATE SCREENSHOT*****
+  THIS scrollbar-width is used to prevent
+  the gap on the right side when selenide taking screenshot
+  it only happens on Linux environment.
+*/
+html {
+  scrollbar-width: none;
+}
+
 /*****CSS FOR DECORATE SCREENSHOT******/
 .marker {
   position: absolute;

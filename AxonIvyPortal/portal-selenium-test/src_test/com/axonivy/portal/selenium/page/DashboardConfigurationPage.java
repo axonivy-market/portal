@@ -9,11 +9,14 @@ import java.util.List;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.DragAndDropOptions;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class DashboardConfigurationPage extends TemplatePage {
 
@@ -349,8 +352,14 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   private void dragAndDropTo(SelenideElement toRow, SelenideElement fromRow) {
-    var targetCssSelector = String.format("[id$='%s']", toRow.getAttribute("id"));
-    fromRow.dragAndDropTo(targetCssSelector, DragAndDropOptions.usingActions());
+    SelenideElement targetCssSelector = $("[id$='"+ toRow.getAttribute("id") + "']");
+    Actions builder = new Actions(WebDriverRunner.getWebDriver());
+    Action dragAndDrop = builder.clickAndHold(fromRow).pause(500)
+        .moveToElement(targetCssSelector, 50, 20).pause(500).release(targetCssSelector)
+        .pause(500)
+        .build();
+    dragAndDrop.perform();
+
   }
 
   public void reorderPublicDashboard(String fromDashboardName, String toDashboardName) {

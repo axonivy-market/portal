@@ -34,6 +34,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverConditions;
 import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.WebElementCondition;
 import com.codeborne.selenide.conditions.Not;
 
 public abstract class TemplatePage extends AbstractPage {
@@ -60,11 +61,11 @@ public abstract class TemplatePage extends AbstractPage {
     webdriver().shouldHave(WebDriverConditions.title(titleExpect));
   }
 
-  protected Condition getClickableCondition() {
+  protected WebElementCondition getClickableCondition() {
     return and("should be clickable", visible, exist);
   }
 
-  protected Condition clickable() {
+  protected WebElementCondition  clickable() {
     return and("should be clickable", visible, enabled);
   }
 
@@ -182,7 +183,7 @@ public abstract class TemplatePage extends AbstractPage {
     if (expected) {
       $(element).shouldBe(exist, DEFAULT_TIMEOUT);
     } else {
-      $(element).shouldBe(Not.exist, DEFAULT_TIMEOUT);
+      $(element).shouldNotBe(exist, DEFAULT_TIMEOUT);
     }
   }
 
