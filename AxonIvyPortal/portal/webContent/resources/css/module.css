@@ -716,6 +716,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   align-self: center;
 }
 
+.no-case-found {
+  margin-left: 21px;
+  font-size: var(--large-font-size);
+}
+
 .case-detail-section-title-container {
   display: flex;
 }

@@ -11,6 +11,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
+
 import com.axonivy.portal.enums.SearchScopeCaseField;
 import com.axonivy.portal.service.GlobalSearchService;
 
@@ -25,6 +26,7 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.exporter.Exporter;
+import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -221,8 +223,15 @@ public class CaseWidgetBean implements Serializable {
     }
     return result;
   }
-  
+
   public boolean isShowGlobalSearchScope() {
     return GlobalSearchService.getInstance().isShowGlobalSearchByCases();
+  }
+
+  public boolean isCaseFound(ICase caze) {
+    if (caze != null) {
+      return CaseService.newInstance().isCaseAccessible(caze.uuid());
+    }
+    return false;
   }
 }
