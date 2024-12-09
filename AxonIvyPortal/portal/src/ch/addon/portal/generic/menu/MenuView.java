@@ -150,13 +150,17 @@ public class MenuView implements Serializable {
     String mainMenuDisplayName = mainMenuEntryService.getNameInCurrentLocale();
     String mainMenuIcon = mainMenuEntryService.getMenuIcon();
 
-    var subItemDashboards = getSubItemDashboards();
+    List<Dashboard> subItemDashboards = getSubItemDashboards();
     if (subItemDashboards.size() > 1) {
       return buildDashboardGroupMenu(subItemDashboards, dashboardTitle, mainMenuDisplayName, mainMenuIcon,
           currentLanguage, dashboardLink);
+    } else if (subItemDashboards.size() == 1) {
+      Dashboard dashboard = subItemDashboards.getFirst();
+      String localizedTitle = getLocalizedTitle(dashboard, currentLanguage, dashboardTitle);
+      return buildSingleDashboardMenu(localizedTitle, dashboardId, dashboardLink, dashboard.getIcon());
     }
-
-    return buildSingleDashboardMenu(dashboardTitle, dashboardId, dashboardLink);
+    
+    return buildSingleDashboardMenu(dashboardTitle, "", dashboardLink, "");
   }
 
   private String determineDashboardLink() {
@@ -238,9 +242,11 @@ public class MenuView implements Serializable {
     }
   }
 
-  private MenuElement buildSingleDashboardMenu(String dashboardTitle, String dashboardId, String dashboardLink) {
+  private MenuElement buildSingleDashboardMenu(String dashboardTitle, String dashboardId, String dashboardLink,
+      String dashboardIcon) {
     var dashboardMenu = new PortalMenuBuilder(dashboardTitle, MenuKind.DASHBOARD, this.isWorkingOnATask)
-        .icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON).url(dashboardLink).workingTaskId(this.workingTaskId).build();
+        .icon(StringUtils.isNoneEmpty(dashboardIcon) ? dashboardIcon : PortalMenuItem.DEFAULT_DASHBOARD_ICON)
+        .url(dashboardLink).workingTaskId(this.workingTaskId).build();
 
     if (StringUtils.isBlank(dashboardId)) {
       dashboardId = dashboardMenu.getId();
