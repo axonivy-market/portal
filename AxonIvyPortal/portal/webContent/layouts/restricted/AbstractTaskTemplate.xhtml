@@ -160,14 +160,14 @@
             </h:panelGroup>
           </f:facet>
           <ui:insert name="caseDetails">
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}"
-              rendered="#{caseWidgetBean.isHiddenCase(case)}" />
-            <h:panelGroup id="case-details-panel" layout="block" rendered="#{!caseWidgetBean.isHiddenCase(case)}"
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseFound')}"
+              rendered="#{caseWidgetBean.isHiddenCase(case) or !caseWidgetBean.isCaseFound(case)}" styleClass="no-case-found" />
+            <h:panelGroup id="case-details-panel" layout="block" rendered="#{!caseWidgetBean.isHiddenCase(case) and caseWidgetBean.isCaseFound(case)}"
               styleClass="case-default-widget-container case-details case-details-panel">
               <div class="ui-g js-iframe-container">
                 <div class="ui-g-12 u-padding-0">
                   <iframe id="i-frame-case-details" src="#{taskTemplateBean.caseDetailsLink}"
-                    onload="setupHeightForIFrame();" class="case-information-frame  js-iFrame-case-details"
+                    onload="setupHeightForIFrame();" class="case-information-frame js-iFrame-case-details"
                     scrolling="no" frameborder="0"
                     title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/layouts/AbstractTaskTemplate/CaseDetailsIFrameTitle')}" />
                 </div>
