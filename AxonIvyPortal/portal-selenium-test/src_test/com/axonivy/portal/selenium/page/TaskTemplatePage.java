@@ -67,6 +67,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   public void clickCancelButton() {
     $("a[id$='button-cancel']").shouldBe(getClickableCondition()).click();
+    switchToDefaultContent();
   }
 
   public void clickActionButton() {
@@ -251,7 +252,8 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void clickCancelAndLeftButton() {
-    waitForElementClickableThenClick("a[id$='button-cancel']");
+    clickByJavaScript($(By.linkText("Cancel")));
+    switchBackToParent();
   }
 
   public int countSideSteps() {

@@ -205,18 +205,6 @@ public class TaskService {
     });
   }
 
-//  private TaskCategoryStatistic createTaskCategoryStatistic(Recordset recordSet) {
-//    TaskCategoryStatistic taskCategoryStatistic = new TaskCategoryStatistic();
-//    taskCategoryStatistic.setNumberOfTasksByCategory(new HashMap<>());
-//    if (recordSet != null) {
-//      recordSet.getRecords().forEach(record -> {
-//        long numberOfTasks = ((Number)(record.getField("COUNT"))).longValue();
-//        taskCategoryStatistic.getNumberOfTasksByCategory().put(record.getField("CATEGORY").toString(), numberOfTasks);
-//      });
-//    }
-//    return taskCategoryStatistic;
-//  }
-
   private ExpiryStatistic createExpiryTimeStampToCountMap(Recordset recordSet) throws ParseException {
       ExpiryStatistic expiryStatistic = new ExpiryStatistic();
       Map<Date, Long> numberOfTasksByExpiryTime = new HashMap<>();

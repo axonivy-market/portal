@@ -145,6 +145,7 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.startTask(0);
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
+    taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openFilterWidget();
     taskWidget.removeFilter(0);
     taskWidget.applyFilter();
