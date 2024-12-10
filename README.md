@@ -15,6 +15,7 @@ See the [LICENSE](LICENSE) file for license rights and limitations (Apache Licen
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 12.x.x  | :white_check_mark: |
 | 11.x.x  | :white_check_mark: |
 | 10.0.x  | :white_check_mark:  |
 |  8.0.x   | :white_check_mark: |
