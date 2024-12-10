@@ -1,12 +1,16 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 
 import org.primefaces.model.SortMeta;
+
+import com.axonivy.portal.components.ivydata.bo.IvyDocument;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -81,5 +85,15 @@ public class CaseTaskDocumentBean implements Serializable {
 
   public SortMeta getDocumentSortByCreationTimestamp() {
     return SortFieldUtil.buildSortMeta("creation.timestamp", true);
+  }
+  
+  public boolean canPreviewDocument(IvyDocument document) {
+    boolean enablePreviewSetting = GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ENABLE_DOCUMENT_PREVIEW);
+    if (document.getContentType().startsWith("image")) {
+      return enablePreviewSetting;
+    }
+    List<String> supportedPreview = Arrays.asList("application/pdf", "text/plain");
+    boolean isSupportedPreviewType = supportedPreview.contains(document.getContentType());
+    return enablePreviewSetting && isSupportedPreviewType;
   }
 }

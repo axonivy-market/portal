@@ -102,20 +102,24 @@
       "name" : "downloadDocument(IvyDocument)",
       "config" : {
         "callSignature" : "downloadDocument",
-        "result" : {
-          "params" : [
-            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
-          ],
-          "map" : {
-            "result.streamedContent" : "in.streamedContent"
-          }
-        },
         "input" : {
           "params" : [
             { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
           ],
           "map" : {
             "out.document" : "param.document"
+          },
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "out.isImage = param.document!= null && param.document.getContentType()!= null && StringUtils.startsWithIgnoreCase(param.document.getContentType(), \"image/\");"
+          ]
+        },
+        "result" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
+          ],
+          "map" : {
+            "result.streamedContent" : "in.streamedContent"
           }
         },
         "guid" : "1680301B2BFFF8D6"
