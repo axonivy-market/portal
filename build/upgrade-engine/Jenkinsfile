@@ -8,7 +8,7 @@ pipeline {
   }
 
   parameters {
-    choice(name: 'engine', choices: ['master','performanceTest'], description: 'Engine to choose e.g. master')
+    choice(name: 'engine', choices: ['portal','performanceTest'], description: 'Engine to choose e.g. 12')
   }
 
   stages {
@@ -17,8 +17,8 @@ pipeline {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
           today = new Date().format('dd-MM-yyyy_HH-mm')
-          config = [master:[engine: 'master', systemDatabase: 'AxonIvySystemDatabase-master'], 
-          performanceTest:[engine:'performance-master', systemDatabase: 'AxonIvySystemDatabase-performance-master']]
+          config = [portal:[engine: '12', systemDatabase: 'AxonIvySystemDatabase-12'], 
+          performanceTest:[engine:'performance-12', systemDatabase: 'AxonIvySystemDatabase-performance-12']]
           engineParentDir = '/var/tools/ivy/'
           engineDir = engineParentDir + config[params.engine]['engine']
           databaseBackupDir = '/var/database-backups/'
