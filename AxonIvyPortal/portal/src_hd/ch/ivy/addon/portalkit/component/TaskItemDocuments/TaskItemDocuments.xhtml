@@ -62,6 +62,13 @@
                   fileNameStyleClass="document-name"
                   fileSizeStyleClass="document-size" />
               </p:commandLink>
+              <p:commandLink id="preview-file" ariaLabel="Preview #{document.name}" styleClass="si si-view-1 Fright" style="position:absolute;top:2px;right:30px;"
+                actionListener="#{logic.downloadDocument(document)}"
+                update="#{cc.clientId}:preview-document-dialog"
+                oncomplete="PF('preview-document-dialog').show()">
+                <p:tooltip for="preview-file" trackMouse="true" hideEvent="mouseleave click"
+                  value="Preview #{document.name}" />
+              </p:commandLink>
               <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"
                 rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
                 styleClass="si si-remove Fright task-document-download" oncomplete="PF('document-deletion-dialog').show()">
@@ -121,6 +128,20 @@
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('document-upload-dialog').hide();" />
     </f:facet>
     <p:ajax event="close" global="false" listener="#{logic.resetMessageUploadDocument}" update="#{p:resolveFirstComponentWithId('upload-messages', view).clientId}" />
+  </p:dialog>
+  
+  <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)" header="Preview" modal="true" resizable="false" width="650"
+    showEffect="fade" hideEffect="fade" styleClass="case-upload-dialog" dynamic="true" fitViewport="true" responsive="true" height="700">
+    <div class="ui-g-12">
+      <p:media value="#{data.streamedContent}" width="100%" height="650" cache="false" id="media-content" player="pdf" rendered="#{!data.isImage}"/>
+      <p:graphicImage value="#{data.streamedContent}" stream="false" height="650" width="100%" rendered="#{data.isImage}" style="object-fit:contain"/>
+    </div>
+    <f:facet name="footer">
+    <div class="u-dialog-footer-actions-group">
+      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="preview-document-close-button" type="button"
+        icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('preview-document-dialog').hide();" />
+    </div>
+    </f:facet>
   </p:dialog>
 
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
