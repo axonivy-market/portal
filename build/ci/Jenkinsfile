@@ -44,7 +44,7 @@ pipeline {
         script {
           def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty("build.plugin.version")
           def utils = load 'build/common/utils.groovy'
-          def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':8000'
+          def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':8012'
           docker.build('deploy-modules-to-engine', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             for (module in builtModules) {
               maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.test.users=true"
