@@ -73,7 +73,6 @@ public class DashboardUtils {
         try {
           String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
           dashboards = jsonToDashboards(dashboardJson);
-          ensureDefaultIsTopMenu(dashboards);
           addDefaultTaskCaseListDashboardsIfMissing(dashboards);
           setDashboardAsPublic(dashboards);
         } catch (Exception e) {
@@ -167,6 +166,7 @@ public class DashboardUtils {
       JsonDashboardMigrator migrator = new JsonDashboardMigrator(mapper.readTree(dashboardJson));
       List<Dashboard> dashboards = BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Dashboard.class);
       dashboards.forEach(initDefaultPermission());
+
       return dashboards;
     } catch (JsonProcessingException e) {
       Ivy.log().error("Failed to parse dashboards from JSON: {0}", e);
@@ -314,16 +314,6 @@ public class DashboardUtils {
       if (BooleanUtils.isFalse(dashboard.getIsTopMenu())) {
         dashboard.setIsTopMenu(null);
       }
-    }
-  }
-
-  private static void ensureDefaultIsTopMenu(List<Dashboard> dashboards) {
-    if (dashboards != null) {
-      dashboards.forEach(dashboard -> {
-        if (dashboard.getIsTopMenu() == null) {
-          dashboard.setIsTopMenu(false);
-        }
-      });
     }
   }
 

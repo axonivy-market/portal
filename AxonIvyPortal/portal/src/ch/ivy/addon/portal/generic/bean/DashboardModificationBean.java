@@ -395,8 +395,8 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
       }
     }
     newDashboards.addAll(idToDashboard.values());
-    String dashboardsAsSJSON = BusinessEntityConverter.entityToJsonValue(newDashboards);
-    Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardsAsSJSON);
+
+    saveDashboards(newDashboards);
   }
 
   public void savePrivateArrangement() {
