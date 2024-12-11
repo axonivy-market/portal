@@ -69,13 +69,10 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
   protected void collectDashboardsForManagement() {
     this.dashboards = new ArrayList<>();
-    String dashboardInUserProperty = readDashboardBySessionUser();
     if (isPublicDashboard) {
-      this.dashboards = DashboardUtils.getPublicDashboards();
-      DashboardUtils.addDefaultTaskCaseListDashboardsIfMissing(this.dashboards);
-    } else if (StringUtils.isNoneEmpty(dashboardInUserProperty)) {
-      List<Dashboard> myDashboards = getVisibleDashboards(dashboardInUserProperty);
-      this.dashboards.addAll(myDashboards);
+      this.dashboards = DashboardUtils.getVisibleDashboards(true);
+    } else {
+      this.dashboards = DashboardUtils.getVisibleDashboards(false);
     }
   }
 
@@ -179,14 +176,6 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
     MenuView menuView = (MenuView) ManagedBeans.get("menuView");
     menuView.updateDashboardCache(DashboardUtils.collectDashboards());
-  }
-
-  private List<Dashboard> getVisibleDashboards(String dashboardJson) {
-    if (isPublicDashboard) {
-      return DashboardUtils.jsonToDashboards(dashboardJson);
-    } else {
-      return DashboardUtils.getVisibleDashboards(dashboardJson);
-    }
   }
 
   public void navigateToDashboardDetailsPage(String dashboardId) {

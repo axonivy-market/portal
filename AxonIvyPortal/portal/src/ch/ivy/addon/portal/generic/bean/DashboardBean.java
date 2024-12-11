@@ -45,7 +45,6 @@ import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
-import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
@@ -56,7 +55,6 @@ import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -139,18 +137,6 @@ public class DashboardBean implements Serializable {
     this.dashboardTemplates = DashboardUtils.getDashboardTemplates();
   }
 
-  protected List<Dashboard> jsonToDashboards(String dashboardJSON) {
-    List<Dashboard> mappingDashboards = BusinessEntityConverter.jsonValueToEntities(dashboardJSON, Dashboard.class);
-    for (Dashboard dashboard : mappingDashboards) {
-      if (CollectionUtils.isEmpty(dashboard.getPermissions())) {
-        ArrayList<String> defaultPermissions = new ArrayList<>();
-        defaultPermissions.add(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
-        dashboard.setPermissions(defaultPermissions);
-      }
-    }
-    return mappingDashboards;
-  }
-
   protected String readDashboardBySessionUser() {
     return currentUser().getProperty(PortalVariable.DASHBOARD.key);
   }
@@ -169,14 +155,8 @@ public class DashboardBean implements Serializable {
   }
 
   protected List<Dashboard> getVisiblePublicDashboards() {
-    String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
-    List<Dashboard> visibleDashboards = DashboardUtils.getVisibleDashboards(dashboardJson);
-    setDashboardAsPublic(visibleDashboards);
+    List<Dashboard> visibleDashboards = DashboardUtils.getVisibleDashboards(true);
     return visibleDashboards;
-  }
-
-  private void setDashboardAsPublic(List<Dashboard> visibleDashboards) {
-    visibleDashboards.stream().forEach(dashboard -> dashboard.setIsPublic(true));
   }
 
   public List<Dashboard> getDashboards() {

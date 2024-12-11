@@ -11,7 +11,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -28,13 +27,10 @@ import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
 import ch.ivy.addon.portalkit.configuration.Application;
-import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.MenuKind;
-import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -111,35 +107,9 @@ public class PortalMenuNavigator {
   }
 
   public static List<SubMenuItem> callSubMenuItemsProcess() {
-    Locale requestLocale = Ivy.session().getContentLocale();
-    String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
-    if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
-      Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
-    }
-    String sessionUserId = (String) Ivy.session().getAttribute(sessionIdAttribute);
-    IvyCacheService cacheService = IvyCacheService.getInstance();
-    PortalSubMenuItemWrapper portalSubMenuItemWrapper = null;
-    try {
-      portalSubMenuItemWrapper = (PortalSubMenuItemWrapper) cacheService
-          .getSessionCacheValue(IvyCacheIdentifier.PORTAL_MENU, sessionUserId).orElse(null);
-    } catch (ClassCastException e) {
-      cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_MENU, sessionUserId);
-    }
 
-    if (portalSubMenuItemWrapper == null || !requestLocale.equals(portalSubMenuItemWrapper.loadedLocale)) {
-      synchronized (PortalSubMenuItemWrapper.class) {
-        List<SubMenuItem> subMenuItems = new ArrayList<>();
-        try {
           subMenuItems = getSubmenuList();
-        } catch (Exception e) {
-          Ivy.log().error("Cannot load SubMenuItems {0}", e.getMessage());
-        }
-
-        portalSubMenuItemWrapper = new PortalSubMenuItemWrapper(requestLocale, subMenuItems);
-        cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_MENU, sessionUserId, portalSubMenuItemWrapper);
-      }
-    }
-    return portalSubMenuItemWrapper.portalSubMenuItems;
+    return subMenuItems;
   }
 
   public static void navigateToTargetPage(boolean isClickOnBreadcrumb, String destinationPage,
