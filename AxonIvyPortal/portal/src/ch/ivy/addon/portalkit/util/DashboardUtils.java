@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.Consumer;
@@ -21,12 +22,14 @@ import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemp
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
@@ -49,17 +52,72 @@ public class DashboardUtils {
   public final static String DEFAULT_CASE_LIST_DASHBOARD = "default-case-list-dashboard";
 
   public static List<Dashboard> getPublicDashboards() {
-    String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
-    List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
-    addDefaultTaskCaseListDashboardsIfMissing(dashboards);
-    setDashboardAsPublic(dashboards);
-    return dashboards;
+    Locale requestLocale = Ivy.session().getContentLocale();
+    String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
+    if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
+      Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
+    }
+    String sessionUserId = (String) Ivy.session().getAttribute(sessionIdAttribute);
+    IvyCacheService cacheService = IvyCacheService.getInstance();
+    PortalPublicDashboardWrapper portalPublicDashboardWrapper = null;
+    try {
+      portalPublicDashboardWrapper = (PortalPublicDashboardWrapper) cacheService
+          .getSessionCacheValue(IvyCacheIdentifier.PORTAL_PUBLIC_DASHBOARD, sessionUserId).orElse(null);
+    } catch (ClassCastException e) {
+      cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PUBLIC_DASHBOARD, sessionUserId);
+    }
+
+    if (portalPublicDashboardWrapper == null || !requestLocale.equals(portalPublicDashboardWrapper.loadedLocale)) {
+      synchronized (PortalPublicDashboardWrapper.class) {
+        List<Dashboard> dashboards = new ArrayList<>();
+        try {
+          String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
+          dashboards = jsonToDashboards(dashboardJson);
+          ensureDefaultIsTopMenu(dashboards);
+          addDefaultTaskCaseListDashboardsIfMissing(dashboards);
+          setDashboardAsPublic(dashboards);
+        } catch (Exception e) {
+          Ivy.log().error("Cannot load Public Dashboards {0}", e.getMessage());
+        }
+        portalPublicDashboardWrapper = new PortalPublicDashboardWrapper(requestLocale, dashboards);
+        cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_PUBLIC_DASHBOARD, sessionUserId,
+            portalPublicDashboardWrapper);
+      }
+    }
+    return portalPublicDashboardWrapper.dashboards();
   }
 
   public static List<Dashboard> getPrivateDashboards() {
-    String dashboardInUserProperty = readDashboardBySessionUser();
-    List<Dashboard> dashboards = jsonToDashboards(dashboardInUserProperty);
-    return dashboards;
+    Locale requestLocale = Ivy.session().getContentLocale();
+    String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
+    if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
+      Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
+    }
+    String sessionUserId = (String) Ivy.session().getAttribute(sessionIdAttribute);
+    IvyCacheService cacheService = IvyCacheService.getInstance();
+    PortalPrivateDashboardWrapper portalPrivateDashboardWrapper = null;
+    try {
+      portalPrivateDashboardWrapper = (PortalPrivateDashboardWrapper) cacheService
+          .getSessionCacheValue(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARD, sessionUserId).orElse(null);
+    } catch (ClassCastException e) {
+      cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARD, sessionUserId);
+    }
+
+    if (portalPrivateDashboardWrapper == null || !requestLocale.equals(portalPrivateDashboardWrapper.loadedLocale)) {
+      synchronized (PortalPublicDashboardWrapper.class) {
+        List<Dashboard> dashboards = new ArrayList<>();
+        try {
+          String dashboardInUserProperty = readDashboardBySessionUser();
+          dashboards = jsonToDashboards(dashboardInUserProperty);
+        } catch (Exception e) {
+          Ivy.log().error("Cannot load Public Dashboards {0}", e.getMessage());
+        }
+        portalPrivateDashboardWrapper = new PortalPrivateDashboardWrapper(requestLocale, dashboards);
+        cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARD, sessionUserId,
+            portalPrivateDashboardWrapper);
+      }
+    }
+    return portalPrivateDashboardWrapper.dashboards();
   }
 
   public static List<Dashboard> getVisibleDashboards(boolean isPublic) {
@@ -81,7 +139,7 @@ public class DashboardUtils {
       Dashboard currentDashboard = idToDashboard.remove(dashboardOrder.getDashboardId());
       if (dashboardOrder.isVisible() && currentDashboard != null) {
         collectedDashboards.add(currentDashboard);
-        }
+      }
     }
     collectedDashboards.addAll(idToDashboard.values());
     addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
@@ -102,7 +160,7 @@ public class DashboardUtils {
 
   private static List<Dashboard> jsonToDashboards(String dashboardJson) {
     if (StringUtils.isBlank(dashboardJson)) {
-        return new ArrayList<>();
+      return new ArrayList<>();
     }
     try {
       ObjectMapper mapper = new ObjectMapper();
@@ -122,7 +180,7 @@ public class DashboardUtils {
         ArrayList<String> defaultPermissions = new ArrayList<>();
         defaultPermissions.add(ISecurityConstants.TOP_LEVEL_ROLE_NAME);
         dashboard.setPermissions(defaultPermissions);
-        }
+      }
     };
   }
 
@@ -191,26 +249,21 @@ public class DashboardUtils {
   }
 
   public static void storeDashboardInSession(String dashboardId) {
-    Ivy.log().error("ADADA1" + dashboardId);
-    boolean isMain = isMainDashboard(dashboardId, true);
+    boolean isMain = isMainDashboard(dashboardId, false);
     storeDashboardInSession(dashboardId, isMain);
   }
 
   public static void storeDashboardInSession(String dashboardId, boolean isMainDashboard) {
     Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), dashboardId);
-
     if (!isMainDashboard) {
-
       Ivy.session().setAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.toString(), dashboardId);
     }
   }
 
   public static boolean isMainDashboard(String dashboardId, boolean defaultValue) {
     if (StringUtils.isEmpty(dashboardId)) {
-
       return false;
     }
-
     return collectMainDashboards().stream().filter(dashboard -> dashboardId.equals(dashboard.getId()))
         .map(Dashboard::getIsTopMenu).findFirst().orElse(defaultValue);
   }
@@ -263,4 +316,20 @@ public class DashboardUtils {
       }
     }
   }
+
+  private static void ensureDefaultIsTopMenu(List<Dashboard> dashboards) {
+    if (dashboards != null) {
+      dashboards.forEach(dashboard -> {
+        if (dashboard.getIsTopMenu() == null) {
+          dashboard.setIsTopMenu(false);
+        }
+      });
+    }
+  }
+
+  private record PortalPrivateDashboardWrapper(Locale loadedLocale, List<Dashboard> dashboards) {
+  }
+  private record PortalPublicDashboardWrapper(Locale loadedLocale, List<Dashboard> dashboards) {
+  }
+
 }

@@ -22,7 +22,6 @@ import com.axonivy.portal.components.util.HtmlUtils;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.service.DeepLTranslationService;
 
-import ch.addon.portal.generic.menu.MenuView;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -44,7 +43,6 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
@@ -88,12 +86,6 @@ public class DashboardBean implements Serializable {
   public void init() {
     currentDashboardIndex = 0;
     dashboards = collectDashboards();
-
-
-    if (isReadOnlyMode) {
-      MenuView menuView = (MenuView) ManagedBeans.get("menuView");
-      menuView.updateDashboardCache(dashboards);
-    }
 
     if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())) {
       updateSelectedDashboardIdFromSessionAttribute();

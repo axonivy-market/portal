@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.faces.context.FacesContext;
@@ -107,8 +106,8 @@ public class PortalMenuNavigator {
   }
 
   public static List<SubMenuItem> callSubMenuItemsProcess() {
-
-          subMenuItems = getSubmenuList();
+    List<SubMenuItem> subMenuItems = new ArrayList<>();
+    subMenuItems = getSubmenuList();
     return subMenuItems;
   }
 
@@ -124,9 +123,6 @@ public class PortalMenuNavigator {
       }
     }
     navigateToTargetPage(params);
-  }
-
-  private record PortalSubMenuItemWrapper(Locale loadedLocale, List<SubMenuItem> portalSubMenuItems) {
   }
 
   private static List<SubMenuItem> getSubmenuList() {
