@@ -57,7 +57,7 @@ public class DashboardCaseSearchCriteria {
       }
 
       if (to != null) {
-        subQuery.where().startTimestamp().isLowerOrEqualThan(DateUtils.addDays(to, 1));
+        subQuery.where().startTimestamp().isLowerThan(DateUtils.addDays(to, 1));
       }
       query.where().and(subQuery);
     }
@@ -226,7 +226,7 @@ public class DashboardCaseSearchCriteria {
       }
 
       if (to != null) {
-        filterQuery.timestampField(field).isLowerOrEqualThan(DateUtils.addDays(to, 1));
+        filterQuery.timestampField(field).isLowerThan(DateUtils.addDays(to, 1));
       }
     } else if (column.isText()) {
       queryTextField(filterQuery, field, configuredFilter);
@@ -250,7 +250,7 @@ public class DashboardCaseSearchCriteria {
       }
 
       if (to != null) {
-        subQuery.where().endTimestamp().isLowerOrEqualThan(DateUtils.addDays(to, 1));
+        subQuery.where().endTimestamp().isLowerThan(DateUtils.addDays(to, 1));
       }
       query.where().and(subQuery);
     }
