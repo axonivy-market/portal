@@ -1156,11 +1156,18 @@ ul.users-in-role {
 .options-panel .option-item:hover {
   text-decoration: none;
   color: var(--menu-action-hover-text-color);
-  background-color: var(--item-background-hover);
+}
+
+.options-panel .option-item:not(:last-child) {
+  border-bottom: 1px solid var(--ivy-primary-color-grey-pale);
 }
 
 .options-panel .pointer-event-none {
   pointer-events: none;
+}
+
+.task-additional-actions-panel {
+  border-top: 1px solid var(--ivy-primary-color-grey-medium);
 }
 
 .process-widget-action .name-sort-command,
