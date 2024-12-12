@@ -223,14 +223,14 @@
     </ui:define>
     
     <ui:define name="dialogFooter">
-      <h:form id="delete-process-workflow-form">
-        <p:link onclick="PF('remove-process-workflow-dialog').hide()" styleClass="u-mar-right-15"
+      <h:form id="delete-process-workflow-form" styleClass="flex flex-column">
+        <p:commandButton id="remove-process-command" global="false" process="@this" update="#{cc.clientId}:process-list"
+          styleClass="w-full portal-remove-button"
+          actionListener="#{processWidgetBean.deleteProcessWorkflow()}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+          oncomplete="PF('remove-process-workflow-dialog').hide(); updateProcessListOnSaveSuccessful();" />
+        <p:link onclick="PF('remove-process-workflow-dialog').hide()" styleClass="pt-3 flex justify-content-center"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           href="#" />
-        <p:commandButton id="remove-process-command" global="false" process="@this" update="#{cc.clientId}:process-list"
-          icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
-          actionListener="#{processWidgetBean.deleteProcessWorkflow()}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          oncomplete="PF('remove-process-workflow-dialog').hide(); updateProcessListOnSaveSuccessful();" />
       </h:form>
     </ui:define>
   </ui:decorate>

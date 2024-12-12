@@ -103,13 +103,14 @@
         <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/removeWidgetMessage')}" />
 
         <ui:define name="dialogFooter">
-          <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('remove-widget-dialog').hide();"
-            styleClass="u-mar-right-15" />
-          <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
-            actionListener="#{dashboardDetailModificationBean.removeWidget()}"
-            icon="#{visibilityBean.generateButtonIcon('si si-remove-circle')}"
-            process="@this"
-            oncomplete="PF('remove-widget-dialog').hide(); updateDashboardWidget(); return false;"/>
+          <h:panelGroup styleClass="flex flex-column">
+            <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+              actionListener="#{dashboardDetailModificationBean.removeWidget()}"
+              process="@this" styleClass="w-full portal-remove-button"
+              oncomplete="PF('remove-widget-dialog').hide(); updateDashboardWidget(); return false;"/>
+            <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('remove-widget-dialog').hide();"
+              styleClass="pt-3 flex justify-content-center" />
+           </h:panelGroup>
         </ui:define>
       </ui:decorate>
     </ui:define>
