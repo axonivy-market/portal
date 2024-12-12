@@ -52,7 +52,7 @@
       <p:dataTable id="dashboard-tasks" widgetVar="#{cc.attrs.taskWidgetVar}-#{taskWidget.id}" value="#{taskWidget.dataModel}" var="task"
         lazy="true" scrollRows="25"
         disabledSelection="#{isPreviewMode}"
-        liveScroll="true" scrollable="true" sortBy="#{taskWidget.sortBy}"
+        liveScroll="true" scrollable="true" sortBy="#{isResizing ? null : taskWidget.sortBy}"
         showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'u-display-none' : ''} #{isResizing ? 'js-resizing' : ''}"
@@ -62,11 +62,11 @@
         <p:ajax event="colResize" process="dashboard-tasks" global="false" partialSubmit="true"
           listener="#{dashboardDetailModificationBean.onResizeColumn}" disabled="#{!isResizing}" />
         <f:attribute name="widgetId" value="#{taskWidget.id}" />
-        <p:ajax event="sort" process="dashboard-tasks" onstart="liveScroll()" global="false"/>
+        <p:ajax event="sort" update="dashboard-tasks" onstart="liveScroll()" disabled="#{!isPreviewMode and !isReadOnlyMode}" />
 
         <p:columns id="dashboard-tasks-columns" var="column" value="#{taskWidget.columns}" styleClass="#{column.styleClass} #{(column.field eq 'start' or column.field eq 'name' or column.field eq 'actions') ? '' : 'u-hidden-sm-down'} widget-column-header"
           visible="#{column.visible}" field="#{column.field}" filterable="false"
-          sortBy="#{column.field}" sortable="#{column.sortable}"
+          sortBy="#{column.field}" sortable="#{(isPreviewMode or isReadOnlyMode) and column.sortable}"
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.styleToDisplay}">
 
           <f:facet name="header">
