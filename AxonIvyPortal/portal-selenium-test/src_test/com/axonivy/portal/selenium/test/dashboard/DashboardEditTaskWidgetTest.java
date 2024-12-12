@@ -181,19 +181,17 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
     newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage(YOUR_TASKS_WIDGET);
-
-    // sort by task name
-    taskWidget.clickOnTaskNameColumn();
-    taskWidget.getFirstTaskOfTaskWidget();
-    taskWidget.getFirstTaskOfTaskWidget().shouldHave(text(MATERNITY_LEAVE_REQUEST), DEFAULT_TIMEOUT);
-
-    configurationPage  = newDashboardDetailsEditPage.backToConfigurationPage();
-    configurationPage.openEditPublicDashboardsPage();
-    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    TaskEditWidgetNewDashBoardPage taskEditWidgetPage = taskWidget.openEditTaskWidget();
 
     // sort by task priority
-    taskWidget.clickOnTaskPriorityColumn();
-    taskWidget.getFirstTaskOfTaskWidget();
-    taskWidget.getFirstTaskOfTaskWidget().shouldHave(text(SICK_LEAVE_REQUEST), DEFAULT_TIMEOUT);
+    taskEditWidgetPage.clickOnTaskPriorityColumn();
+    taskEditWidgetPage.getFirstTaskOfTaskWidget();
+    taskEditWidgetPage.getFirstTaskOfTaskWidget().shouldHave(text(SICK_LEAVE_REQUEST), DEFAULT_TIMEOUT);
+
+    // sort by task name
+    taskEditWidgetPage.clickOnTaskNameColumn();
+    taskEditWidgetPage.getFirstTaskOfTaskWidget();
+    taskEditWidgetPage.getFirstTaskOfTaskWidget().shouldHave(text(MATERNITY_LEAVE_REQUEST), DEFAULT_TIMEOUT);
+
   }
 }

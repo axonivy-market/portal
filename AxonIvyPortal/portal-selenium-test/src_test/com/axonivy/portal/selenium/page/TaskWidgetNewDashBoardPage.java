@@ -468,13 +468,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getTheFirstTaskWidgetByColumn(String columnName) {
     return getColumnOfTaskHasIndex(0, columnName);
   }
-  
-  public SelenideElement getFirstTaskOfTaskWidget() {
-    // 0 is first index
-    $("div[id$='dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr").get(0).shouldBe(appear,
-        DEFAULT_TIMEOUT);
-    return $("div[id$='dashboard-tasks']").$$("table tbody tr").get(0);
-  }
 
   public SelenideElement getTaskEmptyMessage() {
     return $("[id$='dashboard-tasks-container'] [id$='empty-message-container']").shouldBe(appear, DEFAULT_TIMEOUT);
@@ -659,13 +652,5 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   
   public void clickOnWidgetFilterHeader() {
     $$("strong").filter(Condition.text("Filter options")).first().click();
-  }
-  
-  public void clickOnTaskNameColumn() {
-    $("th[id$='dashboard-tasks-columns:3']").shouldBe(getClickableCondition()).click();
-  }
-  
-  public void clickOnTaskPriorityColumn() {
-    $("th[id$='dashboard-tasks-columns:1']").shouldBe(getClickableCondition()).click();
   }
 }
