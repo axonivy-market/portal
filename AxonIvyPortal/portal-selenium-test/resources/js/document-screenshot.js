@@ -495,6 +495,10 @@ function highlightCaseExportToExcelButton() {
   createRedMediumOutline($("a[id$=':case-export-to-excel']"));
 }
 
+function highlightCasePreviewDocument(){
+  createRedMediumOutline($("a[id$=':preview-file']"));
+}
+
 function highlightProcessOverviewLink() {
   $(".task-detail-section-title").removeClass("u-truncate-text");
   $(".case-history-button-container").removeClass("u-truncate-text");

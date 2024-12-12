@@ -1024,5 +1024,9 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementClickableThenClick(showTaskNoteLink);
     return taskName;
   }
+
+  public boolean getFirstItemPreviewDocumentVisible() {
+    return $("a[id$=':0:preview-file']").exists();
+  }
 }
 
