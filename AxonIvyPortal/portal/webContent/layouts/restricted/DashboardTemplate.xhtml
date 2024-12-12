@@ -20,6 +20,8 @@
           }
 
           $(document).ready(function () {
+            loadGrid(#{managedBean.selectedDashboard.isResponsive});
+            updateDashboardWhenResizeWindow(#{managedBean.selectedDashboard.isResponsive});
             setTimeout(() => {
               initStatistics();
             }, 50);
@@ -48,7 +50,7 @@
 
         <h:form id="dashboard-remote-command-form" prependId="false">
           <h:inputHidden id="dashboard-view-mode" value="#{managedBean.isReadOnlyMode}"/>
-          <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid();dashboardToolKit.responsive(); initStatistics('#{managedBean.clientStatisticApiUri}');" />
+          <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid(#{managedBean.selectedDashboard.isResponsive});dashboardToolKit.responsive(); initStatistics('#{managedBean.clientStatisticApiUri}');" />
           <p:remoteCommand name="loadAllWidgetSavedFilters" actionListener="#{managedBean.loadAllWidgetSavedFilters()}"
             global="false" process="@this" immediate="true" partialSubmit="true"
             update="delete-saved-filter-form:quick-filter-table"
@@ -181,7 +183,7 @@
               <p:commandButton id="confirm-destruction-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
                icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
                actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
-               oncomplete="PF('destroy-task-dialog').hide();loadGrid(); initStatistics();"
+               oncomplete="PF('destroy-task-dialog').hide();loadGrid(#{managedBean.selectedDashboard.isResponsive}); initStatistics();"
                update="grid-stack dashboard-title-container" />
             </ui:define>
            </ui:decorate>
@@ -203,13 +205,13 @@
               <p:commandButton id="confirm-escalation-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
                icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
                actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
-               oncomplete="PF('escalation-task-dialog').hide();loadGrid();initStatistics();" update="grid-stack dashboard-title-container" />
+               oncomplete="PF('escalation-task-dialog').hide();loadGrid(#{managedBean.selectedDashboard.isResponsive});initStatistics();" update="grid-stack dashboard-title-container" />
             </ui:define>
            </ui:decorate>
            
            <!-- Delegate Task Dialog -->
            <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="dashboard-tasks-item-delegate"
-            taskId="#{taskWidgetBean.selectedTaskItemId}" componentToUpdate="grid-stack dashboard-title-container" onCompletedCallback="loadGrid(); initStatistics();"/>
+            taskId="#{taskWidgetBean.selectedTaskItemId}" componentToUpdate="grid-stack dashboard-title-container" onCompletedCallback="loadGrid(#{managedBean.selectedDashboard.isResponsive}); initStatistics();"/>
            
            <!-- Workflow Event of Task Dialog -->
            <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="dashboard-tasks-workflow-event"
@@ -231,7 +233,7 @@
             <p:commandButton id="confirm-destruction-dashboard-cases" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
               icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
               actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
-              oncomplete="PF('destroy-case-dialog').hide();loadGrid();initStatistics();"
+              oncomplete="PF('destroy-case-dialog').hide();loadGrid(#{managedBean.selectedDashboard.isResponsive});initStatistics();"
               update="grid-stack dashboard-title-container" />
            </ui:define>
           </ui:decorate>
@@ -308,7 +310,7 @@
 
           <h:panelGroup rendered="#{managedBean.isShowShareButtonOnDashboard() and not managedBean.isMainDashboardSelected()}" layout="block" styleClass="u-text-align-center">
             <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShareThisDashboard')}" 
-                  onclick="PF('share-dashboard-dialog').show(); return false;" />
+                  onclick="PF('share-dashboard-dialog').show(); return false;" styleClass="js-share-dashboard-link" />
           </h:panelGroup>
           <ic:com.axonivy.portal.component.ShareLinkDialog
             id="share-dashboard-component"
