@@ -52,3 +52,5 @@
    :width: 15px
 .. |share-icon| image:: ../includes/images/share.svg
    :width: 15px
+.. |preview-icon| image:: ../includes/images/view-1.svg
+   :width: 15px
