@@ -178,7 +178,7 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     var modificationPage = configurationPage.openEditPublicDashboardsPage();
-    newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
 
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage(YOUR_TASKS_WIDGET);
     TaskEditWidgetNewDashBoardPage taskEditWidgetPage = taskWidget.openEditTaskWidget();
