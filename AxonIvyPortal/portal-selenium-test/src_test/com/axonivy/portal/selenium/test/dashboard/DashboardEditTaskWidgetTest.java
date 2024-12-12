@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
+import static com.codeborne.selenide.Condition.text;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,10 +14,15 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.CollectionCondition;
 
 @IvyWebTest
 public class DashboardEditTaskWidgetTest extends BaseTest {
+  private static final String YOUR_TASKS_WIDGET = "Your Tasks";
+  private static final String MATERNITY_LEAVE_REQUEST = "Maternity Leave Request";
+  private static final String SICK_LEAVE_REQUEST = "Sick Leave Request";
+
   private NewDashboardDetailsEditPage newDashboardDetailsEditPage;
   
   @Override
@@ -164,5 +171,29 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
     taskWidget.inputValueOnLatestFilter(FilterValueType.RESPONSIBLE_TYPE, "costObject1");
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(0));
+  }
+  
+  @Test
+  public void testDefaultSortOnTaskWidget() {
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+
+    TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage(YOUR_TASKS_WIDGET);
+
+    // sort by task name
+    taskWidget.clickOnTaskNameColumn();
+    taskWidget.getFirstTaskOfTaskWidget();
+    taskWidget.getFirstTaskOfTaskWidget().shouldHave(text(MATERNITY_LEAVE_REQUEST), DEFAULT_TIMEOUT);
+
+    configurationPage  = newDashboardDetailsEditPage.backToConfigurationPage();
+    configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+
+    // sort by task priority
+    taskWidget.clickOnTaskPriorityColumn();
+    taskWidget.getFirstTaskOfTaskWidget();
+    taskWidget.getFirstTaskOfTaskWidget().shouldHave(text(SICK_LEAVE_REQUEST), DEFAULT_TIMEOUT);
   }
 }
