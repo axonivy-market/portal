@@ -18,6 +18,7 @@
     <h:form id="edit-process-form" styleClass="ui-g edit-process-form">
       <c:set var="process" value="#{processWidgetBean.editedProcess}" />
       <c:set var="processIcon" value="#{process.getIcon()}" />
+      <div style="display: none;" id="edit-external-link-error-message" />
       <div class="ui-g-12 edit-process-header-group u-no-padding-left u-no-padding-right">
         <div class="ui-g-12 u-padding-0">
           <p class="edit-process-header-sub-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}</p>
@@ -39,7 +40,7 @@
           <span class="u-mar-right-5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogEditInfoTitle', [process.getType().getLabel()])}</span>
         </p>
 
-        <p:messages styleClass="ui-g-12 u-padding-0">
+        <p:messages id="edit-external-link-error-message" styleClass="ui-g-12 u-padding-0">
           <p:autoUpdate />
         </p:messages>
 
@@ -197,7 +198,7 @@
         oncomplete="PF('edit-process-dialog').hide()"
         styleClass="u-mar-right-10" />
       <p:commandButton id="save-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
-        process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" update="#{cc.clientId}:edit-process-form"
+        process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" update="#{cc.clientId}:edit-process-form:edit-external-link-error-message"
         oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); updateProcessListOnSaveSuccessful();}" form="#{cc.clientId}:edit-process-form"/>
     </f:facet>
   </p:dialog>

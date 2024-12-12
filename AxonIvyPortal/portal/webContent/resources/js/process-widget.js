@@ -348,7 +348,7 @@ function handleUploadFileFail() {
 }
 
 function handleEditExternalLinkUploadFileFail() {
-  let errorMessageElement = document.getElementById('error-message');
+  let errorMessageElement = document.getElementById('edit-external-link-error-message');
   let uploadErrorElement = document.getElementsByClassName('ui-messages ui-widget ui-helper-hidden ui-fileupload-messages')[0];
   errorMessageElement.style.display = 'block';
   errorMessageElement.appendChild(uploadErrorElement);
