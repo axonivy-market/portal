@@ -788,7 +788,7 @@ body .ui-inputfield.case-detail-name-input {
   color: var(--menu-action-hover-text-color); }
 
 .action-steps-panel a.action-step-item:not(:last-child) {
-  border-bottom: 1px solid var(--ivy-primary-color-grey-pale);
+  border-bottom: 1px solid var(--option-item-border-color);
 }
 
 .case-state-in-progress {
@@ -1162,7 +1162,7 @@ ul.users-in-role {
 }
 
 .options-panel .option-item:not(:last-child) {
-  border-bottom: 1px solid var(--ivy-primary-color-grey-pale);
+  border-bottom: 1px solid var(--option-item-border-color);
 }
 
 .options-panel .pointer-event-none {
@@ -1170,7 +1170,7 @@ ul.users-in-role {
 }
 
 .task-additional-actions-panel, .case-side-steps-panel {
-  border-top: 1px solid var(--ivy-primary-color-grey-medium);
+  border-top: 1px solid var(--ivy-primary-color-grey-light);
 }
 
 .process-widget-action .name-sort-command,
@@ -1293,6 +1293,15 @@ color: var(--button-text-color);
 
 .portal-dialog-error-icon {
   color: var(--ivy-tertinary-color-red-medium);
+}
+
+.portal-remove-button {
+  background-color: var(--ivy-tertinary-color-red-medium) !important;
+  border-color: var(--ivy-tertinary-color-red-medium) !important;
+}
+
+.ui-button.portal-remove-button:active {
+  border-color: var(--ivy-tertinary-color-red-medium) !important;
 }
 
 

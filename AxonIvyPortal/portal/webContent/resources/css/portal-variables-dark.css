@@ -299,7 +299,8 @@
   --text-tab-default-color: var(--ivy-primary-color-grey-medium);
   --no-item-icon-color: var(--ivy-primary-color-grey-light);
   --user-menu-items-border-color: var(--ivy-portal-color-gray-dark);
-  
+  --option-item-border-color: var(--ivy-portal-color-gray-dark);
+
   /* Portal breadcrumb */
   --breadcrumb-background-color: transparent;
   --breadcrumb-home-icon-color: var(--primary-color);
