@@ -247,7 +247,7 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
   font-size: var(--large-font-size); }
 
 .edit-process-icon-group .awesome-icon-selection-panel span {
-  font-size: var(--process-grid-icon-font-size); }
+  font-size: 1.4em; }
 
 .edit-process-info-group .edit-process-detail-1st-cell,
 .grid-view-form .process-action-group {

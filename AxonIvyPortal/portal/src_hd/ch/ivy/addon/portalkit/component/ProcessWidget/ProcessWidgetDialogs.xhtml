@@ -28,7 +28,7 @@
       <div id="edit-process-icon-group" class="ui-g-12 edit-process-icon-group MarTop20 u-no-padding-left u-no-padding-right">
         <p class="u-mar-right-10 edit-process-header-sub-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogCurrentIcon')}</p>
         <div class="ui-g-12 u-no-padding-left">
-          <ic:ch.ivy.addon.portalkit.component.IconSelection id="edit-process-icon" hideIconArray="true"
+          <ic:ch.ivy.addon.portalkit.component.IconSelection id="edit-process-icon" hideIconArray="false" isImmediate="false"
             value="#{processWidgetBean.selectedIconProcess}"
             isReadOnly="#{!processWidgetBean.canChangeProcessIcon()}" />
         </div>
@@ -151,27 +151,35 @@
 
           <h:panelGroup id="file-upload-panel" layout="block"
             styleClass="#{empty processWidgetBean.editedExternalLink.imageLocation ? 'ui-g-12' : 'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
-            <p:fileUpload id="editing-external-link-image-upload"
+            <p:fileUpload id="editing-external-link-image-upload" style="display: none;"
               rendered="#{empty processWidgetBean.editedExternalLink.imageLocation}"
               listener="#{processWidgetBean.handleExternalLinkImageUpload}"
               chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
-              dragDropSupport="true" auto="true"
-              update="file-upload-panel"
+              dragDropSupport="true" auto="true" widgetVar="editExternalLinkUpload"
+              update="file-upload-panel" 
               allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
-              accept=".png,.jpg,.jpeg,.svg"
-              label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
-              invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" />
-            <p:graphicImage id="editing-external-link-preview-image"
-              rendered="#{not empty processWidgetBean.editedExternalLink.imageLocation}"
-              styleClass="external-link-preview-image" library="ivy-cms"
-              name="#{processWidgetBean.editedExternalLink.imageLocation}" />
+              accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleEditExternalLinkUploadFileFail();"
+              label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" oncomplete="hideExtendLinkPreviewLabel();"
+              invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" dropZone="edit-external-link-preview-image-panel"/>
+              <p:outputPanel id="edit-external-link-preview-image-panel" styleClass="ui-external-link-preview-image-panel" >
+                <h:panelGroup rendered="#{empty processWidgetBean.editedExternalLink.imageLocation}" class="ui-external-link-preview-image-label">
+                <i class="si si-file-code-upload-1" id="ui-external-link-preview-image-icon" />
+                <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dragAndDropImage')}">
+                <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadOneHere')}" onclick="PF('editExternalLinkUpload').show();return false"/>
+                </p:outputLabel>
+                </h:panelGroup>
+                <p:graphicImage id="editing-external-link-preview-image"
+                  rendered="#{not empty processWidgetBean.editedExternalLink.imageLocation}"
+                  styleClass="external-link-preview-image" library="ivy-cms"
+                  name="#{processWidgetBean.editedExternalLink.imageLocation}" />
+              </p:outputPanel>
             <h:panelGroup
               class="external-link-preview-image-overlay-panel"
               rendered="#{not empty processWidgetBean.editedExternalLink.imageLocation}">
               <p:commandButton
                 id="editing-external-link-delete-image-button"
                 actionListener="#{processWidgetBean.removeTempExternalLinkImage}"
-                update="file-upload-panel"
+                update="file-upload-panel" immediate="true"
                 rendered="#{not empty processWidgetBean.editedExternalLink.imageLocation}"
                 styleClass="external-link-delete-image-button"
                 icon="si si-bin-1" />
@@ -343,14 +351,14 @@
       <h:panelGroup id="file-upload-panel" layout="block"
         styleClass="#{empty externalLinkBean.externalLink.imageLocation ? 'ui-g-12 ':'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
         <p:fileUpload id="external-link-image-upload"
-          onvalidationfailure="handleUploadFileFail();" style="display: none;"
+          style="display: none;"
           widgetVar="externalLinkUpload"
           rendered="#{empty externalLinkBean.externalLink.imageLocation}"
           listener="#{externalLinkBean.handleImageUpload}"
           chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
           dragDropSupport="true" auto="true" update="file-upload-panel"
           allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
-          accept=".png,.jpg,.jpeg,.svg"
+          accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail();"
           invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
           dropZone="external-link-preview-image-panel" oncomplete="hideExtendLinkPreviewLabel();"/>
           
