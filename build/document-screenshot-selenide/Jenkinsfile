@@ -16,7 +16,7 @@ pipeline {
 
   parameters {
     string(name: 'testPatternToRun', defaultValue: 'com.axonivy.portal.selenium.document.screenshot.*Test', description: 'Test pattern to run')
-    string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
+    string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip for nightly master
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine-windows.zip for dev master
       -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
@@ -90,9 +90,9 @@ pipeline {
           bat "mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500"
           utils.cleanDisk()
 
-          echo '====================Copy ElasticSearch log===================='
+          echo '====================Copy OpenSearch log===================='
           powershell '''
-            $LOG= $env:engineDir + "/elasticsearch/logs/ivy-elasticsearch-*.log"
+            $LOG= $env:engineDir + "/logs/opensearch/ivy-opensearch-*.log"
             Copy-Item $LOG -Destination AxonIvyPortal/portal-selenium-test/target
           '''
           if (params.useForDocumentation) {
@@ -109,7 +109,7 @@ pipeline {
   post {
     always {
       archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/*.zip', allowEmptyArchive: true
-      archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/selenide/reports/**/*.*, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log, AxonIvyPortal/portal-selenium-test/target/ivy-elasticsearch-*.log', allowEmptyArchive: true
+      archiveArtifacts artifacts: 'AxonIvyPortal/portal-selenium-test/target/selenide/reports/**/*.*, AxonIvyPortal/portal-selenium-test/target/testEngineOut.log, AxonIvyPortal/portal-selenium-test/target/ivy-opensearch-*.log', allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }
