@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-demo-app</artifactId>
-  <version>13.0.1-SNAPSHOT</version>
+  <version>13.1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <distributionManagement>
     <repository>
@@ -27,13 +27,13 @@
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal-user-examples</artifactId>
-      <version>13.0.1-SNAPSHOT</version>
+      <version>13.1.0-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
-      <version>13.0.1-SNAPSHOT</version>
+      <version>13.1.0-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
   </dependencies>
