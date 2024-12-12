@@ -1,13 +1,12 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.SortMeta;
 
 import com.axonivy.portal.components.ivydata.bo.IvyDocument;
@@ -89,11 +88,10 @@ public class CaseTaskDocumentBean implements Serializable {
   
   public boolean canPreviewDocument(IvyDocument document) {
     boolean enablePreviewSetting = GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ENABLE_DOCUMENT_PREVIEW);
-    if (document.getContentType().startsWith("image")) {
+    if (document != null && StringUtils.startsWithIgnoreCase(document.getContentType(), "image/")) {
       return enablePreviewSetting;
     }
-    List<String> supportedPreview = Arrays.asList("application/pdf", "text/plain");
-    boolean isSupportedPreviewType = supportedPreview.contains(document.getContentType());
+    boolean isSupportedPreviewType = StringUtils.endsWithAny(document.getPath().toLowerCase(), ".pdf", ".txt", ".log");
     return enablePreviewSetting && isSupportedPreviewType;
   }
 }

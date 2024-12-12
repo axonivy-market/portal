@@ -111,7 +111,7 @@
           },
           "code" : [
             "import org.apache.commons.lang3.StringUtils;",
-            "out.isImage = param.document!= null && param.document.getContentType()!= null && StringUtils.startsWithIgnoreCase(param.document.getContentType(), \"image/\");"
+            "out.isImage = param.document!= null && StringUtils.startsWithIgnoreCase(param.document.getContentType(), \"image/\");"
           ]
         },
         "result" : {

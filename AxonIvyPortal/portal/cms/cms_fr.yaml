@@ -972,6 +972,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourStatistics: Vos statistiques
     yourTasks: Vos tâches
   documentFiles:
+    PreviewDocument: Aperçu
     deleteDocumentNote: '{0} a supprimé(e) {1}'
     deleteSuceed: Le fichier a été supprimé avec succès
     download: Télécharger

@@ -56,20 +56,21 @@
             styleClass="u-truncate-text document-name">
             <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="case-document-name">
               <p:commandLink ajax="false" id="download" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}"
-                styleClass="download-command case-document-name-text u-truncate-text">
+                styleClass="case-document-name-text u-truncate-text">
                 <p:fileDownload value="#{logic.downloadDocument(document)}" />
                 <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}" fileSize="#{masterDataBean.getReadableFileSize(document.size)}"
                   symbolStyleClass="case-details-document-download-icon" 
                   fileNameStyleClass="js-document-name document-name"
                   fileSizeStyleClass="document-size" />
               </p:commandLink>
-              <p:commandLink id="preview-file" ariaLabel="Preview #{document.name}" styleClass="si si-view-1 Fright" style="position:absolute;top:2px;right:30px;"
+              <p:commandLink id="preview-file" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
+                styleClass="si si-view-1 Fright document-preview ui-sm-hidden"
                 actionListener="#{logic.downloadDocument(document)}"
                 rendered="#{caseTaskDocumentBean.canPreviewDocument(document)}"
                 update="#{cc.clientId}:preview-document-dialog"
                 oncomplete="PF('preview-document-dialog').show()">
                 <p:tooltip for="preview-file" trackMouse="true" hideEvent="mouseleave click"
-                  value="Preview #{document.name}" />
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" />
               </p:commandLink>
               <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}"
@@ -137,8 +138,8 @@
       update="#{cc.clientId}:document-upload-form:upload-messages" />
   </p:dialog>
   
-    <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)" header="Preview" modal="true" resizable="false" width="650"
-    showEffect="fade" hideEffect="fade" styleClass="case-upload-dialog" dynamic="true" fitViewport="true" responsive="true" height="700">
+    <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
+      modal="true" resizable="false" width="650" showEffect="fade" hideEffect="fade" styleClass="case-upload-dialog" dynamic="true" fitViewport="true" responsive="true" height="700">
     <div class="ui-g-12">
       <p:media value="#{data.streamedContent}" width="100%" height="650" cache="false" id="media-content" player="pdf" rendered="#{!data.isImage}"/>
       <p:graphicImage value="#{data.streamedContent}" stream="false" height="650" width="100%" rendered="#{data.isImage}" style="object-fit:contain"/>

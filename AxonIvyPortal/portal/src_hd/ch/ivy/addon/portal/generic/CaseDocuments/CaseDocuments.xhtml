@@ -44,7 +44,7 @@
               styleClass="u-truncate-text ui-sm-12" width="65%">
               <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="case-document-name">
                 <p:commandLink ajax="false" id="download" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}"
-                  styleClass="download-command case-document-name-text u-truncate-text">
+                  styleClass="case-document-name-text u-truncate-text">
                   <p:fileDownload value="#{logic.downloadDocument(document)}" />
                   <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}"
                     fileSize="#{masterDataBean.getReadableFileSize(document.size)}"
