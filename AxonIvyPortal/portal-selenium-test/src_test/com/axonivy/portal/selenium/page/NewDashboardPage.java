@@ -545,7 +545,7 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   public SelenideElement getCompactModeProcessFilterPanelResetButton() {
-    return getCompactModeProcessFilterPanel().$("button[id$=':reset-button']");
+    return getCompactModeProcessFilterPanel().$("a[id$=':reset-button']");
   }
 
   public void resetCompactModeProcessFilterPanel() {
