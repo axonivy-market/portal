@@ -60,5 +60,9 @@
   }, {
     "name" : "jsonKey",
     "type" : "String"
+  }, {
+    "name" : "persistedCounter",
+    "type" : "java.lang.Integer",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

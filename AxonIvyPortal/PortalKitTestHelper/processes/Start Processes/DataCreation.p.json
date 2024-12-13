@@ -1004,11 +1004,6 @@
     }, {
       "id" : "f112",
       "type" : "TaskSwitchGateway",
-      "config" : {
-        "tasks" : [ {
-            "id" : "TaskA"
-          } ]
-      },
       "visual" : {
         "at" : { "x" : 1472, "y" : 192 }
       },
@@ -1282,11 +1277,6 @@
         }, {
           "id" : "S10-f5",
           "type" : "TaskSwitchGateway",
-          "config" : {
-            "tasks" : [ {
-                "id" : "TaskA"
-              } ]
-          },
           "visual" : {
             "at" : { "x" : 640, "y" : 256 }
           },
@@ -1914,5 +1904,309 @@
       "connect" : [
         { "id" : "f191", "to" : "f186", "color" : "default" }
       ]
+    }, {
+      "id" : "f145",
+      "type" : "RequestStart",
+      "name" : "createABusinessCaseHasLotsOfTasksCases",
+      "config" : {
+        "signature" : "createBusinessCaseHasLotsOfTasksCases",
+        "request" : {
+          "name" : "Create a business case has lots of tasks cases"
+        },
+        "task" : {
+          "name" : "First task of the case"
+        },
+        "case" : {
+          "name" : "Business case has lots of tasks cases"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 2144 },
+        "labelOffset" : { "x" : 17, "y" : 49 }
+      },
+      "connect" : [
+        { "id" : "f147", "to" : "f146" }
+      ]
+    }, {
+      "id" : "f146",
+      "type" : "Script",
+      "name" : "Init",
+      "config" : {
+        "output" : {
+          "code" : "in.counter = 0;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 2144 }
+      },
+      "connect" : [
+        { "id" : "f216", "to" : "f217" }
+      ]
+    }, {
+      "id" : "f148",
+      "type" : "RequestStart",
+      "name" : "createACaseHasLotsOfTasks",
+      "config" : {
+        "signature" : "createCaseHasLotsOfTasks",
+        "request" : {
+          "isHttpRequestable" : false
+        },
+        "triggerable" : true,
+        "task" : {
+          "name" : "First task of the case",
+          "responsible" : {
+            "activator" : "SYSTEM"
+          }
+        },
+        "case" : {
+          "name" : "Technical case"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 2352 }
+      },
+      "connect" : [
+        { "id" : "f192", "to" : "f149" }
+      ]
+    }, {
+      "id" : "f149",
+      "type" : "Script",
+      "name" : "Init",
+      "config" : {
+        "output" : {
+          "code" : "in.persistedCounter = 0;"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 216, "y" : 2352 }
+      },
+      "connect" : [
+        { "id" : "f194", "to" : "f224" }
+      ]
+    }, {
+      "id" : "f193",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "<%= \"Task A \" + in1.persistedCounter + \" of case \" + ivy.case.getId() %>"
+          }, {
+            "id" : "TaskB",
+            "name" : "<%= \"Task B \" + in1.persistedCounter + \" of case \" + ivy.case.getId() %>"
+          }, {
+            "id" : "TaskC",
+            "name" : "<%= \"Task C \" + in1.persistedCounter + \" of case \" + ivy.case.getId() %>"
+          }, {
+            "id" : "TaskD",
+            "name" : "<%= \"Task D \" + in1.persistedCounter + \" of case \" + ivy.case.getId() %>"
+          }, {
+            "id" : "TaskE",
+            "name" : "<%= \"Task E \" + in1.persistedCounter + \" of case \" + ivy.case.getId() %>"
+          }, {
+            "id" : "TaskF",
+            "name" : "<%= \"Task F \" + in1.persistedCounter + \" of case \" + ivy.case.getId() %>"
+          }, {
+            "id" : "TaskG",
+            "name" : "<%= \"Task G \" + in1.persistedCounter + \" of case \" + ivy.case.getId() %>"
+          }, {
+            "id" : "TaskH",
+            "name" : "<%= \"Task H \" + in1.persistedCounter + \" of case \" + ivy.case.getId() %>"
+          }, {
+            "id" : "TaskI",
+            "name" : "<%= \"Task I \" + in1.persistedCounter + \" of case \" + ivy.case.getId() %>"
+          }, {
+            "id" : "TaskJ",
+            "name" : "<%= \"Task J \" + in1.persistedCounter + \" of case \" + ivy.case.getId() %>",
+            "responsible" : {
+              "activator" : "SYSTEM"
+            }
+          } ]
+      },
+      "visual" : {
+        "at" : { "x" : 480, "y" : 2352 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f196", "to" : "f195", "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f198", "to" : "f197", "condition" : "ivp==\"TaskB.ivp\"" },
+        { "id" : "f207", "to" : "f199", "condition" : "ivp==\"TaskC.ivp\"" },
+        { "id" : "f208", "to" : "f200", "condition" : "ivp==\"TaskD.ivp\"" },
+        { "id" : "f209", "to" : "f205", "condition" : "ivp==\"TaskE.ivp\"" },
+        { "id" : "f210", "to" : "f206", "condition" : "ivp==\"TaskF.ivp\"" },
+        { "id" : "f211", "to" : "f201", "condition" : "ivp==\"TaskG.ivp\"" },
+        { "id" : "f212", "to" : "f202", "condition" : "ivp==\"TaskH.ivp\"" },
+        { "id" : "f213", "to" : "f227", "condition" : "ivp==\"TaskI.ivp\"" },
+        { "id" : "f228", "to" : "f204", "via" : [ { "x" : 480, "y" : 2272 } ], "condition" : "ivp==\"TaskJ.ivp\"" }
+      ]
+    }, {
+      "id" : "f195",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 2352 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f197",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 2384 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f199",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 2416 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f200",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 2448 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f201",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 544, "y" : 2480 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f202",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 2480 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f205",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 608, "y" : 2480 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f206",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 2480 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f215",
+      "type" : "TriggerCall",
+      "name" : "Create a case has lots of tasks",
+      "config" : {
+        "processCall" : "Start Processes/DataCreation:createCaseHasLotsOfTasks()"
+      },
+      "visual" : {
+        "at" : { "x" : 576, "y" : 2144 }
+      },
+      "connect" : [
+        { "id" : "f219", "to" : "f222" }
+      ]
+    }, {
+      "id" : "f217",
+      "type" : "Alternative",
+      "name" : "counter < 50",
+      "config" : {
+        "conditions" : {
+          "f218" : "in.counter < 50"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 2144 },
+        "labelOffset" : { "x" : -24, "y" : -8 }
+      },
+      "connect" : [
+        { "id" : "f218", "to" : "f215", "label" : {
+            "name" : "Yes"
+          }, "color" : "default" },
+        { "id" : "f221", "to" : "f220", "label" : {
+            "name" : "No"
+          } }
+      ]
+    }, {
+      "id" : "f220",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 2208 }
+      }
+    }, {
+      "id" : "f222",
+      "type" : "Script",
+      "name" : "Increase counter",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.lang.Thread;",
+            "in.counter++;",
+            "Thread.sleep(1000);",
+            "ivy.log.warn(\"Increased counter {0} of business case {1}\", in.counter, ivy.case.getId());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 576, "y" : 2064 }
+      },
+      "connect" : [
+        { "id" : "f223", "to" : "f217", "via" : [ { "x" : 384, "y" : 2064 } ] }
+      ]
+    }, {
+      "id" : "f204",
+      "type" : "Script",
+      "name" : "Increase counter",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import java.lang.Thread;",
+            "in.persistedCounter++;",
+            "Thread.sleep(100);",
+            "ivy.log.warn(\"Increased counter {0} of case {1}\", in.persistedCounter, ivy.case.getId());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 2272 }
+      },
+      "connect" : [
+        { "id" : "f203", "to" : "f224" }
+      ]
+    }, {
+      "id" : "f224",
+      "type" : "Alternative",
+      "name" : "counter < 10",
+      "config" : {
+        "conditions" : {
+          "f225" : "in.persistedCounter < 10"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 2352 },
+        "labelOffset" : { "x" : -24, "y" : -8 }
+      },
+      "connect" : [
+        { "id" : "f225", "to" : "f193", "label" : {
+            "name" : "Yes"
+          }, "color" : "default", "var" : "in1" },
+        { "id" : "f226", "to" : "f214", "label" : {
+            "name" : "No"
+          } }
+      ]
+    }, {
+      "id" : "f214",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 384, "y" : 2480 }
+      }
+    }, {
+      "id" : "f227",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 2480 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
     } ]
 }
