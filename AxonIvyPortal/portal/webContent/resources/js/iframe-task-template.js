@@ -6,7 +6,7 @@ if (taskUrl){
   if(taskUrl.endsWith('blank')){
     window.history.back(document.referrer);
   }
-  getPortalIframe().src = taskUrl;
+  getPortalIframe().src = new URLSearchParams(window.location.search).get("taskUrl");
 }
 
 loadIframe(false);
