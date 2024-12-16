@@ -850,6 +850,11 @@ public class CaseDetailsPage extends TemplatePage {
     $("button[id$='document:document-upload-close-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
   }
+  
+  public void uploadDocument(String pathToFile) {
+    $("input[id$='document-upload-panel_input']").shouldBe(exist, DEFAULT_TIMEOUT)
+    .shouldBe(Condition.hidden, DEFAULT_TIMEOUT).sendKeys(pathToFile);
+  }
 
   public void openAddDocumentDialogAndUploadDocument(String pathToFile) {
     getAddAttachmentDialog();
