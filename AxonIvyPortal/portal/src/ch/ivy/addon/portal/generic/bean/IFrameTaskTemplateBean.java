@@ -54,6 +54,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   public static final String PORTAL_GROWL_MESSGE_PARAM = "portalGrowlMessage";
   private static final String DEFAULT_TASK_ICON = "si si-task-list-edit";
   private static final String TASK_ICON = "taskIcon";
+  private static final String TASK_URL = "taskUrl";
 
   private int currentProcessStep;
   private List<String> processSteps;
@@ -73,6 +74,12 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private String taskIcon;
 
   private Long caseId = null;
+
+  public String getTaskUrl() {
+    return Optional.ofNullable(FacesContext.getCurrentInstance()
+        .getExternalContext().getRequestParameterMap().get(TASK_URL))
+        .orElse(StringUtils.EMPTY);
+  }
 
   public void useTaskInIFrame() {
     keepOverridePortalGrowl();
