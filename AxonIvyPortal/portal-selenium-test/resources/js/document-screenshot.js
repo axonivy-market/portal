@@ -124,7 +124,7 @@ function highlightProcessItems() {
 }
 
 function highlightEditProcessIcon() {
-  appendStepAnnotation($("[id$='process-widget:edit-process-form:edit-process-icon:awesome-icon-selection']"), "4", -10, 100);
+  appendStepAnnotation($("[id$='process-widget:edit-process-form:edit-process-icon:awesome-icon-selection']"), "4", -40, 110);
 }
 
 function highlightEditProcessDialog() {
