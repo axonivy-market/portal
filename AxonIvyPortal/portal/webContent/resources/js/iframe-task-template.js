@@ -1,15 +1,5 @@
 var invalidIFrameSrcPath = false;
 
-let taskUrl = new URLSearchParams(window.location.search).get("taskUrl");
-
-if (taskUrl){
-  if(taskUrl.endsWith('blank')){
-    window.history.back(document.referrer);
-  }
-  getPortalIframe().src = new URLSearchParams(window.location.search).get("taskUrl");
-}
-
-loadIframe(false);
 var recheckFrameTimer;
 function loadIframe(recheckIndicator) {
   var iframe = getPortalIframe();
