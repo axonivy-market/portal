@@ -86,9 +86,7 @@ import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DashboardService;
-import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
-import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -169,23 +167,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     };
   }
 
-  @Override
-  protected List<Dashboard> collectDashboards() {
-    List<Dashboard> collectedDashboards = new ArrayList<>();
-    try {
-      if (isPublicDashboard) {
-        collectedDashboards = DashboardUtils.getPublicDashboards();
-      } else {
-        String dashboardInUserProperty = readDashboardBySessionUser();
-        collectedDashboards = getVisibleDashboards(dashboardInUserProperty);
-      }
-    } catch (PortalException e) {
-      Ivy.log().error(e);
-    }
-    DashboardUtils.addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
-    return collectedDashboards.stream()
-        .filter(dashboard -> dashboard.getId().equals(selectedDashboardId)).collect(Collectors.toList());
-  }
+
 
   private WidgetSample taskSample() {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskList"), TASK,
@@ -828,14 +810,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void reloadParamtersFromProcessForCustomWidget(DashboardWidget widget) {
     CustomDashboardWidget customWidget = (CustomDashboardWidget) widget;
     customWidget.loadParametersFromProcess();
-  }
-
-  private List<Dashboard> getVisibleDashboards(String dashboardJson) {
-    if (isPublicDashboard) {
-      return DashboardUtils.jsonToDashboards(dashboardJson);
-    } else {
-      return DashboardUtils.getVisibleDashboards(dashboardJson);
-    }
   }
 
   public void navigatetoDashboardConfigurationPage() throws IOException {

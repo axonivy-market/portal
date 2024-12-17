@@ -264,11 +264,11 @@ public class MenuView implements Serializable {
     try {
       portalDashboardItemWrapper = getPortalDashboardItemWrapper(sessionUserId, cacheService);
     } catch (ClassCastException e) {
-      cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_MENU, sessionUserId);
+      cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId);
     }
 
     if (portalDashboardItemWrapper == null) {
-      synchronized(PortalDashboardItemWrapper.class) {
+      synchronized (this) {
         portalDashboardItemWrapper = new PortalDashboardItemWrapper(DashboardUtils.collectDashboards());
         cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId, portalDashboardItemWrapper);
       }
@@ -279,13 +279,10 @@ public class MenuView implements Serializable {
   public void updateDashboardCache(List<Dashboard> dashboards) {
     String sessionUserId = getSessionUserId();
     IvyCacheService cacheService = IvyCacheService.getInstance();
+    cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId);
+    cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PUBLIC_DASHBOARD, sessionUserId);
+    cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARD, sessionUserId);
 
-    synchronized (PortalDashboardItemWrapper.class) {
-      cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId,
-          new PortalDashboardItemWrapper(dashboards));
-    }
-
-    cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_MENU, sessionUserId);
   }
 
   private String getSessionUserId() {
@@ -297,7 +294,8 @@ public class MenuView implements Serializable {
   }
 
   private PortalDashboardItemWrapper getPortalDashboardItemWrapper(String sessionUserId, IvyCacheService cacheService) {
-    return (PortalDashboardItemWrapper) cacheService.getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
+    return (PortalDashboardItemWrapper) cacheService
+        .getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
   }
 
   public String getDashboardLink() {
