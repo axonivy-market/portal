@@ -173,8 +173,8 @@ public class MenuView implements Serializable {
   }
 
   private List<Dashboard> getSubItemDashboards() {
-    List<Dashboard> dashboards = DashboardUtils.getDashboardsWithoutMenuItem();
-    return dashboards;
+    var dashboards = getDashboardCache().dashboards;
+    return dashboards.stream().filter(dashboard -> !dashboard.getIsTopMenu()).toList();
   }
 
   private MenuElement buildDashboardGroupMenu(List<Dashboard> subItemDashboards, String defaultTitle,
@@ -252,10 +252,30 @@ public class MenuView implements Serializable {
     return dashboardMenu;
   }
 
+
+  public PortalDashboardItemWrapper getDashboardCache() {
+    String sessionUserId = getSessionUserId();
+    IvyCacheService cacheService = IvyCacheService.getInstance();
+    PortalDashboardItemWrapper portalDashboardItemWrapper = null;
+    try {
+      portalDashboardItemWrapper = getPortalDashboardItemWrapper(sessionUserId, cacheService);
+    } catch (ClassCastException e) {
+      cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId);
+    }
+
+    if (portalDashboardItemWrapper == null) {
+      synchronized (PortalDashboardItemWrapper.class) {
+        portalDashboardItemWrapper = new PortalDashboardItemWrapper(DashboardUtils.collectDashboards());
+        cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId, portalDashboardItemWrapper);
+      }
+    }
+    return portalDashboardItemWrapper;
+  }
+
   public void updateDashboardCache(List<Dashboard> dashboards) {
     String sessionUserId = getSessionUserId();
     IvyCacheService cacheService = IvyCacheService.getInstance();
-
+    cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId);
     cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PUBLIC_DASHBOARD, sessionUserId);
     cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARD, sessionUserId);
 
@@ -267,6 +287,11 @@ public class MenuView implements Serializable {
       session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
     }
     return (String) session().getAttribute(sessionIdAttribute);
+  }
+
+  private PortalDashboardItemWrapper getPortalDashboardItemWrapper(String sessionUserId, IvyCacheService cacheService) {
+    return (PortalDashboardItemWrapper) cacheService
+        .getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
   }
 
   public String getDashboardLink() {
@@ -489,6 +514,9 @@ public class MenuView implements Serializable {
 
   private IWorkflowSession session() {
     return Ivy.session();
+  }
+
+  public record PortalDashboardItemWrapper(List<Dashboard> dashboards) {
   }
 
   private void buildBreadCrumbForNotification() {

@@ -96,7 +96,6 @@ public class DashboardWelcomeWidgetBean implements Serializable {
       }
       String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
       Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardJson);
-      
       MenuView menuView = (MenuView) ManagedBeans.get("menuView");
       menuView.updateDashboardCache(DashboardUtils.collectDashboards());
     }

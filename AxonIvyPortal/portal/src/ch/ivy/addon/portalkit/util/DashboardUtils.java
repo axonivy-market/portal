@@ -7,7 +7,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.Consumer;
@@ -52,7 +51,6 @@ public class DashboardUtils {
   public final static String DEFAULT_CASE_LIST_DASHBOARD = "default-case-list-dashboard";
 
   public static List<Dashboard> getPublicDashboards() {
-    Locale requestLocale = Ivy.session().getContentLocale();
     String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
     if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
       Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
@@ -67,7 +65,7 @@ public class DashboardUtils {
       cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PUBLIC_DASHBOARD, sessionUserId);
     }
 
-    if (portalPublicDashboardWrapper == null || !requestLocale.equals(portalPublicDashboardWrapper.loadedLocale)) {
+    if (portalPublicDashboardWrapper == null) {
       synchronized (PortalPublicDashboardWrapper.class) {
         List<Dashboard> dashboards = new ArrayList<>();
         try {
@@ -78,7 +76,7 @@ public class DashboardUtils {
         } catch (Exception e) {
           Ivy.log().error("Cannot load Public Dashboards {0}", e.getMessage());
         }
-        portalPublicDashboardWrapper = new PortalPublicDashboardWrapper(requestLocale, dashboards);
+        portalPublicDashboardWrapper = new PortalPublicDashboardWrapper(dashboards);
         cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_PUBLIC_DASHBOARD, sessionUserId,
             portalPublicDashboardWrapper);
       }
@@ -87,7 +85,6 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> getPrivateDashboards() {
-    Locale requestLocale = Ivy.session().getContentLocale();
     String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
     if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
       Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
@@ -102,7 +99,7 @@ public class DashboardUtils {
       cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARD, sessionUserId);
     }
 
-    if (portalPrivateDashboardWrapper == null || !requestLocale.equals(portalPrivateDashboardWrapper.loadedLocale)) {
+    if (portalPrivateDashboardWrapper == null) {
       synchronized (PortalPublicDashboardWrapper.class) {
         List<Dashboard> dashboards = new ArrayList<>();
         try {
@@ -111,7 +108,7 @@ public class DashboardUtils {
         } catch (Exception e) {
           Ivy.log().error("Cannot load Public Dashboards {0}", e.getMessage());
         }
-        portalPrivateDashboardWrapper = new PortalPrivateDashboardWrapper(requestLocale, dashboards);
+        portalPrivateDashboardWrapper = new PortalPrivateDashboardWrapper(dashboards);
         cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARD, sessionUserId,
             portalPrivateDashboardWrapper);
       }
@@ -317,9 +314,9 @@ public class DashboardUtils {
     }
   }
 
-  private record PortalPrivateDashboardWrapper(Locale loadedLocale, List<Dashboard> dashboards) {
+  private record PortalPrivateDashboardWrapper(List<Dashboard> dashboards) {
   }
-  private record PortalPublicDashboardWrapper(Locale loadedLocale, List<Dashboard> dashboards) {
+  private record PortalPublicDashboardWrapper(List<Dashboard> dashboards) {
   }
 
 }
