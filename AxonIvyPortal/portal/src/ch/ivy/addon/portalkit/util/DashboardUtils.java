@@ -66,7 +66,7 @@ public class DashboardUtils {
     }
 
     if (portalPublicDashboardWrapper == null) {
-      synchronized (PortalPublicDashboardWrapper.class) {
+      synchronized (sessionUserId.intern()) {
         List<Dashboard> dashboards = new ArrayList<>();
         try {
           String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
@@ -100,7 +100,7 @@ public class DashboardUtils {
     }
 
     if (portalPrivateDashboardWrapper == null) {
-      synchronized (PortalPublicDashboardWrapper.class) {
+      synchronized (sessionUserId.intern()) {
         List<Dashboard> dashboards = new ArrayList<>();
         try {
           String dashboardInUserProperty = readDashboardBySessionUser();

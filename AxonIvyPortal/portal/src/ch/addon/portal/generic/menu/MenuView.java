@@ -268,7 +268,7 @@ public class MenuView implements Serializable {
     }
 
     if (portalDashboardItemWrapper == null) {
-      synchronized (PortalDashboardItemWrapper.class) {
+      synchronized (this) {
         portalDashboardItemWrapper = new PortalDashboardItemWrapper(DashboardUtils.collectDashboards());
         cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId, portalDashboardItemWrapper);
       }
