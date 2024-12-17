@@ -1,3 +1,11 @@
+function escapeHtml(unsafe){
+  return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+}
 WelcomeWidgetConfiguration = {
 
   oldImageStyleClass : '',
@@ -11,7 +19,6 @@ WelcomeWidgetConfiguration = {
     this.updateStyleClasses();
     this.updatePreviewImageFit();
   },
-
   updatePreviewText : function(isGreeting) {
     var previewDialog = $('#new-widget-configuration-dialog');
     var welcomeText = previewDialog.find('.js-welcome-text-input.language-to-preview').get(0).value;
@@ -19,7 +26,7 @@ WelcomeWidgetConfiguration = {
     if (isGreeting == 'true' || (isGreeting == undefined && $('.js-greeting-text').length != 0)) {
       welcomeText = previewDialog.find('.js-greeting-text.language-to-preview').get(0).innerHTML + welcomeText;
     }
-    $('#new-widget-configuration-dialog').find('.js-preview-text').get(0).innerHTML = welcomeText;
+    $('#new-widget-configuration-dialog').find('.js-preview-text').get(0).innerHTML = escapeHtml(welcomeText);
   },
 
   updatePreviewTextPosition : function() {
