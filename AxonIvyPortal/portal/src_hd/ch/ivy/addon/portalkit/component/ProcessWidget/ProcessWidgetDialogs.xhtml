@@ -192,13 +192,9 @@
     </h:form>
 
     <f:facet name="footer">
-      <p:commandLink id="cancel-edit-process-command"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        actionListener="#{processWidgetBean.removeTempExternalLinkImage}"
-        oncomplete="PF('edit-process-dialog').hide()"
-        styleClass="u-mar-right-10" />
-      <p:commandButton id="save-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
-        process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" update="#{cc.clientId}:edit-process-form:edit-external-link-error-message"
+      <p:commandButton id="save-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+        process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" styleClass="w-full"
+        update="#{cc.clientId}:edit-process-form:edit-external-link-error-message"
         oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); updateProcessListOnSaveSuccessful();}" form="#{cc.clientId}:edit-process-form"/>
     </f:facet>
   </p:dialog>
@@ -390,15 +386,10 @@
     </h:form>
 
     <f:facet name="footer">
-      <p:commandLink id="cancel-adding-external-link-command"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        actionListener="#{externalLinkBean.removeImage()}"
-        oncomplete="PF('add-external-link-dialog').hide()"
-        styleClass="u-mar-right-15" />
-      <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-        icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" process="#{cc.clientId}:add-external-link-form"
+      <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addLink')}"
+        process="#{cc.clientId}:add-external-link-form"
         form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink()}"
-        update="#{cc.clientId}:add-external-link-form"
+        update="#{cc.clientId}:add-external-link-form" styleClass="w-full"
         oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); updateProcessListOnSaveSuccessful();}" />
     </f:facet>
   </p:dialog>
