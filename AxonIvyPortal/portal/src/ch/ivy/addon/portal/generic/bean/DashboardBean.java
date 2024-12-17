@@ -94,27 +94,12 @@ public class DashboardBean implements Serializable {
       menuView.updateDashboardCache(dashboards);
     }
 
-    if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())) {
+    if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())
+        || isRequestPathForMainOrDetailModification()) {
       updateSelectedDashboardIdFromSessionAttribute();
-      currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
-      selectedDashboard = dashboards.get(currentDashboardIndex);
-
-      String selectedDashboardName = selectedDashboard.getTitles().stream()
-          .filter(displayName -> displayName.getLocale().equals(Ivy.session().getContentLocale()))
-          .findFirst()
-          .orElseGet(() -> selectedDashboard.getTitles().get(0)).getValue();
-      setSelectedDashboardName(selectedDashboardName);
-      initShareDashboardLink(selectedDashboard);
-      // can not find dashboard by dashboard id session in view mode
-      if (StringUtils.isBlank(selectedDashboardId)
-          || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId())
-              && DashboardUtils.getDashboardsWithoutMenuItem().size() > 1)) {
-        DashboardUtils.storeDashboardInSession(selectedDashboard.getId());
-      }
-      if (isReadOnlyMode) {
-        DashboardUtils.highlightDashboardMenuItem(selectedDashboard.getId());
-      }
-    }
+      updateSelectedDashboard();
+      storeAndHighlightDashboardIfRequired();
+  }
     buildWidgetModels(selectedDashboard);
     isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
@@ -126,6 +111,33 @@ public class DashboardBean implements Serializable {
   private void buildClientStatisticApiUri() {
     this.clientStatisticApiUri = FacesContext.getCurrentInstance()
         .getExternalContext().getRequestContextPath() + "/api/statistics/data";
+  }
+
+  private boolean isRequestPathForMainOrDetailModification() {
+    String requestPath = Ivy.request().getRequestPath();
+    return requestPath.endsWith("/PortalMainDashboard.xhtml")
+        || requestPath.endsWith("/PortalDashboardDetailModification.xhtml");
+  }
+
+  private void updateSelectedDashboard() {
+    currentDashboardIndex = findIndexOfDashboardById(selectedDashboardId);
+    selectedDashboard = dashboards.get(currentDashboardIndex);
+
+    String selectedDashboardName = selectedDashboard.getTitles().stream()
+        .filter(displayName -> displayName.getLocale().equals(Ivy.session().getContentLocale())).findFirst()
+        .orElseGet(() -> selectedDashboard.getTitles().get(0)).getValue();
+    setSelectedDashboardName(selectedDashboardName);
+    initShareDashboardLink(selectedDashboard);
+  }
+
+  private void storeAndHighlightDashboardIfRequired() {
+    if (StringUtils.isBlank(selectedDashboardId) || (!selectedDashboardId.equalsIgnoreCase(selectedDashboard.getId())
+        && DashboardUtils.getDashboardsWithoutMenuItem().size() > 1)) {
+      DashboardUtils.storeDashboardInSession(selectedDashboard.getId());
+    }
+    if (isReadOnlyMode) {
+      DashboardUtils.highlightDashboardMenuItem(selectedDashboard.getId());
+    }
   }
 
   protected List<Dashboard> collectDashboards() {
