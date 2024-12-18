@@ -179,6 +179,9 @@ Variables:
       # If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.
       WhitelistExtension: doc, docx, xls, xlsx, xlsm, csv, pdf, ppt, pptx, txt, zip, jpg, jpeg, bmp, png
 
+      # Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.
+      EnablePreview: false
+      
     DateTimeFormat:
       # Set to true to hide hours and minutes next to date in the datetime format.
       # This setting affects in Tasks, Cases and Statistic results.
