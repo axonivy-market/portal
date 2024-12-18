@@ -64,6 +64,7 @@
               </p:commandLink>
               <p:commandLink id="preview-file" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
                 styleClass="si si-view-1 Fright document-preview ui-sm-hidden"
+                rendered="#{caseTaskDocumentBean.canPreviewDocument(document)}"
                 actionListener="#{logic.downloadDocument(document)}"
                 update="#{cc.clientId}:preview-document-dialog"
                 oncomplete="PF('preview-document-dialog').show()">
@@ -134,8 +135,8 @@
   <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
     modal="true" resizable="false" width="650" showEffect="fade" hideEffect="fade" styleClass="case-upload-dialog" dynamic="true" fitViewport="true" responsive="true" height="700">
     <div class="ui-g-12">
-      <p:media value="#{data.streamedContent}" width="100%" height="650" cache="false" id="media-content" player="pdf" rendered="#{!data.isImage}"/>
-      <p:graphicImage value="#{data.streamedContent}" stream="false" height="650" width="100%" rendered="#{data.isImage}" style="object-fit:contain"/>
+      <p:media value="#{data.streamedContent}" width="100%" height="600" cache="false" id="media-content" player="pdf" rendered="#{!data.isImage}"/>
+      <p:graphicImage value="#{data.streamedContent}" stream="false" height="600" width="100%" rendered="#{data.isImage}" styleClass="welcome-image-fit-contain"/>
     </div>
     <f:facet name="footer">
     <div class="u-dialog-footer-actions-group">
