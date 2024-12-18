@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.Selenide.$;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -18,6 +20,7 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
+import com.codeborne.selenide.Condition;
 
 
 @IvyWebTest
@@ -139,6 +142,8 @@ public class BackNavigationTest extends BaseTest {
     String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputField("[id$='payment-request:from_input']", today);
 
+    taskTemplatePage.clickByJavaScript($("div[id$='content']"));
+    $("div[id$='from_panel']").shouldBe(Condition.disappear);
     taskTemplatePage.clickOnSubmitButton();
     caseDetailsPage = new CaseDetailsPage();
     caseDetailsPage.waitPageLoaded();
