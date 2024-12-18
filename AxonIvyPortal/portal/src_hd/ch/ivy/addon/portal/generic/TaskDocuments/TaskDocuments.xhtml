@@ -45,7 +45,7 @@
               styleClass="u-truncate-text ui-sm-12" width="65%"
               filterBy="#{document.name}" filterMatchMode="contains">
               <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="task-document-name">
-                <p:commandLink ajax="false" id="download" styleClass="download-command task-document-name-text u-truncate-text" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
+                <p:commandLink ajax="false" id="download" styleClass="task-document-name-text u-truncate-text" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
                   <p:fileDownload value="#{logic.downloadDocument(document)}"/>
                   <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}"
                     fileSize="#{masterDataBean.getReadableFileSize(document.size)}"

@@ -35,7 +35,10 @@ public enum Variable {
   GLOBAL_FOOTER_INFO("Portal.GlobalFooterInfo"), USER_MENU("Portal.UserMenu"), DEFAULT_THEME_MODE("Portal.Theme.Mode"),
   GLOBAL_SEARCH_SCOPE_BY_CATEGORIES("Portal.GlobalSearchScopeCategories"),
   SHOW_QUICK_GLOBAL_SEARCH("Portal.ShowQuickGlobalSearch"),
-  ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton"), DASHBOARD_MAIN_MENU_ENTRY("Portal.Dashboard.MainMenuEntry"), APPLICATION_NAME("Portal.ApplicationName");
+  ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton"), 
+  DASHBOARD_MAIN_MENU_ENTRY("Portal.Dashboard.MainMenuEntry"), 
+  APPLICATION_NAME("Portal.ApplicationName"),
+  ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview");
 
   private String key;
 

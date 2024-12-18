@@ -1034,5 +1034,9 @@ public class CaseDetailsPage extends TemplatePage {
   public int countCaseOwners() {
     return $$("div[id$=':security-member-container']").size();
   }
+  
+  public boolean getFirstItemPreviewDocumentVisible() {
+    return $("a[id$=':0:preview-file']").exists();
+  }
 }
 
