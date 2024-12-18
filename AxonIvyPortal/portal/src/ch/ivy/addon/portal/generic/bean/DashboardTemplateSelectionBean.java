@@ -2,6 +2,7 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -46,6 +47,7 @@ public class DashboardTemplateSelectionBean extends DashboardModificationBean im
 
   private void mappingCommonDataToNewDashboard(String templateId, String dashboardId) {
     this.selectedDashboard.setTemplateId(templateId);
+    this.selectedDashboard.setPermissionDTOs(Collections.emptyList());
     this.selectedDashboard.setId(dashboardId);
     this.selectedDashboard.setTitles(new ArrayList<>());
     this.selectedDashboard.setIcon(this.isPublicDashboard ? PUBLIC_DASHBOARD_DEFAULT_ICON : PRIVATE_DASHBOARD_DEFAULT_ICON);
