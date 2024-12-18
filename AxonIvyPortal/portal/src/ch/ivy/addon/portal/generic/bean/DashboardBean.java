@@ -107,6 +107,12 @@ public class DashboardBean implements Serializable {
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
 
+    // Set responsive option for default task list and case list
+    if (DashboardUtils.isDefaultCaseListDashboard(selectedDashboard)
+        || DashboardUtils.isDefaultTaskListDashboard(selectedDashboard)) {
+      selectedDashboard.setIsResponsive(true);
+    }
+
     buildClientStatisticApiUri();
   }
 

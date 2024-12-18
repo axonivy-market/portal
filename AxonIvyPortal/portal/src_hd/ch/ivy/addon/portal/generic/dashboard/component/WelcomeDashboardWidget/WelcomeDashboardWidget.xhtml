@@ -33,7 +33,7 @@
               oncomplete="PF('new-widget-configuration-dialog').show()" />
             <p:menuitem id="delete-welcome-widget"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-              icon="si si-bin-1"
+              icon="si si-bin-1" styleClass="color-destroy"
               oncomplete="PF('remove-widget-dialog').show()"
               actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
               update="remove-widget-dialog"
