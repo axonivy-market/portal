@@ -113,14 +113,15 @@
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
     </p:commandLink>
 
-    <h:panelGroup id="task-additional-actions" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">
+    <h:panelGroup id="task-additional-actions" styleClass="task-additional-actions-panel" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">
       <f:event listener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId())}" type="preRenderComponent" />
-      <p:divider styleClass="task-action-separator" />
-      <h:outputText rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" styleClass="option-item pointer-event-none" />
+      <h:outputText rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" styleClass="option-item  pointer-event-none" />
       <ui:repeat var="sideStep" value="#{sideStepBean.currentSideSteps}">
   
-        <p:commandLink id="option-item" styleClass="option-item" value="#{sideStep.name}" global="false"
-          actionListener="#{sideStepBean.startSideStep(sideStep)}" process="@this" />
+        <p:commandLink id="option-item" styleClass="option-item" global="false"
+          actionListener="#{sideStepBean.startSideStep(sideStep)}" process="@this">
+          <span class="option-item-label" >#{sideStep.name}</span>
+        </p:commandLink>  
       </ui:repeat>
     </h:panelGroup>
   </p:overlayPanel>

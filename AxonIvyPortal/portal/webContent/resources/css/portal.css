@@ -247,7 +247,7 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
   font-size: var(--large-font-size); }
 
 .edit-process-icon-group .awesome-icon-selection-panel span {
-  font-size: var(--process-grid-icon-font-size); }
+  font-size: 1.4em; }
 
 .edit-process-info-group .edit-process-detail-1st-cell,
 .grid-view-form .process-action-group {
@@ -785,8 +785,11 @@ body .ui-inputfield.case-detail-name-input {
   color: var(--action-step-disabled-text-color); }
 
 .action-steps-panel a.action-step-item:hover {
-  background-color: var(--item-background-hover);
   color: var(--menu-action-hover-text-color); }
+
+.action-steps-panel a.action-step-item:not(:last-child) {
+  border-bottom: 1px solid var(--option-item-border-color);
+}
 
 .case-state-in-progress {
   color: var(--case-state-in-progress-color); }
@@ -1156,11 +1159,18 @@ ul.users-in-role {
 .options-panel .option-item:hover {
   text-decoration: none;
   color: var(--menu-action-hover-text-color);
-  background-color: var(--item-background-hover);
+}
+
+.options-panel .option-item:not(:last-child) {
+  border-bottom: 1px solid var(--option-item-border-color);
 }
 
 .options-panel .pointer-event-none {
   pointer-events: none;
+}
+
+.task-additional-actions-panel, .case-side-steps-panel {
+  border-top: 1px solid var(--ivy-primary-color-grey-light);
 }
 
 .process-widget-action .name-sort-command,
@@ -1283,6 +1293,15 @@ color: var(--button-text-color);
 
 .portal-dialog-error-icon {
   color: var(--ivy-tertinary-color-red-medium);
+}
+
+.portal-remove-button {
+  background-color: var(--ivy-tertinary-color-red-medium) !important;
+  border-color: var(--ivy-tertinary-color-red-medium) !important;
+}
+
+.ui-button.portal-remove-button:active {
+  border-color: var(--ivy-tertinary-color-red-medium) !important;
 }
 
 

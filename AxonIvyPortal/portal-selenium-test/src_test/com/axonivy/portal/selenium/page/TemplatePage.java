@@ -481,6 +481,10 @@ public abstract class TemplatePage extends AbstractPage {
     return openMainMenu().selectTaskMenu();
   }
 
+  public void waitForTaskTitleAppear() {
+    waitForElementDisplayed(By.id("title"), true);
+  }
+
   public void waitForIFrameContentVisible() {
     waitForIFrameScreenshotSizeGreaterThan(IFRAME_SCREENSHOT_FILE_SIZE_AT_MINIMUM);
   }

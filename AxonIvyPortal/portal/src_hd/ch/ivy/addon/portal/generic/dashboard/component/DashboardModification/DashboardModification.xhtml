@@ -130,7 +130,7 @@
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/deleteDashboardMessage',[dashboardModificationBean.selectedDashboard.title])}" />
     <ui:define name="dialogFooter">
       <div class="flex flex-column">
-      <p:commandButton id="remove-dashboard-button" styleClass="w-full"
+      <p:commandButton id="remove-dashboard-button" styleClass="w-full portal-remove-button"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
         actionListener="#{dashboardModificationBean.removeDashboard()}"
         update="dashboard-modification-container"
