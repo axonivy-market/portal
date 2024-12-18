@@ -18,6 +18,7 @@
     <h:form id="edit-process-form" styleClass="ui-g edit-process-form">
       <c:set var="process" value="#{processWidgetBean.editedProcess}" />
       <c:set var="processIcon" value="#{process.getIcon()}" />
+      <div style="display: none;" id="edit-external-link-error-message" />
       <div class="ui-g-12 edit-process-header-group u-no-padding-left u-no-padding-right">
         <div class="ui-g-12 u-padding-0">
           <p class="edit-process-header-sub-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}</p>
@@ -28,7 +29,7 @@
       <div id="edit-process-icon-group" class="ui-g-12 edit-process-icon-group MarTop20 u-no-padding-left u-no-padding-right">
         <p class="u-mar-right-10 edit-process-header-sub-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogCurrentIcon')}</p>
         <div class="ui-g-12 u-no-padding-left">
-          <ic:ch.ivy.addon.portalkit.component.IconSelection id="edit-process-icon" hideIconArray="true"
+          <ic:ch.ivy.addon.portalkit.component.IconSelection id="edit-process-icon" hideIconArray="false" isImmediate="false"
             value="#{processWidgetBean.selectedIconProcess}"
             isReadOnly="#{!processWidgetBean.canChangeProcessIcon()}" />
         </div>
@@ -39,7 +40,7 @@
           <span class="u-mar-right-5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogEditInfoTitle', [process.getType().getLabel()])}</span>
         </p>
 
-        <p:messages styleClass="ui-g-12 u-padding-0">
+        <p:messages id="edit-external-link-error-message" styleClass="ui-g-12 u-padding-0">
           <p:autoUpdate />
         </p:messages>
 
@@ -151,27 +152,35 @@
 
           <h:panelGroup id="file-upload-panel" layout="block"
             styleClass="#{empty processWidgetBean.editedExternalLink.imageLocation ? 'ui-g-12' : 'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
-            <p:fileUpload id="editing-external-link-image-upload"
+            <p:fileUpload id="editing-external-link-image-upload" style="display: none;"
               rendered="#{empty processWidgetBean.editedExternalLink.imageLocation}"
               listener="#{processWidgetBean.handleExternalLinkImageUpload}"
               chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
-              dragDropSupport="true" auto="true"
-              update="file-upload-panel"
+              dragDropSupport="true" auto="true" widgetVar="editExternalLinkUpload"
+              update="file-upload-panel" 
               allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
-              accept=".png,.jpg,.jpeg,.svg"
-              label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
-              invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" />
-            <p:graphicImage id="editing-external-link-preview-image"
-              rendered="#{not empty processWidgetBean.editedExternalLink.imageLocation}"
-              styleClass="external-link-preview-image" library="ivy-cms"
-              name="#{processWidgetBean.editedExternalLink.imageLocation}" />
+              accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleEditExternalLinkUploadFileFail();"
+              label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" oncomplete="hideExtendLinkPreviewLabel();"
+              invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" dropZone="edit-external-link-preview-image-panel"/>
+              <p:outputPanel id="edit-external-link-preview-image-panel" styleClass="ui-external-link-preview-image-panel" >
+                <h:panelGroup rendered="#{empty processWidgetBean.editedExternalLink.imageLocation}" class="ui-external-link-preview-image-label">
+                <i class="si si-file-code-upload-1" id="ui-external-link-preview-image-icon" />
+                <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dragAndDropImage')}">
+                <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadOneHere')}" onclick="PF('editExternalLinkUpload').show();return false"/>
+                </p:outputLabel>
+                </h:panelGroup>
+                <p:graphicImage id="editing-external-link-preview-image"
+                  rendered="#{not empty processWidgetBean.editedExternalLink.imageLocation}"
+                  styleClass="external-link-preview-image" library="ivy-cms"
+                  name="#{processWidgetBean.editedExternalLink.imageLocation}" />
+              </p:outputPanel>
             <h:panelGroup
               class="external-link-preview-image-overlay-panel"
               rendered="#{not empty processWidgetBean.editedExternalLink.imageLocation}">
               <p:commandButton
                 id="editing-external-link-delete-image-button"
                 actionListener="#{processWidgetBean.removeTempExternalLinkImage}"
-                update="file-upload-panel"
+                update="file-upload-panel" immediate="true"
                 rendered="#{not empty processWidgetBean.editedExternalLink.imageLocation}"
                 styleClass="external-link-delete-image-button"
                 icon="si si-bin-1" />
@@ -183,13 +192,9 @@
     </h:form>
 
     <f:facet name="footer">
-      <p:commandLink id="cancel-edit-process-command"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        actionListener="#{processWidgetBean.removeTempExternalLinkImage}"
-        oncomplete="PF('edit-process-dialog').hide()"
-        styleClass="u-mar-right-10" />
-      <p:commandButton id="save-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
-        process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" update="#{cc.clientId}:edit-process-form"
+      <p:commandButton id="save-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+        process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" styleClass="w-full"
+        update="#{cc.clientId}:edit-process-form:edit-external-link-error-message"
         oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); updateProcessListOnSaveSuccessful();}" form="#{cc.clientId}:edit-process-form"/>
     </f:facet>
   </p:dialog>
@@ -214,14 +219,14 @@
     </ui:define>
     
     <ui:define name="dialogFooter">
-      <h:form id="delete-process-workflow-form">
-        <p:link onclick="PF('remove-process-workflow-dialog').hide()" styleClass="u-mar-right-15"
+      <h:form id="delete-process-workflow-form" styleClass="flex flex-column">
+        <p:commandButton id="remove-process-command" global="false" process="@this" update="#{cc.clientId}:process-list"
+          styleClass="w-full portal-remove-button"
+          actionListener="#{processWidgetBean.deleteProcessWorkflow()}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+          oncomplete="PF('remove-process-workflow-dialog').hide(); updateProcessListOnSaveSuccessful();" />
+        <p:link onclick="PF('remove-process-workflow-dialog').hide()" styleClass="pt-3 flex justify-content-center"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           href="#" />
-        <p:commandButton id="remove-process-command" global="false" process="@this" update="#{cc.clientId}:process-list"
-          icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
-          actionListener="#{processWidgetBean.deleteProcessWorkflow()}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          oncomplete="PF('remove-process-workflow-dialog').hide(); updateProcessListOnSaveSuccessful();" />
       </h:form>
     </ui:define>
   </ui:decorate>
@@ -343,14 +348,14 @@
       <h:panelGroup id="file-upload-panel" layout="block"
         styleClass="#{empty externalLinkBean.externalLink.imageLocation ? 'ui-g-12 ':'ui-g-12 ui-fluid u-padding-0 MarTop10 external-link-preview-image-panel'}">
         <p:fileUpload id="external-link-image-upload"
-          onvalidationfailure="handleUploadFileFail();" style="display: none;"
+          style="display: none;"
           widgetVar="externalLinkUpload"
           rendered="#{empty externalLinkBean.externalLink.imageLocation}"
           listener="#{externalLinkBean.handleImageUpload}"
           chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
           dragDropSupport="true" auto="true" update="file-upload-panel"
           allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
-          accept=".png,.jpg,.jpeg,.svg"
+          accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail();"
           invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
           dropZone="external-link-preview-image-panel" oncomplete="hideExtendLinkPreviewLabel();"/>
           
@@ -381,15 +386,10 @@
     </h:form>
 
     <f:facet name="footer">
-      <p:commandLink id="cancel-adding-external-link-command"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        actionListener="#{externalLinkBean.removeImage()}"
-        oncomplete="PF('add-external-link-dialog').hide()"
-        styleClass="u-mar-right-15" />
-      <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-        icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" process="#{cc.clientId}:add-external-link-form"
+      <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addLink')}"
+        process="#{cc.clientId}:add-external-link-form"
         form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink()}"
-        update="#{cc.clientId}:add-external-link-form"
+        update="#{cc.clientId}:add-external-link-form" styleClass="w-full"
         oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); updateProcessListOnSaveSuccessful();}" />
     </f:facet>
   </p:dialog>

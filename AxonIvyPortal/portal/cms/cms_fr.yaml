@@ -408,6 +408,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     active: Activé
     add: Ajouter
     addDocument: Ajouter un document
+    addLink: Ajouter un lien
     addNote: Ajouter une note
     allCategories: Toutes les catégories
     allTypes: Tous les types

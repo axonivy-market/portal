@@ -1,11 +1,38 @@
 var grids;
 var originalGridstackHeight = 0;
-loadGrid();
-// resizeTableBody();
-function loadGrid() {
+
+const defaultNumberOfCells = 12;
+const defaultCellHeight = 100;
+const additionalHeightForResizeHandler = 15;
+
+// Store the initial window height to detect changes
+let windowHeight = window.innerHeight;
+
+function loadGrid(isResponsive) {
+
+  // Set default height for cells
+  var gridCellHeight = defaultCellHeight;
+
+  if (isResponsive) {
+	var dashboardModificationPageHeaderHeight = 0;
+    const announcementHeight = ($('.js-announcement-message').outerHeight(true) || 0);
+    const shareDashboardLinkHeight = ($('.js-share-dashboard-link').outerHeight(true) || 0);
+
+    if ($('.js-dashboard__header').length > 0) {
+        dashboardModificationPageHeaderHeight = ($('.js-dashboard__header').outerHeight(true) || 0) + additionalHeightForResizeHandler;
+    }
+
+    // calculate available height then divide by default number of cells to get height value for each cell
+    gridCellHeight = (PortalLayout.getAvailableHeight() - announcementHeight
+        - shareDashboardLinkHeight - dashboardModificationPageHeaderHeight) / defaultNumberOfCells;
+
+    // If the calculated cell height is less than or equals to 0, use the default cell height instead
+    gridCellHeight = gridCellHeight > 0 ? gridCellHeight : defaultCellHeight;
+  }
+
   grids = GridStack.initAll({
-    column: 12,
-    cellHeight: 100,
+    column: defaultNumberOfCells,
+    cellHeight: gridCellHeight,
     resizable: {
       handles: 'e, se, s, sw, w'
     }
@@ -534,4 +561,29 @@ function udateResizableTablesWhenResizeWidget() {
     }
   });
 
+}
+
+function updateDashboardWhenResizeWindow(isResponsiveDashboard) {
+  if (!isResponsiveDashboard) {
+    return;
+  }
+
+  // resize timeout ID
+  let resizeTimeout;
+
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimeout);
+
+    resizeTimeout = setTimeout(function () {
+
+   // Check if the window height has changed
+   if (window.innerHeight !== windowHeight) {
+
+     // Call the remote command 'updateDashboardWidget'
+     updateDashboardWidget();
+
+     windowHeight = window.innerHeight;
+      }
+    }, 1000); // Delay execution by 1 sec to avoid send multiple requests
+  });
 }

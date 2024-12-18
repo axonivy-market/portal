@@ -81,7 +81,7 @@
                   process="@this" />
                 <p:menuitem id="delete-application"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-                  icon="si si-bin-1"
+                  icon="si si-bin-1" styleClass="color-destroy"
                   oncomplete="PF('deleteConfirmation').show()"
                   actionListener="#{logic.submitDeleteApp(app)}"
                   update=":#{p:resolveFirstComponentWithId('deleteConfirmationDialog', view).clientId}"
@@ -230,7 +230,7 @@
                 <p:outputLabel styleClass="app-icon w-full admin-settings-application-icon"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/menuIcon')}" />
                 <div class="w-full">
-                  <ic:ch.ivy.addon.portalkit.component.IconSelection value="#{data.selectedApp.menuIcon}" isNotInAdminSettings="false"/>
+                  <ic:ch.ivy.addon.portalkit.component.IconSelection value="#{data.selectedApp.menuIcon}" isImmediate="false"/>
                 </div>
               </div>
 
@@ -363,12 +363,14 @@
     <ui:param name="dialogContent" value="#{data.confirmMsg}" />
     
     <ui:define name="dialogFooter">
-       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
-          onclick="PF('deleteConfirmation').hide()" styleClass="u-mar-right-15"/>
+      <h:panelGroup styleClass="flex flex-column">
        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-          icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
+          styleClass="w-full portal-remove-button"
           actionListener="#{logic.delete}" oncomplete="PF('deleteConfirmation').hide();"
           update=":#{p:resolveFirstComponentWithId('applicationForm', view).clientId}" />
+       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
+          onclick="PF('deleteConfirmation').hide()" styleClass="pt-3 flex justify-content-center"/>
+      </h:panelGroup>
     </ui:define>
   </ui:decorate>
 
