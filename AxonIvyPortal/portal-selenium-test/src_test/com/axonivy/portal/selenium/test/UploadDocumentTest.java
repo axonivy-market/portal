@@ -105,11 +105,11 @@ public class UploadDocumentTest extends BaseTest {
     isCorrectIconExtension(wordFile, "si si-office-file-doc-1");
     // can not preview
     assertFalse(caseDetailsPage.getFirstItemPreviewDocumentVisible());
-
-    // can not preview
+    
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(unsupportFile));
     isCorrectIconExtension(unsupportFile, "si si-common-file-empty");
-    assertTrue(caseDetailsPage.getFirstItemPreviewDocumentVisible());
+    // can not preview
+    assertFalse(caseDetailsPage.getFirstItemPreviewDocumentVisible());
   }
 
   private boolean isCorrectIconExtension(String fileName, String iconClass) {
