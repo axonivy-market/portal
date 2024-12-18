@@ -226,4 +226,19 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils
         .captureHalfLeftPageScreenShot(ScreenshotUtils.PROCESSES_INFORMATION_WIDGET_FOLDER + "process-overview-link");
   }
+  
+  @Test
+  public void screenshotPreviewDocument() throws IOException{
+    updateGlobalVariable(Variable.ENABLE_DOCUMENT_PREVIEW.getKey(), "true");
+    CaseWidgetNewDashBoardPage caseWidget = mainMenuPage.openCaseList();
+    ScreenshotUtils.resizeBrowser(new Dimension(1600, SCREENSHOT_WIDTH));
+    WaitHelper.waitForNavigation(() -> caseWidget.openDetailsCase("Order Pizza"));
+    CaseDetailsPage detailsPage = new CaseDetailsPage();
+    detailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
+    refreshPage();
+    detailsPage.waitForCaseDetailsDisplay();
+    ScreenshotUtils.executeDecorateJs("highlightCasePreviewDocument()");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.getDocumentBox(),
+        ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-preview-document", new ScreenshotMargin(10));
+  }
 }
