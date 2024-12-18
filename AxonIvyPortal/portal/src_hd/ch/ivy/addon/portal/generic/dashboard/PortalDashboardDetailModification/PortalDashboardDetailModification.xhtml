@@ -24,11 +24,12 @@
     </ui:define>
 
     <ui:define name="headerAction">
-      <p:commandButton id="back-to-configuration" styleClass="dashboard__switch-mode u-mar-right-5 ui-button-flat"
+      <p:commandLink id="back-to-configuration" styleClass="dashboard__switch-mode u-mar-right-5 pr-2"
         actionListener="#{dashboardDetailModificationBean.navigatetoDashboardConfigurationPage}"
-        update="grid-stack @this" process="@this"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
-        icon="si si-arrow-left-1" />
+        update="grid-stack @this" process="@this">
+          <i class="relative si si-arrow-left-1" style="top: 2px;"/>
+          <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}</span>
+      </p:commandLink>
 
       <c:set var="showRestoreButton" value="#{dashboardDetailModificationBean.foundTemplate.isPresent()}"/>
       <h:panelGroup id="restore-button-group" styleClass="restore-button-group u-mar-right-15">
@@ -102,13 +103,14 @@
         <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/removeWidgetMessage')}" />
 
         <ui:define name="dialogFooter">
-          <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('remove-widget-dialog').hide();"
-            styleClass="u-mar-right-15" />
-          <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
-            actionListener="#{dashboardDetailModificationBean.removeWidget()}"
-            icon="#{visibilityBean.generateButtonIcon('si si-remove-circle')}"
-            process="@this"
-            oncomplete="PF('remove-widget-dialog').hide(); updateDashboardWidget(); return false;"/>
+          <h:panelGroup styleClass="flex flex-column">
+            <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+              actionListener="#{dashboardDetailModificationBean.removeWidget()}"
+              process="@this" styleClass="w-full portal-remove-button"
+              oncomplete="PF('remove-widget-dialog').hide(); updateDashboardWidget(); return false;"/>
+            <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('remove-widget-dialog').hide();"
+              styleClass="pt-3 flex justify-content-center" />
+           </h:panelGroup>
         </ui:define>
       </ui:decorate>
     </ui:define>

@@ -47,11 +47,11 @@
             styleClass="w-6 mx-0 ui-reserve-task-button" oncomplete="#{cc.attrs.reserveOnComplete}" />
         </div>
         <div class="w-full flex justify-content-center mt-2">
-          <p:commandButton id="cancel-button"
+          <p:commandLink id="cancel-button"
             onclick="PF('#{cc.attrs.widgetVar}').hide();#{cc.attrs.cancelOnClick}"
             actionListener="#{cc.attrs.cancelActionListener}"
-            styleClass="ui-confirmdialog-yes w-full mx-0 ui-cancel-button ui-button-flat transparent"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
+            styleClass="ui-confirmdialog-yes w-full mx-0 text-center"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"/>
         </div>
       </h:form>
     </ui:define>

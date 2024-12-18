@@ -127,8 +127,7 @@ HowTo: Edit process icon of External link in Image mode
 #. Click on ``More menu item`` icon in the process card item.
 #. Click on |edit-icon| :guilabel:`Edit` menu item.
 #. The dialog **Edit process information** is opened.
-#. Click on the link ``Change`` besides the current icon.
-#. The dialog :guilabel:`Selecting icon` is opened, and choose new icon.
+#. You can change the current icon using the available icon list, or open the :guilabel:`Selecting icon dialog` to get more new icons.
 #. Press on :guilabel:`Save` button, and process icon is changed
 
    |edit-process-menu-item|

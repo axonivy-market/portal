@@ -132,7 +132,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void resetFilter() {
-    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("button[id$='reset-button']")
+    $("div.filter-overlay-panel__footer").shouldBe(appear, DEFAULT_TIMEOUT).$$("a[id$='reset-button']")
         .filter(text("Reset")).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
@@ -183,7 +183,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnManageFilterLink() {
-    $("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("button").shouldBe(getClickableCondition()).click();
+    $("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("a").shouldBe(getClickableCondition()).click();
     $("[id$='manage-filter-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -530,7 +530,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void openManageFiltersDialog() {
-    $("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("button").shouldBe(getClickableCondition()).click();
+    $("div#manage-filter").shouldBe(appear, DEFAULT_TIMEOUT).$("a").shouldBe(getClickableCondition()).click();
   }
   
   public void removeAllFilterItems() {
