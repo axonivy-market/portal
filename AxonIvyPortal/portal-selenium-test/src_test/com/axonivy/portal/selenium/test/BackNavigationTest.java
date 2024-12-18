@@ -142,7 +142,7 @@ public class BackNavigationTest extends BaseTest {
     String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskTemplatePage.inputField("[id$='payment-request:from_input']", today);
 
-    taskTemplatePage.clickByJavaScript($("div[id$='content']"));
+    taskTemplatePage.clickByJavaScript($("form[id$='payment-request']"));
     $("div[id$='from_panel']").shouldBe(Condition.disappear);
     taskTemplatePage.clickOnSubmitButton();
     caseDetailsPage = new CaseDetailsPage();
