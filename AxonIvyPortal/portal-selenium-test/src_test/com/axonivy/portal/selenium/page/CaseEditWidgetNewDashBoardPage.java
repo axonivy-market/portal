@@ -424,4 +424,16 @@ public class CaseEditWidgetNewDashBoardPage extends TemplatePage {
     .clickAndHold(element)
     .perform();
   }
+  
+  public void clickOnCaseNameColumn() {
+    $("div[id$='case-widget-preview:dashboard-cases']").shouldBe(appear, DEFAULT_TIMEOUT)
+    .$("th[id$='dashboard-cases-columns:1']").shouldBe(getClickableCondition()).click();
+  } 
+  
+  public SelenideElement getFirstCaseOfCaseWidget() {
+    $("div[id$='case-widget-preview:dashboard-cases']").shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr").get(0).shouldBe(appear,
+        DEFAULT_TIMEOUT);
+    return $("div[id$='case-widget-preview:dashboard-cases']").$$("table tbody tr").get(0);
+  }
+
 }

@@ -478,4 +478,21 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   public void clickOnExpandModeCheckbox() {
     getExpandModeCheckbox().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   } 
+  
+  public void clickOnTaskNameColumn() {
+    $("div[id$='task-widget-preview:dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("th[id$='dashboard-tasks-columns:3']").shouldBe(getClickableCondition()).click();
+  }
+  
+  public void clickOnTaskPriorityColumn() {
+    $("div[id$='task-widget-preview:dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .$("th[id$='dashboard-tasks-columns:1']").shouldBe(getClickableCondition()).click();
+  }
+
+  public SelenideElement getFirstTaskOfTaskWidget() {
+    $("div[id$='task-widget-preview:dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr").get(0).shouldBe(appear,
+        DEFAULT_TIMEOUT);
+    return $("div[id$='task-widget-preview:dashboard-tasks']").$$("table tbody tr").get(0);
+  }
+
 }
