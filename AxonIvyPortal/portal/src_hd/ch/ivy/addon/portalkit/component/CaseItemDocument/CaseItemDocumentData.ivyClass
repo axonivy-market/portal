@@ -20,3 +20,5 @@ uploadDocumentCheckStatus com.axonivy.portal.components.enums.UploadDocumentChec
 uploadDocumentCheckStatus PERSISTENT #fieldModifier
 deleteDocumentMessage String #field
 deleteDocumentMessage PERSISTENT #fieldModifier
+isImage Boolean #field
+isImage PERSISTENT #fieldModifier

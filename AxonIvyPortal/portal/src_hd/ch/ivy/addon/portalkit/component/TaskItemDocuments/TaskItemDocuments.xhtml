@@ -55,12 +55,21 @@
             sortBy="#{document.name}"
             styleClass="">
             <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="task-document-name">
-              <p:commandLink ajax="false" id="download" styleClass="download-command task-document-name-text u-truncate-text" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
+              <p:commandLink ajax="false" id="download" styleClass="task-document-name-text u-truncate-text" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
                 <p:fileDownload value="#{logic.downloadDocument(document)}" />
                 <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}" fileSize="#{masterDataBean.getReadableFileSize(document.size)}"
                   symbolStyleClass="task-details-document-download-icon"
                   fileNameStyleClass="document-name"
                   fileSizeStyleClass="document-size" />
+              </p:commandLink>
+              <p:commandLink id="preview-file" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
+                styleClass="si si-view-1 Fright document-preview ui-sm-hidden"
+                rendered="#{caseTaskDocumentBean.canPreviewDocument(document)}"
+                actionListener="#{logic.downloadDocument(document)}"
+                update="#{cc.clientId}:preview-document-dialog"
+                oncomplete="PF('preview-document-dialog').show()">
+                <p:tooltip for="preview-file" trackMouse="true" hideEvent="mouseleave click"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" />
               </p:commandLink>
               <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"
                 rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
@@ -121,6 +130,20 @@
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('document-upload-dialog').hide();" />
     </f:facet>
     <p:ajax event="close" global="false" listener="#{logic.resetMessageUploadDocument}" update="#{p:resolveFirstComponentWithId('upload-messages', view).clientId}" />
+  </p:dialog>
+  
+  <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
+    modal="true" resizable="false" width="650" showEffect="fade" hideEffect="fade" styleClass="case-upload-dialog" dynamic="true" fitViewport="true" responsive="true" height="700">
+    <div class="ui-g-12">
+      <p:media value="#{data.streamedContent}" width="100%" height="600" cache="false" id="media-content" player="pdf" rendered="#{!data.isImage}"/>
+      <p:graphicImage value="#{data.streamedContent}" stream="false" height="600" width="100%" rendered="#{data.isImage}" styleClass="welcome-image-fit-contain"/>
+    </div>
+    <f:facet name="footer">
+    <div class="u-dialog-footer-actions-group">
+      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="preview-document-close-button" type="button"
+        icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('preview-document-dialog').hide();" />
+    </div>
+    </f:facet>
   </p:dialog>
 
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
