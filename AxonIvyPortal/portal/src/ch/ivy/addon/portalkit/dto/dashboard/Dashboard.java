@@ -35,9 +35,13 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   private String displayedPermission;
   private Boolean isTopMenu;
 
+  @JsonIgnore
+  private Boolean isResponsive;
+
   public Dashboard() {
     // Set default values
     isTopMenu = false;
+    isResponsive = false;
   }
 
   public Dashboard(Dashboard dashboard) {
@@ -54,6 +58,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     permissionDTOs = dashboard.permissionDTOs;
     displayedPermission = dashboard.displayedPermission;
     isTopMenu = dashboard.isTopMenu;
+    isResponsive = dashboard.isResponsive;
   }
   
   public String getTitle() {
@@ -144,6 +149,16 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
 
   public void setIsTopMenu(Boolean isTopMenu) {
     this.isTopMenu = isTopMenu;
+  }
+
+  @JsonIgnore
+  public Boolean getIsResponsive() {
+    return isResponsive;
+  }
+
+  @JsonIgnore
+  public void setIsResponsive(Boolean isResponsive) {
+    this.isResponsive = isResponsive;
   }
 
   @Override
