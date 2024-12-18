@@ -36,12 +36,14 @@ public class UploadDocumentTest extends BaseTest {
 
   @Test
   public void uploadNormalDocument() {
+    updateGlobalVariable(Variable.ENABLE_DOCUMENT_PREVIEW.getKey(), "true");
     initNewDashboardPage(TestAccount.ADMIN_USER);
     casePage = menuPage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     int numberOfDocument = caseDetailsPage.countNumberOfDocument();
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
     caseDetailsPage.checkNumberOfDocument(numberOfDocument + 1);
+    assertTrue(caseDetailsPage.getFirstItemPreviewDocumentVisible());
   }
 
   @Test
@@ -84,6 +86,7 @@ public class UploadDocumentTest extends BaseTest {
 
   @Test
   public void uploadDocumentAndCheckDocumentName() {
+    updateGlobalVariable(Variable.ENABLE_DOCUMENT_PREVIEW.getKey(), "true");
     final String pdfFile = "test-no-files-no-js.pdf";
     final String wordFile = "test-ms-word-extension.doc";
     final String unsupportFile = "unsupportedExtension.abc";
@@ -95,12 +98,18 @@ public class UploadDocumentTest extends BaseTest {
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(pdfFile));
     isCorrectIconExtension(pdfFile, "si si-office-file-pdf-1");
+    // can preview this document
+    assertTrue(caseDetailsPage.getFirstItemPreviewDocumentVisible());
 
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(wordFile));
     isCorrectIconExtension(wordFile, "si si-office-file-doc-1");
-
+    // can not preview
+    assertFalse(caseDetailsPage.getFirstItemPreviewDocumentVisible());
+    
     caseDetailsPage.uploadDocumentWithoutError(FileHelper.getAbsolutePathToTestFile(unsupportFile));
     isCorrectIconExtension(unsupportFile, "si si-common-file-empty");
+    // can not preview
+    assertFalse(caseDetailsPage.getFirstItemPreviewDocumentVisible());
   }
 
   private boolean isCorrectIconExtension(String fileName, String iconClass) {
@@ -117,7 +126,7 @@ public class UploadDocumentTest extends BaseTest {
     });
     return true;
   }
-
+  
   @Test
   public void addUnspportedFileTypeToSettingAndUploadFile() {
     updateFileExtensionWhiteListInPortalSetting();

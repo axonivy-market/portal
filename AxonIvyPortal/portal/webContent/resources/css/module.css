@@ -428,6 +428,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   top: 2px;
   right: 4px;
 }
+.document-preview{
+  position:absolute;
+  top:2px;
+  right:30px;
+}
 /********************************** CASE ITEM SIMILAR TO TASK ITEM CLASSES **********************************/
 .case-widget-container .case-widget-top-header {
   position: relative;

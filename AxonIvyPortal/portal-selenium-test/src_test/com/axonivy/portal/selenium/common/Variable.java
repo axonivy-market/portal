@@ -45,7 +45,8 @@ public enum Variable {
   SHOW_USER_GUIDE("Portal.Dashboard.ShowUserGuide"),
     GLOBAL_SEARCH_SCOPE_BY_CATEGORIES("Portal.GlobalSearchScopeCategories"),
   SHOW_LEGACY_UI("Portal.ShowLegacyUI"), APPLICATION_NAME("Portal.ApplicationName"),
-  DASHBOARD_MAIN_MENU_ENTRY("Portal.Dashboard.MainMenuEntry");
+  DASHBOARD_MAIN_MENU_ENTRY("Portal.Dashboard.MainMenuEntry"),
+  ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview");
 
   private String key;
 

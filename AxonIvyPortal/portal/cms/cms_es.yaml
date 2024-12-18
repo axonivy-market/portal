@@ -267,6 +267,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayMessageAfterFinishOrLeaveTask: Se mostrará un mensaje después de finalizar una tarea
       embedInFrame: Cambiar a "true" para abrir un proceso o tarea en modo iFrame
       enableCaseOwner: 'Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. '
+      enableDocumentPreview: 'Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
       enableGroupChat: Cambie esta propiedad a "true" para activar el chat de grupos
       enablePrivateChat: Cambie esta propiedad a "true" para activar el chat privado
       enableProcessViewer: Defina esta propiedad como true para habilitar la opción de visor de procesos en las acciones de Tarea/Caso
@@ -971,6 +972,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourStatistics: Sus estadísticas
     yourTasks: Sus tareas
   documentFiles:
+    PreviewDocument: Vista previa
     deleteDocumentNote: '{0} ha eliminado {1}'
     deleteSuceed: Archivo eliminado con éxito
     download: Descargar
