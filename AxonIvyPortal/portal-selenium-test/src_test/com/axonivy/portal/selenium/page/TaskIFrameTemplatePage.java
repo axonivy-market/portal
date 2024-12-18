@@ -220,6 +220,9 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     $(By.id("leave-request:substitute")).sendKeys(representation);
     $(By.id("leave-request:from_input")).sendKeys(from);
     $(By.id("leave-request:to_input")).sendKeys(to);
+    clickByJavaScript($("div[id$='content']"));
+    $("div[id$='from_panel']").shouldBe(Condition.disappear);
+    $("div[id$='to_panel']").shouldBe(Condition.disappear);
   }
 
   public void inputField(String cssSelector, String value) {
