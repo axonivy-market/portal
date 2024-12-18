@@ -87,7 +87,10 @@ var PortalLayout = {
 
   getAvailableHeight: function () {
     var $layoutMain = $('.js-layout-main');
-    var layoutMainPadding = parseInt($layoutMain.css('padding-top') || 0) + parseInt($layoutMain.css('padding-bottom') || 0);
+    const roundedLayoutMainPaddingTop = parseInt(Math.round(parseFloat($layoutMain.css('padding-top') || 0)) || 0);
+    const roundedLayoutMainPaddingBottom = parseInt(Math.round(parseFloat($layoutMain.css('padding-bottom') || 0)) || 0);
+    var layoutMainPadding = roundedLayoutMainPaddingTop + roundedLayoutMainPaddingBottom;
+
     return window.innerHeight - layoutMainPadding;
   },
 

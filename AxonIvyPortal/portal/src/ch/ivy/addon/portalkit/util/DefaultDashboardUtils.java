@@ -53,7 +53,7 @@ public class DefaultDashboardUtils {
             ],
             "layout": {
               "w": 12,
-              "h": 8,
+              "h": 12,
               "x": 0,
               "y": 0
             },
@@ -168,7 +168,7 @@ public class DefaultDashboardUtils {
             ],
             "layout": {
               "w": 12,
-              "h": 8,
+              "h": 12,
               "x": 0,
               "y": 0
             },
