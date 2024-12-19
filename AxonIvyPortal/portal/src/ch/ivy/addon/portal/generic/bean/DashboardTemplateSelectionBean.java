@@ -2,7 +2,6 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
