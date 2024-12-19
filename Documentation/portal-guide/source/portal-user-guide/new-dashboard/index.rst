@@ -345,13 +345,11 @@ The :guilabel:`Manage News` dialog.
 
 |news-feed-widget-manage-content|
 
-|news-feed-widget-overlay-panel|
-
 In manage news, the user can:
 
 #. Create one entry in multiple languages. When creating the entry, the user can switch between the available languages with a click on the tab view header.
 
-#. Translate the title by clicking on the input label. Translate the content by clicking on the |translate-icon| icon. If you see something wrong with the translation, please prefer to :ref:`enable-translation`
+#. Translate the title by clicking on the input label. Translate the content by clicking on the |translate-icon| icon. To enable the translation, please prefer to :ref:`enable-translation`
 
 #. Choose an icon for the news by clicking directly on the icon, the :guilabel:`Icon browser` browser will be shown.
 

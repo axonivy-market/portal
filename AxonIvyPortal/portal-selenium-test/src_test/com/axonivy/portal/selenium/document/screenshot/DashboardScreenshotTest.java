@@ -397,12 +397,6 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     newDashboardPage.enterNewsItemData("en", "si-send-email", "Welcome to Portal News feed",
         "Welcome to Portal News feed");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "news-feed-widget-manage-content");
-    String tabIndex = newDashboardPage.selectNewsLanguage("fr");
-    newDashboardPage.clickOnTitle(tabIndex);
-    WebElement translation = newDashboardPage.getTranslationOverlayPanel(1);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "news-feed-widget-overlay-panel");
-    translation.findElement(By.cssSelector("span.ui-icon-closethick")).click();
-    newDashboardPage.findTranslationButton(tabIndex);
   }
   
   @Test
