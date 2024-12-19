@@ -95,7 +95,7 @@ The task details are separated into 4 different sections:
    |detailed-task-information-note|
 
 #. Documents, these documents once attached to the case are
-   available on all tasks. You may add or delete documents 
+   available on all tasks. You may add, delete or preview documents 
    described in the HowTo’s below.
 
    |detailed-task-information-documents|
@@ -166,6 +166,28 @@ HowTo: Remove an attachment from the case
 .. note::
 
    Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to delete documents.
+
+
+HowTo: Preview a document of a case
+------------------------------------
+
+#. Open the task details of a task
+
+#. Click on the |preview-icon| button next to the
+   attachment you want to preview
+
+#. A preview dialog is opened
+
+#. Click the button :guilabel:`Close` to close the dialog
+
+|how-to-preview-document|
+
+.. note::
+
+   Portal can preview image, plain text(txt and log) and pdf document.
+
+   Change :ref:`Portal settings <update-portal-settings>` :bdg-ref-warning:`Portal.Document.EnablePreview` to true to enable this feature.
+
 
 HowTo: Add a note to a task
 ---------------------------
@@ -273,3 +295,4 @@ HowTo: Share Task Details
    :alt: Task Details: button to get the shareable link of the task details
 .. |task-status-banner| image:: ../../screenshots/task-detail/task-status-banner.png
    :alt: Task Details: the Status banner
+.. |how-to-preview-document| image:: ../../screenshots/case-detail/how-to-preview-document.png
