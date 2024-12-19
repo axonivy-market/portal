@@ -72,7 +72,7 @@ The case details are separated into four different sections:
    |case-details-histories|
 
 #. Documents: Here, documents attached to the case are listed. You
-   may add or delete documents as described in the HowTo’s below.
+   may add, delete or preview documents as described in the HowTo’s below.
 
    |case-details-documents|
 
@@ -208,6 +208,26 @@ HowTo: Attach a Document to the Case
    Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to write case documents.
 
 .. _howto-remove-an-attachment-from-the-case-1:
+
+HowTo: Preview a document of a case
+------------------------------------
+
+#. Open the case details
+
+#. Click on the |preview-icon| button next to the
+   attachment you want to preview
+
+#. A preview dialog is opened
+
+#. Click the button :guilabel:`Close` to close the dialog
+
+|how-to-preview-document|
+
+.. note::
+
+   Portal can preview images, plain text(txt and log) and pdf documents.
+
+   Change :ref:`Portal settings <update-portal-settings>` :bdg-ref-warning:`Portal.Document.EnablePreview` to true to enable this feature.
 
 HowTo: Remove an Attachment from the Case
 -----------------------------------------
@@ -427,3 +447,4 @@ HowTo: Share Case Details
 .. |how-to-reset-to-default| image:: ../../screenshots/case-detail/how-to-reset-to-default.png
 .. |portal-process-viewer| image:: ../../screenshots/case/portal-process-viewer.png
 .. |how-to-share-case-details| image:: ../../screenshots/case-detail/share-page-button.png
+.. |how-to-preview-document| image:: ../../screenshots/case-detail/how-to-preview-document.png
