@@ -229,13 +229,12 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     SelenideElement toElement = $(By.id("leave-request:to_input"));
     toElement.click();
     toElement.sendKeys(to);
-    // clickByJavaScript($("form[id$='leave-request']"));
-    // $("div[id$='from_panel']").shouldBe(Condition.disappear);
-    // $("div[id$='to_panel']").shouldBe(Condition.disappear);
   }
 
   public void inputField(String cssSelector, String value) {
-    $(cssSelector).shouldBe(Condition.appear).shouldBe(Condition.editable).sendKeys(value);
+    SelenideElement element = $(cssSelector).shouldBe(Condition.appear).shouldBe(Condition.editable);
+    element.click();
+    element.sendKeys(value);
   }
 
   public NewDashboardPage clickSubmitButton() {
