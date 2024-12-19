@@ -42,7 +42,7 @@
           </div>
           <div id="item-select-with-ajax-event-component" class="ui-g-4 ui-xl-4 ui-md-6 ui-sm-12">
             <ic:com.axonivy.portal.components.UserSelection id="item-select-event-component" componentId="item-select-event-for-user-selection"
-              fromRoleNames="#{data.definedRoleNames}" selectedUser="#{data.selectedUserForInsertChildren}" label="Demonstrate facet and children"
+              fromRoleNames="#{data.definedRoleNames}" selectedUser="#{data.selectedUserForInsertChildren}" label="Demonstrate facet and children" labelStyleClass="relative top-50"
               autoCompleteStyleClass="width-100" autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top" floatingLabel="true" hasCustomizedSelectionList="true">
               <p:column>
                 <pc:securityMemberNameAndAvatar displayName="#{user.getDisplayName()} (#{user.getMemberName()})" securityMember="#{user}" isStandAlone="false" />

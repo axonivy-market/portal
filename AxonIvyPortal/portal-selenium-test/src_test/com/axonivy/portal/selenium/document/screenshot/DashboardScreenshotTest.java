@@ -161,8 +161,13 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotNewDashboardUserGuide() throws IOException {
-    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    redirectToRelativeLink(createTechnicalStateUrl);
+    redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createDataForStatisticWidget);
+    redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
+    redirectToRelativeLink(businessCaseUrl);
+    redirectToRelativeLink(complexPaymentUrl);
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     showNewDashboard();
     ScreenshotUtils.resizeBrowser(new Dimension(1800, 1400));
     homePage = new NewDashboardPage();
