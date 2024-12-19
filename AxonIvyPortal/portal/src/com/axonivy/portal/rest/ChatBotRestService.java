@@ -63,7 +63,8 @@ public class ChatBotRestService {
 
       return Response.ok(toJson(response)).build();
     } catch (NotFoundException e) {
-      return Response.status(Status.NOT_FOUND).entity(e.getMessage()).build();
+      Ivy.log().error(e);
+      return Response.status(Status.NOT_FOUND).build();
     }
   }
 
