@@ -362,3 +362,7 @@ function createBlackThinOutline($element) {
 function createBlackMediumOutline($element) {
   $element.addClass("black-medium-outline");
 }
+
+function highlightCasePreviewDocument(){
+  createRedMediumOutline($("a[id$=':preview-file']"));
+}

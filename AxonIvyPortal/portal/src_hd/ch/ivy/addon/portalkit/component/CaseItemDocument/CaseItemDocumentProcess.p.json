@@ -116,7 +116,11 @@
           ],
           "map" : {
             "out.document" : "param.document"
-          }
+          },
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "out.isImage = param.document!= null && StringUtils.startsWithIgnoreCase(param.document.getContentType(), \"image/\");"
+          ]
         },
         "result" : {
           "params" : [
