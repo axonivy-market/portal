@@ -94,7 +94,7 @@ The task details are separated into 3 different sections:
    |detailed-task-information-note|
 
 #. Documents, these documents once attached to the case are
-   available on all tasks. You may add or delete documents 
+   available on all tasks. You may add, delete or preview documents 
    described in the HowTo’s below.
 
    |detailed-task-information-documents|
@@ -225,6 +225,27 @@ HowTo: Move and Resize Widgets in Task Details
    |how-to-reset-to-default|
 
 
+
+HowTo: Preview a document of a case
+------------------------------------
+
+#. Open the task details of a task
+
+#. Click on the |preview-icon| button next to the
+   attachment you want to preview
+
+#. A preview dialog is opened
+
+#. Click the button :guilabel:`Close` to close the dialog
+
+|how-to-preview-document|
+
+.. note::
+
+   Portal can preview images, plain text(txt and log) and pdf documents.
+
+   Change :ref:`Portal settings <update-portal-settings>` :bdg-ref-warning:`Portal.Document.EnablePreview` to true to enable this feature.
+
 HowTo: Attach a document to the case
 ------------------------------------
 
@@ -335,6 +356,7 @@ HowTo: Share Task Details
 
 |how-to-share-task-details|
 
+
 .. note::
 
    Grant permission :bdg-ref-warning:`🔑ShareTaskDetailsLink <ShareTaskDetailsLink>` to allow a user to share task details.
@@ -361,3 +383,4 @@ HowTo: Share Task Details
 .. |how-to-switch-to-edit-mode| image:: ../../screenshots/task-detail/how-to-switch-to-edit-mode.png
 .. |how-to-reset-to-default| image:: ../../screenshots/task-detail/how-to-reset-to-default.png
 .. |how-to-share-task-details| image:: ../../screenshots/task-detail/share-page-button.png
+.. |how-to-preview-document| image:: ../../screenshots/case-detail/how-to-preview-document.png
