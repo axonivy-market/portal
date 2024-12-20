@@ -153,7 +153,8 @@ function highlightUserMenuConfiguration() {
 }
 
 function highlightCaseMenuItem() {
-  createRedThickOutlineWithOffset($('.layout-menu .CASE'));
+  var caseItem = $('ul.layout-menu > li').eq(3);
+  createRedThickOutlineWithOffset(caseItem);
 }
 
 function highlightShowMoreNoteLink() {
