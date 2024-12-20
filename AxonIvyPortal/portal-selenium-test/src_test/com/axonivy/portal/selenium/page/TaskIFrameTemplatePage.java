@@ -231,12 +231,6 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     toElement.sendKeys(to);
   }
 
-  public void inputField(String cssSelector, String value) {
-    SelenideElement element = $(cssSelector).shouldBe(Condition.appear).shouldBe(Condition.editable);
-    element.click();
-    element.sendKeys(value);
-  }
-
   public NewDashboardPage clickSubmitButton() {
     clickOnSubmitButton();
     return new NewDashboardPage();
