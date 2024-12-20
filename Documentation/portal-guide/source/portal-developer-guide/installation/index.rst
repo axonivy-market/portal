@@ -485,7 +485,7 @@ releases of |ivy|.
 
 Changes in 12.0.1
 -----------------
-- Introduced the document preview feature for the task and case detail. You can preview image(png or jpeg), plain text(txt or log) and pdf documents.
+- Introduced the document preview feature for the task and case detail. You can preview images(png or jpeg), plain text(txt or log) and pdf documents.
 - Introduced the Portal Setting ``Portal.Document.EnablePreview`` to control visibility of the preview document icon in Portal.
 
 Changes in 12.0.0
