@@ -266,7 +266,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayMessageAfterFinishOrLeaveTask: Eine Feedback-Nachricht wird angezeigt, nachdem der Benutzer eine Aufgabe beendet oder verlassen hat.
       embedInFrame: Auf true gesetzt, um einen Prozess/Task im IFrame-Modus zu starten
       enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …
-      enableDocumentPreview: 'Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
+      enableDocumentPreview: 'Auf "true" setzen, um die Vorschau von Dokumenten für bestimmte Dateitypen zu aktivieren. Unterstützte Dateitypen sind: pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
       enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten Chat zu aktivieren
       enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option in Aufgaben-/Vorgang-Aktionen zu aktivieren

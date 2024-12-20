@@ -227,7 +227,7 @@ HowTo: Preview a document of a case
 
    Portal can preview images, plain text(txt and log) and pdf documents.
 
-   Change :ref:`Portal settings <update-portal-settings>` :bdg-ref-warning:`Portal.Document.EnablePreview` to true to enable this feature.
+   Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
 
 HowTo: Remove an Attachment from the Case
 -----------------------------------------
