@@ -202,7 +202,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ApplicationName: Der Standard-Anwendungsname, der im Seitentitel angezeigt wird.
       BaseQRCodeUrl: Legen Sie die Basis-URL für den anzuzeigenden QR-Code fest.
       DefaultThemeMode: Der Standardthemenmodus der Anwendung
-      EnableDocumentPreview: 'Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
+      EnableDocumentPreview: 'Auf "true" setzen, um die Vorschau von Dokumenten für bestimmte Dateitypen zu aktivieren. Unterstützte Dateitypen sind: pdf, png, jpeg, jpg, txt, log.'
       EnableSwitchThemeModeButton: Setzen Sie diesen Wert auf true, um die Schaltfläche "Thema wechseln" zu aktivieren.
       GlobalSearchScopeCategoriesNote: Festlegung der Typen, nach denen bei der globalen Suche gesucht werden soll
       GooglePlayURL: Legen Sie die URL fest, um die Axon Ivy-Mobilanwendung auf Google Play herunterzuladen.
