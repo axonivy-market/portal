@@ -1650,7 +1650,7 @@
               </elementProp>
               <elementProp name="case-default_case_list_dashboard_case_1:quick-search-form:quick-search-input-0" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">Create test data with category attach to one business case</stringProp>
+                <stringProp name="Argument.value">Business case has lots of tasks cases</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">case-default_case_list_dashboard_case_1:quick-search-form:quick-search-input-0</stringProp>

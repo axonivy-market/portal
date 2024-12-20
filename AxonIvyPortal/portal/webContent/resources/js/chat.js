@@ -733,7 +733,7 @@ function View(uri)
             }
           } else {
             var userDom = document.createElement('li');
-            userDom.innerHTML = $('.js-no-users-of-role').val();
+            userDom.innerHTML = escapeHtml($('.js-no-users-of-role').val());
             userList.appendChild(userDom); 
           }
           roleGroupDom.appendChild(userList)
@@ -741,6 +741,15 @@ function View(uri)
         }
       }
       PF('participants-list-dialog').initPosition();
+    }
+	
+    function escapeHtml(unsafe){
+      return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
     }
 
     function initCloneGroup(groupTemplate, groupId) {
