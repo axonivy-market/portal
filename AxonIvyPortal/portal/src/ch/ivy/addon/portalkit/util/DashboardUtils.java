@@ -327,4 +327,13 @@ public class DashboardUtils {
     }
   }
 
+  public static boolean isDefaultTaskListDashboard(Dashboard dashboard) {
+    return Optional.ofNullable(dashboard).map(Dashboard::getId)
+        .orElseGet(() -> "").contentEquals(DEFAULT_TASK_LIST_DASHBOARD);
+  }
+
+  public static boolean isDefaultCaseListDashboard(Dashboard dashboard) {
+    return Optional.ofNullable(dashboard).map(Dashboard::getId)
+        .orElseGet(() -> "").contentEquals(DEFAULT_CASE_LIST_DASHBOARD);
+  }
 }

@@ -9,14 +9,14 @@
   <cc:attribute name="tabindex" required="false" default="1" />
   <cc:attribute name="isReadOnly" default="false" />
   <cc:attribute name="hideIconArray" default="false"/>
-  <cc:attribute name="isNotInAdminSettings" default="true"/>
+  <cc:attribute name="isImmediate" default="true"/>
 </cc:interface>
 <cc:implementation>
   <c:set var="tabindex" value="#{cc.attrs.tabindex}"/>
   <c:set var="readOnly" value="#{empty cc.attrs.isReadOnly ? false : cc.attrs.isReadOnly}"/>
   <c:set var="hideIconArray" value="#{empty cc.attrs.hideIconArray ? false : cc.attrs.hideIconArray}"/>
   <f:event listener="#{iconSelectionBean.init(cc.attrs.value)}" type="preRenderComponent" />
-  <p:remoteCommand rendered="#{!hideIconArray}" oncomplete="loadIconsFirstTime('#{hideIconArray}','#{cc.clientId}', '#{cc.attrs.value}');" autoRun="true" global="false" immediate="#{cc.attrs.isNotInAdminSettings}"/>
+  <p:remoteCommand rendered="#{!hideIconArray}" oncomplete="loadIconsFirstTime('#{hideIconArray}','#{cc.clientId}', '#{cc.attrs.value}');" autoRun="true" global="false" process="@this" immediate="#{cc.attrs.isImmediate}"/>
 
   <h:panelGroup id="awesome-icon-selection" styleClass="awesome-icon-selection-panel">
     <h:panelGroup rendered="#{!hideIconArray}" id="menu-icon-container" styleClass="menu-icon-container" layout="block">

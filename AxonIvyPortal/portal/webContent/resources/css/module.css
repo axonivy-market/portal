@@ -2084,7 +2084,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .workflow-events-dialog {
-  max-width: 70%;
+  max-width: 55%;
 }
 
 .task-workflow-event-command {
@@ -5180,7 +5180,7 @@ body.light .image-process-container .image-process-item .card-item.card.image-wi
 }
 
 .image-process-item .card.image-widget-mode .process-name {
-  padding: 0.5rem 0.6rem;
+  padding: 1rem 0.6rem;
 }
 
 .image-process-icon .process-image-view-icon {
@@ -5610,7 +5610,7 @@ a.dashboard-action-container label {
   border: 1px solid var(--process-list-item-border-color);
   background-color: var(--process-list-item-background-color);
   border-radius: 10px;
-  height: 10em;
+  height: 15rem;
   align-items: center;
   display: flex;
 }

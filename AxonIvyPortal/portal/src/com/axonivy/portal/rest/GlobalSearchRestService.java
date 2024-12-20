@@ -11,6 +11,7 @@ import com.axonivy.portal.payload.SearchPayload;
 import com.axonivy.portal.response.GlobalSearchResponse;
 import com.axonivy.portal.service.GlobalSearchService;
 
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -30,7 +31,8 @@ public class GlobalSearchRestService {
       GlobalSearchResponse result = service.searchProcesses(payload);
       return Response.ok(result).build();
     } catch (NotFoundException e) {
-      return Response.status(Status.NOT_FOUND).entity(e.getMessage()).build();
+      Ivy.log().error(e);
+      return Response.status(Status.NOT_FOUND).build();
     }
   }
 
@@ -42,7 +44,8 @@ public class GlobalSearchRestService {
       GlobalSearchResponse result = service.searchTasks(payload);
       return Response.ok(result).build();
     } catch (NotFoundException e) {
-      return Response.status(Status.NOT_FOUND).entity(e.getMessage()).build();
+      Ivy.log().error(e);
+      return Response.status(Status.NOT_FOUND).build();
     }
   }
 
@@ -54,7 +57,8 @@ public class GlobalSearchRestService {
       GlobalSearchResponse result = service.searchCases(payload);
       return Response.ok(result).build();
     } catch (NotFoundException e) {
-      return Response.status(Status.NOT_FOUND).entity(e.getMessage()).build();
+      Ivy.log().error(e);
+      return Response.status(Status.NOT_FOUND).build();
     }
   }
 }

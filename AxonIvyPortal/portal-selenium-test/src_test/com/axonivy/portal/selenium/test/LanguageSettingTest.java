@@ -8,6 +8,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.axonivy.portal.selenium.page.WorkingTaskDialogFromUserProfilePage;
@@ -26,9 +27,10 @@ public class LanguageSettingTest extends BaseTest {
   public void testChangeLanguageWhenWorkingOnTask() {
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    taskWidget.startTaskIFrameByIndex(0);
+    TaskIFrameTemplatePage taskPage = taskWidget.startTaskIFrameByIndex(0);
     taskWidget.switchBackToParent();
-    taskWidget.clickOnMyProfile();
+    taskPage.waitForTaskTitleAppear();
+    taskPage.clickOnMyProfile();
     WorkingTaskDialogFromUserProfilePage workingTaskDialogPage = new WorkingTaskDialogFromUserProfilePage();
     workingTaskDialogPage.leaveTask();
     UserProfilePage userProfilePage = new UserProfilePage();

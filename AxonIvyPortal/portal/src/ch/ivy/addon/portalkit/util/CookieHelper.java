@@ -39,6 +39,7 @@ public class CookieHelper {
         }
       }
       cookie.setPath("/");
+      cookie.setSecure(true);
       HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
       response.addCookie(cookie);
     }
