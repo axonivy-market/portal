@@ -6,7 +6,10 @@ import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.SortMeta;
+
+import com.axonivy.portal.components.ivydata.bo.IvyDocument;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -79,5 +82,14 @@ public class CaseTaskDocumentBean implements Serializable {
 
   public SortMeta getDocumentSortByCreationTimestamp() {
     return SortFieldUtil.buildSortMeta("creation.timestamp", true);
+  }
+  
+  public boolean canPreviewDocument(IvyDocument document) {
+    boolean enablePreviewSetting = GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ENABLE_DOCUMENT_PREVIEW);
+    if (document != null && StringUtils.startsWithIgnoreCase(document.getContentType(), "image/")) {
+      return enablePreviewSetting;
+    }
+    boolean isSupportedPreviewType = document != null && StringUtils.endsWithAny(document.getPath().toLowerCase(), ".pdf", ".txt", ".log");
+    return enablePreviewSetting && isSupportedPreviewType;
   }
 }
