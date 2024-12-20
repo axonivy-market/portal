@@ -20,7 +20,7 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-          engineNames = ['master', '10', '8', 'performance-master', 'performance-10', 'performance-8']
+          engineNames = ['master', '12', '10', '8', 'performance-master', 'performance-12', 'performance-10', 'performance-8']
           for (engineName in engineNames) {
             sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
           }
