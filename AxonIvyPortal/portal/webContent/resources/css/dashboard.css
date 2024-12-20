@@ -1625,7 +1625,15 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .welcome-widget-configuration .welcome-text-input-panel {
   display: flex;
-  align-items: center;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 1366px) {
+  .welcome-widget-configuration .welcome-text-input-panel {
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+}
 }
 
 .welcome-widget-configuration .welcome-text-input-panel .greeting-text {

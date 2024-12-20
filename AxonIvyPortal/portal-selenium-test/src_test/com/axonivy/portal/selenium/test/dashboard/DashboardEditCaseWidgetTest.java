@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
+import static com.codeborne.selenide.Condition.text;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
@@ -12,6 +14,7 @@ import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.codeborne.selenide.CollectionCondition;
@@ -19,6 +22,10 @@ import com.codeborne.selenide.CollectionCondition;
 @IvyWebTest
 public class DashboardEditCaseWidgetTest extends BaseTest {
   private static final String NAME_STR = "Name";
+  private static final String YOUR_CASES_WIDGET = "Your Cases";
+
+  private static final String ALPHA_COMPANY = "Alpha Company";
+  private static final String ORDER_PIZZA = " Order Pizza";
 
   @Override
   @BeforeEach
@@ -201,4 +208,24 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     return modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
   }
 
+  @Test
+  public void testDefaultSortOnCaseWidget() {
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(createAlphaCompanyUrl);
+
+    LinkNavigator.redirectToPortalDashboardConfiguration();
+    var configurationPage = new DashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    
+    CaseWidgetNewDashBoardPage caseWidget = new CaseWidgetNewDashBoardPage(YOUR_CASES_WIDGET);
+    CaseEditWidgetNewDashBoardPage caseEditWidgetPage = caseWidget.openEditWidget();
+
+    caseEditWidgetPage.clickOnCaseNameColumn();
+    caseEditWidgetPage.getFirstCaseOfCaseWidget().shouldHave(text(ALPHA_COMPANY), DEFAULT_TIMEOUT);;
+
+    caseEditWidgetPage.clickOnCaseNameColumn();
+    caseEditWidgetPage.getFirstCaseOfCaseWidget().shouldHave(text(ORDER_PIZZA), DEFAULT_TIMEOUT);;
+    
+  }
 }

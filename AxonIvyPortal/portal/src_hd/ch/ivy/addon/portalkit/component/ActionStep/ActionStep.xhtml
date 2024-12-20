@@ -74,7 +74,7 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}" />
     </p:commandLink>
 
-    <h:panelGroup id="side-steps">
+    <h:panelGroup id="side-steps" styleClass="case-side-steps-panel">
       <f:event listener="#{sideStepBean.getSideSteps(cc.attrs.taskId, case.id)}" type="preRenderComponent" />
       <h:outputText rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" styleClass="action-step-item" />
       <ui:repeat var="sideStep" value="#{sideStepBean.currentSideSteps}">

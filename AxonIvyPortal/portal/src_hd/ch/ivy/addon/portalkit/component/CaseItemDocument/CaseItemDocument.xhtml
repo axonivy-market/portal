@@ -167,13 +167,13 @@
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}" />
     
     <ui:define name="dialogFooter">
-      <p:commandLink id="document-deletion-cancellation-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-         process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="u-mar-right-15"/>
       <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-        process="@this" icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
+        process="@this"
         update="#{cc.attrs.componentToUpdate} #{cc.clientId}:case-document-global-messages #{cc.clientId}:case-document-form"
-        actionListener="#{logic.deleteDocument}"
+        actionListener="#{logic.deleteDocument}" styleClass="w-full portal-remove-button"
         oncomplete="PF('document-deletion-dialog').hide();handleCaseDetailsTable();" />
+      <p:commandLink id="document-deletion-cancellation-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+         process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="pt-3 flex justify-content-center"/>
     </ui:define>
   </ui:decorate>
   <script type="text/javascript">
