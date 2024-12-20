@@ -132,8 +132,7 @@ HowTo: Preview a document of a case
 
 #. Open the case details
 
-#. Click on the |preview-icon| button next to the
-   attachment you want to preview
+#. Click on the |preview-icon| button next to the attachment you want to preview
 
 #. A preview dialog is opened
 
@@ -143,9 +142,9 @@ HowTo: Preview a document of a case
 
 .. note::
 
-   Portal can preview image, plain text(txt and log) and pdf document.
+   Portal can preview images, plain text(txt and log) and pdf documents.
 
-   Change :ref:`Portal settings <update-portal-settings>` :bdg-ref-warning:`Portal.Document.EnablePreview` to true to enable this feature.
+   Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
 
 
 HowTo: Add a Note to a Case

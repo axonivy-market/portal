@@ -61,3 +61,4 @@
 .. |reorder-dashboard-icon| image:: ../includes/images/reorder.svg
    :width: 15px
 .. |preview-icon| image:: ../includes/images/view-1.svg
+   :width: 15px
