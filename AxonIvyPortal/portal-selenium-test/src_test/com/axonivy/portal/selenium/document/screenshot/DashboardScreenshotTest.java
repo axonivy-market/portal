@@ -215,12 +215,12 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     // Take screenshot of task widget table in edit mode
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     ScreenshotUtils.captureElementScreenshot(
-        newDashboardPage.getTaskWidgetTable(),
+        newDashboardPage.getTaskWidget(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-edit-mode");
 
     // Take screenshot of case widget table in edit mode
     ScreenshotUtils.captureElementScreenshot(
-        newDashboardPage.getCaseWidgetTable(),
+        newDashboardPage.getCaseWidget(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-edit-mode");
 
     // Take screenshot of Add new widget dialog
