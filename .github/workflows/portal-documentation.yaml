@@ -11,8 +11,8 @@ on:
         type: string
 
 jobs:
-  Explore-GitHub-Actions:
-    runs-on: portal01
+  test-ne:
+    runs-on: portal-01
     steps:
       - run: echo "🎉 The job was manually triggered by a ${{ inputs.ivyVersion }} event."
       # - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
