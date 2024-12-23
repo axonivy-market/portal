@@ -1,6 +1,7 @@
 name: Portal Documentation
 run-name: Build and Deploy Documentation 🚀
-on: 
+on:
+  push:
   workflow_dispatch:
     inputs:
       ivyVersion:
