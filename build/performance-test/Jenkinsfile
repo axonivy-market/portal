@@ -25,7 +25,7 @@ pipeline {
             sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
           }
           sh """
-            docker compose -f ${ivyDir}/${engineNames[3]}/docker-compose.yml up -d
+            docker compose -f ${ivyDir}/${engineNames[4]}/docker-compose.yml up -d
             #Workaround because PMV Portal starts slow
             sleep 100
           """
