@@ -11,25 +11,22 @@ on:
         type: string
 
 jobs:
-  test-ne:
-    runs-on: portal-01
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+  # test-ne:
+  #   runs-on: portal-01
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
 
-      - name: Set build description
-        run: echo "Running on ${{ runner.name }}" # Similar to setting currentBuild.description in Jenkins
+  #     - name: Set build description
+  #       run: echo "Running on ${{ runner.name }}" # Similar to setting currentBuild.description in Jenkins
   
   get-current-version:
     runs-on: portal-01
     container:
-      image: maven:3.9.8-eclipse-temurin-21
+      image: maven:3.9.8-eclipse-temurin-21 
     outputs:
       documentVersion: ${{ steps.get_version.outputs.version }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
       - name: Check for dockerenv file
         id: get_version
         run: |
@@ -41,9 +38,14 @@ jobs:
           fi
           echo "Version is $VERSION"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-  
+
       - name: Unzip screenshots
         run: echo ${{ steps.get_version.outputs.version }}
+
+      - name: Unzip portal screenshots
+        run: |
+          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ steps.get_version.outputs.version }}.zip \
+            -d Documentation/portal-guide/source/screenshots
 
   test-another-job:
     runs-on: portal-01
@@ -51,9 +53,6 @@ jobs:
     container:
       image: axonivy/build-container:read-the-docs-2
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      
       - name: test-1
         run: echo ${{ needs.get-current-version.outputs.documentVersion }}
 
