@@ -11,7 +11,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <p:remoteCommand id="init-data-to-delegate-rc" name="initDataToDelegate"
+  <p:remoteCommand id="init-data-to-delegate-rc" name="initDataToDelegate" global="false"
     actionListener="#{logic.initDataToDelegate(cc.attrs.taskId, cc.attrs.task)}"
     oncomplete="PF('task-delegate-dialog').show()"
     update="#{cc.clientId}:task-delegate-dialog"
