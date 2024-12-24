@@ -1,10 +1,9 @@
 FROM maven:3.9.8-eclipse-temurin-21
 
-# Install groupadd and useradd commands
+# Install required tools for groupadd and useradd if not already present
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    shadow-utils \
+    passwd \
     && rm -rf /var/lib/apt/lists/*
 
 # Create a group and user with the specified IDs
-RUN groupadd --gid 1001 build && \
-    useradd --uid 1001 --gid 1001 --no-create-home --shell /bin/false build
+RUN addgroup --gid 1001 build && adduser --uid 1001 --gid 1001 --disabled-password --gecos "" build
