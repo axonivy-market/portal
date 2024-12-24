@@ -55,7 +55,7 @@ jobs:
       - name: Build HTML documentation
         uses: docker://axonivy/build-container:read-the-docs-2
         with:
-          args: make -C /doc-build html BASEDIR='${{ github.workspace }}/Documentation/portal-guide' VERSION=${{ steps.get_version.outputs.version }}
+          args: make -C /doc-build html BASEDIR=${{ github.workspace }}/Documentation/portal-guide VERSION=${{ steps.get_version.outputs.version }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
