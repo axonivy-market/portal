@@ -42,6 +42,9 @@ jobs:
       - name: Unzip screenshots
         run: echo ${{ steps.get_version.outputs.version }}
 
+  unzip-screenshot:
+    runs-on: portal-01
+    steps:
       - name: Unzip portal screenshots
         run: |
           unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ steps.get_version.outputs.version }}.zip \
