@@ -52,10 +52,18 @@ jobs:
         shell: bash
         run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
 
-      - name: Build HTML documentation
-        uses: docker://axonivy/build-container:read-the-docs-2
-        with:
-          args: make -C /doc-build html BASEDIR=${{ github.workspace }}/Documentation/portal-guide VERSION=${{ steps.get_version.outputs.version }}
+      # - name: Build HTML documentation
+      #   uses: docker://axonivy/build-container:read-the-docs-2
+      #   with:
+      #     args: make -C /doc-build html BASEDIR=${{ github.workspace }}/Documentation/portal-guide VERSION=${{ steps.get_version.outputs.version }}
+
+      - name: Build Documentation HTML
+        run: |
+          docker run --rm \
+              -v ${{ github.workspace }}/Documentation/portal-guide:/doc-build/source \
+              -w /doc-build \
+              axonivy/build-container:read-the-docs-2 \
+              make html VERSION=${{ steps.get_version.outputs.version }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
