@@ -15,7 +15,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
-import ch.addon.portal.generic.menu.MenuView;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
@@ -23,7 +22,6 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
@@ -97,8 +95,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
       String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
       Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardJson);
       
-      MenuView menuView = (MenuView) ManagedBeans.get("menuView");
-      menuView.updateDashboardCache(DashboardUtils.collectDashboards());
+      DashboardUtils.updateDashboardCache();
     }
   }
 
