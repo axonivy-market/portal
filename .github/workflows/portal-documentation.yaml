@@ -1,43 +1,17 @@
 name: Portal Documentation
 run-name: Build and Deploy Documentation 🚀
 on:
-  push:
-    # branches:
-    #   - 'master'
   workflow_dispatch:
     inputs:
       ivyVersion:
         description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html'
         default: 'nightly'
         required: true
+  push:
+    branches:
+      - 'feature/IVYPORTAL-18151-Create-Github-Action-for-Building-Documentation'
 
 jobs:
-  # test-ne:
-  #   runs-on: portal-01
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v4
-
-  #     - name: Set build description
-  #       run: echo "Running on ${{ runner.name }}" # Similar to setting currentBuild.description in Jenkins
-  
-  test-phat:
-    runs-on: portal-01
-    steps:
-    - name: Set up Maven
-      uses: stCarolas/setup-maven@v5
-      with:
-        maven-version: 3.9.8
-    # - uses: actions/checkout@v4
-    # - uses: actions/setup-java@v4
-    #   with:
-      #     distribution: 'temurin'
-      #     java-version: '21'
-      #     cache: 'maven'
-      #     # cache-dependency-path: 'sub-project/pom.xml' # optional
-    - name: Build with Maven
-      run: mvn --version
-
   prepare-document:
     runs-on: portal-01
     outputs:
@@ -78,6 +52,38 @@ jobs:
         shell: bash
         run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
 
+      - name: Build HTML documentation
+        uses: docker://axonivy/build-container:read-the-docs-2
+        with:
+          args: make -C /doc-build html BASEDIR='${{ github.workspace }}/Documentation/portal-guide' VERSION=${{ steps.get_version.outputs.version }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation
+          path: |
+            Documentation/*/build/html/**/*
+            Documentation/*/target/*.zip
+  
+  # build-document:
+  #   runs-on: portal-01
+  #   needs: prepare-document
+  #   steps:
+  #     - name: Build HTML documentation with Read the Docs
+  #       container:
+  #         image: axonivy/build-container:read-the-docs-2
+  #       env:
+  #         BASEDIR: ${{ github.workspace }}/Documentation/portal-guide
+  #         VERSION: ${{ needs.prepare-document.outputs.documentVersion }}
+  #       run: make -C /doc-build html
+
+        # uses: docker://axonivy/build-container:read-the-docs-2
+        # with:
+        #   entrypoint: "make"
+        # env:
+        #   BASEDIR: ${{ github.workspace }}/Documentation/portal-guide
+        #   VERSION: ${{ needs.prepare-document.outputs.documentVersion }}
+        # args: ["-C", "/doc-build", "html"]
       # - name: Cleanup
       #   shell: bash
       #   run: |
