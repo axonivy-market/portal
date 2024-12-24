@@ -39,7 +39,6 @@ jobs:
             echo "Error: could not evaluate maven revision property"
             exit 1
           fi
-          ll
           echo "Version is $VERSION"
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
   
