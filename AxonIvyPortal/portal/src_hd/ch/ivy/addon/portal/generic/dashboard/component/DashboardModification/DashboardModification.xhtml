@@ -59,7 +59,7 @@
               my="right top" at="right bottom">
               <p:menuitem id="edit" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(dashboard)}"
                 icon="si si-graphic-tablet-drawing-pen" styleClass="dashboard-configuration-action-menu-icon"
-                update="#{cc.clientId}:configuration-dashboard-detail-component:dashboard-detail-form"
+                update="#{cc.clientId}:configuration-dashboard-detail-component:dashboard-detail-form" global="false"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" oncomplete="PF('configuration-dashboard-detail-dialog').show()"
                 target="_blank" resetValues="true" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" rendered="true" />
               <p:menuitem id="configure-dashboard" process="@this"
