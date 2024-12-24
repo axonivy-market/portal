@@ -9,7 +9,7 @@
 
 <cc:implementation>
 
-  <p:remoteCommand name="initWorkflowEventData" actionListener="#{logic.getWorkflowEvents(cc.attrs.taskId)}" global="false"
+  <p:remoteCommand name="initWorkflowEventData" actionListener="#{logic.getWorkflowEvents(cc.attrs.taskId)}"
     oncomplete="PF('workflow-events-dialog').show()" update="#{cc.clientId}:workflow-events-dialog" />
 
   <p:dialog id="workflow-events-dialog" widgetVar="workflow-events-dialog"
