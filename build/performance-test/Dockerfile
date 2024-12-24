@@ -6,7 +6,7 @@ ENV JMETER_PLUGINS_FOLDER ${JMETER_HOME}/lib/ext/
 
 WORKDIR ${JMETER_HOME}
 RUN  apt-get -y update \
-&& apt-get install -y wget gnupg unzip passwd
+&& apt-get install -y wget gnupg unzip
 
 # Download Apache JMeter
 RUN wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz
