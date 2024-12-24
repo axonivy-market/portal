@@ -37,14 +37,22 @@ jobs:
     - name: Build with Maven
       run: mvn --version
 
-  get-current-version:
+  prepare-document:
     runs-on: portal-01
-    container:
-      image: maven:3.9.8-eclipse-temurin-21 
     outputs:
       documentVersion: ${{ steps.get_version.outputs.version }}
     steps:
-      - name: Check for dockerenv file
+      - uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.8
+      - name: Get current version
         id: get_version
         run: |
           VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
@@ -58,24 +66,39 @@ jobs:
 
       - name: Unzip screenshots
         run: echo ${{ steps.get_version.outputs.version }}
-
-  unzip-screenshot:
-    runs-on: portal-01
-    needs: get-current-version
-    steps:
+      
       - name: Unzip portal screenshots
         run: |
-          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ needs.get-current-version.outputs.documentVersion }}.zip \
+          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ steps.get_version.outputs.version }}.zip \
             -d Documentation/portal-guide/source/screenshots
+      - name: Generate resources
+        run: |
+          mvn clean process-resources -Divy.engine.version=[13.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/ axonivy-engine.zip -f Documentation/public-api/pom.xml
+          mvn clean generate-resources -f Documentation/pom.xml
+          echo "helloooo"
 
-  test-another-job:
-    runs-on: portal-01
-    needs: get-current-version
-    container:
-      image: axonivy/build-container:read-the-docs-2
-    steps:
-      - name: test-1
-        run: echo ${{ needs.get-current-version.outputs.documentVersion }}
+      # - name: Cleanup
+      #   shell: bash
+      #   run: |
+      #     rm -r --force ${{ github.workspace }}\*
+
+  # unzip-screenshot:
+  #   runs-on: portal-01
+  #   needs: get-current-version
+  #   steps:
+  #     - name: Unzip portal screenshots
+  #       run: |
+  #         unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ needs.get-current-version.outputs.documentVersion }}.zip \
+  #           -d Documentation/portal-guide/source/screenshots
+
+  # test-another-job:
+  #   runs-on: portal-01
+  #   needs: get-current-version
+  #   container:
+  #     image: axonivy/build-container:read-the-docs-2
+  #   steps:
+  #     - name: test-1
+  #       run: echo ${{ needs.get-current-version.outputs.documentVersion }}
 
 
 
