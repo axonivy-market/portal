@@ -73,7 +73,7 @@ jobs:
             -d Documentation/portal-guide/source/screenshots
       - name: Generate resources
         run: |
-          mvn clean process-resources -Divy.engine.version=[13.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/ axonivy-engine.zip -f Documentation/public-api/pom.xml
+          mvn clean process-resources -Divy.engine.version=[13.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
           echo "helloooo"
 
