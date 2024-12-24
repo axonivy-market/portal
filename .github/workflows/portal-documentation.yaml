@@ -19,9 +19,13 @@ jobs:
 
       - name: Set build description
         run: echo "Running on ${{ runner.name }}" # Similar to setting currentBuild.description in Jenkins
-
-      - name: Get current version
-        id: get_version
+  
+  get-current-version:
+    runs-on: portal-01
+    container:
+      image: maven:3.9.8-eclipse-temurin-21
+    steps:
+      - name: Check for dockerenv file
         run: |
           VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
@@ -30,6 +34,18 @@ jobs:
             exit 1
           fi
           echo "Version is $VERSION"
+
+      # - name: Get current version
+      #   uses: docker://maven:3.9.8-eclipse-temurin-21
+      #   id: get_version
+      #   run: |
+      #     VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
+      #     echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+      #     if [[ "$VERSION" == "null object or invalid expression" ]]; then
+      #       echo "Error: could not evaluate maven revision property"
+      #       exit 1
+      #     fi
+      #     echo "Version is $VERSION"
       # - run: echo "🎉 The job was manually triggered by a ${{ inputs.ivyVersion }} event."
       # - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
       # - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
