@@ -2,13 +2,14 @@ name: Portal Documentation
 run-name: Build and Deploy Documentation 🚀
 on:
   push:
+    # branches:
+    #   - 'master'
   workflow_dispatch:
     inputs:
       ivyVersion:
         description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html'
-        required: true
         default: 'nightly'
-        type: string
+        required: true
 
 jobs:
   # test-ne:
@@ -61,21 +62,21 @@ jobs:
             echo "Error: could not evaluate maven revision property"
             exit 1
           fi
-          echo "Version is $VERSION"
-          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-
-      - name: Unzip screenshots
-        run: echo ${{ steps.get_version.outputs.version }}
+          echo "Version is $VERSION" && echo "version=$VERSION" >> "$GITHUB_OUTPUT"
       
       - name: Unzip portal screenshots
         run: |
           unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ steps.get_version.outputs.version }}.zip \
             -d Documentation/portal-guide/source/screenshots
+
       - name: Generate resources
         run: |
           mvn clean process-resources -Divy.engine.version=[13.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
-          echo "helloooo"
+      
+      - name: Run substitute
+        shell: bash
+        run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
 
       # - name: Cleanup
       #   shell: bash
