@@ -10,7 +10,8 @@ pipeline {
   parameters {
     string(name: 'buildPluginVersion', defaultValue: '13.1.0-SNAPSHOT', description: 'Axon Ivy build plugin version of all pom will be updated to.')
     string(name: 'ivyEngineVersion', defaultValue: '13.1.0', description: 'Axon Ivy engine version of all pom will be updated to.')
-	string(name: 'branchToPush', defaultValue: 'portal-update-pom/master', description: 'Branch name to push changes. It must not be protected branches. After this build, create a pull request to merge to master')
+    string(name: 'portalVersion', defaultValue: '13.1.0', description: 'Portal version of all pom will be updated to.')
+    string(name: 'branchToPush', defaultValue: 'portal-update-pom/master', description: 'Branch name to push changes. It must not be protected branches. After this build, create a pull request to merge to master')
     string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip', description: '''Where to download engine? e.g.
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip for nightly master
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
@@ -67,6 +68,7 @@ def updateVersion() {
   for (pomFile in pomFiles) {
     maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
     maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
+    maven cmd: "-f ${pomFile} release:update-versions -DdevelopmentVersion=${params.portalVersion}"
   }
 }
 
