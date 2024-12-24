@@ -44,10 +44,11 @@ jobs:
 
   unzip-screenshot:
     runs-on: portal-01
+    needs: get-current-version
     steps:
       - name: Unzip portal screenshots
         run: |
-          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ steps.get_version.outputs.version }}.zip \
+          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ needs.get-current-version.outputs.documentVersion }}.zip \
             -d Documentation/portal-guide/source/screenshots
 
   test-another-job:
