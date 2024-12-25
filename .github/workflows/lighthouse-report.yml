@@ -42,23 +42,23 @@ jobs:
           curl -L $ENGINE_URL -o engine.zip
           unzip -q engine.zip -d $ENGINE_DIR
 
-      - name: Build Portal Modules
-        run: |
-          modules=(
-            "AxonIvyPortal/portal-components"
-            "AxonIvyPortal/portal"
-            "AxonIvyPortal/PortalKitTestHelper"
-            "Showcase/portal-user-examples"
-            "Showcase/portal-developer-examples"
-            "Showcase/InternalSupport"
-            "Showcase/portal-components-examples"
-            "AxonIvyPortal/PortalApp"
-            "Showcase/portal-demo-app"
-          )
+#      - name: Build Portal Modules
+#        run: |
+#          modules=(
+#            "AxonIvyPortal/portal-components"
+#            "AxonIvyPortal/portal"
+#            "AxonIvyPortal/PortalKitTestHelper"
+#            "Showcase/portal-user-examples"
+#            "Showcase/portal-developer-examples"
+#            "Showcase/InternalSupport"
+#            "Showcase/portal-components-examples"
+#            "AxonIvyPortal/PortalApp"
+#            "Showcase/portal-demo-app"
+#          )
 #          for module in "${modules[@]}"; do
 #            echo "Building $module..."
 #            mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
-          done
+#          done
 
 #      - name: Deploy Portal Modules
 #        run: |
