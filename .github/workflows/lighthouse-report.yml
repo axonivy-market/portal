@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v3
       - name: Build Docker Image for Portal Modules
         run: docker build -t build-portal-modules -f build/Dockerfile .
-      - name: Build Maven Modules Inside Docker
+      - name: Build Modules Inside Docker
         id: build-maven
         run: |
           docker run --rm \
@@ -42,9 +42,9 @@ jobs:
             -w /workspace \
             build-portal-modules sh -c '
               BUILT_MODULES=""
-              for MODULE in ${{ env.MODULES }}; do
-                mvn clean install -f ${MODULE}/pom.xml
-                BUILT_MODULES="$BUILT_MODULES $MODULE"
+              for MODULE in $(echo "${{ env.MODULES }}"); do
+                echo "Building module: $MODULE"
+                mvn clean install -f "${MODULE}/pom.xml"
               done
               echo "::set-output name=built_modules::$BUILT_MODULES"
             '
