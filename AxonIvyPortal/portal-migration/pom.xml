@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>portal.migration</groupId>
   <artifactId>portal-migration-9.4</artifactId>
-  <version>9.4.0</version>
+  <version>12.0.2-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
     <ivy.engine.version>12.0.2</ivy.engine.version>

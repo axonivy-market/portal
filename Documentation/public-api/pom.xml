@@ -77,10 +77,10 @@
         <version>3.5.0</version>
         <executions>
           <execution>
-              <phase>initialize</phase>
-              <goals>
-                <goal>properties</goal>
-              </goals>
+            <phase>initialize</phase>
+            <goals>
+              <goal>properties</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
