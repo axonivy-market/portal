@@ -10,6 +10,7 @@ on:
 
 env: # Define reusable environment variables
   ENGINE_DIR: ${{ github.workspace }}/AxonIvyPortal/engine
+  ENGINE_URL: https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip
 
 jobs:
   build:
@@ -39,8 +40,8 @@ jobs:
 
       - name: Download Engine
         run: |
-          echo "Downloading engine from ${{ github.event.inputs.engineDownloadURL }}..."
-          curl -L ${{ github.event.inputs.engineDownloadURL }} -o engine.zip
+          echo "Downloading engine from ${{ ENGINE_URL }}..."
+          curl -L ${{ ENGINE_URL }} -o engine.zip
           unzip -q engine.zip -d $ENGINE_DIR
 
       - name: Build Portal Modules
