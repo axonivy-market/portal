@@ -8,92 +8,68 @@ on:
     branches:
       - master
 
-env:
-  JAVA_VERSION: '21'
-  NODE_VERSION: '16'
-  SERVER_URL: localhost:8000
-  WAIT_TIME: 30
-  REPORT_PATH: ./lighthouse-report.html
-  MAVEN_CACHE: /var/tools/maven-cache
-  DOCKER_CACHE_DIR: /var/tools/maven-cache
-  MODULES: |
-    AxonIvyPortal/portal-components AxonIvyPortal/portal AxonIvyPortal/PortalKitTestHelper \
-    Showcase/portal-user-examples Showcase/portal-developer-examples Showcase/InternalSupport \
-    Showcase/portal-components-examples
-  ENGINE_URL: localhost:8000
+env: # Define reusable environment variables
+  ENGINE_DIR: ${{ github.workspace }}/AxonIvyPortal/engine
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     name: Build Modules
-    runs-on: ubuntu-latest
-    env:
-      GIT_COMMIT: ${{ github.sha }}
     steps:
-      - name: Checkout Repository
+      - name: Checkout Code
         uses: actions/checkout@v3
-      - name: Build Docker Image for Portal Modules
-        run: docker build -t build-portal-modules -f build/Dockerfile .
-      - name: Build Modules Inside Docker
-        id: build-maven
-        run: |
-          docker run --rm \
-            -v ${{ env.DOCKER_CACHE_DIR }}:/home/build/ \
-            -v ${{ github.workspace }}:/workspace \
-            -w /workspace \
-            build-portal-modules sh -c '
-              BUILT_MODULES=""
-              for MODULE in $(echo "${{ env.MODULES }}"); do
-                echo "Building module: $MODULE"
-                mvn clean install -f "${MODULE}/pom.xml"
-              done
-              echo "::set-output name=built_modules::$BUILT_MODULES"
-            '
-      - name: Archive Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-output
-          path: '**/*/target/*.iar'
 
-  deploy:
-    name: Deploy Modules
-    runs-on: ubuntu-latest
-    needs: build
-    env:
-      BUILT_MODULES: ${{ needs.build.outputs.built_modules }}
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-      - name: Download Build Artifacts
-        uses: actions/download-artifact@v3
+      - name: Set Up Java
+        uses: actions/setup-java@v3
         with:
-          name: build-output
-      - name: Load Common Utils
-        run: echo "Loading common utilities (e.g., groovy scripts)" # Placeholder for actual logic
-      - name: Build Docker Image for Deployment
-        run: docker build -t deploy-modules-to-engine -f build/Dockerfile .
-      - name: Deploy Maven Modules Inside Docker
-        run: |
-          docker run --rm \
-            -v ${{ env.DOCKER_CACHE_DIR }}:/home/build/ \
-            -v ${{ github.workspace }}:/workspace \
-            -w /workspace \
-            deploy-modules-to-engine sh -c '
-              BUILD_PLUGIN_VERSION=$(mvn help:evaluate -Dexpression=build.plugin.version -f AxonIvyPortal/portal-components/pom.xml -q -DforceStdout)
-              for MODULE in ${{ env.BUILT_MODULES }}; do
-                mvn com.axonivy.ivy.ci:project-build-plugin:${BUILD_PLUGIN_VERSION}:deploy-to-engine \
-                  -f ${MODULE}/pom.xml \
-                  -Divy.deploy.server.id=engine-cockpit \
-                  -Divy.deploy.engine.app=Portal \
-                  -Divy.deploy.method=HTTP \
-                  -Divy.deploy.engine.url=${{ env.ENGINE_URL }} \
-                  -Divy.test.engine=MODIFY_EXISTING \
-                  -Divy.deploy.test.users=true
-              done
-            '
+          distribution: 'zulu'
+          java-version: '21'
 
+      - name: Set Up Maven
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '3.9'
+
+      - name: Prepare Environment
+        run: |
+          mkdir -p $ENGINE_DIR
+          echo "Workspace prepared at ${{ github.workspace }}"
+
+      - name: Download Engine
+        run: |
+          echo "Downloading engine from ${{ github.event.inputs.engineDownloadURL }}..."
+          curl -L ${{ github.event.inputs.engineDownloadURL }} -o engine.zip
+          unzip -q engine.zip -d $ENGINE_DIR
+
+      - name: Build Portal Modules
+        run: |
+          modules=(
+            "AxonIvyPortal/portal-components"
+            "AxonIvyPortal/portal"
+            "AxonIvyPortal/PortalKitTestHelper"
+            "Showcase/portal-user-examples"
+            "Showcase/portal-developer-examples"
+            "Showcase/InternalSupport"
+            "Showcase/portal-components-examples"
+            "AxonIvyPortal/PortalApp"
+            "Showcase/portal-demo-app"
+          )
+          for module in "${modules[@]}"; do
+            echo "Building $module..."
+            mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
+          done
+
+      - name: Deploy Portal Modules
+        run: |
+          DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
+          rm -rf $DEPLOYMENT/*
+          cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
+          cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
+          cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
   lighthouse-audit:
     name: Lighthouse Audit
-    needs: deploy
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Install Lighthouse
