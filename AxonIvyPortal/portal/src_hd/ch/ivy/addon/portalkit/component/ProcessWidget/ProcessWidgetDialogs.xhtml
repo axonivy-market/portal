@@ -193,7 +193,7 @@
 
     <f:facet name="footer">
       <p:commandButton id="save-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-        process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" styleClass="w-full"
+        process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" styleClass="w-full" validateClient="true"
         update="#{cc.clientId}:edit-process-form:edit-external-link-error-message #{cc.clientId}:process-list #{cc.clientId}"
         oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); processWidget.setup(); processWidget.hideLoadingText();}" form="#{cc.clientId}:edit-process-form"/>
     </f:facet>
@@ -389,7 +389,7 @@
       <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addLink')}"
         process="#{cc.clientId}:add-external-link-form"
         form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink()}"
-        update="#{cc.clientId}:add-external-link-form #{cc.clientId}:process-list #{cc.clientId}" styleClass="w-full"
+        update="#{cc.clientId}:add-external-link-form #{cc.clientId}:process-list #{cc.clientId}" styleClass="w-full" validateClient="true"
         oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); processWidget.setup(); processWidget.hideLoadingText();}" />
     </f:facet>
   </p:dialog>
