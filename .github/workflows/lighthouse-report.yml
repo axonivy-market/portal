@@ -68,11 +68,20 @@ jobs:
           cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
           cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
 
-      - name: Start Engine
+      - name: Set JAVA_HOME for Axon Ivy Engine
+        run: |
+          export JAVA_HOME=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.5-11/x64
+          export PATH=$JAVA_HOME/bin:$PATH
+          java -version
+
+      - name: Start Axon Ivy Engine
         run: |
           cd $ENGINE_DIR/bin
           ./AxonIvyEngine
-          
+        env:
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.5-11/x64
+          PATH: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.5-11/x64/bin:$PATH
+
   lighthouse-audit:
     name: Lighthouse Audit
     needs: build
