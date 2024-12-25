@@ -10,33 +10,34 @@ on:
 
 env:
   JAVA_VERSION: '21'
-  NODE_VERSION: '16'
+  NODE_VERSION: '18'
   SERVER_URL: localhost:8000
   WAIT_TIME: 30
-  REPORT_PATH: ./lighthouse-report.html
-  MAVEN_CACHE: /var/tools/maven-cache
+  REPORT_PATH: ./lighthouse-report-${{ github.run_id }}.html
+
+  CACHE_DIR: /var/tools/maven-cache
+  BUILT_MODULES: ""
 
 jobs:
   build:
     name: Build Modules
     runs-on: ubuntu-latest
 
-    env:
-      DOCKER_CACHE_DIR: /var/tools/maven-cache
-      GIT_COMMIT: ${{ github.sha }}
-      BUILT_MODULES: ""
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
       - name: Build Docker Image for Portal Modules
-        run: docker build -t build-portal-modules -f build/Dockerfile .
+        run: |
+          set -e
+          docker build -t build-portal-modules -f build/Dockerfile .
 
       - name: Build Maven Modules Inside Docker
         run: |
+          set -e
           docker run --rm \
-            -v $DOCKER_CACHE_DIR:/home/build/ \
+
+            -v ${{ env.CACHE_DIR }}:/home/build/ \
             -v ${{ github.workspace }}:/workspace \
             -w /workspace \
             build-portal-modules sh -c '
@@ -48,6 +49,9 @@ jobs:
               done
               echo "BUILT_MODULES=$BUILT_MODULES" >> $GITHUB_ENV
             '
+
+      - name: Ensure Artifact Directories Exist
+        run: mkdir -p **/target/
 
       - name: Archive Artifacts
         uses: actions/upload-artifact@v3
@@ -61,9 +65,14 @@ jobs:
     needs: build
 
     env:
-      DOCKER_CACHE_DIR: /var/tools/maven-cache
+      CACHE_DIR: /var/tools/maven-cache
 
     steps:
+      - name: Cleanup
+        run: |
+          docker system prune -f
+          rm -rf /var/tools/maven-cache || true
+
       - name: Checkout Repository
         uses: actions/checkout@v3
 
@@ -77,17 +86,21 @@ jobs:
           echo "Loading common utils"
           # Simulate loading 'utils.groovy'
 
-      - name: Build Docker Image for Deployment
+        run: |
+          set -e
+          docker build -t deploy-modules-to-engine -f build/Dockerfile .
         run: docker build -t deploy-modules-to-engine -f build/Dockerfile .
 
       - name: Deploy Maven Modules Inside Docker
         run: |
+          set -e
           docker run --rm \
-            -v $DOCKER_CACHE_DIR:/home/build/ \
+
+            -v ${{ env.CACHE_DIR }}:/home/build/ \
             -v ${{ github.workspace }}:/workspace \
             -w /workspace \
             deploy-modules-to-engine sh -c '
-              ENGINE_URL="http://jenkins-master:8000"
+              ENGINE_URL=${{ env.SERVER_URL }}
               BUILD_PLUGIN_VERSION=$(mvn help:evaluate -Dexpression=build.plugin.version -f AxonIvyPortal/portal-components/pom.xml -q -DforceStdout)
               for MODULE in $BUILT_MODULES; do
                 mvn com.axonivy.ivy.ci:project-build-plugin:${BUILD_PLUGIN_VERSION}:deploy-to-engine \
@@ -113,7 +126,7 @@ jobs:
       - name: Wait for Server to Be Ready
         run: |
           for i in $(seq 1 ${{ env.WAIT_TIME }}); do
-            if curl -s ${{ env.SERVER_URL }} > /dev/null; then
+            if curl -f ${{ env.SERVER_URL }}/health > /dev/null; then
               echo "Server is ready"
               exit 0
             else
@@ -122,6 +135,9 @@ jobs:
             fi
           done
           echo "Server did not start in time" && exit 1
+
+      - name: Ensure Lighthouse Report Directory
+        run: mkdir -p ${{ env.REPORT_PATH }}
 
       - name: Execute Lighthouse Audit
         run: lighthouse ${{ env.SERVER_URL }} --output=json --output=html --output-path=${{ env.REPORT_PATH }}
