@@ -67,6 +67,12 @@ jobs:
           cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
           cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
           cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
+
+      - name: Start Engine
+        run: |
+          cd $ENGINE_DIR/bin
+          ./AxonIvyEngine
+          
   lighthouse-audit:
     name: Lighthouse Audit
     needs: build
