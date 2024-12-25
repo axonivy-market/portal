@@ -81,14 +81,16 @@ jobs:
         with:
           name: build-output
 
+      - name: Install Groovy
+        run: |
+          sudo apt update
+          sudo apt install -y groovy
+
       - name: Load Common Utils
         run: |
-          echo "Loading common utils"
-          # Simulate loading 'utils.groovy'
+          groovy build/common/utils.groovy
 
-        run: |
-          set -e
-          docker build -t deploy-modules-to-engine -f build/Dockerfile .
+      - name: Build Docker Image for Deployment
         run: docker build -t deploy-modules-to-engine -f build/Dockerfile .
 
       - name: Deploy Maven Modules Inside Docker
