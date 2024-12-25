@@ -9,7 +9,7 @@ on:
 
 env: # Define reusable environment variables
   NODE_VERSION: '16'
-  SERVER_URL: http://localhost:8080
+  SERVER_URL: portal01.server.ivy-cloud.com:8000
   WAIT_TIME: 30 # Time to wait for server to be ready
   REPORT_PATH: ./lighthouse-report.html
 
