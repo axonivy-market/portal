@@ -29,12 +29,10 @@ jobs:
 
       - name: Build Docker Image for Portal Modules
         run: |
-          set -e
           docker build -t build-portal-modules -f build/Dockerfile .
 
       - name: Build Maven Modules Inside Docker
         run: |
-          set -e
           docker run --rm \
 
             -v ${{ env.CACHE_DIR }}:/home/build/ \
@@ -95,7 +93,6 @@ jobs:
 
       - name: Deploy Maven Modules Inside Docker
         run: |
-          set -e
           docker run --rm \
 
             -v ${{ env.CACHE_DIR }}:/home/build/ \
