@@ -1,5 +1,8 @@
 name: lighthouse-report
 on:
+  push:
+    branches:
+      - feature/IVYPORTAL-17377-Create-pipeline-to-run-Lighthouse-report
   pull_request:
     branches:
       - master
