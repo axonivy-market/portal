@@ -40,8 +40,8 @@ jobs:
 
       - name: Download Engine
         run: |
-          echo "Downloading engine from ${{ ENGINE_URL }}..."
-          curl -L ${{ ENGINE_URL }} -o engine.zip
+          echo "Downloading engine from $ENGINE_URL ..."
+          curl -L $ ENGINE_URL -o engine.zip
           unzip -q engine.zip -d $ENGINE_DIR
 
       - name: Build Portal Modules
