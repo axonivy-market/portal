@@ -22,14 +22,15 @@ jobs:
       - name: Set Up Java
         uses: actions/setup-java@v3
         with:
-          distribution: 'zulu'
+          distribution: 'temurin'
           java-version: '21'
 
       - name: Set Up Maven
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: '3.9'
+          java-version: '21'
+          cache: 'maven'
 
       - name: Prepare Environment
         run: |
