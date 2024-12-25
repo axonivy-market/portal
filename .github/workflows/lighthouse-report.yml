@@ -55,24 +55,29 @@ jobs:
             "AxonIvyPortal/PortalApp"
             "Showcase/portal-demo-app"
           )
-          for module in "${modules[@]}"; do
-            echo "Building $module..."
-            mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
+#          for module in "${modules[@]}"; do
+#            echo "Building $module..."
+#            mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
           done
 
-      - name: Deploy Portal Modules
-        run: |
-          DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
-          rm -rf $DEPLOYMENT/*
-          cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
-          cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
-          cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
+#      - name: Deploy Portal Modules
+#        run: |
+#          DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
+#          rm -rf $DEPLOYMENT/*
+#          cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
+#          cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
+#          cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
 
       - name: Set JAVA_HOME for Axon Ivy Engine
         run: |
           export JAVA_HOME=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.5-11/x64
           export PATH=$JAVA_HOME/bin:$PATH
           java -version
+
+      - name: Verify Engine Files
+        run: |
+          ls -l $ENGINE_DIR
+          ls -l $ENGINE_DIR/bin
 
       - name: Start Axon Ivy Engine
         run: |
