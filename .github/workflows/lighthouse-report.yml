@@ -26,12 +26,10 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
-      - name: Set Up Maven
-        uses: actions/setup-java@v3
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
         with:
-          distribution: 'zulu'
-          java-version: '21'
-          cache: 'maven'
+          maven-version: 3.9.8
 
       - name: Prepare Environment
         run: |
