@@ -43,7 +43,7 @@
     <p:tab id="application-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applications')}">
       <h:form prependId="false" id="applicationForm">
         <h:panelGroup layout="block" styleClass="application-tab-action-buttons">
-          <p:commandButton id="add-application-btn" actionListener="#{logic.addNewApp}" oncomplete="PF('appDialog').show()" resetValues="true"
+          <p:commandButton id="add-application-btn" actionListener="#{logic.addNewApp}" oncomplete="PF('appDialog').show()" resetValues="true" global="false"
             styleClass="new-app-btn primary-color-light-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/addNewApplication')}"
             update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}" />
         </h:panelGroup>
