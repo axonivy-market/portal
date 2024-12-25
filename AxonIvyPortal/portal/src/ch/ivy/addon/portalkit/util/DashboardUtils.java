@@ -121,7 +121,6 @@ public class DashboardUtils {
       // If errors like parsing JSON errors, ignore them
       Ivy.log().error(e);
     }
-    Ivy.log().error(collectedDashboards.size());
     return collectedDashboards;
   }
 
