@@ -194,8 +194,8 @@
     <f:facet name="footer">
       <p:commandButton id="save-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
         process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" styleClass="w-full"
-        update="#{cc.clientId}:edit-process-form:edit-external-link-error-message"
-        oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); updateProcessListOnSaveSuccessful();}" form="#{cc.clientId}:edit-process-form"/>
+        update="#{cc.clientId}:edit-process-form:edit-external-link-error-message #{cc.clientId}:process-list #{cc.clientId}"
+        oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); processWidget.setup(); processWidget.hideLoadingText();}" form="#{cc.clientId}:edit-process-form"/>
     </f:facet>
   </p:dialog>
   <!-- End Edit Process -->
@@ -220,10 +220,10 @@
     
     <ui:define name="dialogFooter">
       <h:form id="delete-process-workflow-form" styleClass="flex flex-column">
-        <p:commandButton id="remove-process-command" global="false" process="@this" update="#{cc.clientId}:process-list"
+        <p:commandButton id="remove-process-command" process="@this" update="#{cc.clientId}:process-list #{cc.clientId}"
           styleClass="w-full portal-remove-button"
           actionListener="#{processWidgetBean.deleteProcessWorkflow()}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
-          oncomplete="PF('remove-process-workflow-dialog').hide(); updateProcessListOnSaveSuccessful();" />
+          oncomplete="PF('remove-process-workflow-dialog').hide(); processWidget.setup(); processWidget.hideLoadingText();" />
         <p:link onclick="PF('remove-process-workflow-dialog').hide()" styleClass="pt-3 flex justify-content-center"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           href="#" />
@@ -389,8 +389,8 @@
       <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addLink')}"
         process="#{cc.clientId}:add-external-link-form"
         form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink()}"
-        update="#{cc.clientId}:add-external-link-form" styleClass="w-full"
-        oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); updateProcessListOnSaveSuccessful();}" />
+        update="#{cc.clientId}:add-external-link-form #{cc.clientId}:process-list #{cc.clientId}" styleClass="w-full"
+        oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); processWidget.setup(); processWidget.hideLoadingText();}" />
     </f:facet>
   </p:dialog>
   <!-- End External Link Dialogs -->
