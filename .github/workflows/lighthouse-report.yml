@@ -33,20 +33,19 @@ jobs:
 
       - name: Build Maven Modules Inside Docker
         run: |
-          docker run --rm \
-
-            -v ${{ env.CACHE_DIR }}:/home/build/ \
-            -v ${{ github.workspace }}:/workspace \
-            -w /workspace \
-            build-portal-modules sh -c '
-              MODULES="AxonIvyPortal/portal-components AxonIvyPortal/portal AxonIvyPortal/PortalKitTestHelper Showcase/portal-user-examples Showcase/portal-developer-examples Showcase/InternalSupport Showcase/portal-components-examples"
-              BUILT_MODULES=""
-              for MODULE in $MODULES; do
-                mvn clean install -f ${MODULE}/pom.xml
-                BUILT_MODULES="$BUILT_MODULES $MODULE"
-              done
-              echo "BUILT_MODULES=$BUILT_MODULES" >> $GITHUB_ENV
-            '
+          docker build -t build-portal-modules -f build/Dockerfile .
+          docker run --rm -v $DOCKER_CACHE_DIR:/home/build/ \
+          -v ${{ github.workspace }}:/workspace \
+          -w /workspace \
+          build-portal-modules sh -c '
+          MODULES="AxonIvyPortal/portal-components AxonIvyPortal/portal AxonIvyPortal/PortalKitTestHelper Showcase/portal-user-examples Showcase/portal-developer-examples Showcase/InternalSupport Showcase/portal-components-examples"
+          BUILT_MODULES=""
+          for MODULE in $MODULES; do
+          mvn clean install -f ${MODULE}/pom.xml
+          BUILT_MODULES="$BUILT_MODULES $MODULE"
+          done
+          echo "BUILT_MODULES=$BUILT_MODULES" >> $GITHUB_ENV
+          '
 
       - name: Ensure Artifact Directories Exist
         run: mkdir -p **/target/
