@@ -47,7 +47,6 @@ import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
 public class CaseLazyDataModel extends LazyDataModel<ICase> {
   public static final String DESCRIPTION = "DESCRIPTION";
@@ -338,46 +337,10 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
         criteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
       }
     }
+    criteria.setLegacyFilters(selectedFilters);
+
     buildSort();
-    CaseQuery caseQuery = buildCaseQuery();
-    extendSort(caseQuery);
-    this.criteria.setFinalCaseQuery(caseQuery);
-  }
-
-  /**
-   * <p>
-   * If your customized case list has new columns/fields, please extend the {@code caseQuery} parameter with the sort
-   * query for these fields.
-   * </p>
-   * <p>
-   * <b>Example: </b> <code><pre>
-   * if ("CustomerName".equalsIgnoreCase(criteria.getSortField())) {
-   *   if (criteria.isSortDescending()) {
-   *     caseQuery.orderBy().customField().stringField("CustomerName").descending();
-   *   } else {
-   *     caseQuery.orderBy().customField().stringField("CustomerName");
-   *   }
-   * }
-   * </pre></code>
-   * </p>
-   *
-   * @param caseQuery case query {@link CaseQuery}
-   */
-  public void extendSort(@SuppressWarnings("unused") CaseQuery caseQuery) {
-    // Placeholder for customization
-  }
-
-  private CaseQuery buildCaseQuery() {
-    CaseQuery caseQuery = criteria.createQuery();
-    IFilterQuery filterQuery = caseQuery.where();
-    selectedFilters.forEach(selectedFilter -> {
-      CaseQuery subQuery = selectedFilter.buildQuery();
-      if (subQuery != null) {
-        filterQuery.and(subQuery);
-      }
-    });
     storeCaseFiltersIntoSession();
-    return caseQuery;
   }
 
   private void storeCaseFiltersIntoSession() {
