@@ -14,8 +14,6 @@ on:
 jobs:
   prepare-document:
     runs-on: portal-01
-    outputs:
-      documentVersion: ${{ steps.get_version.outputs.version }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Java
@@ -23,27 +21,23 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
+
       - name: Set up Maven
         uses: stCarolas/setup-maven@v5
         with:
           maven-version: 3.9.8
 
-      # - name: Login to Docker Hub
-      #   uses: docker/login-action@v3
-      #   with:
-      #     username: ${{ vars.DOCKERHUB_USERNAME }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
-  
       - name: Get current version
         id: get_version
         run: |
           VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
-          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           if [[ "$VERSION" == "null object or invalid expression" ]]; then
             echo "Error: could not evaluate maven revision property"
+            # Stops the workflow if the condition is met
             exit 1
           fi
-          echo "Version is $VERSION" && echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Version is $VERSION"
       
       - name: Unzip portal screenshots
         run: |
@@ -63,6 +57,16 @@ jobs:
         run: |
           docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
             axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=${{ steps.get_version.outputs.version }}
+
+      - name: Install or deploy document
+        run: |
+          if [[ "${{ steps.get_version.outputs.version }}" == *SNAPSHOT* ]]; then
+            PHASE="install"
+          else
+            PHASE="deploy"
+          fi
+          echo "Running 'clean $PHASE' for version ${{ steps.get_version.outputs.version }}"
+          mvn clean $PHASE -f Documentation/pom.xml
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
