@@ -66,7 +66,7 @@ jobs:
 
       - name: Build Documentation HTML
         run: |
-          docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
+          docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
             axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=${{ steps.get_version.outputs.version }}
 
       - name: Upload artifacts
