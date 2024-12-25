@@ -50,7 +50,7 @@
           oncomplete="#{cc.attrs.onCompleteEditProcess}"
           actionListener="#{cc.attrs.actionListenerOnEditProcess}"
           update="#{cc.attrs.componentToUpdateOnEditProcess}"
-          rendered="#{canModify}" />
+          rendered="#{canModify}" global="false"/>
         <p:menuitem id="more-information"
           icon="si si-information-circle"
           url="#{processWidgetBean.getProcessInformationPageUrl(process)}"
@@ -59,7 +59,7 @@
           rendered="#{processWidgetBean.isShowInformationLink(process) and !isExternalLink and !isCaseMap}"/>
         <p:menuitem id="delete-process"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-          icon="si si-bin-1" styleClass="color-destroy"
+          icon="si si-bin-1" styleClass="color-destroy" global="false"
           oncomplete="#{cc.attrs.onCompleteDeleteProcess}"
           actionListener="#{cc.attrs.actionListenerOnDeleteProcess}"
           update="#{cc.attrs.componentToUpdateOnDeleteProcess}"
