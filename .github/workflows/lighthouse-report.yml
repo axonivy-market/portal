@@ -1,4 +1,5 @@
 name: lighthouse-report
+run-name: Create Lighthouse Audit
 on:
   push:
     branches:
@@ -8,31 +9,108 @@ on:
       - master
 
 env: # Define reusable environment variables
+  JAVA_VERSION: '21'
   NODE_VERSION: '16'
-  SERVER_URL: portal01.server.ivy-cloud.com:8000
+  SERVER_URL: localhost:8000
   WAIT_TIME: 30 # Time to wait for server to be ready
   REPORT_PATH: ./lighthouse-report.html
+  MAVEN_CACHE: /var/tools/maven-cache
 
 jobs:
   lighthouse-audit: # Renamed job for clarity
     runs-on: portal-01
     steps:
-      # Step 1: Install Lighthouse CLI
+        
+      - name: checkout to master
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.repository }}
+          ref: 'master'
+
+      - name: Setup Java & Maven dependency caching
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: ${{ env.JAVA_VERSION }}
+
       - name: Setup Node.js and Install Lighthouse CLI
         uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
       - run: npm install -g lighthouse
 
-      # Step 2: Wait for Application to Start
+      - name: Set up docker and Maven
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y maven docker.io
+          docker --version
+          mvn --version
+
+      - name: Build Modules
+        run: |
+          DOCKER_IMAGE="build-portal-modules"
+          DOCKERFILE_PATH="build/Dockerfile"
+          MODULES="AxonIvyPortal/portal-components AxonIvyPortal/portal AxonIvyPortal/PortalKitTestHelper Showcase/portal-user-examples Showcase/portal-developer-examples Showcase/InternalSupport Showcase/portal-components-examples"
+          MAVEN_CMD="mvn clean install -f"
+
+          docker build -t $DOCKER_IMAGE -f $DOCKERFILE_PATH .
+          docker run -v ${{ env.MAVEN_CACHE }}:/home/build/ $DOCKER_IMAGE bash -c "
+            function get_changed_modules() {
+              echo \$(git diff --name-only \$GITHUB_SHA \$GITHUB_SHA~1)
+            }
+
+            function build_modules() {
+              local modules=\"$MODULES\"
+              local changed_modules=\$(get_changed_modules)
+              local modules_to_build=''
+
+              for module in \$modules; do
+                if [[ \$changed_modules == *\$module* || '${{ inputs.modulesMustBeBuilt }}' == *\${module##*/}* ]]; then
+                  $MAVEN_CMD \$module/pom.xml
+                  modules_to_build=\"\$modules_to_build \$module\"
+                fi
+              done
+
+              echo \"Built modules: \$modules_to_build\"
+            }
+
+            build_modules
+          "
+
+      - name: Deploy Modules
+        run: |
+          maven_cache="${{ env.MAVEN_CACHE }}"
+          server_url="${{ env.SERVER_URL }}"
+          docker_image="deploy-modules-to-engine"
+          docker_file="build/Dockerfile"
+
+          # Build Docker image
+          docker build -t $docker_image -f $docker_file .
+
+          # Run deployment script inside Docker container
+          docker run -v "$maven_cache:/home/build/" $docker_image bash -c "
+            # Extract Maven build plugin version
+            plugin_version=\$(mvn help:evaluate -Dexpression=build.plugin.version -q -DforceStdout -f AxonIvyPortal/portal-components/pom.xml)
+
+            # Deploy each module to the engine
+            for module in \$built_modules; do
+              mvn com.axonivy.ivy.ci:project-build-plugin:\$plugin_version:deploy-to-engine -f \$module/pom.xml \
+                -Divy.deploy.server.id=engine-cockpit \
+                -Divy.deploy.engine.app=Portal \
+                -Divy.deploy.method=HTTP \
+                -Divy.deploy.engine.url=\$server_url \
+                -Divy.test.engine=MODIFY_EXISTING \
+                -Divy.deploy.test.users=true
+            done
+          "
+      - name: Start Application
+        run: docker-compose up -d
       - name: Wait for Server to Start
         run: sleep ${{ env.WAIT_TIME }}
 
-      # Step 3: Run Lighthouse Audit
       - name: Execute Lighthouse Audit
         run: lighthouse ${{ env.SERVER_URL }} --output=json --output=html --output-path=${{ env.REPORT_PATH }}
 
-      # Step 4: Upload Lighthouse Report as Artifact
       - name: Upload Audit Report
         uses: actions/upload-artifact@v3
         with:
