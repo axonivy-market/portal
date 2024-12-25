@@ -17,46 +17,46 @@ jobs:
   prepare-document:
     runs-on: portal-01
     steps:
-      - name: test summary
-        run:  echo "### Documentation Build Warnings" >> $GITHUB_STEP_SUMMARY
+      # - name: test summary
+      #   run:  echo "### Documentation Build Warnings" >> $GITHUB_STEP_SUMMARY
 
-      # - uses: actions/checkout@v4
-      # - name: Set up Java
-      #   uses: actions/setup-java@v4
-      #   with:
-      #     distribution: 'temurin'
-      #     java-version: '21'
+      - uses: actions/checkout@v4
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
 
-      # - name: Set up Maven
-      #   uses: stCarolas/setup-maven@v5
-      #   with:
-      #     maven-version: 3.9.8
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.8
 
-      # - name: Get current version
-      #   id: get_version
-      #   run: |
-      #     VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
-      #     if [[ "$VERSION" == "null object or invalid expression" ]]; then
-      #       echo "Error: could not evaluate maven revision property"
-      #       # Stops the workflow if the condition is met
-      #       exit 1
-      #     fi
-      #     echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-      #     echo "Version is $VERSION"
+      - name: Get current version
+        id: get_version
+        run: |
+          VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
+          if [[ "$VERSION" == "null object or invalid expression" ]]; then
+            echo "Error: could not evaluate maven revision property"
+            # Stops the workflow if the condition is met
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Version is $VERSION"
       
-      # - name: Unzip portal screenshots
-      #   run: |
-      #     unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ steps.get_version.outputs.version }}.zip \
-      #       -d Documentation/portal-guide/source/screenshots
+      - name: Unzip portal screenshots
+        run: |
+          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ steps.get_version.outputs.version }}.zip \
+            -d Documentation/portal-guide/source/screenshots
 
-      # - name: Generate resources
-      #   run: |
-      #     mvn clean process-resources -Divy.engine.version=[13.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip -f Documentation/public-api/pom.xml
-      #     mvn clean generate-resources -f Documentation/pom.xml
+      - name: Generate resources
+        run: |
+          mvn clean process-resources -Divy.engine.version=[13.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip -f Documentation/public-api/pom.xml
+          mvn clean generate-resources -f Documentation/pom.xml
       
-      # - name: Run substitute
-      #   shell: bash
-      #   run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
+      - name: Run substitute
+        shell: bash
+        run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
 
       # - name: Build Documentation HTML
       #   run: |
@@ -84,3 +84,17 @@ jobs:
       # - name: Cleanup
       #   shell: bash
       #   run: rm -rf ${{ github.workspace }}/*
+
+  test-deploy:
+    runs-on: portal-01
+    container:
+      image: axonivy/build-container:read-the-docs-2
+      env:
+        NODE_ENV: development
+      volumes:
+        - ${{ github.workspace }}:/workspace
+      options: --rm -w /workspace/Documentation/portal-guide
+    steps:
+      - name: Check for dockerenv file
+        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
+    
