@@ -18,7 +18,7 @@ env: # Define reusable environment variables
 
 jobs:
   lighthouse-audit: # Renamed job for clarity
-    runs-on: portal-01
+    runs-on: ubuntu-latest
     steps:
         
       - name: checkout to master
