@@ -67,7 +67,7 @@ jobs:
       - name: Build Documentation HTML
         run: |
           docker run --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
-            $DOCKER_IMAGE_AXONIVY make html BASEDIR='/workspace/Documentation/portal-guide' VERSION=${{ steps.get_version.outputs.version }}
+            axonivy/build-container:read-the-docs-2 make html BASEDIR='/workspace/Documentation/portal-guide' VERSION=${{ steps.get_version.outputs.version }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
