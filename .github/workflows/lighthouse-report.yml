@@ -1,0 +1,37 @@
+name: lighthouse-report
+on:
+  pull_request:
+    branches:
+      - master
+
+env: # Define reusable environment variables
+  NODE_VERSION: '16'
+  SERVER_URL: http://localhost:8080
+  WAIT_TIME: 30 # Time to wait for server to be ready
+  REPORT_PATH: ./lighthouse-report.html
+
+jobs:
+  lighthouse-audit: # Renamed job for clarity
+    runs-on: portal-01
+    steps:
+      # Step 1: Install Lighthouse CLI
+      - name: Setup Node.js and Install Lighthouse CLI
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - run: npm install -g lighthouse
+
+      # Step 2: Wait for Application to Start
+      - name: Wait for Server to Start
+        run: sleep ${{ env.WAIT_TIME }}
+
+      # Step 3: Run Lighthouse Audit
+      - name: Execute Lighthouse Audit
+        run: lighthouse ${{ env.SERVER_URL }} --output=json --output=html --output-path=${{ env.REPORT_PATH }}
+
+      # Step 4: Upload Lighthouse Report as Artifact
+      - name: Upload Audit Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: lighthouse-report
+          path: ${{ env.REPORT_PATH }}
