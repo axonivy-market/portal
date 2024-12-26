@@ -52,9 +52,9 @@ jobs:
           unzip -o axonivy-engine -d nightly
           rm axonivy-engine.zip
 
-      - name: List Engine Files
-        run: |
-          ls -al $ENGINE_DIR
+      # - name: List Engine Files
+      #   run: |
+      #     ls -al $ENGINE_DIR
 
       - name: Verify Engine Files
         run: |
