@@ -47,9 +47,9 @@ jobs:
         run: |
           echo "Downloading engine from $ENGINE_URL ..."
           cd /opt/ivy/engine
-          wget $ENGINE_URL -o engine.zip
-          unzip -o engine.zip -d nightly
-          rm engine.zip
+          wget $ENGINE_URL -o axonivy-engine
+          unzip -o axonivy-engine -d nightly
+          rm axonivy-engine
 
       - name: List Engine Files
         run: |
