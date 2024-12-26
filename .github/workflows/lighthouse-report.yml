@@ -127,28 +127,44 @@ jobs:
     name: Lighthouse Audit
     needs: build
     runs-on: ubuntu-latest
-  
+    
     env:
-      WAIT_TIME: 60 # Define the wait time in seconds
-      SERVER_URL: http://localhost:8080 # Define the server URL
-      REPORT_PATH: ./lighthouse-report.html # Define the report path
+      WAIT_TIME: 300  # Increased timeout to 5 minutes
+      SERVER_URL: http://localhost:8080
+      REPORT_PATH: ./lighthouse-report.html
+      
     steps:
-      - name: Install Lighthouse
-        run: npm install -g lighthouse
-      - name: Wait for Server to Be Ready
+      - name: Checkout Code  # Need code to access engine
+        uses: actions/checkout@v3
+        
+      - name: Start Engine Again
         run: |
+          cd "${GITHUB_WORKSPACE}/ivy/engine/nightly/bin"
+          chmod +x ./AxonIvyEngine
+          ./AxonIvyEngine > engine.log 2>&1 &
+          echo $! > engine.pid
+          
+      - name: Wait for Server Health Check
+        run: |
+          echo "Waiting for server to be ready..."
           for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
-            if curl -s ${{ env.SERVER_URL }} > /dev/null; then
-              echo "Server is ready"
+            if curl -s -f http://localhost:8080 > /dev/null; then
+              echo "Server is running"
               exit 0
             fi
-            echo "Waiting for server..."
+            echo "Attempt $i of ${{ env.WAIT_TIME }}"
             sleep 1
           done
-          echo "Server did not start in time" && exit 1
-      - name: Execute Lighthouse Audit
-        run: lighthouse ${{ env.SERVER_URL }} --output=json --output=html --output-path=${{ env.REPORT_PATH }}
-      - name: Upload Audit Report
+          echo "Server check failed" 
+          cat engine.log
+          exit 1
+          
+      - name: Run Lighthouse Audit
+        run: |
+          npm install -g lighthouse
+          lighthouse ${{ env.SERVER_URL }} --output=json --output=html --output-path=${{ env.REPORT_PATH }}
+          
+      - name: Upload Report
         uses: actions/upload-artifact@v3
         with:
           name: lighthouse-report
