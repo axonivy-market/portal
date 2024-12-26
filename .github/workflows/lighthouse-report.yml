@@ -40,7 +40,7 @@ jobs:
         run: |
           echo "Downloading engine from $ENGINE_URL ..."
           curl -L $ENGINE_URL -o engine.zip
-          unzip -q engine.zip -d $ENGINE_DIR
+          unzip -o engine.zip -d $ENGINE_DIR
 
       - name: Build Portal Modules
         run: |
@@ -82,10 +82,9 @@ jobs:
       - name: Start Axon Ivy Engine
         env:
           JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.5-11/x64
-          ENGINE_BIN: $ENGINE_DIR/bin
           PATH: $JAVA_HOME/bin:$PATH
         run: |
-            cd $ENGINE_BIN
+            cd $ENGINE_DIR/bin
             ./AxonIvyEngine
 
   lighthouse-audit:
