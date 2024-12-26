@@ -1,5 +1,5 @@
 name: Portal Documentation
-run-name: Build and Deploy Documentation on branch master by ${{ github.actor }} 🚀
+run-name: Build and Deploy Documentation on branch release/12.0 by ${{ github.actor }} 🚀
 on:
   schedule:
     - cron: '0 0 * * *' # Equivalent to '@midnight'
@@ -16,7 +16,8 @@ jobs:
     runs-on: portal01
     steps:
       - uses: actions/checkout@v4
-
+        with:
+          ref: release/12.0
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
