@@ -50,7 +50,7 @@ jobs:
           mkdir engine
           wget $ENGINE_URL
           unzip -o axonivy-engine -d nightly
-          rm axonivy-engine
+          rm axonivy-engine.zip
 
       - name: List Engine Files
         run: |
