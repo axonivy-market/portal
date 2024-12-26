@@ -81,25 +81,30 @@ jobs:
           cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
           cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
 
-      - name: Verify Engine Files
-        run: |
-          ls -l $ENGINE_DIR
-          ls -l $ENGINE_DIR/bin
+      # - name: Verify Engine Files
+      #   run: |
+      #     ls -l $ENGINE_DIR
+      #     ls -l $ENGINE_DIR/bin
 
-      - name: Start Axon Ivy Engine
-        run: |
-          cd $ENGINE_DIR/bin
-          ./AxonIvyEngine
-        env:
-          IVY_JAVA_HOME: ${{ env.JAVA_HOME }}
-          JAVA_HOME: ${{ env.JAVA_HOME }}
-          PATH: ${{ env.PATH }}
+      # - name: Start Axon Ivy Engine
+      #   run: |
+      #     cd $ENGINE_DIR/bin
+      #     ./AxonIvyEngine
+      #   env:
+      #     IVY_JAVA_HOME: ${{ env.JAVA_HOME }}
+      #     JAVA_HOME: ${{ env.JAVA_HOME }}
+      #     PATH: ${{ env.PATH }}
 
 
   lighthouse-audit:
     name: Lighthouse Audit
     needs: build
     runs-on: ubuntu-latest
+  
+    env:
+      WAIT_TIME: 60 # Define the wait time in seconds
+      SERVER_URL: http://localhost:8080 # Define the server URL
+      REPORT_PATH: ./lighthouse-report.html # Define the report path
     steps:
       - name: Install Lighthouse
         run: npm install -g lighthouse
