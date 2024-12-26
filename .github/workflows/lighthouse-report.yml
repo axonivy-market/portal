@@ -37,27 +37,30 @@ jobs:
           echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
 
-      - name: Set Up Directories
+      - name: Set Up and Verify Directories
         run: |
-          mkdir -p $GITHUB_WORKSPACE/ivy/engine/nightly
-          sudo chown -R $USER:$USER $GITHUB_WORKSPACE/ivy/engine/nightly
+          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/nightly"
+          mkdir -p $ENGINE_DIR
+          sudo chown -R $USER:$USER $ENGINE_DIR
+          ls -la $ENGINE_DIR
+          echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
 
       - name: Download Engine
         run: |
-          echo "Downloading engine from $ENGINE_URL ..."
-          cd $GITHUB_WORKSPACE/ivy/engine/nightly
+          cd $ENGINE_DIR
           wget $ENGINE_URL -O axonivy-engine.zip
           unzip -o axonivy-engine.zip -d .
           rm axonivy-engine.zip
+          ls -la
 
-      - name: List Engine Files
+      - name: Verify Engine Directory
         run: |
-          ls -al $GITHUB_WORKSPACE/ivy/engine/nightly
-
-      - name: Verify Engine Files
-        run: |
-          ls -l $ENGINE_DIR
-          ls -l $ENGINE_DIR/bin
+          if [ ! -d "$ENGINE_DIR" ]; then
+            echo "Engine directory does not exist"
+            exit 1
+          fi
+          ls -la $ENGINE_DIR
+          ls -la $ENGINE_DIR/bin || true
 
       - name: Start Axon Ivy Engine
         run: |
