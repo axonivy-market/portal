@@ -149,6 +149,17 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable xvfb x11-xserver-utils
 
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y x11-utils
+          npm install -g lighthouse
+
       - name: Set Up Virtual Display
         run: |
           # Start Xvfb with debug output
