@@ -204,14 +204,14 @@ jobs:
       - name: Generate Report Summary
         run: |
           cd ${{ env.REPORT_DIR }}
-          if [ -f "report.json" ]; then
+          if [ -f "report.report.json" ]; then
             {
               echo "# 🚦 Lighthouse Audit Results"
               echo "Generated: $(date)"
               echo "---"
               echo "## Performance Scores"
               jq -r '.categories | to_entries[] | 
-              "### \(.key)\n📊 Score: \(.value.score * 100 | floor)%"' report.json
+              "### \(.key)\n📊 Score: \(.value.score * 100 | floor)%"' report.report.json
               echo "---" 
               echo "📑 [Full Report](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts)"
             } >> $GITHUB_STEP_SUMMARY
