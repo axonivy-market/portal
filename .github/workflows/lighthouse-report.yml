@@ -64,25 +64,34 @@ jobs:
 
       - name: Start Axon Ivy Engine
         run: |
-          # Set absolute paths
-          export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${PATH}"
-          
-          # Install required packages directly
-          apt-get update && apt-get install -y coreutils
-          
-          # Debug environment
-          echo "Current location: $(pwd)"
-          echo "Engine location: ${ENGINE_DIR}"
-          
-          # Change to engine directory
-          cd "${ENGINE_DIR}/bin" || exit 1
+          # Navigate to engine directory
+          cd "${ENGINE_DIR}/bin"
           
           # Make engine executable
           chmod +x ./AxonIvyEngine
           
-          # Start engine with full environment
-          nohup ./AxonIvyEngine & 
-          ./AxonIvyEngine
+          # Start engine in background with logging
+          nohup ./AxonIvyEngine > engine.log 2>&1 &
+          echo $! > engine.pid
+          
+          # Wait for engine to start (increased timeout)
+          MAX_ATTEMPTS=180
+          ATTEMPT=0
+          echo "Waiting for engine to start..."
+          while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
+            if curl -s http://localhost:8080/favicon.ico > /dev/null; then
+              echo "Engine started successfully"
+              cat engine.log
+              break
+            fi
+            ATTEMPT=$((ATTEMPT+1))
+            sleep 1
+          done
+          if [ $ATTEMPT -eq $MAX_ATTEMPTS ]; then
+            echo "Engine failed to start"
+            cat engine.log
+            exit 1
+          fi
         env:
           IVY_JAVA_HOME: ${{ env.JAVA_HOME }}
           JAVA_HOME: ${{ env.JAVA_HOME }}
