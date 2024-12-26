@@ -22,6 +22,9 @@ on:
 env:
   MAVEN_CACHE: /var/tools/maven-cache
 
+permissions:
+  contents: write
+
 jobs:
   build-screenshot:
     runs-on: ubuntu-latest
