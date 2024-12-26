@@ -180,10 +180,13 @@ jobs:
         run: |
           # Verify Chrome installation
           google-chrome --version
+          
+          # Run Lighthouse with both outputs
           npx lighthouse ${{ env.SERVER_URL }} \
             --chrome-flags="--headless --no-sandbox --disable-gpu" \
-            --output=json --output=html \
-            --output-path=${{ env.REPORT_PATH }}
+            --output=json \
+            --output=html \
+            --output-path="lighthouse-reports/report"
         env:
           DISPLAY: ':99'
             
@@ -195,28 +198,29 @@ jobs:
 
       - name: Generate Report Summary
         run: |
-          # Create README.md
-          cat << EOF > lighthouse-reports/README.md
-          # Lighthouse Audit Report
-          Generated: $(date)
-          URL: ${{ env.SERVER_URL }}
+          # Wait for report files
+          while [ ! -f "lighthouse-reports/report.json" ]; do
+            echo "Waiting for JSON report..."
+            sleep 1
+          done
           
-          ## Reports
-          - [HTML Report](./report.html)
-          - [JSON Report](./report.json)
-          
-          ## Summary
-          $(cat lighthouse-reports/report.json | jq -r '.categories | to_entries[] | "### \(.key)\nScore: \(.value.score * 100)%\n"')
-          EOF
-          
-          # Create job summary
-          {
-            echo "# 🚦 Lighthouse Audit Results"
-            echo "## Performance Metrics"
-            jq -r '.categories | to_entries[] | "### \(.key)\n📊 Score: \(.value.score * 100)%\n"' lighthouse-reports/report.json
-            echo "---"
-            echo "📑 [Detailed HTML Report](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts)"
-          } >> $GITHUB_STEP_SUMMARY
+          # Create README with error handling
+          if [ -f "lighthouse-reports/report.json" ]; then
+            cat << EOF > lighthouse-reports/README.md
+            # Lighthouse Audit Report
+            Generated: $(date)
+            URL: ${{ env.SERVER_URL }}
+            
+            ## Reports
+            - [HTML Report](./report.html)
+            - [JSON Report](./report.json)
+            
+            ## Summary
+            \$(cat lighthouse-reports/report.json | jq -r '.categories | to_entries[] | "### \(.key)\nScore: \(.value.score * 100)%\n"')
+            EOF
+          else
+            echo "Error: JSON report not found" > lighthouse-reports/README.md
+          fi
 
       - name: Upload Combined Reports
         uses: actions/upload-artifact@v3
