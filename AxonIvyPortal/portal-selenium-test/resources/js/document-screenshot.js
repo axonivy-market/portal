@@ -249,6 +249,11 @@ function highlightTaskActionItem(taskIndex, actionIndex) {
   createRedMediumOutline(actionItem);
 }
 
+function highlightTaskAdditionalActionItem(index) {
+  var taskActionItem = $("div[id$=':side-steps-panel'] div.task-additional-actions-panel > a").eq(index);
+  createRedMediumOutline(taskActionItem);
+}
+
 function highlightCaseExportToExcelButton() {
   createRedMediumOutline($("a[id$=':case-export-to-excel']"));
 }
