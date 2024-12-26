@@ -30,9 +30,6 @@ jobs:
   build-document:
     runs-on: portal-01
     steps:
-      # - name: test summary
-      #   run:  echo "### Documentation Build Warnings" >> $GITHUB_STEP_SUMMARY
-
       - uses: actions/checkout@v4
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -57,26 +54,25 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Version is $VERSION"
       
-      # - name: Unzip portal screenshots
-      #   run: |
-      #     unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ steps.get_version.outputs.version }}.zip \
-      #       -d Documentation/portal-guide/source/screenshots
+      - name: Unzip portal screenshots
+        run: |
+          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ steps.get_version.outputs.version }}.zip \
+            -d Documentation/portal-guide/source/screenshots
 
       - name: Generate resources
         run: |
           mvn clean process-resources -Divy.engine.version=[13.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
       
-      # - name: Run substitute
-      #   shell: bash
-      #   run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
+      - name: Run substitute
+        shell: bash
+        run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
 
       - name: Build Documentation HTML
         run: |
           docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
             axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=${{ steps.get_version.outputs.version }} 2> sphinx-warnings.log
             WARNINGS=$(grep -c "WARNING" sphinx-warnings.log || echo 0)
-            echo "locne"
             echo "Found $WARNINGS warnings."
             if [ "$WARNINGS" -ge 1 ]; then
               echo "Documentation build has warnings. Adding to summary..."
@@ -90,24 +86,23 @@ jobs:
               exit 1
             fi
 
+      - name: Install or deploy document
+        run: |
+          if [[ "${{ steps.get_version.outputs.version }}" == *SNAPSHOT* ]]; then
+            PHASE="install"
+          else
+            PHASE="deploy"
+          fi
+          echo "Running 'clean $PHASE' for version ${{ steps.get_version.outputs.version }}"
+          mvn clean $PHASE -f Documentation/pom.xml
 
-      # - name: Install or deploy document
-      #   run: |
-      #     if [[ "${{ steps.get_version.outputs.version }}" == *SNAPSHOT* ]]; then
-      #       PHASE="install"
-      #     else
-      #       PHASE="deploy"
-      #     fi
-      #     echo "Running 'clean $PHASE' for version ${{ steps.get_version.outputs.version }}"
-      #     mvn clean $PHASE -f Documentation/pom.xml
-
-      # - name: Upload artifacts
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: documentation
-      #     path: |
-      #       Documentation/*/build/html/**/*
-      #       Documentation/*/target/*.zip
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation
+          path: |
+            Documentation/*/build/html/**/*
+            Documentation/*/target/*.zip
 
       - name: Cleanup
         shell: bash
