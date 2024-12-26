@@ -35,7 +35,6 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverConditions;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.WebElementCondition;
-import com.codeborne.selenide.conditions.Not;
 
 public abstract class TemplatePage extends AbstractPage {
   private static final int IFRAME_SCREENSHOT_FILE_SIZE_AT_MINIMUM = 10000;
@@ -540,5 +539,12 @@ public abstract class TemplatePage extends AbstractPage {
     openUserSettingMenu();
     $("[id='mobile-app-item']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     return new QRCodePage();
+  }
+
+  public void sendKeys(String cssSelector, String value) {
+    SelenideElement element = $(cssSelector).shouldBe(Condition.appear).shouldBe(Condition.editable);
+    element.click();
+    element.clear();
+    element.sendKeys(value);
   }
 }
