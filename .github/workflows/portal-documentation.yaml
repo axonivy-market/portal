@@ -57,10 +57,10 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Version is $VERSION"
       
-      - name: Unzip portal screenshots
-        run: |
-          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ steps.get_version.outputs.version }}.zip \
-            -d Documentation/portal-guide/source/screenshots
+      # - name: Unzip portal screenshots
+      #   run: |
+      #     unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ steps.get_version.outputs.version }}.zip \
+      #       -d Documentation/portal-guide/source/screenshots
 
       - name: Generate resources
         run: |
@@ -110,5 +110,5 @@ jobs:
 
       - name: Cleanup
         shell: bash
-        run: rm -rf ${{ github.workspace }}/*
+        run: sudo rm -rf ${{ github.workspace }}/*
     
