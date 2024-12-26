@@ -14,87 +14,111 @@ on:
       - 'feature/IVYPORTAL-18151-Create-Github-Action-for-Building-Documentation'
 
 jobs:
-  prepare-document:
-    runs-on: portal-01
+  build-screenshot:
+    runs-on: ubuntu-latest
     steps:
-      # - name: test summary
-      #   run:  echo "### Documentation Build Warnings" >> $GITHUB_STEP_SUMMARY
-
       - uses: actions/checkout@v4
+        with:
+          ref: master
+
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
-
+  
       - name: Set up Maven
         uses: stCarolas/setup-maven@v5
         with:
           maven-version: 3.9.8
 
-      - name: Get current version
-        id: get_version
-        run: |
-          VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
-          if [[ "$VERSION" == "null object or invalid expression" ]]; then
-            echo "Error: could not evaluate maven revision property"
-            # Stops the workflow if the condition is met
-            exit 1
-          fi
-          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-          echo "Version is $VERSION"
-      
-      - name: Unzip portal screenshots
-        run: |
-          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ steps.get_version.outputs.version }}.zip \
-            -d Documentation/portal-guide/source/screenshots
-
-      - name: Generate resources
-        run: |
-          mvn clean process-resources -Divy.engine.version=[13.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip -f Documentation/public-api/pom.xml
-          mvn clean generate-resources -f Documentation/pom.xml
-      
-      - name: Run substitute
+      - name: Extract Engine
+        run: docker ps
+          
         shell: bash
-        run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
+          
 
-      # - name: Build Documentation HTML
-      #   run: |
-      #     docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
-      #       axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=${{ steps.get_version.outputs.version }}
+  # build-document:
+  #   runs-on: portal-01
+  #   steps:
+  #     # - name: test summary
+  #     #   run:  echo "### Documentation Build Warnings" >> $GITHUB_STEP_SUMMARY
 
-      # - name: Install or deploy document
-      #   run: |
-      #     if [[ "${{ steps.get_version.outputs.version }}" == *SNAPSHOT* ]]; then
-      #       PHASE="install"
-      #     else
-      #       PHASE="deploy"
-      #     fi
-      #     echo "Running 'clean $PHASE' for version ${{ steps.get_version.outputs.version }}"
-      #     mvn clean $PHASE -f Documentation/pom.xml
+  #     - uses: actions/checkout@v4
+  #     - name: Set up Java
+  #       uses: actions/setup-java@v4
+  #       with:
+  #         distribution: 'temurin'
+  #         java-version: '21'
 
-      # - name: Upload artifacts
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: documentation
-      #     path: |
-      #       Documentation/*/build/html/**/*
-      #       Documentation/*/target/*.zip
+  #     - name: Set up Maven
+  #       uses: stCarolas/setup-maven@v5
+  #       with:
+  #         maven-version: 3.9.8
 
-      # - name: Cleanup
-      #   shell: bash
-      #   run: rm -rf ${{ github.workspace }}/*
+  #     - name: Get current version
+  #       id: get_version
+  #       run: |
+  #         VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
+  #         if [[ "$VERSION" == "null object or invalid expression" ]]; then
+  #           echo "Error: could not evaluate maven revision property"
+  #           # Stops the workflow if the condition is met
+  #           exit 1
+  #         fi
+  #         echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+  #         echo "Version is $VERSION"
+      
+  #     - name: Unzip portal screenshots
+  #       run: |
+  #         unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ steps.get_version.outputs.version }}.zip \
+  #           -d Documentation/portal-guide/source/screenshots
 
-  test-deploy:
-    runs-on: portal-01
-    container:
-      image: axonivy/build-container:read-the-docs-2
-      env:
-        NODE_ENV: development
-      volumes:
-        - ${{ github.workspace }}:/workspace
-      options: --rm -w /workspace/Documentation/portal-guide
-    steps:
-      - name: Check for dockerenv file
-        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
+  #     - name: Generate resources
+  #       run: |
+  #         mvn clean process-resources -Divy.engine.version=[13.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip -f Documentation/public-api/pom.xml
+  #         mvn clean generate-resources -f Documentation/pom.xml
+      
+  #     - name: Run substitute
+  #       shell: bash
+  #       run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
+
+  #     # - name: Build Documentation HTML
+  #     #   run: |
+  #     #     docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
+  #     #       axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=${{ steps.get_version.outputs.version }}
+
+  #     # - name: Install or deploy document
+  #     #   run: |
+  #     #     if [[ "${{ steps.get_version.outputs.version }}" == *SNAPSHOT* ]]; then
+  #     #       PHASE="install"
+  #     #     else
+  #     #       PHASE="deploy"
+  #     #     fi
+  #     #     echo "Running 'clean $PHASE' for version ${{ steps.get_version.outputs.version }}"
+  #     #     mvn clean $PHASE -f Documentation/pom.xml
+
+  #     # - name: Upload artifacts
+  #     #   uses: actions/upload-artifact@v4
+  #     #   with:
+  #     #     name: documentation
+  #     #     path: |
+  #     #       Documentation/*/build/html/**/*
+  #     #       Documentation/*/target/*.zip
+
+  #     # - name: Cleanup
+  #     #   shell: bash
+  #     #   run: rm -rf ${{ github.workspace }}/*
+
+  # test-deploy:
+  #   runs-on: portal-01
+  #   container:
+  #     image: axonivy/build-container:read-the-docs-2
+  #     env:
+  #       NODE_ENV: development
+  #     volumes:
+  #       - ${{ github.workspace }}:/workspace
+  #     options: --rm -w /workspace/Documentation/portal-guide
+  #   steps:
+  #     - name: Check for dockerenv file
+  #       run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
     
