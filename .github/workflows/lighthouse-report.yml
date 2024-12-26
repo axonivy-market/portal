@@ -204,16 +204,32 @@ jobs:
       - name: Generate Report Summary
         run: |
           cd ${{ env.REPORT_DIR }}
-          if [ -f "report.report.json" ]; then
+          
+          # Check if report exists and generate summary
+          if [ -f "report.report.html" ]; then
             {
-              echo "# 🚦 Lighthouse Audit Results"
+              echo "# 🚦 Lighthouse Report Summary"
               echo "Generated: $(date)"
-              echo "---"
-              echo "## Performance Scores"
+              echo ""
+              echo "## Performance Metrics"
+              
+              # Extract scores from JSON report
               jq -r '.categories | to_entries[] | 
-              "### \(.key)\n📊 Score: \(.value.score * 100 | floor)%"' report.report.json
-              echo "---" 
-              echo "📑 [Full Report](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts)"
+                "### \(.key | sub("^."; ./"u" | ascii_upcase)) 
+                 📊 Score: \(.value.score * 100 | floor)%"' report.report.json
+              
+              echo ""
+              echo "## Key Metrics"
+              jq -r '.audits | 
+                to_entries[] | 
+                select(.value.numericValue != null) |
+                "- **\(.key)**: \(.value.displayValue)"' report.report.json
+              
+              echo ""
+              echo "## Screenshots"
+              base64 -w 0 lighthouse-reports/report.html > lighthouse.html
+              echo "[📋 View Full Report](data:text/html;base64,$(cat lighthouse.html))"
+              
             } >> $GITHUB_STEP_SUMMARY
           else
             echo "❌ Report generation failed" >> $GITHUB_STEP_SUMMARY
