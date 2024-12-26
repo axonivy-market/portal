@@ -435,8 +435,6 @@ You can define a Notifications widget to display all Notifications based on your
    :alt: Dashboard news feed widget
 .. |news-feed-widget-manage-content| image:: ../../screenshots/new-dashboard/news-feed-widget-manage-content.png
    :alt: Dashboard news feed widget's Manage news dialog
-.. |news-feed-widget-overlay-panel| image:: ../../screenshots/new-dashboard/news-feed-widget-overlay-panel.png
-   :alt: Dashboard external page widget's overlay dialog
 .. |external-page-widget-configuration| image:: ../../screenshots/dashboard/external-page-widget-configuration.png
    :alt: Dashboard external page widget's configuration dialog
 .. |add-statistic-widget| image:: ../../screenshots/new-dashboard/add-client-statistic-widget.png

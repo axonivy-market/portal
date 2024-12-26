@@ -353,22 +353,6 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
   }
 
   @Test
-  public void screenshotTaskByPriorityClientStatisticChartWidget() throws IOException {
-    ScreenshotUtils.maximizeBrowser();
-
-    addPublicStatisticWidget(NewDashboardDetailsEditPage.TASK_BY_PRIORITY);
-    NewDashboardDetailsEditPage newDashboard = new NewDashboardDetailsEditPage();
-    newDashboard.waitPageLoaded();
-
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-statistic-widget");
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-widget-configuration");
-    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
-    homePage = new NewDashboardPage();
-    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetClientStatisticChart(0),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-chart-widget");
-  }
-
-  @Test
   public void screenshotWelcomeWidget() throws IOException {
     ScreenshotUtils.maximizeBrowser();
     addPublicWidget(NewDashboardDetailsEditPage.WELCOME_WIDGET);
