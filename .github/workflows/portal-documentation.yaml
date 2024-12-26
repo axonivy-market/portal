@@ -50,18 +50,20 @@ jobs:
           
         shell: bash
         
-      - name: Build Docker image for building
-        run: docker build -t build-portal-modules -f build/Dockerfile .
+      # - name: Build Docker image for building
+      #   run: docker build -t build-portal-modules -f build/Dockerfile .
 
       - name: Build Modules
         id: build
         run: |
+          addgroup --gid 1001 build && adduser --uid 1001 --gid 1001 --disabled-password --gecos "" build
+
           MODULES=("AxonIvyPortal/portal-components" "AxonIvyPortal/portal" "AxonIvyPortal/PortalKitTestHelper" "Showcase/portal-user-examples" "Showcase/portal-developer-examples" "Showcase/InternalSupport" "Showcase/portal-components-examples")
           BUILT_MODULES=()
           
           for MODULE in "${MODULES[@]}"; do
             MODULE_NAME=$(basename $MODULE)
-            docker run --rm build-portal-modules mvn clean install -f ${MODULE}/pom.xml
+            mvn clean install -f ${MODULE}/pom.xml
             BUILT_MODULES+=("$MODULE")
           done
           
