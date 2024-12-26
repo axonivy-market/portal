@@ -40,7 +40,6 @@ jobs:
           echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
-
       - name: Set Up and Verify Directories
         run: |
           ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/nightly"
@@ -48,7 +47,6 @@ jobs:
           sudo chown -R $USER:$USER $ENGINE_DIR
           ls -la $ENGINE_DIR
           echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
-
       - name: Download Engine
         run: |
           cd $ENGINE_DIR
@@ -56,7 +54,6 @@ jobs:
           unzip -o axonivy-engine.zip -d .
           rm axonivy-engine.zip
           ls -la
-
       - name: Verify Engine Directory
         run: |
           if [ ! -d "$ENGINE_DIR" ]; then
@@ -65,7 +62,6 @@ jobs:
           fi
           ls -la $ENGINE_DIR
           ls -la $ENGINE_DIR/bin || true
-
       - name: Start Axon Ivy Engine
         run: |
           # Navigate to engine directory
@@ -126,8 +122,6 @@ jobs:
           cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
           cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
           cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
-
-
       - name: Wait for Server Health Check
         run: |
           echo "Waiting for server to be ready..."
@@ -149,7 +143,6 @@ jobs:
           sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable xvfb x11-xserver-utils
-
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
@@ -178,18 +171,19 @@ jobs:
 
       - name: Run Lighthouse Audit
         run: |
-          # Verify Chrome installation
-          google-chrome --version
+          mkdir -p ${{ env.REPORT_DIR }}
+          cd ${{ env.REPORT_DIR }}
           
-          # Run Lighthouse with both outputs
           npx lighthouse ${{ env.SERVER_URL }} \
             --chrome-flags="--headless --no-sandbox --disable-gpu" \
             --output=json \
             --output=html \
-            --output-path="lighthouse-reports/report"
+            --output-path="./report"
+          
+          ls -la
         env:
           DISPLAY: ':99'
-            
+
       - name: Upload Report
         uses: actions/upload-artifact@v3
         with:
@@ -198,15 +192,10 @@ jobs:
 
       - name: Generate Report Summary
         run: |
-          # Wait for report files
-          while [ ! -f "lighthouse-reports/report.json" ]; do
-            echo "Waiting for JSON report..."
-            sleep 1
-          done
+          cd ${{ env.REPORT_DIR }}
           
-          # Create README with error handling
-          if [ -f "lighthouse-reports/report.json" ]; then
-            cat << EOF > lighthouse-reports/README.md
+          if [ -f "report.json" ]; then
+            cat << EOF > README.md
             # Lighthouse Audit Report
             Generated: $(date)
             URL: ${{ env.SERVER_URL }}
@@ -216,12 +205,20 @@ jobs:
             - [JSON Report](./report.json)
             
             ## Summary
-            \$(cat lighthouse-reports/report.json | jq -r '.categories | to_entries[] | "### \(.key)\nScore: \(.value.score * 100)%\n"')
+            \$(cat report.json | jq -r '.categories | to_entries[] | "### \(.key)\nScore: \(.value.score * 100)%\n"')
             EOF
           else
-            echo "Error: JSON report not found" > lighthouse-reports/README.md
+            echo "# Lighthouse Audit Report\nError: No report generated" > README.md
           fi
-
+          
+          # Create job summary without JSON dependency
+          {
+            echo "# 🚦 Lighthouse Audit Results"
+            echo "Generated: $(date)"
+            echo "---"
+            echo "📑 [Full Report](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts)"
+          } >> $GITHUB_STEP_SUMMARY
+           
       - name: Upload Combined Reports
         uses: actions/upload-artifact@v3
         with:
