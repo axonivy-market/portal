@@ -171,7 +171,7 @@ jobs:
       - name: Set Up Virtual Display
         run: |
           # Start Xvfb with debug output
-          Xvfb :99 -screen 0 1280x1024x24 -ac &
+            Xvfb :99 -screen 0 1920x1080x24 -ac &
           sleep 3  # Wait for Xvfb to start
           export DISPLAY=:99
           xdpyinfo || true  # Debug display setup
@@ -192,3 +192,36 @@ jobs:
         with:
           name: lighthouse-report
           path: ${{ env.REPORT_DIR }}
+
+      - name: Generate Report Summary
+        run: |
+          # Create README.md
+          cat << EOF > lighthouse-reports/README.md
+          # Lighthouse Audit Report
+          Generated: $(date)
+          URL: ${{ env.SERVER_URL }}
+          
+          ## Reports
+          - [HTML Report](./report.html)
+          - [JSON Report](./report.json)
+          
+          ## Summary
+          $(cat lighthouse-reports/report.json | jq -r '.categories | to_entries[] | "### \(.key)\nScore: \(.value.score * 100)%\n"')
+          EOF
+          
+          # Create job summary
+          {
+            echo "# 🚦 Lighthouse Audit Results"
+            echo "## Performance Metrics"
+            jq -r '.categories | to_entries[] | "### \(.key)\n📊 Score: \(.value.score * 100)%\n"' lighthouse-reports/report.json
+            echo "---"
+            echo "📑 [Detailed HTML Report](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts)"
+          } >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload Combined Reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: lighthouse-reports
+          path: |
+            ${{ env.REPORT_DIR }}/*
+            ${{ env.REPORT_DIR }}/README.md
