@@ -135,9 +135,9 @@ public class BackNavigationTest extends BaseTest {
     taskDetailsPage = caseDetailsPage.openTasksOfCasePage(PAYMENT_TASK_NAME);
 
     TaskIFrameTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
-    taskTemplatePage.inputField("[id$='payment-request:fullname']", "Demo");
+    taskTemplatePage.sendKeys("[id$='payment-request:fullname']", "Demo");
     String today = LocalDateTime.now().format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
-    taskTemplatePage.inputField("[id$='payment-request:from_input']", today);
+    taskTemplatePage.sendKeys("[id$='payment-request:from_input']", today);
 
     taskTemplatePage.clickOnSubmitButton();
     caseDetailsPage = new CaseDetailsPage();
