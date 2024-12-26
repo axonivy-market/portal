@@ -216,14 +216,19 @@ public class TaskIFrameTemplatePage extends TemplatePage {
   }
 
   public void inputValue(String employee, String from, String to, String representation) {
-    $(By.id("leave-request:fullname")).shouldBe(Condition.appear).shouldBe(Condition.editable).sendKeys(employee);
-    $(By.id("leave-request:substitute")).sendKeys(representation);
-    $(By.id("leave-request:from_input")).sendKeys(from);
-    $(By.id("leave-request:to_input")).sendKeys(to);
-  }
-
-  public void inputField(String cssSelector, String value) {
-    $(cssSelector).shouldBe(Condition.appear).shouldBe(Condition.editable).sendKeys(value);
+    SelenideElement fullNameElement =
+        $(By.id("leave-request:fullname")).shouldBe(Condition.appear).shouldBe(Condition.editable);
+    fullNameElement.click();
+    fullNameElement.sendKeys(employee);
+    SelenideElement representationElement = $(By.id("leave-request:substitute"));
+    representationElement.click();
+    representationElement.sendKeys(representation);
+    SelenideElement fromElement = $(By.id("leave-request:from_input"));
+    fromElement.click();
+    fromElement.sendKeys(from);
+    SelenideElement toElement = $(By.id("leave-request:to_input"));
+    toElement.click();
+    toElement.sendKeys(to);
   }
 
   public NewDashboardPage clickSubmitButton() {
