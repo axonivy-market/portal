@@ -9,13 +9,23 @@ on:
         description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html'
         default: 'nightly'
         required: true
+
+      modulesMustBeBuilt:
+        description: 'Modules that must be built (comma-separated)'
+        required: false
+        default: ''
+  
   push:
     branches:
       - 'feature/IVYPORTAL-18151-Create-Github-Action-for-Building-Documentation'
 
+env:
+  MAVEN_CACHE: /var/tools/maven-cache
+
 jobs:
   build-screenshot:
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v4
         with:
@@ -36,6 +46,32 @@ jobs:
         run: docker ps
           
         shell: bash
+        
+      - name: Build Docker image for building
+        run: docker build -t build-portal-modules -f build/Dockerfile .
+
+      - name: Build Modules
+        id: build
+        run: |
+          MODULES=("AxonIvyPortal/portal-components" "AxonIvyPortal/portal" "AxonIvyPortal/PortalKitTestHelper" "Showcase/portal-user-examples" "Showcase/portal-developer-examples" "Showcase/InternalSupport" "Showcase/portal-components-examples")
+          BUILT_MODULES=()
+          
+          if [ "${{ github.event.before }}" != "" ]; then
+            CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
+          else
+            CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+          fi
+          
+          for MODULE in "${MODULES[@]}"; do
+            MODULE_NAME=$(basename $MODULE)
+            if [[ "$CHANGED_FILES" == *"$MODULE"* ]] || [[ "${{ inputs.modulesMustBeBuilt }}" == *"$MODULE_NAME"* ]]; then
+              docker run --rm build-portal-modules mvn clean install -f ${MODULE}/pom.xml
+              BUILT_MODULES+=("$MODULE")
+            fi
+          done
+          
+          echo "built_modules=${BUILT_MODULES[*]}" >> $GITHUB_OUTPUT
+
           
 
   # build-document:
