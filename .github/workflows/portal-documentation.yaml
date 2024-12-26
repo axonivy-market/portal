@@ -1,5 +1,5 @@
 name: Portal Documentation
-run-name: Build and Deploy Documentation on branch master by ${{ github.actor }} 🚀
+run-name: Build and Deploy Documentation on branch ${{ github.ref_name }} 🚀
 on:
   schedule:
     - cron: '0 0 * * *' # Equivalent to '@midnight'
