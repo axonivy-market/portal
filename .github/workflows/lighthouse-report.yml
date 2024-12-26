@@ -190,39 +190,37 @@ jobs:
           name: lighthouse-report
           path: ${{ env.REPORT_DIR }}
 
+      - name: Run Lighthouse Audit
+        run: |
+          mkdir -p ${{ env.REPORT_DIR }}
+          cd ${{ env.REPORT_DIR }}
+            
+          npx lighthouse ${{ env.SERVER_URL }} \
+            --chrome-flags="--headless --no-sandbox --disable-gpu" \
+            --output=json \
+            --output=html \
+            --output-path="./report"
+  
       - name: Generate Report Summary
         run: |
           cd ${{ env.REPORT_DIR }}
-          
           if [ -f "report.json" ]; then
-            cat << EOF > README.md
-            # Lighthouse Audit Report
-            Generated: $(date)
-            URL: ${{ env.SERVER_URL }}
-            
-            ## Reports
-            - [HTML Report](./report.html)
-            - [JSON Report](./report.json)
-            
-            ## Summary
-            \$(cat report.json | jq -r '.categories | to_entries[] | "### \(.key)\nScore: \(.value.score * 100)%\n"')
-            EOF
+            {
+              echo "# 🚦 Lighthouse Audit Results"
+              echo "Generated: $(date)"
+              echo "---"
+              echo "## Performance Scores"
+              jq -r '.categories | to_entries[] | 
+              "### \(.key)\n📊 Score: \(.value.score * 100 | floor)%"' report.json
+              echo "---" 
+              echo "📑 [Full Report](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts)"
+            } >> $GITHUB_STEP_SUMMARY
           else
-            echo "# Lighthouse Audit Report\nError: No report generated" > README.md
+            echo "❌ Report generation failed" >> $GITHUB_STEP_SUMMARY
           fi
-          
-          # Create job summary without JSON dependency
-          {
-            echo "# 🚦 Lighthouse Audit Results"
-            echo "Generated: $(date)"
-            echo "---"
-            echo "📑 [Full Report](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts)"
-          } >> $GITHUB_STEP_SUMMARY
-           
-      - name: Upload Combined Reports
+
+      - name: Upload Report
         uses: actions/upload-artifact@v3
         with:
-          name: lighthouse-reports
-          path: |
-            ${{ env.REPORT_DIR }}/*
-            ${{ env.REPORT_DIR }}/README.md
+          name: lighthouse-report
+          path: ${{ env.REPORT_DIR }}
