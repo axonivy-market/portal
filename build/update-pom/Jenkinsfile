@@ -34,25 +34,25 @@ pipeline {
                 echo '====================Update version===================='
                 updateVersion()
 
-                echo '====================Commit to GIT===================='
-                changeLog = sh(returnStdout: true, script: 'git status -s').trim()
-                if (changeLog) {
-                  sh """
-                    git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}"
-                    git checkout -b ${params.branchToPush}
-                    git push origin -u ${params.branchToPush}
-                  """
-                } else {
-                  echo 'Nothing to commit.'
-                }
+                // echo '====================Commit to GIT===================='
+                // changeLog = sh(returnStdout: true, script: 'git status -s').trim()
+                // if (changeLog) {
+                //   sh """
+                //     git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}"
+                //     git checkout -b ${params.branchToPush}
+                //     git push origin -u ${params.branchToPush}
+                //   """
+                // } else {
+                //   echo 'Nothing to commit.'
+                // }
               }
             }
           }
 
-          echo '====================Cache engine in local repository===================='
-          removeCacheEngine()
-          docker.build('fetch-cache', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
-            maven cmd: 'clean install -f AxonIvyPortal/portal-components/pom.xml'
+          // echo '====================Cache engine in local repository===================='
+          // removeCacheEngine()
+          // docker.build('fetch-cache', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+          //   maven cmd: 'clean install -f AxonIvyPortal/portal-components/pom.xml'
           }
         }
       }
@@ -68,8 +68,26 @@ def updateVersion() {
   for (pomFile in pomFiles) {
     maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
     maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
-    maven cmd: "-f ${pomFile} release:update-versions -DdevelopmentVersion=${params.portalVersion}"
   }
+
+  powershell '''
+    #find all pom file of portal project and change their versions and their portal dependencies to releaseVersion
+    $utf8WithoutBom = New-Object System.Text.UTF8Encoding($false)
+    $files = get-childitem AxonIvyPortal/*/pom.xml,Showcase/*/pom.xml,AxonIvyPortal/portal-selenium-test/customized_pom.xml,AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml,Documentation/public-api/pom.xml
+    foreach($file in $files) {
+      $xml = new-object xml
+      $xml.load($file)
+      $xml.project.version = $env:portalVersion
+      $dependencies = $xml.project.dependencies.ChildNodes
+      foreach($dependency in $dependencies) {
+        if(($dependency.groupId -eq 'ch.ivyteam.ivy.project.portal') -or ($dependency.groupId -eq 'com.axonivy.portal')) {
+          $dependency.version = $env:portalVersion
+        }
+      }
+      $sw = New-Object System.IO.StreamWriter($file, $false, $utf8WithoutBom)
+      $xml.Save($sw)
+    }
+  '''
 }
 
 def removeCacheEngine() {
