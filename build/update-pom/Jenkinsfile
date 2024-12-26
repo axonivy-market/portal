@@ -53,7 +53,7 @@ pipeline {
           // removeCacheEngine()
           // docker.build('fetch-cache', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
           //   maven cmd: 'clean install -f AxonIvyPortal/portal-components/pom.xml'
-          }
+          // }
         }
       }
     }
