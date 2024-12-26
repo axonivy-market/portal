@@ -11,11 +11,14 @@ on:
 env: # Define reusable environment variables
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
   ENGINE_URL: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip
+  WAIT_TIME: 180
+  SERVER_URL: http://localhost:8080
+  REPORT_PATH: $GITHUB_WORKSPACE/lighthouse-report
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Build Modules
+    name: Lighthouse Audit
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -122,28 +125,8 @@ jobs:
           cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
           cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
           cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
-  
-  lighthouse-audit:
-    name: Lighthouse Audit
-    needs: build
-    runs-on: ubuntu-latest
-    
-    env:
-      WAIT_TIME: 300  # Increased timeout to 5 minutes
-      SERVER_URL: http://localhost:8080
-      REPORT_PATH: ./lighthouse-report.html
-      
-    steps:
-      - name: Checkout Code  # Need code to access engine
-        uses: actions/checkout@v3
-        
-      - name: Start Engine Again
-        run: |
-          cd "${GITHUB_WORKSPACE}/ivy/engine/nightly/bin"
-          chmod +x ./AxonIvyEngine
-          ./AxonIvyEngine > engine.log 2>&1 &
-          echo $! > engine.pid
-          
+
+
       - name: Wait for Server Health Check
         run: |
           echo "Waiting for server to be ready..."
@@ -158,14 +141,15 @@ jobs:
           echo "Server check failed" 
           cat engine.log
           exit 1
-          
+            
       - name: Run Lighthouse Audit
         run: |
           npm install -g lighthouse
           lighthouse ${{ env.SERVER_URL }} --output=json --output=html --output-path=${{ env.REPORT_PATH }}
-          
+            
       - name: Upload Report
         uses: actions/upload-artifact@v3
         with:
           name: lighthouse-report
           path: ${{ env.REPORT_PATH }}
+      
