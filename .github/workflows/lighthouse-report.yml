@@ -144,19 +144,26 @@ jobs:
             
       - name: Install Chrome Dependencies
         run: |
+          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
           sudo apt-get update
-          sudo apt-get install -y chromium-browser xvfb
+          sudo apt-get install -y google-chrome-stable xvfb x11-xserver-utils
 
       - name: Set Up Virtual Display
         run: |
-          Xvfb :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
-          echo "DISPLAY=:99" >> $GITHUB_ENV
+          # Start Xvfb with debug output
+          Xvfb :99 -screen 0 1280x1024x24 -ac &
+          sleep 3  # Wait for Xvfb to start
+          export DISPLAY=:99
+          xdpyinfo || true  # Debug display setup
 
       - name: Run Lighthouse Audit
         run: |
-          npm install -g lighthouse
-          xvfb-run --server-args="-screen 0 1280x1024x24" lighthouse \
-            ${{ env.SERVER_URL }} \
+          # Verify Chrome installation
+          google-chrome --version
+          
+          # Run Lighthouse with Chrome
+          lighthouse ${{ env.SERVER_URL }} \
             --chrome-flags="--headless --no-sandbox --disable-gpu" \
             --output=json --output=html \
             --output-path=${{ env.REPORT_PATH }}
