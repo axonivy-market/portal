@@ -142,14 +142,29 @@ jobs:
           cat engine.log
           exit 1
             
+      - name: Install Chrome Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser xvfb
+
+      - name: Set Up Virtual Display
+        run: |
+          Xvfb :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+          echo "DISPLAY=:99" >> $GITHUB_ENV
+
       - name: Run Lighthouse Audit
         run: |
           npm install -g lighthouse
-          lighthouse ${{ env.SERVER_URL }} --output=json --output=html --output-path=${{ env.REPORT_PATH }}
+          xvfb-run --server-args="-screen 0 1280x1024x24" lighthouse \
+            ${{ env.SERVER_URL }} \
+            --chrome-flags="--headless --no-sandbox --disable-gpu" \
+            --output=json --output=html \
+            --output-path=${{ env.REPORT_PATH }}
+        env:
+          DISPLAY: ':99'
             
       - name: Upload Report
         uses: actions/upload-artifact@v3
         with:
           name: lighthouse-report
           path: ${{ env.REPORT_PATH }}
-      
