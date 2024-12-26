@@ -9,7 +9,7 @@ on:
       - master
 
 env: # Define reusable environment variables
-  ENGINE_DIR: /opt/ivy/engine/nightly
+  ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
   ENGINE_URL: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip
 
 jobs:
@@ -39,23 +39,20 @@ jobs:
 
       - name: Set Up Directories
         run: |
-          cd /opt
-          sudo mkdir ivy
-          sudo chown $USER:$USER /opt/ivy
+          mkdir -p $GITHUB_WORKSPACE/ivy/engine/nightly
+          sudo chown -R $USER:$USER $GITHUB_WORKSPACE/ivy/engine/nightly
 
       - name: Download Engine
         run: |
           echo "Downloading engine from $ENGINE_URL ..."
-          cd /opt/ivy
-          mkdir engine
-          wget $ENGINE_URL
-          unzip -o axonivy-engine -d nightly
+          cd $GITHUB_WORKSPACE/ivy/engine/nightly
+          wget $ENGINE_URL -O axonivy-engine.zip
+          unzip -o axonivy-engine.zip -d .
           rm axonivy-engine.zip
 
       - name: List Engine Files
         run: |
-          cd /opt/ivy/engine/nightly
-          ls -al $ENGINE_DIR
+          ls -al $GITHUB_WORKSPACE/ivy/engine/nightly
 
       - name: Verify Engine Files
         run: |
