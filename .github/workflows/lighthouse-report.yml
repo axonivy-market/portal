@@ -9,7 +9,7 @@ on:
       - master
 
 env: # Define reusable environment variables
-  ENGINE_DIR: ${{ github.workspace }}/AxonIvyPortal/engine
+  ENGINE_DIR: /opt/ivy/engine/nightly
   ENGINE_URL: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip
 
 jobs:
@@ -31,16 +31,29 @@ jobs:
         with:
           maven-version: 3.9.8
 
-      - name: Prepare Environment
+      - name: Export Environment Variables
         run: |
-          mkdir -p $ENGINE_DIR
-          echo "Workspace prepared at ${{ github.workspace }}"
+          echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+          echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+          echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
+
+      - name: Set Up Directories
+        run: |
+          sudo mkdir -p /opt/ivy/engine
+          sudo chown $USER:$USER /opt/ivy
+          mkdir -p /opt/ivy/engine/nightly
 
       - name: Download Engine
         run: |
           echo "Downloading engine from $ENGINE_URL ..."
-          curl -L $ENGINE_URL -o engine.zip
-          unzip -o engine.zip -d $ENGINE_DIR
+          cd /opt/ivy/engine
+          wget $ENGINE_URL -o engine.zip
+          unzip -o engine.zip -d nightly
+          rm engine.zip
+
+      - name: List Engine Files
+        run: |
+          ls -al $ENGINE_DIR
 
       - name: Build Portal Modules
         run: |
@@ -68,24 +81,20 @@ jobs:
           cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
           cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
 
-      - name: Set JAVA_HOME for Axon Ivy Engine
-        run: |
-          export JAVA_HOME=/opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.5-11/x64
-          export PATH=$JAVA_HOME/bin:$PATH
-          java -version
-
       - name: Verify Engine Files
         run: |
           ls -l $ENGINE_DIR
           ls -l $ENGINE_DIR/bin
 
       - name: Start Axon Ivy Engine
-        env:
-          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.5-11/x64
-          PATH: $JAVA_HOME/bin:$PATH
         run: |
-            cd $ENGINE_DIR/bin
-            ./AxonIvyEngine
+          cd $ENGINE_DIR/bin
+          ./AxonIvyEngine
+        env:
+          IVY_JAVA_HOME: ${{ env.JAVA_HOME }}
+          JAVA_HOME: ${{ env.JAVA_HOME }}
+          PATH: ${{ env.PATH }}
+
 
   lighthouse-audit:
     name: Lighthouse Audit
