@@ -81,7 +81,8 @@ jobs:
           chmod +x ./AxonIvyEngine
           
           # Start engine with full environment
-          nohup ./AxonIvyEngine &          
+          nohup ./AxonIvyEngine &
+          ./AxonIvyEngine          
         env:
           IVY_JAVA_HOME: ${{ env.JAVA_HOME }}
           JAVA_HOME: ${{ env.JAVA_HOME }}
