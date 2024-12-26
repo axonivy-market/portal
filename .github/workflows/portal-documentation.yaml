@@ -1,5 +1,5 @@
 name: Portal Documentation
-run-name: Build and Deploy Documentation 🚀
+run-name: Build and Deploy Documentation on branch ${{ github.ref_name }} by ${{ github.actor }} 🚀
 on:
   schedule:
     - cron: '0 0 * * *' # Equivalent to '@midnight'
@@ -10,14 +10,14 @@ on:
         default: 'nightly'
         required: true
 
-      modulesMustBeBuilt:
-        description: 'Modules that must be built (comma-separated)'
+      branchToBeBuilt:
+        description: 'Branch to be built'
         required: false
-        default: ''
+        default: master
   
-  push:
-    branches:
-      - 'feature/IVYPORTAL-18151-Create-Github-Action-for-Building-Documentation'
+  # push:
+  #   branches:
+  #     - 'feature/IVYPORTAL-18151-Create-Github-Action-for-Building-Documentation'
 
 env:
   MAVEN_CACHE: /var/tools/maven-cache
@@ -31,6 +31,8 @@ jobs:
     runs-on: portal-01
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branchToBeBuilt }}
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
