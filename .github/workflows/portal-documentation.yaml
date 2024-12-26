@@ -59,18 +59,10 @@ jobs:
           MODULES=("AxonIvyPortal/portal-components" "AxonIvyPortal/portal" "AxonIvyPortal/PortalKitTestHelper" "Showcase/portal-user-examples" "Showcase/portal-developer-examples" "Showcase/InternalSupport" "Showcase/portal-components-examples")
           BUILT_MODULES=()
           
-          if [ "${{ github.event.before }}" != "" ]; then
-            CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }})
-          else
-            CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
-          fi
-          
           for MODULE in "${MODULES[@]}"; do
             MODULE_NAME=$(basename $MODULE)
-            if [[ "$CHANGED_FILES" == *"$MODULE"* ]] || [[ "${{ inputs.modulesMustBeBuilt }}" == *"$MODULE_NAME"* ]]; then
-              docker run --rm build-portal-modules mvn clean install -f ${MODULE}/pom.xml
-              BUILT_MODULES+=("$MODULE")
-            fi
+            docker run --rm build-portal-modules mvn clean install -f ${MODULE}/pom.xml
+            BUILT_MODULES+=("$MODULE")
           done
           
           echo "built_modules=${BUILT_MODULES[*]}" >> $GITHUB_OUTPUT
