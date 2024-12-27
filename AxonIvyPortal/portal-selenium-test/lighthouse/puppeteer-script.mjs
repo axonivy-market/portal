@@ -60,22 +60,38 @@ const __dirname = dirname(__filename);
     await page.waitForNavigation();
 
     // Run Lighthouse
-    const { lhr } = await lighthouse(page.url(), {
+    const runnerResult = await lighthouse(page.url(), {
       port: new URL(browser.wsEndpoint()).port,
       output: ["html", "json"],
       logLevel: "info",
       onlyCategories: ["performance", "accessibility", "best-practices", "seo"],
+      formFactor: "desktop",
+      screenEmulation: {
+        mobile: false,
+        width: 1920,
+        height: 1080,
+        deviceScaleFactor: 1,
+        disabled: false,
+      },
     });
 
+    // Ensure directory exists
+    const reportsDir = "lighthouse-reports";
+    if (!fs.existsSync(reportsDir)) {
+      fs.mkdirSync(reportsDir, { recursive: true });
+    }
+
     // Save reports
-    if (lhr.report && lhr.report.length > 0) {
-      fs.writeFileSync("lighthouse-report.html", lhr.report[0]);
+    const htmlReport = runnerResult.report;
+    if (htmlReport) {
+      fs.writeFileSync("lighthouse-report.html", htmlReport);
       fs.writeFileSync(
-        "lighthouse-reports/report.json",
-        JSON.stringify(lhr, null, 2)
+        path.join(reportsDir, "report.json"),
+        JSON.stringify(runnerResult.lhr, null, 2)
       );
+      console.log("Reports generated successfully");
     } else {
-      throw new Error("Lighthouse report is undefined or empty");
+      throw new Error("Failed to generate Lighthouse report");
     }
 
     await browser.close();
