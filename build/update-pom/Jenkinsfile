@@ -23,7 +23,7 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-          docker.build('update-pom', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+          docker.build('update-pom', '-f build/update-pom/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
               sshagent(credentials: ['github-axonivy']) {
                 sh """
@@ -65,28 +65,87 @@ def updateVersion() {
     'AxonIvyPortal/portal-selenium-test/pom.xml', 'AxonIvyPortal/portal-selenium-test/customized_pom.xml', 'AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml',
     'AxonIvyPortal/PortalKitTestHelper/pom.xml', 'Showcase/portal-user-examples/pom.xml',
     'Showcase/portal-developer-examples/pom.xml', 'Showcase/InternalSupport/pom.xml', 'Showcase/portal-components-examples/pom.xml']
-  for (pomFile in pomFiles) {
-    maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
-    maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
-  }
+  // for (pomFile in pomFiles) {
+  //   maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
+  //   maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
+  // }
 
-  powershell '''
-    #find all pom file of portal project and change their versions and their portal dependencies to releaseVersion
-    $utf8WithoutBom = New-Object System.Text.UTF8Encoding($false)
-    $files = get-childitem AxonIvyPortal/*/pom.xml,Showcase/*/pom.xml,AxonIvyPortal/portal-selenium-test/customized_pom.xml,AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml,Documentation/public-api/pom.xml
-    foreach($file in $files) {
-      $xml = new-object xml
-      $xml.load($file)
-      $xml.project.version = $env:portalVersion
-      $dependencies = $xml.project.dependencies.ChildNodes
-      foreach($dependency in $dependencies) {
-        if(($dependency.groupId -eq 'ch.ivyteam.ivy.project.portal') -or ($dependency.groupId -eq 'com.axonivy.portal')) {
-          $dependency.version = $env:portalVersion
-        }
-      }
-      $sw = New-Object System.IO.StreamWriter($file, $false, $utf8WithoutBom)
-      $xml.Save($sw)
-    }
+  sh '''#!/bin/bash
+    # Ensure the portalVersion environment variable is set
+    if [ -z "$portalVersion" ]; then
+      echo "Error: portalVersion environment variable is not set."
+      exit 1
+    fi
+
+    # Define the file patterns to process
+    file_patterns=(
+      "AxonIvyPortal/*/pom.xml"
+      "Showcase/*/pom.xml"
+      "AxonIvyPortal/portal-selenium-test/customized_pom.xml"
+      "AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml"
+      "Documentation/public-api/pom.xml"
+    )
+
+# Function to update XML files using Python
+update_xml() {
+  python3 - <<EOF
+import xml.etree.ElementTree as ET
+from pathlib import Path
+import sys
+
+def strip_namespace(element):
+    # Iterate over all the elements and remove the namespace from the tag
+    for elem in element.iter():
+        # If the tag contains a namespace (indicated by '}')
+        if '}' in elem.tag:
+            elem.tag = elem.tag.split('}', 1)[1]  # Keep only the part after '}'
+    return element
+
+# Environment variable
+portal_version = "$portalVersion"
+# File to process
+file_path = "$1"
+
+try:
+  tree = ET.parse(file_path)
+  root = tree.getroot()
+  root = strip_namespace(root)
+  # Update <project><version>
+  version = root.find("version")
+  if version is not None:
+    version.text = portal_version
+
+  # Update dependencies
+  dependencies = root.find("dependencies")
+  if dependencies is not None:
+    for dependency in dependencies.findall("dependency"):
+      group_id = dependency.find("groupId")
+      if group_id is not None and group_id.text in [
+        "ch.ivyteam.ivy.project.portal",
+        "com.axonivy.portal",
+      ]:
+        version_tag = dependency.find("version")
+        if version_tag is not None:
+          version_tag.text = portal_version
+
+  # Write changes back to the file
+  tree.write(file_path, encoding="utf-8", xml_declaration=True)
+except Exception as e:
+  print(f"Failed to process {file_path}: {e}", file=sys.stderr)
+EOF
+}
+
+    for pattern in "${file_patterns[@]}"; do
+      for file in $pattern; do
+        if [ -f "$file" ]; then
+          echo "Processing $file"
+          update_xml "$file"
+        else
+          echo "No files matching pattern: $pattern"
+        fi
+      done
+    done
+    echo "All POM files updated successfully."
   '''
 }
 
