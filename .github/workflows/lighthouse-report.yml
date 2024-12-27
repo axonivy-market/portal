@@ -1,242 +1,87 @@
 name: lighthouse-report
 run-name: Create Lighthouse Audit
+
 on:
   push:
-    branches:
-      - feature/IVYPORTAL-17377-Create-pipeline-to-run-Lighthouse-report
+    branches: [feature/IVYPORTAL-17377-Create-pipeline-to-run-Lighthouse-report]
   pull_request:
-    branches:
-      - master
+    branches: [master]
 
-env: # Define reusable environment variables
+env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
   ENGINE_URL: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip
   WAIT_TIME: 180
   SERVER_URL: http://localhost:8080
-  REPORT_PATH: $GITHUB_WORKSPACE/lighthouse-report
-  REPORT_DIR: $GITHUB_WORKSPACE/lighthouse-reports
 
 jobs:
-  build:
+  setup:
     runs-on: ubuntu-latest
-    name: Lighthouse Audit
+    outputs:
+      engine_dir: ${{ env.ENGINE_DIR }}
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Set Up Java
-        uses: actions/setup-java@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '21'
-
-      - name: Set up Maven
-        uses: stCarolas/setup-maven@v5
+      - uses: stCarolas/setup-maven@v5
         with:
           maven-version: 3.9.8
-
-      - name: Export Environment Variables
+      - name: Setup Engine
         run: |
-          echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
-          echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
-          echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
-      - name: Set Up and Verify Directories
-        run: |
-          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/nightly"
           mkdir -p $ENGINE_DIR
-          sudo chown -R $USER:$USER $ENGINE_DIR
-          ls -la $ENGINE_DIR
-          echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
-      - name: Download Engine
-        run: |
           cd $ENGINE_DIR
-          wget $ENGINE_URL -O axonivy-engine.zip
-          unzip -o axonivy-engine.zip -d .
-          rm axonivy-engine.zip
-          ls -la
-      - name: Verify Engine Directory
+          wget $ENGINE_URL -O engine.zip
+          unzip -o engine.zip
+          chmod +x bin/AxonIvyEngine
+
+  build:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Modules
         run: |
-          if [ ! -d "$ENGINE_DIR" ]; then
-            echo "Engine directory does not exist"
-            exit 1
-          fi
-          ls -la $ENGINE_DIR
-          ls -la $ENGINE_DIR/bin || true
-      - name: Start Axon Ivy Engine
-        run: |
-          # Navigate to engine directory
-          cd "${ENGINE_DIR}/bin"
-          
-          # Make engine executable
-          chmod +x ./AxonIvyEngine
-          
-          # Start engine in background with logging
-          nohup ./AxonIvyEngine > engine.log 2>&1 &
-          echo $! > engine.pid
-          
-          # Wait for engine to start (increased timeout)
-          MAX_ATTEMPTS=180
-          ATTEMPT=0
-          echo "Waiting for engine to start..."
-          while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
-            if curl -s http://localhost:8080/favicon.ico > /dev/null; then
-              echo "Engine started successfully"
-              cat engine.log
-              break
-            fi
-            ATTEMPT=$((ATTEMPT+1))
-            sleep 1
+          for module in {portal-components,portal,PortalKitTestHelper}; do
+            mvn -f AxonIvyPortal/$module/pom.xml clean install
           done
-          if [ $ATTEMPT -eq $MAX_ATTEMPTS ]; then
-            echo "Engine failed to start"
-            cat engine.log
-            exit 1
-          fi
-        env:
-          IVY_JAVA_HOME: ${{ env.JAVA_HOME }}
-          JAVA_HOME: ${{ env.JAVA_HOME }}
-          PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${{ env.JAVA_HOME }}/bin:$PATH
-      
-      - name: Build Portal Modules
-        run: |
-          modules=(
-            "AxonIvyPortal/portal-components"
-            "AxonIvyPortal/portal"
-            "AxonIvyPortal/PortalKitTestHelper"
-            "Showcase/portal-user-examples"
-            "Showcase/portal-developer-examples"
-            "Showcase/InternalSupport"
-            "Showcase/portal-components-examples"
-            "AxonIvyPortal/PortalApp"
-            "Showcase/portal-demo-app"
-          )
-          for module in "${modules[@]}"; do
-            echo "Building $module..."
-            mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
-          done
-  
-      - name: Deploy Portal Modules
-        run: |
-          DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
-          rm -rf $DEPLOYMENT/*
-          cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
-          cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
-          cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
-      - name: Wait for Server Health Check
-        run: |
-          echo "Waiting for server to be ready..."
-          for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
-            if curl -s -f http://localhost:8080 > /dev/null; then
-              echo "Server is running"
-              exit 0
-            fi
-            echo "Attempt $i of ${{ env.WAIT_TIME }}"
-            sleep 1
-          done
-          echo "Server check failed" 
-          cat engine.log
-          exit 1
-            
-      - name: Install Chrome Dependencies
+
+  lighthouse:
+    needs: [setup, build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Chrome
         run: |
           wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
           sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
           sudo apt-get update
-          sudo apt-get install -y google-chrome-stable xvfb x11-xserver-utils
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
+          sudo apt-get install -y google-chrome-stable xvfb
 
-      - name: Install Dependencies
+      - name: Run Audit
         run: |
-          sudo apt-get update
-          sudo apt-get install -y x11-utils
-          npm init -y
-          npm install lighthouse
-
-      - name: Create Report Directory
-        run: |
-          mkdir -p lighthouse-reports
-          echo "REPORT_DIR=$(pwd)/lighthouse-reports" >> $GITHUB_ENV
-          echo "REPORT_PATH=$(pwd)/lighthouse-reports/report.html" >> $GITHUB_ENV
-
-      - name: Set Up Virtual Display
-        run: |
-          # Start Xvfb with debug output
-            Xvfb :99 -screen 0 1920x1080x24 -ac &
-          sleep 3  # Wait for Xvfb to start
-          export DISPLAY=:99
-          xdpyinfo || true  # Debug display setup
-
-      - name: Run Lighthouse Audit
-        run: |
-          mkdir -p ${{ env.REPORT_DIR }}
-          cd ${{ env.REPORT_DIR }}
-          
+          mkdir -p reports
+          xvfb-run --server-args="-screen 0 1920x1080x24" \
           npx lighthouse ${{ env.SERVER_URL }} \
             --chrome-flags="--headless --no-sandbox --disable-gpu" \
-            --output=json \
-            --output=html \
-            --output-path="./report"
-  
-      - name: Upload Report
-        id: upload-artifact
+            --output=json,html \
+            --output-path=./reports/report
+
+      - name: Upload Reports
+        id: upload
         uses: actions/upload-artifact@v4
         with:
-          name: lighthouse-report
-          path: ${{ env.REPORT_DIR }}
+          name: lighthouse-reports
+          path: reports/*
 
-      - name: Generate Report Summary
+      - name: Generate Summary
         run: |
-          cd ${{ env.REPORT_DIR }}
-          
-          if [ -f "report.report.json" ]; then
+          cd reports
+          if [ -f "report.json" ]; then
             {
-              echo "# 🚦 Lighthouse Audit Results"
+              echo "# 🚦 Lighthouse Results"
               echo "Generated: $(date)"
-              echo ""
-              
-              # Performance Scores from JSON
               echo "## Performance Scores"
-              jq -r '.categories[] | "### " + (.title) + "\n📊 Score: " + (.score * 100 | floor | tostring) + "%"' report.report.json
-             
+              jq -r '.categories[] | "### \(.title)\n📊 Score: \(.score * 100 | floor)%"' report.json
               echo "---"
-              echo "## Reports"
-              echo "📋 [Download Full Report](https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts/${{ steps.upload-artifact.outputs.artifact-id }})"
-              
+              echo "📋 [View Report](https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts/${{ steps.upload.outputs.artifact-id }})"
             } >> $GITHUB_STEP_SUMMARY
-          else
-            echo "❌ Report generation failed" >> $GITHUB_STEP_SUMMARY
           fi
-
-      - name: Install Summary Dependencies
-        run: npm install @actions/core
-
-      - name: Generate HTML Summary
-        run: |
-          node -e "
-            const core = require('@actions/core');
-            const fs = require('fs');
-            const path = require('path');
-
-            const htmlReport = fs.readFileSync(path.join('${{ env.REPORT_DIR }}', 'report.report.html'), 'utf8');
-            const jsonReport = JSON.parse(fs.readFileSync(path.join('${{ env.REPORT_DIR }}', 'report.report.json'), 'utf8'));
-            
-            const summary = core.summary
-              .addHeading('🚦 Lighthouse Audit Results')
-              .addRaw(htmlReport)
-              .addHeading('Performance Scores', 2);
-
-            // Add scores from JSON
-            Object.entries(jsonReport.categories).forEach(([key, value]) => {
-              summary.addRaw(`### ${value.title}\n📊 Score: ${Math.floor(value.score * 100)}%\n`);
-            });
-
-            summary.addSeparator()
-              .addLink('📋 Download Full Report', 
-                `https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}/artifacts/${process.env.ARTIFACT_ID}`)
-              .write();
-          "
-        env:
-          ARTIFACT_ID: ${{ steps.upload-artifact.outputs.artifact-id }}
