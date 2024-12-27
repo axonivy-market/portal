@@ -72,7 +72,7 @@
                 my="right top" at="right bottom"
                 styleClass="applications-action-menu">
                 <p:menuitem id="edit-application"
-                  styleClass=""
+                  global="false"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
                   icon="si si-graphic-tablet-drawing-pen"
                   oncomplete="PF('appDialog').show()"
@@ -139,7 +139,7 @@
               my="right top" at="right bottom"
               styleClass="settings-action-menu">
               <p:menuitem id="edit-application"
-                styleClass=""
+                global="false"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
                 icon="si si-graphic-tablet-drawing-pen"
                 oncomplete="PF('settingDialog').show()"
