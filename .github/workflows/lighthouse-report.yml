@@ -168,7 +168,10 @@ jobs:
           xdpyinfo || true
 
       - name: Run Puppeteer Script
-        run: node AxonIvyPortal/portal-selenium-test/lighthouse/puppeteer-script.js
+        run: |
+          cd AxonIvyPortal/portal-selenium-test/lighthouse
+          npm install
+          node puppeteer-script.mjs
 
       - name: Upload Report
         id: upload-artifact
