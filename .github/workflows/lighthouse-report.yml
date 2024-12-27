@@ -225,7 +225,8 @@ jobs:
                 "- **\(.key)**: \(.value.displayValue)"' report.report.json
               
               echo "---"
-              echo "📋 [Full Report](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts)"
+                echo "📋 [Full HTML Report](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts)"
+                echo "📊 [Detailed Report](./report.html)"
               
             } >> $GITHUB_STEP_SUMMARY
           else
