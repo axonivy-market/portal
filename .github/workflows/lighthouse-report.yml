@@ -185,7 +185,14 @@ jobs:
       - name: Generate HTML Summary
         run: |
           cd AxonIvyPortal/portal-selenium-test/lighthouse
+          
+          # Debug information
+          echo "Current directory: $(pwd)"
+          echo "Listing directory contents:"
+          ls -la
+          
           if [ -f "lighthouse-report.html" ]; then
+            echo "Found HTML report"
             node -e "
               const core = require('@actions/core');
               const fs = require('fs');
@@ -200,7 +207,6 @@ jobs:
                   .addHeading('🚦 Lighthouse Audit Results')
                   .addRaw('## Performance Scores\n\n');
 
-                // Add scores from JSON
                 Object.entries(results.categories).forEach(([key, value]) => {
                   summary.addRaw(`### ${value.title}\n📊 Score: ${Math.floor(value.score * 100)}%\n\n`);
                 });
@@ -213,13 +219,17 @@ jobs:
                     '/actions/runs/' + 
                     process.env.GITHUB_RUN_ID)
                   .write();
+
+                console.log('Summary generated successfully');
               } catch (error) {
                 console.error('Error generating summary:', error);
                 process.exit(1);
               }
             "
           else
-            echo "Lighthouse report file not found"
+            echo "Error: Lighthouse report file not found in $(pwd)"
+            echo "Directory contents:"
+            ls -la
             exit 1
           fi
         env:

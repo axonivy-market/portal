@@ -78,21 +78,24 @@ const __dirname = dirname(__filename);
 
     // Save reports
     try {
-      const reportsDir = "lighthouse-reports";
+      const scriptDir = dirname(fileURLToPath(import.meta.url));
+      const reportsDir = path.join(scriptDir, "lighthouse-reports");
+
+      // Ensure reports directory exists
       if (!fs.existsSync(reportsDir)) {
         fs.mkdirSync(reportsDir, { recursive: true });
       }
 
       if (typeof runnerResult.report === "string") {
-        // Save HTML report
-        const htmlPath = path.join(process.cwd(), "lighthouse-report.html");
+        // Save HTML report in the same directory as the script
+        const htmlPath = path.join(scriptDir, "lighthouse-report.html");
         fs.writeFileSync(htmlPath, runnerResult.report);
         console.log("HTML report saved successfully to:", htmlPath);
       }
 
       if (runnerResult.lhr) {
-        // Save JSON report
-        const jsonPath = path.join(process.cwd(), reportsDir, "report.json");
+        // Save JSON report in the reports directory
+        const jsonPath = path.join(reportsDir, "report.json");
         fs.writeFileSync(jsonPath, JSON.stringify(runnerResult.lhr, null, 2));
         console.log("JSON report saved successfully to:", jsonPath);
       }
