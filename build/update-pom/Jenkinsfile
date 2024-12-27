@@ -8,8 +8,7 @@ pipeline {
   }
 
   parameters {
-    string(name: 'buildPluginVersion', defaultValue: '', description: '''Axon Ivy build plugin version of all pom will be updated to. If empty value, no changes. 
-      If buildPluginVersion, ivyEngineVersion, portalVersion params all are empty, this build just updates cached engines, no GIT commits are created.''')
+    string(name: 'buildPluginVersion', defaultValue: '', description: 'Axon Ivy build plugin version of all pom will be updated to. If empty value, no changes. If buildPluginVersion, ivyEngineVersion, portalVersion params all are empty, this build just updates cached engines, no GIT commits are created.')
     string(name: 'ivyEngineVersion', defaultValue: '', description: 'Axon Ivy engine version of all pom will be updated to. If empty value, no changes.')
     string(name: 'portalVersion', defaultValue: '', description: 'Portal version of all pom will be updated to. If empty value, no changes.')
     string(name: 'branchToPush', defaultValue: 'portal-update-pom/master', description: 'Branch name to push changes. It must not be protected branches. After this build, create a pull request to merge to master')
