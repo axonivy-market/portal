@@ -31,29 +31,40 @@ const packageJson = {
     // Launch browser
     const browser = await puppeteer.launch({
       headless: "new",
-      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+      args: [
+        "--no-sandbox",
+        "--disable-setuid-sandbox",
+        "--disable-gpu",
+        "--disable-dev-shm-usage",
+      ],
     });
 
     const page = await browser.newPage();
+    await page.setViewport({ width: 1920, height: 1080 });
 
     // Login process
     const user = users[0];
-    await page.goto("http://localhost:8080/Portal");
+    await page.goto("http://localhost:8080/Portal", {
+      waitUntil: "networkidle0",
+    });
     await page.waitForSelector("#username");
     await page.type("#username", user.username);
     await page.type("#password", user.password);
     await page.click('button[type="submit"]');
-
-    // Wait for dashboard
-    await page.waitForNavigation();
+    await page.waitForNavigation({ waitUntil: "networkidle0" });
 
     // Run Lighthouse
     const { lhr } = await lighthouse(page.url(), {
       port: new URL(browser.wsEndpoint()).port,
       output: ["json", "html"],
       logLevel: "info",
-      onlyCategories: ["performance", "accessibility", "best-practices"],
+      onlyCategories: ["performance", "accessibility", "best-practices", "seo"],
     });
+
+    // Ensure directory exists
+    if (!fs.existsSync("lighthouse-reports")) {
+      fs.mkdirSync("lighthouse-reports");
+    }
 
     // Save reports
     fs.writeFileSync("lighthouse-reports/report.html", lhr.report[1]);
