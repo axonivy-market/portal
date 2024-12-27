@@ -1,50 +1,70 @@
-const fs = require("fs");
-const path = require("path");
-const puppeteer = require("puppeteer");
-const lighthouse = require("lighthouse");
-const { URL } = require("url");
-const { exec } = require("child_process");
+import fs from "fs";
+import path from "path";
+import puppeteer from "puppeteer";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
-// Read user credentials
-const csvFilePath = path.join(
-  __dirname,
-  "AxonIvyPortal/portal-selenium-test/jmeter/data/users_local.csv"
-);
-const users = fs
-  .readFileSync(csvFilePath, "utf-8")
-  .split("\n")
-  .map((line) => {
-    const [username, password] = line.split(",");
-    return { username, password };
-  });
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-// Puppeteer script to navigate to the dashboard
+// Add type: module to package.json
+const packageJson = {
+  type: "module",
+};
+
 (async () => {
-  const browser = await puppeteer.launch({ headless: false });
-  const page = await browser.newPage();
+  try {
+    // Dynamically import lighthouse
+    const lighthouse = (await import("lighthouse")).default;
 
-  // Use the first user for login
-  const user = users[0];
-  const loginUrl = "http://localhost:8080/Portal"; // Replace with actual login URL
+    // Read user credentials
+    const csvFilePath = path.join(__dirname, "../jmeter/data/users_local.csv");
+    const users = fs
+      .readFileSync(csvFilePath, "utf-8")
+      .split("\n")
+      .filter(Boolean)
+      .map((line) => {
+        const [username, password] = line.trim().split(",");
+        return { username, password };
+      });
 
-  await page.goto(loginUrl);
-  await page.type("#username", user.username);
-  await page.type("#password", user.password);
-  await page.click("#login-button"); // Replace with actual login button selector
+    // Launch browser
+    const browser = await puppeteer.launch({
+      headless: "new",
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    });
 
-  // Wait for navigation to dashboard
-  await page.waitForNavigation();
+    const page = await browser.newPage();
 
-  // Run Lighthouse audit
-  const { lhr } = await lighthouse(page.url(), {
-    port: new URL(browser.wsEndpoint()).port,
-    output: "html",
-    logLevel: "info",
-  });
+    // Login process
+    const user = users[0];
+    await page.goto("http://localhost:8080/Portal");
+    await page.waitForSelector("#username");
+    await page.type("#username", user.username);
+    await page.type("#password", user.password);
+    await page.click('button[type="submit"]');
 
-  // Save Lighthouse report
-  const reportHtml = lhr.report;
-  fs.writeFileSync("lighthouse-report.html", reportHtml);
+    // Wait for dashboard
+    await page.waitForNavigation();
 
-  await browser.close();
+    // Run Lighthouse
+    const { lhr } = await lighthouse(page.url(), {
+      port: new URL(browser.wsEndpoint()).port,
+      output: ["json", "html"],
+      logLevel: "info",
+      onlyCategories: ["performance", "accessibility", "best-practices"],
+    });
+
+    // Save reports
+    fs.writeFileSync("lighthouse-reports/report.html", lhr.report[1]);
+    fs.writeFileSync(
+      "lighthouse-reports/report.json",
+      JSON.stringify(lhr, null, 2)
+    );
+
+    await browser.close();
+  } catch (error) {
+    console.error("Error:", error);
+    process.exit(1);
+  }
 })();
