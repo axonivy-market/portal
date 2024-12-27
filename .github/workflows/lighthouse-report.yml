@@ -179,21 +179,6 @@ jobs:
             --output=json \
             --output=html \
             --output-path="./report"
-          
-          ls -la
-        env:
-          DISPLAY: ':99'
-
-      - name: Run Lighthouse Audit
-        run: |
-          mkdir -p ${{ env.REPORT_DIR }}
-          cd ${{ env.REPORT_DIR }}
-            
-          npx lighthouse ${{ env.SERVER_URL }} \
-            --chrome-flags="--headless --no-sandbox --disable-gpu" \
-            --output=json \
-            --output=html \
-            --output-path="./report"
   
       - name: Upload Report
         id: upload-artifact
@@ -201,6 +186,20 @@ jobs:
         with:
           name: lighthouse-report
           path: ${{ env.REPORT_DIR }}
+
+      - name: Upload HTML Report
+        id: upload-html
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report-html
+          path: ${{ env.REPORT_DIR }}/report.report.html
+
+      - name: Upload JSON Report
+        id: upload-json
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report-json
+          path: ${{ env.REPORT_DIR }}/report.report.json
 
       - name: Generate Report Summary
         run: |
@@ -218,7 +217,8 @@ jobs:
               
               echo "---"
               echo "## Reports"
-              echo "📋 [Download Full Report](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/artifacts/${{ steps.upload-artifact.outputs.artifact-id }})"
+              echo "📊 [View HTML Report](https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts/${{ steps.upload-html.outputs.artifact-id }})"
+              echo "📋 [View JSON Report](https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts/${{ steps.upload-json.outputs.artifact-id }})"
               
             } >> $GITHUB_STEP_SUMMARY
           else
