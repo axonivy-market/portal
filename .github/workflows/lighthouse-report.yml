@@ -178,24 +178,50 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: lighthouse-report
-          path: lighthouse-report.html
+          path: |
+            AxonIvyPortal/portal-selenium-test/lighthouse/lighthouse-report.html
+            AxonIvyPortal/portal-selenium-test/lighthouse/lighthouse-reports/report.json
 
       - name: Generate HTML Summary
         run: |
-          node -e "
-            const core = require('@actions/core');
-            const fs = require('fs');
-            const path = require('path');
+          cd AxonIvyPortal/portal-selenium-test/lighthouse
+          if [ -f "lighthouse-report.html" ]; then
+            node -e "
+              const core = require('@actions/core');
+              const fs = require('fs');
+              const path = require('path');
 
-            const htmlReport = fs.readFileSync('lighthouse-report.html', 'utf8');
-            
-            const summary = core.summary
-              .addHeading('🚦 Lighthouse Audit Results')
-              .addRaw(htmlReport)
-              .addSeparator()
-              .addLink('📋 Download Full Report', 
-                `https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}/artifacts/${process.env.ARTIFACT_ID}`)
-              .write();
-          "
+              try {
+                const htmlReport = fs.readFileSync('lighthouse-report.html', 'utf8');
+                const jsonReport = fs.readFileSync('lighthouse-reports/report.json', 'utf8');
+                const results = JSON.parse(jsonReport);
+                
+                const summary = core.summary
+                  .addHeading('🚦 Lighthouse Audit Results')
+                  .addRaw('## Performance Scores\n\n');
+
+                // Add scores from JSON
+                Object.entries(results.categories).forEach(([key, value]) => {
+                  summary.addRaw(`### ${value.title}\n📊 Score: ${Math.floor(value.score * 100)}%\n\n`);
+                });
+
+                summary
+                  .addSeparator()
+                  .addLink('📋 Download Full Report', 
+                    'https://github.com/' + 
+                    process.env.GITHUB_REPOSITORY + 
+                    '/actions/runs/' + 
+                    process.env.GITHUB_RUN_ID)
+                  .write();
+              } catch (error) {
+                console.error('Error generating summary:', error);
+                process.exit(1);
+              }
+            "
+          else
+            echo "Lighthouse report file not found"
+            exit 1
+          fi
         env:
-          ARTIFACT_ID: ${{ steps.upload-artifact.outputs.artifact-id }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
