@@ -124,7 +124,7 @@ jobs:
         run: |
           echo "Waiting for server to be ready..."
           for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
-            if curl -s -f http://localhost:8080 > /dev/null; then
+            if curl -s -f http://localhost:8080/pro/portal/1549F58C18A6C562/DashboardPage.ivp?dashboardId=1 > /dev/null; then
               echo "Server is running"
               exit 0
             fi

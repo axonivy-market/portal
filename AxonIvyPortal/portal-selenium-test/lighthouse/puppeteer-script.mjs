@@ -8,16 +8,20 @@ import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const PORTAL_URL = "http://localhost:8080";
+const LOGIN_URL = `${PORTAL_URL}/Portal/login`;
+const DASHBOARD_URL = `${PORTAL_URL}/Portal/pro/portal/1549F58C18A6C562/DashboardPage.ivp?dashboardId=1`;
+
 const debugLog = (msg) => console.log(`[Debug] ${msg}`);
 
 (async () => {
   let browser;
   try {
-    // Health check
+    // Check server availability first
     debugLog("Checking server status...");
-    const healthCheck = await fetch("http://localhost:8080/portal/health");
-    if (!healthCheck.ok) {
-      throw new Error(`Server health check failed: ${healthCheck.status}`);
+    const serverCheck = await fetch(PORTAL_URL);
+    if (!serverCheck.ok) {
+      throw new Error(`Server not available: ${serverCheck.status}`);
     }
     debugLog("Server is healthy");
 
@@ -37,41 +41,46 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
     await page.setViewport({ width: 1920, height: 1080 });
     debugLog("Browser launched");
 
-    // Test portal access
-    const portalUrl = "http://localhost:8080/portal/faces/login.xhtml";
-    debugLog(`Navigating to ${portalUrl}`);
-
-    const response = await page.goto(portalUrl, {
-      waitUntil: ["networkidle0", "domcontentloaded"],
-      timeout: 60000,
+    // Navigate to login page
+    debugLog(`Navigating to ${LOGIN_URL}`);
+    const loginResponse = await page.goto(LOGIN_URL, {
+      waitUntil: "networkidle0",
+      timeout: 30000,
     });
 
-    if (!response.ok()) {
-      throw new Error(`Page load failed: ${response.status()}`);
+    if (!loginResponse.ok()) {
+      throw new Error(`Login page failed to load: ${loginResponse.status()}`);
     }
-    debugLog(`Portal loaded: ${response.status()}`);
+    debugLog(`Login page loaded: ${loginResponse.status()}`);
 
-    // Login
+    // Handle login form
     debugLog("Attempting login...");
-    await page.waitForSelector("#username", { visible: true, timeout: 30000 });
-    await page.type("#username", "demo");
-    await page.type("#password", "demo");
-
+    await page.type('input[name="username"]', "demo");
+    await page.type('input[name="password"]', "demo");
     await Promise.all([
       page.click('button[type="submit"]'),
-      page.waitForNavigation({
-        waitUntil: "networkidle0",
-        timeout: 30000,
-      }),
+      page.waitForNavigation({ waitUntil: "networkidle0" }),
     ]);
     debugLog("Login successful");
 
-    // Run Lighthouse
+    await page.goto(DASHBOARD_URL, {
+      waitUntil: "networkidle0",
+      timeout: 30000,
+    });
+
+    // Verify dashboard loaded
+    debugLog("Verifying dashboard loaded...");
+    await page.waitForSelector(".dashboard-container", {
+      timeout: 30000,
+    });
+    debugLog("Dashboard loaded");
+
+    // Run Lighthouse audit
     debugLog("Starting Lighthouse audit...");
     const { lhr } = await lighthouse(page.url(), {
       port: new URL(browser.wsEndpoint()).port,
       output: ["html", "json"],
-      logLevel: "info",
+      onlyCategories: ["performance", "accessibility", "best-practices", "seo"],
     });
 
     // Save reports
