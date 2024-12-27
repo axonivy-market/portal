@@ -68,7 +68,7 @@ const __dirname = dirname(__filename);
     });
 
     // Save reports
-    fs.writeFileSync("lighthouse-report.html", lhr.report[0]);
+    fs.writeFileSync("lighthouse-report.html", lhr.report);
     fs.writeFileSync(
       "lighthouse-reports/report.json",
       JSON.stringify(lhr, null, 2)
