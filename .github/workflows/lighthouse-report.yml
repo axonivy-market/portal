@@ -201,14 +201,17 @@ jobs:
               echo "## Performance Scores"
               jq -r '.categories[] | "### " + (.title) + "\n📊 Score: " + (.score * 100 | floor | tostring) + "%"' report.report.json
               
+              # Extract metrics from HTML
+              echo "## Key Metrics"
+              grep -A1 "lh-metric__" report.report.html | 
+                sed -e 's/<[^>]*>//g' | 
+                grep -v '^--' | 
+                sed '/^$/d' |
+                awk '{printf "- **%s**\n", $0}'
+              
               echo "---"
               echo "## Reports"
-              
-              # Create data URL from HTML report
-              echo "📊 [View HTML Report](data:text/html;base64,$(base64 -w 0 report.report.html))"
-              
-              # Add download link
-              echo "📋 [Download Report](https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts/${{ steps.upload-artifact.outputs.artifact-id }})"
+              echo "📋 [Download Full Report](https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts/${{ steps.upload-artifact.outputs.artifact-id }})"
               
             } >> $GITHUB_STEP_SUMMARY
           else
