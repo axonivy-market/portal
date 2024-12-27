@@ -214,7 +214,7 @@ jobs:
         
               echo "---"
               echo "## Reports"
-              echo "📋 [Download Full Report](${{ github.server_url }}/${{ github.repository }}/actions/artifacts/${{ steps.upload-artifact.outputs.artifact-id }})"
+              echo "📋 [Download Full Report](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/${{ steps.upload-artifact.outputs.artifact-id }})"
             } >> $GITHUB_STEP_SUMMARY
           else
             echo "❌ Report generation failed" >> $GITHUB_STEP_SUMMARY
