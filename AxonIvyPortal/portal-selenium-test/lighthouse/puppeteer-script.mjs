@@ -8,127 +8,86 @@ import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const debugLog = (msg) => console.log(`[Debug] ${msg}`);
+
 (async () => {
+  let browser;
   try {
-    const formData = {
-      "javax.faces.partial.ajax": "true",
-      "javax.faces.source": "login-form:login-command",
-      "javax.faces.partial.execute": "@all",
-      "javax.faces.partial.render": "login:login-form",
-      "login:login-form:username": "admin", // Replace with actual username
-      "login:login-form:password": "admin", // Replace with actual password
-      "javax.faces.ViewState": "dynamic-view-state", // Fetch dynamically if required
-      "login:login-form_SUBMIT": "1",
-    };
+    // Health check
+    debugLog("Checking server status...");
+    const healthCheck = await fetch("http://localhost:8080/portal/health");
+    if (!healthCheck.ok) {
+      throw new Error(`Server health check failed: ${healthCheck.status}`);
+    }
+    debugLog("Server is healthy");
 
     // Launch browser
-    const browser = await puppeteer.launch({
+    debugLog("Launching browser...");
+    browser = await puppeteer.launch({
       headless: "new",
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
         "--disable-gpu",
-        "--disable-dev-shm-usage",
+        "--window-size=1920,1080",
       ],
     });
 
     const page = await browser.newPage();
     await page.setViewport({ width: 1920, height: 1080 });
+    debugLog("Browser launched");
 
-    // Login process
-    await page.goto(
-      "http://localhost:8080/Portal/pro/portal/1549F58C18A6C562/DashboardPage.ivp?dashboardId=1",
-      {
+    // Test portal access
+    const portalUrl = "http://localhost:8080/portal/faces/login.xhtml";
+    debugLog(`Navigating to ${portalUrl}`);
+
+    const response = await page.goto(portalUrl, {
+      waitUntil: ["networkidle0", "domcontentloaded"],
+      timeout: 60000,
+    });
+
+    if (!response.ok()) {
+      throw new Error(`Page load failed: ${response.status()}`);
+    }
+    debugLog(`Portal loaded: ${response.status()}`);
+
+    // Login
+    debugLog("Attempting login...");
+    await page.waitForSelector("#username", { visible: true, timeout: 30000 });
+    await page.type("#username", "demo");
+    await page.type("#password", "demo");
+
+    await Promise.all([
+      page.click('button[type="submit"]'),
+      page.waitForNavigation({
         waitUntil: "networkidle0",
-      }
-    );
-
-    await page.evaluate((data) => {
-      const form = document.createElement("form");
-      form.method = "POST";
-      form.action = location.href; // Current page URL
-
-      Object.entries(data).forEach(([key, value]) => {
-        const input = document.createElement("input");
-        input.type = "hidden";
-        input.name = key;
-        input.value = value;
-        form.appendChild(input);
-      });
-
-      document.body.appendChild(form);
-      form.submit();
-    }, formData);
-
-    // Wait for navigation after login
-    await page.waitForNavigation();
+        timeout: 30000,
+      }),
+    ]);
+    debugLog("Login successful");
 
     // Run Lighthouse
-    const runnerResult = await lighthouse(page.url(), {
+    debugLog("Starting Lighthouse audit...");
+    const { lhr } = await lighthouse(page.url(), {
       port: new URL(browser.wsEndpoint()).port,
       output: ["html", "json"],
       logLevel: "info",
-      onlyCategories: ["performance", "accessibility", "best-practices", "seo"],
-      formFactor: "desktop",
-      screenEmulation: {
-        mobile: false,
-        width: 1920,
-        height: 1080,
-        deviceScaleFactor: 1,
-        disabled: false,
-      },
     });
 
     // Save reports
-    try {
-      const scriptDir = dirname(fileURLToPath(import.meta.url));
-      const reportsDir = path.join(scriptDir, "lighthouse-reports");
-
-      console.log("Script directory:", scriptDir);
-      console.log("Reports directory:", reportsDir);
-
-      // Ensure reports directory exists
-      if (!fs.existsSync(reportsDir)) {
-        fs.mkdirSync(reportsDir, { recursive: true });
-      }
-
-      if (runnerResult && runnerResult.report) {
-        // Get the HTML report (it's the first output format)
-        const htmlReport = Array.isArray(runnerResult.report)
-          ? runnerResult.report[0]
-          : runnerResult.report;
-
-        if (typeof htmlReport === "string") {
-          // Save HTML report in both locations
-          const htmlPaths = [
-            path.join(scriptDir, "lighthouse-report.html"),
-            path.join(reportsDir, "lighthouse-report.html"),
-          ];
-
-          htmlPaths.forEach((htmlPath) => {
-            fs.writeFileSync(htmlPath, htmlReport);
-            console.log("HTML report saved to:", htmlPath);
-          });
-        } else {
-          throw new Error("HTML report is not a string");
-        }
-
-        // Save JSON report
-        const jsonPath = path.join(reportsDir, "report.json");
-        fs.writeFileSync(jsonPath, JSON.stringify(runnerResult.lhr, null, 2));
-        console.log("JSON report saved to:", jsonPath);
-      } else {
-        console.error("Runner result:", runnerResult);
-        throw new Error("No valid report data in runner result");
-      }
-    } catch (error) {
-      console.error("Error saving reports:", error);
-      throw error;
-    }
-
-    await browser.close();
+    fs.writeFileSync("lighthouse-report.html", lhr.report[0]);
+    fs.writeFileSync(
+      "lighthouse-reports/report.json",
+      JSON.stringify(lhr, null, 2)
+    );
+    debugLog("Reports saved");
   } catch (error) {
-    console.error("Error:", error);
+    debugLog(`Error: ${error.message}`);
+    console.error(error);
     process.exit(1);
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
   }
 })();
