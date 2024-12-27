@@ -200,15 +200,7 @@ jobs:
               # Performance Scores from JSON
               echo "## Performance Scores"
               jq -r '.categories[] | "### " + (.title) + "\n📊 Score: " + (.score * 100 | floor | tostring) + "%"' report.report.json
-              
-              # Extract metrics from HTML
-              echo "## Key Metrics"
-              grep -A1 "lh-metric__" report.report.html | 
-                sed -e 's/<[^>]*>//g' | 
-                grep -v '^--' | 
-                sed '/^$/d' |
-                awk '{printf "- **%s**\n", $0}'
-              
+             
               echo "---"
               echo "## Reports"
               echo "📋 [Download Full Report](https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts/${{ steps.upload-artifact.outputs.artifact-id }})"
@@ -217,3 +209,34 @@ jobs:
           else
             echo "❌ Report generation failed" >> $GITHUB_STEP_SUMMARY
           fi
+
+      - name: Install Summary Dependencies
+        run: npm install @actions/core
+
+      - name: Generate HTML Summary
+        run: |
+          node -e "
+            const core = require('@actions/core');
+            const fs = require('fs');
+            const path = require('path');
+
+            const htmlReport = fs.readFileSync(path.join('${{ env.REPORT_DIR }}', 'report.report.html'), 'utf8');
+            const jsonReport = JSON.parse(fs.readFileSync(path.join('${{ env.REPORT_DIR }}', 'report.report.json'), 'utf8'));
+            
+            const summary = core.summary
+              .addHeading('🚦 Lighthouse Audit Results')
+              .addRaw(htmlReport)
+              .addHeading('Performance Scores', 2);
+
+            // Add scores from JSON
+            Object.entries(jsonReport.categories).forEach(([key, value]) => {
+              summary.addRaw(`### ${value.title}\n📊 Score: ${Math.floor(value.score * 100)}%\n`);
+            });
+
+            summary.addSeparator()
+              .addLink('📋 Download Full Report', 
+                `https://github.com/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}/artifacts/${process.env.ARTIFACT_ID}`)
+              .write();
+          "
+        env:
+          ARTIFACT_ID: ${{ steps.upload-artifact.outputs.artifact-id }}
