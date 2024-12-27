@@ -76,13 +76,13 @@ def updateVersion() {
 
   if (!params.portalVersion?.trim().isEmpty()) {
     sh '''#!/bin/bash
-      update_xml() {
-        python3 - <<EOF # Start Python scripts - need correct indentation
+      updatePortalVersion() {
+        python3 - <<EOF
 import xml.etree.ElementTree as ET
 from pathlib import Path
 import sys
 
-def strip_namespace(element):
+def stripNamespace(element):
     # Iterate over all the elements and remove the namespace from the tag
     for elem in element.iter():
         # If the tag contains a namespace (indicated by '}')
@@ -90,36 +90,36 @@ def strip_namespace(element):
             elem.tag = elem.tag.split('}', 1)[1]  # Keep only the part after '}'
     return element
 
-# Environment variable
-portal_version = "$portalVersion"
-# File to process
-file_path = "$1"
+portalVersion = "$portalVersion"
+filePath = "$1"
 
 try:
-  tree = ET.parse(file_path)
+  tree = ET.parse(filePath)
   root = tree.getroot()
-  root = strip_namespace(root) # By default, tag <project> changes to tag <ns0:project>, need removing namespace
+  root = stripNamespace(root) # By default, tags like <project> are changed to tag <ns0:project>, need removing namespace
   version = root.find("version")
   if version is not None:
-    version.text = portal_version
+    version.text = portalVersion
 
   dependencies = root.find("dependencies")
   if dependencies is not None:
     for dependency in dependencies.findall("dependency"):
-      group_id = dependency.find("groupId")
-      if group_id is not None and group_id.text in [
+      groupId = dependency.find("groupId")
+      if groupId is not None and groupId.text in [
         "com.axonivy.portal",
       ]:
-        version_tag = dependency.find("version")
-        if version_tag is not None:
-          version_tag.text = portal_version
+        versionTag = dependency.find("version")
+        if versionTag is not None:
+          versionTag.text = portalVersion
 
   # Write changes back to the file
-  tree.write(file_path, encoding="utf-8", xml_declaration=True)
-EOF # End Python scripts - need correct indentation
+  tree.write(filePath, encoding="utf-8", xml_declaration=True)
+except Exception as e:
+  print(f"Failed to process {filePath}: {e}", file=sys.stderr)
+EOF
       }
 
-      file_patterns=(
+      filePatterns=(
           "AxonIvyPortal/*/pom.xml"
           "Showcase/*/pom.xml"
           "AxonIvyPortal/portal-selenium-test/customized_pom.xml"
@@ -127,9 +127,9 @@ EOF # End Python scripts - need correct indentation
           "Documentation/public-api/pom.xml"
         )
 
-      for pattern in "${file_patterns[@]}"; do
+      for pattern in "${filePatterns[@]}"; do
         for file in $pattern; do
-          update_xml "$file"
+          updatePortalVersion "$file"
         done
       done
     '''
