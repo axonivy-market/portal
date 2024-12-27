@@ -34,17 +34,17 @@ pipeline {
                 echo '====================Update version===================='
                 updateVersion()
 
-                // echo '====================Commit to GIT===================='
-                // changeLog = sh(returnStdout: true, script: 'git status -s').trim()
-                // if (changeLog) {
-                //   sh """
-                //     git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}"
-                //     git checkout -b ${params.branchToPush}
-                //     git push origin -u ${params.branchToPush}
-                //   """
-                // } else {
-                //   echo 'Nothing to commit.'
-                // }
+                echo '====================Commit to GIT===================='
+                changeLog = sh(returnStdout: true, script: 'git status -s').trim()
+                if (changeLog) {
+                  sh """
+                    git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}"
+                    git checkout -b ${params.branchToPush}
+                    git push origin -u ${params.branchToPush}
+                  """
+                } else {
+                  echo 'Nothing to commit.'
+                }
               }
             }
           }
@@ -65,30 +65,22 @@ def updateVersion() {
     'AxonIvyPortal/portal-selenium-test/pom.xml', 'AxonIvyPortal/portal-selenium-test/customized_pom.xml', 'AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml',
     'AxonIvyPortal/PortalKitTestHelper/pom.xml', 'Showcase/portal-user-examples/pom.xml',
     'Showcase/portal-developer-examples/pom.xml', 'Showcase/InternalSupport/pom.xml', 'Showcase/portal-components-examples/pom.xml']
-  // for (pomFile in pomFiles) {
-  //   maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
-  //   maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
-  // }
+  for (pomFile in pomFiles) {
+    if (!params.ivyEngineVersion?.trim().isEmpty()) {
+      maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
+    }
+    if (!params.buildPluginVersion?.trim().isEmpty()) {
+      maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
+    } 
+  }
+    echo '============${params.portalVersion?.trim()} outside'
 
-  sh '''#!/bin/bash
-    # Ensure the portalVersion environment variable is set
-    if [ -z "$portalVersion" ]; then
-      echo "Error: portalVersion environment variable is not set."
-      exit 1
-    fi
-
-    # Define the file patterns to process
-    file_patterns=(
-      "AxonIvyPortal/*/pom.xml"
-      "Showcase/*/pom.xml"
-      "AxonIvyPortal/portal-selenium-test/customized_pom.xml"
-      "AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml"
-      "Documentation/public-api/pom.xml"
-    )
-
-# Function to update XML files using Python
-update_xml() {
-  python3 - <<EOF
+  if (!params.portalVersion?.trim().isEmpty()) {
+    echo '============ inside'
+    sh '''#!/bin/bash
+      update_xml() {
+        # Start Python scripts - need correct indentation
+        python3 - <<EOF
 import xml.etree.ElementTree as ET
 from pathlib import Path
 import sys
@@ -109,13 +101,11 @@ file_path = "$1"
 try:
   tree = ET.parse(file_path)
   root = tree.getroot()
-  root = strip_namespace(root)
-  # Update <project><version>
+  root = strip_namespace(root) # By default, tag <project> changes to tag <ns0:project>, need removing namespace
   version = root.find("version")
   if version is not None:
     version.text = portal_version
 
-  # Update dependencies
   dependencies = root.find("dependencies")
   if dependencies is not None:
     for dependency in dependencies.findall("dependency"):
@@ -133,20 +123,24 @@ try:
 except Exception as e:
   print(f"Failed to process {file_path}: {e}", file=sys.stderr)
 EOF
-}
+      # End Python scripts - need correct indentation
+      }
 
-    for pattern in "${file_patterns[@]}"; do
-      for file in $pattern; do
-        if [ -f "$file" ]; then
-          echo "Processing $file"
+      file_patterns=(
+          "AxonIvyPortal/*/pom.xml"
+          "Showcase/*/pom.xml"
+          "AxonIvyPortal/portal-selenium-test/customized_pom.xml"
+          "AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml"
+          "Documentation/public-api/pom.xml"
+        )
+
+      for pattern in "${file_patterns[@]}"; do
+        for file in $pattern; do
           update_xml "$file"
-        else
-          echo "No files matching pattern: $pattern"
-        fi
+        done
       done
-    done
-    echo "All POM files updated successfully."
-  '''
+    '''
+  }
 }
 
 def removeCacheEngine() {
