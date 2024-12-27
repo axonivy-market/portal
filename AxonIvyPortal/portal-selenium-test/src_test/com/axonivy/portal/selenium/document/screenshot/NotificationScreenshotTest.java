@@ -35,7 +35,6 @@ public class NotificationScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.executeDecorateJs("highlightNotificationIcon()");
     ScreenshotUtils.captureHalfRightPageScreenShot(ScreenshotUtils.NOTIFICATION_FOLDER + "notification-panel");
 
-    ScreenshotUtils.resizeBrowser(new Dimension(1400, 1000));
     notificationPanel.openNotificationFullPage();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NOTIFICATION_FOLDER + "notification-full-page");
   }
