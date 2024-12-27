@@ -68,14 +68,14 @@ const __dirname = dirname(__filename);
     });
 
     // Save reports
-    if (lhr.report) {
-      fs.writeFileSync("lighthouse-report.html", lhr.report);
+    if (lhr.report && lhr.report.length > 0) {
+      fs.writeFileSync("lighthouse-report.html", lhr.report[0]);
       fs.writeFileSync(
         "lighthouse-reports/report.json",
         JSON.stringify(lhr, null, 2)
       );
     } else {
-      throw new Error("Lighthouse report is undefined");
+      throw new Error("Lighthouse report is undefined or empty");
     }
 
     await browser.close();
