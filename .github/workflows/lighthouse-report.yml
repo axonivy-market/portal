@@ -188,18 +188,27 @@ jobs:
           
           # Debug information
           echo "Current directory: $(pwd)"
-          echo "Listing directory contents:"
-          ls -la
+          echo "Listing all directories recursively:"
+          find . -type f -name "lighthouse-report.html"
+          find . -type f -name "report.json"
           
+          # Check both possible locations for the HTML report
+          HTML_REPORT=""
           if [ -f "lighthouse-report.html" ]; then
-            echo "Found HTML report"
+            HTML_REPORT="lighthouse-report.html"
+          elif [ -f "lighthouse-reports/lighthouse-report.html" ]; then
+            HTML_REPORT="lighthouse-reports/lighthouse-report.html"
+          fi
+          
+          if [ -n "$HTML_REPORT" ]; then
+            echo "Found HTML report at: $HTML_REPORT"
             node -e "
               const core = require('@actions/core');
               const fs = require('fs');
               const path = require('path');
 
               try {
-                const htmlReport = fs.readFileSync('lighthouse-report.html', 'utf8');
+                const htmlReport = fs.readFileSync('${HTML_REPORT}', 'utf8');
                 const jsonReport = fs.readFileSync('lighthouse-reports/report.json', 'utf8');
                 const results = JSON.parse(jsonReport);
                 
@@ -208,7 +217,7 @@ jobs:
                   .addRaw('## Performance Scores\n\n');
 
                 Object.entries(results.categories).forEach(([key, value]) => {
-                  summary.addRaw(`### ${value.title}\n📊 Score: ${Math.floor(value.score * 100)}%\n\n`);
+                  summary.addRaw(\`### \${value.title}\n📊 Score: \${Math.floor(value.score * 100)}%\n\n\`);
                 });
 
                 summary
@@ -223,13 +232,15 @@ jobs:
                 console.log('Summary generated successfully');
               } catch (error) {
                 console.error('Error generating summary:', error);
+                console.error('File contents:', fs.readdirSync('.'));
                 process.exit(1);
               }
             "
           else
-            echo "Error: Lighthouse report file not found in $(pwd)"
+            echo "Error: Lighthouse report file not found"
             echo "Directory contents:"
             ls -la
+            ls -la lighthouse-reports/
             exit 1
           fi
         env:

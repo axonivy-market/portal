@@ -36,9 +36,12 @@ const __dirname = dirname(__filename);
     await page.setViewport({ width: 1920, height: 1080 });
 
     // Login process
-    await page.goto("http://localhost:8080/Portal", {
-      waitUntil: "networkidle0",
-    });
+    await page.goto(
+      "http://localhost:8080/Portal/pro/portal/1549F58C18A6C562/DashboardPage.ivp?dashboardId=1",
+      {
+        waitUntil: "networkidle0",
+      }
+    );
 
     await page.evaluate((data) => {
       const form = document.createElement("form");
@@ -81,27 +84,33 @@ const __dirname = dirname(__filename);
       const scriptDir = dirname(fileURLToPath(import.meta.url));
       const reportsDir = path.join(scriptDir, "lighthouse-reports");
 
+      console.log("Script directory:", scriptDir);
+      console.log("Reports directory:", reportsDir);
+
       // Ensure reports directory exists
       if (!fs.existsSync(reportsDir)) {
         fs.mkdirSync(reportsDir, { recursive: true });
       }
 
-      if (typeof runnerResult.report === "string") {
-        // Save HTML report in the same directory as the script
-        const htmlPath = path.join(scriptDir, "lighthouse-report.html");
-        fs.writeFileSync(htmlPath, runnerResult.report);
-        console.log("HTML report saved successfully to:", htmlPath);
-      }
+      if (runnerResult && runnerResult.report) {
+        // Save both HTML files (for compatibility)
+        const htmlPaths = [
+          path.join(scriptDir, "lighthouse-report.html"),
+          path.join(reportsDir, "lighthouse-report.html"),
+        ];
 
-      if (runnerResult.lhr) {
-        // Save JSON report in the reports directory
+        htmlPaths.forEach((htmlPath) => {
+          fs.writeFileSync(htmlPath, runnerResult.report);
+          console.log("HTML report saved to:", htmlPath);
+        });
+
+        // Save JSON report
         const jsonPath = path.join(reportsDir, "report.json");
         fs.writeFileSync(jsonPath, JSON.stringify(runnerResult.lhr, null, 2));
-        console.log("JSON report saved successfully to:", jsonPath);
-      }
-
-      if (!runnerResult.report && !runnerResult.lhr) {
-        throw new Error("No valid report data generated");
+        console.log("JSON report saved to:", jsonPath);
+      } else {
+        console.error("Runner result:", runnerResult);
+        throw new Error("No valid report data in runner result");
       }
     } catch (error) {
       console.error("Error saving reports:", error);
