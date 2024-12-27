@@ -341,9 +341,9 @@
             "import org.apache.commons.beanutils.BeanUtils;",
             "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
-            "TaskQuery query = in.taskSearchCriteria.finalTaskQuery;",
+            "TaskQuery query = in.taskSearchCriteria.createQuery();",
             "in.newTaskSearchCriteria = BeanUtils.cloneBean(in.taskSearchCriteria) as TaskSearchCriteria;",
-            "in.newTaskSearchCriteria.setFinalTaskQuery(in.newTaskSearchCriteria.createQueryToFindLatestTasks(query, in.latestTaskDate));",
+            "in.newTaskSearchCriteria.setCustomTaskQuery(in.newTaskSearchCriteria.createQueryToFindLatestTasks(query, in.latestTaskDate));",
             "",
             "in.latestTaskDate = new java.util.Date();"
           ]

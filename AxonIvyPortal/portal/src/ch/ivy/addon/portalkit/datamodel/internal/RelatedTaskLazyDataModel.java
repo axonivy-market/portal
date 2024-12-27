@@ -133,7 +133,6 @@ public class RelatedTaskLazyDataModel extends TaskLazyDataModel {
 
   private void initializedDataModel() {
     data.clear();
-    criteria.setFinalTaskQuery(null);
   }
 
   @Override

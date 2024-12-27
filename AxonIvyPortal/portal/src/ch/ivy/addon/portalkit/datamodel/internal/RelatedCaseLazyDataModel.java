@@ -113,7 +113,6 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
 
   private void initializedDataModel() {
     data.clear();
-    criteria.setFinalCaseQuery(null);
   }
 
   private int getCaseCount(CaseSearchCriteria criteria) {

@@ -14,6 +14,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.axonivy.portal.components.enums.CaseSortField;
+
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
@@ -39,11 +40,9 @@ public class CaseSearchCriteria {
   private boolean isNewQueryCreated;
   private boolean isSorted = true;
   private CaseQuery customCaseQuery;
-  
-  private CaseQuery finalCaseQuery;
+
   private boolean isGlobalSearchScope;
 
-  @SuppressWarnings("deprecation")
   public CaseQuery createQuery() {
     CaseQuery finalQuery;
     if (isBusinessCase) {
@@ -56,7 +55,7 @@ public class CaseSearchCriteria {
 
     setNewQueryCreated(isNewQueryCreated() || customCaseQuery == null || hasCaseId());
     if (!isNewQueryCreated()) {
-      finalQuery.where().andOverall(CaseQuery.fromJson(customCaseQuery.asJson())); // clone to keep the original custom query
+      finalQuery.where().andOverall(customCaseQuery);
     }
 
     if (hasIncludedStates()) {
@@ -375,17 +374,6 @@ public class CaseSearchCriteria {
   
   public boolean hasInvolvedUsername() {
     return StringUtils.isNotBlank(involvedUsername);
-  }
-
-  public CaseQuery getFinalCaseQuery() {
-    if (finalCaseQuery == null) {
-      finalCaseQuery = createQuery();
-    }
-    return finalCaseQuery;
-  }
-
-  public void setFinalCaseQuery(CaseQuery finalCaseQuery) {
-    this.finalCaseQuery = finalCaseQuery;
   }
 
   public boolean isCaseOwnerEnabled() {

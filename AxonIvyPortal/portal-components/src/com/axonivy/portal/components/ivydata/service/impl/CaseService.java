@@ -42,8 +42,7 @@ public class CaseService{
   }
 
   private CaseQuery extendQuery(CaseSearchCriteria criteria) {
-    CaseQuery finalQuery = criteria.getFinalCaseQuery();
-    CaseQuery clonedQuery = CaseQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in CaseSearchCriteria
+    CaseQuery clonedQuery = criteria.createQuery();
 
     if (!criteria.isAdminQuery()) {
       clonedQuery.where().and(queryForCurrentUser(criteria.isTechnicalCase(), criteria.isCaseOwnerEnabled()));
