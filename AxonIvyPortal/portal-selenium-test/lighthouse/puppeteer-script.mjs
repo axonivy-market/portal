@@ -1,5 +1,4 @@
 import fs from "fs";
-import path from "path";
 import puppeteer from "puppeteer";
 import lighthouse from "lighthouse";
 import { fileURLToPath } from "url";
@@ -36,7 +35,6 @@ const __dirname = dirname(__filename);
     await page.setViewport({ width: 1920, height: 1080 });
 
     // Login process
-    const user = users[0];
     await page.goto("http://localhost:8080/Portal", {
       waitUntil: "networkidle0",
     });
