@@ -21,6 +21,17 @@ const __dirname = dirname(__filename);
         return { username, password };
       });
 
+    const formData = {
+      "javax.faces.partial.ajax": "true",
+      "javax.faces.source": "login-form:login-command",
+      "javax.faces.partial.execute": "@all",
+      "javax.faces.partial.render": "login:login-form",
+      "login:login-form:username": username, // Replace with actual username
+      "login:login-form:password": password, // Replace with actual password
+      "javax.faces.ViewState": "dynamic-view-state", // Fetch dynamically if required
+      "login:login-form_SUBMIT": "1",
+    };
+
     // Launch browser
     const browser = await puppeteer.launch({
       headless: "new",
@@ -40,11 +51,26 @@ const __dirname = dirname(__filename);
     await page.goto("http://localhost:8080/Portal", {
       waitUntil: "networkidle0",
     });
-    await page.waitForSelector("#username");
-    await page.type("#username", user.username);
-    await page.type("#password", user.password);
-    await page.click('button[type="submit"]');
-    await page.waitForNavigation({ waitUntil: "networkidle0" });
+
+    await page.evaluate((data) => {
+      const form = document.createElement("form");
+      form.method = "POST";
+      form.action = location.href; // Current page URL
+
+      Object.entries(data).forEach(([key, value]) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = value;
+        form.appendChild(input);
+      });
+
+      document.body.appendChild(form);
+      form.submit();
+    }, formData);
+
+    // Wait for navigation after login
+    await page.waitForNavigation();
 
     // Run Lighthouse
     const { lhr } = await lighthouse(page.url(), {
