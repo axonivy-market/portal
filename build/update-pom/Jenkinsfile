@@ -73,14 +73,11 @@ def updateVersion() {
       maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
     } 
   }
-    echo '============${params.portalVersion?.trim()} outside'
 
   if (!params.portalVersion?.trim().isEmpty()) {
-    echo '============ inside'
     sh '''#!/bin/bash
       update_xml() {
-        # Start Python scripts - need correct indentation
-        python3 - <<EOF
+        python3 - <<EOF # Start Python scripts - need correct indentation
 import xml.etree.ElementTree as ET
 from pathlib import Path
 import sys
@@ -111,7 +108,6 @@ try:
     for dependency in dependencies.findall("dependency"):
       group_id = dependency.find("groupId")
       if group_id is not None and group_id.text in [
-        "ch.ivyteam.ivy.project.portal",
         "com.axonivy.portal",
       ]:
         version_tag = dependency.find("version")
@@ -120,10 +116,7 @@ try:
 
   # Write changes back to the file
   tree.write(file_path, encoding="utf-8", xml_declaration=True)
-except Exception as e:
-  print(f"Failed to process {file_path}: {e}", file=sys.stderr)
-EOF
-      # End Python scripts - need correct indentation
+EOF # End Python scripts - need correct indentation
       }
 
       file_patterns=(
