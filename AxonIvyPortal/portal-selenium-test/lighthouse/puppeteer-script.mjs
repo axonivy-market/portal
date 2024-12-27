@@ -82,16 +82,28 @@ const __dirname = dirname(__filename);
     }
 
     // Save reports
-    const htmlReport = runnerResult.report;
-    if (htmlReport) {
-      fs.writeFileSync("lighthouse-report.html", htmlReport);
-      fs.writeFileSync(
-        path.join(reportsDir, "report.json"),
-        JSON.stringify(runnerResult.lhr, null, 2)
-      );
-      console.log("Reports generated successfully");
-    } else {
-      throw new Error("Failed to generate Lighthouse report");
+    try {
+      if (typeof runnerResult.report === "string") {
+        // Save HTML report
+        fs.writeFileSync("lighthouse-report.html", runnerResult.report);
+        console.log("HTML report saved successfully");
+      }
+
+      if (runnerResult.lhr) {
+        // Save JSON report
+        fs.writeFileSync(
+          path.join(reportsDir, "report.json"),
+          JSON.stringify(runnerResult.lhr, null, 2)
+        );
+        console.log("JSON report saved successfully");
+      }
+
+      if (!runnerResult.report && !runnerResult.lhr) {
+        throw new Error("No valid report data generated");
+      }
+    } catch (error) {
+      console.error("Error saving reports:", error);
+      throw error;
     }
 
     await browser.close();
