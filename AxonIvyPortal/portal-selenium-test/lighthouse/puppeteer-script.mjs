@@ -10,24 +10,13 @@ const __dirname = dirname(__filename);
 
 (async () => {
   try {
-    // Read user credentials
-    const csvFilePath = path.join(__dirname, "../jmeter/data/users_local.csv");
-    const users = fs
-      .readFileSync(csvFilePath, "utf-8")
-      .split("\n")
-      .filter(Boolean)
-      .map((line) => {
-        const [username, password] = line.trim().split(",");
-        return { username, password };
-      });
-
     const formData = {
       "javax.faces.partial.ajax": "true",
       "javax.faces.source": "login-form:login-command",
       "javax.faces.partial.execute": "@all",
       "javax.faces.partial.render": "login:login-form",
-      "login:login-form:username": username, // Replace with actual username
-      "login:login-form:password": password, // Replace with actual password
+      "login:login-form:username": "admin", // Replace with actual username
+      "login:login-form:password": "admin", // Replace with actual password
       "javax.faces.ViewState": "dynamic-view-state", // Fetch dynamically if required
       "login:login-form_SUBMIT": "1",
     };
