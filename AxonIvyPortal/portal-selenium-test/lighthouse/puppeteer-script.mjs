@@ -93,16 +93,25 @@ const __dirname = dirname(__filename);
       }
 
       if (runnerResult && runnerResult.report) {
-        // Save both HTML files (for compatibility)
-        const htmlPaths = [
-          path.join(scriptDir, "lighthouse-report.html"),
-          path.join(reportsDir, "lighthouse-report.html"),
-        ];
+        // Get the HTML report (it's the first output format)
+        const htmlReport = Array.isArray(runnerResult.report)
+          ? runnerResult.report[0]
+          : runnerResult.report;
 
-        htmlPaths.forEach((htmlPath) => {
-          fs.writeFileSync(htmlPath, runnerResult.report);
-          console.log("HTML report saved to:", htmlPath);
-        });
+        if (typeof htmlReport === "string") {
+          // Save HTML report in both locations
+          const htmlPaths = [
+            path.join(scriptDir, "lighthouse-report.html"),
+            path.join(reportsDir, "lighthouse-report.html"),
+          ];
+
+          htmlPaths.forEach((htmlPath) => {
+            fs.writeFileSync(htmlPath, htmlReport);
+            console.log("HTML report saved to:", htmlPath);
+          });
+        } else {
+          throw new Error("HTML report is not a string");
+        }
 
         // Save JSON report
         const jsonPath = path.join(reportsDir, "report.json");
