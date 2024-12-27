@@ -8,9 +8,9 @@ pipeline {
   }
 
   parameters {
-    string(name: 'buildPluginVersion', defaultValue: '13.1.0-SNAPSHOT', description: 'Axon Ivy build plugin version of all pom will be updated to.')
-    string(name: 'ivyEngineVersion', defaultValue: '13.1.0', description: 'Axon Ivy engine version of all pom will be updated to.')
-    string(name: 'portalVersion', defaultValue: '13.1.0', description: 'Portal version of all pom will be updated to.')
+    string(name: 'buildPluginVersion', defaultValue: '', description: 'Axon Ivy build plugin version of all pom will be updated to. If empty value, no changes.')
+    string(name: 'ivyEngineVersion', defaultValue: '', description: 'Axon Ivy engine version of all pom will be updated to. If empty value, no changes.')
+    string(name: 'portalVersion', defaultValue: '', description: 'Portal version of all pom will be updated to. If empty value, no changes.')
     string(name: 'branchToPush', defaultValue: 'portal-update-pom/master', description: 'Branch name to push changes. It must not be protected branches. After this build, create a pull request to merge to master')
     string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip', description: '''Where to download engine? e.g.
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip for nightly master
@@ -23,41 +23,52 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-          docker.build('update-pom', '-f build/update-pom/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
-            withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
-              sshagent(credentials: ['github-axonivy']) {
-                sh """
-                  git remote set-url origin git@github.com:axonivy-market/portal.git
-                  git checkout ${BRANCH_NAME} || git checkout -b ${BRANCH_NAME}
-                  git pull origin ${BRANCH_NAME}
-                """
-                echo '====================Update version===================='
-                updateVersion()
-
-                echo '====================Commit to GIT===================='
-                changeLog = sh(returnStdout: true, script: 'git status -s').trim()
-                if (changeLog) {
+          if (!params.buildPluginVersion?.trim().isEmpty() || !params.ivyEngineVersion?.trim().isEmpty()
+            || !params.portalVersion?.trim().isEmpty()) {
+            docker.build('update-pom', '-f build/update-pom/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+              withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
+                sshagent(credentials: ['github-axonivy']) {
                   sh """
-                    git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}"
-                    git checkout -b ${params.branchToPush}
-                    git push origin -u ${params.branchToPush}
+                    git remote set-url origin git@github.com:axonivy-market/portal.git
+                    git checkout ${BRANCH_NAME} || git checkout -b ${BRANCH_NAME}
+                    git pull origin ${BRANCH_NAME}
                   """
-                } else {
-                  echo 'Nothing to commit.'
+                  echo '====================Update version===================='
+                  updateVersion()
+
+                  echo '====================Commit to GIT===================='
+                  changeLog = sh(returnStdout: true, script: 'git status -s').trim()
+                  if (changeLog) {
+                    sh """
+                      git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}"
+                      git checkout -b ${params.branchToPush}
+                      git push origin -u ${params.branchToPush}
+                    """
+                  } else {
+                    echo 'Nothing to commit.'
+                  }
                 }
               }
             }
           }
 
-          // echo '====================Cache engine in local repository===================='
-          // removeCacheEngine()
-          // docker.build('fetch-cache', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
-          //   maven cmd: 'clean install -f AxonIvyPortal/portal-components/pom.xml'
-          // }
+          echo '====================Cache engine in local repository===================='
+          removeCacheEngine()
+          docker.build('fetch-cache', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+            maven cmd: 'clean install -f AxonIvyPortal/portal-components/pom.xml'
+          }
         }
       }
     }
   }
+}
+
+
+def removeCacheEngine() {
+  sh """
+    cd /var/tools/maven-cache/.m2/repository/.cache/ivy
+    if [ -d ${params.ivyEngineVersion} ]; then rm -Rf ${params.ivyEngineVersion}; fi
+  """
 }
 
 def updateVersion() {
@@ -119,13 +130,8 @@ except Exception as e:
 EOF
       }
 
-      filePatterns=(
-          "AxonIvyPortal/*/pom.xml"
-          "Showcase/*/pom.xml"
-          "AxonIvyPortal/portal-selenium-test/customized_pom.xml"
-          "AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml"
-          "Documentation/public-api/pom.xml"
-        )
+      filePatterns=("AxonIvyPortal/*/pom.xml" "Showcase/*/pom.xml" "AxonIvyPortal/portal-selenium-test/customized_pom.xml"
+          "AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml" "Documentation/public-api/pom.xml")
 
       for pattern in "${filePatterns[@]}"; do
         for file in $pattern; do
@@ -134,11 +140,4 @@ EOF
       done
     '''
   }
-}
-
-def removeCacheEngine() {
-  sh """
-    cd /var/tools/maven-cache/.m2/repository/.cache/ivy
-    if [ -d ${params.ivyEngineVersion} ]; then rm -Rf ${params.ivyEngineVersion}; fi
-  """
 }
