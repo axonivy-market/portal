@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 import puppeteer from "puppeteer";
 import lighthouse from "lighthouse";
 import { fileURLToPath } from "url";
@@ -75,27 +76,25 @@ const __dirname = dirname(__filename);
       },
     });
 
-    // Ensure directory exists
-    const reportsDir = "lighthouse-reports";
-    if (!fs.existsSync(reportsDir)) {
-      fs.mkdirSync(reportsDir, { recursive: true });
-    }
-
     // Save reports
     try {
+      const reportsDir = "lighthouse-reports";
+      if (!fs.existsSync(reportsDir)) {
+        fs.mkdirSync(reportsDir, { recursive: true });
+      }
+
       if (typeof runnerResult.report === "string") {
         // Save HTML report
-        fs.writeFileSync("lighthouse-report.html", runnerResult.report);
-        console.log("HTML report saved successfully");
+        const htmlPath = path.join(process.cwd(), "lighthouse-report.html");
+        fs.writeFileSync(htmlPath, runnerResult.report);
+        console.log("HTML report saved successfully to:", htmlPath);
       }
 
       if (runnerResult.lhr) {
         // Save JSON report
-        fs.writeFileSync(
-          path.join(reportsDir, "report.json"),
-          JSON.stringify(runnerResult.lhr, null, 2)
-        );
-        console.log("JSON report saved successfully");
+        const jsonPath = path.join(process.cwd(), reportsDir, "report.json");
+        fs.writeFileSync(jsonPath, JSON.stringify(runnerResult.lhr, null, 2));
+        console.log("JSON report saved successfully to:", jsonPath);
       }
 
       if (!runnerResult.report && !runnerResult.lhr) {
