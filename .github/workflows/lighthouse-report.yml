@@ -184,12 +184,6 @@ jobs:
         env:
           DISPLAY: ':99'
 
-      - name: Upload Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: lighthouse-report
-          path: ${{ env.REPORT_DIR }}
-
       - name: Run Lighthouse Audit
         run: |
           mkdir -p ${{ env.REPORT_DIR }}
@@ -201,6 +195,13 @@ jobs:
             --output=html \
             --output-path="./report"
   
+      - name: Upload Report
+        id: upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: ${{ env.REPORT_DIR }}
+
       - name: Generate Report Summary
         run: |
           cd ${{ env.REPORT_DIR }}
@@ -215,26 +216,11 @@ jobs:
               echo "## Performance Scores"
               jq -r '.categories[] | "### " + (.title) + "\n📊 Score: " + (.score * 100 | floor | tostring) + "%"' report.report.json
               
-              # Core Web Vitals
-              echo "## Core Web Vitals"
-              jq -r '.audits | 
-                with_entries(
-                  select(.value.numericValue != null)
-                ) | 
-                to_entries[] | 
-                "- **\(.key)**: \(.value.displayValue)"' report.report.json
-              
               echo "---"
-                echo "📋 [Full HTML Report](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts)"
-                echo "📊 [Detailed Report](./report.html)"
+              echo "## Reports"
+              echo "📋 [Download Full Report](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/artifacts/${{ steps.upload-artifact.outputs.artifact-id }})"
               
             } >> $GITHUB_STEP_SUMMARY
           else
             echo "❌ Report generation failed" >> $GITHUB_STEP_SUMMARY
           fi
-
-      - name: Upload Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: lighthouse-report
-          path: ${{ env.REPORT_DIR }}
