@@ -226,7 +226,7 @@ jobs:
                     'https://github.com/' + 
                     process.env.GITHUB_REPOSITORY + 
                     '/actions/runs/' + 
-                    process.env.GITHUB_RUN_ID)
+                    process.env.GITHUB_RUN_ID + '/artifacts/' + ${{ steps.upload-artifact.outputs.artifact-id }})
                   .write();
 
                 console.log('Summary generated successfully');

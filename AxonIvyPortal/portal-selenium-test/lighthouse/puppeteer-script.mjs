@@ -85,7 +85,7 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
     const runnerResult = await lighthouse(page.url(), {
       port: new URL(browser.wsEndpoint()).port,
       output: ["html", "json"],
-      onlyCategories: ["performance", "accessibility", "best-practices", "seo"],
+      onlyCategories: ["accessibility", "best-practices"],
     });
 
     // Ensure reports directory exists
