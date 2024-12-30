@@ -82,19 +82,42 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
 
     // Run Lighthouse audit
     debugLog("Starting Lighthouse audit...");
-    const { lhr } = await lighthouse(page.url(), {
+    const runnerResult = await lighthouse(page.url(), {
       port: new URL(browser.wsEndpoint()).port,
       output: ["html", "json"],
       onlyCategories: ["performance", "accessibility", "best-practices", "seo"],
     });
 
+    // Ensure reports directory exists
+    const reportsDir = "lighthouse-reports";
+    if (!fs.existsSync(reportsDir)) {
+      fs.mkdirSync(reportsDir, { recursive: true });
+    }
+
     // Save reports
-    fs.writeFileSync("lighthouse-report.html", lhr.report[0]);
-    fs.writeFileSync(
-      "lighthouse-reports/report.json",
-      JSON.stringify(lhr, null, 2)
-    );
-    debugLog("Reports saved");
+    debugLog("Saving reports...");
+    if (runnerResult.report) {
+      fs.writeFileSync("lighthouse-report.html", runnerResult.report);
+      debugLog("HTML report saved");
+    } else {
+      debugLog("No HTML report generated");
+    }
+
+    if (runnerResult.lhr) {
+      fs.writeFileSync(
+        path.join(reportsDir, "report.json"),
+        JSON.stringify(runnerResult.lhr, null, 2)
+      );
+      debugLog("JSON report saved");
+    } else {
+      debugLog("No JSON data available");
+    }
+
+    if (!runnerResult.report && !runnerResult.lhr) {
+      throw new Error("No reports generated");
+    }
+
+    debugLog("Reports saved successfully");
   } catch (error) {
     debugLog(`Error: ${error.message}`);
     console.error(error);
