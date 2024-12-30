@@ -11,6 +11,7 @@ const __dirname = dirname(__filename);
 const PORTAL_URL = "http://localhost:8080";
 const LOGIN_URL = `${PORTAL_URL}/demo-portal/login`;
 const DASHBOARD_URL = `${PORTAL_URL}/demo-portal/pro/portal/1549F58C18A6C562/DashboardPage.ivp?dashboardId=1`;
+const CREATE_TASK_URL = `${PORTAL_URL}/portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp`;
 
 const debugLog = (msg) => console.log(`[Debug] ${msg}`);
 
@@ -67,11 +68,19 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
     ]);
     debugLog("Login successful");
 
-    // Verify dashboard loaded
+    //creating task
+    await page.goto(CREATE_TASK_URL, {
+      waitUntil: "networkidle0",
+      timeout: 30000,
+    });
+    debugLog("Creating task");
+
+    // redirected to dashboard
     await page.goto(DASHBOARD_URL, {
       waitUntil: "networkidle0",
       timeout: 30000,
     });
+    debugLog("redirected to dashboard");
 
     debugLog("Verifying dashboard loaded...");
     await page.waitForSelector(".ui-g.js-dashboard__wrapper.js-view-mode", {
