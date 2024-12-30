@@ -73,7 +73,7 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
       waitUntil: "networkidle0",
       timeout: 30000,
     });
-    debugLog("Creating task");
+    debugLog(`Creating task by navigating to ${CREATE_TASK_URL}`);
 
     // redirected to dashboard
     await page.goto(DASHBOARD_URL, {
