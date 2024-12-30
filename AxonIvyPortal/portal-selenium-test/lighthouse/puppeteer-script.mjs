@@ -9,9 +9,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const PORTAL_URL = "http://localhost:8080";
-const LOGIN_URL = `${PORTAL_URL}/Portal/login`;
-const DASHBOARD_URL = `${PORTAL_URL}/Portal/pro/portal/1549F58C18A6C562/DashboardPage.ivp?dashboardId=1`;
-
+const LOGIN_URL = `${PORTAL_URL}/demo-portal/login`;
+const DASHBOARD_URL = `${PORTAL_URL}/demo-portal/pro/portal/1549F58C18A6C562/DashboardPage.ivp?dashboardId=1`;
 const debugLog = (msg) => console.log(`[Debug] ${msg}`);
 
 (async () => {
