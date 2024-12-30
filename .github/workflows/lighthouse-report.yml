@@ -27,8 +27,8 @@ jobs:
       - name: Set Up Java
         uses: actions/setup-java@v3
         with:
-          distribution: "temurin"
-          java-version: "21"
+          distribution: 'temurin'
+          java-version: '21'
 
       - name: Set up Maven
         uses: stCarolas/setup-maven@v5
@@ -40,7 +40,6 @@ jobs:
           echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
-
       - name: Set Up and Verify Directories
         run: |
           ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/nightly"
@@ -48,7 +47,6 @@ jobs:
           sudo chown -R $USER:$USER $ENGINE_DIR
           ls -la $ENGINE_DIR
           echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
-
       - name: Download Engine
         run: |
           cd $ENGINE_DIR
@@ -56,7 +54,6 @@ jobs:
           unzip -o axonivy-engine.zip -d .
           rm axonivy-engine.zip
           ls -la
-
       - name: Verify Engine Directory
         run: |
           if [ ! -d "$ENGINE_DIR" ]; then
@@ -65,7 +62,6 @@ jobs:
           fi
           ls -la $ENGINE_DIR
           ls -la $ENGINE_DIR/bin || true
-
       - name: Start Axon Ivy Engine
         run: |
           cd "${ENGINE_DIR}/bin"
@@ -111,7 +107,6 @@ jobs:
             echo "Building $module..."
             mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
           done
-
       - name: Deploy Portal Modules
         run: |
           DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
@@ -119,7 +114,6 @@ jobs:
           cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
           cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
           cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
-
       - name: Wait for Server Health Check
         run: |
           echo "Waiting for server to be ready..."
@@ -134,18 +128,16 @@ jobs:
           echo "Server check failed" 
           cat engine.log
           exit 1
-
       - name: Install Chrome Dependencies
         run: |
           wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
           sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable xvfb x11-xserver-utils
-
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18"
+          node-version: '18'
 
       - name: Install Dependencies
         run: |
@@ -153,26 +145,22 @@ jobs:
           sudo apt-get install -y x11-utils
           npm init -y
           npm install lighthouse puppeteer @actions/core
-
       - name: Create Report Directory
         run: |
           mkdir -p lighthouse-reports
           echo "REPORT_DIR=$(pwd)/lighthouse-reports" >> $GITHUB_ENV
           echo "REPORT_PATH=$(pwd)/lighthouse-reports/report.html" >> $GITHUB_ENV
-
       - name: Set Up Virtual Display
         run: |
           Xvfb :99 -screen 0 1920x1080x24 -ac &
           sleep 3
           export DISPLAY=:99
           xdpyinfo || true
-
       - name: Run Puppeteer Script
         run: |
           cd AxonIvyPortal/portal-selenium-test/lighthouse
           npm install
           node puppeteer-script.mjs
-
       - name: Upload Report
         id: upload-artifact
         uses: actions/upload-artifact@v4
@@ -181,18 +169,17 @@ jobs:
           path: |
             AxonIvyPortal/portal-selenium-test/lighthouse/lighthouse-report.html
             AxonIvyPortal/portal-selenium-test/lighthouse/lighthouse-reports/report.json
-
       - name: Generate HTML Summary
         run: |
           cd AxonIvyPortal/portal-selenium-test/lighthouse
           
           # Debug information
           echo "Current directory: $(pwd)"
-          echo "Listing reports:"
+          echo "Listing all directories recursively:"
           find . -type f -name "lighthouse-report.html"
           find . -type f -name "report.json"
           
-          # Check for reports
+          # Check both possible locations for the HTML report
           HTML_REPORT=""
           if [ -f "lighthouse-report.html" ]; then
             HTML_REPORT="lighthouse-report.html"
@@ -206,29 +193,24 @@ jobs:
               const core = require('@actions/core');
               const fs = require('fs');
               const path = require('path');
-
               try {
                 const htmlReport = fs.readFileSync('${HTML_REPORT}', 'utf8');
                 const jsonReport = fs.readFileSync('lighthouse-reports/report.json', 'utf8');
                 const results = JSON.parse(jsonReport);
                 
                 const summary = core.summary
-                  .addHeading('🚦 Lighthouse Audit Results')
-                  .addRaw('## Performance Scores\\n\\n');
-
+                  .addHeading('🚦 Audit Results');
                 Object.entries(results.categories).forEach(([key, value]) => {
-                  summary.addRaw(\`### \${value.title}\\n📊 Score: \${Math.floor(value.score * 100)}%\\n\\n\`);
+                  summary.addRaw(\`### \${value.title}\n📊 Score: \${Math.floor(value.score * 100)}%\n\n\`);
                 });
-
                 summary
                   .addSeparator()
                   .addLink('📋 Download Full Report', 
                     'https://github.com/' + 
-                     ${{ github.repository }} + 
+                    process.env.GITHUB_REPOSITORY + 
                     '/actions/runs/' + 
-                   ${{ github.run_id }} + '/artifacts/' + ${{ steps.upload-artifact.outputs.artifact-id }})
+                    process.env.GITHUB_RUN_ID + '/artifacts/' + ${{ steps.upload-artifact.outputs.artifact-id }})
                   .write();
-
                 console.log('Summary generated successfully');
               } catch (error) {
                 console.error('Error generating summary:', error);
@@ -243,3 +225,6 @@ jobs:
             ls -la lighthouse-reports/
             exit 1
           fi
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
