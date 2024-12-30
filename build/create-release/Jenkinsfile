@@ -72,7 +72,7 @@ pipeline {
 
           echo "====================Update Portal version for development after release ${params.releaseVersion} ===================="
           def parts = releaseVersion.tokenize('.')
-          if (params.deployToRepo && parts[2].isNumber()) {
+          if (params.deployToRepo && parts.size() == 3 && parts[2].isNumber()) {
             def nextVersion = ""
             if ((parts[0] as int) % 2 == 0) {
               nextVersion = "${parts[0]}.${parts[1]}.${(parts[2] as int) + 1}-SNAPSHOT"
