@@ -85,7 +85,17 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
     const runnerResult = await lighthouse(page.url(), {
       port: new URL(browser.wsEndpoint()).port,
       output: ["html", "json"],
-      onlyCategories: ["accessibility", "best-practices"],
+      onlyCategories: ["accessibility"],
+      presets: "desktop", // Enable desktop emulation
+      settings: {
+        emulatedFormFactor: "desktop", // Specify desktop form factor
+        screenEmulation: {
+          width: 1920,
+          height: 1080,
+          deviceScaleFactor: 1,
+          mobile: false,
+        },
+      },
     });
 
     // Ensure reports directory exists

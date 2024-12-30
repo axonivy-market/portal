@@ -213,7 +213,7 @@ jobs:
                 const results = JSON.parse(jsonReport);
                 
                 const summary = core.summary
-                  .addHeading('🚦 Lighthouse Audit Results')
+                  .addHeading('🚦 Audit Results')
                   .addRaw('## Performance Scores\n\n');
 
                 Object.entries(results.categories).forEach(([key, value]) => {
