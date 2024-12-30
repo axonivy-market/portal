@@ -96,25 +96,37 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
 
     // Save reports
     debugLog("Saving reports...");
-    if (runnerResult.report) {
-      fs.writeFileSync("lighthouse-report.html", runnerResult.report);
-      debugLog("HTML report saved");
-    } else {
-      debugLog("No HTML report generated");
-    }
+    try {
+      if (Array.isArray(runnerResult.report)) {
+        // Handle array of reports (HTML is typically the first element)
+        fs.writeFileSync("lighthouse-report.html", runnerResult.report[0]);
+        debugLog("HTML report saved from array");
+      } else if (typeof runnerResult.report === "string") {
+        // Handle string report
+        fs.writeFileSync("lighthouse-report.html", runnerResult.report);
+        debugLog("HTML report saved from string");
+      } else {
+        debugLog(`Unexpected report format: ${typeof runnerResult.report}`);
+        debugLog(`Report content: ${JSON.stringify(runnerResult.report)}`);
+      }
 
-    if (runnerResult.lhr) {
-      fs.writeFileSync(
-        path.join(reportsDir, "report.json"),
-        JSON.stringify(runnerResult.lhr, null, 2)
-      );
-      debugLog("JSON report saved");
-    } else {
-      debugLog("No JSON data available");
-    }
+      if (runnerResult.lhr) {
+        fs.writeFileSync(
+          path.join(reportsDir, "report.json"),
+          JSON.stringify(runnerResult.lhr, null, 2)
+        );
+        debugLog("JSON report saved");
+      }
 
-    if (!runnerResult.report && !runnerResult.lhr) {
-      throw new Error("No reports generated");
+      if (
+        !fs.existsSync("lighthouse-report.html") &&
+        !fs.existsSync(path.join(reportsDir, "report.json"))
+      ) {
+        throw new Error("No reports were generated");
+      }
+    } catch (error) {
+      debugLog(`Error saving reports: ${error.message}`);
+      throw error;
     }
 
     debugLog("Reports saved successfully");
