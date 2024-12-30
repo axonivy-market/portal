@@ -392,7 +392,7 @@ function getWidgetVarById(id) {
 function reloadIframes() {
   var iframes = document.querySelectorAll('iframe');
   iframes.forEach(function(iframe) {
-      iframe.contentWindow.location.reload();
+      iframe.src = iframe.src;
   });
 }
 
