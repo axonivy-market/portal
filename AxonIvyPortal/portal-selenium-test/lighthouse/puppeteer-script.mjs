@@ -74,10 +74,11 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
     });
 
     debugLog("Verifying dashboard loaded...");
-    await page.waitForSelector(".dashboard-container", {
+    await page.waitForSelector(".ui-g.js-dashboard__wrapper.js-view-mode", {
+      visible: true,
       timeout: 30000,
     });
-    debugLog("Dashboard loaded");
+    debugLog("Dashboard loaded successfully");
 
     // Run Lighthouse audit
     debugLog("Starting Lighthouse audit...");
