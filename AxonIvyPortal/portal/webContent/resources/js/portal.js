@@ -389,11 +389,15 @@ function getWidgetVarById(id) {
 }
 
 
-function reloadIframes() {
-  var iframes = document.querySelectorAll('iframe');
-  iframes.forEach(function(iframe) {
-      iframe.contentWindow.location.reload();
-  });
+function reloadIframesInsidePortalAIChat() {
+  var iframeInsidePortalAIChat = document.getElementById('iFrame');
+  if (iframeInsidePortalAIChat) {
+    var contentInsideIframe = iframeInsidePortalAIChat.contentDocument || iframeInsidePortalAIChat.contentWindow.document;
+    var iframes = contentInsideIframe.getElementsByClassName('message-iframe');
+    for (let item of iframes) {
+      item.src = item.src;
+    }
+  }
 }
 
 function handleKeyDown(event) {
