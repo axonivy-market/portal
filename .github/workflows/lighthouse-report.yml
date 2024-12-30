@@ -27,8 +27,8 @@ jobs:
       - name: Set Up Java
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
-          java-version: '21'
+          distribution: "temurin"
+          java-version: "21"
 
       - name: Set up Maven
         uses: stCarolas/setup-maven@v5
@@ -145,7 +145,7 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: "18"
 
       - name: Install Dependencies
         run: |
@@ -185,13 +185,13 @@ jobs:
       - name: Generate HTML Summary
         run: |
           cd AxonIvyPortal/portal-selenium-test/lighthouse
-          
+
           # Debug information
           echo "Current directory: $(pwd)"
           echo "Listing all directories recursively:"
           find . -type f -name "lighthouse-report.html"
           find . -type f -name "report.json"
-          
+
           # Check both possible locations for the HTML report
           HTML_REPORT=""
           if [ -f "lighthouse-report.html" ]; then
@@ -199,7 +199,7 @@ jobs:
           elif [ -f "lighthouse-reports/lighthouse-report.html" ]; then
             HTML_REPORT="lighthouse-reports/lighthouse-report.html"
           fi
-          
+
           if [ -n "$HTML_REPORT" ]; then
             echo "Found HTML report at: $HTML_REPORT"
             node -e "
@@ -214,7 +214,7 @@ jobs:
                 
                 const summary = core.summary
                   .addHeading('🚦 Audit Results')
-                  .addRaw('<details><summary>📊 Lighthouse Report</summary><p><a href=\"${HTML_REPORT}\">View Full Report</a></p></details>');
+                  .addRaw('<details><summary>📊 Lighthouse Report</summary><p><a href=\"https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/lighthouse-report.html">View Full Report</a></p></details>');
 
                 Object.entries(results.categories).forEach(([key, value]) => {
                   summary.addRaw(\`### \${value.title}\n📊 Score: \${Math.floor(value.score * 100)}%\n\n\`);
