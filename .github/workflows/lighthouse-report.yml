@@ -94,31 +94,31 @@ jobs:
           JAVA_HOME: ${{ env.JAVA_HOME }}
           PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${{ env.JAVA_HOME }}/bin:$PATH
 
-      # - name: Build Portal Modules
-      #   run: |
-      #     modules=(
-      #       "AxonIvyPortal/portal-components"
-      #       "AxonIvyPortal/portal"
-      #       "AxonIvyPortal/PortalKitTestHelper"
-      #       "Showcase/portal-user-examples"
-      #       "Showcase/portal-developer-examples"
-      #       "Showcase/InternalSupport"
-      #       "Showcase/portal-components-examples"
-      #       "AxonIvyPortal/PortalApp"
-      #       "Showcase/portal-demo-app"
-      #     )
-      #     for module in "${modules[@]}"; do
-      #       echo "Building $module..."
-      #       mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
-      #     done
+      - name: Build Portal Modules
+        run: |
+          modules=(
+            "AxonIvyPortal/portal-components"
+            "AxonIvyPortal/portal"
+            "AxonIvyPortal/PortalKitTestHelper"
+            "Showcase/portal-user-examples"
+            "Showcase/portal-developer-examples"
+            "Showcase/InternalSupport"
+            "Showcase/portal-components-examples"
+            "AxonIvyPortal/PortalApp"
+            "Showcase/portal-demo-app"
+          )
+          for module in "${modules[@]}"; do
+            echo "Building $module..."
+            mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
+          done
 
-      # - name: Deploy Portal Modules
-      #   run: |
-      #     DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
-      #     rm -rf $DEPLOYMENT/*
-      #     cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
-      #     cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
-      #     cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
+      - name: Deploy Portal Modules
+        run: |
+          DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
+          rm -rf $DEPLOYMENT/*
+          cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
+          cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
+          cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
 
       - name: Wait for Server Health Check
         run: |
@@ -214,7 +214,7 @@ jobs:
                 
                 const summary = core.summary
                   .addHeading('🚦 Audit Results')
-                  .addRaw('## Performance Scores\n\n');
+                  .addRaw('<details><summary>📊 Lighthouse Report</summary><p><a href=\"${HTML_REPORT}\">View Full Report</a></p></details>');
 
                 Object.entries(results.categories).forEach(([key, value]) => {
                   summary.addRaw(\`### \${value.title}\n📊 Score: \${Math.floor(value.score * 100)}%\n\n\`);
