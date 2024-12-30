@@ -11,6 +11,7 @@ const __dirname = dirname(__filename);
 const PORTAL_URL = "http://localhost:8080";
 const LOGIN_URL = `${PORTAL_URL}/demo-portal/login`;
 const DASHBOARD_URL = `${PORTAL_URL}/demo-portal/pro/portal/1549F58C18A6C562/DashboardPage.ivp?dashboardId=1`;
+
 const debugLog = (msg) => console.log(`[Debug] ${msg}`);
 
 (async () => {
@@ -54,20 +55,24 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
 
     // Handle login form
     debugLog("Attempting login...");
-    await page.type('input[name="username"]', "demo");
-    await page.type('input[name="password"]', "demo");
+    await page.waitForSelector("#login\\:login-form\\:username", {
+      visible: true,
+    });
+    await page.type("#login\\:login-form\\:username", "demo");
+    await page.type("#login\\:login-form\\:password", "demo");
+
     await Promise.all([
-      page.click('button[type="submit"]'),
+      page.click("#login\\:login-form\\:login-command"),
       page.waitForNavigation({ waitUntil: "networkidle0" }),
     ]);
     debugLog("Login successful");
 
+    // Verify dashboard loaded
     await page.goto(DASHBOARD_URL, {
       waitUntil: "networkidle0",
       timeout: 30000,
     });
 
-    // Verify dashboard loaded
     debugLog("Verifying dashboard loaded...");
     await page.waitForSelector(".dashboard-container", {
       timeout: 30000,
