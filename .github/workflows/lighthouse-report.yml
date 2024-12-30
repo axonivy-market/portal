@@ -185,21 +185,21 @@ jobs:
       - name: Generate HTML Summary
         run: |
           cd AxonIvyPortal/portal-selenium-test/lighthouse
-
+          
           # Debug information
           echo "Current directory: $(pwd)"
-          echo "Listing all directories recursively:"
+          echo "Listing reports:"
           find . -type f -name "lighthouse-report.html"
           find . -type f -name "report.json"
-
-          # Check both possible locations for the HTML report
+          
+          # Check for reports
           HTML_REPORT=""
           if [ -f "lighthouse-report.html" ]; then
             HTML_REPORT="lighthouse-report.html"
           elif [ -f "lighthouse-reports/lighthouse-report.html" ]; then
             HTML_REPORT="lighthouse-reports/lighthouse-report.html"
           fi
-
+          
           if [ -n "$HTML_REPORT" ]; then
             echo "Found HTML report at: $HTML_REPORT"
             node -e "
@@ -213,20 +213,20 @@ jobs:
                 const results = JSON.parse(jsonReport);
                 
                 const summary = core.summary
-                  .addHeading('🚦 Audit Results')
-                  .addRaw('<details><summary>📊 Lighthouse Report</summary><p><a href=\"https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts/lighthouse-report.html">View Full Report</a></p></details>');
+                  .addHeading('🚦 Lighthouse Audit Results')
+                  .addRaw('## Performance Scores\\n\\n');
 
                 Object.entries(results.categories).forEach(([key, value]) => {
-                  summary.addRaw(\`### \${value.title}\n📊 Score: \${Math.floor(value.score * 100)}%\n\n\`);
+                  summary.addRaw(\`### \${value.title}\\n📊 Score: \${Math.floor(value.score * 100)}%\\n\\n\`);
                 });
 
                 summary
                   .addSeparator()
                   .addLink('📋 Download Full Report', 
                     'https://github.com/' + 
-                    process.env.GITHUB_REPOSITORY + 
+                     ${{ github.repository }} + 
                     '/actions/runs/' + 
-                    process.env.GITHUB_RUN_ID + '/artifacts/' + ${{ steps.upload-artifact.outputs.artifact-id }})
+                   ${{ github.run_id }} + '/artifacts/' + ${{ steps.upload-artifact.outputs.artifact-id }})
                   .write();
 
                 console.log('Summary generated successfully');
@@ -243,6 +243,3 @@ jobs:
             ls -la lighthouse-reports/
             exit 1
           fi
-        env:
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_RUN_ID: ${{ github.run_id }}
