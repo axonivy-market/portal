@@ -249,7 +249,7 @@
                     </div>
                     <div class="flex flex-none">
                       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}" process="appDisplayName3rd"
-                        styleClass="app-setting-button"
+                        styleClass="app-setting-button" global="false"
                         update=":#{p:resolveFirstComponentWithId('appDisplayName3rd', view).clientId} :#{p:resolveFirstComponentWithId('applicationName', view).clientId} messages"
                         actionListener="#{logic.getLanguageList}" oncomplete="if (!args.validationFailed)PF('applicationName').show();">
                         <f:param name="skipDisplayNameInputValidation" value="true" />
