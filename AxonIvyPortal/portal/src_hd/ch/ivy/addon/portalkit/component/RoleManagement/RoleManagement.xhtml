@@ -13,7 +13,7 @@
 
   <h:form id="role-management-form" styleClass="ui-g">
     <div class="ui-g-12 u-text-align-right u-padding-0 create-role-container">
-      <p:commandButton id="create-role-button" widgetVar="createRoleButton" onclick="PF('createRoleButton').disable();"
+      <p:commandButton id="create-role-button"
         styleClass="create-role-btn primary-color-light-button"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/CreateRole')}"
         actionListener="#{roleManagementBean.prepareAddingNewRole()}"
@@ -146,7 +146,7 @@
     widgetVar="role-details-dialog"
     dynamic="true"
     closable="false"
-    modal="true" onHide="PF('createRoleButton').enable();"
+    modal="true"
     fitViewport="true"
     responsive="true"
     styleClass="role-details-dialog"
