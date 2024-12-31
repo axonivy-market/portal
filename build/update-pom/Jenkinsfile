@@ -8,11 +8,13 @@ pipeline {
   }
 
   parameters {
-    string(name: 'buildPluginVersion', defaultValue: '12.0.0', description: 'Axon Ivy build plugin version of all pom will be updated to.')
-    string(name: 'ivyEngineVersion', defaultValue: '12.0.0', description: 'Axon Ivy engine version of all pom will be updated to.')
-	string(name: 'branchToPush', defaultValue: 'portal-update-pom/12.0', description: 'Branch name to push changes. It must not be protected branches. After this build, create a pull request to merge to release/12.0')
+    string(name: 'buildPluginVersion', defaultValue: '', description: 'Axon Ivy build plugin version of all pom will be updated to. If empty value, no changes. If buildPluginVersion, ivyEngineVersion, portalVersion params all are empty, this build just updates cached engines, no GIT commits are created.')
+    string(name: 'ivyEngineVersion', defaultValue: '', description: 'Axon Ivy engine version of all pom will be updated to. If empty value, no changes.')
+    string(name: 'portalVersion', defaultValue: '', description: 'Portal version of all pom will be updated to. If empty value, no changes.')
+    string(name: 'branchToPush', defaultValue: 'portal-update-pom/12.0', description: 'Branch name to push changes. It must not be protected branches. After this build, create a pull request to merge to master')
     string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-12/axonivy-engine.zip', description: '''Where to download engine? e.g.
-      -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-12/axonivy-engine.zip for nightly 12
+      -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip for nightly master
+      -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
     ''')
   }
 
@@ -21,27 +23,30 @@ pipeline {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
-          docker.build('update-pom', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
-            withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
-              sshagent(credentials: ['github-axonivy']) {
-                sh """
-                  git remote set-url origin git@github.com:axonivy-market/portal.git
-                  git checkout ${BRANCH_NAME} || git checkout -b ${BRANCH_NAME}
-                  git pull origin ${BRANCH_NAME}
-                """
-                echo '====================Update version===================='
-                updateVersion()
-
-                echo '====================Commit to GIT===================='
-                changeLog = sh(returnStdout: true, script: 'git status -s').trim()
-                if (changeLog) {
+          if (!params.buildPluginVersion?.trim().isEmpty() || !params.ivyEngineVersion?.trim().isEmpty()
+            || !params.portalVersion?.trim().isEmpty()) {
+            docker.build('update-pom', '-f build/update-pom/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+              withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
+                sshagent(credentials: ['github-axonivy']) {
                   sh """
-                    git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}"
-                    git checkout -b ${params.branchToPush}
-                    git push origin -u ${params.branchToPush}
+                    git remote set-url origin git@github.com:axonivy-market/portal.git
+                    git checkout ${BRANCH_NAME} || git checkout -b ${BRANCH_NAME}
+                    git pull origin ${BRANCH_NAME}
                   """
-                } else {
-                  echo 'Nothing to commit.'
+                  echo '====================Update version===================='
+                  updateVersion()
+
+                  echo '====================Commit to GIT===================='
+                  changeLog = sh(returnStdout: true, script: 'git status -s').trim()
+                  if (changeLog) {
+                    sh """
+                      git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}, version=${params.portalVersion}"
+                      git checkout -b ${params.branchToPush}
+                      git push origin -u ${params.branchToPush}
+                    """
+                  } else {
+                    echo 'Nothing to commit.'
+                  }
                 }
               }
             }
@@ -58,20 +63,81 @@ pipeline {
   }
 }
 
-def updateVersion() {
-  def pomFiles = ['AxonIvyPortal/portal-components/pom.xml', 'AxonIvyPortal/portal/pom.xml', 'AxonIvyPortal/portal-migration/pom.xml',
-    'AxonIvyPortal/portal-selenium-test/pom.xml', 'AxonIvyPortal/portal-selenium-test/customized_pom.xml', 'AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml',
-    'AxonIvyPortal/PortalKitTestHelper/pom.xml', 'Showcase/portal-user-examples/pom.xml',
-    'Showcase/portal-developer-examples/pom.xml', 'Showcase/InternalSupport/pom.xml', 'Showcase/portal-components-examples/pom.xml']
-  for (pomFile in pomFiles) {
-    maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
-    maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
-  }
-}
 
 def removeCacheEngine() {
   sh """
     cd /var/tools/maven-cache/.m2/repository/.cache/ivy
     if [ -d ${params.ivyEngineVersion} ]; then rm -Rf ${params.ivyEngineVersion}; fi
   """
+}
+
+def updateVersion() {
+  def pomFiles = ['AxonIvyPortal/portal-components/pom.xml', 'AxonIvyPortal/portal/pom.xml', 'AxonIvyPortal/portal-migration/pom.xml',
+    'AxonIvyPortal/portal-selenium-test/pom.xml', 'AxonIvyPortal/portal-selenium-test/customized_pom.xml', 'AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml',
+    'AxonIvyPortal/PortalKitTestHelper/pom.xml', 'Showcase/portal-user-examples/pom.xml',
+    'Showcase/portal-developer-examples/pom.xml', 'Showcase/InternalSupport/pom.xml', 'Showcase/portal-components-examples/pom.xml']
+  for (pomFile in pomFiles) {
+    if (!params.ivyEngineVersion?.trim().isEmpty()) {
+      maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
+    }
+    if (!params.buildPluginVersion?.trim().isEmpty()) {
+      maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
+    } 
+  }
+
+  if (!params.portalVersion?.trim().isEmpty()) {
+    sh '''#!/bin/bash
+      updatePortalVersion() {
+        python3 - <<EOF
+import xml.etree.ElementTree as ET
+from pathlib import Path
+import sys
+
+def stripNamespace(element):
+    # Iterate over all the elements and remove the namespace from the tag
+    for elem in element.iter():
+        # If the tag contains a namespace (indicated by '}')
+        if '}' in elem.tag:
+            elem.tag = elem.tag.split('}', 1)[1]  # Keep only the part after '}'
+    return element
+
+portalVersion = "$portalVersion"
+filePath = "$1"
+
+try:
+  tree = ET.parse(filePath)
+  root = tree.getroot()
+  root = stripNamespace(root) # By default, tags like <project> are changed to tag <ns0:project>, need removing namespace
+  version = root.find("version")
+  if version is not None:
+    version.text = portalVersion
+
+  dependencies = root.find("dependencies")
+  if dependencies is not None:
+    for dependency in dependencies.findall("dependency"):
+      groupId = dependency.find("groupId")
+      if groupId is not None and groupId.text in [
+        "com.axonivy.portal",
+      ]:
+        versionTag = dependency.find("version")
+        if versionTag is not None:
+          versionTag.text = portalVersion
+
+  # Write changes back to the file
+  tree.write(filePath, encoding="utf-8", xml_declaration=True)
+except Exception as e:
+  print(f"Failed to process {filePath}: {e}", file=sys.stderr)
+EOF
+      }
+
+      filePatterns=("AxonIvyPortal/*/pom.xml" "Showcase/*/pom.xml" "AxonIvyPortal/portal-selenium-test/customized_pom.xml"
+          "AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml" "Documentation/public-api/pom.xml")
+
+      for pattern in "${filePatterns[@]}"; do
+        for file in $pattern; do
+          updatePortalVersion "$file"
+        done
+      done
+    '''
+  }
 }
