@@ -40,7 +40,7 @@ pipeline {
                   changeLog = sh(returnStdout: true, script: 'git status -s').trim()
                   if (changeLog) {
                     sh """
-                      git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}"
+                      git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}, version=${params.portalVersion}"
                       git checkout -b ${params.branchToPush}
                       git push origin -u ${params.branchToPush}
                     """
