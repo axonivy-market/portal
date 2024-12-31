@@ -68,6 +68,20 @@ pipeline {
             git tag -a ${params.releaseVersion} -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}
             git push origin ${params.releaseVersion}
           """
+
+          echo "====================Update Portal version for development after release ${params.releaseVersion} ===================="
+          def parts = releaseVersion.tokenize('.')
+          if (params.deployToRepo && parts.size() == 3 && parts[2].isNumber()) {
+            def nextVersion = ""
+            if ((parts[0] as int) % 2 == 0) {
+              nextVersion = "${parts[0]}.${parts[1]}.${(parts[2] as int) + 1}-SNAPSHOT"
+            } else {
+              nextVersion = "${parts[0]}.${(parts[1] as int) + 1}.0-SNAPSHOT"
+            }
+            build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, "UTF-8")}", 
+              parameters: [string(name: 'portalVersion', value: "${nextVersion}")], 
+              wait: true, propagate: false
+          }
         }
       }
     }
