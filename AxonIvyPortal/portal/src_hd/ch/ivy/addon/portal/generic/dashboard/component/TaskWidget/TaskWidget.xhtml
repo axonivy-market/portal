@@ -173,5 +173,15 @@
       </h:form>
     </ui:define>
   </ui:decorate>
+   <script type="text/javascript">
+      function liveScroll() {
+        if (PF('dashboard-tasks-#{taskWidget.id}') != null) {
+          PF('dashboard-tasks-#{taskWidget.id}').scrollOffset = 0;
+          PF('dashboard-tasks-#{taskWidget.id}').scrollBody.scrollTop(1);
+          PF('dashboard-tasks-#{taskWidget.id}').allLoadedLiveScroll = false;
+        }
+      }
+
+    </script>
 </cc:implementation>
 </html>
