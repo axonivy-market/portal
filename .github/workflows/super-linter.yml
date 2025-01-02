@@ -42,6 +42,9 @@ jobs:
           VALIDATE_YAML: true
           VALIDATE_XML: true
           VALIDATE_CSS: true
+          # Configure file discovery
+          FILTER_REGEX_INCLUDE: .*portal/src/.*\.java
+          JAVA_SOURCE_PATH: portal/src/
           # Add linter configurations
         #   JAVA_FILE_NAME: checkstyle.xml
         #   JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
