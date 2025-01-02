@@ -1,4 +1,4 @@
-name: lighthouse-report
+name: Lighthouse Audit
 run-name: Create Lighthouse Audit
 on:
   push:
@@ -20,7 +20,9 @@ env:
 jobs:
   LightHouseAudit:
     runs-on: ubuntu-latest
-    name: Lighthouse Audit
+    name: Lighthouse Audit - ${{ github.head_ref || github.ref_name }}
+    env:
+      BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
