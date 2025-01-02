@@ -34,7 +34,7 @@ jobs:
         env:
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_ALL_CODEBASE: true
           LOG_LEVEL: DEBUG  # Changed to DEBUG for more detailed output
           REPORT_OUTPUT: true
           LOG_FILE: true
