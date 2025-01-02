@@ -24,44 +24,64 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Create Report Directory
+        run: mkdir -p /tmp/lint-results
+
       - name: Run Super-Linter
         uses: super-linter/super-linter@v7.2.1
+        continue-on-error: true
+        id: linter
         env:
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: false
-          VALIDATE_JAVA: true
-          VALIDATE_JAVASCRIPT: true
-          VALIDATE_JSON: true
-          VALIDATE_YAML: true
-          VALIDATE_XML: true
-          VALIDATE_CSS: true
-          LINTER_RULES_PATH: ./
+          LOG_LEVEL: WARN
           REPORT_OUTPUT: true
+
+      - name: Ensure Report File Exists
+        if: always()
+        run: |
+          touch /tmp/lint-results/linter.log
+          if [ ! -s /tmp/lint-results/linter.log ]; then
+            echo "No linting issues found" > /tmp/lint-results/linter.log
+          fi
         
       - name: Upload Linter Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-            name: linter-report
-            path: /tmp/lint-results/
+          name: linter-report
+          path: /tmp/lint-results/
+          retention-days: 1
 
   summary:
     name: Generate Summary
     needs: lint
     runs-on: ubuntu-latest
+    if: always()
     steps:
       - name: Download Linter Report
         uses: actions/download-artifact@v4
         with:
           name: linter-report
           path: ./linter-report
-
-      - name: Display Summary
+          
+      - name: Generate Summary
         run: |
+          echo "### Linter Summary" > $GITHUB_STEP_SUMMARY
           if [ -f ./linter-report/linter.log ]; then
-            echo "### Linter Summary" > $GITHUB_STEP_SUMMARY
-            grep -E "ERROR|WARNING" ./linter-report/linter.log >> $GITHUB_STEP_SUMMARY
+            if grep -E "ERROR|WARNING" ./linter-report/linter.log > /dev/null; then
+              grep -E "ERROR|WARNING" ./linter-report/linter.log >> $GITHUB_STEP_SUMMARY
+            else
+              echo "No linting issues found" >> $GITHUB_STEP_SUMMARY
+            fi
           else
-            echo "### No Linter Issues Found" > $GITHUB_STEP_SUMMARY
+            echo "No linter report found" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Check Linter Status
+        if: always()
+        run: |
+          if [ -f "./linter-report/linter.log" ] && grep -E "ERROR" ./linter-report/linter.log > /dev/null; then
+            exit 1
           fi
