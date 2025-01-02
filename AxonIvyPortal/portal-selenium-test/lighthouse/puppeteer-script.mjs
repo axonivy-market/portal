@@ -2,11 +2,6 @@ import fs from "fs";
 import path from "path";
 import puppeteer from "puppeteer";
 import lighthouse from "lighthouse";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 const PORTAL_URL = "http://localhost:8080/demo-portal";
 const LOGIN_URL = `${PORTAL_URL}/login`;
