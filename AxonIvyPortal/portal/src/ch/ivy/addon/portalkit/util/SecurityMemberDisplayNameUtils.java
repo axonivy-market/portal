@@ -13,6 +13,8 @@ import com.axonivy.portal.components.dto.UserDTO;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.caze.owner.CaseOwner;
 import ch.ivyteam.ivy.workflow.caze.owner.CaseOwners;
 
 public class SecurityMemberDisplayNameUtils {
@@ -151,5 +153,34 @@ public class SecurityMemberDisplayNameUtils {
       return String.join(", ", responsibleNames);
     }
     return Strings.EMPTY;
+  }
+  
+  public static String getShortCaseOwnerDisplay(ICase selectedCase) {
+    if (selectedCase == null || CollectionUtils.isEmpty(selectedCase.owners().all())) {
+      return "";
+    }
+    CaseOwners owners = selectedCase.owners();
+    int size = owners.all().size();
+    if (size <= 2 ) {
+      return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForCaseOwners(owners);
+    }
+    CaseOwner first = owners.all().get(0);
+    CaseOwner second = owners.all().get(1);
+    
+    return String.format("%s, %s,..", 
+        generateBriefDisplayNameForSecurityMember(first.member(), first.memberName()), 
+        generateBriefDisplayNameForSecurityMember(second.member(), second.memberName()));
+  }
+  
+  public static String getFullCaseOwnerDisplay(ICase selectedCase) {
+    if (selectedCase == null || CollectionUtils.isEmpty(selectedCase.owners().all())) {
+      return "";
+    }
+    return selectedCase
+        .owners()
+        .all()
+        .stream()
+        .map(owner -> generateBriefDisplayNameForSecurityMember(owner.member(), owner.memberName()))
+        .collect(Collectors.joining(", "));
   }
 }

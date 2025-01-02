@@ -147,52 +147,6 @@
         { "id" : "f47", "to" : "f33" }
       ]
     }, {
-      "id" : "f4",
-      "type" : "Script",
-      "name" : "Navigate to task list",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
-            "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
-            "",
-            "if (in.inFrame) {",
-            "  PortalNavigator.navigateToPortalRelatedTasksOfCaseInFrame(in.caze.uuid(), true, PermissionUtils.getCaseName(in.caze));",
-            "} else {",
-            "  PortalNavigator.navigateToPortalRelatedTasksOfCase(in.caze.uuid(), true, PermissionUtils.getCaseName(in.caze));",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 448, "y" : 288 }
-      }
-    }, {
-      "id" : "f43",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "navigateToRelatedTasksOfCase(Boolean,Boolean)",
-      "config" : {
-        "signature" : "navigateToRelatedTasksOfCase",
-        "input" : {
-          "params" : [
-            { "name" : "isWorkingOnTask", "type" : "Boolean", "desc" : "" },
-            { "name" : "inFrame", "type" : "Boolean", "desc" : "" }
-          ],
-          "map" : {
-            "out.inFrame" : "param.inFrame",
-            "out.isWorkingOnTask" : "param.isWorkingOnTask"
-          }
-        },
-        "guid" : "1720C5CCA7DA3932"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 288 },
-        "labelOffset" : { "x" : 71, "y" : 43 }
-      },
-      "connect" : [
-        { "id" : "f51", "to" : "f4" }
-      ]
-    }, {
       "id" : "f97",
       "type" : "HtmlDialogMethodStart",
       "name" : "validate(ITask,RelatedTaskLazyDataModel)",

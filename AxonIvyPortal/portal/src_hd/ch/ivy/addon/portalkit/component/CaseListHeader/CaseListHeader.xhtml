@@ -30,7 +30,7 @@
   <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="owner-column-header" 
       responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER')}" 
-      dataModel="#{dataModel}" sortedField="OWNER" rendered="#{caseBean.isCaseOwnerEnabled()}" />
+      dataModel="#{dataModel}" sortedField="OWNER" sortable="false" rendered="#{caseBean.isCaseOwnerEnabled()}" />
 
   <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="created-date-column-header" 
     styleClass="u-text-align-center"
