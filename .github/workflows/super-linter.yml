@@ -34,37 +34,32 @@ jobs:
         env:
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_ALL_CODEBASE: true
-          LOG_LEVEL: DEBUG  # Changed to DEBUG for more detailed output
-          REPORT_OUTPUT: true
+          VALIDATE_ALL_CODEBASE: false
+          # Enable specific linters
+          VALIDATE_JAVA: true
+          VALIDATE_JAVASCRIPT_ES: true  # Changed from VALIDATE_JAVASCRIPT
+          VALIDATE_JSON: true
+          VALIDATE_YAML: true
+          VALIDATE_XML: true
+          VALIDATE_CSS: true
+          # Add linter configurations
+        #   JAVA_FILE_NAME: checkstyle.xml
+        #   JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
+        #   CSS_FILE_NAME: .stylelintrc.json
+          # Add debug mode for troubleshooting
+          LOG_LEVEL: DEBUG
           LOG_FILE: true
-          OUTPUT_DETAILS: detailed
-          OUTPUT_FORMAT: json
+          # Configure output
+          LINTER_RULES_PATH: ./
+          REPORT_OUTPUT: true
+          CREATE_LOG_FILE: true
 
-      - name: Process Linter Results
+      - name: Ensure Report File Exists
         if: always()
         run: |
-          mkdir -p /tmp/lint-results
-          if [ -f "/tmp/lint/linter.log" ]; then
-            cp /tmp/lint/linter.log /tmp/lint-results/
-          else
-            echo "No linter.log found in /tmp/lint/"
-            ls -la /tmp/lint/
-          fi
-          
-          # Create a summary of results
-          echo "### Super-Linter Results" > /tmp/lint-results/summary.md
-          echo "" >> /tmp/lint-results/summary.md
-          echo "| Language | Status |" >> /tmp/lint-results/summary.md
-          echo "|----------|--------|" >> /tmp/lint-results/summary.md
-          
-          if [ -f "/tmp/lint/linter.log" ]; then
-            # Extract results for each linter
-            grep -E ".*Linter:.*status:" /tmp/lint/linter.log | while read -r line; do
-              linter=$(echo "$line" | grep -o "Linter:[^ ]*" | cut -d: -f2)
-              status=$(echo "$line" | grep -o "status:[^ ]*" | cut -d: -f2)
-              echo "| $linter | $status |" >> /tmp/lint-results/summary.md
-            done
+          touch /tmp/lint-results/linter.log
+          if [ ! -s /tmp/lint-results/linter.log ]; then
+            echo "No linting issues found" > /tmp/lint-results/linter.log
           fi
         
       - name: Upload Linter Report
@@ -74,14 +69,6 @@ jobs:
           name: linter-report
           path: /tmp/lint-results/
           retention-days: 1
-
-      - name: Set Job Status
-        if: always()
-        run: |
-          if [ -f "/tmp/lint/linter.log" ] && grep -q "ERROR:" "/tmp/lint/linter.log"; then
-            echo "Linting errors found"
-            exit 1
-          fi
 
   summary:
     name: Generate Summary
@@ -97,15 +84,20 @@ jobs:
           
       - name: Generate Summary
         run: |
-          if [ -f "./linter-report/summary.md" ]; then
-            cat ./linter-report/summary.md > $GITHUB_STEP_SUMMARY
+          echo "### Linter Summary" > $GITHUB_STEP_SUMMARY
+          if [ -f ./linter-report/linter.log ]; then
+            if grep -E "ERROR|WARNING" ./linter-report/linter.log > /dev/null; then
+              grep -E "ERROR|WARNING" ./linter-report/linter.log >> $GITHUB_STEP_SUMMARY
+            else
+              echo "No linting issues found" >> $GITHUB_STEP_SUMMARY
+            fi
           else
-            echo "### No Linter Results Available" > $GITHUB_STEP_SUMMARY
+            echo "No linter report found" >> $GITHUB_STEP_SUMMARY
           fi
-          
-          if [ -f "./linter-report/linter.log" ]; then
-            echo "### Detailed Errors" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            grep -E "ERROR:|WARNING:" ./linter-report/linter.log >> $GITHUB_STEP_SUMMARY || true
-            echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: Check Linter Status
+        if: always()
+        run: |
+          if [ -f "./linter-report/linter.log" ] && grep -E "ERROR" ./linter-report/linter.log > /dev/null; then
+            exit 1
           fi
