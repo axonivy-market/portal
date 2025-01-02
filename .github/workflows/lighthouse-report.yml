@@ -1,0 +1,230 @@
+name: Lighthouse Audit
+run-name: Create Lighthouse Audit
+on:
+  pull_request:
+    branches:
+      - master
+      - release/*
+
+env:
+  ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
+  ENGINE_URL: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip
+  WAIT_TIME: 60
+  SERVER_URL: http://localhost:8080
+  REPORT_PATH: $GITHUB_WORKSPACE/lighthouse-report
+  REPORT_DIR: $GITHUB_WORKSPACE/lighthouse-reports
+
+jobs:
+  LightHouseAudit:
+    runs-on: ubuntu-latest
+    name: Lighthouse Audit - ${{ github.head_ref || github.ref_name }}
+    env:
+      BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set Up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.8
+
+      - name: Export Environment Variables
+        run: |
+          echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+          echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+          echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
+      - name: Set Up and Verify Directories
+        run: |
+          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/nightly"
+          mkdir -p $ENGINE_DIR
+          sudo chown -R $USER:$USER $ENGINE_DIR
+          ls -la $ENGINE_DIR
+          echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
+      - name: Download Engine
+        run: |
+          cd $ENGINE_DIR
+          wget $ENGINE_URL -O axonivy-engine.zip
+          unzip -o axonivy-engine.zip -d .
+          rm axonivy-engine.zip
+          ls -la
+      - name: Verify Engine Directory
+        run: |
+          if [ ! -d "$ENGINE_DIR" ]; then
+            echo "Engine directory does not exist"
+            exit 1
+          fi
+          ls -la $ENGINE_DIR
+          ls -la $ENGINE_DIR/bin || true
+      - name: Start Axon Ivy Engine
+        run: |
+          cd "${ENGINE_DIR}/bin"
+          chmod +x ./AxonIvyEngine
+          nohup ./AxonIvyEngine > engine.log 2>&1 &
+          echo $! > engine.pid
+          MAX_ATTEMPTS=180
+          ATTEMPT=0
+          echo "Waiting for engine to start..."
+          while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
+            if curl -s http://localhost:8080/demo-portal > /dev/null; then
+              echo "Engine started successfully"
+              cat engine.log
+              break
+            fi
+            ATTEMPT=$((ATTEMPT+1))
+            sleep 1
+          done
+          if [ $ATTEMPT -eq $MAX_ATTEMPTS ]; then
+            echo "Engine failed to start"
+            cat engine.log
+            exit 1
+          fi
+        env:
+          IVY_JAVA_HOME: ${{ env.JAVA_HOME }}
+          JAVA_HOME: ${{ env.JAVA_HOME }}
+          PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${{ env.JAVA_HOME }}/bin:$PATH
+
+      - name: Build Portal Modules
+        run: |
+          modules=(
+            "AxonIvyPortal/portal-components"
+            "AxonIvyPortal/portal"
+            "AxonIvyPortal/PortalKitTestHelper"
+            "Showcase/portal-user-examples"
+            "Showcase/portal-developer-examples"
+            "Showcase/InternalSupport"
+            "Showcase/portal-components-examples"
+            "AxonIvyPortal/PortalApp"
+            "Showcase/portal-demo-app"
+          )
+          for module in "${modules[@]}"; do
+            echo "Building $module..."
+            mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
+          done
+      - name: Deploy Portal Modules
+        run: |
+          DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
+          rm -rf $DEPLOYMENT/*
+          cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
+          cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
+          cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
+      - name: Wait for Server Health Check
+        run: |
+          echo "Waiting for server to be ready..."
+          for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
+            if curl -s -f http://localhost:8080/demo-portal/pro/portal/1549F58C18A6C562/DashboardPage.ivp?dashboardId=1 > /dev/null; then
+              echo "Server is running"
+              exit 0
+            fi
+            echo "Attempt $i of ${{ env.WAIT_TIME }}"
+            sleep 1
+          done
+          echo "Server check failed" 
+          cat engine.log
+          exit 1
+      - name: Install Chrome Dependencies
+        run: |
+          wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable xvfb x11-xserver-utils
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y x11-utils
+          npm init -y
+          npm install lighthouse puppeteer @actions/core
+      - name: Create Report Directory
+        run: |
+          mkdir -p lighthouse-reports
+          echo "REPORT_DIR=$(pwd)/lighthouse-reports" >> $GITHUB_ENV
+          echo "REPORT_PATH=$(pwd)/lighthouse-reports/report.html" >> $GITHUB_ENV
+      - name: Set Up Virtual Display
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -ac &
+          sleep 3
+          export DISPLAY=:99
+          xdpyinfo || true
+      - name: Run Puppeteer Script
+        run: |
+          cd AxonIvyPortal/portal-selenium-test/lighthouse
+          npm install
+          node puppeteer-script.mjs
+      - name: Upload Report
+        id: upload-artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: |
+            AxonIvyPortal/portal-selenium-test/lighthouse/lighthouse-report.html
+            AxonIvyPortal/portal-selenium-test/lighthouse/lighthouse-reports/report.json
+      - name: Generate HTML Summary
+        run: |
+          cd AxonIvyPortal/portal-selenium-test/lighthouse
+          
+          # Debug information
+          echo "Current directory: $(pwd)"
+          echo "Listing all directories recursively:"
+          find . -type f -name "lighthouse-report.html"
+          find . -type f -name "report.json"
+          
+          # Check both possible locations for the HTML report
+          HTML_REPORT=""
+          if [ -f "lighthouse-report.html" ]; then
+            HTML_REPORT="lighthouse-report.html"
+          elif [ -f "lighthouse-reports/lighthouse-report.html" ]; then
+            HTML_REPORT="lighthouse-reports/lighthouse-report.html"
+          fi
+          
+          if [ -n "$HTML_REPORT" ]; then
+            echo "Found HTML report at: $HTML_REPORT"
+            node -e "
+              const core = require('@actions/core');
+              const fs = require('fs');
+              const path = require('path');
+              try {
+                const htmlReport = fs.readFileSync('${HTML_REPORT}', 'utf8');
+                const jsonReport = fs.readFileSync('lighthouse-reports/report.json', 'utf8');
+                const results = JSON.parse(jsonReport);
+                
+                const summary = core.summary
+                  .addHeading('🚦 Audit Results');
+                Object.entries(results.categories).forEach(([key, value]) => {
+                  summary.addRaw(\`### \${value.title}\n📊 Score: \${Math.floor(value.score * 100)}%\n\n\`);
+                });
+                summary
+                  .addSeparator()
+                  .addLink('📋 Download Full Report', 
+                    'https://github.com/' + 
+                    process.env.GITHUB_REPOSITORY + 
+                    '/actions/runs/' + 
+                    process.env.GITHUB_RUN_ID + '/artifacts/' + ${{ steps.upload-artifact.outputs.artifact-id }})
+                  .write();
+                console.log('Summary generated successfully');
+              } catch (error) {
+                console.error('Error generating summary:', error);
+                console.error('File contents:', fs.readdirSync('.'));
+                process.exit(1);
+              }
+            "
+          else
+            echo "Error: Lighthouse report file not found"
+            echo "Directory contents:"
+            ls -la
+            ls -la lighthouse-reports/
+            exit 1
+          fi
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
