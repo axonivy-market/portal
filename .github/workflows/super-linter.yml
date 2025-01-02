@@ -56,13 +56,20 @@ jobs:
           LINTER_RULES_PATH: ./
           REPORT_OUTPUT: true
           CREATE_LOG_FILE: true
+          OUTPUT_FOLDER: /tmp/lint-results  # Set output folder explicitly
+          OUTPUT_FORMAT: text
 
-      - name: Ensure Report File Exists
+      - name: Process Linter Results
         if: always()
         run: |
-          touch /tmp/lint-results/linter.log
-          if [ ! -s /tmp/lint-results/linter.log ]; then
-            echo "No linting issues found" > /tmp/lint-results/linter.log
+          if [ -f "/tmp/lint-results/super-linter.log" ]; then
+            cp /tmp/lint-results/super-linter.log /tmp/lint-results/linter.log
+          else
+            echo "No super-linter.log found, checking alternative locations..."
+            find /tmp -name "super-linter.log" -type f -exec cp {} /tmp/lint-results/linter.log \;
+            if [ ! -f "/tmp/lint-results/linter.log" ]; then
+              echo "No linting issues found" > /tmp/lint-results/linter.log
+            fi
           fi
         
       - name: Upload Linter Report
