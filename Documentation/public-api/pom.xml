@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version='1.0' encoding='utf-8'?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>public-api</artifactId>
-  <version>10.0.0.0-SNAPSHOT</version>
+  <version>10.0.25-SNAPSHOT</version>
   <properties>
     <build.plugin.version>10.0.6</build.plugin.version>
     <ivy.engine.version>10.0.7</ivy.engine.version>
@@ -59,7 +59,7 @@
               <name>standardized.maven.processor.classpath</name>
               <value>${ivy.engine.core.classpath}</value>
               <regex>,</regex>
-              <!--On Windows, replace character : by character ;-->
+              
               <replacement>:</replacement>
               <failIfNoMatch>false</failIfNoMatch>
             </configuration>
@@ -71,20 +71,20 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>3.2.0</version>
         <configuration>
-          <!--On Windows, replace character : by character ;-->
+          
           <sourcepath>../../AxonIvyPortal/portal-components/src</sourcepath>
           <subpackages>com.axonivy.portal.components.publicapi</subpackages>
           <additionalOptions>
             <additionalOption>-classpath</additionalOption>
-            <!--On Windows, replace character : by character ;-->
+            
             <additionalOption>${standardized.maven.processor.classpath}</additionalOption>
           </additionalOptions>
           <show>public</show>
           <doclint>none</doclint>
           <windowtitle>Axon Ivy Public API</windowtitle>
-          <doctitle><![CDATA[<h1>Portal Public API</h1>]]></doctitle>
-          <header><![CDATA[<i><b>Portal Public API<br>Version ${project.version}</b></i>]]></header>
-          <footer><![CDATA[<i><b>Portal Public API<br>Version ${project.version}</b></i>]]></footer>
+          <doctitle>&lt;h1&gt;Portal Public API&lt;/h1&gt;</doctitle>
+          <header>&lt;i&gt;&lt;b&gt;Portal Public API&lt;br&gt;Version ${project.version}&lt;/b&gt;&lt;/i&gt;</header>
+          <footer>&lt;i&gt;&lt;b&gt;Portal Public API&lt;br&gt;Version ${project.version}&lt;/b&gt;&lt;/i&gt;</footer>
         </configuration>
         <executions>
           <execution>
