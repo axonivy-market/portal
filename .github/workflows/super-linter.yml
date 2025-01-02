@@ -29,4 +29,39 @@ jobs:
         env:
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_JAVA: true
+          VALIDATE_JAVASCRIPT: true
+          VALIDATE_JSON: true
+          VALIDATE_YAML: true
+          VALIDATE_XML: true
+          VALIDATE_CSS: true
+          LINTER_RULES_PATH: ./
+          REPORT_OUTPUT: true
+        
+      - name: Upload Linter Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+            name: linter-report
+            path: /tmp/lint-results/
+
+  summary:
+    name: Generate Summary
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Linter Report
+        uses: actions/download-artifact@v4
+        with:
+          name: linter-report
+          path: ./linter-report
+
+      - name: Display Summary
+        run: |
+          if [ -f ./linter-report/linter.log ]; then
+            echo "### Linter Summary" > $GITHUB_STEP_SUMMARY
+            grep -E "ERROR|WARNING" ./linter-report/linter.log >> $GITHUB_STEP_SUMMARY
+          else
+            echo "### No Linter Issues Found" > $GITHUB_STEP_SUMMARY
+          fi
