@@ -2,28 +2,98 @@
 <userConfig>
     <user>
         <username>costObject1</username>
-        <fullName>Cost Object 1</fullName>
+        <password>costObject1</password>
+        <fullName>Evan Cost Object</fullName>
+        <emailAddress>axonivyportal+evan@gmail.com</emailAddress>
         <role>CostObject</role>
     </user>
     <user>
         <username>costObject2</username>
-        <fullName>Cost Object 2</fullName>
+        <password>costObject2</password>
+        <fullName>James Cost Object</fullName>
+        <emailAddress>axonivyportal+james@gmail.com</emailAddress>
         <role>CostObject</role>
     </user>
     <user>
         <username>gm1</username>
-        <fullName>General Manager 1</fullName>
+        <password>gm1</password>
+        <fullName>Martin Manager</fullName>
+        <emailAddress>axonivyportal+martin@gmail.com</emailAddress>
         <role>GeneralManager</role>
     </user>
     <user>
         <username>gm2</username>
-        <fullName>General Manager 2</fullName>
+        <password>gm2</password>
+        <fullName>Thomas Manager</fullName>
+        <emailAddress>axonivyportal+thomas@gmail.com</emailAddress>
         <role>GeneralManager</role>
     </user>
     <user>
         <username>gm3</username>
-        <fullName>General Manager 3</fullName>
+        <password>gm3</password>
+        <fullName>Sherley Manager</fullName>
+        <emailAddress>axonivyportal+sherley@gmail.com</emailAddress>
         <role>GeneralManager</role>
         <role>CostObject</role>
+    </user>
+    <user>
+        <username>huang</username>
+        <password>huang</password>
+        <fullName>Huang Employee</fullName>
+        <emailAddress>axonivyportal+huang@gmail.com</emailAddress>
+    </user>
+    <user>
+        <username>marissa</username>
+        <password>marissa</password>
+        <fullName>Marissa Accountant</fullName>
+        <emailAddress>axonivyportal+marissa@gmail.com</emailAddress>
+    </user>
+    <user>
+        <username>mike</username>
+        <password>mike</password>
+        <fullName>Mike Approver</fullName>
+        <emailAddress>axonivyportal+mike@gmail.com</emailAddress>
+    </user>
+    <user>
+        <username>sophie</username>
+        <password>sophie</password>
+        <fullName>Sophie Manager</fullName>
+        <emailAddress>axonivyportal+sophie@gmail.com</emailAddress>
+    </user>
+    <user>
+        <username>liam</username>
+        <password>liam</password>
+        <fullName>Liam Developer</fullName>
+        <emailAddress>axonivyportal+liam@gmail.com</emailAddress>
+    </user>
+    <user>
+        <username>ava</username>
+        <password>ava</password>
+        <fullName>Ava Designer</fullName>
+        <emailAddress>axonivyportal+ava@gmail.com</emailAddress>
+    </user>
+    <user>
+        <username>ethan</username>
+        <password>ethan</password>
+        <fullName>Ethan Analyst</fullName>
+        <emailAddress>axonivyportal+ethan@gmail.com</emailAddress>
+    </user>
+    <user>
+        <username>emma</username>
+        <password>emma</password>
+        <fullName>Emma Project Lead</fullName>
+        <emailAddress>axonivyportal+emma@gmail.com</emailAddress>
+    </user>
+    <user>
+        <username>olivia</username>
+        <password>olivia</password>
+        <fullName>Olivia Consultant</fullName>
+        <emailAddress>axonivyportal+olivia@gmail.com</emailAddress>
+    </user>
+    <user>
+        <username>noah</username>
+        <password>noah</password>
+        <fullName>Noah IT Support</fullName>
+        <emailAddress>axonivyportal+noah@gmail.com</emailAddress>
     </user>
 </userConfig>
