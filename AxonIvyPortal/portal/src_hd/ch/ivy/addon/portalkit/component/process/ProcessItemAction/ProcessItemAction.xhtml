@@ -51,7 +51,7 @@
           rendered="#{canModify}" />
         <p:menuitem id="delete-process"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-          icon="si si-bin-1"
+          icon="si si-bin-1" global="false"
           oncomplete="#{cc.attrs.onCompleteDeleteProcess}"
           actionListener="#{cc.attrs.actionListenerOnDeleteProcess}"
           update="#{cc.attrs.componentToUpdateOnDeleteProcess}"

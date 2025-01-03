@@ -14,7 +14,7 @@
     closeOnEscape="true" modal="true" appendTo="@(body)"
     responsive="true" resizable="false" fitViewport="true" positionType="absolute"
     styleClass="edit-process-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogHeaderTitle', [processWidgetBean.editedProcess.getName()])}">
-    <p:ajax event="close" update="edit-process-dialog" resetValues="true" />
+    <p:ajax event="close" update="edit-process-dialog" resetValues="true" global="false"/>
     <h:form id="edit-process-form" styleClass="ui-g edit-process-form">
       <c:set var="process" value="#{processWidgetBean.editedProcess}" />
       <c:set var="processIcon" value="#{process.getIcon()}" />
@@ -205,9 +205,9 @@
         actionListener="#{processWidgetBean.removeTempExternalLinkImage}"
         oncomplete="PF('edit-process-dialog').hide()"
         styleClass="u-mar-right-10" />
-      <p:commandButton id="save-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
-        process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" update="#{cc.clientId}:edit-process-form"
-        oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); updateProcessListOnSaveSuccessful();}" form="#{cc.clientId}:edit-process-form"/>
+      <p:commandButton id="save-process-command" validateClient="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" global="false"
+        process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" update="#{cc.clientId}:edit-process-form #{cc.clientId} #{cc.clientId}:process-list"
+        oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); processWidget.setup(); processWidget.hideLoadingText();}" form="#{cc.clientId}:edit-process-form"/>
     </f:facet>
   </p:dialog>
   <!-- End Edit Process -->
@@ -235,10 +235,10 @@
         <p:link onclick="PF('remove-process-workflow-dialog').hide()" styleClass="u-mar-right-15"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           href="#" />
-        <p:commandButton id="remove-process-command" global="false" process="@this" update="#{cc.clientId}:process-list"
+        <p:commandButton id="remove-process-command" process="@this" update="#{cc.clientId}:process-list #{cc.clientId}"
           icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
           actionListener="#{processWidgetBean.deleteProcessWorkflow()}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          oncomplete="PF('remove-process-workflow-dialog').hide(); updateProcessListOnSaveSuccessful();" />
+          oncomplete="PF('remove-process-workflow-dialog').hide(); processWidget.setup(); processWidget.hideLoadingText();" />
       </h:form>
     </ui:define>
   </ui:decorate>
@@ -248,7 +248,7 @@
   <p:dialog id="add-external-link-dialog" widgetVar="add-external-link-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewExternalLinkHeader')}" closeOnEscape="true" modal="true"
     appendTo="@(body)" resizable="false" responsive="true" positionType="absolute" fitViewport="true" styleClass="add-external-link-dialog">
-    <p:ajax event="close" update="add-external-link-dialog" resetValues="true" />
+    <p:ajax event="close" update="add-external-link-dialog" resetValues="true" global="false"/>
     <h:form id="add-external-link-form" styleClass="add-external-link-form ui-g">
       <p:defaultCommand target="external-link-name"/>
       <p:messages styleClass="ui-g-12"/>
@@ -391,8 +391,8 @@
       <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
         icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" process="#{cc.clientId}:add-external-link-form"
         form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink()}"
-        update="#{cc.clientId}:add-external-link-form"
-        oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); updateProcessListOnSaveSuccessful();}" />
+        update="#{cc.clientId}:add-external-link-form #{cc.clientId} #{cc.clientId}:process-list" validateClient="true"
+        oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); processWidget.setup(); processWidget.hideLoadingText();}" />
     </f:facet>
   </p:dialog>
   <!-- End External Link Dialogs -->
