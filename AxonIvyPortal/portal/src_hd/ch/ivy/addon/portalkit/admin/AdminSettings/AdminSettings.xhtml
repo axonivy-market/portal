@@ -31,7 +31,7 @@
         </p:outputPanel>
 
         <h:panelGroup layout="block" styleClass="application-tab-action-buttons">
-          <p:commandButton id="add-application-btn" actionListener="#{logic.addNewApp}" oncomplete="PF('appDialog').show()" resetValues="true"
+          <p:commandButton id="add-application-btn" actionListener="#{logic.addNewApp}" global="false" oncomplete="PF('appDialog').show()" resetValues="true"
             styleClass="new-app" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/new')}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
             update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}" />
         </h:panelGroup>
@@ -55,7 +55,7 @@
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
               styleClass="u-text-align-center settings-table-action-buttons">
               <p:commandLink id="edit" oncomplete="PF('appDialog').show()" styleClass="action-column-icon-button"
-                actionListener="#{logic.editApplication(app)}" process="@this"
+                actionListener="#{logic.editApplication(app)}" process="@this" global="false"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
                 update="@this :#{p:resolveFirstComponentWithId('appDialog', view).clientId}">
                 <span class="si si-graphic-tablet-drawing-pen" />
@@ -106,7 +106,7 @@
             headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
             styleClass="u-text-align-center settings-table-action-buttons">
             <p:commandLink styleClass="action-column-icon-button" id="edit" oncomplete="PF('settingDialog').show()"
-              actionListener="#{logic.editSetting(setting)}" process="@this"
+              actionListener="#{logic.editSetting(setting)}" process="@this" global="false"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
               update="@this :#{p:resolveFirstComponentWithId('settingDialog', view).clientId}">
               <span class="si si-graphic-tablet-drawing-pen" />
@@ -229,7 +229,7 @@
                 <div class="ui-g-3">
                   <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                     icon="#{visibilityBean.generateButtonIcon('si si-chat-translate')}" process="appDisplayName3rd "
-                    styleClass="app-setting-button"
+                    styleClass="app-setting-button" global="false"
                     update=":#{p:resolveFirstComponentWithId('appDisplayName3rd', view).clientId} :#{p:resolveFirstComponentWithId('applicationName', view).clientId} messages"
                     actionListener="#{logic.getLanguageList}"
                     oncomplete="if (!args.validationFailed)PF('applicationName').show();">
