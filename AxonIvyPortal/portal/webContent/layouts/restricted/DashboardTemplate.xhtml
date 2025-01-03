@@ -305,7 +305,7 @@
               </div>
               <h:panelGroup id="manage-filter-action" layout="block" styleClass="ui-g-12 u-text-align-right">
                 <p:commandButton id="delete-widget-filter-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/removeSelection')}"
-                  process="delete-saved-filter-form" update="delete-saved-filter-form:quick-filter-table"
+                  process="delete-saved-filter-form" update="delete-saved-filter-form:quick-filter-table" global="false"
                   actionListener="#{dashboardBean.deleteSavedFilter()}"
                   oncomplete="PF('quick-filter-table').clearFilters()" />
               </h:panelGroup>

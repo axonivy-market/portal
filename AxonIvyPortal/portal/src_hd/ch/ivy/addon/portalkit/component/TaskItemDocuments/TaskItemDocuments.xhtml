@@ -30,7 +30,7 @@
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
-          <p:commandLink id="add-document-command"
+          <p:commandLink id="add-document-command" global="false"
             rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
             styleClass="task-details-document-add-link u-mar-right-10"
             oncomplete="PF('document-upload-dialog').show()">

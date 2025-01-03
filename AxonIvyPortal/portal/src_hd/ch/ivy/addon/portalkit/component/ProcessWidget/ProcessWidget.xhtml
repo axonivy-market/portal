@@ -129,11 +129,6 @@
 
   <ui:include src="ProcessWidgetDialogs.xhtml" />
 
-  <h:form>
-    <p:remoteCommand name="updateProcessListOnSaveSuccessful" update="#{cc.clientId}:process-list #{cc.clientId}"
-      oncomplete="processWidget.setup();processWidget.hideLoadingText();"/>
-  </h:form>
-
   <script>
       var processWidget = new ProcessWidget();
       $(function() {

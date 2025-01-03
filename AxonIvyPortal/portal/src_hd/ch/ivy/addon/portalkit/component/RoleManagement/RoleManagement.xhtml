@@ -19,7 +19,7 @@
         actionListener="#{roleManagementBean.prepareAddingNewRole()}"
         oncomplete="PF('role-details-dialog').show()"
         update="@(.manage-role-details-form) #{cc.clientId}:role-details-dialog"
-        process="@this"
+        process="@this" global="false"
         resetValues="true"
         title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/CreateRole')}"
         rendered="#{roleManagementBean.canCreateRole}"/>
@@ -109,7 +109,7 @@
             </h:panelGroup>
 
             <h:panelGroup id="assign-users-to-role-action">
-              <p:commandLink id="assign-users-to-role-link"
+              <p:commandLink id="assign-users-to-role-link" global="false"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/AssignUsersToRole')}"
                 actionListener="#{roleManagementBean.setDataForAssignUserToRole(role)}"
                 styleClass="action-column-icon-button"

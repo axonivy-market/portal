@@ -53,7 +53,7 @@
                   <p:commandButton id="create-dashboard-action" actionListener="#{dashboardConfigurationBean.addNewDashboard(isPublicDashboard)}"
                     value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard')}" 
                     styleClass="dashboard-action-container-icon #{selectedDashboardTypeStyleClass} w-full primary-color-light-button"
-                    partialSubmit="true"
+                    partialSubmit="true" global="false"
                     oncomplete="PF('create-new-dashboard-dialog').show();"
                     title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard')}" />
                 </div>

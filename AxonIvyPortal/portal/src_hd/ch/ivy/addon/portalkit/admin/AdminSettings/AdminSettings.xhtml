@@ -43,7 +43,7 @@
     <p:tab id="application-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applications')}">
       <h:form prependId="false" id="applicationForm">
         <h:panelGroup layout="block" styleClass="application-tab-action-buttons">
-          <p:commandButton id="add-application-btn" actionListener="#{logic.addNewApp}" oncomplete="PF('appDialog').show()" resetValues="true"
+          <p:commandButton id="add-application-btn" actionListener="#{logic.addNewApp}" oncomplete="PF('appDialog').show()" resetValues="true" global="false"
             styleClass="new-app-btn primary-color-light-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/addNewApplication')}"
             update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}" />
         </h:panelGroup>
@@ -72,7 +72,7 @@
                 my="right top" at="right bottom"
                 styleClass="applications-action-menu">
                 <p:menuitem id="edit-application"
-                  styleClass=""
+                  global="false"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
                   icon="si si-graphic-tablet-drawing-pen"
                   oncomplete="PF('appDialog').show()"
@@ -139,7 +139,7 @@
               my="right top" at="right bottom"
               styleClass="settings-action-menu">
               <p:menuitem id="edit-application"
-                styleClass=""
+                global="false"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
                 icon="si si-graphic-tablet-drawing-pen"
                 oncomplete="PF('settingDialog').show()"
@@ -249,7 +249,7 @@
                     </div>
                     <div class="flex flex-none">
                       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}" process="appDisplayName3rd"
-                        styleClass="app-setting-button"
+                        styleClass="app-setting-button" global="false"
                         update=":#{p:resolveFirstComponentWithId('appDisplayName3rd', view).clientId} :#{p:resolveFirstComponentWithId('applicationName', view).clientId} messages"
                         actionListener="#{logic.getLanguageList}" oncomplete="if (!args.validationFailed)PF('applicationName').show();">
                         <f:param name="skipDisplayNameInputValidation" value="true" />

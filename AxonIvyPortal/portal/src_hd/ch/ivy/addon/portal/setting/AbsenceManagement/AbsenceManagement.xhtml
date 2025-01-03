@@ -60,7 +60,7 @@
                         </h:panelGroup>
                         <p:toggleSwitch id="show-absence-in-the-past" value="#{data.absenceInThePastShown}"
                           styleClass="show-absence-in-the-past-panel">
-                          <p:ajax event="change" listener="#{logic.findAbsencesAndSubstitutes()}"
+                          <p:ajax event="change" listener="#{logic.findAbsencesAndSubstitutes()}" global="false"
                             update="@(.absence-table)" partialSubmit="true" />
                         </p:toggleSwitch>
                       </div>
@@ -112,7 +112,7 @@
                     <p:commandButton id="add-absence"
                       styleClass="Fright ui-sm-hidden primary-color-light-button"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence')}"
-                      process="@this"
+                      process="@this" global="false"
                       oncomplete="PF('absence-dialog').show()"
                       actionListener="#{logic.add}"
                       update="absence-dialog absence-form"

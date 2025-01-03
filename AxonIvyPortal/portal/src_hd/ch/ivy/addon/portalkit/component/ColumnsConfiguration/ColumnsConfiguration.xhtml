@@ -15,7 +15,7 @@
 <cc:implementation>
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
   <h:panelGroup id="config-columns-container" layout="block" styleClass="config-columns-button u-hidden-md-down">
-    <p:commandLink id="#{cc.attrs.configButtonId}" styleClass="config-columns">
+    <p:commandLink id="#{cc.attrs.configButtonId}" styleClass="config-columns" global="false">
       <i class="si si-layers-grid-settings u-mar-right-5" />
       <span class="link-text">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" />
