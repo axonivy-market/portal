@@ -144,7 +144,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   }
 
   public Boolean getIsTopMenu() {
-    return isTopMenu == null ? false : isTopMenu;
+    return isTopMenu;
   }
 
   public void setIsTopMenu(Boolean isTopMenu) {
