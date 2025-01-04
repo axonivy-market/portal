@@ -29,6 +29,7 @@ public class WelcomeWidgetUtils {
   public static final String DEFAULT_LOCALE_TAG = "en";
   public static final String FOLDER_DELIMITER = "/";
   public static final String IMAGE_PREFIX = "image";
+  public static final String DARK_MODE = "_darkmode";
 
   public static boolean isObsoleteImageData(String imageLocation, String widgetId) {
     return imageLocation.startsWith(IMAGE_DIRECTORY.concat(FOLDER_DELIMITER).concat(widgetId));

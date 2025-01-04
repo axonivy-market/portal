@@ -549,6 +549,20 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         tempImageFile.delete();
       }
     }
+    if (StringUtils.isNotBlank(welcomeWidget.getImageLocationDarkMode())) {
+      ContentObjectValue tempImageFileDarkMode = getWelcomeWidgetImageDarkMode(true, welcomeWidget);
+      ContentObjectValue imageFileDarkMode = getWelcomeWidgetImageDarkMode(false, welcomeWidget);
+      if (imageFileDarkMode != null && tempImageFileDarkMode != null && tempImageFileDarkMode.parent().exists()) {
+        Optional<DashboardWidget> oldWidgetOptional = DashboardWidgetUtils.findWidget(selectedDashboard,
+            widget.getId());
+        if (oldWidgetOptional.isPresent()) {
+          WelcomeDashboardWidget oldWidget = (WelcomeDashboardWidget) oldWidgetOptional.get();
+          Optional.ofNullable(getWelcomeWidgetImage(false, oldWidget)).ifPresent(co -> co.delete());
+        }
+        imageFileDarkMode.write().bytes(tempImageFileDarkMode.read().bytes());
+        tempImageFileDarkMode.delete();
+      }
+    }
   }
 
   private void updateCaseWidget(DashboardWidget widget) {
@@ -1079,5 +1093,19 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     widget.getColumns().get(fieldPosition)
         .setWidth(Integer.toString(widthValue));
     widget.getColumns().forEach(col -> col.initDefaultStyle());
+  }
+  
+  private ContentObjectValue getWelcomeWidgetImageDarkMode(boolean isTempImage, WelcomeDashboardWidget widget) {
+    ContentObject contentObject = getWelcomeWidgetImageObjectDarkMode(isTempImage, widget);
+    if (contentObject != null) {
+      return contentObject.value().get("en");
+    }
+    return null;
+  }
+  
+  private ContentObject getWelcomeWidgetImageObjectDarkMode(boolean isTempImage, WelcomeDashboardWidget widget) {
+    String imageName = WelcomeWidgetUtils.getFileNameOfImage(widget.getImageLocationDarkMode());
+    imageName = isTempImage ? "temp_".concat(imageName) : imageName;
+    return WelcomeWidgetUtils.getImageContentObject(imageName, widget.getImageTypeDarkMode());
   }
 }

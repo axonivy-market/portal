@@ -31,6 +31,12 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   private WelcomeImageFit welcomeImageFit;
   private String imageInlineStyle;
   private String imageContent;
+  private String imageLocationDarkMode;
+  private String imageTypeDarkMode;
+  private String welcomeTextColorDarkMode;
+  private String imageContentDarkMode;
+  @JsonIgnore
+  private ContentObject imageContentObjectDarkMode;
 
   @JsonIgnore
   private String welcomeText;
@@ -190,5 +196,53 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   public void cancelUserFilter() {
     // TODO Auto-generated method stub
     
+  }
+
+  public static long getSerialversionuid() {
+    return serialVersionUID;
+  }
+
+  public String getImageLocationDarkMode() {
+    return imageLocationDarkMode;
+  }
+
+  public String getImageTypeDarkMode() {
+    return imageTypeDarkMode;
+  }
+
+  public String getWelcomeTextColorDarkMode() {
+    if (StringUtils.isNotBlank(welcomeTextColorDarkMode)
+        && !welcomeTextColorDarkMode.startsWith("#")) {
+      welcomeTextColorDarkMode = "#" + welcomeTextColorDarkMode;
+    }
+    return welcomeTextColorDarkMode;
+  }
+
+  public String getImageContentDarkMode() {
+    return imageContentDarkMode;
+  }
+
+  public ContentObject getImageContentObjectDarkMode() {
+    return imageContentObjectDarkMode;
+  }
+
+  public void setImageLocationDarkMode(String imageLocationDarkMode) {
+    this.imageLocationDarkMode = imageLocationDarkMode;
+  }
+
+  public void setImageTypeDarkMode(String imageTypeDarkMode) {
+    this.imageTypeDarkMode = imageTypeDarkMode;
+  }
+
+  public void setWelcomeTextColorDarkMode(String welcomeTextColorDarkMode) {
+    this.welcomeTextColorDarkMode = welcomeTextColorDarkMode;
+  }
+
+  public void setImageContentDarkMode(String imageContentDarkMode) {
+    this.imageContentDarkMode = imageContentDarkMode;
+  }
+
+  public void setImageContentObjectDarkMode(ContentObject imageContentObjectDarkMode) {
+    this.imageContentObjectDarkMode = imageContentObjectDarkMode;
   }
 }
