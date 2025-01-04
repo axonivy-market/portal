@@ -39,9 +39,14 @@ Below is a sample JSON definition of a welcome widget in the Portal dashboard
             "value":"Bienvenido"
          }
       ],
+      "imageLocation": "welcome_1_en.jpg",
+      "imageType": "jpg",
+      "imageLocationDarkMode": "welcome_1_en_darkmode.png",
+      "imageTypeDarkMode": "png",
       "welcomeTextPosition":"BOTTOM_LEFT",
       "welcomeTextSize":"NORMAL_TEXT",
-      "welcomeTextColor":"000000",
+      "welcomeTextColor":"#000000",
+      "welcomeTextColorDarkMode": "#fc0e0e",
       "greeting":false,
       "welcomeTextStyleClass":"custom-text",
       "imageStyleClass":"custom-image",
@@ -94,6 +99,8 @@ The basic JSON structure of a welcome widget
       ``HEADING_1``: Big header font size (5rem)
 
    ``welcomeTextColor``: color for the welcome text. You can input any value that accepted by the CSS attribute ``font-color``.
+   
+   ``welcomeTextColorDarkMode``: color for the welcome text in dark mode. You can input any value that accepted by the CSS attribute ``font-color``.
 
    ``greeting``: Defines if a greeting text is added to the welcome text:
 
@@ -121,6 +128,6 @@ You may upload a background image by configuring the widget directly in Portal.
 
 .. warning::
 
-   Portal is using these attributes internally: ``imageLocation``, ``imageType``, ``imageContent``.
+   Portal is using these attributes internally: ``imageLocation``, ``imageType``, ``imageContent``, ``imageLocationDarkMode``, ``imageTypeDarkMode``, ``imageContentDarkMode``.
 
    Please don't change them manually because it could cause errors for the widget.
