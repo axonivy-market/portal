@@ -53,6 +53,7 @@ public class DashboardWelcomeWidgetTest extends BaseTest {
     editPage.inputWelcomeTexts(welcomeTexts);
 
     editPage.uploadImage("test-welcome-widget-image.jpg");
+    editPage.uploadImageDarkMode("test-welcome-widget-image-dark-mode.png");
     editPage.save();
 
     WelcomeWidgetNewDashboardPage welcomePage = new WelcomeWidgetNewDashboardPage();

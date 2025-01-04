@@ -311,7 +311,7 @@ Portal has deprecated the legacy statistic chart widget and now offers a wide ra
 Welcome widget
 ==============
 
-You can define a welcome widget with a background image and a welcome text.
+You can define a welcome widget with background images for both light and dark mode and a welcome text.
 
 |welcome-widget-configuration|
 
