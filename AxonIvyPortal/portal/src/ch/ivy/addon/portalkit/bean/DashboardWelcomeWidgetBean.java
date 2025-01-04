@@ -52,6 +52,11 @@ public class DashboardWelcomeWidgetBean implements Serializable {
       widget.setWelcomeTextColor(DEFAULT_TEXT_COLOR);
     }
 
+    // get font color from light mode if not set
+    if (widget.getWelcomeTextColorDarkMode() == null) {
+      widget.setWelcomeTextColorDarkMode(widget.getWelcomeTextColor());
+    }
+
     if (widget.getWelcomeTextPosition() == null) {
       widget.setWelcomeTextPosition(WelcomeTextPosition.BOTTOM_LEFT);
     }
@@ -63,7 +68,15 @@ public class DashboardWelcomeWidgetBean implements Serializable {
           .findFirst().orElse(new DisplayName()).getValue());
     }
     widget.setImageContentObject(renderImage());
-    widget.setImageContentObjectDarkMode(renderImageDarkMode());
+    // get image from light mode if not set
+    if (StringUtils.isBlank(widget.getImageLocationDarkMode())) {
+      widget.setImageContentObjectDarkMode(widget.getImageContentObject());
+      widget.setImageContentDarkMode(widget.getImageContent());
+      widget.setImageLocationDarkMode(widget.getImageLocation());
+      widget.setImageTypeDarkMode(widget.getImageType());
+    } else {
+      widget.setImageContentObjectDarkMode(renderImageDarkMode());
+    }
     if (StringUtils.isNotBlank(widget.getId())) {
       String idWithoutSpecialChar = widget.getId().replaceAll(REGEX_REPLACE_SPECIAL_CHARACTER,"_");
       widget.setInternalId(idWithoutSpecialChar);

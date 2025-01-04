@@ -24,6 +24,12 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
     configDialog.find(".ui-fileupload-filename").shouldBe(Condition.disappear, DEFAULT_TIMEOUT)
         .shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
+  
+  public void uploadImageDarkMode(String fileName) {
+    var configDialog = $("#new-widget-configuration-dialog");
+    
+    configDialog.find("[id $= ':image-dark-mode-upload-panel_input']").sendKeys(getTestFilePath(fileName));
+  }
 
   private String getTestFilePath(String filename) {
     return FileHelper.getAbsolutePathToTestFile(filename);
