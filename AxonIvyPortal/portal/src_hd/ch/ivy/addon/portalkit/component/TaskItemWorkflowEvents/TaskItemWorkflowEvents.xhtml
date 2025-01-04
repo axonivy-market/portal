@@ -21,9 +21,10 @@
     <p:dataTable id="events-table" widgetVar="events-table" var="event" value="#{data.workflowEvents}"
       sortBy="#{taskBean.taskWorkflowEventSortByTimestamp}"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
+      scrollHeight="300"
       reflow="true" lazy="false" styleClass="ui-g-12">
 
-      <p:column width="250" sortBy="#{event.displayName}">
+      <p:column width="300" sortBy="#{event.displayName}">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/eventType')}" />
         </f:facet>
@@ -38,7 +39,7 @@
       </p:column>
 
       <c:set var="taskState" value="#{taskBean.getTranslatedState(event.taskBusinessState)}" />
-      <p:column width="80" sortBy="#{taskState}"
+      <p:column width="200" sortBy="#{taskState}"
         styleClass="note-history-fullname-column">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
@@ -48,7 +49,7 @@
         </h:panelGroup>
       </p:column>
 
-      <p:column width="150" sortBy="#{event.involvedUsername}">
+      <p:column width="200" sortBy="#{event.involvedUsername}">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}" />
         </f:facet>
@@ -56,7 +57,7 @@
           displayName="#{event.involvedUsername}" securityMember="#{event.involvedUser}" />
       </p:column>
 
-      <p:column width="100" sortBy="#{event.timestamp}" field="timestamp" filterable="false" styleClass="u-hidden-sm-down">
+      <p:column width="200" sortBy="#{event.timestamp}" field="timestamp" filterable="false" styleClass="u-hidden-sm-down">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />
         </f:facet>
