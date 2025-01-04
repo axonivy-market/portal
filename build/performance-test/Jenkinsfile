@@ -10,7 +10,7 @@ pipeline {
   }
 
   environment {
-    engineVersion = 'master'
+    engineVersion = '12'
     jmeterSourceDir = 'AxonIvyPortal/portal-selenium-test/jmeter'
     ivyDir = '/var/tools/ivy'
   }
@@ -25,7 +25,7 @@ pipeline {
             sh "docker compose -f ${ivyDir}/${engineName}/docker-compose.yml down"
           }
           sh """
-            docker compose -f ${ivyDir}/${engineNames[4]}/docker-compose.yml up -d
+            docker compose -f ${ivyDir}/${engineNames[5]}/docker-compose.yml up -d
             #Workaround because PMV Portal starts slow
             sleep 100
           """
@@ -34,7 +34,7 @@ pipeline {
             def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal']
             def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty('build.plugin.version')
             def utils = load 'build/common/utils.groovy'
-            def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':9000'
+            def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':9012'
             for (module in modules) {
               maven cmd: "clean install -f ${module}/pom.xml"
               maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING"
