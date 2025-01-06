@@ -49,7 +49,7 @@
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" width="#{dashboardModificationBean.hasExportDashboardPermission() ? '200' : '160'}"
         styleClass="u-text-align-center">
-        <p:commandButton id="edit" process="@this" icon="si si-graphic-tablet-drawing-pen"
+        <p:commandButton id="edit" process="@this" icon="si si-graphic-tablet-drawing-pen" global="false"
           styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5"
           actionListener="#{dashboardModificationBean.openDashboardDetailDialog(dashboard)}"
           update="#{cc.clientId}:configuration-dashboard-detail-component:dashboard-detail-form"

@@ -46,7 +46,7 @@
       </h:panelGroup>
 
       <p:commandButton id="add-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
-        icon="si si-add"
+        icon="si si-add" global="false"
         actionListener="#{dashboardDetailModificationBean.initSampleWidgets()}"
         update="new-widget-dialog"
         process="@this"

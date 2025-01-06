@@ -14,7 +14,7 @@
   <h:form id="role-management-form" styleClass="ui-g">
     <div class="ui-g-12 u-text-align-right u-padding-0 create-role-container">
       <p:commandButton id="create-role-button"
-        icon="si si-add"
+        icon="si si-add" global="false"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/CreateRole')}"
         actionListener="#{roleManagementBean.prepareAddingNewRole()}"
         oncomplete="PF('role-details-dialog').show()"

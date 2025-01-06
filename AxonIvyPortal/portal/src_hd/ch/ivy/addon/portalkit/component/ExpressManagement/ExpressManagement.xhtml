@@ -9,7 +9,7 @@
 <cc:implementation>
   <f:event listener="#{expressManagementBean.initWorkflowSummaryTable()}" type="preRenderComponent" />
   <h:form id="express-management-form" styleClass="ui-g">
-    <p:remoteCommand id="refresh-express-management-cmd" name="refreshExpressManagement"
+    <p:remoteCommand id="refresh-express-management-cmd" name="refreshExpressManagement" global="false"
       oncomplete="PF('express-workflow-summary-table').unselectAllRows();PF('export-express-btn').disable();"
       actionListener="#{expressManagementBean.initWorkflowSummaryTable()}"
       update="express-workflow-summary-table"
