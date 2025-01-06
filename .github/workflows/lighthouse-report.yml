@@ -91,9 +91,9 @@ jobs:
             "Showcase/portal-developer-examples"
             "Showcase/InternalSupport"
             "Showcase/portal-components-examples"
+            "AxonIvyPortal/AxonIvyExpress"
             "AxonIvyPortal/PortalApp"
             "Showcase/portal-demo-app"
-            "AxonIvyPortal/AxonIvyExpress"
           )
           for module in "${modules[@]}"; do
             mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
