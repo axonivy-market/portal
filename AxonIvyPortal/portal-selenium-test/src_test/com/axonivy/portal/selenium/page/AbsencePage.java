@@ -110,6 +110,7 @@ public class AbsencePage extends TemplatePage {
     }
   }
 
+  @Override
   public void waitForElementValueChanged(String cssSelector, String expectedValue) {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
         .until(ExpectedConditions.textToBe(By.cssSelector(cssSelector), expectedValue));

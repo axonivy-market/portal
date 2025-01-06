@@ -343,7 +343,7 @@ public class ProcessWidgetPage extends TemplatePage {
   public void deleteGridProcess(int index) {
     waitForElementClickableThenClick($(String.format(
         "[id$=':%d:grid-processes:0:process-grid-item:process-item:grid-process-action-component:delete-process']",
-        index)));;
+        index)));
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), true);
     waitForElementClickableThenClick("[id$='delete-process-workflow-form:remove-process-command']");
     waitForElementDisplayed(By.cssSelector("[id$='process-widget:remove-process-workflow-dialog']"), false);
@@ -352,7 +352,7 @@ public class ProcessWidgetPage extends TemplatePage {
   public void clickMoreInformationLinkImage(String processName) {
     getProcessActionMenu(processName)
     .$("ul[class*='ui-helper-reset']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-    .$$("li > a > span").filter(Condition.exactText("More Information")).first().click();;
+    .$$("li > a > span").filter(Condition.exactText("More Information")).first().click();
   }
 
   public void clickMoreInformationLink(String processName) {
