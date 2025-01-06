@@ -1,5 +1,5 @@
-name: Lighthouse Audit
-run-name: Create Lighthouse Audit
+name: Lighthouse Audit LTS 10
+run-name: Create Lighthouse Audit For LTS 10
 on:
   pull_request:
     branches:
