@@ -50,7 +50,7 @@
           <p:commandLink id="theme-switcher" disabled="#{!themeBean.enableSwitchThemeButton}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/ThemeSwitcher')}"
             onclick="PrimeFaces.FreyaConfigurator.changeLayout('ivy', '#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');Portal.changePortalVariableTheme('#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');">
             <i class="topbar-icon pi pi-#{ivyFreyaTheme.mode == 'light' ? 'moon' : 'sun'}" />
-            <p:ajax onstart="PrimeFaces.FreyaConfigurator.beforeResourceChange();" oncomplete="reloadIframes();"
+            <p:ajax onstart="PrimeFaces.FreyaConfigurator.beforeResourceChange();" oncomplete="reloadIframesInsidePortalAIChat();"
               listener="#{themeBean.toggleTheme()}" update="theme-switcher #{p:resolveFirstComponentWithId('content-container:iFrame', view).clientId}" />
           </p:commandLink>
         </li>
