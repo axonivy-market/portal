@@ -86,12 +86,12 @@ jobs:
           modules=(
             "AxonIvyPortal/portal-components"
             "AxonIvyPortal/portal"
+            "AxonIvyPortal/AxonIvyExpress"
             "AxonIvyPortal/PortalKitTestHelper"
             "Showcase/portal-user-examples"
             "Showcase/portal-developer-examples"
             "Showcase/InternalSupport"
             "Showcase/portal-components-examples"
-            "AxonIvyPortal/AxonIvyExpress"
             "AxonIvyPortal/PortalApp"
             "Showcase/portal-demo-app"
           )
