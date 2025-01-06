@@ -54,7 +54,7 @@
                         value="#{data.absenceInThePastShown}"
                         styleClass="show-absence-in-the-past-panel"
                         itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/showAbsencesInThePast')}">
-                        <p:ajax event="change"
+                        <p:ajax event="change" global="false"
                           listener="#{logic.findAbsencesAndSubstitutes()}"
                           update="@(.absence-table)"
                           partialSubmit="true" />

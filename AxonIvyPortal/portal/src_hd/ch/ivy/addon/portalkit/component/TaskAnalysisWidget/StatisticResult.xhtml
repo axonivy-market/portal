@@ -13,12 +13,12 @@
           <p:fileDownload value="#{logic.getExportedFile(taskAnalysisWidgetBean.getColumns())}" />
         </p:commandLink>
         <p:spacer width="20px" ></p:spacer>
-        <p:commandLink id="toggler">
+        <p:commandLink id="toggler" global="false">
           <i class="si si-layers-grid-settings u-mar-right-5" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" />
         </p:commandLink>
         <p:columnToggler id="task-table-toggler" datasource="task-table" trigger="toggler">
-          <p:ajax event="toggle" listener="#{taskAnalysisWidgetBean.onToggleColumns}" oncomplete="initializeScrollbar();" />
+          <p:ajax event="toggle" listener="#{taskAnalysisWidgetBean.onToggleColumns}" oncomplete="initializeScrollbar();"/>
         </p:columnToggler>
       </h:panelGroup>
       <p:dataTable id="task-table" widgetVar="task-table" var="task" value="#{data.dataModel}" rowKey="#{task.getId()}" sortMode="single" lazy="true" scrollable="true"
