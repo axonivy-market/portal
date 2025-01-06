@@ -113,13 +113,13 @@
                           <p:commandLink id="edit-absence" styleClass="absences-table-action-column-icon-button"
                             actionListener="#{logic.editAbsence(absence)}"
                             oncomplete="PF('absence-dialog').show()"
-                            update="@widgetVar(absence-dialog)"
+                            update="@widgetVar(absence-dialog)" global="false"
                             title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
                             rendered="#{absenceManagementBean.isAbsenceEditable(absence) }">
                             <span class="si si-graphic-tablet-drawing-pen" />
                           </p:commandLink>
                           <p:commandLink id="delete-absence"
-                            actionListener="#{logic.preDelete(absence)}"
+                            actionListener="#{logic.preDelete(absence)}" global="false"
                             oncomplete="PF('deleteAbsenceConfirmation').show();"
                             styleClass="absences-table-action-column-icon-button"
                             rendered="#{absenceManagementBean.isAbsenceDeletable(absence)}"
