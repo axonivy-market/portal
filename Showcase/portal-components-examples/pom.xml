@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-components-examples</artifactId>
-  <version>12.0.2-SNAPSHOT</version>
+  <version>12.0.3-SNAPSHOT</version>
   <packaging>iar</packaging>
   <distributionManagement>
     <repository>
@@ -24,7 +24,7 @@
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal-components</artifactId>
-      <version>12.0.2-SNAPSHOT</version>
+      <version>12.0.3-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
   </dependencies>
