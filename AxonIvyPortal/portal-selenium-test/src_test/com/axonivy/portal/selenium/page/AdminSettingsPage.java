@@ -23,6 +23,7 @@ public class AdminSettingsPage extends TemplatePage {
     return "[id='" + PORTAL_MANAGEMENT_PAGE_ID + "']";
   }
 
+  @Override
   public boolean isDisplayed() {
     return $(By.id(PORTAL_MANAGEMENT_PAGE_ID)).isDisplayed();
   }

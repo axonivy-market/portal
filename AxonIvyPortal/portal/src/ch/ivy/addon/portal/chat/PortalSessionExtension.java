@@ -4,24 +4,25 @@ import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getChatService;
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
 
 import ch.ivyteam.di.restricted.DiCore;
 import ch.ivyteam.ivy.application.loader.ClassLoaderService;
 import ch.ivyteam.ivy.persistence.IPersistentTransaction;
 import ch.ivyteam.ivy.persistence.PersistencyException;
+import ch.ivyteam.ivy.request.async.IvyAsyncExecutor;
 import ch.ivyteam.ivy.security.ISecurityManager;
 import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.ISessionExtension;
 import ch.ivyteam.log.Logger;
-import ch.ivyteam.util.threadcontext.IvyAsyncRunner;
 
 @SuppressWarnings("restriction")
 public final class PortalSessionExtension implements ISessionExtension {
   private static PortalSessionExtension instance;
-  private IvyAsyncRunner asyncRunner;
+  private IvyAsyncExecutor asyncExecutor;
 
   private PortalSessionExtension() {
-    asyncRunner = new IvyAsyncRunner();
+    asyncExecutor = IvyAsyncExecutor.create();
   }
 
   public static PortalSessionExtension getInstance() {
@@ -101,8 +102,8 @@ public final class PortalSessionExtension implements ISessionExtension {
         .noneMatch(s -> s.getSessionUserName().equals(username) && !s.equals(session));
   }
 
-  private <T> T executeWithIvyContext(Callable<T> callable) throws Exception {
-    return asyncRunner.run(callable);
+  private <T> CompletableFuture<T> executeWithIvyContext(Callable<T> callable) throws Exception {
+    return asyncExecutor.call(callable);
   }
 
   private ChatService chatService() {

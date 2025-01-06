@@ -225,7 +225,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
         .click();
   }
 
-  public void clickOnCustomActionButton(int rowIndex, String columnName) {
+  public void clickOnCustomActionButton() {
     SelenideElement custom = $("a[id$=':custom-description']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     custom.shouldBe(getClickableCondition()).click();
   }

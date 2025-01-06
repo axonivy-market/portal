@@ -78,7 +78,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     if (StringUtils.isNotBlank(widget.getImageLocationDarkMode())) {
       imageCMSObjectDarkMode = getWelcomeWidgetImageContentObjectDarkMode(false);
     } else {
-      imageCMSObjectDarkMode = getWelcomeWidgetImageContentObject(false);;
+      imageCMSObjectDarkMode = getWelcomeWidgetImageContentObject(false);
     }
   }
 
@@ -110,7 +110,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       }
       // If image is not saved, create location
       String extension = FilenameUtils.getExtension(file.getFileName());
-      String fileName = getWidget().getId().concat(DARK_MODE).concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
+      String fileName = getWidget().getId().concat(WelcomeWidgetUtils.DARK_MODE).concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
       getWidget().setImageLocationDarkMode(fileName);
       getWidget().setImageTypeDarkMode(extension);
 
