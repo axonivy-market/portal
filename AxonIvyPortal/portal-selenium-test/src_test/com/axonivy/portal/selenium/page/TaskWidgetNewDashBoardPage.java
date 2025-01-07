@@ -288,6 +288,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void clickOnTaskActionLink(int taskIndex) {
     getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id$=':side-steps-panel'] div.task-additional-actions-panel").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void reserveTask(int taskIndex) {
