@@ -332,7 +332,7 @@ public class DashboardUtils {
             portalPublicDashboardWrapper);
       }
     }
-    return portalPublicDashboardWrapper.dashboards();
+    return initializeDefaultValue(portalPublicDashboardWrapper.dashboards());
   }
 
   public static List<Dashboard> getPrivateDashboards() {
@@ -364,7 +364,7 @@ public class DashboardUtils {
             portalPrivateDashboardWrapper);
       }
     }
-    return portalPrivateDashboardWrapper.dashboards();
+    return initializeDefaultValue(portalPrivateDashboardWrapper.dashboards());
   }
 
   public static List<Dashboard> collectDashboards() {
@@ -404,7 +404,7 @@ public class DashboardUtils {
             portalDashboardItemWrapper);
       }
     }
-    return portalDashboardItemWrapper.dashboards;
+    return initializeDefaultValue(portalDashboardItemWrapper.dashboards);
   }
 
   public static void updateDashboardCache() {
@@ -425,6 +425,15 @@ public class DashboardUtils {
 
   private static IWorkflowSession session() {
     return Ivy.session();
+  }
+
+  private static List<Dashboard> initializeDefaultValue(List<Dashboard> dashboards) {
+    dashboards.forEach(dashboard -> {
+      if (dashboard.getIsTopMenu() == null) {
+        dashboard.setIsTopMenu(false);
+      }
+    });
+    return dashboards;
   }
 
   private record PortalPrivateDashboardWrapper(List<Dashboard> dashboards) {
