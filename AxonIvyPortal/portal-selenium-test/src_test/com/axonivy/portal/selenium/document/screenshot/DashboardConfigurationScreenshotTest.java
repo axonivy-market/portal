@@ -50,7 +50,7 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
     dashboardConfigurationPage.cancelMultiLanguageDialog();
     dashboardConfigurationPage.cancelCreateDashboard();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPageWithActionsMenu(),
-        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "edit-private-dashboards", new ScreenshotMargin(10));
+        ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "edit-private-dashboards", new ScreenshotMargin(50));
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "reorder-your-dashboards", new ScreenshotMargin(10));
     dashboardConfigurationPage.selectPublicDashboardType();
@@ -66,10 +66,10 @@ public class DashboardConfigurationScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardConfigurationPage(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "reorder-public-dashboards", new ScreenshotMargin(10));
     dashboardConfigurationPage.openCreatePublicDashboardMenu();
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
     ScreenshotUtils.captureElementScreenshot(dashboardConfigurationPage.getDashboardTemplates(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "dashboard-templates");
     // screenshot highlight for accessibility template
-    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
     ScreenshotUtils.executeDecorateJs("createBlackMediumOutline($($('.dashboard-action-container')[4]));");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(dashboardConfigurationPage.getDashboardTemplates(),
             ScreenshotUtils.ACCESSIBILITY_DASHBOARD_FOLDER + "accessibility-dashboard-creation", new ScreenshotMargin(10));
