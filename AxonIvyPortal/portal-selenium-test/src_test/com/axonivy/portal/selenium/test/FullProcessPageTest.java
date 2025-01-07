@@ -56,7 +56,7 @@ public class FullProcessPageTest extends BaseTest {
     MainMenuPage mainMenuPage = newDashboardPage.openMainMenu();
     processWidgetPage = mainMenuPage.selectProcessesMenu();
     createPublicExternalTestProcess(AAGOOGLE_LINK, AAGOOGLE_LINK, TestRole.TESTER_ROLE);
-
+    refreshPage();
     processWidgetPage.selectViewMode(ProcessWidgetPage.GRID_MODE);
     processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
@@ -69,6 +69,7 @@ public class FullProcessPageTest extends BaseTest {
     processWidgetPage.changeProcessIcon();
     processWidgetPage.addNewRolePermission(TestRole.HR_ROLE);
     processWidgetPage.saveEditProcessDialog();
+    refreshPage();
     processWidgetPage.selectViewMode(ProcessWidgetPage.GRID_MODE);
     processWidgetPage.waitForGridProcessListDisplayed();
     processWidgetPage.enterSearchKeyword("link");
