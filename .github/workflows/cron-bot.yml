@@ -8,10 +8,13 @@ on:
 jobs:
   trigger-portal-document-master:
     runs-on: ubuntu-latest
-    if: github.event.schedule == '0 0 * * *'
+    strategy:
+      matrix:
+        sourceBranch: ['master', 'release/12.0']
     steps:
-      - name: Trigger build Portal Documentation for master
-        uses: actions/github-script@v6
+      - uses: actions/github-script@v6
+        name: Trigger build Portal Documentation for ${{ matrix.sourceBranch }}
+        if: github.event.schedule == '0 0 * * *'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -19,21 +22,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'portal-documentation.yml',
-              ref: 'master'
-            })
-
-  trigger-portal-document-10:
-    runs-on: ubuntu-latest
-    if: github.event.schedule == '0 0 * * *'
-    steps:
-      - name: Trigger build Portal Documentation for release/12.0
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'portal-documentation.yml',
-              ref: 'release/12.0'
+              ref: '${{ matrix.sourceBranch }}'
             })
