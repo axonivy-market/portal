@@ -47,7 +47,7 @@
             isWorkingOnATask="#{isWorkingOnATask}" case="#{case}" task="#{task}" />
         </li>
         <li class="topbar-item themeswitch-item">
-          <p:commandLink id="theme-switcher" disabled="#{!themeBean.enableSwitchThemeButton}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/ThemeSwitcher')}"
+          <p:commandLink id="theme-switcher" disabled="#{!themeBean.enableSwitchThemeButton}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/ThemeSwitcher')}" global="false"
             onclick="PrimeFaces.FreyaConfigurator.changeLayout('ivy', '#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');Portal.changePortalVariableTheme('#{ivyFreyaTheme.mode == 'light' ? 'dark' : 'light'}');">
             <i class="topbar-icon pi pi-#{ivyFreyaTheme.mode == 'light' ? 'moon' : 'sun'}" />
             <p:ajax onstart="PrimeFaces.FreyaConfigurator.beforeResourceChange();" oncomplete="reloadIframes();"
