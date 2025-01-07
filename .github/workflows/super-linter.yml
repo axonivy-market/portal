@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - feature/IVYPORTAL-16678-SPIKE-Setup-Linter
-  pull_request:
-    branches:
-      - 'null'
 
 jobs:
   lint:
