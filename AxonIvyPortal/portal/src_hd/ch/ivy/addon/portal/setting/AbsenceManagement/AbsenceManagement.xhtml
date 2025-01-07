@@ -270,7 +270,7 @@
         <ui:include src="Absence.xhtml" />
       </c:if>
 
-      <p:dialog id="choose-deputy-dialog" styleClass="choose-deputy-dialog w-3"
+      <p:dialog id="choose-deputy-dialog" styleClass="choose-deputy-dialog w-3" dynamic="true"
         header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectDeputies')}" widgetVar="choose-deputy-dialog"
         modal="true" appendTo="@(body)" resizable="false" responsive="true">
         <p:ajax event="close" listener="#{logic.closeDialog}" global="false" immediate="true" />
