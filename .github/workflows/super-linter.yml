@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - feature/IVYPORTAL-16678-SPIKE-Setup-Linter
+  pull_request:
+    branches:
+      - master
 
 jobs:
   lint:
@@ -42,6 +45,9 @@ jobs:
           # Configure file discovery
           FILTER_REGEX_INCLUDE: .*portal/src/.*\.java
           JAVA_SOURCE_PATH: portal/src/
+          # Add linter configurations
+          JAVA_FILE_NAME: checkstyle.xml
+          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
           # Add debug mode for troubleshooting
           LOG_LEVEL: DEBUG
           LOG_FILE: true
@@ -73,18 +79,6 @@ jobs:
           path: /tmp/lint-results/
           retention-days: 1
 
-  summary:
-    name: Generate Summary
-    needs: lint
-    runs-on: ubuntu-latest
-    if: always()
-    steps:
-      - name: Download Linter Report
-        uses: actions/download-artifact@v4
-        with:
-          name: linter-report
-          path: ./linter-report
-          
       - name: Generate Summary
         run: |
           echo "### Linter Summary" > $GITHUB_STEP_SUMMARY
