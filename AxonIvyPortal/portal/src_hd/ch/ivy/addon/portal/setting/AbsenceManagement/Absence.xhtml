@@ -82,15 +82,15 @@
       </h:panelGroup>
 
       <div class="u-text-align-right ui-g-12">
-        <p:commandLink id="close-edit-absence-dialog" actionListener="#{logic.cancel}" rendered="#{!data.isCreateMode}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          oncomplete="PF('absence-dialog').hide();" styleClass="u-mar-right-15" />
-
         <p:commandButton process="@form" id="save-absence" disabled="#{data.validationError}"
           styleClass="w-full"
           oncomplete="if (args &amp;&amp; !args.validationFailed)PF('absence-dialog').hide();"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.saveAbsence}"
           update="@(.absence-table) absence-messages @(.substitute-table) @(.substitution-table)" />
+
+        <p:commandLink id="close-edit-absence-dialog" actionListener="#{logic.cancel}" rendered="#{!data.isCreateMode}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          oncomplete="PF('absence-dialog').hide();" styleClass="mt-3 flex flex-direction-column justify-content-center" />
       </div>
     </h:form>
   </p:dialog>
