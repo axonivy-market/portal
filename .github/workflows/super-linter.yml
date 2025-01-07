@@ -34,7 +34,7 @@ jobs:
         env:
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_ALL_CODEBASE: true
           # Enable specific linters
           VALIDATE_JAVA: true
           VALIDATE_JAVASCRIPT_ES: true  # Changed from VALIDATE_JAVASCRIPT
@@ -66,7 +66,7 @@ jobs:
             cp /tmp/lint-results/super-linter.log /tmp/lint-results/linter.log
           else
             echo "No super-linter.log found, checking alternative locations..."
-            find /tmp/lint-results -name "super-linter.log" -type f -exec cp {} /tmp/lint-results/linter.log \;
+            find /tmp -name "super-linter.log" -type f -exec cp {} /tmp/lint-results/linter.log \;
             if [ ! -f "/tmp/lint-results/linter.log" ]; then
               echo "No linting issues found" > /tmp/lint-results/linter.log
             fi
