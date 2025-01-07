@@ -1,5 +1,5 @@
 name: Cron bot
-run-name: 🤖 Cron walking 
+run-name: 🤖 Cron bot walking 
 on:
   schedule:
     # Cron at midnight UTC
