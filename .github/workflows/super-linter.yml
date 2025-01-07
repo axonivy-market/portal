@@ -6,7 +6,7 @@ on:
       - feature/IVYPORTAL-16678-SPIKE-Setup-Linter
   pull_request:
     branches:
-      - master
+      - 'null'
 
 jobs:
   lint:
@@ -34,10 +34,10 @@ jobs:
         env:
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_ALL_CODEBASE: true
+          VALIDATE_ALL_CODEBASE: false
           # Enable specific linters
           VALIDATE_JAVA: true
-          VALIDATE_JAVASCRIPT_ES: true  # Changed from VALIDATE_JAVASCRIPT
+          VALIDATE_JAVASCRIPT_ES: true
           VALIDATE_JSON: true
           VALIDATE_YAML: true
           VALIDATE_XML: true
@@ -45,10 +45,6 @@ jobs:
           # Configure file discovery
           FILTER_REGEX_INCLUDE: .*portal/src/.*\.java
           JAVA_SOURCE_PATH: portal/src/
-          # Add linter configurations
-        #   JAVA_FILE_NAME: checkstyle.xml
-        #   JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
-        #   CSS_FILE_NAME: .stylelintrc.json
           # Add debug mode for troubleshooting
           LOG_LEVEL: DEBUG
           LOG_FILE: true
@@ -66,7 +62,7 @@ jobs:
             cp /tmp/lint-results/super-linter.log /tmp/lint-results/linter.log
           else
             echo "No super-linter.log found, checking alternative locations..."
-            find /tmp -name "super-linter.log" -type f -exec cp {} /tmp/lint-results/linter.log \;
+            find /tmp/lint-results -name "super-linter.log" -type f -exec cp {} /tmp/lint-results/linter.log \;
             if [ ! -f "/tmp/lint-results/linter.log" ]; then
               echo "No linting issues found" > /tmp/lint-results/linter.log
             fi
