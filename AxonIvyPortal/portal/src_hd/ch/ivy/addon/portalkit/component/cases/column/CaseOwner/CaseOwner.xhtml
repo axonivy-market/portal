@@ -15,10 +15,10 @@
   <c:set var="case" value="#{cc.attrs.case}" />
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
 
-  <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="#{cc.attrs.componentId}"
-    styleClass="#{cc.attrs.styleClass}" securityMember="#{case.getOwner()}"
-    securityMemberContainerStyleClass="case-header-creator-cell #{cc.attrs.responsiveStyleClass}"
-    securityMemberName="#{case.getOwnerName()}" rendered="#{dataModel.isSelectedColumn('OWNER')}"
-    alwaysShowAsText="true" />
+  <h:panelGroup rendered="#{dataModel.isSelectedColumn('OWNER')}">
+  <h:outputText id="#{cc.attrs.componentId}" styleClass="case-header-creator-cell #{cc.attrs.responsiveStyleClass}" 
+    title="#{securityMemberDisplayNameBean.getFullCaseOwnersDisplay(case)}"
+    value="#{empty case.owners().all() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : securityMemberDisplayNameBean.getShortCaseOwnersDisplay(case)}" />
+  </h:panelGroup>
 </cc:implementation>
 </html>
