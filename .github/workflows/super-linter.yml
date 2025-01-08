@@ -42,57 +42,62 @@ jobs:
           VALIDATE_YAML: true
           VALIDATE_XML: true
           VALIDATE_CSS: true
-          # Add linter configurations
-          JAVA_FILE_NAME: checkstyle.xml
-          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.json
-          # Debug and output settings
-          LOG_LEVEL: DEBUG
+          # Debug settings
+          LOG_LEVEL: VERBOSE  # Changed to VERBOSE for more details
           LOG_FILE: true
           REPORT_OUTPUT: true
           CREATE_LOG_FILE: true
-          OUTPUT_FOLDER: /tmp/lint-results
+          OUTPUT_FOLDER: /github/workspace/super-linter-reports  # Changed output location
           OUTPUT_DETAILS: detailed
           OUTPUT_FORMAT: text
+
+      - name: Debug Linter Output
+        if: always()
+        run: |
+          echo "=== Checking for linter output files ==="
+          find /github/workspace -name "*lint*.log" -o -name "super-linter.log" || true
+          find /tmp -name "*lint*.log" -o -name "super-linter.log" 2>/dev/null || true
+          
+          echo "=== Contents of workspace ==="
+          ls -la /github/workspace || true
+          
+          echo "=== Contents of super-linter-reports ==="
+          ls -la /github/workspace/super-linter-reports || true
 
       - name: Process Linter Results
         if: always()
         run: |
-          # Create results directory
           mkdir -p /tmp/lint-results
           
-          # Initialize summary file
+          # Try to find linter logs in multiple locations
+          for location in "/github/workspace/super-linter-reports" "/tmp" "/github/workspace"; do
+            echo "Searching in $location"
+            if [ -d "$location" ]; then
+              find "$location" -type f -name "*lint*.log" -o -name "super-linter.log" 2>/dev/null | while read -r file; do
+                echo "Found log file: $file"
+                cat "$file" > /tmp/lint-results/linter.log
+              done
+            fi
+          done
+          
+          # Create summary even if no logs found
           echo "### Super-Linter Results" > /tmp/lint-results/summary.md
           echo "" >> /tmp/lint-results/summary.md
           echo "| Language | Status | Details |" >> /tmp/lint-results/summary.md
           echo "|----------|--------|----------|" >> /tmp/lint-results/summary.md
           
-          # First try direct file
-          if [ -f "/tmp/lint-results/super-linter.log" ]; then
-            LOG_FILE="/tmp/lint-results/super-linter.log"
-          else
-            # Try to find in specific directories with proper permissions
-            LOG_FILE=$(find /tmp/lint-results /github/workspace -name "super-linter.log" 2>/dev/null | head -1)
-          fi
-          
-          if [ -n "$LOG_FILE" ]; then
-            echo "Found log file: $LOG_FILE"
-            # Process the log file
+          if [ -f "/tmp/lint-results/linter.log" ]; then
             while IFS= read -r line; do
-              if echo "$line" | grep -q ".*Linter:.*status:.*"; then
-                LINTER=$(echo "$line" | sed -n 's/.*Linter:\([^,]*\).*/\1/p')
-                STATUS=$(echo "$line" | sed -n 's/.*status:\([^,]*\).*/\1/p')
-                DETAILS=$(echo "$line" | sed -n 's/.*errors:\([^|]*\).*/\1/p' || echo "No details")
-                echo "| $LINTER | $STATUS | $DETAILS |" >> /tmp/lint-results/summary.md
+              if echo "$line" | grep -q ".*[Ll]inter:.*status:.*"; then
+                echo "Processing line: $line"
+                LINTER=$(echo "$line" | grep -o "[Ll]inter:[^ ]*" | cut -d: -f2)
+                STATUS=$(echo "$line" | grep -o "status:[^ ]*" | cut -d: -f2)
+                echo "| $LINTER | $STATUS | - |" >> /tmp/lint-results/summary.md
               fi
-              echo "$line" >> /tmp/lint-results/linter.log
-            done < "$LOG_FILE"
+            done < "/tmp/lint-results/linter.log"
           else
-            echo "No linter log file found"
-            echo "| No linting results found | - | - |" >> /tmp/lint-results/summary.md
+            echo "| No logs found | - | Check debug output |" >> /tmp/lint-results/summary.md
           fi
-          
-          # Ensure we have a linter.log file even if empty
-          touch /tmp/lint-results/linter.log
 
       - name: Upload Linter Report
         if: always()
