@@ -27,7 +27,7 @@
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
-          <p:commandLink id="add-note-command" styleClass="task-details-document-add-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}"
+          <p:commandLink id="add-note-command" styleClass="task-details-document-add-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}" global="false"
             oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()" actionListener="#{data.setTask(task)}">
             <span class="si si-notes-add" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
