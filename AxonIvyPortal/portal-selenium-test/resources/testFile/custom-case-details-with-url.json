@@ -66,12 +66,12 @@
         "type": "information",
         "id": "information",
         "layout": {
-          "w": 6, "h": 8, "x": 0, "y": 0
+          "w": 6, "h": 6, "x": 0, "y": 0
         }
       }, {
         "type": "custom",
         "layout": {
-          "x": 6, "y": 0, "w": 6, "h": 8
+          "x": 6, "y": 0, "w": 6, "h": 4
         },
         "data": {
           "url": "https://www.example.com"

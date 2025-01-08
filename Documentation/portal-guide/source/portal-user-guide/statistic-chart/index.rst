@@ -117,8 +117,8 @@ Available Standard Charts
    :alt: Number of tasks expire today 
 .. |new-cases-chart| image:: ../../screenshots/statistic/new-cases-chart.png
    :alt: Number of new cases chart
-.. |open-tasks-chart| image:: ../../screenshots/statistic/running-cases-chart.png
-   :alt: Number of running cases chart
+.. |open-tasks-chart| image:: ../../screenshots/statistic/open-tasks-chart.png
+   :alt: Number of opening tasks chart
 .. |tasks-expire-end-week-chart| image:: ../../screenshots/statistic/tasks-expire-end-week-chart.png
    :alt: Number of tasks expire this week chart
 .. |top-prior-chart| image:: ../../screenshots/statistic/top-prior-chart.png

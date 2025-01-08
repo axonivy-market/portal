@@ -153,7 +153,8 @@ function highlightUserMenuConfiguration() {
 }
 
 function highlightCaseMenuItem() {
-  createRedThickOutlineWithOffset($('.layout-menu .CASE'));
+  var caseItem = $('ul.layout-menu > li').eq(3);
+  createRedThickOutlineWithOffset(caseItem);
 }
 
 function highlightShowMoreNoteLink() {
@@ -246,6 +247,11 @@ function highlightTaskActionItem(taskIndex, actionIndex) {
   var actionItemId = '.option-item:eq(' + actionIndex + ')';
   var actionItem = $("[id$='" + taskActionPanelId + "']").find(actionItemId);
   createRedMediumOutline(actionItem);
+}
+
+function highlightTaskAdditionalActionItem(index) {
+  var taskActionItem = $("div[id$=':side-steps-panel'] div.task-additional-actions-panel > a").eq(index);
+  createRedMediumOutline(taskActionItem);
 }
 
 function highlightCaseExportToExcelButton() {
