@@ -16,6 +16,7 @@
           actionListener="#{dashboardDetailModificationBean.onDashboardChange(dashboardStatus.index)}"
           update="grid-stack dashboard-title-container" process="@this"
           oncomplete="loadGrid();dashboardToolKit.responsive();"
+          disabled="#{isSelectedItem}"
           styleClass="dashboard__title #{isSelectedItem ? 'dashboard__title--active':''}">
           <h:outputText styleClass="#{dashboard.getIconClass()}" />
           <span>#{dashboard.title}</span>
