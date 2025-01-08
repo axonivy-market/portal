@@ -97,6 +97,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.clickOnTaskActionLink(0);
+    assertTrue(taskWidget.isTaskAdditionActionDisplay("External solvency service"));
     ScreenshotUtils.executeDecorateJs("highlightTaskAdditionalActionItem(0)");
     ScreenshotUtils.captureHalfTopPageScreenShot(ScreenshotUtils.DEMO_FOLDER + "lending-casemap-external-solvency-service");
     taskWidget.clickOnSideStepAction(0, 0);
