@@ -57,25 +57,42 @@ jobs:
       - name: Process Linter Results
         if: always()
         run: |
+          # Create results directory
           mkdir -p /tmp/lint-results
+          
+          # Initialize summary file
           echo "### Super-Linter Results" > /tmp/lint-results/summary.md
           echo "" >> /tmp/lint-results/summary.md
           echo "| Language | Status | Details |" >> /tmp/lint-results/summary.md
           echo "|----------|--------|----------|" >> /tmp/lint-results/summary.md
           
-          # Find and process all lint files
-          for log in $(find /tmp -name "*lint.log" -o -name "super-linter.log"); do
-            echo "Processing log file: $log"
+          # First try direct file
+          if [ -f "/tmp/lint-results/super-linter.log" ]; then
+            LOG_FILE="/tmp/lint-results/super-linter.log"
+          else
+            # Try to find in specific directories with proper permissions
+            LOG_FILE=$(find /tmp/lint-results /github/workspace -name "super-linter.log" 2>/dev/null | head -1)
+          fi
+          
+          if [ -n "$LOG_FILE" ]; then
+            echo "Found log file: $LOG_FILE"
+            # Process the log file
             while IFS= read -r line; do
-              if [[ $line == *"LINTER:"* && $line == *"STATUS:"* ]]; then
-                LINTER=$(echo "$line" | grep -o "LINTER:[^ ]*" | cut -d: -f2)
-                STATUS=$(echo "$line" | grep -o "STATUS:[^ ]*" | cut -d: -f2)
-                DETAILS=$(echo "$line" | grep -o "ERRORS:[^|]*" || echo "No details")
+              if echo "$line" | grep -q ".*Linter:.*status:.*"; then
+                LINTER=$(echo "$line" | sed -n 's/.*Linter:\([^,]*\).*/\1/p')
+                STATUS=$(echo "$line" | sed -n 's/.*status:\([^,]*\).*/\1/p')
+                DETAILS=$(echo "$line" | sed -n 's/.*errors:\([^|]*\).*/\1/p' || echo "No details")
                 echo "| $LINTER | $STATUS | $DETAILS |" >> /tmp/lint-results/summary.md
               fi
               echo "$line" >> /tmp/lint-results/linter.log
-            done < "$log"
-          done
+            done < "$LOG_FILE"
+          else
+            echo "No linter log file found"
+            echo "| No linting results found | - | - |" >> /tmp/lint-results/summary.md
+          fi
+          
+          # Ensure we have a linter.log file even if empty
+          touch /tmp/lint-results/linter.log
 
       - name: Upload Linter Report
         if: always()
@@ -93,6 +110,7 @@ jobs:
           if [ -f "/tmp/lint-results/summary.md" ]; then
             cat /tmp/lint-results/summary.md > $GITHUB_STEP_SUMMARY
             if [ -f "/tmp/lint-results/linter.log" ]; then
+              echo "" >> $GITHUB_STEP_SUMMARY
               echo "### Detailed Errors" >> $GITHUB_STEP_SUMMARY
               echo '```' >> $GITHUB_STEP_SUMMARY
               grep -E "ERROR:|WARNING:" /tmp/lint-results/linter.log >> $GITHUB_STEP_SUMMARY || true
