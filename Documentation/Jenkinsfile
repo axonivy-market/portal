@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    label 'linux'
+    label 'loc-pc'
   }
 
   options {
@@ -27,6 +27,8 @@ pipeline {
             }
             sh "unzip /mnt/portal02/document-screenshots/portal-document-screenshots-${version}.zip -d Documentation/portal-guide/source/screenshots"
             docker.image('maven:3.6.3-openjdk-17-slim').inside {
+              sh "java --version"
+              maven cmd: '--version'
               maven cmd: 'clean process-resources -Divy.engine.version=[10.0.1,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-10.0/axonivy-engine.zip -f Documentation/public-api/pom.xml'
               maven cmd: 'clean generate-resources -f Documentation/pom.xml'
             }
