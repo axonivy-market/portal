@@ -3,7 +3,7 @@ run-name: 🤖 Cron bot walking
 on:
   schedule:
     # Cron at midnight UTC
-    - cron: '0 0 * * *'
+    - cron: '0 17 * * *'
 
 jobs:
   trigger-portal-document-master:
