@@ -17,7 +17,7 @@
   <h:panelGroup layout="block" styleClass="ui-g task-details-description-title">
     <div class="task-detail-title #{cc.attrs.labelStyleClasses} text-ellipsis task-description-title">
       #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}
-      <p:commandLink onclick="showWidgetDescriptionInplaceEditor();" ariaLabel="#{ivy.cms.co('/Labels/EditDescription')}"
+      <p:commandLink onclick="showWidgetDescriptionInplaceEditor();" ariaLabel="#{ivy.cms.co('/Labels/EditDescription')}" global="false"
         rendered="#{canChangeDescription and !cc.attrs.readOnly}" id="edit-description-link">
         <i class="si si-graphic-tablet-drawing-pen" />
       </p:commandLink>

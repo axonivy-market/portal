@@ -60,7 +60,7 @@
                         </h:panelGroup>
                         <p:toggleSwitch id="show-absence-in-the-past" value="#{data.absenceInThePastShown}"
                           styleClass="show-absence-in-the-past-panel">
-                          <p:ajax event="change" listener="#{logic.findAbsencesAndSubstitutes()}"
+                          <p:ajax event="change" listener="#{logic.findAbsencesAndSubstitutes()}" global="false"
                             update="@(.absence-table)" partialSubmit="true" />
                         </p:toggleSwitch>
                       </div>
@@ -92,7 +92,7 @@
                         <p:menu class="absence-column-value" overlay="true" trigger="absence-action-button"
                           my="right top" at="right bottom" styleClass="settings-action-menu">
                           <p:menuitem id="edit-absence"
-                            actionListener="#{logic.editAbsence(absence)}"
+                            actionListener="#{logic.editAbsence(absence)}" global="false"
                             oncomplete="PF('absence-dialog').show()" update="@widgetVar(absence-dialog)"
                             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
                             icon="si si-graphic-tablet-drawing-pen" process="@this"
@@ -100,7 +100,7 @@
                           </p:menuitem>
                           <p:menuitem id="delete-absence" actionListener="#{logic.preDelete(absence)}"
                             oncomplete="PF('deleteAbsenceConfirmation').show();"
-                            rendered="#{absenceManagementBean.isAbsenceDeletable(absence)}"
+                            rendered="#{absenceManagementBean.isAbsenceDeletable(absence)}" global="false"
                             icon="si si-bin-1" process="@this" styleClass="color-destroy"
                             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
                           </p:menuitem>
@@ -112,7 +112,7 @@
                     <p:commandButton id="add-absence"
                       styleClass="Fright ui-sm-hidden primary-color-light-button"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence')}"
-                      process="@this"
+                      process="@this" global="false"
                       oncomplete="PF('absence-dialog').show()"
                       actionListener="#{logic.add}"
                       update="absence-dialog absence-form"
@@ -270,7 +270,7 @@
         <ui:include src="Absence.xhtml" />
       </c:if>
 
-      <p:dialog id="choose-deputy-dialog" styleClass="choose-deputy-dialog w-3"
+      <p:dialog id="choose-deputy-dialog" styleClass="choose-deputy-dialog w-3" dynamic="true"
         header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/selectDeputies')}" widgetVar="choose-deputy-dialog"
         modal="true" appendTo="@(body)" resizable="false" responsive="true">
         <p:ajax event="close" listener="#{logic.closeDialog}" global="false" immediate="true" />
