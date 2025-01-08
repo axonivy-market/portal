@@ -1534,17 +1534,6 @@
         "at" : { "x" : 592, "y" : 1840 }
       }
     }, {
-      "id" : "f3",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "Replace by customized ",
-        "homepage if you have"
-      ],
-      "visual" : {
-        "at" : { "x" : 1240, "y" : 640 },
-        "size" : { "width" : 144, "height" : 44 }
-      }
-    }, {
       "id" : "f6",
       "type" : "DialogCall",
       "name" : "Login",
