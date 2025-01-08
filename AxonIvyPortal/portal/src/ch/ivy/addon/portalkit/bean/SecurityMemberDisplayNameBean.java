@@ -14,6 +14,7 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.security.ISecurityMember;
+import ch.ivyteam.ivy.workflow.ICase;
 
 @ManagedBean
 @ViewScoped
@@ -59,6 +60,14 @@ public class SecurityMemberDisplayNameBean implements Serializable {
 
   public boolean isDisplayUserOfRole() {
     return isDisplayUserOfRole;
+  }
+  
+  public String getShortCaseOwnersDisplay(ICase caze) {
+    return SecurityMemberDisplayNameUtils.getShortCaseOwnerDisplay(caze);
+  }
+
+  public String getFullCaseOwnersDisplay(ICase caze) {
+    return SecurityMemberDisplayNameUtils.getFullCaseOwnerDisplay(caze);
   }
 
 }
