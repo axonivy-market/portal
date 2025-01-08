@@ -32,7 +32,6 @@ jobs:
       - name: Get current version
         id: get_version
         run: |
-          java --version
           VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
           if [[ "$VERSION" == "null object or invalid expression" ]]; then
             echo "Error: could not evaluate maven revision property"
@@ -49,6 +48,7 @@ jobs:
 
       - name: Generate resources
         run: |
+          java --version
           mvn clean process-resources -Divy.engine.version=[10.0.1,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-10.0/axonivy-engine.zip -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
       
