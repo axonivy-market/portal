@@ -92,6 +92,7 @@ jobs:
             Documentation/*/target/*.zip
 
       - name: Cleanup
+        if: always()
         shell: bash
         run: sudo rm -rf ${{ github.workspace }}/*
     
