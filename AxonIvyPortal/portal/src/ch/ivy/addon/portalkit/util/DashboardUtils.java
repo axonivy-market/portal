@@ -332,7 +332,9 @@ public class DashboardUtils {
             portalPublicDashboardWrapper);
       }
     }
-    return initializeDefaultValue(portalPublicDashboardWrapper.dashboards());
+    List<Dashboard> dashboards = new ArrayList<>();
+    portalPublicDashboardWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
+    return dashboards;
   }
 
   public static List<Dashboard> getPrivateDashboards() {
@@ -364,7 +366,9 @@ public class DashboardUtils {
             portalPrivateDashboardWrapper);
       }
     }
-    return initializeDefaultValue(portalPrivateDashboardWrapper.dashboards());
+    List<Dashboard> dashboards = new ArrayList<>();
+    portalPrivateDashboardWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
+    return dashboards;
   }
 
   public static List<Dashboard> collectDashboards() {
@@ -404,14 +408,16 @@ public class DashboardUtils {
             portalDashboardItemWrapper);
       }
     }
-    return initializeDefaultValue(portalDashboardItemWrapper.dashboards);
+    List<Dashboard> dashboards = new ArrayList<>();
+    portalDashboardItemWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
+    return dashboards;
   }
 
   public static void updateDashboardCache() {
     String sessionUserId = getSessionUserId();
     IvyCacheService cacheService = IvyCacheService.getInstance();
     cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId);
-    cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARDS, sessionUserId);
+    cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PUBLIC_DASHBOARDS, sessionUserId);
     cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARDS, sessionUserId);
   }
 
@@ -425,15 +431,6 @@ public class DashboardUtils {
 
   private static IWorkflowSession session() {
     return Ivy.session();
-  }
-
-  private static List<Dashboard> initializeDefaultValue(List<Dashboard> dashboards) {
-    dashboards.forEach(dashboard -> {
-      if (dashboard.getIsTopMenu() == null) {
-        dashboard.setIsTopMenu(false);
-      }
-    });
-    return dashboards;
   }
 
   private record PortalPrivateDashboardWrapper(List<Dashboard> dashboards) {
