@@ -41,14 +41,13 @@ jobs:
           VALIDATE_YAML: true
           VALIDATE_XML: true
           VALIDATE_CSS: true
-          LOG_LEVEL: VERBOSE
+          LOG_LEVEL: DEBUG
           LOG_FILE: true
           REPORT_OUTPUT: true
           CREATE_LOG_FILE: true
           OUTPUT_FOLDER: /tmp/lint-results
-          OUTPUT_FORMAT: detailed
+          OUTPUT_FORMAT: text
           OUTPUT_DETAILS: detailed
-          ACTIONS_RUNNER_DEBUG: true
 
       - name: Debug Linter Output
         if: always()
@@ -70,6 +69,12 @@ jobs:
           
           if [ -n "$LOG_FILE" ]; then
             echo "Found log file: $LOG_FILE"
+            # Initialize summary file
+            echo "### Super-Linter Results" > /tmp/lint-results/summary.md
+            echo "" >> /tmp/lint-results/summary.md
+            echo "| Language | Status | Details |" >> /tmp/lint-results/summary.md
+            echo "|----------|--------|----------|" >> /tmp/lint-results/summary.md
+
             # Process the log file
             while IFS= read -r line; do
               if echo "$line" | grep -q ".*Linter:.*status:.*"; then
