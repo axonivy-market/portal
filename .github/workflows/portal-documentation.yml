@@ -70,7 +70,7 @@ jobs:
     steps:
       - name: Build Documentation HTML
         run: |
-          make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=nightly
+          make -C /doc-build html BASEDIR='Documentation/portal-guide' VERSION=nightly
          
 
 
