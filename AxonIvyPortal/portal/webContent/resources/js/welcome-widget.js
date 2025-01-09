@@ -22,13 +22,29 @@ WelcomeWidgetConfiguration = {
   },
   updatePreviewText : function(isGreeting) {
     var previewDialog = $('#new-widget-configuration-dialog');
-    var welcomeText = previewDialog.find('.js-welcome-text-input.language-to-preview').get(0).value;
+    var welcomeText = '';
+	var findWelcomeText = previewDialog.find('.js-welcome-text-input.language-to-preview');
+	if (findWelcomeText != undefined && findWelcomeText.get(0) != undefined){
+		welcomeText = findWelcomeText.get(0).value;
+	}
 
     if (isGreeting == 'true' || (isGreeting == undefined && $('.js-greeting-text').length != 0)) {
-      welcomeText = previewDialog.find('.js-greeting-text.language-to-preview').get(0).innerHTML + welcomeText;
+		var findGreeting = previewDialog.find('.js-greeting-text.language-to-preview')
+      if (findGreeting != undefined && findGreeting.get(0) != undefined){
+		welcomeText = findGreeting.get(0).innerHTML + welcomeText;
+	  }
+      
     }
-    $('#new-widget-configuration-dialog').find('.js-preview-text').get(0).innerHTML = escapeHtml(welcomeText);
-	$('#new-widget-configuration-dialog').find('.js-preview-text-dark-mode').get(0).innerHTML = escapeHtml(welcomeText);
+	var findPreviewText = $('#new-widget-configuration-dialog').find('.js-preview-text');
+    if (findPreviewText != undefined && findPreviewText.get(0) != undefined){
+      findPreviewText.get(0).innerHTML = escapeHtml(welcomeText);
+    }
+    
+	var findPreviewTextDarkMode = $('#new-widget-configuration-dialog').find('.js-preview-text-dark-mode');
+    if (findPreviewTextDarkMode != undefined && findPreviewTextDarkMode.get(0) != undefined){
+      findPreviewTextDarkMode.get(0).innerHTML = escapeHtml(welcomeText);
+    }
+
   },
 
   updatePreviewTextPosition : function() {
@@ -100,14 +116,27 @@ updatePreviewImageFit : function() {
 
   updatePreviewTextColor : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
-    var selectedColor = previewDialog.find('.js-welcome-text-color').get(0).value;
-    previewDialog.find('.js-preview-text').css({'color': selectedColor});
+    var findSelectedColor = previewDialog.find('.js-welcome-text-color');
+    if (findSelectedColor != undefined){
+		var selectedColor = findSelectedColor.get(0).value;
+		var findPreviewText = previewDialog.find('.js-preview-text');
+		    if (findPreviewText != undefined){
+		      findPreviewText.css({'color': selectedColor});
+		    }	
+	}
   },
 
   updatePreviewTextColorDarkMode : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
-  	var selectedColorDarkMode = previewDialog.find('.js-welcome-text-color-dark-mode').get(0).value;
-      previewDialog.find('.js-preview-text-dark-mode').css({'color': selectedColorDarkMode});
+    var findSelectedColorDarkMode = previewDialog.find('.js-welcome-text-color-dark-mode');
+    if (findSelectedColorDarkMode != undefined){
+		var selectedColorDarkMode = findSelectedColorDarkMode.get(0).value;
+		var findPreviewTextDarkMode = previewDialog.find('.js-preview-text-dark-mode');
+		if (findPreviewTextDarkMode != undefined){
+			findPreviewTextDarkMode.css({'color': selectedColorDarkMode});	
+		}
+    }
+  	
   },
 
   updatePreviewTextSize : function() {
