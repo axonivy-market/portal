@@ -40,7 +40,7 @@ jobs:
           echo "Version is $VERSION"
       - name: Generate resources
         run: |
-          mvn clean process-resources "-Divy.engine.version=[13.1.0,]" "-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-10.0/axonivy-engine.zip" -f Documentation/public-api/pom.xml
+          mvn clean process-resources "-Divy.engine.version=[13.1.0,]" "-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip" -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
   unzip-screenshots:
     runs-on: portal01
