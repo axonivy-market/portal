@@ -50,10 +50,10 @@ jobs:
     runs-on: portal01
     needs: generate-resource
     steps:
-      - name: Unzip portal screenshots
-        run: |
-          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-${{ needs.generate-resource.outputs.version }}.zip \
-            -d Documentation/portal-guide/source/screenshots
+      # - name: Unzip portal screenshots
+      #   run: |
+      #     unzip /mnt/portal02/document-screenshots/portal-document-screenshots-${{ needs.generate-resource.outputs.version }}.zip \
+      #       -d Documentation/portal-guide/source/screenshots
 
       - name: Run substitute
         shell: bash
@@ -64,6 +64,7 @@ jobs:
     needs: unzip-screenshots
     container:
       image: axonivy/build-container:read-the-docs-2
+      options: --user root:root
       volumes:
         - ${{ github.workspace }}
     steps:
