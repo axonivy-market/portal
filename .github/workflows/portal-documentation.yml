@@ -116,6 +116,7 @@ jobs:
 
   clean-up:
     runs-on: portal01
+    needs: [install-or-deploy]
     if: always()
     steps:  
       - name: Clean up
