@@ -18,7 +18,7 @@ jobs:
           ref: release/10.0
           fetch-depth: 0
 
-  generate-resource:
+  generate-resources:
     needs: checkout-source
     runs-on: portal01
     outputs:
@@ -48,11 +48,11 @@ jobs:
 
   unzip-screenshots:
     runs-on: portal01
-    needs: generate-resource
+    needs: generate-resources
     steps:
       - name: Unzip portal screenshots
         run: |
-          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-${{ needs.generate-resource.outputs.version }}.zip \
+          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-${{ needs.generate-resources.outputs.version }}.zip \
             -d Documentation/portal-guide/source/screenshots
 
       - name: Run substitute
@@ -61,17 +61,17 @@ jobs:
   
   build-document:
     runs-on: portal01
-    needs: [unzip-screenshots,generate-resource]
+    needs: [unzip-screenshots, generate-resources]
     container:
       image: axonivy/build-container:read-the-docs-2
-      options: --user root:root
+      options: -u root:root
       volumes:
         - ${{ github.workspace }}:/workspace
     steps:
       - name: Build Documentation HTML
         run: |
           ls /workspace
-          make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=-${{ needs.generate-resource.outputs.version }} 2> sphinx-warnings.log
+          make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=-${{ needs.generate-resources.outputs.version }} 2> sphinx-warnings.log
             WARNINGS=$(grep -c "WARNING" sphinx-warnings.log || echo 0)
             echo "Found $WARNINGS warnings."
             if [ "$WARNINGS" -ge 1 ]; then
@@ -83,9 +83,34 @@ jobs:
               echo '```' >> $GITHUB_STEP_SUMMARY
               cat sphinx-warnings.log >> $GITHUB_STEP_SUMMARY
               echo '```' >> $GITHUB_STEP_SUMMARY
-              exit 1
+              exit 1 
             fi
-         
+  install-or-deploy:
+    runs-on: portal01
+    needs: [generate-resources,build-document]
+    steps:
+      - name: Install or deploy document
+        run: |
+          if [[ "${{ needs.generate-resources.outputs.version }}" == *SNAPSHOT* ]]; then
+            PHASE="install"
+          else
+            PHASE="deploy"
+          fi
+          echo "Running 'clean $PHASE' for version ${{ needs.generate-resources.outputs.version }}"
+          mvn clean $PHASE -f Documentation/pom.xml
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Documentation
+          path: |
+            Documentation/*/target/*.zip
+
+      - name: Cleanup
+        if: always()
+        shell: bash
+        run: sudo rm -rf ${{ github.workspace }}/*
+
 
 
 
