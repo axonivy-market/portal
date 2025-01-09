@@ -101,8 +101,9 @@ jobs:
           server-password: ${{ secrets.NEXUS_AXONIVY_PASSWORD }}
 
       - name: Install or deploy document
+        shell: bash
         run: |
-          if [[ "${{ needs.generate-resources.outputs.version }}" == *SNAPSHOT* ]]; then
+          if [ "${{ needs.generate-resources.outputs.version }}" == *SNAPSHOT* ]; then
             PHASE="install"
           else
             PHASE="deploy"
