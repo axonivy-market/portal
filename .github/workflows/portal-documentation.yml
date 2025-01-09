@@ -50,10 +50,10 @@ jobs:
     runs-on: portal01
     needs: generate-resource
     steps:
-      # - name: Unzip portal screenshots
-      #   run: |
-      #     unzip /mnt/portal02/document-screenshots/portal-document-screenshots-${{ needs.generate-resource.outputs.version }}.zip \
-      #       -d Documentation/portal-guide/source/screenshots
+      - name: Unzip portal screenshots
+        run: |
+          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-${{ needs.generate-resource.outputs.version }}.zip \
+            -d Documentation/portal-guide/source/screenshots
 
       - name: Run substitute
         shell: bash
@@ -61,7 +61,7 @@ jobs:
   
   build-document:
     runs-on: portal01
-    needs: unzip-screenshots
+    needs: [unzip-screenshots,generate-resource]
     container:
       image: axonivy/build-container:read-the-docs-2
       options: --user root:root
@@ -71,7 +71,7 @@ jobs:
       - name: Build Documentation HTML
         run: |
           ls /workspace
-          make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=nightly 2> sphinx-warnings.log
+          make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=-${{ needs.generate-resource.outputs.version }} 2> sphinx-warnings.log
             WARNINGS=$(grep -c "WARNING" sphinx-warnings.log || echo 0)
             echo "Found $WARNINGS warnings."
             if [ "$WARNINGS" -ge 1 ]; then
