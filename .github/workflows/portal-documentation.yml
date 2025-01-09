@@ -11,6 +11,7 @@ on:
 
 jobs:
   checkout:
+
     runs-on: portal01
     steps:
       - uses: actions/checkout@v4
@@ -23,7 +24,7 @@ jobs:
     container:
       image: maven:3.8.6-eclipse-temurin-17
       volumes:
-        - ${GITHUB_WORKSPACE}:/workspace
+        - /workspace:${GITHUB_WORKSPACE}
     steps:
       - name: Check for dockerenv file
         run: ls
