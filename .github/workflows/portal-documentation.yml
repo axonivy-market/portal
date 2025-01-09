@@ -25,9 +25,23 @@ jobs:
       image: maven:3.8.6-eclipse-temurin-17
       volumes:
         - ${{ github.workspace }}
+        - /mnt/portal02/document-screenshots:/mnt/portal02/document-screenshots
+
     steps:
       - name: Check for dockerenv file
-        run: mvn -version
+        run: ls /mnt/portal02/document-screenshots
+
+      - name: Get current version
+        id: get_version
+        run: |
+          VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
+          if [[ "$VERSION" == "null object or invalid expression" ]]; then
+            echo "Error: could not evaluate maven revision property"
+            # Stops the workflow if the condition is met
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Version is $VERSION"
 
   # build-document:
   #   runs-on: portal01
