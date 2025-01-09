@@ -48,7 +48,7 @@
         library="ivy-cms" rendered="#{empty widget.imageLocation}" name="#{dashboardWelcomeWidgetBean.defaultImageLink}" />
 
       <p:graphicImage id="default-image-dark" cache="true" styleClass="welcome-image default-welcome-image-dark js-welcome-image #{widget.imageStyleClass}"
-        library="ivy-cms" rendered="#{empty widget.imageLocation}" name="#{dashboardWelcomeWidgetBean.defaultImageDarkLink}" />
+        library="ivy-cms" rendered="#{empty widget.imageLocationDarkMode}" name="#{dashboardWelcomeWidgetBean.defaultImageDarkLink}" />
 
       <h:panelGroup rendered="#{not empty widget.imageLocation}">
         <p:graphicImage id="welcome-image" styleClass="default-welcome-image welcome-image js-welcome-image #{widget.imageStyleClass}"

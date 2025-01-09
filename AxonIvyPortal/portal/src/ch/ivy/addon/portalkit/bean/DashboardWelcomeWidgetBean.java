@@ -97,7 +97,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
   }
   
   public ContentObject renderImageDarkMode() {
-    if (Optional.ofNullable(widget).map(WelcomeDashboardWidget::getImageLocation).isEmpty()) {
+    if (Optional.ofNullable(widget).map(WelcomeDashboardWidget::getImageLocationDarkMode).isEmpty()) {
       return null;
     }
     ContentObject imageContent = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocationDarkMode(), widget.getImageTypeDarkMode());
