@@ -18,19 +18,6 @@ jobs:
           ref: release/10.0
           fetch-depth: 0
 
-  generate-resource:
-    needs: checkout-source
-    runs-on: portal01
-    container:
-      image: maven:3.8.6-eclipse-temurin-17
-      volumes:
-        - ${{ github.workspace }}
-        - /mnt/portal02/document-screenshots:/mnt/portal02/document-screenshots
-
-    steps:
-      - name: Check for dockerenv file
-        run: ls /mnt/portal02/document-screenshots
-
       - name: Get current version
         id: get_version
         run: |
@@ -47,7 +34,17 @@ jobs:
         run: |
           unzip /mnt/portal02/document-screenshots/portal-document-screenshots-${{ steps.get_version.outputs.version }}.zip \
             -d Documentation/portal-guide/source/screenshots
+  
 
+  generate-resource:
+    needs: checkout-source
+    runs-on: portal01
+    container:
+      image: maven:3.8.6-eclipse-temurin-17
+      volumes:
+        - ${{ github.workspace }}
+
+    steps:
       - name: Generate resources
         run: |
           mvn clean process-resources "-Divy.engine.version=[10.0.1,10.1.0)" "-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-10.0/axonivy-engine.zip" -f Documentation/public-api/pom.xml
