@@ -46,8 +46,9 @@
         <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ImageLightMode')}"
           for="image-upload-panel" styleClass="welcome-text-label" />
       </div>
-      <div class="ui-g-9 ui-md-8 ui-fluid upload-image-section display-inline-flex-center">
-        <p:fileUpload id="image-upload-panel" styleClass="image-upload-panel"
+      <div class="w-full">
+        <p:fileUpload id="image-upload-panel"
+          styleClass="hidden"
           listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUpload}"
           chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}" dragDropSupport="true" auto="true"
           update="preview-panel" allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i" accept=".png,.jpg,.jpeg,.svg"
@@ -55,7 +56,19 @@
           invalidSizeMessage="#{dashboardWelcomeWidgetConfigurationBean.getFileUploadInvalidSizeMessage()}"
           invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
           sizeLimit="#{dashboardWelcomeWidgetConfigurationBean.uploadFileLimit}"
-          oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();" />
+          oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();" 
+          dropZone="image-light-upload-file-panel" widgetVar="ImageLightUpload"/>
+      </div>
+      <div class="ui-g-12">
+        <p:outputPanel id="image-light-upload-file-panel" styleClass="ui-document-upload-file-panel">
+          <span class="ui-document-upload-file-label"> 
+          <i class="si si-file-code-upload-1" id="image-light-upload-file-icon" />
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}">
+              <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadHere')}"
+                onclick="PF('ImageLightUpload').show();return false" />
+            </p:outputLabel>
+          </span>
+        </p:outputPanel>
       </div>
 
       <div class="ui-g-3 ui-md-4">
@@ -90,8 +103,8 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ImageDarkMode')}"
           for="image-dark-mode-upload-panel" styleClass="welcome-text-label" />
       </div>
-      <div class="ui-g-9 ui-md-8 ui-fluid upload-image-section display-inline-flex-center">
-        <p:fileUpload id="image-dark-mode-upload-panel" styleClass="image-upload-panel"
+      <div class="w-full">
+        <p:fileUpload id="image-dark-mode-upload-panel" styleClass="hidden"
           listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUploadDarkMode}"
           chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}" dragDropSupport="true" auto="true"
           update="preview-panel-dark-mode" allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i" accept=".png,.jpg,.jpeg,.svg"
@@ -99,7 +112,19 @@
           invalidSizeMessage="#{dashboardWelcomeWidgetConfigurationBean.getFileUploadInvalidSizeMessage()}"
           invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
           sizeLimit="#{dashboardWelcomeWidgetConfigurationBean.uploadFileLimit}"
-          oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();" />
+          oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();" 
+          dropZone="image-dark-upload-file-panel" widgetVar="ImageDarkUpload"/>
+      </div>
+      <div class="ui-g-12">
+        <p:outputPanel id="image-dark-upload-file-panel" styleClass="ui-document-upload-file-panel">
+          <span class="ui-document-upload-file-label"> 
+          <i class="si si-file-code-upload-1" id="image-dark-upload-file-icon" />
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}">
+              <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadHere')}"
+                onclick="PF('ImageDarkUpload').show();return false" />
+            </p:outputLabel>
+          </span>
+        </p:outputPanel>
       </div>
 
       <div class="ui-g-3 ui-md-4">

@@ -557,7 +557,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
             widget.getId());
         if (oldWidgetOptional.isPresent()) {
           WelcomeDashboardWidget oldWidget = (WelcomeDashboardWidget) oldWidgetOptional.get();
-          Optional.ofNullable(getWelcomeWidgetImage(false, oldWidget)).ifPresent(co -> co.delete());
+          Optional.ofNullable(getWelcomeWidgetImageDarkMode(false, oldWidget)).ifPresent(co -> co.delete());
         }
         imageFileDarkMode.write().bytes(tempImageFileDarkMode.read().bytes());
         tempImageFileDarkMode.delete();

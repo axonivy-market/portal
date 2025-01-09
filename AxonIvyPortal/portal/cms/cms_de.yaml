@@ -770,16 +770,16 @@ ch.ivy.addon.portalkit.ui.jsf:
           Evening: Guten Abend
           Morning: Guten Morgen
         Image: Bild
-        ImageDarkMode: Image in dark mode
+        ImageDarkMode: Bild für den dunklen Modus
         ImageInlineStyle: Bild Inline-Stil
-        ImageLightMode: Image in light mode
+        ImageLightMode: Bild für den hellen Modus
         ImageStyleClass: Bildstilklasse
-        PreviewDarkMode: Preview dark mode
-        PreviewLightMode: Preview light mode
+        PreviewDarkMode: Vorschau für den dunklen Modus
+        PreviewLightMode: Vorschau für den hellen Modus
         PreviewTooltip: Diese Vorschau kann nicht alle Einstellungen wiedergeben, sondern soll nur einen Eindruck vermitteln, wie das endgültige Widget aussehen wird. Bildgröße, Ausrichtung und einige CSS-Einstellungen werden hier nicht angezeigt.
         ShowGreeting: Gruß anzeigen
-        TextColorDarkMode: Text color for dark mode
-        TextColorLightMode: Text color for light mode
+        TextColorDarkMode: Farbe für den dunklen Modus
+        TextColorLightMode: Farbe für den hellen Modus
         TextPosition: Position des Textes
         TextSize: Textgröße
         Welcome: Willkommen
