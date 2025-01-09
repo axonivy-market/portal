@@ -45,7 +45,7 @@ jobs:
           LOG_FILE: true
           REPORT_OUTPUT: true
           CREATE_LOG_FILE: true
-          OUTPUT_FOLDER: /github/workspace
+          OUTPUT_FOLDER: /tmp/lint-results
           OUTPUT_FORMAT: detailed
           OUTPUT_DETAILS: detailed
           ACTIONS_RUNNER_DEBUG: true
@@ -54,46 +54,39 @@ jobs:
         if: always()
         run: |
           echo "=== Checking for linter output files ==="
-          find /github/workspace -name "*lint*.log" -o -name "super-linter.log" || true
-          find /tmp -name "*lint*.log" -o -name "super-linter.log" 2>/dev/null || true
+          find /tmp/lint-results -name "*lint*.log" -o -name "super-linter.log" || true
           
-          echo "=== Contents of workspace ==="
-          ls -la /github/workspace || true
-          
-          echo "=== Contents of super-linter-reports ==="
-          ls -la /github/workspace/super-linter-reports || true
+          echo "=== Contents of /tmp/lint-results ==="
+          ls -la /tmp/lint-results || true
 
       - name: Process Linter Results
         if: always()
         run: |
           mkdir -p /tmp/lint-results
           
-          # Check directly in container output
-          echo "=== Checking container logs ==="
-          docker logs $(docker ps -q --filter "ancestor=ghcr.io/super-linter/super-linter:v7.2.1") > /tmp/lint-results/container.log 2>&1 || true
+          # Check directly in /tmp/lint-results
+          echo "=== Checking /tmp/lint-results ==="
+          LOG_FILE=$(find /tmp/lint-results -name "super-linter.log" 2>/dev/null | head -1)
           
-          echo "=== Creating summary ==="
-          {
-            echo "### Super-Linter Results"
-            echo ""
-            echo "| Language | Status | Details |"
-            echo "|----------|--------|----------|"
-            
-            # Process container logs
+          if [ -n "$LOG_FILE" ]; then
+            echo "Found log file: $LOG_FILE"
+            # Process the log file
             while IFS= read -r line; do
-              if [[ $line == *"LANGUAGE:"* && $line == *"STATUS:"* ]]; then
-                LANGUAGE=$(echo "$line" | grep -o "LANGUAGE:[^ ]*" | cut -d: -f2)
-                STATUS=$(echo "$line" | grep -o "STATUS:[^ ]*" | cut -d: -f2)
-                DETAILS=$(echo "$line" | grep -o "ERRORS:.*" || echo "-")
-                echo "| $LANGUAGE | $STATUS | $DETAILS |"
-              elif [[ $line == *"ERROR"* || $line == *"WARNING"* ]]; then
-                echo "$line" >> /tmp/lint-results/errors.log
+              if echo "$line" | grep -q ".*Linter:.*status:.*"; then
+                LINTER=$(echo "$line" | sed -n 's/.*Linter:\([^,]*\).*/\1/p')
+                STATUS=$(echo "$line" | sed -n 's/.*status:\([^,]*\).*/\1/p')
+                DETAILS=$(echo "$line" | sed -n 's/.*errors:\([^|]*\).*/\1/p' || echo "No details")
+                echo "| $LINTER | $STATUS | $DETAILS |" >> /tmp/lint-results/summary.md
               fi
-            done < /tmp/lint-results/container.log
-          } > /tmp/lint-results/summary.md
+              echo "$line" >> /tmp/lint-results/linter.log
+            done < "$LOG_FILE"
+          else
+            echo "No linter log file found"
+            echo "| No linting results found | - | - |" >> /tmp/lint-results/summary.md
+          fi
           
-          # Ensure we have error logs
-          touch /tmp/lint-results/errors.log
+          # Ensure we have a linter.log file even if empty
+          touch /tmp/lint-results/linter.log
 
       - name: Upload Linter Report
         if: always()
@@ -101,26 +94,29 @@ jobs:
         with:
           name: linter-report
           path: |
+            /tmp/lint-results/linter.log
             /tmp/lint-results/summary.md
-            /tmp/lint-results/errors.log
-            /tmp/lint-results/container.log
           retention-days: 1
 
       - name: Generate Summary
         if: always()
         run: |
-          {
-            cat /tmp/lint-results/summary.md
-            echo ""
-            echo "### Detailed Errors"
-            echo '```'
-            cat /tmp/lint-results/errors.log || echo "No errors found"
-            echo '```'
-          } >> $GITHUB_STEP_SUMMARY
+          if [ -f "/tmp/lint-results/summary.md" ]; then
+            cat /tmp/lint-results/summary.md > $GITHUB_STEP_SUMMARY
+            if [ -f "/tmp/lint-results/linter.log" ]; then
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "### Detailed Errors" >> $GITHUB_STEP_SUMMARY
+              echo '```' >> $GITHUB_STEP_SUMMARY
+              grep -E "ERROR:|WARNING:" /tmp/lint-results/linter.log >> $GITHUB_STEP_SUMMARY || true
+              echo '```' >> $GITHUB_STEP_SUMMARY
+            fi
+          else
+            echo "### No Linter Results Available" > $GITHUB_STEP_SUMMARY
+          fi
 
       - name: Check Linter Status
         if: always()
         run: |
-          if grep -q "ERROR:" /tmp/lint-results/container.log; then
+          if [ -f "/tmp/lint-results/linter.log" ] && grep -E "ERROR" /tmp/lint-results/linter.log > /dev/null; then
             exit 1
           fi
