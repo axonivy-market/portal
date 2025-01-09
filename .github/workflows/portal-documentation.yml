@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
 
   generate-resources:
-    needs: checkout-source
+    needs: [checkout-source]
     runs-on: portal01
     outputs:
       version: ${{ steps.get_version.outputs.version }}
@@ -49,7 +49,7 @@ jobs:
 
   unzip-screenshots:
     runs-on: portal01
-    needs: generate-resources
+    needs: [generate-resources]
     steps:
       - name: Unzip portal screenshots
         run: |
@@ -101,7 +101,6 @@ jobs:
           server-password: ${{ secrets.NEXUS_AXONIVY_PASSWORD }}
 
       - name: Install or deploy document
-        shell: bash
         run: |
           if [[ "${{ needs.generate-resources.outputs.version }}" == *SNAPSHOT* ]]; then
             PHASE="install"
@@ -120,6 +119,10 @@ jobs:
           path: |
             Documentation/*/target/*.zip
 
+  clean-up:
+    runs-on: portal01
+    needs: [install-or-deploy]
+    steps:
       - name: Cleanup
         if: always()
         shell: bash
