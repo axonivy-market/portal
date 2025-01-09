@@ -79,15 +79,17 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     if (StringUtils.isNotBlank(widget.getImageLocationDarkMode())) {
       imageCMSObjectDarkMode = getWelcomeWidgetImageContentObjectDarkMode(false);
     } else {
-      imageCMSObjectDarkMode = getWelcomeWidgetImageContentObject(false);;
+      imageCMSObjectDarkMode = getWelcomeWidgetImageContentObject(false);
     }
   }
 
   public void handleFileUpload(FileUploadEvent event) {
     UploadedFile file = event.getFile();
     if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
-      if (StringUtils.isNotBlank(getWidget().getImageLocationDarkMode())) {
-        getWelcomeWidgetImageContentObject(true).delete();
+      ContentObject welcomeWidgetImageContentObject = getWelcomeWidgetImageContentObject(true);
+      if (StringUtils.isNotBlank(getWidget().getImageLocationDarkMode()) && 
+          welcomeWidgetImageContentObject != null) {
+        welcomeWidgetImageContentObject.delete();
       }
       // If image is not saved, create location
       String extension = FilenameUtils.getExtension(file.getFileName());
@@ -96,7 +98,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       getWidget().setImageType(extension);
 
       // save the temporary image
-      imageCMSObject = getWelcomeWidgetImageContentObject(true);
+      imageCMSObject = welcomeWidgetImageContentObject;
       if (imageCMSObject != null) {
         WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(file.getContent());
       }

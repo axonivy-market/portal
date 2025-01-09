@@ -769,16 +769,16 @@ ch.ivy.addon.portalkit.ui.jsf:
           Evening: Buenas noches
           Morning: Buenos días
         Image: Imagen
-        ImageDarkMode: Image in dark mode
+        ImageDarkMode: Imagen para el modo oscuro
         ImageInlineStyle: Estilo de imagen en línea
-        ImageLightMode: Image in light mode
+        ImageLightMode: Imagen para el modo claro
         ImageStyleClass: Clase de estilo de imagen
-        PreviewDarkMode: Preview dark mode
-        PreviewLightMode: Preview light mode
+        PreviewDarkMode: Vista previa para el modo oscuro
+        PreviewLightMode: 'Vista previa para el modo claro '
         PreviewTooltip: Esta vista previa no puede mostrar todos los ajustes, pero sólo debería dar una idea de cómo se verá el widget final, el tamaño de la imagen, la orientación y algunos ajustes CSS no se verán aquí.
         ShowGreeting: Mostrar saludo
-        TextColorDarkMode: Text color for dark mode
-        TextColorLightMode: Text color for light mode
+        TextColorDarkMode: Color para el modo oscuro
+        TextColorLightMode: Color para el modo claro
         TextPosition: Posición del texto
         TextSize: Tamaño del texto
         Welcome: Bienvenido
