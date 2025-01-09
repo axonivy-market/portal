@@ -1,0 +1,36 @@
+name: Publish Release Drafter
+
+on:
+  workflow_run:
+    workflows: ["Release-Build"]
+    types:
+      - completed
+
+jobs:
+  publish_release_drafter:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    uses: axonivy-market/github-workflows/.github/workflows/publish-release-drafter.yml@v5
+    # The following input parameters are available:
+    #
+    # - tag: (optional) Specifies the release tag (e.g., 'v10.0.0').
+    #        If not provided, the most recent tag in the repository will be used by default.
+    #        This ensures the workflow runs without requiring explicit tag input.
+    #
+    # - commitish: (optional) Indicates the branch name for the release.
+    #              If not provided, it defaults to 'master'. For versioned releases, 
+    #              the workflow automatically checks for a corresponding branch 
+    #              (e.g., 'release/10.0' for version 10.0) and uses it if available.
+    #              This allows the workflow to execute with default branch behavior.
+    #
+    # - publish: (optional) Controls whether the release is published automatically.
+    #            Defaults to 'true'. Set to 'false' to create a draft release 
+    #            without immediate publication.
+    #
+    # Note: Both 'tag' and 'commitish' are configured to run with sensible defaults,
+    #       so manual input is not required unless custom values are needed.
+    #
+    # Uncomment and modify the inputs as needed:
+    # with:
+    #   tag: v10.0.0
+    #   commitish: release/10.0
+    #   publish: false
