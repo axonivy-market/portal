@@ -66,11 +66,12 @@ jobs:
       image: axonivy/build-container:read-the-docs-2
       options: --user root:root
       volumes:
-        - ${{ github.workspace }}
+        - ${{ github.workspace }}:/workspace
     steps:
       - name: Build Documentation HTML
         run: |
-          make -C /doc-build html BASEDIR='Documentation/portal-guide' VERSION=nightly
+          ls /workspace
+          make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=nightly
          
 
 
