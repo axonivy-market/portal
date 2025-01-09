@@ -7,7 +7,6 @@ on:
         description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly-10.0/designer-guide/configuration/variables.html'
         default: 'nightly-10.0'
         required: true
-  push:
 
 jobs:
   checkout-source:
@@ -118,12 +117,8 @@ jobs:
           path: |
             Documentation/*/target/*.zip
 
-  clean-up:
-    runs-on: portal01
-    needs: [install-or-deploy]
-    if: always()
-    steps:
-      - name: Cleanup
+      - name: Clean up
+        if: always()
         shell: bash
         run: sudo rm -rf ${{ github.workspace }}/*
 
