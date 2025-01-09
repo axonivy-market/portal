@@ -160,7 +160,7 @@
 }
 
 .dashboard__title--active {
-  border-bottom: 0 solid;
+  border-bottom: 2px solid;
   font-weight: bold;
 }
 

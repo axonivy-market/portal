@@ -15,8 +15,7 @@
         <p:commandLink id="dashboard-title-#{dashboardStatus.index}"
           actionListener="#{dashboardDetailModificationBean.onDashboardChange(dashboardStatus.index)}"
           update="grid-stack dashboard-title-container" process="@this"
-          oncomplete="loadGrid();dashboardToolKit.responsive();"
-          disabled="#{isSelectedItem}"
+          oncomplete="loadGrid();dashboardToolKit.responsive();initStatistics();"
           styleClass="dashboard__title #{isSelectedItem ? 'dashboard__title--active':''}">
           <h:outputText styleClass="#{dashboard.getIconClass()}" />
           <span>#{dashboard.title}</span>
