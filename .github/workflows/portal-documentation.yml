@@ -97,8 +97,8 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           server-id: 'github'
-          server-username: ${{ secrets.NEXUS_AXONIVY_USERNAME }}
-          server-password: ${{ secrets.NEXUS_AXONIVY_PASSWORD }}
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
 
       - name: Install or deploy document
         shell: bash
@@ -111,7 +111,8 @@ jobs:
           echo "Running 'clean $PHASE' for version ${{ needs.generate-resources.outputs.version }}"
           mvn clean $PHASE -f Documentation/pom.xml
         env:
-          GITHUB_TOKEN: ${{ secrets.TEST_GITHUB_TOKEN }}
+          MAVEN_USERNAME: ${{ secrets.NEXUS_AXONIVY_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.NEXUS_AXONIVY_PASSWORD }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
