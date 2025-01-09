@@ -12,12 +12,12 @@
 
     <distributionManagement>
       <repository>
-        <id>nexus.axonivy.com</id>
-        <url>https://nexus.axonivy.com/repository/maven-releases/</url>
+        <id>github</id>
+        <url>https://maven.pkg.github.com/ntloc-axonivy/test-maven/</url>
       </repository>
       <snapshotRepository>
-        <id>nexus.axonivy.com</id>
-        <url>https://nexus.axonivy.com/repository/maven-snapshots/</url>
+        <id>github</id>
+        <url>https://maven.pkg.github.com/ntloc-axonivy/test-maven/</url>
       </snapshotRepository>
     </distributionManagement>
 
