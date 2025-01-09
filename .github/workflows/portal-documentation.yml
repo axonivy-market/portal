@@ -96,7 +96,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-          server-id: 'github'
+          server-id: 'nexus.axonivy.com'
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
 
@@ -124,9 +124,9 @@ jobs:
   clean-up:
     runs-on: portal01
     needs: [install-or-deploy]
+    if: always()
     steps:
       - name: Cleanup
-        if: always()
         shell: bash
         run: sudo rm -rf ${{ github.workspace }}/*
 
