@@ -18,6 +18,17 @@ jobs:
           ref: release/10.0
           fetch-depth: 0
 
+  generate-resource:
+    needs: checkout-source
+    runs-on: portal01
+    outputs:
+      version: ${{ steps.get_version.outputs.version }}
+    container:
+      image: maven:3.8.6-eclipse-temurin-17
+      volumes:
+        - ${{ github.workspace }}
+
+    steps:
       - name: Get current version
         id: get_version
         run: |
@@ -30,25 +41,49 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Version is $VERSION"
 
-      - name: Unzip portal screenshots
-        run: |
-          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-${{ steps.get_version.outputs.version }}.zip \
-            -d Documentation/portal-guide/source/screenshots
-  
-
-  generate-resource:
-    needs: checkout-source
-    runs-on: portal01
-    container:
-      image: maven:3.8.6-eclipse-temurin-17
-      volumes:
-        - ${{ github.workspace }}
-
-    steps:
       - name: Generate resources
         run: |
           mvn clean process-resources "-Divy.engine.version=[10.0.1,10.1.0)" "-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-10.0/axonivy-engine.zip" -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
+
+  unzip-screenshots:
+    runs-on: portal01
+    needs: generate-resource
+    steps:
+      - name: Unzip portal screenshots
+        run: |
+          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-${{ needs.generate-resource.outputs.version }}.zip \
+            -d Documentation/portal-guide/source/screenshots
+
+      - name: Run substitute
+        shell: bash
+        run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
+  
+  build-document:
+    runs-on: portal01
+    needs: unzip-screenshots
+    container:
+      image: axonivy/build-container:read-the-docs-2
+      volumes:
+        - ${{ github.workspace }}
+    steps:
+      - name: Build Documentation HTML
+        run: |
+          make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=nightly 2> sphinx-warnings.log
+          WARNINGS=$(grep -c "WARNING" sphinx-warnings.log || echo 0)
+          echo "Found $WARNINGS warnings."
+          if [ "$WARNINGS" -ge 1 ]; then
+            echo "Documentation build has warnings. Adding to summary..."
+            echo "### Documentation Build Warnings" >> $GITHUB_STEP_SUMMARY
+            echo "Found $WARNINGS warnings during the documentation build." >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "#### Warning Details" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            cat sphinx-warnings.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            exit 1
+          fi
+
 
 
   # build-document:
