@@ -2,7 +2,7 @@ name: Cron bot
 run-name: 🤖 Cron bot walking 
 on:
   schedule:
-    # Cron at midnight UTC
+    # Cron at midnight GMT+7
     - cron: '0 17 * * *'
 
 jobs:
@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        sourceBranch: ['master', 'release/12.0']
+        sourceBranch: ['master', 'release/12.0', 'release/10.0']
     steps:
       - uses: actions/github-script@v6
         name: Trigger build Portal Documentation for ${{ matrix.sourceBranch }}
-        if: github.event.schedule == '0 0 * * *'
+        if: github.event.schedule == '0 17 * * *'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
