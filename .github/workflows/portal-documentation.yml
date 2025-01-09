@@ -43,6 +43,17 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Version is $VERSION"
 
+      - name: Unzip portal screenshots
+        run: |
+          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-${{ steps.get_version.outputs.version }}.zip \
+            -d Documentation/portal-guide/source/screenshots
+
+      - name: Generate resources
+        run: |
+          mvn clean process-resources "-Divy.engine.version=[10.0.1,10.1.0)" "-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-10.0/axonivy-engine.zip" -f Documentation/public-api/pom.xml
+          mvn clean generate-resources -f Documentation/pom.xml
+
+
   # build-document:
   #   runs-on: portal01
   #   steps:
