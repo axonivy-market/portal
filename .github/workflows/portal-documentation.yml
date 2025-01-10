@@ -9,13 +9,17 @@ on:
         required: true
   push:
 
+concurrency: 
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
 jobs:
   checkout-source:
     runs-on: portal01
     steps:
       - uses: actions/checkout@v4
-        with:
-          path: Documentation-${{ github.ref }}
+        # with:
+        #   path: Documentation-${{ github.ref }}
 
   generate-resources:
     needs: [checkout-source]
