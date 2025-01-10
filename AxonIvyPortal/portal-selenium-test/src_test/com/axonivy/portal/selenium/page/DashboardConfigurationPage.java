@@ -421,7 +421,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public SelenideElement getDashboardTemplates() {
-    return $("[id$=':create-new-dashboard-form']");
+    return $("[id$=':create-new-dashboard-dialog']");
   }
 
   public void openImportPublicDashboards() {

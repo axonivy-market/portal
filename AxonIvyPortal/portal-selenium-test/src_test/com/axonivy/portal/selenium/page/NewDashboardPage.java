@@ -789,6 +789,10 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement getCaseWidgetTable() {
     return getCaseWidgetContainer().$("div[id$='dashboard-cases']");
   }
+  
+  public SelenideElement getCaseWidget() {
+    return $("div[class*='js-dashboard-widget-case_1']");
+  }
 
   public SelenideElement getCaseWidgetEmptyMessageWhenNotFilter() {
     return getCaseWidgetContainer().$("div[id$='empty-message-when-not-filter']");
@@ -809,6 +813,10 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement getTaskWidgetTable() {
     return getTaskWidgetContainer().$("div[id$='dashboard-tasks']");
   }
+  
+  public SelenideElement getTaskWidget() {
+    return $("div[class*='js-dashboard-widget-task_1']");
+  } 
 
   public SelenideElement getTaskWidgetEmptyMessageWhenNotFilter() {
     return getTaskWidgetContainer().$("div[id$='empty-message-when-not-filter']");
