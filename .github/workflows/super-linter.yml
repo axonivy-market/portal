@@ -42,7 +42,7 @@ jobs:
           VALIDATE_XML: true
           VALIDATE_CSS: true
           LOG_LEVEL: DEBUG
-          LOG_FILE: true
+          LOG_FILE: super-linter.log
           REPORT_OUTPUT: true
           CREATE_LOG_FILE: true
           OUTPUT_FOLDER: /tmp/lint-results
