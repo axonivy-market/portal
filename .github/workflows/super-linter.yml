@@ -36,7 +36,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: true
           VALIDATE_JAVA: true
-          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_JAVASCRIPT: true
           VALIDATE_JSON: true
           VALIDATE_YAML: true
           VALIDATE_XML: true
@@ -68,6 +68,15 @@ jobs:
             echo "Log file exists: $LOG_FILE"
           else
             echo "Log file does not exist: $LOG_FILE"
+          fi
+
+      - name: Change Log File Permissions
+        if: always()
+        run: |
+          LOG_FILE="${{ github.workspace }}/super-linter.log"
+          if [ -f "$LOG_FILE" ]; then
+            sudo chmod 644 "$LOG_FILE"
+            echo "Changed permissions for log file: $LOG_FILE"
           fi
 
       - name: Process Linter Results
@@ -104,16 +113,6 @@ jobs:
           
           # Ensure we have a linter.log file even if empty
           touch /tmp/lint-results/linter.log
-
-      - name: Check Log File Existence
-        if: always()
-        run: |
-          LOG_FILE="${{ github.workspace }}/super-linter.log"
-          if [ -f "$LOG_FILE" ]; then
-            echo "Log file exists: $LOG_FILE"
-          else
-            echo "Log file does not exist: $LOG_FILE"
-          fi
 
       - name: Upload Linter Report
         if: always()
