@@ -509,8 +509,9 @@ const processItemId = '[id^="user-menu-required-login:main-navigator:main-menu_p
 const taskItemId = '[id^="user-menu-required-login:main-navigator:main-menu_task"]';
 const caseItemId = '[id^="user-menu-required-login:main-navigator:main-menu_case"]';
 const statisticItemId = '[id^="user-menu-required-login:main-navigator:main-menu_statistics"]';
-const searchIconId = 'a#global-search-item';
-const useSettingMenuId = 'a#user-settings-menu';
+const searchIconId = 'a#global-search-item:visible';
+const searchInputId = '[id="global-search-component:global-search-data"]:visible';
+const useSettingMenuId = 'a#user-settings-menu:visible';
 
 $(document).ready(function () {
 
@@ -520,12 +521,14 @@ $(document).ready(function () {
     'Digit3': taskItemId,
     'Digit4': caseItemId,
     'Digit5': statisticItemId,
-    'Digit6': searchIconId,
+    'Digit6': [searchIconId, searchInputId],
     'Digit7': useSettingMenuId
   };
 
   function findTargetElementByKey(key) {
-    if (key === 'Digit6' || key === 'Digit7') {
+    if (key === 'Digit6') {
+      return $(shortcuts[key].find(h => $(h).length));
+    } else if(key === 'Digit7') {
       return $(shortcuts[key]);
     }
     return $(shortcuts[key]).find('a').first();
@@ -570,6 +573,15 @@ $(document).ready(function () {
     return event ? event.altKey && !event.ctrlKey && !event.shiftKey && !event.metaKey : false;
   }
 
+  function registerSearchIconClick() {
+    $(searchIconId).on('click', function () {
+      const searchInput = $(searchInputId);
+      if (searchInput) {
+        searchInput.focus();
+      }
+    });
+  }
+
   const iframe = document.getElementById('iFrame');
 
   if (iframe) {
@@ -579,16 +591,12 @@ $(document).ready(function () {
         if (onlyAltPressed(event)) {
           handleFocusOnMainElement(event);
         }
+        registerSearchIconClick();
       });
     };
   }
 
-  $(searchIconId).on('click', function () {
-    const searchInput = $('[id="global-search-component:global-search-data"]');
-    if (searchInput) {
-      searchInput.focus();
-    }
-  })
+  registerSearchIconClick();
 
   let taskIndex = 0;
   let resetTaskFormIndex = 0;
@@ -603,19 +611,9 @@ $(document).ready(function () {
   let focusedResetTaskFormEl = 0;
   let focusedTaskSideStepEl;
 
-  $(document).on('click', function (event) {
-    var target = $(event.target);
-    if (!target.closest('.focusable').length) {
-      removeFocusedElements();
-      if (target.is('input')) {
-        target.focus();
-      }
-    }
-  });
-
   $(document).on('keydown', function (event) {
-
-    if (event.key === 'Escape') {
+    var keyCode = event.code;
+    if (keyCode === 'Escape') {
       var collapseWidgetBtn = $('[id*="collapse-link"]:visible');
       if (collapseWidgetBtn.length > 0) {
         collapseWidgetBtn.click();
@@ -638,7 +636,7 @@ $(document).ready(function () {
       return;
     }
 
-    if (event.key === 'Tab') {
+    if (keyCode === 'Tab') {
       removeFocusedElements();
       return;
     }
