@@ -68,7 +68,7 @@
 
         <!-- Process Description -->
         <div class="ui-g-12 process-description js-process-start-list-item-description">
-          <h:outputText id="process-description" value="#{process.description}"
+          <h:outputText id="process-description" value="#{not empty process.description ? process.description : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noProcessDescription')}"
             styleClass="u-text-align-center line-clamp-text-5 process-description__text" />
           <p:tooltip id="info-workflow-tooltip" for="process-description" value="#{process.description}" position="top"
             trackMouse="true" hideEvent="mouseleave click" styleClass="js-process-start-list-item-description process-tooltip" />
