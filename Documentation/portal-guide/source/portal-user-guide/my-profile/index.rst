@@ -75,8 +75,12 @@ the |ivy| Engine.
 The table :guilabel:`Notification Channels` displays all the available 
 events that can either be subscribed or unsubscribed.
 
+|notification-channels|
+
 The checkbox in each event column allow you to specify 
 three state of event: subscribed by default, subscribe, unsubscribe.
 
 .. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png
    :alt: My profile page
+.. |notification-channels| image:: ../../screenshots/my-profile/notification-channels-settings.png
+   :alt: Notification channels settings

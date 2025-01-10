@@ -30,8 +30,6 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_DASHBOARD = "Start Processes/PortalStart/DefaultDashboardPage.ivp";
   private static final String PORTAL_PROCESS = "Start Processes/PortalStart/DefaultProcessStartListPage.ivp";
   private static final String PORTAL_CASE_DETAILS = "Start Processes/PortalStart/DefaultCaseDetailPage.ivp";
-  private static final String PORTAL_RELATED_TASKS_OF_CASE = "Start Processes/PortalStart/RelatedTasksOfCasePage.ivp";
-  private static final String PORTAL_RELATED_TASKS_OF_CASE_IN_FRAME = "Start Processes/PortalStart/RelatedTasksOfCasePageInFrame.ivp";
   private static final String PORTAL_TASK_DETAILS = "Start Processes/PortalStart/DefaultTaskDetailPage.ivp";
   private static final String PORTAL_TASK_DETAILS_IN_FRAME = "Start Processes/PortalStart/TaskDetailsPageInFrame.ivp";
   private static final String PORTAL_GLOBAL_SEARCH = "Start Processes/PortalStart/GlobalSearchPage.ivp";
@@ -134,22 +132,6 @@ public final class PortalNavigator extends BaseNavigator{
     Map<String, String> params = new HashMap<>();
     params.put(ID, uuid);
     navigateByKeyword("DefaultCaseDetailPage.ivp", PORTAL_CASE_DETAILS, params);
-  }
-
-  public static void navigateToPortalRelatedTasksOfCase(String uuid, boolean isBusinessCase, String caseName) {
-    Map<String, String> params = new HashMap<>();
-    params.put(UUID, uuid);
-    params.put("isBusinessCase", String.valueOf(isBusinessCase));
-    params.put("caseName", caseName);
-    navigateByKeyword("RelatedTasksOfCasePage.ivp", PORTAL_RELATED_TASKS_OF_CASE, params);
-  }
-
-  public static void navigateToPortalRelatedTasksOfCaseInFrame(String uuid, boolean isBusinessCase, String caseName) {
-    Map<String, String> params = new HashMap<>();
-    params.put(UUID, uuid);
-    params.put("isBusinessCase", String.valueOf(isBusinessCase));
-    params.put("caseName", caseName);
-    navigateByKeyword("RelatedTasksOfCasePageInFrame.ivp", PORTAL_RELATED_TASKS_OF_CASE_IN_FRAME, params);
   }
 
   public static void navigateToPortalTaskDetails(String uuid) {

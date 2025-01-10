@@ -37,13 +37,9 @@ HowTo: Translate a pure text
 
 #. Click on the input text field of a foreign language to have it translated by DeepL. To accept the translated text, clicking on :guilabel:`Auto. translation`.
 
-   |overlay-panel-translation|
-
 .. include:: ../includes/_common-icon.rst
 
 .. |create-private-dashboard-dialog| image:: ../../screenshots/dashboard-configuration/create-private-dashboard-dialog-ml.png
    :alt: Multi language usage when create private dashboard
-.. |overlay-panel-translation| image:: ../../screenshots/dashboard-configuration/overlay-panel-translation-ml.png
-   :alt: Multi language: Translation panel 
 .. |dashboard-multi-language-dialog| image:: ../../screenshots/dashboard-configuration/dashboard-multi-language-dialog-ml.png
    :alt: Multi language dialog
