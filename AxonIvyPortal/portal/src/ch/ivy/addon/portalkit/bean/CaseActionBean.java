@@ -18,8 +18,10 @@ import javax.faces.bean.RequestScoped;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portal.generic.bean.UserMenuBean;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -184,6 +186,7 @@ public class CaseActionBean implements Serializable {
   }
 
   public String getProcessViewerPageUri(ICase selectedCase) {
+    Ivy.log().warn("===== getProcessViewerPageUri");
     return PortalProcessViewerUtils.getStartProcessViewerPageUri(selectedCase);
   }
 
@@ -227,7 +230,7 @@ public class CaseActionBean implements Serializable {
   }
 
   public boolean showProcessViewer(ICase caze) {
-    return PortalProcessViewerUtils.isShowProcessViewer(caze);
+    return ((UserMenuBean) ManagedBeans.get("userMenuBean")).isProcessViewerDisplayed(caze);
   }
 
 }

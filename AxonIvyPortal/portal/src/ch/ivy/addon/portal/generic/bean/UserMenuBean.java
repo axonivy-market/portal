@@ -2,6 +2,7 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -33,11 +34,13 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.EngineUriResolver;
 import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -58,6 +61,7 @@ public class UserMenuBean implements Serializable {
   protected static final String MOBILE_LOGO_IMAGE_CMS_URI = "/images/MenuQRCode/MobileAppLogo/MobileAppLogo";
   protected static final String APPLE_STORE_IMAGE_CMS_URL = "/images/MenuQRCode/AppleStore/AppleStore";
   protected static final String GOOGLE_PLAY_IMAGE_CMS_URL = "/images/MenuQRCode/GooglePlay/GooglePlay";
+  private Map<Long, Boolean> caseIdToProcessViewerDisplayed;
 
   public String getLoggedInUser() {
     return loggedInUser;
@@ -395,5 +399,15 @@ public class UserMenuBean implements Serializable {
       executeJSResetPortalMenuState();
       navigateToAssistantDashboard();
     }
+  }
+
+  public boolean isProcessViewerDisplayed(ICase caze) {
+    if (caseIdToProcessViewerDisplayed == null) {
+      caseIdToProcessViewerDisplayed = new HashMap<>();
+    }
+    if (!caseIdToProcessViewerDisplayed.containsKey(caze.getId())) {
+      caseIdToProcessViewerDisplayed.put(caze.getId(), PortalProcessViewerUtils.isShowProcessViewer(caze));
+    }
+    return caseIdToProcessViewerDisplayed.get(caze.getId());
   }
 }
