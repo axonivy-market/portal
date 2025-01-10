@@ -4,17 +4,16 @@ on:
   schedule:
     # Cron at midnight GMT+7
     - cron: '0 17 * * *'
+    - cron: '5 17 * * *'
+    - cron: '10 17 * * *'
 
 jobs:
   trigger-portal-document:
     runs-on: ubuntu-latest
-    if: github.event.schedule == '0 17 * * *'
-    strategy:
-      matrix:
-        sourceBranch: ['master', 'release/12.0', 'release/10.0']
     steps:
       - uses: actions/github-script@v6
-        name: Trigger build Portal Documentation for ${{ matrix.sourceBranch }}
+        name: Trigger build Portal Documentation for master
+        if: github.event.schedule == '0 17 * * *'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -22,5 +21,32 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'portal-documentation.yml',
-              ref: '${{ matrix.sourceBranch }}'
+              ref: 'master'
             })
+
+      - uses: actions/github-script@v6
+        name: Trigger build Portal Documentation for release/10.0
+        if: github.event.schedule == '5 17 * * *'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'portal-documentation.yml',
+              ref: 'release/10.0'
+            })
+
+      - uses: actions/github-script@v6
+        name: Trigger build Portal Documentation for release/12.0
+        if: github.event.schedule == '10 17 * * *'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'portal-documentation.yml',
+              ref: 'release/12.0'
+            })
+    
