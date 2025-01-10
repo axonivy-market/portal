@@ -69,7 +69,8 @@ public class TaskService {
     return Sudo.get(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       TaskQuery finalQuery = extendQueryWithUserHasPermissionToSee(criteria);
-      IPagedResult<ITask> iTask = Ivy.wf().getTaskQueryExecutor().getResultsPaged(finalQuery);
+      IPagedResult<ITask> iTask = Ivy.wf().getTaskQueryExecutor()
+          .getResultsPaged(finalQuery);
       result.setTasks(iTask.window(startIndex, count));
       result.setTotalTasks(iTask.count());
       return result;
@@ -244,19 +245,20 @@ public class TaskService {
       return expiryStatistic;
     }
 
-  @SuppressWarnings("deprecation")
-  private TaskQuery extendQueryWithUserHasPermissionToSee(TaskSearchCriteria criteria) {
-    TaskQuery clonedQuery = TaskQuery.fromJson(criteria.getFinalTaskQuery().asJson()); // clone to keep the final query in TaskSearchCriteria
+    private TaskQuery extendQueryWithUserHasPermissionToSee(
+        TaskSearchCriteria criteria) {
+    TaskQuery cloneQuery = criteria.createQuery();
+
     if (!criteria.isAdminQuery()) {
-      clonedQuery.where().and(queryInvolvedTasks());
+      cloneQuery.where().and(queryInvolvedTasks());
     }
     if (isHiddenTasksCasesExcluded()) {
-      clonedQuery.where().and(queryExcludeHiddenTasks());
+      cloneQuery.where().and(queryExcludeHiddenTasks());
     }
     if (!PermissionUtils.hasSystemTaskReadAllPermission()) {
-      clonedQuery.where().and(queryExcludeSystemTasks());
+      cloneQuery.where().and(queryExcludeSystemTasks());
     }
-    return clonedQuery;
+    return cloneQuery;
   }
 
   protected TaskQuery queryInvolvedTasks() {
@@ -264,10 +266,9 @@ public class TaskService {
     return currentUserIsInvolved;
   }
 
-  @SuppressWarnings("deprecation")
   private TaskQuery extendQueryWithInvolvedUser(TaskSearchCriteria criteria) {
-    TaskQuery finalQuery = criteria.getFinalTaskQuery();
-    TaskQuery clonedQuery = TaskQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in TaskSearchCriteria
+    TaskQuery clonedQuery = criteria.createQuery();
+
     if (!criteria.isAdminQuery()) {
       clonedQuery.where().and(queryInvolvedTasks());
     } 
@@ -281,7 +282,7 @@ public class TaskService {
   }
   
   private TaskQuery extendQueryWithUserCanWorkOn(TaskSearchCriteria criteria) {
-    TaskQuery finalQuery = criteria.getFinalTaskQuery();
+    TaskQuery finalQuery = criteria.createQuery();
     if (!criteria.isAdminQuery()) {
       finalQuery.where().and().currentUserCanWorkOn();
     } 
