@@ -282,3 +282,10 @@ WelcomeWidget = {
     }
   }
 }
+
+function handleUploadFileFail() {
+  let errorMessageElement = document.getElementById('widget-configuration-form:new-widget-configuration-component:config-welcome-widget-message');
+  let uploadErrorElement = document.getElementsByClassName('ui-messages ui-widget ui-helper-hidden ui-fileupload-messages')[0];
+  errorMessageElement.style.display = 'block';
+  errorMessageElement.appendChild(uploadErrorElement);
+}
