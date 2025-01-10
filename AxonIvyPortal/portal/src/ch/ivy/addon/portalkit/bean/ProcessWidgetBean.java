@@ -613,4 +613,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     return GlobalSearchService.getInstance().isShowGlobalSearchByProcesses();
   }
 
+  public void reset() {
+    selectedSecurityMemberDTOsWhenCreatingExternalLink.clear();
+  }
 }
