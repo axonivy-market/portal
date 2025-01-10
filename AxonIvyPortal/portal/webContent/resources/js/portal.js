@@ -553,7 +553,7 @@ $(document).ready(function () {
 
   function registerSearchIconClick() {
     $(searchIconId).on('click', function () {
-      const searchInput = $('[id="global-search-component:global-search-data"]');
+      const searchInput = $(searchInputId);
       if (searchInput) {
         searchInput.focus();
       }
