@@ -10,7 +10,7 @@ on:
   push:
 
 concurrency: 
-  group: ${{ github.workflow }}
+  group: ${{ github.workflow }}-${{ github.ref_name }}
   cancel-in-progress: false
 
 jobs:
@@ -64,7 +64,7 @@ jobs:
         run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
 
   build-document:
-    needs: [generate-resources]
+    needs: [generate-resources, unzip-screenshots]
     runs-on: portal01
     container:
       image: axonivy/build-container:read-the-docs-2
@@ -90,7 +90,7 @@ jobs:
             fi
 
   install-or-deploy:
-    needs: [generate-resources,build-document]
+    needs: [generate-resources, build-document]
     runs-on: portal01
     steps:
       - name: Set up Java
