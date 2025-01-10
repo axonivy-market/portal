@@ -50,7 +50,11 @@ jobs:
         run: |
           mvn clean process-resources "-Divy.engine.version=[10.0.1,10.1.0)" "-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-10.0/axonivy-engine.zip" -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
-          
+
+  unzip-screenshots:
+      needs: [generate-resources]
+      runs-on: portal01
+      steps:
       - name: Unzip portal screenshots
         run: |
           unzip -o /mnt/portal02/document-screenshots/portal-document-screenshots-${{ needs.generate-resources.outputs.version }}.zip \
@@ -58,11 +62,6 @@ jobs:
       - name: Run substitute
         shell: bash
         run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
-  
-  # unzip-screenshots:
-  #   needs: [generate-resources]
-  #   runs-on: portal01
-  #   steps:
 
   build-document:
     needs: [generate-resources]
@@ -124,8 +123,12 @@ jobs:
           path: |
             Documentation/*/target/*.zip
 
+  clean-up:
+    runs-on: portal01
+    needs: [install-or-deploy]
+    if: always()
+    steps:  
       - name: Clean up
-        if: always()
         shell: bash
         run: sudo rm -rf ${{ github.workspace }}/*
-
+          
