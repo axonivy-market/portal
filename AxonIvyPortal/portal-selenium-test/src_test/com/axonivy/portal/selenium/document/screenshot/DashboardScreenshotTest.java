@@ -161,6 +161,13 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotNewDashboardUserGuide() throws IOException {
+    redirectToRelativeLink(createTechnicalStateUrl);
+    redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(createDataForStatisticWidget);
+    redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
+    redirectToRelativeLink(businessCaseUrl);
+    redirectToRelativeLink(complexPaymentUrl);
+    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     showNewDashboard();
     ScreenshotUtils.resizeBrowser(new Dimension(1800, 1400));
     homePage = new NewDashboardPage();
@@ -208,12 +215,12 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     // Take screenshot of task widget table in edit mode
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     ScreenshotUtils.captureElementScreenshot(
-        newDashboardPage.getTaskWidgetTable(),
+        newDashboardPage.getTaskWidget(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-list-widget-edit-mode");
 
     // Take screenshot of case widget table in edit mode
     ScreenshotUtils.captureElementScreenshot(
-        newDashboardPage.getCaseWidgetTable(),
+        newDashboardPage.getCaseWidget(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "case-list-widget-edit-mode");
 
     // Take screenshot of Add new widget dialog
@@ -346,22 +353,6 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
   }
 
   @Test
-  public void screenshotTaskByPriorityClientStatisticChartWidget() throws IOException {
-    ScreenshotUtils.maximizeBrowser();
-
-    addPublicStatisticWidget(NewDashboardDetailsEditPage.TASK_BY_PRIORITY);
-    NewDashboardDetailsEditPage newDashboard = new NewDashboardDetailsEditPage();
-    newDashboard.waitPageLoaded();
-
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-statistic-widget");
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-widget-configuration");
-    redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
-    homePage = new NewDashboardPage();
-    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetClientStatisticChart(0),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-chart-widget");
-  }
-
-  @Test
   public void screenshotWelcomeWidget() throws IOException {
     ScreenshotUtils.maximizeBrowser();
     addPublicWidget(NewDashboardDetailsEditPage.WELCOME_WIDGET);
@@ -397,12 +388,6 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     newDashboardPage.enterNewsItemData("en", "si-send-email", "Welcome to Portal News feed",
         "Welcome to Portal News feed");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "news-feed-widget-manage-content");
-    String tabIndex = newDashboardPage.selectNewsLanguage("fr");
-    newDashboardPage.clickOnTitle(tabIndex);
-    WebElement translation = newDashboardPage.getTranslationOverlayPanel(1);
-    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "news-feed-widget-overlay-panel");
-    translation.findElement(By.cssSelector("span.ui-icon-closethick")).click();
-    newDashboardPage.findTranslationButton(tabIndex);
   }
   
   @Test
