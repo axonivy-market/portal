@@ -9,6 +9,10 @@ on:
         required: true
   push:
 
+concurrency:
+  group: portal-documentation-master
+  cancel-in-progress: false
+
 jobs:
   checkout-source:
     runs-on: portal01
