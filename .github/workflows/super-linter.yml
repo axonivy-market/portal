@@ -43,7 +43,7 @@ jobs:
           VALIDATE_CSS: true
           VALIDATE_GITHUB_ACTIONS: true
           VALIDATE_DOCKERFILE: true
-          LOG_LEVEL: DEBUG
+          LOG_LEVEL: INFO
           LOG_FILE: super-linter.log
           REPORT_OUTPUT: true
           CREATE_LOG_FILE: true
@@ -55,19 +55,29 @@ jobs:
         if: always()
         run: |
           echo "=== Checking for linter output files ==="
-          find /tmp/lint-results -name "super-linter.log" || true
+          find ${{ github.workspace }} -name "super-linter.log" || true
           
-          echo "=== Contents of /tmp/lint-results ==="
-          ls -la /tmp/lint-results || true
+          echo "=== Contents of ${{ github.workspace }} ==="
+          ls -la ${{ github.workspace }} || true
+
+      - name: Check Log File Existence
+        if: always()
+        run: |
+          LOG_FILE="${{ github.workspace }}/super-linter.log"
+          if [ -f "$LOG_FILE" ]; then
+            echo "Log file exists: $LOG_FILE"
+          else
+            echo "Log file does not exist: $LOG_FILE"
+          fi
 
       - name: Process Linter Results
         if: always()
         run: |
           mkdir -p /tmp/lint-results
           
-          # Check directly in /tmp/lint-results
-          echo "=== Checking /tmp/lint-results ==="
-          LOG_FILE="/tmp/lint-results/super-linter.log"
+          # Check directly in the workspace
+          echo "=== Checking ${{ github.workspace }} ==="
+          LOG_FILE="${{ github.workspace }}/super-linter.log"
           
           if [ -f "$LOG_FILE" ]; then
             echo "Found log file: $LOG_FILE"
@@ -94,6 +104,16 @@ jobs:
           
           # Ensure we have a linter.log file even if empty
           touch /tmp/lint-results/linter.log
+
+      - name: Check Log File Existence
+        if: always()
+        run: |
+          LOG_FILE="${{ github.workspace }}/super-linter.log"
+          if [ -f "$LOG_FILE" ]; then
+            echo "Log file exists: $LOG_FILE"
+          else
+            echo "Log file does not exist: $LOG_FILE"
+          fi
 
       - name: Upload Linter Report
         if: always()
