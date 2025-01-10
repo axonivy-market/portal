@@ -48,7 +48,7 @@ jobs:
       - name: Unzip portal screenshots
         run: |
           unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ needs.generate-resources.outputs.version }}.zip \
-            -o -d Documentation/portal-guide/source/screenshots
+            -d Documentation/portal-guide/source/screenshots
   
   build-document:
     runs-on: portal01
