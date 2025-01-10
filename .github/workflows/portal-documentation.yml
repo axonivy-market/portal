@@ -10,7 +10,7 @@ on:
   push:
 
 concurrency:
-  group: portal-documentation-master
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
     
 jobs:
