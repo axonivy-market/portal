@@ -41,6 +41,8 @@ jobs:
           VALIDATE_YAML: true
           VALIDATE_XML: true
           VALIDATE_CSS: true
+          VALIDATE_GITHUB_ACTIONS: true
+          VALIDATE_DOCKERFILE: true
           LOG_LEVEL: DEBUG
           LOG_FILE: super-linter.log
           REPORT_OUTPUT: true
@@ -53,7 +55,7 @@ jobs:
         if: always()
         run: |
           echo "=== Checking for linter output files ==="
-          find /tmp/lint-results -name "*lint*.log" -o -name "super-linter.log" || true
+          find /tmp/lint-results -name "super-linter.log" || true
           
           echo "=== Contents of /tmp/lint-results ==="
           ls -la /tmp/lint-results || true
@@ -65,9 +67,9 @@ jobs:
           
           # Check directly in /tmp/lint-results
           echo "=== Checking /tmp/lint-results ==="
-          LOG_FILE=$(find /tmp/lint-results -name "super-linter.log" 2>/dev/null | head -1)
+          LOG_FILE="/tmp/lint-results/super-linter.log"
           
-          if [ -n "$LOG_FILE" ]; then
+          if [ -f "$LOG_FILE" ]; then
             echo "Found log file: $LOG_FILE"
             # Initialize summary file
             echo "### Super-Linter Results" > /tmp/lint-results/summary.md
