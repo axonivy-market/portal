@@ -7,6 +7,11 @@ on:
         description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly-10.0/designer-guide/configuration/variables.html'
         default: 'nightly-10.0'
         required: true
+  push:
+
+concurrency: 
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
 
 jobs:
   checkout-source:
@@ -45,11 +50,7 @@ jobs:
         run: |
           mvn clean process-resources "-Divy.engine.version=[10.0.1,10.1.0)" "-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-10.0/axonivy-engine.zip" -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
-
-  unzip-screenshots:
-    needs: [generate-resources]
-    runs-on: portal01
-    steps:
+          
       - name: Unzip portal screenshots
         run: |
           unzip -o /mnt/portal02/document-screenshots/portal-document-screenshots-${{ needs.generate-resources.outputs.version }}.zip \
@@ -57,10 +58,14 @@ jobs:
       - name: Run substitute
         shell: bash
         run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
-    
   
+  # unzip-screenshots:
+  #   needs: [generate-resources]
+  #   runs-on: portal01
+  #   steps:
+
   build-document:
-    needs: [unzip-screenshots, generate-resources]
+    needs: [generate-resources]
     runs-on: portal01
     container:
       image: axonivy/build-container:read-the-docs-2
