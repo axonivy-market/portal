@@ -7,7 +7,6 @@ on:
         description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html'
         default: 'nightly'
         required: true
-  push:
 
 concurrency: 
   group: ${{ github.workflow }}-${{ github.ref_name }}
@@ -58,7 +57,7 @@ jobs:
       - name: Run substitute
         shell: bash
         run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
-    
+
   build-document:
     needs: [unzip-screenshots, generate-resources]
     runs-on: portal01
@@ -84,7 +83,7 @@ jobs:
               echo '```' >> $GITHUB_STEP_SUMMARY
               exit 1 
             fi
-  
+
   install-or-deploy:
     needs: [generate-resources,build-document]
     runs-on: portal01
