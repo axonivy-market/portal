@@ -713,64 +713,6 @@
         { "id" : "f182", "to" : "f95" }
       ]
     }, {
-      "id" : "S31",
-      "type" : "EmbeddedProcess",
-      "name" : "Authorize",
-      "elements" : [ {
-          "id" : "S31-f194",
-          "type" : "Alternative",
-          "name" : "Authorized?",
-          "config" : {
-            "conditions" : {
-              "S31-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.uuid)"
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 152, "y" : 144 },
-            "labelOffset" : { "y" : -16 }
-          },
-          "connect" : [
-            { "id" : "S31-f1", "to" : "S31-g1", "label" : {
-                "name" : "Yes"
-              } },
-            { "id" : "S31-f197", "to" : "S31-f196", "label" : {
-                "name" : "No",
-                "segment" : 0.54
-              } }
-          ]
-        }, {
-          "id" : "S31-f196",
-          "type" : "TaskEnd",
-          "visual" : {
-            "at" : { "x" : 152, "y" : 216 }
-          }
-        }, {
-          "id" : "S31-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
-          },
-          "parentConnector" : "f53",
-          "connect" : [
-            { "id" : "S31-f0", "to" : "S31-f194" }
-          ]
-        }, {
-          "id" : "S31-g1",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 288, "y" : 144 }
-          },
-          "parentConnector" : "f181"
-        } ],
-      "visual" : {
-        "at" : { "x" : 200, "y" : 2112 }
-      },
-      "connect" : [
-        { "id" : "f181", "to" : "f56" }
-      ]
-    }, {
       "id" : "S21",
       "type" : "EmbeddedProcess",
       "name" : "Authorize",
@@ -943,65 +885,6 @@
       },
       "connect" : [
         { "id" : "f209", "to" : "f274" }
-      ]
-    }, {
-      "id" : "S50",
-      "type" : "EmbeddedProcess",
-      "name" : "Authorize",
-      "elements" : [ {
-          "id" : "S50-f178",
-          "type" : "Alternative",
-          "name" : "Authorized?",
-          "config" : {
-            "conditions" : {
-              "S50-f1" : "ch.ivy.addon.portalkit.ivydata.service.impl.CaseService.newInstance().isCaseAccessible(in.uuid)"
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 152, "y" : 144 },
-            "labelOffset" : { "x" : 24, "y" : -24 }
-          },
-          "connect" : [
-            { "id" : "S50-f1", "to" : "S50-g1", "label" : {
-                "name" : "Yes"
-              } },
-            { "id" : "S50-f176", "to" : "S50-f175", "label" : {
-                "name" : "No",
-                "segment" : 0.42,
-                "offset" : { "x" : 4, "y" : -6 }
-              } }
-          ]
-        }, {
-          "id" : "S50-f175",
-          "type" : "TaskEnd",
-          "visual" : {
-            "at" : { "x" : 152, "y" : 224 }
-          }
-        }, {
-          "id" : "S50-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in 1",
-          "visual" : {
-            "at" : { "x" : 64, "y" : 144 }
-          },
-          "parentConnector" : "f283",
-          "connect" : [
-            { "id" : "S50-f0", "to" : "S50-f178" }
-          ]
-        }, {
-          "id" : "S50-g1",
-          "type" : "EmbeddedEnd",
-          "name" : "out 1",
-          "visual" : {
-            "at" : { "x" : 320, "y" : 144 }
-          },
-          "parentConnector" : "f284"
-        } ],
-      "visual" : {
-        "at" : { "x" : 200, "y" : 1120 }
-      },
-      "connect" : [
-        { "id" : "f284", "to" : "f59" }
       ]
     }, {
       "id" : "f10",
@@ -1303,52 +1186,6 @@
       },
       "connect" : [
         { "id" : "f174", "to" : "f150" }
-      ]
-    }, {
-      "id" : "f59",
-      "type" : "SubProcessCall",
-      "name" : "Functional Processes/Navigator",
-      "config" : {
-        "processCall" : "Functional Processes/Navigator:viewTask(ch.ivy.addon.portalkit.dto.GlobalCaseId,String)",
-        "call" : {
-          "map" : {
-            "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.uuid(in.uuid).isBusinessCase(in.isBusinessCase).build()",
-            "param.caseName" : "in.caseName"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 416, "y" : 1120 },
-        "size" : { "width" : 256 }
-      }
-    }, {
-      "id" : "f60",
-      "type" : "RequestStart",
-      "name" : "RelatedTasksOfCasePage.ivp",
-      "config" : {
-        "signature" : "RelatedTasksOfCasePage",
-        "input" : {
-          "params" : [
-            { "name" : "uuid", "type" : "String", "desc" : "" },
-            { "name" : "isBusinessCase", "type" : "Boolean", "desc" : "" },
-            { "name" : "caseName", "type" : "String", "desc" : "" }
-          ],
-          "map" : {
-            "out.caseName" : "param.caseName",
-            "out.isBusinessCase" : "param.isBusinessCase",
-            "out.uuid" : "param.uuid"
-          }
-        },
-        "request" : {
-          "isVisibleOnStartList" : false
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 1120 },
-        "labelOffset" : { "x" : -47, "y" : 41 }
-      },
-      "connect" : [
-        { "id" : "f283", "to" : "S50" }
       ]
     }, {
       "id" : "f62",
@@ -1697,17 +1534,6 @@
         "at" : { "x" : 592, "y" : 1840 }
       }
     }, {
-      "id" : "f3",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "Replace by customized ",
-        "homepage if you have"
-      ],
-      "visual" : {
-        "at" : { "x" : 1240, "y" : 640 },
-        "size" : { "width" : 144, "height" : 44 }
-      }
-    }, {
       "id" : "f6",
       "type" : "DialogCall",
       "name" : "Login",
@@ -1836,52 +1662,6 @@
       "type" : "TaskEnd",
       "visual" : {
         "at" : { "x" : 600, "y" : 2032 }
-      }
-    }, {
-      "id" : "f94",
-      "type" : "RequestStart",
-      "name" : "RelatedTasksOfCasePageInFrame.ivp",
-      "config" : {
-        "signature" : "RelatedTasksOfCasePageInFrame",
-        "input" : {
-          "params" : [
-            { "name" : "uuid", "type" : "String", "desc" : "" },
-            { "name" : "isBusinessCase", "type" : "Boolean", "desc" : "" },
-            { "name" : "caseName", "type" : "String", "desc" : "" }
-          ],
-          "map" : {
-            "out.caseName" : "param.caseName",
-            "out.isBusinessCase" : "param.isBusinessCase",
-            "out.uuid" : "param.uuid"
-          }
-        },
-        "request" : {
-          "isVisibleOnStartList" : false
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 2112 },
-        "labelOffset" : { "x" : -71, "y" : 41 }
-      },
-      "connect" : [
-        { "id" : "f53", "to" : "S31" }
-      ]
-    }, {
-      "id" : "f56",
-      "type" : "SubProcessCall",
-      "name" : "Functional Processes/Navigator",
-      "config" : {
-        "processCall" : "Functional Processes/Navigator:viewTaskInFrame(ch.ivy.addon.portalkit.dto.GlobalCaseId,String)",
-        "call" : {
-          "map" : {
-            "param.caseId" : "ch.ivy.addon.portalkit.dto.GlobalCaseId.uuid(in.uuid).isBusinessCase(in.isBusinessCase).build()",
-            "param.caseName" : "in.caseName"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 416, "y" : 2112 },
-        "size" : { "width" : 260, "height" : 66 }
       }
     }, {
       "id" : "f95",
@@ -2451,31 +2231,6 @@
             { "id" : "S10-f49", "to" : "S10-f37" }
           ]
         }, {
-          "id" : "S10-f19",
-          "type" : "Script",
-          "name" : [
-            "build data model,",
-            " task "
-          ],
-          "config" : {
-            "output" : {
-              "code" : [
-                "import ch.ivy.addon.portal.generic.view.TaskView;",
-                "",
-                "boolean canLinkBackToCaseDetail = in.#dataModel.#criteria.#caseId is initialized; ",
-                "in.taskView = TaskView.create().dataModel(in.dataModel).canLinkBackCaseDetail(canLinkBackToCaseDetail).showHeaderToolbar(false).createNewTaskView();"
-              ]
-            },
-            "sudo" : true
-          },
-          "visual" : {
-            "at" : { "x" : 416, "y" : 384 },
-            "size" : { "width" : 128, "height" : 56 }
-          },
-          "connect" : [
-            { "id" : "S10-f39", "to" : "S10-f12" }
-          ]
-        }, {
           "id" : "S10-f37",
           "type" : "SubProcessCall",
           "name" : "OpenPortalSearch",
@@ -2498,8 +2253,7 @@
             "conditions" : {
               "S10-f8" : "org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl)",
               "S10-f2" : "in.isTaskStartedInDetails && !in.isTaskFinished && !in.backFromTaskDetails",
-              "S10-f3" : "java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK, in.#portalPage)",
-              "S10-f4" : "java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.TASK_LIST, in.#portalPage)"
+              "S10-f3" : "java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK, in.#portalPage)"
             }
           },
           "visual" : {
@@ -2509,7 +2263,6 @@
             { "id" : "S10-f8", "to" : "S10-f7" },
             { "id" : "S10-f2", "to" : "S10-f68", "via" : [ { "x" : 288, "y" : 192 } ] },
             { "id" : "S10-f3", "to" : "S10-f17", "via" : [ { "x" : 288, "y" : 288 } ] },
-            { "id" : "S10-f4", "to" : "S10-f19", "via" : [ { "x" : 256, "y" : 384 } ] },
             { "id" : "S10-f5", "to" : "S10-f52", "via" : [ { "x" : 224, "y" : 480 } ] }
           ]
         }, {
@@ -2559,22 +2312,6 @@
           "visual" : {
             "at" : { "x" : 600, "y" : 192 },
             "size" : { "width" : 176 }
-          }
-        }, {
-          "id" : "S10-f12",
-          "type" : "SubProcessCall",
-          "name" : "OpenPortalTasks",
-          "config" : {
-            "processCall" : "Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)",
-            "call" : {
-              "map" : {
-                "param.taskView" : "in.taskView"
-              }
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 624, "y" : 384 },
-            "size" : { "width" : 104, "height" : 48 }
           }
         }, {
           "id" : "S10-f7",
