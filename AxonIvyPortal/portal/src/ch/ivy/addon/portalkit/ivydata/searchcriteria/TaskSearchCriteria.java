@@ -80,7 +80,7 @@ public class TaskSearchCriteria {
     setNewQueryCreated(isNewQueryCreated() || customTaskQuery == null || hasTaskId() || hasCaseId());
 
     if (!isNewQueryCreated()) {
-      finalQuery.where().and(customTaskQuery);
+      finalQuery.where().andOverall(customTaskQuery);
     }
 
     addTaskStateQuery(finalQuery);
