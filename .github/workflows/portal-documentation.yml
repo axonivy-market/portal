@@ -18,8 +18,6 @@ jobs:
     runs-on: portal01
     steps:
       - uses: actions/checkout@v4
-        # with:
-        #   path: Documentation-${{ github.ref }}
 
   generate-resources:
     needs: [checkout-source]
@@ -48,6 +46,7 @@ jobs:
         run: |
           mvn clean process-resources "-Divy.engine.version=[13.1.0,]" "-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip" -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
+
   unzip-screenshots:
     needs: [generate-resources]
     runs-on: portal01
