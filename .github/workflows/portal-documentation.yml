@@ -43,17 +43,20 @@ jobs:
           mvn clean process-resources "-Divy.engine.version=[13.1.0,]" "-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip" -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
   unzip-screenshots:
-    runs-on: portal01
     needs: [generate-resources]
+    runs-on: portal01
     steps:
       - name: Unzip portal screenshots
         run: |
           unzip -o /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ needs.generate-resources.outputs.version }}.zip \
             -d Documentation/portal-guide/source/screenshots
-  
+      - name: Run substitute
+        shell: bash
+        run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
+    
   build-document:
-    runs-on: portal01
     needs: [unzip-screenshots, generate-resources]
+    runs-on: portal01
     container:
       image: axonivy/build-container:read-the-docs-2
       options: -u root:root
@@ -78,8 +81,8 @@ jobs:
             fi
   
   install-or-deploy:
-    runs-on: portal01
     needs: [generate-resources,build-document]
+    runs-on: portal01
     container:
       image: maven:3.9.8-eclipse-temurin-21
       volumes:
@@ -116,8 +119,8 @@ jobs:
             Documentation/*/target/*.zip
 
   clean-up:
-    runs-on: portal01
     needs: [install-or-deploy]
+    runs-on: portal01
     if: always()
     steps:  
       - name: Clean up
