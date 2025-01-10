@@ -14,7 +14,6 @@
   <h:outputScript name="welcome-widget.js" library="js" />
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <f:event listener="#{dashboardWelcomeWidgetConfigurationBean.init()}" type="preRenderComponent" />
-
   <!-- Configuration -->
   <h:panelGroup id="user-filter" layout="block" styleClass="card dashboard-card welcome-widget-configuration-panel">
     <div class="user-filter ui-g">
@@ -48,16 +47,21 @@
       </div>
       <div class="w-full">
         <p:fileUpload id="image-upload-panel"
+          widgetVar="ImageLightUpload"
           styleClass="hidden"
           listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUpload}"
-          chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}" dragDropSupport="true" auto="true"
-          update="preview-panel" allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i" accept=".png,.jpg,.jpeg,.svg"
+          chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}" 
+          auto="true"
+          update="preview-panel" 
+          allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
+          accept=".png,.jpg,.jpeg,.svg"
           label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
           invalidSizeMessage="#{dashboardWelcomeWidgetConfigurationBean.getFileUploadInvalidSizeMessage()}"
           invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
           sizeLimit="#{dashboardWelcomeWidgetConfigurationBean.uploadFileLimit}"
           oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();" 
-          dropZone="image-light-upload-file-panel" widgetVar="ImageLightUpload"/>
+          dropZone="image-light-upload-file-panel" 
+          onvalidationfailure="handleUploadFileFail();"/>
       </div>
       <div class="ui-g-12">
         <p:outputPanel id="image-light-upload-file-panel" styleClass="ui-document-upload-file-panel">
@@ -104,16 +108,22 @@
           for="image-dark-mode-upload-panel" styleClass="welcome-text-label" />
       </div>
       <div class="w-full">
-        <p:fileUpload id="image-dark-mode-upload-panel" styleClass="hidden"
+        <p:fileUpload id="image-dark-mode-upload-panel" 
+          widgetVar="ImageDarkUpload"
+          styleClass="hidden"
           listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUploadDarkMode}"
-          chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}" dragDropSupport="true" auto="true"
-          update="preview-panel-dark-mode" allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i" accept=".png,.jpg,.jpeg,.svg"
+          chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}" 
+          auto="true"
+          update="preview-panel-dark-mode" 
+          allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i" 
+          accept=".png,.jpg,.jpeg,.svg"
           label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
           invalidSizeMessage="#{dashboardWelcomeWidgetConfigurationBean.getFileUploadInvalidSizeMessage()}"
           invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
           sizeLimit="#{dashboardWelcomeWidgetConfigurationBean.uploadFileLimit}"
           oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();" 
-          dropZone="image-dark-upload-file-panel" widgetVar="ImageDarkUpload"/>
+          dropZone="image-dark-upload-file-panel" 
+          onvalidationfailure="handleUploadFileFail();"/>
       </div>
       <div class="ui-g-12">
         <p:outputPanel id="image-dark-upload-file-panel" styleClass="ui-document-upload-file-panel">

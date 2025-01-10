@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static com.axonivy.portal.util.WelcomeWidgetUtils.DARK_MODE;
 import static com.axonivy.portal.util.WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT;
 
 import java.io.Serializable;
@@ -86,10 +85,8 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   public void handleFileUpload(FileUploadEvent event) {
     UploadedFile file = event.getFile();
     if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
-      ContentObject welcomeWidgetImageContentObject = getWelcomeWidgetImageContentObject(true);
-      if (StringUtils.isNotBlank(getWidget().getImageLocationDarkMode()) && 
-          welcomeWidgetImageContentObject != null) {
-        welcomeWidgetImageContentObject.delete();
+      if (StringUtils.isNotBlank(getWidget().getImageLocation())) {
+        getWelcomeWidgetImageContentObject(true).delete();
       }
       // If image is not saved, create location
       String extension = FilenameUtils.getExtension(file.getFileName());
@@ -98,7 +95,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       getWidget().setImageType(extension);
 
       // save the temporary image
-      imageCMSObject = welcomeWidgetImageContentObject;
+      imageCMSObject = getWelcomeWidgetImageContentObject(true);
       if (imageCMSObject != null) {
         WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(file.getContent());
       }
@@ -113,7 +110,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       }
       // If image is not saved, create location
       String extension = FilenameUtils.getExtension(file.getFileName());
-      String fileName = getWidget().getId().concat(DARK_MODE).concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
+      String fileName = getWidget().getId().concat(WelcomeWidgetUtils.DARK_MODE).concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
       getWidget().setImageLocationDarkMode(fileName);
       getWidget().setImageTypeDarkMode(extension);
 
@@ -123,6 +120,24 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
         WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObjectDarkMode).write().bytes(file.getContent());
       }
     }
+  }
+  
+  public String getImageUriDarkMode() {
+    return Objects.isNull(imageCMSObjectDarkMode) ? DEFAULT_IMAGE_DARK_CMS_URI : imageCMSObjectDarkMode.uri();
+  }
+  
+  private ContentObject getWelcomeWidgetImageContentObjectDarkMode(boolean isTempImage) {
+    String imageName = WelcomeWidgetUtils.getFileNameOfImage(widget.getImageLocationDarkMode());
+    imageName = isTempImage ? "temp_".concat(imageName) : imageName;
+    return WelcomeWidgetUtils.getImageContentObject(imageName, widget.getImageTypeDarkMode());
+  }
+  
+  public ContentObject getImageCMSObjectDarkMode() {
+    return imageCMSObjectDarkMode;
+  }
+
+  public void setImageCMSObjectDarkMode(ContentObject imageCMSObjectDarkMode) {
+    this.imageCMSObjectDarkMode = imageCMSObjectDarkMode;
   }
 
   public void initClientTime() {
@@ -146,10 +161,6 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
 
   public String getImageUri() {
     return Objects.isNull(imageCMSObject) ? DEFAULT_IMAGE_CMS_URI : imageCMSObject.uri();
-  }
-  
-  public String getImageUriDarkMode() {
-    return Objects.isNull(imageCMSObjectDarkMode) ? DEFAULT_IMAGE_DARK_CMS_URI : imageCMSObjectDarkMode.uri();
   }
 
   public List<WelcomeTextSize> getTextSizes() {
@@ -179,12 +190,6 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     imageName = isTempImage ? "temp_".concat(imageName) : imageName;
     return WelcomeWidgetUtils.getImageContentObject(imageName, widget.getImageType());
   }
-  
-  private ContentObject getWelcomeWidgetImageContentObjectDarkMode(boolean isTempImage) {
-    String imageName = WelcomeWidgetUtils.getFileNameOfImage(widget.getImageLocationDarkMode());
-    imageName = isTempImage ? "temp_".concat(imageName) : imageName;
-    return WelcomeWidgetUtils.getImageContentObject(imageName, widget.getImageTypeDarkMode());
-  }
 
   public List<WelcomeImageFit> getImageFits() {
     return imageFits;
@@ -192,13 +197,5 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
 
   public void setImageFits(List<WelcomeImageFit> imageFits) {
     this.imageFits = imageFits;
-  }
-
-  public ContentObject getImageCMSObjectDarkMode() {
-    return imageCMSObjectDarkMode;
-  }
-
-  public void setImageCMSObjectDarkMode(ContentObject imageCMSObjectDarkMode) {
-    this.imageCMSObjectDarkMode = imageCMSObjectDarkMode;
   }
 }
