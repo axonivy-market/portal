@@ -186,7 +186,6 @@ public class CaseActionBean implements Serializable {
   }
 
   public String getProcessViewerPageUri(ICase selectedCase) {
-    Ivy.log().warn("===== getProcessViewerPageUri");
     return PortalProcessViewerUtils.getStartProcessViewerPageUri(selectedCase);
   }
 
