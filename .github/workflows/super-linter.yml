@@ -112,7 +112,7 @@ jobs:
               echo "" >> $GITHUB_STEP_SUMMARY
               echo "### Detailed Errors" >> $GITHUB_STEP_SUMMARY
               echo '```' >> $GITHUB_STEP_SUMMARY
-              grep -E "ERROR:|WARNING:" /tmp/lint-results/linter.log >> $GITHUB_STEP_SUMMARY || true
+              cat /tmp/lint-results/linter.log >> $GITHUB_STEP_SUMMARY || echo "No errors found"
               echo '```' >> $GITHUB_STEP_SUMMARY
             fi
           else
