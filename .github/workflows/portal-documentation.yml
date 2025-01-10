@@ -8,6 +8,11 @@ on:
         default: 'nightly-12.0'
         required: true
   push:
+
+concurrency:
+  group: portal-documentation-master
+  cancel-in-progress: false
+    
 jobs:
   checkout-source:
     runs-on: portal01
