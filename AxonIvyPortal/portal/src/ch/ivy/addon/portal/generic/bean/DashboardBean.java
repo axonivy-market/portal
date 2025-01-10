@@ -89,6 +89,7 @@ public class DashboardBean implements Serializable {
     
     if (isReadOnlyMode) {
       DashboardUtils.updateDashboardCache();
+      dashboards = collectDashboards();
     }
     
     if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())
