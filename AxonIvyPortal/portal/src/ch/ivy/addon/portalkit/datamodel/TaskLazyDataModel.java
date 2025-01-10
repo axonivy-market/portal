@@ -48,7 +48,6 @@ import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
-import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class TaskLazyDataModel extends LazyDataModel<ITask> {
   public static final String DESCRIPTION = "DESCRIPTION";
@@ -323,29 +322,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     return !SortFieldUtil.isAscendingSort(SortDirection.DESC.name());
   }
 
-  /**
-   * <p>
-   * If your customized task list has new columns/fields, please extend the {@code taskQuery}
-   * parameter with the sort query for these fields.
-   * </p>
-   * <p>
-   * <b>Example: </b> <code><pre>
-   * if ("CustomerType".equalsIgnoreCase(criteria.getSortField())) {
-   *   if (criteria.isSortDescending()) {
-   *     taskQuery.orderBy().customField().stringField("CustomerType").descending();
-   *   } else {
-   *     taskQuery.orderBy().customField().stringField("CustomerType");
-   *   }
-   * }
-   * </pre></code>
-   * </p>
-   *
-   * @param taskQuery task query {@link TaskQuery}
-   */
-  public void extendSort(@SuppressWarnings("unused") TaskQuery taskQuery) {
-    // Placeholder for customization
-  }
-
   public void setSortField(String sortField, boolean sortDescending) {
     updateSortCriteria(sortField, sortDescending, true);
   }
@@ -567,7 +543,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   /**
-   * Builds and converts TaskQuery to JsonQuery and put it into TaskSearchCriteria.
+   * Builds TaskQuery and put it into TaskSearchCriteria.
    */
   protected void buildQueryToSearchCriteria() {
     if (criteria.getCustomTaskQuery() == null) {
@@ -586,9 +562,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       }
     }
 
-    TaskQuery taskQuery = buildTaskQuery();
-    extendSort(taskQuery);
-    criteria.setFinalTaskQuery(taskQuery);
+    criteria.setLegacyFilters(selectedFilters);
+    storeTaskFiltersIntoSession();
   }
 
   protected void setValuesForStateFilter(TaskSearchCriteria criteria, TaskFilterContainer filterContainer) {
@@ -598,19 +573,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       filterContainer.getStateFilter().setSelectedFilteredStatesAtBeginning(criteria.getIncludedStates());
       filterContainer.getStateFilter().setSubmittedFilteredStates(criteria.getIncludedStates());
     }
-  }
-
-  protected TaskQuery buildTaskQuery() {
-    TaskQuery taskQuery = criteria.createQuery();
-    IFilterQuery filterQuery = taskQuery.where();
-    selectedFilters.forEach(selectedFilter -> {
-      TaskQuery subQuery = selectedFilter.buildQuery();
-      if (subQuery != null) {
-        filterQuery.and(subQuery);
-      }
-    });
-    storeTaskFiltersIntoSession();
-    return taskQuery;
   }
 
   private void storeTaskFiltersIntoSession() {
