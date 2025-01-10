@@ -47,18 +47,21 @@ jobs:
           mvn clean generate-resources -f Documentation/pom.xml
 
   unzip-screenshots:
-    runs-on: portal01
     needs: [generate-resources]
+    runs-on: portal01
     steps:
       - name: Unzip portal screenshots
         run: |
-          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-${{ needs.generate-resources.outputs.version }}.zip \
+          unzip -o /mnt/portal02/document-screenshots/portal-document-screenshots-${{ needs.generate-resources.outputs.version }}.zip \
             -d Documentation/portal-guide/source/screenshots
-
+      - name: Run substitute
+        shell: bash
+        run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
+    
   
   build-document:
-    runs-on: portal01
     needs: [unzip-screenshots, generate-resources]
+    runs-on: portal01
     container:
       image: axonivy/build-container:read-the-docs-2
       options: -u root:root
@@ -67,7 +70,6 @@ jobs:
     steps:
       - name: Build Documentation HTML
         run: |
-          ls /workspace
           make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=-${{ needs.generate-resources.outputs.version }} 2> sphinx-warnings.log
             WARNINGS=$(grep -c "WARNING" sphinx-warnings.log || echo 0)
             echo "Found $WARNINGS warnings."
@@ -84,8 +86,8 @@ jobs:
             fi
 
   install-or-deploy:
-    runs-on: portal01
     needs: [generate-resources,build-document]
+    runs-on: portal01
     steps:
       - name: Set up Java
         uses: actions/setup-java@v4
