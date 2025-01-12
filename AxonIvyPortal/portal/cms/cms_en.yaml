@@ -776,8 +776,8 @@ ch.ivy.addon.portalkit.ui.jsf:
         ImageInlineStyle: Image inline style
         ImageLightMode: Image for light mode
         ImageStyleClass: Image style class
-        PreviewDarkMode: Preview dark mode
-        PreviewLightMode: Preview light mode
+        PreviewDarkMode: Preview for dark mode
+        PreviewLightMode: Preview for light mode
         PreviewTooltip: This Preview can’t render all settings but only should give an idea how the final widget will look like, image size, orientating and some CSS settings will not be previewed here.
         ShowGreeting: Show greeting
         TextColorDarkMode: Text color for dark mode

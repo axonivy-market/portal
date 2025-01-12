@@ -20,10 +20,14 @@ public class WelcomeDashboardWidget extends DashboardWidget {
 
   private String imageLocation;
   private String imageType;
+  
+  private String imageLocationDarkMode;
+  private String imageTypeDarkMode;
 
   private WelcomeTextPosition welcomeTextPosition;
   private WelcomeTextSize welcomeTextSize;
   private String welcomeTextColor;
+  private String welcomeTextColorDarkMode;
   private List<DisplayName> welcomeTexts;
   private boolean isGreeting;
   private String welcomeTextStyleClass;
@@ -31,17 +35,14 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   private WelcomeImageFit welcomeImageFit;
   private String imageInlineStyle;
   private String imageContent;
-  private String imageLocationDarkMode;
-  private String imageTypeDarkMode;
-  private String welcomeTextColorDarkMode;
   private String imageContentDarkMode;
-  @JsonIgnore
-  private ContentObject imageContentObjectDarkMode;
 
   @JsonIgnore
   private String welcomeText;
   @JsonIgnore
   private ContentObject imageContentObject;
+  @JsonIgnore
+  private ContentObject imageContentObjectDarkMode;
   @JsonIgnore
   private String internalId;
 
@@ -198,16 +199,36 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     
   }
 
-  public static long getSerialversionuid() {
-    return serialVersionUID;
+  public String getImageContentDarkMode() {
+    return imageContentDarkMode;
+  }
+
+  public void setImageContentDarkMode(String imageContentDarkMode) {
+    this.imageContentDarkMode = imageContentDarkMode;
+  }
+
+  public ContentObject getImageContentObjectDarkMode() {
+    return imageContentObjectDarkMode;
+  }
+
+  public void setImageContentObjectDarkMode(ContentObject imageContentObjectDarkMode) {
+    this.imageContentObjectDarkMode = imageContentObjectDarkMode;
   }
 
   public String getImageLocationDarkMode() {
     return imageLocationDarkMode;
   }
 
+  public void setImageLocationDarkMode(String imageLocationDarkMode) {
+    this.imageLocationDarkMode = imageLocationDarkMode;
+  }
+
   public String getImageTypeDarkMode() {
     return imageTypeDarkMode;
+  }
+
+  public void setImageTypeDarkMode(String imageTypeDarkMode) {
+    this.imageTypeDarkMode = imageTypeDarkMode;
   }
 
   public String getWelcomeTextColorDarkMode() {
@@ -218,31 +239,7 @@ public class WelcomeDashboardWidget extends DashboardWidget {
     return welcomeTextColorDarkMode;
   }
 
-  public String getImageContentDarkMode() {
-    return imageContentDarkMode;
-  }
-
-  public ContentObject getImageContentObjectDarkMode() {
-    return imageContentObjectDarkMode;
-  }
-
-  public void setImageLocationDarkMode(String imageLocationDarkMode) {
-    this.imageLocationDarkMode = imageLocationDarkMode;
-  }
-
-  public void setImageTypeDarkMode(String imageTypeDarkMode) {
-    this.imageTypeDarkMode = imageTypeDarkMode;
-  }
-
   public void setWelcomeTextColorDarkMode(String welcomeTextColorDarkMode) {
     this.welcomeTextColorDarkMode = welcomeTextColorDarkMode;
-  }
-
-  public void setImageContentDarkMode(String imageContentDarkMode) {
-    this.imageContentDarkMode = imageContentDarkMode;
-  }
-
-  public void setImageContentObjectDarkMode(ContentObject imageContentObjectDarkMode) {
-    this.imageContentObjectDarkMode = imageContentObjectDarkMode;
   }
 }

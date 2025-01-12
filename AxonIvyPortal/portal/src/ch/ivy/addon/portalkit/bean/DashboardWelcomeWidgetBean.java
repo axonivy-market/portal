@@ -52,13 +52,13 @@ public class DashboardWelcomeWidgetBean implements Serializable {
       widget.setWelcomeTextColor(DEFAULT_TEXT_COLOR);
     }
 
-    if (widget.getWelcomeTextPosition() == null) {
-      widget.setWelcomeTextPosition(WelcomeTextPosition.BOTTOM_LEFT);
-    }
-    
- // get font color from light mode if not set
+    // get font color from light mode if not set
     if (widget.getWelcomeTextColorDarkMode() == null) {
       widget.setWelcomeTextColorDarkMode(widget.getWelcomeTextColor());
+    }
+
+    if (widget.getWelcomeTextPosition() == null) {
+      widget.setWelcomeTextPosition(WelcomeTextPosition.BOTTOM_LEFT);
     }
 
     if (!CollectionUtils.isEmpty(widget.getWelcomeTexts())) {
@@ -91,21 +91,36 @@ public class DashboardWelcomeWidgetBean implements Serializable {
       WelcomeWidgetUtils.migrateWelcomeWidget(widget.getId(), widget.getImageType(), widget.getImageLocation());
     }
     ContentObject imageContent = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
-    removeImageContentOfWidget(imageContent);
+    removeImageContentOfWidget(imageContent, false);
+    
+    return imageContent;
+  }
+  
+  public ContentObject renderImageDarkMode() {
+    if (Optional.ofNullable(widget).map(WelcomeDashboardWidget::getImageLocationDarkMode).isEmpty()) {
+      return null;
+    }
+    ContentObject imageContent = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocationDarkMode(), widget.getImageTypeDarkMode());
+    removeImageContentOfWidget(imageContent, true);
     
     return imageContent;
   }
 
-  private void removeImageContentOfWidget(ContentObject imageContent) {
-    if (StringUtils.isNotBlank(widget.getImageContent())) {
-      WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageContent).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
+  private void removeImageContentOfWidget(ContentObject content, boolean isDarkMode) {
+    String imageContent = isDarkMode? widget.getImageContentDarkMode() : widget.getImageContent();
+    if (StringUtils.isNotBlank(imageContent)) {
+      WelcomeWidgetUtils.readObjectValueOfDefaultLocale(content).write().bytes(Base64.getDecoder().decode(imageContent));
       List<Dashboard> dashboards = DashboardUtils.collectDashboards();
       for (Dashboard dashboard :  dashboards) {
         dashboard.getWidgets().stream()
         .filter(item -> widget.getId().equals(item.getId()) && item.getType() == DashboardWidgetType.WELCOME)
         .findFirst()
         .ifPresent(item -> {
-          ((WelcomeDashboardWidget) item).setImageContent(null);
+          if (isDarkMode) {
+            ((WelcomeDashboardWidget) item).setImageContentDarkMode(null); 
+          } else {
+            ((WelcomeDashboardWidget) item).setImageContent(null);
+          }
         });
       }
       String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
@@ -115,7 +130,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
       menuView.updateDashboardCache(DashboardUtils.collectDashboards());
     }
   }
-
+  
   public void updateWelcomeText(WelcomeDashboardWidget welcomeWidget) {
     int parseClientTime = WelcomeWidgetUtils.parseClientTime();
     String greetingTextCms = WelcomeWidgetUtils.generateGreetingTextByTime(parseClientTime);
@@ -155,36 +170,6 @@ public class DashboardWelcomeWidgetBean implements Serializable {
   }
   
   public String sanitizeHTML(String text) {
-	  return StringUtils.isBlank(text) ? "" : HtmlParser.sanitizeHTML(text);
-  }
-  
-  public ContentObject renderImageDarkMode() {
-    if (Optional.ofNullable(widget).map(WelcomeDashboardWidget::getImageLocation).isEmpty()) {
-      return null;
-    }
-    ContentObject imageContent = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocationDarkMode(), widget.getImageTypeDarkMode());
-    removeImageContentOfWidgetDarkMode(imageContent);
-
-    return imageContent;
-  }
-  
-  private void removeImageContentOfWidgetDarkMode(ContentObject imageContent) {
-    if (StringUtils.isNotBlank(widget.getImageContentDarkMode())) {
-      WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageContent).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
-      List<Dashboard> dashboards = DashboardUtils.collectDashboards();
-      for (Dashboard dashboard :  dashboards) {
-        dashboard.getWidgets().stream()
-        .filter(item -> widget.getId().equals(item.getId()) && item.getType() == DashboardWidgetType.WELCOME)
-        .findFirst()
-        .ifPresent(item -> {
-          ((WelcomeDashboardWidget) item).setImageContentDarkMode(null);
-        });
-      }
-      String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
-      Ivy.var().set(PortalVariable.DASHBOARD.key, dashboardJson);
-
-      MenuView menuView = (MenuView) ManagedBeans.get("menuView");
-      menuView.updateDashboardCache(DashboardUtils.collectDashboards());
-    }
+    return StringUtils.isBlank(text) ? "" : HtmlParser.sanitizeHTML(text);
   }
 }

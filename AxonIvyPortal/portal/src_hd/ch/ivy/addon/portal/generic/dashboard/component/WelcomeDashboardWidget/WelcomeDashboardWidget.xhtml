@@ -1,8 +1,7 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:jsf="http://xmlns.jcp.org/jsf">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="index" required="true" />
   <cc:attribute name="widget" required="true" />
@@ -17,71 +16,73 @@
   <h:panelGroup id="welcome-widget-panel" layout="block" styleClass="welcome-widget-panel">
     <f:event listener="#{dashboardWelcomeWidgetBean.init()}" type="preRenderComponent" />
     <div class="ui-g-12 widget-height-100 u-padding-0 welcome-text-container">
-      <h:form id="welcome-widget-action-group-form" styleClass="welcome-widget-action-group-form"
-        rendered="#{!cc.attrs.isReadOnlyMode}">
+      <h:form id="welcome-widget-action-group-form" styleClass="welcome-widget-action-group-form" rendered="#{!cc.attrs.isReadOnlyMode}">
         <h:panelGroup layout="block" rendered="#{!hideActionButton}">
           <p:commandButton id="welcome-widget-action-button" icon="si si-navigation-menu-horizontal"
-            styleClass="rounded-button ui-button-outlined icon-more-menu-button" type="button" />
+            styleClass="rounded-button ui-button-outlined icon-more-menu-button" type="button"/>
 
-          <p:menu id="welcome-widget-action-menu" overlay="true" trigger="welcome-widget-action-button" my="right top"
-            at="right bottom">
-            <p:menuitem id="edit-welcome-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+          <p:menu id="welcome-widget-action-menu" overlay="true"
+            trigger="welcome-widget-action-button"
+            my="right top" at="right bottom">
+            <p:menuitem id="edit-welcome-widget"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
               icon="si si-graphic-tablet-drawing-pen"
               actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
-              update="new-widget-configuration-dialog" process="@this" partialSubmit="true" global="false"
+              update="new-widget-configuration-dialog"
+              process="@this" partialSubmit="true" global="false"
               oncomplete="PF('new-widget-configuration-dialog').show()" />
-            <p:menuitem id="delete-welcome-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-              icon="si si-bin-1" styleClass="color-destroy" oncomplete="PF('remove-widget-dialog').show()"
-              actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}" update="remove-widget-dialog"
+            <p:menuitem id="delete-welcome-widget"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+              icon="si si-bin-1" styleClass="color-destroy"
+              oncomplete="PF('remove-widget-dialog').show()"
+              actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
+              update="remove-widget-dialog"
               process="@this" partialSubmit="true" global="false" />
           </p:menu>
         </h:panelGroup>
       </h:form>
-      <h:outputText escape="false" value="#{dashboardWelcomeWidgetBean.sanitizeHTML(widget.welcomeText)}"
-        id="welcome-text" styleClass="default-welcome-image welcome-text #{widget.welcomeTextStyleClass}" />
-      <h:outputText escape="false" value="#{dashboardWelcomeWidgetBean.sanitizeHTML(widget.welcomeText)}"
-        id="welcome-text-dark-mode" styleClass="default-welcome-image-dark welcome-text #{widget.welcomeTextStyleClass}" />
+      <h:outputText escape="false" value="#{dashboardWelcomeWidgetBean.sanitizeHTML(widget.welcomeText)}" id="welcome-text" styleClass="default-welcome-image welcome-text #{widget.welcomeTextStyleClass}"/>
+      <h:outputText escape="false" value="#{dashboardWelcomeWidgetBean.sanitizeHTML(widget.welcomeText)}" id="welcome-text-dark-mode" styleClass="default-welcome-image-dark welcome-text #{widget.welcomeTextStyleClass}"/>
 
-      <p:graphicImage id="default-image" cache="true"
-        styleClass="welcome-image default-welcome-image js-welcome-image #{widget.imageStyleClass}" library="ivy-cms"
-        rendered="#{empty widget.imageLocation}" name="#{dashboardWelcomeWidgetBean.defaultImageLink}" />
+      <p:graphicImage id="default-image" cache="true" styleClass="welcome-image default-welcome-image js-welcome-image #{widget.imageStyleClass}"
+        library="ivy-cms" rendered="#{empty widget.imageLocation}" name="#{dashboardWelcomeWidgetBean.defaultImageLink}" />
 
-      <p:graphicImage id="default-image-dark" cache="true"
-        styleClass="welcome-image default-welcome-image-dark js-welcome-image #{widget.imageStyleClass}"
-        library="ivy-cms" rendered="#{empty widget.imageLocation}"
-        name="#{dashboardWelcomeWidgetBean.defaultImageDarkLink}" />
+      <p:graphicImage id="default-image-dark" cache="true" styleClass="welcome-image default-welcome-image-dark js-welcome-image #{widget.imageStyleClass}"
+        library="ivy-cms" rendered="#{empty widget.imageLocationDarkMode}" name="#{dashboardWelcomeWidgetBean.defaultImageDarkLink}" />
 
       <h:panelGroup rendered="#{not empty widget.imageLocation}">
-        <p:graphicImage id="welcome-image"
-          styleClass="default-welcome-image welcome-image js-welcome-image #{widget.imageStyleClass}" library="ivy-cms"
-          rendered="#{widget.imageContentObject.exists()}" name="#{widget.imageContentObject.uri()}" />
+        <p:graphicImage id="welcome-image" styleClass="default-welcome-image welcome-image js-welcome-image #{widget.imageStyleClass}"
+          library="ivy-cms"
+          rendered="#{widget.imageContentObject.exists()}"
+          name="#{widget.imageContentObject.uri()}"/>
         <h:panelGroup id="not-found-welcome-image" styleClass="empty-message-container w-full" layout="block"
-          rendered="#{!widget.imageContentObject.exists()}">
-          <i class="si si-alert-circle empty-message-icon" />
-          <br />
-          <h:outputText styleClass="empty-message-text"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetNotFoundMessage')}" />
+            rendered="#{!widget.imageContentObject.exists()}">
+          <i class="si si-alert-circle empty-message-icon"/>
+          <br/>
+          <h:outputText styleClass="empty-message-text" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/WelcomeWidgetNotFoundMessage')}" />
         </h:panelGroup>
       </h:panelGroup>
+      
       <h:panelGroup rendered="#{not empty widget.imageLocationDarkMode}">
-        <p:graphicImage id="welcome-image-dark-mode"
-          styleClass="default-welcome-image-dark welcome-image js-welcome-image #{widget.imageStyleClass}"
-          library="ivy-cms" rendered="#{widget.imageContentObjectDarkMode.exists()}"
-          name="#{widget.imageContentObjectDarkMode.uri()}" />
+        <p:graphicImage id="welcome-image-dark-mode" styleClass="default-welcome-image-dark welcome-image js-welcome-image #{widget.imageStyleClass}"
+          library="ivy-cms"
+          rendered="#{widget.imageContentObjectDarkMode.exists()}"
+          name="#{widget.imageContentObjectDarkMode.uri()}"/>
       </h:panelGroup>
+      
     </div>
-    <p:remoteCommand id="update-welcome-text-#{widget.id}-rc" name="updateWelcomeText_#{widget.internalId}"
-      update="welcome-text welcome-text-dark-mode" process="@this" async="true"
+    <p:remoteCommand id="update-welcome-text-#{widget.id}-rc" name="updateWelcomeText_#{widget.internalId}" update="welcome-text welcome-text-dark-mode" process="@this" async="true"
       actionListener="#{dashboardWelcomeWidgetBean.updateWelcomeText(widget)}"
-      oncomplete="WelcomeWidget.updateWelcomeTextStyles('#{widget.id}','#{widget.welcomeTextColor}','#{widget.welcomeTextColorDarkMode}','#{widget.welcomeTextPosition}','#{widget.welcomeTextSize}');" />
+      oncomplete="WelcomeWidget.updateWelcomeTextStyles('#{widget.id}','#{widget.welcomeTextColor}', '#{widget.welcomeTextColorDarkMode}', '#{widget.welcomeTextPosition}','#{widget.welcomeTextSize}');" />
     <script>
       $(document).ready(function() {
-        WelcomeWidget.init('#{widget.id}','#{widget.welcomeTextColor}','#{widget.welcomeTextColorDarkMode}','#{widget.welcomeTextPosition}','#{widget.welcomeTextSize}', '#{widget.welcomeImageFit}', '#{widget.imageInlineStyle}');
+        WelcomeWidget.init('#{widget.id}','#{widget.welcomeTextColor}', '#{widget.welcomeTextColorDarkMode}', '#{widget.welcomeTextPosition}','#{widget.welcomeTextSize}', '#{widget.welcomeImageFit}', '#{widget.imageInlineStyle}');
         if ('#{widget.greeting}' == 'true') {
           var time= new Date().getHours();
           updateWelcomeText_#{widget.internalId}([{name: 'clientTime', value: time}]);
         }
       });
+      
     </script>
   </h:panelGroup>
 </cc:implementation>
