@@ -500,9 +500,14 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (widget != null && WELCOME == widget.getType()) {
       removeTempImageOfWelcomeWidget(widget);
       WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
-      ContentObject welcomeImage = getWelcomeWidgetImageObject(false, welcomeWidget);
+      ContentObject welcomeImage = getWelcomeWidgetImageObject(false, welcomeWidget, false);
       if (!StringUtils.isBlank(welcomeWidget.getImageLocation()) && welcomeImage != null && !welcomeImage.exists()) {
         welcomeWidget.setImageLocation(null);
+      }
+      
+      ContentObject welcomeImageDarkMode = getWelcomeWidgetImageObject(false, welcomeWidget, true);
+      if (!StringUtils.isBlank(welcomeWidget.getImageLocationDarkMode()) && welcomeImageDarkMode != null && !welcomeImageDarkMode.exists()) {
+        welcomeWidget.setImageLocationDarkMode(null);
       }
     }
   }
@@ -536,28 +541,35 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private void updateWelcomeWidget(DashboardWidget widget) {
     var welcomeWidget = (WelcomeDashboardWidget) widget;
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
-      ContentObjectValue tempImageFile = getWelcomeWidgetImage(true, welcomeWidget);
-      ContentObjectValue imageFile = getWelcomeWidgetImage(false, welcomeWidget);
+      ContentObjectValue tempImageFile = getWelcomeWidgetImage(true, welcomeWidget, false);
+      ContentObjectValue imageFile = getWelcomeWidgetImage(false, welcomeWidget, false);
       if (imageFile != null && tempImageFile != null && tempImageFile.parent().exists()) {
         Optional<DashboardWidget> oldWidgetOptional = DashboardWidgetUtils.findWidget(selectedDashboard,
             widget.getId());
         if (oldWidgetOptional.isPresent()) {
           WelcomeDashboardWidget oldWidget = (WelcomeDashboardWidget) oldWidgetOptional.get();
-          Optional.ofNullable(getWelcomeWidgetImage(false, oldWidget)).ifPresent(co -> co.delete());
+          Optional.ofNullable(getWelcomeWidgetImage(false, oldWidget, false)).ifPresent(co -> {
+            Ivy.log().error("remove file {0}", co.parent().name());
+            co.delete();
+          });
         }
         imageFile.write().bytes(tempImageFile.read().bytes());
         tempImageFile.delete();
       }
     }
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocationDarkMode())) {
-      ContentObjectValue tempImageFileDarkMode = getWelcomeWidgetImageDarkMode(true, welcomeWidget);
-      ContentObjectValue imageFileDarkMode = getWelcomeWidgetImageDarkMode(false, welcomeWidget);
+      ContentObjectValue tempImageFileDarkMode = getWelcomeWidgetImage(true, welcomeWidget, true);
+      ContentObjectValue imageFileDarkMode = getWelcomeWidgetImage(false, welcomeWidget, true);
       if (imageFileDarkMode != null && tempImageFileDarkMode != null && tempImageFileDarkMode.parent().exists()) {
         Optional<DashboardWidget> oldWidgetOptional = DashboardWidgetUtils.findWidget(selectedDashboard,
             widget.getId());
         if (oldWidgetOptional.isPresent()) {
           WelcomeDashboardWidget oldWidget = (WelcomeDashboardWidget) oldWidgetOptional.get();
-          Optional.ofNullable(getWelcomeWidgetImage(false, oldWidget)).ifPresent(co -> co.delete());
+          Optional.ofNullable(getWelcomeWidgetImage(false, oldWidget, true)).ifPresent(co -> {
+            Ivy.log().error("remove file dark  mode {0}", co.parent().name());
+            co.delete();
+          });
+            
         }
         imageFileDarkMode.write().bytes(tempImageFileDarkMode.read().bytes());
         tempImageFileDarkMode.delete();
@@ -584,25 +596,36 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private void removeTempImageOfWelcomeWidget(DashboardWidget widget) {
     var welcomeWidget = (WelcomeDashboardWidget) widget;
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
-      ContentObjectValue tempImageFile = getWelcomeWidgetImage(true, welcomeWidget);
+      ContentObjectValue tempImageFile = getWelcomeWidgetImage(true, welcomeWidget, false);
       if (tempImageFile != null) {
         tempImageFile.delete();
       }
     }
+    
+    if (StringUtils.isNotBlank(welcomeWidget.getImageLocationDarkMode())) {
+      ContentObjectValue tempImageFileDarkMode = getWelcomeWidgetImage(true, welcomeWidget, true);
+      if (tempImageFileDarkMode != null) {
+        tempImageFileDarkMode.delete();
+      }
+    }
   }
 
-  private ContentObjectValue getWelcomeWidgetImage(boolean isTempImage, WelcomeDashboardWidget widget) {
-    ContentObject contentObject = getWelcomeWidgetImageObject(isTempImage, widget);
+  private ContentObjectValue getWelcomeWidgetImage(boolean isTempImage, WelcomeDashboardWidget widget, boolean isDarkMode) {
+    ContentObject contentObject = getWelcomeWidgetImageObject(isTempImage, widget, isDarkMode);
     if (contentObject != null) {
       return contentObject.value().get("en");
     }
     return null;
   }
-
-  private ContentObject getWelcomeWidgetImageObject(boolean isTempImage, WelcomeDashboardWidget widget) {
-    String imageName = WelcomeWidgetUtils.getFileNameOfImage(widget.getImageLocation());
+  
+  private ContentObject getWelcomeWidgetImageObject(boolean isTempImage, WelcomeDashboardWidget widget, boolean isDarkMode) {
+    String imageName = WelcomeWidgetUtils.getFileNameOfImage(isDarkMode ? widget.getImageLocationDarkMode() : widget.getImageLocation());
+    // check if default light mode is configured for dark mode
+    if (isDarkMode && StringUtils.equals(widget.getImageLocationDarkMode(), widget.getImageLocation())) {
+      imageName = imageName + WelcomeWidgetUtils.DARK_MODE;
+    }
     imageName = isTempImage ? "temp_".concat(imageName) : imageName;
-    return WelcomeWidgetUtils.getImageContentObject(imageName, widget.getImageType());
+    return WelcomeWidgetUtils.getImageContentObject(imageName, isDarkMode ? widget.getImageTypeDarkMode() : widget.getImageType());
   }
 
   private void unifyCompactProcessCategory(CompactProcessDashboardWidget processWidget) {
@@ -1093,19 +1116,5 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     widget.getColumns().get(fieldPosition)
         .setWidth(Integer.toString(widthValue));
     widget.getColumns().forEach(col -> col.initDefaultStyle());
-  }
-  
-  private ContentObjectValue getWelcomeWidgetImageDarkMode(boolean isTempImage, WelcomeDashboardWidget widget) {
-    ContentObject contentObject = getWelcomeWidgetImageObjectDarkMode(isTempImage, widget);
-    if (contentObject != null) {
-      return contentObject.value().get("en");
-    }
-    return null;
-  }
-  
-  private ContentObject getWelcomeWidgetImageObjectDarkMode(boolean isTempImage, WelcomeDashboardWidget widget) {
-    String imageName = WelcomeWidgetUtils.getFileNameOfImage(widget.getImageLocationDarkMode());
-    imageName = isTempImage ? "temp_".concat(imageName) : imageName;
-    return WelcomeWidgetUtils.getImageContentObject(imageName, widget.getImageTypeDarkMode());
   }
 }
