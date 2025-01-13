@@ -5,6 +5,7 @@ on:
     workflows: ["Release-Build"]
     types:
       - completed
+  workflow_dispatch:
 
 jobs:
   publish_release_drafter:
