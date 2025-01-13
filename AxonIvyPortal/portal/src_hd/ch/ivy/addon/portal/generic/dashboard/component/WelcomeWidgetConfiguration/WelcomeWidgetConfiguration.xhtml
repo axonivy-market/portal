@@ -64,7 +64,7 @@
           onvalidationfailure="handleUploadFileFail();"/>
       </div>
       <div class="ui-g-12">
-        <p:outputPanel id="image-light-upload-file-panel" styleClass="ui-document-upload-file-panel">
+        <p:outputPanel id="image-light-upload-file-panel" styleClass="ui-welcome-upload-file-panel">
           <span class="ui-document-upload-file-label"> 
           <i class="si si-file-code-upload-1" id="image-light-upload-file-icon" />
             <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}">
@@ -126,7 +126,7 @@
           onvalidationfailure="handleUploadFileFail();"/>
       </div>
       <div class="ui-g-12">
-        <p:outputPanel id="image-dark-upload-file-panel" styleClass="ui-document-upload-file-panel">
+        <p:outputPanel id="image-dark-upload-file-panel" styleClass="ui-welcome-upload-file-panel">
           <span class="ui-document-upload-file-label"> 
           <i class="si si-file-code-upload-1" id="image-dark-upload-file-icon" />
             <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}">
@@ -218,19 +218,21 @@
           value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTexts}" varStatus="status">
           <c:set var="isApplicationDefaultEmailLanguage"
             value="#{dashboardWelcomeWidgetConfigurationBean.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag())}" />
-          <div class="ui-g-3 ui-md-4">
-            <p:outputLabel
-              value="#{text.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DisplayedText')}"
-              for="welcome-text-input" styleClass="welcome-text-label" />
-          </div>
-          <h:panelGroup id="welcome-text-input-panel" styleClass="ui-g-9 ui-md-8 welcome-text-input-panel"
-            layout="block">
+          <h:panelGroup id="welcome-text-input-panel" styleClass=""
+            layout="block" rendered="#{dashboardWelcomeWidgetConfigurationBean.widget.isGreeting()}">
+            <div class="ui-g-3 ui-md-4">
+              <p:outputLabel
+                value="#{text.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DisplayedText')}"
+                for="welcome-text-input" styleClass="welcome-text-label" />
+            </div>
+            <div class="ui-g-9 ui-md-8 welcome-text-input-panel">
             <h:outputText value="#{dashboardWelcomeWidgetConfigurationBean.generateGreetingText(text.locale)}"
               rendered="#{dashboardWelcomeWidgetConfigurationBean.widget.greeting}"
               styleClass="js-greeting-text greeting-text #{isApplicationDefaultEmailLanguage ? 'language-to-preview' : ''}" />
             <p:inputText id="welcome-text-input" value="#{text.value}"
               styleClass="#{isApplicationDefaultEmailLanguage ? 'language-to-preview' : ''} js-welcome-text-input welcome-text-input"
               onkeyup="#{isApplicationDefaultEmailLanguage ? 'WelcomeWidgetConfiguration.updatePreviewText();' : ''}" />
+            </div>
           </h:panelGroup>
         </ui:repeat>
       </h:panelGroup>
