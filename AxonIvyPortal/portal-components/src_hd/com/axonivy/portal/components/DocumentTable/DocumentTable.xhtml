@@ -23,6 +23,9 @@
   <cc:attribute name="previewTitle" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}"/>
   <cc:attribute name="previewIcon" default="si si-view-1"/>
   <cc:attribute name="previewStyleClass" />
+  <cc:attribute name="previewDialogStyleClass" />
+  <cc:attribute name="previewPDFStyleClass" />
+  <cc:attribute name="previewImageStyleClass" />
 
   <cc:attribute name="downloadText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Download')}" />
   <cc:attribute name="downloadTitle" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Download')}" />
@@ -137,11 +140,11 @@
     
     <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)" 
         header="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" 
-        modal="true" resizable="false" width="650" height="630" showEffect="fade" hideEffect="fade" 
+        modal="true" resizable="false" width="650" height="630" styleClass="#{cc.attrs.previewDialogStyleClass}" showEffect="fade" hideEffect="fade" 
         dynamic="true" fitViewport="true" responsive="true">
       <div class="ui-g-12">
-        <p:media value="#{data.streamedContent}" width="100%" height="600" cache="false" id="media-content" player="pdf" rendered="#{!data.isImage}"/>
-        <p:graphicImage value="#{data.streamedContent}" stream="false" height="600" width="100%" rendered="#{data.isImage}" styleClass="document-preview-image"/>
+        <p:media value="#{data.streamedContent}" width="100%" height="600" styleClass="#{cc.attrs.previewPDFStyleClass}" cache="false" id="media-content" player="pdf" rendered="#{!data.isImage}"/>
+        <p:graphicImage value="#{data.streamedContent}" width="100%" height="600" stream="false" rendered="#{data.isImage}" styleClass="#{cc.attrs.previewImageStyleClass}"/>
       </div>
     </p:dialog>
 
