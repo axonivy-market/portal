@@ -20,7 +20,7 @@ public class CaseCategorySearchCriteria {
   public CaseQuery createQuery() {
     CaseQuery finalQuery = CaseUtils.createBusinessCaseQuery();
     if (customCaseQuery != null) {
-      finalQuery = CaseQuery.fromJson(customCaseQuery.asJson()); // clone to keep the original custom query
+      finalQuery.where().andOverall(customCaseQuery);
     }
 
     if (hasIncludedStates()) {

@@ -496,21 +496,82 @@ const quickSearchInputId = '[id="quick-global-search-component:global-search-dat
 const useSettingMenuId = 'a#user-settings-menu';
 
 $(document).ready(function() {
+
+  const shortcuts = {
+    'Digit1': $(singleDashboardId).length ? singleDashboardId : multipleDashboardId,
+    'Digit2': processItemId,
+    'Digit3': taskItemId,
+    'Digit4': caseItemId,
+    'Digit5': $(searchIconId).length ? searchIconId : quickSearchInputId,
+    'Digit6': useSettingMenuId
+  };
+
+  function findTargetElementByKey(key) {
+    if(key === 'Digit5' || key === 'Digit6') {
+      return $(shortcuts[key]);
+    } 
+    return $(shortcuts[key]).find('a').first();
+  }
+
+  function removeFocusClass(element) {
+    if(element) {
+      element.removeClass('focused');
+      element.blur();
+    }
+  }
+  
+  function addFocusClass(element) {
+    if(element) {
+      element.addClass('focused');
+      element.focus();
+    }
+  }
+
+  function removeFocusedElements() {
+    Object.keys(shortcuts).forEach(function (key) {
+      removeFocusClass(findTargetElementByKey(key));
+    });
+
+    removeFocusClass(focusedTaskEl);
+    removeFocusClass(focusedCaseEl);
+    removeFocusClass(focusedProcessEl);
+    removeFocusClass(focusedCaseSideStepEl);
+    removeFocusClass(focusedResetTaskFormEl);
+    removeFocusClass(focusedTaskSideStepEl);
+  }
+
+  function handleFocusOnMainElement(event) {
+    removeFocusedElements();
+    const key = event.code;
+    if (shortcuts[key]) {
+      addFocusClass(findTargetElementByKey(key));
+    }
+  }
+
+  function onlyAltPressed(event) {
+    return event ? event.altKey && !event.ctrlKey && !event.shiftKey && !event.metaKey : false;
+  }
+
+  const iframe = document.getElementById('iFrame');
+
+  if (iframe) {
+    iframe.onload = function () {
+      const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+      iframeDocument.addEventListener('keydown', function (event) {
+        if(onlyAltPressed(event)) {
+          handleFocusOnMainElement(event);
+        }
+      });
+    };
+  }
+
+
     $(searchIconId).on('click', function() {
       const searchInput = $('[id="global-search-component:global-search-data"]');
       if (searchInput) {
         searchInput.focus();
       }
     });
-
-    let focusableElements = [
-      $(singleDashboardId).length ? $(singleDashboardId).find('a') : $(multipleDashboardId).find('a')[0],
-      $(processItemId).find('a'),
-      $(taskItemId).find('a'),
-      $(caseItemId).find('a'),
-      $(searchIconId).length ? $(searchIconId) : $(quickSearchInputId),
-      $(useSettingMenuId),
-    ];
 
     let taskIndex = 0;
     let resetTaskFormIndex = 0;
@@ -525,36 +586,6 @@ $(document).ready(function() {
     let focusedResetTaskFormEl = 0;
     let focusedTaskSideStepEl;
 
-    function onlyAltPressed(event) {
-      return event ? event.altKey && !event.ctrlKey && !event.shiftKey && !event.metaKey : false;
-    }
-
-    function removeFocusClass(element) {
-      if(element) {
-        element.removeClass('focused');
-        element.blur();
-      }
-    }
-    
-    function addFocusClass(element) {
-      if(element) {
-        element.addClass('focused');
-        element.focus();
-      }
-    }
-
-    function removeFocusedElements() {
-      focusableElements.forEach(function(el) {
-        removeFocusClass($(el));
-      });
-      removeFocusClass(focusedTaskEl);
-      removeFocusClass(focusedCaseEl);
-      removeFocusClass(focusedProcessEl);
-      removeFocusClass(focusedCaseSideStepEl);
-      removeFocusClass(focusedResetTaskFormEl);
-      removeFocusClass(focusedTaskSideStepEl);
-    }
-
     $(document).on('click', function(event) {
       var target = $(event.target);
       if (!target.closest('.focusable').length) {
@@ -566,13 +597,12 @@ $(document).ready(function() {
     });
 
     $(document).on('keydown', function(event) {
-
       if (event.key === 'Escape') {
         var collapseWidgetBtn = $('[id*="collapse-link"]:visible');
         if (collapseWidgetBtn.length > 0) {
           collapseWidgetBtn.click();
         }
-  
+
         var caseSideActionCloseBtn = $('[id*="action-steps-panel"]:visible').find('.ui-overlaypanel-close');
         if (caseSideActionCloseBtn.length > 0) {
           caseSideActionCloseBtn.click();
@@ -582,7 +612,7 @@ $(document).ready(function() {
             focusedCaseEl.focus();
           }
         }
-  
+
         var taskSideActionCloseBtn = $('[id*="side-steps-panel"]:visible').find('.ui-overlaypanel-close');
         if (taskSideActionCloseBtn.length > 0) {
           taskSideActionCloseBtn.click();
@@ -603,16 +633,11 @@ $(document).ready(function() {
 
       var taskActionStepsPanel = $('[id$=":side-steps-panel"]:visible');
       var taskActionStepsPanelVisible = taskActionStepsPanel.length > 0;
-      
 
       if (onlyAltPressed(event)) {
-        var key = event.key.toLowerCase();
-        if (!isNaN(key) && key >= '1' && key <= '9') {
-          //Short cuts main menu item
-          var index = parseInt(key) - 1;
-          if (index >= 0 && index < focusableElements.length) {
+        var keyCode = event.code;
+        if (shortcuts[keyCode]) {
               event.preventDefault();
-              var focusedElement = $(focusableElements[index]);
               removeFocusedElements();
               taskIndex = 0;
               taskSideStepIndex = 0;
@@ -622,9 +647,8 @@ $(document).ready(function() {
               } else {
                 caseIndex = 0;
               }
-              addFocusClass(focusedElement);
-          }
-        } else if (key == 'w') {
+              handleFocusOnMainElement(event);
+        } else if (keyCode == 'KeyW') {
           //Short cuts for Task widget
           if(resetTaskConfirmFormVisible) {
             var cancelOk = [
@@ -672,7 +696,7 @@ $(document).ready(function() {
             addFocusClass(focusedTaskEl);
             taskIndex++;
           }
-        } else if (key == 'q') {
+        } else if (keyCode == 'KeyQ') {
           //Short cuts for Case widget
           if(caseActionStepsPanelVisible) {
             var steps = caseActionStepsPanel.find('div.ui-overlaypanel-content a');
@@ -703,7 +727,7 @@ $(document).ready(function() {
             addFocusClass(focusedCaseEl);
             caseIndex++;
           }
-        } else if (key == 'a') {
+        } else if (keyCode == 'KeyA') {
           //Short cuts for Process widget
           var processList = $('[id$=":process-component:process-list"]').find('a');
           

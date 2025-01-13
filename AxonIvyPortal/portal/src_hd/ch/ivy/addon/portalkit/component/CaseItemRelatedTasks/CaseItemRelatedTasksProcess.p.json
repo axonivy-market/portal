@@ -79,6 +79,74 @@
         { "id" : "f9", "to" : "f7" }
       ]
     }, {
+      "id" : "f33",
+      "type" : "Script",
+      "name" : "Update TaskStartedAttribute",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
+            "",
+            "TaskUtils.updateTaskStartedAttribute(false);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 384 },
+        "size" : { "width" : 160 }
+      },
+      "connect" : [
+        { "id" : "f36", "to" : "f31" }
+      ]
+    }, {
+      "id" : "f31",
+      "type" : "Script",
+      "name" : "Navigate to task details",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portal.generic.navigation.PortalNavigator;",
+            "",
+            "if (in.inFrame) {",
+            "  PortalNavigator.navigateToPortalTaskDetailsInFrame(in.taskUUID);",
+            "} else {",
+            "  PortalNavigator.navigateToPortalTaskDetails(in.taskUUID);",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 472, "y" : 384 },
+        "size" : { "width" : 176, "height" : 48 }
+      }
+    }, {
+      "id" : "f45",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "navigateToSelectedTaskDetails(String,Boolean,Boolean)",
+      "config" : {
+        "signature" : "navigateToSelectedTaskDetails",
+        "input" : {
+          "params" : [
+            { "name" : "taskUUID", "type" : "String", "desc" : "" },
+            { "name" : "isWorkingOnTask", "type" : "Boolean", "desc" : "" },
+            { "name" : "inFrame", "type" : "Boolean", "desc" : "" }
+          ],
+          "map" : {
+            "out.inFrame" : "param.inFrame",
+            "out.isWorkingOnTask" : "param.isWorkingOnTask",
+            "out.taskUUID" : "param.taskUUID"
+          }
+        },
+        "guid" : "1720C62D9BF92EB1"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 384 },
+        "labelOffset" : { "x" : 85, "y" : 40 }
+      },
+      "connect" : [
+        { "id" : "f47", "to" : "f33" }
+      ]
+    }, {
       "id" : "f97",
       "type" : "HtmlDialogMethodStart",
       "name" : "validate(ITask,RelatedTaskLazyDataModel)",
