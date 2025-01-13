@@ -85,13 +85,13 @@ public class DashboardBean implements Serializable {
   @PostConstruct
   public void init() {
     currentDashboardIndex = 0;
-    dashboards = collectDashboards();
-    
+
     if (isReadOnlyMode) {
       DashboardUtils.updateDashboardCache();
-      dashboards = collectDashboards();
     }
-    
+
+    dashboards = collectDashboards();
+
     if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())
         || isRequestPathForMainOrDetailModification()) {
       updateSelectedDashboardIdFromSessionAttribute();
