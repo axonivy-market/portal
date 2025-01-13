@@ -5,5 +5,6 @@ public enum PortalPage {
   ERROR_PAGE, 
   CASE_DETAIL_FROM_TASK, 
   SEARCH_RESULTS, 
+  TASK_LIST,
   DASHBOARD;
 }

@@ -1,0 +1,26 @@
+name: Cron bot
+run-name: 🤖 Cron bot walking 
+on:
+  schedule:
+    # Cron at midnight UTC
+    - cron: '0 17 * * *'
+
+jobs:
+  trigger-portal-document-master:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        sourceBranch: ['master', 'release/12.0']
+    steps:
+      - uses: actions/github-script@v6
+        name: Trigger build Portal Documentation for ${{ matrix.sourceBranch }}
+        if: github.event.schedule == '0 0 * * *'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'portal-documentation.yml',
+              ref: '${{ matrix.sourceBranch }}'
+            })

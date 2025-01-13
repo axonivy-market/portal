@@ -6,217 +6,6 @@
     "data" : "ch.ivy.addon.portal.generic.NavigatorData"
   },
   "elements" : [ {
-      "id" : "f31",
-      "type" : "Script",
-      "name" : "prepare case view",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import java.util.Arrays;",
-            "import ch.ivy.addon.portal.generic.view.CaseView;",
-            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
-            "import org.apache.commons.lang3.StringUtils;",
-            "",
-            "String pageTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/relatedStatisticHeader\") + in.chartName;",
-            "// Add a short title for mobile screen",
-            "String titleOnMobile = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/cases\");",
-            "",
-            "in.caseDataModel.getCriteria().setBusinessCase(true);",
-            "in.caseDataModel.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());",
-            "in.caseDataModel.getCriteria().setCustomCaseQuery(in.caseQuery);",
-            "in.caseDataModel.getCriteria().setKeyword(StringUtils.EMPTY);",
-            "in.caseDataModel.setNotKeepFilter(true);",
-            "",
-            "in.caseView = CaseView.create()",
-            "                .dataModel(in.caseDataModel)",
-            "                .withTitle(pageTitle)",
-            "                .withTitleOnMobile(titleOnMobile)",
-            "                .buildNewView();"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1930, "y" : 1159 }
-      },
-      "connect" : [
-        { "id" : "f37", "to" : "f35" }
-      ]
-    }, {
-      "id" : "f32",
-      "type" : "CallSubStart",
-      "name" : "viewCaseForAnalytic(String, CaseQuery)",
-      "config" : {
-        "signature" : "viewCaseForAnalytic",
-        "input" : {
-          "params" : [
-            { "name" : "chartName", "type" : "String", "desc" : "" },
-            { "name" : "caseQuery", "type" : "ch.ivyteam.ivy.workflow.query.CaseQuery", "desc" : "" }
-          ],
-          "map" : {
-            "out.caseQuery" : "param.caseQuery",
-            "out.chartName" : "param.chartName"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1930, "y" : 967 },
-        "labelOffset" : { "x" : 132, "y" : 20 }
-      },
-      "connect" : [
-        { "id" : "f38", "to" : "f34" }
-      ]
-    }, {
-      "id" : "f33",
-      "type" : "CallSubEnd",
-      "visual" : {
-        "at" : { "x" : 1930, "y" : 1287 }
-      }
-    }, {
-      "id" : "f34",
-      "type" : "SubProcessCall",
-      "name" : [
-        "Init case",
-        "data model"
-      ],
-      "config" : {
-        "processCall" : "Functional Processes/InitializeCaseDataModel:call()",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.caseDataModel" : "result.caseDataModel"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1930, "y" : 1063 }
-      },
-      "connect" : [
-        { "id" : "f36", "to" : "f31" }
-      ]
-    }, {
-      "id" : "f35",
-      "type" : "SubProcessCall",
-      "name" : "OpenPortalCases",
-      "config" : {
-        "processCall" : "Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)",
-        "call" : {
-          "map" : {
-            "param.view" : "in.caseView"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1930, "y" : 1230 },
-        "size" : { "height" : 45 }
-      },
-      "connect" : [
-        { "id" : "f39", "to" : "f33" }
-      ]
-    }, {
-      "id" : "f44",
-      "type" : "CallSubStart",
-      "name" : "viewTechnicalCasesOfBusniessCase(String,GlobalCaseId)",
-      "config" : {
-        "signature" : "viewTechnicalCasesOfBusniessCase",
-        "input" : {
-          "params" : [
-            { "name" : "businessCaseName", "type" : "String", "desc" : "" },
-            { "name" : "businessCaseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId", "desc" : "" }
-          ],
-          "map" : {
-            "out.caseId" : "param.businessCaseId",
-            "out.caseName" : "param.businessCaseName"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 2856, "y" : 968 }
-      },
-      "connect" : [
-        { "id" : "f47", "to" : "f46" }
-      ]
-    }, {
-      "id" : "f45",
-      "type" : "CallSubEnd",
-      "visual" : {
-        "at" : { "x" : 2856, "y" : 1352 }
-      }
-    }, {
-      "id" : "f46",
-      "type" : "SubProcessCall",
-      "name" : [
-        "Init case",
-        "data model"
-      ],
-      "config" : {
-        "processCall" : "Functional Processes/InitializeCaseDataModel:call()",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.caseDataModel" : "result.caseDataModel"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 2856, "y" : 1048 }
-      },
-      "connect" : [
-        { "id" : "f50", "to" : "f48" }
-      ]
-    }, {
-      "id" : "f48",
-      "type" : "Script",
-      "name" : "prepare case view",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivyteam.ivy.workflow.ICase;",
-            "import ch.ivy.addon.portalkit.enums.CaseSortField;",
-            "import java.util.Arrays;",
-            "import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;",
-            "import ch.ivy.addon.portal.generic.view.CaseView;",
-            "import org.apache.commons.lang3.StringUtils;",
-            "",
-            "ICase caze = ivy.wf.findCase(in.caseId.uuid());",
-            "// Add a short title for mobile screen",
-            "String title = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle\", Arrays.asList(caze.getId().toString()));",
-            "",
-            "in.caseDataModel.getCriteria().setNewQueryCreated(true);",
-            "in.caseDataModel.getCriteria().setKeyword(StringUtils.EMPTY);",
-            "in.caseDataModel.getCriteria().setBusinessCase(false);",
-            "in.caseDataModel.getCriteria().setBusinessCaseId(caze.getId());",
-            "in.caseDataModel.getCriteria().setTechnicalCase(true);",
-            "in.caseDataModel.getCriteria().sortField = CaseSortField.NAME.toString();",
-            "in.caseDataModel.setNotKeepFilter(true);",
-            "in.caseView = CaseView.create().dataModel(in.caseDataModel).withTitle(title).setTechnicalCaseView(true).buildNewView();"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 2856, "y" : 1160 }
-      },
-      "connect" : [
-        { "id" : "f51", "to" : "f49" }
-      ]
-    }, {
-      "id" : "f49",
-      "type" : "SubProcessCall",
-      "name" : "OpenPortalCases",
-      "config" : {
-        "processCall" : "Functional Processes/OpenPortalCases:useView(ch.ivy.addon.portal.generic.view.CaseView)",
-        "call" : {
-          "map" : {
-            "param.view" : "in.caseView"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 2856, "y" : 1272 }
-      },
-      "connect" : [
-        { "id" : "f52", "to" : "f45" }
-      ]
-    }, {
       "id" : "f5",
       "type" : "SubProcessCall",
       "name" : "OpenPortalCaseDetails",
@@ -230,7 +19,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1128, "y" : 1176 }
+        "at" : { "x" : 1928, "y" : 1528 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f1" }
@@ -239,7 +28,7 @@
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 1128, "y" : 1288 }
+        "at" : { "x" : 1928, "y" : 1640 }
       }
     }, {
       "id" : "f0",
@@ -257,7 +46,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1128, "y" : 968 },
+        "at" : { "x" : 1928, "y" : 1320 },
         "labelOffset" : { "x" : 91, "y" : 20 }
       },
       "connect" : [
@@ -278,7 +67,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1128, "y" : 1056 }
+        "at" : { "x" : 1928, "y" : 1408 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f5" }
@@ -472,126 +261,5 @@
       "visual" : {
         "at" : { "x" : 2440, "y" : 2088 }
       }
-    }, {
-      "id" : "f83",
-      "type" : "SubProcessCall",
-      "name" : [
-        "Init case",
-        "data model"
-      ],
-      "config" : {
-        "processCall" : "Functional Processes/InitializeCaseDataModel:call()",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.caseDataModel" : "result.caseDataModel"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1096, "y" : 1568 }
-      },
-      "connect" : [
-        { "id" : "f91", "to" : "f84" }
-      ]
-    }, {
-      "id" : "f84",
-      "type" : "Script",
-      "name" : "prepare case view",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivyteam.ivy.workflow.ICase;",
-            "import ch.ivy.addon.portalkit.enums.CaseSortField;",
-            "import java.util.Arrays;",
-            "import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;",
-            "import ch.ivy.addon.portal.generic.view.CaseView;",
-            "import org.apache.commons.lang3.StringUtils;",
-            "",
-            "ICase caze = ivy.wf.findCase(in.caseId.uuid());",
-            "",
-            "// Add a short title for mobile screen",
-            "String title = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle\", Arrays.asList(caze.getId().toString()));",
-            "",
-            "in.caseDataModel.getCriteria().setNewQueryCreated(true);",
-            "in.caseDataModel.getCriteria().setKeyword(StringUtils.EMPTY);",
-            "in.caseDataModel.getCriteria().setBusinessCase(false);",
-            "in.caseDataModel.getCriteria().setBusinessCaseId(caze.getId());",
-            "in.caseDataModel.getCriteria().setTechnicalCase(true);",
-            "in.caseDataModel.getCriteria().sortField = CaseSortField.NAME.toString();",
-            "in.caseDataModel.setNotKeepFilter(true);",
-            "",
-            "in.caseView = CaseView.create().dataModel(in.caseDataModel).withTitle(title).setTechnicalCaseView(true).hideCaseFilter(true).buildNewView();"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1096, "y" : 1680 }
-      },
-      "connect" : [
-        { "id" : "f90", "to" : "f87" }
-      ]
-    }, {
-      "id" : "f85",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "**Technical Note**",
-        "",
-        "This callable is introduced for clients of Portal",
-        "to override and implement the functionality",
-        "of redirecting into a HtmlDialog for viewing case."
-      ],
-      "visual" : {
-        "at" : { "x" : 1376, "y" : 1592 },
-        "size" : { "width" : 272, "height" : 92 }
-      }
-    }, {
-      "id" : "f86",
-      "type" : "CallSubEnd",
-      "visual" : {
-        "at" : { "x" : 1096, "y" : 1872 }
-      }
-    }, {
-      "id" : "f87",
-      "type" : "SubProcessCall",
-      "name" : "OpenPortalCases",
-      "config" : {
-        "processCall" : "Functional Processes/OpenPortalCases:useViewInFrame(ch.ivy.addon.portal.generic.view.CaseView)",
-        "call" : {
-          "map" : {
-            "param.view" : "in.caseView"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1096, "y" : 1792 }
-      },
-      "connect" : [
-        { "id" : "f92", "to" : "f86" }
-      ]
-    }, {
-      "id" : "f88",
-      "type" : "CallSubStart",
-      "name" : "viewTechnicalCasesOfBusniessCaseInFrame(String,GlobalCaseId)",
-      "config" : {
-        "signature" : "viewTechnicalCasesOfBusniessCaseInFrame",
-        "input" : {
-          "params" : [
-            { "name" : "businessCaseName", "type" : "String", "desc" : "" },
-            { "name" : "businessCaseId", "type" : "ch.ivy.addon.portalkit.dto.GlobalCaseId", "desc" : "" }
-          ],
-          "map" : {
-            "out.caseId" : "param.businessCaseId",
-            "out.caseName" : "param.businessCaseName"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1096, "y" : 1488 },
-        "labelOffset" : { "x" : 209, "y" : 37 }
-      },
-      "connect" : [
-        { "id" : "f89", "to" : "f83" }
-      ]
     } ]
 }

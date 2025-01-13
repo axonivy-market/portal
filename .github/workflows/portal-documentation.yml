@@ -1,14 +1,20 @@
 name: Portal Documentation
-run-name: Build and Deploy Documentation on branch ${{ github.ref_name }} 🚀
+run-name: 📚 Portal Documentation on branch ${{ inputs.sourceBranch }}
 on:
-  schedule:
-    - cron: '0 0 * * *' # Equivalent to '@midnight'
   workflow_dispatch:
     inputs:
       ivyVersion:
         description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html'
         default: 'nightly'
         required: true
+      sourceBranch:
+        description: 'Branch use for document build'
+        required: true
+        default: 'master'
+        type: choice
+        options:
+          - master
+          - release/12.0
 
 jobs:
 
@@ -16,6 +22,9 @@ jobs:
     runs-on: portal01
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.sourceBranch }}
+          fetch-depth: 0
 
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -87,7 +96,6 @@ jobs:
         with:
           name: Documentation
           path: |
-            Documentation/*/build/html/**/*
             Documentation/*/target/*.zip
 
       - name: Cleanup
