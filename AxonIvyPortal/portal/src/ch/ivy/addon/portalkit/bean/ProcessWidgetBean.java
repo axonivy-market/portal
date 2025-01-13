@@ -614,6 +614,8 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   }
 
   public void reset() {
-    selectedSecurityMemberDTOsWhenCreatingExternalLink.clear();
+    if (selectedSecurityMemberDTOsWhenCreatingExternalLink != null) {
+      selectedSecurityMemberDTOsWhenCreatingExternalLink.clear();
+    }
   }
 }
