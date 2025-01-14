@@ -549,7 +549,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         if (oldWidgetOptional.isPresent()) {
           WelcomeDashboardWidget oldWidget = (WelcomeDashboardWidget) oldWidgetOptional.get();
           Optional.ofNullable(getWelcomeWidgetImage(false, oldWidget, false)).ifPresent(co -> {
-            Ivy.log().error("remove file {0}", co.parent().name());
             co.delete();
           });
         }
@@ -566,7 +565,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         if (oldWidgetOptional.isPresent()) {
           WelcomeDashboardWidget oldWidget = (WelcomeDashboardWidget) oldWidgetOptional.get();
           Optional.ofNullable(getWelcomeWidgetImage(false, oldWidget, true)).ifPresent(co -> {
-            Ivy.log().error("remove file dark  mode {0}", co.parent().name());
             co.delete();
           });
             
