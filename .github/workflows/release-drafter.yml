@@ -11,4 +11,4 @@ on:
 
 jobs:
   release_drafter:
-    uses: ./market-release-drafter
+    uses: ./market-release-drafter/action.yml
