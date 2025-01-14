@@ -212,14 +212,14 @@
           <f:selectItem itemValue="#{false}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" />
         </p:selectOneRadio>
       </div>
-      <h:panelGroup id="welcome-text-input-container" layout="block"
+      <h:panelGroup id="welcome-text-input-container" layout="block" rendered="#{dashboardWelcomeWidgetConfigurationBean.widget.isGreeting()}"
         styleClass="ui-g-12 u-no-padding-left u-no-padding-right ui-g u-padding-0">
         <ui:repeat id="welcome-text-list" var="text"
           value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTexts}" varStatus="status">
           <c:set var="isApplicationDefaultEmailLanguage"
             value="#{dashboardWelcomeWidgetConfigurationBean.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag())}" />
-          <h:panelGroup id="welcome-text-input-panel" styleClass=""
-            layout="block" rendered="#{dashboardWelcomeWidgetConfigurationBean.widget.isGreeting()}">
+          <h:panelGroup id="welcome-text-input-panel" styleClass="ui-g-12"
+            layout="block" >
             <div class="ui-g-3 ui-md-4">
               <p:outputLabel
                 value="#{text.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DisplayedText')}"
