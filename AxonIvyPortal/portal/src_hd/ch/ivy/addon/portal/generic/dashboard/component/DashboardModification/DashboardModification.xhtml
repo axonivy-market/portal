@@ -64,7 +64,7 @@
                 target="_blank" resetValues="true" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" rendered="true" />
               <p:menuitem id="configure-dashboard" process="@this"
                 actionListener="#{dashboardModificationBean.navigateToDashboardDetailsPage(dashboard.id)}" icon="si si-cog" update="@this"
-                styleClass="dashboard-configuration-action-menu-icon"
+                styleClass="dashboard-configuration-action-menu-icon" oncomplete="resetPortalLeftMenuState()"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}" rendered="true"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}" />
               <p:menuitem id="export-dashboard" styleClass="dashboard-configuration-action-menu-icon"
