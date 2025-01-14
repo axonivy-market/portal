@@ -35,7 +35,6 @@ jobs:
           echo $DRAFTER_NAME
           echo $DRAFTER_TAG
           echo $github.ref
-          echo $RELEASE_VERSION
           echo $GITHUB_REF
 
 
@@ -54,7 +53,7 @@ jobs:
           echo "RELEASE_VERSION=10.0.25" >> $GITHUB_ENV
           echo "DRAFTER_NAME=Next Release $RELEASE_VERSION 🛒" >> $GITHUB_ENV
           echo "DRAFTER_TAG=next-$RELEASE_VERSION" >> $GITHUB_ENV
-          
+
 
       - uses: release-drafter/release-drafter@v6
         with:
