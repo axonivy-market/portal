@@ -11,4 +11,4 @@ on:
 
 jobs:
   release_drafter:
-    uses: axonivy-market/github-workflows/.github/workflows/release-drafter.yml@portal-test
+    uses: ./market-release-drafter
