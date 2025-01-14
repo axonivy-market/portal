@@ -7,7 +7,8 @@ on:
       - release/*
   pull_request:
     types: [opened, reopened, synchronize]
+  workflow_dispatch:
 
 jobs:
   release_drafter:
-    uses: axonivy-market/github-workflows/.github/workflows/release-drafter.yml@v5
+    uses: axonivy-market/portal/.github/workflows/market-release-drafter-action.yml@feature/12.0/MARP-1053-Update-release-drafter-and-publisher-workflows
