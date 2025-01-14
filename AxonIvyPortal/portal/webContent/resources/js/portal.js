@@ -575,8 +575,6 @@ $(document).ready(function () {
     };
   }
 
-  registerSearchIconClick();
-
   let taskIndex = 0;
   let resetTaskFormIndex = 0;
   let taskSideStepIndex = 0;
@@ -743,6 +741,7 @@ $(document).ready(function () {
         processIndex++;
       }
     }
+    registerSearchIconClick();
   });
 });
 // End of accessibility for shortcuts navigation
