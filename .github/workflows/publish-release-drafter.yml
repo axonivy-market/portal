@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Configure Release Draft Settings
         run: |
           VERSION_NUMBER=$(echo "${{inputs.tag}}" | sed -E 's/^([0-9]+\.[0-9]+)\..*/\1/')
@@ -25,8 +26,8 @@ jobs:
           else
             echo "COMMITISH=master" >> $GITHUB_ENV
           fi
-          - name: Use Release Drafter
-      - uses: release-drafter/release-drafter@v6
+      - name: Use Release Drafter
+        uses: release-drafter/release-drafter@v6
         with:
           disable-autolabeler: true
           name: ${{inputs.tag}} 🛒
