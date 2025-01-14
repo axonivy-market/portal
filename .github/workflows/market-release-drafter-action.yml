@@ -17,10 +17,11 @@ jobs:
     steps:
       - name: Configure Release Draft Settings
         run: |
-          echo "$GITHUB_REF_NAME"
-          echo "$DRAFTER_NAME"
-          echo $GITHUB_REF_NAME
 
+          echo $GITHUB_REF_NAME
+          echo $DRAFTER_NAME
+          echo $DRAFTER_TAG
+          echo $github.ref
 
           echo "DRAFTER_NAME=Next Release $RELEASE_VERSION 🛒" >> $GITHUB_ENV
           if [[ "$GITHUB_REF_NAME" = release/* ]]; then
@@ -28,9 +29,7 @@ jobs:
             echo "DRAFTER_NAME=Next Release $RELEASE_VERSION 🛒" >> $GITHUB_ENV
             echo "DRAFTER_TAG=next-$RELEASE_VERSION" >> $GITHUB_ENV
             
-            echo $DRAFTER_NAME
-            echo $DRAFTER_TAG
-            echo $github.ref
+
           fi
 
       # - uses: release-drafter/release-drafter@v6
