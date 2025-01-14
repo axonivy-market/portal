@@ -35,7 +35,7 @@ jobs:
           echo $GITHUB_REF_NAME
           echo $DRAFTER_NAME
           echo $DRAFTER_TAG
-          echo $github.ref
+          echo $GITHUB_EVENT_NAME
           echo $GITHUB_REF
 
 
