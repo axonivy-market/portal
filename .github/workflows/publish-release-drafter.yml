@@ -11,10 +11,10 @@ env:
   COMMITISH: master
 
 jobs:
-
   publish_release_drafter:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Configure Release Draft Settings
         run: |
           VERSION_NUMBER=$(echo "${{inputs.tag}}" | sed -E 's/^([0-9]+\.[0-9]+)\..*/\1/')
