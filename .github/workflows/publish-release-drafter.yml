@@ -25,7 +25,8 @@ jobs:
           else
             echo "COMMITISH=master" >> $GITHUB_ENV
           fi
-      - uses: axonivy-market/github-workflows/.github/workflows/publish-release-drafter.yml@v5
+      - name: Use Publish Release Drafter
+        uses: axonivy-market/github-workflows/.github/workflows/publish-release-drafter.yml@v5
         with:
           tag: ${{ inputs.tag }}
           commitish: ${{ env.COMMITISH }}
