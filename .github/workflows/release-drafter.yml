@@ -11,4 +11,4 @@ on:
 
 jobs:
   release_drafter:
-    uses: ./market-release-drafter-action.yml@feature/10.0/MARP-1053-Update-release-drafter-and-publisher-workflows
+    uses: ./market-release-drafter-action.yml
