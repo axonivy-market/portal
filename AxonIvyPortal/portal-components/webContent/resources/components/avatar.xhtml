@@ -6,13 +6,14 @@
   <cc:attribute name="securityMember" required="true" />
   <cc:attribute name="id" />
   <cc:attribute name="renderedAvatar" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
+  <cc:attribute name="useLowercaseEmail" default="true" shortDescription="Convert the email address to lowercase before looking up the avatar." />
 </cc:interface>
 
 <cc:implementation>
   <h:outputStylesheet library="css" name="portal-components.css" />
 
   <p:avatar id="#{cc.attrs.id}" rendered="#{cc.attrs.renderedAvatar}"
-    gravatar="#{portalComponentAvatarBean.getEmailAddress(cc.attrs.securityMember)}" gravatarConfig="d=blank"
+    gravatar="#{portalComponentAvatarBean.getEmailAddress(cc.attrs.securityMember, cc.attrs.useLowercaseEmail)}" gravatarConfig="d=blank"
     label="#{portalComponentAvatarBean.getNameInitials(cc.attrs.securityMember.getDisplayName())}" styleClass="gravatar" shape="circle" />
 </cc:implementation>
 </html>
