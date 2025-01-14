@@ -1566,6 +1566,9 @@ Dialogs:
             expressNoItemDescription: Aquí se mostrarán los resultados de las tareas completadas
             expressWorkflowName: 'Detalles de negocio del caso #{0}'
         portal:
+          component:
+            ProcessInformation:
+              ProcessUnavailableTooltip: Este proceso no está disponible o no tienes permiso para iniciarlo.
           generic:
             dashboard:
               component:
