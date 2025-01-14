@@ -21,18 +21,14 @@ jobs:
       - name: Configure Release Draft Settings
         run: |
           VERSION_NUMBER=$(echo "${{inputs.tag}}" | sed -E 's/^([0-9]+\.[0-9]+)\..*/\1/')
-          echo $VERSION_NUMBER
-          git branch -r
-          echo $(git branch -r)
           echo $(git branch -r | grep "origin/release/$VERSION_NUMBER")
           # Check if the branch for this version exists and set COMMITISH
           if [[ $(git branch -r | grep "origin/release/$VERSION_NUMBER") ]]; then
-            echo "Inside"
             echo "COMMITISH=release/$VERSION_NUMBER" >> $GITHUB_ENV
           else
-            echo "Else Inside"
             echo "COMMITISH=master" >> $GITHUB_ENV
           fi
+
       - name: Use Release Drafter
         uses: release-drafter/release-drafter@v6
         with:

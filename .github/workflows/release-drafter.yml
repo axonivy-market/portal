@@ -5,62 +5,9 @@ on:
     branches:
       - master
       - release/*
-      - feature/10.0/*
   pull_request:
     types: [opened, reopened, synchronize]
-  workflow_dispatch:
-    inputs:
-      commitish:
-        type: string
-
-# jobs:
-#   release_drafter:
-#     uses: axonivy-market/portal/.github/workflows/market-release-drafter-action.yml@feature/10.0/MARP-1053-Update-release-drafter-and-publisher-workflows
-
-env:
-  DRAFTER_NAME: Next Release 🛒
-  DRAFTER_TAG: next
-
-permissions:
-  contents: write
-  pull-requests: write
 
 jobs:
-  update_release_draft:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Configure Release Draft Settings
-        run: |
-
-          echo $GITHUB_REF_NAME
-          echo $DRAFTER_NAME
-          echo $DRAFTER_TAG
-          echo $GITHUB_EVENT_NAME
-          echo $GITHUB_REF
-
-
-          echo "DRAFTER_NAME=Next Release $RELEASE_VERSION 🛒" >> $GITHUB_ENV
-          if [[ "$GITHUB_REF_NAME" = release/* ]]; then
-            RELEASE_VERSION="${GITHUB_REF_NAME#release/}"
-            echo "DRAFTER_NAME=Next Release $RELEASE_VERSION 🛒" >> $GITHUB_ENV
-            echo "DRAFTER_TAG=next-$RELEASE_VERSION" >> $GITHUB_ENV
-          fi
-          echo $GITHUB_REF_NAME
-          echo $DRAFTER_NAME
-          echo $DRAFTER_TAG
-          echo $github.ref
-          echo $RELEASE_VERSION
-
-          echo "RELEASE_VERSION=10.0.25" >> $GITHUB_ENV
-          echo "DRAFTER_NAME=Next Release $RELEASE_VERSION 🛒" >> $GITHUB_ENV
-          echo "DRAFTER_TAG=next-$RELEASE_VERSION" >> $GITHUB_ENV
-
-
-      - uses: release-drafter/release-drafter@v6
-        with:
-          name: ${{ env.DRAFTER_NAME }}
-          tag: ${{ env.DRAFTER_TAG }}
-          commitish: "refs/heads/${{ inputs.commitish }}"
-          
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  release_drafter:
+    uses: axonivy-market/github-workflows/.github/workflows/release-drafter.yml@v5
