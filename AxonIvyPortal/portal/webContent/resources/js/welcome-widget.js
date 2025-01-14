@@ -53,65 +53,57 @@ WelcomeWidgetConfiguration = {
     var previewText = previewDialog.find('.js-preview-text');
     if (selectedPosition == 'BOTTOM_LEFT') {
       previewText.removeClass('top right center').addClass('bottom left');
-      return;
     }
     if (selectedPosition == 'BOTTOM_RIGHT') {
       previewText.removeClass('top left center').addClass('bottom right');
-      return;
     }
     if (selectedPosition == 'TOP_LEFT') {
       previewText.removeClass('bottom right center').addClass('top left');
-      return;
     }
     if (selectedPosition == 'TOP_RIGHT') {
       previewText.removeClass('bottom left center').addClass('top right');
-      return;
     }
     if (selectedPosition == 'CENTER') {
       previewText.removeClass('bottom top left right').addClass('center');
-      return;
     }
 	
 	var previewTextDarkMode = previewDialog.find('.js-preview-text-dark-mode');
     if (selectedPosition == 'BOTTOM_LEFT') {
       previewTextDarkMode.removeClass('top right center').addClass('bottom left');
-      return;
     }
     if (selectedPosition == 'BOTTOM_RIGHT') {
       previewTextDarkMode.removeClass('top left center').addClass('bottom right');
-      return;
     }
     if (selectedPosition == 'TOP_LEFT') {
       previewTextDarkMode.removeClass('bottom right center').addClass('top left');
-      return;
     }
     if (selectedPosition == 'TOP_RIGHT') {
       previewTextDarkMode.removeClass('bottom left center').addClass('top right');
-      return;
     }
     if (selectedPosition == 'CENTER') {
       previewTextDarkMode.removeClass('bottom top left right').addClass('center');
-      return;
     }
   },
   
 updatePreviewImageFit : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
     var selectedFit = previewDialog.find('input[id $="selected-welcome-image-fit"]').get(0).value;
-    var image = previewDialog.find('.js-preview-image');
-
-    image.removeClass (function (index, className) {
-      return (className.match (/(^|\s)welcome-image-fit-\S+/g) || []).join(' ');
-    });
-    if (selectedFit == 'COVER') {
-      image.addClass('welcome-image-fit-cover'); 
-    } else if (selectedFit == 'FILL') {
-      image.addClass('welcome-image-fit-fill');
-    } else if (selectedFit == 'NONE') {
-      image.addClass('welcome-image-fit-none');
-    } else if (selectedFit == 'CONTAIN') {
-      image.addClass('welcome-image-fit-contain');
-    }
+    var images = previewDialog.find('.js-preview-image');
+	for (var i = 0; i < images.length;i ++){
+		var currentImage = images[i];
+	    $(currentImage).removeClass (function (index, className) {
+	      return (className.match (/(^|\s)welcome-image-fit-\S+/g) || []).join(' ');
+	    });
+	    if (selectedFit == 'COVER') {
+	      $(currentImage).addClass('welcome-image-fit-cover'); 
+	    } else if (selectedFit == 'FILL') {
+	      $(currentImage).addClass('welcome-image-fit-fill');
+	    } else if (selectedFit == 'NONE') {
+	      $(currentImage).addClass('welcome-image-fit-none');
+	    } else if (selectedFit == 'CONTAIN') {
+	      $(currentImage).addClass('welcome-image-fit-contain');
+	    }
+	}
   },
 
   updatePreviewTextColor : function() {
@@ -256,21 +248,24 @@ WelcomeWidget = {
 
   updateImageFit: function(widgetId, welcomeImageFit) {
     var widget = $('div.grid-stack-item[gs-id = ' + widgetId + ']');
-    var image = widget.find('.js-welcome-image');
+    var images = widget.find('.js-welcome-image');
+	    
+	for (var i = 0; i < images.length; i++){
+		var currentImage = images[i];
+		$(currentImage).removeClass (function (index, className) {
+	      return (className.match (/(^|\s)welcome-image-fit-\S+/g) || []).join(' ');
+	    }); 
+	    if (welcomeImageFit == 'COVER') {
+	      $(currentImage).addClass('welcome-image-fit-cover'); 
+	    } else if (welcomeImageFit == 'FILL') {
+	      $(currentImage).addClass('welcome-image-fit-fill');
+	    } else if (welcomeImageFit == 'NONE') {
+	      $(currentImage).addClass('welcome-image-fit-none');
+	    } else if (welcomeImageFit == 'CONTAIN') {
+	      $(currentImage).addClass('welcome-image-fit-contain');
+	    }
+	}
 
-    image.removeClass (function (index, className) {
-      return (className.match (/(^|\s)welcome-image-fit-\S+/g) || []).join(' ');
-    });
-
-    if (welcomeImageFit == 'COVER') {
-      image.addClass('welcome-image-fit-cover'); 
-    } else if (welcomeImageFit == 'FILL') {
-      image.addClass('welcome-image-fit-fill');
-    } else if (welcomeImageFit == 'NONE') {
-      image.addClass('welcome-image-fit-none');
-    } else if (welcomeImageFit == 'CONTAIN') {
-      image.addClass('welcome-image-fit-contain');
-    }
 	
   },
 
