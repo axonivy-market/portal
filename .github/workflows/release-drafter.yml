@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - release/*
+      - feature/10.0/*
   pull_request:
     types: [opened, reopened, synchronize]
   workflow_dispatch:
