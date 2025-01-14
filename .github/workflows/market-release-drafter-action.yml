@@ -2,6 +2,10 @@ name: Reusable Release Drafter
 
 on:
   workflow_call:
+  workflow_dispatch:
+    inputs:
+      commitish:
+        type: string
 
 env:
   DRAFTER_NAME: Next Release 🛒
@@ -23,6 +27,8 @@ jobs:
           echo $DRAFTER_TAG
           echo $github.ref
           echo $RELEASE_VERSION
+          echo $GITHUB_REF
+
 
           echo "DRAFTER_NAME=Next Release $RELEASE_VERSION 🛒" >> $GITHUB_ENV
           if [[ "$GITHUB_REF_NAME" = release/* ]]; then
@@ -44,7 +50,7 @@ jobs:
         with:
           name: ${{ env.DRAFTER_NAME }}
           tag: ${{ env.DRAFTER_TAG }}
-          commitish: "refs/heads/release/10.0"
+          commitish: "refs/heads/${{ inputs.commitish }}"
           
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
