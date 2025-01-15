@@ -7,10 +7,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.enums.BasicDocumentType;
 import com.axonivy.portal.components.enums.DocumentType;
 import com.axonivy.portal.components.enums.GlobalVariable;
+import com.axonivy.portal.components.ivydata.bo.IvyDocument;
 import com.axonivy.portal.components.masterdata.MasterData;
 import com.axonivy.portal.components.service.GlobalSettingService;
 
@@ -55,5 +57,14 @@ public class DocumentUploadBean implements Serializable {
 
   public void setCustomFileSizeLimit(Long customFileSizeLimit) {
     this.customFileSizeLimit = customFileSizeLimit;
+  }
+
+  public boolean canPreviewDocument(IvyDocument document, Boolean isPreviewEnable) {
+    if (document != null && StringUtils.startsWithIgnoreCase(document.getContentType(), "image/")) {
+      return isPreviewEnable;
+    }
+    boolean isSupportedPreviewType =
+        document != null && StringUtils.endsWithAny(document.getPath().toLowerCase(), ".pdf", ".txt", ".log");
+    return isPreviewEnable && isSupportedPreviewType;
   }
 }
