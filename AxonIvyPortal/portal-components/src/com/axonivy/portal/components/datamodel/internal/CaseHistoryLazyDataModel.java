@@ -116,8 +116,6 @@ public class CaseHistoryLazyDataModel extends LazyDataModel7<ICase> {
           .isEqual(businessEntityId);
       criteria.setCustomCaseQuery(caseQuery);
     }
-    
-    criteria.setFinalCaseQuery(criteria.createQuery());
   }
 
   public String getBusinessEntityId() {
