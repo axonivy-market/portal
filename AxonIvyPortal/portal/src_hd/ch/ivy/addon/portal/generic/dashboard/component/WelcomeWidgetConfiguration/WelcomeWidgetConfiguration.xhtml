@@ -14,6 +14,7 @@
   <h:outputScript name="welcome-widget.js" library="js" />
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <f:event listener="#{dashboardWelcomeWidgetConfigurationBean.init()}" type="preRenderComponent" />
+  
   <!-- Configuration -->
   <h:panelGroup id="user-filter" layout="block" styleClass="card dashboard-card welcome-widget-configuration-panel">
     <div class="user-filter ui-g">
@@ -48,7 +49,6 @@
       <div class="w-full">
         <p:fileUpload id="image-upload-panel"
           widgetVar="ImageLightUpload"
-          styleClass="hidden"
           listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUpload}"
           chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}" 
           auto="true"
@@ -60,19 +60,7 @@
           invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
           sizeLimit="#{dashboardWelcomeWidgetConfigurationBean.uploadFileLimit}"
           oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();" 
-          dropZone="image-light-upload-file-panel" 
-          onvalidationfailure="handleUploadFileFail();"/>
-      </div>
-      <div class="ui-g-12">
-        <p:outputPanel id="image-light-upload-file-panel" styleClass="ui-welcome-upload-file-panel">
-          <span class="ui-document-upload-file-label"> 
-          <i class="si si-file-code-upload-1" id="image-light-upload-file-icon" />
-            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}">
-              <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadHere')}"
-                onclick="PF('ImageLightUpload').show();return false" />
-            </p:outputLabel>
-          </span>
-        </p:outputPanel>
+          />
       </div>
 
       <div class="ui-g-3 ui-md-4">
@@ -110,7 +98,6 @@
       <div class="w-full">
         <p:fileUpload id="image-dark-mode-upload-panel" 
           widgetVar="ImageDarkUpload"
-          styleClass="hidden"
           listener="#{dashboardWelcomeWidgetConfigurationBean.handleFileUploadDarkMode}"
           chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}" 
           auto="true"
@@ -122,19 +109,7 @@
           invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
           sizeLimit="#{dashboardWelcomeWidgetConfigurationBean.uploadFileLimit}"
           oncomplete="PF('new-widget-configuration-dialog').initPosition(); updateAll();" 
-          dropZone="image-dark-upload-file-panel" 
-          onvalidationfailure="handleUploadFileFail();"/>
-      </div>
-      <div class="ui-g-12">
-        <p:outputPanel id="image-dark-upload-file-panel" styleClass="ui-welcome-upload-file-panel">
-          <span class="ui-document-upload-file-label"> 
-          <i class="si si-file-code-upload-1" id="image-dark-upload-file-icon" />
-            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}">
-              <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/uploadHere')}"
-                onclick="PF('ImageDarkUpload').show();return false" />
-            </p:outputLabel>
-          </span>
-        </p:outputPanel>
+          />
       </div>
 
       <div class="ui-g-3 ui-md-4">
@@ -218,21 +193,19 @@
           value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTexts}" varStatus="status">
           <c:set var="isApplicationDefaultEmailLanguage"
             value="#{dashboardWelcomeWidgetConfigurationBean.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag())}" />
-          <h:panelGroup id="welcome-text-input-panel" styleClass=""
-            layout="block" rendered="#{dashboardWelcomeWidgetConfigurationBean.widget.isGreeting()}">
-            <div class="ui-g-3 ui-md-4">
-              <p:outputLabel
-                value="#{text.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DisplayedText')}"
-                for="welcome-text-input" styleClass="welcome-text-label" />
-            </div>
-            <div class="ui-g-9 ui-md-8 welcome-text-input-panel">
+          <div class="ui-g-3 ui-md-4">
+            <p:outputLabel
+              value="#{text.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DisplayedText')}"
+              for="welcome-text-input" styleClass="welcome-text-label" />
+          </div>
+          <h:panelGroup id="welcome-text-input-panel" styleClass="ui-g-9 ui-md-8 welcome-text-input-panel"
+            layout="block">
             <h:outputText value="#{dashboardWelcomeWidgetConfigurationBean.generateGreetingText(text.locale)}"
               rendered="#{dashboardWelcomeWidgetConfigurationBean.widget.greeting}"
               styleClass="js-greeting-text greeting-text #{isApplicationDefaultEmailLanguage ? 'language-to-preview' : ''}" />
             <p:inputText id="welcome-text-input" value="#{text.value}"
               styleClass="#{isApplicationDefaultEmailLanguage ? 'language-to-preview' : ''} js-welcome-text-input welcome-text-input"
               onkeyup="#{isApplicationDefaultEmailLanguage ? 'WelcomeWidgetConfiguration.updatePreviewText();' : ''}" />
-            </div>
           </h:panelGroup>
         </ui:repeat>
       </h:panelGroup>
