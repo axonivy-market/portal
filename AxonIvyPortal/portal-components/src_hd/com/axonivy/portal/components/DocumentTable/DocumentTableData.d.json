@@ -63,5 +63,9 @@
     "name" : "sizeLimit",
     "type" : "Long",
     "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isImage",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }
