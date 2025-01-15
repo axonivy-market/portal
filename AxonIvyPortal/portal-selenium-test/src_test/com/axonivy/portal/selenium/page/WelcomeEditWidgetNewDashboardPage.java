@@ -24,6 +24,12 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
     configDialog.find(".ui-fileupload-filename").shouldBe(Condition.disappear, DEFAULT_TIMEOUT)
         .shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
+  
+  public void uploadImageDarkMode(String fileName) {
+    var configDialog = $("#new-widget-configuration-dialog");
+    
+    configDialog.find("[id $= ':image-dark-mode-upload-panel_input']").sendKeys(getTestFilePath(fileName));
+  }
 
   private String getTestFilePath(String filename) {
     return FileHelper.getAbsolutePathToTestFile(filename);
@@ -80,9 +86,11 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
   }
 
   public void waitForDialogLoaded() {
-    getConfigurationDialog().$("input[id$=':welcome-text-color']")
+    getConfigurationDialog().$("input[id$=':welcome-text-color-light-mode']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
+    getConfigurationDialog().$("input[id$=':welcome-text-color-dark-mode']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     getConfigurationDialog().$(".user-filter__header").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 }
