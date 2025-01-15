@@ -266,10 +266,10 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void inputFields(String employee, String from, String to, String representation) {
-    $(By.id("leave-request:fullname")).sendKeys(employee);;
-    $(By.id("leave-request:from_input")).sendKeys(from);;
-    $(By.id("leave-request:to_input")).sendKeys(to);;
-    $(By.id("leave-request:substitute")).sendKeys(representation);;
+    $(By.id("leave-request:fullname")).sendKeys(employee);
+    $(By.id("leave-request:from_input")).sendKeys(from);
+    $(By.id("leave-request:to_input")).sendKeys(to);
+    $(By.id("leave-request:substitute")).sendKeys(representation);
   }
 
   public CaseDetailsPage goToCaseDetail() {

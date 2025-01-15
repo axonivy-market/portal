@@ -90,9 +90,9 @@ public class AbsenceTest extends BaseTest {
     absencePage.setDeputy(personalTaskPermanentDeputyNames, DeputyRoleType.PERSONAL_TASK_PERMANENT);
     absencePage.saveSubstitute();
     absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE))
-        .shouldBe(Condition.text(joinDeputyNames(personalTaskDuringAbsenceDeputyNames)));;
+        .shouldBe(Condition.text(joinDeputyNames(personalTaskDuringAbsenceDeputyNames)));
     absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_PERMANENT))
-        .shouldBe(Condition.text(joinDeputyNames(personalTaskPermanentDeputyNames)));;
+        .shouldBe(Condition.text(joinDeputyNames(personalTaskPermanentDeputyNames)));
   }
 
   @Test
@@ -224,7 +224,7 @@ public class AbsenceTest extends BaseTest {
     absencePage.setDeputy(deputyNames, DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE);
     absencePage.saveSubstitute();
     absencePage.getMyDeputy(absencePage.indexOfDeputyRole(DeputyRoleType.PERSONAL_TASK_DURING_ABSENCE))
-        .shouldBe(Condition.text(TestAccount.GUEST_USER.getFullName()));;
+        .shouldBe(Condition.text(TestAccount.GUEST_USER.getFullName()));
   }
 
   @Test

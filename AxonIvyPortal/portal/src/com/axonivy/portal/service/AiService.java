@@ -1,6 +1,5 @@
 package com.axonivy.portal.service;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -354,7 +353,7 @@ public class AiService {
   }
 
   public static AiResultDTO generateAiResultForStartProcess(String processId,
-      String parameters) throws IOException {
+      String parameters) {
     if (StringUtils.isBlank(processId)) {
       return AiAssistantAPI.createSomethingWentWrongError();
     }

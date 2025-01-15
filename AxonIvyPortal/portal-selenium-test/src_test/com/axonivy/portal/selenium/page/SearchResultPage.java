@@ -4,8 +4,6 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 
 import com.codeborne.selenide.ElementsCollection;

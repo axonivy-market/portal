@@ -194,8 +194,7 @@ public class BaseTest {
   /**
    * {@link #launchBrowserAndGotoRelativeLink(String)} will open link using existing browser. This function will launch
    * new window/tab and focus on that window/tab
-   * 
-   * @param WindowType
+   * @param type 
    * @return String
    */
   public String openNewTabOrWindow(WindowType type) {
@@ -380,6 +379,8 @@ public class BaseTest {
    * Use this instead of {@code Assertions} methods so that Selenide would take screenshots if errors. This is a
    * workaround because we cannot use @ExtendWith({ScreenShooterExtension.class}) with
    * `WebDriverRunner.getWebDriver().quit();` in `@AfterEach`
+   * @param condition 
+   * @param message 
    */
   public void assertTrue(boolean condition, String message) {
     if (!condition) {
