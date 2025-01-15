@@ -1567,7 +1567,7 @@ Dialogs:
         portal:
           component:
             ProcessInformation:
-              ProcessUnavailableTooltip: This process is unavaiable or you don't have the permission to start it.
+              ProcessUnavailableTooltip: This process is unavailable or you don't have the permission to start it.
           generic:
             dashboard:
               component:
