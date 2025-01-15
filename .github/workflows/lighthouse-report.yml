@@ -1,5 +1,5 @@
 name: Lighthouse Audit
-run-name: Create Lighthouse Audit
+run-name: 🗼Lighthouse Audit
 on:
   pull_request:
     branches:
