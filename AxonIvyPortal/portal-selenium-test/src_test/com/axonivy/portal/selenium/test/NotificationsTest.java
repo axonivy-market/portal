@@ -8,6 +8,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
+import com.codeborne.selenide.SelenideElement;
 
 @IvyWebTest
 public class NotificationsTest extends BaseTest {
@@ -29,6 +30,8 @@ public class NotificationsTest extends BaseTest {
     int newBadge = homepage.getNotificationsBadge();
     assertEquals(newBadge - oldBadge >= 0, true);
 
+    @SuppressWarnings("unused")
+    SelenideElement notficationsPanel = homepage.getNotificationsPanel();
     assertEquals(homepage.isOnlyUnreadDisplayed(), true);
     assertEquals(homepage.isMarkAllAsReadDisplayed(), true);
     assertEquals(homepage.isTodayGroupLineDisplayed(), true);
