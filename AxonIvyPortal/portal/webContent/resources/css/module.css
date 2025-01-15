@@ -5633,18 +5633,7 @@ a.dashboard-action-container label {
   display: flex;
 }
 
-.ui-welcome-upload-file-panel {
-  width: 100%;
-  border: 1px solid var(--process-list-item-border-color);
-  background-color: var(--ui-fileupload-buttonbar-background-color);
-  border-radius: 10px;
-  height: 8em;
-  align-items: center;
-  display: flex;
-  
-}
-
-.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label, .ui-dashboard-upload-file-panel > .ui-dashboard-upload-file-label, .ui-document-upload-file-panel > .ui-document-upload-file-label, .ui-welcome-upload-file-panel > .ui-document-upload-file-label {
+.ui-external-link-preview-image-panel > .ui-external-link-preview-image-label, .ui-dashboard-upload-file-panel > .ui-dashboard-upload-file-label, .ui-document-upload-file-panel > .ui-document-upload-file-label {
   width: 42%;
   display: block;
   text-align: center;
