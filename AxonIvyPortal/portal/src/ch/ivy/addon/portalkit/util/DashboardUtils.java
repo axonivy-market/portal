@@ -65,6 +65,17 @@ public class DashboardUtils {
     return dashboards;
   }
 
+  public static List<Dashboard> getVisibleDashboards(List<Dashboard> dashboards) {
+    dashboards.removeIf(dashboard -> {
+      List<String> permissions = dashboard.getPermissions();
+      if (permissions == null) {
+        return false;
+      }
+      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermisson);
+    });
+    return dashboards;
+  }
+
   private static boolean isSessionUserHasPermisson(String permission) {
     return StringUtils.startsWith(permission, "#") ? StringUtils.equals(currentUser().getMemberName(), permission)
         : PermissionUtils.doesSessionUserHaveRole(permission);
@@ -334,7 +345,7 @@ public class DashboardUtils {
     }
     List<Dashboard> dashboards = new ArrayList<>();
     portalPublicDashboardWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
-    return dashboards;
+    return getVisibleDashboards(dashboards);
   }
 
   public static List<Dashboard> getPrivateDashboards() {
@@ -368,7 +379,7 @@ public class DashboardUtils {
     }
     List<Dashboard> dashboards = new ArrayList<>();
     portalPrivateDashboardWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
-    return dashboards;
+    return getVisibleDashboards(dashboards);
   }
 
   public static List<Dashboard> collectDashboards() {
@@ -410,7 +421,7 @@ public class DashboardUtils {
     }
     List<Dashboard> dashboards = new ArrayList<>();
     portalDashboardItemWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
-    return dashboards;
+    return getVisibleDashboards(dashboards);
   }
 
   public static void updateDashboardCache() {
