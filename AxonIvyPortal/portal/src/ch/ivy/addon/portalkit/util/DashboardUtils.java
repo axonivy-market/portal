@@ -315,6 +315,7 @@ public class DashboardUtils {
 
   /**
    * Uses this method before saving a dashboard to simplify generated json from the dashboard
+   * @param dashboards 
    */
   public static void updatePropertiesToNullIfCurrentValueIsDefaultValue(List<Dashboard> dashboards) {
     if (CollectionUtils.isEmpty(dashboards)) {

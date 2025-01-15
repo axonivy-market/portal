@@ -62,6 +62,8 @@ public final class WaitHelper {
 
   /**
    * Some UI are the same before and after AJAX, use this method only in that scenario. Ask the team if using this
+   * @param cssSelector 
+   * @param action 
    */
   public static void waitForActionComplete(String cssSelector, Runnable action) {
     ((JavascriptExecutor) WebDriverRunner.getWebDriver())
@@ -76,6 +78,7 @@ public final class WaitHelper {
    * Use this instead of {@code Assertions} methods so that Selenide would take screenshots if errors. This is a
    * workaround because we cannot use @ExtendWith({ScreenShooterExtension.class}) with
    * `WebDriverRunner.getWebDriver().quit();` in `@AfterEach`
+   * @param condition 
    */
   public static void assertTrue(boolean condition) {
     if (!condition) {

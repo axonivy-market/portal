@@ -59,6 +59,7 @@ public class NewDashboardPage extends TemplatePage {
         .shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
+  @Override
   public ChangePasswordPage openChangePasswordPage() {
     clickUserMenuItem("change-password-menu-item");
     return new ChangePasswordPage();
@@ -119,6 +120,7 @@ public class NewDashboardPage extends TemplatePage {
     return widget.ancestor(".grid-stack-item");
   }
 
+  @Override
   public MainMenuPage openMainMenu() {
     $(".dashboard-cases-container").shouldBe(appear, DEFAULT_TIMEOUT);
     if (!isMainMenuOpen()) {
@@ -841,6 +843,7 @@ public class NewDashboardPage extends TemplatePage {
     return $("#global-search-component\\:global-search-data").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  @Override
   public GlobalSearchResultPage inputGlobalSearchKeyword(String keyword) {
     $(".topbar-item.search-item").shouldBe(appear, DEFAULT_TIMEOUT).click();
     try {
@@ -944,36 +947,36 @@ public class NewDashboardPage extends TemplatePage {
     $(".notifications-container-content").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
-  public boolean isOnlyUnreadDisplayed(WebElement notificationsPanel) {
+  public boolean isOnlyUnreadDisplayed() {
     return $("[id='notifications-only-unread']").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
   }
 
-  public void clickOnlyUnreadDisplayed(WebElement notificationsPanel) {
+  public void clickOnlyUnreadDisplayed() {
     $("[id='notifications-only-unread']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
-  public boolean isMarkAllAsReadDisplayed(WebElement notificationsPanel) {
+  public boolean isMarkAllAsReadDisplayed() {
     return $("[id='notification-mark-all-as-read']").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
   }
 
-  public boolean isTodayGroupLineDisplayed(WebElement notificationsPanel) {
+  public boolean isTodayGroupLineDisplayed() {
     return $(".notifications-group-name").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
   }
 
-  public void markAsRead(WebElement notificationsPanel, int expectedBadge) {
+  public void markAsRead(int expectedBadge) {
     waitForGlobalGrowlDisappear();
     $("[id='notification-compact-form:notifications-scroller:0:notification-mark-as-read']").click();
     $(By.id("notifications-badge-value")).shouldBe(Condition.exactValue(String.valueOf(expectedBadge)),
         DEFAULT_TIMEOUT);
   }
 
-  public int findNumberOfNotificationsItem(WebElement notificationsPanel) {
+  public int findNumberOfNotificationsItem() {
     ElementsCollection item = $$(".ui-datascroller-item");
     return item.size();
   }
 
-  public void markAsAllRead(WebElement notificationsPanel) {
+  public void markAsAllRead() {
     $("[id='notification-mark-all-as-read']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     waitForElementValueChanged("#topbar-unread-notifications", "0");
@@ -1001,6 +1004,7 @@ public class NewDashboardPage extends TemplatePage {
     return $("[id='theme-switcher']").shouldBe(appear, DEFAULT_TIMEOUT).is(Condition.cssClass("ui-state-disabled"));
   }
 
+  @Override
   public NewDashboardPage openTaskList() {
     return openMainMenu().selectTaskMenu();
   }

@@ -293,7 +293,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
 
     caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     caseWidget.expand().shouldHave(sizeGreaterThanOrEqual(1));
-    caseWidget.clickOnCustomActionButton(0, customColumn);
+    caseWidget.clickOnCustomActionButton();
     caseWidget.stateOfFirstCase().shouldHave(text("Destroyed"));
 
   }

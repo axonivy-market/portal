@@ -222,10 +222,10 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     CaseEditWidgetNewDashBoardPage caseEditWidgetPage = caseWidget.openEditWidget();
 
     caseEditWidgetPage.clickOnCaseNameColumn();
-    caseEditWidgetPage.getFirstCaseOfCaseWidget().shouldHave(text(ALPHA_COMPANY), DEFAULT_TIMEOUT);;
+    caseEditWidgetPage.getFirstCaseOfCaseWidget().shouldHave(text(ALPHA_COMPANY), DEFAULT_TIMEOUT);
 
     caseEditWidgetPage.clickOnCaseNameColumn();
-    caseEditWidgetPage.getFirstCaseOfCaseWidget().shouldHave(text(ORDER_PIZZA), DEFAULT_TIMEOUT);;
+    caseEditWidgetPage.getFirstCaseOfCaseWidget().shouldHave(text(ORDER_PIZZA), DEFAULT_TIMEOUT);
     
   }
 }

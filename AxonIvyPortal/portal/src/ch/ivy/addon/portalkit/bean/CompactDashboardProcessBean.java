@@ -175,8 +175,7 @@ public class CompactDashboardProcessBean
     dashboardProcessBean.redirectToLink(link, true);
   }
 
-  private void handleNavigateAsAiResult(DashboardProcess process, String link)
-      throws IOException {
+  private void handleNavigateAsAiResult(DashboardProcess process, String link) {
     link = dashboardProcessBean.getRedirectLink(link,
         !dashboardProcessBean.isExternalLink(process));
 

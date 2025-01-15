@@ -10,7 +10,6 @@ import com.codeborne.selenide.SelenideElement;
 
 public class LoginPage extends TemplatePage {
 
-  public static final String ID_PROPERTY = "id";
   private static final long LOGIN_TIMEOUT = 60;
   private SelenideElement usernameTextField;
   private SelenideElement passwordField;

@@ -467,6 +467,7 @@ public class CaseDetailsPage extends TemplatePage {
     return getTextOfCurrentBreadcrumb().replace("Case: ", "");
   }
 
+  @Override
   public String getTextOfCurrentBreadcrumb() {
     WebElement breadcrumb = findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR);
     String result = "";

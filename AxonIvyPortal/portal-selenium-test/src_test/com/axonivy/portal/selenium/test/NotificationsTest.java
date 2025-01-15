@@ -30,16 +30,17 @@ public class NotificationsTest extends BaseTest {
     int newBadge = homepage.getNotificationsBadge();
     assertEquals(newBadge - oldBadge >= 0, true);
 
+    @SuppressWarnings("unused")
     SelenideElement notficationsPanel = homepage.getNotificationsPanel();
-    assertEquals(homepage.isOnlyUnreadDisplayed(notficationsPanel), true);
-    assertEquals(homepage.isMarkAllAsReadDisplayed(notficationsPanel), true);
-    assertEquals(homepage.isTodayGroupLineDisplayed(notficationsPanel), true);
-    assertEquals(homepage.findNumberOfNotificationsItem(notficationsPanel) >= 12, true);
+    assertEquals(homepage.isOnlyUnreadDisplayed(), true);
+    assertEquals(homepage.isMarkAllAsReadDisplayed(), true);
+    assertEquals(homepage.isTodayGroupLineDisplayed(), true);
+    assertEquals(homepage.findNumberOfNotificationsItem() >= 12, true);
     // mark as read first notification
-    homepage.markAsRead(notficationsPanel, newBadge - 1);
+    homepage.markAsRead(newBadge - 1);
     assertEquals(homepage.getNotificationsBadge(), newBadge - 1);
-    homepage.markAsAllRead(notficationsPanel);
-    homepage.clickOnlyUnreadDisplayed(notficationsPanel);
+    homepage.markAsAllRead();
+    homepage.clickOnlyUnreadDisplayed();
     assertEquals(homepage.getNotificationsBadge(), 0);
     homepage.hideNotificationsPanel();
   }

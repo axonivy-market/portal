@@ -14,7 +14,6 @@ import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.DragAndDropOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
