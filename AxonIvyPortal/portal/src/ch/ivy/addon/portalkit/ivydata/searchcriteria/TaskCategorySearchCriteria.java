@@ -14,12 +14,11 @@ public class TaskCategorySearchCriteria {
   private List<TaskState> includedStates;
   
   private TaskQuery customTaskQuery;
-  
-  @SuppressWarnings("deprecation")
+
   public TaskQuery createQuery() {
     TaskQuery query = TaskQuery.create();
     if (customTaskQuery != null) {
-      query = TaskQuery.fromJson(customTaskQuery.asJson()); // clone to keep the original custom query
+      query.where().andOverall(customTaskQuery);
     }
 
     if (hasIncludedStates()) {
