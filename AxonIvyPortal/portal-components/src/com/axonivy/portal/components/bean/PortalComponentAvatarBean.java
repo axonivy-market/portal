@@ -49,15 +49,18 @@ public class PortalComponentAvatarBean implements Serializable {
     return securityMember.getEMailAddress();
   }
 
-  public String getEmailAddress(UserDTO user) {
+  public String getEmailAddress(UserDTO user, boolean useLowercaseEmail) {
     if (user == null) {
       return "";
     }
-    return user.getEmail();
+    
+    String email = user.getEmail();
+    return BooleanUtils.isTrue(useLowercaseEmail)
+        ? Optional.ofNullable(email).map(String::toLowerCase).orElse(email)
+        : email;
   }
 
-  @SuppressWarnings("unused")
-  public String getEmailAddress(RoleDTO role) {
+  public String getEmailAddress(RoleDTO role, boolean useLowercaseEmail) {
     return "";
   }
 
