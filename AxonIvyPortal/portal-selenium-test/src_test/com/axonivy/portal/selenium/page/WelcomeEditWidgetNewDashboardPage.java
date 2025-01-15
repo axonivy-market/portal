@@ -89,6 +89,8 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
     getConfigurationDialog().$("input[id$=':welcome-text-color-light-mode']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
+    getConfigurationDialog().$("input[id$=':welcome-text-color-dark-mode']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     getConfigurationDialog().$(".user-filter__header").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 }
