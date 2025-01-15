@@ -4,33 +4,37 @@ on:
   workflow_dispatch:
     inputs:
       ivyVersion:
-        description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html'
-        default: 'nightly'
+        description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly-12.0/designer-guide/configuration/variables.html'
+        default: 'nightly-12.0'
         required: true
 
-jobs:
+concurrency: 
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
 
-  build-document:
+jobs:
+  checkout-source:
     runs-on: portal01
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: release/12.0
           fetch-depth: 0
+          ref: release/12.0
 
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '21'
+  generate-resources:
+    needs: [checkout-source]
+    runs-on: portal01
+    outputs:
+      version: ${{ steps.get_version.outputs.version }}
+    container:
+      image: maven:3.9.8-eclipse-temurin-21
+      volumes:
+        - ${{ github.workspace }}
 
-      - name: Set up Maven
-        uses: stCarolas/setup-maven@v5
-        with:
-          maven-version: 3.9.8
-
+    steps:
       - name: Get current version
         id: get_version
+        shell: bash
         run: |
           VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
           if [[ "$VERSION" == "null object or invalid expression" ]]; then
@@ -40,25 +44,35 @@ jobs:
           fi
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Version is $VERSION"
-      
-      - name: Unzip portal screenshots
-        run: |
-          unzip /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ steps.get_version.outputs.version }}.zip \
-            -d Documentation/portal-guide/source/screenshots
-
       - name: Generate resources
         run: |
-          mvn clean process-resources -Divy.engine.version=[13.1.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip -f Documentation/public-api/pom.xml
+          mvn clean process-resources "-Divy.engine.version=[12.0.0,12.1.0)" "-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine.zip" -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
-      
+
+  unzip-screenshots:
+    runs-on: portal01
+    needs: [generate-resources]
+    steps:
+      - name: Unzip portal screenshots
+        run: |
+          unzip -o /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ needs.generate-resources.outputs.version }}.zip \
+            -d Documentation/portal-guide/source/screenshots
       - name: Run substitute
         shell: bash
         run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
 
+  build-document:
+    runs-on: portal01
+    needs: [unzip-screenshots, generate-resources]
+    container:
+      image: axonivy/build-container:read-the-docs-2
+      options: -u root:root
+      volumes:
+        - ${{ github.workspace }}:/workspace
+    steps:
       - name: Build Documentation HTML
         run: |
-          docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
-            axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=${{ steps.get_version.outputs.version }} 2> sphinx-warnings.log
+          make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=-${{ needs.generate-resources.outputs.version }} 2> sphinx-warnings.log
             WARNINGS=$(grep -c "WARNING" sphinx-warnings.log || echo 0)
             echo "Found $WARNINGS warnings."
             if [ "$WARNINGS" -ge 1 ]; then
@@ -70,18 +84,39 @@ jobs:
               echo '```' >> $GITHUB_STEP_SUMMARY
               cat sphinx-warnings.log >> $GITHUB_STEP_SUMMARY
               echo '```' >> $GITHUB_STEP_SUMMARY
-              exit 1
+              exit 1 
             fi
+  
+  install-or-deploy:
+    runs-on: portal01
+    needs: [generate-resources,build-document]
+    container:
+      image: maven:3.9.8-eclipse-temurin-21
+      volumes:
+        - ${{ github.workspace }}
+    steps:
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          server-id: 'nexus.axonivy.com'
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
 
       - name: Install or deploy document
+        shell: bash
         run: |
-          if [[ "${{ steps.get_version.outputs.version }}" == *SNAPSHOT* ]]; then
+          if [[ "${{ needs.generate-resources.outputs.version }}" == *SNAPSHOT* ]]; then
             PHASE="install"
           else
             PHASE="deploy"
           fi
-          echo "Running 'clean $PHASE' for version ${{ steps.get_version.outputs.version }}"
+          echo "Running 'clean $PHASE' for version ${{ needs.generate-resources.outputs.version }}"
           mvn clean $PHASE -f Documentation/pom.xml
+        env:
+          MAVEN_USERNAME: ${{ secrets.NEXUS_AXONIVY_USERNAME }}
+          MAVEN_PASSWORD: ${{ secrets.NEXUS_AXONIVY_PASSWORD }}
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -90,7 +125,12 @@ jobs:
           path: |
             Documentation/*/target/*.zip
 
-      - name: Cleanup
+  clean-up:
+    runs-on: portal01
+    needs: [install-or-deploy]
+    if: always()
+    steps:  
+      - name: Clean up
         shell: bash
         run: sudo rm -rf ${{ github.workspace }}/*
-    
+
