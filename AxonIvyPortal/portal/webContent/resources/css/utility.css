@@ -402,3 +402,20 @@
 .w-min {
   width: min-content !important;
 }
+
+/* From Primeflex 3 */
+.flex {
+  display: flex !important
+}
+
+.flex-row {
+  flex-direction: row !important
+}
+
+.justify-content-end {
+  justify-content: flex-end !important
+}
+
+.align-items-center {
+  align-items: center !important
+}

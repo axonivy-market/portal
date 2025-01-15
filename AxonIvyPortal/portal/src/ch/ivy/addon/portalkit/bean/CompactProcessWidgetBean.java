@@ -334,6 +334,11 @@ private static final long serialVersionUID = -5889375917550618261L;
     FacesContext.getCurrentInstance().getExternalContext().redirect(link + "embedInFrame");
   }
   
+  public boolean canStartProcess(UserProcess userProcess) {
+    return StringUtils.isNotBlank(
+        Optional.ofNullable(userProcess).map(UserProcess::getLink).orElse(""));
+  }
+
   private boolean isUserProcess(UserProcess processToAdd) {
     return userProcesses.stream().anyMatch(userProcess -> !isExternalLink(processToAdd)
         && StringUtils.equalsIgnoreCase(userProcess.getLink(), processToAdd.getLink()));
