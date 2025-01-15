@@ -8,7 +8,9 @@ on:
       - release/*
   pull_request:
     types: [opened, reopened, synchronize]
+  workflow_dispatch:
 
 jobs:
   release_drafter:
+    if: ${{ github.event_name == 'pull_request' || github.ref_name == 'master' || startsWith(github.ref_name, 'release/') }}
     uses: axonivy-market/github-workflows/.github/workflows/release-drafter.yml@v5
