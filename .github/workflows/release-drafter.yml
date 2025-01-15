@@ -1,4 +1,5 @@
 name: Release Drafter
+run-name: 🚀 Release Drafter
 
 on:
   push:
@@ -7,9 +8,7 @@ on:
       - release/*
   pull_request:
     types: [opened, reopened, synchronize]
-  workflow_dispatch:
 
 jobs:
   release_drafter:
-    if: ${{ github.ref_name == 'master' || startsWith(github.ref_name, 'release/') }}
     uses: axonivy-market/github-workflows/.github/workflows/release-drafter.yml@v5
