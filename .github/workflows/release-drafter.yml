@@ -11,4 +11,5 @@ on:
 
 jobs:
   release_drafter:
-    uses: axonivy-market/portal/.github/workflows/market-release-drafter-action.yml@feature/12.0/MARP-1053-Update-release-drafter-and-publisher-workflows
+    if: ${{ github.ref_name == 'master' || startsWith(github.ref_name, 'release/') }}
+    uses: axonivy-market/github-workflows/.github/workflows/release-drafter.yml@v5
