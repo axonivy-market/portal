@@ -11,22 +11,26 @@ env:
   COMMITISH: master
 
 jobs:
-
   publish_release_drafter:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Configure Release Draft Settings
         run: |
           VERSION_NUMBER=$(echo "${{inputs.tag}}" | sed -E 's/^([0-9]+\.[0-9]+)\..*/\1/')
-
+          echo $(git branch -r | grep "origin/release/$VERSION_NUMBER")
           # Check if the branch for this version exists and set COMMITISH
           if [[ $(git branch -r | grep "origin/release/$VERSION_NUMBER") ]]; then
             echo "COMMITISH=release/$VERSION_NUMBER" >> $GITHUB_ENV
           else
             echo "COMMITISH=master" >> $GITHUB_ENV
           fi
-          - name: Use Release Drafter
-      - uses: release-drafter/release-drafter@v6
+
+      - name: Use Release Drafter
+        uses: release-drafter/release-drafter@v6
         with:
           disable-autolabeler: true
           name: ${{inputs.tag}} 🛒
