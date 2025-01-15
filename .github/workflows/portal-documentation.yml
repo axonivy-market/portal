@@ -1,5 +1,5 @@
 name: Portal Documentation
-run-name: 📚 Portal Documentation on branch ${{ github.ref_name }}
+run-name: 📚 Portal Documentation
 on:
   workflow_dispatch:
     inputs:
