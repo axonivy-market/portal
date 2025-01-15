@@ -11,5 +11,5 @@ on:
 
 jobs:
   release_drafter:
-    if: ${{ github.ref_name == 'master' || startsWith(github.ref_name, 'release/') || startsWith(github.ref_name, 'feature/10.0/MARP') }}
+    if: ${{ github.ref_name == 'master' || startsWith(github.ref_name, 'release/') }}
     uses: axonivy-market/github-workflows/.github/workflows/release-drafter.yml@v5
