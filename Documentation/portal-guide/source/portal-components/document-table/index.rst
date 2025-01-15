@@ -161,7 +161,7 @@ Code Example:
 
    <h:form id="form">
       <ic:com.axonivy.portal.components.DocumentTable id="document-table-component"
-         allowedUploadFileTypes="doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt"
+         allowedUploadFileTypes="doc,docx,xls,xlsx,xlsm,csv,pdf,ppt,pptx,txt,png"
          typeSelectionItems="#{documentTableExampleBean.documentTypes}">
          <f:facet name="componentHeader">
             <h2>This is the customized document table component header</h2>
