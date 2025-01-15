@@ -86,7 +86,7 @@ public class WelcomeEditWidgetNewDashboardPage extends TemplatePage {
   }
 
   public void waitForDialogLoaded() {
-    getConfigurationDialog().$("input[id$=':welcome-text-color']")
+    getConfigurationDialog().$("input[id$=':welcome-text-color-light-mode']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
     getConfigurationDialog().$(".user-filter__header").shouldBe(appear, DEFAULT_TIMEOUT).click();
