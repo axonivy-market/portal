@@ -22,13 +22,29 @@ WelcomeWidgetConfiguration = {
   },
   updatePreviewText : function(isGreeting) {
     var previewDialog = $('#new-widget-configuration-dialog');
-    var welcomeText = previewDialog.find('.js-welcome-text-input.language-to-preview').get(0).value;
+    var welcomeText = '';
+    var findWelcomeText = previewDialog.find('.js-welcome-text-input.language-to-preview');
+    if (findWelcomeText != undefined && findWelcomeText.get(0) != undefined){
+      welcomeText = findWelcomeText.get(0).value;
+    }
 
     if (isGreeting == 'true' || (isGreeting == undefined && $('.js-greeting-text').length != 0)) {
-      welcomeText = previewDialog.find('.js-greeting-text.language-to-preview').get(0).innerHTML + welcomeText;
+      var findGreeting = previewDialog.find('.js-greeting-text.language-to-preview')
+    if (findGreeting != undefined && findGreeting.get(0) != undefined){
+      welcomeText = findGreeting.get(0).innerHTML + welcomeText;
     }
-    $('#new-widget-configuration-dialog').find('.js-preview-text').get(0).innerHTML = escapeHtml(welcomeText);
-	$('#new-widget-configuration-dialog').find('.js-preview-text-dark-mode').get(0).innerHTML = escapeHtml(welcomeText);
+      
+    }
+	var findPreviewText = $('#new-widget-configuration-dialog').find('.js-preview-text');
+    if (findPreviewText != undefined && findPreviewText.get(0) != undefined){
+      findPreviewText.get(0).innerHTML = escapeHtml(welcomeText);
+    }
+    
+	var findPreviewTextDarkMode = $('#new-widget-configuration-dialog').find('.js-preview-text-dark-mode');
+    if (findPreviewTextDarkMode != undefined && findPreviewTextDarkMode.get(0) != undefined){
+      findPreviewTextDarkMode.get(0).innerHTML = escapeHtml(welcomeText);
+    }
+
   },
 
   updatePreviewTextPosition : function() {
@@ -37,97 +53,102 @@ WelcomeWidgetConfiguration = {
     var previewText = previewDialog.find('.js-preview-text');
     if (selectedPosition == 'BOTTOM_LEFT') {
       previewText.removeClass('top right center').addClass('bottom left');
-      return;
     }
     if (selectedPosition == 'BOTTOM_RIGHT') {
       previewText.removeClass('top left center').addClass('bottom right');
-      return;
     }
     if (selectedPosition == 'TOP_LEFT') {
       previewText.removeClass('bottom right center').addClass('top left');
-      return;
     }
     if (selectedPosition == 'TOP_RIGHT') {
       previewText.removeClass('bottom left center').addClass('top right');
-      return;
     }
     if (selectedPosition == 'CENTER') {
       previewText.removeClass('bottom top left right').addClass('center');
-      return;
     }
 	
-	var previewTextDarkMode = previewDialog.find('.js-preview-text-dark-mode');
+    var previewTextDarkMode = previewDialog.find('.js-preview-text-dark-mode');
     if (selectedPosition == 'BOTTOM_LEFT') {
       previewTextDarkMode.removeClass('top right center').addClass('bottom left');
-      return;
     }
     if (selectedPosition == 'BOTTOM_RIGHT') {
       previewTextDarkMode.removeClass('top left center').addClass('bottom right');
-      return;
     }
     if (selectedPosition == 'TOP_LEFT') {
       previewTextDarkMode.removeClass('bottom right center').addClass('top left');
-      return;
     }
     if (selectedPosition == 'TOP_RIGHT') {
       previewTextDarkMode.removeClass('bottom left center').addClass('top right');
-      return;
     }
     if (selectedPosition == 'CENTER') {
       previewTextDarkMode.removeClass('bottom top left right').addClass('center');
-      return;
     }
   },
   
 updatePreviewImageFit : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
     var selectedFit = previewDialog.find('input[id $="selected-welcome-image-fit"]').get(0).value;
-    var image = previewDialog.find('.js-preview-image');
-
-    image.removeClass (function (index, className) {
+    var images = previewDialog.find('.js-preview-image');
+    for (var i = 0; i < images.length;i ++){
+      var currentImage = images[i];
+      $(currentImage).removeClass (function (index, className) {
       return (className.match (/(^|\s)welcome-image-fit-\S+/g) || []).join(' ');
     });
     if (selectedFit == 'COVER') {
-      image.addClass('welcome-image-fit-cover'); 
+      $(currentImage).addClass('welcome-image-fit-cover'); 
     } else if (selectedFit == 'FILL') {
-      image.addClass('welcome-image-fit-fill');
+      $(currentImage).addClass('welcome-image-fit-fill');
     } else if (selectedFit == 'NONE') {
-      image.addClass('welcome-image-fit-none');
+      $(currentImage).addClass('welcome-image-fit-none');
     } else if (selectedFit == 'CONTAIN') {
-      image.addClass('welcome-image-fit-contain');
+      $(currentImage).addClass('welcome-image-fit-contain');
+    }
     }
   },
 
   updatePreviewTextColor : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
-    var selectedColor = previewDialog.find('.js-welcome-text-color').get(0).value;
-    previewDialog.find('.js-preview-text').css({'color': selectedColor});
+    var findSelectedColor = previewDialog.find('.js-welcome-text-color');
+    if (findSelectedColor != undefined){
+      var selectedColor = findSelectedColor.get(0).value;
+      var findPreviewText = previewDialog.find('.js-preview-text');
+      if (findPreviewText != undefined){
+        findPreviewText.css({'color': selectedColor});
+      }	
+	}
   },
 
   updatePreviewTextColorDarkMode : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
-  	var selectedColorDarkMode = previewDialog.find('.js-welcome-text-color-dark-mode').get(0).value;
-      previewDialog.find('.js-preview-text-dark-mode').css({'color': selectedColorDarkMode});
+    var findSelectedColorDarkMode = previewDialog.find('.js-welcome-text-color-dark-mode');
+    if (findSelectedColorDarkMode != undefined){
+      var selectedColorDarkMode = findSelectedColorDarkMode.get(0).value;
+      var findPreviewTextDarkMode = previewDialog.find('.js-preview-text-dark-mode');
+      if (findPreviewTextDarkMode != undefined){
+        findPreviewTextDarkMode.css({'color': selectedColorDarkMode});	
+      }
+    }
+  	
   },
 
   updatePreviewTextSize : function() {
     var previewDialog = $('#new-widget-configuration-dialog');
     var selectedTextSize = previewDialog.find('input[id $="selected-welcome-text-size"]').get(0).value;
     var previewText = previewDialog.find('.js-preview-text');
-	var previewTextDarkMode = previewDialog.find('.js-preview-text-dark-mode');
+    var previewTextDarkMode = previewDialog.find('.js-preview-text-dark-mode');
     if (selectedTextSize == 'NORMAL_TEXT') {
       previewText.removeClass('HEADING_1 HEADING_2 HEADING_3').addClass('NORMAL_TEXT');
-	  previewTextDarkMode.removeClass('HEADING_1 HEADING_2 HEADING_3').addClass('NORMAL_TEXT');
+      previewTextDarkMode.removeClass('HEADING_1 HEADING_2 HEADING_3').addClass('NORMAL_TEXT');
       return;
     }
     if (selectedTextSize == 'HEADING_1') {
       previewText.removeClass('HEADING_2 HEADING_3 NORMAL_TEXT').addClass('HEADING_1');
-	  previewTextDarkMode.removeClass('HEADING_2 HEADING_3 NORMAL_TEXT').addClass('HEADING_1');
+      previewTextDarkMode.removeClass('HEADING_2 HEADING_3 NORMAL_TEXT').addClass('HEADING_1');
       return;
     }
     if (selectedTextSize == 'HEADING_2') {
       previewText.removeClass('HEADING_1 HEADING_3 NORMAL_TEXT').addClass('HEADING_2');
-	  previewTextDarkMode.removeClass('HEADING_1 HEADING_3 NORMAL_TEXT').addClass('HEADING_2');
+      previewTextDarkMode.removeClass('HEADING_1 HEADING_3 NORMAL_TEXT').addClass('HEADING_2');
       return;
     }
     if (selectedTextSize == 'HEADING_3') {
@@ -135,7 +156,7 @@ updatePreviewImageFit : function() {
       previewTextDarkMode.removeClass('HEADING_1 HEADING_2 NORMAL_TEXT').addClass('HEADING_3');
       return;
     }
-	
+
   },
 
   updateStyleClasses : function() {
@@ -157,7 +178,7 @@ updatePreviewImageFit : function() {
       this.oldTextStyleClass = welcomeText.attr('class');
     }
     welcomeText.attr('class', this.oldTextStyleClass + ' ' + textStyleClass);
-	welcomeTextDarkMode.attr('class', this.oldTextStyleClass + ' ' + textStyleClass);
+    welcomeTextDarkMode.attr('class', this.oldTextStyleClass + ' ' + textStyleClass);
   }
 }
 
@@ -174,7 +195,7 @@ WelcomeWidget = {
     welcomeText.css({
       'color' : welcomeTextColor,
     });
-	
+
     switch(welcomeTextPosition) {
       case 'BOTTOM_LEFT':
         welcomeText.addClass('bottom').addClass('left');
@@ -196,8 +217,8 @@ WelcomeWidget = {
     }
 
     welcomeText.addClass(welcomeTextSize);
-	
-	var welcomeTextDarkMode = widget.find('[id $= "welcome-text-dark-mode"]');
+
+    var welcomeTextDarkMode = widget.find('[id $= "welcome-text-dark-mode"]');
     welcomeTextDarkMode.css({
       'color' : welcomeTextColorDarkMode,
     });
@@ -227,22 +248,25 @@ WelcomeWidget = {
 
   updateImageFit: function(widgetId, welcomeImageFit) {
     var widget = $('div.grid-stack-item[gs-id = ' + widgetId + ']');
-    var image = widget.find('.js-welcome-image');
+    var images = widget.find('.js-welcome-image');
 
-    image.removeClass (function (index, className) {
+    for (var i = 0; i < images.length; i++){
+    var currentImage = images[i];
+    $(currentImage).removeClass (function (index, className) {
       return (className.match (/(^|\s)welcome-image-fit-\S+/g) || []).join(' ');
-    });
-
+    }); 
     if (welcomeImageFit == 'COVER') {
-      image.addClass('welcome-image-fit-cover'); 
+      $(currentImage).addClass('welcome-image-fit-cover'); 
     } else if (welcomeImageFit == 'FILL') {
-      image.addClass('welcome-image-fit-fill');
+      $(currentImage).addClass('welcome-image-fit-fill');
     } else if (welcomeImageFit == 'NONE') {
-      image.addClass('welcome-image-fit-none');
+      $(currentImage).addClass('welcome-image-fit-none');
     } else if (welcomeImageFit == 'CONTAIN') {
-      image.addClass('welcome-image-fit-contain');
+      $(currentImage).addClass('welcome-image-fit-contain');
     }
-	
+    }
+
+
   },
 
   updateImageInlineStyle: function(widgetId, imageInlineStyle) {

@@ -573,10 +573,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         tempImageFileDarkMode.delete();
       }
     }
-    if (!welcomeWidget.isGreeting()) {
-      welcomeWidget.setWelcomeTexts(new ArrayList<>());
-      welcomeWidget.setWelcomeText("");
-    }
   }
 
   private void updateCaseWidget(DashboardWidget widget) {
