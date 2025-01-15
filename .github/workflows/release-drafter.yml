@@ -1,4 +1,5 @@
 name: Release Drafter
+run-name: 🚀 Release Drafter
 
 on:
   push:
