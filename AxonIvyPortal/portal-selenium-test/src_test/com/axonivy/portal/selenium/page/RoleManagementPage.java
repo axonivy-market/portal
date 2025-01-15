@@ -30,6 +30,7 @@ public class RoleManagementPage extends TemplatePage {
     return "[id='admin-setting-component:adminTabView:role-management-tab']";
   }
 
+  @Override
   public boolean isDisplayed() {
     return findElementById(ROLE_ASSINGMENT_PAGE_ID).isDisplayed();
   }

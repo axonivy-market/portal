@@ -11,6 +11,7 @@ public class ExampleOverviewPage extends TemplatePage {
     return "[id='content-container']";
   }
 
+  @Override
   public void waitForIFrameContentVisible() {
     $("div[id='content']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
