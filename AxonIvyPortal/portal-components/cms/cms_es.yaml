@@ -34,6 +34,7 @@ Dialogs:
             InvalidFileMessage: Tipo de archivo no permitido
             Name: Nombre de archivo
             NoFile: ¡No se encuentran archivos!
+            Preview: Vista previa
             Size: Tamaño de archivo
             Type: Tipo
             Upload: Cargar archivo nuevo
