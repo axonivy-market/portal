@@ -4,7 +4,7 @@ Document Table
 **************
 
 This component is a case document table with functions display, upload,
-download and delete document entries.
+preview, download and delete document entries.
 
 |document-table|
 
