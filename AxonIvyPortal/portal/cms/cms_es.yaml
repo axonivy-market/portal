@@ -1303,6 +1303,9 @@ Dialogs:
     ivy:
       addon:
         portal:
+          component:
+            ProcessInformation:
+              ProcessUnavailableTooltip: Este proceso no está disponible o no tienes permiso para iniciarlo.
           generic:
             GlobalSearch:
               ViewAllResults: Ver todos los resultados
