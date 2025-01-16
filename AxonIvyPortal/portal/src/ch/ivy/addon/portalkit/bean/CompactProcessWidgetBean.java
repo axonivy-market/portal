@@ -3,11 +3,14 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.service.GlobalSearchService;
 
@@ -43,6 +46,10 @@ private static final long serialVersionUID = -5889375917550618261L;
     // Put the "embedInIFrame" param to the process link to open it in the DefaultFramePage process
     // Then this process will open task in IFrame or not based on its "embedInIFrame" String custom field
     FacesContext.getCurrentInstance().getExternalContext().redirect(link + "embedInFrame");
+  }
+  public boolean canStartProcess(UserProcess userProcess) {
+    return StringUtils.isNotBlank(
+        Optional.ofNullable(userProcess).map(UserProcess::getLink).orElse(""));
   }
 
   public boolean isDisplayShowAllProcessesLink() {

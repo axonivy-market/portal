@@ -31,11 +31,19 @@
     </ui:define>
 
     <ui:define name="actionButtons">
+      <div class="flex flex-row justify-content-end align-items-center">
       <p:link id="back-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" onclick="goBack();" href="#"/>
       <p:spacer width="20px" />
-      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{data.selectedProcess.processName}"
+      <h:panelGroup id="start-process-button-container" layout="block">
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{data.selectedProcess.processName}"
         id="start-process-button"
+        disabled="#{!compactProcessWidgetBean.canStartProcess(data.selectedProcess)}"
         actionListener="#{compactProcessWidgetBean.startProcess(data.selectedProcess)}" />
+      </h:panelGroup>
+      <p:tooltip for="start-process-button-container" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/component/ProcessInformation/ProcessUnavailableTooltip')}"
+        rendered="#{!compactProcessWidgetBean.canStartProcess(data.selectedProcess)}" trackMouse="true" />
+      </div>
+      
         <script>
         function goBack() {
           window.history.back();
