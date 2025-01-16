@@ -80,7 +80,8 @@
       <cc:insertChildren />
       <p:column styleClass="align-center-column document-action-column" rendered="#{cc.attrs.functionColumnRendered}"
         headerText="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/FileFunction')}">
-        
+        <div class="flex">
+        <div class="col-4 align-content-right">
         <p:commandLink id="document-preview" ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" 
           title="#{cc.attrs.previewTitle}"
           styleClass="#{cc.attrs.previewStyleClass}"
@@ -92,26 +93,24 @@
           <p:tooltip for="document-preview" trackMouse="true" hideEvent="mouseleave click"
             value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" />
         </p:commandLink>
-        
-        <p:spacer width="10px" />
-        
-        <p:commandLink id="document-download" styleClass="#{cc.attrs.downloadStyleClass}"
+        </div>
+        <div class="col-4"> <p:commandLink id="document-download" styleClass="#{cc.attrs.downloadStyleClass}"
           ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Download')}"
           immediate="true" ajax="false" process="@none" title="#{cc.attrs.downloadTitle}"
           rendered="#{cc.attrs.downloadRendered}">
           <i class="fa #{cc.attrs.downloadIcon}" />
           <p:fileDownload value="#{logic.download(document)}" />
         </p:commandLink>
-
-        <p:spacer width="10px" />
-
-        <p:commandLink id="document-delete" styleClass="#{cc.attrs.deleteStyleClass}"
+        </div>
+        <div class="col-4">   <p:commandLink id="document-delete" styleClass="#{cc.attrs.deleteStyleClass}"
           ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Delete')}"
           actionListener="#{data.setSelectedDocument(document)}" rendered="#{cc.attrs.deleteRendered}"
           update="#{cc.attrs.updatedComponentAfterDeleted}" immediate="true" title="#{cc.attrs.deleteTitle}"
           oncomplete="PF('document-delete-dialog').show()">
           <i class="fa #{cc.attrs.deleteIcon}" />
         </p:commandLink>
+        </div>
+        </div>
       </p:column>
     </p:dataTable>
     <div class="ui-g">
