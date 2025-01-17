@@ -362,7 +362,14 @@ class ClientPieChart extends ClientCanvasChart {
         },
         options: {
           responsive: true,
-          maintainAspectRatio: false
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: {
+                color: getCssVariable('--ivy-primary-color-medium')  
+              }
+            }
+          }
         }
       });
     }
@@ -407,7 +414,8 @@ class ClientCartesianChart extends ClientCanvasChart {
           datasets: [{
             label: config.name,
             data: data.map(bucket => bucket.count),
-            backgroundColor: chartColors
+            backgroundColor: chartColors,
+            borderColor:chartColors 
           }]
         },
         options: {
@@ -423,16 +431,28 @@ class ClientCartesianChart extends ClientCanvasChart {
               beginAtZero: true,
               title: {
                 text: chartTypeConfig.yTitle,
-                display: true
+                display: true,
+                color: getCssVariable('--ivy-primary-color-medium')
               },
               ticks: {
-                stepSize: stepSize
+                stepSize: stepSize,
+                color: getCssVariable('--ivy-primary-color-medium')
+              },
+              grid: {
+                color: getCssVariable('--ivy-primary-color-medium')
               }
             },
             x: {
               title: {
                 text: chartTypeConfig.xTitle,
-                display: true
+                display: true,
+                color: getCssVariable('--ivy-primary-color-medium')
+              },
+              ticks: {
+                color: getCssVariable('--ivy-primary-color-medium')
+              },
+              grid: {
+                color: getCssVariable('--ivy-primary-color-medium')
               }
             }
           }
