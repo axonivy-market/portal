@@ -34,6 +34,7 @@ Dialogs:
             InvalidFileMessage: Dateityp nicht gültig!
             Name: Dateiname
             NoFile: Keine Dateien vorhanden!
+            Preview: Vorschau
             Size: Dateigröße
             Type: Typ
             Upload: Neue Datei hochladen

@@ -34,6 +34,7 @@ Dialogs:
             InvalidFileMessage: This file type is not accepted!
             Name: Filename
             NoFile: No files are found!
+            Preview: Preview
             Size: File size
             Type: Type
             Upload: Upload new file

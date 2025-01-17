@@ -34,3 +34,5 @@ uploadedFile org.primefaces.model.file.UploadedFile #field
 uploadedFile PERSISTENT #fieldModifier
 sizeLimit Long #field
 sizeLimit PERSISTENT #fieldModifier
+isImage Boolean #field
+isImage PERSISTENT #fieldModifier
