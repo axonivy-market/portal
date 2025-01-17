@@ -17,7 +17,7 @@
   </distributionManagement>
   <properties>
     <ivy.engine.version>10.0.25</ivy.engine.version>
-    <build.plugin.version>10.0.16</build.plugin.version>
+    <build.plugin.version>10.0.17</build.plugin.version>
     <quartz.version>2.3.2</quartz.version>
   </properties>
   <dependencies>
