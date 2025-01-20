@@ -108,7 +108,7 @@ public class MainMenuPage extends TemplatePage {
 
   public void clickMainMenuItem(String name) {
     WebElement element = driver.findElement(By.xpath(
-        String.format("//li[contains(@class, 'external-menu-item-main_dashboard') and .//span[text()='%s']]", name)));
+        String.format("//li[contains(@class, ' main-dashboard-menu-item-main_dashboard') and .//span[text()='%s']]", name)));
     element.click();
   }
 
