@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-product</artifactId>
-  <version>10.0.25-SNAPSHOT</version>
+  <version>10.0.26-SNAPSHOT</version>
   <packaging>pom</packaging>
   <distributionManagement>
     <repository>
