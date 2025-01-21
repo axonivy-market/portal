@@ -493,6 +493,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     widget = null;
     isEditWidget = false;
     PrimeFaces.current().ajax().update("grid-stack");
+    DashboardUtils.updateDashboardCache();
   }
 
   public void onCancel(DashboardWidget widget) {
