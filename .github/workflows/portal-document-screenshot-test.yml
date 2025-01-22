@@ -18,6 +18,7 @@ on:
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
   ENGINE_URL: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip
+  WAIT_TIME: 60
   
 jobs:
   PortalDocumentScreenshot:
