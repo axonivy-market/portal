@@ -50,21 +50,18 @@ jobs:
           mkdir -p $ENGINE_DIR
           sudo chown -R $USER:$USER $ENGINE_DIR
           echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
-
       - name: Download Engine
         run: |
           cd $ENGINE_DIR
           wget $ENGINE_URL -O axonivy-engine.zip
           unzip -o axonivy-engine.zip -d .
           rm axonivy-engine.zip
-
       - name: Verify Engine Directory
         run: |
           if [ ! -d "$ENGINE_DIR" ]; then
             echo "Engine directory does not exist"
             exit 1
           fi
-
       - name: Start Axon Ivy Engine
         run: |
           cd "${ENGINE_DIR}/bin"
@@ -100,7 +97,6 @@ jobs:
           for module in "${modules[@]}"; do
             mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
           done
-
       - name: Deploy Portal Modules
         run: |
           DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
@@ -108,11 +104,10 @@ jobs:
           cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
           cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
           cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
-
       - name: Wait for Server Health Check
         run: |
           for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
-            if curl -s -f http://localhost:8080/demo-portal/pro/portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp > /dev/null; then
+            if curl -s -f http://localhost:8080/demo-portal/pro/portal/1549F58C18A6C562/DashboardPage.ivp?dashboardId=1 > /dev/null; then
               exit 0
             fi
             sleep 1
@@ -126,7 +121,6 @@ jobs:
           sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable xvfb x11-xserver-utils
-
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
@@ -138,25 +132,21 @@ jobs:
           sudo apt-get install -y x11-utils
           npm init -y
           npm install lighthouse puppeteer @actions/core
-
       - name: Create Report Directory
         run: |
           mkdir -p lighthouse-reports
           echo "REPORT_DIR=$(pwd)/lighthouse-reports" >> $GITHUB_ENV
           echo "REPORT_PATH=$(pwd)/lighthouse-reports/report.html" >> $GITHUB_ENV
-
       - name: Set Up Virtual Display
         run: |
           Xvfb :99 -screen 0 1920x1080x24 -ac &
           sleep 3
           export DISPLAY=:99
-
       - name: Run Puppeteer Script
         run: |
           cd AxonIvyPortal/portal-selenium-test/lighthouse
           npm install
           node puppeteer-script.mjs
-
       - name: Upload Report
         id: upload-artifact
         uses: actions/upload-artifact@v4
@@ -165,7 +155,6 @@ jobs:
           path: |
             AxonIvyPortal/portal-selenium-test/lighthouse/lighthouse-report.html
             AxonIvyPortal/portal-selenium-test/lighthouse/lighthouse-reports/report.json
-
       - name: Generate HTML Summary
         run: |
           cd AxonIvyPortal/portal-selenium-test/lighthouse
