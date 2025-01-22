@@ -1,6 +1,7 @@
 name: Portal Document Screenshot
 run-name: Document Screenshot 
 on:
+  push:
     branches:
       - feature/IVYPORTAL-18233-Create-Github-workflow-for-screenshot-document-build-LE
   workflow_dispatch:
