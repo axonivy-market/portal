@@ -182,7 +182,7 @@ jobs:
               const results = JSON.parse(fs.readFileSync('lighthouse-reports/report.json', 'utf8'));
               const summary = core.summary.addHeading('🚦 Audit Results');
               Object.entries(results.categories).forEach(([key, value]) => {
-                summary.addRaw(\`# \${value.title}\n📊 Score: \${Math.floor(value.score * 100)}\n\n\`);
+                summary.addRaw(\`### \${value.title}\n📊 Score: \${Math.floor(value.score * 100)}%\n\n\`);
               });
               summary.addSeparator().addLink('📋 Download Full Report', 
                 'https://github.com/' + process.env.GITHUB_REPOSITORY + 
