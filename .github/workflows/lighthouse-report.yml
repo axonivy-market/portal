@@ -68,116 +68,21 @@ jobs:
       - name: Start Axon Ivy Engine
         run: |
           cd "${ENGINE_DIR}/bin"
-          
-          # Fix the script content
-          cat > ./AxonIvyEngine << 'EOL'
-          #!/bin/bash
-
-          # -----------------------------------------------------------------------------
-          # Starts the Axon Ivy Engine
-          #
-          # Copyright 1994 - 2024 Axon Ivy AG
-          # -----------------------------------------------------------------------------
-          function parseJvmOptionsFile()
-          {
-            JVM_OPTIONS_FILE=$1
-            # 1) skip empty lines, 2) skip comments, 3) replace new lines with space
-            JAVA_OPTS_IVY="$JAVA_OPTS_IVY $(sed '/^[[:space:]]*$/d' $JVM_OPTIONS_FILE \
-               | sed '/^[[:blank:]]*#/d;s/#.*//' \
-               | tr '\r\n' ' ')"
-            export JAVA_OPTS_IVY
-          }
-
-          # resolve links - $0 may be a softlink
-          PRG="$0"
-          while [ -h "$PRG" ] ; do
-            ls=`ls -ld "$PRG"`
-            link=`expr "$ls" : '.*-> \(.*\)$'`
-            if expr "$link" : '.*/.*' > /dev/null; then
-              PRG="$link"
-            else
-              PRG=`dirname "$PRG"`/"$link"
-            fi
-          done
-          PRGDIR=`dirname "$PRG"`
-
-          # evaluate jvm options
-          if [ -z ${JAVA_OPTS_IVY+x}]; then
-            if [ "x$1" != 'xstatus' ] && [ "x$1" != 'x-status' ] && [ "x$1" != 'xstop' ] && [ "x$1" != 'x-stop' ] && [ "x$1" != 'xstopdaemon' ] && [ "x$1" != 'x-stopdaemon' ]; then
-              JVM_MODULE_OPTIONS_FILE="$PRGDIR"/"jvm-module.options"
-              if [ ! -r "$JVM_MODULE_OPTIONS_FILE" ]; then
-                echo "Cannot find $JVM_MODULE_OPTIONS_FILE"
-                echo "This file is needed to run the Axon Ivy Engine"
-                exit 1
-              fi
-              parseJvmOptionsFile $JVM_MODULE_OPTIONS_FILE
-
-              CUSTOM_JVM_OPTIONS_FILE="$PRGDIR"/../configuration/"jvm.options"
-              if [ -r "$CUSTOM_JVM_OPTIONS_FILE" ]; then
-                parseJvmOptionsFile $CUSTOM_JVM_OPTIONS_FILE
-              else
-                JVM_OPTIONS_FILE="$PRGDIR"/"jvm.options"
-                if [ ! -r "$JVM_OPTIONS_FILE" ]; then
-                  echo "Cannot find $JVM_OPTIONS_FILE"
-                  echo "This file is needed to run the Axon Ivy Engine if $CUSTOM_JVM_OPTIONS_FILE does not exists"
-                  exit 1
-                fi
-              fi
-            fi
-          fi
-
-          # Check that target executable exists
-          EXECUTABLE=launcher.sh
-          if [ ! -x "$PRGDIR"/"$EXECUTABLE" ]; then
-            echo "Cannot find $PRGDIR/$EXECUTABLE"
-            echo "This file is needed to run the Axon Ivy Engine"
-            exit 1
-          fi
-
-          if [ -z "$1" ] || [ "x$1" = 'xstart' ] || [ "x$1" = 'x-start' ]; then
-            if [[ -t 0 && -t 1 ]]; then
-              CONSOLE="-console"
-            fi
-          fi
-
-          exec "$PRGDIR"/"$EXECUTABLE" "$@" -application ch.ivyteam.ivy.server.exec.engine $CONSOLE
-          EOL
-
-          # Make script executable
           chmod +x ./AxonIvyEngine
-          
-          # Start engine with bash explicitly
-          bash ./AxonIvyEngine > engine.log 2>&1 &
-          PID=$!
-          echo $PID > engine.pid
-          
-          # Wait for engine to start
-          echo "Waiting for engine to start..."
+          nohup ./AxonIvyEngine > engine.log 2>&1 &
+          echo $! > engine.pid
           for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
             if curl -s -f http://localhost:8080/demo-portal > /dev/null; then
-              echo "Engine started successfully"
-              ps aux | grep java
               exit 0
             fi
-            if ! ps -p $PID > /dev/null; then
-              echo "Engine process died. Checking logs:"
-              cat engine.log
-              exit 1
-            fi
-            echo "Attempt $i of ${{ env.WAIT_TIME }} - Process still running"
             sleep 1
           done
-          
-          echo "Engine failed to start. Process info:"
-          ps aux | grep java
-          echo "=== Engine log contents ==="
           cat engine.log
           exit 1
         env:
           IVY_JAVA_HOME: ${{ env.JAVA_HOME }}
           JAVA_HOME: ${{ env.JAVA_HOME }}
           PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${{ env.JAVA_HOME }}/bin:$PATH
-          SHELL: /bin/bash
 
       - name: Build Portal Modules
         run: |
