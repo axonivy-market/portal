@@ -64,11 +64,17 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
     debugLog("Login successful");
 
     //creating task
-    await page.goto(CREATE_TASK_URL, {
+    const createTaskResponse = await page.goto(CREATE_TASK_URL, {
       waitUntil: "networkidle0",
       timeout: 30000,
     });
     debugLog(`Creating task by navigating to ${CREATE_TASK_URL}`);
+    if (!createTaskResponse.ok()) {
+      throw new Error(
+        `Create task page failed to load: ${createTaskResponse.status()}`
+      );
+    }
+    debugLog(`Create task page: ${loginResponse.status()}`);
 
     // redirected to dashboard
     await page.goto(DASHBOARD_URL, {
