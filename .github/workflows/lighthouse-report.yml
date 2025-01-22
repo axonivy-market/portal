@@ -68,32 +68,15 @@ jobs:
       - name: Start Axon Ivy Engine
         run: |
           cd "${ENGINE_DIR}/bin"
-          # Debug info
-          echo "Current directory: $(pwd)"
-          echo "Engine file exists: $(test -f AxonIvyEngine && echo 'yes' || echo 'no')"
-          
-          # Fix script permissions
-          chmod +x AxonIvyEngine
-          dos2unix AxonIvyEngine
-          
-          # Start engine with explicit shell
-          /bin/bash ./AxonIvyEngine > engine.log 2>&1 &
-          PID=$!
-          echo $PID > engine.pid
-          
-          # Wait for server
-          echo "Waiting for server to start..."
+          chmod +x ./AxonIvyEngine
+          nohup ./AxonIvyEngine > engine.log 2>&1 &
+          echo $! > engine.pid
           for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
             if curl -s -f http://localhost:8080/demo-portal > /dev/null; then
-              echo "Server started successfully"
               exit 0
             fi
-            echo "Attempt $i of ${{ env.WAIT_TIME }}"
             sleep 1
           done
-          
-          # Show logs on failure
-          echo "Server failed to start. Logs:"
           cat engine.log
           exit 1
         env:
