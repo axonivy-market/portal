@@ -16,6 +16,7 @@ import org.primefaces.PF;
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
 
+import ch.ivy.addon.portal.generic.bean.UserMenuBean;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
@@ -334,7 +335,7 @@ public class TaskActionBean implements Serializable {
   }
 
   public boolean showProcessViewer(ITask task) {
-    return PortalProcessViewerUtils.isShowProcessViewer(task.getCase().getBusinessCase());
+    return ((UserMenuBean) ManagedBeans.get("userMenuBean")).isProcessViewerDisplayed(task.getCase().getBusinessCase());
   }
   
   public boolean canExpiry(ITask task) {

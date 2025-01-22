@@ -7,6 +7,7 @@
   <cc:attribute name="sizeColumnRendered" default="true" />
   <cc:attribute name="typeColumnRendered" default="true" />
   <cc:attribute name="functionColumnRendered" default="true" />
+  <cc:attribute name="previewRendered" default="true"/>
   <cc:attribute name="uploadRendered" default="true" />
   <cc:attribute name="downloadRendered" default="true" />
   <cc:attribute name="deleteRendered" default="true" />
@@ -17,6 +18,14 @@
   <cc:attribute name="sizeLimit" type="Long" shortDescription="Individual file size limit in bytes" />
   <cc:attribute name="uploadText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Upload')}" />
   <cc:attribute name="updatedComponentAfterUploaded" />
+  
+  <cc:attribute name="previewText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}"/>
+  <cc:attribute name="previewTitle" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}"/>
+  <cc:attribute name="previewIcon" default="si si-view-1"/>
+  <cc:attribute name="previewStyleClass" />
+  <cc:attribute name="previewDialogStyleClass" />
+  <cc:attribute name="previewPDFStyleClass" />
+  <cc:attribute name="previewImageStyleClass" />
 
   <cc:attribute name="downloadText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Download')}" />
   <cc:attribute name="downloadTitle" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Download')}" />
@@ -71,23 +80,37 @@
       <cc:insertChildren />
       <p:column styleClass="align-center-column document-action-column" rendered="#{cc.attrs.functionColumnRendered}"
         headerText="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/FileFunction')}">
-        <p:commandLink id="document-download" styleClass="#{cc.attrs.downloadStyleClass}"
+        <div class="flex">
+        <div class="col-4 align-content-right">
+        <p:commandLink id="document-preview" ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" 
+          title="#{cc.attrs.previewTitle}"
+          styleClass="#{cc.attrs.previewStyleClass}"
+          actionListener="#{logic.download(document)}"
+          rendered="#{documentUploadBean.canPreviewDocument(document,cc.attrs.previewRendered)}"
+          update="#{cc.clientId}:preview-document-dialog"
+          oncomplete="PF('preview-document-dialog').show()">
+          <i class="fa #{cc.attrs.previewIcon}" />
+          <p:tooltip for="document-preview" trackMouse="true" hideEvent="mouseleave click"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" />
+        </p:commandLink>
+        </div>
+        <div class="col-4"> <p:commandLink id="document-download" styleClass="#{cc.attrs.downloadStyleClass}"
           ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Download')}"
           immediate="true" ajax="false" process="@none" title="#{cc.attrs.downloadTitle}"
           rendered="#{cc.attrs.downloadRendered}">
           <i class="fa #{cc.attrs.downloadIcon}" />
           <p:fileDownload value="#{logic.download(document)}" />
         </p:commandLink>
-
-        <p:spacer width="10px" />
-
-        <p:commandLink id="document-delete" styleClass="#{cc.attrs.deleteStyleClass}"
+        </div>
+        <div class="col-4">   <p:commandLink id="document-delete" styleClass="#{cc.attrs.deleteStyleClass}"
           ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Delete')}"
           actionListener="#{data.setSelectedDocument(document)}" rendered="#{cc.attrs.deleteRendered}"
           update="#{cc.attrs.updatedComponentAfterDeleted}" immediate="true" title="#{cc.attrs.deleteTitle}"
           oncomplete="PF('document-delete-dialog').show()">
           <i class="fa #{cc.attrs.deleteIcon}" />
         </p:commandLink>
+        </div>
+        </div>
       </p:column>
     </p:dataTable>
     <div class="ui-g">
@@ -113,6 +136,16 @@
     </div>
 
     <cc:renderFacet name="componentFooter" />
+    
+    <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)" 
+        header="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" 
+        modal="true" resizable="false" width="850" height="650" styleClass="#{cc.attrs.previewDialogStyleClass}" showEffect="fade" hideEffect="fade" 
+        dynamic="true" fitViewport="true" responsive="true">
+      <div class="ui-g-12">
+        <p:media value="#{data.streamedContent}" width="100%" height="620" styleClass="#{cc.attrs.previewPDFStyleClass}" cache="false" id="media-content" player="pdf" rendered="#{!data.isImage}"/>
+        <p:graphicImage value="#{data.streamedContent}" width="100%" height="620" stream="false" rendered="#{data.isImage}" styleClass="#{cc.attrs.previewImageStyleClass}"/>
+      </div>
+    </p:dialog>
 
     <p:dialog id="document-delete-dialog" widgetVar="document-delete-dialog" appendTo="@(body)" closable="true"
       closeOnEscape="true" modal="true" draggable="false" rendered="#{cc.attrs.deleteRendered}"

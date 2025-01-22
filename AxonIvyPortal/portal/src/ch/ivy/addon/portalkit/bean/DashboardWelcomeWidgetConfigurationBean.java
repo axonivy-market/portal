@@ -41,6 +41,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   private List<WelcomeTextPosition> textPositions;
   private List<WelcomeTextSize> textSizes;
   private ContentObject imageCMSObject;
+  private ContentObject imageCMSObjectDarkMode;
   private int parsedClientTime;
   private List<WelcomeImageFit> imageFits;
 
@@ -48,6 +49,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   public void init() {
     super.init();
     imageCMSObject = null;
+    imageCMSObjectDarkMode = null;
     setTextPositions(Arrays.asList(WelcomeTextPosition.values()));
     setTextSizes(Arrays.asList(WelcomeTextSize.values()));
     setImageFits(Arrays.asList(WelcomeImageFit.values()));
@@ -72,6 +74,12 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     if (StringUtils.isNotBlank(widget.getImageLocation())) {
       imageCMSObject = getWelcomeWidgetImageContentObject(false);
     }
+    
+    if (StringUtils.isNotBlank(widget.getImageLocationDarkMode())) {
+      imageCMSObjectDarkMode = getWelcomeWidgetImageContentObjectDarkMode(false);
+    } else {
+      imageCMSObjectDarkMode = getWelcomeWidgetImageContentObject(false);
+    }
   }
 
   public void handleFileUpload(FileUploadEvent event) {
@@ -92,6 +100,44 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
         WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(file.getContent());
       }
     }
+  }
+  
+  public void handleFileUploadDarkMode(FileUploadEvent event) {
+    UploadedFile file = event.getFile();
+    if (file != null && file.getContent() != null && file.getContent().length > 0 && file.getFileName() != null) {
+      if (StringUtils.isNotBlank(getWidget().getImageLocationDarkMode())) {
+        getWelcomeWidgetImageContentObjectDarkMode(true).delete();
+      }
+      // If image is not saved, create location
+      String extension = FilenameUtils.getExtension(file.getFileName());
+      String fileName = getWidget().getId().concat(WelcomeWidgetUtils.DARK_MODE).concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
+      getWidget().setImageLocationDarkMode(fileName);
+      getWidget().setImageTypeDarkMode(extension);
+
+      // save the temporary image
+      imageCMSObjectDarkMode = getWelcomeWidgetImageContentObjectDarkMode(true);
+      if (imageCMSObjectDarkMode != null) {
+        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObjectDarkMode).write().bytes(file.getContent());
+      }
+    }
+  }
+  
+  public String getImageUriDarkMode() {
+    return Objects.isNull(imageCMSObjectDarkMode) ? DEFAULT_IMAGE_DARK_CMS_URI : imageCMSObjectDarkMode.uri();
+  }
+  
+  private ContentObject getWelcomeWidgetImageContentObjectDarkMode(boolean isTempImage) {
+    String imageName = WelcomeWidgetUtils.getFileNameOfImage(widget.getImageLocationDarkMode());
+    imageName = isTempImage ? "temp_".concat(imageName) : imageName;
+    return WelcomeWidgetUtils.getImageContentObject(imageName, widget.getImageTypeDarkMode());
+  }
+  
+  public ContentObject getImageCMSObjectDarkMode() {
+    return imageCMSObjectDarkMode;
+  }
+
+  public void setImageCMSObjectDarkMode(ContentObject imageCMSObjectDarkMode) {
+    this.imageCMSObjectDarkMode = imageCMSObjectDarkMode;
   }
 
   public void initClientTime() {
