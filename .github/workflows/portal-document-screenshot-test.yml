@@ -21,16 +21,16 @@ env:
   WAIT_TIME: 60
   
 jobs:
-  PortalDocumentScreenshot:
+  portal-document-screenshot:
     runs-on: ubuntu-latest
-    name: Lighthouse Audit - ${{ github.head_ref || github.ref_name }}
+    name: portal-document-screenshot - ${{ github.head_ref || github.ref_name }}
     env:
       BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set Up Java
+      - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
@@ -40,34 +40,34 @@ jobs:
         uses: stCarolas/setup-maven@v5
         with:
           maven-version: 3.9.8
-      - name: Export Environment Variables
+      - name: Export environment variables
         run: |
           echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
           
-      - name: Set Up and Verify Directories
+      - name: Set up and verify directories
         run: |
           ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/nightly"
           mkdir -p $ENGINE_DIR
           sudo chown -R $USER:$USER $ENGINE_DIR
           echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
 
-      - name: Download Engine
+      - name: Download engine
         run: |
           cd $ENGINE_DIR
           wget $ENGINE_URL -O axonivy-engine.zip
           unzip -o axonivy-engine.zip -d .
           rm axonivy-engine.zip
 
-      - name: Verify Engine Directory
+      - name: Verify engine directory
         run: |
           if [ ! -d "$ENGINE_DIR" ]; then
             echo "Engine directory does not exist"
             exit 1
           fi
 
-      - name: Start Axon Ivy Engine
+      - name: Start Axon Ivy engine
         run: |
           cd "${ENGINE_DIR}/bin"
           chmod +x ./AxonIvyEngine
@@ -86,7 +86,7 @@ jobs:
           JAVA_HOME: ${{ env.JAVA_HOME }}
           PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${{ env.JAVA_HOME }}/bin:$PATH
 
-      - name: Build Portal Modules
+      - name: Build Portal modules
         run: |
           modules=(
             "AxonIvyPortal/portal-components"
