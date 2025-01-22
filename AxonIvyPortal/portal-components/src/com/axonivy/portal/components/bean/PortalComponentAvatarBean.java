@@ -1,8 +1,11 @@
 package com.axonivy.portal.components.bean;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
+
+import org.apache.commons.lang3.BooleanUtils;
 
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
@@ -27,29 +30,41 @@ public class PortalComponentAvatarBean implements Serializable {
     return SecurityMemberUtils.getNameInitials(displayName);
   }
 
-  public String getEmailAddress(ISecurityMember securityMember) {
+  public String getEmailAddress(ISecurityMember securityMember,
+      boolean useLowercaseEmail) {
     if (securityMember == null || !securityMember.isUser()) {
       return "";
     }
-    return ((IUser) securityMember).getEMailAddress();
+
+    String email = ((IUser) securityMember).getEMailAddress();
+    return BooleanUtils.isTrue(useLowercaseEmail)
+        ? Optional.ofNullable(email).map(String::toLowerCase).orElse(email)
+        : email;
   }
 
-  public String getEmailAddress(SecurityMemberDTO securityMember) {
+  public String getEmailAddress(SecurityMemberDTO securityMember,
+      boolean useLowercaseEmail) {
     if (securityMember == null || !securityMember.isUser()) {
       return "";
     }
-    return securityMember.getEMailAddress();
+    String email = securityMember.getEMailAddress();
+    return BooleanUtils.isTrue(useLowercaseEmail)
+        ? Optional.ofNullable(email).map(String::toLowerCase).orElse(email)
+        : email;
   }
 
-  public String getEmailAddress(UserDTO user) {
+  public String getEmailAddress(UserDTO user, boolean useLowercaseEmail) {
     if (user == null) {
       return "";
     }
-    return user.getEmail();
+    
+    String email = user.getEmail();
+    return BooleanUtils.isTrue(useLowercaseEmail)
+        ? Optional.ofNullable(email).map(String::toLowerCase).orElse(email)
+        : email;
   }
 
-  @SuppressWarnings("unused")
-  public String getEmailAddress(RoleDTO role) {
+  public String getEmailAddress(RoleDTO role, boolean useLowercaseEmail) {
     return "";
   }
 

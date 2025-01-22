@@ -265,13 +265,6 @@ public class TaskTemplatePage extends TemplatePage {
     ((JavascriptExecutor) driver).executeScript("window.open('" + url + "','_blank');");
   }
 
-  public void inputFields(String employee, String from, String to, String representation) {
-    $(By.id("leave-request:fullname")).sendKeys(employee);;
-    $(By.id("leave-request:from_input")).sendKeys(from);;
-    $(By.id("leave-request:to_input")).sendKeys(to);;
-    $(By.id("leave-request:substitute")).sendKeys(representation);;
-  }
-
   public CaseDetailsPage goToCaseDetail() {
     waitForElementClickableThenClick("[id$='form:go-to-case-detail']");
     waitForPageLoad();
