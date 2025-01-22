@@ -68,21 +68,57 @@ jobs:
       - name: Start Axon Ivy Engine
         run: |
           cd "${ENGINE_DIR}/bin"
+          
+          # Debug: Check script content
+          echo "=== AxonIvyEngine script content ==="
+          cat ./AxonIvyEngine
+          
+          # Debug: Check file encoding and line endings
+          file ./AxonIvyEngine
+          
+          # Fix potential script issues
+          sed -i -e 's/\r$//' ./AxonIvyEngine  # Remove CRLF
+          sed -i -e 's/[[:space:]]*$//' ./AxonIvyEngine  # Remove trailing spaces
+          
+          # Debug: Check script content after fixes
+          echo "=== AxonIvyEngine script content after fixes ==="
+          cat ./AxonIvyEngine
+          
+          # Make script executable
           chmod +x ./AxonIvyEngine
-          nohup ./AxonIvyEngine > engine.log 2>&1 &
-          echo $! > engine.pid
+          
+          # Start engine with bash explicitly
+          bash -x ./AxonIvyEngine > engine.log 2>&1 &
+          PID=$!
+          echo $PID > engine.pid
+          
+          # Wait for engine to start with more detailed logging
+          echo "Waiting for engine to start..."
           for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
             if curl -s -f http://localhost:8080/demo-portal > /dev/null; then
+              echo "Engine started successfully"
+              ps aux | grep java  # Show running Java processes
               exit 0
             fi
+            if ! ps -p $PID > /dev/null; then
+              echo "Engine process died. Checking logs:"
+              cat engine.log
+              exit 1
+            fi
+            echo "Attempt $i of ${{ env.WAIT_TIME }} - Process still running"
             sleep 1
           done
+          
+          echo "Engine failed to start. Process info:"
+          ps aux | grep java
+          echo "=== Engine log contents ==="
           cat engine.log
           exit 1
         env:
           IVY_JAVA_HOME: ${{ env.JAVA_HOME }}
           JAVA_HOME: ${{ env.JAVA_HOME }}
           PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${{ env.JAVA_HOME }}/bin:$PATH
+          SHELL: /bin/bash
 
       - name: Build Portal Modules
         run: |
