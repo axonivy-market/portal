@@ -1,6 +1,9 @@
 name: Lighthouse Audit
 run-name: 🗼Lighthouse Audit
 on:
+  push:
+    branches:
+      - IVYPORTAL-18373-Investigate-Portal-Document-Screenshot-10-Build-Fail
   pull_request:
     branches:
       - master
@@ -83,21 +86,47 @@ jobs:
 
       - name: Build Portal Modules
         run: |
-          modules=(
-            "AxonIvyPortal/portal-components"
-            "AxonIvyPortal/portal"
-            "AxonIvyPortal/AxonIvyExpress"
-            "AxonIvyPortal/PortalKitTestHelper"
-            "Showcase/portal-user-examples"
-            "Showcase/portal-developer-examples"
-            "Showcase/InternalSupport"
-            "Showcase/portal-components-examples"
-            "AxonIvyPortal/PortalApp"
-            "Showcase/portal-demo-app"
-          )
-          for module in "${modules[@]}"; do
-            mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
-          done
+            # Create deployment directory if not exists
+            mkdir -p "$ENGINE_DIR/system/demo-applications/demo-portal"
+            
+            # Array to store build results
+            declare -A build_results
+            
+            modules=(
+              "AxonIvyPortal/portal-components"
+              "AxonIvyPortal/portal"
+              "AxonIvyPortal/AxonIvyExpress"
+              "AxonIvyPortal/PortalKitTestHelper"
+              "Showcase/portal-user-examples"
+              "Showcase/portal-developer-examples"
+              "Showcase/InternalSupport"
+              "Showcase/portal-components-examples"
+              "AxonIvyPortal/PortalApp"
+              "Showcase/portal-demo-app"
+            )
+            
+            echo "Starting module builds..."
+            
+            for module in "${modules[@]}"; do
+              echo "Building $module..."
+              if mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR; then
+                build_results[$module]="SUCCESS"
+                echo "✅ $module build completed successfully"
+              else
+                build_results[$module]="FAILED"
+                echo "❌ $module build failed"
+              fi
+            done
+            
+            echo "--- Build Summary ---"
+            for module in "${!build_results[@]}"; do
+              echo "$module: ${build_results[$module]}"
+            done
+            
+            # Check if any build failed
+            if [[ "${build_results[@]}" =~ "FAILED" ]]; then
+              exit 1
+            fi
 
       - name: Deploy Portal Modules
         run: |
