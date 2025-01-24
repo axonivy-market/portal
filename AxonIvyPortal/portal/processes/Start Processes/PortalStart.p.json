@@ -2739,7 +2739,10 @@
       "type" : "RequestStart",
       "name" : "StandaloneApplicationHomeView.ivp",
       "config" : {
-        "signature" : "StandaloneApplicationHomeView"
+        "signature" : "StandaloneApplicationHomeView",
+        "request" : {
+          "name" : "Standalone View: Application Home"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 720 },
@@ -2783,7 +2786,10 @@
       "type" : "RequestStart",
       "name" : "StandaloneCaseListView.ivp",
       "config" : {
-        "signature" : "StandaloneCaseListView"
+        "signature" : "StandaloneCaseListView",
+        "request" : {
+          "name" : "Standalone View: Case List"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 152 },
@@ -2843,7 +2849,10 @@
       "type" : "RequestStart",
       "name" : "StandaloneTaskListView.ivp",
       "config" : {
-        "signature" : "StandaloneTaskListView"
+        "signature" : "StandaloneTaskListView",
+        "request" : {
+          "name" : "Standalone View: Task List"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 312 },
@@ -2857,7 +2866,10 @@
       "type" : "RequestStart",
       "name" : "StandaloneProcessStartListView.ivp",
       "config" : {
-        "signature" : "StandaloneProcessStartListView"
+        "signature" : "StandaloneProcessStartListView",
+        "request" : {
+          "name" : "Standalone View: Process Start List"
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1360 },
