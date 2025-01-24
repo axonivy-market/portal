@@ -845,6 +845,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     columnManagement: Spaltenverwaltung
     columnType:
       CUSTOM: Benutzerdefiniertes Feld
+      CUSTOM_BUSINESS_CASE: Benutzerdefiniertes Feld für Geschäftsvorfälle
       CUSTOM_CASE: Benutzerdefiniertes Fallfeld
       STANDARD: Standard-Feld
     configuration:

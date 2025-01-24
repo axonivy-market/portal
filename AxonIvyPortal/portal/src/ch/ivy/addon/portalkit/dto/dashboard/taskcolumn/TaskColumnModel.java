@@ -16,6 +16,9 @@ public class TaskColumnModel extends ColumnModel {
     if (type == DashboardColumnType.CUSTOM_CASE) {
       ICustomFields customFields = task.getCase().customFields();
       return getCustomFieldValue(customFields);
+    } else if (type == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
+      ICustomFields customFields = task.getCase().getBusinessCase().customFields();
+      return getCustomFieldValue(customFields);
     } else {
       ICustomFields customFields = task.customFields();
       return getCustomFieldValue(customFields);

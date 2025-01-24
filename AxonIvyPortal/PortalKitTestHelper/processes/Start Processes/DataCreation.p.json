@@ -1866,5 +1866,105 @@
         "at" : { "x" : 728, "y" : 1760 }
       },
       "connect" : { "id" : "f188", "to" : "f187" }
+    }, {
+      "id" : "f192",
+      "type" : "RequestStart",
+      "name" : "displayCustomFieldBusinessCaseOnTaskWidget.ivp",
+      "config" : {
+        "callSignature" : "displayCustomFieldCaseOnTaskWidget",
+        "outLink" : "displayCustomFieldCaseOnTaskWidget.ivp",
+        "startName" : "Display Custom Business Case Field on Task Widget",
+        "case" : { }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 2024 }
+      },
+      "connect" : { "id" : "f202", "to" : "f199" }
+    }, {
+      "id" : "f193",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Task is from main Case",
+          "description" : "Test Case CustomField from business case is displayed (Add CustomerName customfield column to test)"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 480, "y" : 2024 }
+      },
+      "connect" : { "id" : "f201", "to" : "f194" }
+    }, {
+      "id" : "f194",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 648, "y" : 2024 }
+      }
+    }, {
+      "id" : "f195",
+      "type" : "RequestStart",
+      "name" : "subCustomCaseField.ivp",
+      "config" : {
+        "callSignature" : "subCustomCaseField",
+        "case" : {
+          "name" : "Sub Custom Case Field"
+        },
+        "outLink" : "subCustomCaseField.ivp",
+        "task" : {
+          "responsible" : {
+            "role" : "SYSTEM"
+          }
+        },
+        "showInStartList" : false,
+        "triggerEnabled" : true,
+        "startName" : "Sub Custome Case Field"
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 2160 }
+      },
+      "connect" : { "id" : "f200", "to" : "f196" }
+    }, {
+      "id" : "f196",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Task is from subCase",
+          "description" : "Test Case CustomField from business case is displayed (Add CustomerName customfield column to test)"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 2160 }
+      },
+      "connect" : { "id" : "f204", "to" : "f197" }
+    }, {
+      "id" : "f197",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 616, "y" : 2160 }
+      }
+    }, {
+      "id" : "f198",
+      "type" : "TriggerCall",
+      "name" : "Start Processes/DataCreation",
+      "config" : {
+        "processCall" : "Start Processes/DataCreation:subCustomCaseField()"
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 2024 }
+      },
+      "connect" : { "id" : "f203", "to" : "f193" }
+    }, {
+      "id" : "f199",
+      "type" : "Script",
+      "name" : "Set custom case field",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : "ivy.case.customFields().stringField(\"CustomerName\").set(\"AxonIvy\");"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 2024 }
+      },
+      "connect" : { "id" : "f205", "to" : "f198" }
     } ]
 }

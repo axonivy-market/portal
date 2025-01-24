@@ -62,7 +62,7 @@ public class ColumnManagementBean implements Serializable {
   private String fieldDescription;
 
   public void init() {
-    this.fieldTypes = Arrays.asList(DashboardColumnType.STANDARD, DashboardColumnType.CUSTOM);
+    this.fieldTypes = Arrays.asList(DashboardColumnType.STANDARD, DashboardColumnType.CUSTOM, DashboardColumnType.CUSTOM_BUSINESS_CASE);
     this.selectedFieldType = DashboardColumnType.STANDARD;
     this.selectedCustomFieldType = CustomFieldType.STRING;
     this.customFieldCategories = null;
@@ -78,7 +78,7 @@ public class ColumnManagementBean implements Serializable {
       TaskDashboardWidget taskWidget = (TaskDashboardWidget) this.widget; 
       this.columnsBeforeSave = new ArrayList<>(taskWidget.getColumns());
       this.fieldTypes = Arrays.asList(DashboardColumnType.STANDARD, DashboardColumnType.CUSTOM,
-          DashboardColumnType.CUSTOM_CASE);
+          DashboardColumnType.CUSTOM_CASE, DashboardColumnType.CUSTOM_BUSINESS_CASE);
     }
     if (widget.getType() == DashboardWidgetType.CASE) {
       CaseDashboardWidget caseDashboardWidget = (CaseDashboardWidget) this.widget;
@@ -155,12 +155,14 @@ public class ColumnManagementBean implements Serializable {
     columnModel.setField(this.selectedField);
     columnModel.setQuickSearch(false);
     if (this.selectedFieldType == DashboardColumnType.CUSTOM
-        || this.selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
+        || this.selectedFieldType == DashboardColumnType.CUSTOM_CASE
+        || this.selectedFieldType == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
       columnModel.setType(selectedFieldType);
       columnModel.setFormat(DashboardColumnFormat.valueOf(selectedFieldType.name()));
       columnModel.setPattern(numberFieldPattern);
     }
-    if (this.selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
+    if (this.selectedFieldType == DashboardColumnType.CUSTOM_CASE
+        || this.selectedFieldType == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
       columnModel.setSortable(null);
     }
     this.columnsBeforeSave.add(columnModel);
@@ -219,7 +221,8 @@ public class ColumnManagementBean implements Serializable {
   }
 
   public List<String> getCustomFieldCategories() {
-    if (widget.getType() == DashboardWidgetType.CASE || selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
+    if (widget.getType() == DashboardWidgetType.CASE || selectedFieldType == DashboardColumnType.CUSTOM_CASE
+        || this.selectedFieldType == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
       customFieldCategories = ICustomFieldMeta.cases().stream()
             .map(ICustomFieldMeta::category)
             .distinct()
@@ -239,7 +242,8 @@ public class ColumnManagementBean implements Serializable {
 
   private Set<ICustomFieldMeta> getCustomFieldNames() {
     if (widget.getType() == DashboardWidgetType.TASK) {
-      if (selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
+      if (selectedFieldType == DashboardColumnType.CUSTOM_CASE
+          || this.selectedFieldType == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
         customFieldNames = ICustomFieldMeta.cases();
       } else {
         customFieldNames = ICustomFieldMeta.tasks();
@@ -253,7 +257,8 @@ public class ColumnManagementBean implements Serializable {
   public Optional<ICustomFieldMeta> findCustomFieldMeta() {
     Optional<ICustomFieldMeta> metaData = Optional.empty();
     if (widget.getType() == DashboardWidgetType.TASK) {
-      if (selectedFieldType == DashboardColumnType.CUSTOM_CASE) {
+      if (selectedFieldType == DashboardColumnType.CUSTOM_CASE
+          || this.selectedFieldType == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
         metaData = ICustomFieldMeta.cases().stream().filter(meta -> meta.name().equals(selectedField)).findFirst();
       } else {
         metaData = ICustomFieldMeta.tasks().stream().filter(meta -> meta.name().equals(selectedField)).findFirst();
