@@ -86,10 +86,9 @@ jobs:
 
       - name: Build Portal Modules
         run: |
-            # Create deployment directory if not exists
+            # Create deployment directory
             mkdir -p "$ENGINE_DIR/system/demo-applications/demo-portal"
             
-            # Array to store build results
             declare -A build_results
             
             modules=(
@@ -97,7 +96,7 @@ jobs:
               "AxonIvyPortal/portal"
               "AxonIvyPortal/AxonIvyExpress"
               "AxonIvyPortal/PortalKitTestHelper"
-              "Showcase/portal-user-examples"
+              "Showcase/portal-user-examples" 
               "Showcase/portal-developer-examples"
               "Showcase/InternalSupport"
               "Showcase/portal-components-examples"
@@ -112,18 +111,26 @@ jobs:
               if mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR; then
                 build_results[$module]="SUCCESS"
                 echo "✅ $module build completed successfully"
+                
+                # List target directory contents
+                echo "📁 Target contents for $module:"
+                ls -lh $module/target/
+                
+                # Find and list IAR files
+                echo "📦 IAR files for $module:"
+                find $module/target/ -name "*.iar" -type f -exec ls -lh {} \;
               else
                 build_results[$module]="FAILED"
                 echo "❌ $module build failed"
               fi
+              echo "-----------------------------------"
             done
             
-            echo "--- Build Summary ---"
+            echo "=== Build Summary ==="
             for module in "${!build_results[@]}"; do
               echo "$module: ${build_results[$module]}"
             done
             
-            # Check if any build failed
             if [[ "${build_results[@]}" =~ "FAILED" ]]; then
               exit 1
             fi
