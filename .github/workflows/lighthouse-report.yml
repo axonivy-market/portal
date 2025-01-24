@@ -137,11 +137,34 @@ jobs:
 
       - name: Deploy Portal Modules
         run: |
-          DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
-          rm -rf $DEPLOYMENT/*
-          cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
-          cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
-          cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
+              DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
+              
+              # Ensure deployment directory exists
+              echo "Creating deployment directory: $DEPLOYMENT"
+              mkdir -p $DEPLOYMENT
+              
+              # Clean existing files
+              echo "Cleaning deployment directory"
+              rm -rf $DEPLOYMENT/*
+              
+              # Copy files with verification
+              echo "Copying portal modules..."
+              for SOURCE in \
+                "Showcase/portal-demo-app/target/*.zip" \
+                "Showcase/portal-developer-examples/target/*.iar" \
+                "Showcase/portal-components-examples/target/*.iar"
+              do
+                if ls $SOURCE 1> /dev/null 2>&1; then
+                  cp $SOURCE $DEPLOYMENT/
+                  echo "✅ Copied: $SOURCE"
+                else
+                  echo "⚠️ No files found: $SOURCE"
+                fi
+              done
+              
+              # Verify deployment
+              echo "Deployed files:"
+              ls -lh $DEPLOYMENT/
 
       - name: Wait for Server Health Check
         run: |
