@@ -2737,9 +2737,9 @@
     }, {
       "id" : "f200",
       "type" : "RequestStart",
-      "name" : "DefaultApplicationHomePageInTeams.ivp",
+      "name" : "StandaloneApplicationHomeView.ivp",
       "config" : {
-        "signature" : "DefaultApplicationHomePageInTeams"
+        "signature" : "StandaloneApplicationHomeView"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 720 },
@@ -2781,9 +2781,9 @@
     }, {
       "id" : "f206",
       "type" : "RequestStart",
-      "name" : "DefaultCaseListPageInTeams.ivp",
+      "name" : "StandaloneCaseListView.ivp",
       "config" : {
-        "signature" : "DefaultCaseListPageInTeams"
+        "signature" : "StandaloneCaseListView"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 152 },
@@ -2841,9 +2841,9 @@
     }, {
       "id" : "f215",
       "type" : "RequestStart",
-      "name" : "DefaultTaskListPageInTeams.ivp",
+      "name" : "StandaloneTaskListView.ivp",
       "config" : {
-        "signature" : "DefaultTaskListPageInTeams"
+        "signature" : "StandaloneTaskListView"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 312 },
@@ -2855,9 +2855,9 @@
     }, {
       "id" : "f220",
       "type" : "RequestStart",
-      "name" : "DefaultProcessStartListPageInTeams.ivp",
+      "name" : "StandaloneProcessStartListView.ivp",
       "config" : {
-        "signature" : "DefaultProcessStartListPageInTeams"
+        "signature" : "StandaloneProcessStartListView"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1360 },
