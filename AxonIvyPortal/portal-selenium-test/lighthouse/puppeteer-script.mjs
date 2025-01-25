@@ -6,7 +6,7 @@ import lighthouse from "lighthouse";
 const PORTAL_URL = "http://localhost:8080/demo-portal";
 const LOGIN_URL = `${PORTAL_URL}/login`;
 const DASHBOARD_URL = `${PORTAL_URL}/pro/portal/1549F58C18A6C562/DashboardPage.ivp?dashboardId=1`;
-const CREATE_TASK_URL = `${PORTAL_URL}/pro/InternalSupport/14B2FC03D2E87141/CategoriedLeaveRequest.ivp`;
+const CREATE_TASK_URL = `${PORTAL_URL}/pro/portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp`;
 
 const debugLog = (msg) => console.log(`[Debug] ${msg}`);
 
