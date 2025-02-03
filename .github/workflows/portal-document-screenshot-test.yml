@@ -121,8 +121,9 @@ jobs:
       - name: Run test
         run: |
           mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml ${{ inputs.engineDownloadURL }} -Dtest=com.axonivy.portal.selenium.document.screenshot.LoginScreenshotTest -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500
+          cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
 
-      - name: View log file
-      run: |
-        dir
-        cat /home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
+      - name: Run test
+        run: |
+          dir
+          cat /home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
