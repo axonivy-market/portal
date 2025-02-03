@@ -62,7 +62,7 @@ public class ColumnManagementBean implements Serializable {
   private String fieldDescription;
 
   public void init() {
-    this.fieldTypes = Arrays.asList(DashboardColumnType.STANDARD, DashboardColumnType.CUSTOM, DashboardColumnType.CUSTOM_BUSINESS_CASE);
+    this.fieldTypes = Arrays.asList(DashboardColumnType.STANDARD, DashboardColumnType.CUSTOM);
     this.selectedFieldType = DashboardColumnType.STANDARD;
     this.selectedCustomFieldType = CustomFieldType.STRING;
     this.customFieldCategories = null;

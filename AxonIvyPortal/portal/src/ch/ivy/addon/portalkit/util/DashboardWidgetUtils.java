@@ -138,7 +138,8 @@ public class DashboardWidgetUtils {
       if (column.getType() == DashboardColumnType.CUSTOM) {
         buildCustomColumn(ICustomFieldMeta.tasks(), column, field);
       }
-      if (column.getType() == DashboardColumnType.CUSTOM_CASE) {
+      if (column.getType() == DashboardColumnType.CUSTOM_CASE
+          || column.getType() == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
         buildCustomColumn(ICustomFieldMeta.cases(), column, field);
         column.setSortable(null);
       }
