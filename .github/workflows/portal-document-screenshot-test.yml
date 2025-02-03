@@ -119,11 +119,12 @@ jobs:
           cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
       
       - name: Run test
+        id: run-test
         run: |
           mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml ${{ inputs.engineDownloadURL }} -Dtest=com.axonivy.portal.selenium.document.screenshot.LoginScreenshotTest -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500
-          cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
 
-      - name: Run test
+      - name: Check on run test failures
+        if: steps.run-test.outputs.status == 'failure'
         run: |
           dir
           cat /home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
