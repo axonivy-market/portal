@@ -88,8 +88,6 @@ jobs:
 
       - name: Copy decorate js and css to Portal
         run: |
-          pwd
-          dir
           cp AxonIvyPortal/portal-selenium-test/resources/css/document-screenshot.css AxonIvyPortal/portal/webContent/resources/css/portal.css
           cp AxonIvyPortal/portal-selenium-test/resources/css/document-screenshot.css Showcase/portal-user-examples/webContent/resources/css/portal-user-examples.css
           cp AxonIvyPortal/portal-selenium-test/resources/js/document-screenshot.js AxonIvyPortal/portal/webContent/resources/js/portal.js
@@ -119,3 +117,7 @@ jobs:
           cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
           cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
           cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
+      
+      - name: Run test
+        run:
+          mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml ${{ inputs.engineDownloadURL }} -Dtest=com.axonivy.portal.selenium.document.screenshot.LoginScreenshotTest -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=500
