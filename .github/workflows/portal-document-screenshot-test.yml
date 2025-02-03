@@ -67,25 +67,6 @@ jobs:
             exit 1
           fi
 
-      - name: Start Axon Ivy engine
-        run: |
-          cd "${ENGINE_DIR}/bin"
-          chmod +x ./AxonIvyEngine
-          nohup ./AxonIvyEngine > engine.log 2>&1 &
-          echo $! > engine.pid
-          for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
-            if curl -s -f http://localhost:8080/demo-portal > /dev/null; then
-              exit 0
-            fi
-            sleep 1
-          done
-          cat engine.log
-          exit 1
-        env:
-          IVY_JAVA_HOME: ${{ env.JAVA_HOME }}
-          JAVA_HOME: ${{ env.JAVA_HOME }}
-          PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${{ env.JAVA_HOME }}/bin:$PATH
-
       - name: Copy decorate js and css to Portal
         run: |
           cp AxonIvyPortal/portal-selenium-test/resources/css/document-screenshot.css AxonIvyPortal/portal/webContent/resources/css/portal.css
