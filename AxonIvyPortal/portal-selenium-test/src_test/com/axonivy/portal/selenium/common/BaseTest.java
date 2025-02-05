@@ -290,6 +290,7 @@ public class BaseTest {
       username = URLEncoder.encode(testAccount.getUsername(), "UTF-8");
       password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
       try {
+        System.out.println(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
         open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
         $(".js-dashboard__wrapper").shouldBe(Condition.exist);
       } catch (Error e) {
