@@ -31,6 +31,14 @@
               update="new-widget-configuration-dialog"
               process="@this" partialSubmit="true" global="false"
               oncomplete="PF('new-widget-configuration-dialog').show()" />
+            <p:menuitem id="clone-welcome-widget"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Clone')}"
+              icon="si si-copy-paste"
+              actionListener="#{cloneWidgetBean.setWidget(widget)}"
+              process="@(this)"
+              update="clone-widget-component:clone-to-dashboard-dialog"
+              oncomplete="PF('clone-to-dashboard-dialog').show();"
+              partialSubmit="true" global="false" />
             <p:menuitem id="delete-welcome-widget"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
               icon="si si-bin-1" styleClass="color-destroy"
