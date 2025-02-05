@@ -20,7 +20,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   private static final String FILTER_TASK_STATE = "State";
   private static final String DESCENDING = "descending";
   private static final String ASCENDING = "ascending";
-
+  private static final String CUSTOM_BUSINESS_CASE_FIELD = "Custom business case field";
+  private static final String CUSTOMER_NAME = "CustomerName";
   private String taskWidgetId;
   private String taskWidgetName;
 
@@ -53,8 +54,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   private int getIndexWidgetByColumnScrollable(String columnName) {
-    ElementsCollection elementsTH =
-        $(taskWidgetId).$(".ui-datatable-scrollable-header").shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
+    ElementsCollection elementsTH = $(taskWidgetId).$(".ui-datatable-scrollable-header")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("table thead tr th");
     for (int i = 0; i < elementsTH.size(); i++) {
       if (elementsTH.get(i).getAttribute("aria-label").equalsIgnoreCase(columnName)) {
         return i;
@@ -83,13 +84,11 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void waitForFilterNotificationAppear() {
-    $(".task-dashboard-widget__panel span.widget__filter-noti-number")
-        .shouldBe(appear, DEFAULT_TIMEOUT);
+    $(".task-dashboard-widget__panel span.widget__filter-noti-number").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void startFirstTask() {
-    WaitHelper.waitForNavigation(() -> getColumnOfTaskHasIndex(0, "Start")
-        .shouldBe(appear, DEFAULT_TIMEOUT).click());
+    WaitHelper.waitForNavigation(() -> getColumnOfTaskHasIndex(0, "Start").shouldBe(appear, DEFAULT_TIMEOUT).click());
   }
 
   public void startFirstTaskAndWaitShowHomePageButton() {
@@ -108,8 +107,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void openFilterWidget() {
-    getTaskWidgetHeader().$(".widget__filter-sidebar-link")
-        .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    getTaskWidgetHeader().$(".widget__filter-sidebar-link").shouldBe(appear, DEFAULT_TIMEOUT)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     clickByJavaScript(getTaskWidgetHeader().$(".widget__filter-sidebar-link"));
     $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -266,8 +265,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public void searchWidgetFilter(String filterName) {
     var savedFilterPanel = getSavedFilterContainer();
     waitFirstWidgetFilterAppear(savedFilterPanel);
-    var searchFilter =
-        savedFilterPanel.$("[id$=':search-saved-filter-input']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    var searchFilter = savedFilterPanel.$("[id$=':search-saved-filter-input']").shouldBe(Condition.visible,
+        DEFAULT_TIMEOUT);
     searchFilter.sendKeys(filterName);
   }
 
@@ -466,12 +465,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     getTaskWidgetHeader().$(".collapse-link").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition())
         .click();
   }
-  
+
   public boolean isTableResizable() {
     return $(taskWidgetId).has(Condition.cssClass("ui-datatable-resizable"));
   }
-  
-  /* 
+
+  /*
    * return descending or ascending
    */
   public SelenideElement getTaskWidgetHeaderSorted() {
@@ -512,7 +511,6 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   public SelenideElement getGrowlTitle() {
     return $(".ui-growl-title").shouldBe(appear, DEFAULT_TIMEOUT);
   }
-
 
   public SelenideElement getResponsibleAvatar() {
     return $(".dashboard-tasks__responsible > .has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
@@ -573,5 +571,41 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public boolean isEmptyMessageAppear() {
     return $("div[id$='empty-message-container']").exists();
+  }
+
+  public void clickOnManageColumns() {
+    $("a[id$='column-toggler']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("div[id$=':column-management-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void selectCustomBusinessCaseFieldType() {
+    $("label[id$='column-management-form:field-type-selection_label']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("li[data-label='" + CUSTOM_BUSINESS_CASE_FIELD + "']").shouldBe(appear).click();
+    waitForPageLoad();
+  }
+  
+  public void selectCustomerNameField() {
+    $("input[id$='custom-business-case-field-selection_input']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("button[id$='custom-business-case-field-selection_button']").shouldBe(appear).click();
+    $("li[data-item-label='" + CUSTOMER_NAME + "']").shouldBe(appear).click();
+    $("input[value='" + "Customer name column for example" + "']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickAddButton() {
+    $("button[id$='field-add-btn']").shouldBe(appear).click();
+  }
+
+  public void clickSaveButton() {
+    $("button[id$='column-management-save-btn']").shouldBe(appear).click();
+  }
+
+  public void saveWidgetConfiguration() {
+    $("button[id$='widget-configuration-save-button']").shouldBe(appear).click();
+  }
+  
+  public String getCustomBusinessCaseFieldValueFromRowIndex(int dataRowIndex) {
+    SelenideElement tableRow = $("tbody[id$='dashboard-tasks_data']").$("tr[data-ri='" + dataRowIndex + "']").shouldBe(appear);
+    String rowCustomBusinessCaseFieldValue = tableRow.$$("td").last().$("span[id$='custom-column']").getText();
+    return rowCustomBusinessCaseFieldValue ;
   }
 }

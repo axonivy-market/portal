@@ -4,9 +4,6 @@ import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,6 +13,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
+import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
@@ -46,6 +44,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
   private static final String EXPIRY = "Expiry";
   private static final String IN_PROGRESS = "In progress";
   private static final String SUSPENDED = "Suspended";
+  private static final String AXON_IVY = "AxonIvy";
 
   private NewDashboardPage newDashboardPage;
 
@@ -309,4 +308,31 @@ public class DashboardTaskWidgetTest extends BaseTest {
     
     assertTrue(taskWidget.isTableResizable());
   }
+  
+  @Test
+  public void testShowBusinessCustomFieldOnTaskWidget() {
+    redirectToRelativeLink(displayCustomFieldCaseOnTaskWidget);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    
+    assertTrue(taskWidget.isTableResizable());
+    taskWidget.openEditTaskWidget();
+    taskWidget.clickOnManageColumns();
+    taskWidget.selectCustomBusinessCaseFieldType();
+    taskWidget.selectCustomerNameField();
+    taskWidget.clickAddButton();
+    taskWidget.clickSaveButton();
+    taskWidget.saveWidgetConfiguration();
+    MainMenuPage mainMenu = new MainMenuPage();
+    mainMenu.clickOnLogo();
+    TaskWidgetNewDashBoardPage taskWidget2 = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    assertEquals(AXON_IVY, taskWidget2.getCustomBusinessCaseFieldValueFromRowIndex(0));
+    assertEquals(AXON_IVY, taskWidget2.getCustomBusinessCaseFieldValueFromRowIndex(1));
+  }
+
 }
