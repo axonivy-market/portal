@@ -111,4 +111,3 @@ jobs:
         run: |
           dir
           cat /home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
-          
