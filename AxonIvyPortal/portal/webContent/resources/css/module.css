@@ -5575,7 +5575,7 @@ a.dashboard-action-container label {
 
 .role-permissions-editor-for-external-link {
   word-break: break-word;
-  display: flex;
+  display: table-cell;
 }
 
 /* =================== ADD EXTERNAL LINK PROCESS DIALOG ====================== */
