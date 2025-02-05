@@ -292,7 +292,7 @@ public class BaseTest {
       try {
         System.out.println(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
 //        open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
-        String url = "http://localhost:8080/demo-portal/pro/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=admin&password=admin";
+        String url = "http://localhost:8080/demo-portal/pro/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=admin'&'password=admin";
         open(url);
         System.out.println("open url:" + url);
         $(".js-dashboard__wrapper").shouldBe(Condition.exist);
