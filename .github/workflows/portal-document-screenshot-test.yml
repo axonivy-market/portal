@@ -109,3 +109,5 @@ jobs:
         run: |
           dir
           cat /home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
+          cat /home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test\resources\testFile\default-dashboard.json
+          cat /home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/target/selenide/reports/com.axonivy.portal.selenium.document.screenshot.LoginScreenshotTest/testLogin/1738745421665.0.html
