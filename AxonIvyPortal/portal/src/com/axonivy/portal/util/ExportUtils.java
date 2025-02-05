@@ -22,7 +22,8 @@ public class ExportUtils {
     List<String> visibleColumns = new ArrayList<>();
     for (ColumnModel column : columns) {
       if (column.getVisible()) {
-        if (column.getType() == DashboardColumnType.CUSTOM || column.getType() == DashboardColumnType.CUSTOM_CASE) {
+        if (column.getType() == DashboardColumnType.CUSTOM || column.getType() == DashboardColumnType.CUSTOM_CASE
+            || column.getType() == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
           visibleColumns.add(
               String.format(CUSTOM_FIELD_FORMAT, column.getFormat().name(), column.getField(), column.getHeader(),
                   column.getType()));
