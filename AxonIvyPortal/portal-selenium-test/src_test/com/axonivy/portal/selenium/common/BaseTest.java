@@ -8,6 +8,7 @@ import static java.time.Duration.ZERO;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Objects;
 
@@ -292,7 +293,7 @@ public class BaseTest {
       try {
         System.out.println(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
 //        open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
-        String url = "http://localhost:8080/demo-portal/pro/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=admin%26password=admin";
+        String url = URLEncoder.encode("http://localhost:8080/demo-portal/pro/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=admin&password=admin", StandardCharsets.UTF_8) ;
         open(url);
         System.out.println("open url:" + url);
         $(".js-dashboard__wrapper").shouldBe(Condition.exist);
@@ -304,6 +305,10 @@ public class BaseTest {
     }
     redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
     redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
+  }
+  
+  public static void main(String[] args) {
+    System.out.println(URLEncoder.encode("http://localhost:8080/demo-portal/pro/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=admin&password=admin", StandardCharsets.UTF_8) );
   }
 
   public void updatePortalSetting(String portalSettingName, String portalSettingValue) {
