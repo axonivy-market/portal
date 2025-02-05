@@ -291,7 +291,8 @@ public class BaseTest {
       password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
       try {
         System.out.println(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
-        open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
+//        open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
+        open("http://localhost:8080/demo-portal/pro/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=admin&password=admin");
         $(".js-dashboard__wrapper").shouldBe(Condition.exist);
       } catch (Error e) {
         open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
