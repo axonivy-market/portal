@@ -101,8 +101,7 @@ jobs:
       
       - name: Run test
         id: run-test        
-        run: |
-          mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml ${{ inputs.engineDownloadURL }} -Dtest=com.axonivy.portal.selenium.document.screenshot.LoginScreenshotTest -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=100
+        run: mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml ${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=100
         continue-on-error: true
 
       - name: Check on run test failures
