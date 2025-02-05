@@ -6,116 +6,6 @@
     "data" : "ch.ivy.addon.portal.generic.NavigatorData"
   },
   "elements" : [ {
-      "id" : "f20",
-      "type" : "Script",
-      "name" : "prepareTaskView",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.enums.TaskAssigneeType;",
-            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
-            "import ch.ivy.addon.portalkit.enums.TaskSortField;",
-            "import ch.ivy.addon.portal.generic.view.TaskView;",
-            "import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;",
-            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
-            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
-            "import ch.ivy.addon.portalkit.enums.PortalPage;",
-            "import org.apache.commons.lang3.StringUtils;",
-            "",
-            "String pageTitle = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedStatisticHeader\") + in.chartName;",
-            "String titleOnMobile = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/common/tasks\");",
-            "",
-            "in.taskDataModel.getCriteria().setCustomTaskQuery(in.taskQuery);",
-            "in.taskDataModel.setAdminQuery(PermissionUtils.checkReadAllTasksPermission());",
-            "in.taskDataModel.getCriteria().setKeyword(StringUtils.EMPTY);",
-            "in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);",
-            "in.taskDataModel.setNotKeepFilter(true);",
-            "",
-            "in.taskView = TaskView",
-            "                .create()",
-            "                .pageTitle(pageTitle)",
-            "                .withTitleOnMobile(titleOnMobile)",
-            "                .showHeaderToolbar(false)",
-            "                .dataModel(in.taskDataModel)",
-            "                .createNewTaskView();"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 1929, "y" : 1515 }
-      },
-      "connect" : [
-        { "id" : "f27", "to" : "f23" }
-      ]
-    }, {
-      "id" : "f23",
-      "type" : "SubProcessCall",
-      "name" : "OpenPortalTasks",
-      "config" : {
-        "processCall" : "Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)",
-        "call" : {
-          "map" : {
-            "param.taskView" : "in.taskView"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1929, "y" : 1587 }
-      },
-      "connect" : [
-        { "id" : "f28", "to" : "f24" }
-      ]
-    }, {
-      "id" : "f24",
-      "type" : "CallSubEnd",
-      "visual" : {
-        "at" : { "x" : 1929, "y" : 1667 }
-      }
-    }, {
-      "id" : "f25",
-      "type" : "CallSubStart",
-      "name" : "viewTaskForAnalytic(String, TaskQuery)",
-      "config" : {
-        "signature" : "viewTaskForAnalytic",
-        "input" : {
-          "params" : [
-            { "name" : "chartName", "type" : "String", "desc" : "" },
-            { "name" : "taskQuery", "type" : "ch.ivyteam.ivy.workflow.query.TaskQuery", "desc" : "" }
-          ],
-          "map" : {
-            "out.chartName" : "param.chartName",
-            "out.taskQuery" : "param.taskQuery"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1929, "y" : 1347 },
-        "labelOffset" : { "x" : 129, "y" : 20 }
-      },
-      "connect" : [
-        { "id" : "f29", "to" : "f26" }
-      ]
-    }, {
-      "id" : "f26",
-      "type" : "SubProcessCall",
-      "name" : "Init data model",
-      "config" : {
-        "processCall" : "Functional Processes/InitializeTaskDataModel:call()",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.taskDataModel" : "result.dataModel"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1929, "y" : 1435 }
-      },
-      "connect" : [
-        { "id" : "f30", "to" : "f20" }
-      ]
-    }, {
       "id" : "f5",
       "type" : "SubProcessCall",
       "name" : "OpenPortalCaseDetails",
@@ -129,7 +19,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1128, "y" : 1176 }
+        "at" : { "x" : 1928, "y" : 1528 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f1" }
@@ -138,7 +28,7 @@
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 1128, "y" : 1288 }
+        "at" : { "x" : 1928, "y" : 1640 }
       }
     }, {
       "id" : "f0",
@@ -156,7 +46,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1128, "y" : 968 },
+        "at" : { "x" : 1928, "y" : 1320 },
         "labelOffset" : { "x" : 91, "y" : 20 }
       },
       "connect" : [
@@ -177,7 +67,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1128, "y" : 1056 }
+        "at" : { "x" : 1928, "y" : 1408 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f5" }

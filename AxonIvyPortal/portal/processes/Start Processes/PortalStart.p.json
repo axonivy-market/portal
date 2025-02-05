@@ -1534,17 +1534,6 @@
         "at" : { "x" : 592, "y" : 1840 }
       }
     }, {
-      "id" : "f3",
-      "type" : "ProcessAnnotation",
-      "name" : [
-        "Replace by customized ",
-        "homepage if you have"
-      ],
-      "visual" : {
-        "at" : { "x" : 1240, "y" : 640 },
-        "size" : { "width" : 144, "height" : 44 }
-      }
-    }, {
       "id" : "f6",
       "type" : "DialogCall",
       "name" : "Login",
@@ -2242,31 +2231,6 @@
             { "id" : "S10-f49", "to" : "S10-f37" }
           ]
         }, {
-          "id" : "S10-f19",
-          "type" : "Script",
-          "name" : [
-            "build data model,",
-            " task "
-          ],
-          "config" : {
-            "output" : {
-              "code" : [
-                "import ch.ivy.addon.portal.generic.view.TaskView;",
-                "",
-                "boolean canLinkBackToCaseDetail = in.#dataModel.#criteria.#caseId is initialized; ",
-                "in.taskView = TaskView.create().dataModel(in.dataModel).canLinkBackCaseDetail(canLinkBackToCaseDetail).showHeaderToolbar(false).createNewTaskView();"
-              ]
-            },
-            "sudo" : true
-          },
-          "visual" : {
-            "at" : { "x" : 416, "y" : 384 },
-            "size" : { "width" : 128, "height" : 56 }
-          },
-          "connect" : [
-            { "id" : "S10-f39", "to" : "S10-f12" }
-          ]
-        }, {
           "id" : "S10-f37",
           "type" : "SubProcessCall",
           "name" : "OpenPortalSearch",
@@ -2289,8 +2253,7 @@
             "conditions" : {
               "S10-f8" : "org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl)",
               "S10-f2" : "in.isTaskStartedInDetails && !in.isTaskFinished && !in.backFromTaskDetails",
-              "S10-f3" : "java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK, in.#portalPage)",
-              "S10-f4" : "java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.TASK_LIST, in.#portalPage)"
+              "S10-f3" : "java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK, in.#portalPage)"
             }
           },
           "visual" : {
@@ -2300,7 +2263,6 @@
             { "id" : "S10-f8", "to" : "S10-f7" },
             { "id" : "S10-f2", "to" : "S10-f68", "via" : [ { "x" : 288, "y" : 192 } ] },
             { "id" : "S10-f3", "to" : "S10-f17", "via" : [ { "x" : 288, "y" : 288 } ] },
-            { "id" : "S10-f4", "to" : "S10-f19", "via" : [ { "x" : 256, "y" : 384 } ] },
             { "id" : "S10-f5", "to" : "S10-f52", "via" : [ { "x" : 224, "y" : 480 } ] }
           ]
         }, {
@@ -2350,22 +2312,6 @@
           "visual" : {
             "at" : { "x" : 600, "y" : 192 },
             "size" : { "width" : 176 }
-          }
-        }, {
-          "id" : "S10-f12",
-          "type" : "SubProcessCall",
-          "name" : "OpenPortalTasks",
-          "config" : {
-            "processCall" : "Functional Processes/OpenPortalTasks:useView(ch.ivy.addon.portal.generic.view.TaskView)",
-            "call" : {
-              "map" : {
-                "param.taskView" : "in.taskView"
-              }
-            }
-          },
-          "visual" : {
-            "at" : { "x" : 624, "y" : 384 },
-            "size" : { "width" : 104, "height" : 48 }
           }
         }, {
           "id" : "S10-f7",
