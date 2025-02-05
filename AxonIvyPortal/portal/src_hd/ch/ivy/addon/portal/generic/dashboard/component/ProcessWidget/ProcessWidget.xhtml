@@ -89,6 +89,7 @@
       </ui:fragment>
       <ui:fragment rendered="#{widget.displayMode eq 'FULL_MODE' and widget.process ne null}">
         <ic:ch.ivy.addon.portalkit.component.process.ProcessGridItem id="process-grid-item"
+          widget="#{widget}"
           process="#{widget.process}" managedBean="#{dashboardProcessBean}"
           readOnlyMode="#{cc.attrs.isInConfiguration or !isReadOnlyMode}"
           ableToEdit="#{!isReadOnlyMode}"
