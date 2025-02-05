@@ -11,6 +11,7 @@
       <div class="image-process-item-container js-image-process-item-container">
         <h:form id="image-view-action-group-form" styleClass="image-view-action-group-form">
           <ic:ch.ivy.addon.portalkit.component.process.ProcessItemAction id="image-process-action-component" process="#{process}"
+            widget="#{widget}"
             canModify="#{!isInConfiguration and !isReadOnlyMode}"
             actionListenerOnEditProcess="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
             onCompleteEditProcess="PF('new-widget-configuration-dialog').show()"

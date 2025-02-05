@@ -11,12 +11,20 @@
   modal="true" dynamic="true"
   position="center center"
   onShow="PF('new-widget-dialog').initPosition()">
-  <div class="new-widget-dialog__search">
+  <h:form class="w-full flex justify-content-between mb-4">
+    <div class="new-widget-dialog__search">
     <p:inputText id="search-input" styleClass="js-search-input new-widget-dialog__search-input"
       placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}"
       onkeyup="searchNewWidgetByNameOrDescription(this);" />
       <span class="si si-search new-widget-dialog__search-icon" />
   </div>
+  <p:commandButton id="clone-from" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/PortalDashboardDetailModification/CloneFrom')}"
+    type="button" styleClass="primary-color-light-button">
+      <p:ajax event="click" listener="#{dashboardDetailModificationBean.initCloneWidgetDialog()}"
+        global="false" update="clone-widget-from-dashboard:clone-widget-dialog"
+        oncomplete="PF('clone-widget-dialog').show();" />
+    </p:commandButton>
+  </h:form>
   <div class="new-widget-dialog__content">
     <p:fieldset id="standard-widget-fieldset" toggleable="true"
       rendered="#{not empty dashboardDetailModificationBean.samples}"
@@ -233,4 +241,6 @@
   </f:facet>
 </p:dialog>
 
+<ic:com.axonivy.portal.dashboard.component.CloneWidgetFromDashboardDialog id="clone-widget-from-dashboard"
+  managedBean="#{dashboardDetailModificationBean}" />
 </html>
