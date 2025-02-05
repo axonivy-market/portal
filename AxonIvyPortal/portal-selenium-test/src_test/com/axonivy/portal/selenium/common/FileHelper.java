@@ -6,6 +6,6 @@ public final class FileHelper {
   private FileHelper() {}
 
   public static String getAbsolutePathToTestFile(String fileName) {
-    return System.getProperty("user.dir") + File.pathSeparator + "resources" + File.pathSeparator + "testFile" + File.pathSeparator  + fileName;
+    return System.getProperty("user.dir") + File.separator + "resources" + File.separator + "testFile" + File.separator  + fileName;
   }
 }
