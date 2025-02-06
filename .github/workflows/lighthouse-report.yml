@@ -112,7 +112,7 @@ jobs:
       - name: Wait for Server Health Check
         run: |
           for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
-            if curl -s -f http://localhost:8080/ > /dev/null; then
+            if curl -s -f http://localhost:8080/demo-portal/pro/portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp?embedInFrame= > /dev/null; then
               exit 0
             fi
             sleep 1
