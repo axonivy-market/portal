@@ -97,9 +97,9 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
       port: new URL(browser.wsEndpoint()).port,
       output: ["html", "json"],
       onlyCategories: ["accessibility"],
-      presets: "desktop", // Enable desktop emulation
+      presets: "desktop",
       settings: {
-        emulatedFormFactor: "desktop", // Specify desktop form factor
+        emulatedFormFactor: "desktop",
         screenEmulation: {
           width: 1920,
           height: 1080,
