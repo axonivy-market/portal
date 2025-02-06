@@ -98,15 +98,46 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
       output: ["html", "json"],
       onlyCategories: ["accessibility"],
       settings: {
-        emulatedFormFactor: "desktop", // Specify desktop form factor
+        emulatedFormFactor: "desktop",
         screenEmulation: {
           width: 1920,
           height: 1080,
           deviceScaleFactor: 1,
           mobile: false,
         },
+        throttling: {
+          rttMs: 0,
+          throughputKbps: 0,
+          requestLatencyMs: 0,
+          downloadThroughputKbps: 0,
+          uploadThroughputKbps: 0,
+          cpuSlowdownMultiplier: 1, // Fully unthrottled
+        },
       },
     });
+
+    debugLog("Puppeteer viewport:");
+    debugLog(await page.viewport());
+
+    debugLog("Lighthouse configuration:");
+    debugLog(
+      JSON.stringify(
+        {
+          emulatedFormFactor: "desktop",
+          screenEmulation: {
+            width: 1920,
+            height: 1080,
+            deviceScaleFactor: 1,
+            mobile: false,
+            disabled: false,
+          },
+          throttling: { cpuSlowdownMultiplier: 1 },
+        },
+        null,
+        2
+      )
+    );
+    
 
     // Ensure reports directory exists
     const reportsDir = "lighthouse-reports";
