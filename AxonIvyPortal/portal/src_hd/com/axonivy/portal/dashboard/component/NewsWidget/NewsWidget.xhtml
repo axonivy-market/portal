@@ -53,7 +53,7 @@
         </h:panelGroup >
 
         <h:panelGroup id="dashboard-news-container-#{widget.id}" layout="block"
-          styleClass="w-full dashboard-news-container js-dashboard-news-container-#{widget.id} u-display-none">
+          styleClass="w-full dashboard-news-container js-dashboard-news-container-#{widget.id} hidden">
           <h:panelGroup id="news-widget__content" layout="block" styleClass="news-widget__content">
             <p:dataScroller id="news-list" value="#{widget.newsList}" var="news" chunkSize="10"
               rendered="#{not empty widget.newsList}" styleClass="news-list__datascroller" rowIndexVar="indexVar">

@@ -43,7 +43,7 @@
                 </p:inputText>
                 <p:overlayPanel for="news-title" appendTo="@(body)" my="right top" at="right bottom"
                   id="overlay-panel-input"
-                  styleClass="filter-name-overlay-panel #{requiredLanguage ? 'u-hidden' : ''}"
+                  styleClass="filter-name-overlay-panel #{requiredLanguage ? 'hidden' : ''}"
                   dynamic="false" dismissable="true" showCloseIcon="true">
                   <p:commandLink id="tranlate-link" update="@form" process="@this" partialSubmit="true"
                     actionListener="#{newsWidgetBean.resetTranslation()}"
@@ -53,10 +53,10 @@
                   </p:commandLink>
                   <h:panelGroup id="translated-text-panel" layout="block">
                     <i id="translating-title"
-                      class="#{empty newsWidgetBean.translatedText and empty newsWidgetBean.warningText? 'pi pi-spin pi-spinner' : 'u-hidden'}"></i>
+                      class="#{empty newsWidgetBean.translatedText and empty newsWidgetBean.warningText? 'pi pi-spin pi-spinner' : 'hidden'}"></i>
                     <p:outputPanel id="translated-title"
-                      styleClass="#{empty newsWidgetBean.translatedText ? 'u-hidden' : ''}">#{newsWidgetBean.translatedText}</p:outputPanel>
-                    <p:outputLabel id="warning-text" styleClass="#{empty newsWidgetBean.warningText? 'u-hidden' : ''}">
+                      styleClass="#{empty newsWidgetBean.translatedText ? 'hidden' : ''}">#{newsWidgetBean.translatedText}</p:outputPanel>
+                    <p:outputLabel id="warning-text" styleClass="#{empty newsWidgetBean.warningText? 'hidden' : ''}">
                       <span class="ui-outputlabel-rfi">#{newsWidgetBean.warningText}</span>
                     </p:outputLabel>
                   </h:panelGroup>
@@ -77,7 +77,7 @@
                     <button class="ql-underline"></button>
                     <button class="ql-strike"></button>
                     <p:commandButton
-                      styleClass="ui-button-flat #{requiredLanguage ? 'u-hidden' : ''}"
+                      styleClass="ui-button-flat #{requiredLanguage ? 'hidden' : ''}"
                       id="translate-language-button" icon="si si-chat-translate si-lg"
                       title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Translate')}">
                       <p:ajax event="click"

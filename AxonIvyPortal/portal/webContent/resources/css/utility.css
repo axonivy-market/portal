@@ -54,12 +54,6 @@
   right: 0;
 }
 
-.u-hidden,
-.hide,
-.u-display-none {
-  display: none !important;
-}
-
 .u-cursor-pointer {
   cursor: pointer;
 }

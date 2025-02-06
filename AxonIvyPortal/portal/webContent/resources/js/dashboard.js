@@ -294,14 +294,14 @@ function collapseFullscreen(index, widgetId) {
 function loadWidgetFirstTime(loadingClass, widgetClass) {
   var loading = $('.' + loadingClass);
   if (loading.length > 0) {
-    loading.addClass('u-display-none');
+    loading.addClass('hidden');
   }
   var widget = $('.' + widgetClass);
   if (widget.length == 0) {
     widget = $("[data-process-id='" + widgetClass + "']");
   }
   if (widget.length > 0) {
-    widget.removeClass('u-display-none');
+    widget.removeClass('hidden');
     widget.removeClass('u-invisibility');
   }
   resizeTableBody();
@@ -314,14 +314,14 @@ function loadCaseAndTaskWidgetFirstTime(loadingClass, widgetClass) {
   setTimeout(function() {
     var loading = $('.' + loadingClass);
     if (loading.length > 0) {
-      loading.addClass('u-display-none');
+      loading.addClass('hidden');
     }
     var widget = $('.' + widgetClass);
     if (widget.length == 0) {
       widget = $("[data-process-id='" + widgetClass + "']");
     }
     if (widget.length > 0) {
-      widget.removeClass('u-display-none');
+      widget.removeClass('hidden');
       widget.removeClass('u-invisibility');
     }
     $('.js-resizing').find('table[role="grid"]').addClass('w-min');
@@ -514,23 +514,23 @@ function searchNewWidgetByNameOrDescription(input) {
   var keyword = input.value.toLowerCase();
   $('.js-widget').each(function() {
     if ($(this).find('.new-widget-dialog__item-title span').text().toLowerCase().includes(keyword)) {
-      $(this).removeClass('u-hidden');
+      $(this).removeClass('hidden');
     } else {
-      $(this).addClass('u-hidden');
+      $(this).addClass('hidden');
     }
   });
 
   var noResult = true;
   $('.js-widget-fieldset').each(function() {
-    if ($(this).find('.js-widget:not(".u-hidden")').length == 0) {
-      $(this).addClass('u-hidden');
+    if ($(this).find('.js-widget:not(".hidden")').length == 0) {
+      $(this).addClass('hidden');
     } else {
-      $(this).removeClass('u-hidden');
+      $(this).removeClass('hidden');
       noResult = false;
     }
   });
 
-  noResult ? $('.js-no-widget').removeClass('u-hidden') : $('.js-no-widget').addClass('u-hidden');
+  noResult ? $('.js-no-widget').removeClass('hidden') : $('.js-no-widget').addClass('hidden');
 }
 
 function udateResizableTablesWhenResizeWidget() {

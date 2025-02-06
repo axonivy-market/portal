@@ -137,11 +137,11 @@ function ProcessWidget() {
       var noFoundProcesses = $('.js-no-found-processes');
       var expandCollapseButtons = $('.expand-collapse-btns');
       if (!$(processItems).is(":visible")) {
-        $(noFoundProcesses).removeClass('u-display-none');
-        expandCollapseButtons.addClass('u-display-none');
+        $(noFoundProcesses).removeClass('hidden');
+        expandCollapseButtons.addClass('hidden');
       } else {
-        $(noFoundProcesses).addClass('u-display-none');
-        expandCollapseButtons.removeClass('u-display-none');
+        $(noFoundProcesses).addClass('hidden');
+        expandCollapseButtons.removeClass('hidden');
       }
 
       if (document.getElementsByClassName('process-nav').length !== 0) {
@@ -151,7 +151,7 @@ function ProcessWidget() {
     },
 
     hideLoadingText: function() {
-      $(".js-loading-process-list").parent().addClass("u-display-none");
+      $(".js-loading-process-list").parent().addClass("hidden");
       $(".js-process-start-list-container").removeClass("u-invisibility");
       $(".js-process-nav").removeClass("u-invisibility");
     },

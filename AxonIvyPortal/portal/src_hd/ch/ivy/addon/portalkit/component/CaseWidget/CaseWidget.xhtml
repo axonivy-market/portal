@@ -345,7 +345,7 @@
     </ui:define>
   </ui:decorate>
 
-  <h:outputText id="hidden-case-count" styleClass="u-hidden js-hidden-case-count hidden-case-count" value="#{data.dataModel.rowCount}" rendered="#{not data.dataModel.disableCaseCount}" />
+  <h:outputText id="hidden-case-count" styleClass="hidden js-hidden-case-count hidden-case-count" value="#{data.dataModel.rowCount}" rendered="#{not data.dataModel.disableCaseCount}" />
   <script type="text/javascript">
       var caseWidget = new CaseWidget();
       $(function() {

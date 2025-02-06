@@ -37,7 +37,7 @@
       styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 u-no-padding-bottom"
       layout="block">
       <!-- Title -->
-      <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}" layout="block" styleClass="'u-hidden'">
+      <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}" layout="block" styleClass="'hidden'">
         <h:panelGroup id="task-widget-title" styleClass="widget-header-main-title task-widget-header-content-title">
           <f:event listener="#{logic.preRenderTitle()}" type="preRenderComponent" />
           <cc:renderFacet name="title" />
@@ -464,7 +464,7 @@
     taskId="#{taskWidgetBean.selectedTaskItemId}"/>
 
   <!-- hidden row count to update breadcrumb -->
-  <h:outputText id="hidden-task-count" styleClass="u-hidden hidden-task-count js-hidden-task-count" value="#{data.dataModel.rowCount}" rendered="#{not data.dataModel.disableTaskCount}" />
+  <h:outputText id="hidden-task-count" styleClass="hidden hidden-task-count js-hidden-task-count" value="#{data.dataModel.rowCount}" rendered="#{not data.dataModel.disableTaskCount}" />
 
   <script type="text/javascript">
       var taskWidget = new TaskWidget();
