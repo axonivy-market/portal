@@ -31,6 +31,7 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
         "--disable-gpu",
         "--window-size=1920,1080",
       ],
+      defaultViewport: null,
     });
 
     const page = await browser.newPage();

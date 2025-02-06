@@ -98,7 +98,7 @@ jobs:
           nohup ./AxonIvyEngine > engine.log 2>&1 &
           echo $! > engine.pid
           for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
-            if curl -s -f http://localhost:8080/demo-portal > /dev/null; then
+            if curl -s -f http://localhost:8080/demo-portal/pro/portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp?embedInFrame= > /dev/null; then
               exit 0
             fi
             sleep 1
