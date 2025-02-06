@@ -167,8 +167,8 @@ public class BaseTest {
   public void setup() {
     launchBrowserAndGotoRelativeLink(cleanupDataLink);
     System.out.println("HERE TO READ FILE");
-    createJSonFile("/home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/resources/testFile/default-dashboard.json", PortalVariable.DASHBOARD.key);
-//    createJSonFile("default-dashboard.json", PortalVariable.DASHBOARD.key);
+//    createJSonFile("/home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/resources/testFile/default-dashboard.json", PortalVariable.DASHBOARD.key);
+    createJSonFile("default-dashboard.json", PortalVariable.DASHBOARD.key);
   }
 
   /**
