@@ -98,6 +98,7 @@ jobs:
           cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
           cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
           cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
+          cp AxonIvyPortal/PortalKitTestHelper/target/*.iar $DEPLOYMENT
       
       - name: Run test
         id: run-test        
@@ -118,4 +119,4 @@ jobs:
           name: test-reports
           retention-days: 5
           path: |
-            /home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/target/*
+            /home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
