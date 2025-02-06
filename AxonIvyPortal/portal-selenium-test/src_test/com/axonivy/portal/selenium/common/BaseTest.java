@@ -33,7 +33,7 @@ import ch.ivyteam.ivy.project.portal.test.Responsible;
 public class BaseTest {
 
   private final static String LOGIN_URL_PATTERN =
-      "/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
+      "/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=%s%26password=%s";
   protected final static String PORTAL_HOME_PAGE_URL = "/portal/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
   protected final static Duration DEFAULT_TIMEOUT = Duration.ofSeconds(45);
 
@@ -292,10 +292,10 @@ public class BaseTest {
       password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
       try {
         System.out.println(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
-//        open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
-        String url = "http://localhost:8080/demo-portal/pro/PortalKitTestHelper/1636734E13CEC872/login.ivp%3Fusername%3Dadmin%26password%3Dadmin";
-        System.out.println("open url:" + url);
-        open(url);
+        open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
+//        String url = "http://localhost:8080/demo-portal/pro/PortalKitTestHelper/1636734E13CEC872/login.ivp?username%3Dadmin%26password%3Dadmin";
+//        System.out.println("open url:" + url);
+//        open(url);
         $(".js-dashboard__wrapper").shouldBe(Condition.exist);
       } catch (Error e) {
         open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
