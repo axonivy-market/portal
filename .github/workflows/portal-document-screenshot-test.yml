@@ -110,4 +110,14 @@ jobs:
         if: job.steps.run-test.status == failure()
         run: |
           dir
-          cat /home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
+          cat /home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
+          
+      - name: Archive test reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          retention-days: 5
+          path: |
+            */target/testEngineOut.log
+            */target/selenide/*
+            */target/ivyEngine/deploy/*/*.deploymentLog
