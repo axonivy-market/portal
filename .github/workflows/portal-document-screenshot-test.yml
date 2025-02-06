@@ -103,7 +103,6 @@ jobs:
       - name: Run test
         id: run-test        
         run: |
-          cat /home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/resources/testFile/default-dashboard.json
           mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip -Dtest=com.axonivy.portal.selenium.document.screenshot.LoginScreenshotTest -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=100
         continue-on-error: true
 
