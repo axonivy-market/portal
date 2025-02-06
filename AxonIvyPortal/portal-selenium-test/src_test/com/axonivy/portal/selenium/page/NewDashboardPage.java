@@ -2,7 +2,6 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -848,20 +847,11 @@ public class NewDashboardPage extends TemplatePage {
   }
 
   private SelenideElement getGlobalSearchInput() {
-    return $("#global-search-component\\:global-search-data").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   @Override
   public GlobalSearchResultPage inputGlobalSearchKeyword(String keyword) {
-    $(".topbar-item.search-item").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    try {
-      $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable,
-          DEFAULT_TIMEOUT);
-    } catch (Error e) {
-      $(".topbar-item.search-item").shouldBe(appear, DEFAULT_TIMEOUT).click();
-      $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable,
-          DEFAULT_TIMEOUT);
-    }
     getGlobalSearchInput().click();
     getGlobalSearchInput().sendKeys(keyword);
     getGlobalSearchInput().sendKeys(Keys.RETURN);
@@ -922,10 +912,6 @@ public class NewDashboardPage extends TemplatePage {
 
   public SelenideElement getTopBar() {
     return $("[id='top-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-  }
-
-  public void clickOnGlobalSearch() {
-    $("a[id='global-search-item']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
   public int getNotificationsBadge() {
@@ -1082,10 +1068,6 @@ public class NewDashboardPage extends TemplatePage {
   
   public ClientStatisticWidgetNewDashboardPage selectClientStatisticChartWidget(String chartName) {
     return new ClientStatisticWidgetNewDashboardPage(chartName);
-  }
-  
-  public boolean isInputGlobalSearchDisabled() {
-    return $(".topbar-item.search-item").isDisplayed();
   }
   
   public SelenideElement getQuickGlobalSearchInput() {

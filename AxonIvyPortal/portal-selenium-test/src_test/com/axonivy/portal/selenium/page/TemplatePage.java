@@ -315,13 +315,11 @@ public abstract class TemplatePage extends AbstractPage {
 
   public class GlobalSearch {
 
-    private static final String GLOBAL_SEARCH_INPUT_SELECTOR = "#global-search-component\\:global-search-data";
-
     public GlobalSearch() {}
 
     public boolean isDisplayed() {
-      waitForElementDisplayed(By.cssSelector("a[id$='global-search-item']"), true);
-      return findElementByCssSelector("a[id$='global-search-item']").isDisplayed();
+      waitForElementDisplayed(By.cssSelector("input[id$='global-search-component:global-search-data']"), true);
+      return findElementByCssSelector("input[id$='global-search-component:global-search-data']").isDisplayed();
     }
 
     public SearchResultPage inputSearchKeyword(String keyword) {
@@ -331,27 +329,15 @@ public abstract class TemplatePage extends AbstractPage {
     }
 
     private void searchByKeywordInput(String keyword) {
-      waitForElementDisplayed(By.cssSelector(".topbar-item.search-item"), true);
-      waitForElementClickableThenClick("a[id$='global-search-item']");
-      waitForElementDisplayed(By.cssSelector("input[id$='global-search-component:global-search-data']"), true);
-      SelenideElement searchInput = $(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR)).shouldBe(appear, DEFAULT_TIMEOUT);
+      SelenideElement searchInput = $(By.cssSelector("input[id$='global-search-component:global-search-data']")).shouldBe(appear, DEFAULT_TIMEOUT);
       searchInput.click();
       searchInput.sendKeys(keyword);
       searchInput.click();
       searchInput.sendKeys(Keys.RETURN);
     }
 
-    public SearchResultPage inputSearchKeywordForWorkingTask(String keyword) {
-      searchByKeywordInput(keyword);
-      $("[id$=':search-warning-before-leaving-task-component:search-task-leave-warning-dialog']")
-          .shouldBe(appear, DEFAULT_TIMEOUT).$("[id$=':search-warning-before-leaving-task-component:leave-button']")
-          .shouldBe(clickable(), DEFAULT_TIMEOUT).click();
-      waitForElementDisplayed(By.id("search-results-tabview"), true);
-      return new SearchResultPage();
-    }
-
     public boolean isPresent() {
-      return isElementPresent(By.cssSelector("a[id$='global-search-item']"));
+      return isElementPresent(By.cssSelector("input[id$='global-search-component:global-search-data']"));
     }
 
     public void waitUtilProcessWidgetDisplayed() {
@@ -521,7 +507,6 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public GlobalSearchResultPage inputGlobalSearchKeyword(String keyword) {
-    $(".topbar-item.search-item").shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable,
         DEFAULT_TIMEOUT);
     getGlobalSearchInput().click();

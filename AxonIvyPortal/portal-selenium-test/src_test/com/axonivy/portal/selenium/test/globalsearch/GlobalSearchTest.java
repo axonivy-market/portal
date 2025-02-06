@@ -106,14 +106,10 @@ public class GlobalSearchTest extends BaseTest {
     updatePortalSetting(Variable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey(), "");
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
-    boolean isHiddenSearchIcon = newDashboardPage.isInputGlobalSearchDisabled();
-    assertFalse(isHiddenSearchIcon);
 
     updatePortalSetting(Variable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey(), "PROCESSES,TASKS");
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
-    isHiddenSearchIcon = newDashboardPage.isInputGlobalSearchDisabled();
-    assertTrue(isHiddenSearchIcon);
 
     String taskName = "Testing Task for Global Search (Name)";
     String nameKeyword = "(Name)";
