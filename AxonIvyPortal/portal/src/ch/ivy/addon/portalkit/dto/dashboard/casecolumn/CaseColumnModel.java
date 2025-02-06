@@ -2,6 +2,8 @@ package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 
 import java.util.Objects;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
@@ -9,6 +11,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivyteam.ivy.cm.exec.ContentManagement;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
@@ -16,6 +19,7 @@ import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 
 public class CaseColumnModel extends ColumnModel {
 
+  private static final String CMS_PATH = "CmsPath";
   private static final long serialVersionUID = 7358059302396225605L;
 
   public Object display(ICase caze) {
@@ -27,8 +31,23 @@ public class CaseColumnModel extends ColumnModel {
     } else if (isText()) {
       return customFields.textField(field).getOrNull();
     } else {
+      return displayStringFieldContent(caze);
+    }
+  }
+  
+  private String displayStringFieldContent(ICase caze) {
+    ICustomFields customFields = caze.customFields();
+    String cmsPath = customFields.stringField(field).meta().attribute(CMS_PATH);
+    if (cmsPath == null) {
       return customFields.stringField(field).getOrNull();
     }
+    cmsPath = cmsPath + "/" + customFields.stringField(field).getOrNull();
+    var cms = ContentManagement.of(caze.getProcessModelVersion());
+    var content = cms.content(cmsPath);
+    if (content == null || StringUtils.isBlank(content.get())) {
+      return customFields.stringField(field).getOrNull();
+    }
+    return content.get();
   }
 
   public static CaseColumnModel constructColumn(DashboardColumnType fieldType, String field) {
