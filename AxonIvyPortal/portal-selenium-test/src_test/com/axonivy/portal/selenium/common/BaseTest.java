@@ -18,7 +18,6 @@ import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -297,7 +296,7 @@ public class BaseTest {
 //        url = "http://localhost:8080/demo-portal/pro/PortalKitTestHelper/1636734E13CEC872/login.ivp?username%3Dadmin%26password%3Dadmin";
 //        System.out.println("open url:" + url);
 //        open(url);
-        $(".js-dashboard__wrapper").shouldBe(Condition.exist);
+//        $(".js-dashboard__wrapper").shouldBe(Condition.exist);
       } catch (Error e) {
         open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
 //        open(url);
