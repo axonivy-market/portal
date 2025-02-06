@@ -22,7 +22,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebDriverRunner;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivyteam.ivy.project.portal.test.Responsible;
 
 /**
@@ -165,10 +164,9 @@ public class BaseTest {
    * Default setup for each test It will clean up all test data and login with account demo
    */
   public void setup() {
-    launchBrowserAndGotoRelativeLink(cleanupDataLink);
+//    launchBrowserAndGotoRelativeLink(cleanupDataLink);
     System.out.println("HERE TO READ FILE");
-//    createJSonFile("/home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/resources/testFile/default-dashboard.json", PortalVariable.DASHBOARD.key);
-    createJSonFile("default-dashboard.json", PortalVariable.DASHBOARD.key);
+//    createJSonFile("default-dashboard.json", PortalVariable.DASHBOARD.key);
   }
 
   /**
