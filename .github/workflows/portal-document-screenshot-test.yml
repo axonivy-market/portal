@@ -118,6 +118,4 @@ jobs:
           name: test-reports
           retention-days: 5
           path: |
-            */target/testEngineOut.log
-            */target/selenide/*
-            */target/ivyEngine/deploy/*/*.deploymentLog
+            /home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/target/*
