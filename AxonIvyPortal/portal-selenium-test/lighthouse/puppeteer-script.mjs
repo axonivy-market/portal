@@ -70,7 +70,7 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
     await page.type("#login\\:login-form\\:password", "demo");
 
     await Promise.all([
-      page.click("#login\\:login-form\\:login"),
+      page.click("#login\\:login-form\\:login-command"),
       page.waitForNavigation({ waitUntil: "networkidle0" }),
     ]);
     debugLog("Login successful");
