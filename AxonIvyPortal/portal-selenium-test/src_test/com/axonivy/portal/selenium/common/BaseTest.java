@@ -358,6 +358,7 @@ public class BaseTest {
   
   protected void showNewDashboard() {
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    $(".js-dashboard__wrapper").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
   }
 
   public void redirectToRelativeLinkWithEmbedInFrame(String relativeProcessStartUrl) {
