@@ -723,6 +723,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoWidgetAvailable: No existen widgets.
     QuickSearch: Búsqueda rápida
     QuickSearchInfo: Puede personalizar el alcance de la búsqueda rápida en la gestión de columnas de widgets. La búsqueda se realiza en función de "contiene", pero tenga en cuenta el rendimiento al agregar numerosas columnas.
+    QuickSearchScope: 'Ámbito de búsqueda: {0}'
     RestoreDefaultDashboardMessage: Si continúa, perderá todos los widgets creados por usted. Se aplicará la configuración estándar de <span class="dashboard-template-name-message">{0}</span>.
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados
