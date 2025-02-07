@@ -846,20 +846,6 @@ public class NewDashboardPage extends TemplatePage {
         .exists();
   }
 
-  private SelenideElement getGlobalSearchInput() {
-    return $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
-  @Override
-  public GlobalSearchResultPage inputGlobalSearchKeyword(String keyword) {
-    getGlobalSearchInput().click();
-    getGlobalSearchInput().sendKeys(keyword);
-    getGlobalSearchInput().sendKeys(Keys.RETURN);
-    $("#search-results-tabview").shouldBe(appear, DEFAULT_TIMEOUT);
-    return new GlobalSearchResultPage();
-  }
-
-
   public void waitForCaseWidgetLoaded() {
     checkDisplayedCaseWidgetContainer();
     getCaseWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
@@ -1069,25 +1055,9 @@ public class NewDashboardPage extends TemplatePage {
   public ClientStatisticWidgetNewDashboardPage selectClientStatisticChartWidget(String chartName) {
     return new ClientStatisticWidgetNewDashboardPage(chartName);
   }
-  
-  public SelenideElement getQuickGlobalSearchInput() {
-    return $("input[id='quick-global-search-component:global-search-data']");
-  }
-  
-  public void clickOnQuickGlobalSearchInput() {
-    getQuickGlobalSearchInput().shouldBe(appear, DEFAULT_TIMEOUT).click();
-  }
-  
+
   public SelenideElement getGlobalQuickSearchPanel() {
-    return $("[id='quick-global-search-component:global-search-form']").shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-  
-  public GlobalSearchResultPage inputQuickGlobalSearchKeyword(String keyword) {
-    SelenideElement searchInput = getQuickGlobalSearchInput();
-    searchInput.shouldBe(appear, DEFAULT_TIMEOUT).click();
-    searchInput.sendKeys(keyword);
-    searchInput.sendKeys(Keys.RETURN);
-    return new GlobalSearchResultPage();
+    return $("[id='global-search-component:global-search-form']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public SelenideElement getProcessWidgetTable() {

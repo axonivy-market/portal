@@ -4,8 +4,8 @@ if (document) {
   const searchProcessesURL = "/api/global-search/processes";
   const searchTasksURL = "/api/global-search/tasks";
   const searchCasesURL = "/api/global-search/cases";
-  const searchId = "quick-global-search-component:global-search-data";
-  const eleSearchId = "[id='quick-global-search-component:global-search-data']";
+  const searchId = "global-search-component:global-search-data";
+  const eleSearchId = "[id='global-search-component:global-search-data']";
   const processTabIndex = 0;
   const taskTabIndex = 1;
   const caseTabIndex = 2;
@@ -27,9 +27,10 @@ if (document) {
   $(document).ready(function () {
     $(eleSearchId).val('');
 
-    $(".search-bar.process-tab-title").click(() => {
+    $(".search-bar.process-tab-title-global").click(() => {
       focusSearchBox();
       let keyword = $(eleSearchId).val().toLowerCase();
+      console.log(keyword)
       if (keyword.startsWith(startsWithTask)) {
         keyword = keyword.replace(startsWithTask, startsWithProcess);
       }
@@ -40,7 +41,7 @@ if (document) {
 
       searchProcess(keyword);
     });
-    $(".search-bar.task-tab-title").click(() => {
+    $(".search-bar.task-tab-title-global").click(() => {
       focusSearchBox();
       let keyword = $(eleSearchId).val().toLowerCase();
       if (keyword.startsWith(startsWithCase)) {
@@ -53,7 +54,7 @@ if (document) {
 
       searchTask(keyword);
     });
-    $(".search-bar.case-tab-title").click(() => {
+    $(".search-bar.case-tab-title-global").click(() => {
       focusSearchBox();
       let keyword = $(eleSearchId).val().toLowerCase();
       if (keyword.startsWith(startsWithTask)) {
@@ -74,9 +75,9 @@ if (document) {
     } else {
       $(eleSearchId).removeClass('global-large-search-bar').addClass('global-small-search-bar');
     }
-    let processTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].process-tab-title").length;
-    let taskTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].task-tab-title").length;
-    let caseTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].case-tab-title").length;
+    let processTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].process-tab-title-global").length;
+    let taskTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].task-tab-title-global").length;
+    let caseTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].case-tab-title-global").length;
     if (processTab) {
       search(e.target.value, PROCESS_TAB);
     } else if (taskTab) {
@@ -110,7 +111,7 @@ if (document) {
 
   function handlePromise(tabIndex) {
     return new Promise((resolve, reject) => {
-      let searchInput = $('#quick-global-search-component\\:global-search-data');
+      let searchInput = $('#global-search-component\\:global-search-data');
       let searchValue = searchInput.val().toLowerCase();
       if (tabIndex === taskTabIndex && !searchValue.startsWith(startsWithTask)) {
         searchInput.val(startsWithTask + searchValue);
@@ -151,17 +152,17 @@ if (document) {
     let explicit = false;
     if (input.startsWith(startsWithProcess)) {
       keyword = input.slice(input.indexOf(':') + 1);
-      tabIndex = $("li.ui-tabs-header.search-bar.process-tab-title").attr('data-index') * 1
+      tabIndex = $("li.ui-tabs-header.search-bar.process-tab-title-global").attr('data-index') * 1
       explicit = true;
     }
     if (input.startsWith(startsWithTask)) {
       keyword = input.slice(input.indexOf(':') + 1);
-      tabIndex = $("li.ui-tabs-header.search-bar.task-tab-title").attr('data-index') * 1;
+      tabIndex = $("li.ui-tabs-header.search-bar.task-tab-title-global").attr('data-index') * 1;
       explicit = true;
     }
     if (input.startsWith(startsWithCase)) {
       keyword = input.slice(input.indexOf(':') + 1);
-      tabIndex = $("li.ui-tabs-header.search-bar.case-tab-title").attr('data-index') * 1
+      tabIndex = $("li.ui-tabs-header.search-bar.case-tab-title-global").attr('data-index') * 1
       explicit = true;
     }
 
@@ -177,9 +178,9 @@ if (document) {
       let activeTab = $("li.ui-tabs-header.search-bar[data-index='" + tabIndex + "']");
       activeTab.click();
     } else {
-      let processTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].process-tab-title").length;
-      let taskTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].task-tab-title").length;
-      let caseTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].case-tab-title").length;
+      let processTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].process-tab-title-global").length;
+      let taskTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].task-tab-title-global").length;
+      let caseTab = $("li.ui-tabs-header.search-bar[aria-selected='true'].case-tab-title-global").length;
       if (processTab) {
         search(keyword.trim(), PROCESS_TAB);
       } else if (taskTab) {

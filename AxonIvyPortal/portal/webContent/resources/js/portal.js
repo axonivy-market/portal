@@ -491,8 +491,7 @@ const multipleDashboardId = '[id="user-menu-required-login:main-navigator:main-m
 const processItemId = '[id^="user-menu-required-login:main-navigator:main-menu_process"]';
 const taskItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__default-task-list-dashboard-main-dashboard"]';
 const caseItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__default-case-list-dashboard-main-dashboard"]';
-const searchInputId = '[id="global-search-component:global-search-data"]:visible';
-const quickSearchInputId = '[id="quick-global-search-component:global-search-data"]:visible'
+const searchInputId = '[id="global-search-component:global-search-data"]:visible'
 const useSettingMenuId = 'a#user-settings-menu:visible';
 
 $(document).ready(function () {
@@ -502,7 +501,7 @@ $(document).ready(function () {
     'Digit2': processItemId,
     'Digit3': taskItemId,
     'Digit4': caseItemId,
-    'Digit5': [quickSearchInputId, searchInputId],
+    'Digit5': [searchInputId],
     'Digit6': useSettingMenuId
   };
 

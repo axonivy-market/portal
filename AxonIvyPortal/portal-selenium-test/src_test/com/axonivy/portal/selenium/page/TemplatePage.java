@@ -505,19 +505,22 @@ public abstract class TemplatePage extends AbstractPage {
   public SelenideElement getGlobalGrowlMessage() {
     return findElementById(PORTAL_GLOBAL_GROWL_ID).find(By.cssSelector(".ui-growl-message"));
   }
-
+  
+  public void clickOnGlobalSearchInput() {
+    getGlobalSearchInput().shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
+  
   public GlobalSearchResultPage inputGlobalSearchKeyword(String keyword) {
-    $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable,
-        DEFAULT_TIMEOUT);
-    getGlobalSearchInput().click();
-    getGlobalSearchInput().sendKeys(keyword);
-    getGlobalSearchInput().sendKeys(Keys.ENTER.toString());
+    SelenideElement searchInput = getGlobalSearchInput().shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable, DEFAULT_TIMEOUT);
+    searchInput.click();
+    searchInput.sendKeys(keyword);
+    searchInput.sendKeys(Keys.RETURN);
     $("#search-results-tabview").shouldBe(appear, DEFAULT_TIMEOUT);
     return new GlobalSearchResultPage();
   }
 
-  private SelenideElement getGlobalSearchInput() {
-    return $("#global-search-component\\:global-search-data").shouldBe(appear, DEFAULT_TIMEOUT);
+  public SelenideElement getGlobalSearchInput() {
+    return $("input[id$='global-search-component:global-search-data']");
   }
   
   public QRCodePage openQRCode() {
