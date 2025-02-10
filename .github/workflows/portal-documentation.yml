@@ -37,7 +37,6 @@ jobs:
     steps:
       - name: Get current version
         id: get_version
-        shell: bash
         run: |
           VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
           if [[ "$VERSION" == "null object or invalid expression" ]]; then
