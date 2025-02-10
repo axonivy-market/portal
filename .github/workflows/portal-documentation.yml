@@ -27,11 +27,11 @@ jobs:
         - ${{ github.workspace }}
 
     steps:
-      - name: Download Artifacts
-        uses: actions/download-artifact@v4
+      # - name: Download Artifacts
+      #   uses: actions/download-artifact@v4
       
-      - name: List Files
-        run: ls -R
+      # - name: List Files
+      #   run: ls -R
       
       - name: Checkout code
         uses: actions/checkout@v3
