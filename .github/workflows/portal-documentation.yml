@@ -57,7 +57,7 @@ jobs:
       - name: Download screenshots from artifacts
         uses: actions/download-artifact@v4
         with:
-          name: screenshot-test-reports.zip
+          name: screenshots
           path: Documentation/portal-guide/source/screenshots
           
       - name: Unzip portal screenshots
