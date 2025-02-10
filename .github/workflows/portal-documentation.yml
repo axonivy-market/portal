@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   checkout-source:
-    runs-on: portal01
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,7 +23,7 @@ jobs:
 
   generate-resources:
     needs: [checkout-source]
-    runs-on: portal01
+    runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.get_version.outputs.version }}
     container:
@@ -50,19 +50,27 @@ jobs:
           mvn clean generate-resources -f Documentation/pom.xml
 
   unzip-screenshots:
-    runs-on: portal01
+    runs-on: ubuntu-latest
     needs: [generate-resources]
     steps:
+      - name: download screenshots from artifacts
+-       uses: actions/download-artifact@v4
+        with:
+          name: screenshots.zip
+          path: Documentation/portal-guide/source/screenshots
+          
       - name: Unzip portal screenshots
         run: |
-          unzip -o /mnt/portal02/document-screenshots/portal-document-screenshots-selenide-${{ needs.generate-resources.outputs.version }}.zip \
-            -d Documentation/portal-guide/source/screenshots
+          unzip -o Documentation/portal-guide/source/screenshots/screenshots.zip 
+          dir Documentation/portal-guide/source/screenshots/
       - name: Run substitute
         shell: bash
         run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
+    
+    
 
   build-document:
-    runs-on: portal01
+    runs-on: ubuntu-latest
     needs: [unzip-screenshots, generate-resources]
     container:
       image: axonivy/build-container:read-the-docs-2
@@ -88,7 +96,7 @@ jobs:
             fi
   
   install-or-deploy:
-    runs-on: portal01
+    runs-on: ubuntu-latest
     needs: [generate-resources,build-document]
     container:
       image: maven:3.9.8-eclipse-temurin-21
@@ -124,13 +132,4 @@ jobs:
           name: Documentation
           path: |
             Documentation/*/target/*.zip
-
-  clean-up:
-    runs-on: portal01
-    needs: [install-or-deploy]
-    if: always()
-    steps:  
-      - name: Clean up
-        shell: bash
-        run: sudo rm -rf ${{ github.workspace }}/*
 
