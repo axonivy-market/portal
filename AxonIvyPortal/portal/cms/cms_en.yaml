@@ -721,11 +721,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       WidgetNameColumn: Widget name
       WrongDateFormat: The date is invalid
     ManageFilter: Manage filters
+    NoColumnsEnabledForQuickSearch: No columns are enabled for quick search
     NoData: No data
     NoSavedFilterMessage: No saved filter found. Try to create a new by click on Save Filter button
     NoWidgetAvailable: There are no widgets.
     QuickSearch: Quick search
     QuickSearchInfo: You can customize the Quick Search's scope in the widgets column management. It searches based on "contains," but be mindful of performance when adding numerous columns.
+    QuickSearchScope: 'Search Scope: {0}'
     RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
