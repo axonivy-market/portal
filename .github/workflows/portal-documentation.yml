@@ -56,6 +56,7 @@ jobs:
             
       - name: List downloaded artifacts
         run: |
+          sudo apt-get install unzip
           unzip Documentation/portal-guide/source/screenshots/*.zip
           ls -la Documentation/portal-guide/source/screenshots/  
 
