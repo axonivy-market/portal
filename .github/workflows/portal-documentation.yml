@@ -21,7 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.get_version.outputs.version }}
-    image: axonivy/build-container:read-the-docs-2
+    container:
+      image: axonivy/build-container:read-the-docs-2
       options: -u root:root
       volumes:
         - ${{ github.workspace }}:/workspace
