@@ -59,6 +59,8 @@ jobs:
         with:
           args: unzip -qq Documentation/portal-guide/source/screenshots/*.zip -d Documentation/portal-guide/source/screenshots/
       
+      
+      
       - name: List downloaded artifact        
         run: |
           ls -la Documentation/portal-guide/source/screenshots/  
