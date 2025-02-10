@@ -81,14 +81,11 @@ Task Permissions
 - Delegate
 
    To be able to delegate, the user needs permission
-   :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`.
+   :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>` and :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`.
 
    To delegate personal or group tasks, the user needs permission
    :bdg-ref-warning:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`. This permission belongs to the
    PortalPermissions group. It is not assigned to role Everybody by default.
-
-   To delegate all tasks in a task list, the user needs permission
-   :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`.
 
    .. important::
       Only tasks ready for user processing can be delegated.
