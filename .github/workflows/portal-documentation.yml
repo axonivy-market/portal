@@ -30,7 +30,7 @@ jobs:
       - name: Download Artifacts
         uses: actions/download-artifact@v4
         with:
-          name: screenshots
+          name: 2562791069
           run-id: 13235652216
           
       - name: Checkout code
