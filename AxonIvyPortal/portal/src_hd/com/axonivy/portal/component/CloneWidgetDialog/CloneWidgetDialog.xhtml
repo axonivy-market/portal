@@ -15,7 +15,7 @@
 
 <cc:implementation>
   <p:dialog id="clone-to-dashboard-dialog" widgetVar="clone-to-dashboard-dialog"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CloneWidget')}"
+    header="#{cloneWidgetBean.cloneToDashboardDialogHeader}"
     appendTo="@(body)" closeOnEscape="true"
     fitViewport="true" responsive="true"
     resizable="false" width="450px"
@@ -25,7 +25,7 @@
     <h:form id="clone-widget-form">
       <h:panelGroup id="clone-widget-panel" layout="block" styleClass="flex w-full flex-column">
         <div class="mb-3">
-          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}"
+          <h:outputLabel value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/CloneWidgetDialog/TargetDashboard')}"
             styleClass="font-semibold" for="clone-dashboard" />
         </div>
         <div class="mb-3 ui-fluid">
@@ -34,19 +34,20 @@
             <f:selectItem value="#{null}" noSelectionOption="true" />
             <f:selectItems value="#{cloneWidgetBean.availableDashboards}" var="dashboard"
               itemLabel="#{dashboard.title}" itemValue="#{dashboard}" />
-            <p:ajax process="@(this)" update="@(this)" />
+            <p:ajax process="@(this)" update="#{p:resolveFirstComponentWithId('clone-to-footer-panel', view).clientId}" />
           </p:selectOneMenu>
         </div>
       </h:panelGroup>
     </h:form>
 
     <f:facet name="footer">
-      <h:panelGroup id="clone-footer-panel" layout="block" styleClass="u-text-align-right">
+      <h:panelGroup id="clone-to-footer-panel" layout="block" styleClass="u-text-align-right">
       <p:commandButton id="clone-button" styleClass="w-full"
+        disabled="#{cloneWidgetBean.targetDashboard eq null}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Clone')}"
         actionListener="#{cloneWidgetBean.cloneWidget()}"
         process="clone-widget-form"
-        oncomplete="PF('clone-to-dashboard-dialog').hide();" />
+        oncomplete="location.reload();" />
       </h:panelGroup>
     </f:facet>
   </p:dialog>
