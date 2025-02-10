@@ -33,7 +33,7 @@
   <c:set var="renderFilter" value="#{isReadOnlyMode and (empty isRenderFilter ? 'true': isRenderFilter)}"/>
   <c:set var="renderInfo" value="#{isReadOnlyMode and (empty isRenderInfo ? 'true': isRenderInfo)}"/>
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
-
+  <f:event listener="#{dashboardBean.setSearchScope(widget)}" type="preRenderComponent" />
   <h:panelGroup layout="block" class="widget__header" rendered="#{not isHeaderHidden}">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{widget.name}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
@@ -46,6 +46,7 @@
       <p:inputText id="quick-search-input-#{index}" value="#{widget.quickSearchKeyword}"
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}"
         onkeydown="handleKeyDown(event)" disabled="#{!isReadOnlyMode}">
+        <p:tooltip styleClass="quick-search-input-tooltip"  for="quick-search-input-#{index}" value="#{dashboardBean.searchScope}" position="top" />
         <p:ajax delay="800" listener="#{widget.updateQuickSearchKeyword()}"
           onstart="return shouldTriggerAjax(event)"
           event="keydown" process="@this"
