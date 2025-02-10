@@ -346,7 +346,7 @@ public class DashboardUtils {
     }
     List<Dashboard> dashboards = new ArrayList<>();
     portalPublicDashboardWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
-    return getVisibleDashboards(dashboards);
+    return dashboards;
   }
 
   public static List<Dashboard> getPrivateDashboards() {
@@ -380,7 +380,7 @@ public class DashboardUtils {
     }
     List<Dashboard> dashboards = new ArrayList<>();
     portalPrivateDashboardWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
-    return getVisibleDashboards(dashboards);
+    return dashboards;
   }
 
   public static List<Dashboard> collectDashboards() {
