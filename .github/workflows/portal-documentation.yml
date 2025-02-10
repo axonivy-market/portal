@@ -22,12 +22,18 @@ jobs:
     outputs:
       version: ${{ steps.get_version.outputs.version }}
     container:
-      image: maven:3.9.8-eclipse-temurin-21
+      image: axonivy/build-container:read-the-docs-2
+      options: -u root:root
       volumes:
-        - ${{ github.workspace }}
+        - ${{ github.workspace }}:/workspace
         
 
     steps:
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.8
+          
       - name: Checkout code
         uses: actions/checkout@v3
           
