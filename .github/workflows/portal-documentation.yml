@@ -37,8 +37,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-          with:
-            ref: feature/IVYPORTAL-18233-Create-Github-workflow-for-screenshot-document-build-12
           
       - name: Get current version
         id: get_version
