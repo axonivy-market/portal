@@ -56,10 +56,11 @@ jobs:
             
       - name: install zip
         uses: montudor/action-zip@v1
-        
+        with:
+          args: unzip -qq Documentation/portal-guide/source/screenshots/*.zip -d Documentation/portal-guide/source/screenshots/
+      
       - name: List downloaded artifact        
         run: |
-          unzip Documentation/portal-guide/source/screenshots/*.zip
           ls -la Documentation/portal-guide/source/screenshots/  
 
       - name: Run substitute
