@@ -56,7 +56,8 @@ jobs:
             
       - name: List downloaded artifacts
         run: |
-          7z x Documentation/portal-guide/source/screenshots/*.zip
+          apt-get install unzip
+          unzip Documentation/portal-guide/source/screenshots/*.zip
           ls -la Documentation/portal-guide/source/screenshots/  
 
       - name: Run substitute
