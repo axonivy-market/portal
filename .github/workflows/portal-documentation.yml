@@ -27,17 +27,6 @@ jobs:
         - ${{ github.workspace }}
 
     steps:
-      - name: Download artifacts from screenshot workflow
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          workflow: portal-document-screenshot-test.yml
-          name: portal-screenshots
-          path: Documentation/portal-guide/source/screenshots
-          
-      - name: List downloaded artifacts
-        run: |
-          ls -la Documentation/portal-guide/source/screenshots/
-      
       - name: Checkout code
         uses: actions/checkout@v3
           
@@ -59,17 +48,17 @@ jobs:
           mvn clean process-resources "-Divy.engine.version=[12.0.0,12.1.0)" "-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine.zip" -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
       
-      # - name: Download screenshots from artifacts
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: portal-screenshots
-      #     path: Documentation/portal-guide/source/screenshots
-          
-      - name: Unzip portal screenshots
+      - name: Download artifacts from screenshot workflow
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: portal-document-screenshot-test.yml
+          name: portal-screenshots
+          path: Documentation/portal-guide/source/screenshots
+            
+      - name: List downloaded artifacts
         run: |
-          find Documentation/portal-guide/source/screenshots -type f -name "*.zip" -exec unzip -o {} -d Documentation/portal-guide/source/screenshots/ \;
-          rm -f Documentation/portal-guide/source/screenshots/*.zip
-          ls -la Documentation/portal-guide/source/screenshots/
+          ls -la Documentation/portal-guide/source/screenshots/  
+
       - name: Run substitute
         shell: bash
         run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
