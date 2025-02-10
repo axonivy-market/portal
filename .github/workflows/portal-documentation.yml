@@ -16,13 +16,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  checkout-source:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: feature/IVYPORTAL-18233-Create-Github-workflow-for-screenshot-document-build-12
 
   generate-resources:
     needs: [checkout-source]
@@ -55,11 +48,7 @@ jobs:
         run: |
           mvn clean process-resources "-Divy.engine.version=[12.0.0,12.1.0)" "-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine.zip" -f Documentation/public-api/pom.xml
           mvn clean generate-resources -f Documentation/pom.xml
-
-  unzip-screenshots:
-    runs-on: ubuntu-latest
-    needs: [generate-resources]
-    steps:
+      
       - name: Download screenshots from artifacts
         uses: actions/download-artifact@v4
         with:
@@ -73,8 +62,12 @@ jobs:
       - name: Run substitute
         shell: bash
         run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
-    
-    
+        
+      - name: Download Artifacts
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: portal-document-screenshot.yml
+          name: screenshots
 
   build-document:
     runs-on: ubuntu-latest
