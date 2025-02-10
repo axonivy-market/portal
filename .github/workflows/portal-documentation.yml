@@ -29,10 +29,10 @@ jobs:
     steps:
       - name: Download Artifacts
         uses: actions/download-artifact@v4
-        with:
-          name: screenshots.zip
-          run-id: 13235652216
-          
+      
+      - name: List Files
+        run: ls -R
+      
       - name: Checkout code
         uses: actions/checkout@v3
           
