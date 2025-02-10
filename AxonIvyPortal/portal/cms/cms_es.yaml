@@ -1377,8 +1377,11 @@ Dialogs:
             ClientStatisticWidget:
               IdNotFound: Grafico con ID {0} no encontrado
               NoPermissionChartMessage: No tiene permiso para ver este gráfico.
+            CloneWidgetDialog:
+              Header: Clone widget "{0}"
+              TargetDashboard: Target dashboard
             CloneWidgetFromDashboardDialog:
-              header: Clonar el widget desde el tablero
+              header: Clonar widget desde
             DashboardImportDetails:
               FileInfomation: Informacion del archivo
               ImportPrivate: Importar panel privado
@@ -1411,7 +1414,7 @@ Dialogs:
               NotificationWidgetDescription: Este widget muestra todas las notificaciones según la configuración de notificaciones.
               WidgetFilter: Filtro de widgets
             PortalDashboardDetailModification:
-              CloneFrom: Clonar desde...
+              CloneWidget: Clonar widget
             TaskWidgetConfiguration:
               AddFilter: Añadir filtro
               ResetFilter: Restablecer filtro
