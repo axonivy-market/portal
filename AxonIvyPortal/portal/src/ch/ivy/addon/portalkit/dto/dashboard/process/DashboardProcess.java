@@ -175,7 +175,7 @@ public class DashboardProcess implements Process {
 
   @Override
   public String getImageUrl() {
-    // Change default value image
+    // Change default image value
     if (imageUrl.contains(DEFAULT_IMAGE_VALUE_DARK_MODE)) {
       imageUrl = getContentImageUrl(DefaultImage.PROCESSMODELING.getPath());
     }
@@ -215,7 +215,7 @@ public class DashboardProcess implements Process {
   }
   
   public String getDefaultImageDarkUrl() {
-    // Change default value image
+    // Change default image value
     if (imageUrl.contains(DEFAULT_IMAGE_VALUE_LIGHT_MODE)) {
       imageUrl = getContentImageUrl(DefaultImage.PROCESSMODELINGDARK.getPath());
     }
