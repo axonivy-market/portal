@@ -124,7 +124,7 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
     }
 
     // Save the flow report
-    fs.writeFileSync("lighthouse-flow-report.html", flowReportHtml);
+    fs.writeFileSync("lighthouse-report.html", flowReportHtml);
     debugLog("Flow HTML report saved successfully");
   } catch (error) {
     debugLog(`Error: ${error.message}`);
