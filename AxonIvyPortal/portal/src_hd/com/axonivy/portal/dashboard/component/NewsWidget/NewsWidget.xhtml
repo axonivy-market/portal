@@ -64,7 +64,7 @@
                 <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode}"/>
               </ui:include>
               <f:facet name="loader">
-                <h:panelGroup layout="block" styleClass="u-text-align-center" rendered="#{isReadOnlyMode}">
+                <h:panelGroup layout="block" styleClass="text-center" rendered="#{isReadOnlyMode}">
                   <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." icon="si si-button-refresh-arrows"
                     styleClass="rounded-button ui-button-outlined"
                     onclick="setupNewsWidgetContent('#{widget.id}', true)" />
@@ -79,7 +79,7 @@
             </h:panelGroup>
           </h:panelGroup>
           <h:panelGroup id="news-widget__add-news-actions" rendered="#{newsWidgetBean.canManageNews and isReadOnlyMode}"
-            layout="block" styleClass="news-widget__add-news-actions ui-sm-hidden u-text-align-right">
+            layout="block" styleClass="news-widget__add-news-actions ui-sm-hidden text-right">
             <p:commandLink id="add-news-button"
               value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/AddNews')}"
               actionListener="#{newsWidgetBean.preAddingNews()}" oncomplete="PF('manage-news-dialog').show();"

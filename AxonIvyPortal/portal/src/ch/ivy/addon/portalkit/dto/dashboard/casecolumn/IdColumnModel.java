@@ -25,7 +25,7 @@ public class IdColumnModel extends CaseColumnModel implements Serializable {
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-cases__id u-text-align-center u-padding-0";
+    return "dashboard-cases__id text-center u-padding-0";
   }
 
   @Override

@@ -255,7 +255,7 @@
                   requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"/>
                 <p:message for="save-filter-name"/>
               </div>
-              <div class="ui-g-12 u-text-align-right">
+              <div class="ui-g-12 text-right">
                 <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   oncomplete="PF('save-widget-filter-dialog').hide();" styleClass="u-mar-right-10"
                   process="@this" update="save-filter-form" resetValues="true"
@@ -284,7 +284,7 @@
                   selection="#{dashboardBean.deleteFilters}" rowKey="#{quickFilter.name}"
                   emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/EmptyFilterMessage')}" lazy="false">
                   
-                  <p:column selectionMode="multiple" styleClass="saved-filter-selection-column u-text-align-center" width="20"/>
+                  <p:column selectionMode="multiple" styleClass="saved-filter-selection-column text-center" width="20"/>
 
                   <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" width="200"
                     filterBy="#{quickFilter.name}" sortBy="#{quickFilter.name}" filterMatchMode="contains">
@@ -303,7 +303,7 @@
                   </p:column>
                 </p:dataTable>
               </div>
-              <h:panelGroup id="manage-filter-action" layout="block" styleClass="ui-g-12 u-text-align-right">
+              <h:panelGroup id="manage-filter-action" layout="block" styleClass="ui-g-12 text-right">
                 <p:commandButton id="delete-widget-filter-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/removeSelection')}"
                   process="delete-saved-filter-form" update="delete-saved-filter-form:quick-filter-table" global="false"
                   actionListener="#{dashboardBean.deleteSavedFilter()}"
@@ -312,7 +312,7 @@
             </h:form>
           </p:dialog>
 
-          <h:panelGroup rendered="#{managedBean.isShowShareButtonOnDashboard() and not managedBean.isMainDashboardSelected()}" layout="block" styleClass="u-text-align-center">
+          <h:panelGroup rendered="#{managedBean.isShowShareButtonOnDashboard() and not managedBean.isMainDashboardSelected()}" layout="block" styleClass="text-center">
             <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShareThisDashboard')}" 
                   onclick="PF('share-dashboard-dialog').show(); return false;" styleClass="js-share-dashboard-link" />
           </h:panelGroup>

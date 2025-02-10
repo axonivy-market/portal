@@ -47,7 +47,7 @@
           <span><h:outputText value="#{task.descriptions().current()}" /></span>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortable="true" sortBy="#{expiryTimestamp}" field="expiryTimestamp" filterable="false" styleClass="relevant-tasks__expiry u-hidden-sm-down">
-          <h:outputText styleClass="u-text-align-center" value="#{task.expiryTimestamp}">
+          <h:outputText styleClass="text-center" value="#{task.expiryTimestamp}">
             <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
           </h:outputText>
         </p:column>

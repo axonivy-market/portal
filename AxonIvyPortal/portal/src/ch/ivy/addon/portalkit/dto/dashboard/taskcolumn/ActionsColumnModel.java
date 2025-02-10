@@ -41,6 +41,6 @@ public class ActionsColumnModel extends TaskColumnModel implements Serializable 
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__actions u-text-align-center widget-column";
+    return "dashboard-tasks__actions text-center widget-column";
   }
 }
