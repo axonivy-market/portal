@@ -28,11 +28,10 @@ jobs:
 
     steps:
       - name: Download Artifacts
-        uses: dawidd6/action-download-artifact@v8
+        uses: actions/download-artifact@v4
         with:
-          workflow: portal-document-screenshot-test.yml
           name: screenshots
-          branch: feature/IVYPORTAL-18233-Create-Github-workflow-for-screenshot-document-build-12
+          run-id: 13235652216
           
       - name: Checkout code
         uses: actions/checkout@v3
