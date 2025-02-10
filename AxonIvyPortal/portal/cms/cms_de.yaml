@@ -719,6 +719,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WidgetNameColumn: Widget-Name
       WrongDateFormat: Das Datum ist ungültig
     ManageFilter: Filterverwaltung
+    NoColumnsEnabledForQuickSearch: Keine Spalten sind für die Schnellsuche aktiviert
     NoData: Keine Daten
     NoSavedFilterMessage: Kein gespeicherter Filter gefunden. Versuchen Sie, einen neuen zu erstellen, indem Sie auf die Schaltfläche Filter speichern klicken.
     NoWidgetAvailable: Es gibt keine Widgets.

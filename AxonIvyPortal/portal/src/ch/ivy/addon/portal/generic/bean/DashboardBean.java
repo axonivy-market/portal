@@ -575,20 +575,17 @@ public class DashboardBean implements Serializable {
   private String getSearchScopeFromWidget(List<ColumnModel> filterableColumns) {
     List<String> fieldList = filterableColumns.stream().filter(col -> Boolean.TRUE.equals(col.getQuickSearch()))
         .map(ColumnModel::getHeaderText).collect(Collectors.toList());
+    if (fieldList.isEmpty()) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/NoColumnsEnabledForQuickSearch");
+    }
     StringBuilder fieldNameList = appendFieldNameList(fieldList);
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearchScope",
         Arrays.asList(fieldNameList.toString()));
   }
 
   private StringBuilder appendFieldNameList(List<String> fieldList) {
-    StringBuilder fieldNameList = new StringBuilder();
-    if (!fieldList.isEmpty()) {
-      fieldNameList.append(String.join(", ", fieldList));
-    } else {
-      fieldNameList.append("none");
-    }
-    return fieldNameList;
-  }
+    return new StringBuilder(String.join(", ", fieldList));
+}
 
   public String getSearchScope() {
     return this.searchScope;
