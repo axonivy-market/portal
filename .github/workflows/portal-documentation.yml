@@ -1,6 +1,9 @@
 name: Portal Documentation
 run-name: 📚 Portal Documentation
 on:
+  push:
+    branches:
+      - feature/IVYPORTAL-18233-Create-Github-workflow-for-screenshot-document-build-12
   workflow_dispatch:
     inputs:
       ivyVersion:
