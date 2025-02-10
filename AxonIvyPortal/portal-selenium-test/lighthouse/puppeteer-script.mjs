@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import puppeteer from "puppeteer";
-import lighthouse from "lighthouse";
+import lighthouse, { startFlow, desktopConfig } from "lighthouse";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
@@ -75,7 +75,7 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
     ]);
     debugLog("Login successful");
 
-    //creating task
+    // Creating task
     const createTaskResponse = await page.goto(CREATE_TASK_URL, {
       waitUntil: "networkidle0",
       timeout: 30000,
@@ -88,12 +88,12 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
     }
     debugLog(`Create task page: ${loginResponse.status()}`);
 
-    // redirected to dashboard
+    // Redirected to dashboard
     await page.goto(DASHBOARD_URL, {
       waitUntil: "networkidle0",
       timeout: 30000,
     });
-    debugLog("redirected to dashboard");
+    debugLog("Redirected to dashboard");
 
     debugLog("Verifying dashboard loaded...");
     await page.waitForSelector(".ui-g.js-dashboard__wrapper.js-view-mode", {
@@ -102,57 +102,20 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
     });
     debugLog("Dashboard loaded successfully");
 
-    // Run Lighthouse audit
-    debugLog("Starting Lighthouse audit...");
-    const runnerResult = await lighthouse(page.url(), {
-      port: new URL(browser.wsEndpoint()).port,
-      output: ["html", "json"],
-      onlyCategories: ["accessibility"],
-      settings: {
-        emulatedFormFactor: "desktop", // enforce desktop mode
-        screenEmulation: {
-          width: 1920,
-          height: 1080,
-          deviceScaleFactor: 1,
-          mobile: false, // disable mobile emulation
-          disabled: false,
-        },
-        throttling: {
-          rttMs: 0,
-          throughputKbps: 0,
-          requestLatencyMs: 0,
-          downloadThroughputKbps: 0,
-          uploadThroughputKbps: 0,
-          cpuSlowdownMultiplier: 1,
-        },
-        throttlingMethod: "provided", // use provided throttling settings
-        // Removed disableDeviceEmulation and disableNetworkThrottling
-      },
+    // Run Lighthouse user flow audit (desktop)
+    // Using desktopConfig and disabling Lighthouse viewport emulation to inherit Puppeteer's settings.
+    const flow = await startFlow(page, {
+      config: desktopConfig,
+      flags: { screenEmulation: { disabled: true } },
     });
+    // Use navigate() to capture a navigation step (here we reuse current URL)
+    await flow.navigate(page.url());
+    const flowReportHtml = await flow.generateReport();
 
     debugLog("Puppeteer viewport:");
     debugLog(await page.viewport());
 
-    debugLog("Lighthouse configuration:");
-    debugLog(
-      JSON.stringify(
-        {
-          emulatedFormFactor: "desktop",
-          screenEmulation: {
-            width: 1920,
-            height: 1080,
-            deviceScaleFactor: 1,
-            mobile: false,
-            disabled: false,
-          },
-          throttling: { cpuSlowdownMultiplier: 1 },
-          disableDeviceEmulation: true,
-          disableNetworkThrottling: true,
-        },
-        null,
-        2
-      )
-    );
+    debugLog("User Flow Report generated");
 
     // Ensure reports directory exists
     const reportsDir = "lighthouse-reports";
@@ -160,42 +123,9 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
       fs.mkdirSync(reportsDir, { recursive: true });
     }
 
-    // Save reports
-    debugLog("Saving reports...");
-    try {
-      if (Array.isArray(runnerResult.report)) {
-        // Handle array of reports (HTML is typically the first element)
-        fs.writeFileSync("lighthouse-report.html", runnerResult.report[0]);
-        debugLog("HTML report saved from array");
-      } else if (typeof runnerResult.report === "string") {
-        // Handle string report
-        fs.writeFileSync("lighthouse-report.html", runnerResult.report);
-        debugLog("HTML report saved from string");
-      } else {
-        debugLog(`Unexpected report format: ${typeof runnerResult.report}`);
-        debugLog(`Report content: ${JSON.stringify(runnerResult.report)}`);
-      }
-
-      if (runnerResult.lhr) {
-        fs.writeFileSync(
-          path.join(reportsDir, "report.json"),
-          JSON.stringify(runnerResult.lhr, null, 2)
-        );
-        debugLog("JSON report saved");
-      }
-
-      if (
-        !fs.existsSync("lighthouse-report.html") &&
-        !fs.existsSync(path.join(reportsDir, "report.json"))
-      ) {
-        throw new Error("No reports were generated");
-      }
-    } catch (error) {
-      debugLog(`Error saving reports: ${error.message}`);
-      throw error;
-    }
-
-    debugLog("Reports saved successfully");
+    // Save the flow report
+    fs.writeFileSync("lighthouse-flow-report.html", flowReportHtml);
+    debugLog("Flow HTML report saved successfully");
   } catch (error) {
     debugLog(`Error: ${error.message}`);
     console.error(error);
