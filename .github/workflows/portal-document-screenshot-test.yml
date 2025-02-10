@@ -117,7 +117,7 @@ jobs:
       - name: Archive screenshot image
         uses: actions/upload-artifact@v4
         with:
-          name: screenshots
+          name: portal-screenshots
           retention-days: 5
           path: |
             AxonIvyPortal/portal-selenium-test/target/*.zip
