@@ -50,6 +50,11 @@ public class DashboardWelcomeWidgetBean implements Serializable {
       widget.setWelcomeTextColor(DEFAULT_TEXT_COLOR);
     }
 
+    // get font color from light mode if not set
+    if (widget.getWelcomeTextColorDarkMode() == null) {
+      widget.setWelcomeTextColorDarkMode(widget.getWelcomeTextColor());
+    }
+
     if (widget.getWelcomeTextPosition() == null) {
       widget.setWelcomeTextPosition(WelcomeTextPosition.BOTTOM_LEFT);
     }
@@ -61,6 +66,15 @@ public class DashboardWelcomeWidgetBean implements Serializable {
           .findFirst().orElse(new DisplayName()).getValue());
     }
     widget.setImageContentObject(renderImage());
+    // get image from light mode if not set
+    if (StringUtils.isBlank(widget.getImageLocationDarkMode())) {
+      widget.setImageContentObjectDarkMode(widget.getImageContentObject());
+      widget.setImageContentDarkMode(widget.getImageContent());
+      widget.setImageLocationDarkMode(widget.getImageLocation());
+      widget.setImageTypeDarkMode(widget.getImageType());
+    } else {
+      widget.setImageContentObjectDarkMode(renderImageDarkMode());
+    }
     if (StringUtils.isNotBlank(widget.getId())) {
       String idWithoutSpecialChar = widget.getId().replaceAll(REGEX_REPLACE_SPECIAL_CHARACTER,"_");
       widget.setInternalId(idWithoutSpecialChar);
@@ -75,21 +89,36 @@ public class DashboardWelcomeWidgetBean implements Serializable {
       WelcomeWidgetUtils.migrateWelcomeWidget(widget.getId(), widget.getImageType(), widget.getImageLocation());
     }
     ContentObject imageContent = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
-    removeImageContentOfWidget(imageContent);
+    removeImageContentOfWidget(imageContent, false);
+    
+    return imageContent;
+  }
+  
+  public ContentObject renderImageDarkMode() {
+    if (Optional.ofNullable(widget).map(WelcomeDashboardWidget::getImageLocationDarkMode).isEmpty()) {
+      return null;
+    }
+    ContentObject imageContent = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocationDarkMode(), widget.getImageTypeDarkMode());
+    removeImageContentOfWidget(imageContent, true);
     
     return imageContent;
   }
 
-  private void removeImageContentOfWidget(ContentObject imageContent) {
-    if (StringUtils.isNotBlank(widget.getImageContent())) {
-      WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageContent).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
+  private void removeImageContentOfWidget(ContentObject content, boolean isDarkMode) {
+    String imageContent = isDarkMode? widget.getImageContentDarkMode() : widget.getImageContent();
+    if (StringUtils.isNotBlank(imageContent)) {
+      WelcomeWidgetUtils.readObjectValueOfDefaultLocale(content).write().bytes(Base64.getDecoder().decode(imageContent));
       List<Dashboard> dashboards = DashboardUtils.collectDashboards();
       for (Dashboard dashboard :  dashboards) {
         dashboard.getWidgets().stream()
         .filter(item -> widget.getId().equals(item.getId()) && item.getType() == DashboardWidgetType.WELCOME)
         .findFirst()
         .ifPresent(item -> {
-          ((WelcomeDashboardWidget) item).setImageContent(null);
+          if (isDarkMode) {
+            ((WelcomeDashboardWidget) item).setImageContentDarkMode(null); 
+          } else {
+            ((WelcomeDashboardWidget) item).setImageContent(null);
+          }
         });
       }
       String dashboardJson = BusinessEntityConverter.entityToJsonValue(dashboards);
@@ -98,7 +127,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
       DashboardUtils.updateDashboardCache();
     }
   }
-
+  
   public void updateWelcomeText(WelcomeDashboardWidget welcomeWidget) {
     int parseClientTime = WelcomeWidgetUtils.parseClientTime();
     String greetingTextCms = WelcomeWidgetUtils.generateGreetingTextByTime(parseClientTime);
@@ -138,6 +167,6 @@ public class DashboardWelcomeWidgetBean implements Serializable {
   }
   
   public String sanitizeHTML(String text) {
-	  return StringUtils.isBlank(text) ? "" : HtmlParser.sanitizeHTML(text);
+    return StringUtils.isBlank(text) ? "" : HtmlParser.sanitizeHTML(text);
   }
 }

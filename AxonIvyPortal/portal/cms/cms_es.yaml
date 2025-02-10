@@ -769,12 +769,18 @@ ch.ivy.addon.portalkit.ui.jsf:
           Evening: Buenas noches
           Morning: Buenos días
         Image: Imagen
+        ImageDarkMode: Imagen para el modo oscuro
         ImageInlineStyle: Estilo de imagen en línea
+        ImageLightMode: Imagen para el modo claro
         ImageStyleClass: Clase de estilo de imagen
+        PreviewDarkMode: Vista previa para el modo oscuro
+        PreviewLightMode: Vista previa para el modo claro
         PreviewTooltip: Esta vista previa no puede mostrar todos los ajustes, pero sólo debería dar una idea de cómo se verá el widget final, el tamaño de la imagen, la orientación y algunos ajustes CSS no se verán aquí.
         ShowGreeting: Mostrar saludo
+        TextColorDarkMode: Color para el modo oscuro
+        TextColorLightMode: Color para el modo claro
         TextPosition: Posición del texto
-        TextSizeAndColor: Tamaño y color del texto
+        TextSize: Tamaño del texto
         Welcome: Bienvenido
         WelcomeTextStyleClass: Clase de estilo de texto de bienvenida
       configuration: Configuración
@@ -1297,6 +1303,9 @@ Dialogs:
     ivy:
       addon:
         portal:
+          component:
+            ProcessInformation:
+              ProcessUnavailableTooltip: Este proceso no está disponible o no tienes permiso para iniciarlo.
           generic:
             GlobalSearch:
               ViewAllResults: Ver todos los resultados

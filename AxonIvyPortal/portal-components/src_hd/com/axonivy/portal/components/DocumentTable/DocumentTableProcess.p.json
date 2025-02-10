@@ -316,7 +316,11 @@
           ],
           "map" : {
             "out.selectedDocument" : "param.selectedDocument"
-          }
+          },
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "out.isImage = param.selectedDocument!= null && StringUtils.startsWithIgnoreCase(param.selectedDocument.getContentType(), \"image/\");"
+          ]
         },
         "result" : {
           "params" : [

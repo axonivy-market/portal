@@ -311,7 +311,7 @@ Portal has deprecated the legacy statistic chart widget and now offers a wide ra
 Welcome widget
 ==============
 
-You can define a welcome widget with a background image and a welcome text.
+You can define a welcome widget with background images for both light and dark mode and a welcome text.
 
 |welcome-widget-configuration|
 
@@ -345,13 +345,11 @@ The :guilabel:`Manage News` dialog.
 
 |news-feed-widget-manage-content|
 
-|news-feed-widget-overlay-panel|
-
 In manage news, the user can:
 
 #. Create one entry in multiple languages. When creating the entry, the user can switch between the available languages with a click on the tab view header.
 
-#. Translate the title by clicking on the input label. Translate the content by clicking on the |translate-icon| icon. If you see something wrong with the translation, please prefer to :ref:`enable-translation`
+#. Translate the title by clicking on the input label. Translate the content by clicking on the |translate-icon| icon. To enable the translation, please prefer to :ref:`enable-translation`
 
 #. Choose an icon for the news by clicking directly on the icon, the :guilabel:`Icon browser` browser will be shown.
 
@@ -437,8 +435,6 @@ You can define a Notifications widget to display all Notifications based on your
    :alt: Dashboard news feed widget
 .. |news-feed-widget-manage-content| image:: ../../screenshots/new-dashboard/news-feed-widget-manage-content.png
    :alt: Dashboard news feed widget's Manage news dialog
-.. |news-feed-widget-overlay-panel| image:: ../../screenshots/new-dashboard/news-feed-widget-overlay-panel.png
-   :alt: Dashboard external page widget's overlay dialog
 .. |external-page-widget-configuration| image:: ../../screenshots/dashboard/external-page-widget-configuration.png
    :alt: Dashboard external page widget's configuration dialog
 .. |add-statistic-widget| image:: ../../screenshots/new-dashboard/add-client-statistic-widget.png

@@ -123,7 +123,8 @@ public class DashboardWidgetInformationService {
 
   private TaskSearchCriteria generateTaskSearchCriteriaWithoutOrderByClause(DashboardTaskLazyDataModel dataModel) {
     var taskSearchCriteria = new TaskSearchCriteria();
-    taskSearchCriteria.setFinalTaskQuery(dataModel.getCriteria().buildQueryWithoutOrderByClause());
+    taskSearchCriteria.setCustomTaskQuery(
+        dataModel.getCriteria().buildQueryWithoutOrderByClause());
     taskSearchCriteria.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     return taskSearchCriteria;
   }
@@ -194,7 +195,8 @@ public class DashboardWidgetInformationService {
 
   private CaseSearchCriteria generateCaseSearchCriteriaWithoutOrderByClause(DashboardCaseLazyDataModel dataModel) {
     var caseSearchCriteria = new CaseSearchCriteria();
-    caseSearchCriteria.setFinalCaseQuery(dataModel.getCriteria().buildQueryWithoutOrderByClause());
+    caseSearchCriteria.setCustomCaseQuery(
+        dataModel.getCriteria().buildQueryWithoutOrderByClause());
     caseSearchCriteria.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     return caseSearchCriteria;
   }

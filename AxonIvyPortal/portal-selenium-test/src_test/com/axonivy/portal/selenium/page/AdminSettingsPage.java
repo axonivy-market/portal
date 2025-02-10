@@ -23,6 +23,7 @@ public class AdminSettingsPage extends TemplatePage {
     return "[id='" + PORTAL_MANAGEMENT_PAGE_ID + "']";
   }
 
+  @Override
   public boolean isDisplayed() {
     return $(By.id(PORTAL_MANAGEMENT_PAGE_ID)).isDisplayed();
   }
@@ -30,6 +31,7 @@ public class AdminSettingsPage extends TemplatePage {
   public void openSettingTab() {
     waitForElementClickableThenClick("a[href$='#admin-setting-component:adminTabView:setting-tab']");
     waitForElementDisplayed(By.cssSelector("[id$=':adminTabView:settingForm']"), true);
+    Sleeper.sleep(300);// Wait a bit focus effects, just only use this for capture screenshot
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
@@ -161,5 +163,11 @@ public class AdminSettingsPage extends TemplatePage {
         .$("a.ui-dialog-titlebar-close").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id='admin-setting-component:settingDialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
-
+  
+  public void clickOnActions(String dataRowIndex) {
+    $("div.ui-datatable-scrollable-body").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
+    .$("table > tbody").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("tr").filter(Condition.attribute("data-ri", dataRowIndex)).first()
+    .$("button[id$='settings-action-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("div[id$='settings-action-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
 }
