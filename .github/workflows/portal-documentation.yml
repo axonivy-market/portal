@@ -27,6 +27,13 @@ jobs:
         - ${{ github.workspace }}
 
     steps:
+      - name: Download Artifacts
+        uses: dawidd6/action-download-artifact@v8
+        with:
+          workflow: portal-document-screenshot-test.yml
+          name: screenshots
+          branch: feature/IVYPORTAL-18233-Create-Github-workflow-for-screenshot-document-build-12
+          
       - name: Checkout code
         uses: actions/checkout@v3
           
@@ -62,11 +69,7 @@ jobs:
         shell: bash
         run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
         
-      - name: Download Artifacts
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          workflow: portal-document-screenshot.yml
-          name: screenshots
+      
 
   build-document:
     runs-on: ubuntu-latest
