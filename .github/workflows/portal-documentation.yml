@@ -52,7 +52,7 @@ jobs:
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: portal-document-screenshot-test.yml
-          name: portal-screenshots
+          name: screenshots
           path: Documentation/portal-guide/source/screenshots
             
       - name: List downloaded artifacts
