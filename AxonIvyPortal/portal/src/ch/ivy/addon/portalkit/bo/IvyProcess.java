@@ -10,6 +10,8 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class IvyProcess implements Process {
 
+  private static final String DEFAULT_IMAGE_VALUE_LIGHT_MODE = "PROCESSMODELING.svg";
+  private static final String DEFAULT_IMAGE_VALUE_DARK_MODE = "PROCESSMODELINGDARK.svg";
   private IWebStartable process;
   private String application;
   private String imageUrl;
@@ -72,14 +74,19 @@ public class IvyProcess implements Process {
 
   @Override
   public String getImageUrl() {
-    if (StringUtils.isEmpty(imageUrl)) {
+    // Change default image value
+    if (imageUrl.contains(DEFAULT_IMAGE_VALUE_DARK_MODE)) {
       imageUrl = getContentImageUrl(DefaultImage.PROCESSMODELING.getPath());
     }
     return imageUrl;
   }
   
-  public String getDefaultImageDarkLink() {
-    return getContentImageUrl(DefaultImage.PROCESSMODELINGDARK.getPath());
+  public String getDefaultImageDarkUrl() {
+    // Change default image value
+    if (imageUrl.contains(DEFAULT_IMAGE_VALUE_LIGHT_MODE)) {
+      imageUrl = getContentImageUrl(DefaultImage.PROCESSMODELINGDARK.getPath());
+    }
+    return imageUrl;
   }
 
   @Override
