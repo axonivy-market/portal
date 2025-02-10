@@ -235,41 +235,46 @@ function expandFullscreen(index, widgetId) {
   }
 }
 
+let resizeObserver;
 function resizeTableBody() {
-  const resizeObserver = new ResizeObserver(entries => {
-    requestAnimationFrame(() => {
-      entries.forEach(entry => {
-        let tableBody = $(entry.target);
-        let parentHeight = tableBody.parents('.grid-stack-item-content.card.dashboard-card').height();
+  if (!resizeObserver) {
+    resizeObserver = new ResizeObserver(entries => {
+      requestAnimationFrame(() => {
+        entries.forEach(entry => {
+          let tableBody = $(entry.target);
+          let parentHeight = tableBody.parents('.grid-stack-item-content.card.dashboard-card').height();
 
-        if (!window.matchMedia("(max-width: 767px)").matches) {
-          if (tableBody.height() !== parentHeight - 100) {
-            tableBody.height(parentHeight - 100);
+          if (!window.matchMedia("(max-width: 767px)").matches) {
+            if (tableBody.height() !== parentHeight - 100) {
+              tableBody.height(parentHeight - 100);
+            }
+          } else {
+            tableBody.height(parentHeight * 0.9);
           }
-        } else {
-          tableBody.height(parentHeight * 0.9);
-        }
+          const widgetName = tableBody.parents('.grid-stack-item').find('.js-table-widget-var').val();
+          if (!widgetName) return;
 
-        const widgetName = tableBody.parents('.grid-stack-item').find('.js-table-widget-var').val();
-        if (!widgetName) return;
+          const widget = PF(widgetName);
+          if (widget) {
+            widget.cfg.scrollHeight = tableBody.parents('.ui-datatable-scrollable').height().toString();
+            if (tableBody.parents('.js-resizing').length > 0) {
+              widget.init(widget.cfg);
+            }
+            widget.setupScrolling();
 
-        const widget = PF(widgetName);
-        widget.cfg.scrollHeight = tableBody.parents('.ui-datatable-scrollable').height().toString();
-        if (tableBody.parents('.js-resizing').length > 0) {
-          widget.init(widget.cfg);
-        }
-        widget.setupScrolling();
+            if (widget.headerTable.length === 1) {
+              $(widget.headerTable[0]).find('th.ui-state-focus').removeClass('ui-state-focus');
+            }
+          }
+        });
 
-        if (widget.headerTable.length === 1) {
-          $(widget.headerTable[0]).find('th.ui-state-focus').removeClass('ui-state-focus');
-        }
       });
-
     });
-  });
+  }
   document.querySelectorAll('.ui-datatable-scrollable-body').forEach(sb => {
-    setTimeout(() => resizeObserver.observe(sb), 50);
+    resizeObserver.observe(sb)
   });
+
 }
 
 function collapseFullscreen(index, widgetId) {
