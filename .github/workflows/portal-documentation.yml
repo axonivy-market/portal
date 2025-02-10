@@ -29,6 +29,12 @@ jobs:
         
 
     steps:
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          
       - name: Set up Maven
         uses: stCarolas/setup-maven@v5
         with:
