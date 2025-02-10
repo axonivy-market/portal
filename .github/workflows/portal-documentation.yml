@@ -54,7 +54,7 @@ jobs:
     needs: [generate-resources]
     steps:
       - name: Download screenshots from artifacts
--       uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4
         with:
           name: screenshots.zip
           path: Documentation/portal-guide/source/screenshots
