@@ -179,15 +179,12 @@ jobs:
           if [ -n "$HTML_REPORT" ]; then
             node -e "
               const core = require('@actions/core');
-              const fs = require('fs');
-              const results = JSON.parse(fs.readFileSync('lighthouse-reports/report.json', 'utf8'));
               const summary = core.summary.addHeading('🚦 Audit Results');
-              Object.entries(results.categories).forEach(([key, value]) => {
-                summary.addRaw(\`# \${value.title}\n📊 Score: \${Math.floor(value.score * 100)}\n\n\`);
-              });
+              summary.addRaw('The Lighthouse HTML report is available below:');
               summary.addSeparator().addLink('📋 Download Full Report', 
                 'https://github.com/' + process.env.GITHUB_REPOSITORY + 
-                '/actions/runs/' + process.env.GITHUB_RUN_ID + '/artifacts/' + ${{ steps.upload-artifact.outputs.artifact-id }}).write();
+                '/actions/runs/' + process.env.GITHUB_RUN_ID + '/artifacts/' + '${{ steps.upload-artifact.outputs.artifact-id }}');
+              summary.write();
             "
           else
             exit 1
