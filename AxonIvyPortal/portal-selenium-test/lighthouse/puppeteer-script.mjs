@@ -109,12 +109,13 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
       output: ["html", "json"],
       onlyCategories: ["accessibility"],
       settings: {
-        emulatedFormFactor: "desktop",
+        emulatedFormFactor: "desktop", // enforce desktop mode
         screenEmulation: {
           width: 1920,
           height: 1080,
           deviceScaleFactor: 1,
-          mobile: false,
+          mobile: false, // disable mobile emulation
+          disabled: false,
         },
         throttling: {
           rttMs: 0,
@@ -124,9 +125,8 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
           uploadThroughputKbps: 0,
           cpuSlowdownMultiplier: 1,
         },
-        // Disable mobile emulation and throttling
-        disableDeviceEmulation: true,
-        disableNetworkThrottling: true,
+        throttlingMethod: "provided", // use provided throttling settings
+        // Removed disableDeviceEmulation and disableNetworkThrottling
       },
     });
 
