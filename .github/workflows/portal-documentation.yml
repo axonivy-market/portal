@@ -57,13 +57,13 @@ jobs:
       - name: Download screenshots from artifacts
         uses: actions/download-artifact@v4
         with:
-          name: screenshots.zip
+          name: screenshot-test-reports.zip
           path: Documentation/portal-guide/source/screenshots
           
       - name: Unzip portal screenshots
         run: |
-          unzip -o Documentation/portal-guide/source/screenshots/screenshots.zip 
-          dir Documentation/portal-guide/source/screenshots/
+          unzip -o Documentation/portal-guide/source/screenshots/screenshot-test-reports.zip -d Documentation/portal-guide/source/screenshots/
+          ls -la Documentation/portal-guide/source/screenshots/
       - name: Run substitute
         shell: bash
         run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
