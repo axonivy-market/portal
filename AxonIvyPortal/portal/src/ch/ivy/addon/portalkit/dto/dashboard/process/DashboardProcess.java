@@ -34,6 +34,8 @@ public class DashboardProcess implements Process {
   private String sortIndex;
   private String processElementId;
   private String portalProcessInformation;
+  private static final String DEFAULT_IMAGE_VALUE_LIGHT_MODE = "PROCESSMODELING.svg";
+  private static final String DEFAULT_IMAGE_VALUE_DARK_MODE = "PROCESSMODELINGDARK.svg";
   
   public DashboardProcess() {}
 
@@ -173,8 +175,9 @@ public class DashboardProcess implements Process {
 
   @Override
   public String getImageUrl() {
-    if (StringUtils.isEmpty(imageUrl)) {
-      imageUrl = getContentImageUrl( DefaultImage.PROCESSMODELING.getPath());
+    // Change default value image
+    if (imageUrl.contains(DEFAULT_IMAGE_VALUE_DARK_MODE)) {
+      imageUrl = getContentImageUrl(DefaultImage.PROCESSMODELING.getPath());
     }
     return imageUrl;
   }
@@ -211,7 +214,11 @@ public class DashboardProcess implements Process {
     return portalProcessInformation;
   }
   
-  public String getDefaultImageDarkLink() {
-    return getContentImageUrl(DefaultImage.PROCESSMODELINGDARK.getPath());
+  public String getDefaultImageDarkUrl() {
+    // Change default value image
+    if (imageUrl.contains(DEFAULT_IMAGE_VALUE_LIGHT_MODE)) {
+      imageUrl = getContentImageUrl(DefaultImage.PROCESSMODELINGDARK.getPath());
+    }
+    return imageUrl;
   }
 }
