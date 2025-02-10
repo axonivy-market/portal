@@ -21,20 +21,30 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.get_version.outputs.version }}
-    container:
-      image: maven:3.9.8-eclipse-temurin-21
+    image: axonivy/build-container:read-the-docs-2
+      options: -u root:root
       volumes:
-        - ${{ github.workspace }}
+        - ${{ github.workspace }}:/workspace
+        
 
     steps:
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.8
+          
       - name: Checkout code
         uses: actions/checkout@v3
           
       - name: Get current version
         id: get_version
         run: |
-          echo "$GITHUB_WORKSPACE"
-          cat $GITHUB_WORKSPACE/Documentation/pom.xml
           VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f $GITHUB_WORKSPACE/Documentation/pom.xml)
           if [[ "$VERSION" == "null object or invalid expression" ]]; then
             echo "Error: could not evaluate maven revision property"
@@ -57,13 +67,29 @@ jobs:
             
       - name: List downloaded artifacts
         run: |
+          unzip Documentation/portal-guide/source/screenshots/*.zip
           ls -la Documentation/portal-guide/source/screenshots/  
 
       - name: Run substitute
         shell: bash
         run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
-        
       
+      - name: Build Documentation HTML
+        run: |
+          make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=-${{ needs.generate-resources.outputs.version }} 2> sphinx-warnings.log
+            WARNINGS=$(grep -c "WARNING" sphinx-warnings.log || echo 0)
+            echo "Found $WARNINGS warnings."
+            if [ "$WARNINGS" -ge 1 ]; then
+              echo "Documentation build has warnings. Adding to summary..."
+              echo "### Documentation Build Warnings" >> $GITHUB_STEP_SUMMARY
+              echo "Found $WARNINGS warnings during the documentation build." >> $GITHUB_STEP_SUMMARY
+              echo "" >> $GITHUB_STEP_SUMMARY
+              echo "#### Warning Details" >> $GITHUB_STEP_SUMMARY
+              echo '```' >> $GITHUB_STEP_SUMMARY
+              cat sphinx-warnings.log >> $GITHUB_STEP_SUMMARY
+              echo '```' >> $GITHUB_STEP_SUMMARY
+              exit 1 
+            fi
 
   build-document:
     runs-on: ubuntu-latest
