@@ -89,7 +89,7 @@ public class ProcessViewerTest extends BaseTest {
   }
 
   @Test
-  public void testNotShowProcessViewerForTechnicalCase() {
+  public void testShowProcessViewerForTechnicalCase() {
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     caseWidgetPage = NavigationHelper.navigateToCaseList();
     assertTrue(caseWidgetPage.getActiveCaseActionsInFullCaseListPage(0).texts().contains(PROCESS_VIEWER),
@@ -97,7 +97,7 @@ public class ProcessViewerTest extends BaseTest {
     var caseDetailsPage = caseWidgetPage.openDetailsCase("Order Pizza");
     caseDetailsPage.clickRelatedCaseActionButton(0);
     var detailPageSteps = caseDetailsPage.getAvailableActionStepsOfTechnicalCase(0);
-    assertTrue(!detailPageSteps.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_FOUND_ON_CASE_DETAILS_PAGE);
+    assertTrue(detailPageSteps.contains(PROCESS_VIEWER), PROCESS_VIEWER_IS_FOUND_ON_CASE_DETAILS_PAGE);
   }
 
   @Test
