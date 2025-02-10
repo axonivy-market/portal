@@ -1,13 +1,7 @@
 name: Lighthouse Audit
 run-name: 🗼Lighthouse Audit
 on:
-  push:
-    branches:
-      - feature/IVYPORTAL-18368-Improve-Lighthouse-Accessibility-Score
-  pull_request:
-    branches:
-      - master
-      - release/*
+  workflow_dispatch:
 
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
