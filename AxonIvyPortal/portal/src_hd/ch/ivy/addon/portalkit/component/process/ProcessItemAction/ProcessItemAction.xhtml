@@ -55,7 +55,7 @@
         <p:menuitem id="clone-process"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Clone')}"
           icon="si si-copy-paste"
-          actionListener="#{cloneWidgetBean.setWidget(cc.attrs.widget)}"
+          actionListener="#{cloneWidgetBean.setCloneWidget(cc.attrs.widget)}"
           process="@(this)"
           update="clone-widget-component:clone-to-dashboard-dialog"
           oncomplete="PF('clone-to-dashboard-dialog').show();"

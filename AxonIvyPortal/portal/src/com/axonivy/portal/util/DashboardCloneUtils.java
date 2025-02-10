@@ -31,6 +31,7 @@ public class DashboardCloneUtils {
 
   public static DashboardWidget cloneWidget(DashboardWidget cloneFromWidget) {
     DashboardWidget widget = null;
+    cloneFromWidget = DashboardWidgetUtils.buildWidgetColumns(cloneFromWidget);
     switch (cloneFromWidget) {
       case TaskDashboardWidget taskWidget -> {
         widget = DashboardWidgetUtils.buildTaskColumns(taskWidget);

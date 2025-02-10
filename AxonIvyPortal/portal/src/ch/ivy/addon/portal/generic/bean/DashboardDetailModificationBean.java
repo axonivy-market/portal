@@ -949,6 +949,21 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     this.cloneableDashboards = cloneableDashboards;
   }
 
+  public List<Dashboard> initCloneableDashboards() {
+    List<Dashboard> availableDashboards = new ArrayList<>();
+    availableDashboards.addAll(DashboardUtils.getPublicDashboards());
+    DashboardUtils
+        .addDefaultTaskCaseListDashboardsIfMissing(availableDashboards);
+
+    String dashboardInUserProperty = readDashboardBySessionUser();
+    if (StringUtils.isNotBlank(dashboardInUserProperty)) {
+      List<Dashboard> myDashboards = DashboardUtils
+          .getVisibleDashboards(dashboardInUserProperty);
+      availableDashboards.addAll(myDashboards);
+    }
+    return availableDashboards;
+  }
+
   public String getRestoreDashboardMessage() {
     if (StringUtils.isBlank(restoreDashboardMessage) && Objects.nonNull(foundTemplate)) {
       if (foundTemplate.isPresent()) {
@@ -1156,7 +1171,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public void initCloneWidgetDialog() {
     if (CollectionUtils.isEmpty(cloneableDashboards)) {
-      cloneableDashboards = DashboardUtils.collectDashboards();
+      cloneableDashboards = initCloneableDashboards();
 
       if (CollectionUtils.isNotEmpty(cloneableDashboards)) {
         cloneableDashboards = cloneableDashboards.stream()
@@ -1179,6 +1194,18 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
               .contentEquals(statisticWidget.getChartId()))
           .findFirst().map(ClientStatistic::getName).orElse("");
     }
+
+    // For custom widget, need to build before get name
+    if (widget.getType() == DashboardWidgetType.CUSTOM
+        && StringUtils.isBlank(widgetName)) {
+      widget = DashboardWidgetUtils.buildWidgetColumns(widget);
+      CustomDashboardWidget customWidget = (CustomDashboardWidget) widget;
+      widgetName = Optional.ofNullable(customWidget)
+          .map(CustomDashboardWidget::getData)
+          .map(DashboardCustomWidgetData::getStartableProcessStart)
+          .map(IWebStartable::getDisplayName).orElse("");
+    }
+
     return String.format("%s (%s)", widgetName, widget.getType().getLabel());
   }
 }
