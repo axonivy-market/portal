@@ -108,7 +108,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   public NewDashboardPage clickApproveBtn() {
-    waitForElementClickableThenClick(By.id("leave-request:approved-btn"));
+    clickByJavaScript($("button[id$='leave-request:approved-btn']"));
     waitPageDisappear();
     switchBackToParent();
     return new NewDashboardPage();
@@ -122,7 +122,7 @@ public class LeaveRequestPage extends TaskTemplateIFramePage {
   }
 
   public NewDashboardPage clickRejectBtn() {
-    waitForElementClickableThenClick(By.id("leave-request:rejected-btn"));
+    clickByJavaScript($("button[id$='leave-request:rejected-btn']"));
     waitPageDisappear();
     switchBackToParent();
     return new NewDashboardPage();
