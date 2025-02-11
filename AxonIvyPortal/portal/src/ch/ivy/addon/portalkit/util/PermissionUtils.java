@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.util;
 
 import java.util.Collection;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -23,6 +24,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 public class PermissionUtils {
   private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
   private static final String EXTERNAL_ID_PREFIX = " externalId:";
+  private static final String SKIP_PERMISSION_VARIABLE_KEY = "Portal.SkipPermissionCheck";
 
   private PermissionUtils() {}
 
@@ -296,5 +298,10 @@ public class PermissionUtils {
    */
   public static boolean checkUserSetOwnPasswordPermission() {
     return hasPermission(IPermission.USER_SET_OWN_PASSWORD);
+  }
+
+  public static boolean checkSkipPermission() {
+    return Optional.ofNullable(Ivy.var().get(SKIP_PERMISSION_VARIABLE_KEY))
+        .map(Boolean::parseBoolean).orElseGet(() -> false);
   }
 }
