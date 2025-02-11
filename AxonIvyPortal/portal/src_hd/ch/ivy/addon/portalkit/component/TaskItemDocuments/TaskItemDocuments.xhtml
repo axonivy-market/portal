@@ -139,7 +139,7 @@
             invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
             update="#{p:resolveFirstComponentWithId('task-document-form', view).clientId} #{cc.attrs.componentToUpdate} @form"
             oncomplete="handleTaskDetailsTables()" 
-            onvalidationfailure="handleUploadFileFail();"
+            onvalidationfailure="handleUploadFileFail('documentUpload');"
             dropZone="document-upload-file-panel" widgetVar="documentUpload" />
         </div>
         <div class="ui-g-12">
@@ -193,10 +193,9 @@
     </ui:define>
   </ui:decorate>
   <script type="text/javascript">
-    function handleUploadFileFail() {
+    function handleUploadFileFail(widgetVar) {
       let errorMessageElement = document.getElementById('error-message');
-      let uploadError = document.getElementsByClassName('ui-messages ui-widget ui-helper-hidden ui-fileupload-messages');
-      let uploadErrorElement = uploadError[0];
+      let uploadErrorElement = PF(widgetVar).messageContainer[0];
       errorMessageElement.style.display = 'block';
       errorMessageElement.appendChild(uploadErrorElement);
     }
