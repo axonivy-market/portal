@@ -145,6 +145,17 @@
       <p:tooltip for="edit-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}" trackMouse="true"
         hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}"/>
 
+      <p:commandButton id="clone-widget-#{index}" type="button" icon="si si-copy-paste"
+        styleClass="rounded-button ui-button-outlined u-mar-right-5"
+        rendered="#{!isReadOnlyMode}">
+        <p:ajax event="click" listener="#{cloneWidgetBean.setCloneWidget(widget)}"
+          process="@(this)"
+          update="clone-widget-component:clone-to-dashboard-dialog"
+          oncomplete="PF('clone-to-dashboard-dialog').show();" />
+      </p:commandButton>
+      <p:tooltip for="clone-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CloneWidget')}"
+        trackMouse="true" hideEvent="mouseleave click" />
+
       <p:commandButton id="delete-widget-#{index}"
         icon="si si-bin-1"
         styleClass="rounded-button ui-button-outlined ui-button-danger"

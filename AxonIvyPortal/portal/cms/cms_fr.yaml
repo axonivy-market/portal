@@ -397,6 +397,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     All: Toutes
     And: et
     BusinessCaseInformation: Informations sur les cas d'affaires
+    Clone: Cloner
     CollapseAll: Réduire tout
     ExpandAll: Ouvrir tout
     MoreItemsAvailable: plus d'articles disponibles
@@ -405,6 +406,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     RoleUserInformation: Informations sur le rôle et l'utilisateur
     TaskCaseInformation: Informations sur les tâches et les cas
     Update: Mettre à jour
+    Widget: Widget
     action: Actions
     active: Activé
     add: Ajouter
@@ -685,6 +687,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Publique
       savedFilters: 'Filtres enregistrés:'
   dashboard:
+    CloneWidget: Cloner le widget
     CustomWidgets: Widgets personnalisés
     DashboardConfiguration:
       CreateFromScratch: Créer à partir de rien
@@ -1413,6 +1416,11 @@ Dialogs:
             ClientStatisticWidget:
               IdNotFound: ' Diagramme avec ID {0} non trouvé'
               NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour consulter ce graphique.
+            CloneWidgetDialog:
+              Header: Clone widget "{0}"
+              TargetDashboard: Target dashboard
+            CloneWidgetFromDashboardDialog:
+              header: Cloner le widget depuis
             DashboardImportDetails:
               FileInfomation: Informations sur le fichier
               ImportPrivate: Importer un tableau de bord privé
@@ -1444,6 +1452,8 @@ Dialogs:
               NotificationWidgetConfiguration: Configuration du widget de notification
               NotificationWidgetDescription: Ce widget affiche toutes les notifications en fonction de vos paramètres de notification.
               WidgetFilter: Filtre à widgets
+            PortalDashboardDetailModification:
+              CloneWidget: Cloner le widget
             TaskWidgetConfiguration:
               AddFilter: Ajouter un filtre
               ResetFilter: Réinitialiser le filtre

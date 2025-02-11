@@ -5,6 +5,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="process" required="true" type="ch.ivy.addon.portalkit.bo.Process"/>
+  <cc:attribute name="widget" />
   <cc:attribute name="managedBean" required="true" />
   <cc:attribute name="groupCode" />
   <cc:attribute name="status" />
@@ -38,6 +39,7 @@
         styleClass="grid-view-form u-text-align-center #{isExternalLink ? 'is-external-link' : ''}">
         <!-- Action -->
         <ic:ch.ivy.addon.portalkit.component.process.ProcessItemAction id="grid-process-action-component" process="#{process}"
+          widget="#{cc.attrs.widget}"
           canModify="#{cc.attrs.ableToEdit}"
           actionListenerOnEditProcess="#{cc.attrs.editActionListener}"
           onCompleteEditProcess="#{cc.attrs.oncompleteEditProcess}"
