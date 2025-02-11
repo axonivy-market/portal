@@ -85,16 +85,10 @@ jobs:
               exit 1
             fi
         continue-on-error: true
-        
-      - name: Check on run test failures
-        if: job.steps.build-html.status == failure()
-        run: |
-          dir
-          cat sphinx-warnings.log
-          cat $GITHUB_STEP_SUMMARY 
 
       - name: Install or deploy document
         run: |
+          sudo chmod -R a+rwx Documentation/
           if [[ "${{ steps.get_version.outputs.version }}" == *SNAPSHOT* ]]; then
             PHASE="install"
           else
@@ -112,9 +106,4 @@ jobs:
           name: Documentation
           path: |
             Documentation/*/target/*.zip
-
-      - name: Cleanup
-        shell: bash
-        if: always()
-        run: sudo rm -rf ${{ github.workspace }}/*
     
