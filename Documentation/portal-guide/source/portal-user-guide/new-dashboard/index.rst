@@ -381,6 +381,39 @@ You can define a Notifications widget to display all Notifications based on your
 
 |notification-widget|
 
+Clone a widget
+--------------
+
+Clone a widget from existing dashboard
+======================================
+
+When editing a dashboard, you can clone a widget from another dashboard by opening the :guilabel:`Add a widget` dialog by press on the :guilabel:`+ Add widget` button.
+
+Once the dialog opens, click the :guilabel:`Clone widget` button at the top.
+
+|clone-widget-from-button|
+
+This will open the :guilabel:`Clone widget from` dialog. Select the dashboard that contains the widget you want to clone, then choose the specific widget.
+
+|clone-widget-from-dialog|
+
+After selecting the widget, click the :guilabel:`Clone` button to add it to the current dashboard.
+
+Clone a widget to another dashboard
+===================================
+
+The Portal provides another convenient way to clone widgets between dashboards. To clone a specific widget, click the :guilabel:`Copy` icon on the widget header.
+
+|clone-widget-button|
+
+For certain widget types, such as the Welcome widget, you can find the :guilabel:`Clone` option in the context menu.
+
+|clone-widget-menu-option|
+
+After selecting the :guilabel:`Clone` option, the :guilabel:`Clone widget` dialog will appear. Choose the target dashboard where you want to copy the widget, then click the :guilabel:`Clone` button to complete the process.
+
+|clone-widget-dialog|
+
 .. include:: ../includes/_common-icon.rst
 
 .. |dash-board| image:: ../../screenshots/new-dashboard/dashboard.png
@@ -455,3 +488,13 @@ You can define a Notifications widget to display all Notifications based on your
    :alt: Dashboard task widget in the Edit mode
 .. |case-list-widget-edit-mode| image:: ../../screenshots/new-dashboard/case-list-widget-edit-mode.png
    :alt: Dashboard case widget in the Edit mode
+.. |clone-widget-button| image:: ../../screenshots/dashboard-configuration/clone-widget-button.png
+   :alt: Clone widget button placed on the header of a widget in Edit mode. After clicking this button, the Clone widget dialog will appear.
+.. |clone-widget-menu-option| image:: ../../screenshots/dashboard-configuration/clone-widget-menu-option.png
+   :alt: Clone widget menu a widget in Edit mode. After clicking this menu, the Clone widget dialog will appear.
+.. |clone-widget-dialog| image:: ../../screenshots/dashboard-configuration/clone-widget-dialog.png
+   :alt: Clone widget dialog in Edit mode.
+.. |clone-widget-from-button| image:: ../../screenshots/dashboard-configuration/clone-widget-from-button.png
+   :alt: "Clone widget from" button placed inside the "Add new widget" dialog. The "Clone widget from" dialog will appear after clicking this button.
+.. |clone-widget-from-dialog| image:: ../../screenshots/dashboard-configuration/clone-widget-from-dialog.png
+   :alt: "Clone widget from" dialog.
