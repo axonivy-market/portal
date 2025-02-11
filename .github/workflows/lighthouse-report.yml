@@ -1,10 +1,7 @@
 name: Lighthouse Audit
 run-name: 🗼Lighthouse Audit
 on:
-  pull_request:
-    branches:
-      - master
-      - release/*
+  workflow_dispatch:
 
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
@@ -62,25 +59,6 @@ jobs:
             exit 1
           fi
 
-      - name: Start Axon Ivy Engine
-        run: |
-          cd "${ENGINE_DIR}/bin"
-          chmod +x ./AxonIvyEngine
-          nohup ./AxonIvyEngine > engine.log 2>&1 &
-          echo $! > engine.pid
-          for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
-            if curl -s -f http://localhost:8080/demo-portal > /dev/null; then
-              exit 0
-            fi
-            sleep 1
-          done
-          cat engine.log
-          exit 1
-        env:
-          IVY_JAVA_HOME: ${{ env.JAVA_HOME }}
-          JAVA_HOME: ${{ env.JAVA_HOME }}
-          PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${{ env.JAVA_HOME }}/bin:$PATH
-
       - name: Build Portal Modules
         run: |
           modules=(
@@ -105,11 +83,31 @@ jobs:
           cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
           cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
           cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
+          ls -l $DEPLOYMENT
+
+      - name: Start Axon Ivy Engine
+        run: |
+          cd "${ENGINE_DIR}/bin"
+          chmod +x ./AxonIvyEngine
+          nohup ./AxonIvyEngine > engine.log 2>&1 &
+          echo $! > engine.pid
+          for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
+            if curl -s -f http://localhost:8080/demo-portal/pro/portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp?embedInFrame= > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat engine.log
+          exit 1
+        env:
+          IVY_JAVA_HOME: ${{ env.JAVA_HOME }}
+          JAVA_HOME: ${{ env.JAVA_HOME }}
+          PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${{ env.JAVA_HOME }}/bin:$PATH
 
       - name: Wait for Server Health Check
         run: |
           for ((i=1; i<=${{ env.WAIT_TIME }}; i++)); do
-            if curl -s -f http://localhost:8080/demo-portal/pro/portal/1549F58C18A6C562/DashboardPage.ivp?dashboardId=1 > /dev/null; then
+            if curl -s -f http://localhost:8080/ > /dev/null; then
               exit 0
             fi
             sleep 1
@@ -175,15 +173,12 @@ jobs:
           if [ -n "$HTML_REPORT" ]; then
             node -e "
               const core = require('@actions/core');
-              const fs = require('fs');
-              const results = JSON.parse(fs.readFileSync('lighthouse-reports/report.json', 'utf8'));
               const summary = core.summary.addHeading('🚦 Audit Results');
-              Object.entries(results.categories).forEach(([key, value]) => {
-                summary.addRaw(\`### \${value.title}\n📊 Score: \${Math.floor(value.score * 100)}%\n\n\`);
-              });
+              summary.addRaw('The Lighthouse HTML report is available below:');
               summary.addSeparator().addLink('📋 Download Full Report', 
                 'https://github.com/' + process.env.GITHUB_REPOSITORY + 
-                '/actions/runs/' + process.env.GITHUB_RUN_ID + '/artifacts/' + ${{ steps.upload-artifact.outputs.artifact-id }}).write();
+                '/actions/runs/' + process.env.GITHUB_RUN_ID + '/artifacts/' + '${{ steps.upload-artifact.outputs.artifact-id }}');
+              summary.write();
             "
           else
             exit 1
