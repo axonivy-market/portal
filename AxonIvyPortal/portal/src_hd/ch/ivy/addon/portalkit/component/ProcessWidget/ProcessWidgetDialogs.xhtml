@@ -87,7 +87,7 @@
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
             <f:facet name="output">
-              <h:outputText styleClass="u-mar-right-5"
+              <h:outputText styleClass="u-mar-right-5 external-link-edit-display-text"
                 value="#{empty processWidgetBean.editedExternalLink.description ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : processWidgetBean.editedExternalLink.description}" />
               <a href="#" class="si si-graphic-tablet-drawing-pen" aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"/>
             </f:facet>
