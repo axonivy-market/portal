@@ -57,7 +57,7 @@
           icon="si si-copy-paste"
           actionListener="#{cloneWidgetBean.setCloneWidget(cc.attrs.widget)}"
           process="@(this)"
-          update="clone-widget-component:clone-to-dashboard-dialog"
+          update="#{p:resolveFirstComponentWithId('clone-widget-component:clone-to-dashboard-dialog', view).clientId}"
           oncomplete="PF('clone-to-dashboard-dialog').show();"
           partialSubmit="true" global="false"
           rendered="#{canModify}" />
