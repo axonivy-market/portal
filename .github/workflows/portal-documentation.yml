@@ -82,7 +82,6 @@ jobs:
     steps:
       - name: Build Documentation HTML
         run: |
-          dir
           ls -la
           
           make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=-${{ needs.generate-resources.outputs.version }} 2> sphinx-warnings.log
