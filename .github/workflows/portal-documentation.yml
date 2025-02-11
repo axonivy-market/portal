@@ -7,34 +7,34 @@ on:
   workflow_dispatch:
     inputs:
       ivyVersion:
-        description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly-12.0/designer-guide/configuration/variables.html'
-        default: 'nightly-12.0'
+        description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html'
+        default: 'nightly'
         required: true
-
-concurrency: 
-  group: ${{ github.workflow }}
-  cancel-in-progress: false
-
+  push:
 jobs:
-
-  generate-resources:
+  build-document:
     runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.get_version.outputs.version }}
-    container:
-      image: maven:3.9.8-eclipse-temurin-21
-      volumes:
-        - ${{ github.workspace }}
-        
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-          
+      - uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          server-id: 'nexus.axonivy.com'
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_PASSWORD
+
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.8
+
       - name: Get current version
         id: get_version
         run: |
-          VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f $GITHUB_WORKSPACE/Documentation/pom.xml)
+          VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
           if [[ "$VERSION" == "null object or invalid expression" ]]; then
             echo "Error: could not evaluate maven revision property"
             # Stops the workflow if the condition is met
@@ -42,10 +42,6 @@ jobs:
           fi
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Version is $VERSION"
-      - name: Generate resources
-        run: |
-          mvn clean process-resources "-Divy.engine.version=[12.0.0,12.1.0)" "-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine.zip" -f Documentation/public-api/pom.xml
-          mvn clean generate-resources -f Documentation/pom.xml
       
       - name: Download artifacts from screenshot workflow
         uses: dawidd6/action-download-artifact@v2
@@ -58,32 +54,20 @@ jobs:
         uses: montudor/action-zip@v1
         with:
           args: unzip -qq Documentation/portal-guide/source/screenshots/*.zip -d Documentation/portal-guide/source/screenshots/
-      
-      
-      
-      - name: List downloaded artifact        
-        run: |
-          ls -la Documentation/portal-guide/source/screenshots/  
 
+      - name: Generate resources
+        run: |
+          mvn clean process-resources -Divy.engine.version=[12.0.0,] -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine.zip -f Documentation/public-api/pom.xml
+          mvn clean generate-resources -f Documentation/pom.xml
+      
       - name: Run substitute
         shell: bash
         run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
-        
-      
 
-  build-document:
-    runs-on: ubuntu-latest
-    needs: [generate-resources]
-    container:
-      image: axonivy/build-container:read-the-docs-2
-      options: -u root:root
-      volumes:
-        - ${{ github.workspace }}:/workspace
-    steps:
       - name: Build Documentation HTML
         run: |
-          ls
-          make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=-${{ needs.generate-resources.outputs.version }} 2> sphinx-warnings.log
+          docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
+            axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=${{ steps.get_version.outputs.version }} 2> sphinx-warnings.log
             WARNINGS=$(grep -c "WARNING" sphinx-warnings.log || echo 0)
             echo "Found $WARNINGS warnings."
             if [ "$WARNINGS" -ge 1 ]; then
@@ -95,35 +79,17 @@ jobs:
               echo '```' >> $GITHUB_STEP_SUMMARY
               cat sphinx-warnings.log >> $GITHUB_STEP_SUMMARY
               echo '```' >> $GITHUB_STEP_SUMMARY
-              exit 1 
+              exit 1
             fi
-  
-  install-or-deploy:
-    runs-on: ubuntu-latest
-    needs: [generate-resources,build-document]
-    container:
-      image: maven:3.9.8-eclipse-temurin-21
-      volumes:
-        - ${{ github.workspace }}
-    steps:
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '21'
-          server-id: 'nexus.axonivy.com'
-          server-username: MAVEN_USERNAME
-          server-password: MAVEN_PASSWORD
 
       - name: Install or deploy document
-        shell: bash
         run: |
-          if [[ "${{ needs.generate-resources.outputs.version }}" == *SNAPSHOT* ]]; then
+          if [[ "${{ steps.get_version.outputs.version }}" == *SNAPSHOT* ]]; then
             PHASE="install"
           else
             PHASE="deploy"
           fi
-          echo "Running 'clean $PHASE' for version ${{ needs.generate-resources.outputs.version }}"
+          echo "Running 'clean $PHASE' for version ${{ steps.get_version.outputs.version }}"
           mvn clean $PHASE -f Documentation/pom.xml
         env:
           MAVEN_USERNAME: ${{ secrets.NEXUS_AXONIVY_USERNAME }}
@@ -136,3 +102,8 @@ jobs:
           path: |
             Documentation/*/target/*.zip
 
+      - name: Cleanup
+        shell: bash
+        if: always()
+        run: sudo rm -rf ${{ github.workspace }}/*
+    
