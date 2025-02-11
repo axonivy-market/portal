@@ -23,10 +23,10 @@ jobs:
           server-username: MAVEN_USERNAME
           server-password: MAVEN_PASSWORD
 
-      # - name: Set up Maven
-      #   uses: stCarolas/setup-maven@v5
-      #   with:
-      #     maven-version: 3.9.8
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.8
 
       - name: Get current version
         id: get_version
