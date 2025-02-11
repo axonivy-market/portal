@@ -22,24 +22,12 @@ jobs:
     outputs:
       version: ${{ steps.get_version.outputs.version }}
     container:
-      image: axonivy/build-container:read-the-docs-2
-      options: -u root:root
+      image: maven:3.9.8-eclipse-temurin-21
       volumes:
-        - ${{ github.workspace }}:/workspace
+        - ${{ github.workspace }}
         
 
     steps:
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '21'
-          
-      - name: Set up Maven
-        uses: stCarolas/setup-maven@v5
-        with:
-          maven-version: 3.9.8
-          
       - name: Checkout code
         uses: actions/checkout@v3
           
@@ -94,6 +82,9 @@ jobs:
     steps:
       - name: Build Documentation HTML
         run: |
+          dir
+          ls -la
+          
           make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=-${{ needs.generate-resources.outputs.version }} 2> sphinx-warnings.log
             WARNINGS=$(grep -c "WARNING" sphinx-warnings.log || echo 0)
             echo "Found $WARNINGS warnings."
