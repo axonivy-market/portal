@@ -1167,6 +1167,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (widget.getType() == CLIENT_STATISTIC) {
       saveWidget();
     }
+
+    if (cloneableDashboards != null) {
+      cloneableDashboards.clear();
+    }
   }
 
   public void initCloneWidgetDialog() {
