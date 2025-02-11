@@ -81,6 +81,7 @@ public class TaskColumnModel extends ColumnModel {
     CustomFieldType type = switch (this.type) {
     case CUSTOM -> type = DashboardWidgetUtils.findTaskCustomFieldType(field);
     case CUSTOM_CASE -> type = DashboardWidgetUtils.findCaseCustomFieldType(field);
+    case CUSTOM_BUSINESS_CASE -> type = DashboardWidgetUtils.findCaseCustomFieldType(field);
     default -> null;
     };
     return type == CustomFieldType.STRING || type == CustomFieldType.TEXT;

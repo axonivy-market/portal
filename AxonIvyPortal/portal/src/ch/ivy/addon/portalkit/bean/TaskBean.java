@@ -238,7 +238,6 @@ public class TaskBean implements Serializable {
           }
         } else {
           Object displayObject = col.display(task);
-          Ivy.log().info("getAriaLabel " + displayObject);
           if (displayObject != null) {
           }
           if (displayObject != null && StringUtils.isNotEmpty(displayObject.toString())) {
