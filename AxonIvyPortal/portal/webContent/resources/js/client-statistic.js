@@ -326,7 +326,7 @@ class ClientCanvasChart extends ClientChart {
     this.clientChartConfig.data.datasets = [{
       label: config.name,
       data: result.map(bucket => bucket.count),
-      backgroundColor: chartColors
+      backgroundColor: config.backgroundColor ? config.backgroundColor : chartColors
     }]
 
     this.clientChartConfig.update("none");
@@ -356,7 +356,7 @@ class ClientPieChart extends ClientCanvasChart {
           datasets: [{
             label: config.name,
             data: result.map(bucket => bucket.count),
-            backgroundColor: chartColors
+            backgroundColor: config.backgroundColor ? config.backgroundColor : chartColors
           }],
           hoverOffset: 4
         },
@@ -407,7 +407,7 @@ class ClientCartesianChart extends ClientCanvasChart {
           datasets: [{
             label: config.name,
             data: data.map(bucket => bucket.count),
-            backgroundColor: chartColors
+            backgroundColor: config.backgroundColor ? config.backgroundColor : chartColors
           }]
         },
         options: {
@@ -498,7 +498,7 @@ class ClientBarChart extends ClientCartesianChart {
       this.clientChartConfig.data.datasets = [{
         label: config.name,
         data: data.map(bucket => bucket.count),
-        backgroundColor: chartColors
+        backgroundColor: config.backgroundColor ? config.backgroundColor : chartColors
       }]
     }
 
