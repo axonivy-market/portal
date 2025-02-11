@@ -3652,16 +3652,9 @@
         "security" : "system",
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.workflow.ICase;",
-            "import ch.ivy.addon.portalkit.util.PermissionUtils;",
             "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
             "",
-            "",
-            "if (PermissionUtils.checkSkipPermission()) {",
-            "  out.caseSelected = ivy.wf.getGlobalContext().getCaseQueryExecutor().createCaseQuery().where().caseId().isEqual(in.caseId).executor().firstResult() as ICase;",
-            "} else {",
-            "  out.caseSelected = CaseService.newInstance().findCaseById(in.caseId);",
-            "}"
+            "out.caseSelected = CaseService.newInstance().findCaseById(in.caseId);"
           ]
         }
       },
