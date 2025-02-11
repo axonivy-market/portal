@@ -1,9 +1,11 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 import org.openqa.selenium.WebElement;
 
@@ -78,7 +80,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public void addStatisticWidgetByName(String name) {
-    $("[id='search-input']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(name);
+    $("[id $= 'search-input']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .sendKeys(name);
     $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT).$$("div.new-widget-dialog__item").filter(text(name)).first()
         .$("button[id^='new-statistic-widget-dialog-content']").shouldBe(getClickableCondition()).click();
     $("[id='new-widget-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
@@ -248,4 +251,155 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     return $("[id^='id-custom-widget-iframe']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
   
+  public void openCloneFromDialog() {
+    $("div.new-widget-dialog__content").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id $= 'clone-from']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
+    $("[id $= 'clone-widget-from-dashboard:clone-widget-dialog']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void fillCloneWidgetDialog(String dashboardName, String widgetName) {
+    $("[id $= 'clone-widget-from-dashboard:clone-widget-form:clone-dashboard']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id $= 'clone-widget-from-dashboard:clone-widget-form:clone-dashboard_items']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("li")
+        .filter(Condition.text(dashboardName)).get(0).click();
+
+    $("[id $= 'clone-widget-from-dashboard:clone-widget-form:clone-widget']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    $("[id $= 'clone-widget-from-dashboard:clone-widget-form:clone-widget_items']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("li")
+        .filter(Condition.text(widgetName)).get(0).click();
+  }
+
+  public void cloneWidgetFromDashboard(String dashboardName, String widgetName,
+      String newWidgetTitle, boolean isStatisticWidget) {
+    openCloneFromDialog();
+
+    fillCloneWidgetDialog(dashboardName, widgetName);
+
+    if (isStatisticWidget) {
+      $("[id $= 'clone-widget-from-dashboard:clone-button-statistic']")
+          .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    } else {
+      $("[id $= 'clone-widget-from-dashboard:clone-button']")
+          .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    }
+
+    $("[id $= 'clone-widget-from-dashboard:clone-widget-dialog']")
+        .shouldBe(disappear, DEFAULT_TIMEOUT);
+
+    if (isStatisticWidget) {
+      return;
+    }
+
+    $("[id $= 'new-widget-configuration-dialog']").shouldBe(appear,
+        DEFAULT_TIMEOUT);
+
+    String titleInputQuery = "[id $= 'widget-configuration-form:new-widget-configuration-component:widget-title']";
+    $(titleInputQuery).shouldBe(appear, DEFAULT_TIMEOUT).clear();
+    $(titleInputQuery).shouldBe(appear, DEFAULT_TIMEOUT)
+        .sendKeys(newWidgetTitle);
+
+    $("[id $= 'widget-configuration-save-button']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    $("[id $= 'new-widget-configuration-dialog']").shouldBe(disappear,
+        DEFAULT_TIMEOUT);
+  }
+
+  public boolean hasWidgetWithName(String name) {
+    return $$("span.widget__header-title").asFixedIterable().stream()
+        .filter(widgetTitle -> widgetTitle.is(Condition.text(name))).findFirst()
+        .isPresent();
+  }
+
+  public void openCloneWidgetDialog(String name, int index) {
+    SelenideElement titleElem = $$("span.widget__header-title")
+        .filter(Condition.text(name)).get(0);
+    titleElem.parent().$(String.format("[id$='clone-widget-%d']", index))
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void closeCloneWidgetDialog() {
+    $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$(".ui-widget-header a")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
+        .shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public void chooseDashboardToClone(String dashboardName) {
+    $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+
+    $("[id$='clone-widget-component:clone-widget-form:clone-dashboard']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    $("[id$='clone-widget-component:clone-widget-form:clone-dashboard_items']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$$("li")
+        .filter(Condition.text(dashboardName)).get(0).click();
+  }
+
+  public void openWelcomeWidgetActionMenu(String widgetId) {
+    $(String.format(
+        "[id $= 'welcome-%s:welcome-widget-action-group-form:welcome-widget-action-button']",
+        widgetId)).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    $(String.format(
+        "a[id $= '%s:welcome-widget-action-group-form:clone-welcome-widget']",
+        widgetId))
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getWelcomeWidgetActionMenu(String widgetId) {
+    return $(String.format(
+        "[id $= '%s:welcome-widget-action-group-form:welcome-widget-action-menu']",
+        widgetId)).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getCloneButtonByIndex(int index) {
+    return $(String.format("[id$=':clone-widget-%d']", index))
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void waitCloneButtonClickable() {
+    $("[id$='clone-widget-component:clone-button']")
+        .shouldNot(Condition.cssClass("ui-state-disabled"), DEFAULT_TIMEOUT);
+    return;
+  }
+
+  public void waitCloneFromButtonClickable() {
+    $("[id$='clone-widget-from-dashboard:clone-button']")
+        .shouldNot(Condition.cssClass("ui-state-disabled"), DEFAULT_TIMEOUT);
+    return;
+  }
+
+  public SelenideElement getNewWidgetDialog() {
+    return $("[id$='new-widget-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getCloneWidgetDialog() {
+    return $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getCloneWidgetFromDialog() {
+    return $("[id $= 'clone-widget-from-dashboard:clone-widget-dialog']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void cloneWidget(String dashboardName) {
+    chooseDashboardToClone(dashboardName);
+
+    $("[id$='clone-widget-component:clone-button']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
+        .shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
 }
