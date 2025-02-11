@@ -105,5 +105,5 @@ jobs:
         with:
           name: Documentation
           path: |
-            Documentation/*/target/*.zip
+            Documentation/portal-guide/target/*.zip
     

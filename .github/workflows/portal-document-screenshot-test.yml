@@ -1,9 +1,6 @@
 name: Portal Document Screenshot
 run-name: Document Screenshot 
 on:
-  push:
-    branches:
-      - feature/IVYPORTAL-18233-Create-Github-workflow-for-screenshot-document-build-12
   workflow_dispatch:
     inputs:
       testPatternToRun:
@@ -106,13 +103,14 @@ jobs:
       - name: Run test
         id: run-test        
         run: |
-          mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine-windows.zip -Dtest=com.axonivy.portal.selenium.document.screenshot.*Test -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=100
+          mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
         continue-on-error: true
 
-      - name: Check on run test failures
+      - name: Log out on failures
         if: job.steps.run-test.status == failure()
         run: |
           cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
+          cat AxonIvyPortal/portal-selenium-test/target/ivy-opensearch-*.log
           
       - name: Archive screenshot image
         uses: actions/upload-artifact@v4
@@ -128,4 +126,4 @@ jobs:
           name: screenshot-test-reports
           retention-days: 5
           path: |
-            /home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/target/selenide/reports*
+            AxonIvyPortal/portal-selenium-test/target/*
