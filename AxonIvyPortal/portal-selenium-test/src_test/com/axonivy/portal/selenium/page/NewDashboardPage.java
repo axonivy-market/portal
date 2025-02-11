@@ -1141,4 +1141,10 @@ public class NewDashboardPage extends TemplatePage {
     focusByJavascript(element);
     element.pressTab();
   }
+
+  public boolean hasWidgetWithName(String name) {
+    return $$("span.widget__header-title").asFixedIterable().stream()
+        .filter(widgetTitle -> widgetTitle.is(Condition.text(name))).findFirst()
+        .isPresent();
+  }
 }
