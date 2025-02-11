@@ -112,7 +112,7 @@ public class ExternalLinkProcessItem implements Process {
   }
 
   // Use the same image in Light mode
-  public String getDefaultImageDarkLink() {
+  public String getDefaultImageDarkUrl() {
     String imageLocation = this.externalLink.getImageLocation();
     return ExternalLinkUtils.isValidImageUrl(imageLocation, this.externalLink.getImageType()) ? imageLocation : getContentImageUrl(DefaultImage.ARROWRIGHT.getPath());
   }
