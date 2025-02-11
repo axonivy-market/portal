@@ -66,8 +66,9 @@ jobs:
       - name: Build Documentation HTML
         run: |
           echo "github workspace 0 ${{ github.workspace }}"
+          echo "github workspace 1 ${GITHUB_WORKSPACE}"
           dir
-          docker run -u root:root --rm -v ${{ github.workspace }}:/ -w Documentation/portal-guide \
+          docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w Documentation/portal-guide \
             axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='Documentation/portal-guide' VERSION=${{ steps.get_version.outputs.version }} 2> sphinx-warnings.log
             WARNINGS=$(grep -c "WARNING" sphinx-warnings.log || echo 0)
             echo "Found $WARNINGS warnings."
