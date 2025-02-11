@@ -580,14 +580,14 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
 
   public void selectCustomBusinessCaseFieldType() {
     $("label[id$='column-management-form:field-type-selection_label']").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    $("li[data-label='" + CUSTOM_BUSINESS_CASE_FIELD + "']").shouldBe(appear).click();
+    $("li[data-label='" + CUSTOM_BUSINESS_CASE_FIELD + "']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     waitForPageLoad();
   }
   
   public void selectCustomerNameField() {
     $("input[id$='custom-business-case-field-selection_input']").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    $("button[id$='custom-business-case-field-selection_button']").shouldBe(appear).click();
-    $("li[data-item-label='" + CUSTOMER_NAME + "']").shouldBe(appear).click();
+    $("button[id$='custom-business-case-field-selection_button']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("li[data-item-label='" + CUSTOMER_NAME + "']").shouldBe(appear, DEFAULT_TIMEOUT).click();
     $("input[value='" + "Customer name column for example" + "']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
@@ -596,15 +596,15 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickSaveButton() {
-    $("button[id$='column-management-save-btn']").shouldBe(appear).click();
+    $("button[id$='column-management-save-btn']").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
 
   public void saveWidgetConfiguration() {
-    $("button[id$='widget-configuration-save-button']").shouldBe(appear).click();
+    $("button[id$='widget-configuration-save-button']").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
   
   public String getCustomBusinessCaseFieldValueFromRowIndex(int dataRowIndex) {
-    SelenideElement tableRow = $("tbody[id$='dashboard-tasks_data']").$("tr[data-ri='" + dataRowIndex + "']").shouldBe(appear);
+    SelenideElement tableRow = $("tbody[id$='dashboard-tasks_data']").$("tr[data-ri='" + dataRowIndex + "']").shouldBe(appear, DEFAULT_TIMEOUT);
     String rowCustomBusinessCaseFieldValue = tableRow.$$("td").last().$("span[id$='custom-column']").getText();
     return rowCustomBusinessCaseFieldValue ;
   }
