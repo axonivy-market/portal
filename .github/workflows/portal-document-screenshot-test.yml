@@ -8,10 +8,12 @@ on:
     inputs:
       testPatternToRun:
         description: 'Test pattern to run'
+        type: string
         default: 'com.axonivy.portal.selenium.document.screenshot.*Test'
         required: true
       engineDownloadURL:
         description: 'url to download engine'
+        type: string
         default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip'
         required: true
 
@@ -42,6 +44,7 @@ jobs:
           maven-version: 3.9.8
       - name: Export environment variables
         run: |
+          echo "RUN ID ${{ github. run_id }}"
           echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
@@ -69,10 +72,10 @@ jobs:
 
       - name: Copy decorate js and css to Portal
         run: |
-          cp AxonIvyPortal/portal-selenium-test/resources/css/document-screenshot.css AxonIvyPortal/portal/webContent/resources/css/portal.css
-          cp AxonIvyPortal/portal-selenium-test/resources/css/document-screenshot.css Showcase/portal-user-examples/webContent/resources/css/portal-user-examples.css
-          cp AxonIvyPortal/portal-selenium-test/resources/js/document-screenshot.js AxonIvyPortal/portal/webContent/resources/js/portal.js
-          cp AxonIvyPortal/portal-selenium-test/resources/js/document-screenshot.js Showcase/portal-user-examples/webContent/resources/js/portal-user-examples.js
+          cat AxonIvyPortal/portal-selenium-test/resources/css/document-screenshot.css >> AxonIvyPortal/portal/webContent/resources/css/portal.css
+          cat AxonIvyPortal/portal-selenium-test/resources/css/document-screenshot.css >> Showcase/portal-user-examples/webContent/resources/css/portal-user-examples.css
+          cat AxonIvyPortal/portal-selenium-test/resources/js/document-screenshot.js >> AxonIvyPortal/portal/webContent/resources/js/portal.js
+          cat AxonIvyPortal/portal-selenium-test/resources/js/document-screenshot.js >> Showcase/portal-user-examples/webContent/resources/js/portal-user-examples.js
 
       - name: Build Portal modules
         run: |
@@ -104,20 +107,29 @@ jobs:
       
       - name: Run test
         id: run-test        
+        shell: bash
         run: |
-          mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip -Dtest=com.axonivy.portal.selenium.document.screenshot.LoginScreenshotTest -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=100
+          mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip -Dtest=com.axonivy.portal.selenium.document.screenshot.*Test -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
         continue-on-error: true
 
-      - name: Check on run test failures
+      - name: Log out on failures
         if: job.steps.run-test.status == failure()
         run: |
-          dir
-          cat /home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
+          cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
+          cat AxonIvyPortal/portal-selenium-test/target/ivy-opensearch-*.log
           
+      - name: Archive screenshot image
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          retention-days: 5
+          path: |
+            AxonIvyPortal/portal-selenium-test/target/*.zip
+      
       - name: Archive test reports
         uses: actions/upload-artifact@v4
         with:
-          name: test-reports
+          name: screenshot-test-reports
           retention-days: 5
           path: |
-            /home/runner/work/portal/portal/AxonIvyPortal/portal-selenium-test/target/selenide/reports*
+            AxonIvyPortal/portal-selenium-test/target/*
