@@ -547,6 +547,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   
   public void setSearchInput(String widgetName) {
     $("div.new-widget-dialog__search").shouldBe(appear, DEFAULT_TIMEOUT)
-    .$("input#search-input").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(widgetName);
+        .$("[id $= 'search-input'").shouldBe(appear, DEFAULT_TIMEOUT)
+        .sendKeys(widgetName);
   }
 }
