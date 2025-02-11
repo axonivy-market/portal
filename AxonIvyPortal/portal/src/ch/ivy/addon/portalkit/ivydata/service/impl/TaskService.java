@@ -282,7 +282,8 @@ public class TaskService implements ITaskService {
   }
 
   public boolean isTaskAccessible(long taskId) {
-    return findTaskById(taskId) != null;
+    return PermissionUtils.checkSkipPermission()
+        || findTaskById(taskId) != null;
   }
 
   private TaskQuery queryForStates(EnumSet<TaskState> states) {

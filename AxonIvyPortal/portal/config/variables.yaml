@@ -314,3 +314,6 @@ Variables:
 
   # The delay time of search function at top menu
   PortalSearchDelayInMilliseconds: 500
+
+  # This variable is HIGH RISK. Please contact the Portal team before enabling it.
+  SkipPermissionCheck: false

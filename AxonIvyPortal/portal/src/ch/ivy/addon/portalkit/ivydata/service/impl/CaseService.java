@@ -418,7 +418,8 @@ public class CaseService implements ICaseService {
   }
 
   public boolean isCaseAccessible(long caseId) {
-    return findCaseById(caseId) != null;
+    return PermissionUtils.checkSkipPermission()
+        || findCaseById(caseId) != null;
   }
 
   private CaseQuery queryForStates(EnumSet<CaseState> states) {
