@@ -30,7 +30,6 @@ if (document) {
     $(".search-bar.process-tab-title-global").click(() => {
       focusSearchBox();
       let keyword = $(eleSearchId).val().toLowerCase();
-      console.log(keyword)
       if (keyword.startsWith(startsWithTask)) {
         keyword = keyword.replace(startsWithTask, startsWithProcess);
       }
@@ -67,6 +66,10 @@ if (document) {
 
       searchCase(keyword);
     });
+  });
+
+  $(eleSearchId).on('keyup', () => {
+      $(eleSearchId).click();
   });
 
   $(eleSearchId).click((e) => {
