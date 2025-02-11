@@ -93,6 +93,19 @@ public class DashboardConfigurationPage extends TemplatePage {
     getDashboardConfigurationActionMenu().$$("span").filter(Condition.text(buttonName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
+  public void clickButtonOnDashboardConfigurationActionMenu(String buttonName,
+      int dashboardIndex) {
+    $(String.format(
+        "[id$='dashboard-modification-component:dashboard-table:%d:dashboard-configuration-action-button']",
+        dashboardIndex)).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
+
+    $$("div[id$='dashboard-configuration-action-menu']")
+        .filter(Condition.appear).first().$$("span")
+        .filter(Condition.text(buttonName)).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
   public void openCreatePublicDashboardMenu() {
     selectPublicDashboardType();
     $("button[id$='create-dashboard-action']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
