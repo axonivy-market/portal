@@ -30,4 +30,20 @@ public class DocumentTableComponentPage extends TemplatePage {
   public int countDocuments() {
     return getDocuments().size();
   }
+
+  public void clickPreviewButton() {
+    $("[id$=':document-preview']").click();
+  }
+
+  public void waitForPreviewDialog() {
+    $("[id$=':preview-document-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public boolean isPreviewContentDisplayed() {
+    return $("object[type='application/pdf']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).isDisplayed();
+  }
+
+  public void closePreviewDialog() {
+    $("[id$=':preview-document-dialog'] .ui-dialog-titlebar-close").click();
+  }
 }

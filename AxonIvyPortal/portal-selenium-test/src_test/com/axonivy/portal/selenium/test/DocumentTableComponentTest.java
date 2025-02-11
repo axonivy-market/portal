@@ -27,4 +27,16 @@ public class DocumentTableComponentTest extends BaseTest {
     assertEquals(1, documentTableComponentPage.countDocuments());
   }
 
+  @Test
+  public void testPreviewDocument() {
+    DocumentTableComponentPage documentTableComponentPage = new DocumentTableComponentPage();
+    documentTableComponentPage.uploadSampleDocument(FileHelper.getAbsolutePathToTestFile("sample-file.txt"));
+    refreshPage();
+    documentTableComponentPage.waitForDocumentTableComponentPageLoaded();
+    assertEquals(1, documentTableComponentPage.countDocuments());
+    documentTableComponentPage.clickPreviewButton();
+    documentTableComponentPage.waitForPreviewDialog();
+    assertTrue(documentTableComponentPage.isPreviewContentDisplayed());
+    documentTableComponentPage.closePreviewDialog();
+  }
 }

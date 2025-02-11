@@ -30,10 +30,9 @@
         <h:panelGroup rendered="#{isDefaultProcessImage}">
           <img class="image-process-item-image default-image-mode-process"
             alt="#{process.getName()}" src="#{process.imageUrl}" />
-           <p:graphicImage 
-              styleClass="image-process-item-image default-image-mode-process-dark"
+           <img class="image-process-item-image default-image-mode-process-dark"
               alt="#{process.getName()}"
-              name="#{process.imageUrl}" srcset="#{process.defaultImageDarkLink}"/>
+              name="#{process.imageUrl}" src="#{process.defaultImageDarkUrl}"/>
         </h:panelGroup>
         <p:graphicImage rendered="#{!isDefaultProcessImage}"
           cache="true" styleClass="image-process-item-image"
