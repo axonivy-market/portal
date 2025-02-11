@@ -258,10 +258,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
         .shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public void cloneWidgetFromDashboard(String dashboardName, String widgetName,
-      String newWidgetTitle, boolean isStatisticWidget) {
-    openCloneFromDialog();
-
+  public void fillCloneWidgetDialog(String dashboardName, String widgetName) {
     $("[id $= 'clone-widget-from-dashboard:clone-widget-form:clone-dashboard']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id $= 'clone-widget-from-dashboard:clone-widget-form:clone-dashboard_items']")
@@ -274,6 +271,13 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     $("[id $= 'clone-widget-from-dashboard:clone-widget-form:clone-widget_items']")
         .shouldBe(appear, DEFAULT_TIMEOUT).$$("li")
         .filter(Condition.text(widgetName)).get(0).click();
+  }
+
+  public void cloneWidgetFromDashboard(String dashboardName, String widgetName,
+      String newWidgetTitle, boolean isStatisticWidget) {
+    openCloneFromDialog();
+
+    fillCloneWidgetDialog(dashboardName, widgetName);
 
     if (isStatisticWidget) {
       $("[id $= 'clone-widget-from-dashboard:clone-button-statistic']")
@@ -321,7 +325,15 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
         .shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
-  public void cloneWidget(String dashboardName) {
+  public void closeCloneWidgetDialog() {
+    $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
+        .shouldBe(appear, DEFAULT_TIMEOUT).$(".ui-widget-header a")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
+        .shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+
+  public void chooseDashboardToClone(String dashboardName) {
     $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
 
@@ -331,10 +343,61 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     $("[id$='clone-widget-component:clone-widget-form:clone-dashboard_items']")
         .shouldBe(appear, DEFAULT_TIMEOUT).$$("li")
         .filter(Condition.text(dashboardName)).get(0).click();
+  }
+
+  public void openWelcomeWidgetActionMenu(String widgetId) {
+    $(String.format(
+        "[id $= 'welcome-%s:welcome-widget-action-group-form:welcome-widget-action-button']",
+        widgetId)).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+
+    $(String.format(
+        "a[id $= '%s:welcome-widget-action-group-form:clone-welcome-widget']",
+        widgetId))
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getWelcomeWidgetActionMenu(String widgetId) {
+    return $(String.format(
+        "[id $= '%s:welcome-widget-action-group-form:welcome-widget-action-menu']",
+        widgetId)).shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getCloneButtonByIndex(int index) {
+    return $(String.format("[id$=':clone-widget-%d']", index))
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+
+  public void waitCloneButtonClickable() {
+    $("[id$='clone-widget-component:clone-button']")
+        .shouldNot(Condition.cssClass("ui-state-disabled"), DEFAULT_TIMEOUT);
+    return;
+  }
+
+  public void waitCloneFromButtonClickable() {
+    $("[id$='clone-widget-from-dashboard:clone-button']")
+        .shouldNot(Condition.cssClass("ui-state-disabled"), DEFAULT_TIMEOUT);
+    return;
+  }
+
+  public SelenideElement getNewWidgetDialog() {
+    return $("[id$='new-widget-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getCloneWidgetDialog() {
+    return $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getCloneWidgetFromDialog() {
+    return $("[id $= 'clone-widget-from-dashboard:clone-widget-dialog']")
+        .shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public void cloneWidget(String dashboardName) {
+    chooseDashboardToClone(dashboardName);
 
     $("[id$='clone-widget-component:clone-button']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-
     $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
         .shouldBe(disappear, DEFAULT_TIMEOUT);
   }
