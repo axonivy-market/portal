@@ -82,8 +82,7 @@ jobs:
     steps:
       - name: Build Documentation HTML
         run: |
-          ls -la
-          
+          ls
           make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=-${{ needs.generate-resources.outputs.version }} 2> sphinx-warnings.log
             WARNINGS=$(grep -c "WARNING" sphinx-warnings.log || echo 0)
             echo "Found $WARNINGS warnings."
