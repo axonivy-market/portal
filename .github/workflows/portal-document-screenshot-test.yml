@@ -105,8 +105,11 @@ jobs:
       
       - name: Run test
         id: run-test        
+        shell: bash
         run: |
-          mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml "-Divy.engine.download.url=${{ inputs.engineDownloadURL }}" "-Dtest=${{ inputs.testPatternToRun }}" -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
+          echo "engine url is ${{ inputs.engineDownloadURL }}"
+          echo "engine url is ${{ inputs.testPatternToRun }}"
+          mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
         continue-on-error: true
 
       - name: Log out on failures
