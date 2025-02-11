@@ -80,7 +80,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public void addStatisticWidgetByName(String name) {
-    $("[id='search-input']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(name);
+    $("[id $= 'search-input']").shouldBe(appear, DEFAULT_TIMEOUT)
+        .sendKeys(name);
     $("div[id$='new-widget-dialog_content']").shouldBe(appear, DEFAULT_TIMEOUT).$$("div.new-widget-dialog__item").filter(text(name)).first()
         .$("button[id^='new-statistic-widget-dialog-content']").shouldBe(getClickableCondition()).click();
     $("[id='new-widget-dialog']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
