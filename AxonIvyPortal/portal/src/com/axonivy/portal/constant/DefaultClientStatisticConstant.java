@@ -1,0 +1,757 @@
+package com.axonivy.portal.constant;
+
+import java.util.List;
+
+import com.axonivy.portal.bo.ClientStatistic;
+
+import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+
+public class DefaultClientStatisticConstant {
+
+  private static String DEFAULT_CLIENT_STATISTIC_JSON = """
+        [
+          {
+            "id": "1",
+            "aggregates": "priority",
+            "filter": "businessState:OPEN IN_PROGRESS,canWorkOn",
+            "chartTarget": "TASK",
+            "permissions": [
+              "Everybody"
+            ],
+            "chartType": "pie",
+            "names": [
+              {
+                "locale": "de",
+                "value": "Aufgaben nach Priorität"
+              },
+              {
+                "locale": "en",
+                "value": "Tasks By Priority"
+              },
+              {
+                "locale": "fr",
+                "value": "Tâches par priorité"
+              },
+              {
+                "locale": "es",
+                "value": "Tareas por prioridad"
+              }
+            ],
+            "descriptions": [
+              {
+                "locale": "de",
+                "value": "Dieses Kreisdiagramm zeigt alle Aufgaben nach Priorität an."
+              },
+              {
+                "locale": "en",
+                "value": "This pie chart displays all tasks by priority."
+              },
+              {
+                "locale": "fr",
+                "value": "Ce diagramme à secteurs affiche toutes les tâches par priorité."
+              },
+              {
+                "locale": "es",
+                "value": "Este gráfico circular muestra todas las tareas por prioridad."
+              }
+            ],
+            "icon": "si si-analytics-pie-2",
+            "refreshInterval": 300
+          },
+          {
+            "id": "2",
+            "aggregates": "priority",
+            "filter": "expiryTimestamp:>=now <=now+3d/d,businessState:OPEN IN_PROGRESS,canWorkOn",
+            "chartTarget": "TASK",
+            "permissions": [
+              "Everybody"
+            ],
+            "chartType": "bar",
+            "names": [
+              {
+                "locale": "de",
+                "value": "Oberste Priorität: 3 Tage"
+              },
+              {
+                "locale": "en",
+                "value": "Top Priority: 3 Days"
+              },
+              {
+                "locale": "fr",
+                "value": "Priorité absolue : 3 jours"
+              },
+              {
+                "locale": "es",
+                "value": "Máxima prioridad: 3 días"
+              }
+            ],
+            "descriptions": [
+              {
+                "locale": "de",
+                "value": "Dieses Diagramm zeigt alle Aufgaben an, an denen der Benutzer arbeiten kann, gruppiert nach Ablauf innerhalb der nächsten 3 Tage."
+              },
+              {
+                "locale": "en",
+                "value": "This chart displays all tasks that the user can work on, grouped by expiry within the next 3 days."
+              },
+              {
+                "locale": "fr",
+                "value": "Ce graphique affiche toutes les tâches sur lesquelles l'utilisateur peut travailler, regroupées par échéance dans les 3 prochains jours."
+              },
+              {
+                "locale": "es",
+                "value": "Este gráfico muestra todas las tareas en las que puede trabajar el usuario, agrupadas por vencimiento en los próximos 3 días."
+              }
+            ],
+            "icon": "si si-analytics-bars",
+            "refreshInterval": 300,
+            "barChartConfig": {
+              "xTitles": [
+                {
+                  "locale": "de",
+                  "value": "Priorität"
+                },
+                {
+                  "locale": "en",
+                  "value": "Priority"
+                },
+                {
+                  "locale": "fr",
+                  "value": "Priorité"
+                },
+                {
+                  "locale": "es",
+                  "value": "Prioridad"
+                }
+              ],
+              "yTitles": [
+                {
+                  "locale": "de",
+                  "value": "Anzahl der Aufgaben"
+                },
+                {
+                  "locale": "en",
+                  "value": "Number of tasks"
+                },
+                {
+                  "locale": "fr",
+                  "value": "Nombre de tâches"
+                },
+                {
+                  "locale": "es",
+                  "value": "Número de tareas"
+                }
+              ]
+            }
+          },
+          {
+            "id": "3",
+            "aggregates": "priority",
+            "filter": "businessState:OPEN IN_PROGRESS,canWorkOn",
+            "chartTarget": "TASK",
+            "permissions": [
+              "Everybody"
+            ],
+            "chartType": "bar",
+            "names": [
+              {
+                "locale": "de",
+                "value": "Aufgaben nach Priorität"
+              },
+              {
+                "locale": "en",
+                "value": "Tasks By Priority"
+              },
+              {
+                "locale": "fr",
+                "value": "Tâches par priorité"
+              },
+              {
+                "locale": "es",
+                "value": "Tareas por prioridad"
+              }
+            ],
+            "descriptions": [
+              {
+                "locale": "de",
+                "value": "Dieses Balkendiagramm zeigt alle Aufgaben an, die der Benutzer bearbeiten kann, gruppiert nach Priorität."
+              },
+              {
+                "locale": "en",
+                "value": "This bar chart displays all tasks that the user can work on grouped by priority."
+              },
+              {
+                "locale": "fr",
+                "value": "Ce diagramme à barres affiche toutes les tâches sur lesquelles l'utilisateur peut travailler, regroupées par priorité."
+              },
+              {
+                "locale": "es",
+                "value": "Este gráfico de barras muestra todas las tareas en las que puede trabajar el usuario agrupadas por prioridad."
+              }
+            ],
+            "icon": "si si-analytics-bars",
+            "refreshInterval": 300,
+            "barChartConfig": {
+              "xTitles": [
+                {
+                  "locale": "de",
+                  "value": "Priorität"
+                },
+                {
+                  "locale": "en",
+                  "value": "Priority"
+                },
+                {
+                  "locale": "fr",
+                  "value": "Priorité"
+                },
+                {
+                  "locale": "es",
+                  "value": "Prioridad"
+                }
+              ],
+              "yTitles": [
+                {
+                  "locale": "de",
+                  "value": "Anzahl der Aufgaben"
+                },
+                {
+                  "locale": "en",
+                  "value": "Number of tasks"
+                },
+                {
+                  "locale": "fr",
+                  "value": "Nombre de tâches"
+                },
+                {
+                  "locale": "es",
+                  "value": "Número de tareas"
+                }
+              ]
+            }
+          },
+          {
+            "id": "4",
+            "aggregates": "category,businessRuntime:avg",
+            "filter": "businessRuntime:>0",
+            "manipulateValueBy": "/3600",
+            "permissions": [
+              "Everybody"
+            ],
+            "chartTarget": "CASE",
+            "chartType": "bar",
+            "names": [
+              {
+                "locale": "de",
+                "value": "Durchschnittliche Vorgangslaufzeit nach Kategorie "
+              },
+              {
+                "locale": "en",
+                "value": "Case Category Avg. Runtime"
+              },
+              {
+                "locale": "fr",
+                "value": "Durée moyenne des affaires par catégorie"
+              },
+              {
+                "locale": "es",
+                "value": "Duración media de los casos por Categoría"
+              }
+            ],
+            "descriptions": [
+              {
+                "locale": "de",
+                "value": "Dieses Diagramm zeigt die durchschnittliche Bearbeitungszeit der Vorgänge nach Kategorien."
+              },
+              {
+                "locale": "en",
+                "value": "This chart shows the average processing time of cases by category."
+              },
+              {
+                "locale": "fr",
+                "value": "Ce graphique montre le temps de traitement moyen des dossiers par catégorie.."
+              },
+              {
+                "locale": "es",
+                "value": "Este gráfico muestra el tiempo medio de tramitación de los expedientes por categoría."
+              }
+            ],
+            "icon": "si si-analytics-bars",
+            "refreshInterval": 300,
+            "barChartConfig": {
+              "xTitles": [
+                {
+                  "locale": "de",
+                  "value": "Kategorie"
+                },
+                {
+                  "locale": "en",
+                  "value": "Category"
+                },
+                {
+                  "locale": "fr",
+                  "value": "Catégorie"
+                },
+                {
+                  "locale": "es",
+                  "value": "Categoría"
+                }
+              ],
+              "yTitles": [
+                {
+                  "locale": "de",
+                  "value": "Durchschnittliche Laufzeit (Stunden)"
+                },
+                {
+                  "locale": "en",
+                  "value": "Average runtime (hours)"
+                },
+                {
+                  "locale": "fr",
+                  "value": "Durée d'exécution moyenne (heures)"
+                },
+                {
+                  "locale": "es",
+                  "value": "Tiempo medio de ejecución (horas)"
+                }
+              ],
+              "yValue": "time"
+            }
+          },
+          {
+            "id": "5",
+            "aggregates": "startTimestamp:bucket:day",
+            "filter": "startTimestamp:>=now-5d/d <=now/d,isInvolved",
+            "chartTarget": "CASE",
+            "permissions": [
+              "Everybody"
+            ],
+            "chartType": "line",
+            "names": [
+              {
+                "locale": "de",
+                "value": "Neue Vorgänge pro Tag"
+              },
+              {
+                "locale": "en",
+                "value": "New Cases Per Day"
+              },
+              {
+                "locale": "fr",
+                "value": "Nouveaux cas par jour"
+              },
+              {
+                "locale": "es",
+                "value": "Nuevos casos por día"
+              }
+            ],
+            "descriptions": [
+              {
+                "locale": "de",
+                "value": "Dieses Diagramm zeigt die Anzahl der pro Tag eingeleiteten Verfahren für die letzten 5 Tage."
+              },
+              {
+                "locale": "en",
+                "value": "This chart shows the number of cases started per day for the last 5 days."
+              },
+              {
+                "locale": "fr",
+                "value": "Ce graphique montre le nombre de dossiers entamés par jour au cours des 5 derniers jours."
+              },
+              {
+                "locale": "es",
+                "value": "Este gráfico muestra el número de casos iniciados por día durante los últimos 5 días."
+              }
+            ],
+            "icon": "si si-analytics-board-graph-line",
+            "refreshInterval": 300,
+            "lineChartConfig": {
+              "xTitles": [
+                {
+                  "locale": "de",
+                  "value": "Datum"
+                },
+                {
+                  "locale": "en",
+                  "value": "Date"
+                },
+                {
+                  "locale": "fr",
+                  "value": "Date"
+                },
+                {
+                  "locale": "es",
+                  "value": "Fecha"
+                }
+              ],
+              "yTitles": [
+                {
+                  "locale": "de",
+                  "value": "Anzahl der Vorgänge"
+                },
+                {
+                  "locale": "en",
+                  "value": "Number of cases"
+                },
+                {
+                  "locale": "fr",
+                  "value": "Nombre de cas"
+                },
+                {
+                  "locale": "es",
+                  "value": "Número de casos"
+                }
+              ]
+            }
+          },
+          {
+            "id": "6",
+            "aggregates": "endTimestamp:bucket:day",
+            "filter": "endTimestamp:>=now-5d/d <=now/d,isInvolved",
+            "permissions": [
+              "Everybody"
+            ],
+            "chartTarget": "CASE",
+            "chartType": "line",
+            "names": [
+              {
+                "locale": "de",
+                "value": "Abgeschlossene Vorgänge pro Tag"
+              },
+              {
+                "locale": "en",
+                "value": "Completed Cases Per Day"
+              },
+              {
+                "locale": "fr",
+                "value": "Cas finis par jour"
+              },
+              {
+                "locale": "es",
+                "value": "Cajas terminadas por día"
+              }
+            ],
+            "descriptions": [
+              {
+                "locale": "de",
+                "value": "Diese Grafik zeigt die Anzahl der abgeschlossenen Vorgänge pro Tag für die letzten 5 Tage."
+              },
+              {
+                "locale": "en",
+                "value": "This chart shows the number of cases finished per day for the last 5 days."
+              },
+              {
+                "locale": "fr",
+                "value": "Ce graphique montre le nombre d'affaires terminées par jour pour les 5 derniers jours."
+              },
+              {
+                "locale": "es",
+                "value": "Este gráfico muestra el número de casos terminados por día durante los últimos 5 días."
+              }
+            ],
+            "icon": "si si-analytics-board-graph-line",
+            "refreshInterval": 300,
+            "lineChartConfig": {
+              "xTitles": [
+                {
+                  "locale": "de",
+                  "value": "Datum"
+                },
+                {
+                  "locale": "en",
+                  "value": "Date"
+                },
+                {
+                  "locale": "fr",
+                  "value": "Date"
+                },
+                {
+                  "locale": "es",
+                  "value": "Fecha"
+                }
+              ],
+              "yTitles": [
+                {
+                  "locale": "de",
+                  "value": "Abgeschlossene Vorgänge"
+                },
+                {
+                  "locale": "en",
+                  "value": "Finished Cases"
+                },
+                {
+                  "locale": "fr",
+                  "value": "Cas finis"
+                },
+                {
+                  "locale": "es",
+                  "value": "Cajas acabadas"
+                }
+              ]
+            }
+          },
+          {
+            "id": "7",
+            "aggregates": "state",
+            "filter": "state:RUNNING",
+            "permissions": [
+              "Everybody"
+            ],
+            "chartTarget": "CASE",
+            "chartType": "number",
+            "names": [
+              {
+                "locale": "de",
+                "value": "Laufende Vorgänge"
+              },
+              {
+                "locale": "en",
+                "value": "Running Cases"
+              },
+              {
+                "locale": "fr",
+                "value": "Cas en cours"
+              },
+              {
+                "locale": "es",
+                "value": "Casos en Curso"
+              }
+            ],
+            "descriptions": [
+              {
+                "locale": "de",
+                "value": "Anzahl der aktuell laufenden Vorgänge an denen der Benutzer beteiligt ist."
+              },
+              {
+                "locale": "en",
+                "value": "This chart shows all running cases in which the user is involved."
+              },
+              {
+                "locale": "fr",
+                "value": "Ce graphique montre tous les cas en cours dans lesquels l'utilisateur est impliqué."
+              },
+              {
+                "locale": "es",
+                "value": "Este gráfico muestra todos los casos en curso en los que está implicado el usuario"
+              }
+            ],
+            "icon": "si si-pie-line-graph",
+            "refreshInterval": 300,
+            "numberChartConfig": {
+              "suffixSymbol": ""
+            }
+          },
+          {
+            "id": "8",
+            "aggregates": "expiryTimestamp:bucket:week",
+            "filter": "expiryTimestamp:>=now/w <now/w+w,canWorkOn",
+            "permissions": [
+              "Everybody"
+            ],
+            "chartTarget": "TASK",
+            "chartType": "number",
+            "names": [
+              {
+                "locale": "de",
+                "value": "Aufgaben, die bis zum Ende der Woche ablaufen"
+              },
+              {
+                "locale": "en",
+                "value": "Tasks that expire by the end of the week"
+              },
+              {
+                "locale": "fr",
+                "value": "Tâches expirant à la fin de la semaine"
+              },
+              {
+                "locale": "es",
+                "value": "Tareas que expiran al final de la semana"
+              }
+            ],
+            "descriptions": [
+              {
+                "locale": "de",
+                "value": "Dieses Diagramm zeigt alle Aufgaben, die bis zum Ende der Woche ablaufen."
+              },
+              {
+                "locale": "en",
+                "value": "This chart shows all tasks that expire by the end of the week."
+              },
+              {
+                "locale": "fr",
+                "value": "Ce graphique montre toutes les tâches qui expirent à la fin de la semaine."
+              },
+              {
+                "locale": "es",
+                "value": "Este gráfico muestra todas las tareas que vencen al final de la semana."
+              }
+            ],
+            "icon": "si si-pie-line-graph",
+            "refreshInterval": 300,
+            "numberChartConfig": {
+              "suffixSymbol": ""
+            }
+          },
+          {
+            "id": "9",
+            "aggregates": "priority",
+            "filter": "canWorkOn,priority:HIGH NORMAL LOW",
+            "permissions": [
+              "Everybody"
+            ],
+            "chartTarget": "TASK",
+            "chartType": "number",
+            "names": [
+              {
+                "locale": "de",
+                "value": "Aufgaben nach Priorität"
+              },
+              {
+                "locale": "en",
+                "value": "Tasks By Priority"
+              },
+              {
+                "locale": "fr",
+                "value": "Tâches par Priorité"
+              },
+              {
+                "locale": "es",
+                "value": "Tareas por Prioridad"
+              }
+            ],
+            "descriptions": [
+              {
+                "locale": "de",
+                "value": "Dieses Diagramm zeigt alle Aufgaben, an denen der Benutzer arbeiten kann, nach Priorität an."
+              },
+              {
+                "locale": "en",
+                "value": "This chart shows all tasks the user can work on by priority."
+              },
+              {
+                "locale": "fr",
+                "value": "Ce graphique montre toutes les tâches sur lesquelles l'utilisateur peut travailler, par ordre de priorité."
+              },
+              {
+                "locale": "es",
+                "value": "Este gráfico muestra todas las tareas en las que puede trabajar el usuario por prioridad."
+              }
+            ],
+            "icon": "si si-pie-line-graph",
+            "refreshInterval": 300,
+            "numberChartConfig": {
+              "suffixSymbol": ""
+            }
+          },
+          {
+            "id": "10",
+            "aggregates": "businessState",
+            "filter": "canWorkOn",
+            "permissions": [
+              "Everybody"
+            ],
+            "chartTarget": "TASK",
+            "chartType": "number",
+            "names": [
+              {
+                "locale": "de",
+                "value": "Offene Aufgaben"
+              },
+              {
+                "locale": "en",
+                "value": "Open Tasks"
+              },
+              {
+                "locale": "fr",
+                "value": "Tâches ouvertes"
+              },
+              {
+                "locale": "es",
+                "value": "Tareas Pendientes"
+              }
+            ],
+            "descriptions": [
+              {
+                "locale": "de",
+                "value": "Dieses Diagramm zeigt alle Aufgaben an, die der Benutzer bearbeiten kann."
+              },
+              {
+                "locale": "en",
+                "value": "This chart shows all tasks the user can work on."
+              },
+              {
+                "locale": "fr",
+                "value": "Ce tableau montre toutes les tâches sur lesquelles l'utilisateur peut travailler."
+              },
+              {
+                "locale": "es",
+                "value": "Este gráfico muestra todas las tareas en las que puede trabajar el usuario."
+              }
+            ],
+            "icon": "si si-pie-line-graph",
+            "refreshInterval": 300,
+            "numberChartConfig": {
+              "suffixSymbol": ""
+            },
+            "hideLabel": false
+          },
+          {
+            "id": "11",
+            "aggregates": "expiryTimestamp:bucket:day",
+            "filter": "canWorkOn,expiryTimestamp:>=now/d <now/d+d",
+            "permissions": [
+              "Everybody"
+            ],
+            "chartTarget": "TASK",
+            "chartType": "number",
+            "names": [
+              {
+                "locale": "de",
+                "value": "Heute fällige Aufgaben"
+              },
+              {
+                "locale": "en",
+                "value": "Tasks Due Today"
+              },
+              {
+                "locale": "fr",
+                "value": "Tâches à effectuer aujourd'hui"
+              },
+              {
+                "locale": "es",
+                "value": "Tareas para hoy"
+              }
+            ],
+            "descriptions": [
+              {
+                "locale": "de",
+                "value": "Dieses Diagramm zeigt alle Aufgaben, die heute ablaufen."
+              },
+              {
+                "locale": "en",
+                "value": "This chart shows all tasks that expire today."
+              },
+              {
+                "locale": "fr",
+                "value": "Ce tableau montre toutes les tâches qui expirent aujourd'hui."
+              },
+              {
+                "locale": "es",
+                "value": "Este gráfico muestra todas las tareas que vencen hoy."
+              }
+            ],
+            "icon": "si si-pie-line-graph",
+            "refreshInterval": 300,
+            "numberChartConfig": {
+              "suffixSymbol": ""
+            },
+            "hideLabel": true
+          }
+        ]
+          """;
+
+   public static List<ClientStatistic> getDefaultClientStatistic() {
+     return BusinessEntityConverter.jsonValueToEntities(DEFAULT_CLIENT_STATISTIC_JSON, ClientStatistic.class);
+   }
+
+}

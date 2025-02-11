@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
@@ -14,6 +16,7 @@ import javax.ws.rs.NotFoundException;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.bo.ClientStatistic;
+import com.axonivy.portal.constant.DefaultClientStatisticConstant;
 import com.axonivy.portal.dto.ClientStatisticDto;
 import com.axonivy.portal.enums.AdditionalChartConfig;
 
@@ -36,7 +39,10 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
   }
 
   public List<ClientStatistic> findAllCharts() {
-    return findAll();
+    return Stream.concat(
+        DefaultClientStatisticConstant.getDefaultClientStatistic().stream(),
+        findAll().stream()
+    ).collect(Collectors.toList());
   }
 
   /**
@@ -50,7 +56,7 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
    */
   public ClientStatisticResponse getStatisticData(ClientStatisticDto payload)
       throws NotFoundException, NoPermissionException {
-    ClientStatistic chart = findById(payload.getChartId());
+    ClientStatistic chart = findByIdClientStatistic(payload.getChartId());;
     validateChart(payload.getChartId(), chart);
     AggregationResult result = getChartData(chart);
     chart.setAdditionalConfig(new ArrayList<>());
@@ -74,7 +80,6 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
 
   private AggregationResult getChartData(ClientStatistic chart) {
     chart.setFilter(StringUtils.stripToNull(chart.getFilter()));
-
     return switch (chart.getChartTarget()) {
     case CASE -> WorkflowStats.current().caze().aggregate(chart.getAggregates(),
         chart.getFilter());
@@ -100,6 +105,13 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
     return Optional.ofNullable(data.getManipulateValueBy())
                    .map(value -> new SimpleEntry<>(AdditionalChartConfig.MANIPULATE_BY.getKey(), value))
                    .orElse(null);
+  }
+  
+  private ClientStatistic findByIdClientStatistic(String id) {
+    return findAllCharts().stream()
+        .filter(e -> e.getId().equals(id))
+        .findFirst()
+        .orElse(null);
   }
 
   @Override
