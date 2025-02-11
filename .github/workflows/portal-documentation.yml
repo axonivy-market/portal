@@ -80,6 +80,7 @@ jobs:
               echo "#### Warning Details" >> $GITHUB_STEP_SUMMARY
               echo '```' >> $GITHUB_STEP_SUMMARY
               cat sphinx-warnings.log >> $GITHUB_STEP_SUMMARY
+              cat sphinx-warnings.log
               echo '```' >> $GITHUB_STEP_SUMMARY
               exit 1
             fi
@@ -87,7 +88,7 @@ jobs:
         
       - name: Check on run test failures
         if: job.steps.build-html.status == failure()
-        run: 
+        run: |
           dir
           cat sphinx-warnings.log
           cat $GITHUB_STEP_SUMMARY 
