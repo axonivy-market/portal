@@ -8,7 +8,6 @@ import static java.time.Duration.ZERO;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Objects;
 
@@ -195,8 +194,8 @@ public class BaseTest {
   /**
    * {@link #launchBrowserAndGotoRelativeLink(String)} will open link using existing browser. This function will launch
    * new window/tab and focus on that window/tab
-   * @param type 
    * 
+   * @param WindowType
    * @return String
    */
   public String openNewTabOrWindow(WindowType type) {
@@ -285,32 +284,22 @@ public class BaseTest {
   }
 
   protected void login(TestAccount testAccount) {
-    String username = null;
-    String password = null;
-    String url = null;
+    String username;
+    String password;
     try {
       username = URLEncoder.encode(testAccount.getUsername(), "UTF-8");
       password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
       try {
-//        System.out.println(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
         open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
-//        url = "http://localhost:8080/demo-portal/pro/PortalKitTestHelper/1636734E13CEC872/login.ivp?username%3Dadmin%26password%3Dadmin";
-//        System.out.println("open url:" + url);
-//        open(url);
         $(".js-dashboard__wrapper").shouldBe(Condition.exist);
       } catch (Error e) {
         open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
-//        open(url);
       }
     } catch (UnsupportedEncodingException e) {
       throw new PortalGUITestException(e);
     }
     redirectToRelativeLink(grantDashboardWritePublicPermissionUrl);
     redirectToRelativeLink(grantDashboardWriteOwnPermissionUrl);
-  }
-  
-  public static void main(String[] args) {
-    System.out.println(URLEncoder.encode("http://localhost:8080/demo-portal/pro/PortalKitTestHelper/1636734E13CEC872/login.ivp?username=admin&password=admin", StandardCharsets.UTF_8) );
   }
 
   public void updatePortalSetting(String portalSettingName, String portalSettingValue) {
@@ -358,7 +347,6 @@ public class BaseTest {
   
   protected void showNewDashboard() {
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
-    $(".js-dashboard__wrapper").shouldBe(Condition.visible, Duration.ofSeconds(500));
   }
 
   public void redirectToRelativeLinkWithEmbedInFrame(String relativeProcessStartUrl) {
@@ -392,8 +380,6 @@ public class BaseTest {
    * Use this instead of {@code Assertions} methods so that Selenide would take screenshots if errors. This is a
    * workaround because we cannot use @ExtendWith({ScreenShooterExtension.class}) with
    * `WebDriverRunner.getWebDriver().quit();` in `@AfterEach`
-   * @param condition 
-   * @param message 
    */
   public void assertTrue(boolean condition, String message) {
     if (!condition) {
