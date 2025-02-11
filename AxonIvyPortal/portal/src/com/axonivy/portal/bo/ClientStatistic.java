@@ -34,6 +34,7 @@ public class ClientStatistic extends AbstractConfiguration {
   private String locale = Ivy.session().getFormattingLocale().toString();
   private Boolean hideLabel = false;
   private String manipulateValueBy;
+  private List<String> backgroundColor;
   
   public String getIcon() {
     return icon;
@@ -160,4 +161,13 @@ public String getFilter() {
   public void setManipulateValueBy(String manipulateValueBy) {
     this.manipulateValueBy = manipulateValueBy;
   }
+
+  public List<String> getBackgroundColor() {
+    return backgroundColor;
+  }
+
+  public void setBackgroundColor(List<String> backgroundColor) {
+    this.backgroundColor = backgroundColor;
+  }
+  
 }
