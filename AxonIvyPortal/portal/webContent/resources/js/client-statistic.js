@@ -6,6 +6,8 @@ const AVERAGE_BUSINESS_RUNTIME = "avg-businessRuntime";
 // Additional configs
 const EMPTY_CHART_MESSAGE =  'emptyChartDataMessage';
 const MANIPULATE_BY = 'manipulateValueBy';
+const CHART_TEXT_COLOR = '#808080';
+const CHART_GRID_COLOR = 'rgba(192, 192, 192, 0.5)';
 
 let locale;
 let datePattern;
@@ -366,7 +368,7 @@ class ClientPieChart extends ClientCanvasChart {
           plugins: {
             legend: {
               labels: {
-                color: getCssVariable('--ivy-primary-color-medium')  
+                color: CHART_TEXT_COLOR
               }
             }
           }
@@ -432,27 +434,27 @@ class ClientCartesianChart extends ClientCanvasChart {
               title: {
                 text: chartTypeConfig.yTitle,
                 display: true,
-                color: getCssVariable('--ivy-primary-color-medium')
+                color: CHART_TEXT_COLOR
               },
               ticks: {
                 stepSize: stepSize,
-                color: getCssVariable('--ivy-primary-color-medium')
+                color: CHART_TEXT_COLOR
               },
               grid: {
-                color: getCssVariable('--ivy-primary-color-medium')
+                color: CHART_GRID_COLOR
               }
             },
             x: {
               title: {
                 text: chartTypeConfig.xTitle,
                 display: true,
-                color: getCssVariable('--ivy-primary-color-medium')
+                color: CHART_TEXT_COLOR
               },
               ticks: {
-                color: getCssVariable('--ivy-primary-color-medium')
+                color: CHART_TEXT_COLOR
               },
               grid: {
-                color: getCssVariable('--ivy-primary-color-medium')
+                color: CHART_GRID_COLOR
               }
             }
           }
