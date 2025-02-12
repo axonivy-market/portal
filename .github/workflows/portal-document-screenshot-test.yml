@@ -107,14 +107,14 @@ jobs:
       
       - name: Run test
         id: run-test        
-        shell: bash
         run: |
-          mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip -Dtest=com.axonivy.portal.selenium.document.screenshot.*Test -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
+          mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip -Dtest=com.axonivy.portal.selenium.document.screenshot.LoginScreenshotTest -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
         continue-on-error: true
 
       - name: Log out on failures
         if: job.steps.run-test.status == failure()
         run: |
+          cat $ENGINE_DIR/logs/opensearch/ivy-opensearch-*.log
           cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
           
       - name: Archive screenshot image
@@ -124,6 +124,9 @@ jobs:
           retention-days: 5
           path: |
             AxonIvyPortal/portal-selenium-test/target/*.zip
+      
+      - name: Publish Test Report
+        uses: scacap/action-surefire-report@v1
       
       - name: Archive test reports
         uses: actions/upload-artifact@v4
