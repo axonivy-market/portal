@@ -142,9 +142,5 @@ jobs:
           path: 'surefire-reports/*.xml'
           reporter: java-junit
       
-      - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2        
-        with:
-          files: |
-            AxonIvyPortal/portal-selenium-test/target/surefire-reports/*.xml
+
 
