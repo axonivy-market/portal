@@ -3,6 +3,7 @@
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="process" />
+  <cc:attribute name="widget" />
   <cc:attribute name="hideActionButton"/>
   <cc:attribute name="canModify"/>
   <cc:attribute name="actionListenerOnEditProcess"/>
@@ -51,6 +52,15 @@
           actionListener="#{cc.attrs.actionListenerOnEditProcess}"
           update="#{cc.attrs.componentToUpdateOnEditProcess}"
           rendered="#{canModify}"/>
+        <p:menuitem id="clone-process"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Clone')}"
+          icon="si si-copy-paste"
+          actionListener="#{cloneWidgetBean.setCloneWidget(cc.attrs.widget)}"
+          process="@(this)"
+          update="#{p:resolveFirstComponentWithId('clone-widget-component:clone-to-dashboard-dialog', view).clientId}"
+          oncomplete="PF('clone-to-dashboard-dialog').show();"
+          partialSubmit="true" global="false"
+          rendered="#{canModify}" />
         <p:menuitem id="more-information"
           icon="si si-information-circle"
           url="#{processWidgetBean.getProcessInformationPageUrl(process)}"

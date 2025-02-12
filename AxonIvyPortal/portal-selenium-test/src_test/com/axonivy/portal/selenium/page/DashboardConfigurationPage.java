@@ -14,7 +14,6 @@ import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.FileHelper;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.DragAndDropOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
@@ -92,6 +91,19 @@ public class DashboardConfigurationPage extends TemplatePage {
   
   public void clickButtonOnDashboardConfigurationActionMenu(String buttonName) {
     getDashboardConfigurationActionMenu().$$("span").filter(Condition.text(buttonName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+
+  public void clickButtonOnDashboardConfigurationActionMenu(String buttonName,
+      int dashboardIndex) {
+    $(String.format(
+        "[id$='dashboard-modification-component:dashboard-table:%d:dashboard-configuration-action-button']",
+        dashboardIndex)).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
+        .click();
+
+    $$("div[id$='dashboard-configuration-action-menu']")
+        .filter(Condition.appear).first().$$("span")
+        .filter(Condition.text(buttonName)).first()
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void openCreatePublicDashboardMenu() {
@@ -535,6 +547,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   
   public void setSearchInput(String widgetName) {
     $("div.new-widget-dialog__search").shouldBe(appear, DEFAULT_TIMEOUT)
-    .$("input#search-input").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(widgetName);
+        .$("[id $= 'search-input'").shouldBe(appear, DEFAULT_TIMEOUT)
+        .sendKeys(widgetName);
   }
 }
