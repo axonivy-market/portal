@@ -33,7 +33,7 @@ jobs:
       - name: Get current version
         id: get_version
         run: |
-          echo "Use ivyVersion with default value is 'nightly'" >> $GITHUB_STEP_SUMMARY
+          echo "Build portal document. Use input 'ivyVersion' with default value is 'nightly'" >> $GITHUB_STEP_SUMMARY
           VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
           if [[ "$VERSION" == "null object or invalid expression" ]]; then
             echo "Error: could not evaluate maven revision property"

@@ -20,14 +20,10 @@ on:
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
   ENGINE_URL: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip
-  WAIT_TIME: 60
   
 jobs:
   portal-document-screenshot:
     runs-on: ubuntu-latest
-    name: portal-document-screenshot - ${{ github.head_ref || github.ref_name }}
-    env:
-      BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -44,7 +40,7 @@ jobs:
           maven-version: 3.9.8
       - name: Export environment variables
         run: |
-          echo "RUN ID ${{ github. run_id }}"
+          echo "Build screenshot for document. Use 2 inputs: \n 'engineDownloadURL' with default value is 'https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', \n 'testPatternToRun' with default value 'com.axonivy.portal.selenium.document.screenshot.*Test'" >> $GITHUB_STEP_SUMMARY
           echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
