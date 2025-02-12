@@ -753,6 +753,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     columnManagement: Gestión de columnas
     columnType:
       CUSTOM: Campo personalizado
+      CUSTOM_BUSINESS_CASE: Campo personalizado del caso de negocio
       CUSTOM_CASE: Campo de caso personalizado
       STANDARD: Columna estándar
     configuration:
