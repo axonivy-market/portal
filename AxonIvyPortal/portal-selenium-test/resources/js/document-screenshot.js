@@ -372,3 +372,15 @@ function createBlackMediumOutline($element) {
 function highlightCasePreviewDocument(){
   createRedMediumOutline($("a[id$=':preview-file']"));
 }
+
+function highlightWelcomeWidgetCloneMenu() {
+  createRedMediumOutline($("[id $= 'welcome-welcome_1:welcome-widget-action-group-form:clone-welcome-widget']"));
+}
+
+function highlightCloneButtonByIndex(index) {
+  createRedMediumOutline($("[id$=':clone-widget-" + index + "']"));
+}
+
+function highlightCloneFromButton() {
+  createRedMediumOutline($("[id $= ':clone-from']"));
+}

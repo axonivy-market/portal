@@ -6,6 +6,8 @@ const AVERAGE_BUSINESS_RUNTIME = "avg-businessRuntime";
 // Additional configs
 const EMPTY_CHART_MESSAGE =  'emptyChartDataMessage';
 const MANIPULATE_BY = 'manipulateValueBy';
+const CHART_TEXT_COLOR = '#808080';
+const CHART_GRID_COLOR = 'rgba(192, 192, 192, 0.5)';
 
 let locale;
 let datePattern;
@@ -362,7 +364,14 @@ class ClientPieChart extends ClientCanvasChart {
         },
         options: {
           responsive: true,
-          maintainAspectRatio: false
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: {
+                color: CHART_TEXT_COLOR
+              }
+            }
+          }
         }
       });
     }
@@ -407,7 +416,8 @@ class ClientCartesianChart extends ClientCanvasChart {
           datasets: [{
             label: config.name,
             data: data.map(bucket => bucket.count),
-            backgroundColor: config.backgroundColor ? config.backgroundColor : chartColors
+            backgroundColor: config.backgroundColor ? config.backgroundColor : chartColors,
+            borderColor:chartColors 
           }]
         },
         options: {
@@ -423,16 +433,28 @@ class ClientCartesianChart extends ClientCanvasChart {
               beginAtZero: true,
               title: {
                 text: chartTypeConfig.yTitle,
-                display: true
+                display: true,
+                color: CHART_TEXT_COLOR
               },
               ticks: {
-                stepSize: stepSize
+                stepSize: stepSize,
+                color: CHART_TEXT_COLOR
+              },
+              grid: {
+                color: CHART_GRID_COLOR
               }
             },
             x: {
               title: {
                 text: chartTypeConfig.xTitle,
-                display: true
+                display: true,
+                color: CHART_TEXT_COLOR
+              },
+              ticks: {
+                color: CHART_TEXT_COLOR
+              },
+              grid: {
+                color: CHART_GRID_COLOR
               }
             }
           }

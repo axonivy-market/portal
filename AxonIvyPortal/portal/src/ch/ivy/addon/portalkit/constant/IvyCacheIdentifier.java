@@ -11,6 +11,8 @@ public final class IvyCacheIdentifier {
   public static final String PORTAL_CUSTOM_MENU = "PORTAL_CUSTOM_MENU";
   public static final String PORTAL_DASHBOARDS = "PORTAL_DASHBOARDS";
   public static final String PORTAL_DASHBOARDS_MENU_ITEM = "PORTAL_DASHBOARDS_MENU_ITEM";
+  public static final String PORTAL_PRIVATE_DASHBOARDS = "PORTAL_PRIVATE_DASHBOARDS";
+  public static final String PORTAL_PUBLIC_DASHBOARDS = "PORTAL_PUBLIC_DASHBOARDS";
   
   // for caching locales
   public static final String PORTAL_CONTENT_LOCALES = "PORTAL_CONTENT_LOCALES";

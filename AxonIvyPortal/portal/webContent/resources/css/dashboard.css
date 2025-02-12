@@ -905,17 +905,17 @@ body .ui-widget.new-widget-dialog__introduction {
   display: flex;
   flex-direction: row-reverse;
   height: 3rem;
+  position: relative;
 }
 
 .new-widget-dialog__search-input {
   width: 20vw;
-  position: absolute;
 }
 
 .new-widget-dialog__search-icon {
-  position: relative;
-  top: 0.7rem;
-  right: 0.7rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
 
 .widget__content.process-widget.dashboard-widget-panel-container {
