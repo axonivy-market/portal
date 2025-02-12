@@ -256,7 +256,7 @@ var MainMenu = {
             }
           });
       $activeMenuItem.parent().addClass('active-menuitem');
-      PF('main-menu').addMenuitem($activeMenuItem.parent().attr('id'));
+      PF('main-menu')?.addMenuitem($activeMenuItem.parent().attr('id'));
     }
     else {
       MainMenu.removeActivatedSubMenu(true);
@@ -286,7 +286,7 @@ var MainMenu = {
       var item = subMenuActive.get(i);
       $(item).removeClass('active-menuitem');
       if (!keepInCookie) {
-        PF('main-menu').removeMenuitem(item.id);
+        PF('main-menu')?.removeMenuitem(item.id);
       }
       lastSubMeuItem = item.id;
     }

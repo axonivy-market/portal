@@ -222,7 +222,7 @@ var MainMenu = {
       }
       this.removeActiveMenu(activeMenuItemList);
       $currentPageMenu.parent().addClass('active-menuitem');
-      PF('main-menu').addMenuitem($currentPageMenu.parent().attr('id'));
+      PF('main-menu')?.addMenuitem($currentPageMenu.parent().attr('id'));
     }
   },
 
@@ -332,9 +332,9 @@ function executeStoreMenuRemoteCommand(menuItem, isWorkingOnATask, isOpenOnNewTa
 }
 
 function fireEventClickOnMenuItem(menuItem, prevMenuItemId) {
-  PF('main-menu').addMenuitem(menuItem);
+  PF('main-menu')?.addMenuitem(menuItem);
   if (prevMenuItemId !== menuItem) {
-    PF('main-menu').removeMenuitem(prevMenuItemId);
+    PF('main-menu')?.removeMenuitem(prevMenuItemId);
   }
 }
 
@@ -361,7 +361,7 @@ function highlightDashboardItem(menuId) {
 }
 
 function activeMenuItemOnLeftMenu(menuId) {
-  PF('main-menu').addMenuitem(menuId);
+  PF('main-menu')?.addMenuitem(menuId);
   let $selectedMenu = $("[id$='" + menuId + "']");
   if (!$selectedMenu.hasClass('active-menuitem') && !$selectedMenu.siblings('.active-menuitem').length) {
     $selectedMenu.addClass('active-menuitem');
@@ -369,7 +369,7 @@ function activeMenuItemOnLeftMenu(menuId) {
 }
 
 function deactivateMenuItemOnLeftMenu(menuId) {
-  PF('main-menu').removeMenuitem(menuId);
+  PF('main-menu')?.removeMenuitem(menuId);
   let $removedMenu = $("[id$='" + menuId + "']");
   if ($removedMenu.hasClass('active-menuitem')) {
     $removedMenu.removeClass('active-menuitem');
