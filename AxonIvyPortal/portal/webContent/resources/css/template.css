@@ -25,10 +25,6 @@
   margin-bottom: 50px;
 }
 
-a.left-sidebar-menu-icon {
-  cursor: pointer;
-}
-
 .mobile-global-search-container {
   margin: 0 9px;
 }
@@ -71,21 +67,6 @@ a.left-sidebar-menu-icon {
 
 .ui-dialog .ui-dialog-content .ui-icon-alert {
   margin-top: 0;
-}
-/*Case Template*/
-.case-template-title-icon {
-  margin-right: 5px;
-}
-
-.case-template-content {
-  margin-top: 30px;
-}
-
-.case-template-add-note-command {
-  z-index: 1;
-  position: absolute;
-  margin-top: 10px;
-  margin-left: calc(98% - 65px);
 }
 
 /*Task template*/
@@ -226,25 +207,6 @@ a.left-sidebar-menu-icon {
   float: none;
 }
 
-.additional-case-details-data-grid {
-  margin-left: 15px;
-}
-
-.additional-case-details-data-1st-column {
-  padding-right: 10px;
-  text-align: left;
-  word-break: normal;
-  white-space: nowrap;
-}
-
-.additional-case-details-data-2nd-column {
-  text-align: left;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  max-width: 400px;
-}
-
 .process-history-column-header {
   flex: 1 0 100%;
   height: 60px;
@@ -287,10 +249,6 @@ a.left-sidebar-menu-icon {
 .process-history.process-history-list.process-history-list-cell-default.process-history-list-width-120,
   .process-history-list-header-default.process-history-list-width-120 {
   flex: 0 0 120px;
-}
-
-.process-history-list-name-header {
-  padding-left: 10px;
 }
 
 .case-template-content .case-details, .task-template-content .case-details {
@@ -350,9 +308,3 @@ a.left-sidebar-menu-icon {
   max-height: 150px;
   overflow: auto;
 }
-/* =================== FRAME ========================= */
-.request-frame {
-  width: 100%;
-  border: 0;
-}
-/* =================== END FRAME ========================= */
