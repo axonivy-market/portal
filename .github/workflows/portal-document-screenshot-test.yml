@@ -116,7 +116,6 @@ jobs:
         if: job.steps.run-test.status == failure()
         run: |
           cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
-          cat AxonIvyPortal/portal-selenium-test/target/ivy-opensearch-*.log
           
       - name: Archive screenshot image
         uses: actions/upload-artifact@v4
