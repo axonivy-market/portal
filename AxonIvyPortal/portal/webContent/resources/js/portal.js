@@ -491,9 +491,7 @@ const multipleDashboardId = '[id="user-menu-required-login:main-navigator:main-m
 const processItemId = '[id^="user-menu-required-login:main-navigator:main-menu_process"]';
 const taskItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__default-task-list-dashboard-main-dashboard"]';
 const caseItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__default-case-list-dashboard-main-dashboard"]';
-const searchIconId = 'a#global-search-item:visible';
-const searchInputId = '[id="global-search-component:global-search-data"]:visible';
-const quickSearchInputId = '[id="quick-global-search-component:global-search-data"]:visible'
+const searchInputId = '[id="global-search-component:global-search-data"]:visible'
 const useSettingMenuId = 'a#user-settings-menu:visible';
 
 $(document).ready(function () {
@@ -503,7 +501,7 @@ $(document).ready(function () {
     'Digit2': processItemId,
     'Digit3': taskItemId,
     'Digit4': caseItemId,
-    'Digit5': [quickSearchInputId, searchIconId, searchInputId],
+    'Digit5': [searchInputId],
     'Digit6': useSettingMenuId
   };
 
@@ -555,15 +553,6 @@ $(document).ready(function () {
     return event ? event.altKey && !event.ctrlKey && !event.shiftKey && !event.metaKey : false;
   }
 
-  function registerSearchIconClick() {
-    $(searchIconId).on('click', function () {
-      const searchInput = $(searchInputId);
-      if (searchInput) {
-        searchInput.focus();
-      }
-    });
-  }
-
   const iframe = document.getElementById('iFrame');
 
   if (iframe) {
@@ -573,7 +562,6 @@ $(document).ready(function () {
         if (onlyAltPressed(event)) {
           handleFocusOnMainElement(event);
         }
-        registerSearchIconClick();
       });
     };
   }
@@ -745,7 +733,6 @@ $(document).ready(function () {
         processIndex++;
       }
     }
-    registerSearchIconClick();
   });
 });
 // End of accessibility for shortcuts navigation

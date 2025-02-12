@@ -152,7 +152,6 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     showNewDashboard();
     homePage = new NewDashboardPage();
     homePage.waitForCaseWidgetLoaded();
-    homePage.clickOnGlobalSearch();
     ScreenshotUtils.executeDecorateJs("numberingTopBar()");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.getTopBar(),
         ScreenshotUtils.DASHBOARD_FOLDER + "portal-header-with-numbering-annotation",
