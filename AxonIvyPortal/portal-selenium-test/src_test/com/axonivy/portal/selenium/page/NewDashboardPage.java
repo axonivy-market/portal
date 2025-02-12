@@ -917,36 +917,36 @@ public class NewDashboardPage extends TemplatePage {
     $(".notifications-container-content").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 
-  public boolean isOnlyUnreadDisplayed() {
+  public boolean isOnlyUnreadDisplayed(WebElement notificationsPanel) {
     return $("[id='notifications-only-unread']").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
   }
 
-  public void clickOnlyUnreadDisplayed() {
+  public void clickOnlyUnreadDisplayed(WebElement notificationsPanel) {
     $("[id='notifications-only-unread']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
-  public boolean isMarkAllAsReadDisplayed() {
+  public boolean isMarkAllAsReadDisplayed(WebElement notificationsPanel) {
     return $("[id='notification-mark-all-as-read']").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
   }
 
-  public boolean isTodayGroupLineDisplayed() {
+  public boolean isTodayGroupLineDisplayed(WebElement notificationsPanel) {
     return $(".notifications-group-name").shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed();
   }
 
-  public void markAsRead(int expectedBadge) {
+  public void markAsRead(WebElement notificationsPanel, int expectedBadge) {
     waitForGlobalGrowlDisappear();
     $("[id='notification-compact-form:notifications-scroller:0:notification-mark-as-read']").click();
     $(By.id("notifications-badge-value")).shouldBe(Condition.exactValue(String.valueOf(expectedBadge)),
         DEFAULT_TIMEOUT);
   }
 
-  public int findNumberOfNotificationsItem() {
+  public int findNumberOfNotificationsItem(WebElement notificationsPanel) {
     ElementsCollection item = $$(".ui-datascroller-item");
     return item.size();
   }
 
-  public void markAsAllRead() {
+  public void markAsAllRead(WebElement notificationsPanel) {
     $("[id='notification-mark-all-as-read']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     waitForElementValueChanged("#topbar-unread-notifications", "0");
