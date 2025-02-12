@@ -155,6 +155,7 @@ public class BaseTest {
   protected String grantCaseReadAllOwnRoleInvolvedPermission = "PortalKitTestHelper/14DE09882B540AD5/grantCaseReadAllOwnRoleInvolvedPermission.ivp";
   protected String denyCaseReadAllOwnRoleInvolvedPermission = "PortalKitTestHelper/14DE09882B540AD5/denyCaseReadAllOwnRoleInvolvedPermission.ivp";
   protected String multipleOwnersUrl = "InternalSupport/16A68510A341BE6E/multipleOwners.ivp";
+  protected String displayCustomFieldCaseOnTaskWidget = "PortalKitTestHelper/153CACC26D0D4C3D/displayCustomFieldCaseOnTaskWidget.ivp";
   
   protected void redirectToNewDashBoard() {
     open(EngineUrl.createProcessUrl(PORTAL_HOME_PAGE_URL));

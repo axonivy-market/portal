@@ -750,6 +750,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     columnManagement: Gestion des colonnes
     columnType:
       CUSTOM: Champ personnalisé
+      CUSTOM_BUSINESS_CASE: Champ personnalisé de l'affaire
       CUSTOM_CASE: Champ d'affaire personnalisé
       STANDARD: Colonne standard
     configuration:
