@@ -340,16 +340,16 @@ function hideExtendLinkPreviewLabel() {
   $('span.ui-external-link-preview-image-label').css('display', 'none');
 }
 
-function handleUploadFileFail() {
-  let errorMessageElement = document.getElementById('error-message');
-  let uploadErrorElement = document.getElementsByClassName('ui-messages ui-widget ui-helper-hidden ui-fileupload-messages')[1];
+function handleUploadFileFail(widgetVar) {
+  let errorMessageElement = document.getElementById('error-message') || document.getElementById('edit-external-link-error-message');
+  let uploadErrorElement = PF(widgetVar).messageContainer[0];
   errorMessageElement.style.display = 'block';
   errorMessageElement.appendChild(uploadErrorElement);
 }
 
-function handleEditExternalLinkUploadFileFail() {
+function handleUploadFileFailOnEditExternalLink(widgetVar) {
   let errorMessageElement = document.getElementById('edit-external-link-error-message');
-  let uploadErrorElement = document.getElementsByClassName('ui-messages ui-widget ui-helper-hidden ui-fileupload-messages')[0];
+  let uploadErrorElement = PF(widgetVar).messageContainer[0];
   errorMessageElement.style.display = 'block';
   errorMessageElement.appendChild(uploadErrorElement);
 }

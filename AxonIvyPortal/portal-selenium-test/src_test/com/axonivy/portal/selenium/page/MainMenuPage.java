@@ -25,7 +25,7 @@ public class MainMenuPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return ".layout-menu li[role='menuitem'] a.DASHBOARD";
+    return "[id $= 'main-navigator:main-menu']";
   }
 
   @Override
@@ -84,6 +84,17 @@ public class MainMenuPage extends TemplatePage {
     WaitHelper.waitForNavigation(() -> $(By.cssSelector("li[id$='default-case-list-dashboard-main-dashboard']"))
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click());
     return new CaseWidgetNewDashBoardPage();
+  }
+
+  public NewDashboardPage selectDashboardByName(String name) {
+    $("[id $= 'main-navigator:main-menu']").$(".js-dashboard-group")
+        .shouldBe(appear, DEFAULT_TIMEOUT).click();
+
+    $("[id $= 'main-navigator:main-menu']").$(".js-dashboard-group")
+        .$$(".menu-item-dashboard > a > span").filter(Condition.text(name))
+        .get(0)
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return new NewDashboardPage();
   }
 
   private void waitForProcessesPageAfterSelectProcessesCategory() {
