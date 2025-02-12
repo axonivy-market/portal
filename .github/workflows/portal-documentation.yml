@@ -15,8 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        run: |
-          echo "Use ivyVersion with default value is 'nightly'" >> $GITHUB_STEP_SUMMARY
 
       - name: Set up Java
         uses: actions/setup-java@v4
@@ -35,6 +33,7 @@ jobs:
       - name: Get current version
         id: get_version
         run: |
+          echo "Use ivyVersion with default value is 'nightly'" >> $GITHUB_STEP_SUMMARY
           VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
           if [[ "$VERSION" == "null object or invalid expression" ]]; then
             echo "Error: could not evaluate maven revision property"
