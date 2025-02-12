@@ -140,4 +140,4 @@ jobs:
           artifact: screenshot-test-reports
           name: Screenshot Tests
           path: '*.xml'
-          reporter: java-junit
+          reporter: jest-junit
