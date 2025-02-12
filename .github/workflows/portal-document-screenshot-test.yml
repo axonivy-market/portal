@@ -108,7 +108,7 @@ jobs:
       - name: Run test
         id: run-test        
         run: |
-          mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip -Dtest=com.axonivy.portal.selenium.document.screenshot.*Test -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
+          mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip -Dtest=com.axonivy.portal.selenium.document.screenshot.LoginScreenshotTest -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
         continue-on-error: true
 
       - name: Log out on failures
@@ -123,7 +123,7 @@ jobs:
           name: screenshots
           retention-days: 5
           path: |
-            AxonIvyPortal/portal-selenium-test/target/surefire-reports/*.zip
+            AxonIvyPortal/portal-selenium-test/target/*.zip
       
       - name: Archive test reports
         uses: actions/upload-artifact@v4
@@ -131,14 +131,14 @@ jobs:
           name: screenshot-test-reports
           retention-days: 5
           path: |
-            AxonIvyPortal/portal-selenium-test/target/*
+            AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
       
       - name: Report
         uses: dorny/test-reporter@v1.9.1
         with:
           artifact: screenshot-test-reports
           name: Screenshot Tests
-          path: 'surefire-reports/*.xml'
+          path: '*.xml'
           reporter: java-junit
       
 
