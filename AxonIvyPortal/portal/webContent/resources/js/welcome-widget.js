@@ -31,18 +31,22 @@ WelcomeWidgetConfiguration = {
     if (isGreeting == 'true' || (isGreeting == undefined && $('.js-greeting-text').length != 0)) {
       var findGreeting = previewDialog.find('.js-greeting-text.language-to-preview')
     if (findGreeting != undefined && findGreeting.get(0) != undefined){
+      console.log(1)
       welcomeText = findGreeting.get(0).innerHTML + welcomeText;
     }
       
     }
 	var findPreviewText = $('#new-widget-configuration-dialog').find('.js-preview-text');
     if (findPreviewText != undefined && findPreviewText.get(0) != undefined){
+      console.log(2)
       findPreviewText.get(0).innerHTML = escapeHtml(welcomeText);
     }
     
 	var findPreviewTextDarkMode = $('#new-widget-configuration-dialog').find('.js-preview-text-dark-mode');
     if (findPreviewTextDarkMode != undefined && findPreviewTextDarkMode.get(0) != undefined){
+      console.log(3)
       findPreviewTextDarkMode.get(0).innerHTML = escapeHtml(welcomeText);
+      console.log(findPreviewTextDarkMode.get(0))
     }
 
   },
