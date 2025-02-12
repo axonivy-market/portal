@@ -131,8 +131,7 @@ jobs:
           name: screenshot-test-reports
           retention-days: 5
           path: |
-            AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
-            AxonIvyPortal/portal-selenium-test/target/selenide/*
+            AxonIvyPortal/portal-selenium-test/target/*
       
       - name: Report
         uses: dorny/test-reporter@v1.9.1
