@@ -131,12 +131,12 @@ jobs:
           name: screenshot-test-reports
           retention-days: 5
           path: |
-            AxonIvyPortal/portal-selenium-test/target/*
+            AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
       
       - name: Report
         uses: dorny/test-reporter@v1
         with:
           artifact: screenshot-test-reports
           name: Screenshot Tests
-          path: '/surefire-reports/*.xml'
+          path: '*.xml'
           reporter: jest-junit
