@@ -123,7 +123,8 @@ jobs:
           name: screenshots
           retention-days: 5
           path: |
-            AxonIvyPortal/portal-selenium-test/target/*.zip
+            AxonIvyPortal/portal-selenium-test/target/surefire-reports/*.zip
+            AxonIvyPortal/portal-selenium-test/target/selenide/*
       
       - name: Archive test reports
         uses: actions/upload-artifact@v4
@@ -141,9 +142,4 @@ jobs:
           path: 'surefire-reports/*.xml'
           reporter: java-junit
       
-      - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2        
-        with:
-          files: |
-            surefire-reports/*.xml
 
