@@ -1,0 +1,34 @@
+services:
+  ivy-sso-master:
+    image: axonivy/axonivy-engine:dev
+    container_name: ivy-sso-master
+    # Deny public access to the Ivy.Engine while SSO is enabling.
+    # ports:
+    #   - 9099:8080
+    volumes:
+      - ./configuration/applications/Portal:/ivy/configuration/applications/Portal
+      - ./configuration/ivy.yaml:/ivy/configuration/ivy.yaml
+      - ./configuration/licence.lic:/ivy/configuration/licence.lic
+      - ./applications:/ivy/applications
+      - ./data:/ivy/data
+      - ./work:/ivy/work
+      - ./logs:/ivy/logs
+    networks:
+      - postgres_network
+
+  nginx:
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    container_name: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf
+      - ./nginx/logs:/usr/local/openresty/nginx/logs
+    networks:
+      - postgres_network
+networks:
+  postgres_network:
+    external: true
