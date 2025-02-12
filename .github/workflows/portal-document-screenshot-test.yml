@@ -135,9 +135,9 @@ jobs:
             AxonIvyPortal/portal-selenium-test/target/selenide/*
       
       - name: Report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v1.9.1
         with:
           artifact: screenshot-test-reports
           name: Screenshot Tests
-          path: '*.xml'
-          reporter: jest-junit
+          path: '/surefire-reports/*.xml'
+          reporter: java-junit
