@@ -104,7 +104,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: Documentation-$VERSION
+          name: Documentation-${{ steps.get_version.outputs.version }}
           path: |
             Documentation/portal-guide/target/*.zip
     
