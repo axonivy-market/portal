@@ -135,8 +135,8 @@ jobs:
       
       - name: Report
         uses: dorny/test-reporter@v1
-          with:
-            artifact: screenshot-test-reports            # artifact name
-            name: Screenshot Tests                  # Name of the check run which will be created
-            path: '/surefire-reports/*.xml'                     # Path to test results (inside artifact .zip)
-            reporter: jest-junit              # Format of test results
+        with:
+          artifact: screenshot-test-reports
+          name: Screenshot Tests
+          path: '/surefire-reports/*.xml'
+          reporter: jest-junit
