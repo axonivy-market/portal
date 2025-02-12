@@ -138,5 +138,12 @@ jobs:
         with:
           artifact: screenshot-test-reports
           name: Screenshot Tests
-          path: '/surefire-reports/*.xml'
+          path: 'surefire-reports/*.xml'
           reporter: java-junit
+      
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2        
+        with:
+          files: |
+            surefire-reports/*.xml
+
