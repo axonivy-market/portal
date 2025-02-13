@@ -1,12 +1,17 @@
 import fs from "fs";
 import path from "path";
 import puppeteer from "puppeteer";
-import lighthouse from "lighthouse";
+import lighthouse, { startFlow, desktopConfig } from "lighthouse";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const PORTAL_URL = "http://localhost:8080/demo-portal";
 const LOGIN_URL = `${PORTAL_URL}/login`;
 const DASHBOARD_URL = `${PORTAL_URL}/pro/portal/1549F58C18A6C562/DashboardPage.ivp?dashboardId=1`;
-const CREATE_TASK_URL = `${PORTAL_URL}/pro/portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp`;
+const CREATE_TASK_URL = `${PORTAL_URL}/pro/portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp?embedInFrame=`;
 
 const debugLog = (msg) => console.log(`[Debug] ${msg}`);
 
@@ -31,10 +36,17 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
         "--disable-gpu",
         "--window-size=1920,1080",
       ],
+      defaultViewport: null,
     });
 
     const page = await browser.newPage();
     await page.setViewport({ width: 1920, height: 1080 });
+
+    // Set User Agent to a desktop one
+    await page.setUserAgent(
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36"
+    );
+
     debugLog("Browser launched");
 
     // Navigate to login page
@@ -63,19 +75,25 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
     ]);
     debugLog("Login successful");
 
-    //creating task
-    await page.goto(CREATE_TASK_URL, {
+    // Creating task
+    const createTaskResponse = await page.goto(CREATE_TASK_URL, {
       waitUntil: "networkidle0",
       timeout: 30000,
     });
     debugLog(`Creating task by navigating to ${CREATE_TASK_URL}`);
+    if (!createTaskResponse.ok()) {
+      throw new Error(
+        `Create task page failed to load: ${createTaskResponse.status()}`
+      );
+    }
+    debugLog(`Create task page: ${loginResponse.status()}`);
 
-    // redirected to dashboard
+    // Redirected to dashboard
     await page.goto(DASHBOARD_URL, {
       waitUntil: "networkidle0",
       timeout: 30000,
     });
-    debugLog("redirected to dashboard");
+    debugLog("Redirected to dashboard");
 
     debugLog("Verifying dashboard loaded...");
     await page.waitForSelector(".ui-g.js-dashboard__wrapper.js-view-mode", {
@@ -84,23 +102,20 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
     });
     debugLog("Dashboard loaded successfully");
 
-    // Run Lighthouse audit
-    debugLog("Starting Lighthouse audit...");
-    const runnerResult = await lighthouse(page.url(), {
-      port: new URL(browser.wsEndpoint()).port,
-      output: ["html", "json"],
-      onlyCategories: ["accessibility"],
-      presets: "desktop", // Enable desktop emulation
-      settings: {
-        emulatedFormFactor: "desktop", // Specify desktop form factor
-        screenEmulation: {
-          width: 1920,
-          height: 1080,
-          deviceScaleFactor: 1,
-          mobile: false,
-        },
-      },
+    // Run Lighthouse user flow audit (desktop)
+    // Using desktopConfig and disabling Lighthouse viewport emulation to inherit Puppeteer's settings.
+    const flow = await startFlow(page, {
+      config: desktopConfig,
+      flags: { screenEmulation: { disabled: true } },
     });
+    // Use navigate() to capture a navigation step (here we reuse current URL)
+    await flow.navigate(page.url());
+    const flowReportHtml = await flow.generateReport();
+
+    debugLog("Puppeteer viewport:");
+    debugLog(await page.viewport());
+
+    debugLog("User Flow Report generated");
 
     // Ensure reports directory exists
     const reportsDir = "lighthouse-reports";
@@ -108,42 +123,9 @@ const debugLog = (msg) => console.log(`[Debug] ${msg}`);
       fs.mkdirSync(reportsDir, { recursive: true });
     }
 
-    // Save reports
-    debugLog("Saving reports...");
-    try {
-      if (Array.isArray(runnerResult.report)) {
-        // Handle array of reports (HTML is typically the first element)
-        fs.writeFileSync("lighthouse-report.html", runnerResult.report[0]);
-        debugLog("HTML report saved from array");
-      } else if (typeof runnerResult.report === "string") {
-        // Handle string report
-        fs.writeFileSync("lighthouse-report.html", runnerResult.report);
-        debugLog("HTML report saved from string");
-      } else {
-        debugLog(`Unexpected report format: ${typeof runnerResult.report}`);
-        debugLog(`Report content: ${JSON.stringify(runnerResult.report)}`);
-      }
-
-      if (runnerResult.lhr) {
-        fs.writeFileSync(
-          path.join(reportsDir, "report.json"),
-          JSON.stringify(runnerResult.lhr, null, 2)
-        );
-        debugLog("JSON report saved");
-      }
-
-      if (
-        !fs.existsSync("lighthouse-report.html") &&
-        !fs.existsSync(path.join(reportsDir, "report.json"))
-      ) {
-        throw new Error("No reports were generated");
-      }
-    } catch (error) {
-      debugLog(`Error saving reports: ${error.message}`);
-      throw error;
-    }
-
-    debugLog("Reports saved successfully");
+    // Save the flow report
+    fs.writeFileSync("lighthouse-report.html", flowReportHtml);
+    debugLog("Flow HTML report saved successfully");
   } catch (error) {
     debugLog(`Error: ${error.message}`);
     console.error(error);
