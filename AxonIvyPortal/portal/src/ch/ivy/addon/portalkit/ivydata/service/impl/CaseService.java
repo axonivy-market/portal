@@ -398,6 +398,12 @@ public class CaseService implements ICaseService {
 
   public ICase findCaseById(long caseId) {
     return Sudo.get(() -> {
+      if (PermissionUtils.checkSkipPermission()) {
+        return Ivy.wf().getGlobalContext().getCaseQueryExecutor()
+            .createCaseQuery().where().caseId().isEqual(caseId).executor()
+            .firstResult();
+      }
+
       CaseQuery caseQuery = CaseQuery.create().where().caseId().isEqual(caseId);
       if (PermissionUtils.checkReadAllCasesPermission()) {
         EnumSet<CaseState> ADVANCE_STATES = EnumSet.of(CREATED, RUNNING, DONE, DESTROYED);
