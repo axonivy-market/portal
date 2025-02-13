@@ -208,39 +208,41 @@ function expandFullscreen(index, widgetId) {
   }
 }
 
+let resizeObserver;
 function resizeTableBody() {
-  const scrollableBody = document.querySelectorAll('.ui-datatable-scrollable-body');
-  scrollableBody.forEach((sb) => {
-    const resizeObserver = new ResizeObserver(() => {
-      let tableBody = $(sb);
-      let parentHeight = tableBody.parents('.grid-stack-item-content.card.dashboard-card').height();
-      if (!window.matchMedia("(max-width: 767px)").matches) {
-        tableBody.height(parentHeight - 100);
-      } else {
-        tableBody.height(parentHeight * 0.9);
-      }
+  if (!resizeObserver) {
+    resizeObserver = new ResizeObserver(entries => {
+      requestAnimationFrame(() => {
+        entries.forEach(entry => {
+          let tableBody = $(entry.target);
+          let parentHeight = tableBody.parents('.grid-stack-item-content.card.dashboard-card').height();
 
-      const widgetName = tableBody.parents('.grid-stack-item').find('.js-table-widget-var').val();
-      if (widgetName === undefined) {
-        return;
-      }
+          if (!window.matchMedia("(max-width: 767px)").matches) {
+            if (tableBody.height() !== parentHeight - 100) {
+              tableBody.height(parentHeight - 100);
+            }
+          } else {
+            tableBody.height(parentHeight * 0.9);
+          }
+          const widgetName = tableBody.parents('.grid-stack-item').find('.js-table-widget-var').val();
+          if (!widgetName) return;
 
-      // Update scrolling of the Primefaces widget
-      const widget = PF(widgetName);
-      if (widget) {
-        widget.cfg.scrollHeight = tableBody.parents('.ui-datatable-scrollable').height().toString();
+          const widget = PF(widgetName);
+          if (widget) {
+            widget.cfg.scrollHeight = tableBody.parents('.ui-datatable-scrollable').height().toString();
+            if (tableBody.parents('.js-resizing').length > 0) {
+              widget.init(widget.cfg);
+            }
+            widget.setupScrolling();
+          }
+        });
 
-        if (tableBody.parents('.js-resizing').length > 0) {
-          widget.init(widget.cfg);
-        }
-
-        widget.setupScrolling();
-      }
+      });
     });
-    setTimeout(function() {
-      resizeObserver.observe(sb);
-    }, 70);
-  })
+  }
+  document.querySelectorAll('.ui-datatable-scrollable-body').forEach(sb => {
+    resizeObserver.observe(sb)
+  });
 
 }
 
