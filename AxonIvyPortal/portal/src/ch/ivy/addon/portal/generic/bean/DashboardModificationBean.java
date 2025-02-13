@@ -355,7 +355,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         .build();
   }
 
-  private String encodeWelcomeWidgetImage(/* WelcomeDashboardWidget widget */String imageLocation, String imageType) {
+  private String encodeWelcomeWidgetImage(String imageLocation, String imageType) {
     if (StringUtils.isBlank(imageLocation)) {
       return "";
     }
