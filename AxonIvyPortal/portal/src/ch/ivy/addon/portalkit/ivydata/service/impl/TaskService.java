@@ -265,6 +265,11 @@ public class TaskService implements ITaskService {
 
   public ITask findTaskById(long taskId) {
     return Sudo.get(() -> {
+      if (PermissionUtils.checkSkipPermission()) {
+        return Ivy.wf().getGlobalContext().getTaskQueryExecutor()
+            .createTaskQuery().where().taskId().isEqual(taskId).executor()
+            .firstResult();
+      }
       TaskQuery taskQuery = TaskQuery.create().where().taskId().isEqual(taskId);
       if (PermissionUtils.checkReadAllTasksPermission()) {
         EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE,
