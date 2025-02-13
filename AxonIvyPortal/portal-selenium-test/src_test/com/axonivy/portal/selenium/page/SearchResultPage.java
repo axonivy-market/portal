@@ -20,12 +20,12 @@ public class SearchResultPage extends TemplatePage {
 
   public void openTaskTab() {
     waitForPageLoad();
-    waitForElementClickableThenClick($(By.cssSelector("li[class*='task-tab-title']")));
+    waitForElementClickableThenClick($(By.cssSelector("li.task-tab-title")));
   }
 
   public void openCaseTab() {
     waitForPageLoad();
-    waitForElementClickableThenClick($(By.cssSelector("li[class*='case-tab-title']")));
+    waitForElementClickableThenClick($(By.cssSelector("li.case-tab-title")));
   }
 
   public void startProcess(String name) {

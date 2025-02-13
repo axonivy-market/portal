@@ -34,16 +34,8 @@
               task="#{task}" case="#{case}" />
           </h:panelGroup>
         </li>
-        <li class="topbar-item search-item" jsf:rendered="#{showGlobalSearch and !showQuickGlobalSearch}">
-
-          <a href="#" id="global-search-item" aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}">
-            <i class="topbar-icon si si-search"/>
-          </a>
-          <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" 
-            showQuickGlobalSearch="#{showQuickGlobalSearch}" isWorkingOnATask="#{isWorkingOnATask}" case="#{case}" task="#{task}"/>
-        </li>
-        <li class="topbar-item custom-search-item" jsf:rendered="#{showQuickGlobalSearch}">
-          <ic:ch.ivy.addon.portal.generic.GlobalSearch id="quick-global-search-component" showQuickGlobalSearch="#{showQuickGlobalSearch}" 
+        <li class="topbar-item custom-search-item" jsf:rendered="#{showGlobalSearch or showQuickGlobalSearch}">
+          <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" showQuickGlobalSearch="#{showQuickGlobalSearch}"
             isWorkingOnATask="#{isWorkingOnATask}" case="#{case}" task="#{task}" />
         </li>
         <li class="topbar-item themeswitch-item">
