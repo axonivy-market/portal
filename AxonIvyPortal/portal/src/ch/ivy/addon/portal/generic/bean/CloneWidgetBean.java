@@ -117,7 +117,7 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
 
     // If cannot get title, set the widget type as the header instead
     if (StringUtils.isBlank(result)) {
-      result = widget.getType().getLabel();
+      result = cloneWidget.getType().getLabel();
     }
 
     return Ivy.cms().co(CLONE_TO_DASHBOARD_DIALOG_HEADER_CMS,
