@@ -135,15 +135,15 @@ public class WelcomeWidgetUtils {
    * @param widget
    */
   public static void writeWelcomeWidgetImage(WelcomeDashboardWidget widget) {
-    if (widget.getImageType() == null) {
+    if (widget.getImageType() == null && widget.getImageTypeDarkMode() == null) {
       Ivy.log().warn("WidgetId [{0}] does not has imageType. Skip write to cms.", widget.getId());
       return;
     }
-    if (StringUtils.isNotBlank(widget.getImageLocation())) {
-      String widgetId = DashboardWidgetUtils.generateNewWidgetId(WELCOME);
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(WELCOME);
+    if (StringUtils.isNotBlank(widget.getImageLocation()) && StringUtils.isNotBlank(widget.getImageType())) {
       String fileExtension = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageType());
       String imageLocation = widgetId.concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtension);
-      ContentObject newImageObject = WelcomeWidgetUtils.getImageContentObject(WelcomeWidgetUtils.getFileNameOfImage(imageLocation), fileExtension);
+      ContentObject newImageObject = WelcomeWidgetUtils.getImageContentObject(getFileNameOfImage(imageLocation), fileExtension);
       if (StringUtils.isNotBlank(widget.getImageContent())) {
         // If has defined content, create new image
         WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
@@ -153,6 +153,21 @@ public class WelcomeWidgetUtils {
         // If has defined location, clone new image
         byte[] oldFileContent = WelcomeWidgetUtils.getImageAsByteData(widget.getImageLocation());
         WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(oldFileContent);
+      }
+    }
+    if (StringUtils.isNotBlank(widget.getImageLocationDarkMode()) && StringUtils.isNotBlank(widget.getImageTypeDarkMode())) {
+      String fileExtensionDarkMode = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageTypeDarkMode());
+      String imageLocationDarkMode = widgetId.concat(WelcomeWidgetUtils.DARK_MODE).concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtensionDarkMode);
+      ContentObject newImageObjectDarkMode = WelcomeWidgetUtils.getImageContentObject(getFileNameOfImage(imageLocationDarkMode), fileExtensionDarkMode);
+      if (StringUtils.isNotBlank(widget.getImageContentDarkMode())) {
+        // If has defined content, create new image
+        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObjectDarkMode).write().bytes(Base64.getDecoder().decode(widget.getImageContentDarkMode()));
+        widget.setImageLocationDarkMode(imageLocationDarkMode);
+        widget.setImageContentDarkMode(null);
+      } else {
+        // If has defined location, clone new image
+        byte[] oldFileContentDarkMode = WelcomeWidgetUtils.getImageAsByteData(widget.getImageLocationDarkMode());
+        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObjectDarkMode).write().bytes(oldFileContentDarkMode);
       }
     }
   }
