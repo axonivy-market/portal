@@ -15,13 +15,20 @@
 
 <cc:implementation>
   <p:dialog id="clone-to-dashboard-dialog" widgetVar="clone-to-dashboard-dialog"
-    header="#{cloneWidgetBean.cloneToDashboardDialogHeader}"
     appendTo="@(body)" closeOnEscape="true"
     fitViewport="true" responsive="true"
     resizable="false" width="450px"
     modal="true" dynamic="true"
     position="center center"
     onShow="PF('clone-to-dashboard-dialog').initPosition()">
+    <f:facet name="header">
+      <div class="inline-flex flex-auto clone-to-dashboard-dialog-header-container">
+        <h:outputText id="clone-dialog-header" styleClass="white-space-nowrap text-overflow-ellipsis overflow-hidden w-full"
+          value="#{cloneWidgetBean.cloneToDashboardDialogHeader}" />
+        <p:tooltip for="clone-dialog-header" trackMouse="true"
+          value="#{cloneWidgetBean.cloneToDashboardDialogHeader}" />
+      </div>
+    </f:facet>
     <h:form id="clone-widget-form">
       <h:panelGroup id="clone-widget-panel" layout="block" styleClass="flex w-full flex-column">
         <div class="mb-3">

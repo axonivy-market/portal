@@ -2144,3 +2144,7 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
   display: inline-block;
   overflow: hidden;
 }
+
+.clone-to-dashboard-dialog-header-container {
+  width: calc(100% - 35px);
+}
