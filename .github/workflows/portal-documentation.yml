@@ -8,7 +8,7 @@ on:
     inputs:
       ivyVersion:
         description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html'
-        default: 'nightly'
+        default: 'nightly-12'
         required: true
 jobs:
   build-document:
@@ -33,6 +33,7 @@ jobs:
       - name: Get current version
         id: get_version
         run: |
+          echo "Build portal document. Use input 'ivyVersion' with default value is 'nightly-12'" >> $GITHUB_STEP_SUMMARY
           VERSION=$(mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml)
           if [[ "$VERSION" == "null object or invalid expression" ]]; then
             echo "Error: could not evaluate maven revision property"
@@ -43,10 +44,11 @@ jobs:
           echo "Version is $VERSION"
       
       - name: Download artifacts from screenshot workflow
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@v8
         with:
           workflow: portal-document-screenshot-test.yml
           name: screenshots
+          branch: feature/IVYPORTAL-18233-Create-Github-workflow-for-screenshot-document-build-12
           path: Documentation/portal-guide/source/screenshots
             
       - name: install zip
@@ -66,8 +68,6 @@ jobs:
       - name: Build Documentation HTML
         id: build-html
         run: |
-          echo "github workspace 1 ${GITHUB_WORKSPACE}"
-          dir
           docker run -u root:root --rm -v ${{ github.workspace }}:/workspace -w /workspace/Documentation/portal-guide \
             axonivy/build-container:read-the-docs-2 make -C /doc-build html BASEDIR='/workspace/Documentation/portal-guide' VERSION=${{ steps.get_version.outputs.version }} 2> sphinx-warnings.log
             WARNINGS=$(grep -c "WARNING" sphinx-warnings.log || echo 0)
@@ -103,7 +103,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: Documentation
+          name: Documentation-${{ steps.get_version.outputs.version }}
           path: |
             Documentation/portal-guide/target/*.zip
     

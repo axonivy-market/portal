@@ -42,6 +42,7 @@ jobs:
           maven-version: 3.9.8
       - name: Export environment variables
         run: |
+          echo "Build screenshot for document. Use 2 inputs: \n 'engineDownloadURL' with default value is 'https://developer.axonivy.com/permalink/nightly-12/axonivy-engine-windows.zip', \n 'testPatternToRun' with default value 'com.axonivy.portal.selenium.document.screenshot.*Test'" >> $GITHUB_STEP_SUMMARY
           echo "RUN ID ${{ github. run_id }}"
           echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
@@ -113,8 +114,8 @@ jobs:
       - name: Log out on failures
         if: job.steps.run-test.status == failure()
         run: |
+          cat $ENGINE_DIR/logs/opensearch/ivy-opensearch-*.log
           cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
-          cat AxonIvyPortal/portal-selenium-test/target/ivy-opensearch-*.log
           
       - name: Archive screenshot image
         uses: actions/upload-artifact@v4
@@ -130,4 +131,12 @@ jobs:
           name: screenshot-test-reports
           retention-days: 5
           path: |
-            AxonIvyPortal/portal-selenium-test/target/*
+            AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
+            
+      - name: Report
+        uses: dorny/test-reporter@v1.9.1
+        with:
+          artifact: screenshot-test-reports
+          name: Screenshot Tests
+          path: '*.xml'
+          reporter: java-junit
