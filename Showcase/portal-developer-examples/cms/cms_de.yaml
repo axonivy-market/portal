@@ -83,6 +83,12 @@ CustomFields:
     CustomTaskWidget: Benutzerdefiniertes TaskWidget
     DefaultAdditionalCaseDetai: Standardmäßig zusätzliche Falldetailseite
   Tasks:
+    Country:
+      Values:
+        Atony: England
+        English: english
+        German: German
+        user: country
     CustomerAddress:
       Description: Feld Kundenadresse
       Label: Adresse des Kunden
@@ -92,6 +98,9 @@ CustomFields:
     CustomerName:
       Description: Spalte Kundenname zum Beispiel
       Label: Kundenname
+      Values:
+        Atony: Atony English
+        user: Customer name
     CustomerType:
       Description: Spalte Kundentyp zum Beispiel
       Label: Typ des Kunden

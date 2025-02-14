@@ -46,7 +46,7 @@ public class TaskColumnModel extends ColumnModel {
     cmsPath = cmsPath + "/" + customFields.stringField(field).getOrNull();
     var cms = ContentManagement.of(task.getProcessModelVersion());
     var content = cms.content(cmsPath);
-    if (content == null || StringUtils.isBlank(content.get())) {
+    if (content == null) {
       return customFields.stringField(field).getOrNull();
     }
     return content.get();
