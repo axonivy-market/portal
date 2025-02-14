@@ -122,8 +122,8 @@
       </div>
       <div class="ui-g-9 ui-fluid">
         <p:inputText id="field-display-name" value="#{columnManagementBean.fieldDisplayName}" styleClass="field-add-fieldset__input"
-           required="#{!selectedCustomField}" requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
-           readonly="#{selectedCustomField}"/>
+           required="#{!selectedCustomField and !selectedCustomCaseField}" requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
+           readonly="#{selectedCustomField or selectedCustomCaseField}"/>
       </div>
 
       <div class="ui-g-12 u-text-align-right">
