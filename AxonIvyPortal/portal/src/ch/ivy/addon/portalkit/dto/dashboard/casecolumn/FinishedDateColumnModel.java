@@ -43,7 +43,7 @@ public class FinishedDateColumnModel  extends CaseColumnModel implements Seriali
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-cases__finished-date u-text-align-center";
+    return "dashboard-cases__finished-date text-center";
   }
 
   @Override

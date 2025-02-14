@@ -47,7 +47,7 @@
         </p:dataTable>
       </p:fieldset>
 
-      <p:outputPanel styleClass="u-text-align-right">
+      <p:outputPanel styleClass="text-right">
         <p:commandButton id="save-deputy-button" styleClass="save-deputy-button w-full"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.updateSelectedDeputies()}"
           oncomplete="PF('choose-deputy-dialog').hide();" update="#{data.selectedDeputyRoleId}">

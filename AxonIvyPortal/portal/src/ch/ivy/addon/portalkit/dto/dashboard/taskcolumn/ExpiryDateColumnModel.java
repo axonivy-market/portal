@@ -48,7 +48,7 @@ public class ExpiryDateColumnModel extends TaskColumnModel implements Serializab
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__expiry-date u-text-align-center widget-column";
+    return "dashboard-tasks__expiry-date text-center widget-column";
   }
 
   @Override

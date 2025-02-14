@@ -58,7 +58,7 @@
                 </h:panelGroup>
 
                 <h:panelGroup id="has-notifications" rendered="#{notificationBean.hasNotifications()}">
-                  <h:outputText styleClass="#{notificationBean.render ? 'u-hidden' : ''}"
+                  <h:outputText styleClass="#{notificationBean.render ? 'hidden' : ''}"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
                   <h:form id="notification-compact-form" onmouseover="Portal.updateLayoutContent()">
                     <p:dataScroller id="notifications-scroller" lazy="true" styleClass="notification-scroll" value="#{notificationBean.dataModel}"

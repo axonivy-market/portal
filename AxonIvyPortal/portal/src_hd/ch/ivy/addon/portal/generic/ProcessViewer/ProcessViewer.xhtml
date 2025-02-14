@@ -15,7 +15,7 @@
         <h:panelGroup layout="block" styleClass="ui-g-12 portal-process-viewer-data card">
             <ic:com.axonivy.portal.components.ProcessViewer taskId="#{data.taskId}" caseId="#{data.caseId}" processLink="#{data.processId}" />
         </h:panelGroup>
-        <div class="ui-g-12 u-text-align-right process-viewer-command u-padding-0">
+        <div class="ui-g-12 text-right process-viewer-command u-padding-0">
           <p:commandButton id="close-process" actionListener="#{logic.close}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
             icon="si si-close" />

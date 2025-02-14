@@ -10,6 +10,6 @@
 </cc:interface>
 
 <cc:implementation>
-   <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(pageHeaderFooterBean.footer)}" class="ui-md-hidden #{empty pageHeaderFooterBean.footer ? 'u-hidden' : ''}" />
+   <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(pageHeaderFooterBean.footer)}" class="ui-md-hidden #{empty pageHeaderFooterBean.footer ? 'hidden' : ''}" />
 </cc:implementation>
 </html>

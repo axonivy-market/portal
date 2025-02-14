@@ -10,36 +10,36 @@
     <ui:define name="pageContent">
       <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }" styleClass="note-history-container">
         <div class="ui-g">
-          <div class="u-text-align-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4">
+          <div class="text-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" />
           </div>
-          <div class="u-text-align-left ui-g-10 ui-lg-11 ui-md-10 ui-sm-8">
+          <div class="text-left ui-g-10 ui-lg-11 ui-md-10 ui-sm-8">
             <h:outputText id="case-name" value="#{data.ivyCase.names().current()}" />
           </div>
-          <div class="u-text-align-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4">
+          <div class="text-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
           </div>
-          <div class="u-text-align-left ui-g-10 ui-lg-11 ui-md-10 ui-sm-8">
+          <div class="text-left ui-g-10 ui-lg-11 ui-md-10 ui-sm-8">
             <h:outputText id="case-id" value="#{data.ivyCase.id}" />
           </div>
-          <div jsf:rendered="#{!visibilityBean.hideCaseCreator}" class="u-text-align-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4">
+          <div jsf:rendered="#{!visibilityBean.hideCaseCreator}" class="text-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
           </div>
-          <div jsf:rendered="#{!visibilityBean.hideCaseCreator}" class="u-text-align-left ui-g-10 ui-lg-11 ui-md-10 ui-sm-8">
+          <div jsf:rendered="#{!visibilityBean.hideCaseCreator}" class="text-left ui-g-10 ui-lg-11 ui-md-10 ui-sm-8">
             <pc:securityMemberNameAndAvatar securityMember="#{data.ivyCase.creatorUser}"
               displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(data.ivyCase.creatorUser, data.ivyCase.creatorUser.name)}" />
           </div>
-          <div class="u-text-align-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4">
+          <div class="text-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
           </div>
-          <div class="u-text-align-left ui-g-10 ui-lg-11 ui-md-10 ui-sm-8">
+          <div class="text-left ui-g-10 ui-lg-11 ui-md-10 ui-sm-8">
             <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState id="case-state"
               case="#{data.ivyCase}" showIndicatorBesideText="true" responsiveStyleClass="note-history-state"/>
           </div>
         </div>
 
         <div class="ui-g">
-          <div class="ui-g-12 u-text-align-right u-no-padding-top">
+          <div class="ui-g-12 text-right u-no-padding-top">
             <p:commandLink ajax="false" styleClass="note-history-export-button MarTop10">
               <i class="#{visibilityBean.generateButtonIcon('si si-office-file-xls-1')}" />
               <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}</span>

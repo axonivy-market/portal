@@ -9,6 +9,6 @@
 <cc:interface componentType="IvyComponent">
 </cc:interface>
 <cc:implementation>
-    <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(pageHeaderFooterBean.header)}" class="ui-md-hidden #{empty pageHeaderFooterBean.header ? 'u-hidden' : ''}" />
+    <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(pageHeaderFooterBean.header)}" class="ui-md-hidden #{empty pageHeaderFooterBean.header ? 'hidden' : ''}" />
 </cc:implementation>
 </html>

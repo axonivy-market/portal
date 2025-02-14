@@ -13,7 +13,7 @@
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseWidgetInfo/casesByState')}" />
   </f:facet>
   <h:outputText styleClass="ui-g-12 js-loading-case-states-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
-  <h:panelGroup id="case-states-statistic-#{widget.id}" layout="block" styleClass="js-statistic-case-states-#{widget.id} u-display-none">
+  <h:panelGroup id="case-states-statistic-#{widget.id}" layout="block" styleClass="js-statistic-case-states-#{widget.id} hidden">
     <ui:repeat value="#{widget.caseByStateStatistic.entrySet()}" var="entry">
       <div class="ui-g-8">
         <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="" state="#{entry.key}"
@@ -44,7 +44,7 @@
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseWidgetInfo/casesByCategory')}" />
   </f:facet>
   <h:outputText styleClass="ui-g-12 js-loading-case-category-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
-  <h:panelGroup id="case-category-statistic-#{widget.id}" layout="block" styleClass="js-statistic-case-category-#{widget.id} u-display-none">
+  <h:panelGroup id="case-category-statistic-#{widget.id}" layout="block" styleClass="js-statistic-case-category-#{widget.id} hidden">
     <div class="ui-g" jsf:rendered="#{not empty widget.caseByCategoryStatistic}">
       <ui:repeat value="#{widget.caseByCategoryStatistic}" var="entry" varStatus="status">
         <div class="ui-g-8 u-truncate-text u-default-cursor">

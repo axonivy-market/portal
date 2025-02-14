@@ -25,7 +25,7 @@ public class IdColumnModel extends TaskColumnModel implements Serializable {
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__id u-text-align-center widget-column";
+    return "dashboard-tasks__id text-center widget-column";
   }
 
   @Override

@@ -150,7 +150,7 @@
           placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addNoteHelpText')}"
           styleClass="note-content-textarea" autoResize="false" />
       </h:panelGroup>
-      <h:panelGroup layout="block" styleClass="MarTop10 u-text-align-right">
+      <h:panelGroup layout="block" styleClass="MarTop10 text-right">
         <p:commandLink id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
           onsuccess="PF('add-note-dialog-#{case.id}').hide()"

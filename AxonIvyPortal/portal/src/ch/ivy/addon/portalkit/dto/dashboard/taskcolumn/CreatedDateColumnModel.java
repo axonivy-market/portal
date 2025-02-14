@@ -48,7 +48,7 @@ public class CreatedDateColumnModel extends TaskColumnModel implements Serializa
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__created-date u-text-align-center widget-column";
+    return "dashboard-tasks__created-date text-center widget-column";
   }
 
   @Override

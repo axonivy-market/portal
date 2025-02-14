@@ -47,7 +47,7 @@ public class StateColumnModel extends TaskColumnModel implements Serializable {
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__state u-text-align-center widget-column";
+    return "dashboard-tasks__state text-center widget-column";
   }
 
   @Override

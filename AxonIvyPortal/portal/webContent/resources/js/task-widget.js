@@ -18,7 +18,7 @@ function TaskWidget() {
         var mobileTitle = taskWidgetHeaderContainer.find(".js-widget-title-mobile");
         if (mobileTitle.length > 0) {
           $(".js-layout-content").css("overflow-y", "hidden");
-          mobileTitle.addClass("u-hidden");
+          mobileTitle.addClass("hidden");
         }
 
         var announcementMessageContainer = $('.js-announcement-message');
@@ -72,7 +72,7 @@ function TaskWidget() {
 
         // show mobile title after calculate
         if (mobileTitle.length > 0) {
-          mobileTitle.removeClass("u-hidden");
+          mobileTitle.removeClass("hidden");
         }
       }
       if (!needShowScrollbar) {
@@ -124,11 +124,11 @@ function TaskWidget() {
 function TaskListToolKit() {
 
   function hideColumnWhenExpandMenu($columns) {
-    $columns.addClass("u-hidden");
+    $columns.addClass("hidden");
   }
 
   function displayColumnWhenCollapseMenu($columns) {
-    $columns.removeClass("u-hidden");
+    $columns.removeClass("hidden");
   }
 
   return {

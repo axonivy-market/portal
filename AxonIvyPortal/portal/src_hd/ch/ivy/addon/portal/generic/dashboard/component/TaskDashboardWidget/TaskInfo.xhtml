@@ -13,7 +13,7 @@
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/expiry')}" />
   </f:facet>
   <h:outputText styleClass="ui-g-12 js-loading-expiry-task-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
-  <h:panelGroup id="task-expiry-statistic-#{widget.id}" layout="block" styleClass="js-statistic-expiry-task-#{widget.id} u-display-none">
+  <h:panelGroup id="task-expiry-statistic-#{widget.id}" layout="block" styleClass="js-statistic-expiry-task-#{widget.id} hidden">
     <div class="ui-g-8">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/expireToday')}" />
     </div>
@@ -55,7 +55,7 @@
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasksByState')}" />
   </f:facet>
   <h:outputText styleClass="ui-g-12 js-loading-task-states-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
-  <h:panelGroup id="task-states-statistic-#{widget.id}" layout="block" styleClass="js-statistic-task-states-#{widget.id} u-display-none">
+  <h:panelGroup id="task-states-statistic-#{widget.id}" layout="block" styleClass="js-statistic-task-states-#{widget.id} hidden">
     <ui:repeat value="#{widget.taskByStateStatistic.entrySet()}" var="entry">
       <div class="ui-g-8">
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskState state="#{entry.key}"
@@ -86,7 +86,7 @@
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasksByCategory')}" />
   </f:facet>
   <h:outputText styleClass="ui-g-12 js-loading-task-category-#{widget.id}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
-  <h:panelGroup id="task-category-statistic-#{widget.id}" layout="block" styleClass="js-statistic-task-category-#{widget.id} u-display-none">
+  <h:panelGroup id="task-category-statistic-#{widget.id}" layout="block" styleClass="js-statistic-task-category-#{widget.id} hidden">
     <div class="ui-g" jsf:rendered="#{not empty widget.taskByCategoryStatistic}">
       <ui:repeat value="#{widget.taskByCategoryStatistic}" var="entry" varStatus="status">
         <div class="ui-g-8 u-truncate-text u-default-cursor">

@@ -40,7 +40,7 @@
         </h:panelGroup >
 
         <h:panelGroup id="dashboard-notification-container-#{widget.id}" layout="block"
-          styleClass="w-full dashboard-notification-container js-dashboard-notification-container-#{widget.id}  u-display-none">
+          styleClass="w-full dashboard-notification-container js-dashboard-notification-container-#{widget.id}  hidden">
           <h:panelGroup id="notification-widget__content-#{widget.id}" layout="block" styleClass="notification-widget__content">
             <p:dataScroller id="notifications-scroller-#{widget.id}" lazy="true" value="#{widget.dataModel}" var="notification" 
                 chunkSize="25" widgetVar="notifications-scroller-#{widget.id}" mode="inline" rendered="#{widget.hasNotifications()}">

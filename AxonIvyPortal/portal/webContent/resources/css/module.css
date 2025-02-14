@@ -52,26 +52,6 @@
   }
 }
 
-.widget-header-content-filter {
-  width: 100%;
-}
-
-.widget-header-sub {
-  flex: 1 0 auto;
-  align-self: flex-end;
-}
-
-/* Small screen */
-@media screen and (max-width: 40em) {
-  .widget-header-main-title.compact-mod-title {
-    width: 100%;
-  }
-}
-
-.widget-header-main-menu a:hover {
-  border-bottom: none;
-}
-
 .widget-sort-menu:not(.full-mode), .compact-task-widget .filter-view {
   padding-top: 0 !important;
 }

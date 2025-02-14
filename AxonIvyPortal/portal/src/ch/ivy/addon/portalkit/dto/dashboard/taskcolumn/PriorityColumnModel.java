@@ -44,7 +44,7 @@ public class PriorityColumnModel extends TaskColumnModel implements Serializable
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__priority u-text-align-center widget-column";
+    return "dashboard-tasks__priority text-center widget-column";
   }
 
   @Override

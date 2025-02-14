@@ -63,9 +63,9 @@
                 <h:outputText value="Auto. translation" />
               </p:commandLink>
               <h:panelGroup id="translated-text-panel" layout="block">
-                <i id="translating-title" class="#{empty managedBean.translatedText and empty managedBean.warningText? 'pi pi-spin pi-spinner' : 'u-hidden'}"></i>
-                <p:outputPanel id="translated-title" styleClass="#{empty managedBean.translatedText ? 'u-hidden' : ''}">#{managedBean.translatedText}</p:outputPanel>
-                <p:outputLabel id="warning-text" styleClass="#{empty managedBean.warningText? 'u-hidden' : ''}"><span class="ui-outputlabel-rfi">#{managedBean.warningText}</span></p:outputLabel>
+                <i id="translating-title" class="#{empty managedBean.translatedText and empty managedBean.warningText? 'pi pi-spin pi-spinner' : 'hidden'}"></i>
+                <p:outputPanel id="translated-title" styleClass="#{empty managedBean.translatedText ? 'hidden' : ''}">#{managedBean.translatedText}</p:outputPanel>
+                <p:outputLabel id="warning-text" styleClass="#{empty managedBean.warningText? 'hidden' : ''}"><span class="ui-outputlabel-rfi">#{managedBean.warningText}</span></p:outputLabel>
               </h:panelGroup>
             </p:overlayPanel>
           </div>
