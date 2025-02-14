@@ -216,6 +216,10 @@
   margin-top: 20px;
 }
 
+.Fleft {
+  float: left;
+}
+
 .Fright {
   float: right;
 }
