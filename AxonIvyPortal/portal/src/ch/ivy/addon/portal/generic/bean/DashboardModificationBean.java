@@ -151,7 +151,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
       return;
     }
     for (DashboardWidget selectedWidget : selectedDashboard.getWidgets()) {
-      if (WELCOME.equals(selectedWidget.getType())) {
+      if (WELCOME == selectedWidget.getType()) {
         removeWelcomeWidgetImage(selectedWidget);
       }
     }
@@ -164,6 +164,9 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) selectedWidget;
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
       WelcomeWidgetUtils.removeWelcomeImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType());
+    }
+    if (StringUtils.isNotBlank(welcomeWidget.getImageLocationDarkMode())) {
+      WelcomeWidgetUtils.removeWelcomeImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode());
     }
   }
 
@@ -330,9 +333,12 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
     Optional.ofNullable(dashboard).map(Dashboard::getWidgets).orElse(new ArrayList<>()).stream().forEach(widget -> {
       if (widget instanceof WelcomeDashboardWidget) {
-        var welcomeWidget = (WelcomeDashboardWidget) widget;
+        WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
         welcomeWidget.setImageType(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageType()));
-        welcomeWidget.setImageContent(encodeWelcomeWidgetImage(welcomeWidget));
+        welcomeWidget.setImageContent(encodeWelcomeWidgetImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType()));
+        
+        welcomeWidget.setImageTypeDarkMode(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageTypeDarkMode()));
+        welcomeWidget.setImageContentDarkMode(encodeWelcomeWidgetImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode()));
       }
     });
 
@@ -349,13 +355,12 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         .build();
   }
 
-  private String encodeWelcomeWidgetImage(WelcomeDashboardWidget widget) {
-    if (Optional.ofNullable(widget).map(WelcomeDashboardWidget::getImageLocation).isEmpty()) {
-      return null;
+  private String encodeWelcomeWidgetImage(String imageLocation, String imageType) {
+    if (StringUtils.isBlank(imageLocation)) {
+      return "";
     }
-
     String result = "";
-    ContentObject widgetImage = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
+    ContentObject widgetImage = WelcomeWidgetUtils.getImageContentObject(imageLocation, imageType);
     if (widgetImage != null && widgetImage.exists()) {
       result = new String(Base64.getEncoder().encode(WelcomeWidgetUtils.readObjectValueOfDefaultLocale(widgetImage).read().bytes()));
     }
