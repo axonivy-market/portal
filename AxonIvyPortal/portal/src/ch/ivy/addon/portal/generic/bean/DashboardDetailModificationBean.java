@@ -335,7 +335,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void removeWidget() {
     if (this.getDeleteWidget() != null) {
       this.getSelectedDashboard().getWidgets().remove(getDeleteWidget());
-      if (WELCOME.equals(this.deleteWidget.getType())) {
+      if (WELCOME == this.deleteWidget.getType()) {
         removeWelcomeWidgetImage(this.deleteWidget);
       }
       saveSelectedDashboard();
@@ -351,6 +351,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
       WelcomeWidgetUtils.removeWelcomeImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType());
     }
+    if (StringUtils.isNotBlank(welcomeWidget.getImageLocationDarkMode())) {
+      WelcomeWidgetUtils.removeWelcomeImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode());
+    }
   }
 
   /**
@@ -359,7 +362,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
    */
   private void removeWelcomeWidgetImagesOfDashboard(Dashboard selectedDashboard) {
     for (DashboardWidget selectedWidget : selectedDashboard.getWidgets()) {
-      if (WELCOME.equals(selectedWidget.getType())) {
+      if (WELCOME == selectedWidget.getType()) {
         removeWelcomeWidgetImage(selectedWidget);
       }
     }
@@ -745,7 +748,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       return;
     }
 
-    if (WELCOME.equals(widget.getType())) {
+    if (WELCOME == widget.getType()) {
       for (var otherWidget : CollectionUtils.emptyIfNull(selectedDashboard.getWidgets())) {
         if (otherWidget.getId().contentEquals(widget.getId())) {
           continue;
