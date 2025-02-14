@@ -25,6 +25,10 @@
   margin-bottom: 50px;
 }
 
+a.left-sidebar-menu-icon {
+  cursor: pointer;
+}
+
 .mobile-global-search-container {
   margin: 0 9px;
 }
@@ -249,6 +253,10 @@
 .process-history.process-history-list.process-history-list-cell-default.process-history-list-width-120,
   .process-history-list-header-default.process-history-list-width-120 {
   flex: 0 0 120px;
+}
+
+.process-history-list-name-header {
+  padding-left: 10px;
 }
 
 .case-template-content .case-details, .task-template-content .case-details {
