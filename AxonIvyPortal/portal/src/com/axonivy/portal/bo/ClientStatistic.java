@@ -19,7 +19,7 @@ public class ClientStatistic extends AbstractConfiguration {
   private List<String> permissions;
   private ChartTarget chartTarget;
   private ChartType chartType;
-
+  private long refreshInterval; // in seconds
   private BarChartConfig barChartConfig;
   private LineChartConfig lineChartConfig;
   private NumberChartConfig numberChartConfig;
@@ -55,6 +55,14 @@ public class ClientStatistic extends AbstractConfiguration {
 
   public void setChartType(ChartType chartType) {
     this.chartType = chartType;
+  }
+
+  public long getRefreshInterval() {
+    return refreshInterval;
+  }
+
+  public void setRefreshInterval(long refreshInterval) {
+    this.refreshInterval = refreshInterval;
   }
 
   public BarChartConfig getBarChartConfig() {

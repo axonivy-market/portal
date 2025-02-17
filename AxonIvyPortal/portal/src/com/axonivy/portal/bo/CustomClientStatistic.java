@@ -1,5 +1,5 @@
 package com.axonivy.portal.bo;
 
-public class CustomClientStatistic extends ClientStatistic{
+public class CustomClientStatistic extends ClientStatistic {
 
 }
