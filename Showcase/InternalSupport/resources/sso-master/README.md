@@ -1,0 +1,12 @@
+- Original configuration is in docker sample docker-samples\ivy-sso-entraid-nginx-connect
+- Changed from demo mode to licence mode
+- Updated
+  - ivy.yaml: add SystemDb, Administrators
+  - compose.yml:
+    - Use external network postgres_network for all services
+    - Change ivy service to ivy-sso-master service to prevent unpredictable proxy_pass of nginx
+    - Map directories for licence mode
+  - nginx.conf:
+    - Update server_name
+    - Update tenant ID, client ID, client secret
+    - Update proxy_pass to match with ivy service name in docker compose
