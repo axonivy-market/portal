@@ -13,7 +13,6 @@ import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
-import com.axonivy.portal.util.filter.operator.task.customfield.CustomStringIsOperatorHandler;
 import com.google.common.collect.Iterables;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
@@ -23,9 +22,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
-import ch.ivyteam.ivy.workflow.custom.field.ICustomField;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
-import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.ICustomFieldOrderBy;
@@ -122,39 +119,16 @@ public class DashboardTaskSearchCriteria {
           DashboardStandardTaskColumn columnEnum = DashboardStandardTaskColumn.findBy(column.getField());
           if (columnEnum != null) {
             appendQuickSearchTaskQueryByDashboardFilter(subQuery, selectStandandFieldToQuickSearchQuery(columnEnum));
-          } else if (isSupport(column.getField()) && !getQuickSearchKeywordListMatchingWithCustomField(column.getField()).isEmpty()) {
-              DashboardFilter filter = generateFilterForCustomFieldWithMultiLanguageSupport(column.getField(), getQuickSearchKeywordListMatchingWithCustomField(column.getField()));
-              TaskQuery customFieldQuery = generateQueryForCustomFieldWithMultiLanguage(filter);
-              subQuery.where().or(customFieldQuery);
-            }
-            else {
-              appendCustomFieldsForQuickSearchQuery(subQuery, column);
-            }
-            }
+          } else {
+            appendCustomFieldsForQuickSearchQuery(subQuery, column);
+          }
         }
-        
         query.where().and(subQuery);
         Ivy.log().info(query);
       }
     }
-  
-  private boolean isSupportMultiLanguage(String columnField) {
-    return !getQuickSearchKeywordListMatchingWithCustomField(columnField).isEmpty();
   }
-  
-  private TaskQuery generateQueryForCustomFieldWithMultiLanguage(DashboardFilter filter) {
-    return CustomStringIsOperatorHandler.getInstance().buildIsQuery(filter);
-  }
-  
-  private DashboardFilter generateFilterForCustomFieldWithMultiLanguageSupport(String field, List<String> keywordList) {
-    DashboardFilter filter = new DashboardFilter();
-    filter.setField(field);
-    filter.setFilterType(DashboardColumnType.CUSTOM);
-    filter.setOperator(FilterOperator.IS);
-    filter.setValues(keywordList);
-    return filter;
-  }
-  
+
   private void appendCustomFieldsForQuickSearchQuery(TaskQuery subQuery, ColumnModel column) {
     switch (column.getType()) {
     case CUSTOM_CASE -> appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column));
@@ -171,49 +145,45 @@ public class DashboardTaskSearchCriteria {
   }
   
   private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column) {
+    if (haveCmsPathAttribute(column.getField())) {
+      return buildQuickSearchForCustomFieldWithCmsValues(column.getField());
+    }
     return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);
   }
+  
+  private DashboardFilter buildQuickSearchForCustomFieldWithCmsValues(String columnField) {
+    DashboardFilter filter = new DashboardFilter();
+    filter.setField(columnField);
+    filter.setFilterType(DashboardColumnType.CUSTOM);
+    filter.setOperator(FilterOperator.IN);
+    filter.setValues(getCmsValuesMatchingWithQuickSearchKeyword(columnField));
+    return filter; 
+  }
+  
+  private List<String> getCmsValuesMatchingWithQuickSearchKeyword(String columnField) {
+    List<String> keywordList = new ArrayList<>();
+    ICustomFieldMeta.tasks().stream().filter(task -> task.type().equals(CustomFieldType.STRING) && task.name().equals(columnField)).forEach(field -> {
+      Iterable<Object> list =  field.values().matching(this.quickSearchKeyword);
+      if (!Iterables.isEmpty(list) && field.name().equals(columnField)) {
+        for (Object obj : list) {
+            keywordList.add(obj.toString());
+        }
+    }
+    });
+    Ivy.log().info(keywordList);
+    return keywordList;
+  }
+  
+  private boolean haveCmsPathAttribute(String columnField) {
+    List<ICustomFieldMeta> list = ICustomFieldMeta.tasks().stream().filter(field -> field.name().equals(columnField) && field.attribute("CmsPath")!= null).collect(Collectors.toList());
+    return !list.isEmpty();  }
 
   private DashboardFilter buildQuickSearchToDashboardFilter(String columnField, FilterOperator operator, DashboardColumnType type) {
     DashboardFilter filter = new DashboardFilter();
     filter.setField(columnField);
     filter.setFilterType(type);
     filter.setOperator(operator);
-    filter.setValues(List.of(quickSearchKeyword));
-    return filter;
-  }
-
-//  private DashboardFilter buildQuickSearchForCustomColumn(String columnField, FilterOperator operator, DashboardColumnType type) {
-//    
-//  }
-  
-  
-  
-  private List<String> getQuickSearchKeywordListMatchingWithCustomField(String columnField) {
-    List<String> keywordList = new ArrayList<>();
-    ICustomFieldMeta.tasks().stream().filter(task -> task.type().equals(CustomFieldType.STRING) && task.name().equals(columnField)).forEach(field -> {
-      Iterable<Object> list =  field.values().matching(this.quickSearchKeyword);
-      if (!Iterables.isEmpty(list) && field.name().equals(columnField)) {
-        Ivy.log().info(field.name());
-        for (Object obj : list) {
-            keywordList.add(obj.toString());
-        }
-    }
-    });
-    return keywordList;
-  }
-  
-  private boolean isSupport(String column) {
-    List<ICustomFieldMeta> list = ICustomFieldMeta.tasks().stream().filter(field -> field.name().equals(column) && field.attribute("CmsPath")!= null).collect(Collectors.toList());
-    return !list.isEmpty();
-  }
-  
-  private DashboardFilter buildQuickSearchToDashboardFilterWithCustomColumn(DashboardFilter filter, List<String> keywordList, String columnField) {
-    keywordList.add(this.quickSearchKeyword);
-    filter.setField(columnField);
-    filter.setFilterType(DashboardColumnType.CUSTOM);
-    filter.setOperator(FilterOperator.CONTAINS);
-    filter.setValues(keywordList);
+    filter.setValues(List.of(this.quickSearchKeyword));
     return filter;
   }
   

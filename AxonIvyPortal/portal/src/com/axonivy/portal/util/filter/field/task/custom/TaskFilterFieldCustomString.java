@@ -8,6 +8,7 @@ import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.CustomFilterField;
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomStringContainsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomStringEndWithOperatorHandler;
+import com.axonivy.portal.util.filter.operator.task.customfield.CustomStringInOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomStringIsEmptyOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomStringIsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomStringStartWithOperatorHandler;
@@ -62,6 +63,7 @@ public class TaskFilterFieldCustomString extends CustomFilterField {
     case NOT_END_WITH -> CustomStringEndWithOperatorHandler.getInstance().buildNotEndWithQuery(filter);
     case EMPTY -> CustomStringIsEmptyOperatorHandler.getInstance().buildIsEmptyQuery(filter);
     case NOT_EMPTY -> CustomStringIsEmptyOperatorHandler.getInstance().buildNotEmptyQuery(filter);
+    case IN -> CustomStringInOperatorHandler.getInstance().buildQuery(filter);
     default -> null;
     };
   }
