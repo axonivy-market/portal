@@ -16,19 +16,21 @@ import javax.ws.rs.NotFoundException;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.bo.ClientStatistic;
-import com.axonivy.portal.constant.DefaultClientStatisticConstant;
+import com.axonivy.portal.bo.CustomClientStatistic;
 import com.axonivy.portal.dto.ClientStatisticDto;
 import com.axonivy.portal.enums.AdditionalChartConfig;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.JsonConfigurationService;
 import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
 
-public class ClientStatisticService extends JsonConfigurationService<ClientStatistic> {
-
+public class ClientStatisticService extends JsonConfigurationService<CustomClientStatistic> {
+  
+  private static final String DEFAULT_CLIENT_STATISTIC_KEY = PortalVariable.CLIENT_STATISTIC.key;
   private static ClientStatisticService instance;
 
   public static ClientStatisticService getInstance() {
@@ -40,7 +42,7 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
 
   public List<ClientStatistic> findAllCharts() {
     return Stream.concat(
-        DefaultClientStatisticConstant.getDefaultClientStatistic().stream(),
+        getDefaultClientStatistic().stream(),
         findAll().stream()
     ).collect(Collectors.toList());
   }
@@ -114,14 +116,20 @@ public class ClientStatisticService extends JsonConfigurationService<ClientStati
         .orElse(null);
   }
 
+  private List<ClientStatistic> getDefaultClientStatistic() {
+    String value = Ivy.var().get(DEFAULT_CLIENT_STATISTIC_KEY);
+    List<ClientStatistic> clientStatistics = BusinessEntityConverter.jsonValueToEntities(value, ClientStatistic.class);
+    return clientStatistics;
+  }
+
   @Override
-  public Class<ClientStatistic> getType() {
-    return ClientStatistic.class;
+  public Class<CustomClientStatistic> getType() {
+    return CustomClientStatistic.class;
   }
 
   @Override
   public String getConfigKey() {
-    return PortalVariable.CLIENT_STATISTIC.key;
+    return PortalVariable.CUSTOM_CLIENT_STATISTIC.key;
   }
 
 }
