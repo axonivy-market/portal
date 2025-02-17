@@ -3,6 +3,8 @@ package com.axonivy.portal.bo;
 import java.util.List;
 import java.util.Map.Entry;
 
+import com.axonivy.portal.enums.statistic.ChartTarget;
+import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -16,8 +18,7 @@ public class ClientStatistic extends AbstractConfiguration {
   private String filter;
   private List<String> permissions;
   private ChartTarget chartTarget;
-  private String chartType;
-  private long refreshInterval; // in seconds
+  private ChartType chartType;
 
   private BarChartConfig barChartConfig;
   private LineChartConfig lineChartConfig;
@@ -48,20 +49,12 @@ public class ClientStatistic extends AbstractConfiguration {
     this.numberChartConfig = numberChartConfig;
   }
 
-  public String getChartType() {
+  public ChartType getChartType() {
     return chartType;
   }
 
-  public void setChartType(String chartType) {
+  public void setChartType(ChartType chartType) {
     this.chartType = chartType;
-  }
-
-  public long getRefreshInterval() {
-    return refreshInterval;
-  }
-
-  public void setRefreshInterval(long refreshInterval) {
-    this.refreshInterval = refreshInterval;
   }
 
   public BarChartConfig getBarChartConfig() {
