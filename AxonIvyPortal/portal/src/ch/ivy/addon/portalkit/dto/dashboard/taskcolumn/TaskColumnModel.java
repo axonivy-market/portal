@@ -7,6 +7,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
+import ch.ivyteam.ivy.cm.exec.ContentResolver;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
@@ -38,18 +39,27 @@ public class TaskColumnModel extends ColumnModel {
     }
   }
   
+  private boolean containCmsPathAttr(Iterable<String> iterable) {
+    for (String str : iterable) {
+        if (str != null && str.equals(CMS_PATH)) {
+            return true;
+        }
+    }
+    return false;
+}
+  
   private String displayStringFieldContent(ICustomFields customFields, ITask task) {
-    String cmsPath = customFields.stringField(field).meta().attribute(CMS_PATH);
-    if (cmsPath == null) {
-      return customFields.stringField(field).getOrNull();
+    if (containCmsPathAttr(customFields.stringField(field).meta().attributeNames())) {
+      String cmsPath = customFields.stringField(field).meta().attribute(CMS_PATH);
+      if (cmsPath == null) {
+        return StringUtils.EMPTY;
+      }
+      cmsPath = cmsPath + "/" + customFields.stringField(field).getOrNull();
+      ContentManagement cms = ContentManagement.of(task.getProcessModelVersion());
+      ContentResolver content = cms.content(cmsPath);
+      return content.get();
     }
-    cmsPath = cmsPath + "/" + customFields.stringField(field).getOrNull();
-    var cms = ContentManagement.of(task.getProcessModelVersion());
-    var content = cms.content(cmsPath);
-    if (content == null) {
-      return customFields.stringField(field).getOrNull();
-    }
-    return content.get();
+    return customFields.stringField(field).getOrNull();
   }
 
   public static TaskColumnModel constructColumn(DashboardColumnType fieldType, String field) {

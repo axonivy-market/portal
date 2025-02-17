@@ -12,6 +12,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.cm.exec.ContentManagement;
+import ch.ivyteam.ivy.cm.exec.ContentResolver;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
@@ -31,23 +32,31 @@ public class CaseColumnModel extends ColumnModel {
     } else if (isText()) {
       return customFields.textField(field).getOrNull();
     } else {
-      return displayStringFieldContent(caze);
+      return displayStringFieldContent(customFields, caze);
     }
   }
   
-  private String displayStringFieldContent(ICase caze) {
-    ICustomFields customFields = caze.customFields();
-    String cmsPath = customFields.stringField(field).meta().attribute(CMS_PATH);
-    if (cmsPath == null) {
-      return customFields.stringField(field).getOrNull();
+  private boolean containCmsPathAttr(Iterable<String> iterable) {
+    for (String str : iterable) {
+        if (str != null && str.equals(CMS_PATH)) {
+            return true;
+        }
     }
-    cmsPath = cmsPath + "/" + customFields.stringField(field).getOrNull();
-    var cms = ContentManagement.of(caze.getProcessModelVersion());
-    var content = cms.content(cmsPath);
-    if (content == null || StringUtils.isBlank(content.get())) {
-      return customFields.stringField(field).getOrNull();
+    return false;
+}
+  
+  private String displayStringFieldContent(ICustomFields customFields, ICase caze) {
+    if (containCmsPathAttr(customFields.stringField(field).meta().attributeNames())) {
+      String cmsPath = customFields.stringField(field).meta().attribute(CMS_PATH);
+      if (cmsPath == null) {
+        return StringUtils.EMPTY;
+      }
+      cmsPath = cmsPath + "/" + customFields.stringField(field).getOrNull();
+      ContentManagement cms = ContentManagement.of(caze.getProcessModelVersion());
+      ContentResolver content = cms.content(cmsPath);
+      return content.get();
     }
-    return content.get();
+    return customFields.stringField(field).getOrNull();
   }
 
   public static CaseColumnModel constructColumn(DashboardColumnType fieldType, String field) {
