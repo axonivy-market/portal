@@ -42,6 +42,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     this.selectedPermissions = new ArrayList<>();
   }
 
+  public ClientStatistic getClientStatistic() {
     return clientStatistic;
   }
 
