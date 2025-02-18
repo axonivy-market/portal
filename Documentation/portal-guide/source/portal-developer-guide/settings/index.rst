@@ -423,10 +423,10 @@ Data model:
 
 Portal Statistic Charts
 ^^^^^^^^^^^^^^^^^^^^^^^
-You can define filter logic, appearance, and other settings for all statistic
+You can define filter logic, appearance, and other settings for custom statistic
 charts that can be used by the :ref:`Statistic widget <portal-statistic-widget>` of Portal dashboard.
 
-Filename: ``variables.Portal.ClientStatistic.json``
+Filename: ``variables.Portal.CustomClientStatistic.json``
 
 Data model:
 
@@ -434,7 +434,7 @@ Data model:
 
    [
       {
-         "id": "1",
+         "id": "20",
          "aggregates": "priority",
          "filter": "businessState:OPEN IN_PROGRESS,canWorkOn",
          "chartTarget": "TASK",
