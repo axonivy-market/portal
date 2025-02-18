@@ -1,0 +1,168 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="title">Custom Statistic Widget Configuration</ui:define>
+    <ui:define name="pageContent">
+
+      <h:form id="clientStatisticForm">
+
+        <!-- Aggregates Field -->
+        <h:panelGrid columns="2">
+          <h:outputLabel for="aggregates" value="Aggregates" />
+          <p:autoComplete id="aggregates" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.aggregates}"
+            completeMethod="#{clientStatisticWidgetConfigurationBean.completeAggregates}" var="aggregate"
+            itemLabel="#{aggregate}" itemValue="#{aggregate}" forceSelection="true" dropdown="true" />
+        </h:panelGrid>
+
+        <h:panelGrid columns="2">
+          <h:outputLabel for="filter" value="Filter" />
+          <p:inputText id="filter" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.filter}" />
+        </h:panelGrid>
+
+        <h:panelGrid columns="2">
+          <h:outputLabel for="permissions" value="Permissions" />
+          <p:autoComplete id="dashboard-permission" scrollHeight="210" dropdown="true"
+            required="#{param['skipValidator'] == null}"
+            completeMethod="#{clientStatisticWidgetConfigurationBean.completePermissions}"
+            styleClass="manage-dashboard__input" inputStyleClass="manage-dashboard__autocomplete-input"
+            value="#{clientStatisticWidgetConfigurationBean.clientStatistic.permissionDTOs}" var="responsible"
+            itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}" converter="pojoConverter"
+            cache="true" maxResults="100" multiple="true"
+            moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
+            forceSelection="true">
+            <p:ajax event="itemSelect"
+              listener="#{clientStatisticWidgetConfigurationBean.onSelectPermissionForDashboard}"
+              update="dashboard-permission" global="false" process="@this" immediate="true" />
+            <p:ajax event="itemUnselect"
+              listener="#{clientStatisticWidgetConfigurationBean.onUnSelectPermissionForDashboard}" global="false"
+              process="@this" immediate="true" />
+            <p:column>
+              <pc:securityMemberNameAndAvatar displayName="#{dashboardTaskFilterBean.formatName(responsible)}"
+                securityMember="#{responsible}">
+                <f:facet name="alternativeAvatar">
+                  <h:outputText rendered="#{not avatarBean.isShowAvatar()}"
+                    styleClass="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                </f:facet>
+              </pc:securityMemberNameAndAvatar>
+            </p:column>
+          </p:autoComplete>
+        </h:panelGrid>
+
+        <h:panelGrid columns="2">
+          <h:outputLabel for="chartTarget" value="Chart Target" />
+
+          <p:selectOneMenu id="chartTarget"
+            value="#{clientStatisticWidgetConfigurationBean.clientStatistic.chartTarget}">
+            <f:selectItem itemLabel="Select a Chart Target" itemValue="#{null}" />
+            <f:selectItems value="#{clientStatisticWidgetConfigurationBean.allChartTargets}" var="chartTarget"
+              itemLabel="#{chartTarget}" itemValue="#{chartTarget}" />
+          </p:selectOneMenu>
+        </h:panelGrid>
+
+
+        <!-- Chart Type -->
+        <h:panelGrid columns="2">
+          <h:outputLabel for="chartType" value="Chart Type" />
+          <p:selectOneMenu id="chartType" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.chartType}">
+            <f:selectItem itemLabel="Select a Chart Type" itemValue="#{null}" />
+            <f:selectItems value="#{clientStatisticWidgetConfigurationBean.allChartTypes}" var="chartType"
+              itemLabel="#{chartType}" itemValue="#{chartType}" />
+          </p:selectOneMenu>
+        </h:panelGrid>
+
+        <h:panelGrid columns="2">
+          <h:outputLabel for="refreshInterval" value="Refresh Interval (seconds)" />
+          <p:inputText id="refreshInterval"
+            value="#{clientStatisticWidgetConfigurationBean.clientStatistic.refreshInterval}" />
+        </h:panelGrid>
+
+        <!--             Bar Chart Config -->
+        <!--             <h:panelGrid columns="2"> -->
+        <!--                 <h:outputLabel for="barChartConfig" value="Bar Chart Config" /> -->
+        <!--                 <p:inputText id="barChartConfig" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.barChartConfig.someField}" /> -->
+        <!--                 Customize the fields for barChartConfig -->
+        <!--             </h:panelGrid> -->
+
+        <!--             Line Chart Config -->
+        <!--             <h:panelGrid columns="2"> -->
+        <!--                 <h:outputLabel for="lineChartConfig" value="Line Chart Config" /> -->
+        <!--                 <p:inputText id="lineChartConfig" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.lineChartConfig.someField}" /> -->
+        <!--                 Customize the fields for lineChartConfig -->
+        <!--             </h:panelGrid> -->
+
+        <!--             Number Chart Config -->
+        <!--             <h:panelGrid columns="2"> -->
+        <!--                 <h:outputLabel for="numberChartConfig" value="Number Chart Config" /> -->
+        <!--                 <p:inputText id="numberChartConfig" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.numberChartConfig.someField}" /> -->
+        <!--                 Customize the fields for numberChartConfig -->
+        <!--             </h:panelGrid> -->
+
+        <h:panelGrid columns="2">
+          <h:outputLabel for="names" value="Names" />
+          <p:multiSelectListbox id="names" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.names}"
+            listValue="#{clientStatisticWidgetConfigurationBean.clientStatistic.availableNames}" var="name"
+            itemLabel="#{name.displayName}" itemValue="#{name}" />
+        </h:panelGrid>
+
+        <h:panelGrid columns="2">
+          <h:outputLabel for="name" value="Name" />
+          <p:inputText id="name" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.name}" readonly="true" />
+        </h:panelGrid>
+
+        <h:panelGrid columns="2">
+          <h:outputLabel for="descriptions" value="Descriptions" />
+          <p:multiSelectListbox id="descriptions"
+            value="#{clientStatisticWidgetConfigurationBean.clientStatistic.descriptions}"
+            listValue="#{clientStatisticWidgetConfigurationBean.clientStatistic.availableDescriptions}"
+            var="description" itemLabel="#{description.displayName}" itemValue="#{description}" />
+        </h:panelGrid>
+
+        <h:panelGrid columns="2">
+          <h:outputLabel for="description" value="Description" />
+          <p:inputText id="description" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.description}"
+            readonly="true" />
+        </h:panelGrid>
+
+        <h:panelGrid columns="2">
+          <h:outputLabel for="icon" value="Icon" />
+          <p:inputText id="icon" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.icon}" />
+        </h:panelGrid>
+
+        <h:panelGrid columns="2">
+          <h:outputLabel for="locale" value="Locale" />
+          <p:inputText id="locale" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.locale}"
+            readonly="true" />
+        </h:panelGrid>
+
+        <h:panelGrid columns="2">
+          <h:outputLabel for="hideLabel" value="Hide Label" />
+          <p:selectBooleanCheckbox id="hideLabel"
+            value="#{clientStatisticWidgetConfigurationBean.clientStatistic.hideLabel}" />
+        </h:panelGrid>
+
+        <h:panelGrid columns="2">
+          <h:outputLabel for="manipulateValueBy" value="Manipulate Value By" />
+          <p:inputText id="manipulateValueBy"
+            value="#{clientStatisticWidgetConfigurationBean.clientStatistic.manipulateValueBy}" />
+        </h:panelGrid>
+
+        <h:panelGrid columns="2">
+          <h:outputLabel for="backgroundColor" value="Background Color" />
+          <p:multiSelectListbox id="backgroundColor"
+            value="#{clientStatisticWidgetConfigurationBean.clientStatistic.backgroundColor}"
+            listValue="#{clientStatisticWidgetConfigurationBean.clientStatistic.availableColors}" var="color"
+            itemLabel="#{color}" itemValue="#{color}" />
+        </h:panelGrid>
+
+        <p:commandButton value="Save" action="#{clientStatisticWidgetConfigurationBean.save}" />
+
+      </h:form>
+    </ui:define>
+  </ui:composition>
+</h:body>
+
+</html>
