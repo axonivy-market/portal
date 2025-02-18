@@ -8,14 +8,14 @@ public enum ChartType {
   PIE("pie"), 
   NUMBER("number");
   
-  private String key;
+  private String name;
 
-  private ChartType(String key) {
-    this.key = key;
+  private ChartType(String name) {
+    this.name = name;
   }
 
   @JsonValue
-  public String getKey() {
-      return key;
+  public String getName() {
+      return name;
   }
 }
