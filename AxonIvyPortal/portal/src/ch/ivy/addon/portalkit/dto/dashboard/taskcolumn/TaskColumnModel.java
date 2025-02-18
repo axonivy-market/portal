@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
 import org.apache.commons.lang.StringUtils;
 
+
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
@@ -38,25 +39,24 @@ public class TaskColumnModel extends ColumnModel {
       return displayStringFieldContent(customFields, task);
     }
   }
-  
-  private boolean containCmsPathAttr(Iterable<String> iterable) {
-    for (String str : iterable) {
-        if (str != null && str.equals(CMS_PATH)) {
-            return true;
-        }
-    }
-    return false;
-}
-  
+/**
+ * Return empty string if cannot get value from the path or the path does not match the pattern /CustomFields/(Tasks|Cases|Starts)/%name%/Values/%value%
+ * Return the current value of custom field if CmsPath attribute is not defined in custom-field.yaml file
+ * Return the current value of custom field if the localized text in CMS is empty
+ *
+ */
   private String displayStringFieldContent(ICustomFields customFields, ITask task) {
-    if (containCmsPathAttr(customFields.stringField(field).meta().attributeNames())) {
-      String cmsPath = customFields.stringField(field).meta().attribute(CMS_PATH);
-      if (cmsPath == null) {
-        return StringUtils.EMPTY;
-      }
+    String cmsPath = customFields.stringField(field).meta().attribute(CMS_PATH);
+    if (cmsPath != null) {
       cmsPath = cmsPath + "/" + customFields.stringField(field).getOrNull();
       ContentManagement cms = ContentManagement.of(task.getProcessModelVersion());
+      if (cms.findObject(cmsPath).isEmpty()) {
+        return StringUtils.EMPTY;
+      }
       ContentResolver content = cms.content(cmsPath);
+      if (content.get().isEmpty()) {
+        return customFields.stringField(field).getOrNull();
+      }
       return content.get();
     }
     return customFields.stringField(field).getOrNull();
