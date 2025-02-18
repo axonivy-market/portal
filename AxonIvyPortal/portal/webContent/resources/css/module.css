@@ -1546,6 +1546,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .has-breadcrumb .switch-and-reset-buttons-area,
 .ms-teams-layout .switch-and-reset-buttons-area {
   width: 50%;
+  white-space: nowrap;
 }
 
 .filter-container .widget-title-mobile .top-header-main-title {
@@ -5675,7 +5676,7 @@ a.dashboard-action-container label {
 /* ============ DASHBOARD ======== */
 body .ui-dialog.ui-widget.import-dashboard-dialog{
   min-width: 10rem;
-  max-width: 40rem;
+  max-width: 50rem;
 }
 
 @media screen and (max-width: 40em) {

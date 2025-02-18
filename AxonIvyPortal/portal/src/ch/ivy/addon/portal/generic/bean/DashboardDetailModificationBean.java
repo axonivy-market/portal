@@ -1212,7 +1212,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
           .map(DashboardCustomWidgetData::getStartableProcessStart)
           .map(IWebStartable::getDisplayName).orElse("");
     }
-
-    return String.format("%s (%s)", widgetName, widget.getType().getLabel());
+    return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/TextWithRoundBracket"), widgetName, widget.getType().getLabel());
   }
 }

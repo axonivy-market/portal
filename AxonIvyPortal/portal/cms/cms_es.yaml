@@ -407,6 +407,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoSelection: Sin selección
     ResetToDefaultHeaderText: ¿Restablecer la configuración por defecto?
     RoleUserInformation: Informaciones de rol y usuario
+    StringFormat:
+      DateFromTo: '%s - %s'
+      TextListOut: '%s, %s,..'
+      TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Informaciones de tarea y caso
     Update: Aktualizar
     Widget: Widget
