@@ -4233,5 +4233,40 @@
       "connect" : [
         { "id" : "f124", "to" : "f21" }
       ]
+    }, {
+      "id" : "f3",
+      "type" : "RequestStart",
+      "name" : "ClientStatisticWidgetConfiguration.ivp",
+      "config" : {
+        "signature" : "ClientStatisticWidgetConfiguration",
+        "request" : {
+          "name" : "Custom Statistics Widget"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 4080 }
+      },
+      "connect" : [
+        { "id" : "f56", "to" : "f53" }
+      ]
+    }, {
+      "id" : "f53",
+      "type" : "DialogCall",
+      "config" : {
+        "dialog" : "com.axonivy.portal.page.ClientStatisticWidgetConfiguration:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 288, "y" : 4080 }
+      },
+      "connect" : [
+        { "id" : "f60", "to" : "f59" }
+      ]
+    }, {
+      "id" : "f59",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 4080 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
     } ]
 }

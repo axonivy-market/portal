@@ -3,9 +3,11 @@ package com.axonivy.portal.bo;
 import java.util.List;
 import java.util.Map.Entry;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.util.DisplayNameUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -37,8 +39,15 @@ public class ClientStatistic extends AbstractConfiguration {
   private String manipulateValueBy;
   private List<String> backgroundColor;
   
+  @JsonIgnore
+  private List<SecurityMemberDTO> permissionDTOs;
+
   public String getIcon() {
     return icon;
+  }
+
+  public void setIcon(String icon) {
+    this.icon = icon;
   }
 
   public NumberChartConfig getNumberChartConfig() {
@@ -155,6 +164,10 @@ public String getFilter() {
     return this.hideLabel;
   }
 
+  public void setHideLabel(Boolean hideLabel) {
+    this.hideLabel = hideLabel;
+  }
+
   public String getManipulateValueBy() {
     return manipulateValueBy;
   }
@@ -170,5 +183,12 @@ public String getFilter() {
   public void setBackgroundColor(List<String> backgroundColor) {
     this.backgroundColor = backgroundColor;
   }
-  
+
+  public List<SecurityMemberDTO> getPermissionDTOs() {
+    return permissionDTOs;
+  }
+
+  public void setPermissionDTOs(List<SecurityMemberDTO> permissionDTOs) {
+    this.permissionDTOs = permissionDTOs;
+  }
 }
