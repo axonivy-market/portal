@@ -179,12 +179,11 @@ public class DashboardTaskSearchCriteria {
     return keywordList;
   }
 
-  public static boolean isContainValidCmsPathAttribute(String field, DashboardColumnType type) {
+  public boolean isContainValidCmsPathAttribute(String field, DashboardColumnType type) {
     Set<ICustomFieldMeta> customFieldMetaList = type == DashboardColumnType.CUSTOM ? ICustomFieldMeta.tasks() : ICustomFieldMeta.cases();
     for (ICustomFieldMeta customField : customFieldMetaList) {
         if (customField.name().equals(field)) {
             String cmsPath = customField.attribute(CMS_PATH);
-            // Check if cmsPath is null before calling matches()
             if (cmsPath != null) {
                 cmsPath = cmsPath + "/" + field;
                 return cmsPath.matches(type == DashboardColumnType.CUSTOM ? CMS_PATH_PATTERN_TASK : CMS_PATH_PATTERN_CASE);

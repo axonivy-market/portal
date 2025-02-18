@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -36,6 +37,9 @@ public class DashboardCaseSearchCriteria {
   private boolean sortDescending;
   private boolean isInConfiguration;
   private String quickSearchKeyword;
+  
+  private static final String CMS_PATH = "CmsPath";
+  private static final String CMS_PATH_PATTERN_CASE = "/CustomFields/Cases/([^/]+)/Values/([^/]+)";
 
   public CaseQuery buildQuery() {
     CaseQuery query = buildQueryWithoutOrderByClause();
@@ -121,7 +125,7 @@ public class DashboardCaseSearchCriteria {
   }
   
   private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column) {
-    if (hasCmsPathAttribute(column.getField())) {
+    if (isContainValidCmsPathAttribute(column.getField())) {
       return buildQuickSearchForCustomFieldWithCmsValues(column.getField());
     }
     return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);
@@ -132,15 +136,16 @@ public class DashboardCaseSearchCriteria {
     filter.setField(columnField);
     filter.setFilterType(DashboardColumnType.CUSTOM);
     filter.setOperator(FilterOperator.IN);
-    filter.setValues(getCmsValuesMatchingWithQuickSearchKeywordForCase(columnField));
+    filter.setValues(getCmsValuesMatchingWithQuickSearchKeyword(columnField));
     return filter; 
   }
   
-  private List<String> getCmsValuesMatchingWithQuickSearchKeywordForCase(String columnField) {
+  private List<String> getCmsValuesMatchingWithQuickSearchKeyword(String columnField) {
+    Set<ICustomFieldMeta> icustomFieldMetaList = ICustomFieldMeta.cases();
     List<String> keywordList = new ArrayList<>();
-    ICustomFieldMeta.cases().stream().filter(task -> task.type().equals(CustomFieldType.STRING) && task.name().equals(columnField)).forEach(field -> {
+    icustomFieldMetaList.stream().filter(customField -> customField.type().equals(CustomFieldType.STRING) && customField.name().equals(columnField)).forEach(field -> {
       Iterable<Object> list =  field.values().matching(this.quickSearchKeyword);
-      if (!Iterables.isEmpty(list) && field.name().equals(columnField)) {
+      if (!Iterables.isEmpty(list)) {
         for (Object obj : list) {
             keywordList.add(obj.toString());
         }
@@ -158,10 +163,20 @@ public class DashboardCaseSearchCriteria {
     return filter;
   }
   
-  private boolean hasCmsPathAttribute(String columnField) {
-    List<ICustomFieldMeta> list = ICustomFieldMeta.cases().stream().filter(field -> field.name().equals(columnField) && field.attribute("CmsPath")!= null).collect(Collectors.toList());
-    return !list.isEmpty();
-  }
+  public boolean isContainValidCmsPathAttribute(String field) {
+    Set<ICustomFieldMeta> customFieldMetaList = ICustomFieldMeta.cases();
+    for (ICustomFieldMeta customField : customFieldMetaList) {
+        if (customField.name().equals(field)) {
+            String cmsPath = customField.attribute(CMS_PATH);
+            if (cmsPath != null) {
+                cmsPath = cmsPath + "/" + field;
+                return cmsPath.matches(CMS_PATH_PATTERN_CASE);
+            }
+            return false; // CmsPath attribute is null
+        }
+    }
+    return false;
+}
   
   public String getSortField() {
     return sortField;
