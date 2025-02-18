@@ -325,12 +325,10 @@ class ClientCanvasChart extends ClientChart {
 
     // Update client chart config by new data
     this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.key));
-    this.clientChartConfig.data.datasets = [{
-      label: config.name,
-      data: result.map(bucket => bucket.count),
-      backgroundColor: config.backgroundColor ? config.backgroundColor : chartColors
-    }]
-
+    if (this.clientChartConfig.data.datasets[0]) {
+      this.clientChartConfig.data.datasets[0].data = result.map(bucket => bucket.count)
+      this.clientChartConfig.data.datasets[0].label = config.name;
+    }
     this.clientChartConfig.update("none");
   }
 }
@@ -417,7 +415,10 @@ class ClientCartesianChart extends ClientCanvasChart {
             label: config.name,
             data: data.map(bucket => bucket.count),
             backgroundColor: config.backgroundColor ? config.backgroundColor : chartColors,
-            borderColor:chartColors 
+            pointBorderColor: config.backgroundColor ? config.backgroundColor : chartColors,
+            pointRadius: 4,
+            borderColor: getCssVariable("--ivy-primary-color-grey-medium"),
+            borderWidth: 1
           }]
         },
         options: {
