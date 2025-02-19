@@ -23,6 +23,7 @@ public class ClientStatistic extends AbstractConfiguration {
   private BarChartConfig barChartConfig;
   private LineChartConfig lineChartConfig;
   private NumberChartConfig numberChartConfig;
+  private PieChartConfig pieChartConfig;
   private List<DisplayName> names;
   @JsonProperty(access = Access.READ_ONLY)
   private String name;
@@ -169,6 +170,14 @@ public String getFilter() {
 
   public void setBackgroundColor(List<String> backgroundColor) {
     this.backgroundColor = backgroundColor;
+  }
+
+  public PieChartConfig getPieChartConfig() {
+    return pieChartConfig;
+  }
+
+  public void setPieChartConfig(PieChartConfig pieChartConfig) {
+    this.pieChartConfig = pieChartConfig;
   }
   
 }
