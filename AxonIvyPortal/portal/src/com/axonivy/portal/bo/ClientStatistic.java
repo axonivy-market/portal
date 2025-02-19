@@ -13,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
+import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class ClientStatistic extends AbstractConfiguration {
@@ -132,7 +134,13 @@ public String getFilter() {
   }
 
   public String getName() {
-    return name;
+    return LanguageUtils.getLocalizedName(names, name);
+  }
+
+  public void setName(String name) {
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(names, name);
+    this.names = nameResult.names();
+    this.name = nameResult.name();
   }
 
   public List<DisplayName> getDescriptions() {
@@ -145,7 +153,13 @@ public String getFilter() {
   }
 
   public String getDescription() {
-    return description;
+    return LanguageUtils.getLocalizedName(descriptions, description);
+  }
+
+  public void setDescription(String description) {
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(descriptions, description);
+    this.descriptions = nameResult.names();
+    this.description = nameResult.name();
   }
 
   public List<Entry<String, String>> getAdditionalConfig() {

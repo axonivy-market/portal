@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -12,8 +14,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -24,10 +24,16 @@ import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.service.ClientStatisticService;
+import com.axonivy.portal.service.DeepLTranslationService;
 
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
+import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 
@@ -44,7 +50,10 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   public void init() {
     clientStatistic = new ClientStatistic();
     clientStatistic.setAggregates("priority");
-    this.selectedPermissions = new ArrayList<>();
+    selectedPermissions = new ArrayList<>();
+    clientStatistic.setNames(new ArrayList<>());
+    clientStatistic.setDescriptions(new ArrayList<>());
+
   }
 
   public ClientStatistic getClientStatistic() {
@@ -71,7 +80,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
       clientStatistic.setPermissions(permissions);
 
     }
-    Ivy.log().warn(ToStringBuilder.reflectionToString(clientStatistic, ToStringStyle.MULTI_LINE_STYLE));
+    Ivy.log().warn(BusinessEntityConverter.entityToJsonValue(clientStatistic));
   }
 
   public List<String> completeAggregates(String query) {
@@ -117,11 +126,98 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
     this.selectedPermissions.remove(selectedItem.getName());
   }
-  
+
   public void getPreviewData() {
     ClientStatisticService clientStatisticService = ClientStatisticService.getInstance();
     AggregationResult result = clientStatisticService.getChartData(clientStatistic);
-    PrimeFaces.current().ajax().addCallbackParam("jsonResponse", BusinessEntityConverter.entityToJsonValue(new ClientStatisticResponse(result, clientStatistic)));
+    PrimeFaces.current().ajax().addCallbackParam("jsonResponse",
+        BusinessEntityConverter.entityToJsonValue(new ClientStatisticResponse(result, clientStatistic)));
+  }
+
+  public void updateNameForCurrentLanguage() {
+    List<DisplayName> languages = clientStatistic.getNames();
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional =
+        languages.stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+    if (optional.isPresent()) {
+      clientStatistic.setName(optional.get().getValue());
+    }
+  }
+
+  public void updateDescriptionForCurrentLanguage() {
+    List<DisplayName> languages = clientStatistic.getDescriptions();
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional =
+        languages.stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+    if (optional.isPresent()) {
+      clientStatistic.setDescription(optional.get().getValue());
+    }
+  }
+
+  public void updateNameByLocale() {
+    String currentName = LanguageUtils.getLocalizedName(clientStatistic.getNames(), clientStatistic.getName());
+    initAndSetValue(currentName, clientStatistic.getNames());
+  }
+
+  public void updateDescriptionByLocale() {
+    String currentDescription =
+        LanguageUtils.getLocalizedName(clientStatistic.getDescriptions(), clientStatistic.getDescription());
+    initAndSetValue(currentDescription, clientStatistic.getDescriptions());
+  }
+
+  private void initAndSetValue(String value, List<DisplayName> values) {
+    DisplayNameConvertor.initMultipleLanguages(value, values);
+    DisplayNameConvertor.setValue(value, values);
+  }
+
+  public List<DisplayName> getNames() {
+    if (clientStatistic == null) {
+      return new ArrayList<>();
+    }
+
+    if (clientStatistic.getNames().isEmpty()) {
+      List<String> supportedLanguages = getSupportedLanguages();
+      for (String language : supportedLanguages) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        clientStatistic.getNames().add(displayName);
+      }
+    }
+    return clientStatistic.getNames();
+  }
+
+  public List<DisplayName> getDescriptions() {
+    if (clientStatistic == null) {
+      return new ArrayList<>();
+    }
+
+    if (clientStatistic.getDescriptions().isEmpty()) {
+      List<String> supportedLanguages = getSupportedLanguages();
+      for (String language : supportedLanguages) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        clientStatistic.getDescriptions().add(displayName);
+      }
+    }
+    return clientStatistic.getDescriptions();
+  }
+
+  protected List<String> getSupportedLanguages() {
+    return LanguageService.getInstance().getIvyLanguageOfUser().getSupportedLanguages();
+  }
+
+  public boolean isRequiredField(DisplayName displayName) {
+    String currentLanguage = UserUtils.getUserLanguage();
+    String displayLanguage = displayName.getLocale().getLanguage();
+    return currentLanguage.equals(displayLanguage);
+  }
+
+  public boolean isFocus(DisplayName title) {
+    return !isShowTranslation(title) && title.getLocale().getLanguage().equals(UserUtils.getUserLanguage());
+  }
+
+  public boolean isShowTranslation(DisplayName title) {
+    return DeepLTranslationService.getInstance().isShowTranslation(title.getLocale());
   }
 
 }
