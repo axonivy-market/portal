@@ -145,13 +145,13 @@
         <p:commandButton value="Save" action="#{clientStatisticWidgetConfigurationBean.save}" />
 
         <p:commandButton value="Preview" action="#{clientStatisticWidgetConfigurationBean.getPreviewData}"
-          oncomplete="handleComplete(xhr, status, args)" />
-        <h:panelGroup>
+          oncomplete="handlePreviewChart(xhr, status, args)" />
+        <h:panelGroup layout="block" styleClass="card statistic-chart-widget__chart">
           <div class="ui-chart js-client-statistic-chart statistic-chart-widget__canvas chart-options"
             data-chart-id="preview-statistic-chart"></div>
         </h:panelGroup>
         <script type="text/javascript">
-          function handleComplete(xhr, status, args) {
+          function handlePreviewChart(xhr, status, args) {
             if (args.jsonResponse) {
               const data = JSON.parse(args.jsonResponse);
               previewChart(data, "#{localeBean.locale}", "#{dateTimePatternBean.datePattern}");
