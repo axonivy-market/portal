@@ -15,7 +15,7 @@ public class PortalCustomFieldUtils {
   private static final String CMS_PATH_PATTERN_TASK = "/CustomFields/Tasks/([^/]+)/Values/([^/]+)";
   private static final String CMS_PATH_PATTERN_CASE = "/CustomFields/Cases/([^/]+)/Values/([^/]+)";
   
-  public static boolean isContainValidCmsPathAttribute(String field, DashboardColumnType type) {
+  public static boolean isContainCmsPathAttributeOnTask(String field, DashboardColumnType type) {
     Set<ICustomFieldMeta> customFieldMetaList = type == DashboardColumnType.CUSTOM ? ICustomFieldMeta.tasks() : ICustomFieldMeta.cases();
     for (ICustomFieldMeta customField : customFieldMetaList) {
         if (customField.name().equals(field)) {
@@ -23,6 +23,21 @@ public class PortalCustomFieldUtils {
             if (cmsPath != null) {
                 cmsPath = cmsPath + "/" + field;
                 return cmsPath.matches(type == DashboardColumnType.CUSTOM ? CMS_PATH_PATTERN_TASK : CMS_PATH_PATTERN_CASE);
+            }
+            return false; // CmsPath attribute is null
+        }
+    }
+    return false;
+  }
+  
+  public static boolean isContainCmsPathAttributeOnCase(String field) {
+    Set<ICustomFieldMeta> customFieldMetaList = ICustomFieldMeta.cases();
+    for (ICustomFieldMeta customField : customFieldMetaList) {
+        if (customField.name().equals(field)) {
+            String cmsPath = customField.attribute(CMS_PATH);
+            if (cmsPath != null) {
+                cmsPath = cmsPath + "/" + field;
+                return cmsPath.matches(CMS_PATH_PATTERN_CASE);
             }
             return false; // CmsPath attribute is null
         }

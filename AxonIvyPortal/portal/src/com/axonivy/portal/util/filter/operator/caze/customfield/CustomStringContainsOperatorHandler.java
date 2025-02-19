@@ -30,7 +30,7 @@ public class CustomStringContainsOperatorHandler {
       return null;
     }
     CaseQuery query = CaseQuery.create(); // TODO filterfield correct? business and/or technical cases?
-    if (filter.getFilterType() != DashboardColumnType.STANDARD && PortalCustomFieldUtils.isContainValidCmsPathAttribute(filter.getField(), filter.getFilterType())) {
+    if (filter.getFilterType() != DashboardColumnType.STANDARD && PortalCustomFieldUtils.isContainCmsPathAttributeOnCase(filter.getField())) {
       query.where().or(buildQueryForCustomFieldWithCmsValue(filter));
     } else {
       filter.getValues().forEach(text -> {
@@ -58,7 +58,7 @@ public class CustomStringContainsOperatorHandler {
   }
   
   public CaseQuery buildQueryForCustomFieldWithCmsValue(DashboardFilter filter) {
-    List<String> keywordList = PortalCustomFieldUtils.getCmsValuesMatchingWithKeywordList(filter.getField(), filter.getFilterType(), filter.getValues());
+    List<String> keywordList = PortalCustomFieldUtils.getCmsValuesMatchingWithKeywordList(filter.getField(), DashboardColumnType.CUSTOM_CASE, filter.getValues());
 
     CaseQuery query = CaseQuery.create();
     IFilterQuery filterQuery = query.where();

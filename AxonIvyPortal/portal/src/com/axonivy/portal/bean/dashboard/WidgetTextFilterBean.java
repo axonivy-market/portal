@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
+import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomString;
 
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 
@@ -51,7 +52,10 @@ public class WidgetTextFilterBean implements Serializable {
   }
   
   public boolean isCustomFieldWithCms(DashboardFilter filter) {
-    return PortalCustomFieldUtils.isContainValidCmsPathAttribute(filter.getField(), filter.getFilterType());
+    if (filter.getFilterField() instanceof CaseFilterFieldCustomString) {
+      return PortalCustomFieldUtils.isContainCmsPathAttributeOnCase(filter.getField());
+    }
+    return PortalCustomFieldUtils.isContainCmsPathAttributeOnTask(filter.getField(), filter.getFilterType());
   }
 
 }

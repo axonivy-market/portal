@@ -125,7 +125,7 @@ public class DashboardCaseSearchCriteria {
   }
   
   private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column) {
-    if (PortalCustomFieldUtils.isContainValidCmsPathAttribute(column.getField(), DashboardColumnType.CUSTOM_CASE)) {
+    if (PortalCustomFieldUtils.isContainCmsPathAttributeOnCase(column.getField())) {
       return buildQuickSearchForCustomFieldWithCmsValues(column.getField());
     }
     return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);

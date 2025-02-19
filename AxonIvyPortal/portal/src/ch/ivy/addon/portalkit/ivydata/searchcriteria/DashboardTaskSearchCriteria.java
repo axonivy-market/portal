@@ -146,7 +146,7 @@ public class DashboardTaskSearchCriteria {
   }
   
   private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column, DashboardColumnType type) {
-    if (PortalCustomFieldUtils.isContainValidCmsPathAttribute(column.getField(), type)) {
+    if (PortalCustomFieldUtils.isContainCmsPathAttributeOnTask(column.getField(), type)) {
       return buildQuickSearchForCustomFieldWithCmsValues(column.getField(), type);
     }
     return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);
