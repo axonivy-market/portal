@@ -5,6 +5,10 @@
   xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="head">
+      <h:outputScript library="primefaces" name="chartjs/chartjs.js" />
+      <h:outputScript name="client-statistic.js" library="js" />
+    </ui:define>
     <ui:define name="title">Custom Statistic Widget Configuration</ui:define>
     <ui:define name="pageContent">
 
@@ -159,7 +163,20 @@
         </h:panelGrid>
 
         <p:commandButton value="Save" action="#{clientStatisticWidgetConfigurationBean.save}" />
-
+        
+        <p:commandButton value="Preview" action="#{clientStatisticWidgetConfigurationBean.getPreviewData}" oncomplete="handleComplete(xhr, status, args)"/>
+        <h:panelGroup>
+          <div class="ui-chart js-client-statistic-chart statistic-chart-widget__canvas chart-options" data-chart-id="preview-statistic-chart" >
+          </div>
+        </h:panelGroup>
+        <script type="text/javascript">
+          function handleComplete(xhr, status, args) {
+            if (args.jsonResponse) {
+              const data = JSON.parse(args.jsonResponse);
+              previewChart(data, "#{localeBean.locale}", "#{dateTimePatternBean.datePattern}");
+            }
+          }
+        </script>
       </h:form>
     </ui:define>
   </ui:composition>

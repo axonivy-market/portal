@@ -80,7 +80,7 @@ public class ClientStatisticService extends JsonConfigurationService<CustomClien
     }
   }
 
-  private AggregationResult getChartData(ClientStatistic chart) {
+  public AggregationResult getChartData(ClientStatistic chart) {
     chart.setFilter(StringUtils.stripToNull(chart.getFilter()));
     return switch (chart.getChartTarget()) {
     case CASE -> WorkflowStats.current().caze().aggregate(chart.getAggregates(),

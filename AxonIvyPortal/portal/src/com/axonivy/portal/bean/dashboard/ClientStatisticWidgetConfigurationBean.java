@@ -14,6 +14,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
@@ -22,9 +23,13 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
+import com.axonivy.portal.service.ClientStatisticService;
 
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
+import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 
 @ViewScoped
 @ManagedBean
@@ -111,6 +116,12 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   public void onUnSelectPermissionForDashboard(UnselectEvent<Object> event) {
     SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
     this.selectedPermissions.remove(selectedItem.getName());
+  }
+  
+  public void getPreviewData() {
+    ClientStatisticService clientStatisticService = ClientStatisticService.getInstance();
+    AggregationResult result = clientStatisticService.getChartData(clientStatistic);
+    PrimeFaces.current().ajax().addCallbackParam("jsonResponse", BusinessEntityConverter.entityToJsonValue(new ClientStatisticResponse(result, clientStatistic)));
   }
 
 }
