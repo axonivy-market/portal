@@ -12,7 +12,7 @@
     <ui:define name="title">Custom Statistic Widget Configuration</ui:define>
     <ui:define name="pageContent">
 
-      <h:form id="clientStatisticForm">
+      <h:form id="config-form">
 
         <!-- Aggregates Field -->
         <h:panelGrid columns="2">
@@ -29,8 +29,7 @@
 
         <h:panelGrid columns="2">
           <h:outputLabel for="permissions" value="Permissions" />
-          <p:autoComplete id="dashboard-permission" scrollHeight="210" dropdown="true"
-            required="#{param['skipValidator'] == null}"
+          <p:autoComplete id="permissions" scrollHeight="210" dropdown="true"
             completeMethod="#{clientStatisticWidgetConfigurationBean.completePermissions}"
             styleClass="manage-dashboard__input" inputStyleClass="manage-dashboard__autocomplete-input"
             value="#{clientStatisticWidgetConfigurationBean.clientStatistic.permissionDTOs}" var="responsible"
@@ -39,8 +38,8 @@
             moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
             forceSelection="true">
             <p:ajax event="itemSelect"
-              listener="#{clientStatisticWidgetConfigurationBean.onSelectPermissionForDashboard}"
-              update="dashboard-permission" global="false" process="@this" immediate="true" />
+              listener="#{clientStatisticWidgetConfigurationBean.onSelectPermissionForDashboard}" update="permissions"
+              global="false" process="@this" immediate="true" />
             <p:ajax event="itemUnselect"
               listener="#{clientStatisticWidgetConfigurationBean.onUnSelectPermissionForDashboard}" global="false"
               process="@this" immediate="true" />
@@ -57,78 +56,48 @@
         </h:panelGrid>
 
         <h:panelGrid columns="2">
-          <h:outputLabel for="chartTarget" value="Chart Target" />
+          <h:outputLabel for="target" value="Chart Target" />
 
-          <p:selectOneMenu id="chartTarget"
+          <p:selectOneMenu id="target"
             value="#{clientStatisticWidgetConfigurationBean.clientStatistic.chartTarget}">
             <f:selectItem itemLabel="Select a Chart Target" itemValue="#{null}" />
-            <f:selectItems value="#{clientStatisticWidgetConfigurationBean.allChartTargets}" var="chartTarget"
+            <f:selectItems value="#{clientStatisticWidgetConfigurationBean.allChartTargets}" var="target"
               itemLabel="#{chartTarget}" itemValue="#{chartTarget}" />
           </p:selectOneMenu>
         </h:panelGrid>
 
 
-        <!-- Chart Type -->
         <h:panelGrid columns="2">
-          <h:outputLabel for="chartType" value="Chart Type" />
-          <p:selectOneMenu id="chartType" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.chartType}">
+          <h:outputLabel for="type" value="Chart Type" />
+          <p:selectOneMenu id="type" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.chartType}">
             <f:selectItem itemLabel="Select a Chart Type" itemValue="#{null}" />
-            <f:selectItems value="#{clientStatisticWidgetConfigurationBean.allChartTypes}" var="chartType"
+            <f:selectItems value="#{clientStatisticWidgetConfigurationBean.allChartTypes}" var="type"
               itemLabel="#{chartType}" itemValue="#{chartType}" />
           </p:selectOneMenu>
         </h:panelGrid>
 
         <h:panelGrid columns="2">
-          <h:outputLabel for="refreshInterval" value="Refresh Interval (seconds)" />
-          <p:inputText id="refreshInterval"
+          <h:outputLabel for="refresh-interval" value="Refresh Interval (seconds)" />
+          <p:inputText id="refresh-interval"
             value="#{clientStatisticWidgetConfigurationBean.clientStatistic.refreshInterval}" />
         </h:panelGrid>
 
-        <!--             Bar Chart Config -->
-        <!--             <h:panelGrid columns="2"> -->
-        <!--                 <h:outputLabel for="barChartConfig" value="Bar Chart Config" /> -->
-        <!--                 <p:inputText id="barChartConfig" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.barChartConfig.someField}" /> -->
-        <!--                 Customize the fields for barChartConfig -->
-        <!--             </h:panelGrid> -->
-
-        <!--             Line Chart Config -->
-        <!--             <h:panelGrid columns="2"> -->
-        <!--                 <h:outputLabel for="lineChartConfig" value="Line Chart Config" /> -->
-        <!--                 <p:inputText id="lineChartConfig" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.lineChartConfig.someField}" /> -->
-        <!--                 Customize the fields for lineChartConfig -->
-        <!--             </h:panelGrid> -->
-
-        <!--             Number Chart Config -->
-        <!--             <h:panelGrid columns="2"> -->
-        <!--                 <h:outputLabel for="numberChartConfig" value="Number Chart Config" /> -->
-        <!--                 <p:inputText id="numberChartConfig" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.numberChartConfig.someField}" /> -->
-        <!--                 Customize the fields for numberChartConfig -->
-        <!--             </h:panelGrid> -->
-
-        <h:panelGrid columns="2">
-          <h:outputLabel for="names" value="Names" />
-          <p:multiSelectListbox id="names" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.names}"
-            listValue="#{clientStatisticWidgetConfigurationBean.clientStatistic.availableNames}" var="name"
-            itemLabel="#{name.displayName}" itemValue="#{name}" />
+        <h:panelGrid columns="3">
+          <p:outputLabel value="Name" for="name" />
+          <p:inputText id="name" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.name}" maxlength="200" />
+          <p:commandButton id="add-name-language-button" icon="si si-chat-translate"
+            actionListener="#{clientStatisticWidgetConfigurationBean.updateNameByLocale()}" process="name"
+            update="name-language-config:multiple-languages-dialog" oncomplete="PF('multiple-languages-dialog').show();" />
         </h:panelGrid>
 
-        <h:panelGrid columns="2">
-          <h:outputLabel for="name" value="Name" />
-          <p:inputText id="name" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.name}" readonly="true" />
-        </h:panelGrid>
-
-        <h:panelGrid columns="2">
-          <h:outputLabel for="descriptions" value="Descriptions" />
-          <p:multiSelectListbox id="descriptions"
-            value="#{clientStatisticWidgetConfigurationBean.clientStatistic.descriptions}"
-            listValue="#{clientStatisticWidgetConfigurationBean.clientStatistic.availableDescriptions}"
-            var="description" itemLabel="#{description.displayName}" itemValue="#{description}" />
-        </h:panelGrid>
-
-        <h:panelGrid columns="2">
-          <h:outputLabel for="description" value="Description" />
+        <h:panelGrid columns="3">
+          <p:outputLabel value="Description" for="description" />
           <p:inputText id="description" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.description}"
-            readonly="true" />
+            maxlength="200" />
+          <p:commandButton id="add-description-language-button" icon="si si-chat-translate"
+            actionListener="#{clientStatisticWidgetConfigurationBean.updateDescriptionByLocale()}" process="description"
+            update="description-language-config:multiple-languages-dialog"
+            oncomplete="PF('multiple-languages-dialog').show();" />
         </h:panelGrid>
 
         <h:panelGrid columns="2">
@@ -143,31 +112,43 @@
         </h:panelGrid>
 
         <h:panelGrid columns="2">
-          <h:outputLabel for="hideLabel" value="Hide Label" />
-          <p:selectBooleanCheckbox id="hideLabel"
+          <h:outputLabel for="hide-label" value="Hide Label" />
+          <p:selectBooleanCheckbox id="hide-label"
             value="#{clientStatisticWidgetConfigurationBean.clientStatistic.hideLabel}" />
         </h:panelGrid>
 
         <h:panelGrid columns="2">
-          <h:outputLabel for="manipulateValueBy" value="Manipulate Value By" />
-          <p:inputText id="manipulateValueBy"
+          <h:outputLabel for="manipulate-value-by" value="Manipulate Value By" />
+          <p:inputText id="manipulate-value-by"
             value="#{clientStatisticWidgetConfigurationBean.clientStatistic.manipulateValueBy}" />
         </h:panelGrid>
 
         <h:panelGrid columns="2">
-          <h:outputLabel for="backgroundColor" value="Background Color" />
-          <p:multiSelectListbox id="backgroundColor"
+          <h:outputLabel for="background-color" value="Background Color" />
+          <p:multiSelectListbox id="background-color"
             value="#{clientStatisticWidgetConfigurationBean.clientStatistic.backgroundColor}"
             listValue="#{clientStatisticWidgetConfigurationBean.clientStatistic.availableColors}" var="color"
             itemLabel="#{color}" itemValue="#{color}" />
         </h:panelGrid>
-
+        <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="name-language-config"
+          titles="#{clientStatisticWidgetConfigurationBean.getNames()}"
+          managedBean="#{clientStatisticWidgetConfigurationBean}" dynamic="true"
+          updateCurrentLanguage="#{clientStatisticWidgetConfigurationBean.updateNameForCurrentLanguage()}"
+          componentToUpdateOnModify="clientStatisticForm:name" componentToUpdateOnCreate="clientStatisticForm:name"
+          titleRequired="false" />
+        <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="description-language-config"
+          titles="#{clientStatisticWidgetConfigurationBean.getDescriptions()}"
+          managedBean="#{clientStatisticWidgetConfigurationBean}" dynamic="true"
+          updateCurrentLanguage="#{clientStatisticWidgetConfigurationBean.updateDescriptionForCurrentLanguage()}"
+          componentToUpdateOnModify="clientStatisticForm:description"
+          componentToUpdateOnCreate="clientStatisticForm:description" titleRequired="false" />
         <p:commandButton value="Save" action="#{clientStatisticWidgetConfigurationBean.save}" />
-        
-        <p:commandButton value="Preview" action="#{clientStatisticWidgetConfigurationBean.getPreviewData}" oncomplete="handleComplete(xhr, status, args)"/>
+
+        <p:commandButton value="Preview" action="#{clientStatisticWidgetConfigurationBean.getPreviewData}"
+          oncomplete="handleComplete(xhr, status, args)" />
         <h:panelGroup>
-          <div class="ui-chart js-client-statistic-chart statistic-chart-widget__canvas chart-options" data-chart-id="preview-statistic-chart" >
-          </div>
+          <div class="ui-chart js-client-statistic-chart statistic-chart-widget__canvas chart-options"
+            data-chart-id="preview-statistic-chart"></div>
         </h:panelGroup>
         <script type="text/javascript">
           function handleComplete(xhr, status, args) {
