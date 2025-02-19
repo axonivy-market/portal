@@ -205,6 +205,26 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
   });
 }
 
+function previewChart(data, defaultLocale, datePatternConfig) {
+  const charts = document.getElementsByClassName('js-client-statistic-chart');
+  if (!charts || charts.length == 0) {
+    return;
+  }
+
+  if (!locale) {
+    locale = defaultLocale;
+  }
+  datePattern = datePatternConfig;
+
+  let chartData = generateChart(charts[0], data);
+    const config = data.chartConfig;
+    locale = config?.locale ? config.locale : defaultLocale;
+
+    if (chartData) {
+      chartData.render();
+    }
+}
+
 function clearChartInterval() {
   for (let i = 0; i < refreshInfos.length; i++) {
     let refreshInfo = refreshInfos[i];
