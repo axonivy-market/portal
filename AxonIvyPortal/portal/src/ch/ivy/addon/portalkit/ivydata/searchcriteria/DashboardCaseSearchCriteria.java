@@ -22,6 +22,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
@@ -37,6 +38,7 @@ public class DashboardCaseSearchCriteria {
   private boolean sortDescending;
   private boolean isInConfiguration;
   private String quickSearchKeyword;
+  private WidgetFilterService widgetFilterService = WidgetFilterService.getInstance();
   
   private static final String CMS_PATH = "CmsPath";
   private static final String CMS_PATH_PATTERN_CASE = "/CustomFields/Cases/([^/]+)/Values/([^/]+)";
@@ -125,7 +127,7 @@ public class DashboardCaseSearchCriteria {
   }
   
   private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column) {
-    if (isContainValidCmsPathAttribute(column.getField())) {
+    if (widgetFilterService.isContainValidCmsPathAttribute(column.getField(), DashboardColumnType.CUSTOM_CASE)) {
       return buildQuickSearchForCustomFieldWithCmsValues(column.getField());
     }
     return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);
@@ -136,23 +138,10 @@ public class DashboardCaseSearchCriteria {
     filter.setField(columnField);
     filter.setFilterType(DashboardColumnType.CUSTOM);
     filter.setOperator(FilterOperator.IN);
-    filter.setValues(getCmsValuesMatchingWithQuickSearchKeyword(columnField));
+    filter.setValues(widgetFilterService.getCmsValuesMatchingWithKeywordList(columnField, DashboardColumnType.CUSTOM_CASE, List.of(this.quickSearchKeyword)));
     return filter; 
   }
-  
-  private List<String> getCmsValuesMatchingWithQuickSearchKeyword(String columnField) {
-    Set<ICustomFieldMeta> icustomFieldMetaList = ICustomFieldMeta.cases();
-    List<String> keywordList = new ArrayList<>();
-    icustomFieldMetaList.stream().filter(customField -> customField.type().equals(CustomFieldType.STRING) && customField.name().equals(columnField)).forEach(field -> {
-      Iterable<Object> list =  field.values().matching(this.quickSearchKeyword);
-      if (!Iterables.isEmpty(list)) {
-        for (Object obj : list) {
-            keywordList.add(obj.toString());
-        }
-    }
-    });
-    return keywordList;
-  }
+
   
   private DashboardFilter buildQuickSearchToDashboardFilter(String columnField, FilterOperator operator, DashboardColumnType type) {
     DashboardFilter filter = new DashboardFilter();

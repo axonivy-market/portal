@@ -17,7 +17,7 @@ public class CustomStringInOperatorHandler {
     return instance;
   }
   
-  public TaskQuery buildQuery(DashboardFilter filter) {
+  public TaskQuery buildInQuery(DashboardFilter filter) {
     if (CollectionUtils.isEmpty(filter.getValues())) {
       return null;
     }
@@ -28,6 +28,5 @@ public class CustomStringInOperatorHandler {
       filterQuery.or().customField().stringField(filter.getField()).isEqual(keyword);
     }
     return query;
-
   }
 }

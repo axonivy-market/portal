@@ -63,7 +63,7 @@ public class TaskFilterFieldCustomString extends CustomFilterField {
     case NOT_END_WITH -> CustomStringEndWithOperatorHandler.getInstance().buildNotEndWithQuery(filter);
     case EMPTY -> CustomStringIsEmptyOperatorHandler.getInstance().buildIsEmptyQuery(filter);
     case NOT_EMPTY -> CustomStringIsEmptyOperatorHandler.getInstance().buildNotEmptyQuery(filter);
-    case IN -> CustomStringInOperatorHandler.getInstance().buildQuery(filter);
+    case IN -> CustomStringInOperatorHandler.getInstance().buildInQuery(filter);
     default -> null;
     };
   }
