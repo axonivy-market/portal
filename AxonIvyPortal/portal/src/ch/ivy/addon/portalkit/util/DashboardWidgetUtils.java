@@ -163,6 +163,9 @@ public class DashboardWidgetUtils {
       column.setIsCustomAction(Boolean.valueOf(fieldMeta.get().attribute(IS_CUSTOM_ACTION_ATTRIBUTE)));
       column.setIcon(fieldMeta.get().attribute(ICON_ATTRIBUTE));
       column.setDescription(fieldMeta.get().description());
+      if (PortalCustomFieldUtils.isContainCmsPathAttributeOnCase(field) || PortalCustomFieldUtils.isContainCmsPathAttributeOnTask(field, column.getType())) {
+        column.setSortable(false);
+      }
       if (column.getIsCustomAction()) {
         column.setSortable(false);
       }
