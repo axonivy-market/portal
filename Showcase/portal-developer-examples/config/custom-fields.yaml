@@ -4,16 +4,9 @@
 #
 CustomFields:
   Tasks:
-    Country:
-      Label: Country
-      Description: Country
-      CmsPath: /CustomFields/Tasks/Country/Values
-      Type: STRING
-      Category: CustomTaskWidget
     CustomerName:
       Label: CustomerName
       Description: CustomerName
-      CmsPath: /CustomFields/Tasks/CustomerName/Values
       Type: STRING
       Category: CustomTaskWidget
     ShipmentDate:

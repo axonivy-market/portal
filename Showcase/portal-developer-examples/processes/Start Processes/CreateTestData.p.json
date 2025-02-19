@@ -610,7 +610,7 @@
             },
             "customFields" : [
               { "name" : "AccountNumber", "type" : "NUMBER", "value" : "14" },
-              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Atony\"" },
+              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Tung Le\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
               { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
             ]
@@ -629,7 +629,7 @@
             },
             "customFields" : [
               { "name" : "AccountNumber", "type" : "NUMBER", "value" : "7" },
-              { "name" : "Country", "type" : "STRING", "value" : "\"user\"" },
+              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Long Do\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Exterior\"" },
               { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
             ]
@@ -647,7 +647,7 @@
             },
             "customFields" : [
               { "name" : "AccountNumber", "type" : "NUMBER", "value" : "13" },
-              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Atony\"" },
+              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Anh Nguyen\"" },
               { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
               { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
             ]
@@ -936,7 +936,6 @@
               "level" : "HIGH"
             },
             "customFields" : [
-              { "name" : "CustomerName", "type" : "STRING", "value" : "\"wertwert\"" },
               { "name" : "employee", "type" : "STRING", "value" : "\"Tung Le\"" }
             ]
           }, {
@@ -948,7 +947,6 @@
               "activator" : "CostObject"
             },
             "customFields" : [
-              { "name" : "CustomerName", "type" : "STRING", "value" : "\"English\"" },
               { "name" : "days", "type" : "TIMESTAMP", "value" : "new DateTime()" },
               { "name" : "employee", "type" : "STRING", "value" : "\"Long Do\"" }
             ]
@@ -964,7 +962,6 @@
               "level" : "LOW"
             },
             "customFields" : [
-              { "name" : "Country", "type" : "STRING", "value" : "\"Country/user\"" },
               { "name" : "employee", "type" : "STRING", "value" : "\"Anh Nguyen\"" }
             ]
           } ],
