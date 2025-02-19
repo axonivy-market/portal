@@ -1,20 +1,18 @@
 package ch.ivy.addon.portalkit.service;
 
 import java.util.ArrayList;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
-
-import com.google.common.collect.Iterables;
 
 import ch.ivy.addon.portalkit.bean.WidgetFilterHelperBean;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
@@ -27,7 +25,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.UserFilterCollection;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
-import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
@@ -37,16 +34,12 @@ import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 
 public class WidgetFilterService extends JsonConfigurationService<WidgetFilterModel> {
 
   public static final String WIDGET_FILTER_KEY_PATTERN = "WIDGET_FILTER_KEY_%s_%s";
-  private static final String CMS_PATH = "CmsPath";
-  private static final String CMS_PATH_PATTERN_TASK = "/CustomFields/Tasks/([^/]+)/Values/([^/]+)";
-  private static final String CMS_PATH_PATTERN_CASE = "/CustomFields/Cases/([^/]+)/Values/([^/]+)";
-  
+
   private static WidgetFilterService instance;
 
   public static WidgetFilterService getInstance() {
@@ -375,36 +368,5 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       return true;
     }
     return false;
-  }
-  
-  public boolean isContainValidCmsPathAttribute(String field, DashboardColumnType type) {
-    Set<ICustomFieldMeta> customFieldMetaList = type == DashboardColumnType.CUSTOM ? ICustomFieldMeta.tasks() : ICustomFieldMeta.cases();
-    for (ICustomFieldMeta customField : customFieldMetaList) {
-        if (customField.name().equals(field)) {
-            String cmsPath = customField.attribute(CMS_PATH);
-            if (cmsPath != null) {
-                cmsPath = cmsPath + "/" + field;
-                return cmsPath.matches(type == DashboardColumnType.CUSTOM ? CMS_PATH_PATTERN_TASK : CMS_PATH_PATTERN_CASE);
-            }
-            return false; // CmsPath attribute is null
-        }
-    }
-    return false;
-  }
-
-  public List<String> getCmsValuesMatchingWithKeywordList(String columnField, DashboardColumnType type, List<String> keywordList) {
-    Set<ICustomFieldMeta> icustomFieldMetaList = type == DashboardColumnType.CUSTOM ? ICustomFieldMeta.tasks() : ICustomFieldMeta.cases();
-    List<String> matchingValueList = new ArrayList<>();
-    icustomFieldMetaList.stream().filter(customField -> customField.type().equals(CustomFieldType.STRING) && customField.name().equals(columnField)).forEach(field -> {
-      for (String keyword: keywordList) {
-        Iterable<Object> list =  field.values().matching(keyword);
-        if (!Iterables.isEmpty(list)) {
-          for (Object obj : list) {
-            matchingValueList.add(obj.toString());
-          }
-      }
-      }
-    });
-    return matchingValueList;
   }
 }

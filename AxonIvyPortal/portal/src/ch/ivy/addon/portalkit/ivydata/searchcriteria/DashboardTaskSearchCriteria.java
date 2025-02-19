@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,7 +20,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
-import ch.ivy.addon.portalkit.service.WidgetFilterService;
+import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -36,7 +37,6 @@ public class DashboardTaskSearchCriteria {
   private boolean sortDescending;
   private boolean isInConfiguration;
   private String quickSearchKeyword;
-  private WidgetFilterService widgetFilterService = WidgetFilterService.getInstance();
 
   public TaskQuery buildQuery() {
     TaskQuery query = buildQueryWithoutOrderByClause();
@@ -146,7 +146,7 @@ public class DashboardTaskSearchCriteria {
   }
   
   private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column, DashboardColumnType type) {
-    if (widgetFilterService.isContainValidCmsPathAttribute(column.getField(), type)) {
+    if (PortalCustomFieldUtils.isContainValidCmsPathAttribute(column.getField(), type)) {
       return buildQuickSearchForCustomFieldWithCmsValues(column.getField(), type);
     }
     return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);
@@ -157,7 +157,7 @@ public class DashboardTaskSearchCriteria {
     filter.setField(columnField);
     filter.setFilterType(type);
     filter.setOperator(FilterOperator.IN);
-    filter.setValues(widgetFilterService.getCmsValuesMatchingWithKeywordList(columnField, type, List.of(this.quickSearchKeyword)));
+    filter.setValues(PortalCustomFieldUtils.getCmsValuesMatchingWithKeywordList(columnField, type, List.of(this.quickSearchKeyword)));
     return filter; 
   }
 

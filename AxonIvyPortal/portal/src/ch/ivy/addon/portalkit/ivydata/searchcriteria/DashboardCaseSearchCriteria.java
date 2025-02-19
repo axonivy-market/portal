@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -13,7 +14,6 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
-import com.google.common.collect.Iterables;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
@@ -22,9 +22,8 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.WidgetFilterService;
+import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
@@ -38,7 +37,6 @@ public class DashboardCaseSearchCriteria {
   private boolean sortDescending;
   private boolean isInConfiguration;
   private String quickSearchKeyword;
-  private WidgetFilterService widgetFilterService = WidgetFilterService.getInstance();
   
   private static final String CMS_PATH = "CmsPath";
   private static final String CMS_PATH_PATTERN_CASE = "/CustomFields/Cases/([^/]+)/Values/([^/]+)";
@@ -127,7 +125,7 @@ public class DashboardCaseSearchCriteria {
   }
   
   private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column) {
-    if (widgetFilterService.isContainValidCmsPathAttribute(column.getField(), DashboardColumnType.CUSTOM_CASE)) {
+    if (PortalCustomFieldUtils.isContainValidCmsPathAttribute(column.getField(), DashboardColumnType.CUSTOM_CASE)) {
       return buildQuickSearchForCustomFieldWithCmsValues(column.getField());
     }
     return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);
@@ -138,7 +136,7 @@ public class DashboardCaseSearchCriteria {
     filter.setField(columnField);
     filter.setFilterType(DashboardColumnType.CUSTOM);
     filter.setOperator(FilterOperator.IN);
-    filter.setValues(widgetFilterService.getCmsValuesMatchingWithKeywordList(columnField, DashboardColumnType.CUSTOM_CASE, List.of(this.quickSearchKeyword)));
+    filter.setValues(PortalCustomFieldUtils.getCmsValuesMatchingWithKeywordList(columnField, DashboardColumnType.CUSTOM_CASE, List.of(this.quickSearchKeyword)));
     return filter; 
   }
 
