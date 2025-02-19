@@ -477,6 +477,7 @@ Data model:
          ],
          "icon": "si si-analytics-pie-2",
          "refreshInterval": 300
+         "backgroundColor": ["#FF6F61", "#6B5B95", "#88B04B", "#F7CAC9"]
       }
    ]
 
@@ -514,6 +515,8 @@ Data model:
    ``number``: Labelled number chart
    
    |number-chart|
+
+- ``backgroundColor``: chart color
 
 For some specific charts such as ``Bar``, ``Line`` or ``Number``, there are additional and required fields:
 
