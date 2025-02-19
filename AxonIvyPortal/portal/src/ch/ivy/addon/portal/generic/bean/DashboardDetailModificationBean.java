@@ -51,6 +51,7 @@ import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.service.ClientStatisticService;
 import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.util.DashboardCloneUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 import com.google.common.base.Predicate;
 
@@ -122,6 +123,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private List<DashboardProcess> customWidgets;
   private List<ClientStatistic> statisticWidgets;
 
+  // Clone widget function
+  private Dashboard cloneFromDashboard;
+  private DashboardWidget cloneFromWidget;
+  private List<Dashboard> cloneableDashboards;
+
   @PostConstruct
   public void initConfigration() {
     foundTemplate = Optional.empty();
@@ -145,7 +151,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     initStatisticWidgets();
   }
 
-  private void initStatisticWidgets() {
+  protected void initStatisticWidgets() {
     setStatisticWidgets(new ArrayList<>());
     getStatisticWidgets().addAll(ClientStatisticService.getInstance().findAllCharts());
   }
@@ -176,8 +182,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       if (isPublicDashboard) {
         collectedDashboards = DashboardUtils.getPublicDashboards();
       } else {
-        String dashboardInUserProperty = readDashboardBySessionUser();
-        collectedDashboards = getVisibleDashboards(dashboardInUserProperty);
+        collectedDashboards = DashboardUtils.getPrivateDashboards();
       }
     } catch (PortalException e) {
       Ivy.log().error(e);
@@ -330,7 +335,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void removeWidget() {
     if (this.getDeleteWidget() != null) {
       this.getSelectedDashboard().getWidgets().remove(getDeleteWidget());
-      if (WELCOME.equals(this.deleteWidget.getType())) {
+      if (WELCOME == this.deleteWidget.getType()) {
         removeWelcomeWidgetImage(this.deleteWidget);
       }
       saveSelectedDashboard();
@@ -346,6 +351,9 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
       WelcomeWidgetUtils.removeWelcomeImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType());
     }
+    if (StringUtils.isNotBlank(welcomeWidget.getImageLocationDarkMode())) {
+      WelcomeWidgetUtils.removeWelcomeImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode());
+    }
   }
 
   /**
@@ -354,7 +362,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
    */
   private void removeWelcomeWidgetImagesOfDashboard(Dashboard selectedDashboard) {
     for (DashboardWidget selectedWidget : selectedDashboard.getWidgets()) {
-      if (WELCOME.equals(selectedWidget.getType())) {
+      if (WELCOME == selectedWidget.getType()) {
         removeWelcomeWidgetImage(selectedWidget);
       }
     }
@@ -494,6 +502,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     widget = null;
     isEditWidget = false;
     PrimeFaces.current().ajax().update("grid-stack");
+    DashboardUtils.updateDashboardCache();
   }
 
   public void onCancel(DashboardWidget widget) {
@@ -739,7 +748,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       return;
     }
 
-    if (WELCOME.equals(widget.getType())) {
+    if (WELCOME == widget.getType()) {
       for (var otherWidget : CollectionUtils.emptyIfNull(selectedDashboard.getWidgets())) {
         if (otherWidget.getId().contentEquals(widget.getId())) {
           continue;
@@ -865,14 +874,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     customWidget.loadParametersFromProcess();
   }
 
-  private List<Dashboard> getVisibleDashboards(String dashboardJson) {
-    if (isPublicDashboard) {
-      return DashboardUtils.jsonToDashboards(dashboardJson);
-    } else {
-      return DashboardUtils.getVisibleDashboards(dashboardJson);
-    }
-  }
-
   public void navigatetoDashboardConfigurationPage() throws IOException {
     String dashboardConfigurationUrl = PortalNavigator.buildDashboardConfigurationUrl();
     FacesContext.getCurrentInstance().getExternalContext().redirect(dashboardConfigurationUrl);
@@ -917,6 +918,45 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public boolean isPublicDashboard() {
     return isPublicDashboard;
+  }
+
+  public Dashboard getCloneFromDashboard() {
+    return cloneFromDashboard;
+  }
+
+  public void setCloneFromDashboard(Dashboard cloneFromDashboard) {
+    this.cloneFromDashboard = cloneFromDashboard;
+  }
+
+  public DashboardWidget getCloneFromWidget() {
+    return cloneFromWidget;
+  }
+
+  public void setCloneFromWidget(DashboardWidget cloneFromWidget) {
+    this.cloneFromWidget = cloneFromWidget;
+  }
+
+  public List<Dashboard> getCloneableDashboards() {
+    return cloneableDashboards;
+  }
+
+  public void setCloneableDashboards(List<Dashboard> cloneableDashboards) {
+    this.cloneableDashboards = cloneableDashboards;
+  }
+
+  public List<Dashboard> initCloneableDashboards() {
+    List<Dashboard> availableDashboards = new ArrayList<>();
+    availableDashboards.addAll(DashboardUtils.getPublicDashboards());
+    DashboardUtils
+        .addDefaultTaskCaseListDashboardsIfMissing(availableDashboards);
+
+    String dashboardInUserProperty = readDashboardBySessionUser();
+    if (StringUtils.isNotBlank(dashboardInUserProperty)) {
+      List<Dashboard> myDashboards = DashboardUtils
+          .getVisibleDashboards(dashboardInUserProperty);
+      availableDashboards.addAll(myDashboards);
+    }
+    return availableDashboards;
   }
 
   public String getRestoreDashboardMessage() {
@@ -1114,5 +1154,57 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     widget.getColumns().get(fieldPosition)
         .setWidth(Integer.toString(widthValue));
     widget.getColumns().forEach(col -> col.initDefaultStyle());
+  }
+
+  public void cloneWidget() {
+    widget = DashboardCloneUtils.cloneWidget(cloneFromWidget);
+
+    if (widget.getType() == CLIENT_STATISTIC) {
+      saveWidget();
+    }
+
+    if (cloneableDashboards != null) {
+      cloneableDashboards.clear();
+    }
+  }
+
+  public void initCloneWidgetDialog() {
+    if (CollectionUtils.isEmpty(cloneableDashboards)) {
+      cloneableDashboards = initCloneableDashboards();
+
+      if (CollectionUtils.isNotEmpty(cloneableDashboards)) {
+        cloneableDashboards = cloneableDashboards.stream()
+            .filter(
+                dashboard -> CollectionUtils.isNotEmpty(dashboard.getWidgets()))
+            .collect(Collectors.toList());
+      }
+    }
+
+    cloneFromDashboard = null;
+    cloneFromWidget = null;
+  }
+
+  public String generateCloneWidgetName(DashboardWidget widget) {
+    String widgetName = widget.getName();
+    if (widget.getType() == CLIENT_STATISTIC) {
+      ClientStatisticDashboardWidget statisticWidget = (ClientStatisticDashboardWidget) widget;
+      widgetName = getStatisticWidgets().stream()
+          .filter(statistic -> statistic.getId()
+              .contentEquals(statisticWidget.getChartId()))
+          .findFirst().map(ClientStatistic::getName).orElse("");
+    }
+
+    // For custom widget, need to build before get name
+    if (widget.getType() == DashboardWidgetType.CUSTOM
+        && StringUtils.isBlank(widgetName)) {
+      widget = DashboardWidgetUtils.buildWidgetColumns(widget);
+      CustomDashboardWidget customWidget = (CustomDashboardWidget) widget;
+      widgetName = Optional.ofNullable(customWidget)
+          .map(CustomDashboardWidget::getData)
+          .map(DashboardCustomWidgetData::getStartableProcessStart)
+          .map(IWebStartable::getDisplayName).orElse("");
+    }
+
+    return String.format("%s (%s)", widgetName, widget.getType().getLabel());
   }
 }

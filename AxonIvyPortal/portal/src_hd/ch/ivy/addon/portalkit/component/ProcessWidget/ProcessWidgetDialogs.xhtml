@@ -87,7 +87,7 @@
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
             <f:facet name="output">
-              <h:outputText styleClass="u-mar-right-5"
+              <h:outputText styleClass="u-mar-right-5 external-link-edit-display-text"
                 value="#{empty processWidgetBean.editedExternalLink.description ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : processWidgetBean.editedExternalLink.description}" />
               <a href="#" class="si si-graphic-tablet-drawing-pen" aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"/>
             </f:facet>
@@ -159,7 +159,7 @@
               dragDropSupport="true" auto="true" widgetVar="editExternalLinkUpload"
               update="file-upload-panel" 
               allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
-              accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleEditExternalLinkUploadFileFail();"
+              accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFailOnEditExternalLink('editExternalLinkUpload');"
               label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" oncomplete="hideExtendLinkPreviewLabel();"
               invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" dropZone="edit-external-link-preview-image-panel"/>
               <p:outputPanel id="edit-external-link-preview-image-panel" styleClass="ui-external-link-preview-image-panel" >
@@ -236,7 +236,7 @@
   <p:dialog id="add-external-link-dialog" widgetVar="add-external-link-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewExternalLinkHeader')}" closeOnEscape="true" modal="true"
     appendTo="@(body)" resizable="false" responsive="true" positionType="absolute" fitViewport="true" styleClass="add-external-link-dialog">
-    <p:ajax event="close" update="add-external-link-dialog" resetValues="true" global="false"/>
+    <p:ajax event="close" update="add-external-link-dialog" resetValues="true" global="false" listener="#{processWidgetBean.resetPermission}"/>
     <div style="display: none;" id="error-message" />
     <h:form id="add-external-link-form" styleClass="add-external-link-form ui-g">
       <p:defaultCommand target="external-link-name"/>
@@ -355,7 +355,7 @@
           chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
           dragDropSupport="true" auto="true" update="file-upload-panel"
           allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
-          accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail();"
+          accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('externalLinkUpload');"
           invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
           dropZone="external-link-preview-image-panel" oncomplete="hideExtendLinkPreviewLabel();"/>
           
@@ -390,7 +390,7 @@
         process="#{cc.clientId}:add-external-link-form"
         form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink()}"
         update="#{cc.clientId}:add-external-link-form #{cc.clientId}:process-list #{cc.clientId}" styleClass="w-full" validateClient="true"
-        oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); processWidget.setup(); processWidget.hideLoadingText();}" />
+        oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide(); processWidget.setup(); processWidget.hideLoadingText()}" />
     </f:facet>
   </p:dialog>
   <!-- End External Link Dialogs -->

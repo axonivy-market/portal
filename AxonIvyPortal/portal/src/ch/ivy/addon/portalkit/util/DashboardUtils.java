@@ -22,7 +22,6 @@ import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemp
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import ch.addon.portal.generic.menu.MenuView.PortalDashboardItemWrapper;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
@@ -35,6 +34,7 @@ import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class DashboardUtils {
 
@@ -42,7 +42,8 @@ public class DashboardUtils {
   public final static String PARENT_DASHBOARD_MENU_POSTFIX = "-parent-dashboard";
   public final static String MAIN_DASHBOARD_MENU_POSTFIX = "-main-dashboard";
   public final static String SUB_DASHBOARD_MENU_POSTFIX = "-sub-dashboard";
-  public final static String PARENT_DASHBOARD_MENU_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + PARENT_DASHBOARD_MENU_POSTFIX;
+  public final static String PARENT_DASHBOARD_MENU_PATTERN =
+      DASHBOARD_MENU_PREFIX + "%s" + PARENT_DASHBOARD_MENU_POSTFIX;
   public final static String MAIN_DASHBOARD_MENU_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + MAIN_DASHBOARD_MENU_POSTFIX;
   public final static String SUB_DASHBOARD_MENU_PATTERN = DASHBOARD_MENU_PREFIX + "%s" + SUB_DASHBOARD_MENU_POSTFIX;
   public final static String DASHBOARD_PAGE_URL =
@@ -54,6 +55,17 @@ public class DashboardUtils {
 
   public static List<Dashboard> getVisibleDashboards(String dashboardJson) {
     List<Dashboard> dashboards = jsonToDashboards(dashboardJson);
+    dashboards.removeIf(dashboard -> {
+      List<String> permissions = dashboard.getPermissions();
+      if (permissions == null) {
+        return false;
+      }
+      return permissions.stream().noneMatch(DashboardUtils::isSessionUserHasPermisson);
+    });
+    return dashboards;
+  }
+
+  public static List<Dashboard> getVisibleDashboards(List<Dashboard> dashboards) {
     dashboards.removeIf(dashboard -> {
       List<String> permissions = dashboard.getPermissions();
       if (permissions == null) {
@@ -113,30 +125,14 @@ public class DashboardUtils {
 
   public static List<Dashboard> getAllVisibleDashboardsOfSessionUser() {
     List<Dashboard> collectedDashboards = new ArrayList<>();
-    String dashboardInUserProperty = readDashboardBySessionUser();
     try {
-      collectedDashboards.addAll(getVisiblePublicDashboards());
-      collectedDashboards.addAll(jsonToDashboards(dashboardInUserProperty));
+      collectedDashboards.addAll(getPublicDashboards());
+      collectedDashboards.addAll(getPrivateDashboards());
     } catch (PortalException e) {
       // If errors like parsing JSON errors, ignore them
       Ivy.log().error(e);
     }
     return collectedDashboards;
-  }
-
-  public static List<Dashboard> getVisiblePublicDashboards() {
-    String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
-    List<Dashboard> visibleDashboards = getVisibleDashboards(dashboardJson);
-    setDashboardAsPublic(visibleDashboards);
-    return visibleDashboards;
-  }
-
-  public static List<Dashboard> getPublicDashboards() {
-    String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
-    List<Dashboard> visibleDashboards = jsonToDashboards(dashboardJson);
-    addDefaultTaskCaseListDashboardsIfMissing(visibleDashboards);
-    setDashboardAsPublic(visibleDashboards);
-    return visibleDashboards;
   }
 
   public static void addDefaultTaskCaseListDashboardsIfMissing(List<Dashboard> dashboards) {
@@ -181,25 +177,6 @@ public class DashboardUtils {
       return "";
     }
     return currentUser().getProperty(PortalVariable.DASHBOARD.key);
-  }
-
-  public static List<Dashboard> collectDashboards() {
-    List<Dashboard> visibleDashboards = getAllVisibleDashboardsOfSessionUser();
-    List<DashboardOrder> dashboardOrders = getDashboardOrdersOfSessionUser();
-    Map<String, Dashboard> idToDashboard = createMapIdToDashboard(visibleDashboards);
-    List<Dashboard> collectedDashboards = new ArrayList<>();
-    for (DashboardOrder dashboardOrder : dashboardOrders) {
-      if (dashboardOrder.getDashboardId() == null) {
-        continue;
-      }
-      Dashboard currentDashboard = idToDashboard.remove(dashboardOrder.getDashboardId());
-      if (dashboardOrder.isVisible() && currentDashboard != null) {
-        collectedDashboards.add(currentDashboard);
-      }
-    }
-    collectedDashboards.addAll(idToDashboard.values());
-    addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
-    return collectedDashboards;
   }
 
   public static List<Dashboard> collectMainDashboards() {
@@ -287,8 +264,7 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> getDashboardsWithoutMenuItem() {
-    var dashboards = collectDashboards();
-    return dashboards.stream().filter(dashboard -> !dashboard.getIsTopMenu()).toList();
+    return collectDashboards().stream().filter(dashboard -> !dashboard.getIsTopMenu()).toList();
   }
 
   public static String getSelectedMainDashboardIdFromSession() {
@@ -305,10 +281,9 @@ public class DashboardUtils {
     if (StringUtils.isEmpty(dashboardId)) {
       return false;
     }
-    boolean isMainDashboard = Optional.ofNullable(getPortalDashboardItemWrapper())
-        .map(wrapper -> wrapper.dashboards()).orElse(new ArrayList<>()).stream()
-        .filter(dashboard -> dashboardId.equals(dashboard.getId())).map(dashboard -> dashboard.getIsTopMenu())
-        .findFirst().orElse(defaultValue);
+    boolean isMainDashboard = Optional.ofNullable(getPortalDashboardItemWrapper()).map(wrapper -> wrapper.dashboards())
+        .orElse(new ArrayList<>()).stream().filter(dashboard -> dashboardId.equals(dashboard.getId()))
+        .map(dashboard -> dashboard.getIsTopMenu()).findFirst().orElse(defaultValue);
     return isMainDashboard;
   }
 
@@ -329,12 +304,152 @@ public class DashboardUtils {
   }
 
   public static boolean isDefaultTaskListDashboard(Dashboard dashboard) {
-    return Optional.ofNullable(dashboard).map(Dashboard::getId)
-        .orElseGet(() -> "").contentEquals(DEFAULT_TASK_LIST_DASHBOARD);
+    return Optional.ofNullable(dashboard).map(Dashboard::getId).orElseGet(() -> "")
+        .contentEquals(DEFAULT_TASK_LIST_DASHBOARD);
   }
 
   public static boolean isDefaultCaseListDashboard(Dashboard dashboard) {
-    return Optional.ofNullable(dashboard).map(Dashboard::getId)
-        .orElseGet(() -> "").contentEquals(DEFAULT_CASE_LIST_DASHBOARD);
+    return Optional.ofNullable(dashboard).map(Dashboard::getId).orElseGet(() -> "")
+        .contentEquals(DEFAULT_CASE_LIST_DASHBOARD);
   }
+
+  public static List<Dashboard> getPublicDashboards() {
+    String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
+    if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
+      Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
+    }
+    String sessionUserId = (String) Ivy.session().getAttribute(sessionIdAttribute);
+    IvyCacheService cacheService = IvyCacheService.getInstance();
+    PortalPublicDashboardWrapper portalPublicDashboardWrapper = null;
+    try {
+      portalPublicDashboardWrapper = (PortalPublicDashboardWrapper) cacheService
+          .getSessionCacheValue(IvyCacheIdentifier.PORTAL_PUBLIC_DASHBOARDS, sessionUserId).orElse(null);
+    } catch (ClassCastException e) {
+      cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PUBLIC_DASHBOARDS, sessionUserId);
+    }
+
+    if (portalPublicDashboardWrapper == null) {
+      synchronized (sessionUserId.intern()) {
+        List<Dashboard> dashboards = new ArrayList<>();
+        try {
+          String dashboardJson = Ivy.var().get(PortalVariable.DASHBOARD.key);
+          dashboards = jsonToDashboards(dashboardJson);
+          addDefaultTaskCaseListDashboardsIfMissing(dashboards);
+          setDashboardAsPublic(dashboards);
+        } catch (Exception e) {
+          Ivy.log().error("Cannot load Public Dashboards {0}", e.getMessage());
+        }
+        portalPublicDashboardWrapper = new PortalPublicDashboardWrapper(dashboards);
+        cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_PUBLIC_DASHBOARDS, sessionUserId,
+            portalPublicDashboardWrapper);
+      }
+    }
+    List<Dashboard> dashboards = new ArrayList<>();
+    portalPublicDashboardWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
+    return dashboards;
+  }
+
+  public static List<Dashboard> getPrivateDashboards() {
+    String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();
+    if (Ivy.session().getAttribute(sessionIdAttribute) == null) {
+      Ivy.session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
+    }
+    String sessionUserId = (String) Ivy.session().getAttribute(sessionIdAttribute);
+    IvyCacheService cacheService = IvyCacheService.getInstance();
+    PortalPrivateDashboardWrapper portalPrivateDashboardWrapper = null;
+    try {
+      portalPrivateDashboardWrapper = (PortalPrivateDashboardWrapper) cacheService
+          .getSessionCacheValue(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARDS, sessionUserId).orElse(null);
+    } catch (ClassCastException e) {
+      cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARDS, sessionUserId);
+    }
+
+    if (portalPrivateDashboardWrapper == null) {
+      synchronized (sessionUserId.intern()) {
+        List<Dashboard> dashboards = new ArrayList<>();
+        try {
+          String dashboardInUserProperty = readDashboardBySessionUser();
+          dashboards = jsonToDashboards(dashboardInUserProperty);
+        } catch (Exception e) {
+          Ivy.log().error("Cannot load Public Dashboards {0}", e.getMessage());
+        }
+        portalPrivateDashboardWrapper = new PortalPrivateDashboardWrapper(dashboards);
+        cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARDS, sessionUserId,
+            portalPrivateDashboardWrapper);
+      }
+    }
+    List<Dashboard> dashboards = new ArrayList<>();
+    portalPrivateDashboardWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
+    return dashboards;
+  }
+
+  public static List<Dashboard> collectDashboards() {
+    String sessionUserId = getSessionUserId();
+    IvyCacheService cacheService = IvyCacheService.getInstance();
+    PortalDashboardItemWrapper portalDashboardItemWrapper = null;
+    try {
+      portalDashboardItemWrapper = (PortalDashboardItemWrapper) cacheService
+          .getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
+    } catch (ClassCastException e) {
+      cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId);
+    }
+
+    if (portalDashboardItemWrapper == null) {
+      synchronized (sessionUserId.intern()) {
+        List<Dashboard> collectedDashboards = new ArrayList<>();
+        try {
+          List<Dashboard> visibleDashboards = getAllVisibleDashboardsOfSessionUser();
+          List<DashboardOrder> dashboardOrders = getDashboardOrdersOfSessionUser();
+          Map<String, Dashboard> idToDashboard = createMapIdToDashboard(visibleDashboards);
+          for (DashboardOrder dashboardOrder : dashboardOrders) {
+            if (dashboardOrder.getDashboardId() == null) {
+              continue;
+            }
+            Dashboard currentDashboard = idToDashboard.remove(dashboardOrder.getDashboardId());
+            if (dashboardOrder.isVisible() && currentDashboard != null) {
+              collectedDashboards.add(currentDashboard);
+            }
+          }
+          collectedDashboards.addAll(idToDashboard.values());
+          addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
+        } catch (Exception e) {
+          Ivy.log().error("Cannot collect Dashboards {0}", e.getMessage());
+        }
+        portalDashboardItemWrapper = new PortalDashboardItemWrapper(collectedDashboards);
+        cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId,
+            portalDashboardItemWrapper);
+      }
+    }
+    List<Dashboard> dashboards = new ArrayList<>();
+    portalDashboardItemWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
+    return getVisibleDashboards(dashboards);
+  }
+
+  public static void updateDashboardCache() {
+    String sessionUserId = getSessionUserId();
+    IvyCacheService cacheService = IvyCacheService.getInstance();
+    cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId);
+    cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PUBLIC_DASHBOARDS, sessionUserId);
+    cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARDS, sessionUserId);
+  }
+
+  private static String getSessionUserId() {
+    String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.name();
+    if (session().getAttribute(sessionIdAttribute) == null) {
+      session().setAttribute(sessionIdAttribute, UUID.randomUUID().toString());
+    }
+    return (String) session().getAttribute(sessionIdAttribute);
+  }
+
+  private static IWorkflowSession session() {
+    return Ivy.session();
+  }
+
+  private record PortalPrivateDashboardWrapper(List<Dashboard> dashboards) {
+  }
+  private record PortalPublicDashboardWrapper(List<Dashboard> dashboards) {
+  }
+  public record PortalDashboardItemWrapper(List<Dashboard> dashboards) {
+  }
+
 }

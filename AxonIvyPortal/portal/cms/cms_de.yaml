@@ -399,6 +399,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     All: Alles
     And: und
     BusinessCaseInformation: Business Case Informationen
+    Clone: Klonen
     CollapseAll: Alles zuklappen
     ExpandAll: Alles aufklappen
     MoreItemsAvailable: weitere Artikel verfügbar
@@ -407,6 +408,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     RoleUserInformation: Rollen- und Benutzerinformationen
     TaskCaseInformation: Informationen zu Aufgabe und Vorgang
     Update: Aktualisieren
+    Widget: Widget
     action: Aktionen
     active: Aktiviert
     add: Hinzufügen
@@ -689,6 +691,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Öffentlich
       savedFilters: 'Gespeicherte Filter:'
   dashboard:
+    CloneWidget: Widget klonen
     CustomWidgets: Benutzerdefinierte Widgets
     DashboardConfiguration:
       CreateFromScratch: Von Grund auf neu erstellen
@@ -751,6 +754,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     columnManagement: Spaltenverwaltung
     columnType:
       CUSTOM: Benutzerdefiniertes Feld
+      CUSTOM_BUSINESS_CASE: Benutzerdefiniertes Feld für Geschäftsvorfälle
       CUSTOM_CASE: Benutzerdefiniertes Fallfeld
       STANDARD: Standard-Feld
     configuration:
@@ -1385,6 +1389,11 @@ Dialogs:
             ClientStatisticWidget:
               IdNotFound: Diagramm mit ID {0} nicht gefunden
               NoPermissionChartMessage: Sie haben nicht die erforderliche Berechtigung, um diese Karte zu sehen.
+            CloneWidgetDialog:
+              Header: Clone widget "{0}"
+              TargetDashboard: Target dashboard
+            CloneWidgetFromDashboardDialog:
+              header: Widget klonen von
             DashboardImportDetails:
               FileInfomation: Dateiinformationen
               ImportPrivate: Privates Dashboard importieren
@@ -1416,6 +1425,8 @@ Dialogs:
               NotificationWidgetConfiguration: Konfiguration des Benachrichtigungs-Widgets
               NotificationWidgetDescription: Dieses Widget zeigt alle Benachrichtigungen basierend auf Ihren Benachrichtigungseinstellungen an.
               WidgetFilter: Widget-Filter
+            PortalDashboardDetailModification:
+              CloneWidget: Widget klonen
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen

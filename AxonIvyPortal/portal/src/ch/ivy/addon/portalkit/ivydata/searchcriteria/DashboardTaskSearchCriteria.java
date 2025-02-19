@@ -49,7 +49,6 @@ public class DashboardTaskSearchCriteria {
   public TaskQuery buildQueryWithoutOrderByClause() {
     TaskQuery query = TaskQuery.create();
     queryFilters(query);
-    Ivy.log().info(query);
     queryCanWorkOn(query);
     return query;
   }
@@ -132,6 +131,7 @@ public class DashboardTaskSearchCriteria {
 
   private void appendCustomFieldsForQuickSearchQuery(TaskQuery subQuery, ColumnModel column) {
     switch (column.getType()) {
+    case CUSTOM_BUSINESS_CASE -> appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM_BUSINESS_CASE));
     case CUSTOM_CASE -> appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM_CASE));
     case CUSTOM -> appendQuickSearchTaskQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM));
     default -> {}
@@ -146,7 +146,7 @@ public class DashboardTaskSearchCriteria {
   }
   
   private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column, DashboardColumnType type) {
-    if (PortalCustomFieldUtils.isContainCmsPathAttributeOnTask(column.getField(), type)) {
+    if (type != DashboardColumnType.CUSTOM_BUSINESS_CASE && PortalCustomFieldUtils.isContainCmsPathAttributeOnTask(column.getField(), type)) {
       return buildQuickSearchForCustomFieldWithCmsValues(column.getField(), type);
     }
     return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);

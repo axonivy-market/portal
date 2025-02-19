@@ -400,6 +400,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     All: Todas
     And: y
     BusinessCaseInformation: Información sobre el caso de negocio
+    Clone: Clonar
     CollapseAll: Cerrar todo
     ExpandAll: Abrir todo
     MoreItemsAvailable: más artículos disponibles
@@ -408,6 +409,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     RoleUserInformation: Informaciones de rol y usuario
     TaskCaseInformation: Informaciones de tarea y caso
     Update: Aktualizar
+    Widget: Widget
     action: Acciones
     active: Activado
     add: Añadir
@@ -688,6 +690,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Público
       savedFilters: 'Filtros guardados:'
   dashboard:
+    CloneWidget: Clonar el widget
     CustomWidgets: Widgets personalizados
     DashboardConfiguration:
       CreateFromScratch: Crear desde cero
@@ -750,6 +753,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     columnManagement: Gestión de columnas
     columnType:
       CUSTOM: Campo personalizado
+      CUSTOM_BUSINESS_CASE: Campo personalizado del caso de negocio
       CUSTOM_CASE: Campo de caso personalizado
       STANDARD: Columna estándar
     configuration:
@@ -1374,6 +1378,11 @@ Dialogs:
             ClientStatisticWidget:
               IdNotFound: Grafico con ID {0} no encontrado
               NoPermissionChartMessage: No tiene permiso para ver este gráfico.
+            CloneWidgetDialog:
+              Header: Clone widget "{0}"
+              TargetDashboard: Target dashboard
+            CloneWidgetFromDashboardDialog:
+              header: Clonar widget desde
             DashboardImportDetails:
               FileInfomation: Informacion del archivo
               ImportPrivate: Importar panel privado
@@ -1405,6 +1414,8 @@ Dialogs:
               NotificationWidgetConfiguration: Configuración del widget de notificaciones
               NotificationWidgetDescription: Este widget muestra todas las notificaciones según la configuración de notificaciones.
               WidgetFilter: Filtro de widgets
+            PortalDashboardDetailModification:
+              CloneWidget: Clonar widget
             TaskWidgetConfiguration:
               AddFilter: Añadir filtro
               ResetFilter: Restablecer filtro

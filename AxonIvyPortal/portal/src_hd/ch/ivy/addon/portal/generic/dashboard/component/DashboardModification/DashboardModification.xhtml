@@ -131,7 +131,7 @@
     <ui:define name="dialogFooter">
       <div class="flex flex-column">
       <p:commandButton id="remove-dashboard-button" styleClass="w-full portal-remove-button"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
         actionListener="#{dashboardModificationBean.removeDashboard()}"
         update="dashboard-modification-container"
         oncomplete="PF('remove-dashboard-dialog').hide();" />

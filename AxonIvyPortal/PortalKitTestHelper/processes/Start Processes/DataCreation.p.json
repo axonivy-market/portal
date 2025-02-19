@@ -2208,5 +2208,121 @@
         "at" : { "x" : 480, "y" : 2480 },
         "labelOffset" : { "x" : 13, "y" : 33 }
       }
+    }, {
+      "id" : "f229",
+      "type" : "RequestStart",
+      "name" : "displayCustomFieldBusinessCaseOnTaskWidget.ivp",
+      "config" : {
+        "signature" : "displayCustomFieldCaseOnTaskWidget",
+        "request" : {
+          "name" : "Display Custom Business Case Field on Task Widget"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 2560 }
+      },
+      "connect" : [
+        { "id" : "f231", "to" : "f230" }
+      ]
+    }, {
+      "id" : "f230",
+      "type" : "Script",
+      "name" : "Set custom case field",
+      "config" : {
+        "output" : {
+          "code" : "ivy.case.customFields().stringField(\"CustomerName\").set(\"AxonIvy\");"
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 248, "y" : 2560 }
+      },
+      "connect" : [
+        { "id" : "f233", "to" : "f232" }
+      ]
+    }, {
+      "id" : "f232",
+      "type" : "TriggerCall",
+      "name" : "Start Processes/DataCreation",
+      "config" : {
+        "processCall" : "Start Processes/DataCreation:subCustomCaseField()"
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 2560 }
+      },
+      "connect" : [
+        { "id" : "f237", "to" : "f236" }
+      ]
+    }, {
+      "id" : "f234",
+      "type" : "RequestStart",
+      "name" : "subCustomCaseField.ivp",
+      "config" : {
+        "signature" : "subCustomCaseField",
+        "request" : {
+          "name" : "Sub Custom Case Field"
+        },
+        "triggerable" : true,
+        "task" : {
+          "responsible" : {
+            "activator" : "SYSTEM"
+          }
+        },
+        "case" : {
+          "name" : "Sub Custom Case Field"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 64, "y" : 2704 }
+      },
+      "connect" : [
+        { "id" : "f238", "to" : "f235" }
+      ]
+    }, {
+      "id" : "f235",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Task is from subCase",
+          "description" : "Test Case CustomField from business case is displayed (Add CustomerName customfield column to test)"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 2704 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f241", "to" : "f240" }
+      ]
+    }, {
+      "id" : "f236",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Task is from main Case",
+          "description" : "Test Case CustomField from business case is displayed (Add CustomerName customfield column to test)"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 544, "y" : 2560 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f242", "to" : "f239" }
+      ]
+    }, {
+      "id" : "f239",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 656, "y" : 2560 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f240",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 656, "y" : 2704 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
     } ]
 }

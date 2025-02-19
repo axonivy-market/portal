@@ -106,14 +106,10 @@ public class GlobalSearchTest extends BaseTest {
     updatePortalSetting(Variable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey(), "");
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
-    boolean isHiddenSearchIcon = newDashboardPage.isInputGlobalSearchDisabled();
-    assertFalse(isHiddenSearchIcon);
 
     updatePortalSetting(Variable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey(), "PROCESSES,TASKS");
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
-    isHiddenSearchIcon = newDashboardPage.isInputGlobalSearchDisabled();
-    assertTrue(isHiddenSearchIcon);
 
     String taskName = "Testing Task for Global Search (Name)";
     String nameKeyword = "(Name)";
@@ -132,22 +128,22 @@ public class GlobalSearchTest extends BaseTest {
     updatePortalSetting(Variable.SHOW_QUICK_GLOBAL_SEARCH.getKey(), "TRUE");
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
-    SelenideElement searchInput = newDashboardPage.getQuickGlobalSearchInput();
+    SelenideElement searchInput = newDashboardPage.getGlobalSearchInput();
     assertFalse(searchInput.isDisplayed());
     
     updatePortalSetting(Variable.GLOBAL_SEARCH_SCOPE_BY_CATEGORIES.getKey(), "PROCESSES,TASKS");
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
-    searchInput = newDashboardPage.getQuickGlobalSearchInput();
+    searchInput = newDashboardPage.getGlobalSearchInput();
     assertTrue(searchInput.shouldBe(appear, DEFAULT_TIMEOUT).isDisplayed());
     
-    newDashboardPage.clickOnQuickGlobalSearchInput();
+    newDashboardPage.clickOnGlobalSearchInput();
     SelenideElement searchPanel = newDashboardPage.getGlobalQuickSearchPanel();
     assertTrue(searchPanel.isDisplayed());
     
     String taskName = "Testing Task for Global Search (Name)";
     String nameKeyword = "(Name)";
-    GlobalSearchResultPage resultPage = newDashboardPage.inputQuickGlobalSearchKeyword(nameKeyword);
+    GlobalSearchResultPage resultPage = newDashboardPage.inputGlobalSearchKeyword(nameKeyword);
     resultPage.openTaskTab();
     assertEquals(taskName, resultPage.getNameOfTask(0));
     assertEquals("Tasks contain the keyword \"" + nameKeyword + "\" in Task Id, Name, Description.", resultPage.getGlobalSearchByFieldTextForTaskTab());

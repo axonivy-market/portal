@@ -33,7 +33,6 @@ import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
-import ch.addon.portal.generic.menu.MenuView;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
@@ -41,7 +40,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -74,7 +72,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
       this.dashboards = DashboardUtils.getPublicDashboards();
       DashboardUtils.addDefaultTaskCaseListDashboardsIfMissing(this.dashboards);
     } else if (StringUtils.isNoneEmpty(dashboardInUserProperty)) {
-      List<Dashboard> myDashboards = getVisibleDashboards(dashboardInUserProperty);
+      List<Dashboard> myDashboards = DashboardUtils.getPrivateDashboards();
       this.dashboards.addAll(myDashboards);
     }
   }
@@ -153,7 +151,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
       return;
     }
     for (DashboardWidget selectedWidget : selectedDashboard.getWidgets()) {
-      if (WELCOME.equals(selectedWidget.getType())) {
+      if (WELCOME == selectedWidget.getType()) {
         removeWelcomeWidgetImage(selectedWidget);
       }
     }
@@ -167,6 +165,9 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     if (StringUtils.isNotBlank(welcomeWidget.getImageLocation())) {
       WelcomeWidgetUtils.removeWelcomeImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType());
     }
+    if (StringUtils.isNotBlank(welcomeWidget.getImageLocationDarkMode())) {
+      WelcomeWidgetUtils.removeWelcomeImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode());
+    }
   }
 
   private void saveDashboards(List<Dashboard> dashboards) {
@@ -176,17 +177,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     } else {
       currentUser().setProperty(PortalVariable.DASHBOARD.key, dashboardJson);
     }
-
-    MenuView menuView = (MenuView) ManagedBeans.get("menuView");
-    menuView.updateDashboardCache(DashboardUtils.collectDashboards());
-  }
-
-  private List<Dashboard> getVisibleDashboards(String dashboardJson) {
-    if (isPublicDashboard) {
-      return DashboardUtils.jsonToDashboards(dashboardJson);
-    } else {
-      return DashboardUtils.getVisibleDashboards(dashboardJson);
-    }
+    updateDashboardCache();
   }
 
   public void navigateToDashboardDetailsPage(String dashboardId) {
@@ -342,9 +333,12 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
 
     Optional.ofNullable(dashboard).map(Dashboard::getWidgets).orElse(new ArrayList<>()).stream().forEach(widget -> {
       if (widget instanceof WelcomeDashboardWidget) {
-        var welcomeWidget = (WelcomeDashboardWidget) widget;
+        WelcomeDashboardWidget welcomeWidget = (WelcomeDashboardWidget) widget;
         welcomeWidget.setImageType(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageType()));
-        welcomeWidget.setImageContent(encodeWelcomeWidgetImage(welcomeWidget));
+        welcomeWidget.setImageContent(encodeWelcomeWidgetImage(welcomeWidget.getImageLocation(), welcomeWidget.getImageType()));
+        
+        welcomeWidget.setImageTypeDarkMode(WelcomeWidgetUtils.getFileTypeOfImage(welcomeWidget.getImageTypeDarkMode()));
+        welcomeWidget.setImageContentDarkMode(encodeWelcomeWidgetImage(welcomeWidget.getImageLocationDarkMode(), welcomeWidget.getImageTypeDarkMode()));
       }
     });
 
@@ -361,13 +355,12 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
         .build();
   }
 
-  private String encodeWelcomeWidgetImage(WelcomeDashboardWidget widget) {
-    if (Optional.ofNullable(widget).map(WelcomeDashboardWidget::getImageLocation).isEmpty()) {
-      return null;
+  private String encodeWelcomeWidgetImage(String imageLocation, String imageType) {
+    if (StringUtils.isBlank(imageLocation)) {
+      return "";
     }
-
     String result = "";
-    ContentObject widgetImage = WelcomeWidgetUtils.getImageContentObject(widget.getImageLocation(), widget.getImageType());
+    ContentObject widgetImage = WelcomeWidgetUtils.getImageContentObject(imageLocation, imageType);
     if (widgetImage != null && widgetImage.exists()) {
       result = new String(Base64.getEncoder().encode(WelcomeWidgetUtils.readObjectValueOfDefaultLocale(widgetImage).read().bytes()));
     }
@@ -388,6 +381,7 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     } else {
       savePrivateArrangement();
     }
+    updateDashboardCache();
   }
 
   public void savePublicArrangement() {
@@ -413,5 +407,9 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   public void savePrivateArrangement() {
     String dashboardJson = BusinessEntityConverter.entityToJsonValue(this.dashboards);
     Ivy.session().getSessionUser().setProperty(PortalVariable.DASHBOARD.key, dashboardJson);
+  }
+
+  private void updateDashboardCache() {
+    DashboardUtils.updateDashboardCache();
   }
 }
