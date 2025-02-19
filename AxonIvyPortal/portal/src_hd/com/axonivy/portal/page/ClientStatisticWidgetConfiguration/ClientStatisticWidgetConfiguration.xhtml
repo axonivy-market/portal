@@ -100,6 +100,22 @@
             oncomplete="PF('multiple-languages-dialog').show();" />
         </h:panelGrid>
 
+        <h:panelGrid columns="3">
+          <p:outputLabel value="Category title" for="category-title" />
+          <p:inputText id="category-title" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.barChartConfig.xTitle}" maxlength="200" />
+          <p:commandButton id="category-title-add-language-button" icon="si si-chat-translate"
+            actionListener="#{clientStatisticWidgetConfigurationBean.updateCategoryTitleByLocale()}" process="category-title"
+            update="category-title-language-config:multiple-languages-dialog" oncomplete="PF('multiple-languages-dialog').show();" />
+        </h:panelGrid>
+
+        <h:panelGrid columns="3">
+          <p:outputLabel value="Value title" for="value-title" />
+          <p:inputText id="value-title" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.barChartConfig.yTitle}" maxlength="200" />
+          <p:commandButton id="value-title-add-language-button" icon="si si-chat-translate"
+            actionListener="#{clientStatisticWidgetConfigurationBean.updateValueTitleByLocale()}" process="value-title"
+            update="value-title-language-config:multiple-languages-dialog" oncomplete="PF('multiple-languages-dialog').show();" />
+        </h:panelGrid>
+
         <h:panelGrid columns="2">
           <h:outputLabel for="icon" value="Icon" />
           <p:inputText id="icon" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.icon}" />
@@ -134,15 +150,27 @@
           titles="#{clientStatisticWidgetConfigurationBean.getNames()}"
           managedBean="#{clientStatisticWidgetConfigurationBean}" dynamic="true"
           updateCurrentLanguage="#{clientStatisticWidgetConfigurationBean.updateNameForCurrentLanguage()}"
-          componentToUpdateOnModify="clientStatisticForm:name" componentToUpdateOnCreate="clientStatisticForm:name"
+          componentToUpdateOnModify="config-form:name" componentToUpdateOnCreate="config-form:name"
           titleRequired="false" />
         <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="description-language-config"
           titles="#{clientStatisticWidgetConfigurationBean.getDescriptions()}"
           managedBean="#{clientStatisticWidgetConfigurationBean}" dynamic="true"
           updateCurrentLanguage="#{clientStatisticWidgetConfigurationBean.updateDescriptionForCurrentLanguage()}"
-          componentToUpdateOnModify="clientStatisticForm:description"
-          componentToUpdateOnCreate="clientStatisticForm:description" titleRequired="false" />
+          componentToUpdateOnModify="config-form:description"
+          componentToUpdateOnCreate="config-form:description" titleRequired="false" />
         <p:commandButton value="Save" action="#{clientStatisticWidgetConfigurationBean.save}" />
+        <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="category-title-language-config"
+          titles="#{clientStatisticWidgetConfigurationBean.getCategoryTitles()}"
+          managedBean="#{clientStatisticWidgetConfigurationBean}" dynamic="true"
+          updateCurrentLanguage="#{clientStatisticWidgetConfigurationBean.updateCategoryTitleForCurrentLanguage()}"
+          componentToUpdateOnModify="config-form:category-title" componentToUpdateOnCreate="config-form:category-title"
+          titleRequired="false" />
+        <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="value-title-language-config"
+          titles="#{clientStatisticWidgetConfigurationBean.getValueTitles()}"
+          managedBean="#{clientStatisticWidgetConfigurationBean}" dynamic="true"
+          updateCurrentLanguage="#{clientStatisticWidgetConfigurationBean.updateValueTitleForCurrentLanguage()}"
+          componentToUpdateOnModify="config-form:value-title" componentToUpdateOnCreate="config-form:value-title"
+          titleRequired="false" />
 
         <p:commandButton value="Preview" action="#{clientStatisticWidgetConfigurationBean.getPreviewData}"
           oncomplete="handlePreviewChart(xhr, status, args)" />

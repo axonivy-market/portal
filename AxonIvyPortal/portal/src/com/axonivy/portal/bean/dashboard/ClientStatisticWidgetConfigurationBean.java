@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -18,6 +19,7 @@ import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
+import com.axonivy.portal.bo.BarChartConfig;
 import com.axonivy.portal.bo.ClientStatistic;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
@@ -53,7 +55,16 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     selectedPermissions = new ArrayList<>();
     clientStatistic.setNames(new ArrayList<>());
     clientStatistic.setDescriptions(new ArrayList<>());
+    clientStatistic.setBarChartConfig(initBarChartConfig());
+    // TODO z1 init category, value
+    // add action when select chart type
+  }
 
+  private BarChartConfig initBarChartConfig() {
+    BarChartConfig config = new BarChartConfig();
+    config.setxTitles(new ArrayList<>());
+    config.setyTitles(new ArrayList<>());
+    return config;
   }
 
   public ClientStatistic getClientStatistic() {
@@ -154,6 +165,22 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     }
   }
 
+  public void updateCategoryTitleForCurrentLanguage() {
+    updateForCurrentLanguage(clientStatistic.getBarChartConfig().getxTitles(), BarChartConfig::setxTitle);
+  }
+
+  public void updateValueTitleForCurrentLanguage() {
+    updateForCurrentLanguage(clientStatistic.getBarChartConfig().getyTitles(), BarChartConfig::setyTitle);
+  }
+
+  private void updateForCurrentLanguage(List<DisplayName> names, BiConsumer<BarChartConfig, String> setNameFunction) {
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional =
+        names.stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+    optional
+        .ifPresent(displayName -> setNameFunction.accept(clientStatistic.getBarChartConfig(), displayName.getValue()));
+  }
+
   public void updateNameByLocale() {
     String currentName = LanguageUtils.getLocalizedName(clientStatistic.getNames(), clientStatistic.getName());
     initAndSetValue(currentName, clientStatistic.getNames());
@@ -163,6 +190,18 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     String currentDescription =
         LanguageUtils.getLocalizedName(clientStatistic.getDescriptions(), clientStatistic.getDescription());
     initAndSetValue(currentDescription, clientStatistic.getDescriptions());
+  }
+
+  public void updateCategoryTitleByLocale() {
+    String currentName = LanguageUtils.getLocalizedName(clientStatistic.getBarChartConfig().getxTitles(),
+        clientStatistic.getBarChartConfig().getxTitle());
+    initAndSetValue(currentName, clientStatistic.getBarChartConfig().getxTitles());
+  }
+
+  public void updateValueTitleByLocale() {
+    String currentName = LanguageUtils.getLocalizedName(clientStatistic.getBarChartConfig().getyTitles(),
+        clientStatistic.getBarChartConfig().getyTitle());
+    initAndSetValue(currentName, clientStatistic.getBarChartConfig().getyTitles());
   }
 
   private void initAndSetValue(String value, List<DisplayName> values) {
@@ -200,6 +239,38 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
       }
     }
     return clientStatistic.getDescriptions();
+  }
+
+  public List<DisplayName> getCategoryTitles() {
+    if (clientStatistic.getBarChartConfig() == null) {
+      return new ArrayList<>();
+    }
+
+    if (clientStatistic.getBarChartConfig().getxTitles().isEmpty()) {
+      List<String> supportedLanguages = getSupportedLanguages();
+      for (String language : supportedLanguages) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        clientStatistic.getBarChartConfig().getxTitles().add(displayName);
+      }
+    }
+    return clientStatistic.getBarChartConfig().getxTitles();
+  }
+
+  public List<DisplayName> getValueTitles() {
+    if (clientStatistic.getBarChartConfig() == null) {
+      return new ArrayList<>();
+    }
+
+    if (clientStatistic.getBarChartConfig().getyTitles().isEmpty()) {
+      List<String> supportedLanguages = getSupportedLanguages();
+      for (String language : supportedLanguages) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        clientStatistic.getBarChartConfig().getyTitles().add(displayName);
+      }
+    }
+    return clientStatistic.getBarChartConfig().getyTitles();
   }
 
   protected List<String> getSupportedLanguages() {
