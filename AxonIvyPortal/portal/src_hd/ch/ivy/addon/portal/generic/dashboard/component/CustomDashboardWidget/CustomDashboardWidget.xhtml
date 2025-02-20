@@ -38,7 +38,7 @@
           <h:panelGroup rendered="#{not empty widget.data.startRequestPath}">
             <h:form id="custom-form-#{index}">
               <c:forEach var="param" items="#{widget.data.params}">
-                <input type="hidden" name="#{dashboardCustomWidgetBean.generateParamName(param)}" value="#{param.value}" />
+                <input type="hidden" name="#{dashboardCustomWidgetBean.generateParamName(param)}" value="#{dashboardCustomWidgetBean.encodeValue(param.value)}" />
               </c:forEach>
               <iframe id="id-custom-widget-iframe-#{index}" name="custom-widget-iframe-#{index}" class="dashboard-custom-iframe u-hidden" 
                 title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/CustomDashboardWidget/CustomWidgetIFrameTitle', [widget.name])}" />
