@@ -147,7 +147,7 @@
         <p:commandButton value="Preview" action="#{clientStatisticWidgetConfigurationBean.getPreviewData}"
           oncomplete="handlePreviewChart(xhr, status, args)" />
         <h:panelGroup layout="block" styleClass="card statistic-chart-widget__chart">
-          <div class="ui-chart js-client-statistic-chart statistic-chart-widget__canvas chart-options"
+          <div style="height: 400px;" class="ui-chart js-client-statistic-chart statistic-chart-widget__canvas chart-options-config"
             data-chart-id="preview-statistic-chart"></div>
         </h:panelGroup>
         <script type="text/javascript">
