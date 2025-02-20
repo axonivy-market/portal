@@ -29,6 +29,7 @@ import com.axonivy.portal.service.ClientStatisticService;
 import com.axonivy.portal.service.DeepLTranslationService;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -89,9 +90,17 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
       // responsibles.stream().map(SecurityMemberDTO::getDisplayName).collect(Collectors.joining(", "));
       permissions = responsibles.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
       clientStatistic.setPermissions(permissions);
-
     }
     Ivy.log().warn(BusinessEntityConverter.entityToJsonValue(clientStatistic));
+    saveStatisticJson();
+  }
+  
+  private void saveStatisticJson() {
+    String currentstatisticsJson = Ivy.var().get(PortalVariable.CUSTOM_CLIENT_STATISTIC.key);
+    List<ClientStatistic> clientStatistics = BusinessEntityConverter.jsonValueToEntities(currentstatisticsJson, ClientStatistic.class);
+    clientStatistics.add(clientStatistic);
+    String statisticsJson = BusinessEntityConverter.entityToJsonValue(clientStatistics);
+    Ivy.var().set(PortalVariable.CUSTOM_CLIENT_STATISTIC.key, statisticsJson);
   }
 
   public List<String> completeAggregates(String query) {
