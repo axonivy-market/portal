@@ -18,7 +18,6 @@ on:
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly-12.0
   ENGINE_URL: https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine.zip
-  WAIT_TIME: 60
   
 jobs:
   portal-document-screenshot:
@@ -108,7 +107,7 @@ jobs:
         id: run-test        
         shell: bash
         run: |
-          mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine-windows.zip -Dtest=com.axonivy.portal.selenium.document.screenshot.*Test -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
+          mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
         continue-on-error: true
 
       - name: Log out on failures
@@ -132,7 +131,7 @@ jobs:
           retention-days: 5
           path: |
             AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
-            
+      
       - name: Report
         uses: dorny/test-reporter@v1.9.1
         with:
