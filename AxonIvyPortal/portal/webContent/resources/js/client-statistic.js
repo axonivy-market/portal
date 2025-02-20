@@ -217,12 +217,12 @@ function previewChart(data, defaultLocale, datePatternConfig) {
   datePattern = datePatternConfig;
 
   let chartData = generateChart(charts[0], data);
-    const config = data.chartConfig;
-    locale = config?.locale ? config.locale : defaultLocale;
+  const config = data.chartConfig;
+  locale = config?.locale ? config.locale : defaultLocale;
 
-    if (chartData) {
-      chartData.render();
-    }
+  if (chartData) {
+    chartData.render();
+  }
 }
 
 function clearChartInterval() {
