@@ -114,6 +114,12 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
           .map(DashboardCustomWidgetData::getStartableProcessStart)
           .map(IWebStartable::getDisplayName).orElse("");
     }
+
+    // If cannot get title, set the widget type as the header instead
+    if (StringUtils.isBlank(result)) {
+      result = cloneWidget.getType().getLabel();
+    }
+
     return Ivy.cms().co(CLONE_TO_DASHBOARD_DIALOG_HEADER_CMS,
         Arrays.asList(result));
   }
