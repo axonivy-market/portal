@@ -171,4 +171,34 @@ public class WelcomeWidgetUtils {
       }
     }
   }
+
+  public static void cloneImage(String extension, String oldImageLocation,
+      WelcomeDashboardWidget newWidget, boolean isDarkMode) throws IOException {
+    if (StringUtils.isBlank(extension)
+        || StringUtils.isBlank(oldImageLocation)) {
+      return;
+    }
+
+    String newImageLocation = newWidget.getId()
+        .concat(isDarkMode ? DARK_MODE : "").concat(DEFAULT_LOCALE_AND_DOT)
+        .concat(extension);
+
+    ContentObject oldImageObject = getImageContentObject(
+        WelcomeWidgetUtils.getFileNameOfImage(oldImageLocation), extension);
+    ContentObject newImageObject = getImageContentObject(
+        WelcomeWidgetUtils.getFileNameOfImage(newImageLocation), extension);
+
+    byte[] oldFileContent = oldImageObject.value().get(DEFAULT_LOCALE_TAG)
+        .read().inputStream().readAllBytes();
+    if (oldFileContent != null && oldFileContent.length > 0) {
+      WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write()
+          .bytes(oldFileContent);
+    }
+
+    if (isDarkMode) {
+      newWidget.setImageLocationDarkMode(newImageLocation);
+    } else {
+      newWidget.setImageLocation(newImageLocation);
+    }
+  }
 }
