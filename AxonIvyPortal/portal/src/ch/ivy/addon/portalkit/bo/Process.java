@@ -28,6 +28,7 @@ public interface Process {
   public String getApplication();
   public String getSortIndex();
   public String getPortalProcessInformation();
+  // public String getProcessElementId();
 
   default public List<String> getPermissions() {
     return new ArrayList<>();
