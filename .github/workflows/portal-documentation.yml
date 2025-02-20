@@ -45,7 +45,7 @@ jobs:
         with:
           workflow: portal-document-screenshot-test.yml
           name: screenshots
-          branch: feature/IVYPORTAL-18233-Create-Github-workflow-for-screenshot-document-build-LE
+          branch: master
           path: Documentation/portal-guide/source/screenshots
             
       - name: install zip
