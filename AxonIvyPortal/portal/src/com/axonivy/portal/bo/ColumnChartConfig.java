@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
+import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 
 public abstract class ColumnChartConfig {
   private List<DisplayName> xTitles;
@@ -36,13 +38,25 @@ public abstract class ColumnChartConfig {
   }
 
   public String getxTitle() {
-    return xTitle;
+    return LanguageUtils.getLocalizedName(xTitles, xTitle);
+  }
+
+  public void setxTitle(String xTitle) {
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(xTitles, xTitle);
+    this.xTitles = nameResult.names();
+    this.xTitle = nameResult.name();
   }
 
   public String getyTitle() {
-    return yTitle;
+    return LanguageUtils.getLocalizedName(yTitles, yTitle);
   }
-  
+
+  public void setyTitle(String yTitle) {
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(yTitles, yTitle);
+    this.yTitles = nameResult.names();
+    this.yTitle = nameResult.name();
+  }
+
   public String getyValue() {
     return yValue;
   }
