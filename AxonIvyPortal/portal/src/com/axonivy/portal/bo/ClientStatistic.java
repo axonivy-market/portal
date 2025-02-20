@@ -8,6 +8,8 @@ import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -24,9 +26,13 @@ public class ClientStatistic extends AbstractConfiguration {
   private ChartTarget chartTarget;
   private ChartType chartType;
   private long refreshInterval; // in seconds
+  @JsonInclude(value = Include.NON_NULL)
   private BarChartConfig barChartConfig;
+  @JsonInclude(value = Include.NON_NULL)
   private LineChartConfig lineChartConfig;
+  @JsonInclude(value = Include.NON_NULL)
   private NumberChartConfig numberChartConfig;
+  @JsonInclude(value = Include.NON_NULL)
   private PieChartConfig pieChartConfig;
   private List<DisplayName> names;
   @JsonProperty(access = Access.READ_ONLY)
@@ -39,7 +45,9 @@ public class ClientStatistic extends AbstractConfiguration {
   private String icon;
   private String locale = Ivy.session().getFormattingLocale().toString();
   private Boolean hideLabel = false;
+  @JsonInclude(value = Include.NON_NULL)
   private String manipulateValueBy;
+  @JsonInclude(value = Include.NON_NULL)
   private List<String> backgroundColor;
   
   @JsonIgnore
