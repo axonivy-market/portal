@@ -55,7 +55,7 @@ public class DashboardCloneWidgetTest extends BaseTest {
 
     detailsEditPage = new NewDashboardDetailsEditPage();
     detailsEditPage.waitForTaskWidgetLoaded();
-    detailsEditPage.openCloneWidgetDialog("Your Tasks", 0);
+    detailsEditPage.openCloneWidgetDialog(0);
     detailsEditPage.cloneWidget("A test dashboard");
     detailsEditPage.waitForTaskWidgetLoaded();
 
