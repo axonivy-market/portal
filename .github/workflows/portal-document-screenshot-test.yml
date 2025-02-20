@@ -47,7 +47,6 @@ jobs:
           
       - name: Set up and verify directories
         run: |
-          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/nightly"
           mkdir -p $ENGINE_DIR
           sudo chown -R $USER:$USER $ENGINE_DIR
           echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
