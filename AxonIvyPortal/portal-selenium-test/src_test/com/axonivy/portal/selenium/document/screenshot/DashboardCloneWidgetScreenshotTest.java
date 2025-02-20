@@ -64,7 +64,7 @@ public class DashboardCloneWidgetScreenshotTest extends ScreenshotBaseTest {
             .getWrappedElement(),
         ScreenshotUtils.DASHBOARD_CONFIGURATION_FOLDER + "clone-widget-button");
 
-    detailsEditPage.openCloneWidgetDialog("Your Tasks", 0);
+    detailsEditPage.openCloneWidgetDialog(0);
     detailsEditPage.chooseDashboardToClone("Dashboard");
     detailsEditPage.waitCloneButtonClickable();
 
