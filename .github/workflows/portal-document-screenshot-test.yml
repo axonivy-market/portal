@@ -1,0 +1,137 @@
+name: Portal Document Screenshot
+run-name: Document Screenshot 
+on:
+  workflow_dispatch:
+    inputs:
+      testPatternToRun:
+        description: 'Test pattern to run'
+        type: string
+        default: 'com.axonivy.portal.selenium.document.screenshot.*Test'
+        required: true
+      engineDownloadURL:
+        description: 'url to download engine'
+        type: string
+        default: 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip'
+        required: true
+
+env:
+  ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
+  ENGINE_URL: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip
+  
+jobs:
+  portal-document-screenshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.8
+      - name: Export environment variables
+        run: |
+          echo "Build screenshot for document. Use 2 inputs: \n 'engineDownloadURL' with default value is 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip', \n 'testPatternToRun' with default value 'com.axonivy.portal.selenium.document.screenshot.*Test'" >> $GITHUB_STEP_SUMMARY
+          echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+          echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+          echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
+          
+      - name: Set up and verify directories
+        run: |
+          mkdir -p $ENGINE_DIR
+          sudo chown -R $USER:$USER $ENGINE_DIR
+          echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
+
+      - name: Download engine
+        run: |
+          cd $ENGINE_DIR
+          wget $ENGINE_URL -O axonivy-engine.zip
+          unzip -o axonivy-engine.zip -d .
+          rm axonivy-engine.zip
+
+      - name: Verify engine directory
+        run: |
+          if [ ! -d "$ENGINE_DIR" ]; then
+            echo "Engine directory does not exist"
+            exit 1
+          fi
+
+      - name: Copy decorate js and css to Portal
+        run: |
+          cat AxonIvyPortal/portal-selenium-test/resources/css/document-screenshot.css >> AxonIvyPortal/portal/webContent/resources/css/portal.css
+          cat AxonIvyPortal/portal-selenium-test/resources/css/document-screenshot.css >> Showcase/portal-user-examples/webContent/resources/css/portal-user-examples.css
+          cat AxonIvyPortal/portal-selenium-test/resources/js/document-screenshot.js >> AxonIvyPortal/portal/webContent/resources/js/portal.js
+          cat AxonIvyPortal/portal-selenium-test/resources/js/document-screenshot.js >> Showcase/portal-user-examples/webContent/resources/js/portal-user-examples.js
+
+      - name: Build Portal modules
+        run: |
+          modules=(
+            "AxonIvyPortal/portal-components"
+            "AxonIvyPortal/portal"
+            "AxonIvyPortal/PortalKitTestHelper"
+            "Showcase/portal-user-examples"
+            "Showcase/portal-developer-examples"
+            "Showcase/InternalSupport"
+            "Showcase/portal-components-examples"
+            "AxonIvyPortal/PortalApp"
+            "Showcase/portal-demo-app"
+          )
+          for module in "${modules[@]}"; do
+            mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
+          done
+
+      - name: Deploy Portal Modules
+        run: |
+          DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
+          rm -rf $DEPLOYMENT/*
+          cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
+          cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
+          cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
+          cp AxonIvyPortal/PortalKitTestHelper/target/*.iar $DEPLOYMENT
+          cp Showcase/InternalSupport/target/*.iar $DEPLOYMENT
+
+      
+      - name: Run test
+        id: run-test        
+        run: |
+          mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip -Dtest=com.axonivy.portal.selenium.document.screenshot.*Test -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
+        continue-on-error: true
+
+      - name: Log out on failures
+        if: job.steps.run-test.status == failure()
+        run: |
+          cat $ENGINE_DIR/logs/opensearch/ivy-opensearch-*.log
+          cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
+          
+      - name: Archive screenshot image
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          retention-days: 5
+          path: |
+            AxonIvyPortal/portal-selenium-test/target/*.zip
+      
+      - name: Archive test reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshot-test-reports
+          retention-days: 5
+          path: |
+            AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
+      
+      - name: Report
+        uses: dorny/test-reporter@v1.9.1
+        with:
+          artifact: screenshot-test-reports
+          name: Screenshot Tests
+          path: '*.xml'
+          reporter: java-junit
+      
+
+
