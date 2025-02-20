@@ -453,8 +453,8 @@ class ClientCartesianChart extends ClientCanvasChart {
             y: {
               beginAtZero: true,
               title: {
-                text: chartTypeConfig.yTitle,
-                display: true,
+                text: chartTypeConfig?.yTitle ? chartTypeConfig.yTitle : '',
+                display: chartTypeConfig?.yTitle ? true : false,
                 color: CHART_TEXT_COLOR
               },
               ticks: {
@@ -467,8 +467,8 @@ class ClientCartesianChart extends ClientCanvasChart {
             },
             x: {
               title: {
-                text: chartTypeConfig.xTitle,
-                display: true,
+                text: chartTypeConfig?.xTitle ? chartTypeConfig.xTitle : '',
+                display: chartTypeConfig?.xTitle ? true : false,
                 color: CHART_TEXT_COLOR
               },
               ticks: {
