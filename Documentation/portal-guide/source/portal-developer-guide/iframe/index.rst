@@ -108,6 +108,9 @@ Configuration Methods
 
 You can configure the UI in one of two ways:
 
+.. note::
+       We recommend to sanitize your parameters before passing them.
+
 #. **Using ``IFrameTaskConfig`` Component** (Recommended)
 
    .. code-block:: xml
