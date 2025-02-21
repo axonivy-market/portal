@@ -44,7 +44,6 @@ public class ClientStatistic extends AbstractConfiguration {
   private List<Entry<String, String>> additionalConfig;
   private String icon;
   private String locale = Ivy.session().getFormattingLocale().toString();
-  private Boolean hideLabel = false;
   @JsonInclude(value = Include.NON_NULL)
   private String manipulateValueBy;
   @JsonInclude(value = Include.NON_NULL)
@@ -181,10 +180,6 @@ public String getFilter() {
   
   public String getLocale() {
     return this.locale;
-  }
-  
-  public Boolean getHideLabel() {
-    return this.hideLabel;
   }
 
   public void setHideLabel(Boolean hideLabel) {
