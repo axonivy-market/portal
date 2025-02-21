@@ -16,15 +16,12 @@ on:
         required: true
 
 env:
-  ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly-12.0
+  ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
   ENGINE_URL: https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine.zip
   
 jobs:
   portal-document-screenshot:
     runs-on: ubuntu-latest
-    name: portal-document-screenshot - ${{ github.head_ref || github.ref_name }}
-    env:
-      BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -105,7 +102,6 @@ jobs:
       
       - name: Run test
         id: run-test        
-        shell: bash
         run: |
           mvn clean install -f AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml -Divy.engine.download.url=${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
         continue-on-error: true
@@ -113,7 +109,6 @@ jobs:
       - name: Log out on failures
         if: job.steps.run-test.status == failure()
         run: |
-          cat $ENGINE_DIR/logs/opensearch/ivy-opensearch-*.log
           cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
           
       - name: Archive screenshot image
