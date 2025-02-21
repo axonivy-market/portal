@@ -182,10 +182,6 @@ public String getFilter() {
     return this.locale;
   }
 
-  public void setHideLabel(Boolean hideLabel) {
-    this.hideLabel = hideLabel;
-  }
-
   public String getManipulateValueBy() {
     return manipulateValueBy;
   }
