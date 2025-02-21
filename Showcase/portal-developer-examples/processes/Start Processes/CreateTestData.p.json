@@ -1905,5 +1905,114 @@
       "visual" : {
         "at" : { "x" : 416, "y" : 2184 }
       }
+    }, {
+      "id" : "f119",
+      "type" : "RequestStart",
+      "name" : "createDataForCustomFieldWithCmsValue.ivp",
+      "config" : {
+        "signature" : "createDataForCustomFieldWithCmsValue",
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/description\")%>"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 16, "y" : 2384 },
+        "labelOffset" : { "x" : 43, "y" : 40 }
+      },
+      "connect" : [
+        { "id" : "f124", "to" : "f120", "var" : "in1" }
+      ]
+    }, {
+      "id" : "f120",
+      "type" : "TaskSwitchGateway",
+      "name" : "Create tasks",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/MilkTeaOrder/name\")%>",
+            "description" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/MilkTeaOrder/description\")%>",
+            "category" : "Party/Drink",
+            "expiry" : {
+              "timeout" : "new Duration(\"3H\")"
+            },
+            "customFields" : [
+              { "name" : "Citizenship", "type" : "STRING", "value" : "\"korea\"" },
+              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Sarah\"" },
+              { "name" : "CustomerType", "type" : "STRING", "value" : "\"Exterior\"" },
+              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
+            ]
+          }, {
+            "id" : "TaskB",
+            "name" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/BeerOrder/name\")%>",
+            "description" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/BeerOrder/description\")%>",
+            "category" : "Party/Drink",
+            "priority" : {
+              "level" : "HIGH"
+            },
+            "expiry" : {
+              "timeout" : "new Duration(\"1D\")"
+            },
+            "customFields" : [
+              { "name" : "Citizenship", "type" : "STRING", "value" : "\"spain\"" },
+              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Julie\"" },
+              { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
+              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime(\"2080-03-23 11:11:11\")" }
+            ]
+          }, {
+            "id" : "TaskC",
+            "name" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/PizzaOrder/name\")%>",
+            "description" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Tasks/PizzaOrder/description\")%>",
+            "category" : "Party/Food",
+            "priority" : {
+              "level" : "LOW"
+            },
+            "expiry" : {
+              "timeout" : "new Duration(\"2D\")"
+            },
+            "customFields" : [
+              { "name" : "Citizenship", "type" : "STRING", "value" : "\"singapore\"" },
+              { "name" : "CustomerName", "type" : "STRING", "value" : "\"Florian\"" },
+              { "name" : "CustomerType", "type" : "STRING", "value" : "\"Interior\"" },
+              { "name" : "ShipmentDate", "type" : "TIMESTAMP", "value" : "new DateTime()" }
+            ]
+          } ],
+        "case" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Cases/Party/name\")%>",
+          "description" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/Cases/Party/description\")%>",
+          "category" : "Party",
+          "customFields" : [
+            { "name" : "CompanyName", "type" : "STRING", "value" : "\"Wawa tea\"" },
+            { "name" : "Product", "type" : "STRING", "value" : "\"milktea\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 176, "y" : 2384 },
+        "labelOffset" : { "x" : 56, "y" : 0 }
+      },
+      "connect" : [
+        { "id" : "f126", "to" : "f121", "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f125", "to" : "f122", "via" : [ { "x" : 176, "y" : 2322 } ], "condition" : "ivp==\"TaskB.ivp\"" },
+        { "id" : "f127", "to" : "f123", "via" : [ { "x" : 176, "y" : 2450 } ], "condition" : "ivp==\"TaskC.ivp\"" }
+      ]
+    }, {
+      "id" : "f121",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 338, "y" : 2386 }
+      }
+    }, {
+      "id" : "f122",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 338, "y" : 2322 }
+      }
+    }, {
+      "id" : "f123",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 338, "y" : 2450 }
+      }
     } ]
 }

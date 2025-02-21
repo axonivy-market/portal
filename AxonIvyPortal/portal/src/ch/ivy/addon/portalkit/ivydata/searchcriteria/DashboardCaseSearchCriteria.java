@@ -1,8 +1,11 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
 import java.util.ArrayList;
+
+
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -20,7 +23,11 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
+import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldOrderBy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
 
 public class DashboardCaseSearchCriteria {
@@ -32,6 +39,9 @@ public class DashboardCaseSearchCriteria {
   private boolean sortDescending;
   private boolean isInConfiguration;
   private String quickSearchKeyword;
+  
+  private static final String CMS_PATH = "CmsPath";
+  private static final String CMS_PATH_PATTERN_CASE = "/CustomFields/Cases/([^/]+)/Values/([^/]+)";
 
   public CaseQuery buildQuery() {
     CaseQuery query = buildQueryWithoutOrderByClause();
@@ -116,8 +126,21 @@ public class DashboardCaseSearchCriteria {
   }
   
   private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column) {
+    if (PortalCustomFieldUtils.isContainCmsPathAttributeOnCaseCustomField(column.getField())) {
+      return buildQuickSearchForCustomFieldWithCmsValues(column.getField());
+    }
     return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);
   }
+  
+  private DashboardFilter buildQuickSearchForCustomFieldWithCmsValues(String columnField) {
+    DashboardFilter filter = new DashboardFilter();
+    filter.setField(columnField);
+    filter.setFilterType(DashboardColumnType.CUSTOM);
+    filter.setOperator(FilterOperator.IN);
+    filter.setValues(PortalCustomFieldUtils.getCmsValuesMatchingWithKeywordList(columnField, DashboardColumnType.CUSTOM_CASE, List.of(this.quickSearchKeyword)));
+    return filter; 
+  }
+
   
   private DashboardFilter buildQuickSearchToDashboardFilter(String columnField, FilterOperator operator, DashboardColumnType type) {
     DashboardFilter filter = new DashboardFilter();
@@ -127,6 +150,21 @@ public class DashboardCaseSearchCriteria {
     filter.setValues(List.of(this.quickSearchKeyword));
     return filter;
   }
+  
+  public boolean isContainValidCmsPathAttribute(String field) {
+    Set<ICustomFieldMeta> customFieldMetaList = ICustomFieldMeta.cases();
+    for (ICustomFieldMeta customField : customFieldMetaList) {
+        if (customField.name().equals(field)) {
+            String cmsPath = customField.attribute(CMS_PATH);
+            if (cmsPath != null) {
+                cmsPath = cmsPath + "/" + field;
+                return cmsPath.matches(CMS_PATH_PATTERN_CASE);
+            }
+            return false; // CmsPath attribute is null
+        }
+    }
+    return false;
+}
   
   public String getSortField() {
     return sortField;
@@ -222,25 +260,41 @@ public class DashboardCaseSearchCriteria {
         sortStandardColumn = true;
       }
     }
-
-    private void appendSortByCustomFieldIfSet(DashboardCaseSearchCriteria criteria) {
-      if (!sortStandardColumn) {
-        String sortField = criteria.getSortField();
-        if (StringUtils.isNotBlank(sortField)) {
-          DashboardColumnFormat format = columns.stream()
-              .filter(c -> StringUtils.equalsIgnoreCase(sortField, c.getField())).map(ColumnModel::getFormat)
-              .findFirst().orElse(DashboardColumnFormat.STRING);
-          if (format == DashboardColumnFormat.NUMBER) {
-            order = query.orderBy().customField().numberField(sortField);
-          } else if (format == DashboardColumnFormat.TIMESTAMP) {
-            order = query.orderBy().customField().timestampField(sortField);
-          } else {
-            order = query.orderBy().customField().stringField(sortField);
-          }
-        }
-      }
+  
+  private void appendSortByCustomFieldIfSet(DashboardCaseSearchCriteria criteria) {
+    if (sortStandardColumn) {
+        return;
     }
-  }
+    
+    String sortField = criteria.getSortField();
+    if (StringUtils.isBlank(sortField)) {
+        return;
+    }
+    
+    DashboardColumnFormat format = columns.stream()
+        .filter(c -> StringUtils.equalsIgnoreCase(sortField, c.getField()))
+        .map(ColumnModel::getFormat)
+        .findFirst()
+        .orElse(DashboardColumnFormat.STRING);
+    final ICustomFieldOrderBy customField = query.orderBy().customField();
+    
+    switch (format) {
+      case NUMBER:
+        order = customField.numberField(sortField);
+        break;
+      case TIMESTAMP:
+        order = customField.timestampField(sortField);
+        break;
+      default:
+        if (PortalCustomFieldUtils.isContainCmsPathAttributeOnCaseCustomField(sortField)) {
+          order = customField.stringField(sortField).values(PortalCustomFieldUtils.getAllLocalizedValueOnCaseField(sortField));
+        } else {
+          order = customField.stringField(sortField);
+        }
+        break;
+    }
+}
+}
 
   public List<CaseColumnModel> getColumns() {
     return columns;

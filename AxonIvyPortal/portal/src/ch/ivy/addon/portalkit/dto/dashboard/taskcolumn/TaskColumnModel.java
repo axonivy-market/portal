@@ -1,31 +1,37 @@
 package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
+import org.apache.commons.lang.StringUtils;
+
+
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivyteam.ivy.cm.exec.ContentManagement;
+import ch.ivyteam.ivy.cm.exec.ContentResolver;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 
 public class TaskColumnModel extends ColumnModel {
 
+  private static final String CMS_PATH = "CmsPath";
   private static final long serialVersionUID = -6363817685343055544L;
 
   public Object display(ITask task) {
     if (type == DashboardColumnType.CUSTOM_CASE) {
       ICustomFields customFields = task.getCase().customFields();
-      return getCustomFieldValue(customFields);
+      return getCustomFieldValue(customFields, task);
     } else if (type == DashboardColumnType.CUSTOM_BUSINESS_CASE) {
       ICustomFields customFields = task.getCase().getBusinessCase().customFields();
-      return getCustomFieldValue(customFields);
+      return getCustomFieldValue(customFields, task);
     } else {
       ICustomFields customFields = task.customFields();
-      return getCustomFieldValue(customFields);
+      return getCustomFieldValue(customFields, task);
     }
   }
 
-  private Object getCustomFieldValue(ICustomFields customFields) {
+  private Object getCustomFieldValue(ICustomFields customFields, ITask task) {
     if (isNumber()) {
       return customFields.numberField(field).getOrNull();
     } else if (isDate()) {
@@ -33,8 +39,31 @@ public class TaskColumnModel extends ColumnModel {
     } else if (isText()) {
       return customFields.textField(field).getOrNull();
     } else {
-      return customFields.stringField(field).getOrNull();
+      return displayStringFieldContent(customFields, task);
     }
+  }
+/**
+ * Return empty string if cannot get value from the path or the path does not match the pattern /CustomFields/Tasks/%name%/Values
+ * Ex:
+ * - Valid path: /CustomFields/Tasks/Country/Values
+ * Return the current value of custom field if CmsPath attribute is not defined in custom-field.yaml file
+ * Return the current value of custom field if the localized text in CMS is empty
+ */
+  private String displayStringFieldContent(ICustomFields customFields, ITask task) {
+    String cmsPath = customFields.stringField(field).meta().attribute(CMS_PATH);
+    if (cmsPath != null) {
+      cmsPath = cmsPath + "/" + customFields.stringField(field).getOrNull();
+      ContentManagement cms = ContentManagement.of(task.getProcessModelVersion());
+      if (cms.findObject(cmsPath).isEmpty()) {
+        return StringUtils.EMPTY;
+      }
+      ContentResolver content = cms.content(cmsPath);
+      if (content.get().isEmpty()) {
+        return customFields.stringField(field).getOrNull();
+      }
+      return content.get();
+    }
+    return customFields.stringField(field).getOrNull();
   }
 
   public static TaskColumnModel constructColumn(DashboardColumnType fieldType, String field) {
