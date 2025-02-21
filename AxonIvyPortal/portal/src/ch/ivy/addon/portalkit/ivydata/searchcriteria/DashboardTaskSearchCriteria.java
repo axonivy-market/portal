@@ -124,7 +124,6 @@ public class DashboardTaskSearchCriteria {
           }
         }
         query.where().and(subQuery);
-        Ivy.log().info(query);
       }
     }
   }
@@ -146,7 +145,7 @@ public class DashboardTaskSearchCriteria {
   }
   
   private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column, DashboardColumnType type) {
-    if (type != DashboardColumnType.CUSTOM_BUSINESS_CASE && PortalCustomFieldUtils.isContainCmsPathAttributeOnTask(column.getField(), type)) {
+    if (type != DashboardColumnType.CUSTOM_BUSINESS_CASE && PortalCustomFieldUtils.isContainCmsPathAttributeOnTaskCustomField(column.getField(), type)) {
       return buildQuickSearchForCustomFieldWithCmsValues(column.getField(), type);
     }
     return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);
@@ -274,21 +273,33 @@ public class DashboardTaskSearchCriteria {
     }
 
     private void appendSortByCustomFieldIfSet(DashboardTaskSearchCriteria criteria) {
-      if (!sortStandardColumn) {
-        String sortField = criteria.getSortField();
-        if (StringUtils.isNotBlank(sortField)) {
-          DashboardColumnFormat format =
-              columns.stream().filter(c -> StringUtils.equalsIgnoreCase(sortField, c.getField()))
-                  .map(ColumnModel::getFormat).findFirst().orElse(DashboardColumnFormat.STRING);
-          final ICustomFieldOrderBy customField = query.orderBy().customField();
-          if (format == DashboardColumnFormat.NUMBER) {
-            order = customField.numberField(sortField);
-          } else if (format == DashboardColumnFormat.TIMESTAMP) {
-            order = customField.timestampField(sortField);
+      if (sortStandardColumn) {
+        return;
+      }
+      
+      String sortField = criteria.getSortField();
+      if (StringUtils.isBlank(sortField)) {
+        return;
+      }
+      
+      DashboardColumnFormat format =
+          columns.stream().filter(c -> StringUtils.equalsIgnoreCase(sortField, c.getField()))
+              .map(ColumnModel::getFormat).findFirst().orElse(DashboardColumnFormat.STRING);
+      final ICustomFieldOrderBy customField = query.orderBy().customField();
+
+      switch (format) {
+        case NUMBER:
+          order = customField.numberField(sortField);
+          break;
+        case TIMESTAMP:
+          order = customField.timestampField(sortField);
+          break;
+        default:
+          if (PortalCustomFieldUtils.isContainCmsPathAttributeOnTaskCustomField(sortField, DashboardColumnType.CUSTOM)) {
+            order = customField.stringField(sortField).values(PortalCustomFieldUtils.getAllLocalizedValueOnTaskField(sortField));
           } else {
             order = customField.stringField(sortField);
           }
-        }
       }
     }
   }
