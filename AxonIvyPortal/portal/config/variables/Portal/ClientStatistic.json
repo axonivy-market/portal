@@ -680,9 +680,9 @@
     "icon": "si si-pie-line-graph",
     "refreshInterval": 300,
     "numberChartConfig": {
-      "suffixSymbol": ""
-    },
-    "hideLabel": false
+      "suffixSymbol": "",
+      "hideLabel": false
+    }
   },
   {
     "id": "11",
@@ -732,8 +732,8 @@
     "icon": "si si-pie-line-graph",
     "refreshInterval": 300,
     "numberChartConfig": {
-      "suffixSymbol": ""
-    },
-    "hideLabel": true
+      "suffixSymbol": "",
+      "hideLabel": true
+    }
   }
 ]

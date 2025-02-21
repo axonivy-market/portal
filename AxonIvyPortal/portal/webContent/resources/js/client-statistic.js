@@ -325,12 +325,10 @@ class ClientCanvasChart extends ClientChart {
 
     // Update client chart config by new data
     this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.key));
-    this.clientChartConfig.data.datasets = [{
-      label: config.name,
-      data: result.map(bucket => bucket.count),
-      backgroundColor: chartColors
-    }]
-
+    if (this.clientChartConfig.data.datasets[0]) {
+      this.clientChartConfig.data.datasets[0].data = result.map(bucket => bucket.count)
+      this.clientChartConfig.data.datasets[0].label = config.name;
+    }
     this.clientChartConfig.update("none");
   }
 }
@@ -358,7 +356,7 @@ class ClientPieChart extends ClientCanvasChart {
           datasets: [{
             label: config.name,
             data: result.map(bucket => bucket.count),
-            backgroundColor: chartColors
+            backgroundColor: config.backgroundColor ? config.backgroundColor : chartColors
           }],
           hoverOffset: 4
         },
@@ -416,8 +414,11 @@ class ClientCartesianChart extends ClientCanvasChart {
           datasets: [{
             label: config.name,
             data: data.map(bucket => bucket.count),
-            backgroundColor: chartColors,
-            borderColor:chartColors 
+            backgroundColor: config.backgroundColor ? config.backgroundColor : chartColors,
+            pointBorderColor: config.backgroundColor ? config.backgroundColor : chartColors,
+            pointRadius: 4,
+            borderColor: getCssVariable("--ivy-primary-color-grey-medium"),
+            borderWidth: 1
           }]
         },
         options: {
@@ -520,7 +521,7 @@ class ClientBarChart extends ClientCartesianChart {
       this.clientChartConfig.data.datasets = [{
         label: config.name,
         data: data.map(bucket => bucket.count),
-        backgroundColor: chartColors
+        backgroundColor: config.backgroundColor ? config.backgroundColor : chartColors
       }]
     }
 
@@ -636,7 +637,7 @@ class ClientNumberChart extends ClientChart {
 
   generateItemHtml(label, number, suffixSymbol, index) {
     let border = '<div class="chart-border">' + '</div>';
-    label = this.data.chartConfig.hideLabel === true ? '' : this.formatChartLabel(label) ;
+    label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
     let html =
       '<div class="u-text-align-center chart-content-card">' +
       '    <div class="chart-number-container">' +

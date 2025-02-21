@@ -3,6 +3,8 @@ package com.axonivy.portal.bo;
 import java.util.List;
 import java.util.Map.Entry;
 
+import com.axonivy.portal.enums.statistic.ChartTarget;
+import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -16,12 +18,12 @@ public class ClientStatistic extends AbstractConfiguration {
   private String filter;
   private List<String> permissions;
   private ChartTarget chartTarget;
-  private String chartType;
+  private ChartType chartType;
   private long refreshInterval; // in seconds
-
   private BarChartConfig barChartConfig;
   private LineChartConfig lineChartConfig;
   private NumberChartConfig numberChartConfig;
+  private PieChartConfig pieChartConfig;
   private List<DisplayName> names;
   @JsonProperty(access = Access.READ_ONLY)
   private String name;
@@ -32,8 +34,9 @@ public class ClientStatistic extends AbstractConfiguration {
   private List<Entry<String, String>> additionalConfig;
   private String icon;
   private String locale = Ivy.session().getFormattingLocale().toString();
-  private Boolean hideLabel = false;
+  @JsonInclude(value = Include.NON_NULL)
   private String manipulateValueBy;
+  private List<String> backgroundColor;
   
   public String getIcon() {
     return icon;
@@ -47,11 +50,11 @@ public class ClientStatistic extends AbstractConfiguration {
     this.numberChartConfig = numberChartConfig;
   }
 
-  public String getChartType() {
+  public ChartType getChartType() {
     return chartType;
   }
 
-  public void setChartType(String chartType) {
+  public void setChartType(ChartType chartType) {
     this.chartType = chartType;
   }
 
@@ -148,10 +151,6 @@ public String getFilter() {
   public String getLocale() {
     return this.locale;
   }
-  
-  public Boolean getHideLabel() {
-    return this.hideLabel;
-  }
 
   public String getManipulateValueBy() {
     return manipulateValueBy;
@@ -160,4 +159,21 @@ public String getFilter() {
   public void setManipulateValueBy(String manipulateValueBy) {
     this.manipulateValueBy = manipulateValueBy;
   }
+
+  public List<String> getBackgroundColor() {
+    return backgroundColor;
+  }
+
+  public void setBackgroundColor(List<String> backgroundColor) {
+    this.backgroundColor = backgroundColor;
+  }
+
+  public PieChartConfig getPieChartConfig() {
+    return pieChartConfig;
+  }
+
+  public void setPieChartConfig(PieChartConfig pieChartConfig) {
+    this.pieChartConfig = pieChartConfig;
+  }
+  
 }

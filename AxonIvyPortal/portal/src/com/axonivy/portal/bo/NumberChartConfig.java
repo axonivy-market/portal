@@ -2,7 +2,8 @@ package com.axonivy.portal.bo;
 
 public class NumberChartConfig {
   private String suffixSymbol;
-
+  private Boolean hideLabel = false;
+  
   public String getSuffixSymbol() {
     return suffixSymbol;
   }
@@ -11,4 +12,11 @@ public class NumberChartConfig {
     this.suffixSymbol = suffixSymbol;
   }
   
+  public Boolean getHideLabel() {
+    return this.hideLabel;
+  }
+
+  public void setHideLabel(Boolean hideLabel) {
+    this.hideLabel = hideLabel;
+  }
 }
