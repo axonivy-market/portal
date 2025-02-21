@@ -1,21 +1,24 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.StreamSupport;
 
 import com.google.common.collect.Iterables;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldValues.ValueLabel;
 
 public class PortalCustomFieldUtils {
   private static final String CMS_PATH = "CmsPath";
   private static final String CMS_PATH_PATTERN_TASK = "/CustomFields/Tasks/([^/]+)/Values/([^/]+)";
   private static final String CMS_PATH_PATTERN_CASE = "/CustomFields/Cases/([^/]+)/Values/([^/]+)";
   
-  public static boolean isContainCmsPathAttributeOnTask(String field, DashboardColumnType type) {
+  public static boolean isContainCmsPathAttributeOnTaskCustomField(String field, DashboardColumnType type) {
     Set<ICustomFieldMeta> customFieldMetaList = (type == DashboardColumnType.CUSTOM) ? ICustomFieldMeta.tasks() : ICustomFieldMeta.cases();
     String cmsPathPattern = (type == DashboardColumnType.CUSTOM) ? CMS_PATH_PATTERN_TASK : CMS_PATH_PATTERN_CASE;
 
@@ -33,8 +36,9 @@ public class PortalCustomFieldUtils {
     return false;
 }
   
-  public static boolean isContainCmsPathAttributeOnCase(String field) {
+  public static boolean isContainCmsPathAttributeOnCaseCustomField(String field) {
     Set<ICustomFieldMeta> customFieldMetaList = ICustomFieldMeta.cases();
+
     for (ICustomFieldMeta customField : customFieldMetaList) {
         if (customField.name().equals(field)) {
             String cmsPath = customField.attribute(CMS_PATH);
@@ -46,12 +50,14 @@ public class PortalCustomFieldUtils {
             return false;
         }
     }
+
     return false;
   }
 
   public static List<String> getCmsValuesMatchingWithKeywordList(String columnField, DashboardColumnType type, List<String> keywordList) {
     Set<ICustomFieldMeta> icustomFieldMetaList = type == DashboardColumnType.CUSTOM ? ICustomFieldMeta.tasks() : ICustomFieldMeta.cases();
     List<String> matchingValueList = new ArrayList<>();
+
     icustomFieldMetaList.stream().filter(customField -> customField.type().equals(CustomFieldType.STRING) && customField.name().equals(columnField)).forEach(field -> {
       for (String keyword: keywordList) {
         Iterable<Object> list =  field.values().matching(keyword);
@@ -62,7 +68,28 @@ public class PortalCustomFieldUtils {
       }
       }
     });
+    
     return matchingValueList;
   }
+
+  public static List<String> getAllLocalizedValueOnCaseField(String columnField) {
+    ICustomFieldMeta meta = ICustomFieldMeta.cases().stream().filter(m -> columnField.equals(m.name())).findAny().orElse(null);
+    return getAllLocalizedValueByField(meta);
+  }
   
+  public static List<String> getAllLocalizedValueOnTaskField(String columnField) {
+    ICustomFieldMeta meta = ICustomFieldMeta.tasks().stream().filter(m -> columnField.equals(m.name())).findAny().orElse(null);
+    return getAllLocalizedValueByField(meta);
+  }
+
+  private static List<String> getAllLocalizedValueByField(ICustomFieldMeta meta) {
+    if (meta == null) {
+      return new ArrayList<String>();
+    }
+    
+    return meta.values()
+        .labels().stream().sorted(Comparator.comparing(ValueLabel<Object>::label))
+        .map(vl -> vl.value().toString())
+        .toList();
+  }
 }

@@ -30,7 +30,7 @@ public class CustomStringContainsOperatorHandler {
       return null;
     }
     TaskQuery query = TaskQuery.create(); // TODO filterfield correct? business and/or technical cases?
-    if (filter.getFilterType() != DashboardColumnType.STANDARD && PortalCustomFieldUtils.isContainCmsPathAttributeOnTask(filter.getField(), filter.getFilterType())) {
+    if (filter.getFilterType() != DashboardColumnType.STANDARD && PortalCustomFieldUtils.isContainCmsPathAttributeOnTaskCustomField(filter.getField(), filter.getFilterType())) {
       query.where().or(buildQueryForCustomFieldWithCmsValue(filter));
     } else {
       filter.getValues().forEach(text -> {

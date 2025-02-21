@@ -30,7 +30,7 @@ public class CustomStringContainsOperatorHandler {
       return null;
     }
     CaseQuery query = CaseQuery.create(); // TODO filterfield correct? business and/or technical cases?
-    if (filter.getFilterType() != DashboardColumnType.STANDARD && PortalCustomFieldUtils.isContainCmsPathAttributeOnCase(filter.getField())) {
+    if (filter.getFilterType() != DashboardColumnType.STANDARD && PortalCustomFieldUtils.isContainCmsPathAttributeOnCaseCustomField(filter.getField())) {
       query.where().or(buildQueryForCustomFieldWithCmsValue(filter));
     } else {
       filter.getValues().forEach(text -> {
