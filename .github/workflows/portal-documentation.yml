@@ -1,9 +1,6 @@
 name: Portal Documentation
 run-name: 📚 Portal Documentation
 on:
-  push:
-    branches:
-      - feature/IVYPORTAL-18233-Create-Github-workflow-for-screenshot-document-build-10
   workflow_dispatch:
     inputs:
       ivyVersion:
@@ -48,7 +45,7 @@ jobs:
         with:
           workflow: portal-document-screenshot-test.yml
           name: screenshots
-          branch: feature/IVYPORTAL-18233-Create-Github-workflow-for-screenshot-document-build-10
+          branch: release/12.0
           path: Documentation/portal-guide/source/screenshots
             
       - name: install zip
