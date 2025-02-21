@@ -25,7 +25,7 @@ public class ClientStatistic extends AbstractConfiguration {
   private List<String> permissions;
   private ChartTarget chartTarget;
   private ChartType chartType;
-  private long refreshInterval; // in seconds
+  private Long refreshInterval; // in seconds
   @JsonInclude(value = Include.NON_NULL)
   private BarChartConfig barChartConfig;
   @JsonInclude(value = Include.NON_NULL)
@@ -77,11 +77,11 @@ public class ClientStatistic extends AbstractConfiguration {
     this.chartType = chartType;
   }
 
-  public long getRefreshInterval() {
+  public Long getRefreshInterval() {
     return refreshInterval;
   }
 
-  public void setRefreshInterval(long refreshInterval) {
+  public void setRefreshInterval(Long refreshInterval) {
     this.refreshInterval = refreshInterval;
   }
 
