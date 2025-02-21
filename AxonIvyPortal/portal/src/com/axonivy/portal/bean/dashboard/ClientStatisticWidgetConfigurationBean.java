@@ -21,12 +21,14 @@ import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.bo.BarChartConfig;
 import com.axonivy.portal.bo.ClientStatistic;
+import com.axonivy.portal.bo.LineChartConfig;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.service.ClientStatisticService;
 import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.util.DisplayNameUtils;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -36,6 +38,7 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
+import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
@@ -46,7 +49,10 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
   private ClientStatistic clientStatistic;
-
+  private List<DisplayName> xTitles;
+  private String xTitle;
+  private List<DisplayName> yTitles;
+  private String yTitle;
   private List<String> selectedPermissions;
 
   @PostConstruct
@@ -56,16 +62,11 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     selectedPermissions = new ArrayList<>();
     clientStatistic.setNames(new ArrayList<>());
     clientStatistic.setDescriptions(new ArrayList<>());
-    clientStatistic.setBarChartConfig(initBarChartConfig());
+    xTitles = new ArrayList<>();
+    yTitles = new ArrayList<>();
+    clientStatistic.setRefreshInterval(0L);
     // TODO z1 init category, value
     // add action when select chart type
-  }
-
-  private BarChartConfig initBarChartConfig() {
-    BarChartConfig config = new BarChartConfig();
-    config.setxTitles(new ArrayList<>());
-    config.setyTitles(new ArrayList<>());
-    return config;
   }
 
   public ClientStatistic getClientStatistic() {
@@ -77,6 +78,12 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   }
 
   public void save() {
+    syncUIConfigWithChartConfg();
+    Ivy.log().warn(BusinessEntityConverter.entityToJsonValue(clientStatistic));
+    saveStatisticJson();
+  }
+
+  private void syncUIConfigWithChartConfg() {
     List<SecurityMemberDTO> responsibles = clientStatistic.getPermissionDTOs();
     List<String> permissions = new ArrayList<>();
     // String displayedPermission = ""; // TODO z1 check out saveDashboardDetail
@@ -91,13 +98,29 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
       permissions = responsibles.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
       clientStatistic.setPermissions(permissions);
     }
-    Ivy.log().warn(BusinessEntityConverter.entityToJsonValue(clientStatistic));
-    saveStatisticJson();
+    clearAllSpecificChartConfigs();
+    if (ChartType.BAR == clientStatistic.getChartType()) {
+      clientStatistic.setBarChartConfig(new BarChartConfig());
+      clientStatistic.getBarChartConfig().setxTitles(xTitles);
+      clientStatistic.getBarChartConfig().setyTitles(yTitles);
+    } else if (ChartType.LINE == clientStatistic.getChartType()) {
+      clientStatistic.setLineChartConfig(new LineChartConfig());
+      clientStatistic.getLineChartConfig().setxTitles(xTitles);
+      clientStatistic.getLineChartConfig().setyTitles(yTitles);
+    }
   }
-  
+
+  private void clearAllSpecificChartConfigs() {
+    clientStatistic.setBarChartConfig(null);
+    clientStatistic.setLineChartConfig(null);
+    clientStatistic.setPieChartConfig(null);
+    clientStatistic.setNumberChartConfig(null);
+  }
+
   private void saveStatisticJson() {
     String currentstatisticsJson = Ivy.var().get(PortalVariable.CUSTOM_CLIENT_STATISTIC.key);
-    List<ClientStatistic> clientStatistics = BusinessEntityConverter.jsonValueToEntities(currentstatisticsJson, ClientStatistic.class);
+    List<ClientStatistic> clientStatistics =
+        BusinessEntityConverter.jsonValueToEntities(currentstatisticsJson, ClientStatistic.class);
     clientStatistics.add(clientStatistic);
     String statisticsJson = BusinessEntityConverter.entityToJsonValue(clientStatistics);
     Ivy.var().set(PortalVariable.CUSTOM_CLIENT_STATISTIC.key, statisticsJson);
@@ -148,6 +171,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   }
 
   public void getPreviewData() {
+    syncUIConfigWithChartConfg();
     ClientStatisticService clientStatisticService = ClientStatisticService.getInstance();
     AggregationResult result = clientStatisticService.getChartData(clientStatistic);
     PrimeFaces.current().ajax().addCallbackParam("jsonResponse",
@@ -155,39 +179,36 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   }
 
   public void updateNameForCurrentLanguage() {
-    List<DisplayName> languages = clientStatistic.getNames();
-    String currentLanguage = UserUtils.getUserLanguage();
-    Optional<DisplayName> optional =
-        languages.stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
-    if (optional.isPresent()) {
-      clientStatistic.setName(optional.get().getValue());
-    }
+    updateForCurrentLanguage(clientStatistic.getNames(), ClientStatistic::setName);
   }
 
   public void updateDescriptionForCurrentLanguage() {
-    List<DisplayName> languages = clientStatistic.getDescriptions();
-    String currentLanguage = UserUtils.getUserLanguage();
-    Optional<DisplayName> optional =
-        languages.stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
-    if (optional.isPresent()) {
-      clientStatistic.setDescription(optional.get().getValue());
-    }
+    updateForCurrentLanguage(clientStatistic.getDescriptions(), ClientStatistic::setDescription);
   }
 
   public void updateCategoryTitleForCurrentLanguage() {
-    updateForCurrentLanguage(clientStatistic.getBarChartConfig().getxTitles(), BarChartConfig::setxTitle);
+    updateForCurrentLanguageForColumnChartConfig(xTitles, ClientStatisticWidgetConfigurationBean::setxTitle);
   }
 
   public void updateValueTitleForCurrentLanguage() {
-    updateForCurrentLanguage(clientStatistic.getBarChartConfig().getyTitles(), BarChartConfig::setyTitle);
+    updateForCurrentLanguageForColumnChartConfig(yTitles, ClientStatisticWidgetConfigurationBean::setyTitle);
   }
 
-  private void updateForCurrentLanguage(List<DisplayName> names, BiConsumer<BarChartConfig, String> setNameFunction) {
+  private void updateForCurrentLanguage(List<DisplayName> names,
+      BiConsumer<ClientStatistic, String> setNameFunction) {
     String currentLanguage = UserUtils.getUserLanguage();
     Optional<DisplayName> optional =
         names.stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
     optional
-        .ifPresent(displayName -> setNameFunction.accept(clientStatistic.getBarChartConfig(), displayName.getValue()));
+        .ifPresent(displayName -> setNameFunction.accept(clientStatistic, displayName.getValue()));
+  }
+
+  private void updateForCurrentLanguageForColumnChartConfig(List<DisplayName> names,
+      BiConsumer<ClientStatisticWidgetConfigurationBean, String> setNameFunction) {
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional =
+        names.stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+    optional.ifPresent(displayName -> setNameFunction.accept(this, displayName.getValue()));
   }
 
   public void updateNameByLocale() {
@@ -202,15 +223,15 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   }
 
   public void updateCategoryTitleByLocale() {
-    String currentName = LanguageUtils.getLocalizedName(clientStatistic.getBarChartConfig().getxTitles(),
-        clientStatistic.getBarChartConfig().getxTitle());
-    initAndSetValue(currentName, clientStatistic.getBarChartConfig().getxTitles());
+    String currentName =
+        LanguageUtils.getLocalizedName(xTitles, getxTitle());
+    initAndSetValue(currentName, xTitles);
   }
 
   public void updateValueTitleByLocale() {
-    String currentName = LanguageUtils.getLocalizedName(clientStatistic.getBarChartConfig().getyTitles(),
-        clientStatistic.getBarChartConfig().getyTitle());
-    initAndSetValue(currentName, clientStatistic.getBarChartConfig().getyTitles());
+    String currentName =
+        LanguageUtils.getLocalizedName(yTitles, getyTitle());
+    initAndSetValue(currentName, yTitles);
   }
 
   private void initAndSetValue(String value, List<DisplayName> values) {
@@ -250,36 +271,61 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     return clientStatistic.getDescriptions();
   }
 
-  public List<DisplayName> getCategoryTitles() {
-    if (clientStatistic.getBarChartConfig() == null) {
-      return new ArrayList<>();
-    }
-
-    if (clientStatistic.getBarChartConfig().getxTitles().isEmpty()) {
-      List<String> supportedLanguages = getSupportedLanguages();
-      for (String language : supportedLanguages) {
-        DisplayName displayName = new DisplayName();
-        displayName.setLocale(Locale.forLanguageTag(language));
-        clientStatistic.getBarChartConfig().getxTitles().add(displayName);
-      }
-    }
-    return clientStatistic.getBarChartConfig().getxTitles();
+  public String getxTitle() {
+    return LanguageUtils.getLocalizedName(xTitles, xTitle);
   }
 
-  public List<DisplayName> getValueTitles() {
-    if (clientStatistic.getBarChartConfig() == null) {
+  public void setxTitle(String xTitle) {
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(xTitles, xTitle);
+    this.xTitles = nameResult.names();
+    this.xTitle = nameResult.name();
+  }
+
+  public List<DisplayName> getxTitles() {
+    if (xTitles == null) {
       return new ArrayList<>();
     }
 
-    if (clientStatistic.getBarChartConfig().getyTitles().isEmpty()) {
+    if (xTitles.isEmpty()) {
       List<String> supportedLanguages = getSupportedLanguages();
       for (String language : supportedLanguages) {
         DisplayName displayName = new DisplayName();
         displayName.setLocale(Locale.forLanguageTag(language));
-        clientStatistic.getBarChartConfig().getyTitles().add(displayName);
+        xTitles.add(displayName);
       }
     }
-    return clientStatistic.getBarChartConfig().getyTitles();
+    return xTitles;
+  }
+
+  public String getyTitle() {
+    return LanguageUtils.getLocalizedName(yTitles, yTitle);
+  }
+
+  public void setyTitle(String yTitle) {
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(yTitles, yTitle);
+    this.yTitles = nameResult.names();
+    this.yTitle = nameResult.name();
+  }
+
+  public List<DisplayName> getyTitles() {
+    if (yTitles == null) {
+      return new ArrayList<>();
+    }
+
+    if (yTitles.isEmpty()) {
+      List<String> supportedLanguages = getSupportedLanguages();
+      for (String language : supportedLanguages) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        yTitles.add(displayName);
+      }
+    }
+    return yTitles;
+  }
+
+  public void setyTitles(List<DisplayName> yTitles) {
+    this.yTitles = yTitles;
+    yTitle = DisplayNameUtils.findDisplayNameOfUserLanguage(yTitles);
   }
 
   protected List<String> getSupportedLanguages() {
