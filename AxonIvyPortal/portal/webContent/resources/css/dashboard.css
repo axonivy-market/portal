@@ -1614,6 +1614,10 @@ body .ui-widget.new-widget-dialog__introduction {
   overflow: hidden;
 }
 
+.quick-search-input-tooltip {
+  height: 2.5rem;
+}
+
 .welcome-widget-action-group-form {
   position: absolute;
   top: 10px;
@@ -2143,4 +2147,8 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
   max-width: calc(100% - 30px);
   display: inline-block;
   overflow: hidden;
+}
+
+.clone-to-dashboard-dialog-header-container {
+  width: calc(100% - 35px);
 }
