@@ -37,7 +37,9 @@ public class CaseColumnModel extends ColumnModel {
   }
 
   /**
-   * Return empty string if cannot get value from the path or the path does not match the pattern /CustomFields/(Tasks|Cases|Starts)/%name%/Values/%value%
+   * Return empty string if cannot get value from the path or the path does not match the pattern /CustomFields/Cases/%name%/Values
+   * Ex:
+   *  - Valid path: /CustomFields/Cases/ProductType/Values
    * Return the current value of custom field if CmsPath attribute is not defined in custom-field.yaml file
    * Return the current value of custom field if the localized text in CMS is empty
    *
