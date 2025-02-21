@@ -12,7 +12,7 @@ on:
       engineDownloadURL:
         description: 'url to download engine'
         type: string
-        default: 'https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine-windows.zip'
+        default: 'https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine.zip'
         required: true
 
 env:
@@ -41,7 +41,7 @@ jobs:
           maven-version: 3.9.8
       - name: Export environment variables
         run: |
-          echo "Build screenshot for document. Use 2 inputs: \n 'engineDownloadURL' with default value is 'https://developer.axonivy.com/permalink/nightly-12/axonivy-engine-windows.zip', \n 'testPatternToRun' with default value 'com.axonivy.portal.selenium.document.screenshot.*Test'" >> $GITHUB_STEP_SUMMARY
+          echo "Build screenshot for document. Use 2 inputs: \n 'engineDownloadURL' with default value is 'https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine.zip', \n 'testPatternToRun' with default value 'com.axonivy.portal.selenium.document.screenshot.*Test'" >> $GITHUB_STEP_SUMMARY
           echo "RUN ID ${{ github. run_id }}"
           echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
