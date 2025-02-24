@@ -1,10 +1,10 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.StreamSupport;
 
 import com.google.common.collect.Iterables;
 
@@ -12,45 +12,27 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldValues.ValueLabel;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 
 public class PortalCustomFieldUtils {
-  private static final String CMS_PATH = "CmsPath";
-  private static final String CMS_PATH_PATTERN_TASK = "/CustomFields/Tasks/([^/]+)/Values/([^/]+)";
-  private static final String CMS_PATH_PATTERN_CASE = "/CustomFields/Cases/([^/]+)/Values/([^/]+)";
-  
-  public static boolean isContainCmsPathAttributeOnTaskCustomField(String field, DashboardColumnType type) {
-    Set<ICustomFieldMeta> customFieldMetaList = (type == DashboardColumnType.CUSTOM) ? ICustomFieldMeta.tasks() : ICustomFieldMeta.cases();
-    String cmsPathPattern = (type == DashboardColumnType.CUSTOM) ? CMS_PATH_PATTERN_TASK : CMS_PATH_PATTERN_CASE;
-
-    for (ICustomFieldMeta customField : customFieldMetaList) {
-        if (customField.name().equals(field)) {
-            String cmsPath = customField.attribute(CMS_PATH);
-            if (cmsPath != null) {
-                return (cmsPath + "/" + field).matches(cmsPathPattern);
-            }
-         // CmsPath attribute is null
-            return false;
-        }
-    }
-
-    return false;
-}
-  
-  public static boolean isContainCmsPathAttributeOnCaseCustomField(String field) {
+  public static boolean isSupportMultiLanguageCaseField(String columnField) {
     Set<ICustomFieldMeta> customFieldMetaList = ICustomFieldMeta.cases();
-
-    for (ICustomFieldMeta customField : customFieldMetaList) {
-        if (customField.name().equals(field)) {
-            String cmsPath = customField.attribute(CMS_PATH);
-            if (cmsPath != null) {
-                cmsPath = cmsPath + "/" + field;
-                return cmsPath.matches(CMS_PATH_PATTERN_CASE);
-            }
-         // CmsPath attribute is null
-            return false;
-        }
+    return isContainValuesInCms(columnField, customFieldMetaList);
+  }
+  
+  public static boolean isSupportMultiLanguageTaskField(String columnField, DashboardColumnType type) {
+    if (type == DashboardColumnType.CUSTOM_CASE) {
+      return isContainValuesInCms(columnField, ICustomFieldMeta.cases());
     }
+    return isContainValuesInCms(columnField, ICustomFieldMeta.tasks());
+  }
 
+  private static boolean isContainValuesInCms(String columnField, Set<ICustomFieldMeta> customFieldMetaList) {
+    for (ICustomFieldMeta customFieldMeta : customFieldMetaList) {
+      if (customFieldMeta.name().equals(columnField) && !customFieldMeta.values().labels().isEmpty()) {
+        return true;
+      }
+    }
     return false;
   }
 
@@ -91,5 +73,13 @@ public class PortalCustomFieldUtils {
         .labels().stream().sorted(Comparator.comparing(ValueLabel<Object>::label))
         .map(vl -> vl.value().toString())
         .toList();
+  }
+
+  public static String getDisplayValueByField(ICustomFields customFields, String field) {
+    String searchPattern = customFields.stringField(field).getOrNull();
+    if (searchPattern == null) {
+      return searchPattern;
+    }
+    return customFields.stringField(field).meta().values().label(searchPattern);
   }
 }

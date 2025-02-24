@@ -21,7 +21,6 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.ICustomFieldOrderBy;
@@ -132,7 +131,12 @@ public class DashboardTaskSearchCriteria {
     switch (column.getType()) {
     case CUSTOM_BUSINESS_CASE -> appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM_BUSINESS_CASE));
     case CUSTOM_CASE -> appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM_CASE));
-    case CUSTOM -> appendQuickSearchTaskQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM));
+    case CUSTOM -> {
+      appendQuickSearchTaskQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM));
+      if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(column.getField(), DashboardColumnType.CUSTOM)) {
+        appendQuickSearchTaskQueryByDashboardFilter(subQuery, buildQuickSearchForCustomFieldWithCmsValues(column.getField(), DashboardColumnType.CUSTOM));
+      }
+    }
     default -> {}
     }
   }
@@ -145,10 +149,7 @@ public class DashboardTaskSearchCriteria {
   }
   
   private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column, DashboardColumnType type) {
-    if (type != DashboardColumnType.CUSTOM_BUSINESS_CASE && PortalCustomFieldUtils.isContainCmsPathAttributeOnTaskCustomField(column.getField(), type)) {
-      return buildQuickSearchForCustomFieldWithCmsValues(column.getField(), type);
-    }
-    return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);
+    return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, type);
   }
   
   private DashboardFilter buildQuickSearchForCustomFieldWithCmsValues(String columnField, DashboardColumnType type) {
@@ -295,7 +296,7 @@ public class DashboardTaskSearchCriteria {
           order = customField.timestampField(sortField);
           break;
         default:
-          if (PortalCustomFieldUtils.isContainCmsPathAttributeOnTaskCustomField(sortField, DashboardColumnType.CUSTOM)) {
+          if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(sortField, DashboardColumnType.CUSTOM)) {
             order = customField.stringField(sortField).values(PortalCustomFieldUtils.getAllLocalizedValueOnTaskField(sortField));
           } else {
             order = customField.stringField(sortField);

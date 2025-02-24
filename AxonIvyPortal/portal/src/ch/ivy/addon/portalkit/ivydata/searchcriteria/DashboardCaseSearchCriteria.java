@@ -126,7 +126,7 @@ public class DashboardCaseSearchCriteria {
   }
   
   private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column) {
-    if (PortalCustomFieldUtils.isContainCmsPathAttributeOnCaseCustomField(column.getField())) {
+    if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(column.getField())) {
       return buildQuickSearchForCustomFieldWithCmsValues(column.getField());
     }
     return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);
@@ -286,7 +286,7 @@ public class DashboardCaseSearchCriteria {
         order = customField.timestampField(sortField);
         break;
       default:
-        if (PortalCustomFieldUtils.isContainCmsPathAttributeOnCaseCustomField(sortField)) {
+        if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(sortField)) {
           order = customField.stringField(sortField).values(PortalCustomFieldUtils.getAllLocalizedValueOnCaseField(sortField));
         } else {
           order = customField.stringField(sortField);

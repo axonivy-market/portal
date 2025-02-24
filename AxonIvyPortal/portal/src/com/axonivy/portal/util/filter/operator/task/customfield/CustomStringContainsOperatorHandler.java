@@ -2,11 +2,11 @@ package com.axonivy.portal.util.filter.operator.task.customfield;
 
 import java.util.List;
 
+
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
-import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -30,16 +30,12 @@ public class CustomStringContainsOperatorHandler {
       return null;
     }
     TaskQuery query = TaskQuery.create(); // TODO filterfield correct? business and/or technical cases?
-    if (filter.getFilterType() != DashboardColumnType.STANDARD && PortalCustomFieldUtils.isContainCmsPathAttributeOnTaskCustomField(filter.getField(), filter.getFilterType())) {
-      query.where().or(buildQueryForCustomFieldWithCmsValue(filter));
-    } else {
       filter.getValues().forEach(text -> {
         TaskQuery subQuery = TaskQuery.create();
         subQuery.where().customField().stringField(filter.getField())
             .isLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
         query.where().or(subQuery);
       });
-    }
 
     return query;
   }

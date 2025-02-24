@@ -53,9 +53,9 @@ public class WidgetTextFilterBean implements Serializable {
   
   public boolean isCustomFieldWithCms(DashboardFilter filter) {
     if (filter.getFilterField() instanceof CaseFilterFieldCustomString) {
-      return PortalCustomFieldUtils.isContainCmsPathAttributeOnCaseCustomField(filter.getField());
+      return PortalCustomFieldUtils.isSupportMultiLanguageCaseField(filter.getField());
     }
-    return PortalCustomFieldUtils.isContainCmsPathAttributeOnTaskCustomField(filter.getField(), filter.getFilterType());
+    return PortalCustomFieldUtils.isSupportMultiLanguageTaskField(filter.getField(), filter.getFilterType());
   }
 
 }
