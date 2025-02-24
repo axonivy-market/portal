@@ -1,0 +1,14 @@
+SystemDb:
+  Url: jdbc:postgresql://postgres_all:5432/AxonIvySystemDatabase-sso-master
+  UserName: postgres
+  Password: <password>
+  Autoconvert: false
+Administrators:
+  wawa:
+    Password: <password>
+
+SecuritySystems:
+  default:
+    SSO:
+      Enabled: true
+      UserHeader: X-Forwarded-User
