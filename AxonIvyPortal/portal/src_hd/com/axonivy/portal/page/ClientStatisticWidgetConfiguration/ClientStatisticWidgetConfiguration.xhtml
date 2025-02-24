@@ -23,7 +23,7 @@
 
                 <div>
                   <div>
-                    <p:outputLabel for="target" value="Chart Target" />
+                    <p:outputLabel for="@next" value="Chart Target" />
                   </div>
                   <div>
                     <p:selectOneMenu id="target"
@@ -37,7 +37,7 @@
 
                 <div class="mt-1">
                   <div>
-                    <p:outputLabel for="type" value="Chart Type" />
+                    <p:outputLabel for="@next" value="Chart Type" />
                   </div>
                   <div>
                     <p:selectOneMenu id="type"
@@ -54,7 +54,7 @@
 
                 <div class="mt-1">
                   <div>
-                    <p:outputLabel for="aggregates" value="Aggregates" />
+                    <p:outputLabel for="@next" value="Aggregates" />
                   </div>
                   <div>
                     <p:autoComplete id="aggregates"
@@ -66,7 +66,7 @@
 
                 <div class="mt-1">
                   <div>
-                    <p:outputLabel for="filter" value="Filter" />
+                    <p:outputLabel for="@next" value="Filter" />
                   </div>
                   <div>
                     <p:inputText id="filter" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.filter}" />
@@ -75,7 +75,7 @@
 
                 <div class="mt-1">
                   <div>
-                    <p:outputLabel for="permissions" value="Permissions" />
+                    <p:outputLabel for="@next" value="Permissions" />
                   </div>
                   <div>
                     <p:autoComplete id="permissions" scrollHeight="210" dropdown="true"
@@ -107,7 +107,7 @@
 
                 <div class="mt-1">
                   <div>
-                    <p:outputLabel for="refresh-interval" value="Refresh Interval (seconds)" />
+                    <p:outputLabel for="@next" value="Refresh Interval (seconds)" />
                   </div>
                   <div>
                     <p:inputNumber id="refresh-interval"
@@ -120,7 +120,7 @@
 
                 <div class="mt-1">
                   <div>
-                    <p:outputLabel value="Name" for="name" />
+                    <p:outputLabel value="Name" for="@next" />
                   </div>
                   <div>
                     <p:inputText id="name" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.name}"
@@ -134,7 +134,7 @@
 
                 <div class="mt-1">
                   <div>
-                    <p:outputLabel value="Description" for="description" />
+                    <p:outputLabel value="Description" for="@next" />
                   </div>
                   <div>
                     <p:inputText id="description"
@@ -148,16 +148,17 @@
 
                 <div class="mt-1">
                   <div>
-                    <p:outputLabel for="icon" value="Icon" />
+                    <p:outputLabel for="@next" value="Icon" />
                   </div>
                   <div>
-                    <p:inputText id="icon" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.icon}" />
+                    <ic:ch.ivy.addon.portalkit.component.IconSelection id="icon"
+                      value="#{clientStatisticWidgetConfigurationBean.clientStatistic.icon}" />
                   </div>
                 </div>
 
                 <div class="mt-1">
                   <div>
-                    <p:outputLabel for="manipulate-value-by" value="Manipulate Value By" />
+                    <p:outputLabel for="@next" value="Manipulate Value By" />
                   </div>
                   <div>
                     <p:inputText id="manipulate-value-by"
@@ -167,11 +168,19 @@
 
                 <div class="mt-1">
                   <div>
-                    <p:outputLabel for="background-color" value="Background Color" />
+                    <p:outputLabel for="@next" value="Background Color" />
                   </div>
                   <div>
-                    <p:chips id="background-color" unique="true" max="8"
-                      value="#{clientStatisticWidgetConfigurationBean.clientStatistic.backgroundColor}" />
+                    <ui:repeat id="background-colors"
+                      value="#{clientStatisticWidgetConfigurationBean.clientStatistic.backgroundColor}" var="color"
+                      varStatus="status">
+                      <div>
+                        <p:colorPicker
+                          value="#{clientStatisticWidgetConfigurationBean.clientStatistic.backgroundColor[status.index]}"
+                          clearButton="true" closeButton="true" />
+                        <p:outputLabel for="@previous" value="Color #{status.index + 1}" />
+                      </div>
+                    </ui:repeat>
                   </div>
                 </div>
               </div>
@@ -182,7 +191,7 @@
                   rendered="#{clientStatisticWidgetConfigurationBean.clientStatistic.chartType.name() eq 'BAR' or clientStatisticWidgetConfigurationBean.clientStatistic.chartType.name() eq 'LINE'}">
 
                   <div>
-                    <p:outputLabel value="Category title" for="category-title" />
+                    <p:outputLabel value="Category title" for="@next" />
                   </div>
                   <div>
                     <p:inputText id="category-title" value="#{clientStatisticWidgetConfigurationBean.xTitle}"
@@ -197,7 +206,7 @@
                 <h:panelGroup layout="block" styleClass="mt-1"
                   rendered="#{clientStatisticWidgetConfigurationBean.clientStatistic.chartType.name() eq 'BAR' or clientStatisticWidgetConfigurationBean.clientStatistic.chartType.name() eq 'LINE'}">
                   <div>
-                    <p:outputLabel value="Value title" for="value-title" />
+                    <p:outputLabel value="Value title" for="@next" />
                   </div>
                   <div>
                     <p:inputText id="value-title" value="#{clientStatisticWidgetConfigurationBean.yTitle}"
@@ -208,21 +217,11 @@
                       oncomplete="PF('multiple-languages-dialog').show();" />
                   </div>
                 </h:panelGroup>
-                <h:panelGroup layout="block" styleClass="mt-1"
-                  rendered="#{clientStatisticWidgetConfigurationBean.clientStatistic.chartType.name() eq 'NUMBER'}">
-                  <div>
-                    <p:outputLabel for="number-chart-suffix-symbol" value="Suffix symbol" />
-                  </div>
-                  <div>
-                    <p:inputText id="number-chart-suffix-symbol"
-                      value="#{clientStatisticWidgetConfigurationBean.clientStatistic.numberChartConfig.suffixSymbol}" />
-                  </div>
-                </h:panelGroup>
 
                 <h:panelGroup layout="block" styleClass="mt-1"
                   rendered="#{clientStatisticWidgetConfigurationBean.clientStatistic.chartType.name() eq 'NUMBER'}">
                   <div>
-                    <p:outputLabel for="hide-label" value="Hide Label" />
+                    <p:outputLabel for="@next" value="Hide Label" />
                   </div>
                   <div>
                     <p:selectBooleanCheckbox id="hide-label"

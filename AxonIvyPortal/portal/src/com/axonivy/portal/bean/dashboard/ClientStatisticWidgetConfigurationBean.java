@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
@@ -19,6 +20,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
@@ -62,6 +64,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   private List<DisplayName> yTitles;
   private String yTitle;
   private List<String> selectedPermissions;
+  private String backgroundColor;
 
   @PostConstruct
   public void init() {
@@ -75,7 +78,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     clientStatistic.setRefreshInterval(0L);
     clientStatistic.setChartTarget(ChartTarget.TASK);
     clientStatistic.setChartType(ChartType.BAR);
-    clientStatistic.setBackgroundColor(Arrays.asList("#427424", "#981256"));
+    clientStatistic.setBackgroundColor(new ArrayList<>(Arrays.asList(null, null, null, null, null, null, null, null)));
     clientStatistic.setPermissionDTOs(Arrays.asList(SecurityMemberDTOMapper.mapFromRoleDTO(
         new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));;
     // TODO z1 init category, value
@@ -145,8 +148,24 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     List<ClientStatistic> clientStatistics =
         BusinessEntityConverter.jsonValueToEntities(currentstatisticsJson, ClientStatistic.class);
     clientStatistics.add(clientStatistic);
+    for (ClientStatistic clientStatistic : clientStatistics) {
+      clientStatistic.getBackgroundColor().removeIf(Objects::isNull);
+    }
+    addIconTypeIfMissing(clientStatistics);
     String statisticsJson = BusinessEntityConverter.entityToJsonValue(clientStatistics);
     Ivy.var().set(PortalVariable.CUSTOM_CLIENT_STATISTIC.key, statisticsJson);
+  }
+
+  private void addIconTypeIfMissing(List<ClientStatistic> clientStatistics) { // TODO z1 consider to remove
+    for (ClientStatistic clientStatistic : clientStatistics) {
+      String icon = clientStatistic.getIcon();
+      if (StringUtils.length(icon) > 3) {
+        String iconType = icon.substring(0, 3);
+        if (iconType.equals("si-") || iconType.equals("fa-")) {
+          clientStatistic.setIcon(iconType + " " + icon.substring(0, 2));
+        }
+      }
+    }
   }
 
   public List<String> completeAggregates(String query) {
@@ -191,6 +210,14 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   public void onUnSelectPermissionForDashboard(UnselectEvent<Object> event) {
     SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
     this.selectedPermissions.remove(selectedItem.getName());
+  }
+
+  public String getBackgroundColor() {
+    return backgroundColor;
+  }
+
+  public void setBackgroundColor(String backgroundColor) {
+    this.backgroundColor = backgroundColor;
   }
 
   public void getPreviewData() {
