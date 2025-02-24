@@ -317,8 +317,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   }
 
   public void openCloneWidgetDialog(int index) {
-    $(String.format("[id$='clone-widget-%d']", index))
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    clickByJavaScript($(String.format("[id$='clone-widget-%d']", index))
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
 
     $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
