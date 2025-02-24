@@ -195,7 +195,7 @@ two differences:
 .. important::
    - Portal only displays custom fields declared in the ``custom-fields.yaml`` file. Refer to :dev-url:`Custom Fields Meta Information </doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` for more information.
 
-   - Portal support Label, Description, Category and field content  in multiple language using the CMS. Please follow this :dev-url:`Localize Label, Description, Category and Values </doc/|version|/designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>` to get more information.
+   - Portal support label, description, category and field content (Portal only supports fields with type ``STRING``) in multiple language using the CMS. Please follow this :dev-url:`Localize Label, Description, Category and Values </doc/|version|/designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>` to get more information.
 
 Custom Action Button Columns
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -503,6 +503,9 @@ Standard Column:
 Custom Field Column: 
 
    - :ref:`configure-new-dashboard-case-widget-custom-columns` are using the same operator as :ref:`Standard Column <configure-new-dashboard-case-widget-filter-structure>`
+
+   .. important::
+      - For custom columns containing content in multiple languages within the CMS, the only available operator is ``CONTAINS``.
 
    - ``type`` field must be ``custom``
 
