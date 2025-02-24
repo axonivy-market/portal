@@ -6,6 +6,9 @@ import java.util.Map.Entry;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.util.DisplayNameUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -23,7 +26,6 @@ public class ClientStatistic extends AbstractConfiguration {
   private BarChartConfig barChartConfig;
   private LineChartConfig lineChartConfig;
   private NumberChartConfig numberChartConfig;
-  private PieChartConfig pieChartConfig;
   private List<DisplayName> names;
   @JsonProperty(access = Access.READ_ONLY)
   private String name;
@@ -33,6 +35,7 @@ public class ClientStatistic extends AbstractConfiguration {
   @JsonProperty(access = Access.READ_ONLY)
   private List<Entry<String, String>> additionalConfig;
   private String icon;
+  @JsonIgnore
   private String locale = Ivy.session().getFormattingLocale().toString();
   @JsonInclude(value = Include.NON_NULL)
   private String manipulateValueBy;
@@ -168,12 +171,4 @@ public String getFilter() {
     this.backgroundColor = backgroundColor;
   }
 
-  public PieChartConfig getPieChartConfig() {
-    return pieChartConfig;
-  }
-
-  public void setPieChartConfig(PieChartConfig pieChartConfig) {
-    this.pieChartConfig = pieChartConfig;
-  }
-  
 }
