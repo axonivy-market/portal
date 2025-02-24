@@ -1,5 +1,9 @@
 package com.axonivy.portal.bean.dashboard;
 
+import static com.axonivy.portal.enums.statistic.ChartType.BAR;
+import static com.axonivy.portal.enums.statistic.ChartType.LINE;
+import static com.axonivy.portal.enums.statistic.ChartType.NUMBER;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +26,8 @@ import org.primefaces.event.UnselectEvent;
 import com.axonivy.portal.bo.BarChartConfig;
 import com.axonivy.portal.bo.ClientStatistic;
 import com.axonivy.portal.bo.LineChartConfig;
+import com.axonivy.portal.bo.NumberChartConfig;
+import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.enums.statistic.ChartTarget;
@@ -42,6 +48,8 @@ import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
+import ch.ivyteam.ivy.security.ISecurityConstants;
+import ch.ivyteam.ivy.security.ISecurityContext;
 
 @ViewScoped
 @ManagedBean
@@ -65,8 +73,16 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     xTitles = new ArrayList<>();
     yTitles = new ArrayList<>();
     clientStatistic.setRefreshInterval(0L);
+    clientStatistic.setChartTarget(ChartTarget.TASK);
+    clientStatistic.setChartType(ChartType.BAR);
+    clientStatistic.setBackgroundColor(Arrays.asList("#427424", "#981256"));
+    clientStatistic.setPermissionDTOs(Arrays.asList(SecurityMemberDTOMapper.mapFromRoleDTO(
+        new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));;
     // TODO z1 init category, value
     // add action when select chart type
+    clientStatistic.setNumberChartConfig(new NumberChartConfig());
+    clientStatistic.setBarChartConfig(new BarChartConfig());
+    clientStatistic.setLineChartConfig(new LineChartConfig());
   }
 
   public ClientStatistic getClientStatistic() {
@@ -78,12 +94,15 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   }
 
   public void save() {
-    syncUIConfigWithChartConfg();
+    syncUIConfigWithChartConfig();
+    resetRedundantChartConfigs(clientStatistic.getChartType(), true);
+
     Ivy.log().warn(BusinessEntityConverter.entityToJsonValue(clientStatistic));
     saveStatisticJson();
+    resetRedundantChartConfigs(clientStatistic.getChartType(), false);
   }
 
-  private void syncUIConfigWithChartConfg() {
+  private void syncUIConfigWithChartConfig() {
     List<SecurityMemberDTO> responsibles = clientStatistic.getPermissionDTOs();
     List<String> permissions = new ArrayList<>();
     // String displayedPermission = ""; // TODO z1 check out saveDashboardDetail
@@ -98,7 +117,6 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
       permissions = responsibles.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
       clientStatistic.setPermissions(permissions);
     }
-    clearAllSpecificChartConfigs();
     if (ChartType.BAR == clientStatistic.getChartType()) {
       clientStatistic.setBarChartConfig(new BarChartConfig());
       clientStatistic.getBarChartConfig().setxTitles(xTitles);
@@ -110,11 +128,16 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     }
   }
 
-  private void clearAllSpecificChartConfigs() {
-    clientStatistic.setBarChartConfig(null);
-    clientStatistic.setLineChartConfig(null);
-    clientStatistic.setPieChartConfig(null);
-    clientStatistic.setNumberChartConfig(null);
+  private void resetRedundantChartConfigs(ChartType chartType, boolean isChartConfigAsNull) {
+    if (BAR != chartType) {
+      clientStatistic.setBarChartConfig(isChartConfigAsNull ? null : new BarChartConfig());
+    }
+    if (LINE != chartType) {
+      clientStatistic.setLineChartConfig(isChartConfigAsNull ? null : new LineChartConfig());
+    }
+    if (NUMBER != chartType) {
+      clientStatistic.setNumberChartConfig(isChartConfigAsNull ? null : new NumberChartConfig());
+    }
   }
 
   private void saveStatisticJson() {
@@ -171,7 +194,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   }
 
   public void getPreviewData() {
-    syncUIConfigWithChartConfg();
+    syncUIConfigWithChartConfig();
     ClientStatisticService clientStatisticService = ClientStatisticService.getInstance();
     AggregationResult result = clientStatisticService.getChartData(clientStatistic);
     PrimeFaces.current().ajax().addCallbackParam("jsonResponse",
@@ -194,13 +217,11 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     updateForCurrentLanguageForColumnChartConfig(yTitles, ClientStatisticWidgetConfigurationBean::setyTitle);
   }
 
-  private void updateForCurrentLanguage(List<DisplayName> names,
-      BiConsumer<ClientStatistic, String> setNameFunction) {
+  private void updateForCurrentLanguage(List<DisplayName> names, BiConsumer<ClientStatistic, String> setNameFunction) {
     String currentLanguage = UserUtils.getUserLanguage();
     Optional<DisplayName> optional =
         names.stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
-    optional
-        .ifPresent(displayName -> setNameFunction.accept(clientStatistic, displayName.getValue()));
+    optional.ifPresent(displayName -> setNameFunction.accept(clientStatistic, displayName.getValue()));
   }
 
   private void updateForCurrentLanguageForColumnChartConfig(List<DisplayName> names,
@@ -223,14 +244,12 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   }
 
   public void updateCategoryTitleByLocale() {
-    String currentName =
-        LanguageUtils.getLocalizedName(xTitles, getxTitle());
+    String currentName = LanguageUtils.getLocalizedName(xTitles, getxTitle());
     initAndSetValue(currentName, xTitles);
   }
 
   public void updateValueTitleByLocale() {
-    String currentName =
-        LanguageUtils.getLocalizedName(yTitles, getyTitle());
+    String currentName = LanguageUtils.getLocalizedName(yTitles, getyTitle());
     initAndSetValue(currentName, yTitles);
   }
 
@@ -346,4 +365,11 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     return DeepLTranslationService.getInstance().isShowTranslation(title.getLocale());
   }
 
+  public void onSelectChartType(ChartType chartType) {
+    switch (chartType) {
+      case NUMBER -> clientStatistic.setNumberChartConfig(new NumberChartConfig());
+      default -> {
+      }
+    }
+  }
 }
