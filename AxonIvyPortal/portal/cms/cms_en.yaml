@@ -16,6 +16,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       fromBiggerThanTill: '''Until'' must be later than ''From''.'
       overlappingAbsence: The absence is overlapping with another absence.
       userNameRequired: User name must not be empty.
+    SelectedSubtitutes: Selected subtitutes
     absences: Absences
     addAbsence: Add absence
     deputies: Substitutes
@@ -774,7 +775,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Advanced settings
         ChooseAFit: Choose a fit
-        DisplayedText: display text
+        DisplayedText: '{0} display text'
         Greeting:
           Afternoon: Good afternoon
           Evening: Good evening
@@ -956,7 +957,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     setANewPassword: Set a new password
     strong: Strong
     userNotFound: If this e-mail address is registered then we have sent a password recovery link to it.
-    usersHaveSameEmail: There are many users using this email. Please contact your administrator.
+    usersHaveSameEmail: There are many users using this email. Please contact your administrator 11111.
     weak: Weak
   iconselection:
     iconSelectionDialogHeader: Selecting icon

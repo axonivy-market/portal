@@ -16,6 +16,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       fromBiggerThanTill: '''Hasta'' debe ser posterior a ''Desde''.'
       overlappingAbsence: La ausencia se superpone con otra ausencia.
       userNameRequired: '''Nombre de usuario'' no debe estar vacío.'
+    SelectedSubtitutes: Sustitutos seleccionados
     absences: Sustitución de permisos
     addAbsence: Agregar ausencia
     deputies: Sustitutos
@@ -771,7 +772,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Configuración avanzada
         ChooseAFit: Elija un ajuste
-        DisplayedText: mostrar texto
+        DisplayedText: '{0} mostrar texto'
         Greeting:
           Afternoon: Buenas tardes
           Evening: Buenas noches

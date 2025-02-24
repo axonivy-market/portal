@@ -16,6 +16,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       fromBiggerThanTill: 「終了日」は「開始日」より後にしてください。
       overlappingAbsence: この不在日程は、別の不在日程と重複しています。
       userNameRequired: ユーザー名は空欄に出来ません。
+    SelectedSubtitutes: 選択された代行者
     absences: 不在
     addAbsence: 不在の追加
     deputies: 代行者
@@ -398,6 +399,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     All: すべて
     And: と
     BusinessCaseInformation: ビジネスケース情報
+    Clone: 複製
     CollapseAll: すべて折りたたむ
     ExpandAll: すべて展開
     MoreItemsAvailable: その他のアイテムあり
@@ -695,6 +697,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: 公開用
       savedFilters: 保存されたフィルター：
   dashboard:
+    CloneWidget: ウィジェット複製
     CustomWidgets: カスタムウィジェット
     DashboardConfiguration:
       CreateFromScratch: 最初から作成
@@ -770,22 +773,22 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: 詳細設定
         ChooseAFit: フィットを選択
-        DisplayedText: テキストを表示
+        DisplayedText: '{0}テキストを表示'
         Greeting:
           Afternoon: こんにちは
           Evening: こんばんは
           Morning: おはようございます
         Image: 画像
-        ImageDarkMode: ウィジェットを追加
+        ImageDarkMode: ダークモードの画像
         ImageInlineStyle: 画像のインラインスタイル
-        ImageLightMode: カスタムウィジェット
+        ImageLightMode: ライトモードの画像
         ImageStyleClass: 画像のスタイルクラス
-        PreviewDarkMode: 最初から独自のダッシュボードを作成する
-        PreviewLightMode: 新しい個人用ダッシュボードを作成する
+        PreviewDarkMode: ダークモードのプレビュー
+        PreviewLightMode: ダークモードのライト
         PreviewTooltip: このプレビューではすべての設定をレンダリングすることはできませんが、最終的なウィジェットがどのように見えるかイメージを掴めます。画像のサイズ、表示位置、一部の CSS 設定はプレビュー出来ません。
         ShowGreeting: 挨拶を表示
-        TextColorDarkMode: ダッシュボードの設定は、モバイルデバイスではサポートされていません。
-        TextColorLightMode: 個人用ダッシュボードを編集する
+        TextColorDarkMode: ダークモードのテキスト色
+        TextColorLightMode: ライトモードのテキスト色
         TextPosition: テキストの位置
         TextSize: ダッシュボードをエクスポート
         Welcome: ようこそ
