@@ -38,7 +38,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class CaseDetailsTest extends BaseTest {
   private static final String BUSINESS_DETAILS_TITLE = "Business Details - Portal - Axon Ivy";
   private static final String ORDER_PIZZA = "Order Pizza";
@@ -437,6 +437,20 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.resetToDefault();
     detailsPage.confirmResetToDefault();
     detailsPage.saveAndSwitchToViewMode();
+  }
+  
+  @Test
+  public void testCaseOwnerCanDelegateRelatedTasks() {
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(userIsOwnerUrl);
+    newDashboardPage.waitPageLoaded();
+    CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
+    detailsPage = casePage.openDetailsCase("demo user is owner");
+    detailsPage.waitPageLoaded();
+    detailsPage.waitRelatedTasks();
+    detailsPage.openTaskDelegateDialog("demo user is owner");
+    detailsPage.selectDelegateResponsible("Emma", false);
+    assertFalse(detailsPage.isTaskDelegateOptionDisable("demo user is owner"));
   }
 
   @Test
