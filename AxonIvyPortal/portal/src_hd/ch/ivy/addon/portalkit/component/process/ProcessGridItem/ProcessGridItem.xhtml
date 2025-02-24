@@ -41,6 +41,7 @@
         <ic:ch.ivy.addon.portalkit.component.process.ProcessItemAction id="grid-process-action-component" process="#{process}"
           widget="#{cc.attrs.widget}"
           canModify="#{cc.attrs.ableToEdit}"
+          canClone="#{cc.attrs.isInConfiguration}"
           actionListenerOnEditProcess="#{cc.attrs.editActionListener}"
           onCompleteEditProcess="#{cc.attrs.oncompleteEditProcess}"
           componentToUpdateOnEditProcess="#{cc.attrs.componentToUpdateOnEditProcess}"
