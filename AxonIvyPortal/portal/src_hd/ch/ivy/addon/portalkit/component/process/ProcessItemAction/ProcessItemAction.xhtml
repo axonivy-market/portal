@@ -6,6 +6,7 @@
   <cc:attribute name="widget" />
   <cc:attribute name="hideActionButton"/>
   <cc:attribute name="canModify"/>
+  <cc:attribute name="canClone" default="false"/>
   <cc:attribute name="actionListenerOnEditProcess"/>
   <cc:attribute name="onCompleteEditProcess"/>
   <cc:attribute name="componentToUpdateOnEditProcess"/>
@@ -24,6 +25,7 @@
 <cc:implementation>
   <c:set var="process" value="#{cc.attrs.process}"/>
   <c:set var="canModify" value="#{cc.attrs.canModify}" />
+  <c:set var="canClone" value="#{cc.attrs.canClone or !cc.attrs.isReadOnlyMode or cc.attrs.isInConfiguration}" />
   <c:set var="showProcessViewer" value="#{processItemActionBean.isShowProcessViewer(process)}"/>
   <c:set var="hideActionButton" value="#{cc.attrs.hideActionButton or (!canModify and !showProcessViewer)}"/>
   <c:set var="buttonStyle" value="#{cc.attrs.outlinedButtonStyle ? 'ui-button-outlined':'ui-button-raised '}"/>
@@ -60,7 +62,7 @@
           update="#{p:resolveFirstComponentWithId('clone-to-dashboard-dialog', view).clientId}"
           oncomplete="PF('clone-to-dashboard-dialog').show();"
           partialSubmit="true"
-          rendered="#{canModify}" />
+          rendered="#{canClone}" />
         <p:menuitem id="more-information"
           icon="si si-information-circle"
           url="#{processWidgetBean.getProcessInformationPageUrl(process)}"
