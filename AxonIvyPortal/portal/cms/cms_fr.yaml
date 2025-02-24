@@ -718,11 +718,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       WidgetNameColumn: Nom du widget
       WrongDateFormat: La date n'est pas valide
     ManageFilter: Gérer les filtres
+    NoColumnsEnabledForQuickSearch: Aucune colonne n'est activée pour la recherche rapide
     NoData: Pas de données
     NoSavedFilterMessage: Aucun filtre enregistré n'a été trouvé. Essayez d'en créer un nouveau en cliquant sur le bouton Enregistrer le filtre.
     NoWidgetAvailable: Il n'y a pas de widgets.
     QuickSearch: Recherche rapide
     QuickSearchInfo: Vous pouvez personnaliser la portée de la recherche rapide dans la gestion des colonnes des widgets. La recherche se fait sur la base du critère "contient", mais soyez attentif à la performance lorsque vous ajoutez de nombreuses colonnes.
+    QuickSearchScope: 'Étendue de la recherche: {0}'
     RestoreDefaultDashboardMessage: Si vous procédez ainsi, vous perdrez tous les widgets que vous avez créés. Les paramètres standard de <span class="dashboard-template-name-message">{0}</span> seront appliqués.
     SaveNewWidgetFilterHeader: Enregistrer un nouveau filtre de widget
     SavedFilterHeader: Filtres enregistrés
@@ -750,6 +752,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     columnManagement: Gestion des colonnes
     columnType:
       CUSTOM: Champ personnalisé
+      CUSTOM_BUSINESS_CASE: Champ personnalisé de l'affaire
       CUSTOM_CASE: Champ d'affaire personnalisé
       STANDARD: Colonne standard
     configuration:

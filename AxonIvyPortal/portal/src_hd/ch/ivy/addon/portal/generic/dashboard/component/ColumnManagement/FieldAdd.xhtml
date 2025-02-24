@@ -21,6 +21,7 @@
       <c:set var="selectedStandardField" value="#{columnManagementBean.selectedFieldType eq 'STANDARD'}" scope="request"/>
       <c:set var="selectedCustomField" value="#{columnManagementBean.selectedFieldType eq 'CUSTOM'}" scope="request"/>
       <c:set var="selectedCustomCaseField" value="#{columnManagementBean.selectedFieldType eq 'CUSTOM_CASE'}" scope="request"/>
+      <c:set var="selectedCustomBusinessCaseField" value="#{columnManagementBean.selectedFieldType eq 'CUSTOM_BUSINESS_CASE'}" scope="request"/>
 
       <h:panelGroup rendered="#{selectedCustomField}">
         <div class="ui-g-3 field-add-fieldset__label">
@@ -51,11 +52,27 @@
           </p:autoComplete>
         </div>
       </h:panelGroup>
-      
-      <div class="ui-g-3 field-add-fieldset__label">
+
+      <h:panelGroup rendered="#{selectedCustomBusinessCaseField}">
+        <div class="ui-g-3 field-add-fieldset__label">
+          <p:outputLabel for="custom-business-case-field-categories-selection"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
+        </div>
+        <div class="ui-g-9 field-add-fieldset__selection ui-fluid">
+          <p:autoComplete id="custom-business-case-field-categories-selection"
+            value="#{columnManagementBean.selectedCustomFieldCategory}" completeMethod="#{columnManagementBean.completeCategoriesSelection}"
+            cache="false" dynamic="true" dropdown="true" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noCategory')}">
+            <p:ajax listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
+            <p:ajax event="clear" listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
+          </p:autoComplete>
+        </div>
+      </h:panelGroup>
+
+    <div class="ui-g-3 field-add-fieldset__label">
         <p:outputLabel for="standard-field-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')}" rendered="#{selectedStandardField}" />
         <p:outputLabel for="custom-field-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')}" rendered="#{selectedCustomField}" />
         <p:outputLabel for="custom-case-field-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')}" rendered="#{selectedCustomCaseField}" />
+        <p:outputLabel for="custom-business-case-field-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')}" rendered="#{selectedCustomBusinessCaseField}" />
       </div>
       <div class="ui-g-9 ui-fluid">
         <ui:fragment rendered="#{selectedStandardField}">
@@ -92,7 +109,18 @@
             <p:ajax listener="#{columnManagementBean.onSelectCustomField()}" process="@this" update="field-add-fieldset"/>
           </p:autoComplete>
         </ui:fragment>
-      </div>
+
+        <ui:fragment rendered="#{selectedCustomBusinessCaseField}">
+          <p:autoComplete id="custom-business-case-field-selection" value="#{columnManagementBean.selectedField}"
+            styleClass="field-add-fieldset__input" dynamic="true" completeMethod="#{columnManagementBean.completeCustomFields}"
+            dropdown="true" required="true" requiredMessage="Field #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
+            inputStyleClass="field-add-fieldset__autocomplete-input" validator="duplicateFieldValidator" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}">
+            <f:attribute name="existingFields" value="#{columnManagementBean.existingFields}" />
+            <f:attribute name="selectedFieldType" value="#{columnManagementBean.selectedFieldType}" />
+            <p:ajax listener="#{columnManagementBean.onSelectCustomField()}" process="@this" update="field-add-fieldset" />
+          </p:autoComplete>
+        </ui:fragment>
+    </div>
 
       <h:panelGroup id="number-pattern-container" 
         styleClass="#{columnManagementBean.selectedCustomFieldType eq 'NUMBER' ? 'ui-g-12 field-add-fieldset__number-pattern-container' : ''}">
@@ -108,7 +136,7 @@
         </h:panelGroup>
       </h:panelGroup>
 
-      <h:panelGroup rendered="#{selectedCustomField or selectedCustomCaseField}">
+      <h:panelGroup rendered="#{selectedCustomField or selectedCustomCaseField or selectedCustomBusinessCaseField}">
         <div class="ui-g-3 field-add-fieldset__label">
           <p:outputLabel for="custom-field-description" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}"/>
         </div>
@@ -122,8 +150,8 @@
       </div>
       <div class="ui-g-9 ui-fluid">
         <p:inputText id="field-display-name" value="#{columnManagementBean.fieldDisplayName}" styleClass="field-add-fieldset__input"
-           required="#{!selectedCustomField}" requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
-           readonly="#{selectedCustomField}"/>
+           required="#{!selectedCustomField and !selectedCustomCaseField and !selectedCustomBusinessCaseField}" requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
+           readonly="#{selectedCustomField or selectedCustomCaseField or selectedCustomBusinessCaseField}"/>
       </div>
 
       <div class="ui-g-12 u-text-align-right">

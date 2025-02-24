@@ -357,6 +357,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     getPortalProcesses().add(new ExternalLinkProcessItem(externalLinkBean.getExternalLink()));
     sortProcesses(getPortalProcesses());
     groupProcessesByAlphabetIndex(getPortalProcesses());
+    resetPermission();
   }
 
   public void deleteExternalLink() {
@@ -613,4 +614,9 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     return GlobalSearchService.getInstance().isShowGlobalSearchByProcesses();
   }
 
+  public void resetPermission() {
+    if (selectedSecurityMemberDTOsWhenCreatingExternalLink != null) {
+      selectedSecurityMemberDTOsWhenCreatingExternalLink.clear();
+    }
+  }
 }

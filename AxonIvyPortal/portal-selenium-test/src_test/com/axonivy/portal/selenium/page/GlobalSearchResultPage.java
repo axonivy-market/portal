@@ -26,8 +26,8 @@ public class GlobalSearchResultPage extends TemplatePage {
   }
 
   public void openCaseTab() {
-    $("li[class*='case-tab-title']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $("li[class*='case-tab-title']").click();
+    $("li.case-tab-title").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("li.case-tab-title").click();
     $("div[id='search-results-tabview:case-tab']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -126,6 +126,6 @@ public class GlobalSearchResultPage extends TemplatePage {
   }
 
   public void caseTabShouldBeDisappear() {
-    $("li[class*='case-tab-title']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("li.case-tab-title").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 }

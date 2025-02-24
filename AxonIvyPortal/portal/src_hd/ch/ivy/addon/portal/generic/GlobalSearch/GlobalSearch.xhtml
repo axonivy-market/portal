@@ -56,12 +56,12 @@
     process="global-search-mobile-data" partialSubmit="true" />
     
   <p:overlayPanel rendered="#{cc.attrs.showQuickGlobalSearch}" hideEvent="dbclick" id="global-search-form" onHide="resetSearchBar();"
-   for="quick-global-search-component:global-search-data" styleClass="global-search-form">
+   for="global-search-component:global-search-data" styleClass="global-search-form">
     <h:outputScript library="js" name="global-search.js" />
     <div id="global-search-panel">
       <p:tabView style="height: 250px">
         <p:tab id="process-tab-search" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}"
-          titleStyleClass="search-bar process-tab-title"
+          titleStyleClass="search-bar process-tab-title-global"
           rendered="#{processWidgetBean.isShowGlobalSearchScope()}">
          <div class="js-case-default-widget-container case-default-widget-container js-for-search-result"
           id="process-search-results">
@@ -71,7 +71,7 @@
          </div>
          <h:outputText styleClass="global-search-no-results" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/noResultsText')}" />
         </p:tab>
-        <p:tab id="task-tab-search" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" titleStyleClass="search-bar task-tab-title"
+        <p:tab id="task-tab-search" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" titleStyleClass="search-bar task-tab-title-global"
           rendered="#{taskWidgetBean.showFullTaskList and taskWidgetBean.isShowGlobalSearchScope()}">
           <div id="task-search-results">
           </div>
@@ -80,7 +80,7 @@
           </div>
           <h:outputText styleClass="global-search-no-results" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/noResultsText')}" />
         </p:tab>
-         <p:tab id="case-tab-search" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" titleStyleClass="search-bar case-tab-title"
+         <p:tab id="case-tab-search" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" titleStyleClass="search-bar case-tab-title-global"
           rendered="#{caseWidgetBean.showFullCaseList and caseWidgetBean.isShowGlobalSearchScope()}">
           <div id="case-search-results" class="js-case-default-widget-container case-default-widget-container js-for-search-result">
           </div>
