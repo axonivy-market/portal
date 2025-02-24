@@ -30,15 +30,15 @@ public class CustomStringContainsOperatorHandler {
       return null;
     }
     CaseQuery query = CaseQuery.create(); // TODO filterfield correct? business and/or technical cases?
-    if (filter.getFilterType() != DashboardColumnType.STANDARD && PortalCustomFieldUtils.isSupportMultiLanguageCaseField(filter.getField())) {
-      query.where().or(buildQueryForCustomFieldWithCmsValue(filter));
-    } else {
-      filter.getValues().forEach(text -> {
-        CaseQuery subQuery = CaseQuery.create();
-        subQuery.where().customField().stringField(filter.getField())
-            .isLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
-        query.where().or(subQuery);
-      });
+    filter.getValues().forEach(text -> {
+      CaseQuery subQuery = CaseQuery.create();
+      subQuery.where().customField().stringField(filter.getField())
+          .isLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
+      query.where().or(subQuery);
+    });
+    if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(filter.getField())) {
+      CaseQuery addingQuery = buildQueryForCustomFieldWithCmsValue(filter);
+      query.where().or(addingQuery);
     }
     return query;
   }

@@ -2,8 +2,6 @@ package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 
 import java.util.Objects;
 
-import org.apache.commons.lang.StringUtils;
-
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
@@ -11,16 +9,14 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
-import ch.ivyteam.ivy.cm.exec.ContentManagement;
-import ch.ivyteam.ivy.cm.exec.ContentResolver;
+import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 
 public class CaseColumnModel extends ColumnModel {
-
-  private static final String CMS_PATH = "CmsPath";
+  
   private static final long serialVersionUID = 7358059302396225605L;
 
   public Object display(ICase caze) {
@@ -32,33 +28,12 @@ public class CaseColumnModel extends ColumnModel {
     } else if (isText()) {
       return customFields.textField(field).getOrNull();
     } else {
-      return displayStringFieldContent(customFields, caze);
+      return displayStringFieldContent(customFields);
     }
   }
 
-  /**
-   * Return empty string if cannot get value from the path or the path does not match the pattern /CustomFields/Cases/%name%/Values
-   * Ex:
-   *  - Valid path: /CustomFields/Cases/ProductType/Values
-   * Return the current value of custom field if CmsPath attribute is not defined in custom-field.yaml file
-   * Return the current value of custom field if the localized text in CMS is empty
-   *
-   */
-  private String displayStringFieldContent(ICustomFields customFields, ICase caze) {
-    String cmsPath = customFields.stringField(field).meta().attribute(CMS_PATH);
-    if (cmsPath != null) {
-      cmsPath = cmsPath + "/" + customFields.stringField(field).getOrNull();
-      ContentManagement cms = ContentManagement.of(caze.getProcessModelVersion());
-      if (cms.findObject(cmsPath).isEmpty()) {
-        return StringUtils.EMPTY;
-      }
-      ContentResolver content = cms.content(cmsPath);
-      if (content.get().isEmpty()) {
-        return customFields.stringField(field).getOrNull();
-      }
-      return content.get();
-    }
-    return customFields.stringField(field).getOrNull();
+  private String displayStringFieldContent(ICustomFields customFields) {
+    return PortalCustomFieldUtils.getDisplayValueByField(customFields, field);
   }
 
   public static CaseColumnModel constructColumn(DashboardColumnType fieldType, String field) {

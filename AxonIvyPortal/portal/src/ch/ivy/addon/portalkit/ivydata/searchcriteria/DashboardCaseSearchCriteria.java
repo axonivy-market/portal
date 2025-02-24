@@ -100,6 +100,9 @@ public class DashboardCaseSearchCriteria {
             appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectStandandFieldToQuickSearchQuery(columnEnum));
           } else {
             appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column));
+            if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(column.getField())) {
+              appendQuickSearchCaseQueryByDashboardFilter(subQuery, buildQuickSearchForCustomFieldWithCmsValues(column.getField()));
+            }
           }
         }
 
@@ -126,9 +129,6 @@ public class DashboardCaseSearchCriteria {
   }
   
   private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column) {
-    if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(column.getField())) {
-      return buildQuickSearchForCustomFieldWithCmsValues(column.getField());
-    }
     return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);
   }
   

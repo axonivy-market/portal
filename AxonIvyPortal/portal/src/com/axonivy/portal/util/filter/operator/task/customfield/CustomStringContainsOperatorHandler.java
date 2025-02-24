@@ -7,6 +7,7 @@ import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -30,13 +31,16 @@ public class CustomStringContainsOperatorHandler {
       return null;
     }
     TaskQuery query = TaskQuery.create(); // TODO filterfield correct? business and/or technical cases?
-      filter.getValues().forEach(text -> {
-        TaskQuery subQuery = TaskQuery.create();
-        subQuery.where().customField().stringField(filter.getField())
-            .isLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
-        query.where().or(subQuery);
-      });
-
+    filter.getValues().forEach(text -> {
+      TaskQuery subQuery = TaskQuery.create();
+      subQuery.where().customField().stringField(filter.getField())
+          .isLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
+      query.where().or(subQuery);
+    });
+    if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(filter.getField(), DashboardColumnType.CUSTOM)) {
+      TaskQuery addingQuery = buildQueryForCustomFieldWithCmsValue(filter);
+      query.where().or(addingQuery);
+    }
     return query;
   }
 

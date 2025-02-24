@@ -130,11 +130,16 @@ public class DashboardTaskSearchCriteria {
   private void appendCustomFieldsForQuickSearchQuery(TaskQuery subQuery, ColumnModel column) {
     switch (column.getType()) {
     case CUSTOM_BUSINESS_CASE -> appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM_BUSINESS_CASE));
-    case CUSTOM_CASE -> appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM_CASE));
+    case CUSTOM_CASE -> {
+      appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM_CASE));
+      if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(column.getField(), DashboardColumnType.CUSTOM_CASE)) {
+        appendQuickSearchCaseQueryByDashboardFilter(subQuery, buildFilterForCustomFieldWithCmsValue(column.getField(), DashboardColumnType.CUSTOM_CASE));
+      }
+    }
     case CUSTOM -> {
       appendQuickSearchTaskQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM));
       if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(column.getField(), DashboardColumnType.CUSTOM)) {
-        appendQuickSearchTaskQueryByDashboardFilter(subQuery, buildQuickSearchForCustomFieldWithCmsValues(column.getField(), DashboardColumnType.CUSTOM));
+        appendQuickSearchTaskQueryByDashboardFilter(subQuery, buildFilterForCustomFieldWithCmsValue(column.getField(), DashboardColumnType.CUSTOM));
       }
     }
     default -> {}
@@ -152,7 +157,7 @@ public class DashboardTaskSearchCriteria {
     return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, type);
   }
   
-  private DashboardFilter buildQuickSearchForCustomFieldWithCmsValues(String columnField, DashboardColumnType type) {
+  private DashboardFilter buildFilterForCustomFieldWithCmsValue(String columnField, DashboardColumnType type) {
     DashboardFilter filter = new DashboardFilter();
     filter.setField(columnField);
     filter.setFilterType(type);
