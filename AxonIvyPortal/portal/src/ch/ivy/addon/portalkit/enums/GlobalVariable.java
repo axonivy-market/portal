@@ -57,6 +57,8 @@ public enum GlobalVariable {
   DEFAULT_HOMEPAGE("Portal.Homepage", GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage"),
   DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST("Portal.Tasks.BehaviourWhenClickingOnLineInTaskList", GlobalVariableType.EXTERNAL_SELECTION,
       BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name(), "behaviourWhenClickingOnLineInTaskList", getBehavioursWhenClickingOnLineInTaskList()),
+  DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_CASE_LIST("Portal.Cases.BehaviourWhenClickingOnLineInCaseList", GlobalVariableType.EXTERNAL_SELECTION,
+      BehaviourWhenClickingOnLineInCaseList.ACCESS_CASE_DETAILS.name(), "behaviourWhenClickingOnLineInCaseList", getBehavioursWhenClickingOnLineInCaseList()),
   ENABLE_PROCESS_VIEWER("Portal.ProcessViewer", GlobalVariableType.SELECTION, Option.TRUE.toString(), "enableProcessViewer"),
   HIDE_RELATED_CASE_INFO_FROM_HISTORY("Portal.Histories.HideRelatedCaseInfo", GlobalVariableType.SELECTION, Option.TRUE.toString(), "hideRelatedCaseInfoFromHistory"),
   SHOW_ERROR_LOG_TO_CONSOLE("Portal.ShowErrorLogToConsole", GlobalVariableType.SELECTION, Option.FALSE.toString(), "showErrorLogToConsole"),
@@ -225,6 +227,14 @@ public enum GlobalVariable {
   private static Map<String, Object> getBehavioursWhenClickingOnLineInTaskList() {
     Map<String, Object> result = new HashMap<>();
     for (BehaviourWhenClickingOnLineInTaskList behaviour : BehaviourWhenClickingOnLineInTaskList.values()) {
+      result.put(behaviour.name(), behaviour);
+    }
+    return result;
+  }
+
+  private static Map<String, Object> getBehavioursWhenClickingOnLineInCaseList() {
+    Map<String, Object> result = new HashMap<>();
+    for (BehaviourWhenClickingOnLineInCaseList behaviour : BehaviourWhenClickingOnLineInCaseList.values()) {
       result.put(behaviour.name(), behaviour);
     }
     return result;
