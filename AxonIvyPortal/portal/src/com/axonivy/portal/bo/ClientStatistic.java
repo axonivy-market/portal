@@ -204,13 +204,4 @@ public String getFilter() {
   public void setPermissionDTOs(List<SecurityMemberDTO> permissionDTOs) {
     this.permissionDTOs = permissionDTOs;
   }
-
-  public PieChartConfig getPieChartConfig() {
-    return pieChartConfig;
-  }
-
-  public void setPieChartConfig(PieChartConfig pieChartConfig) {
-    this.pieChartConfig = pieChartConfig;
-  }
-  
 }
