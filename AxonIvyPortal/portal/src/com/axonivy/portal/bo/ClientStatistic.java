@@ -32,8 +32,6 @@ public class ClientStatistic extends AbstractConfiguration {
   private LineChartConfig lineChartConfig;
   @JsonInclude(value = Include.NON_NULL)
   private NumberChartConfig numberChartConfig;
-  @JsonInclude(value = Include.NON_NULL)
-  private PieChartConfig pieChartConfig;
   private List<DisplayName> names;
   @JsonProperty(access = Access.READ_ONLY)
   private String name;
@@ -43,6 +41,7 @@ public class ClientStatistic extends AbstractConfiguration {
   @JsonProperty(access = Access.READ_ONLY)
   private List<Entry<String, String>> additionalConfig;
   private String icon;
+  @JsonIgnore
   private String locale = Ivy.session().getFormattingLocale().toString();
   @JsonInclude(value = Include.NON_NULL)
   private String manipulateValueBy;
