@@ -17,8 +17,8 @@ import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
-import ch.ivyteam.ivy.environment.Ivy;
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ClientStatistic extends AbstractConfiguration {
   private String aggregates;
   private String filter;
@@ -39,18 +39,16 @@ public class ClientStatistic extends AbstractConfiguration {
   @JsonProperty(access = Access.READ_ONLY)
   private String description;
   @JsonProperty(access = Access.READ_ONLY)
-  private List<Entry<String, String>> additionalConfig;
+  private List<Entry<String, String>> additionalConfigs;
   private String icon;
-  @JsonIgnore
-  private String locale = Ivy.session().getFormattingLocale().toString();
   @JsonInclude(value = Include.NON_NULL)
   private String manipulateValueBy;
   @JsonInclude(value = Include.NON_NULL)
-  private List<String> backgroundColor;
+  private List<String> backgroundColors;
   
   @JsonIgnore
   private List<SecurityMemberDTO> permissionDTOs;
-
+  
   public String getIcon() {
     return icon;
   }
@@ -141,7 +139,10 @@ public String getFilter() {
   }
 
   public String getName() {
-    return LanguageUtils.getLocalizedName(names, name);
+    if (name == null) {
+      return LanguageUtils.getLocalizedName(names, name);
+    }
+    return name;
   }
 
   public void setName(String name) {
@@ -160,7 +161,10 @@ public String getFilter() {
   }
 
   public String getDescription() {
-    return LanguageUtils.getLocalizedName(descriptions, description);
+    if (description == null) {
+      return LanguageUtils.getLocalizedName(descriptions, description);
+    }
+    return description;
   }
 
   public void setDescription(String description) {
@@ -169,16 +173,12 @@ public String getFilter() {
     this.description = nameResult.name();
   }
 
-  public List<Entry<String, String>> getAdditionalConfig() {
-    return additionalConfig;
+  public List<Entry<String, String>> getAdditionalConfigs() {
+    return additionalConfigs;
   }
 
-  public void setAdditionalConfig(List<Entry<String, String>> additionalConfig) {
-    this.additionalConfig = additionalConfig;
-  }
-  
-  public String getLocale() {
-    return this.locale;
+  public void setAdditionalConfigs(List<Entry<String, String>> additionalConfigs) {
+    this.additionalConfigs = additionalConfigs;
   }
 
   public String getManipulateValueBy() {
@@ -189,12 +189,12 @@ public String getFilter() {
     this.manipulateValueBy = manipulateValueBy;
   }
 
-  public List<String> getBackgroundColor() {
-    return backgroundColor;
+  public List<String> getBackgroundColors() {
+    return backgroundColors;
   }
 
-  public void setBackgroundColor(List<String> backgroundColor) {
-    this.backgroundColor = backgroundColor;
+  public void setBackgroundColors(List<String> backgroundColors) {
+    this.backgroundColors = backgroundColors;
   }
 
   public List<SecurityMemberDTO> getPermissionDTOs() {

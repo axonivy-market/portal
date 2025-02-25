@@ -64,7 +64,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   private List<DisplayName> yTitles;
   private String yTitle;
   private List<String> selectedPermissions;
-  private String backgroundColor;
+  private String backgroundColors;
 
   @PostConstruct
   public void init() {
@@ -78,7 +78,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     clientStatistic.setRefreshInterval(0L);
     clientStatistic.setChartTarget(ChartTarget.TASK);
     clientStatistic.setChartType(ChartType.BAR);
-    clientStatistic.setBackgroundColor(new ArrayList<>(Arrays.asList(null, null, null, null, null, null, null, null)));
+    clientStatistic.setBackgroundColors(new ArrayList<>(Arrays.asList(null, null, null, null, null, null, null, null)));
     clientStatistic.setPermissionDTOs(Arrays.asList(SecurityMemberDTOMapper.mapFromRoleDTO(
         new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));;
     // TODO z1 init category, value
@@ -144,12 +144,10 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   }
 
   private void saveStatisticJson() {
-    String currentstatisticsJson = Ivy.var().get(PortalVariable.CUSTOM_CLIENT_STATISTIC.key);
-    List<ClientStatistic> clientStatistics =
-        BusinessEntityConverter.jsonValueToEntities(currentstatisticsJson, ClientStatistic.class);
+    List<ClientStatistic> clientStatistics = ClientStatisticService.getInstance().getCustomStatistic();
     clientStatistics.add(clientStatistic);
     for (ClientStatistic clientStatistic : clientStatistics) {
-      clientStatistic.getBackgroundColor().removeIf(Objects::isNull);
+      clientStatistic.getBackgroundColors().removeIf(Objects::isNull);
     }
     addIconTypeIfMissing(clientStatistics);
     String statisticsJson = BusinessEntityConverter.entityToJsonValue(clientStatistics);
@@ -212,12 +210,12 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     this.selectedPermissions.remove(selectedItem.getName());
   }
 
-  public String getBackgroundColor() {
-    return backgroundColor;
+  public String getBackgroundColors() {
+    return backgroundColors;
   }
 
-  public void setBackgroundColor(String backgroundColor) {
-    this.backgroundColor = backgroundColor;
+  public void setBackgroundColor(String backgroundColors) {
+    this.backgroundColors = backgroundColors;
   }
 
   public void getPreviewData() {

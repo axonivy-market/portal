@@ -172,11 +172,11 @@
                   </div>
                   <div>
                     <ui:repeat id="background-colors"
-                      value="#{clientStatisticWidgetConfigurationBean.clientStatistic.backgroundColor}" var="color"
+                      value="#{clientStatisticWidgetConfigurationBean.clientStatistic.backgroundColors}" var="color"
                       varStatus="status">
                       <div>
                         <p:colorPicker
-                          value="#{clientStatisticWidgetConfigurationBean.clientStatistic.backgroundColor[status.index]}"
+                          value="#{clientStatisticWidgetConfigurationBean.clientStatistic.backgroundColors[status.index]}"
                           clearButton="true" closeButton="true" />
                         <p:outputLabel for="@previous" value="Color #{status.index + 1}" />
                       </div>
