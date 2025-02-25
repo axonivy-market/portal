@@ -147,9 +147,11 @@ function initRefresh() {
       if (typeof refreshInfo.refreshIntervalId !== 'undefined') {
         clearInterval(refreshInfo.refreshIntervalId);
       }
-      refreshInfo.refreshIntervalId = setInterval(() => {
-        refreshChart(refreshInfo);
-      }, refreshInfo.refreshInterval * 1000);
+      if (refreshInfo.refreshInterval !== 0) {
+        refreshInfo.refreshIntervalId = setInterval(() => {
+          refreshChart(refreshInfo);
+        }, refreshInfo.refreshInterval * 1000);
+      }
     }
   }
 }

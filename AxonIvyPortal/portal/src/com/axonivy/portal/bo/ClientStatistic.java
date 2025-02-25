@@ -23,12 +23,14 @@ import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 public class ClientStatistic extends AbstractConfiguration implements Serializable{
   
   private static final long serialVersionUID = -8416553636564399910L;
+  public static final String DEFAULT_ICON = "si-pie-line-graph";
+  
   private String aggregates;
   private String filter;
   private List<String> permissions;
   private ChartTarget chartTarget;
   private ChartType chartType;
-  private Long refreshInterval; // in seconds
+  private Integer refreshInterval; // in seconds
   @JsonInclude(value = Include.NON_NULL)
   private BarChartConfig barChartConfig;
   @JsonInclude(value = Include.NON_NULL)
@@ -52,6 +54,11 @@ public class ClientStatistic extends AbstractConfiguration implements Serializab
   @JsonIgnore
   private List<SecurityMemberDTO> permissionDTOs;
   
+  public ClientStatistic() {
+    refreshInterval = 300;
+    icon = DEFAULT_ICON;
+  }
+
   public String getIcon() {
     return icon;
   }
@@ -75,12 +82,12 @@ public class ClientStatistic extends AbstractConfiguration implements Serializab
   public void setChartType(ChartType chartType) {
     this.chartType = chartType;
   }
-
-  public Long getRefreshInterval() {
+  
+  public Integer getRefreshInterval() {
     return refreshInterval;
   }
 
-  public void setRefreshInterval(Long refreshInterval) {
+  public void setRefreshInterval(Integer refreshInterval) {
     this.refreshInterval = refreshInterval;
   }
 
