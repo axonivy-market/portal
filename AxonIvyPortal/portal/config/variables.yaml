@@ -122,6 +122,10 @@ Variables:
       # This setting affects all case queries, e.g. for case widget, global search, statistic.
       HideCaseCreator: false
 
+      # For switch behaviours (access the case details or business details) when clicking on a case in case widget of dashboard, global search, related cases and process widget in combined mode.
+      # [enum: ACCESS_CASE_DETAILS, ACCESS_BUSINESS_DETAILS]
+      BehaviourWhenClickingOnLineInCaseList: ACCESS_CASE_DETAILS
+
     # You can configure the look and feel for case details according to your needs via this json file.
     # This setting will be taken over for all other case details.
     # [file: json]

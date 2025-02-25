@@ -31,7 +31,7 @@
         sortBy="#{widget.sortByName}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''}">
-        <p:ajax event="rowSelect" listener="#{dashboardCaseWidgetBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode or isPreviewMode}" />
+        <p:ajax event="rowSelect" listener="#{dashboardCaseWidgetBean.handleRowSelectEventOnCaseWidget}" disabled="#{!isReadOnlyMode or isPreviewMode}" />
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortable="true" sortBy="#{name}" field="name" filterable="false"
           styleClass="relevant-cases__name">
