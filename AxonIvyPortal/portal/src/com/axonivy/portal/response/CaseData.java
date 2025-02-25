@@ -2,8 +2,6 @@ package com.axonivy.portal.response;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
-
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -39,11 +37,11 @@ public class CaseData {
   public CaseData() {
   }
 
-  public CaseData(ICase caze) {
+  public CaseData(ICase caze, String link) {
     this.uuid = caze.uuid();
     this.name = StringUtils.defaultIfBlank(caze.getName(),
         Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable"));
-    this.link = PortalNavigatorAPI.buildUrlToPortalCaseDetailsPageByUUID(caze.uuid());
+    this.link = link;
   }
 
 }

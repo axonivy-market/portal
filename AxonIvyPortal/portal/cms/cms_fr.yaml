@@ -64,6 +64,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       EMAIL: Courriel electronique
       INFORMATION: nformation
       OTHERS: Autres
+    BehaviourWhenClickingOnLineInCaseList:
+      ACCESS_BUSINESS_DETAILS: Accéder aux détails de l’entreprise
+      ACCESS_CASE_DETAILS: Accéder aux détails du dossier
     BehaviourWhenClickingOnLineInTaskList:
       ACCESS_TASK_DETAILS: Accéder aux détails de la tâche
       RUN_TASK: Exécuter la tâche
@@ -210,6 +213,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       RoleParentLimit: 'Le nombre défini contrôle la quantité de rôles parents qui est affichée lors du filtrage des rôles dans l''onglet Gestion des rôles. Nombre valide : 5, 10, 20'
       ShowLoginPageFooter: Pour activer/désactiver l'affichage du pied de page sur la page de connexion.
       ShowQRCode: Pour activer/désactiver l'affichage du code QR.
+      behaviourWhenClickingOnLineInCaseList: Pour alterner entre les comportements (accéder aux détails du dossier ou aux détails de l’entreprise) lors du clic sur un dossier dans le widget de dossier du dashboard, la recherche globale, les dossiers associés et le widget de processus en mode combiné.
       behaviourWhenClickingOnLineInTaskList: Pour changer de comportement (exécuter la tâche ou accéder aux détails de la tâche) en cliquant sur une ligne dans la liste des tâches, le widget des tâches du tableau de bord et les tâches liées dans la page des détails du cas.
       chatMaxConnection: Si le nombre de tabs du browser est supérieur à ce nombre maximum, le chat sera désactivé sur les tabs inactifs du browser. Les valeurs valides sont 1, 2, 3, 4, 5.
       chatResponseTimeout: Délai de réponse au chat en secondes, la valeur par défaut est 0 et signifie aucun délai. Si les messages de chat passent par le proxy inverse Nginx, le délai de réponse du chat doit être inférieur au délai de Nginx, par exemple moins de 60 secondes.
