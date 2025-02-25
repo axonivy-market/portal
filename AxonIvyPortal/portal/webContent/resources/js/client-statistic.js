@@ -637,7 +637,7 @@ class ClientNumberChart extends ClientChart {
     let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.hideLabel === true ? '' : this.formatChartLabel(label) ;
     let html =
-      '<div class="u-text-align-center chart-content-card">' +
+      '<div class="text-center chart-content-card">' +
       '    <div class="chart-number-container">' +
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
