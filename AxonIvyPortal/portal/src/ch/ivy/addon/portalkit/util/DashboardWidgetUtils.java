@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -58,7 +57,6 @@ import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -355,7 +353,7 @@ public class DashboardWidgetUtils {
     return Optional.of(numberOfFilters <= MAX_NOTI_FILTERS ? String.valueOf(numberOfFilters)
         : String.format(MAX_NOTI_PATTERN, MAX_NOTI_FILTERS));
   }
-  
+
   private static long countProcessFilters(DashboardWidget widget) {
     List<ColumnModel> filterableColumns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
     int numberOfFilters = 0;
@@ -763,53 +761,18 @@ public class DashboardWidgetUtils {
     if (processes == null || processes.isEmpty()) {
       return Collections.emptyList();
     }
-
-    // Fetch usage counts for each processElementId
     Map<String, Long> usageCounts = fetchProcessUsageCounts();
-    Ivy.log().error("Usage counts: " + usageCounts);
-
-    // Log the list before sorting
-    Ivy.log().error("Before sorting: " + processes.stream().findFirst().get().getName());
-
-    for (DashboardProcess process : processes) {
-      String processId = process.getId();
-      Ivy.log().info("Checking process: " + process.getName() + " | ProcessElementId: " + processId);
-    }
-
-    // Sort processes based on usage count (descending order)
-    processes.sort((p1, p2) -> {
-      long count1 = usageCounts.getOrDefault(p1.getId(), 0L);
-      long count2 = usageCounts.getOrDefault(p2.getId(), 0L);
-      return Long.compare(count2, count1); // Descending order
-    });
-
-    // Log the list after sorting
-    Ivy.log().error("After sorting: " + processes.stream().findFirst().get().getName());
+    processes.sort(
+        Comparator.comparingLong((DashboardProcess p) -> usageCounts.getOrDefault(p.getStartLink(), 0L)).reversed());
 
     return processes;
   }
 
-  // Step 4: Fetch process start usage counts from CaseQuery
   private static Map<String, Long> fetchProcessUsageCounts() {
-    Map<String, Long> usageCounts = new HashMap<>();
+    List<ICase> cases = Ivy.wf().getCaseQueryExecutor().getResults(CaseQuery.create());
 
-    CaseQuery query = CaseQuery.create();
-    List<ICase> cases = Ivy.wf().getCaseQueryExecutor().getResults(query);
-    Ivy.log().info("Total cases fetched: " + cases.size());
-
-    // Step 5: Count occurrences of each process start ID
-    for (ICase caze : cases) {
-      IProcessStart processStart = caze.getProcessStart();
-      if (processStart != null) {
-        String processElementId = processStart.getProcessElementId();
-        usageCounts.put(processElementId, usageCounts.getOrDefault(processElementId, 0L) + 1);
-      }
-    }
-
-    // Log the final counts
-    Ivy.log().error("Final process usage counts: " + usageCounts);
-
-    return usageCounts;
+    return cases.stream().map(ICase::getProcessStart).filter(Objects::nonNull).map(ps -> ps.getLink().getRelative())
+        .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
   }
 
 }
