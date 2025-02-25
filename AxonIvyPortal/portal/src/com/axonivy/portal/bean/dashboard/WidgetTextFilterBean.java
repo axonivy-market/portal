@@ -55,7 +55,7 @@ public class WidgetTextFilterBean implements Serializable {
     if (filter.getFilterField() instanceof CaseFilterFieldCustomString) {
       return PortalCustomFieldUtils.isSupportMultiLanguageCaseField(filter.getField());
     }
-    return PortalCustomFieldUtils.isSupportMultiLanguageTaskField(filter.getField(), filter.getFilterType());
+    return PortalCustomFieldUtils.isSupportMultiLanguageTaskField(filter.getField());
   }
 
 }

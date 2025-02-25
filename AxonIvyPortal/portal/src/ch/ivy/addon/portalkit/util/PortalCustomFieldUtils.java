@@ -9,21 +9,19 @@ import java.util.Set;
 import com.google.common.collect.Iterables;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldValues.ValueLabel;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 
 public class PortalCustomFieldUtils {
+
   public static boolean isSupportMultiLanguageCaseField(String columnField) {
-    Set<ICustomFieldMeta> customFieldMetaList = ICustomFieldMeta.cases();
-    return isContainValuesInCms(columnField, customFieldMetaList);
+    return isContainValuesInCms(columnField, ICustomFieldMeta.cases());
   }
   
-  public static boolean isSupportMultiLanguageTaskField(String columnField, DashboardColumnType type) {
-    if (type == DashboardColumnType.CUSTOM_CASE) {
-      return isContainValuesInCms(columnField, ICustomFieldMeta.cases());
-    }
+  public static boolean isSupportMultiLanguageTaskField(String columnField) {
     return isContainValuesInCms(columnField, ICustomFieldMeta.tasks());
   }
 

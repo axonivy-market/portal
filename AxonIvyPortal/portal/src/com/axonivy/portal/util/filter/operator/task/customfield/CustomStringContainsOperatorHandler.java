@@ -37,7 +37,7 @@ public class CustomStringContainsOperatorHandler {
           .isLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
       query.where().or(subQuery);
     });
-    if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(filter.getField(), DashboardColumnType.CUSTOM)) {
+    if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(filter.getField())) {
       TaskQuery addingQuery = buildQueryForCustomFieldWithCmsValue(filter);
       query.where().or(addingQuery);
     }

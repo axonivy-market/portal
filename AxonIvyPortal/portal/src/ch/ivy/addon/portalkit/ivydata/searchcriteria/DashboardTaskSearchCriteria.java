@@ -132,13 +132,13 @@ public class DashboardTaskSearchCriteria {
     case CUSTOM_BUSINESS_CASE -> appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM_BUSINESS_CASE));
     case CUSTOM_CASE -> {
       appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM_CASE));
-      if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(column.getField(), DashboardColumnType.CUSTOM_CASE)) {
+      if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(column.getField())) {
         appendQuickSearchCaseQueryByDashboardFilter(subQuery, buildFilterForCustomFieldWithCmsValue(column.getField(), DashboardColumnType.CUSTOM_CASE));
       }
     }
     case CUSTOM -> {
       appendQuickSearchTaskQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM));
-      if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(column.getField(), DashboardColumnType.CUSTOM)) {
+      if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(column.getField())) {
         appendQuickSearchTaskQueryByDashboardFilter(subQuery, buildFilterForCustomFieldWithCmsValue(column.getField(), DashboardColumnType.CUSTOM));
       }
     }
@@ -301,7 +301,7 @@ public class DashboardTaskSearchCriteria {
           order = customField.timestampField(sortField);
           break;
         default:
-          if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(sortField, DashboardColumnType.CUSTOM)) {
+          if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(sortField)) {
             order = customField.stringField(sortField).values(PortalCustomFieldUtils.getAllLocalizedValueOnTaskField(sortField));
           } else {
             order = customField.stringField(sortField);
