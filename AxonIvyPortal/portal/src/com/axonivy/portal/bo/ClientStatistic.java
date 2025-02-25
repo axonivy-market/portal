@@ -1,5 +1,6 @@
 package com.axonivy.portal.bo;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -19,7 +20,9 @@ import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class ClientStatistic extends AbstractConfiguration {
+public class ClientStatistic extends AbstractConfiguration implements Serializable{
+  
+  private static final long serialVersionUID = -8416553636564399910L;
   private String aggregates;
   private String filter;
   private List<String> permissions;
