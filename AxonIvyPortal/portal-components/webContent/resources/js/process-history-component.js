@@ -256,7 +256,10 @@ var MainMenu = {
             }
           });
       $activeMenuItem.parent().addClass('active-menuitem');
-      PF('main-menu').addMenuitem($activeMenuItem.parent().attr('id'));
+      var pfMainMenu = PF('main-menu');
+      if (pfMainMenu) {
+        pfMainMenu.addMenuitem($activeMenuItem.parent().attr('id'));
+      }
     }
     else {
       MainMenu.removeActivatedSubMenu(true);
@@ -285,8 +288,9 @@ var MainMenu = {
     for (var i = 0; i < subMenuActive.length; i++) {
       var item = subMenuActive.get(i);
       $(item).removeClass('active-menuitem');
-      if (!keepInCookie) {
-        PF('main-menu').removeMenuitem(item.id);
+      var pfMainMenu = PF('main-menu');
+      if (!keepInCookie && pfMainMenu) {
+        pfMainMenu.removeMenuitem(item.id);
       }
       lastSubMeuItem = item.id;
     }
