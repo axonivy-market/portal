@@ -334,7 +334,7 @@ class ClientCanvasChart extends ClientChart {
 
     // Render empty chart when result empty 
     if (result.length == 0) {
-      return this.renderEmptyChart(chart, config.additionalConfig);
+      return this.renderEmptyChart(chart, config.additionalConfigs);
     }
 
     // If there is no chart from the beginning, init chart config
@@ -363,7 +363,7 @@ class ClientPieChart extends ClientCanvasChart {
     let chart = this.chart;
 
     if (result.length == 0) {
-      return this.renderEmptyChart(chart, config.additionalConfig);
+      return this.renderEmptyChart(chart, config.additionalConfigs);
     } else {
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
       $(chart).html(html);
@@ -376,7 +376,7 @@ class ClientPieChart extends ClientCanvasChart {
           datasets: [{
             label: config.name,
             data: result.map(bucket => bucket.count),
-            backgroundColor: config.backgroundColor ? config.backgroundColor : chartColors
+            backgroundColor: config.backgroundColors ? config.backgroundColors : chartColors
           }],
           hoverOffset: 4
         },
@@ -411,7 +411,7 @@ class ClientCartesianChart extends ClientCanvasChart {
     let chart = this.chart;
 
     if (result.length == 0) {
-      return this.renderEmptyChart(chart, config.additionalConfig);
+      return this.renderEmptyChart(chart, config.additionalConfigs);
     } else {
       //If the target type for the Y axis is 'time', get average time from sub aggregate of the result.
       const chartTypeConfig = this.getChartTypeConfig();
@@ -419,7 +419,7 @@ class ClientCartesianChart extends ClientCanvasChart {
 
       // Because processYValue removes bucket which has empty key, if the returned result is empty, render empty chart
       if (data.length == 0) {
-        return this.renderEmptyChart(chart, config.additionalConfig);
+        return this.renderEmptyChart(chart, config.additionalConfigs);
       }
 
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : 2;
@@ -434,8 +434,8 @@ class ClientCartesianChart extends ClientCanvasChart {
           datasets: [{
             label: config.name,
             data: data.map(bucket => bucket.count),
-            backgroundColor: config.backgroundColor ? config.backgroundColor : chartColors,
-            pointBorderColor: config.backgroundColor ? config.backgroundColor : chartColors,
+            backgroundColor: config.backgroundColors ? config.backgroundColors : chartColors,
+            pointBorderColor: config.backgroundColors ? config.backgroundColors : chartColors,
             pointRadius: 4,
             borderColor: getCssVariable("--ivy-primary-color-grey-medium"),
             borderWidth: 1
@@ -497,7 +497,7 @@ class ClientCartesianChart extends ClientCanvasChart {
               if (item['name'] === AVERAGE_BUSINESS_RUNTIME) {
                 values.push({
                   key: bucket.key,
-                  count: convertYValue(item.value, this.data.chartConfig.additionalConfig)
+                  count: convertYValue(item.value, this.data.chartConfig.additionalConfigs)
                 });
               }
             });
@@ -524,7 +524,7 @@ class ClientBarChart extends ClientCartesianChart {
 
     // Render empty chart when result empty 
     if (result.length == 0) {
-      return this.renderEmptyChart(chart, config.additionalConfig);
+      return this.renderEmptyChart(chart, config.additionalConfigs);
     } 
     else if (result.length > 0) {
       // Update y value in case y value is time
@@ -533,7 +533,7 @@ class ClientBarChart extends ClientCartesianChart {
 
         // Because processYValue removes bucket which has empty key, if the returned result is empty, render empty chart
         if (result.length == 0) {
-          return this.renderEmptyChart(chart, config.additionalConfig);
+          return this.renderEmptyChart(chart, config.additionalConfigs);
         }
       }
       let data = result;
@@ -541,7 +541,7 @@ class ClientBarChart extends ClientCartesianChart {
       this.clientChartConfig.data.datasets = [{
         label: config.name,
         data: data.map(bucket => bucket.count),
-        backgroundColor: config.backgroundColor ? config.backgroundColor : chartColors
+        backgroundColor: config.backgroundColors ? config.backgroundColors : chartColors
       }]
     }
 
