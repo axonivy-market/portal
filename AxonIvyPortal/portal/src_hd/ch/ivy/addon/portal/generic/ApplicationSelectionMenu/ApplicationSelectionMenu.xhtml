@@ -44,10 +44,10 @@
 
         <!-- Remote-command will be called when click on leave task -->
         <p:remoteCommand id="leave-task-rc" name="leaveTask" actionListener="#{logic.leave(task)}" immediate="true"
-          process="@this" partialSubmit="true" />
+          process="@this" partialSubmit="true" oncomplete="resetPortalLeftMenuState();" />
         <!-- Remote-command will be called when click on reserve task -->
         <p:remoteCommand id="reserve-task-rc" name="reserveTask" actionListener="#{logic.reserveTask(task)}"
-          immediate="true" process="@this" partialSubmit="true" />
+          immediate="true" process="@this" partialSubmit="true" oncomplete="resetPortalLeftMenuState();" />
         <!-- Remote-command will be called when click on submenu item -->
         <p:remoteCommand id="store-selected-menuitems-rc" name="storeSelectedMenuItems"
           actionListener="#{menuView.storeSelectedMenuItems()}" immediate="true" process="@this" partialSubmit="true"
