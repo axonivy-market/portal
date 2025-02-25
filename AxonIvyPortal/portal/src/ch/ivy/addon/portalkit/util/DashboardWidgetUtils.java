@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -57,6 +58,7 @@ import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -769,10 +771,29 @@ public class DashboardWidgetUtils {
   }
 
   private static Map<String, Long> fetchProcessUsageCounts() {
-    List<ICase> cases = Ivy.wf().getCaseQueryExecutor().getResults(CaseQuery.create());
+    Map<String, Long> usageCounts = new HashMap<>();
+    int batchSize = 500;
+    int offset = 0;
+    List<ICase> batchResult;
+    String currentUser = Ivy.session().getSessionUser().getName();
 
-    return cases.stream().map(ICase::getProcessStart).filter(Objects::nonNull).map(ps -> ps.getLink().getRelative())
-        .collect(Collectors.groupingBy(s -> s, Collectors.counting()));
+    do {
+      CaseQuery query = CaseQuery.create().where().creatorUserName().isEqual(currentUser); // Filter cases by current user
+
+      batchResult = Ivy.wf().getCaseQueryExecutor().getResults(query, offset, batchSize);
+      offset += batchSize;
+
+      for (ICase caze : batchResult) {
+        IProcessStart processStart = caze.getProcessStart();
+        if (processStart != null) {
+          String processStartLink = processStart.getLink().getRelative();
+          usageCounts.put(processStartLink, usageCounts.getOrDefault(processStartLink, 0L) + 1);
+        }
+        }
+      } while (!batchResult.isEmpty());
+
+    return usageCounts;
   }
+
 
 }
