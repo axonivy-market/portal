@@ -24,6 +24,7 @@ public abstract class ColumnChartConfig {
   private String yTitle;
   @JsonInclude(value = Include.NON_NULL)
   private String yValue;
+  private List<String> backgroundColors;
 
   public List<DisplayName> getxTitles() {
     return xTitles;
@@ -66,4 +67,13 @@ public abstract class ColumnChartConfig {
   public String getyValue() {
     return yValue;
   }
+
+  public List<String> getBackgroundColors() {
+    return backgroundColors;
+  }
+
+  public void setBackgroundColors(List<String> backgroundColors) {
+    this.backgroundColors = backgroundColors;
+  }
+
 }

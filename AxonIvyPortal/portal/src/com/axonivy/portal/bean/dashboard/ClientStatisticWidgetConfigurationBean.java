@@ -3,6 +3,7 @@ package com.axonivy.portal.bean.dashboard;
 import static com.axonivy.portal.enums.statistic.ChartType.BAR;
 import static com.axonivy.portal.enums.statistic.ChartType.LINE;
 import static com.axonivy.portal.enums.statistic.ChartType.NUMBER;
+import static com.axonivy.portal.enums.statistic.ChartType.PIE;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ import com.axonivy.portal.bo.ClientStatistic;
 import com.axonivy.portal.bo.ColumnChartConfig;
 import com.axonivy.portal.bo.LineChartConfig;
 import com.axonivy.portal.bo.NumberChartConfig;
+import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.RoleUtils;
@@ -67,6 +69,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   private List<DisplayName> yTitles;
   private String yTitle;
   private List<String> selectedPermissions;
+  private List<String> backgroundColors;
 
   @PostConstruct
   public void init() {
@@ -80,37 +83,56 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
       selectedPermissions = new ArrayList<>();
       clientStatistic.setNames(new ArrayList<>());
       clientStatistic.setDescriptions(new ArrayList<>());
-      xTitles = new ArrayList<>();
-      yTitles = new ArrayList<>();
       clientStatistic.setRefreshInterval(0);
       clientStatistic.setChartTarget(ChartTarget.TASK);
       clientStatistic.setChartType(ChartType.BAR);
-
-      // TODO z1 init category, value
-      // add action when select chart type
       clientStatistic.setNumberChartConfig(new NumberChartConfig());
       clientStatistic.setBarChartConfig(new BarChartConfig());
       clientStatistic.setLineChartConfig(new LineChartConfig());
-    } else {
-
-    }
-    if (clientStatistic.getPermissionDTOs() == null) {
+      clientStatistic.setPieChartConfig(new PieChartConfig() {});
       clientStatistic.setPermissionDTOs(Arrays.asList(SecurityMemberDTOMapper.mapFromRoleDTO(
           new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));
+      xTitles = new ArrayList<>();
+      yTitles = new ArrayList<>();
+      backgroundColors = new ArrayList<>();
+      // TODO z1 init category, value. Add action when select chart type
+    } else { // existed statistic
+      if (clientStatistic.getNumberChartConfig() == null) {
+        clientStatistic.setNumberChartConfig(new NumberChartConfig());
+      }
+      if (clientStatistic.getBarChartConfig() == null) {
+        clientStatistic.setBarChartConfig(new BarChartConfig());
+      }
+      if (clientStatistic.getLineChartConfig() == null) {
+        clientStatistic.setLineChartConfig(new LineChartConfig());
+      }
+      if (clientStatistic.getPieChartConfig() == null) {
+        clientStatistic.setPieChartConfig(new PieChartConfig() {});
+      }
+      if (BAR == clientStatistic.getChartType() || LINE == clientStatistic.getChartType()) {
+        ColumnChartConfig config = BAR == clientStatistic.getChartType() ? clientStatistic.getBarChartConfig()
+            : clientStatistic.getLineChartConfig();
+        xTitles = config.getxTitles() != null ? config.getxTitles() : new ArrayList<>();
+        yTitles = config.getyTitles() != null ? config.getyTitles() : new ArrayList<>();
+        backgroundColors = config.getBackgroundColors() != null ? config.getBackgroundColors() : new ArrayList<>();
+      } else if (PIE == clientStatistic.getChartType()) {
+        PieChartConfig config = clientStatistic.getPieChartConfig();
+        backgroundColors = config.getBackgroundColors() != null ? config.getBackgroundColors() : new ArrayList<>();
+      } else {
+        backgroundColors = new ArrayList<>();
+      }
+      if (clientStatistic.getPermissionDTOs() == null) {
+        clientStatistic.setPermissionDTOs(Arrays.asList(SecurityMemberDTOMapper.mapFromRoleDTO(
+            new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));
+      }
     }
-    if (clientStatistic.getBackgroundColors() == null) {
-      clientStatistic.setBackgroundColors(new ArrayList<String>());
-    }
-    if (BAR == clientStatistic.getChartType() || LINE == clientStatistic.getChartType()) {
-      ColumnChartConfig config = BAR == clientStatistic.getChartType() ? clientStatistic.getBarChartConfig()
-          : clientStatistic.getLineChartConfig();
-      xTitles = config.getxTitles();
-      yTitles = config.getyTitles();
-    }
-    while (clientStatistic.getBackgroundColors().size() < 8) {
-      clientStatistic.getBackgroundColors().add(null);
-    }
+    populateBackgroundColorsIfMissing();
+  }
 
+  private void populateBackgroundColorsIfMissing() {
+    while (backgroundColors.size() < 8) {
+      backgroundColors.add(null);
+    }
   }
 
   public ClientStatistic getClientStatistic() {
@@ -153,15 +175,21 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
       permissions = responsibles.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
       clientStatistic.setPermissions(permissions);
     }
-    if (ChartType.BAR == clientStatistic.getChartType()) {
+    backgroundColors.removeIf(Objects::isNull);
+    if (BAR == clientStatistic.getChartType()) {
       clientStatistic.setBarChartConfig(new BarChartConfig());
       clientStatistic.getBarChartConfig().setxTitles(xTitles);
       clientStatistic.getBarChartConfig().setyTitles(yTitles);
-    } else if (ChartType.LINE == clientStatistic.getChartType()) {
+      clientStatistic.getBarChartConfig().setBackgroundColors(backgroundColors);
+    } else if (LINE == clientStatistic.getChartType()) {
       clientStatistic.setLineChartConfig(new LineChartConfig());
       clientStatistic.getLineChartConfig().setxTitles(xTitles);
       clientStatistic.getLineChartConfig().setyTitles(yTitles);
+      clientStatistic.getLineChartConfig().setBackgroundColors(backgroundColors);
+    } else if (PIE == clientStatistic.getChartType()) {
+      clientStatistic.getPieChartConfig().setBackgroundColors(backgroundColors);
     }
+    populateBackgroundColorsIfMissing();
   }
 
   private void resetRedundantChartConfigs(ChartType chartType, boolean isChartConfigAsNull) {
@@ -190,24 +218,8 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     if (oldStatistic == null) {
       clientStatistics.add(clientStatistic);
     }
-    for (ClientStatistic clientStatistic : clientStatistics) {
-      clientStatistic.getBackgroundColors().removeIf(Objects::isNull);
-    }
-    addIconTypeIfMissing(clientStatistics);
     String statisticsJson = BusinessEntityConverter.entityToJsonValue(clientStatistics);
     Ivy.var().set(PortalVariable.CUSTOM_CLIENT_STATISTIC.key, statisticsJson);
-  }
-
-  private void addIconTypeIfMissing(List<ClientStatistic> clientStatistics) { // TODO z1 consider to remove
-    for (ClientStatistic clientStatistic : clientStatistics) {
-      String icon = clientStatistic.getIcon();
-      if (StringUtils.length(icon) > 3) {
-        String iconType = icon.substring(0, 3);
-        if (iconType.equals("si-") || iconType.equals("fa-")) {
-          clientStatistic.setIcon(iconType + " " + icon.substring(0, 2));
-        }
-      }
-    }
   }
 
   public List<String> completeAggregates(String query) {
@@ -403,9 +415,13 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     return yTitles;
   }
 
-  public void setyTitles(List<DisplayName> yTitles) {
+  public void setyTitles(List<DisplayName> yTitles) { // TODO z1 should delete?
     this.yTitles = yTitles;
     yTitle = DisplayNameUtils.findDisplayNameOfUserLanguage(yTitles);
+  }
+
+  public List<String> getBackgroundColors() {
+    return backgroundColors;
   }
 
   protected List<String> getSupportedLanguages() {
@@ -427,10 +443,6 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   }
 
   public void onSelectChartType(ChartType chartType) {
-    switch (chartType) {
-      case NUMBER -> clientStatistic.setNumberChartConfig(new NumberChartConfig());
-      default -> {
-      }
-    }
+    // TODO z1 consider to remove
   }
 }

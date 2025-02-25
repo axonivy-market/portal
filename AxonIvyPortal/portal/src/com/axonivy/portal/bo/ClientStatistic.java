@@ -35,6 +35,7 @@ public class ClientStatistic extends AbstractConfiguration implements Serializab
   private BarChartConfig barChartConfig;
   @JsonInclude(value = Include.NON_NULL)
   private LineChartConfig lineChartConfig;
+  private PieChartConfig pieChartConfig;
   @JsonInclude(value = Include.NON_NULL)
   private NumberChartConfig numberChartConfig;
   private List<DisplayName> names;
@@ -48,9 +49,7 @@ public class ClientStatistic extends AbstractConfiguration implements Serializab
   private String icon;
   @JsonInclude(value = Include.NON_NULL)
   private String manipulateValueBy;
-  @JsonInclude(value = Include.NON_NULL)
-  private List<String> backgroundColors;
-  
+
   @JsonIgnore
   private List<SecurityMemberDTO> permissionDTOs;
   
@@ -107,7 +106,15 @@ public class ClientStatistic extends AbstractConfiguration implements Serializab
     this.lineChartConfig = lineChartConfig;
   }
 
-public String getFilter() {
+  public PieChartConfig getPieChartConfig() {
+    return pieChartConfig;
+  }
+
+  public void setPieChartConfig(PieChartConfig pieChartConfig) {
+    this.pieChartConfig = pieChartConfig;
+  }
+
+  public String getFilter() {
     return filter;
   }
 
@@ -197,14 +204,6 @@ public String getFilter() {
 
   public void setManipulateValueBy(String manipulateValueBy) {
     this.manipulateValueBy = manipulateValueBy;
-  }
-
-  public List<String> getBackgroundColors() {
-    return backgroundColors;
-  }
-
-  public void setBackgroundColors(List<String> backgroundColors) {
-    this.backgroundColors = backgroundColors;
   }
 
   public List<SecurityMemberDTO> getPermissionDTOs() {
