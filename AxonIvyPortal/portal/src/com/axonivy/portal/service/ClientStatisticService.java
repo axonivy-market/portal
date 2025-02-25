@@ -117,6 +117,9 @@ public class ClientStatisticService {
         .orElse(null);
   }
 
+  public ClientStatistic findByIdCustomClientStatistic(String id) {
+    return getCustomStatistic().stream().filter(e -> e.getId().equals(id)).findFirst().orElse(null);
+  }
   private List<ClientStatistic> getDefaultClientStatistic() {
     String value = Ivy.var().get(DEFAULT_CLIENT_STATISTIC_KEY);
     List<ClientStatistic> clientStatistics = BusinessEntityConverter.jsonValueToEntities(value, ClientStatistic.class);

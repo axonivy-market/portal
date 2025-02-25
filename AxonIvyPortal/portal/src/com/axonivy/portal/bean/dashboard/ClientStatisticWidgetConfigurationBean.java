@@ -27,6 +27,7 @@ import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.bo.BarChartConfig;
 import com.axonivy.portal.bo.ClientStatistic;
+import com.axonivy.portal.bo.ColumnChartConfig;
 import com.axonivy.portal.bo.LineChartConfig;
 import com.axonivy.portal.bo.NumberChartConfig;
 import com.axonivy.portal.components.dto.RoleDTO;
@@ -42,6 +43,7 @@ import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
@@ -59,33 +61,56 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
   private ClientStatistic clientStatistic;
+  private String statisticWidgetId;
   private List<DisplayName> xTitles;
   private String xTitle;
   private List<DisplayName> yTitles;
   private String yTitle;
   private List<String> selectedPermissions;
-  private String backgroundColors;
 
   @PostConstruct
   public void init() {
-    clientStatistic = new ClientStatistic();
-    clientStatistic.setAggregates("priority");
-    selectedPermissions = new ArrayList<>();
-    clientStatistic.setNames(new ArrayList<>());
-    clientStatistic.setDescriptions(new ArrayList<>());
-    xTitles = new ArrayList<>();
-    yTitles = new ArrayList<>();
-    clientStatistic.setRefreshInterval(0L);
-    clientStatistic.setChartTarget(ChartTarget.TASK);
-    clientStatistic.setChartType(ChartType.BAR);
-    clientStatistic.setBackgroundColors(new ArrayList<>(Arrays.asList(null, null, null, null, null, null, null, null)));
-    clientStatistic.setPermissionDTOs(Arrays.asList(SecurityMemberDTOMapper.mapFromRoleDTO(
-        new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));;
-    // TODO z1 init category, value
-    // add action when select chart type
-    clientStatistic.setNumberChartConfig(new NumberChartConfig());
-    clientStatistic.setBarChartConfig(new BarChartConfig());
-    clientStatistic.setLineChartConfig(new LineChartConfig());
+    statisticWidgetId = Attrs.currentContext().getAttribute("#{data.id}", String.class);
+    if (StringUtils.isNotEmpty(statisticWidgetId)) {
+      clientStatistic = ClientStatisticService.getInstance().findByIdCustomClientStatistic(statisticWidgetId);
+    }
+    if (clientStatistic == null) {
+      clientStatistic = new ClientStatistic();
+      clientStatistic.setAggregates("priority");
+      selectedPermissions = new ArrayList<>();
+      clientStatistic.setNames(new ArrayList<>());
+      clientStatistic.setDescriptions(new ArrayList<>());
+      xTitles = new ArrayList<>();
+      yTitles = new ArrayList<>();
+      clientStatistic.setRefreshInterval(0L);
+      clientStatistic.setChartTarget(ChartTarget.TASK);
+      clientStatistic.setChartType(ChartType.BAR);
+
+      // TODO z1 init category, value
+      // add action when select chart type
+      clientStatistic.setNumberChartConfig(new NumberChartConfig());
+      clientStatistic.setBarChartConfig(new BarChartConfig());
+      clientStatistic.setLineChartConfig(new LineChartConfig());
+    } else {
+
+    }
+    if (clientStatistic.getPermissionDTOs() == null) {
+      clientStatistic.setPermissionDTOs(Arrays.asList(SecurityMemberDTOMapper.mapFromRoleDTO(
+          new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));
+    }
+    if (clientStatistic.getBackgroundColors() == null) {
+      clientStatistic.setBackgroundColors(new ArrayList<String>());
+    }
+    if (BAR == clientStatistic.getChartType() || LINE == clientStatistic.getChartType()) {
+      ColumnChartConfig config = BAR == clientStatistic.getChartType() ? clientStatistic.getBarChartConfig()
+          : clientStatistic.getLineChartConfig();
+      xTitles = config.getxTitles();
+      yTitles = config.getyTitles();
+    }
+    while (clientStatistic.getBackgroundColors().size() < 8) {
+      clientStatistic.getBackgroundColors().add(null);
+    }
+
   }
 
   public ClientStatistic getClientStatistic() {
@@ -94,6 +119,14 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
 
   public void setClientStatistic(ClientStatistic clientStatistic) {
     this.clientStatistic = clientStatistic;
+  }
+
+  public String getStatisticWidgetId() {
+    return statisticWidgetId;
+  }
+
+  public void setStatisticWidgetId(String statisticWidgetId) {
+    this.statisticWidgetId = statisticWidgetId;
   }
 
   public void save() {
@@ -145,7 +178,18 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
 
   private void saveStatisticJson() {
     List<ClientStatistic> clientStatistics = ClientStatisticService.getInstance().getCustomStatistic();
-    clientStatistics.add(clientStatistic);
+
+    // ClientStatistic existedStatistic =
+    // ClientStatisticService.getInstance().findByIdCustomClientStatistic(clientStatistic.getId());
+    ClientStatistic oldStatistic = null;
+    for (int i = 0; i < clientStatistics.size(); i++) {
+      if (clientStatistic.getId().equals(clientStatistics.get(i).getId())) {
+        oldStatistic = clientStatistics.set(i, clientStatistic);
+      }
+    }
+    if (oldStatistic == null) {
+      clientStatistics.add(clientStatistic);
+    }
     for (ClientStatistic clientStatistic : clientStatistics) {
       clientStatistic.getBackgroundColors().removeIf(Objects::isNull);
     }
@@ -208,14 +252,6 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   public void onUnSelectPermissionForDashboard(UnselectEvent<Object> event) {
     SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
     this.selectedPermissions.remove(selectedItem.getName());
-  }
-
-  public String getBackgroundColors() {
-    return backgroundColors;
-  }
-
-  public void setBackgroundColor(String backgroundColors) {
-    this.backgroundColors = backgroundColors;
   }
 
   public void getPreviewData() {
