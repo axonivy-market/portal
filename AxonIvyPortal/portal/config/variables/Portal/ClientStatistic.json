@@ -3,7 +3,7 @@
     "id": "1",
     "aggregates": "priority",
     "filter": "businessState:OPEN IN_PROGRESS,canWorkOn",
-    "chartTarget": "TASK",
+    "chartTarget": "task",
     "permissions": [
       "Everybody"
     ],
@@ -51,7 +51,7 @@
     "id": "2",
     "aggregates": "priority",
     "filter": "expiryTimestamp:>=now <=now+3d/d,businessState:OPEN IN_PROGRESS,canWorkOn",
-    "chartTarget": "TASK",
+    "chartTarget": "task",
     "permissions": [
       "Everybody"
     ],
@@ -137,7 +137,7 @@
     "id": "3",
     "aggregates": "priority",
     "filter": "businessState:OPEN IN_PROGRESS,canWorkOn",
-    "chartTarget": "TASK",
+    "chartTarget": "task",
     "permissions": [
       "Everybody"
     ],
@@ -227,7 +227,7 @@
     "permissions": [
       "Everybody"
     ],
-    "chartTarget": "CASE",
+    "chartTarget": "case",
     "chartType": "bar",
     "names": [
       {
@@ -311,7 +311,7 @@
     "id": "5",
     "aggregates": "startTimestamp:bucket:day",
     "filter": "startTimestamp:>=now-5d/d <=now/d,isInvolved",
-    "chartTarget": "CASE",
+    "chartTarget": "case",
     "permissions": [
       "Everybody"
     ],
@@ -400,7 +400,7 @@
     "permissions": [
       "Everybody"
     ],
-    "chartTarget": "CASE",
+    "chartTarget": "case",
     "chartType": "line",
     "names": [
       {
@@ -486,7 +486,7 @@
     "permissions": [
       "Everybody"
     ],
-    "chartTarget": "CASE",
+    "chartTarget": "case",
     "chartType": "number",
     "names": [
       {
@@ -537,7 +537,7 @@
     "permissions": [
       "Everybody"
     ],
-    "chartTarget": "TASK",
+    "chartTarget": "task",
     "chartType": "number",
     "names": [
       {
@@ -588,7 +588,7 @@
     "permissions": [
       "Everybody"
     ],
-    "chartTarget": "TASK",
+    "chartTarget": "task",
     "chartType": "number",
     "names": [
       {
@@ -639,7 +639,7 @@
     "permissions": [
       "Everybody"
     ],
-    "chartTarget": "TASK",
+    "chartTarget": "task",
     "chartType": "number",
     "names": [
       {
@@ -691,7 +691,7 @@
     "permissions": [
       "Everybody"
     ],
-    "chartTarget": "TASK",
+    "chartTarget": "task",
     "chartType": "number",
     "names": [
       {

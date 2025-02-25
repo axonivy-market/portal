@@ -1,6 +1,5 @@
 package com.axonivy.portal.service;
 
-import java.security.InvalidParameterException;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +21,7 @@ import com.axonivy.portal.enums.AdditionalChartConfig;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
@@ -42,15 +42,14 @@ public class ClientStatisticService {
 
   public List<ClientStatistic> findAllCharts() {
     Set<String> seenIds = new HashSet<>();
-    List<ClientStatistic> customStatistics = getCustomStatistic();
-    customStatistics.stream().filter(statistic -> seenIds.add(statistic.getId())).collect(Collectors.toList());
-    getDefaultClientStatistic().addAll(getCustomStatistic());
-    return getDefaultClientStatistic();
+    List<ClientStatistic> statistics = getDefaultClientStatistic();
+    statistics = statistics.stream().filter(statistic -> seenIds.add(statistic.getId())).collect(Collectors.toList());
+    getCustomStatistic().stream().filter(obj -> seenIds.add(obj.getId())).forEach(statistics::add);
+    return statistics;
   }
 
   /**
-   * get client chart by payload then call Ivy API to get statistic data from
-   * ElasticSearch
+   * get client chart by payload then call Ivy API to get statistic data
    * 
    * @param payload
    * @return Ivy statistic data from ElasticSearch
@@ -59,7 +58,7 @@ public class ClientStatisticService {
    */
   public ClientStatisticResponse getStatisticData(ClientStatisticDto payload)
       throws NotFoundException, NoPermissionException {
-    ClientStatistic chart = findByIdClientStatistic(payload.getChartId());;
+    ClientStatistic chart = findByClientStatisticId(payload.getChartId());
     validateChart(payload.getChartId(), chart);
     AggregationResult result = getChartData(chart);
     chart.setAdditionalConfigs(new ArrayList<>());
@@ -68,15 +67,14 @@ public class ClientStatisticService {
     return new ClientStatisticResponse(result, chart);
   }
 
-  private void validateChart(String chartId, ClientStatistic chart)
-      throws NotFoundException, NoPermissionException {
+  private void validateChart(String chartId, ClientStatistic chart) {
     if (chart == null) {
-      throw new NotFoundException(Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/ClientStatisticWidget/IdNotFound",
+      throw new PortalException(Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/ClientStatisticWidget/IdNotFound",
           Arrays.asList(chartId)));
     }
 
-    if (!isPermissionValid(chart)) {
-      throw new NoPermissionException(
+    if (!hasPermission(chart)) {
+      throw new PortalException(
           Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/ClientStatisticWidget/NoPermissionChartMessage"));
     }
   }
@@ -88,7 +86,7 @@ public class ClientStatisticService {
         chart.getFilter());
     case TASK -> WorkflowStats.current().task().aggregate(chart.getAggregates(),
         chart.getFilter());
-    default -> throw new InvalidParameterException();
+    default -> throw new PortalException("Cannot parse chartTarget " + chart.getChartTarget());
     };
   }
 
@@ -97,7 +95,7 @@ public class ClientStatisticService {
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage")));
   }
 
-  private boolean isPermissionValid(ClientStatistic data) {
+  private boolean hasPermission(ClientStatistic data) {
     return Optional.ofNullable(data.getPermissions())
                    .orElse(List.of())
                    .stream()
@@ -110,7 +108,7 @@ public class ClientStatisticService {
                    .orElse(null);
   }
   
-  private ClientStatistic findByIdClientStatistic(String id) {
+  private ClientStatistic findByClientStatisticId(String id) {
     return findAllCharts().stream()
         .filter(e -> e.getId().equals(id))
         .findFirst()
