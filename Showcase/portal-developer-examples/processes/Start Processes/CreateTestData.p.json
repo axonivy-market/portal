@@ -1912,8 +1912,8 @@
       "config" : {
         "signature" : "createDataForCustomFieldWithCmsValue",
         "request" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/name\")%>",
-          "description" : "<%=ivy.cms.co(\"/Processes/TasksForTaskListCustomization/description\")%>"
+          "name" : "Create data for custom field with CMS",
+          "description" : "Create data for custom field with CMS"
         }
       },
       "visual" : {
