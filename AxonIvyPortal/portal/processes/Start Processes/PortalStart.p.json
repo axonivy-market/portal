@@ -4239,6 +4239,14 @@
       "name" : "ClientStatisticWidgetConfiguration.ivp",
       "config" : {
         "signature" : "ClientStatisticWidgetConfiguration",
+        "input" : {
+          "params" : [
+            { "name" : "id", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.id" : "param.id"
+          }
+        },
         "request" : {
           "name" : "Custom Statistics Widget"
         }
@@ -4253,7 +4261,12 @@
       "id" : "f53",
       "type" : "DialogCall",
       "config" : {
-        "dialog" : "com.axonivy.portal.page.ClientStatisticWidgetConfiguration:start()"
+        "dialog" : "com.axonivy.portal.page.ClientStatisticWidgetConfiguration:start(String)",
+        "call" : {
+          "map" : {
+            "param.id" : "in.id"
+          }
+        }
       },
       "visual" : {
         "at" : { "x" : 288, "y" : 4080 }
