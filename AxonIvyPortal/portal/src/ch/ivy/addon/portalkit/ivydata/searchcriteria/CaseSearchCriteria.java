@@ -192,10 +192,6 @@ public class CaseSearchCriteria {
     }
 
     private void appendSortByIdIfSet(CaseSearchCriteria criteria) {
-      if (criteria.getSortField() == null) {
-        query.orderBy().caseId().descending();
-        return;
-      }
       if (!CaseSortField.ID.toString().equalsIgnoreCase(criteria.getSortField())) {
         return;
       }
