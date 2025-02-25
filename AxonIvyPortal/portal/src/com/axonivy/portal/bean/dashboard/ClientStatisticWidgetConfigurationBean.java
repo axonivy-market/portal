@@ -82,7 +82,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
       clientStatistic.setDescriptions(new ArrayList<>());
       xTitles = new ArrayList<>();
       yTitles = new ArrayList<>();
-      clientStatistic.setRefreshInterval(0L);
+      clientStatistic.setRefreshInterval(0);
       clientStatistic.setChartTarget(ChartTarget.TASK);
       clientStatistic.setChartType(ChartType.BAR);
 
