@@ -505,6 +505,8 @@ $(document).ready(function () {
     'Digit6': useSettingMenuId
   };
 
+  $(searchInputId).attr('role', 'combobox');
+
   function findTargetElementByKey(key) {
     if (key === 'Digit5') {
       return $(shortcuts[key].find(h => $(h).length));
