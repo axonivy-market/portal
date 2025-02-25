@@ -2,7 +2,6 @@ package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
-import static com.codeborne.selenide.Condition.editable;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -837,28 +836,6 @@ public class NewDashboardPage extends TemplatePage {
         .exists();
   }
 
-  private SelenideElement getGlobalSearchInput() {
-    return $("#global-search-component\\:global-search-data").shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-
-  public GlobalSearchResultPage inputGlobalSearchKeyword(String keyword) {
-    $(".topbar-item.search-item").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    try {
-      $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable,
-          DEFAULT_TIMEOUT);
-    } catch (Error e) {
-      $(".topbar-item.search-item").shouldBe(appear, DEFAULT_TIMEOUT).click();
-      $("input[id$='global-search-component:global-search-data']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(editable,
-          DEFAULT_TIMEOUT);
-    }
-    getGlobalSearchInput().click();
-    getGlobalSearchInput().sendKeys(keyword);
-    getGlobalSearchInput().sendKeys(Keys.RETURN);
-    $("#search-results-tabview").shouldBe(appear, DEFAULT_TIMEOUT);
-    return new GlobalSearchResultPage();
-  }
-
-
   public void waitForCaseWidgetLoaded() {
     checkDisplayedCaseWidgetContainer();
     getCaseWidgetTable().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
@@ -911,10 +888,6 @@ public class NewDashboardPage extends TemplatePage {
 
   public SelenideElement getTopBar() {
     return $("[id='top-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-  }
-
-  public void clickOnGlobalSearch() {
-    $("a[id='global-search-item']").shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
   }
 
   public int getNotificationsBadge() {
@@ -1071,29 +1044,9 @@ public class NewDashboardPage extends TemplatePage {
   public ClientStatisticWidgetNewDashboardPage selectClientStatisticChartWidget(String chartName) {
     return new ClientStatisticWidgetNewDashboardPage(chartName);
   }
-  
-  public boolean isInputGlobalSearchDisabled() {
-    return $(".topbar-item.search-item").isDisplayed();
-  }
-  
-  public SelenideElement getQuickGlobalSearchInput() {
-    return $("input[id='quick-global-search-component:global-search-data']");
-  }
-  
-  public void clickOnQuickGlobalSearchInput() {
-    getQuickGlobalSearchInput().shouldBe(appear, DEFAULT_TIMEOUT).click();
-  }
-  
+
   public SelenideElement getGlobalQuickSearchPanel() {
-    return $("[id='quick-global-search-component:global-search-form']").shouldBe(appear, DEFAULT_TIMEOUT);
-  }
-  
-  public GlobalSearchResultPage inputQuickGlobalSearchKeyword(String keyword) {
-    SelenideElement searchInput = getQuickGlobalSearchInput();
-    searchInput.shouldBe(appear, DEFAULT_TIMEOUT).click();
-    searchInput.sendKeys(keyword);
-    searchInput.sendKeys(Keys.RETURN);
-    return new GlobalSearchResultPage();
+    return $("[id='global-search-component:global-search-form']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public SelenideElement getProcessWidgetTable() {
