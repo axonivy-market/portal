@@ -40,7 +40,7 @@
     </h:panelGroup>
 
     <h:panelGroup id="dashboard-cases-container" layout="block"
-      styleClass="ui-g-12 u-padding-0 js-dashboard-cases-container-#{caseWidget.id} u-display-none dashboard-cases-container">
+      styleClass="ui-g-12 u-padding-0 js-dashboard-cases-container-#{caseWidget.id} hidden dashboard-cases-container">
 
       <h:panelGroup id="columns-configuration" layout="block" rendered="#{cc.attrs.renderColumnConfiguration}"
         styleClass="dashboard-cases-container__columns-configuration">
@@ -55,7 +55,7 @@
         liveScroll="true" scrollable="true" sortBy="#{isResizing ? null : caseWidget.sortBy}"
         showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
-        styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and caseWidget.caseCount lt 1 ? 'u-display-none' : ''} #{isResizing ? 'js-resizing' : ''}"
+        styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and caseWidget.caseCount lt 1 ? 'hidden' : ''} #{isResizing ? 'js-resizing' : ''}"
         rowStyleClass="dashboard-table--row-style"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         disabledSelection="#{isPreviewMode}">
@@ -135,7 +135,7 @@
         </p:columns>
       </p:dataTable>
       <h:panelGroup layout="block" id="empty-message-container"
-        styleClass="empty-message-container #{!isPreviewMode and caseWidget.caseCount lt 1 and caseWidget.dataModel.countLoad lt 1 ? '' : 'u-display-none'}">
+        styleClass="empty-message-container #{!isPreviewMode and caseWidget.caseCount lt 1 and caseWidget.dataModel.countLoad lt 1 ? '' : 'hidden'}">
         <c:set var="noCasesWhenFilter"
           value="#{caseWidget.userDefinedFiltersCount.isPresent() or (not empty caseWidget.quickSearchKeyword)}" />
         <h:panelGroup layout="block" id="empty-message-when-filter"

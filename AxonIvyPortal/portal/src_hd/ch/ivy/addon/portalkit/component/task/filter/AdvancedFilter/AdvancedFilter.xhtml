@@ -71,12 +71,12 @@
           </h:panelGroup>
 
           <h:panelGroup id="advanced-filter-panel-content" layout="block"
-            styleClass="ui-overlaypanel-filter-content #{cc.attrs.contentStyleClass} #{cc.attrs.dynamicUpdate? 'u-hidden js-filter-content' : ''}">
+            styleClass="ui-overlaypanel-filter-content #{cc.attrs.contentStyleClass} #{cc.attrs.dynamicUpdate? 'hidden js-filter-content' : ''}">
             <p:messages for="advanced-filter-error-messages" showIcon="false"/>
             <cc:insertChildren />
           </h:panelGroup>
   
-          <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer #{cc.attrs.dynamicUpdate? 'u-hidden js-filter-content' : ''}"
+          <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer #{cc.attrs.dynamicUpdate? 'hidden js-filter-content' : ''}"
             rendered="#{cc.attrs.displayFooterButtons}">
             <p:commandLink id="cancel-command" process="@this" global="false"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="#{cc.clientId}:filter-open-form @form" resetValues="true"
@@ -99,14 +99,14 @@
           <script>
             function showFilterContent() {
               var panel = document.getElementById('#{cc.clientId}:filter-input-form:advanced-filter-panel');
-              $(panel).find('.js-loading-panel').addClass('u-hidden');
-              $(panel).find('.js-filter-content').removeClass('u-hidden');
+              $(panel).find('.js-loading-panel').addClass('hidden');
+              $(panel).find('.js-filter-content').removeClass('hidden');
             }
 
             function hideFilterContent() {
               var panel = document.getElementById('#{cc.clientId}:filter-input-form:advanced-filter-panel');
-              $(panel).find('.js-loading-panel').removeClass('u-hidden');
-              $(panel).find('.js-filter-content').addClass('u-hidden');
+              $(panel).find('.js-loading-panel').removeClass('hidden');
+              $(panel).find('.js-filter-content').addClass('hidden');
             }
           </script>
         </h:panelGroup>

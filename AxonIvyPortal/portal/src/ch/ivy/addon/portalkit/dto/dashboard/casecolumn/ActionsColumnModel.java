@@ -37,7 +37,7 @@ public class ActionsColumnModel extends CaseColumnModel implements Serializable 
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-cases__actions u-text-align-center";
+    return "dashboard-cases__actions text-center";
   }
 
   @Override
