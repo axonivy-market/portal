@@ -222,7 +222,7 @@ var MainMenu = {
       }
       this.removeActiveMenu(activeMenuItemList);
       $currentPageMenu.parent().addClass('active-menuitem');
-      const pfMainMenu = PF('main-menu');
+      var pfMainMenu = PF('main-menu');
       if (pfMainMenu) {
         pfMainMenu.addMenuitem($currentPageMenu.parent().attr('id'));
       }
@@ -335,7 +335,7 @@ function executeStoreMenuRemoteCommand(menuItem, isWorkingOnATask, isOpenOnNewTa
 }
 
 function fireEventClickOnMenuItem(menuItem, prevMenuItemId) {
-  const pfMainMenu = PF('main-menu');
+  var pfMainMenu = PF('main-menu');
   if (pfMainMenu) {
     pfMainMenu.addMenuitem(menuItem);
     if (prevMenuItemId !== menuItem) {
@@ -367,7 +367,7 @@ function highlightDashboardItem(menuId) {
 }
 
 function activeMenuItemOnLeftMenu(menuId) {
-  const pfMainMenu = PF('main-menu');
+  var pfMainMenu = PF('main-menu');
   if (pfMainMenu) {
     pfMainMenu.addMenuitem(menuId);
   }
@@ -378,7 +378,7 @@ function activeMenuItemOnLeftMenu(menuId) {
 }
 
 function deactivateMenuItemOnLeftMenu(menuId) {
-  const pfMainMenu = PF('main-menu');
+  var pfMainMenu = PF('main-menu');
   if (pfMainMenu) {
     pfMainMenu.removeMenuitem(menuId);
   }
