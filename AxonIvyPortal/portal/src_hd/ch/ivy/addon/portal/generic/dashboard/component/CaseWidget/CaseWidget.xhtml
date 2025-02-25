@@ -59,7 +59,7 @@
         rowStyleClass="dashboard-table--row-style"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         disabledSelection="#{isPreviewMode}">
-        <p:ajax event="rowSelect" listener="#{dashboardCaseWidgetBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode}" />
+        <p:ajax event="rowSelect" listener="#{dashboardCaseWidgetBean.handleRowSelectEventOnCaseWidget}" disabled="#{!isReadOnlyMode}" />
         <p:ajax event="colResize" process="dashboard-cases" global="false" partialSubmit="true"
           listener="#{dashboardDetailModificationBean.onResizeColumn}" disabled="#{!isResizing}" />
         <f:attribute name="widgetId" value="#{caseWidget.id}" />
