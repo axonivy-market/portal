@@ -45,7 +45,10 @@ public abstract class ColumnChartConfig {
   }
 
   public String getxTitle() {
-    return LanguageUtils.getLocalizedName(xTitles, xTitle);
+    if (xTitle == null) {
+      return LanguageUtils.getLocalizedName(xTitles, xTitle);
+    }
+    return xTitle;
   }
 
   public void setxTitle(String xTitle) {
@@ -55,7 +58,10 @@ public abstract class ColumnChartConfig {
   }
 
   public String getyTitle() {
-    return LanguageUtils.getLocalizedName(yTitles, yTitle);
+    if (yTitle == null) {
+      return LanguageUtils.getLocalizedName(yTitles, yTitle);
+    }
+    return yTitle;
   }
 
   public void setyTitle(String yTitle) {

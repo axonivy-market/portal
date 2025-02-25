@@ -74,8 +74,8 @@ function filterOptionsForDateTimeFormatter(pattern) {
 function formatDateFollowLocale(dt) {
   const options = filterOptionsForDateTimeFormatter(datePattern);
   // Format locale
-  locale = locale.replace('_', '-');
-  const formatter = new Intl.DateTimeFormat(locale, options);
+  let friendlyLocale = locale.replace('_', '-');
+  const formatter = new Intl.DateTimeFormat(friendlyLocale, options);
   return formatter.format(dt);
 }
 
@@ -184,7 +184,6 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
     // proceed chart data
     let chartData = generateChart(chart, data);
     const config = data.chartConfig;
-    locale = config?.locale ? config.locale : defaultLocale;
 
     // If chart data is fetched succesfully:
     // Render chart
@@ -219,8 +218,6 @@ function previewChart(data, defaultLocale, datePatternConfig) {
   datePattern = datePatternConfig;
 
   let chartData = generateChart(charts[0], data);
-  const config = data.chartConfig;
-  locale = config?.locale ? config.locale : defaultLocale;
 
   if (chartData) {
     chartData.render();
@@ -455,8 +452,8 @@ class ClientCartesianChart extends ClientCanvasChart {
             y: {
               beginAtZero: true,
               title: {
-                text: chartTypeConfig?.yTitle ? chartTypeConfig.yTitle : '',
-                display: chartTypeConfig?.yTitle ? true : false,
+                text: this.getFormatedTitle(chartTypeConfig.yTitles),
+                display: chartTypeConfig.yTitles.length > 0,
                 color: CHART_TEXT_COLOR
               },
               ticks: {
@@ -469,8 +466,8 @@ class ClientCartesianChart extends ClientCanvasChart {
             },
             x: {
               title: {
-                text: chartTypeConfig?.xTitle ? chartTypeConfig.xTitle : '',
-                display: chartTypeConfig?.xTitle ? true : false,
+                text: this.getFormatedTitle(chartTypeConfig.xTitles),
+                display: chartTypeConfig.xTitles.length > 0,
                 color: CHART_TEXT_COLOR
               },
               ticks: {
@@ -488,6 +485,15 @@ class ClientCartesianChart extends ClientCanvasChart {
 
   // abstract methods
   getChartTitleConfig() { }
+
+  getFormatedTitle(titles) { 
+    let localeCountry = locale.substring(0, locale.indexOf('_'));
+    const matchingItem = titles.find(item => item.locale === localeCountry);
+    if (matchingItem) {
+      return matchingItem.value;
+    }
+    return '';
+  }
 
   processYValue(result, yValue) {
     switch (yValue) {
