@@ -154,7 +154,7 @@
            readonly="#{selectedCustomField or selectedCustomCaseField or selectedCustomBusinessCaseField}"/>
       </div>
 
-      <div class="ui-g-12 u-text-align-right">
+      <div class="ui-g-12 text-right">
         <p:commandButton id="field-add-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addField')}" actionListener="#{columnManagementBean.add}" update="field-add-fieldset column-management-datatable"
           oncomplete="PF('column-management-dialog').initPosition();" icon="si si-add" process="column-management-form"/>
       </div>
