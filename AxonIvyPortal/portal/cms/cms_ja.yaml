@@ -1030,7 +1030,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     minUppercaseCharacterRequired: 少なくとも {0} 個の大文字を含む必要があります。
     newPassword: 新しいパスワード
     noPermission: プロセスを削除
-    passwordMust: パスワードは、(MATT CONFIRMING)
+    passwordMust: パスワードは
     requireConfirmPassword: パスワード（再入力）が空欄です
     requireCurrentPassword: 現在のパスワードを入力してください
     requireNewPassword: 新しいパスワードを入力してください
