@@ -1,22 +1,13 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static ch.ivy.addon.portalkit.enums.AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE;
 import static ch.ivy.addon.portalkit.enums.PortalPermission.SHOW_CASE_DETAILS;
-import static com.axonivy.portal.components.constant.CustomFields.BUSINESS_DETAILS;
-import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-
-import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.util.BusinessDetailsUtils;
 
@@ -25,16 +16,10 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
-import ch.ivy.addon.portalkit.util.UrlUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivyteam.ivy.workflow.IWorkflowSession;
-import ch.ivyteam.ivy.workflow.custom.field.ICustomStringField;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
 @RequestScoped
