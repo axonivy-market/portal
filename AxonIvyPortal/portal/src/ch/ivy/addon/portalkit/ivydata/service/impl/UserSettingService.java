@@ -24,11 +24,6 @@ public class UserSettingService {
     return instance;
   }
 
-  public void saveDefaultTaskBehaviourWhenClickingOnLineInTaskList(String taskBehaviour) {
-    IUser user = getSessionUser();
-    user.setProperty(UserProperty.DEFAULT_TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST, taskBehaviour);
-  }
-
   public void saveProcessModeSetting(String processMode) {
     IUser user = getSessionUser();
     if (isDefaultProcessModeOption(processMode)) {
