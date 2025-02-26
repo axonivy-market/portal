@@ -101,6 +101,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       BY_ALPHABETICALLY: Alphabétiquement
       BY_CUSTOM_ORDER: Commande personnalisée
       BY_INDEX: Index de tri
+      BY_SMART_ORDER: Le plus utilisé
     ProcessType:
       EXTERNAL_LINK: Lien externe
       IVY_PROCESS: Processus d'entreprise
