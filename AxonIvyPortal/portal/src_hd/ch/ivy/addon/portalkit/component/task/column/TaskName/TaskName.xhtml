@@ -22,6 +22,7 @@
     <p:tooltip for="task-name" value="#{task.names().current()}" trackMouse="true" hideEvent="mouseleave click" rendered="#{not empty task.names().current()}" />
     <h:outputText id="#{cc.attrs.descriptionId}" styleClass="description-cell #{cc.attrs.descriptionStyleClass}"
       value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}" />
+    <p:tooltip for="#{cc.attrs.descriptionId}" value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}" trackMouse="true" hideEvent="mouseleave click" />
   </h:panelGroup>
 </cc:implementation>
 </html>
