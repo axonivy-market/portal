@@ -30,7 +30,7 @@ import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
 public class ClientStatisticService {
   
   private static final String DEFAULT_CLIENT_STATISTIC_KEY = PortalVariable.CLIENT_STATISTIC.key;
-  private static final String DEFAULT_CUSTOM_CLIENT_STATISTIC_KEY = PortalVariable.CUSTOM_CLIENT_STATISTIC.key;
+  private static final String CUSTOM_CLIENT_STATISTIC_KEY = PortalVariable.CUSTOM_CLIENT_STATISTIC.key;
   private static ClientStatisticService instance;
 
   public static ClientStatisticService getInstance() {
@@ -118,14 +118,21 @@ public class ClientStatisticService {
   public ClientStatistic findByIdCustomClientStatistic(String id) {
     return getCustomStatistic().stream().filter(e -> e.getId().equals(id)).findFirst().orElse(null);
   }
+
+  public void saveJsonToVariable(List<ClientStatistic> clientStatistics) {
+    String statisticsJson = BusinessEntityConverter.entityToJsonValue(clientStatistics);
+    Ivy.var().set(PortalVariable.CUSTOM_CLIENT_STATISTIC.key, statisticsJson);
+  }
+  
   private List<ClientStatistic> getDefaultClientStatistic() {
     String value = Ivy.var().get(DEFAULT_CLIENT_STATISTIC_KEY);
     List<ClientStatistic> clientStatistics = BusinessEntityConverter.jsonValueToEntities(value, ClientStatistic.class);
+    clientStatistics.stream().forEach(cs -> cs.setIsCustom(false));
     return clientStatistics;
   }
   
   public List<ClientStatistic> getCustomStatistic() {
-    String value = Ivy.var().get(DEFAULT_CUSTOM_CLIENT_STATISTIC_KEY);
+    String value = Ivy.var().get(CUSTOM_CLIENT_STATISTIC_KEY);
     List<ClientStatistic> clientStatistics = BusinessEntityConverter.jsonValueToEntities(value, ClientStatistic.class);
     return clientStatistics;
   }
