@@ -38,7 +38,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class CaseDetailsTest extends BaseTest {
   private static final String BUSINESS_DETAILS_TITLE = "Business Details - Portal - Axon Ivy";
   private static final String ORDER_PIZZA = "Order Pizza";
