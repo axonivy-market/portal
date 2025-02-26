@@ -32,8 +32,8 @@ public class ApplicationColumnModel extends ProcessColumnModel implements Serial
     super.initDefaultValue();
     this.styleToDisplay = initDefaultStyle();
     this.styleClass = defaultIfEmpty(this.styleClass,
-        "dashboard-tasks__priority u-text-align-center widget-column");
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__priority u-text-align-center");
+        "dashboard-tasks__priority text-center widget-column");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__priority text-center");
     this.format = DashboardColumnFormat.CUSTOM;
   }
   

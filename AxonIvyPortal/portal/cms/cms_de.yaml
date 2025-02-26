@@ -64,6 +64,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       EMAIL: Email
       INFORMATION: Information
       OTHERS: Andere Dateiformate
+    BehaviourWhenClickingOnLineInCaseList:
+      ACCESS_BUSINESS_DETAILS: Geschäftsdaten abrufen
+      ACCESS_CASE_DETAILS: Falldaten abrufen
     BehaviourWhenClickingOnLineInTaskList:
       ACCESS_TASK_DETAILS: Auf Aufgabendetails zugreifen
       RUN_TASK: Ausführen der Aufgabe
@@ -213,6 +216,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SearchScopeTaskFields: Festlegung der Felder, die die globale Suche neben der Aufgabenkennung verwendet, um passende Aufgaben zu finden (dies kann die Leistung der Suche beeinflussen)
       ShowLoginPageFooter: Zum Ein-/Ausschalten der Anzeige der Fußzeile auf der Anmeldeseite.
       ShowQRCode: Zum Ein- und Ausschalten der Anzeige des QR-Codes.
+      behaviourWhenClickingOnLineInCaseList: Umschalten zwischen dem Zugriff auf Falldaten oder Geschäftsdaten beim Klicken auf einen Fall im Fall-Widget des Dashboards, in der globalen Suche, in verwandten Fällen und im Prozess-Widget im kombinierten Modus.
       behaviourWhenClickingOnLineInTaskList: Zum Umschalten des Verhaltens (Ausführen der Aufgabe oder Aufrufen der Aufgabendetails) beim Klicken auf eine Zeile in der Aufgabenliste, im Aufgaben-Widget des Dashboards und bei verwandten Aufgaben auf der Seite mit den Vorgangsdetails.
       chatMaxConnection: 'Die gesetzte Nummer steuert die Anzahl der erlaubten Tabs mit aktiven Chat. Falls mehr Tabs geöffnet werden, wird der Chat in inaktive Tabs deaktiviert. Erlaubte Werte zw. 1-5 '
       chatResponseTimeout: Chat-Antwort-Time-out in Sekunden, Standardwert ist 0 und bedeutet kein Time-out. Wenn Chat-Nachrichten durch den Reverse-Proxy Nginx gehen, muss das Chat-Antwort-Time-out kleiner sein als das Nginx-Time-out, z. B. kleiner als 60 Sekunden.
@@ -723,11 +727,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       WidgetNameColumn: Widget-Name
       WrongDateFormat: Das Datum ist ungültig
     ManageFilter: Filterverwaltung
+    NoColumnsEnabledForQuickSearch: Keine Spalten sind für die Schnellsuche aktiviert
     NoData: Keine Daten
     NoSavedFilterMessage: Kein gespeicherter Filter gefunden. Versuchen Sie, einen neuen zu erstellen, indem Sie auf die Schaltfläche Filter speichern klicken.
     NoWidgetAvailable: Es gibt keine Widgets.
     QuickSearch: Schnellsuche
     QuickSearchInfo: Sie können den Bereich der Schnellsuche in der Spaltenverwaltung der Widgets anpassen. Die Suche erfolgt nach dem Kriterium "enthält", aber achten Sie darauf, die Leistung nicht zu beeinträchtigen, wenn Sie viele Spalten hinzufügen.
+    QuickSearchScope: 'Suchbereich : {0}'
     RestoreDefaultDashboardMessage: Wenn Sie fortfahren, verlieren Sie alle von Ihnen erstellten Widgets. Es werden die Standardeinstellungen von <span class="dashboard-template-name-message">{0}</span> wiederhergestellt.
     SaveNewWidgetFilterHeader: Einen neuen Widget-Filter speichern
     SavedFilterHeader: Gespeicherte Filter
