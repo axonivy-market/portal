@@ -34,6 +34,6 @@ public class StartColumnModel extends TaskColumnModel implements Serializable {
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__start u-text-align-center widget-column ui-sm-hidden";
+    return "dashboard-tasks__start text-center widget-column ui-sm-hidden";
   }
 }

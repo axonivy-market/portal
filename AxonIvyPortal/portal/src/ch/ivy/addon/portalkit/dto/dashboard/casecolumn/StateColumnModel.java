@@ -45,7 +45,7 @@ public class StateColumnModel extends CaseColumnModel implements Serializable {
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-cases__state u-text-align-center";
+    return "dashboard-cases__state text-center";
   }
 
   @Override
