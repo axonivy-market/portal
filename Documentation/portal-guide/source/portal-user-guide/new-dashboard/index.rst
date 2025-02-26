@@ -265,8 +265,8 @@ a particular process:
 
 **Compact mode**
 
-This widget displays a list of all selected process starts. You can sort your processes by index, alphabetical order or custom order.
-You can change your custom order by drag and drop the processes and enable quick search by selecting the quick search checkbox.
+This widget displays a list of all selected process starts. You can sort your processes by index, alphabetical order, most used 
+or custom order. You can change your custom order by drag and drop the processes and enable quick search by selecting the quick search checkbox.
 
 |process-widget-compact-mode|
 
