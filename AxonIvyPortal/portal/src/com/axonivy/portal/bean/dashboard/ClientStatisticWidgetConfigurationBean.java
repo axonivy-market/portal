@@ -80,7 +80,6 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     if (clientStatistic == null) {
       clientStatistic = new ClientStatistic();
       clientStatistic.setAggregates("priority");
-      selectedPermissions = new ArrayList<>();
       clientStatistic.setNames(new ArrayList<>());
       clientStatistic.setDescriptions(new ArrayList<>());
       clientStatistic.setRefreshInterval(0);
@@ -90,8 +89,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
       clientStatistic.setBarChartConfig(new BarChartConfig());
       clientStatistic.setLineChartConfig(new LineChartConfig());
       clientStatistic.setPieChartConfig(new PieChartConfig() {});
-      clientStatistic.setPermissionDTOs(Arrays.asList(SecurityMemberDTOMapper.mapFromRoleDTO(
-          new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));
+      clientStatistic.setPermissions(new ArrayList<>(Arrays.asList(ISecurityConstants.TOP_LEVEL_ROLE_NAME)));
       xTitles = new ArrayList<>();
       yTitles = new ArrayList<>();
       backgroundColors = new ArrayList<>();
@@ -121,12 +119,16 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
       } else {
         backgroundColors = new ArrayList<>();
       }
+      if (CollectionUtils.isEmpty(clientStatistic.getPermissions())) {
+        clientStatistic.setPermissions(new ArrayList<>(Arrays.asList(ISecurityConstants.TOP_LEVEL_ROLE_NAME)));
+      }
       if (clientStatistic.getPermissionDTOs() == null) {
         clientStatistic.setPermissionDTOs(Arrays.asList(SecurityMemberDTOMapper.mapFromRoleDTO(
             new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));
       }
     }
     populateBackgroundColorsIfMissing();
+    initPermissions();
   }
 
   private void populateBackgroundColorsIfMissing() {
@@ -189,6 +191,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     } else if (PIE == clientStatistic.getChartType()) {
       clientStatistic.getPieChartConfig().setBackgroundColors(backgroundColors);
     }
+    backgroundColors = new ArrayList<>(backgroundColors);
     populateBackgroundColorsIfMissing();
   }
 
@@ -444,5 +447,19 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
 
   public void onSelectChartType(ChartType chartType) {
     // TODO z1 consider to remove
+  }
+
+  private void initPermissions() {
+    clientStatistic.setPermissionDTOs(Optional.ofNullable(clientStatistic).map(ClientStatistic::getPermissions)
+        .orElse(new ArrayList<>()).stream().filter(Objects::nonNull).distinct()
+        .map(permission -> findSecurityMemberDtoByName(permission)).collect(Collectors.toList()));
+
+    selectedPermissions = Optional.ofNullable(clientStatistic).map(ClientStatistic::getPermissionDTOs)
+        .orElse(new ArrayList<>()).stream().map(SecurityMemberDTO::getName).collect(Collectors.toList());
+  }
+
+  private SecurityMemberDTO findSecurityMemberDtoByName(String permission) {
+    return permission.startsWith("#") ? new SecurityMemberDTO(UserUtils.findUserByUsername(permission))
+        : new SecurityMemberDTO(RoleUtils.findRole(permission));
   }
 }
