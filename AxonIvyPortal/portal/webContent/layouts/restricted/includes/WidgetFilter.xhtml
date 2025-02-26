@@ -35,7 +35,7 @@
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}"/>
 </div>
 
-<div class="u-display-none js-widget-filters-items-#{widget.id}">
+<div class="hidden js-widget-filters-items-#{widget.id}">
   <h:panelGroup id="widget-saved-filters-items" layout="block"
     styleClass="ui-g-12 saved-filter__content ui-fluid u-padding-0">
     <div class="ui-g-12 u-no-padding-bottom">
@@ -65,11 +65,11 @@
       var loadingMessage = '.js-loading-widget-filters-' + widgetId;
       var widgetFilterItems = ".js-widget-filters-items-" + widgetId;
       if (hideContent) {
-        $(loadingMessage).removeClass('u-display-none');
-        $(widgetFilterItems).addClass('u-display-none');
+        $(loadingMessage).removeClass('hidden');
+        $(widgetFilterItems).addClass('hidden');
       } else {
-        $(loadingMessage).addClass('u-display-none');
-        $(widgetFilterItems).removeClass('u-display-none');
+        $(loadingMessage).addClass('hidden');
+        $(widgetFilterItems).removeClass('hidden');
       }
     }
     

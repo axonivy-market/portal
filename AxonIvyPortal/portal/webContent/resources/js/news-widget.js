@@ -21,11 +21,11 @@ function setupSeeMoreLessContent(newsItem) {
   const heightDifference = newsItemContent[0].scrollHeight - newsItemContent[0].clientHeight;
   let seeMoreLink = getSeeMoreLink(newsItem);
   let seeLessLink = getSeeLessLink(newsItem);
-  $(seeLessLink).addClass('hide');
+  $(seeLessLink).addClass('hidden');
   if (heightDifference > 0) {
-    $(seeMoreLink).removeClass('hide');
+    $(seeMoreLink).removeClass('hidden');
   } else {
-    $(seeMoreLink).addClass('hide');
+    $(seeMoreLink).addClass('hidden');
   }
 }
 
@@ -33,8 +33,8 @@ function seeMoreNewsItemContent(newsItemId) {
   let newsItem = $('[id$=' + newsItemId + ']');
   let seeMoreLink = getSeeMoreLink(newsItem);
   let seeLessLink = getSeeLessLink(newsItem);
-  $(seeMoreLink).addClass('hide');
-  $(seeLessLink).removeClass('hide');
+  $(seeMoreLink).addClass('hidden');
+  $(seeLessLink).removeClass('hidden');
   let newsItemContent = getNewsItemContent(newsItem);
   $(newsItemContent).removeClass('line-clamp-text-3');
 }
@@ -43,8 +43,8 @@ function seeLessNewsItemContent(newsItemId) {
   let newsItem = $('[id$=' + newsItemId + ']');
   let seeMoreLink = getSeeMoreLink(newsItem);
   let seeLessLink = getSeeLessLink(newsItem);
-  $(seeMoreLink).removeClass('hide');
-  $(seeLessLink).addClass('hide');
+  $(seeMoreLink).removeClass('hidden');
+  $(seeLessLink).addClass('hidden');
   let newsItemContent = getNewsItemContent(newsItem);
   $(newsItemContent).addClass('line-clamp-text-3');
 }

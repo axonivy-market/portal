@@ -23,11 +23,11 @@
       <h:outputText escape="false" value="#{htmlSanitizerBean.sanitize(news.description)}" styleClass="news__content line-clamp-text-3"/>
     </div>
     <div class="news-item__actions">
-      <p:commandLink id="news-item-see-more" styleClass="u-mar-right-5 hide"
+      <p:commandLink id="news-item-see-more" styleClass="u-mar-right-5 hidden"
         value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/SeeMore')}"
         onclick="seeMoreNewsItemContent('#{newsItemId}')"
         global="false" process="@none" update="@this" immediate="true" partialSubmit="true"/>
-      <p:commandLink id="news-item-see-less" styleClass="u-mar-right-5 hide"
+      <p:commandLink id="news-item-see-less" styleClass="u-mar-right-5 hidden"
         value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/SeeLess')}"
         onclick="seeLessNewsItemContent('#{newsItemId}')"
         global="false" process="@none" update="@this" immediate="true" partialSubmit="true"/>
