@@ -34,6 +34,7 @@ import com.axonivy.portal.bo.NumberChartConfig;
 import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
@@ -70,6 +71,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   private String yTitle;
   private List<String> selectedPermissions;
   private List<String> backgroundColors;
+  private boolean isEditMode;
 
   @PostConstruct
   public void init() {
@@ -95,6 +97,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
       backgroundColors = new ArrayList<>();
       // TODO z1 init category, value. Add action when select chart type
     } else { // existed statistic
+      isEditMode = true;
       if (clientStatistic.getNumberChartConfig() == null) {
         clientStatistic.setNumberChartConfig(new NumberChartConfig());
       }
@@ -428,6 +431,14 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     return backgroundColors;
   }
 
+  public boolean isEditMode() {
+    return isEditMode;
+  }
+
+  public void setEditMode(boolean isEditMode) {
+    this.isEditMode = isEditMode;
+  }
+
   protected List<String> getSupportedLanguages() {
     return LanguageService.getInstance().getIvyLanguageOfUser().getSupportedLanguages();
   }
@@ -462,5 +473,9 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   private SecurityMemberDTO findSecurityMemberDtoByName(String permission) {
     return permission.startsWith("#") ? new SecurityMemberDTO(UserUtils.findUserByUsername(permission))
         : new SecurityMemberDTO(RoleUtils.findRole(permission));
+  }
+
+  public void backToHome() {
+    PortalNavigatorAPI.navigateToPortalHome();
   }
 }
