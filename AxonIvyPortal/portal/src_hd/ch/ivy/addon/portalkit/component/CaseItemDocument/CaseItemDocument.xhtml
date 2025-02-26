@@ -42,8 +42,8 @@
       <div class="ui-g-12 u-padding-0">
         <p:dataTable id="case-details-documents" rendered="#{not empty data.documents}" var="document"
           value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" pageLinks="3" rows="5"
-          paginatorPosition="bottom"
-          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+          rowsPerPageTemplate="5,10,20,50" paginatorPosition="bottom"
+          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}"
           styleClass="case-details-documents" lazy="false"
