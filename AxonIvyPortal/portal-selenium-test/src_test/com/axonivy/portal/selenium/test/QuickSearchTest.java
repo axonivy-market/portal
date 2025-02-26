@@ -195,6 +195,24 @@ public class QuickSearchTest extends BaseTest {
     redirectToNewDashBoard();
     taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
   }
+  
+  @Test
+  public void testTaskQuickSearchCustomFieldsWithCms() throws IOException {
+    ConfigurationJsonUtils.updateJSONSetting("dashboard-task-widget-has-quicksearch.json", Variable.DASHBOARD);
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(createTestDataForCustomFieldsWithCMS);
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    setLanguageOfCurrentUserToGerman();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForTaskWidgetLoaded();
+
+    taskWidget = new TaskWidgetNewDashBoardPage();
+    taskWidget.setInputForQuickSearch("Spanien");
+    taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
+    resetLanguageOfCurrentUser();
+  }
 
 //   Case
   @Test
@@ -303,6 +321,24 @@ public class QuickSearchTest extends BaseTest {
     caseWidget.setInputForQuickSearch("SupportData");
     caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
     caseWidget.clearQuickSearchInput();
+  }
+  
+  @Test
+  public void testCaseQuickSearchCustomFieldsWithCms() throws IOException {
+    ConfigurationJsonUtils.updateJSONSetting("dashboard-case-widget-has-quicksearch.json", Variable.DASHBOARD);
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(createTestDataForCustomFieldsWithCMS);
+    redirectToRelativeLink(createTestingTasksUrl);
+    login(TestAccount.ADMIN_USER);
+    CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
+    setLanguageOfCurrentUserToGerman();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForCaseWidgetLoaded();
+
+    caseWidget = new CaseWidgetNewDashBoardPage();
+    caseWidget.setInputForQuickSearch("Milchtee");
+    caseWidget.countAllCases().shouldHave(size(1), DEFAULT_TIMEOUT);
+    resetLanguageOfCurrentUser();
   }
   
   @Test
