@@ -35,7 +35,6 @@ CustomFields:
     Citizenship:
       Label: Citizenship
       Description: Citizenship
-      CmsPath: /CustomFields/Tasks/Citizenship/Values
       Type: STRING
   Cases:
     DestroyCaseAction:
