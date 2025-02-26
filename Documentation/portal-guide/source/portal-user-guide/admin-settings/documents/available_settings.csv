@@ -42,6 +42,8 @@ Portal.TaskDetails.HideDocument,FALSE,"If true, the document section in task det
 Portal.TaskDetails.ShowDurationTime,TRUE,For switch on/off the display of the duration time in task details page.
 Portal.Tasks.BehaviourWhenClickingOnLineInTaskList,Run the task,"| Default behaviors (run the task or access task details) when clicking.
 | on a line in the task widget, task widget of the dashboard or on related tasks in the case details page."
+Portal.Cases.BehaviourWhenClickingOnLineInCaseList,Access case details,"| Toggle between accessing case details or business details when clicking
+| on a case in the case widget on the dashboard, global search, related cases, and process widget in combined mode."
 Portal.UserMenu.HideChangePasswordMenu,FALSE,"Set this variable to true to hide the ""Change Password"" option in the top menu and the ""Forgotten Password"" option on the login page. If set to false, these options will be shown."
 Portal.UserMenu.HideLogoutMenu,FALSE,"If true, the logout button on top menu will be hidden, otherwise it will be shown."
 Portal.ProcessViewer,TRUE,"Set this property to true to display process viewer option in Task/Case actions. If a process is designed to not allow users to view it, the option in related Task/Case actions will be hidden."
