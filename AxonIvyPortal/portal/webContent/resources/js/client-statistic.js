@@ -74,8 +74,8 @@ function filterOptionsForDateTimeFormatter(pattern) {
 function formatDateFollowLocale(dt) {
   const options = filterOptionsForDateTimeFormatter(datePattern);
   // Format locale
-  locale = locale.replace('_', '-');
-  const formatter = new Intl.DateTimeFormat(locale, options);
+  let friendlyLocale = locale.replace('_', '-');
+  const formatter = new Intl.DateTimeFormat(friendlyLocale, options);
   return formatter.format(dt);
 }
 
@@ -147,9 +147,11 @@ function initRefresh() {
       if (typeof refreshInfo.refreshIntervalId !== 'undefined') {
         clearInterval(refreshInfo.refreshIntervalId);
       }
-      refreshInfo.refreshIntervalId = setInterval(() => {
-        refreshChart(refreshInfo);
-      }, refreshInfo.refreshInterval * 1000);
+      if (refreshInfo.refreshInterval !== 0) {
+        refreshInfo.refreshIntervalId = setInterval(() => {
+          refreshChart(refreshInfo);
+        }, refreshInfo.refreshInterval * 1000);
+      }
     }
   }
 }
@@ -176,13 +178,18 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
     let data = await fetchChartData(chart, chartId);
 
     if (!data) {
+      renderNotFoundData(chart, 'No data found');
       return;
     }
+
+    if (data.statusCode != 200) {
+      renderNotFoundData(chart, data.errorMessage);
+      return;
+    } 
 
     // proceed chart data
     let chartData = generateChart(chart, data);
     const config = data.chartConfig;
-    locale = config?.locale ? config.locale : defaultLocale;
 
     // If chart data is fetched succesfully:
     // Render chart
@@ -205,6 +212,24 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
   });
 }
 
+function previewChart(data, defaultLocale, datePatternConfig) {
+  const charts = document.getElementsByClassName('js-client-statistic-chart');
+  if (!charts || charts.length == 0) {
+    return;
+  }
+
+  if (!locale) {
+    locale = defaultLocale;
+  }
+  datePattern = datePatternConfig;
+
+  let chartData = generateChart(charts[0], data);
+
+  if (chartData) {
+    chartData.render();
+  }
+}
+
 function clearChartInterval() {
   for (let i = 0; i < refreshInfos.length; i++) {
     let refreshInfo = refreshInfos[i];
@@ -224,6 +249,14 @@ const generateChart = (chart, data) => {
     case 'doughnut': return new ClientPieChart(chart, data);
   }
   return undefined;
+}
+
+function renderNotFoundData(chart, errorMessage) {
+  let noChartDataHtml =
+    `<div class="process-dashboard-widget__empty-process empty-message-container">` +
+    `    <span class="empty-message-text">${errorMessage}</span>` +
+    `</div>`;
+  $(chart).html(noChartDataHtml);
 }
 
 // Generic class for Client charts
@@ -314,7 +347,7 @@ class ClientCanvasChart extends ClientChart {
 
     // Render empty chart when result empty 
     if (result.length == 0) {
-      return this.renderEmptyChart(chart, config.additionalConfig);
+      return this.renderEmptyChart(chart, config.additionalConfigs);
     }
 
     // If there is no chart from the beginning, init chart config
@@ -325,12 +358,10 @@ class ClientCanvasChart extends ClientChart {
 
     // Update client chart config by new data
     this.clientChartConfig.data.labels = result.map(bucket => this.formatChartLabel(bucket.key));
-    this.clientChartConfig.data.datasets = [{
-      label: config.name,
-      data: result.map(bucket => bucket.count),
-      backgroundColor: chartColors
-    }]
-
+    if (this.clientChartConfig.data.datasets[0]) {
+      this.clientChartConfig.data.datasets[0].data = result.map(bucket => bucket.count)
+      this.clientChartConfig.data.datasets[0].label = config.name;
+    }
     this.clientChartConfig.update("none");
   }
 }
@@ -345,7 +376,7 @@ class ClientPieChart extends ClientCanvasChart {
     let chart = this.chart;
 
     if (result.length == 0) {
-      return this.renderEmptyChart(chart, config.additionalConfig);
+      return this.renderEmptyChart(chart, config.additionalConfigs);
     } else {
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
       $(chart).html(html);
@@ -358,7 +389,7 @@ class ClientPieChart extends ClientCanvasChart {
           datasets: [{
             label: config.name,
             data: result.map(bucket => bucket.count),
-            backgroundColor: chartColors
+            backgroundColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors
           }],
           hoverOffset: 4
         },
@@ -375,6 +406,10 @@ class ClientPieChart extends ClientCanvasChart {
         }
       });
     }
+  }
+
+  getBackgoundColors() {
+    return this.data.chartConfig.pieChartConfig.backgroundColors;
   }
 }
 
@@ -393,7 +428,7 @@ class ClientCartesianChart extends ClientCanvasChart {
     let chart = this.chart;
 
     if (result.length == 0) {
-      return this.renderEmptyChart(chart, config.additionalConfig);
+      return this.renderEmptyChart(chart, config.additionalConfigs);
     } else {
       //If the target type for the Y axis is 'time', get average time from sub aggregate of the result.
       const chartTypeConfig = this.getChartTypeConfig();
@@ -401,7 +436,7 @@ class ClientCartesianChart extends ClientCanvasChart {
 
       // Because processYValue removes bucket which has empty key, if the returned result is empty, render empty chart
       if (data.length == 0) {
-        return this.renderEmptyChart(chart, config.additionalConfig);
+        return this.renderEmptyChart(chart, config.additionalConfigs);
       }
 
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : 2;
@@ -416,8 +451,11 @@ class ClientCartesianChart extends ClientCanvasChart {
           datasets: [{
             label: config.name,
             data: data.map(bucket => bucket.count),
-            backgroundColor: chartColors,
-            borderColor:chartColors 
+            backgroundColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors,
+            pointBorderColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors,
+            pointRadius: 4,
+            borderColor: getCssVariable("--ivy-primary-color-grey-medium"),
+            borderWidth: 1
           }]
         },
         options: {
@@ -432,8 +470,8 @@ class ClientCartesianChart extends ClientCanvasChart {
             y: {
               beginAtZero: true,
               title: {
-                text: chartTypeConfig.yTitle,
-                display: true,
+                text: this.getFormatedTitle(chartTypeConfig.yTitles),
+                display: chartTypeConfig.yTitles.length > 0,
                 color: CHART_TEXT_COLOR
               },
               ticks: {
@@ -446,8 +484,8 @@ class ClientCartesianChart extends ClientCanvasChart {
             },
             x: {
               title: {
-                text: chartTypeConfig.xTitle,
-                display: true,
+                text: this.getFormatedTitle(chartTypeConfig.xTitles),
+                display: chartTypeConfig.xTitles.length > 0,
                 color: CHART_TEXT_COLOR
               },
               ticks: {
@@ -466,6 +504,17 @@ class ClientCartesianChart extends ClientCanvasChart {
   // abstract methods
   getChartTitleConfig() { }
 
+  getBackgoundColors() { }
+
+  getFormatedTitle(titles) { 
+    let localeCountry = locale.substring(0, locale.indexOf('_'));
+    const matchingItem = titles.find(item => item.locale === localeCountry);
+    if (matchingItem) {
+      return matchingItem.value;
+    }
+    return '';
+  }
+
   processYValue(result, yValue) {
     switch (yValue) {
       case 'time': {
@@ -476,7 +525,7 @@ class ClientCartesianChart extends ClientCanvasChart {
               if (item['name'] === AVERAGE_BUSINESS_RUNTIME) {
                 values.push({
                   key: bucket.key,
-                  count: convertYValue(item.value, this.data.chartConfig.additionalConfig)
+                  count: convertYValue(item.value, this.data.chartConfig.additionalConfigs)
                 });
               }
             });
@@ -503,7 +552,7 @@ class ClientBarChart extends ClientCartesianChart {
 
     // Render empty chart when result empty 
     if (result.length == 0) {
-      return this.renderEmptyChart(chart, config.additionalConfig);
+      return this.renderEmptyChart(chart, config.additionalConfigs);
     } 
     else if (result.length > 0) {
       // Update y value in case y value is time
@@ -512,7 +561,7 @@ class ClientBarChart extends ClientCartesianChart {
 
         // Because processYValue removes bucket which has empty key, if the returned result is empty, render empty chart
         if (result.length == 0) {
-          return this.renderEmptyChart(chart, config.additionalConfig);
+          return this.renderEmptyChart(chart, config.additionalConfigs);
         }
       }
       let data = result;
@@ -520,7 +569,7 @@ class ClientBarChart extends ClientCartesianChart {
       this.clientChartConfig.data.datasets = [{
         label: config.name,
         data: data.map(bucket => bucket.count),
-        backgroundColor: chartColors
+        backgroundColor: config.backgroundColors ? config.backgroundColors : chartColors
       }]
     }
 
@@ -532,6 +581,10 @@ class ClientBarChart extends ClientCartesianChart {
 
     this.clientChartConfig.update("none");
   }
+
+  getBackgoundColors() {
+    return this.data.chartConfig.barChartConfig.backgroundColors;
+  }
 }
 
 
@@ -539,6 +592,10 @@ class ClientBarChart extends ClientCartesianChart {
 class ClientLineChart extends ClientCartesianChart {
   getChartTypeConfig() {
     return this.data.chartConfig.lineChartConfig;
+  }
+
+  getBackgoundColors() {
+    return this.data.chartConfig.lineChartConfig.backgroundColors;
   }
 }
 
@@ -636,7 +693,7 @@ class ClientNumberChart extends ClientChart {
 
   generateItemHtml(label, number, suffixSymbol, index) {
     let border = '<div class="chart-border">' + '</div>';
-    label = this.data.chartConfig.hideLabel === true ? '' : this.formatChartLabel(label) ;
+    label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
     let html =
       '<div class="text-center chart-content-card">' +
       '    <div class="chart-number-container">' +
