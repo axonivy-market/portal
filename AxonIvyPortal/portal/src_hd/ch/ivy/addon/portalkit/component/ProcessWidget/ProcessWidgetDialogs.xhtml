@@ -159,7 +159,7 @@
               dragDropSupport="true" auto="true" widgetVar="editExternalLinkUpload"
               update="file-upload-panel" 
               allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
-              accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleEditExternalLinkUploadFileFail();"
+              accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFailOnEditExternalLink('editExternalLinkUpload');"
               label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" oncomplete="hideExtendLinkPreviewLabel();"
               invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" dropZone="edit-external-link-preview-image-panel"/>
               <p:outputPanel id="edit-external-link-preview-image-panel" styleClass="ui-external-link-preview-image-panel" >
@@ -211,7 +211,7 @@
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemHeader')}" />
     
     <ui:define name="dialogContentSection">
-      <div class="u-text-align-center portal-dialog-content">
+      <div class="text-center portal-dialog-content">
          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemConfirmation')}" />
          <br />
          <h:outputText value="#{processWidgetBean.deletedProcess.getName()}" styleClass="u-font-bold" />
@@ -355,7 +355,7 @@
           chooseIcon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
           dragDropSupport="true" auto="true" update="file-upload-panel"
           allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
-          accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail();"
+          accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('externalLinkUpload');"
           invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
           dropZone="external-link-preview-image-panel" oncomplete="hideExtendLinkPreviewLabel();"/>
           

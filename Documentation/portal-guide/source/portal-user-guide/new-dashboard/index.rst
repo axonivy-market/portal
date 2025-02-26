@@ -120,10 +120,11 @@ In the column management dialog, you find two sections to configure the table co
       #. Standard fields: Id, name, description, category, responsible (display name), and application.
       #. Task custom fields: fields that have type ``STRING`` or ``TEXT``.
       #. Case custom fields: fields that have type ``STRING`` or ``TEXT``.
+      #. Business case custom fields: fields that have type ``STRING`` or ``TEXT``.
 
     Quick search is enabled for the standard field name and description by default.
 
-Portal supports to display **custom case fields** within the task list.
+Portal supports to display **custom case fields** and **business custom case** within the task list.
 
 |task-column-field-type-configuration|
 

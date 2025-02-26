@@ -24,6 +24,7 @@ public class DashboardCloneWidgetTest extends BaseTest {
   public void setup() {
     super.setup();
     login(TestAccount.ADMIN_USER);
+    createTestingTasks();
     redirectToNewDashBoard();
     newDashboardPage = new NewDashboardPage();
   }
@@ -53,9 +54,10 @@ public class DashboardCloneWidgetTest extends BaseTest {
         .clickButtonOnDashboardConfigurationActionMenu("Configuration");
 
     detailsEditPage = new NewDashboardDetailsEditPage();
-    detailsEditPage.openCloneWidgetDialog("Your Tasks", 0);
+    detailsEditPage.waitForTaskWidgetLoaded();
+    detailsEditPage.openCloneWidgetDialog(0);
     detailsEditPage.cloneWidget("A test dashboard");
-    detailsEditPage.waitPageLoaded();
+    detailsEditPage.waitForTaskWidgetLoaded();
 
     MainMenuPage menu = detailsEditPage.openMainMenu();
     WaitHelper.waitForNavigation(() -> {

@@ -55,6 +55,7 @@ public class TaskFilterFieldFactory {
     case STANDARD -> STANDARD_FILTER_FIELD.get(field);
     case CUSTOM -> CUSTOM_FILTER_FIELD.get(field);
     case CUSTOM_CASE -> CUSTOM_CASE_FILTER_FIELD.get(field);
+    case CUSTOM_BUSINESS_CASE -> CUSTOM_CASE_FILTER_FIELD.get(field);
     default -> throw new IllegalArgumentException("Unexpected value: " + type.name());
     };
   }

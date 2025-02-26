@@ -6,6 +6,8 @@ const AVERAGE_BUSINESS_RUNTIME = "avg-businessRuntime";
 // Additional configs
 const EMPTY_CHART_MESSAGE =  'emptyChartDataMessage';
 const MANIPULATE_BY = 'manipulateValueBy';
+const CHART_TEXT_COLOR = '#808080';
+const CHART_GRID_COLOR = 'rgba(192, 192, 192, 0.5)';
 
 let locale;
 let datePattern;
@@ -362,7 +364,14 @@ class ClientPieChart extends ClientCanvasChart {
         },
         options: {
           responsive: true,
-          maintainAspectRatio: false
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: {
+                color: CHART_TEXT_COLOR
+              }
+            }
+          }
         }
       });
     }
@@ -423,16 +432,28 @@ class ClientCartesianChart extends ClientCanvasChart {
               beginAtZero: true,
               title: {
                 text: chartTypeConfig.yTitle,
-                display: true
+                display: true,
+                color: CHART_TEXT_COLOR
               },
               ticks: {
-                stepSize: stepSize
+                stepSize: stepSize,
+                color: CHART_TEXT_COLOR
+              },
+              grid: {
+                color: CHART_GRID_COLOR
               }
             },
             x: {
               title: {
                 text: chartTypeConfig.xTitle,
-                display: true
+                display: true,
+                color: CHART_TEXT_COLOR
+              },
+              ticks: {
+                color: CHART_TEXT_COLOR
+              },
+              grid: {
+                color: CHART_GRID_COLOR
               }
             }
           }
@@ -616,7 +637,7 @@ class ClientNumberChart extends ClientChart {
     let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.hideLabel === true ? '' : this.formatChartLabel(label) ;
     let html =
-      '<div class="u-text-align-center chart-content-card">' +
+      '<div class="text-center chart-content-card">' +
       '    <div class="chart-number-container">' +
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +

@@ -138,36 +138,36 @@ var ResponsiveTable = {
     var $priorityColumn1 = $selectedTable.find(".js-column-priority-1");
     if ($priorityColumn1.length > 0) {
       if (tableWidth < 900) {
-        $priorityColumn1.addClass('u-display-none');
+        $priorityColumn1.addClass('hidden');
       } else {
-        $priorityColumn1.removeClass('u-display-none');
+        $priorityColumn1.removeClass('hidden');
       }
     }
 
     var $priorityColumn2 = $selectedTable.find(".js-column-priority-2");
     if ($priorityColumn2.length > 0) {
       if (tableWidth < 600) {
-        $priorityColumn2.addClass('u-display-none');
+        $priorityColumn2.addClass('hidden');
       } else {
-        $priorityColumn2.removeClass('u-display-none');
+        $priorityColumn2.removeClass('hidden');
       }
     }
 
     var $priorityColumn3 = $selectedTable.find(".js-column-priority-3");
     if ($priorityColumn3.length > 0) {
       if (tableWidth < 400) {
-        $priorityColumn3.addClass('u-display-none');
+        $priorityColumn3.addClass('hidden');
       } else {
-        $priorityColumn3.removeClass('u-display-none');
+        $priorityColumn3.removeClass('hidden');
       }
     }
 
     var $priorityColumn4 = $selectedTable.find(".js-column-priority-4");
     if ($priorityColumn4.length > 0) {
       if (tableWidth < 300) {
-        $priorityColumn4.addClass('u-display-none');
+        $priorityColumn4.addClass('hidden');
       } else {
-        $priorityColumn4.removeClass('u-display-none');
+        $priorityColumn4.removeClass('hidden');
       }
     }
   }

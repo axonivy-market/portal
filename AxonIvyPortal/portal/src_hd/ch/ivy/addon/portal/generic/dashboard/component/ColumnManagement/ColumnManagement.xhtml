@@ -18,7 +18,7 @@
       <p:dataTable id="column-management-datatable" value="#{columnManagementBean.columnsBeforeSave}" var="column"
         draggableRows="true" rowDragSelector="i.si-move-expand-vertical" lazy="false">
         <p:ajax event="rowReorder" global="false" />
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}" width="70" styleClass="u-text-align-center">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}" width="70" styleClass="text-center">
           <p:commandLink id="toggle-visibility" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget" process="@this"
             actionListener="#{columnManagementBean.handleVisibility(column)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}"
             update="column-management-datatable" partialSubmit="true" immediate="true" global="false" >
@@ -33,7 +33,7 @@
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}">
           #{column.headerText}
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" width="90" styleClass="u-text-align-center">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" width="90" styleClass="text-center">
           <h:panelGroup layout="block" id="quick-search-checkbox-panel"
             rendered="#{column.canQuickSearch()}">
             <p:commandLink id="toggle-quick-search" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget" process="@this"
@@ -46,10 +46,10 @@
             </p:commandLink>
           </h:panelGroup>
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" width="70" styleClass="u-text-align-center column-management-datatable__reorder">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" width="70" styleClass="text-center column-management-datatable__reorder">
           <i class="si si-move-expand-vertical" />
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}" width="70" styleClass="u-text-align-center js-column-field-#{column.field}">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}" width="70" styleClass="text-center js-column-field-#{column.field}">
           <p:commandLink id="remove-link" actionListener="#{columnManagementBean.remove(column)}" global="false" process="@this" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
             update="column-management-datatable #{cc.clientId}:column-management-form:standard-field-selection #{cc.clientId}:column-management-form:custom-field-selection">
             <i class="si si-bin-1" />
