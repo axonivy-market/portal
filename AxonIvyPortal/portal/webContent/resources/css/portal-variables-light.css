@@ -115,7 +115,7 @@
   --hovered-user-process-start-list-item-icon-color: var(--primary-color);
   --process-warning-icon-color: var(--ivy-tertinary-color-red-medium);
   --active-switch-label-font-weight: 700;
-  --process-list-item-background-color: hsl(180, 1%, 95%);
+  --process-list-item-background-color: var(--ivy-primary-color-white);
   --process-list-compact-mode-background-color: var(--ivy-primary-color-grey-pale);
   --process-list-item-border-color: hsl(0,0%,92.2%);
   --process-list-widget-item-background-color:  var(--ivy-primary-color-grey-pale);
