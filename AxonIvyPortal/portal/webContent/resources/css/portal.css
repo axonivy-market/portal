@@ -1806,3 +1806,90 @@ body.dark .focused {
   font-weight: 600;
 }
 /* ====END OF==== DIALOG FOOTER - CONFIRMATION DIALOG ============================  **/
+
+/* ======================= CLIENT STATISTIC CHART ================================  **/
+
+.card-widget__content {
+  container-type: size;
+}
+
+.chart-number-container {
+  color: var(--chart-container-number-color);
+  background-color: var(--chart-container-background-color);
+  border-radius: 10px;
+  width: fit-content;
+  margin: auto;
+  padding: 5px 5px;
+}
+
+.chart-number-container > span {
+  padding: 0.2em;
+}
+.chart-border {
+  border: 1px solid var(--ivy-primary-color-grey-light);
+  height: 75%;
+}
+
+.chart-number-animation {
+  -webkit-transition: font-size .3s ease;
+  -moz-transition: font-size .3s ease;
+  transition: font-size .3s ease;
+}
+
+.chart-number-font-size {
+  font-weight: bolder;
+}
+
+.chart-content-card .chart-label-container {
+  word-break: break-word;
+  height: 2em;
+  padding-top: 10px;
+}
+
+.chart-content-card .chart-icon-font-size {
+  font-size: max(1rem, 1.5rem + 5cqh);
+}
+
+.chart-content-card .chart-name-font-size {
+  font-size: max(1.5rem, 1rem + 4cqh);
+}
+
+.chart-content-card .chart-number-font-size {
+    font-size: max(4rem, 1.5rem + 10cqh);
+}
+
+@container (max-width: 200px) {
+  .chart-content-card .chart-icon-font-size {
+    font-size: max(2rem, 1.5rem + 1cqh);
+  }
+
+  .chart-content-card .chart-name-font-size {
+    font-size: max(1.5rem, 1rem + 5cqw);
+  }
+
+  .chart-content-card .chart-number-font-size {
+    font-size: max(2rem, 1.5rem + 15cqh);
+  }
+}
+
+@container (max-height: 200px) {
+  .chart-content-card .chart-icon-font-size {
+    font-size: max(1rem, 1.5rem + 1cqh);
+  }
+
+  .chart-content-card .chart-name-font-size {
+    font-size: max(0.5rem, 1rem + 1cqw);
+  }
+
+  .chart-content-card .chart-number-font-size {
+    font-size: max(3rem, 1.5rem + 10cqh);
+  }
+}
+
+.chart-content-card {
+  position: relative;
+  width: 100%;
+}
+
+/* ======================= END CLIENT STATISTIC CHART ==========================  **/
+

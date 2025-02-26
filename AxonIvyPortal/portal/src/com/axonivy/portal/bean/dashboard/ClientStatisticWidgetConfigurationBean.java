@@ -158,6 +158,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     Ivy.log().warn(BusinessEntityConverter.entityToJsonValue(clientStatistic));
     saveStatisticJson();
     resetRedundantChartConfigs(clientStatistic.getChartType(), false);
+    populateBackgroundColorsIfMissing();
   }
 
   private void syncUIConfigWithChartConfig() {
@@ -189,7 +190,6 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     } else if (PIE == clientStatistic.getChartType()) {
       clientStatistic.getPieChartConfig().setBackgroundColors(backgroundColors);
     }
-    populateBackgroundColorsIfMissing();
   }
 
   private void resetRedundantChartConfigs(ChartType chartType, boolean isChartConfigAsNull) {
@@ -272,6 +272,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     AggregationResult result = clientStatisticService.getChartData(clientStatistic);
     PrimeFaces.current().ajax().addCallbackParam("jsonResponse",
         BusinessEntityConverter.entityToJsonValue(new ClientStatisticResponse(result, clientStatistic)));
+    populateBackgroundColorsIfMissing();
   }
 
   public void updateNameForCurrentLanguage() {

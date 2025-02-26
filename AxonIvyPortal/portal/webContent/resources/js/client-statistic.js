@@ -375,7 +375,7 @@ class ClientPieChart extends ClientCanvasChart {
           datasets: [{
             label: config.name,
             data: result.map(bucket => bucket.count),
-            backgroundColor: config.backgroundColors ? config.backgroundColors : chartColors
+            backgroundColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors
           }],
           hoverOffset: 4
         },
@@ -392,6 +392,10 @@ class ClientPieChart extends ClientCanvasChart {
         }
       });
     }
+  }
+
+  getBackgoundColors() {
+    return this.data.chartConfig.pieChartConfig.backgroundColors;
   }
 }
 
@@ -433,8 +437,8 @@ class ClientCartesianChart extends ClientCanvasChart {
           datasets: [{
             label: config.name,
             data: data.map(bucket => bucket.count),
-            backgroundColor: config.backgroundColors ? config.backgroundColors : chartColors,
-            pointBorderColor: config.backgroundColors ? config.backgroundColors : chartColors,
+            backgroundColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors,
+            pointBorderColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors,
             pointRadius: 4,
             borderColor: getCssVariable("--ivy-primary-color-grey-medium"),
             borderWidth: 1
@@ -485,6 +489,8 @@ class ClientCartesianChart extends ClientCanvasChart {
 
   // abstract methods
   getChartTitleConfig() { }
+
+  getBackgoundColors() { }
 
   getFormatedTitle(titles) { 
     let localeCountry = locale.substring(0, locale.indexOf('_'));
@@ -561,6 +567,10 @@ class ClientBarChart extends ClientCartesianChart {
 
     this.clientChartConfig.update("none");
   }
+
+  getBackgoundColors() {
+    return this.data.chartConfig.barChartConfig.backgroundColors;
+  }
 }
 
 
@@ -568,6 +578,10 @@ class ClientBarChart extends ClientCartesianChart {
 class ClientLineChart extends ClientCartesianChart {
   getChartTypeConfig() {
     return this.data.chartConfig.lineChartConfig;
+  }
+
+  getBackgoundColors() {
+    return this.data.chartConfig.lineChartConfig.backgroundColors;
   }
 }
 
