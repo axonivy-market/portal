@@ -108,7 +108,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private static final String DEFAULT_WIDGET_TITLE_ID = "widget-configuration-form:new-widget-configuration-component:widget-title-group";
   private static final String PROCESS_ICON_CUSTOM_FIELD = "cssIcon";
   private static final String DEFAULT_PROCESS_ICON = "si si-hierarchy-6 si-rotate-270";
-  private static final String PORTAL_CUSTOM_STATISTIC_WIDGET = "Start Processes/PortalStart/ClientStatisticWidgetConfiguration.ivp";
   
   private List<WidgetSample> samples;
   private String newWidgetHeader;
@@ -1209,7 +1208,19 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return String.format("%s (%s)", widgetName, widget.getType().getLabel());
   }
   
-  public void navigateToCustomStatisticWidgetPage() throws IOException {
-    FacesContext.getCurrentInstance().getExternalContext().redirect(PortalNavigator.buildCustomStatisticWidgetUrl(new HashMap<>()));
+  public void navigateToCustomStatisticWidgetPage(String id) throws IOException {
+    Map<String, String> param = new HashMap<>();
+    if (id != null) {
+      param.put("id", id);
+    }
+    FacesContext.getCurrentInstance().getExternalContext().redirect(PortalNavigator.buildCustomStatisticWidgetUrl(param));
+  }
+  
+  public void deleteCustomStatisticById(String id) {
+    boolean isRemoveSuccess = statisticWidgets.removeIf(c -> c.getId().equals(id));
+    if (isRemoveSuccess) {
+      List<ClientStatistic> customStatisticsToSave = statisticWidgets.stream().filter(c -> c.getIsCustom()).collect(Collectors.toList());
+      ClientStatisticService.getInstance().saveJsonToVariable(customStatisticsToSave);
+    }
   }
 }

@@ -178,8 +178,14 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
     let data = await fetchChartData(chart, chartId);
 
     if (!data) {
+      renderNotFoundData(chart, 'No data found');
       return;
     }
+
+    if (data.statusCode != 200) {
+      renderNotFoundData(chart, data.errorMessage);
+      return;
+    } 
 
     // proceed chart data
     let chartData = generateChart(chart, data);
@@ -243,6 +249,14 @@ const generateChart = (chart, data) => {
     case 'doughnut': return new ClientPieChart(chart, data);
   }
   return undefined;
+}
+
+function renderNotFoundData(chart, errorMessage) {
+  let noChartDataHtml =
+    `<div class="process-dashboard-widget__empty-process empty-message-container">` +
+    `    <span class="empty-message-text">${errorMessage}</span>` +
+    `</div>`;
+  $(chart).html(noChartDataHtml);
 }
 
 // Generic class for Client charts

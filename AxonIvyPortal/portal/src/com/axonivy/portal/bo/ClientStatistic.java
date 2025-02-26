@@ -49,6 +49,8 @@ public class ClientStatistic extends AbstractConfiguration implements Serializab
   private String icon;
   @JsonInclude(value = Include.NON_NULL)
   private String manipulateValueBy;
+  @JsonIgnore
+  private Boolean isCustom;
 
   @JsonIgnore
   private List<SecurityMemberDTO> permissionDTOs;
@@ -56,6 +58,7 @@ public class ClientStatistic extends AbstractConfiguration implements Serializab
   public ClientStatistic() {
     refreshInterval = 300;
     icon = DEFAULT_ICON;
+    isCustom = true;
   }
 
   public String getIcon() {
@@ -212,5 +215,13 @@ public class ClientStatistic extends AbstractConfiguration implements Serializab
 
   public void setPermissionDTOs(List<SecurityMemberDTO> permissionDTOs) {
     this.permissionDTOs = permissionDTOs;
+  }
+
+  public Boolean getIsCustom() {
+    return isCustom;
+  }
+
+  public void setIsCustom(Boolean isCustom) {
+    this.isCustom = isCustom;
   }
 }

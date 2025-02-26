@@ -26,7 +26,7 @@
             oncomplete="PF('clone-widget-dialog').show();" />
       </p:commandButton>
       <p:commandButton id="create-custom-statistic" value="Create custom statistic widget" styleClass="primary-color-light-button"
-        actionListener="#{dashboardDetailModificationBean.navigateToCustomStatisticWidgetPage()}" />
+        actionListener="#{dashboardDetailModificationBean.navigateToCustomStatisticWidgetPage(null)}" />
     </div>
   </h:form>
   <div class="new-widget-dialog__content">
@@ -82,11 +82,32 @@
               <h:panelGroup layout="block" styleClass="new-widget-dialog__image" >
                 <span class="#{iconSelectionBean.generateIconWithFontFamily(widget.icon)} new-widget-dialog__icon" />
               </h:panelGroup>
-
               <h:panelGroup layout="block" styleClass="ui-panelgrid-blank new-widget-dialog__item-content">
-                <h:outputText id="statistic-widget-description" value="#{widget.description}" styleClass="new-widget-dialog__introduction"/>
-                <p:tooltip id="statistic-widget-description-tooltip" for="statistic-widget-description" value="#{widget.description}" trackMouse="true" />
-
+                <div class="w-full">
+                  <div class="flex gap-3">
+                    <div class="flex flex-1">
+                      <h:outputText id="statistic-widget-description" value="#{widget.description}" styleClass="new-widget-dialog__introduction"/>
+                      <p:tooltip id="statistic-widget-description-tooltip" for="statistic-widget-description" value="#{widget.description}" trackMouse="true" />
+                    </div>
+                    <div class="flex flex-none">
+                      <p:commandButton id="custom-statistic-action-button" icon="fa fa-ellipsis-h" rendered="#{widget.isCustom}"
+                         styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page" type="button" />
+                      <p:menu id="custom-statistic-action-menu" styleClass="w-auto" overlay="true" trigger="custom-statistic-action-button"
+                        my="right top" at="right bottom">
+                        <p:menuitem id="edit" process="@this" 
+                          icon="si si-graphic-tablet-drawing-pen" styleClass=""
+                          actionListener="#{dashboardDetailModificationBean.navigateToCustomStatisticWidgetPage(widget.id)}"
+                          global="false"
+                          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" 
+                          target="_blank" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"/>
+                        <p:menuitem id="delete-dashboard" process="@this" styleClass="rounded-button ui-button-outlined ui-button-danger color-destroy"
+                          icon="si si-bin-1" global="false" actionListener="#{dashboardDetailModificationBean.deleteCustomStatisticById(widget.id)}" update="statistic-widget-fieldset"
+                          title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+                          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
+                      </p:menu>
+                    </div>
+                  </div>
+                </div>
                 <p:commandButton id="add-widget" styleClass="new-widget-dialog__add-widget-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
                   actionListener="#{dashboardDetailModificationBean.saveClientStatisticWidget(widget)}"
