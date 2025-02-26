@@ -9,7 +9,6 @@ import java.util.Set;
 import com.google.common.collect.Iterables;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldValues.ValueLabel;
