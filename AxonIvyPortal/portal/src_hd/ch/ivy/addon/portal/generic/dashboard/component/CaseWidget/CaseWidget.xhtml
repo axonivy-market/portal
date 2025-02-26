@@ -85,9 +85,12 @@
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.format eq 'TIMESTAMP'}">
-            <h:outputText value="#{column.display(caseItem)}" style="#{column.fieldStyle}">
+            <h:outputText id="case-timestamp" value="#{column.display(caseItem)}" style="#{column.fieldStyle}">
               <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
             </h:outputText>
+            <p:tooltip for="case-timestamp" value="#{column.display(caseItem)}" trackMouse="true" hideEvent="mouseleave click">
+              <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
+            </p:tooltip>
           </h:panelGroup>
 
           <h:panelGroup rendered="#{column.format eq 'NUMBER'}">

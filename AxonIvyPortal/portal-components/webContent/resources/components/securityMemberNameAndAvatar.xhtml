@@ -26,6 +26,9 @@
       rendered="#{cc.attrs.displayNameRendered and !userMenuBean.isMobileDevice()}"
       styleClass="#{cc.attrs.isShowAvatar ? 'name-after-avatar' : ''} #{cc.attrs.displayNameStyleClass} #{cc.attrs.securityMember == null ? 'u-no-padding-left' : ''}">
     </h:outputText>
+	<p:tooltip for="#{cc.attrs.displayNameId}" value="#{cc.attrs.displayName}" trackMouse="true" hideEvent="mouseleave click"
+      rendered="#{cc.attrs.displayNameRendered and !userMenuBean.isMobileDevice()}"/>
+    
     <cc:renderFacet name="afterName" />
   </div>
   <h:outputScript name="theme-checker.js" library="js" />
