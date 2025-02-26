@@ -163,7 +163,11 @@
       "h" : 4,
       "x" : 8,
       "y" : 4
-    }
+    },
+    "showFullscreenMode": true,
+    "showWidgetInfo": true,
+    "sorting": "BY_SMART_ORDER",
+    "enableQuickSearch": true
   }, {
     "type" : "welcome",
     "id" : "welcome_69ca99617b52481db8f1fea29ccee316",
