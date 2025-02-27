@@ -23,12 +23,12 @@
 </cc:interface> 
 
 <cc:implementation>
-  <ui:fragment rendered="#{not empty cc.attrs.taskName}"><script>window.taskName = `#{cc.attrs.taskName}`;</script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.taskIcon}"><script>window.taskIcon = `#{cc.attrs.taskIcon}`;</script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.taskName}"><script>window.taskName = `#{htmlSanitizerBean.escapeForJS(cc.attrs.taskName)}`;</script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.taskIcon}"><script>window.taskIcon = `#{htmlSanitizerBean.escapeForIcon(cc.attrs.taskIcon)}`;</script></ui:fragment>
   <ui:fragment rendered="#{not empty cc.attrs.isHideTaskName}"><script>
     window.isHideTaskName = (`#{cc.attrs.isHideTaskName}`.toLowerCase() === "true");
   </script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.caseId}"><script>window.caseId = `#{cc.attrs.caseId}`;</script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.caseId}"><script>window.caseId = `#{htmlSanitizerBean.escapeForJS(cc.attrs.caseId)}`;</script></ui:fragment>
   <ui:fragment rendered="#{not empty cc.attrs.isHideCaseInfo}"><script>
     window.isHideCaseInfo = (`#{cc.attrs.isHideCaseInfo}`.toLowerCase() === "true");
   </script></ui:fragment>
@@ -62,7 +62,7 @@
   <ui:fragment rendered="#{not empty cc.attrs.isCardFrame}"><script>
     window.isCardFrame = (`#{cc.attrs.isCardFrame}`.toLowerCase() === "true");
   </script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.viewName}"><script>window.viewName = `#{cc.attrs.viewName}`;</script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.viewName}"><script>window.viewName = `#{htmlSanitizerBean.escapeForJS(cc.attrs.viewName)}`;</script></ui:fragment>
 </cc:implementation>
 
 </html>
