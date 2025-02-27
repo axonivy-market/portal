@@ -8,6 +8,7 @@ import java.util.Objects;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -17,6 +18,8 @@ import org.primefaces.model.SortMeta;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
+import com.axonivy.portal.util.BusinessDetailsUtils;
+import com.axonivy.portal.util.CaseBehaviorUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -58,6 +61,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
   private boolean inFrame;
   private boolean isFirstTime;
   private boolean isRunningTaskWhenClickingOnTaskInList;
+  private boolean canAccessBusinessDetails;
   private String caseDetailsDescription;
   private String caseDetailsUrl;
   private Boolean isShowShareButton;
@@ -74,6 +78,7 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
         .equals(BehaviourWhenClickingOnLineInTaskList.RUN_TASK.name());
+    canAccessBusinessDetails = CaseBehaviorUtils.canAccessBusinessDetails();
     showDurationTime = Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_CASE_DURATION_TIME));
   }
 
@@ -198,9 +203,13 @@ public class CaseDetailsBean extends AbstractConfigurableContentBean<CaseDetails
     }
   }
 
-  public void navigateToSelectedCaseDetails(SelectEvent<Object> event) {
-    String uuid = ((ICase) event.getObject()).uuid();
-    navigateToCaseDetails(uuid);
+  public void navigateToSelectedCaseDetails(SelectEvent<Object> event) throws IOException {
+    ICase icase = ((ICase) event.getObject());
+    if (canAccessBusinessDetails) {
+      FacesContext.getCurrentInstance().getExternalContext().redirect(BusinessDetailsUtils.getAdditionalCaseDetailsPageUri(icase));
+    } else {
+      navigateToCaseDetails(icase.uuid());
+    }
   }
 
   public void navigateToCaseDetails(String uuid) {

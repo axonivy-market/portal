@@ -43,7 +43,7 @@ public class CreatedDateColumnModel extends CaseColumnModel implements Serializa
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-cases__created-date u-text-align-center";
+    return "dashboard-cases__created-date text-center";
   }
 
   @Override

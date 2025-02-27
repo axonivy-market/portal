@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
+import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInCaseList;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
@@ -118,6 +119,8 @@ public class GlobalSetting extends AbstractConfiguration {
     } else if (object instanceof ProcessMode castObject) {
       return castObject.getLabel();
     } else if (object instanceof BehaviourWhenClickingOnLineInTaskList castObject) {
+      return castObject.getLabel();
+    } else if (object instanceof BehaviourWhenClickingOnLineInCaseList castObject) {
       return castObject.getLabel();
     } else if (object instanceof DefaultImage castObject) {
       return castObject.getLabel();

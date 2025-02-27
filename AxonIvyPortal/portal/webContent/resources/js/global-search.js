@@ -212,12 +212,12 @@ if (document) {
     let viewAllLink = $parent.siblings('.global-search-all-results')[0];
     let noResults = $parent.siblings('.global-search-no-results')[0];
     if (data && data.totalResult > 0) {
-      $(viewAllLink).removeClass('u-hidden');
+      $(viewAllLink).removeClass('hidden');
       $(viewAllLink).find('a').html(data.viewAllText + ' (' + data.totalResult + ')')
-      $(noResults).addClass('u-hidden');
+      $(noResults).addClass('hidden');
     } else {
-      $(viewAllLink).addClass('u-hidden');
-      $(noResults).removeClass('u-hidden');
+      $(viewAllLink).addClass('hidden');
+      $(noResults).removeClass('hidden');
     }
     initConfirmDialog()
   }
