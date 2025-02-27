@@ -127,9 +127,10 @@ async function fetchChartData(chart, chartId) {
     const response = await postFetchApi(statisticApiURL, JSON.stringify({ "chartId": chartId }));
     cloneResponse = response.clone();
     data = await response.json();
+    data['statusCode'] = response.status;
     return await data;
   } catch (error) {
-    (new ClientChart()).renderNoPermissionStatistics(chart, await cloneResponse.text());
+    (new ClientChart()).renderNoPermissionStatistics(chart, await cloneResponse.errorMessage);
     return;
   }
 }
@@ -177,15 +178,15 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
     let chartId = chart.getAttribute(DATA_CHART_ID);
     let data = await fetchChartData(chart, chartId);
 
+    if (data.statusCode != 200) {
+      renderNotFoundData(chart, data.errorMessage);
+      return;
+    }
+
     if (!data) {
       renderNotFoundData(chart, 'No data found');
       return;
     }
-
-    if (data.statusCode != 200) {
-      renderNotFoundData(chart, data.errorMessage);
-      return;
-    } 
 
     // proceed chart data
     let chartData = generateChart(chart, data);
