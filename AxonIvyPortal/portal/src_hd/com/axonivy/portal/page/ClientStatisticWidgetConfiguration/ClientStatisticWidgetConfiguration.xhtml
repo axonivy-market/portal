@@ -11,6 +11,8 @@
     </ui:define>
     <ui:define name="title">Custom Statistic Widget Configuration</ui:define>
     <ui:define name="pageContent">
+      <p:remoteCommand name="lazyLoadChart" action="#{clientStatisticWidgetConfigurationBean.getPreviewData}"
+        oncomplete="handlePreviewChart(xhr, status, args)" autoRun="#{clientStatisticWidgetConfigurationBean.editMode}" />
       <h:form id="config-form">
         <div>
           <p:messages id="errors-message" closable="true" />
@@ -28,7 +30,7 @@
                   <div>
                     <p:outputLabel value="Name" for="@next" />
                   </div>
-                  <div class="ui-inputgroup">
+                  <div class="ui-inputgroup mt-2">
                     <p:inputText id="name" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.name}"
                       maxlength="200" styleClass="w-full" />
                     <p:commandButton id="add-name-language-button" icon="si si-chat-translate"
@@ -42,7 +44,7 @@
                   <div>
                     <p:outputLabel value="Description" for="@next" />
                   </div>
-                  <div class="ui-inputgroup">
+                  <div class="ui-inputgroup mt-2">
                     <p:inputText id="description"
                       value="#{clientStatisticWidgetConfigurationBean.clientStatistic.description}" maxlength="200"
                       styleClass="w-full" />
@@ -57,10 +59,9 @@
                   <div>
                     <p:outputLabel for="@next" value="Chart type" />
                   </div>
-                  <div>
+                  <div class="mt-2">
                     <p:selectOneMenu id="type"
-                      value="#{clientStatisticWidgetConfigurationBean.clientStatistic.chartType}"
-                      styleClass="w-full">
+                      value="#{clientStatisticWidgetConfigurationBean.clientStatistic.chartType}" styleClass="w-full">
                       <f:selectItems value="#{clientStatisticWidgetConfigurationBean.allChartTypes}" var="type"
                         itemLabel="#{chartType}" itemValue="#{chartType}" />
                       <p:ajax event="itemSelect"
@@ -74,10 +75,9 @@
                   <div>
                     <p:outputLabel for="@next" value="For" />
                   </div>
-                  <div>
+                  <div class="mt-2">
                     <p:selectOneMenu id="target"
-                      value="#{clientStatisticWidgetConfigurationBean.clientStatistic.chartTarget}"
-                      styleClass="w-full">
+                      value="#{clientStatisticWidgetConfigurationBean.clientStatistic.chartTarget}" styleClass="w-full">
                       <f:selectItems value="#{clientStatisticWidgetConfigurationBean.allChartTargets}" var="target"
                         itemLabel="#{chartTarget}" itemValue="#{chartTarget}" />
                     </p:selectOneMenu>
@@ -92,7 +92,7 @@
                   <div>
                     <p:outputLabel for="@next" value="Icon" />
                   </div>
-                  <div>
+                  <div class="mt-2">
                     <ic:ch.ivy.addon.portalkit.component.IconSelection id="icon"
                       value="#{clientStatisticWidgetConfigurationBean.clientStatistic.icon}" />
                   </div>
@@ -102,8 +102,8 @@
                   <div>
                     <p:outputLabel for="@next" value="Aggregate" />
                   </div>
-                  <div>
-                    <p:inputText id="aggregates"
+                  <div class="mt-2">
+                    <p:inputText id="aggregates" required="true"
                       value="#{clientStatisticWidgetConfigurationBean.clientStatistic.aggregates}" styleClass="w-full" />
                     <!--                     <p:autoComplete id="aggregates" -->
                     <!--                       value="#{clientStatisticWidgetConfigurationBean.clientStatistic.aggregates}" -->
@@ -112,13 +112,14 @@
                     <!--                       styleClass="w-full" /> -->
                   </div>
                 </div>
+
                 <h:panelGroup layout="block" styleClass="ui-g-6"
                   rendered="#{clientStatisticWidgetConfigurationBean.clientStatistic.chartType.name() eq 'BAR' or clientStatisticWidgetConfigurationBean.clientStatistic.chartType.name() eq 'LINE'}">
 
                   <div>
                     <p:outputLabel value="X axis title" for="@next" />
                   </div>
-                  <div class="ui-inputgroup">
+                  <div class="ui-inputgroup mt-2">
                     <p:inputText id="category-title" value="#{clientStatisticWidgetConfigurationBean.xTitle}"
                       maxlength="200" styleClass="w-full" />
                     <p:commandButton id="category-title-add-language-button" icon="si si-chat-translate"
@@ -133,7 +134,7 @@
                   <div>
                     <p:outputLabel value="Y axis title" for="@next" />
                   </div>
-                  <div class="ui-inputgroup">
+                  <div class="ui-inputgroup mt-2">
                     <p:inputText id="value-title" value="#{clientStatisticWidgetConfigurationBean.yTitle}"
                       maxlength="200" styleClass="w-full" />
                     <p:commandButton id="value-title-add-language-button" icon="si si-chat-translate"
@@ -147,7 +148,7 @@
                   <div>
                     <p:outputLabel for="@next" value="Filter" />
                   </div>
-                  <div>
+                  <div class="mt-2">
                     <p:inputText id="filter" value="#{clientStatisticWidgetConfigurationBean.clientStatistic.filter}"
                       class="w-full" />
                   </div>
@@ -161,11 +162,10 @@
                   <div>
                     <p:outputLabel for="@next" value="Permissions" />
                   </div>
-                  <div class="w-full ui-fluid">
+                  <div class="w-full ui-fluid mt-2">
                     <p:autoComplete id="permissions" scrollHeight="210" dropdown="true"
                       completeMethod="#{clientStatisticWidgetConfigurationBean.completePermissions}"
-                      styleClass="manage-dashboard__input"
-                      inputStyleClass="manage-dashboard__autocomplete-input"
+                      styleClass="manage-dashboard__input" inputStyleClass="manage-dashboard__autocomplete-input"
                       value="#{clientStatisticWidgetConfigurationBean.clientStatistic.permissionDTOs}" var="responsible"
                       itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}"
                       converter="pojoConverter" cache="true" maxResults="100" multiple="true"
@@ -194,7 +194,7 @@
                   <div>
                     <p:outputLabel for="@next" value="Refresh interval (seconds)" />
                   </div>
-                  <div>
+                  <div class="mt-2">
                     <p:inputText id="refresh-interval"
                       value="#{clientStatisticWidgetConfigurationBean.clientStatistic.refreshInterval}"
                       styleClass="w-full" />
@@ -211,7 +211,7 @@
                   <div>
                     <p:outputLabel for="@next" value="Hide Label" />
                   </div>
-                  <div>
+                  <div class="mt-2">
                     <p:selectBooleanCheckbox id="hide-label"
                       value="#{clientStatisticWidgetConfigurationBean.clientStatistic.numberChartConfig.hideLabel}" />
                   </div>
@@ -226,7 +226,7 @@
                       <div>
                         <p:outputLabel for="@next" value="Color #{status.index + 1}" />
                       </div>
-                      <div>
+                      <div class="mt-2">
                         <p:colorPicker value="#{clientStatisticWidgetConfigurationBean.backgroundColors[status.index]}"
                           clearButton="true" closeButton="true" size="10" />
                       </div>
@@ -243,6 +243,17 @@
                   <p:commandButton value="Generate preview"
                     action="#{clientStatisticWidgetConfigurationBean.getPreviewData}"
                     oncomplete="handlePreviewChart(xhr, status, args)" update="@form" styleClass="ui-leave-button" />
+                </div>
+                <h:panelGroup layout="block" styleClass="card statistic-chart-widget__chart">
+                  <div style="height: 600px;"
+                    class="ui-chart js-client-statistic-chart statistic-chart-widget__canvas chart-options-config"
+                    data-chart-id="preview-statistic-chart"></div>
+                </h:panelGroup>
+                <div class="mt-3 text-right">
+                  <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                    styleClass="u-mar-right-15" actionListener="#{clientStatisticWidgetConfigurationBean.backToHome}" />
+                  <p:commandButton value="#{clientStatisticWidgetConfigurationBean.editMode ? 'Save': 'Create'}"
+                    action="#{clientStatisticWidgetConfigurationBean.save}" update="@form" />
                 </div>
 
                 <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="name-language-config"
@@ -269,18 +280,6 @@
                   updateCurrentLanguage="#{clientStatisticWidgetConfigurationBean.updateValueTitleForCurrentLanguage()}"
                   componentToUpdateOnModify="config-form:value-title"
                   componentToUpdateOnCreate="config-form:value-title" titleRequired="false" />
-                <h:panelGroup layout="block" styleClass="card statistic-chart-widget__chart">
-                  <div style="height: 400px;"
-                    class="ui-chart js-client-statistic-chart statistic-chart-widget__canvas chart-options-config"
-                    data-chart-id="preview-statistic-chart"></div>
-                </h:panelGroup>
-                <div class="mt-3 text-right">
-                  <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                    styleClass="u-mar-right-15" actionListener="#{clientStatisticWidgetConfigurationBean.backToHome}" />
-                  <p:commandButton value="#{clientStatisticWidgetConfigurationBean.editMode ? 'Save': 'Create'}"
-                    action="#{clientStatisticWidgetConfigurationBean.save}" update="@form" />
-                </div>
-
               </div>
             </div>
           </div>
