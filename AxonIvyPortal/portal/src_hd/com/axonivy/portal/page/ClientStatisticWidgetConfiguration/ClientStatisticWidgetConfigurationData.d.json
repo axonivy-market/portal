@@ -7,5 +7,9 @@
     "name" : "id",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "callbackDashboardId",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

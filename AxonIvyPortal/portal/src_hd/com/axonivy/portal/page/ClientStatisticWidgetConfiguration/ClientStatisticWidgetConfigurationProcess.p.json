@@ -8,14 +8,16 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(String)",
+      "name" : "start(String,String)",
       "config" : {
         "signature" : "start",
         "input" : {
           "params" : [
-            { "name" : "id", "type" : "String", "desc" : "" }
+            { "name" : "id", "type" : "String", "desc" : "" },
+            { "name" : "callbackDashboardId", "type" : "String", "desc" : "" }
           ],
           "map" : {
+            "out.callbackDashboardId" : "param.callbackDashboardId",
             "out.id" : "param.id"
           }
         },

@@ -42,6 +42,7 @@ import com.axonivy.portal.service.ClientStatisticService;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.DisplayNameUtils;
 
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
@@ -65,6 +66,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   private static final long serialVersionUID = 1L;
   private ClientStatistic clientStatistic;
   private String statisticWidgetId;
+  private String callbackDashboardId;
   private List<DisplayName> xTitles;
   private String xTitle;
   private List<DisplayName> yTitles;
@@ -79,6 +81,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     if (StringUtils.isNotEmpty(statisticWidgetId)) {
       clientStatistic = ClientStatisticService.getInstance().findByIdCustomClientStatistic(statisticWidgetId);
     }
+    callbackDashboardId = Attrs.currentContext().getAttribute("#{data.callbackDashboardId}", String.class);
     if (clientStatistic == null) {
       clientStatistic = new ClientStatistic();
       clientStatistic.setAggregates("priority");
@@ -159,11 +162,10 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   public void save() {
     syncUIConfigWithChartConfig();
     resetRedundantChartConfigs(clientStatistic.getChartType(), true);
-
-    Ivy.log().warn(BusinessEntityConverter.entityToJsonValue(clientStatistic));
     saveStatisticJson();
     resetRedundantChartConfigs(clientStatistic.getChartType(), false);
     populateBackgroundColorsIfMissing();
+    backToDashboardDetailsPageIfPossible();
   }
 
   private void syncUIConfigWithChartConfig() {
@@ -475,7 +477,15 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
         : new SecurityMemberDTO(RoleUtils.findRole(permission));
   }
 
-  public void backToHome() {
-    PortalNavigatorAPI.navigateToPortalHome();
+  public void cancel() {
+    backToDashboardDetailsPageIfPossible();
+  }
+
+  private void backToDashboardDetailsPageIfPossible() {
+    if (StringUtils.isEmpty(callbackDashboardId)) {
+      PortalNavigatorAPI.navigateToPortalHome();
+    } else {
+      PortalNavigator.navigateToDashboardDetailsPage(callbackDashboardId, true);
+    }
   }
 }
