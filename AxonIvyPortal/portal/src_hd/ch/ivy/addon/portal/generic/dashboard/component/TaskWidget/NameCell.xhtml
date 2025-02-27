@@ -13,7 +13,7 @@
     value="#{taskName}" />
 
   <h:panelGroup layout="block" styleClass="u-hidden-md-up">
-    <h:outputText id="task-name-sm" value="#{empty task.names().current() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.names().current()}"
+    <h:outputText id="task-name-sm" value="#{taskName}"
       title="#{column.display(task)}" styleClass="dashboard-tasks__column-small-screen-name"/>
     <p:tooltip id="task-name-tooltip-sm" for="task-name-sm" styleClass="#{cc.attrs.stateTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click" 
       value="#{taskName}" />
