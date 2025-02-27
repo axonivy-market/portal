@@ -11,16 +11,16 @@
     </ui:define>
     <ui:define name="title">Custom Statistic Widget Configuration</ui:define>
     <ui:define name="pageContent">
-      <p:remoteCommand name="lazyLoadChart" action="#{clientStatisticWidgetConfigurationBean.getPreviewData}"
+      <p:remoteCommand name="preview" action="#{clientStatisticWidgetConfigurationBean.getPreviewData}"
         oncomplete="handlePreviewChart(xhr, status, args)" autoRun="#{clientStatisticWidgetConfigurationBean.editMode}" />
       <h:form id="config-form">
         <div>
           <p:messages id="errors-message" closable="true" />
         </div>
-        <div id="my-profile-container">
+        <div>
           <div class="card ui-g">
             <div class="flex user-profile-card">
-              <div class="ui-g-6 ui-sm-12 pr-5 user-profile-card-left">
+              <h:panelGroup id="config-panel" layout="block" class="ui-g-6 ui-sm-12 pr-5 user-profile-card-left">
                 <div class="ui-g-12">
                   <h4 class="mb-0">#{clientStatisticWidgetConfigurationBean.editMode ? "Edit Statistic Widget":
                     "New Statistics Widget"}</h4>
@@ -66,7 +66,7 @@
                         itemLabel="#{chartType}" itemValue="#{chartType}" />
                       <p:ajax event="itemSelect"
                         listener="#{clientStatisticWidgetConfigurationBean.onSelectChartType(clientStatisticWidgetConfigurationBean.clientStatistic.chartType)}"
-                        process="@form" update="@form" />
+                        process="config-panel" update="config-panel" />
                     </p:selectOneMenu>
                   </div>
                 </div>
@@ -233,7 +233,7 @@
                     </div>
                   </ui:repeat>
                 </h:panelGroup>
-              </div>
+              </h:panelGroup>
               <p:divider layout="vertical" styleClass="responsive-divider" />
               <div class="ui-g-6 pl-5 ui-sm-12 relative user-profile-card-right">
                 <div class="ui-g-6">
@@ -242,7 +242,7 @@
                 <div class="ui-g-6 text-right pr-0">
                   <p:commandButton value="Generate preview"
                     action="#{clientStatisticWidgetConfigurationBean.getPreviewData}"
-                    oncomplete="handlePreviewChart(xhr, status, args)" update="@form" styleClass="ui-leave-button" />
+                    oncomplete="handlePreviewChart(xhr, status, args)" styleClass="ui-leave-button" />
                 </div>
                 <h:panelGroup layout="block" styleClass="card statistic-chart-widget__chart">
                   <div style="height: 600px;"
