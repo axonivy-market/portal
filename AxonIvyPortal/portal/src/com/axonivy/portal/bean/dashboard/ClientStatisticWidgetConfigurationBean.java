@@ -207,6 +207,9 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     if (LINE != chartType) {
       clientStatistic.setLineChartConfig(isChartConfigAsNull ? null : new LineChartConfig());
     }
+    if (PIE != chartType) {
+      clientStatistic.setPieChartConfig(isChartConfigAsNull ? null : new PieChartConfig());
+    }
     if (NUMBER != chartType) {
       clientStatistic.setNumberChartConfig(isChartConfigAsNull ? null : new NumberChartConfig());
     }
