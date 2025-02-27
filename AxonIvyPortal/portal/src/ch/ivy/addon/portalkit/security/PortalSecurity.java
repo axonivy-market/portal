@@ -76,8 +76,7 @@ public enum PortalSecurity {
         PortalPermission.TASK_DISPLAY_RESET_ACTION, PortalPermission.TASK_DISPLAY_RESERVE_ACTION,
         PortalPermission.TASK_DISPLAY_DELEGATE_ACTION, PortalPermission.DASHBOARD_WRITE_OWN,
         PortalPermission.SHOW_CASE_DETAILS, PortalPermission.DASHBOARD_SHARE_LINK, 
-        PortalPermission.TASK_DETAILS_SHARE_LINK, PortalPermission.CASE_DETAILS_SHARE_LINK,
-        PortalPermission.CASE_OWNER_TASK_DELEGATE);
+        PortalPermission.TASK_DETAILS_SHARE_LINK, PortalPermission.CASE_DETAILS_SHARE_LINK);
 
     private static final List<PortalPermission> ALL_PORTAL_PERMISSIONS = Arrays.asList(PortalPermission.values());
     private Permissions() {}
