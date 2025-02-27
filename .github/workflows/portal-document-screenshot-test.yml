@@ -1,7 +1,6 @@
 name: Portal Document Screenshot
 run-name: Document Screenshot 
 on:
-  push:
   workflow_dispatch:
     inputs:
       testPatternToRun:
