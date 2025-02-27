@@ -1210,8 +1210,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   
   public void navigateToCustomStatisticWidgetPage(String id) throws IOException {
     Map<String, String> param = new HashMap<>();
-    if (id != null) {
+    if (StringUtils.isNotEmpty(id)) {
       param.put("id", id);
+    }
+    if (StringUtils.isNotEmpty(selectedDashboardId)) {
+      param.put("callbackDashboardId", selectedDashboardId);
     }
     FacesContext.getCurrentInstance().getExternalContext().redirect(PortalNavigator.buildCustomStatisticWidgetUrl(param));
   }

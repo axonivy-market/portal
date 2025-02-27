@@ -66,7 +66,7 @@
                         itemLabel="#{chartType}" itemValue="#{chartType}" />
                       <p:ajax event="itemSelect"
                         listener="#{clientStatisticWidgetConfigurationBean.onSelectChartType(clientStatisticWidgetConfigurationBean.clientStatistic.chartType)}"
-                        global="false" update="@form" />
+                        process="@form" update="@form" />
                     </p:selectOneMenu>
                   </div>
                 </div>
@@ -251,7 +251,7 @@
                 </h:panelGroup>
                 <div class="mt-3 text-right">
                   <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                    styleClass="u-mar-right-15" actionListener="#{clientStatisticWidgetConfigurationBean.backToHome}" />
+                    styleClass="u-mar-right-15" actionListener="#{clientStatisticWidgetConfigurationBean.cancel}" />
                   <p:commandButton value="#{clientStatisticWidgetConfigurationBean.editMode ? 'Save': 'Create'}"
                     action="#{clientStatisticWidgetConfigurationBean.save}" update="@form" />
                 </div>

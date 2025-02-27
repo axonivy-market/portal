@@ -4241,9 +4241,11 @@
         "signature" : "ClientStatisticWidgetConfiguration",
         "input" : {
           "params" : [
-            { "name" : "id", "type" : "String", "desc" : "" }
+            { "name" : "id", "type" : "String", "desc" : "" },
+            { "name" : "callbackDashboardId", "type" : "String", "desc" : "" }
           ],
           "map" : {
+            "out.dashboardId" : "param.callbackDashboardId",
             "out.id" : "param.id"
           }
         },
@@ -4261,10 +4263,11 @@
       "id" : "f53",
       "type" : "DialogCall",
       "config" : {
-        "dialog" : "com.axonivy.portal.page.ClientStatisticWidgetConfiguration:start(String)",
+        "dialog" : "com.axonivy.portal.page.ClientStatisticWidgetConfiguration:start(String,String)",
         "call" : {
           "map" : {
-            "param.id" : "in.id"
+            "param.id" : "in.id",
+            "param.callbackDashboardId" : "in.dashboardId"
           }
         }
       },
