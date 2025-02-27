@@ -5,6 +5,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
   
   <c:set var="taskName" value="#{empty task.names().current() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.names().current()}" />
+  <c:set var="taskDescription" value="#{dashboardBean.createExtractedTextFromHtml(task.descriptions().current())}" />
 
   <h:outputText id="task-name" value="#{taskName}"
     styleClass="#{column.fieldStyleClass} u-hidden-sm-down"
@@ -18,9 +19,8 @@
     <p:tooltip id="task-name-tooltip-sm" for="task-name-sm" styleClass="#{cc.attrs.stateTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click" 
       value="#{taskName}" />
 
-    <h:outputText id="task-description" styleClass="dashboard-tasks__column-small-screen-description"
-      value="#{dashboardBean.createExtractedTextFromHtml(task.descriptions().current())}" />
-    <p:tooltip for="task-description" value="#{dashboardBean.createExtractedTextFromHtml(task.descriptions().current())}" trackMouse="true" hideEvent="mouseleave click" />
+    <h:outputText id="task-description" styleClass="dashboard-tasks__column-small-screen-description" value="taskDescription" />
+    <p:tooltip for="task-description" value="#{taskDescription}" trackMouse="true" hideEvent="mouseleave click" />
   </h:panelGroup>
 
 </html>

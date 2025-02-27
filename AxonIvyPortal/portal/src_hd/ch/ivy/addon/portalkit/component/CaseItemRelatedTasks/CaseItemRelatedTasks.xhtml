@@ -15,6 +15,8 @@
 </cc:interface>
 
 <cc:implementation>
+  <c:set var="taskDescription" value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}"/>
+
   <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
     <div class="case-detail-section-title case-details-related-task-header-section ui-g-12">
@@ -68,14 +70,14 @@
           <h:outputText id="related-task-name" value="#{task.names().current()}" title="#{task.names().current()}" styleClass="task-name-value"/>
           <p:tooltip id="related-task-name-tooltip" for="related-task-name" trackMouse="true" hideEvent="mouseleave click" value="#{task.names().current()}" />
 
-          <h:outputText id="related-task-description-sm" value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}" styleClass="task-description-value"/>
+          <h:outputText id="related-task-description-sm" value="#{taskDescription}" styleClass="task-description-value"/>
           <p:tooltip id="related-task-description-tooltip-sm" for="related-task-description-sm" trackMouse="true" 
-            hideEvent="mouseleave click" value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}" />
+            hideEvent="mouseleave click" value="#{taskDescription}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false"
           styleClass="related-task-description-column">
-          <h:outputText id="related-task-description-lg" value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}" title="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}"/>
-          <p:tooltip id="related-task-description-tooltip-lg" for="related-task-description-lg" trackMouse="true" hideEvent="mouseleave click" value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}" />
+          <h:outputText id="related-task-description-lg" value="#{taskDescription}" title="#{taskDescription}"/>
+          <p:tooltip id="related-task-description-tooltip-lg" for="related-task-description-lg" trackMouse="true" hideEvent="mouseleave click" value="#{taskDescription}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
           styleClass="related-task-responsible-column" field="ACTIVATOR" sortBy="#{ACTIVATOR}" filterable="false"
