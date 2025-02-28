@@ -87,7 +87,8 @@ Task Permissions
    :bdg-ref-warning:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`. This permission belongs to the
    PortalPermissions group. It is not assigned to role Everybody by default.
 
-   A case owner is able to delegate all tasks within their case with permission :bdg-ref-warning:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`. This permission is assigned to role Everybody by default.
+   A case owner is able to delegate all related tasks within their case with permission :bdg-ref-warning:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`. This permission belongs to the
+   PortalPermissions group.
 
    .. important::
       - Only tasks ready for user processing can be delegated. Therefore, the task state cannot be one of the following: CREATED, DONE, DESTROYED, RESUMED, FAILED.
