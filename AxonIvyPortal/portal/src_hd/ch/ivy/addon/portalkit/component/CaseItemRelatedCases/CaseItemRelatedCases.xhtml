@@ -14,6 +14,8 @@
 </cc:interface>
 
 <cc:implementation>
+  <c:set var="caseDescription" value="#{caseWidgetBean.formatCaseDescription(case.descriptions().current())}"/>
+
   <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
     <div class="ui-g-12 case-details-related-case-header-section">
@@ -47,18 +49,22 @@
         <p:ajax event="rowSelect" listener="#{caseDetailsBean.navigateToSelectedCaseDetails}" />
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" field="NAME" sortBy="#{NAME}" filterable="false" styleClass="name-column u-truncate-text ui-sm-12"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}">
-          <h:outputText value="#{case.names().current()}" title="#{case.names().current()}" styleClass="case-name-value"/>
-          <h:outputText value="#{caseWidgetBean.formatCaseDescription(case.descriptions().current())}" styleClass="case-description-value"/>
+          <h:outputText id="case-name" value="#{case.names().current()}" title="#{case.names().current()}" styleClass="case-name-value"/>
+          <p:tooltip for="case-name" value="#{case.names().current()}" trackMouse="true" hideEvent="mouseleave click"/>
+          <h:outputText id="case-description-sm" value="#{caseDescription}" styleClass="case-description-value"/>
+          <p:tooltip for="case-description-sm" value="#{caseDescription}" trackMouse="true" hideEvent="mouseleave click"/>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortable="false" styleClass="description-column u-truncate-text"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}" >
-          <h:outputText escape="false" value="#{caseWidgetBean.formatCaseDescription(case.descriptions().current())}" title="#{caseWidgetBean.formatCaseDescription(case.descriptions().current())}"/>
+          <h:outputText id="case-description" escape="false" value="#{caseDescription}" title="#{caseDescription}"/>
+          <p:tooltip for="case-description" value="#{caseDescription}" trackMouse="true" hideEvent="mouseleave click"/>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" field="ID" sortBy="#{ID}" filterable="false" styleClass="id-column u-hidden-md-down"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'ID')}">
-          <h:outputText value="#{case.id}" />
+          <h:outputText id="related-case-id" value="#{case.id}" />
+          <p:tooltip for="related-case-id" value="#{case.id}" trackMouse="true" hideEvent="mouseleave click" />
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" styleClass="responsible-column" field="CREATOR" sortBy="#{CREATOR}" filterable="false"
@@ -75,16 +81,22 @@
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" field="CREATION_TIME" sortBy="#{CREATION_TIME}" filterable="false" styleClass="created-column u-hidden-md-down"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'CREATION_TIME')}">
-          <h:outputText value="#{case.startTimestamp}">
+          <h:outputText id="related-case-created-column" value="#{case.startTimestamp}">
             <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
           </h:outputText>
+          <p:tooltip for="related-case-created-column" value="#{case.startTimestamp}" trackMouse="true" hideEvent="mouseleave click">
+            <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}" />
+          </p:tooltip>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" field="FINISHED_TIME" sortBy="#{FINISHED_TIME}" filterable="false" styleClass="expiry-column"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'FINISHED_TIME')}">
-          <h:outputText value="#{case.endTimestamp}">
+          <h:outputText id="related-case-finish-column" value="#{case.endTimestamp}">
             <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
           </h:outputText>
+          <p:tooltip for="related-case-finish-column" value="#{case.endTimestamp}" trackMouse="true" hideEvent="mouseleave click">
+            <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}" />
+          </p:tooltip>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" field="STATE" sortBy="#{STATE}" filterable="false" styleClass="state-column u-hidden-md-down"
@@ -94,7 +106,8 @@
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CATEGORY')}" sortable="false" styleClass="category-column u-truncate-text"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'CATEGORY')}">
-          <h:outputText value="#{case.getCategory().getName()}" title="#{case.getCategory().getPath()}" />
+          <h:outputText id="related-case-category" value="#{case.getCategory().getName()}" title="#{case.getCategory().getPath()}" />
+          <p:tooltip for="related-case-category" value="#{case.getCategory().getName()}" trackMouse="true" hideEvent="mouseleave click"/>
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="more-column ui-sm-hidden">

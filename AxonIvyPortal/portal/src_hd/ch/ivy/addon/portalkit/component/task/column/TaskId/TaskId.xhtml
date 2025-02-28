@@ -1,5 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-  xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:p="http://primefaces.org/ui" >
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="componentId" default="task-id" />
@@ -12,5 +13,7 @@
 <cc:implementation>
   <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}" rendered="#{cc.attrs.dataModel.isSelectedColumn('ID')}"
     styleClass="id-cell default-task-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" />
+  <p:tooltip for="#{cc.attrs.componentId}" value="#{cc.attrs.value}" trackMouse="true" hideEvent="mouseleave click" />
+
 </cc:implementation>
 </html>
