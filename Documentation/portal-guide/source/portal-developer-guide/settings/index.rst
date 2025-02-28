@@ -423,10 +423,10 @@ Data model:
 
 Portal Statistic Charts
 ^^^^^^^^^^^^^^^^^^^^^^^
-You can define filter logic, appearance, and other settings for all statistic
+You can define filter logic, appearance, and other settings for custom statistic
 charts that can be used by the :ref:`Statistic widget <portal-statistic-widget>` of Portal dashboard.
 
-Filename: ``variables.Portal.ClientStatistic.json``
+Filename: ``variables.Portal.CustomClientStatistic.json``
 
 Data model:
 
@@ -434,7 +434,7 @@ Data model:
 
    [
       {
-         "id": "1",
+         "id": "20",
          "aggregates": "priority",
          "filter": "businessState:OPEN IN_PROGRESS,canWorkOn",
          "chartTarget": "TASK",
@@ -477,6 +477,7 @@ Data model:
          ],
          "icon": "si si-analytics-pie-2",
          "refreshInterval": 300
+         "backgroundColor": ["#FF6F61", "#6B5B95", "#88B04B", "#F7CAC9"]
       }
    ]
 
@@ -514,6 +515,8 @@ Data model:
    ``number``: Labelled number chart
    
    |number-chart|
+
+- ``backgroundColor``: chart color
 
 For some specific charts such as ``Bar``, ``Line`` or ``Number``, there are additional and required fields:
 
