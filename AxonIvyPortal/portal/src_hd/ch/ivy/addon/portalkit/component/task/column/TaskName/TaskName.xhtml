@@ -15,7 +15,7 @@
 
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
-  <c:set var="taskDescription" value="#{cc.attrs.task}" />
+  <c:set var="taskDescription" value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}" />
 
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('NAME')}">
     <h:outputText id="#{cc.attrs.nameId}" styleClass="name-cell #{cc.attrs.nameStyleClass} #{cc.attrs.responsiveStyleClass}"
