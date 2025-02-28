@@ -90,14 +90,18 @@
 
       <!-- New field -->
       <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu u-hidden-lg-down" rendered="#{caseView.dataModel.isSelectedColumn('CustomerName')}">
-        <h:outputText value="#{case.customFields().stringField('CustomerName').getOrNull()}"
+        <h:outputText id="customized-case-customer-name" value="#{case.customFields().stringField('CustomerName').getOrNull()}"
           styleClass="case-header-default-cell customized-case-header-column" />
+        <p:tooltip id="customized-case-customer-name-tooltip" for="customized-case-customer-name" value="#{case.customFields().stringField('CustomerName').getOrNull()}" styleClass="" trackMouse="true" hideEvent="mouseleave click" />
       </h:panelGroup>
       <h:panelGroup styleClass="customized-case-header-column js-hidden-when-expand-menu u-hidden-lg-down" rendered="#{caseView.dataModel.isSelectedColumn('ShipmentDate')}">
-        <h:outputText value="#{case.customFields().timestampField('ShipmentDate').getOrNull()}"
+        <h:outputText id="customized-case-shipment-date" value="#{case.customFields().timestampField('ShipmentDate').getOrNull()}"
           styleClass="case-header-default-cell">
           <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
         </h:outputText>
+        <p:tooltip for="customized-case-shipment-date" value="#{case.customFields().timestampField('ShipmentDate').getOrNull()}" trackMouse="true" hideEvent="mouseleave click">
+          <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}" />
+        </p:tooltip>
       </h:panelGroup>
     </ui:define>
 

@@ -54,6 +54,9 @@
         rendered="#{taskView.dataModel.isSelectedColumn('ShipmentDate')}">
         <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
       </h:outputText>
+      <p:tooltip for="shipment-date" value="#{task.customFields().timestampField('ShipmentDate').getOrNull()}" trackMouse="true" hideEvent="mouseleave click">
+        <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}" />
+      </p:tooltip>
     </ui:define>
 
     <ui:define name="taskFilter">
