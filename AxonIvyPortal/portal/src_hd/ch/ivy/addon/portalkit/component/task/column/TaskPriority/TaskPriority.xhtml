@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:p="http://primefaces.org/ui"
   xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <cc:interface componentType="IvyComponent">
@@ -23,7 +23,7 @@
 
   <h:panelGroup id="#{cc.attrs.componentId}" styleClass="priority-cell #{cc.attrs.priorityStyleClass} #{cc.attrs.responsiveStyleClass}"
     rendered="#{showPriority}" >
-    <span class="#{cc.attrs.priorityIconStyleClass} priority-icon">
+    <span id="task-priority" class="#{cc.attrs.priorityIconStyleClass} priority-icon">
       <i jsf:rendered="#{priority eq 'LOW'}" class="priority si si-navigation-down-circle low-priority" />
       <i jsf:rendered="#{priority eq 'NORMAL'}" class="priority si si-navigation-right-circle-1 normal-priority" />
       <i jsf:rendered="#{priority eq 'HIGH'}" class="priority si si-navigation-up-circle high-priority" />
@@ -31,6 +31,8 @@
       <h:outputText rendered="#{showIconWithText}" styleClass="priority-text" value="#{taskBean.getPriority(priority)}"/>
       <i jsf:rendered="#{showEditIcon}" class="si si-graphic-tablet-drawing-pen" />
     </span>
+    <p:tooltip rendered="#{!showIconWithText}" for="task-priority" value="#{taskBean.getPriority(priority)}" 
+      trackMouse="true" hideEvent="mouseleave click" />
   </h:panelGroup>
 </cc:implementation>
 </html>
