@@ -1,6 +1,8 @@
 name: Portal Documentation
 run-name: 📚 Portal Documentation
 on:
+  schedule:
+    - cron: '0 59 * * *'
   workflow_dispatch:
     inputs:
       ivyVersion:
@@ -60,7 +62,7 @@ jobs:
       
       - name: Run substitute
         shell: bash
-        run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion }}
+        run: chmod +x Documentation/portal-guide/substitute.sh && Documentation/portal-guide/substitute.sh ${{ inputs.ivyVersion || 'nightly' }}
 
       - name: Build Documentation HTML
         id: build-html
