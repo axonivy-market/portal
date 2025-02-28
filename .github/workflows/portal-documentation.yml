@@ -2,7 +2,7 @@ name: Portal Documentation
 run-name: 📚 Portal Documentation
 on:
   schedule:
-    - cron: '0 59 * * *'
+    - cron: '0 2 * * *'
   workflow_dispatch:
     inputs:
       ivyVersion:
