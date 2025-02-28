@@ -15,13 +15,14 @@
 
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
+  <c:set var="taskDescription" value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}" />
 
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('NAME')}">
     <h:outputText id="#{cc.attrs.nameId}" styleClass="name-cell #{cc.attrs.nameStyleClass} #{cc.attrs.responsiveStyleClass}"
       value="#{empty task.names().current() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.names().current()}" />
     <p:tooltip for="task-name" value="#{task.names().current()}" trackMouse="true" hideEvent="mouseleave click" rendered="#{not empty task.names().current()}" />
-    <h:outputText id="#{cc.attrs.descriptionId}" styleClass="description-cell #{cc.attrs.descriptionStyleClass}"
-      value="#{taskWidgetBean.createTaskDescriptionInTaskStart(task.descriptions().current())}" />
+    <h:outputText id="#{cc.attrs.descriptionId}" styleClass="description-cell #{cc.attrs.descriptionStyleClass}" value="#{taskDescription}" />
+    <p:tooltip for="#{cc.attrs.descriptionId}" value="#{taskDescription}" trackMouse="true" hideEvent="mouseleave click" />
   </h:panelGroup>
 </cc:implementation>
 </html>
