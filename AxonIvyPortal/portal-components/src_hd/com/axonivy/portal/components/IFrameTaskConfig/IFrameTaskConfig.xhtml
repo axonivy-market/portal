@@ -26,11 +26,11 @@
   <ui:fragment rendered="#{not empty cc.attrs.taskName}"><script>window.taskName = `#{htmlSanitizerBean.escapeForJS(cc.attrs.taskName)}`;</script></ui:fragment>
   <ui:fragment rendered="#{not empty cc.attrs.taskIcon}"><script>window.taskIcon = `#{htmlSanitizerBean.escapeForIcon(cc.attrs.taskIcon)}`;</script></ui:fragment>
   <ui:fragment rendered="#{not empty cc.attrs.isHideTaskName}"><script>
-    window.isHideTaskName = (`#{cc.attrs.isHideTaskName}`.toLowerCase() === "true");
+    window.isHideTaskName = (`#{htmlSanitizerBean.escapeForJS(cc.attrs.isHideTaskName)}`.toLowerCase() === "true");
   </script></ui:fragment>
   <ui:fragment rendered="#{not empty cc.attrs.caseId}"><script>window.caseId = `#{htmlSanitizerBean.escapeForJS(cc.attrs.caseId)}`;</script></ui:fragment>
   <ui:fragment rendered="#{not empty cc.attrs.isHideCaseInfo}"><script>
-    window.isHideCaseInfo = (`#{cc.attrs.isHideCaseInfo}`.toLowerCase() === "true");
+    window.isHideCaseInfo = (`#{htmlSanitizerBean.escapeForJS(cc.attrs.isHideCaseInfo)}`.toLowerCase() === "true");
   </script></ui:fragment>
   <ui:fragment rendered="#{not empty cc.attrs.currentProcessStep}"><script>
     window.currentProcessStep = `#{cc.attrs.currentProcessStep}`;
@@ -46,21 +46,21 @@
     }
   </script></ui:fragment>
   <ui:fragment rendered="#{not empty cc.attrs.isShowAllSteps}"><script>
-    window.isShowAllSteps = (`#{cc.attrs.isShowAllSteps}`.toLowerCase() === "true");
+    window.isShowAllSteps = (`#{htmlSanitizerBean.escapeForJS(cc.attrs.isShowAllSteps)}`.toLowerCase() === "true");
   </script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.processChainDirection}"><script>window.processChainDirection = `#{cc.attrs.processChainDirection}`;</script></ui:fragment>
-  <ui:fragment rendered="#{not empty cc.attrs.processChainShape}"><script>window.processChainShape = `#{cc.attrs.processChainShape}`;</script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.processChainDirection}"><script>window.processChainDirection = `#{htmlSanitizerBean.escapeForJS(cc.attrs.processChainDirection)}`;</script></ui:fragment>
+  <ui:fragment rendered="#{not empty cc.attrs.processChainShape}"><script>window.processChainShape = `#{htmlSanitizerBean.escapeForJS(cc.attrs.processChainShape)}`;</script></ui:fragment>
   <ui:fragment rendered="#{not empty cc.attrs.isHideTaskAction}"><script>
-    window.isHideTaskAction = (`#{cc.attrs.isHideTaskAction}`.toLowerCase() === "true");
+    window.isHideTaskAction = (`#{htmlSanitizerBean.escapeForJS(cc.attrs.isHideTaskAction)}`.toLowerCase() === "true");
   </script></ui:fragment>
   <ui:fragment rendered="#{not empty cc.attrs.isWorkingOnATask}"><script>
-    window.isWorkingOnATask = (`#{cc.attrs.isWorkingOnATask}`.toLowerCase() === "true");
+    window.isWorkingOnATask = (`#{htmlSanitizerBean.escapeForJS(cc.attrs.isWorkingOnATask)}`.toLowerCase() === "true");
   </script></ui:fragment>
   <ui:fragment rendered="#{not empty cc.attrs.announcementInvisible}"><script>
-    window.announcementInvisible = (`#{cc.attrs.announcementInvisible}`.toLowerCase() === "true");
+    window.announcementInvisible = (`#{htmlSanitizerBean.escapeForJS(cc.attrs.announcementInvisible)}`.toLowerCase() === "true");
   </script></ui:fragment>
   <ui:fragment rendered="#{not empty cc.attrs.isCardFrame}"><script>
-    window.isCardFrame = (`#{cc.attrs.isCardFrame}`.toLowerCase() === "true");
+    window.isCardFrame = (`#{htmlSanitizerBean.escapeForJS(cc.attrs.isCardFrame)}`.toLowerCase() === "true");
   </script></ui:fragment>
   <ui:fragment rendered="#{not empty cc.attrs.viewName}"><script>window.viewName = `#{htmlSanitizerBean.escapeForJS(cc.attrs.viewName)}`;</script></ui:fragment>
 </cc:implementation>
