@@ -1,5 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-  xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:p="http://primefaces.org/ui">
+  
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
@@ -12,5 +14,6 @@
 <cc:implementation>
   <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.case.id}" rendered="#{cc.attrs.dataModel.isSelectedColumn('ID')}" 
     styleClass="case-header-id-cell case-header-default-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" />
+  <p:tooltip for="#{cc.attrs.componentId}" value="#{cc.attrs.case.id}" trackMouse="true" hideEvent="mouseleave click" />
 </cc:implementation>
 </html>
