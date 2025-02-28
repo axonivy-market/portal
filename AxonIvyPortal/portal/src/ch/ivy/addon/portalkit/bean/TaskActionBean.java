@@ -78,7 +78,7 @@ public class TaskActionBean implements Serializable {
     }
     
     if (isCaseOwnerUser(task) && PermissionUtils.hasPortalPermission(PortalPermission.CASE_OWNER_TASK_DELEGATE)) {
-      return true;
+      return hasPermission(task, IPermission.TASK_WRITE_ACTIVATOR);
     }
     
     if (userCanOnlyDelegateAssignedTask(task)) {
