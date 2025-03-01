@@ -191,8 +191,8 @@ public class GlobalGrowlTest extends BaseTest {
   public void testLeftTaskWhenClickingOnMenuScenario() {
     redirectToRelativeLink(expressStartLink);
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
-    MainMenuPage mainMenuPage = expressProcessPage.openMainMenu();
-    WorkingTaskDialogPageOfApplicationMenu leaveTaskDialogOfMenu = mainMenuPage.selectDashboardMenu();
+    expressProcessPage.clickOnLogo();
+    WorkingTaskDialogPage leaveTaskDialogOfMenu = new WorkingTaskDialogPage();
     NewDashboardPage newDashboardPage = leaveTaskDialogOfMenu.leaveTask();
     assertGrowlMessage(newDashboardPage, CANCEL_MESSAGE);
   }
