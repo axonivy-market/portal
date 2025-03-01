@@ -3,14 +3,68 @@ run-name: 🤖 Cron bot walking
 on:
   schedule:
     # Cron at midnight GMT+7
+    # schedule for document master
     - cron: '0 17 * * *'
+    # schedule for document screenshot master
+    - cron: '30 15 * * *'
+    # schedule for document release/12
     - cron: '5 17 * * *'
+    # schedule for document screenshot release/12
+    - cron: '0 16 * * *'
+    # schedule for document release/10
     - cron: '10 17 * * *'
+    # schedule for document screenshot release/10
+    - cron: '30 16 * * *'
+    # schedule for Lighthouse Audit for master
     - cron: '15 17 * * *'
+    # schedule for Lighthouse Audit for release/10
     - cron: '20 17 * * *'
+    # schedule for Lighthouse Audit for release/12
     - cron: '25 17 * * *'
 
 jobs:
+  trigger-portal-document-screenshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        name: Trigger build Portal Documentation Screenshot for master
+        if: github.event.schedule == '30 15 * * *'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'portal-document-screenshot-test.yml',
+              ref: 'master'
+            })
+
+      - uses: actions/github-script@v6
+        name: Trigger build Portal Documentation Screenshot for release/12.0
+        if: github.event.schedule == '0 16 * * *'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'portal-document-screenshot-test.yml',
+              ref: 'release/12.0'
+            })
+
+      - uses: actions/github-script@v6
+        name: Trigger build Portal Documentation Screenshot for release/10.0
+        if: github.event.schedule == '30 16 * * *'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'portal-document-screenshot-test.yml',
+              ref: 'release/10.0'
+            })
+            
   trigger-portal-document:
     runs-on: ubuntu-latest
     steps:
@@ -28,7 +82,7 @@ jobs:
             })
 
       - uses: actions/github-script@v6
-        name: Trigger build Portal Documentation for release/10.0
+        name: Trigger build Portal Documentation for release/12.0
         if: github.event.schedule == '5 17 * * *'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -37,11 +91,11 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'portal-documentation.yml',
-              ref: 'release/10.0'
+              ref: 'release/12.0'
             })
 
       - uses: actions/github-script@v6
-        name: Trigger build Portal Documentation for release/12.0
+        name: Trigger build Portal Documentation for release/10.0
         if: github.event.schedule == '10 17 * * *'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -50,7 +104,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'portal-documentation.yml',
-              ref: 'release/12.0'
+              ref: 'release/10.0'
             })
 
   trigger-lighthouse-audit:
