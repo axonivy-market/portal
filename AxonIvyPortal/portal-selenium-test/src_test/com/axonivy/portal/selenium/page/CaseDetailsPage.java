@@ -119,7 +119,8 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void openTaskWithRunTheTaskBehaviour(String taskName) {
     getRelatedTasksPanel().shouldBe(appear, DEFAULT_TIMEOUT);
-    var taskItem = $(By.cssSelector("[title='" + taskName + "']")).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    var taskItem = $$("div[id$='case-details-related-task-table'] table tbody tr td span.task-name-value")
+      .filter(text(taskName)).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     waitUntilElementToBeClickable(taskItem);
     waitUntilElementToBeClickable(taskItem.parent());
     taskItem.parent().click();
