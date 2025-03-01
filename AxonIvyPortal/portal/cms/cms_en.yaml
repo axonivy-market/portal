@@ -775,7 +775,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Advanced settings
         ChooseAFit: Choose a fit
-        DisplayedText: '{0} display text'
+        DisplayedText: display text
         Greeting:
           Afternoon: Good afternoon
           Evening: Good evening
@@ -957,7 +957,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     setANewPassword: Set a new password
     strong: Strong
     userNotFound: If this e-mail address is registered then we have sent a password recovery link to it.
-    usersHaveSameEmail: There are many users using this email. Please contact your administrator 11111.
+    usersHaveSameEmail: There are many users using this email. Please contact your administrator.
     weak: Weak
   iconselection:
     iconSelectionDialogHeader: Selecting icon

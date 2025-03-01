@@ -52,7 +52,7 @@ public class PasswordCheckingService {
     for (int i = 0; i < passwordPolicies.size(); i++) {
       PasswordPolicy passwordPolicy = passwordPolicies.get(i);
       if (passwordPolicy.getActive()) {
-        messageBuilder.append("<li>" + passwordPolicy.getValidationMessage() + "</li>");
+        messageBuilder.append("<li style='margin-left:30px;'>" + passwordPolicy.getValidationMessage() + "</li>");
       }
     }
     messageBuilder.append("</ul>");

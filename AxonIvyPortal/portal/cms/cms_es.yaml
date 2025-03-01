@@ -772,7 +772,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Configuración avanzada
         ChooseAFit: Elija un ajuste
-        DisplayedText: '{0} mostrar texto'
+        DisplayedText: mostrar texto
         Greeting:
           Afternoon: Buenas tardes
           Evening: Buenas noches

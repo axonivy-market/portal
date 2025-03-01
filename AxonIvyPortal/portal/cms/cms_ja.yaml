@@ -144,14 +144,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     Homepage: ホームページ
     Language: 言語
     ProcessList: プロセスリスト
-    byDefault: 自動的に(MATT CONFIRMING)
+    byDefault: （初期値）
     defaultOption: 初期値（{0}）
-    defaultViewMode: ビューモードの初期値
+    defaultViewMode: 表示モードの初期値
     event: イベント
-    notSubscribed: 未登録
+    notSubscribed: 通知しない
     notificationChannels: 通知チャネル
     notificationChannelsReset: 通知チャネルをリセットしました
-    subscribed: 登録済み
+    subscribed: 通知する
   PortalManagement:
     AdminSetting: 管理者設定
   ProcessViewer:
@@ -220,7 +220,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       deepLAuthKey: DeepL認証キー（末尾は:fx）
       defaultHomepage: ホームアイコンまたはロゴをクリックしたときにリダイレクトされる標準ホームページを設定します。この設定は、タスク完了後の終了ページにも適用されます。
       defaultProcessImage: 画像処理リストに表示される初期画像の標準設定。
-      defaultProcessMode: 処理リストのビューモードの標準設定。
+      defaultProcessMode: 処理リストの表示モードの標準設定。
       defaultSortDirectionOfCaseList: ケースリストのソート方向の初期値
       defaultSortDirectionOfTaskList: タスクリストのソート方向の初期値
       defaultSortFieldOfCaseList: ケースリストのソートフィールドの初期値
@@ -298,7 +298,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     adminSettings: 管理者設定
     changePassword: パスワードを変更
   businessCaseState:
-    DESTROYED: 破棄済
+    DESTROYED: 破棄済み
     DONE: 完了
     OPEN: 未完了
   caseDetails:
@@ -773,7 +773,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: 詳細設定
         ChooseAFit: フィットを選択
-        DisplayedText: '{0}テキストを表示'
+        DisplayedText: テキストを表示
         Greeting:
           Afternoon: こんにちは
           Evening: こんばんは
@@ -784,13 +784,13 @@ ch.ivy.addon.portalkit.ui.jsf:
         ImageLightMode: ライトモードの画像
         ImageStyleClass: 画像のスタイルクラス
         PreviewDarkMode: ダークモードのプレビュー
-        PreviewLightMode: ダークモードのライト
+        PreviewLightMode: ライトモードのプレビュー
         PreviewTooltip: このプレビューではすべての設定をレンダリングすることはできませんが、最終的なウィジェットがどのように見えるかイメージを掴めます。画像のサイズ、表示位置、一部の CSS 設定はプレビュー出来ません。
         ShowGreeting: 挨拶を表示
-        TextColorDarkMode: ダークモードのテキスト色
-        TextColorLightMode: ライトモードのテキスト色
+        TextColorDarkMode: ダークモードのテキストの色
+        TextColorLightMode: ライトモードのテキストの色
         TextPosition: テキストの位置
-        TextSize: ダッシュボードをエクスポート
+        TextSize: テキストのサイズ
         Welcome: ようこそ
         WelcomeTextStyleClass: ウェルカムテキストのスタイル クラス
       configuration: 設定
@@ -1029,8 +1029,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     minSpecialCharacterRequired: 少なくとも {0} 個の特殊文字を含む必要があります。
     minUppercaseCharacterRequired: 少なくとも {0} 個の大文字を含む必要があります。
     newPassword: 新しいパスワード
-    noPermission: プロセスを削除
-    passwordMust: パスワードは
+    noPermission: このパスワードを変更するために必要な権限がありません。サポートが必要な場合は、管理者にお問い合わせください。
+    passwordMust: パスワードは、
     requireConfirmPassword: パスワード（再入力）が空欄です
     requireCurrentPassword: 現在のパスワードを入力してください
     requireNewPassword: 新しいパスワードを入力してください
@@ -1100,8 +1100,8 @@ ch.ivy.addon.portalkit.ui.jsf:
   taskBusinessState:
     DELAYED: 遅延
     DELAYED_UPPERCASE: 遅延
-    DESTROYED: 破棄済
-    DESTROYED_UPPERCASE: 破棄済
+    DESTROYED: 破棄済み
+    DESTROYED_UPPERCASE: 破棄済み
     DONE: 完了
     DONE_UPPERCASE: 完了
     ERROR: エラー
@@ -1235,8 +1235,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     CREATED_UPPERCASE: 作成済み
     DELAYED: 遅延
     DELAYED_UPPERCASE: 遅延
-    DESTROYED: 破棄済
-    DESTROYED_UPPERCASE: 破棄済
+    DESTROYED: 破棄済み
+    DESTROYED_UPPERCASE: 破棄済み
     DONE: 完了
     DONE_UPPERCASE: 完了
     FAILED: 失敗
@@ -1362,18 +1362,18 @@ Dialogs:
       portal:
         component:
           ChatDashboard:
-            AddTool: 表示を減らす
-            Tools: 表示を増やす
-            WelcomeHeaderText: 翻訳
-            WelcomeText: ニュースを追加
+            AddTool: ツールの追加
+            Tools: ツール
+            WelcomeHeaderText: Axon Ivy ポータルへようこそ！
+            WelcomeText: ご利用いただき、ありがとうございます。Axon Ivy ポータルは、シームレスで効率的な体験への入り口です。機能を探索する新規ユーザーでも、リピーターでも、私たちはあらゆる段階であなたを支援します。
           ShareLinkDialog:
             CopyLink: リンクをコピー
             Link: リンク
             LinkCopied: リンクをコピーしました
           ToolList:
-            Attributes: このウィジェットは、関連情報をニュースフィードとして Axon Ivy に共有します。
-            Collection: ニュースフィードウィジェット
-            NoAvailableTools: 通知はまだありません
+            Attributes: 属性
+            Collection: コレクション
+            NoAvailableTools: 利用可能なツールがありません
         dashboard:
           component:
             AccessibilityShortcuts:
@@ -1422,6 +1422,11 @@ Dialogs:
             ClientStatisticWidget:
               IdNotFound: ID {0} のチャートが見つかりません
               NoPermissionChartMessage: このチャートを表示するために必要な権限がありません。
+            CloneWidgetDialog:
+              Header: ウィジェット「{0}」を複製する
+              TargetDashboard: ターゲットダッシュボード
+            CloneWidgetFromDashboardDialog:
+              header: 以下の場所からウィジェットを複製する：
             DashboardImportDetails:
               FileInfomation: ファイル情報
               ImportPrivate: 個人用ダッシュボードをインポートする
@@ -1479,22 +1484,24 @@ Dialogs:
 Labels:
   AI:
     Error:
-      CannotFindUser: 状態
-      CannotStartTask: 指定の値の後にある
-      InvalidTaskPriority: 指定の値の前にある
-      InvalidTaskState: 指定の値の間にある
-      NoMatchingCase: 指定の値を含む
-      NoMatchingProcesses: 現在
-      NoMatchingTask: 現在のユーザー
-    FindCaseAIResult: 現在のユーザーが作業できる
-    FindProcessAIResult: 空欄である
-    FindTaskAIResult: 指定の値で終わる
-    FindUserAIResult: 指定の値と等しい
-    FoundCaseHeader: 指定の値より大きい
-    FoundProcessesHeader: 指定の値より大きいか等しい
-    FoundTaskHeader: 指定の値に含まれる
-    FoundUsersHeader: 指定の値である
-    ProcessInfoHeader: 指定の値ではない
+      CannotFindUser: 申し訳ありませんが、リクエストに一致するユーザーが見つかりません。もう一度お試しください。
+      CannotStartTask: ID {0} のタスクを開始できません
+      InvalidTaskPriority: タスクの優先度が無効です。有効なタスク優先度は、低、通常、高、または例外です。
+      InvalidTaskState: タスクの状態が無効です。有効なタスクの状態は、未完了、完了、進行中、またはエラーです。
+      NoMatchingCase: リクエストに一致するタスクが見つかりません
+      NoMatchingProcesses: 一致するプロセスはありません。
+      NoMatchingTask: リクエストに一致するタスクが見つかりません
+    FindCaseAIResult: ID：{0}、名前：{1}、説明：{2}、状態：{3}
+    FindProcessAIResult: '- ID：{0}、名前：{1}、説明：{2}'
+    FindTaskAIResult: ID：{0}、名前：{1}、説明：{2}、状態：{3}、優先度 {4}
+    FindUserAIResult: ユーザー名：{0}、名前：{1}、メール：{2}、状態：{3}
+    FoundCaseHeader: 見つかったケース：
+    FoundProcessesHeader: 見つかったプロセス：
+    FoundTaskHeader: 見つかったタスク：
+    FoundUsersHeader: 見つかったユーザー：
+    ProcessInfoHeader: |-
+      **プロセス名：** {0}
+      **プロセスの説明：** {1}
     ProcessInfoHeaderWithParameters: |-
       - **プロセス名：** {0}
       - **プロセスの説明：** {1}
@@ -1511,14 +1518,14 @@ Labels:
   Enums:
     ChatbotCandidateQuestion:
       EXPLORE:
-        header: 指定の値と等しくない
-        question: 指定の値に含まれない
+        header: 機能紹介
+        question: Axon Ivy ポータルの主な機能は何ですか？
       INTERACT:
-        header: 指定の値で始まらない
-        question: 指定の値で始まる
+        header: 急ぎのタスク
+        question: 今週中に完了する必要があるすべてのタスクをリストアップしてください
       TUTORIAL:
-        header: 今日
-        question: 昨日
+        header: チュートリアル
+        question: Axon Ivy ポータルのドキュメントやチュートリアルはどこにありますか？
     DashboardStandardCaseColumn:
       ACTIONS: アクション
       APPLICATION: アプリケーション
