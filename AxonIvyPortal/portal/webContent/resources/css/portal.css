@@ -1930,5 +1930,10 @@ body.dark .focused {
   }
 }
 
-/* ======================= END CLIENT STATISTIC CHART ==========================  **/
+/* ======================= PREVIEW CLIENT STATISTIC CHART ==========================  **/
 
+.chart-options-config {
+  height: 600px;
+  position: inherit;
+  margin-top: 20px;
+}
