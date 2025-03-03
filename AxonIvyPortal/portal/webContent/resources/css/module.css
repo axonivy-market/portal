@@ -2672,10 +2672,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 /******************************** PROJECT INFO DIALOG ******************************/
-.project-info-dialog {
-  max-width: 600px;
-}
-
 .project-info-dialog .project-version-table .project-version {
   width: 150px;
 }
@@ -2685,7 +2681,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .project-info-dialog .project-version-table .project-state {
-  width: 80px;
+  width: 100px;
 }
 
 @media screen and (max-width: 64.062em) {
