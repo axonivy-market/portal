@@ -65,6 +65,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       EMAIL: Email
       INFORMATION: Información
       OTHERS: Otros
+    BehaviourWhenClickingOnLineInCaseList:
+      ACCESS_BUSINESS_DETAILS: Acceder a los detalles del negocio
+      ACCESS_CASE_DETAILS: Acceder a los detalles del caso
     BehaviourWhenClickingOnLineInTaskList:
       ACCESS_TASK_DETAILS: Acceder a los detalles de la tarea
       RUN_TASK: Ejecutar la tarea
@@ -99,6 +102,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       BY_ALPHABETICALLY: Alfabéticamente
       BY_CUSTOM_ORDER: Pedido personalizado
       BY_INDEX: Índice de clasificación
+      BY_SMART_ORDER: Más usado
     ProcessType:
       EXTERNAL_LINK: Link externo
       IVY_PROCESS: Proceso de negocio
@@ -213,6 +217,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SearchScopeTaskFields: Definir los campos que la búsqueda global utilizará para encontrar tareas coincidentes junto al Id de tarea (esto puede influir en el rendimiento de la búsqueda).
       ShowLoginPageFooter: Para activar/desactivar la visualización del pie de página en la página de acceso.
       ShowQRCode: Para activar/desactivar la visualización del código QR.
+      behaviourWhenClickingOnLineInCaseList: Alternar entre acceder a los detalles del caso o los detalles del negocio al hacer clic en un caso en el widget de casos del panel de control, en la búsqueda global, en los casos relacionados y en el widget de procesos en modo combinado.
       behaviourWhenClickingOnLineInTaskList: Para cambiar los comportamientos (ejecutar la tarea o acceder a los detalles de la tarea) al hacer clic en una línea de la lista de tareas, el widget de tareas del tablero y las tareas relacionadas en la página de detalles del caso.
       chatMaxConnection: 'El número establecido controla la cantidad de pestañas permitidas con el chat activo. Si se abren más pestañas, el chat se desactivará en las pestañas inactivas. Valores permitidos entre 1-5 '
       chatResponseTimeout: Tiempo de respuesta del chat en segundos, el valor por defecto es 0 y significa que no hay tiempo de espera. Si los mensajes de chat pasan por el proxy inverso Nginx, el tiempo de espera de la respuesta del chat debe ser menor que el tiempo de espera de Nginx, por ejemplo, menos
@@ -726,11 +731,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       WidgetNameColumn: Nombre de widget
       WrongDateFormat: La fecha no es válida
     ManageFilter: Gestión de filtros
+    NoColumnsEnabledForQuickSearch: No hay columnas habilitadas para la búsqueda rápida
     NoData: No hay datos
     NoSavedFilterMessage: No se ha encontrado ningún filtro guardado. Intente crear uno nuevo haciendo clic en el botón Guardar filtro
     NoWidgetAvailable: No existen widgets.
     QuickSearch: Búsqueda rápida
     QuickSearchInfo: Puede personalizar el alcance de la búsqueda rápida en la gestión de columnas de widgets. La búsqueda se realiza en función de "contiene", pero tenga en cuenta el rendimiento al agregar numerosas columnas.
+    QuickSearchScope: 'Ámbito de búsqueda: {0}'
     RestoreDefaultDashboardMessage: Si continúa, perderá todos los widgets creados por usted. Se aplicará la configuración estándar de <span class="dashboard-template-name-message">{0}</span>.
     SaveNewWidgetFilterHeader: Guardar un nuevo filtro de widget
     SavedFilterHeader: Filtros guardados

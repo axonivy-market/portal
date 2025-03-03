@@ -42,7 +42,7 @@
     </h:panelGroup>
 
     <h:panelGroup id="dashboard-tasks-container" layout="block"
-      styleClass="ui-g-12 u-padding-0 js-dashboard-tasks-container-#{taskWidget.id} u-display-none dashboard-tasks-container">
+      styleClass="ui-g-12 u-padding-0 js-dashboard-tasks-container-#{taskWidget.id} hidden dashboard-tasks-container">
       <h:panelGroup id="columns-configuration" layout="block" rendered="#{cc.attrs.renderColumnConfiguration}" styleClass="dashboard-tasks-container__columns-configuration">
         <p:commandLink id="column-toggler" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" 
           update="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" oncomplete="PF('column-management-dialog').show()" process="@this" global="false">
@@ -55,7 +55,7 @@
         liveScroll="true" scrollable="true" sortBy="#{isResizing ? null : taskWidget.sortBy}"
         showGridlines="#{isResizing}" resizableColumns="#{isResizing}" resizeMode="expand"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
-        styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'u-display-none' : ''} #{isResizing ? 'js-resizing' : ''}"
+        styleClass="dashboard-tasks--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''} #{!isPreviewMode and taskWidget.taskCount lt 1 ? 'hidden' : ''} #{isResizing ? 'js-resizing' : ''}"
         rowStyleClass="dashboard-table--row-style"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:ajax event="rowSelect" listener="#{dashboardTaskWidgetBean.handleRowSelectEventOnTaskWidget}" disabled="#{!isReadOnlyMode}" />
@@ -105,9 +105,12 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.format eq 'TIMESTAMP'}">
-            <h:outputText value="#{column.display(task)}" style="#{column.fieldStyle}">
+            <h:outputText id="task-timestamp" value="#{column.display(task)}" style="#{column.fieldStyle}">
               <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
             </h:outputText>
+            <p:tooltip for="task-timestamp" value="#{column.display(task)}" trackMouse="true" hideEvent="mouseleave click">
+              <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
+            </p:tooltip>
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.format eq 'NUMBER'}">
@@ -132,7 +135,7 @@
         </p:columns>
       </p:dataTable>
       <h:panelGroup layout="block" id="empty-message-container"
-        styleClass="empty-message-container #{!isPreviewMode and taskWidget.taskCount lt 1 and taskWidget.dataModel.countLoad lt 1 ? '' : 'u-display-none'}">
+        styleClass="empty-message-container #{!isPreviewMode and taskWidget.taskCount lt 1 and taskWidget.dataModel.countLoad lt 1 ? '' : 'hidden'}">
         <c:set var="noTasksWhenFilter"
           value="#{taskWidget.userDefinedFiltersCount.isPresent() or (not empty taskWidget.quickSearchKeyword)}" />
         <h:panelGroup layout="block" id="empty-message-when-filter"

@@ -40,7 +40,7 @@
               <c:forEach var="param" items="#{widget.data.params}">
                 <input type="hidden" name="#{dashboardCustomWidgetBean.generateParamName(param)}" value="#{dashboardCustomWidgetBean.encodeValue(param.value)}" />
               </c:forEach>
-              <iframe id="id-custom-widget-iframe-#{index}" name="custom-widget-iframe-#{index}" class="dashboard-custom-iframe u-hidden" 
+              <iframe id="id-custom-widget-iframe-#{index}" name="custom-widget-iframe-#{index}" class="dashboard-custom-iframe hidden" 
                 title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/CustomDashboardWidget/CustomWidgetIFrameTitle', [widget.name])}" />
             </h:form>
             <script type="text/javascript">
@@ -58,7 +58,7 @@
                      
                      var iFrame = $(`#id-custom-widget-iframe-${index}`);
                      iFrame.on('load', function(){
-                        iFrame.removeClass('u-hidden');
+                        iFrame.removeClass('hidden');
                      });
                    });
                </script>
@@ -74,11 +74,11 @@
         <ui:fragment rendered="#{empty widget.data.processPath}">
           <iframe name="custom-widget-iframe-#{index}" src="#{widget.data.url}"
             id="id-custom-widget-iframe-#{index}"
-            class="dashboard-custom-iframe u-hidden" 
+            class="dashboard-custom-iframe hidden" 
             title="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/CustomDashboardWidget/CustomWidgetIFrameTitle', [widget.name])}" />
           <script type="text/javascript">
               setTimeout(function(){
-               $(`#id-custom-widget-iframe-${index}`).removeClass('u-hidden');
+               $(`#id-custom-widget-iframe-${index}`).removeClass('hidden');
               },3000);
           </script>
         </ui:fragment>

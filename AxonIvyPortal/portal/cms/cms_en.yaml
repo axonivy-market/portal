@@ -65,6 +65,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       EMAIL: Email
       INFORMATION: Information
       OTHERS: Others
+    BehaviourWhenClickingOnLineInCaseList:
+      ACCESS_BUSINESS_DETAILS: Access business details
+      ACCESS_CASE_DETAILS: Access case details
     BehaviourWhenClickingOnLineInTaskList:
       ACCESS_TASK_DETAILS: Access task details
       RUN_TASK: Run the task
@@ -99,6 +102,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       BY_ALPHABETICALLY: Alphabetically
       BY_CUSTOM_ORDER: Custom order
       BY_INDEX: Sorting index
+      BY_SMART_ORDER: Most used
     ProcessType:
       EXTERNAL_LINK: External Link
       IVY_PROCESS: Business Process
@@ -213,6 +217,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SearchScopeTaskFields: Defining the fields that the global search will use to find matching tasks beside task Id (this can influence the performance of the search)
       ShowLoginPageFooter: For switch on/off the display of the footer on the login page.
       ShowQRCode: For switch on/off the display of the QR code.
+      behaviourWhenClickingOnLineInCaseList: Toggle between accessing case details or business details when clicking on a case in the case widget on the dashboard, global search, related cases, and process widget in combined mode.
       behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
       chatResponseTimeout: Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds.
@@ -729,11 +734,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       WidgetNameColumn: Widget name
       WrongDateFormat: The date is invalid
     ManageFilter: Manage filters
+    NoColumnsEnabledForQuickSearch: No columns are enabled for quick search
     NoData: No data
     NoSavedFilterMessage: No saved filter found. Try to create a new by click on Save Filter button
     NoWidgetAvailable: There are no widgets.
     QuickSearch: Quick search
-    QuickSearchInfo: You can customize the Quick Search's scope in the widgets column management. It searches based on "contains," but be mindful of performance when adding numerous columns.
+    QuickSearchInfo: You can customize the Quick Search's scope in the widgets column management. It searches based on "contains", but be mindful of performance when adding numerous columns.
+    QuickSearchScope: 'Search Scope: {0}'
     RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters

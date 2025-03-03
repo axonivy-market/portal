@@ -6,6 +6,8 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.By;
+
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
@@ -82,6 +84,10 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   public CaseDetailsPage openDetailsCase(String caseName) {
     getCasesOfCaseWidgetHasName(caseName).first().shouldBe(getClickableCondition()).click();
     return new CaseDetailsPage();
+  }
+
+  public void clickOnCase(String caseName) {
+    getCasesOfCaseWidgetHasName(caseName).first().shouldBe(getClickableCondition()).click();
   }
 
   public ElementsCollection countCases(String caseName) {
@@ -178,6 +184,15 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
 
   public void clickOnCaseActionLink(int caseIndex) {
     getColumnOfCaseHasActionIndex(caseIndex, "Actions").shouldBe(getClickableCondition()).click();
+  }
+
+  public CaseDetailsPage openCaseDetailsViaAction(int index) {
+    clickOnCaseActionLink(index);
+    String openDetailsCommandButton = String.format("[id$=':case-item-open-detail-link']", index);
+    waitForElementDisplayed(By.cssSelector(openDetailsCommandButton), true);
+    findElementByCssSelector(openDetailsCommandButton).click();
+    waitForElementDisplayed(By.cssSelector(openDetailsCommandButton), false);
+    return new CaseDetailsPage();
   }
 
   public void turnOffActionsPanel(int caseIndex) {
@@ -373,8 +388,8 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void waitTableLoaded() {
-    $(getLoadedLocator()).shouldHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
-    $(getLoadedLocator()).shouldNotHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
+    $(getLoadedLocator()).shouldHave(Condition.cssClass("hidden"), DEFAULT_TIMEOUT);
+    $(getLoadedLocator()).shouldNotHave(Condition.cssClass("hidden"), DEFAULT_TIMEOUT);
   }
   
   public boolean isExpandButtonAppear() {

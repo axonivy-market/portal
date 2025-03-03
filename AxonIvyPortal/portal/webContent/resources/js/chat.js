@@ -216,8 +216,8 @@ function Chat(uri, view) {
    this.loadChat = function(recipient, isInputMessageKept) {
       var recipientName = $(recipient).find(".js-contact-card-name", ".js-show-chat-message.active").text();
       var $notification = $(recipient).find(".js-notification");
-      if (!$notification.hasClass("u-hidden")) {
-        $notification.empty().addClass("u-hidden");
+      if (!$notification.hasClass("hidden")) {
+        $notification.empty().addClass("hidden");
       }
       jQuery.ajax({
         type: "GET",
@@ -340,8 +340,8 @@ function Chat(uri, view) {
 
     this.loadChatGroup = function(caseId, isInputMessageKept) {
       var $groupNotification = $(".js-case-id:hidden[value='" + caseId + "']").closest(".js-show-group-chat-message").find(".js-notification");;
-      if (!$groupNotification.hasClass("u-hidden")) {
-        $groupNotification.addClass("u-hidden");
+      if (!$groupNotification.hasClass("hidden")) {
+        $groupNotification.addClass("hidden");
       }
       
       jQuery.ajax({
@@ -410,7 +410,7 @@ function View(uri)
       });
       
       if (groupChats.length > 0) {
-        $('.js-no-group-chat-template').addClass('u-hidden');
+        $('.js-no-group-chat-template').addClass('hidden');
         groupChats.forEach(function(groupChat) {
           if (existingGroups.length == 0 || existingGroups.indexOf(groupChat.caseId) == -1) {
             var groupChatName = groupChatFormat;
@@ -430,7 +430,7 @@ function View(uri)
         });
       } else {
         var noGroupChatTemplate = document.getElementsByClassName('js-no-group-chat-template')[0];
-        noGroupChatTemplate.classList.remove("u-hidden");
+        noGroupChatTemplate.classList.remove("hidden");
         groupChatContainer.appendChild(noGroupChatTemplate);
       }
       
@@ -559,7 +559,7 @@ function View(uri)
     function renderMessageFunc(message, isMyMessage, isRenderedAtTheEnd) {
       var cloneTemplate = originalMessageTemplate.cloneNode(true);
       cloneTemplate.getElementsByClassName("js-message")[0].innerText = message.message;
-      $(cloneTemplate).removeClass("u-hidden").removeClass("js-message-template");
+      $(cloneTemplate).removeClass("hidden").removeClass("js-message-template");
 
       var timeElem = cloneTemplate.getElementsByClassName("js-time")[0];
       timeElem.innerText = generateTimestamp(message);
@@ -576,18 +576,18 @@ function View(uri)
       senderElem.innerText = message.sender;
       if (!(senderOfPreviousMessage === undefined || senderOfPreviousMessage.innerText != message.sender)) {
         if (timeOfPreviousMessage !== undefined && timeElem.innerHTML == timeOfPreviousMessage.innerText) {
-          $(senderElem).addClass("u-hidden");
-          $(timeElem).addClass("u-hidden");
+          $(senderElem).addClass("hidden");
+          $(timeElem).addClass("hidden");
         }
       }
       
       if (isMyMessage) {
         $(cloneTemplate).addClass("my-message");
-        $(senderElem).addClass("u-hidden");
+        $(senderElem).addClass("hidden");
         $(timeElem)[0].innerHTML = $(timeElem)[0].innerHTML.replace(", ", "");
 
         if (timeOfPreviousMessage !== undefined && timeElem.innerHTML == timeOfPreviousMessage.innerText) {
-          $(timeElem).addClass("u-hidden");
+          $(timeElem).addClass("hidden");
         }
       }
       
@@ -648,8 +648,8 @@ function View(uri)
 
     this.renderNotifications = function(unreadCounter) {
       var $notifications = $(".js-show-chat-message").find(".js-notification");
-      if (!$notifications.hasClass("u-hidden")) {
-        $notifications.empty().addClass("u-hidden");
+      if (!$notifications.hasClass("hidden")) {
+        $notifications.empty().addClass("hidden");
       }
 
       jQuery.each(unreadCounter, function(index, counterJson) {
@@ -658,14 +658,14 @@ function View(uri)
           return $(this).text() === counter["key"];
         }).closest(".js-show-chat-message");
         var notification = $(userTemplate.get(0)).find(".js-notification");
-        notification.removeClass("u-hidden");
+        notification.removeClass("hidden");
       });
       view.updateUnreadUserBadge();
     }
 
     this.updateGroupNotification = function(sender) {
       var groupNotification = $(".js-case-id:hidden[value='" + sender + "']").closest(".js-show-group-chat-message").find(".js-notification");
-      groupNotification.removeClass("u-hidden");
+      groupNotification.removeClass("hidden");
       $("#toggle-chat-panel-command").attr("data-badge", " ");
     }
 
@@ -673,19 +673,19 @@ function View(uri)
       var userNotification = $(".js-contact-card-name:contains('" + sender + "')").filter(function() {
         return $(this).text() === sender;
       }).closest(".js-show-chat-message").find(".js-notification");
-      userNotification.addClass("u-hidden");
+      userNotification.addClass("hidden");
     }
     
     this.hideNotificationForReadGroupMessages = function(sender) {
       var groupNotification = $(".js-case-id:hidden[value='" + sender + "']").closest(".js-show-group-chat-message").find(".js-notification");
-      groupNotification.addClass("u-hidden");
+      groupNotification.addClass("hidden");
     }
     
     this.updatePrivateNotification = function(sender) {
       var userNotification = $(".js-contact-card-name:contains('" + sender + "')").filter(function() {
         return $(this).text() === sender;
       }).closest(".js-show-chat-message").find(".js-notification");
-      userNotification.removeClass("u-hidden");
+      userNotification.removeClass("hidden");
       $("#toggle-chat-panel-command").attr("data-badge", " ");
     }
 
@@ -698,16 +698,16 @@ function View(uri)
       var $usersParticipants = $('.js-users-participants>.participants-list');
       $usersParticipants.find('li').remove();
         if (users !== undefined && users.length > 0) {
-          $('.js-users-participants-header').removeClass('u-hidden');
-          $('.js-users-participants').removeClass('u-hidden');
+          $('.js-users-participants-header').removeClass('hidden');
+          $('.js-users-participants').removeClass('hidden');
           $(users).each(function(index, user) {
             var userDom = document.createElement('li');
             userDom.innerHTML = user;
               $usersParticipants.get(0).appendChild(userDom);
             });
         } else {
-          $('.js-users-participants-header').addClass('u-hidden');
-          $('.js-users-participants').addClass('u-hidden');
+          $('.js-users-participants-header').addClass('hidden');
+          $('.js-users-participants').addClass('hidden');
         }
     }
 
@@ -772,7 +772,7 @@ function View(uri)
       });
       var hiddenInput = $(cloneGroup).find("input[class='js-case-id']").get(0);
       $(hiddenInput).val(groupId);
-      $(cloneGroup).removeClass("u-hidden").removeClass("js-group-template");
+      $(cloneGroup).removeClass("hidden").removeClass("js-group-template");
       return cloneGroup;
     }
 
@@ -798,7 +798,7 @@ function View(uri)
         $(".js-chat-message-container", "#chat-panel").removeClass('group-chat-panel');
       });
 
-      $(cloneContact).removeClass("u-hidden").removeClass("js-contact-template");
+      $(cloneContact).removeClass("hidden").removeClass("js-contact-template");
       return cloneContact;
     }
 
@@ -902,7 +902,7 @@ function View(uri)
     this.updateUnreadUserBadge = function() {
       $("#toggle-chat-panel-command").removeAttr("data-badge");
       $(".js-notification").each(function(){
-        if (!$(this).hasClass("u-hidden")){
+        if (!$(this).hasClass("hidden")){
           $("#toggle-chat-panel-command").attr("data-badge", " ");
           return;
         }
@@ -912,8 +912,8 @@ function View(uri)
     this.clearAllUnreadBadge = function() {
       $("#toggle-chat-panel-command").removeAttr("data-badge");
       $(".js-notification").each(function(){
-        if (!$(this).hasClass("u-hidden")){
-          $(this).addClass("u-hidden");
+        if (!$(this).hasClass("hidden")){
+          $(this).addClass("hidden");
         }
       });
     }

@@ -26,8 +26,8 @@ public class GlobalSearchResultPage extends TemplatePage {
   }
 
   public void openCaseTab() {
-    $("li[class*='case-tab-title']").shouldBe(appear, DEFAULT_TIMEOUT);
-    $("li[class*='case-tab-title']").click();
+    $("li.case-tab-title").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("li.case-tab-title").click();
     $("div[id='search-results-tabview:case-tab']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
@@ -50,11 +50,15 @@ public class GlobalSearchResultPage extends TemplatePage {
     return $("div[id='search-results-tabview:case-results:case-list-scroller']").findAll("li.ui-datascroller-item")
         .size();
   }
+  
+  public void clickOnCase(int index) {
+    String id = "search-results-tabview:case-results:case-list-scroller:" + index + ":case-item";
+    $("div[id='search-results-tabview:case-results:case-list-scroller'] div ul li div[id='" + id + "'] div span.case-info-row").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
 
   public String getNameOfCase(int index) {
     String id = "search-results-tabview:case-results:case-list-scroller:" + index + ":case-item";
-    return $("div[id='search-results-tabview:case-results:case-list-scroller'] div ul li div[id='" + id
-        + "'] div span.case-info-row div span.case-header-name-cell").text();
+    return $("div[id='search-results-tabview:case-results:case-list-scroller'] div ul li div[id='" + id + "'] div span.case-info-row div span.case-header-name-cell").text();
   }
 
   public String getDescriptionOfCase(int index) {
@@ -126,6 +130,6 @@ public class GlobalSearchResultPage extends TemplatePage {
   }
 
   public void caseTabShouldBeDisappear() {
-    $("li[class*='case-tab-title']").shouldBe(disappear, DEFAULT_TIMEOUT);
+    $("li.case-tab-title").shouldBe(disappear, DEFAULT_TIMEOUT);
   }
 }
