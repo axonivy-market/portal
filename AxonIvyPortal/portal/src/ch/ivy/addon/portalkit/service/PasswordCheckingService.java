@@ -93,14 +93,9 @@ public class PasswordCheckingService {
   }
 
   private Boolean checkPolicy(PasswordPolicy policy, PasswordPolicyType type, int actualValue) {
-    if (policy.getType().equals(type) && policy.getActive() && actualValue < policy.getValue()) {
+    if (policy.getType() == type && policy.getActive() && actualValue < policy.getValue()) {
       return false;
     }
     return true;
-  }
-  
-  public static void main(String[] args) {
-    System.out.println("abcd".charAt(1));
-    System.out.println("おはようございます。".charAt(2));
   }
 }
