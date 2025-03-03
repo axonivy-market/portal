@@ -14,11 +14,14 @@
 
 <cc:implementation>
   <c:set var="case" value="#{cc.attrs.case}" />
+  <c:set var="caseName" value="#{empty case.names().current() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable') : case.names().current()}" />
+  <c:set var="caseDescription" value="#{caseWidgetBean.formatCaseDescription(case.descriptions().current())}" />
   
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('NAME')}">
-    <h:outputText id="#{cc.attrs.caseNameId}" styleClass="case-header-name-cell #{cc.attrs.nameStyleClass} #{cc.attrs.responsiveStyleClass}"
-      value="#{empty case.names().current() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable') : case.names().current()}" />
-    <h:outputText escape="false" value="#{caseWidgetBean.formatCaseDescription(case.descriptions().current())}" id="#{cc.attrs.caseDescriptionId}" styleClass="case-header-desc-cell" />
+    <h:outputText id="#{cc.attrs.caseNameId}" styleClass="case-header-name-cell #{cc.attrs.nameStyleClass} #{cc.attrs.responsiveStyleClass}" value="#{caseName}" />
+    <p:tooltip for="#{cc.attrs.caseNameId}" value="#{caseName}" trackMouse="true" hideEvent="mouseleave click" />
+    <h:outputText id="#{cc.attrs.caseDescriptionId}" styleClass="case-header-desc-cell" escape="false" value="#{caseDescription}" />
+    <p:tooltip for="#{cc.attrs.caseDescriptionId}" value="#{caseDescription}" trackMouse="true" hideEvent="mouseleave click"/>
   </h:panelGroup>
 </cc:implementation>
 </html>
