@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>portalKitTestHelper</artifactId>
-  <version>10.0.26-SNAPSHOT</version>
+  <version>10.0.27-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
     <ivy.engine.version>10.0.26</ivy.engine.version>
@@ -13,7 +13,7 @@
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
-      <version>10.0.26-SNAPSHOT</version>
+      <version>10.0.27-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
   </dependencies>
