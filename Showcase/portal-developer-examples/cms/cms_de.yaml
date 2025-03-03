@@ -115,7 +115,7 @@ Dialogs:
 Labels:
   changePasswordWSError: Ein Fehler ist während der Passwortänderung aufgetreten. Bitte, kontaktieren Sie Ihren Administrator falls das Problem nach mehreren Versuchen besteht.
   forgotPasswordError: Bei der Bearbeitung Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.
-  passwordResetEmailCantSend: Ausnahme beim Senden der E-Mail an Sie. Bitte versuchen Sie es später erneut.
+  passwordResetEmailCantSend: Ausnahme Fehler Senden der E-Mail an Sie. Bitte versuchen Sie es später erneut.
   passwordResetEmailContent: '<html>Hallo {0},<br/><br/>Bitte klicken Sie auf diesen Link, um Ihr Passwort zurückzusetzen: <a href="{1}">Passwort zurücksetzen</a><br/><br/>Mit freundlichen Grüßen</html>'
   passwordResetEmailSent: Wenn diese E-Mail-Adresse registriert ist, haben wir einen Link zur Wiederherstellung des Passworts an diese Adresse geschickt.
   passwordResetEmailSubject: E-Mail zum Zurücksetzen des Passworts
