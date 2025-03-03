@@ -524,4 +524,18 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage = casePage.openDetailsCase(ORDER_PIZZA);
     assertFalse(detailsPage.isShowRelatedCaseCheckbox());
   }
+  
+  @Test
+  public void testCaseOwnerCanDelegateRelatedTasks() {
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(userIsOwnerUrl);
+    newDashboardPage.waitPageLoaded();
+    CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
+    detailsPage = casePage.openDetailsCase("demo user is owner");
+    detailsPage.waitPageLoaded();
+    detailsPage.waitRelatedTasks();
+    detailsPage.openTaskDelegateDialog("demo user is owner");
+    detailsPage.selectDelegateResponsible("Emma", false);
+    assertFalse(detailsPage.isTaskDelegateOptionDisable("demo user is owner"));
+  }
 }
