@@ -1374,51 +1374,11 @@ body .ui-widget.new-widget-dialog__introduction {
   position: relative;
   padding: 0;
 }
-
-.statistic-chart-widget__chart {
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
-
-.statistic-chart-widget__chart.client-number-chart {
-  overflow: hidden;
-}
-
 .statistic-chart-widget__chart--small {
   height: 350px;
   width: 450px;
   margin: auto;
 }
-
-.statistic-chart-widget__canvas {
-  height: 100%;
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: row;
-  gap: 30px;
-  cursor: default;
-}
-
-@container (max-width: 200px) {
-  .statistic-chart-widget__canvas {
-    position: relative;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: column;
-    cursor: default;
-    padding: 14px 14px;
-    }
-    
-    .statistic-chart-widget__canvas > .chart-border {
-    display: none;}
-  }
 
 .chart-information-container {
   padding: 1em 1.5em;

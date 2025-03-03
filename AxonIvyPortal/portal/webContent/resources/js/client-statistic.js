@@ -130,7 +130,7 @@ async function fetchChartData(chart, chartId) {
     data['statusCode'] = response.status;
     return await data;
   } catch (error) {
-    (new ClientChart()).renderNoPermissionStatistics(chart, await cloneResponse.errorMessage);
+    (new ClientChart()).renderNoPermissionStatistics(chart, await cloneResponse.text());
     return;
   }
 }
