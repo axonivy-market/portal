@@ -42,7 +42,7 @@ public class CaseWidgetConfigurationFilterBean extends AbstractCaseWidgetFilterB
       if (StringUtils.isBlank(memberDTO.getDisplayName())) {
         memberName = memberDTO.getName();
       } else {
-        memberName = String.format("%s (%s)", memberDTO.getDisplayName(), memberDTO.getName());
+        memberName = String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/TextWithRoundBracket"), memberDTO.getDisplayName(), memberDTO.getName());
       }
       return memberDTO.isEnabled() ? memberName : String.format("%s %s", Ivy.cms().co("/Labels/disabledUserPrefix"), memberName);
     }

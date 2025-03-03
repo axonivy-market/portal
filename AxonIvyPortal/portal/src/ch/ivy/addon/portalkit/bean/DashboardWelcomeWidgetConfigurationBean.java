@@ -198,4 +198,9 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   public void setImageFits(List<WelcomeImageFit> imageFits) {
     this.imageFits = imageFits;
   }
+  
+  public String getLanguageDisplayText(Locale x) {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DisplayedText", 
+        Arrays.asList(x.getDisplayName(Ivy.session().getContentLocale())));
+  }
 }

@@ -1,0 +1,182 @@
+Categories:
+  AnnualLeave:
+    name: 年次有給休暇
+  Investment:
+    name: 投資
+  LeaveRequest:
+    name: 休暇申請
+  OtherLeave:
+    Maternity:
+      name: 産休
+    SickLeave:
+      Long:
+        name: 長期休暇
+      name: 病欠
+    name: その他の休暇
+  Party:
+    Drink:
+      name: ドリンク
+    Food:
+      name: フード
+    name: パーティー
+  Payment:
+    name: 支払い
+  Showcase:
+    Application:
+      name: アプリケーション
+    Customized:
+      TaskList:
+        name: カスタムタスクリスト
+      name: カスタマイズ
+    Error:
+      IvyError:
+        ShowIvyErrorPage:
+          name: Ivy エラーページを表示
+        name: Ivy エラー
+      name: エラー
+    PortalDialogExample:
+      name: ポータルダイアログの例
+    name: ショーケース
+CustomFields:
+  Cases:
+    AccountNumber:
+      Description: 追加ケースのプロパティの詳細ページ
+      Label: アカウント番号
+    CreatedBillDate:
+      Description: 追加ケースのプロパティの詳細ページ
+      Label: 請求書作成日
+    CustomerName:
+      Description: 顧客名列の例
+      Label: 顧客名
+    CustomerType:
+      Description: 顧客タイプ列の例
+      Label: 顧客タイプ
+    DestroyCaseAction:
+      Description: ケースと、そのケースに属するすべてのタスクをキャンセルする
+      Label: ケースアクションの破棄
+    InvoiceDate:
+      Description: 追加ケースのプロパティの詳細ページ
+      Label: 請求書の日付
+    InvoiceDueDate:
+      Description: 追加ケースのプロパティの詳細ページ
+      Label: 請求書の支払期日
+    InvoiceNumber:
+      Description: 追加ケースのプロパティの詳細ページ
+      Label: 追加ケースデータ１
+    InvoiceQualityNumber:
+      Description: 追加ケースのプロパティの詳細ページ
+      Label: 請求書品質番号
+    InvoiceSubTotalAmount:
+      Description: 追加ケースのプロパティの詳細ページ
+      Label: 請求書の小計金額
+    InvoiceTotalAmount:
+      Description: 追加ケースのプロパティの詳細ページ
+      Label: 追加ケースデータ１
+    ShipmentDate:
+      Description: 出荷日列の例
+      Label: 出荷日
+    SupportData:
+      Description: 追加ケースのプロパティの詳細ページ
+      Label: サポートデータ
+  Categories:
+    CustomCaseWidget: カスタムケースウィジェット
+    CustomTaskWidget: カスタムタスクウィジェット
+    DefaultAdditionalCaseDetai: デフォルトの追加ケース詳細ページ
+  Tasks:
+    CustomerAddress:
+      Description: 顧客住所フィールド
+      Label: 顧客住所
+    CustomerEmail:
+      Description: 顧客メールフィールド
+      Label: 顧客メール
+    CustomerName:
+      Description: 顧客名列の例
+      Label: 顧客名
+    CustomerType:
+      Description: 顧客タイプ列の例
+      Label: 顧客タイプ
+    ShipmentDate:
+      Description: 出荷日列の例
+      Label: 出荷日
+Dialogs:
+  ch:
+    ivyteam:
+      ivy:
+        project:
+          portal:
+            examples:
+              testdata:
+                LeaveRequestForm:
+                  Employee: 従業員
+                  From: From
+                  IsRequired: このフィールドは入力必須です
+                  Representation: 代理
+                  To: To
+Labels:
+  changePasswordWSError: パスワードの変更中にエラーが発生しました。問題が解決しない場合は、管理者に連絡してください。
+  forgotPasswordError: リクエストの処理中にエラーが発生しました。しばらくしてから、もう一度お試しください。
+  passwordResetEmailCantSend: メールを送信中に例外エラーが発生しました。しばらくしてからもう一度お試しください。
+  passwordResetEmailContent: '<html>{0} 様、<br/><br/>パスワードをリセットするには、このリンクをクリックしてください: <a href="{1}">パスワードをリセット</a><br/><br/>よろしくお願いいたします</html>'
+  passwordResetEmailSent: このメールアドレスが登録されている場合、そのアドレス宛にパスワード回復リンクを送信されます。
+  passwordResetEmailSubject: パスワードをリセットするためのメール
+  updatePasswordSuccessfully: パスワードの更新に成功しました。
+  userNotFound: このメールアドレスが登録されている場合、そのアドレス宛にパスワード回復リンクを送信されます。
+  usersHaveSameEmail: このメールを使用しているユーザーが多数います。管理者にお問い合わせください。
+  wrongPassword: 認証に失敗しました。パスワードが間違っているようです。
+Processes:
+  CategoriedLeaveRequest:
+    Cases:
+      description: 休暇申請の説明
+      name: 休暇申請
+    Tasks:
+      AnnualLeave:
+        description: 年次有給休暇申請の説明
+        name: 年次有給休暇申請
+      MaternityLeave:
+        description: 産休申請の説明
+        name: 産休申請
+      SickLeave:
+        description: 病欠申請の説明
+        name: 病欠申請
+    description: これは、この「休暇申請」の例に関連して何が期待できるかについての簡単な説明です。
+    name: 休暇申請の分類
+    processStep: |-
+      #作成
+      さまざまな休暇タイプを選択
+      日付ピッカーを使用して休暇日を選択
+      休暇申請の承認者を選択
+      #承認
+      申請にコメントを追加
+      決済する：承認／却下
+      #概要
+      申請者は申請の概要を受け取ります
+      結果を確認します
+  MoreInformation:
+    customProcessInfo: これはカスタムプロセス情報です
+    description: カスタマイズされたプロセス情報ページを表示するには、詳細情報　をクリックしてください。
+  Payment:
+    Tasks:
+      Pay:
+        name: 新しい支払いを実行
+      Signal:
+        name: 新しい支払いを作成するシグナル
+    name: 新しい支払いを作成
+  TasksForTaskListCustomization:
+    Cases:
+      Party:
+        description: 招待客による社交的な集まりで、通常は食事、飲酒、娯楽などが含まれます。
+        name: パーティーの準備
+    Tasks:
+      BeerOrder:
+        description: １万人の大きな団体向けのビール
+        name: ビールの注文
+      MilkTeaOrder:
+        description: ミルクティー４人分
+        name: ミルクティーの注文
+      PizzaOrder:
+        description: ピザ１０人分
+        name: ビザの注文
+    description: 3 つのタスクを作成します、各タスクには CustomerName（顧客名） と ShipmentDate（出荷日） があります
+    name: タスクリストカスタマイズのタスクを作成します
+  UserExampleGuide: ユーザー例のガイド
+  google: Google

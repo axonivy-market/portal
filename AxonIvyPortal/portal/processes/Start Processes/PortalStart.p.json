@@ -1258,7 +1258,7 @@
           ],
           "map" : {
             "out.activeTabIndex" : "param.activeTabIndex",
-            "out.keyword" : "param.keyword"
+            "out.keyword" : "java.net.URLDecoder.decode(param.keyword, \"UTF-8\")"
           }
         },
         "request" : {
