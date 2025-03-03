@@ -32,7 +32,7 @@
           placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/password')}"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/PasswordRequiredMessage')}" />
 
-        <p:commandButton id="login-command" actionListener="#{logic.login}"
+        <p:commandButton id="login-command" actionListener="#{logic.login}" ajax="false"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
           icon="#{visibilityBean.generateButtonIcon('si si-login-3')}"
           oncomplete="if (#{empty data.callbackUrl} === 'true' &amp;&amp; args &amp;&amp; !args.validationFailed) {location.reload()};Portal.changeLogoByThemeMode('#{themeBean.themeMode}');"
