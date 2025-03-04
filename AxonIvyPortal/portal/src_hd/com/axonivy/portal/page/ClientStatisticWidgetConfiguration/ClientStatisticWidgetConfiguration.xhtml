@@ -244,11 +244,11 @@
                     action="#{clientStatisticWidgetConfigurationBean.getPreviewData}"
                     oncomplete="handlePreviewChart(xhr, status, args)" styleClass="ui-leave-button" />
                 </div>
-                <div style="ui-g-12">
+                <div class="ui-g-12">
                   <h:panelGroup id="stat-chart-widget__content" layout="block"
                     styleClass="statistic-chart-widget__content widget__content widget__content">
                     <h:panelGroup styleClass="statistic-chart-widget__chart" layout="block">
-                      <div class="ui-chart js-client-statistic-chart statistic-chart-widget__canvas chart-options-config"
+                      <div class="ui-chart js-client-statistic-chart statistic-chart-widget__canvas chart-options-config preview-statistic-chart"
                         data-chart-id="preview-statistic-chart"></div>
                     </h:panelGroup>
                   </h:panelGroup>

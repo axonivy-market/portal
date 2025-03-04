@@ -90,7 +90,7 @@ public class ClientStatisticService {
     };
   }
 
-  private List<Entry<String, String>> getAdditionalConfig() {
+  public List<Entry<String, String>> getAdditionalConfig() {
     return List.of(new SimpleEntry<>(AdditionalChartConfig.EMPTY_CHART_DATA_MESSAGE.getKey(),
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage")));
   }
@@ -102,7 +102,7 @@ public class ClientStatisticService {
                    .anyMatch(permission -> Ivy.session().getSessionUser().has().role(permission));
   }
 
-  private Entry<String, String> getManipulateValueBy(ClientStatistic data) {
+  public Entry<String, String> getManipulateValueBy(ClientStatistic data) {
     return Optional.ofNullable(data.getManipulateValueBy())
                    .map(value -> new SimpleEntry<>(AdditionalChartConfig.MANIPULATE_BY.getKey(), value))
                    .orElse(null);

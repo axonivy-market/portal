@@ -1317,6 +1317,8 @@ Dialogs:
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Añadir un nuevo cuadro de mandos
+              PortalDashboardDetailModification:
+                CreateCustomStatistic: Crear widget de estadísticas personalizado
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!

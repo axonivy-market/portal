@@ -282,6 +282,9 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   public void getPreviewData() {
     syncUIConfigWithChartConfig();
     ClientStatisticService clientStatisticService = ClientStatisticService.getInstance();
+    clientStatistic.setAdditionalConfigs(new ArrayList<>());
+    clientStatistic.getAdditionalConfigs().addAll(clientStatisticService.getAdditionalConfig());
+    clientStatistic.getAdditionalConfigs().add(clientStatisticService.getManipulateValueBy(clientStatistic));
     AggregationResult result = clientStatisticService.getChartData(clientStatistic);
     PrimeFaces.current().ajax().addCallbackParam("jsonResponse",
         BusinessEntityConverter.entityToJsonValue(new ClientStatisticResponse(result, clientStatistic)));
