@@ -257,7 +257,7 @@
       });
       
       function updateAll() {
-       WelcomeWidgetConfiguration.init('#{widget.greeting}');
+       WelcomeWidgetConfiguration.init(`#{htmlSanitizerBean.escapeForJS(widget.greeting)}`);
        generateGreetingText();
       }
       
