@@ -16,6 +16,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       fromBiggerThanTill: Das 'bis' Datum muss nach dem 'von' Datum liegen.
       overlappingAbsence: Die Abwesenheit überschneidet sich mit einer anderen Abwesenheit.
       userNameRequired: '''Benutzername'' darf nicht leer sein.'
+    SelectedSubtitutes: Ausgewählte Ersatzstoffe
     absences: Abwesenheiten
     addAbsence: Abwesenheit erfassen
     deputies: Stellvertreter
@@ -411,6 +412,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoSelection: Keine Auswahl
     ResetToDefaultHeaderText: Auf Standard-Einstellungen zurücksetzen?
     RoleUserInformation: Rollen- und Benutzerinformationen
+    StringFormat:
+      DateFromTo: '%s - %s'
+      TextListOut: '%s, %s,..'
+      TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Informationen zu Aufgabe und Vorgang
     Update: Aktualisieren
     Widget: Widget
