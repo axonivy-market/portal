@@ -32,6 +32,11 @@ CustomFields:
       Description: AccountNumber
       Type: NUMBER
       Category: DefaultAdditionalCaseDetails
+    Citizenship:
+      Label: Citizenship
+      Description: Citizenship
+      HasCmsValues: true
+      Type: STRING
   Cases:
     DestroyCaseAction:
       Label: Destroy Case Action
@@ -100,3 +105,8 @@ CustomFields:
       Description: SupportData
       Type: STRING
       Category: DefaultAdditionalCaseDetails
+    Product:
+      Label: Product
+      Description: Product
+      TYPE: STRING
+      HasCmsValues: true

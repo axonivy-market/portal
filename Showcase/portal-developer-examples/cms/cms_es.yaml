@@ -72,6 +72,11 @@ CustomFields:
     InvoiceTotalAmount:
       Description: Propiedad de la página de detalles del Caso Adicional
       Label: Importe total de la factura
+    Product:
+      Description: Descripción del producto
+      Label: Producto
+      Values:
+        milktea: té de burbujas
     ShipmentDate:
       Description: Columna de fecha de envío, por ejemplo
       Label: Fecha de envío
@@ -83,6 +88,13 @@ CustomFields:
     CustomTaskWidget: TaskWidget personalizado
     DefaultAdditionalCaseDetai: Página de detalles adicionales del caso por defecto
   Tasks:
+    Citizenship:
+      Description: Descripción de la ciudadanía
+      Label: Ciudadanía
+      Values:
+        korea: Corea
+        singapore: Singapur
+        spain: España
     CustomerAddress:
       Description: Campo de la dirección del cliente
       Label: Dirección del cliente
