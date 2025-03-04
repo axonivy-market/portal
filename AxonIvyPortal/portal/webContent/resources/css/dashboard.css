@@ -540,7 +540,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .filter-overlay-panel {
-  max-width: 75rem !important;
+  max-width: 90rem !important;
 }
 
 .filter-overlay-panel__footer > div#manage-filter {
@@ -1538,15 +1538,7 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .welcome-widget-configuration .welcome-text-input-panel {
   display: flex;
-  flex-direction: row;
-}
-
-@media screen and (max-width: 1366px) {
-  .welcome-widget-configuration .welcome-text-input-panel {
-   display: flex;
-   flex-direction: column;
-   align-items: flex-start;
-}
+  align-items: center;
 }
 
 .welcome-widget-configuration .welcome-text-input-panel .greeting-text {

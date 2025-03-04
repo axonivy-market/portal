@@ -7,7 +7,6 @@ import javax.faces.bean.ManagedBean;
 
 import org.apache.commons.lang3.BooleanUtils;
 
-import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.enums.GlobalVariable;
@@ -63,9 +62,4 @@ public class PortalComponentAvatarBean implements Serializable {
         ? Optional.ofNullable(email).map(String::toLowerCase).orElse(email)
         : email;
   }
-
-  public String getEmailAddress(RoleDTO role, boolean useLowercaseEmail) {
-    return "";
-  }
-
 }

@@ -1,0 +1,46 @@
+Dialog:
+  Common:
+    approve: 承認
+    finish: 完了
+    reject: 却下
+Enums:
+  LeaveType:
+    ANNUAL_LEAVE: 年次有給休暇
+    MATERNITY_LEAVE: 産休
+    SICK_LEAVE: 病欠
+Labels:
+  LeaveRequest:
+    LeaveSteps:
+      approval: 承認
+      approvalResult: 承認結果
+      creation: 休暇申請の作成
+    approvalResultTaskIntro: 以下は休暇申請の概要と承認者からのフィードバックです。
+    approvalTaskIntro: 承認が必要な休暇申請があります。詳細は以下のとおりです：
+    approver: 承認者
+    approverComment: 承認者のコメント
+    from: From
+    leaveType: 休暇の種類
+    requester: 申請者
+    requesterComment: 申請者のコメント
+    submitLeaveRequest: 休暇申請を送信
+    to: To
+Processes:
+  CreateInvestment:
+    Tasks:
+      Request:
+        name: 投資リクエスト
+    description: カスタマイズされたビジネス詳細ページへの投資リクエストの例
+    name: 投資の作成
+  CreateInvestmentWithPublicAPI:
+    Task:
+      Request:
+        name: 投資リクエスト
+    description: パブリックAPI を使用した、カスタマイズされたビジネス詳細ページへの投資リクエストの例
+    name: パブリックAPI を使用した投資の作成
+  LeaveRequest:
+    approvalTask: あなたの休暇申請は承認されました
+    approvalTaskName: '{0} の休暇申請の承認'
+    createLeaveRequest: '{0}の休暇申請を作成'
+    createNewLeaveRequest: システムタスク：新しい休暇申請の作成を開始
+    leaveRequest: 休暇申請
+    rejectedTask: あなたの休暇申請は却下されました

@@ -1,0 +1,197 @@
+Dialog:
+  Common:
+    approve: 承認
+    finish: 完了
+    reject: 却下
+    submit: 送信
+Enums:
+  LeaveType:
+    ANNUAL_LEAVE: 年次有給休暇
+    MATERNITY_LEAVE: 産休
+    SICK_LEAVE: 病欠
+Labels:
+  AxonIvyPortal: Axon Ivy Portal
+  BackToCaseMap: ケースマップに戻る
+  BackToHomePage: ホームページに戻る
+  Cancel: キャンセル
+  CaseDetails: ケースの詳細
+  CaseMap:
+    Credit:
+      address: アドレス
+      amount: 金額（スイスフラン）
+      amountOfOtherCredits: その他の未払いクレジットの金額（スイスフラン）
+      approvalAmount: 金額
+      approvalReason: 理由
+      birthDate: 生年月日
+      collectedReason: なぜこのクレジットが必要ですか？
+      country: 国
+      credit: クレジット
+      creditRequest: クレジットリクエスト
+      date: 日付
+      decision: 決定
+      externalCreditComment: 外部クレジットコメント
+      female: 女性
+      firstName: 名
+      gender: 性別
+      internalCreditComment: 内部クレジットコメント
+      lastName: 姓
+      male: 男性
+      otherCredits: その他のクレジット
+      person: 人物
+      rejectedReason: 拒絶理由
+      request: リクエスト
+      salary: 年俸
+      submitRequest: リクエストを送信
+      verifierComment: 検証者コメント
+      verifierSubmit: 検証者送信
+  Close: 閉じる
+  ConfirmationHeader: 本当によろしいですか？
+  Copyright: Copyright Ⓒ Axon Ivy Portal
+  ErrorAjaxMessage: 一般的な例外があります。
+  ErrorXhr: Web サイトのコンテンツを更新できませんでした
+  ForgotPassword: パスワードを忘れました
+  GoToDetail: 詳細へ移動
+  HasPrecondition: このプロセスには前提条件があります
+  LeaveRequest:
+    LeaveSteps:
+      approval: 承認
+      approvalResult: 承認結果
+      creation: 休暇申請の作成
+    approvalResultTaskIntro: 以下は休暇申請の概要と承認者からのフィードバックです。
+    approvalTaskIntro: 承認が必要な休暇申請があります。詳細は以下のとおりです：
+    approver: 承認者
+    approverComment: 承認者のコメント
+    from: From
+    leaveType: 休暇の種類
+    requester: 申請者
+    requesterComment: 申請者のコメント
+    submitLeaveRequest: 休暇申請を送信
+    to: To
+  Loading: 読み込み中
+  Login: ログイン
+  LoginErrorMessage: ログインしていないか、ユーザー名がこのアプリケーションで認識されていません。システム管理者に問い合わせてください。
+  LoginFailed: ログインに失敗しました
+  LoginLogo: ログインロゴ
+  LoginWith: その他のログイン方法
+  More: 詳細
+  MoreInformation: 詳細情報
+  NextStage: 次のステージ
+  Password: パスワード
+  PasswordRequiredMessage: パスワードが必要です
+  PreviousStage: 前のステージ
+  RequiredFieldMessage: このフィールドは必須です
+  Start: スタート
+  TheCaseMap: このケースマップ
+  TheProcess: このプロセス
+  Username: ユーザー名
+  UsernameRequiredMessage: ユーザー名が必要です
+  Warning: 警告
+  WelcomeToPortal: ようこそ、ログインしてください
+  dateFromBiggerThanTo: 「終了日」は、「開始日」より後にしてください。
+Processes:
+  CaseMap:
+    ApprovalLevel12:
+      description1: 貸出リクエストを承認する
+      description2: |-
+        <P>
+        決済：
+        </P>
+        <P>
+        - 承認
+        </P>
+        <P>
+        - 却下
+        </P>
+      description3: この例では、２つのレベルの承認が必要です
+    CheckCompanyRegisterDescription:
+      description1: このプロセスは、外部の会社登録チェックをシミュレートします
+      description2: プロセスは次のステップに進みます
+    CollectPersonDataDescription:
+      description1: このプロセスはデータベース接続をシミュレートし、「John Doe」からデータをロードします
+      description2: あなたは、このデータを確認して編集することができます
+      description3: 必須フィールドは検証されました
+    ContractCreation:
+      description1: 契約書を作成し、プロセスに添付する
+      description2: 作業内容を記録するためにコメントを追加する
+    ExternalSolvencyServiceDescription:
+      description1: 外部支払い能力サービスタスクをシミュレートします
+    InternalSolvencyCheckDescription:
+      description1: 支払い能力チェックを実現するために、プロセスからデータを取得する（システム外）
+      description2: |-
+        <P>
+        このアイコンをクリックすると、「外部支払い能力サービス」のサイドステップを開始できます：<i class="fa fa-align-justify" ></i>
+        </P>
+    Stage:
+      approval: 承認
+      creditRating: 信用格付け
+      identification: 身元確認
+    VerifyPersonalDataDescription:
+      description1: ステップ１からのデータを簡単に検証できます
+      description2: 検証の結果としてコメントを追加
+    abortRequest: 中止リクエスト
+    approveLevel1: レベル１を承認
+    approveLevel2: レベル２を承認
+    availableSideStep: |-
+      <P>
+      <B>サイドステップは次のとおりです：</B>
+      </P>
+      <P>
+      - オプションのステップ
+      </P>
+      <P>
+      - メインパスの一部のみ（必要な場合）
+      </P>
+    checkCompanyRegister: 会社の登録を確認
+    collectPersonalData: 個人データの収集
+    createContract: 契約作成
+    description: これは、ケースマップを使用して実装されたこの「貸出」の例に関連して期待できることの簡単な説明です。詳細については、下のボタンをクリックしてください。
+    externalSolvencyCheck: 外部支払い能力チェック
+    internalSolvencyCheck: 内部支払い能力チェック
+    name: 貸出（ケースマップ）
+    resumeRequest: 再開リクエスト
+    sideStep: 利用可能なサイドステップ
+    verifyPersonalData: 個人データの確認
+  ContractNegotiation:
+    name: 契約交渉
+  DashboardCustomWidget:
+    category: 投資
+    name: 投資リスト（ダッシュボードのカスタムウィジェットの例）
+  LeaveRequest:
+    Approval:
+      description1: リクエストにコメントを追加
+      description2: |-
+        <P>
+        決済：
+        </P>
+        <P>
+        &nbsp;- 承認
+        </P>
+        <P>
+        - 却下
+        </P>
+      name: 承認
+    Creation:
+      description1: 別の休暇種類を選択
+      description2: 日付ピッカーを使用して休暇日を選択
+      description3: 休暇申請の承認者を選択
+      name: 作成
+    Summary:
+      description1: 申請者は申請の概要を受け取ります
+      description2: 結果を確認します
+      name: 概要
+    approvalTask: あなたの休暇申請は承認されました
+    approvalTaskName: '{0} の休暇申請の承認'
+    createLeaveRequest: '{0}の休暇申請を作成'
+    createNewLeaveRequest: システムタスク：新しい休暇申請の作成を開始
+    description: これは、この「休暇申請」の例に関連して何が期待できるかについての簡単な説明です。詳細な情報を確認するには、下のボタンをクリックしてください。
+    leaveRequest: 休暇申請
+    name: 休暇申請
+    rejectedTask: あなたの休暇申請は却下されました
+  MarketingCampaign:
+    name: マーケティングキャンペーン連携
+  Procurement:
+    name: 調達
+  UserExampleGuide:
+    comingSoon: まもなく始まります...
+    description: ようこそ！　このユーザーサンプルガイドでは、Axon Ivy ポータルで利用できるデモプロセスを紹介します。詳細については、以下の各リンクをクリックしてください。
+    name: ユーザーサンプルガイド

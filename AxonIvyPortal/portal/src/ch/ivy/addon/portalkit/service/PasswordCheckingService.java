@@ -48,20 +48,14 @@ public class PasswordCheckingService {
   private String buildPasswordRequirementMessages(List<PasswordPolicy> passwordPolicies) {
     StringBuilder messageBuilder = new StringBuilder();
     messageBuilder.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/passwordMust"));
-    messageBuilder.append(StringUtils.SPACE);
-
+    messageBuilder.append("<ul>");
     for (int i = 0; i < passwordPolicies.size(); i++) {
       PasswordPolicy passwordPolicy = passwordPolicies.get(i);
       if (passwordPolicy.getActive()) {
-        messageBuilder.append(passwordPolicy.getValidationMessage());
-
-        if (i == passwordPolicies.size() - 1) {
-          messageBuilder.append('.');
-        } else {
-          messageBuilder.append(", ");
-        }
+        messageBuilder.append("<li style='margin-left:30px;'>" + passwordPolicy.getValidationMessage() + "</li>");
       }
     }
+    messageBuilder.append("</ul>");
     return messageBuilder.toString();
   }
 
@@ -99,7 +93,7 @@ public class PasswordCheckingService {
   }
 
   private Boolean checkPolicy(PasswordPolicy policy, PasswordPolicyType type, int actualValue) {
-    if (policy.getType().equals(type) && policy.getActive() && actualValue < policy.getValue()) {
+    if (policy.getType() == type && policy.getActive() && actualValue < policy.getValue()) {
       return false;
     }
     return true;

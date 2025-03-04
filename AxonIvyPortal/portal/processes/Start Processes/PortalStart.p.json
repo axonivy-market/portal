@@ -1258,7 +1258,7 @@
           ],
           "map" : {
             "out.activeTabIndex" : "param.activeTabIndex",
-            "out.keyword" : "param.keyword"
+            "out.keyword" : "java.net.URLDecoder.decode(param.keyword, \"UTF-8\")"
           }
         },
         "request" : {
@@ -2737,12 +2737,9 @@
     }, {
       "id" : "f200",
       "type" : "RequestStart",
-      "name" : "StandaloneApplicationHomeView.ivp",
+      "name" : "DefaultApplicationHomePageInTeams.ivp",
       "config" : {
-        "signature" : "StandaloneApplicationHomeView",
-        "request" : {
-          "name" : "Standalone View: Application Home"
-        }
+        "signature" : "DefaultApplicationHomePageInTeams"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 720 },
@@ -2784,12 +2781,9 @@
     }, {
       "id" : "f206",
       "type" : "RequestStart",
-      "name" : "StandaloneCaseListView.ivp",
+      "name" : "DefaultCaseListPageInTeams.ivp",
       "config" : {
-        "signature" : "StandaloneCaseListView",
-        "request" : {
-          "name" : "Standalone View: Case List"
-        }
+        "signature" : "DefaultCaseListPageInTeams"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 152 },
@@ -2847,12 +2841,9 @@
     }, {
       "id" : "f215",
       "type" : "RequestStart",
-      "name" : "StandaloneTaskListView.ivp",
+      "name" : "DefaultTaskListPageInTeams.ivp",
       "config" : {
-        "signature" : "StandaloneTaskListView",
-        "request" : {
-          "name" : "Standalone View: Task List"
-        }
+        "signature" : "DefaultTaskListPageInTeams"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 312 },
@@ -2864,12 +2855,9 @@
     }, {
       "id" : "f220",
       "type" : "RequestStart",
-      "name" : "StandaloneProcessStartListView.ivp",
+      "name" : "DefaultProcessStartListPageInTeams.ivp",
       "config" : {
-        "signature" : "StandaloneProcessStartListView",
-        "request" : {
-          "name" : "Standalone View: Process Start List"
-        }
+        "signature" : "DefaultProcessStartListPageInTeams"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1360 },

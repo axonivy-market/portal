@@ -1,5 +1,7 @@
 package com.axonivy.portal.userexamples.utils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.text.ParseException;
 import java.util.Date;
 
@@ -16,13 +18,14 @@ public final class Dates {
   private Dates() {
   }
 
-  public static Date parse(String dateInString) {
+  public static Date parse(String dateInString){
     if (StringUtils.isBlank(dateInString)) {
       return null;
     }
     try {
-      return DateUtils.parseDate(dateInString, ENGLISH_DATE_FORMAT, GERMAN_DATE_FORMAT);
-    } catch (ParseException e) {
+      String decodeValue = URLDecoder.decode(dateInString, "UTF-8");
+      return DateUtils.parseDate(decodeValue, ENGLISH_DATE_FORMAT, GERMAN_DATE_FORMAT);
+    } catch (ParseException | UnsupportedEncodingException e) {
       throw new PortalException("Cannot parse date " + dateInString, e);
     }
   }

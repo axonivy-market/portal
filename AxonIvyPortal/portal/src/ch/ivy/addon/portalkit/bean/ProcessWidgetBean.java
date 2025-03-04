@@ -175,7 +175,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       if (StringUtils.isBlank(responsible.getDisplayName())) {
         responsibleName = responsible.getName();
       } else {
-        responsibleName = String.format("%s (%s)", responsible.getDisplayName(), responsible.getName());
+        responsibleName = String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/TextWithRoundBracket"), responsible.getDisplayName(), responsible.getName());
       }
       return responsible.isEnabled() ? responsibleName
           : String.format("%s %s", Ivy.cms().co("/Labels/disabledUserPrefix"), responsibleName);
