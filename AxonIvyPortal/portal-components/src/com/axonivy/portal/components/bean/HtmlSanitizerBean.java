@@ -24,8 +24,9 @@ public class HtmlSanitizerBean implements Serializable {
 
   /**
    * This method is used to clearly mark XSS is considered.
-   * @param content 
-   * @return santized content
+   * 
+   * @param content
+   * @return sanitized content
    */
   public String sanitizeIgnoredWithAwareness(String content) {
     return content;

@@ -24,13 +24,13 @@
     autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
     oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget};" />
-  <p:inputText type="hidden" value="#{cc.attrs.caseWidgetVar}-#{caseWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
+  <p:inputText type="hidden" value="#{htmlSanitizerBean.escapeForJS(cc.attrs.caseWidgetVar)}-#{htmlSanitizerBean.escapeForJS(caseWidget.id)}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
 
   <p:remoteCommand id="rcLoadCaseFirstTime" rendered="#{!cc.attrs.isAIResult}"
     autoRun="true" actionListener="#{caseWidget.dataModel.loadFirstTime()}"
     update="dashboard-cases-container" global="false" async="true" process="@this"
     oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{caseWidget.id}', 'js-dashboard-cases-container-#{caseWidget.id}'); #{cc.attrs.onCompleteLoadWidget} #{cc.attrs.isPreviewMode ? 'calculateFilterPaneltPosition();' : ''}" />
-  <p:inputText type="hidden" value="dashboard-cases-#{caseWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
+  <p:inputText type="hidden" value="dashboard-cases-#{htmlSanitizerBean.escapeForJS(caseWidget.id)}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
   <div class="ui-g">
     <h:panelGroup layout="block"
       styleClass="js-loading-#{caseWidget.id} case-dashboard-widget__loading-message ui-g-12">
