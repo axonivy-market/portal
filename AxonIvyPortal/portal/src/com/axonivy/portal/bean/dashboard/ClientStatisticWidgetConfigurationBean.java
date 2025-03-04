@@ -32,6 +32,7 @@ import com.axonivy.portal.bo.ColumnChartConfig;
 import com.axonivy.portal.bo.LineChartConfig;
 import com.axonivy.portal.bo.NumberChartConfig;
 import com.axonivy.portal.bo.PieChartConfig;
+import com.axonivy.portal.bo.jsonversion.ClientStatisticJsonVersion;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
@@ -227,6 +228,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
       }
     }
     if (oldStatistic == null) {
+      clientStatistic.setVersion(ClientStatisticJsonVersion.LATEST_VERSION.getValue());
       clientStatistics.add(clientStatistic);
     }
     String statisticsJson = BusinessEntityConverter.entityToJsonValue(clientStatistics);
