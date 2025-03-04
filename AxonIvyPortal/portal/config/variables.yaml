@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://json-schema.axonivy.com/app/13.1.0/variables.json
 Variables:
   Portal:
     # To set the standard homepage which will be redirect to when click on home icon or logo.
@@ -186,6 +187,9 @@ Variables:
       # Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.
       EnablePreview: false
       
+      DocumentUploadSizeLimit: "20"
+      # Set size limit for upload image in MegaByte. Default value is 6MB.
+      ImageUploadSizeLimit: "6"
     DateTimeFormat:
       # Set to true to hide hours and minutes next to date in the datetime format.
       # This setting affects in Tasks, Cases and Statistic results.
