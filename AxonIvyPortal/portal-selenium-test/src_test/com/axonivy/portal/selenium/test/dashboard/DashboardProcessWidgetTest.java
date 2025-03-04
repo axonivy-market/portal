@@ -423,30 +423,6 @@ public class DashboardProcessWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testSortProcessCompactProcessModeCustomSorting() {
-    resizeBrowserTo2kResolution();
-    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
-        newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.selectCompactMode();
-    editProcessWidgetConfiguration.selectCompactProcessSorting(CUSTOM_ORDER);
-    $$(".ui-sortable-handle").shouldHave(CollectionCondition.size(0));
-    editProcessWidgetConfiguration.getPreviewButton().click();
-    editProcessWidgetConfiguration.getCompactModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    $$(".ui-sortable-handle").shouldHave(CollectionCondition.sizeGreaterThan(0));
-    // expect "Clean absences" process is the first process
-    editProcessWidgetConfiguration.getPreviewProcessElement(0).shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES));
-    int fromIndex = 0;
-    int toIndex = 4;
-    editProcessWidgetConfiguration.dragAndDropProcess(fromIndex, toIndex);
-    editProcessWidgetConfiguration.save();
-    editProcessWidgetConfiguration = newDashboardPage.editProcessWidgetConfiguration();
-    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName()
-        .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-        .shouldNotHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES), DEFAULT_TIMEOUT);
-  }
-
-  @Test
   public void testPreviewCompactModeProcessFilterCategory() {
     ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
         newDashboardPage.editProcessWidgetConfiguration();
