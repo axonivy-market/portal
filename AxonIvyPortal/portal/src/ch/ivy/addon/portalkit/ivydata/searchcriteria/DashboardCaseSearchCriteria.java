@@ -93,7 +93,7 @@ public class DashboardCaseSearchCriteria {
             appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectStandandFieldToQuickSearchQuery(columnEnum));
           } else {
             appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column));
-            if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(column.getField())) {
+            if (Boolean.TRUE.equals(column.getHasCmsValues())) {
               appendQuickSearchCaseQueryByDashboardFilter(subQuery, buildQuickSearchForCustomFieldWithCmsValues(column.getField()));
             }
           }

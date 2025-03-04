@@ -60,6 +60,7 @@ import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 
 public class DashboardWidgetUtils {
 
+  private static final String HAS_CMS_VALUES_ATTRIBUTE = "HasCmsValues";
   public static final String ICON_ATTRIBUTE = "Icon";
   public static final String IS_CUSTOM_ACTION_ATTRIBUTE = "IsCustomAction";
 
@@ -162,6 +163,7 @@ public class DashboardWidgetUtils {
       column.setHeader(fieldMeta.get().label());
       column.setFormat(DashboardColumnFormat.valueOf(fieldMeta.get().type().name()));
       column.setIsCustomAction(Boolean.valueOf(fieldMeta.get().attribute(IS_CUSTOM_ACTION_ATTRIBUTE)));
+      column.setHasCmsValues(Boolean.valueOf(fieldMeta.get().attribute(HAS_CMS_VALUES_ATTRIBUTE)));
       column.setIcon(fieldMeta.get().attribute(ICON_ATTRIBUTE));
       column.setDescription(fieldMeta.get().description());
       if (column.getIsCustomAction()) {

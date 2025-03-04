@@ -35,6 +35,7 @@ CustomFields:
     Citizenship:
       Label: Citizenship
       Description: Citizenship
+      HasCmsValues: true
       Type: STRING
   Cases:
     DestroyCaseAction:
@@ -107,6 +108,5 @@ CustomFields:
     Product:
       Label: Product
       Description: Product
-      CmsPath: /CustomFields/Cases/Product/Values
       TYPE: STRING
-      
+      HasCmsValues: true

@@ -132,13 +132,13 @@ public class DashboardTaskSearchCriteria {
     case CUSTOM_BUSINESS_CASE -> appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM_BUSINESS_CASE));
     case CUSTOM_CASE -> {
       appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM_CASE));
-      if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(column.getField())) {
+      if (Boolean.TRUE.equals(column.getHasCmsValues())) {
         appendQuickSearchCaseQueryByDashboardFilter(subQuery, buildFilterForCustomFieldWithCmsValue(column.getField(), DashboardColumnType.CUSTOM_CASE));
       }
     }
     case CUSTOM -> {
       appendQuickSearchTaskQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM));
-      if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(column.getField())) {
+      if (Boolean.TRUE.equals(column.getHasCmsValues())) {
         appendQuickSearchTaskQueryByDashboardFilter(subQuery, buildFilterForCustomFieldWithCmsValue(column.getField(), DashboardColumnType.CUSTOM));
       }
     }

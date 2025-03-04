@@ -39,7 +39,10 @@ public class TaskColumnModel extends ColumnModel {
   }
 
   private String displayStringFieldContent(ICustomFields customFields) {
-    return PortalCustomFieldUtils.getDisplayValueByField(customFields, field);
+    if (Boolean.TRUE.equals(this.hasCmsValues)) {
+      return PortalCustomFieldUtils.getDisplayValueByField(customFields, field);
+    }
+    return customFields.stringField(field).getOrNull();
   }
 
   public static TaskColumnModel constructColumn(DashboardColumnType fieldType, String field) {

@@ -16,17 +16,19 @@ import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 
 public class PortalCustomFieldUtils {
 
+  private static final String HAS_CMS_VALUES_ATTRIBUTE = "HasCmsValues";
+
   public static boolean isSupportMultiLanguageCaseField(String columnField) {
-    return isContainValuesInCms(columnField, ICustomFieldMeta.cases());
+    return hasCmsValues(columnField, ICustomFieldMeta.cases());
   }
   
   public static boolean isSupportMultiLanguageTaskField(String columnField) {
-    return isContainValuesInCms(columnField, ICustomFieldMeta.tasks());
+    return hasCmsValues(columnField, ICustomFieldMeta.tasks());
   }
 
-  private static boolean isContainValuesInCms(String columnField, Set<ICustomFieldMeta> customFieldMetaList) {
+  private static boolean hasCmsValues(String columnField, Set<ICustomFieldMeta> customFieldMetaList) {
     for (ICustomFieldMeta customFieldMeta : customFieldMetaList) {
-      if (customFieldMeta.name().equals(columnField) && !customFieldMeta.values().labels().isEmpty()) {
+      if (customFieldMeta.name().equals(columnField) && Boolean.valueOf(customFieldMeta.attribute(HAS_CMS_VALUES_ATTRIBUTE))) {
         return true;
       }
     }
