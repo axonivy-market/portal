@@ -14,8 +14,10 @@ public class DocumentDetectorFactory {
     else if(DocumentExtensionConstants.ALLOWED_WORD_FORMAT.contains(fileExtension)) {
       return new WordDocumentDetector();
     }
-    else if(DocumentExtensionConstants.ALLOWED_PDF_FORMAT.contains(fileExtension)) {
+    else if (DocumentExtensionConstants.ALLOWED_PDF_FORMAT.contains(fileExtension)) {
       return new PDFDocumentDetector();
+    } else if (DocumentExtensionConstants.ALLOWED_SVG_FORMAT.contains(fileExtension)) {
+      return new SVGScriptDetector();
     }
     return null;
   }
