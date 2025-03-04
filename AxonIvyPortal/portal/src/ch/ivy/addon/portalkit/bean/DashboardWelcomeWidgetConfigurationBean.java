@@ -19,6 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
+import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -35,7 +36,6 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
 
   private static final long serialVersionUID = 597266282990903281L;
 
-  private static final Long UPLOAD_SIZE_LIMIT = 6291456L;
   private static final String DEFAULT_WELCOME_CMS = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Welcome";
 
   private List<WelcomeTextPosition> textPositions;
@@ -93,7 +93,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       String fileName = getWidget().getId().concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
       getWidget().setImageLocation(fileName);
       getWidget().setImageType(extension);
-
+      UploadDocumentUtils.validateUploadedFile(file);
       // save the temporary image
       imageCMSObject = getWelcomeWidgetImageContentObject(true);
       if (imageCMSObject != null) {
@@ -113,7 +113,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       String fileName = getWidget().getId().concat(WelcomeWidgetUtils.DARK_MODE).concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
       getWidget().setImageLocationDarkMode(fileName);
       getWidget().setImageTypeDarkMode(extension);
-
+      UploadDocumentUtils.validateUploadedFile(file);
       // save the temporary image
       imageCMSObjectDarkMode = getWelcomeWidgetImageContentObjectDarkMode(true);
       if (imageCMSObjectDarkMode != null) {
@@ -172,12 +172,12 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   }
 
   public Long getUploadFileLimit() {
-    return UPLOAD_SIZE_LIMIT;
+    return UploadDocumentUtils.getImageUploadSizeLimit();
   }
 
   public String getFileUploadInvalidSizeMessage() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize",
-        Arrays.asList(FileUtils.byteCountToDisplaySize(UPLOAD_SIZE_LIMIT)));
+        Arrays.asList(FileUtils.byteCountToDisplaySize(getUploadFileLimit())));
   }
 
   public boolean isApplicationDefaultEmailLanguage(String language) {
