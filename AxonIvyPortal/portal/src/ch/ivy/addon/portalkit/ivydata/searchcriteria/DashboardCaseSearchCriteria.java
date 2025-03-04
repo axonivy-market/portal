@@ -240,12 +240,8 @@ public class DashboardCaseSearchCriteria {
     }
   
   private void appendSortByCustomFieldIfSet(DashboardCaseSearchCriteria criteria) {
-    if (sortStandardColumn) {
-        return;
-    }
-    
     String sortField = criteria.getSortField();
-    if (StringUtils.isBlank(sortField)) {
+    if (sortStandardColumn || StringUtils.isBlank(sortField)) {
         return;
     }
     

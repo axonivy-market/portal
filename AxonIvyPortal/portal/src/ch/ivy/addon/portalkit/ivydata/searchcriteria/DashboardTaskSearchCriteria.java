@@ -279,12 +279,8 @@ public class DashboardTaskSearchCriteria {
     }
 
     private void appendSortByCustomFieldIfSet(DashboardTaskSearchCriteria criteria) {
-      if (sortStandardColumn) {
-        return;
-      }
-      
       String sortField = criteria.getSortField();
-      if (StringUtils.isBlank(sortField)) {
+      if (sortStandardColumn || StringUtils.isBlank(sortField)) {
         return;
       }
       

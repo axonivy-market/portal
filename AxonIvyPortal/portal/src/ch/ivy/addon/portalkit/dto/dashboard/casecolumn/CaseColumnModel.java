@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 
 import java.util.Objects;
 
+
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
@@ -9,7 +10,6 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
-import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
@@ -30,13 +30,6 @@ public class CaseColumnModel extends ColumnModel {
     } else {
       return displayStringFieldContent(customFields);
     }
-  }
-
-  private String displayStringFieldContent(ICustomFields customFields) {
-    if (Boolean.TRUE.equals(this.hasCmsValues)) {
-      return PortalCustomFieldUtils.getDisplayValueByField(customFields, field);
-    }
-    return customFields.stringField(field).getOrNull();
   }
 
   public static CaseColumnModel constructColumn(DashboardColumnType fieldType, String field) {
