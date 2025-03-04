@@ -139,7 +139,11 @@ You can configure the UI in one of two ways:
          </ui:composition>
       </h:body>
 
-#. **Using JavaScript**
+#. **Using JavaScript (Deprecated)**
+
+   .. warning::
+      This feature is deprecated and will be removed in Portal 14.
+
 
    .. code-block:: xml
 
@@ -376,6 +380,13 @@ Developer tips
 If your project has a navigation button that does not complete a task (e.g.,
 Cancel), redirect the user to the desired page (e.g., the application home, task
 list, process list, etc.) in the HTML dialog.
+
+Sanitize JavaScript input
+-------------------------
+
+Whenever you use a Portal feature which need to commnunicate through JavaScript, make sure that you sanitized your data before send them to Portal.
+
+the ``portal-components`` project provided a public API to sanitize JavaScript.
 
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png
