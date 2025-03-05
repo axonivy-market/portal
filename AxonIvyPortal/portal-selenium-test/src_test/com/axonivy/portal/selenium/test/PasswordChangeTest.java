@@ -39,7 +39,7 @@ public class PasswordChangeTest extends BaseTest {
     newDashboardPage.clickOnLogout();
     redirectToRelativeLink(NewDashboardPage.PORTAL_HOME_PAGE_URL);
     LoginPage loginPage = new LoginPage(TestAccount.TEST_CHANGE_PASSWORD_USER);
-    loginPage.login(TestAccount.TEST_CHANGE_PASSWORD_USER.getUsername(), newPassword);
+    loginPage.login(TestAccount.TEST_CHANGE_PASSWORD_USER.getUsername(), newPassword, true);
     newDashboardPage.waitPageLoaded();
 
     assertTrue(newDashboardPage.isDisplayed());
