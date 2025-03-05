@@ -572,7 +572,7 @@ The field content is displayed based on the user's selected language in the cust
    Portal only supports Multi-Language for Custom Fields with ``TYPE: STRING``.
 
 Enabling Multi-Language Support
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To allow a custom field to retrieve multilingual values from the CMS, set the ``HasCmsValue`` attribute to ``true`` in the corresponding ``custom-field`` yaml file configuration.
 Otherwise, the logic remains unchanged, and the custom field uses the static value.
@@ -585,7 +585,7 @@ and Values </doc/|version|/designer-guide/configuration/custom-fields.html#local
 to get more information.
 
 Example YAML Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: yaml
 
@@ -597,23 +597,23 @@ Example YAML Configuration
 
 In your CMS, the path should be
 ``/CustomFields/Tasks/DriversVehicle/Values/Bike``,
-``/CustomFields/Tasks/DriversVehicle/Values/Car`` and
+``/CustomFields/Tasks/DriversVehicle/Values/Car`` or
 ``/CustomFields/Tasks/DriversVehicle/Values/MonsterTruck``.
 
 |task-field-cms|
 
 Result
-~~~~~~
+^^^^^^
 
 - If ``HasCmsValues`` is set with ``true``, the values from the CMS are used.
 - If the values are entered and translated in the CMS, then the custom field is displayed based on the selected language.
 - If the translation for a value is missing in the CMS, the static value from the entry is used instead.
 
 Sorting, Filtering, and Searching for Multi-Language Custom Fields
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Sorting
-~~~~~~~
+^^^^^^^
 
 1. ``HasCmsValues = false`` or not set. Sorting is performed as usual based on the stored values.
 2. ``HasCmsValues = true``. Sorting is performed based on the translated values in the currently selected language.
@@ -624,15 +624,15 @@ Sorting
 
 
 Searching
-~~~~~~~~~
+^^^^^^^^^
 
 1. ``HasCmsValues = false`` or not set. The search is performed as usual based on the stored value.
 2. ``HasCmsValues = true``. The search is conducted in both the CMS translations and the original value.
 
-Example: User can search for **Fahrrad** in German or the original value **Bike**.
+Example: When language is German, a user can search for **Fahrrad** or the original value **Bike**.
 
 Filtering
-~~~~~~~~~~~~~
+^^^^^^^^^
 
 1. ``HasCmsValues = false`` or not set. Filtering is performaed as usual based on the stored value.
 2. ``HasCmsValues = true``. Filtering is based on the translated value from the CMS.
@@ -646,7 +646,7 @@ Filtering
    If a value needs to be filtered in multiple languages, all corresponding translations must be in the filter.
 
 Conclusion
-~~~~~~~~~~
+^^^^^^^^^^
 
 With Multi-Language Support for Custom Fields, we enable flexible and dynamic
 provision of field content in multiple languages. The functionalities for
