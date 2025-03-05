@@ -63,6 +63,7 @@ public class CaseDetailsTest extends BaseTest {
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
   private static final String GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
       "portalKitTestHelper/14DE09882B540AD5/grantOnlyDelegateOwnTasksPermission.ivp";
+  private static final String GRANT_CASE_OWNER_TASK_DELEGATE_PERMISSION_PROCESS_URL = "portalKitTestHelper/14DE09882B540AD5/grantCaseOwnerTaskDelegatePermission.ivp";
   private static final String DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
       "portalKitTestHelper/14DE09882B540AD5/undoOnlyDelegateOwnTasksPermission.ivp";
   public static final String CUSTOM_CASE_WIDGET_NAME = "Create Event: Test custom case details";
@@ -529,6 +530,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testCaseOwnerCanDelegateRelatedTasks() {
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink(userIsOwnerUrl);
+    redirectToRelativeLink(GRANT_CASE_OWNER_TASK_DELEGATE_PERMISSION_PROCESS_URL);
     newDashboardPage.waitPageLoaded();
     CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsCase("demo user is owner");
