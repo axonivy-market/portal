@@ -444,7 +444,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     confirmForDelete: Sind Sie sicher, dass Sie diesen Eintrag löschen wollen?
     confirmation: Bestätigung
     confirmationHeaderText: Sind Sie sicher?
-    continue: Fortsetzen
+    continue: Fortfahren
     create: Erstellt
     creationDate: Erstellungsdatum
     dashboard: Dashboard
