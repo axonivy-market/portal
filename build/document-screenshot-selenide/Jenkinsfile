@@ -5,7 +5,6 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
   }
   
-
   tools {
     maven '3.9'
     jdk '21'
