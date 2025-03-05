@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import com.axonivy.portal.components.publicapi.SanitizeAPI;
 import com.axonivy.portal.components.util.HtmlUtils;
 
 /**
@@ -33,7 +34,7 @@ public class HtmlSanitizerBean implements Serializable {
   }
 
   public String escapeForJS(String input) {
-    return HtmlUtils.escapeForJS(input);
+    return SanitizeAPI.escapeForJavascript(input);
   }
 
   public String escapeForIcon(String input) {

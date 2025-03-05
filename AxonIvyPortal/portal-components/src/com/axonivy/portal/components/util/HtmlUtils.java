@@ -23,21 +23,6 @@ public class HtmlUtils {
     return text == null ? null : Jsoup.clean(text, HTML_PROTOCOL, Safelist.relaxed().addAttributes(":all", "style", "class").preserveRelativeLinks(true));
   }
 
-  public static String escapeForJS(String input) {
-    if (input == null) {
-      return "";
-    }
-
-    return input.replace("\\", "\\\\") // Escape backslashes
-        .replace("\"", "\\\"") // Escape double quotes
-        .replace("'", "\\'") // Escape single quotes
-        .replace("\n", "\\n") // Escape new lines
-        .replace("\r", "\\r") // Escape carriage return
-        .replace("\t", "\\t") // Escape tab characters
-        .replace("<", "\\u003C") // Escape `<` to prevent script injections
-        .replace(">", "\\u003E"); // Escape `>` to prevent breaking script tags
-  }
-
   public static String escapeForIcon(String input) {
     if (input == null) {
       return "";
