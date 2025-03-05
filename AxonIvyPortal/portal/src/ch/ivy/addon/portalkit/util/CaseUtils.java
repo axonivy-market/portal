@@ -116,4 +116,12 @@ public final class CaseUtils {
     };
     return Ivy.cms().co(url);
   }
+  
+  public static boolean isCaseOwnerUser(ICase caze) {
+    return caze != null && caze.owners() != null && caze
+        .owners()
+        .all()
+        .stream()
+        .anyMatch(item -> item.member().isMember(Ivy.session(), true));
+  }
 }
