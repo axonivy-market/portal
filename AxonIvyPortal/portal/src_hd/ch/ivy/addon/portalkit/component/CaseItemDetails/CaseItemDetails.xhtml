@@ -220,6 +220,8 @@
 
   <script type="text/javascript">
     function backToPrevPage(isHistoryBack) {
+      debugger;
+      isHistoryBack = isHistoryBack == true;
       if (#{inFrame} == true) {
         window.parent.backToPrevPage(isHistoryBack);
         return;

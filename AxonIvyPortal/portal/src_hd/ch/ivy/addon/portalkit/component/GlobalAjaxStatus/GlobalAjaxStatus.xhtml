@@ -50,7 +50,7 @@
         <div class="ui-g-12 text-center MarTop10 u-no-padding-bottom">
           <div class="ui-g-12">
             <p:button rendered="#{!isPortalInTeams}" href="#"
-              onclick="window.open('#{userMenuBean.getHomePageURL()}', '_self')"
+              onclick="window.open(`#{htmlSanitizerBean.escapeForJS(userMenuBean.getHomePageURL())}`, '_self')"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
               icon="#{visibilityBean.generateButtonIcon('si si-house-chimney-2')}" />
           </div>

@@ -318,7 +318,7 @@
           process="manage-role-details-form"
           update="manage-role-details-form #{cc.clientId}:role-management-form:role-tree-table"
           actionListener="#{roleManagementBean.createOrUpdateRole()}"
-          onclick="if (#{roleManagementBean.canModifyUserAssignment}) {PF('users-of-role-table').clearFilters();}"
+          onclick="if (#{canModifyUserAssignment}) {PF('users-of-role-table').clearFilters();}"
           oncomplete="if(!args.validationFailed) {PF('role-tree-table').clearFilters();PF('role-details-dialog').hide();} PF('role-details-dialog').initPosition()"
           partialSubmit="true" />
       </h:panelGroup>
