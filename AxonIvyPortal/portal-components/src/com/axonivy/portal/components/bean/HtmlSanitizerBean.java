@@ -30,4 +30,12 @@ public class HtmlSanitizerBean implements Serializable {
   public String sanitizeIgnoredWithAwareness(String content) {
     return content;
   }
+
+  public String escapeForJS(String input) {
+    return HtmlUtils.escapeForJS(input);
+  }
+
+  public String escapeForIcon(String input) {
+    return HtmlUtils.escapeForIcon(input);
+  }
 }
