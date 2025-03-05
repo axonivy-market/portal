@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import org.apache.commons.lang.StringUtils;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
-import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -54,7 +54,7 @@ public class CaseOwnerFilter extends CaseFilter {
       return getAllLabel();
     }
     
-    String ownerName = String.format("%s (%s)", owner.getDisplayName(), owner.getName());
+    String ownerName = String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/TextWithRoundBracket"), owner.getDisplayName(), owner.getName());
     return owner.isEnabled() ? ownerName : String.format("%s %s", Ivy.cms().co("/Labels/disabledUserPrefix"), ownerName);
   }
 

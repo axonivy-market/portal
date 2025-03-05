@@ -195,7 +195,7 @@
             value="#{dashboardWelcomeWidgetConfigurationBean.isApplicationDefaultEmailLanguage(text.locale.toLanguageTag())}" />
           <div class="ui-g-3 ui-md-4">
             <p:outputLabel
-              value="#{text.locale.getDisplayName()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DisplayedText')}"
+              value="#{dashboardWelcomeWidgetConfigurationBean.getLanguageDisplayText(text.locale)}"
               for="welcome-text-input" styleClass="welcome-text-label" />
           </div>
           <h:panelGroup id="welcome-text-input-panel" styleClass="ui-g-9 ui-md-8 welcome-text-input-panel"
