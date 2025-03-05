@@ -33,6 +33,12 @@
       <version>11.3.0</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>com.codeborne</groupId>
+      <artifactId>selenide-proxy</artifactId>
+      <version>7.7.3</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <testSourceDirectory>${basedir}/src_test/</testSourceDirectory>
