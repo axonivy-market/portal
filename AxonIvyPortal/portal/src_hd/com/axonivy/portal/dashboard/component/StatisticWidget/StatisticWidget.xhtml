@@ -4,7 +4,7 @@
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="widget" required="true" type="com.axonivy.portal.dto.dashboard.ClientStatisticDashboardWidget" />
+  <cc:attribute name="widget" required="true" type="com.axonivy.portal.dto.dashboard.StatisticDashboardWidget" />
   <cc:attribute name="isReadOnlyMode" default="true" />
   <cc:attribute name="index" default="0" />
   <cc:attribute name="isPreviewMode" default="false" />
@@ -27,7 +27,7 @@
     <ui:param name="isRenderInfo" value="false" />
     <ui:param name="isRenderEdit" value="false" />
     <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
-    <ui:param name="widgetContentStyleClass" value="client-statistic" />
+    <ui:param name="widgetContentStyleClass" value="statistic" />
 
     <ui:define name="widgetContent">
       <h:panelGroup id="stat-chart-widget__content" rendered="#{widget.id ne null}" layout="block"
@@ -36,7 +36,7 @@
         <h:panelGroup id="stat-chart-widget__chart-#{index}" layout="block"
           styleClass="statistic-chart-widget__chart">
           <h:panelGroup>
-            <div class="ui-chart js-client-statistic-chart statistic-chart-widget__canvas chart-options"
+            <div class="ui-chart js-statistic-chart statistic-chart-widget__canvas chart-options"
                  data-chart-id="#{widget.chartId}" >
             </div>
           </h:panelGroup>

@@ -4236,9 +4236,9 @@
     }, {
       "id" : "f3",
       "type" : "RequestStart",
-      "name" : "ClientStatisticWidgetConfiguration.ivp",
+      "name" : "StatisticWidgetConfiguration.ivp",
       "config" : {
-        "signature" : "ClientStatisticWidgetConfiguration",
+        "signature" : "StatisticWidgetConfiguration",
         "input" : {
           "params" : [
             { "name" : "id", "type" : "String", "desc" : "" },
@@ -4263,7 +4263,7 @@
       "id" : "f53",
       "type" : "DialogCall",
       "config" : {
-        "dialog" : "com.axonivy.portal.page.ClientStatisticWidgetConfiguration:start(String,String)",
+        "dialog" : "com.axonivy.portal.page.StatisticWidgetConfiguration:start(String,String)",
         "call" : {
           "map" : {
             "param.id" : "in.id",

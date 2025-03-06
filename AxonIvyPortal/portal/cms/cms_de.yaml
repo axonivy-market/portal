@@ -72,7 +72,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Axon Ivy Prozess
     DashboardWidgetType:
       CASE: Vorgangs-Widget
-      CLIENT_STATISTIC: Statistik-Widget
+      STATISTIC: Statistik-Widget
       CUSTOM: Benutzerdefiniertes Widget
       NEW: Neues Widget
       NEWS: Nachrichten
@@ -1388,7 +1388,7 @@ Dialogs:
                 la sélection'
             CaseWidgetConfiguration:
               AddFilter: Filter hinzufügen
-            ClientStatisticWidget:
+            StatisticWidget:
               IdNotFound: Diagramm mit ID {0} nicht gefunden
               NoPermissionChartMessage: Sie haben nicht die erforderliche Berechtigung, um diese Karte zu sehen.
             CloneWidgetDialog:

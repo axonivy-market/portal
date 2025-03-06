@@ -79,7 +79,7 @@ public class DashboardBean implements Serializable {
   protected String warningText;
   protected String dashboardUrl;
   protected List<Dashboard> importedDashboards;
-  private String clientStatisticApiUri;
+  private String statisticApiUri;
   private String selectedDashboardName;
 
   @PostConstruct
@@ -109,11 +109,11 @@ public class DashboardBean implements Serializable {
       selectedDashboard.setIsResponsive(true);
     }
 
-    buildClientStatisticApiUri();
+    buildStatisticApiUri();
   }
 
-  private void buildClientStatisticApiUri() {
-    this.clientStatisticApiUri = FacesContext.getCurrentInstance()
+  private void buildStatisticApiUri() {
+    this.statisticApiUri = FacesContext.getCurrentInstance()
         .getExternalContext().getRequestContextPath() + "/api/statistics/data";
   }
 
@@ -472,8 +472,8 @@ public class DashboardBean implements Serializable {
     this.importedDashboards = importedDashboards;
   }
 
-  public String getClientStatisticApiUri() {
-    return this.clientStatisticApiUri;
+  public String getStatisticApiUri() {
+    return this.statisticApiUri;
   }
 
   public boolean canEnableQuickSearch(DashboardWidget widget) {

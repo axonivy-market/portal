@@ -27,19 +27,19 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.bo.BarChartConfig;
-import com.axonivy.portal.bo.ClientStatistic;
+import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.ColumnChartConfig;
 import com.axonivy.portal.bo.LineChartConfig;
 import com.axonivy.portal.bo.NumberChartConfig;
 import com.axonivy.portal.bo.PieChartConfig;
-import com.axonivy.portal.bo.jsonversion.ClientStatisticJsonVersion;
+import com.axonivy.portal.bo.jsonversion.StatisticJsonVersion;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
-import com.axonivy.portal.service.ClientStatisticService;
+import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.DisplayNameUtils;
 
@@ -50,7 +50,7 @@ import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
-import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
+import ch.ivy.addon.portalkit.statistics.StatisticResponse;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
@@ -62,10 +62,10 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 
 @ViewScoped
 @ManagedBean
-public class ClientStatisticWidgetConfigurationBean implements Serializable {
+public class StatisticWidgetConfigurationBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  private ClientStatistic clientStatistic;
+  private Statistic statistic;
   private String statisticWidgetId;
   private String callbackDashboardId;
   private List<DisplayName> xTitles;
@@ -81,57 +81,57 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   public void init() {
     statisticWidgetId = Attrs.currentContext().getAttribute("#{data.id}", String.class);
     if (StringUtils.isNotEmpty(statisticWidgetId)) {
-      clientStatistic = ClientStatisticService.getInstance().findByIdCustomClientStatistic(statisticWidgetId);
+      statistic = StatisticService.getInstance().findByIdCustomStatistic(statisticWidgetId);
     }
     callbackDashboardId = Attrs.currentContext().getAttribute("#{data.callbackDashboardId}", String.class);
-    if (clientStatistic == null) {
-      clientStatistic = new ClientStatistic();
-      clientStatistic.setAggregates("priority");
-      clientStatistic.setNames(new ArrayList<>());
-      clientStatistic.setDescriptions(new ArrayList<>());
-      clientStatistic.setRefreshInterval(0);
-      clientStatistic.setChartTarget(ChartTarget.TASK);
-      clientStatistic.setChartType(ChartType.BAR);
-      clientStatistic.setNumberChartConfig(new NumberChartConfig());
-      clientStatistic.setBarChartConfig(new BarChartConfig());
-      clientStatistic.setLineChartConfig(new LineChartConfig());
-      clientStatistic.setPieChartConfig(new PieChartConfig() {});
-      clientStatistic.setPermissions(new ArrayList<>(Arrays.asList(ISecurityConstants.TOP_LEVEL_ROLE_NAME)));
+    if (statistic == null) {
+      statistic = new Statistic();
+      statistic.setAggregates("priority");
+      statistic.setNames(new ArrayList<>());
+      statistic.setDescriptions(new ArrayList<>());
+      statistic.setRefreshInterval(0);
+      statistic.setChartTarget(ChartTarget.TASK);
+      statistic.setChartType(ChartType.BAR);
+      statistic.setNumberChartConfig(new NumberChartConfig());
+      statistic.setBarChartConfig(new BarChartConfig());
+      statistic.setLineChartConfig(new LineChartConfig());
+      statistic.setPieChartConfig(new PieChartConfig() {});
+      statistic.setPermissions(new ArrayList<>(Arrays.asList(ISecurityConstants.TOP_LEVEL_ROLE_NAME)));
       xTitles = new ArrayList<>();
       yTitles = new ArrayList<>();
       backgroundColors = new ArrayList<>();
       // TODO z1 init category, value. Add action when select chart type
     } else { // existed statistic
       isEditMode = true;
-      if (clientStatistic.getNumberChartConfig() == null) {
-        clientStatistic.setNumberChartConfig(new NumberChartConfig());
+      if (statistic.getNumberChartConfig() == null) {
+        statistic.setNumberChartConfig(new NumberChartConfig());
       }
-      if (clientStatistic.getBarChartConfig() == null) {
-        clientStatistic.setBarChartConfig(new BarChartConfig());
+      if (statistic.getBarChartConfig() == null) {
+        statistic.setBarChartConfig(new BarChartConfig());
       }
-      if (clientStatistic.getLineChartConfig() == null) {
-        clientStatistic.setLineChartConfig(new LineChartConfig());
+      if (statistic.getLineChartConfig() == null) {
+        statistic.setLineChartConfig(new LineChartConfig());
       }
-      if (clientStatistic.getPieChartConfig() == null) {
-        clientStatistic.setPieChartConfig(new PieChartConfig() {});
+      if (statistic.getPieChartConfig() == null) {
+        statistic.setPieChartConfig(new PieChartConfig() {});
       }
-      if (BAR == clientStatistic.getChartType() || LINE == clientStatistic.getChartType()) {
-        ColumnChartConfig config = BAR == clientStatistic.getChartType() ? clientStatistic.getBarChartConfig()
-            : clientStatistic.getLineChartConfig();
+      if (BAR == statistic.getChartType() || LINE == statistic.getChartType()) {
+        ColumnChartConfig config = BAR == statistic.getChartType() ? statistic.getBarChartConfig()
+            : statistic.getLineChartConfig();
         xTitles = config.getxTitles() != null ? config.getxTitles() : new ArrayList<>();
         yTitles = config.getyTitles() != null ? config.getyTitles() : new ArrayList<>();
         backgroundColors = config.getBackgroundColors() != null ? config.getBackgroundColors() : new ArrayList<>();
-      } else if (PIE == clientStatistic.getChartType()) {
-        PieChartConfig config = clientStatistic.getPieChartConfig();
+      } else if (PIE == statistic.getChartType()) {
+        PieChartConfig config = statistic.getPieChartConfig();
         backgroundColors = config.getBackgroundColors() != null ? config.getBackgroundColors() : new ArrayList<>();
       } else {
         backgroundColors = new ArrayList<>();
       }
-      if (CollectionUtils.isEmpty(clientStatistic.getPermissions())) {
-        clientStatistic.setPermissions(new ArrayList<>(Arrays.asList(ISecurityConstants.TOP_LEVEL_ROLE_NAME)));
+      if (CollectionUtils.isEmpty(statistic.getPermissions())) {
+        statistic.setPermissions(new ArrayList<>(Arrays.asList(ISecurityConstants.TOP_LEVEL_ROLE_NAME)));
       }
-      if (clientStatistic.getPermissionDTOs() == null) {
-        clientStatistic.setPermissionDTOs(Arrays.asList(SecurityMemberDTOMapper.mapFromRoleDTO(
+      if (statistic.getPermissionDTOs() == null) {
+        statistic.setPermissionDTOs(Arrays.asList(SecurityMemberDTOMapper.mapFromRoleDTO(
             new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));
       }
     }
@@ -145,12 +145,12 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
     }
   }
 
-  public ClientStatistic getClientStatistic() {
-    return clientStatistic;
+  public Statistic getStatistic() {
+    return statistic;
   }
 
-  public void setClientStatistic(ClientStatistic clientStatistic) {
-    this.clientStatistic = clientStatistic;
+  public void setStatistic(Statistic statistic) {
+    this.statistic = statistic;
   }
 
   public String getStatisticWidgetId() {
@@ -163,15 +163,15 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
 
   public void save() {
     syncUIConfigWithChartConfig();
-    resetRedundantChartConfigs(clientStatistic.getChartType(), true);
+    resetRedundantChartConfigs(statistic.getChartType(), true);
     saveStatisticJson();
-    resetRedundantChartConfigs(clientStatistic.getChartType(), false);
+    resetRedundantChartConfigs(statistic.getChartType(), false);
     populateBackgroundColorsIfMissing();
     backToDashboardDetailsPageIfPossible();
   }
 
   private void syncUIConfigWithChartConfig() {
-    List<SecurityMemberDTO> responsibles = clientStatistic.getPermissionDTOs();
+    List<SecurityMemberDTO> responsibles = statistic.getPermissionDTOs();
     List<String> permissions = new ArrayList<>();
     // String displayedPermission = ""; // TODO z1 check out saveDashboardDetail
     if (CollectionUtils.isNotEmpty(responsibles)) {
@@ -183,57 +183,57 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
       // displayedPermission =
       // responsibles.stream().map(SecurityMemberDTO::getDisplayName).collect(Collectors.joining(", "));
       permissions = responsibles.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
-      clientStatistic.setPermissions(permissions);
+      statistic.setPermissions(permissions);
     }
     backgroundColors.removeIf(Objects::isNull);
-    if (BAR == clientStatistic.getChartType()) {
-      clientStatistic.setBarChartConfig(new BarChartConfig());
-      clientStatistic.getBarChartConfig().setxTitles(xTitles);
-      clientStatistic.getBarChartConfig().setyTitles(yTitles);
-      clientStatistic.getBarChartConfig().setBackgroundColors(backgroundColors);
-    } else if (LINE == clientStatistic.getChartType()) {
-      clientStatistic.setLineChartConfig(new LineChartConfig());
-      clientStatistic.getLineChartConfig().setxTitles(xTitles);
-      clientStatistic.getLineChartConfig().setyTitles(yTitles);
-      clientStatistic.getLineChartConfig().setBackgroundColors(backgroundColors);
-    } else if (PIE == clientStatistic.getChartType()) {
-      clientStatistic.getPieChartConfig().setBackgroundColors(backgroundColors);
+    if (BAR == statistic.getChartType()) {
+      statistic.setBarChartConfig(new BarChartConfig());
+      statistic.getBarChartConfig().setxTitles(xTitles);
+      statistic.getBarChartConfig().setyTitles(yTitles);
+      statistic.getBarChartConfig().setBackgroundColors(backgroundColors);
+    } else if (LINE == statistic.getChartType()) {
+      statistic.setLineChartConfig(new LineChartConfig());
+      statistic.getLineChartConfig().setxTitles(xTitles);
+      statistic.getLineChartConfig().setyTitles(yTitles);
+      statistic.getLineChartConfig().setBackgroundColors(backgroundColors);
+    } else if (PIE == statistic.getChartType()) {
+      statistic.getPieChartConfig().setBackgroundColors(backgroundColors);
     }
     backgroundColors = new ArrayList<>(backgroundColors);
   }
 
   private void resetRedundantChartConfigs(ChartType chartType, boolean isChartConfigAsNull) {
     if (BAR != chartType) {
-      clientStatistic.setBarChartConfig(isChartConfigAsNull ? null : new BarChartConfig());
+      statistic.setBarChartConfig(isChartConfigAsNull ? null : new BarChartConfig());
     }
     if (LINE != chartType) {
-      clientStatistic.setLineChartConfig(isChartConfigAsNull ? null : new LineChartConfig());
+      statistic.setLineChartConfig(isChartConfigAsNull ? null : new LineChartConfig());
     }
     if (PIE != chartType) {
-      clientStatistic.setPieChartConfig(isChartConfigAsNull ? null : new PieChartConfig());
+      statistic.setPieChartConfig(isChartConfigAsNull ? null : new PieChartConfig());
     }
     if (NUMBER != chartType) {
-      clientStatistic.setNumberChartConfig(isChartConfigAsNull ? null : new NumberChartConfig());
+      statistic.setNumberChartConfig(isChartConfigAsNull ? null : new NumberChartConfig());
     }
   }
 
   private void saveStatisticJson() {
-    List<ClientStatistic> clientStatistics = ClientStatisticService.getInstance().getCustomStatistic();
+    List<Statistic> statistics = StatisticService.getInstance().getCustomStatistic();
 
-    // ClientStatistic existedStatistic =
-    // ClientStatisticService.getInstance().findByIdCustomClientStatistic(clientStatistic.getId());
-    ClientStatistic oldStatistic = null;
-    for (int i = 0; i < clientStatistics.size(); i++) {
-      if (clientStatistic.getId().equals(clientStatistics.get(i).getId())) {
-        oldStatistic = clientStatistics.set(i, clientStatistic);
+    // Statistic existedStatistic =
+    // StatisticService.getInstance().findByIdCustomStatistic(statistic.getId());
+    Statistic oldStatistic = null;
+    for (int i = 0; i < statistics.size(); i++) {
+      if (statistic.getId().equals(statistics.get(i).getId())) {
+        oldStatistic = statistics.set(i, statistic);
       }
     }
     if (oldStatistic == null) {
-      clientStatistic.setVersion(ClientStatisticJsonVersion.LATEST_VERSION.getValue());
-      clientStatistics.add(clientStatistic);
+      statistic.setVersion(StatisticJsonVersion.LATEST_VERSION.getValue());
+      statistics.add(statistic);
     }
-    String statisticsJson = BusinessEntityConverter.entityToJsonValue(clientStatistics);
-    Ivy.var().set(PortalVariable.CUSTOM_CLIENT_STATISTIC.key, statisticsJson);
+    String statisticsJson = BusinessEntityConverter.entityToJsonValue(statistics);
+    Ivy.var().set(PortalVariable.CUSTOM_STATISTIC.key, statisticsJson);
   }
 
   public List<String> completeAggregates(String query) {
@@ -282,41 +282,41 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
 
   public void getPreviewData() {
     syncUIConfigWithChartConfig();
-    ClientStatisticService clientStatisticService = ClientStatisticService.getInstance();
-    clientStatistic.setAdditionalConfigs(new ArrayList<>());
-    clientStatistic.getAdditionalConfigs().addAll(clientStatisticService.getAdditionalConfig());
-    clientStatistic.getAdditionalConfigs().add(clientStatisticService.getManipulateValueBy(clientStatistic));
-    AggregationResult result = clientStatisticService.getChartData(clientStatistic);
+    StatisticService statisticService = StatisticService.getInstance();
+    statistic.setAdditionalConfigs(new ArrayList<>());
+    statistic.getAdditionalConfigs().addAll(statisticService.getAdditionalConfig());
+    statistic.getAdditionalConfigs().add(statisticService.getManipulateValueBy(statistic));
+    AggregationResult result = statisticService.getChartData(statistic);
     PrimeFaces.current().ajax().addCallbackParam("jsonResponse",
-        BusinessEntityConverter.entityToJsonValue(new ClientStatisticResponse(result, clientStatistic)));
+        BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic)));
     populateBackgroundColorsIfMissing();
   }
 
   public void updateNameForCurrentLanguage() {
-    updateForCurrentLanguage(clientStatistic.getNames(), ClientStatistic::setName);
+    updateForCurrentLanguage(statistic.getNames(), Statistic::setName);
   }
 
   public void updateDescriptionForCurrentLanguage() {
-    updateForCurrentLanguage(clientStatistic.getDescriptions(), ClientStatistic::setDescription);
+    updateForCurrentLanguage(statistic.getDescriptions(), Statistic::setDescription);
   }
 
   public void updateCategoryTitleForCurrentLanguage() {
-    updateForCurrentLanguageForColumnChartConfig(xTitles, ClientStatisticWidgetConfigurationBean::setxTitle);
+    updateForCurrentLanguageForColumnChartConfig(xTitles, StatisticWidgetConfigurationBean::setxTitle);
   }
 
   public void updateValueTitleForCurrentLanguage() {
-    updateForCurrentLanguageForColumnChartConfig(yTitles, ClientStatisticWidgetConfigurationBean::setyTitle);
+    updateForCurrentLanguageForColumnChartConfig(yTitles, StatisticWidgetConfigurationBean::setyTitle);
   }
 
-  private void updateForCurrentLanguage(List<DisplayName> names, BiConsumer<ClientStatistic, String> setNameFunction) {
+  private void updateForCurrentLanguage(List<DisplayName> names, BiConsumer<Statistic, String> setNameFunction) {
     String currentLanguage = UserUtils.getUserLanguage();
     Optional<DisplayName> optional =
         names.stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
-    optional.ifPresent(displayName -> setNameFunction.accept(clientStatistic, displayName.getValue()));
+    optional.ifPresent(displayName -> setNameFunction.accept(statistic, displayName.getValue()));
   }
 
   private void updateForCurrentLanguageForColumnChartConfig(List<DisplayName> names,
-      BiConsumer<ClientStatisticWidgetConfigurationBean, String> setNameFunction) {
+      BiConsumer<StatisticWidgetConfigurationBean, String> setNameFunction) {
     String currentLanguage = UserUtils.getUserLanguage();
     Optional<DisplayName> optional =
         names.stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
@@ -324,14 +324,14 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   }
 
   public void updateNameByLocale() {
-    String currentName = LanguageUtils.getLocalizedName(clientStatistic.getNames(), clientStatistic.getName());
-    initAndSetValue(currentName, clientStatistic.getNames());
+    String currentName = LanguageUtils.getLocalizedName(statistic.getNames(), statistic.getName());
+    initAndSetValue(currentName, statistic.getNames());
   }
 
   public void updateDescriptionByLocale() {
     String currentDescription =
-        LanguageUtils.getLocalizedName(clientStatistic.getDescriptions(), clientStatistic.getDescription());
-    initAndSetValue(currentDescription, clientStatistic.getDescriptions());
+        LanguageUtils.getLocalizedName(statistic.getDescriptions(), statistic.getDescription());
+    initAndSetValue(currentDescription, statistic.getDescriptions());
   }
 
   public void updateCategoryTitleByLocale() {
@@ -350,35 +350,35 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   }
 
   public List<DisplayName> getNames() {
-    if (clientStatistic == null) {
+    if (statistic == null) {
       return new ArrayList<>();
     }
 
-    if (clientStatistic.getNames().isEmpty()) {
+    if (statistic.getNames().isEmpty()) {
       List<String> supportedLanguages = getSupportedLanguages();
       for (String language : supportedLanguages) {
         DisplayName displayName = new DisplayName();
         displayName.setLocale(Locale.forLanguageTag(language));
-        clientStatistic.getNames().add(displayName);
+        statistic.getNames().add(displayName);
       }
     }
-    return clientStatistic.getNames();
+    return statistic.getNames();
   }
 
   public List<DisplayName> getDescriptions() {
-    if (clientStatistic == null) {
+    if (statistic == null) {
       return new ArrayList<>();
     }
 
-    if (clientStatistic.getDescriptions().isEmpty()) {
+    if (statistic.getDescriptions().isEmpty()) {
       List<String> supportedLanguages = getSupportedLanguages();
       for (String language : supportedLanguages) {
         DisplayName displayName = new DisplayName();
         displayName.setLocale(Locale.forLanguageTag(language));
-        clientStatistic.getDescriptions().add(displayName);
+        statistic.getDescriptions().add(displayName);
       }
     }
-    return clientStatistic.getDescriptions();
+    return statistic.getDescriptions();
   }
 
   public String getxTitle() {
@@ -481,11 +481,11 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   }
 
   private void initPermissions() {
-    clientStatistic.setPermissionDTOs(Optional.ofNullable(clientStatistic).map(ClientStatistic::getPermissions)
+    statistic.setPermissionDTOs(Optional.ofNullable(statistic).map(Statistic::getPermissions)
         .orElse(new ArrayList<>()).stream().filter(Objects::nonNull).distinct()
         .map(permission -> findSecurityMemberDtoByName(permission)).collect(Collectors.toList()));
 
-    selectedPermissions = Optional.ofNullable(clientStatistic).map(ClientStatistic::getPermissionDTOs)
+    selectedPermissions = Optional.ofNullable(statistic).map(Statistic::getPermissionDTOs)
         .orElse(new ArrayList<>()).stream().map(SecurityMemberDTO::getName).collect(Collectors.toList());
   }
 

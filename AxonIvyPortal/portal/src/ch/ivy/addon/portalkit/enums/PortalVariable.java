@@ -16,8 +16,8 @@ public enum PortalVariable {
   STATISTIC_DATA("Portal.StatisticData"),
   CHATBOT_ENDPOINT("PortalAiUrl"),
   DASHBOARD_MAIN_MENU_ENTRY("Portal.Dashboard.MainMenuEntry"),
-  CLIENT_STATISTIC("Portal.ClientStatistic"),
-  CUSTOM_CLIENT_STATISTIC("Portal.CustomClientStatistic")
+  STATISTIC("Portal.Statistic"),
+  CUSTOM_STATISTIC("Portal.CustomStatistic")
   ;
 
   public String key;

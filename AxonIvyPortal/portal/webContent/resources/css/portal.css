@@ -1807,7 +1807,7 @@ body.dark .focused {
 }
 /* ====END OF==== DIALOG FOOTER - CONFIRMATION DIALOG ============================  **/
 
-/* ======================= CLIENT STATISTIC CHART ================================  **/
+/* ======================= STATISTIC CHART ================================  **/
 
 .card-widget__content {
   container-type: size;
@@ -1948,7 +1948,7 @@ body.dark .focused {
   font-size: 3.2em;
 }
 
-/* ======================= PREVIEW CLIENT STATISTIC CHART ==========================  **/
+/* ======================= PREVIEW STATISTIC CHART ==========================  **/
 
 .chart-options-config {
   height: 600px;

@@ -3,7 +3,7 @@
   "id" : "19503BAB9F1103ED",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "com.axonivy.portal.page.ClientStatisticWidgetConfiguration.ClientStatisticWidgetConfigurationData"
+    "data" : "com.axonivy.portal.page.StatisticWidgetConfiguration.StatisticWidgetConfigurationData"
   },
   "elements" : [ {
       "id" : "f0",

@@ -166,7 +166,7 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
   datePattern = datePatternConfig;
 
   // Find HTML elements of client charts widget
-  const charts = Array.from(document.getElementsByClassName('js-client-statistic-chart'));
+  const charts = Array.from(document.getElementsByClassName('js-statistic-chart'));
   if (!charts || charts.length == 0) {
     return;
   }
@@ -214,7 +214,7 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
 }
 
 function previewChart(data, defaultLocale, datePatternConfig) {
-  const charts = document.getElementsByClassName('js-client-statistic-chart');
+  const charts = document.getElementsByClassName('js-statistic-chart');
   if (!charts || charts.length == 0) {
     return;
   }

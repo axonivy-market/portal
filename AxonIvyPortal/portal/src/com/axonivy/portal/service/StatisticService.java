@@ -15,34 +15,34 @@ import javax.ws.rs.NotFoundException;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.bo.ClientStatistic;
-import com.axonivy.portal.dto.ClientStatisticDto;
+import com.axonivy.portal.bo.Statistic;
+import com.axonivy.portal.dto.StatisticDto;
 import com.axonivy.portal.enums.AdditionalChartConfig;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
+import ch.ivy.addon.portalkit.statistics.StatisticResponse;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
 
-public class ClientStatisticService {
+public class StatisticService {
   
-  private static final String DEFAULT_CLIENT_STATISTIC_KEY = PortalVariable.CLIENT_STATISTIC.key;
-  private static final String CUSTOM_CLIENT_STATISTIC_KEY = PortalVariable.CUSTOM_CLIENT_STATISTIC.key;
-  private static ClientStatisticService instance;
+  private static final String DEFAULT_STATISTIC_KEY = PortalVariable.STATISTIC.key;
+  private static final String CUSTOM_STATISTIC_KEY = PortalVariable.CUSTOM_STATISTIC.key;
+  private static StatisticService instance;
 
-  public static ClientStatisticService getInstance() {
+  public static StatisticService getInstance() {
     if (instance == null) {
-      instance = new ClientStatisticService();
+      instance = new StatisticService();
     }
-    return ClientStatisticService.instance;
+    return StatisticService.instance;
   }
 
-  public List<ClientStatistic> findAllCharts() {
+  public List<Statistic> findAllCharts() {
     Set<String> seenIds = new HashSet<>();
-    List<ClientStatistic> statistics = getDefaultClientStatistic();
+    List<Statistic> statistics = getDefaultStatistic();
     statistics = statistics.stream().filter(statistic -> seenIds.add(statistic.getId())).collect(Collectors.toList());
     getCustomStatistic().stream().filter(obj -> seenIds.add(obj.getId())).forEach(statistics::add);
     return statistics;
@@ -56,30 +56,30 @@ public class ClientStatisticService {
    * @throws NotFoundException
    * @throws NoPermissionException
    */
-  public ClientStatisticResponse getStatisticData(ClientStatisticDto payload)
+  public StatisticResponse getStatisticData(StatisticDto payload)
       throws NotFoundException, NoPermissionException {
-    ClientStatistic chart = findByClientStatisticId(payload.getChartId());
+    Statistic chart = findByStatisticId(payload.getChartId());
     validateChart(payload.getChartId(), chart);
     AggregationResult result = getChartData(chart);
     chart.setAdditionalConfigs(new ArrayList<>());
     chart.getAdditionalConfigs().addAll(getAdditionalConfig());
     chart.getAdditionalConfigs().add(getManipulateValueBy(chart));
-    return new ClientStatisticResponse(result, chart);
+    return new StatisticResponse(result, chart);
   }
 
-  private void validateChart(String chartId, ClientStatistic chart) {
+  private void validateChart(String chartId, Statistic chart) {
     if (chart == null) {
-      throw new PortalException(Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/ClientStatisticWidget/IdNotFound",
+      throw new PortalException(Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/StatisticWidget/IdNotFound",
           Arrays.asList(chartId)));
     }
 
     if (!hasPermission(chart)) {
       throw new PortalException(
-          Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/ClientStatisticWidget/NoPermissionChartMessage"));
+          Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/StatisticWidget/NoPermissionChartMessage"));
     }
   }
 
-  public AggregationResult getChartData(ClientStatistic chart) {
+  public AggregationResult getChartData(Statistic chart) {
     chart.setFilter(StringUtils.stripToNull(chart.getFilter()));
     return switch (chart.getChartTarget()) {
     case CASE -> WorkflowStats.current().caze().aggregate(chart.getAggregates(),
@@ -95,45 +95,45 @@ public class ClientStatisticService {
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage")));
   }
 
-  private boolean hasPermission(ClientStatistic data) {
+  private boolean hasPermission(Statistic data) {
     return Optional.ofNullable(data.getPermissions())
                    .orElse(List.of())
                    .stream()
                    .anyMatch(permission -> Ivy.session().getSessionUser().has().role(permission));
   }
 
-  public Entry<String, String> getManipulateValueBy(ClientStatistic data) {
+  public Entry<String, String> getManipulateValueBy(Statistic data) {
     return Optional.ofNullable(data.getManipulateValueBy())
                    .map(value -> new SimpleEntry<>(AdditionalChartConfig.MANIPULATE_BY.getKey(), value))
                    .orElse(null);
   }
   
-  private ClientStatistic findByClientStatisticId(String id) {
+  private Statistic findByStatisticId(String id) {
     return findAllCharts().stream()
         .filter(e -> e.getId().equals(id))
         .findFirst()
         .orElse(null);
   }
 
-  public ClientStatistic findByIdCustomClientStatistic(String id) {
+  public Statistic findByIdCustomStatistic(String id) {
     return getCustomStatistic().stream().filter(e -> e.getId().equals(id)).findFirst().orElse(null);
   }
 
-  public void saveJsonToVariable(List<ClientStatistic> clientStatistics) {
-    String statisticsJson = BusinessEntityConverter.entityToJsonValue(clientStatistics);
-    Ivy.var().set(PortalVariable.CUSTOM_CLIENT_STATISTIC.key, statisticsJson);
+  public void saveJsonToVariable(List<Statistic> statistics) {
+    String statisticsJson = BusinessEntityConverter.entityToJsonValue(statistics);
+    Ivy.var().set(PortalVariable.CUSTOM_STATISTIC.key, statisticsJson);
   }
   
-  private List<ClientStatistic> getDefaultClientStatistic() {
-    String value = Ivy.var().get(DEFAULT_CLIENT_STATISTIC_KEY);
-    List<ClientStatistic> clientStatistics = BusinessEntityConverter.jsonValueToEntities(value, ClientStatistic.class);
-    clientStatistics.stream().forEach(cs -> cs.setIsCustom(false));
-    return clientStatistics;
+  private List<Statistic> getDefaultStatistic() {
+    String value = Ivy.var().get(DEFAULT_STATISTIC_KEY);
+    List<Statistic> statistics = BusinessEntityConverter.jsonValueToEntities(value, Statistic.class);
+    statistics.stream().forEach(cs -> cs.setIsCustom(false));
+    return statistics;
   }
   
-  public List<ClientStatistic> getCustomStatistic() {
-    String value = Ivy.var().get(CUSTOM_CLIENT_STATISTIC_KEY);
-    List<ClientStatistic> clientStatistics = BusinessEntityConverter.jsonValueToEntities(value, ClientStatistic.class);
-    return clientStatistics;
+  public List<Statistic> getCustomStatistic() {
+    String value = Ivy.var().get(CUSTOM_STATISTIC_KEY);
+    List<Statistic> statistics = BusinessEntityConverter.jsonValueToEntities(value, Statistic.class);
+    return statistics;
   }
 }

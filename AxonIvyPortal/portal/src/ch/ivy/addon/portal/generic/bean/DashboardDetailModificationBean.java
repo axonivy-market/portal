@@ -1,7 +1,7 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CLIENT_STATISTIC;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CUSTOM;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NEWS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NOTIFICATION;
@@ -42,14 +42,14 @@ import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.ColumnResizeEvent;
 
-import com.axonivy.portal.bo.ClientStatistic;
+import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.News;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.service.ClientStatisticService;
+import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.DashboardCloneUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
@@ -61,7 +61,7 @@ import ch.ivy.addon.portalkit.constant.DashboardConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.ClientStatisticDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CombinedProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
@@ -121,7 +121,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private String restoreDashboardMessage;
   private Optional<DashboardTemplate> foundTemplate;
   private List<DashboardProcess> customWidgets;
-  private List<ClientStatistic> statisticWidgets;
+  private List<Statistic> statisticWidgets;
 
   // Clone widget function
   private Dashboard cloneFromDashboard;
@@ -153,7 +153,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   protected void initStatisticWidgets() {
     setStatisticWidgets(new ArrayList<>());
-    getStatisticWidgets().addAll(ClientStatisticService.getInstance().findAllCharts());
+    getStatisticWidgets().addAll(StatisticService.getInstance().findAllCharts());
   }
 
   private void initCustomWidgets() {
@@ -302,10 +302,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
   }
 
-  public void createClientStatisticWidget(ClientStatistic clientStatistic) {
+  public void createStatisticWidget(Statistic statistic) {
     newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
         Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticChartWidget")));
-    widget = getDefaultClientStatisticDashboardWidget(clientStatistic.getName(), clientStatistic.getId());
+    widget = getDefaultStatisticDashboardWidget(statistic.getName(), statistic.getId());
   }
 
   public void createCustomDashboardWidget(DashboardProcess process) {
@@ -386,11 +386,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return (ProcessDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName, PROCESS);
   }
 
-  private ClientStatisticDashboardWidget getDefaultClientStatisticDashboardWidget(String widgetName, String chartId) {
-    String widgetId = DashboardWidgetUtils.generateNewWidgetId(CLIENT_STATISTIC);
-    ClientStatisticDashboardWidget widget = null;
-    widget = (ClientStatisticDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName,
-        CLIENT_STATISTIC);
+  private StatisticDashboardWidget getDefaultStatisticDashboardWidget(String widgetName, String chartId) {
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(STATISTIC);
+    StatisticDashboardWidget widget = null;
+    widget = (StatisticDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName,
+        STATISTIC);
     widget.setChartId(chartId);
     return widget;
   }
@@ -418,8 +418,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return NewsDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
 
-  public void saveClientStatisticWidget(ClientStatistic clientStatistic) {
-    createClientStatisticWidget(clientStatistic);
+  public void saveStatisticWidget(Statistic statistic) {
+    createStatisticWidget(statistic);
     saveWidget();
   }
   private NotificationDashboardWidget getDefaultNotificationWidget() {
@@ -488,7 +488,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     updateWidgetPosition(widget);
     resetUserFilter();
 
-    if (widget.getType() != DashboardWidgetType.CLIENT_STATISTIC) {
+    if (widget.getType() != DashboardWidgetType.STATISTIC) {
       initMultipleLanguagesForWidgetName(this.widget.getName());
     }
 
@@ -1072,11 +1072,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     this.customWidgets = customWidgets;
   }
 
-  public List<ClientStatistic> getStatisticWidgets() {
+  public List<Statistic> getStatisticWidgets() {
     return statisticWidgets;
   }
 
-  public void setStatisticWidgets(List<ClientStatistic> statisticWidgets) {
+  public void setStatisticWidgets(List<Statistic> statisticWidgets) {
     this.statisticWidgets = statisticWidgets;
   }
   
@@ -1159,7 +1159,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void cloneWidget() {
     widget = DashboardCloneUtils.cloneWidget(cloneFromWidget);
 
-    if (widget.getType() == CLIENT_STATISTIC) {
+    if (widget.getType() == STATISTIC) {
       saveWidget();
     }
 
@@ -1186,12 +1186,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public String generateCloneWidgetName(DashboardWidget widget) {
     String widgetName = widget.getName();
-    if (widget.getType() == CLIENT_STATISTIC) {
-      ClientStatisticDashboardWidget statisticWidget = (ClientStatisticDashboardWidget) widget;
+    if (widget.getType() == STATISTIC) {
+      StatisticDashboardWidget statisticWidget = (StatisticDashboardWidget) widget;
       widgetName = getStatisticWidgets().stream()
           .filter(statistic -> statistic.getId()
               .contentEquals(statisticWidget.getChartId()))
-          .findFirst().map(ClientStatistic::getName).orElse("");
+          .findFirst().map(Statistic::getName).orElse("");
     }
 
     // For custom widget, need to build before get name
@@ -1222,8 +1222,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void deleteCustomStatisticById(String id) {
     boolean isRemoveSuccess = statisticWidgets.removeIf(c -> c.getId().equals(id));
     if (isRemoveSuccess) {
-      List<ClientStatistic> customStatisticsToSave = statisticWidgets.stream().filter(c -> c.getIsCustom()).collect(Collectors.toList());
-      ClientStatisticService.getInstance().saveJsonToVariable(customStatisticsToSave);
+      List<Statistic> customStatisticsToSave = statisticWidgets.stream().filter(c -> c.getIsCustom()).collect(Collectors.toList());
+      StatisticService.getInstance().saveJsonToVariable(customStatisticsToSave);
     }
   }
 }
