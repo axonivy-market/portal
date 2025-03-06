@@ -30,11 +30,6 @@ public class CustomStringContainsOperatorHandler {
       return null;
     }
     CaseQuery query = CaseQuery.create(); // TODO filterfield correct? business and/or technical cases?
-    if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(filter.getField())) {
-      CaseQuery addingQuery = buildQueryForCustomFieldWithCmsValue(filter);
-      query.where().or(addingQuery);
-      return query;
-    }
     
     filter.getValues().forEach(text -> {
       CaseQuery subQuery = CaseQuery.create();
@@ -42,6 +37,11 @@ public class CustomStringContainsOperatorHandler {
           .isLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
       query.where().or(subQuery);
     });
+    
+    if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(filter.getField())) {
+      CaseQuery addingQuery = buildQueryForCustomFieldWithCmsValue(filter);
+      query.where().or(addingQuery);
+    }
 
     return query;
   }

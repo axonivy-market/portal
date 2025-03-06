@@ -29,18 +29,18 @@ public class CustomStringContainsOperatorHandler {
       return null;
     }
     TaskQuery query = TaskQuery.create(); // TODO filterfield correct? business and/or technical cases?
-    if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(filter.getField())) {
-      TaskQuery addingQuery = buildQueryForCustomFieldWithCmsValue(filter);
-      query.where().or(addingQuery);
-      return query;
-    }
-    
+
     filter.getValues().forEach(text -> {
       TaskQuery subQuery = TaskQuery.create();
       subQuery.where().customField().stringField(filter.getField())
           .isLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
       query.where().or(subQuery);
     });
+    
+    if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(filter.getField())) {
+      TaskQuery addingQuery = buildQueryForCustomFieldWithCmsValue(filter);
+      query.where().or(addingQuery);
+    }
 
     return query;
   }
