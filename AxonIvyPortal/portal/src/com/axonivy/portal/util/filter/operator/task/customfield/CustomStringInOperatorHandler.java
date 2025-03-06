@@ -8,6 +8,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class CustomStringInOperatorHandler {
+  
   private static CustomStringInOperatorHandler instance;
   
   public static CustomStringInOperatorHandler getInstance() {

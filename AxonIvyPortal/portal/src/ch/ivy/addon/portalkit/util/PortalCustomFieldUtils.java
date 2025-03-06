@@ -36,10 +36,10 @@ public class PortalCustomFieldUtils {
   }
 
   public static List<String> getCmsValuesMatchingWithKeywordList(String columnField, DashboardColumnType type, List<String> keywordList) {
-    Set<ICustomFieldMeta> icustomFieldMetaList = type == DashboardColumnType.CUSTOM ? ICustomFieldMeta.tasks() : ICustomFieldMeta.cases();
+    Set<ICustomFieldMeta> icustomFieldMetaList = type == DashboardColumnType.CUSTOM_CASE ? ICustomFieldMeta.cases() : ICustomFieldMeta.tasks();
     List<String> matchingValueList = new ArrayList<>();
 
-    icustomFieldMetaList.stream().filter(customField -> customField.type().equals(CustomFieldType.STRING) && customField.name().equals(columnField)).forEach(field -> {
+    icustomFieldMetaList.stream().filter(customField -> customField.type() == CustomFieldType.STRING && customField.name().equals(columnField)).forEach(field -> {
       for (String keyword: keywordList) {
         Iterable<Object> list =  field.values().matching(keyword);
         if (!Iterables.isEmpty(list)) {
