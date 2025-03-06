@@ -134,7 +134,7 @@ Inside your UI, you can configure these parameters as follows; they will be rend
        Do not use or refer to this template in your Dialog. This will be done automatically by Portal if you use our IFrame Approach.
        Refer to IFrameTaskTemplate.xhtml in the portal project to see detailed information about how to use and pass parameters.
 
-       We recommend to sanitize your parameters before passing them.
+       We recommend to sanitize your parameters before passing them. The Portal provides the public API ``SanitizeAPI.escapeForJavascript`` in the ``portal-components`` project to help sanitize JavaScript strings by escaping special characters — one of the most common techniques for JavaScript string sanitization.
 
 In case your project has a navigation button that does not complete a task, e.g Cancel, to
 
