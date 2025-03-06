@@ -198,17 +198,17 @@ public class DashboardCaseSearchCriteria {
       if (order != null) {
         boolean isDescending = criteria.isSortDescending();
         if (sortStandardColumn) {
-            if (isDescending) {
-                order.descending();
-            }
+          if (isDescending) {
+            order.descending();
+          }
         } else {
-            if (isDescending) {
-                order.descendingNullLast();
-            } else {
-                order.ascendingNullLast();
-            }
+          if (isDescending) {
+            order.descendingNullLast();
+          } else {
+            order.ascendingNullLast();
+          }
         }
-    }
+      }
     }
 
     private void appendSortByEndDateIfSet(DashboardCaseSearchCriteria criteria) {

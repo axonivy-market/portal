@@ -11,6 +11,7 @@ import javax.faces.bean.ViewScoped;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomString;
+import com.axonivy.portal.util.filter.field.task.custom.caze.TaskFilterCaseFieldCustomString;
 
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 
@@ -52,7 +53,7 @@ public class WidgetTextFilterBean implements Serializable {
   }
   
   public boolean isCustomFieldWithCms(DashboardFilter filter) {
-    if (filter.getFilterField() instanceof CaseFilterFieldCustomString) {
+    if (filter.getFilterField() instanceof CaseFilterFieldCustomString || filter.getFilterField() instanceof TaskFilterCaseFieldCustomString) {
       return PortalCustomFieldUtils.isSupportMultiLanguageCaseField(filter.getField());
     }
     return PortalCustomFieldUtils.isSupportMultiLanguageTaskField(filter.getField());
