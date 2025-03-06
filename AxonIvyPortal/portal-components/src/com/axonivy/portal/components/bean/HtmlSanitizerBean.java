@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import com.axonivy.portal.components.publicapi.SanitizeAPI;
 import com.axonivy.portal.components.util.HtmlUtils;
 
 /**
@@ -24,15 +25,16 @@ public class HtmlSanitizerBean implements Serializable {
 
   /**
    * This method is used to clearly mark XSS is considered.
-   * @param content 
-   * @return santized content
+   * 
+   * @param content
+   * @return sanitized content
    */
   public String sanitizeIgnoredWithAwareness(String content) {
     return content;
   }
 
   public String escapeForJS(String input) {
-    return HtmlUtils.escapeForJS(input);
+    return SanitizeAPI.escapeForJavascript(input);
   }
 
   public String escapeForIcon(String input) {

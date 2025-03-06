@@ -134,16 +134,6 @@
       $(function() {
         processWidget.setupScrollbar();
       });
-      function jumpToProcessGroup() {
-        document.getElementsByClassName("js-process-group-" + PF('dictionary-process-group-selection').value)[0]
-            .scrollIntoViewIfNeeded();
-        PF('dictionary-process-group-selection').hide();
-    
-        var processHeaderHeight = document.getElementsByClassName("process-widget")[0]
-            .getElementsByClassName("widget-header")[0].offsetHeight;
-        document.getElementsByClassName("process-widget")[0].scrollTop -= processHeaderHeight;
-        
-      }
-    </script>
+  </script>
 </cc:implementation>
 </html>
