@@ -75,6 +75,7 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
   private List<String> selectedPermissions;
   private List<String> backgroundColors;
   private boolean isEditMode;
+  private boolean refreshIntervalEnabled;
 
   @PostConstruct
   public void init() {
@@ -447,6 +448,14 @@ public class ClientStatisticWidgetConfigurationBean implements Serializable {
 
   public void setEditMode(boolean isEditMode) {
     this.isEditMode = isEditMode;
+  }
+
+  public boolean isRefreshIntervalEnabled() {
+    return refreshIntervalEnabled;
+  }
+
+  public void setRefreshIntervalEnabled(boolean refreshIntervalEnabled) {
+    this.refreshIntervalEnabled = refreshIntervalEnabled;
   }
 
   protected List<String> getSupportedLanguages() {

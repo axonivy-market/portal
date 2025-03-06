@@ -165,21 +165,37 @@
                   </div>
                 </div>
 
-                <div class="field col-12">
-                  <p:outputLabel for="@next" value="Refresh interval (seconds)" />
+                <div class="field col-6">
+                  <p:outputLabel for="@next" value="Refresh interval" />
+                  <!--                   <div class="col-6"> -->
                   <div>
-                    <p:inputText id="refresh-interval"
-                      value="#{clientStatisticWidgetConfigurationBean.clientStatistic.refreshInterval}"
-                      styleClass="w-full" />
+                    <p:toggleSwitch id="refresh-interval-enabled"
+                      value="#{clientStatisticWidgetConfigurationBean.refreshIntervalEnabled}" styleClass="col-1">
+                      <p:ajax update="refresh-interval-value-container" />
+                    </p:toggleSwitch>
                   </div>
                 </div>
+                <!--                   <div> -->
+                <h:panelGroup id="refresh-interval-value-container" layout="block" styleClass="field col-6">
+                  <p:outputLabel for="@next" value="Refresh interval in seconds" />
+                  <div>
+                    <p:inputNumber id="refresh-interval-value"
+                      value="#{clientStatisticWidgetConfigurationBean.clientStatistic.refreshInterval}"
+                      decimalPlaces="0" minValue="0" maxValue="1000000" onkeydown="return event.key !== '-'"
+                      disabled="#{not clientStatisticWidgetConfigurationBean.refreshIntervalEnabled}"
+                      inputStyleClass="w-full">
+                      <f:validateLongRange minimum="0" maximum="1000000" />
+                    </p:inputNumber>
+                  </div>
+                </h:panelGroup>
 
                 <h:panelGroup layout="block" styleClass="field col-12"
                   rendered="#{clientStatisticWidgetConfigurationBean.clientStatistic.chartType.name() eq 'NUMBER'}">
                   <p:outputLabel for="@next" value="Hide Label" />
                   <div>
-                    <p:selectBooleanCheckbox id="hide-label"
-                      value="#{clientStatisticWidgetConfigurationBean.clientStatistic.numberChartConfig.hideLabel}" />
+                    <p:toggleSwitch id="hide-label"
+                      value="#{clientStatisticWidgetConfigurationBean.clientStatistic.numberChartConfig.hideLabel}">
+                    </p:toggleSwitch>
                   </div>
                 </h:panelGroup>
 
