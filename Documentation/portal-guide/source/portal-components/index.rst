@@ -6,7 +6,7 @@ Portal Components
 In ``portal-components``, we introduced some components independent of the Portal.
 You don't need to import the Portal projects to use them.
 
-These components fully support both Freya and Serenity themes of Primefaces.
+These components fully support both Freya and Serenity themes of Primefaces. We strongly recommend using the Freya theme, as the Serenity theme is deprecated and will be removed in Portal 13.
 
 .. toctree::
    :maxdepth: 1
