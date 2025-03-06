@@ -21,7 +21,7 @@
 
   <div class="ui-g-12 dashboard-widget-filter__filter-wrapper">
     <h:panelGroup id ="filter-selection-panel" layout="block" styleClass="dashboard-widget-filter__filter-panel filter-selection-panel">
-      <div class="ui-fluid md-inputfield filter-selection-panel">
+      <div class="ui-fluid filter-selection-panel">
         <p:selectOneMenu id="field-selection" value="#{filter.filterField}" disabled="#{readOnly}" converter="pojoConverter">
           <f:selectItems value="#{cc.attrs.managedBean.filterFields}" var="field"
             itemValue="#{field}" itemLabel="#{field.label}" />
