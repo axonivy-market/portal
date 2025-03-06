@@ -72,7 +72,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Axon Ivy process
     DashboardWidgetType:
       CASE: Case widget
-      STATISTIC: Statistic widget
       CUSTOM: Custom widget
       NEW: New widget
       NEWS: News feed
@@ -1421,9 +1420,6 @@ Dialogs:
                 Alt + W: Focus on to the first task. Alt + Q: Focus on to the first case. Tab: Sequential tabbing through elements. Esc: Close expanded widgets. Enter: Confirm selection.'
             CaseWidgetConfiguration:
               AddFilter: Add filter
-            StatisticWidget:
-              IdNotFound: Chart with ID {0} not found
-              NoPermissionChartMessage: You do not have the required permission to see this chart.
             CloneWidgetDialog:
               Header: Clone widget "{0}"
               TargetDashboard: Target dashboard
@@ -1462,6 +1458,9 @@ Dialogs:
               WidgetFilter: Widget Filter
             PortalDashboardDetailModification:
               CloneWidget: Clone widget
+            StatisticWidget:
+              IdNotFound: Chart with ID {0} not found
+              NoPermissionChartMessage: You do not have the required permission to see this chart.
             TaskWidgetConfiguration:
               AddFilter: Add filter
               ResetFilter: Reset filter
@@ -1470,6 +1469,23 @@ Dialogs:
             CaseDetailsIFrameTitle: Case details frame
           IFrameTaskTemplate:
             TaskIFrameTitle: Task frame
+        page:
+          StatisticConfiguration:
+            AdvancedConfiguration: Advanced Configuration
+            Aggregate: Aggregate
+            ChartType: Chart type
+            Color: Color {0}
+            Create: Create
+            EditStatistic: Edit Statistic Widget
+            For: For
+            GeneratePreview: Generate preview
+            HideLabel: Hide label
+            NewStatistic: New Statistic Widget
+            RefreshInterval: Refresh interval
+            RefreshIntervalInSeconds: Refresh interval in seconds
+            StatisticConfiguration: Statistic configuration
+            XAxisTitle: X axis title
+            YAxisTitle: Y axis title
   components:
     CaseDocument:
       FileDate: Modified at
@@ -1520,7 +1536,9 @@ Labels:
       {2}
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  Configuration: Configuration
   CreateNewDashboard: Create new dashboard
+  Description: Description
   EditDescription: Edit description
   Enums:
     ChatbotCandidateQuestion:
@@ -1613,12 +1631,17 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Light
+  Filters: Filters
+  Icon: Icon
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Name: Name
   Permissions: Permissions
+  Preview: Preview
+  Save: Save
   Share: Share
   Task: Task
   TaskItemDetail: Task Details
