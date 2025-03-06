@@ -16,7 +16,6 @@ import org.apache.commons.lang.StringUtils;
 
 import com.axonivy.portal.enums.SearchScopeCaseField;
 
-import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.caze.CaseBusinessState;
@@ -49,8 +48,6 @@ public class CaseSearchCriteria {
   private boolean isGlobalSearch;
   private boolean isGlobalSearchScope;
   private List<SearchScopeCaseField> searchScopeCaseFields;
-  
-  private List<CaseFilter> legacyFilters;
 
   public CaseQuery createQuery() {
     CaseQuery finalQuery;
@@ -83,8 +80,6 @@ public class CaseSearchCriteria {
       finalQuery.where().and(queryForCategory(getCategory()));
     }
 
-    queryLegacyFilters(finalQuery);
-
     if (isSorted) {
       CaseSortingQueryAppender appender = new CaseSortingQueryAppender(finalQuery);
       finalQuery = appender.appendSorting(this).toQuery();
@@ -99,17 +94,6 @@ public class CaseSearchCriteria {
       filterQuery.or().state().isEqual(state);
     }
     return stateFieldQuery;
-  }
-
-  private void queryLegacyFilters(CaseQuery finalQuery) {
-    if (CollectionUtils.isNotEmpty(legacyFilters)) {
-      for (CaseFilter filter : legacyFilters) {
-        CaseQuery subQuery = filter.buildQuery();
-        if (subQuery != null) {
-          finalQuery.where().and(subQuery);
-        }
-      }
-    }
   }
 
   private CaseQuery queryForKeyword(String keyword) {
@@ -407,13 +391,4 @@ public class CaseSearchCriteria {
   public void setGlobalSearchScope(boolean isGlobalSearchScope) {
     this.isGlobalSearchScope = isGlobalSearchScope;
   }
-
-  public List<CaseFilter> getLegacyFilters() {
-    return legacyFilters;
-  }
-
-  public void setLegacyFilters(List<CaseFilter> legacyFilters) {
-    this.legacyFilters = legacyFilters;
-  }
-
 }
