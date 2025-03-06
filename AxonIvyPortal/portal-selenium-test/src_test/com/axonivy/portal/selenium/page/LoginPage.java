@@ -29,18 +29,26 @@ public class LoginPage extends TemplatePage {
     this.testAccount = testAccount;
   }
 
-  public void login() {
+  public void login(boolean shouldBeSuccess) {
     usernameTextField.sendKeys(testAccount.getUsername());
     passwordField.sendKeys(testAccount.getPassword());
     waitForElementClickableThenClick(loginButton);
-    waitForElementDisplayed(By.id("left-menu"), true, LOGIN_TIMEOUT);
+    if (shouldBeSuccess) {
+      waitForElementDisplayed(By.id("left-menu"), true, LOGIN_TIMEOUT);
+    } else {
+      $("div[id='login:login-form:login-message'] div ul li span.ui-messages-error-summary").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    }
   }
 
-  public void login(String username, String password) {
+  public void login(String username, String password, boolean shouldBeSuccess) {
     usernameTextField.sendKeys(username);
     passwordField.sendKeys(password);
     waitForElementClickableThenClick(loginButton);
-    waitForElementDisplayed(By.id("left-menu"), true, LOGIN_TIMEOUT);
+    if (shouldBeSuccess) {
+      waitForElementDisplayed(By.id("left-menu"), true, LOGIN_TIMEOUT);
+    } else {
+      $("div[id='login:login-form:login-message'] div ul li span.ui-messages-error-summary").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    }
   }
 
   public LoginPage() {
