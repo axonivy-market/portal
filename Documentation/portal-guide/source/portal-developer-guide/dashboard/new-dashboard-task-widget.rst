@@ -635,7 +635,7 @@ Filtering
 ^^^^^^^^^
 
 1. ``HasCmsValues = false`` or not set. Filtering is performed as usual based on the stored value.
-2. ``HasCmsValues = true``. The filter is conducted in both the CMS translations and the entry value if no translated value is available.
+2. ``HasCmsValues = true``. The filter is conducted in both the CMS translations and the original value.
 
 .. important::
 
