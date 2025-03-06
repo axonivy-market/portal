@@ -24,6 +24,10 @@
       {
         "locale": "es",
         "value": "Tareas por prioridad"
+      },
+      {
+        "locale": "ja",
+        "value": "優先度別タスク"
       }
     ],
     "descriptions": [
@@ -42,6 +46,10 @@
       {
         "locale": "es",
         "value": "Este gráfico circular muestra todas las tareas por prioridad."
+      },
+      {
+        "locale": "ja",
+        "value": "この円グラフは、すべてのタスクの数を優先度別に表示します。"
       }
     ],
     "icon": "si si-analytics-pie-2",
@@ -72,6 +80,10 @@
       {
         "locale": "es",
         "value": "Máxima prioridad: 3 días"
+      },
+      {
+        "locale": "ja",
+        "value": "3 日以内に期限切れ"
       }
     ],
     "descriptions": [
@@ -90,6 +102,10 @@
       {
         "locale": "es",
         "value": "Este gráfico muestra todas las tareas en las que puede trabajar el usuario, agrupadas por vencimiento en los próximos 3 días."
+      },
+      {
+        "locale": "ja",
+        "value": "この棒グラフは、ユーザーが作業できるすべてのタスクの内、今後 3 日以内に期限が切れるものの数を、優先度別にグループ化して表示します。"
       }
     ],
     "icon": "si si-analytics-bars",
@@ -111,7 +127,11 @@
         {
           "locale": "es",
           "value": "Prioridad"
-        }
+        },
+        {
+          "locale": "ja",
+          "value": "優先度"
+        }        
       ],
       "yTitles": [
         {
@@ -129,6 +149,10 @@
         {
           "locale": "es",
           "value": "Número de tareas"
+        },
+        {
+          "locale": "ja",
+          "value": "タスク数"
         }
       ]
     }
@@ -158,6 +182,10 @@
       {
         "locale": "es",
         "value": "Tareas por prioridad"
+      },
+      {
+        "locale": "ja",
+        "value": "優先度別タスク"
       }
     ],
     "descriptions": [
@@ -176,6 +204,10 @@
       {
         "locale": "es",
         "value": "Este gráfico de barras muestra todas las tareas en las que puede trabajar el usuario agrupadas por prioridad."
+      },
+      {
+        "locale": "ja",
+        "value": "この棒グラフは、ユーザーが作業できるすべてのタスクの数を、優先度別にグループ化して表示します。"
       }
     ],
     "icon": "si si-analytics-bars",
@@ -197,6 +229,10 @@
         {
           "locale": "es",
           "value": "Prioridad"
+        },
+        {
+          "locale": "ja",
+          "value": "優先度"
         }
       ],
       "yTitles": [
@@ -215,6 +251,10 @@
         {
           "locale": "es",
           "value": "Número de tareas"
+        },
+        {
+          "locale": "ja",
+          "value": "タスク数"
         }
       ]
     }
@@ -245,6 +285,10 @@
       {
         "locale": "es",
         "value": "Duración media de los casos por Categoría"
+      },
+      {
+        "locale": "ja",
+        "value": "ケースカテゴリー平均実行時間"
       }
     ],
     "descriptions": [
@@ -263,6 +307,10 @@
       {
         "locale": "es",
         "value": "Este gráfico muestra el tiempo medio de tramitación de los expedientes por categoría."
+      },
+      {
+        "locale": "ja",
+        "value": "このグラフは、カテゴリ別のケース平均処理時間を表示します。"
       }
     ],
     "icon": "si si-analytics-bars",
@@ -284,6 +332,10 @@
         {
           "locale": "es",
           "value": "Categoría"
+        },
+        {
+          "locale": "ja",
+          "value": "カテゴリ"
         }
       ],
       "yTitles": [
@@ -302,7 +354,11 @@
         {
           "locale": "es",
           "value": "Tiempo medio de ejecución (horas)"
-        }
+        },
+      {
+        "locale": "ja",
+        "value": "平均実行時間（時間）"
+      }
       ],
       "yValue": "time"
     }
@@ -332,6 +388,10 @@
       {
         "locale": "es",
         "value": "Nuevos casos por día"
+      },
+      {
+        "locale": "ja",
+        "value": "１日あたりの新規ケース数"
       }
     ],
     "descriptions": [
@@ -350,6 +410,10 @@
       {
         "locale": "es",
         "value": "Este gráfico muestra el número de casos iniciados por día durante los últimos 5 días."
+      },
+      {
+        "locale": "ja",
+        "value": "このグラフは、1 日あたりの開始ケース数（過去５日間）を表示します。"
       }
     ],
     "icon": "si si-analytics-board-graph-line",
@@ -371,6 +435,10 @@
         {
           "locale": "es",
           "value": "Fecha"
+        },
+        {
+          "locale": "ja",
+          "value": "日付"
         }
       ],
       "yTitles": [
@@ -389,6 +457,10 @@
         {
           "locale": "es",
           "value": "Número de casos"
+        },
+        {
+          "locale": "ja",
+          "value": "ケース数"
         }
       ]
     }
@@ -418,6 +490,10 @@
       {
         "locale": "es",
         "value": "Cajas terminadas por día"
+      },
+      {
+        "locale": "ja",
+        "value": "１日あたりの完了ケース数"
       }
     ],
     "descriptions": [
@@ -436,6 +512,10 @@
       {
         "locale": "es",
         "value": "Este gráfico muestra el número de casos terminados por día durante los últimos 5 días."
+      },
+      {
+        "locale": "ja",
+        "value": "このグラフは、1 日あたりの完了ケース数（過去５日間）を表示します。"
       }
     ],
     "icon": "si si-analytics-board-graph-line",
@@ -457,6 +537,10 @@
         {
           "locale": "es",
           "value": "Fecha"
+        },
+        {
+          "locale": "ja",
+          "value": "日付"
         }
       ],
       "yTitles": [
@@ -475,7 +559,11 @@
         {
           "locale": "es",
           "value": "Cajas acabadas"
-        }
+        },
+      {
+        "locale": "ja",
+        "value": "終了したケース"
+      }
       ]
     }
   },
@@ -504,6 +592,10 @@
       {
         "locale": "es",
         "value": "Casos en Curso"
+      },
+      {
+        "locale": "ja",
+        "value": "実行中のケース"
       }
     ],
     "descriptions": [
@@ -522,6 +614,10 @@
       {
         "locale": "es",
         "value": "Este gráfico muestra todos los casos en curso en los que está implicado el usuario"
+      },
+      {
+        "locale": "ja",
+        "value": "これは、ユーザーが関与しているすべての実行中のケースの数を表示します。"
       }
     ],
     "icon": "si si-pie-line-graph",
@@ -555,6 +651,10 @@
       {
         "locale": "es",
         "value": "Tareas que expiran al final de la semana"
+      },
+      {
+        "locale": "ja",
+        "value": "今週末までに期限が切れるタスク"
       }
     ],
     "descriptions": [
@@ -573,6 +673,10 @@
       {
         "locale": "es",
         "value": "Este gráfico muestra todas las tareas que vencen al final de la semana."
+      },
+      {
+        "locale": "ja",
+        "value": "これは、今週末までに期限が切れるすべてのタスクの数を表示します。"
       }
     ],
     "icon": "si si-pie-line-graph",
@@ -606,6 +710,10 @@
       {
         "locale": "es",
         "value": "Tareas por Prioridad"
+      },
+      {
+        "locale": "ja",
+        "value": "優先度別タスク"
       }
     ],
     "descriptions": [
@@ -624,6 +732,10 @@
       {
         "locale": "es",
         "value": "Este gráfico muestra todas las tareas en las que puede trabajar el usuario por prioridad."
+      },
+      {
+        "locale": "ja",
+        "value": "これは、ユーザーが作業できるすべてのタスクの数を優先度別に表示します。"
       }
     ],
     "icon": "si si-pie-line-graph",
@@ -655,8 +767,8 @@
         "value": "Tâches ouvertes"
       },
       {
-        "locale": "es",
-        "value": "Tareas Pendientes"
+        "locale": "ja",
+        "value": "オープンなタスク"
       }
     ],
     "descriptions": [
@@ -675,6 +787,10 @@
       {
         "locale": "es",
         "value": "Este gráfico muestra todas las tareas en las que puede trabajar el usuario."
+      },
+      {
+        "locale": "ja",
+        "value": "これは、ユーザーが作業できるすべてのオープンタスクの数を表示します。"
       }
     ],
     "icon": "si si-pie-line-graph",
@@ -709,6 +825,10 @@
       {
         "locale": "es",
         "value": "Tareas para hoy"
+      },
+      {
+        "locale": "ja",
+        "value": "本日納期のタスク"
       }
     ],
     "descriptions": [
@@ -727,7 +847,11 @@
       {
         "locale": "es",
         "value": "Este gráfico muestra todas las tareas que vencen hoy."
-      }
+      },
+      {
+        "locale": "ja",
+        "value": "これは、今日期限が切れるタスクの数を表示します。"
+      }      
     ],
     "icon": "si si-pie-line-graph",
     "refreshInterval": 300,
