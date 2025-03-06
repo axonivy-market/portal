@@ -616,7 +616,7 @@ Sorting
 ^^^^^^^
 
 1. ``HasCmsValues = false`` or not set. Sorting is performed as usual based on the stored values.
-2. ``HasCmsValues = true``. Sorting is performed based on the translated values in the currently selected language.
+2. ``HasCmsValues = true``. Sorting is performed based on values translated in the currently selected language.
 
 .. note::
 
@@ -634,12 +634,12 @@ Example: When language is German, a user can search for **Fahrrad** or the origi
 Filtering
 ^^^^^^^^^
 
-1. ``HasCmsValues = false`` or not set. Filtering is performaed as usual based on the stored value.
-2. ``HasCmsValues = true``. Filtering is based on the translated value from the CMS.
+1. ``HasCmsValues = false`` or not set. Filtering is performed as usual based on the stored value.
+2. ``HasCmsValues = true``. The filter is conducted in both the CMS translations and the entry value if no translated value is available.
 
 .. important::
 
-   When enabling the Multi-Language for Custom Fields, only ``CONTAINS`` operator which is allowed to be used.
+   When enabling the Multi-Language for Custom Fields, only accepted ``CONTAINS`` operator.
 
 .. tip::
 
