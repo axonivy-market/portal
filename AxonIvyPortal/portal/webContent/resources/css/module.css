@@ -4317,19 +4317,6 @@ _:-ms-fullscreen, :root .content-link-history {
 
 /*  =================== END TASK TEMPLATE PAGE ========================= */
 
-/*====================FIX FOR SERENITY 2.0 STYLE========================*/
-/**************DATA TABLE START*******************/
-.column-header-top-alignment {
-  vertical-align: baseline;
-}
-/**************DATA TABLE END*******************/
-
-/************** Override *******************/
-body .ui-picklist .ui-picklist-filter-container .ui-icon {
-  top: auto;
-  bottom: 5px;
-  right: 7px;
-}
 @media screen and (max-width: 1320px) {
   .display-full-text {
     display: none !important;

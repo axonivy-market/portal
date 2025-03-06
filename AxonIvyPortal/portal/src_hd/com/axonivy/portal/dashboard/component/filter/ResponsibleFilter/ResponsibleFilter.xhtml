@@ -22,7 +22,7 @@
   <f:event listener="#{widgetResponsibleFilterBean.init(cc.attrs.filter)}" type="preRenderComponent" />
 
   <h:panelGroup id="responsible-filter-operator-panel" layout="block"
-    styleClass="ui-fluid md-inputfield responsible-filter-operator-panel">
+    styleClass="ui-fluid responsible-filter-operator-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{widgetResponsibleFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
@@ -33,7 +33,7 @@
   </h:panelGroup>
 
   <h:panelGroup id="responsible-list-panel" layout="block"
-    styleClass="ui-fluid md-inputfield responsible-filter-list" rendered="#{filter.operator == 'IN' or filter.operator == 'NOT_IN'}">
+    styleClass="ui-fluid responsible-filter-list" rendered="#{filter.operator == 'IN' or filter.operator == 'NOT_IN'}">
 
     <p:autoComplete id="responsibles" scrollHeight="210" dropdown="true" size="35"
       completeMethod="#{cc.attrs.responsibleCompleteMethod}"
