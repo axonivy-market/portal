@@ -62,11 +62,11 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 
 @ViewScoped
 @ManagedBean
-public class StatisticWidgetConfigurationBean implements Serializable {
+public class StatisticConfigurationBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
   private Statistic statistic;
-  private String statisticWidgetId;
+  private String statisticId;
   private String callbackDashboardId;
   private List<DisplayName> xTitles;
   private String xTitle;
@@ -79,9 +79,9 @@ public class StatisticWidgetConfigurationBean implements Serializable {
 
   @PostConstruct
   public void init() {
-    statisticWidgetId = Attrs.currentContext().getAttribute("#{data.id}", String.class);
-    if (StringUtils.isNotEmpty(statisticWidgetId)) {
-      statistic = StatisticService.getInstance().findByIdCustomStatistic(statisticWidgetId);
+    statisticId = Attrs.currentContext().getAttribute("#{data.id}", String.class);
+    if (StringUtils.isNotEmpty(statisticId)) {
+      statistic = StatisticService.getInstance().findByIdCustomStatistic(statisticId);
     }
     callbackDashboardId = Attrs.currentContext().getAttribute("#{data.callbackDashboardId}", String.class);
     if (statistic == null) {
@@ -153,12 +153,12 @@ public class StatisticWidgetConfigurationBean implements Serializable {
     this.statistic = statistic;
   }
 
-  public String getStatisticWidgetId() {
-    return statisticWidgetId;
+  public String getStatisticId() {
+    return statisticId;
   }
 
-  public void setStatisticWidgetId(String statisticWidgetId) {
-    this.statisticWidgetId = statisticWidgetId;
+  public void setStatisticId(String statisticId) {
+    this.statisticId = statisticId;
   }
 
   public void save() {
@@ -301,11 +301,11 @@ public class StatisticWidgetConfigurationBean implements Serializable {
   }
 
   public void updateCategoryTitleForCurrentLanguage() {
-    updateForCurrentLanguageForColumnChartConfig(xTitles, StatisticWidgetConfigurationBean::setxTitle);
+    updateForCurrentLanguageForColumnChartConfig(xTitles, StatisticConfigurationBean::setxTitle);
   }
 
   public void updateValueTitleForCurrentLanguage() {
-    updateForCurrentLanguageForColumnChartConfig(yTitles, StatisticWidgetConfigurationBean::setyTitle);
+    updateForCurrentLanguageForColumnChartConfig(yTitles, StatisticConfigurationBean::setyTitle);
   }
 
   private void updateForCurrentLanguage(List<DisplayName> names, BiConsumer<Statistic, String> setNameFunction) {
@@ -316,7 +316,7 @@ public class StatisticWidgetConfigurationBean implements Serializable {
   }
 
   private void updateForCurrentLanguageForColumnChartConfig(List<DisplayName> names,
-      BiConsumer<StatisticWidgetConfigurationBean, String> setNameFunction) {
+      BiConsumer<StatisticConfigurationBean, String> setNameFunction) {
     String currentLanguage = UserUtils.getUserLanguage();
     Optional<DisplayName> optional =
         names.stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
