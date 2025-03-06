@@ -204,10 +204,6 @@
   }
 }
 
-/* For Serenity theme - Start */
-/* Do not use them for new code, these classes are for backward compatibility
-* Some style is removed after migrated to Serenity - need re-define
-*/
 .MarLeft10 {
   margin-left: 10px;
 }
@@ -244,8 +240,6 @@
 .MarTop10 {
   margin-top: 10px !important;
 }
-
-/* For Serenity theme - End */
 
 .u-default-cursor {
   cursor: default;

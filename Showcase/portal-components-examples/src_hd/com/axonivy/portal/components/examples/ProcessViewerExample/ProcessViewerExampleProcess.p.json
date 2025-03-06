@@ -40,17 +40,7 @@
             "out.caseId" : "param.caseId",
             "out.processLink" : "param.processLink",
             "out.taskId" : "param.taskId"
-          },
-          "code" : [
-            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
-            "import org.apache.commons.lang3.StringUtils;",
-            "",
-            "if (StringUtils.isNotBlank(out.processLink)) {",
-            "  out.processViewerForSerenityLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerOfLeaveRequestForSerenityUsingProcessLink.ivp\");",
-            "} else {",
-            "  out.processViewerForSerenityLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessViewerExample/showProcessViewerOfLeaveRequestForSerenityUsingCaseId.ivp\");",
-            "}"
-          ]
+          }
         },
         "guid" : "182E92A3FF899DA8"
       },

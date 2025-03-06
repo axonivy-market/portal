@@ -52,7 +52,7 @@
             rendered="#{dataModel.taskDataModel.criteria.globalSearchScope and taskWidgetBean.showFullTaskList}" >
             <div class="task-list-container js-task-list-container js-for-search-result">
               <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results" listHeaderStyleClass="task-in-search"
-                keyword="#{dataModel.taskDataModel.criteria.keyword}" hideTaskFilter="true" currentPortalPage="SEARCH_RESULTS"
+                keyword="#{dataModel.taskDataModel.criteria.keyword}" currentPortalPage="SEARCH_RESULTS"
                 dataModel="#{dataModel.taskDataModel}" hideWidgetHeader="true" compactMode="false">
                 <f:facet name="taskListHeader">
                   <ui:fragment rendered="#{useTaskOverrideListHeader}">
@@ -108,7 +108,7 @@
             rendered="#{dataModel.caseDataModel.criteria.globalSearchScope and caseWidgetBean.showFullCaseList}">
             <div class="js-case-default-widget-container case-default-widget-container js-for-search-result">
               <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" hideWidgetHeader="true"
-                dataModel="#{dataModel.caseDataModel}" hideCaseFilter="true" listHeaderStyleClass="case-in-search">
+                dataModel="#{dataModel.caseDataModel}" listHeaderStyleClass="case-in-search">
                 <f:facet name="caseListHeader">
                   <ui:fragment rendered="#{useCaseOverrideListHeader}">
                     <ui:insert name="caseListHeader" />

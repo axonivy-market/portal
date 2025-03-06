@@ -22,7 +22,7 @@
 
   <f:event listener="#{widgetCategoryFilterBean.init(filter, widget)}" type="preRenderComponent" />
   <h:panelGroup id="category-filter-operator-panel" layout="block"
-    styleClass="ui-fluid md-inputfield category-filter-operation-panel">
+    styleClass="ui-fluid category-filter-operation-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{widgetCategoryFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
@@ -95,7 +95,7 @@
     </p:overlayPanel>
 
     <h:panelGroup layout="block"
-      styleClass="ui-fluid md-inputfield text-list-filter" 
+      styleClass="ui-fluid text-list-filter" 
       rendered="#{widgetCategoryFilterBean.isShowCategoryContainsPanel(filter)}">
       <p:chips value="#{filter.values}" unique="true" addOnPaste="true" disabled="#{readOnly}" addOnBlur="true">
         <p:ajax event="itemSelect" update="@this" partialSubmit="true" global="false" />

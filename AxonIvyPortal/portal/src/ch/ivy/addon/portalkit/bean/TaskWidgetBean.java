@@ -1,8 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static ch.ivyteam.ivy.workflow.TaskState.DELAYED;
-import static ch.ivyteam.ivy.workflow.TaskState.DESTROYED;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,11 +22,7 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
-import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
-import ch.ivy.addon.portalkit.taskfilter.impl.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -86,33 +79,6 @@ public class TaskWidgetBean implements Serializable {
 
   public String createTaskDescriptionInTaskStart(String text) {
     return HtmlParser.extractTextFromHtml(text);
-  }
-
-  public boolean isDeleteFilterEnabledFor(TaskFilterData filterData) {
-    TaskFilterService filterService = new TaskFilterService();
-    return filterService.isDeleteFilterEnabledFor(filterData);
-  }
-
-  /**
-   * If Task State filter is selecting DELAYED or DESTROYED
-   * Then disable option save a filter for all user
-   * @param taskFilters is selected filters
-   */
-  public void verifyTaskStateFilter(List<TaskFilter> taskFilters) {
-    if (!PermissionUtils.checkReadAllTasksPermission()) {
-      isAdminTaskStateIncluded = false;
-      return;
-    }
-    for (TaskFilter filter : taskFilters) {
-      if (filter instanceof TaskStateFilter) {
-        TaskStateFilter taskStateFilter = (TaskStateFilter) filter;
-        if (!taskStateFilter.value().equals(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/all"))) {
-          isAdminTaskStateIncluded = taskStateFilter.getSelectedFilteredStates().contains(DELAYED)
-              || taskStateFilter.getSelectedFilteredStates().contains(DESTROYED);
-        }
-        break;
-      }
-    }
   }
 
   public boolean isAdminTaskStateIncluded() {

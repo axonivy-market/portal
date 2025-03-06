@@ -68,7 +68,7 @@
       for="#{cc.attrs.componentId}" rendered="#{cc.attrs.isRenderedMessage}"/>
   </h:panelGroup>
   <h:panelGroup id="#{cc.attrs.componentId}-autocomplete-panel" layout="block"
-    styleClass="pl-0 user-selection-panel #{cc.attrs.autoCompletePanelStyleClass} #{cc.attrs.floatingLabel and ivyPrimefacesThemeResolver.sessionTheme.contains('serenity') ? 'md-inputfield' : ''} #{cc.attrs.floatingLabel and ivyPrimefacesThemeResolver.sessionTheme.contains('freya') ? 'ui-float-label' : ''}">
+    styleClass="pl-0 user-selection-panel #{cc.attrs.autoCompletePanelStyleClass} ui-float-label">
     <p:autoComplete id="#{cc.attrs.componentId}"
       value="#{cc.attrs.selectedUser}"
       scrollHeight="#{cc.attrs.scrollHeight}"
@@ -109,9 +109,5 @@
       styleClass="#{cc.attrs.labelStyleClass}"
       rendered="#{cc.attrs.floatingLabel}" />
   </h:panelGroup>
-  <h:outputScript name="theme-checker.js" library="js" />
-  <script type="text/javascript">
-    ThemeChecker.updateLayoutByTheme('#{ivyPrimefacesThemeResolver.sessionTheme}');
-  </script>
 </cc:implementation>
 </html>

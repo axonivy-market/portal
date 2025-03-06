@@ -41,43 +41,5 @@
       "connect" : [
         { "id" : "f2", "to" : "f1" }
       ]
-    }, {
-      "id" : "f5",
-      "type" : "RequestStart",
-      "name" : "showSecurityMemberNameAndAvatarExamplesSerenity.ivp",
-      "config" : {
-        "signature" : "showSecurityMemberNameAndAvatarExamplesSerenity",
-        "request" : {
-          "name" : "Security Member Name And Avatar Examples Serenity",
-          "isVisibleOnStartList" : false
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 176 },
-        "labelOffset" : { "x" : 105, "y" : 37 }
-      },
-      "connect" : [
-        { "id" : "f9", "to" : "f6" }
-      ]
-    }, {
-      "id" : "f6",
-      "type" : "DialogCall",
-      "name" : "SecurityMemberNameAndAvatarExampleSerenity",
-      "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.serenity.SecurityMemberNameAndAvatarExampleSerenity:start()"
-      },
-      "visual" : {
-        "at" : { "x" : 480, "y" : 176 },
-        "size" : { "width" : 272 }
-      },
-      "connect" : [
-        { "id" : "f8", "to" : "f7" }
-      ]
-    }, {
-      "id" : "f7",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 792, "y" : 176 }
-      }
     } ]
 }

@@ -21,7 +21,7 @@
   <f:event listener="#{widgetApplicationFilterBean.init(filter)}" type="preRenderComponent" />
 
   <h:panelGroup id="application-filter-operator-panel" layout="block"
-    styleClass="ui-fluid md-inputfield application-filter-operator-panel">
+    styleClass="ui-fluid application-filter-operator-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{widgetApplicationFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
@@ -32,7 +32,7 @@
   </h:panelGroup>
 
   <h:panelGroup id="application-list-panel" layout="block"
-    styleClass="ui-fluid md-inputfield application-list-filter">
+    styleClass="ui-fluid application-list-filter">
     <p:selectCheckboxMenu id="applications" value="#{cc.attrs.filter.values}"
       multiple="true" filter="true" filterMatchMode="contains"
       panelStyleClass="task-configuration__selectcheckboxmenu-panel"

@@ -34,16 +34,6 @@
             "import ch.ivyteam.ivy.searchengine.client.IndexName;",
             "import ch.ivyteam.ivy.searchengine.index.IndexInfo;",
             "",
-            "//import ch.ivyteam.ivy.elasticsearch.index.IndexInfo;",
-            "//import ch.ivyteam.ivy.elasticsearch.client.IndexName;",
-            "//import ch.ivyteam.ivy.elasticsearch.IElasticsearchManager;",
-            "// via APi change that triggers the sync, e.g. CustomField",
-            "// also applies to tasks ",
-            "",
-            "//ivy.wf.findCase(in.caseID).customFields().stringField(\"ReindexTrigger\").set(\"1\");",
-            "",
-            "//Alternativ is via api with which to trigger reindexing. ",
-            "",
             "for (int i = 0; i < ISearchEngineManager.instance().indicesCount(); i++) {",
             "  ",
             "  IndexInfo indexInfo = ISearchEngineManager.instance().indices(0, 1000).get(i);",
@@ -51,12 +41,7 @@
             "  ISearchEngineManager.instance().reindexSync(indexInfo.indexName());",
             "  ivy.log.info(\"Reindexing DONE for: \" + indexInfo.indexName().toString());",
             "  ",
-            "}",
-            "",
-            "",
-            "//IElasticsearchManager.instance().indices().size()",
-            "//with the indices start the reindex",
-            "// IElasticsearchManager.instance().reindex(indexName)"
+            "}"
           ]
         }
       },
@@ -1904,15 +1889,6 @@
             "import ch.ivyteam.ivy.searchengine.ISearchEngineManager;",
             "import ch.ivyteam.ivy.searchengine.client.IndexName;",
             "import ch.ivyteam.ivy.searchengine.index.IndexInfo;",
-            "//import ch.ivyteam.ivy.elasticsearch.index.IndexInfo;",
-            "//import ch.ivyteam.ivy.elasticsearch.client.IndexName;",
-            "//import ch.ivyteam.ivy.elasticsearch.IElasticsearchManager;",
-            "// via APi change that triggers the sync, e.g. CustomField",
-            "// also applies to tasks ",
-            "",
-            "//ivy.wf.findCase(in.caseID).customFields().stringField(\"ReindexTrigger\").set(\"1\");",
-            "",
-            "//Alternativ is via api with which to trigger reindexing. ",
             "",
             "for (int i = 0; i < ISearchEngineManager.instance().indicesCount(); i++) {",
             "  ",
@@ -1921,12 +1897,7 @@
             "  ISearchEngineManager.instance().reindexSync(indexInfo.indexName());",
             "  ivy.log.info(\"Reindexing DONE for: \" + indexInfo.indexName().toString());",
             "  ",
-            "}",
-            "",
-            "",
-            "//IElasticsearchManager.instance().indices().size()",
-            "//with the indices start the reindex",
-            "// IElasticsearchManager.instance().reindex(indexName)"
+            "}"
           ]
         }
       },

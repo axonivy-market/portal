@@ -19,33 +19,33 @@
             <h:panelGroup styleClass="ui-g" layout="block">
               <p:messages styleClass="ui-g-12" />
               <h:panelGrid columns="1" columnClasses="u-text-align-leff ui-g-12" styleClass="ui-g-12">
-                <h:panelGroup class="md-inputfield MarTop10">
+                <h:panelGroup class="MarTop10">
                   <p:outputLabel for="requester" value="#{ivy.cms.co('/Labels/LeaveRequest/requester')}" />
                   <p:inputText id="requester" disabled="true" value="#{data.requester.displayName}"
                     styleClass="MarTop10" />
                 </h:panelGroup>
 
-                <h:panelGroup class="md-inputfield MarTop20">
+                <h:panelGroup class="MarTop20">
                   <p:outputLabel for="leave-type" value="#{ivy.cms.co('/Labels/LeaveRequest/leaveType')}" />
                   <p:inputText id="leave-type" value="#{data.leaveRequestData.leaveType.getLabel()}" disabled="true"
                     styleClass="MarTop10" />
                 </h:panelGroup>
 
-                <h:panelGroup class="md-inputfield MarTop20">
+                <h:panelGroup class="MarTop20">
                   <p:outputLabel for="from" value="#{ivy.cms.co('/Labels/LeaveRequest/from')}" />
                   <p:datePicker id="from" value="#{data.leaveRequestData.from}" locale="#{localeBean.locale}"
                     styleClass="MarTop10" 
                     showTime="#{!dateTimePatternBean.isTimeHidden}" disabled="true" />
                 </h:panelGroup>
 
-                <h:panelGroup class="md-inputfield MarTop20">
+                <h:panelGroup class="MarTop20">
                   <p:outputLabel for="to" value="#{ivy.cms.co('/Labels/LeaveRequest/to')} " />
                   <p:datePicker id="to" value="#{data.leaveRequestData.to}" locale="#{localeBean.locale}"
                     styleClass="MarTop10" 
                     showTime="#{!dateTimePatternBean.isTimeHidden}" disabled="true" />
                 </h:panelGroup>
 
-                <h:panelGroup class="md-inputfield MarTop20">
+                <h:panelGroup class="MarTop20">
                   <p:outputLabel for="approver" value="#{ivy.cms.co('/Labels/LeaveRequest/approver')}" />
                   <p:inputText id="approver" value="#{data.approver.displayName}" disabled="true" styleClass="MarTop10" />
                 </h:panelGroup>

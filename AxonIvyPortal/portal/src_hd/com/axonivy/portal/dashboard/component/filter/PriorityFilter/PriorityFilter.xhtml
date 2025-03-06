@@ -21,14 +21,14 @@
   <f:event listener="#{widgetPriorityFilterBean.init(filter)}" type="preRenderComponent" />
 
   <h:panelGroup id="priority-filter-operator-panel" layout="block"
-    styleClass="ui-fluid md-inputfield priority-filter-operator-panel">
+    styleClass="ui-fluid priority-filter-operator-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{widgetPriorityFilterBean.priorityOperators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
       </p:selectOneMenu>
   </h:panelGroup>
 
-  <h:panelGroup id="priority-list-panel" layout="block" styleClass="ui-fluid md-inputfield text-list-filter">
+  <h:panelGroup id="priority-list-panel" layout="block" styleClass="ui-fluid text-list-filter">
     <p:selectCheckboxMenu id="priorities" value="#{filter.values}" multiple="true"
       filter="true" filterMatchMode="contains"
       panelStyleClass="task-configuration__selectcheckboxmenu-panel"

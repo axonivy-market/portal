@@ -32,10 +32,6 @@
     "type" : "com.axonivy.portal.components.dto.UserDTO",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "userSelectionSerenityExampleLink",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
     "name" : "excludeAllRoleNames",
     "type" : "List<String>",
     "modifiers" : [ "PERSISTENT" ]

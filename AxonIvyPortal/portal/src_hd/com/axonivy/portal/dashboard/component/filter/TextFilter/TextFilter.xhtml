@@ -19,7 +19,7 @@
   <c:set var="messageId" value="#{cc.attrs.messageId}" />
 
   <h:panelGroup id="text-filter-operator-panel" layout="block"
-    styleClass="ui-fluid md-inputfield">
+    styleClass="ui-fluid">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{widgetTextFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}"/>
@@ -30,7 +30,7 @@
   </h:panelGroup>
 
   <h:panelGroup id="text-list-panel" layout="block"
-    styleClass="ui-fluid md-inputfield text-list-filter text-list-panel-#{cc.attrs.filterIndex}"
+    styleClass="ui-fluid text-list-filter text-list-panel-#{cc.attrs.filterIndex}"
     rendered="#{widgetTextFilterBean.isShowTextListPanel(filter)}">
     <p:chips value="#{filter.values}" unique="true" addOnPaste="true" disabled="#{readOnly}" addOnBlur="true">
       <p:ajax event="itemSelect" update="@this" partialSubmit="true" />

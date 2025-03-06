@@ -15,9 +15,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import com.axonivy.portal.enums.SearchScopeCaseField;
 import com.axonivy.portal.service.GlobalSearchService;
 
-import ch.ivy.addon.portalkit.casefilter.CaseFilter;
-import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
-import ch.ivy.addon.portalkit.casefilter.impl.CaseStateFilter;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
@@ -27,13 +24,11 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
-import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.NumberUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 
 @ManagedBean
@@ -59,33 +54,6 @@ public class CaseWidgetBean implements Serializable {
 
   public void setSelectedCase(ICase selectedCase) {
     this.selectedCase = selectedCase;
-  }
-
-  public boolean isDeleteFilterEnabledFor(CaseFilterData filterData) {
-    CaseFilterService filterService = new CaseFilterService();
-    return filterService.isDeleteFilterEnabledFor(filterData);
-  }
-
-  /**
-   * If Case State filter is selecting DESTROYED
-   * Then disable option save a filter for all user
-   * @param caseFilters is selected filters
-   */
-  public void verifyCaseStateFilter(List<CaseFilter> caseFilters) {
-    if (!PermissionUtils.checkReadAllCasesPermission()) {
-      isAdminCaseStateIncluded = false;
-      return;
-    }
-    for (CaseFilter filter : caseFilters) {
-      if (filter instanceof CaseStateFilter) {
-        CaseStateFilter caseStateFilter = (CaseStateFilter) filter;
-        if (!caseStateFilter.value().equals(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/all"))) {
-          isAdminCaseStateIncluded = caseStateFilter.getSelectedFilteredStates()
-              .contains(CaseState.DESTROYED);
-        }
-        break;
-      }
-    }
   }
 
   public boolean isAdminCaseStateIncluded() {

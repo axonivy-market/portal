@@ -15,9 +15,5 @@
     "name" : "processLink",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "processViewerForSerenityLink",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

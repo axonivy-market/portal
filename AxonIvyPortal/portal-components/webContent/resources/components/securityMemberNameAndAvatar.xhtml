@@ -31,11 +31,5 @@
     
     <cc:renderFacet name="afterName" />
   </div>
-  <h:outputScript name="theme-checker.js" library="js" />
-  <script type="text/javascript">
-    if (#{cc.attrs.isStandAlone}) {
-      ThemeChecker.updateLayoutByTheme('#{ivyPrimefacesThemeResolver.sessionTheme}');
-    }
-  </script>
 </cc:implementation>
 </html>
