@@ -12,11 +12,11 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.bo.ClientStatistic;
-import com.axonivy.portal.service.ClientStatisticService;
+import com.axonivy.portal.bo.Statistic;
+import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.util.DashboardCloneUtils;
 
-import ch.ivy.addon.portalkit.dto.dashboard.ClientStatisticDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
@@ -38,7 +38,7 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
   private DashboardWidget cloneWidget;
   private List<Dashboard> availableDashboards;
   private Dashboard targetDashboard;
-  private List<ClientStatistic> statisticWidgets;
+  private List<Statistic> statisticWidgets;
 
   @PostConstruct
   public void initConfigration() {
@@ -94,14 +94,14 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
     }
 
     String result = cloneWidget.getName();
-    // Client statistic widget need to load name from list of pre-built client
+    // Statistic widget need to load name from list of pre-built client
     // statistic
-    if (cloneWidget.getType() == DashboardWidgetType.CLIENT_STATISTIC) {
-      ClientStatisticDashboardWidget clientStatisticWidget = (ClientStatisticDashboardWidget) cloneWidget;
+    if (cloneWidget.getType() == DashboardWidgetType.STATISTIC) {
+      StatisticDashboardWidget statisticWidget = (StatisticDashboardWidget) cloneWidget;
       result = statisticWidgets.stream()
           .filter(chart -> chart.getId()
-              .contentEquals(clientStatisticWidget.getChartId()))
-          .findFirst().map(ClientStatistic::getName).orElseGet(() -> "");
+              .contentEquals(statisticWidget.getChartId()))
+          .findFirst().map(Statistic::getName).orElseGet(() -> "");
     }
 
     // For custom widget, need to build before get name
@@ -122,6 +122,6 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
     statisticWidgets = new ArrayList<>();
     statisticWidgets.addAll(statisticWidgets);
     statisticWidgets
-        .addAll(ClientStatisticService.getInstance().findAllCharts());
+        .addAll(StatisticService.getInstance().findAllCharts());
   }
 }

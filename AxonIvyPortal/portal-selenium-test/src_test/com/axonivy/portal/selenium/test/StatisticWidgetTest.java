@@ -7,14 +7,14 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.page.ClientStatisticWidgetNewDashboardPage;
+import com.axonivy.portal.selenium.page.StatisticWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.codeborne.selenide.CollectionCondition;
 
 
 @IvyWebTest
-public class ClientStatisticWidgetTest extends BaseTest {
+public class StatisticWidgetTest extends BaseTest {
   private NewDashboardPage newDashboardPage;
 
   @Override
@@ -30,8 +30,8 @@ public class ClientStatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
     redirectToNewDashBoard();
-    ClientStatisticWidgetNewDashboardPage openTasksWidget = newDashboardPage.selectClientStatisticChartWidget("Open Tasks");
-    ClientStatisticWidgetNewDashboardPage runningCasesWidget = newDashboardPage.selectClientStatisticChartWidget("Running Cases");
+    StatisticWidgetNewDashboardPage openTasksWidget = newDashboardPage.selectStatisticChartWidget("Open Tasks");
+    StatisticWidgetNewDashboardPage runningCasesWidget = newDashboardPage.selectStatisticChartWidget("Running Cases");
     ScreenshotUtils.maximizeBrowser();
     openTasksWidget.getAllChartNumbers().shouldHave(CollectionCondition.size(1));
     openTasksWidget.getAllChartLabels().shouldHave(CollectionCondition.size(1));
@@ -40,7 +40,7 @@ public class ClientStatisticWidgetTest extends BaseTest {
   }
   
   @Test
-  public void testAddNewClientStatisticWidget() {
+  public void testAddNewStatisticWidget() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
@@ -50,7 +50,7 @@ public class ClientStatisticWidgetTest extends BaseTest {
     modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
     ScreenshotUtils.maximizeBrowser();
     configurationPage.clickOnAddWidgetButton();
-    ClientStatisticWidgetNewDashboardPage runningCasesWidget = configurationPage.addNewStatisticWidget("Running Cases");
+    StatisticWidgetNewDashboardPage runningCasesWidget = configurationPage.addNewStatisticWidget("Running Cases");
     runningCasesWidget.getAllChartLabels().first().text().equals("Running");
   }
 }

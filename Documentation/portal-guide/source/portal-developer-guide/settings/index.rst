@@ -426,7 +426,7 @@ Portal Statistic Charts
 You can define filter logic, appearance, and other settings for all statistic
 charts that can be used by the :ref:`Statistic widget <portal-statistic-widget>` of Portal dashboard.
 
-Filename: ``variables.Portal.ClientStatistic.json``
+Filename: ``variables.Portal.Statistic.json``
 
 Data model:
 

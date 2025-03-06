@@ -72,7 +72,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Axon Ivy process
     DashboardWidgetType:
       CASE: Case widget
-      CLIENT_STATISTIC: Statistic widget
+      STATISTIC: Statistic widget
       CUSTOM: Custom widget
       NEW: New widget
       NEWS: News feed
@@ -1421,7 +1421,7 @@ Dialogs:
                 Alt + W: Focus on to the first task. Alt + Q: Focus on to the first case. Tab: Sequential tabbing through elements. Esc: Close expanded widgets. Enter: Confirm selection.'
             CaseWidgetConfiguration:
               AddFilter: Add filter
-            ClientStatisticWidget:
+            StatisticWidget:
               IdNotFound: Chart with ID {0} not found
               NoPermissionChartMessage: You do not have the required permission to see this chart.
             CloneWidgetDialog:

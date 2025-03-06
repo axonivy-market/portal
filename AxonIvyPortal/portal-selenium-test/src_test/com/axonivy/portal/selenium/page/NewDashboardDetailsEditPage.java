@@ -218,7 +218,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
   
-  public void clickToAddClientStatisticWidget() {
+  public void clickToAddStatisticWidget() {
     $("button[id$='new-statistic-widget-dialog-content:0:add-widget']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     
   }
@@ -229,7 +229,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
 
   public SelenideElement getStatisticWidgetConfigurationDialog() {
     $("[id$=':case-component:dashboard-cases']").shouldBe(appear, DEFAULT_TIMEOUT);
-    SelenideElement statisticElement = $("div[id^='client-statistic-client_statistic']").shouldBe(appear, DEFAULT_TIMEOUT).scrollTo();
+    SelenideElement statisticElement =
+        $("div[id^='statistic-client_statistic']").shouldBe(appear, DEFAULT_TIMEOUT).scrollTo();
     $("canvas").shouldBe(appear, DEFAULT_TIMEOUT);
     return statisticElement;
   }

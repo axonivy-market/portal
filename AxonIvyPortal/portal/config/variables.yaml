@@ -12,14 +12,14 @@ Variables:
     # [file: json]
     Announcement:
 
-    # Do not change default client statistic via this JSON file.
+    # Do not change default statistic via this JSON file.
     # [file: json]
-    ClientStatistic:
+    Statistic:
 
-    # You can define the custom client statistic via this JSON file.
+    # You can define the custom statistic via this JSON file.
     # You can configure dashboards to show the statistics to dashboards.
     # [file: json]
-    CustomClientStatistic:
+    CustomStatistic:
 
     # A feedback message will be displayed after user finishes or leaves a task.
     DisplayMessageAfterFinishTask: true

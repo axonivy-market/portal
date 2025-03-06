@@ -110,7 +110,7 @@
                 </div>
                 <p:commandButton id="add-widget" styleClass="new-widget-dialog__add-widget-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
-                  actionListener="#{dashboardDetailModificationBean.saveClientStatisticWidget(widget)}"
+                  actionListener="#{dashboardDetailModificationBean.saveStatisticWidget(widget)}"
                   oncomplete="loadGridAfterAddedNewWidget(); initStatistics();"
                   update="widget-configuration-form load-grid-after-added-new-widget-cmd"
                   partialSubmit="true"

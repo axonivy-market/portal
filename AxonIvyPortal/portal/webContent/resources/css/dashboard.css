@@ -1342,11 +1342,11 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 /* Statistic chart widget */
-.client-statistic.widget__content {
+.statistic.widget__content {
   padding-bottom: 0;
 }
 
-.client-statistic.widget__content .empty-message-container {
+.statistic.widget__content .empty-message-container {
   text-align: center;
   margin: auto;
 }

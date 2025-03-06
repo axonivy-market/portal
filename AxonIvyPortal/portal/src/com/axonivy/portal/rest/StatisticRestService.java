@@ -12,10 +12,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import com.axonivy.portal.dto.ClientStatisticDto;
-import com.axonivy.portal.service.ClientStatisticService;
+import com.axonivy.portal.dto.StatisticDto;
+import com.axonivy.portal.service.StatisticService;
 
-import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
+import ch.ivy.addon.portalkit.statistics.StatisticResponse;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -25,7 +25,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @Path(value = "statistics")
 @RolesAllowed(value = { ISecurityConstants.TOP_LEVEL_ROLE_NAME })
-public class ClientStatisticRestService {
+public class StatisticRestService {
 
   @POST
   @Path(value = "data")
@@ -34,12 +34,12 @@ public class ClientStatisticRestService {
       @ApiResponse(responseCode = "200", description = "Get chart data by Id", content = {
           @Content(mediaType = "application/json", schema = @Schema(implementation = AggregationResult.class)) }),
       @ApiResponse(responseCode = "406", description = "Invalid call") })
-  public Response getData(ClientStatisticDto payload) {
-    if (Optional.ofNullable(payload).map(ClientStatisticDto::getChartId).isEmpty()) {
+  public Response getData(StatisticDto payload) {
+    if (Optional.ofNullable(payload).map(StatisticDto::getChartId).isEmpty()) {
       return Response.status(Status.NOT_ACCEPTABLE).build();
     }
     try {
-      ClientStatisticResponse result = ClientStatisticService.getInstance().getStatisticData(payload);
+      StatisticResponse result = StatisticService.getInstance().getStatisticData(payload);
       return Response.ok(result).build();
     } catch (NotFoundException e) {
       return Response.ok(e.getMessage()).build();
