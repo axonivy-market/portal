@@ -1216,7 +1216,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     if (StringUtils.isNotEmpty(selectedDashboardId)) {
       param.put("callbackDashboardId", selectedDashboardId);
     }
-    FacesContext.getCurrentInstance().getExternalContext().redirect(PortalNavigator.buildCustomStatisticWidgetUrl(param));
+    FacesContext.getCurrentInstance().getExternalContext().redirect(PortalNavigator.buildCustomStatisticUrl(param));
   }
   
   public void deleteCustomStatisticById(String id) {
