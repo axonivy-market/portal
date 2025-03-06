@@ -43,6 +43,14 @@ To add a new language to the Portal, what you have to do is:
    |export-cms|
 
 -  Add the translations for the new language for all CMS entries.
+-  Add the translations for the new language for all json files in the Portal located at Config/variables by adding new locale/value item.
+
+   |translate-json|
+
+-  Add the translations for the new language to DefaultDashboardUtils.java by adding new locale/value item.
+
+   |translate-java|
+
 -  Import the Excel file.
 -  Redeploy the Portal.
 
@@ -54,12 +62,12 @@ Role Configuration
    +-----------------------------------+-----------------------------------+
    | Portal roles                      | Rights                            |
    +===================================+===================================+
-   | AXONIVY_PORTAL_ADMIN              | User with this role can access    |
-   |                                   | the Portal Admin page,            |
+   | AXONIVY_PORTAL_ADMIN              | User having to this role can      |
+   |                                   | access the Portal Admin page,     |
    |                                   | configure internal role           |
    |                                   | properties, and create public     |
-   |                                   | filters. Those who hold this role |
-   |                                   | require some permissions.         |
+   |                                   | filters. Users who own this role  |
+   |                                   | need some permissions.            |
    |                                   |                                   |
    +-----------------------------------+-----------------------------------+
 
@@ -81,15 +89,19 @@ Task Permissions
 - Delegate
 
    To be able to delegate, the user needs permission
-   :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>` and :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`.
+   :bdg-ref-warning:`🔑TaskDisplayDelegateAction <TaskDisplayDelegateAction>`.
 
-   To delegate personal or group tasks, the user needs permission
+   To delegate personal or group tasks, user needs permission
    :bdg-ref-warning:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`. This permission belongs to the
    PortalPermissions group. It is not assigned to role Everybody by default.
 
+   To delegate all tasks in a task list, the user needs permission
+   :bdg-ref-warning:`🔑TaskWriteActivator <TaskWriteActivator>`.
+
    .. important::
-      - Only tasks ready for user processing can be delegated.Therefore, the task state cannot be one of the following: CREATED, DONE, DESTROYED, RESUMED, FAILED.
-      - Tasks can be delegated to another user only if the current user is working on them.
+      Only tasks ready for user processing can be delegated.
+      Therefore, the task state cannot be one of the following:
+      CREATED, DONE, DESTROYED, RESUMED, FAILED.
 
 - Reset
 
@@ -196,18 +208,17 @@ Case Permissions
    User needs permission :bdg-ref-warning:`🔑ShowCaseDetails <ShowCaseDetails>`. By default, this permission
    is not assigned to role Everybody.
 
-.. note::
-      Normal users can only see the tasks and cases that they can work on.
+Normal users can only see the tasks and cases that they can work on.
 
-      Administrators can see all tasks/cases in the application. The required
-      permissions :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`, :bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>`.
+Administrators can see all tasks/cases in the application. The require
+permissions :bdg-ref-warning:`🔑TaskReadAll <TaskReadAll>`, :bdg-ref-warning:`🔑CaseReadAll <CaseReadAll>`.
 
-      Administrators can interact with all workflows in the application.
+Administrators can interact with all workflows in the application.
 
-      Administrators can create, update, and delete all workflows in the application.
+Administrators can create, update and delete all workflows in the application.
 
-      Normal users can update and delete workflows that they have created and
-      can interact with tasks that have been assigned to them.
+Normal users can update and delete workflows that have been created by them and can interact
+with tasks that have been assigned to them.
 
 .. _settings-permission-settings-others:
 
@@ -216,53 +227,67 @@ Other Permissions
 
 .. table::
 
- +-----------+---------------------------------+---------------------------------------------------------------------------------------+
- |           | Action                          | Permission required                                                                   |
- +===========+=================================+=======================================================================================+
- | Absence   | Read                            | :bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`  or                    |
- |           |                                 | :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`                              |
- |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Create, edit                    | :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or                   |
- |           |                                 | :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`                            |
- |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Delete                          | :bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` or                   |
- |           |                                 | :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`                            |
- |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Read absences of all users      | :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`                              |
- |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Delete absences of all users    | :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`                            |
- |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Create new absence for all users| :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`                            |
- +-----------+---------------------------------+---------------------------------------------------------------------------------------+
- | Substitute| Manage substitute               | :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` and                  |
- |           |                                 | :bdg-ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`                        |
- +-----------+---------------------------------+---------------------------------------------------------------------------------------+
- | Document  | Upload, delete                  | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`                                    |
- |           |                                 | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`        |
- +-----------+---------------------------------+---------------------------------------------------------------------------------------+
- | Portal    | Access to full process          | :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>`                    |
- | permission| list, it's "Processes" on the   |                                                                                       |
- |           | left menu and link "Show all    |                                                                                       |
- |           | processes" on Dashboard         |                                                                                       |
- |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Access to full task list, it's  | :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>`                          |
- |           | "Tasks" on the left menu and    |                                                                                       |
- |           | link "Show full task list" on   |                                                                                       |
- |           | Dashboard                       |                                                                                       |
- |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Access to full case list, it's  | :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>`                          |
- |           | "Cases" on the left menu        |                                                                                       |
- |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Add note to task/case           | :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`                                |
- |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Display show more note          | :bdg-ref-warning:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`                      |
- |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Create public external link, all| :bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`              |
- |           | other users can see that link in|                                                                                       |
- |           | the full process list           |                                                                                       |
- |           +---------------------------------+---------------------------------------------------------------------------------------+
- |           | Dashboard sharing               | :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`                          |
- +-----------+---------------------------------+---------------------------------------------------------------------------------------+
+ +-----------+---------------------------------+--------------------------------------------------------------------------------------------+
+ |           | Action                          | Permission required                                                                        |
+ +===========+=================================+============================================================================================+
+ | Absence   | Read                            | :bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>`  or                         |
+ |           |                                 | :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`                                   |
+ |           +---------------------------------+--------------------------------------------------------------------------------------------+
+ |           | Create, edit                    | :bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` or                        |
+ |           |                                 | :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`                                 |
+ |           +---------------------------------+--------------------------------------------------------------------------------------------+
+ |           | Delete                          | :bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` or                        |
+ |           |                                 | :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`                                 |
+ |           +---------------------------------+--------------------------------------------------------------------------------------------+
+ |           | Read absences of all users      | :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`                                   |
+ |           +---------------------------------+--------------------------------------------------------------------------------------------+
+ |           | Delete absences of all users    | :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`                                 |
+ |           +---------------------------------+--------------------------------------------------------------------------------------------+
+ |           | Create new absence for all users| :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`                                 |
+ +-----------+---------------------------------+--------------------------------------------------------------------------------------------+
+ | Substitute| Manage substitute               | :bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>` and                       |
+ |           |                                 | :bdg-ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`                             |
+ +-----------+---------------------------------+--------------------------------------------------------------------------------------------+
+ | Document  | Upload, delete                  | :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>`                                         |
+ |           |                                 | :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`             |
+ +-----------+---------------------------------+--------------------------------------------------------------------------------------------+
+ | Express   | Create Express workflow         | :bdg-ref-warning:`🔑ExpressCreateWorkflow <ExpressCreateWorkflow>`                         |
+ +-----------+---------------------------------+--------------------------------------------------------------------------------------------+
+ | Statistics| Add dashboard                   | :bdg-ref-warning:`🔑StatisticAddDashboardChart <StatisticAddDashboardChart>`               |
+ |           +---------------------------------+--------------------------------------------------------------------------------------------+
+ |           | Analyze, filter tasks           | :bdg-ref-warning:`🔑StatisticAnalyzeTask <StatisticAnalyzeTask>`                           |
+ |           | and export data to excel        |                                                                                            |
+ |           | for advanced analysis           |                                                                                            |
+ +-----------+---------------------------------+--------------------------------------------------------------------------------------------+
+ | Portal    | Access to full process          | :bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>`                         |
+ | permission| list, it's "Processes" on the   |                                                                                            |
+ |           | left menu and link "Show all    |                                                                                            |
+ |           | processes" on Dashboard         |                                                                                            |
+ |           +---------------------------------+--------------------------------------------------------------------------------------------+
+ |           | Access to full task list, it's  | :bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>`                               |
+ |           | "Tasks" on the left menu and    |                                                                                            |
+ |           | link "Show full task list" on   |                                                                                            |
+ |           | Dashboard                       |                                                                                            |
+ |           +---------------------------------+--------------------------------------------------------------------------------------------+
+ |           | Access to full case list, it's  | :bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>`                               |
+ |           | "Cases" on the left menu        |                                                                                            |
+ |           +---------------------------------+--------------------------------------------------------------------------------------------+
+ |           | Access to statistics it's       | :bdg-ref-warning:`🔑AccessFullStatisticsList <AccessFullStatisticsList>`                   |
+ |           | "Statistics" on the left menu   |                                                                                            |
+ |           | and link "Show all charts" on   |                                                                                            |
+ |           | Dashboard                       |                                                                                            |
+ |           +---------------------------------+--------------------------------------------------------------------------------------------+
+ |           | Add note to task/case           | :bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`                                     |
+ |           +---------------------------------+--------------------------------------------------------------------------------------------+
+ |           | Display show more note          | :bdg-ref-warning:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`                           |
+ |           +---------------------------------+--------------------------------------------------------------------------------------------+
+ |           | Create public external link, all| :bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`                   |
+ |           | other users can see that link in|                                                                                            |
+ |           | full process list and can also  |                                                                                            |
+ |           | add it to User Favorite         |                                                                                            |
+ |           +---------------------------------+--------------------------------------------------------------------------------------------+
+ |           | Dashboard sharing               | :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`                               |
+ +-----------+---------------------------------+--------------------------------------------------------------------------------------------+
 
 .. _settings-virus-scanning-setting:
 
@@ -308,25 +333,27 @@ These variables are stored as key-value pairs. They have to be edited in the Eng
    | Variable                                    | Default                       | Description                 |
    |                                             | value                         |                             |
    +=============================================+===============================+=============================+
-   | PortalStartTimeCleanObsoletedDataExpression | 0 6 \* \* \*                  | Cron expression defines     |
+   | PortalStartTimeCleanObsoletedDataExpression | 0 0 6 \* \* ?                 | Cron expression defines     |
    |                                             |                               | the time to clean up data   |
    |                                             |                               | of obsolete users. E.g.:    |
    |                                             |                               | expression for at 6AM       |
    |                                             |                               | every day is                |
-   |                                             |                               | ``0 6 * * *``. Refer to     |
-   |                                             |                               | `CRON Expression <https://  |
-   |                                             |                               | developer.axonivy.com/doc/  |
-   |                                             |                               | 11.2/engine-guide/configur  |
-   |                                             |                               | ation/advanced-configurati  |
-   |                                             |                               | on.html#cron-expression>`_. |
-   |                                             |                               | Restart Ivy engine after    |
-   |                                             |                               | changing this variable.     |
+   |                                             |                               | ``0 0 6 * * ?`` . Refer     |
+   |                                             |                               | to                          |
+   |                                             |                               | `crontrigger <http://quar   |
+   |                                             |                               | tz-scheduler.org/document   |
+   |                                             |                               | ation/quartz-2.1.7/tutori   |
+   |                                             |                               | als/tutorial-lesson-06.htm  |
+   |                                             |                               | l>`__                       |
+   |                                             |                               | . Restart Ivy engine        |
+   |                                             |                               | after changing this         |
+   |                                             |                               | variable.                   |
    +---------------------------------------------+-------------------------------+-----------------------------+
    | PortalDeleteAllFinishedHiddenCases          | false                         | If set to ``true``, the     |
    |                                             |                               | above cron job runs daily   |
-   |                                             |                               | and removes all finished    |
-   |                                             |                               | hidden cases on the engine. |
-   |                                             |                               |                             |
+   |                                             |                               | and will remove all         |
+   |                                             |                               | finished hidden cases on    |
+   |                                             |                               | the engine.                 |
    |                                             |                               | Otherwise, just cases which |
    |                                             |                               | were generated by this      |
    |                                             |                               | Portal will be deleted.     |
@@ -368,16 +395,13 @@ Filename: ``variables.Portal.Announcement.json``
 
 Data model:
 
-.. code-block:: javascript
+.. code-block:: html
 
-   {
-       "contents": [
-           {
-               "language": "en",
-               "value": "The announcement content in English"
-           }
-       ],
-       "enabled": false
+   { "contents": [{
+         "language": "en",
+         "value": "The announcement content in english"
+         }],
+      "enabled": false
    }
 
 -  ``contents``: list of supported languages and content for each language.
@@ -397,16 +421,14 @@ Filename: ``variables.Portal.ThirdPartyApplications.json``
 
 Data model:
 
-.. code-block:: javascript
+.. code-block:: html
 
-   [
-      {
-         "id": "284352a58c7a48a2b64be8a946857c7a",
+   [{    "id": "284352a58c7a48a2b64be8a946857c7a",
          "displayName": "{\"de\":\"AxonIvy ger\",\"en\":\"AxonIvy\"}",
          "menuIcon": "fa-group",
          "menuOrdinal": 1,
          "name": "{\"de\":\"AxonIvy ger\",\"en\":\"AxonIvy\"}",
-         "link": "https://developer.axonivy.com/download"
+         "link": "https://developer.axonivy.com/download",
       }
    ]
 
@@ -423,115 +445,106 @@ Data model:
 
 Portal Statistic Charts
 ^^^^^^^^^^^^^^^^^^^^^^^
-You can define filter logic, appearance, and other settings for all statistic
-charts that can be used by the :ref:`Statistic widget <portal-statistic-widget>` of Portal dashboard.
+You can define the standard statistic charts via the following JSON file. They
+will be shown as the default charts on the statistic page.
 
-Filename: ``variables.Portal.ClientStatistic.json``
+Filename: ``variables.Portal.StatisticCharts.json``
 
 Data model:
 
-.. code-block:: javascript
+.. code-block:: html
 
-   [
-      {
-         "id": "1",
-         "aggregates": "priority",
-         "filter": "businessState:OPEN IN_PROGRESS,canWorkOn",
-         "chartTarget": "TASK",
-         "chartType": "pie",
-         "names": [
-               {
-                  "locale": "de",
-                  "value": "Aufgaben nach Prioritäten"
-               },
-               {
-                  "locale": "en",
-                  "value": "Tasks by Priority"
-               },
-               {
-                  "locale": "fr",
-                  "value": "Tâches par Priorité"
-               },
-               {
-                  "locale": "es",
-                  "value": "Tareas por Prioridad"
-               }
-         ],
-         "descriptions": [
-               {
-                  "locale": "de",
-                  "value": "Dieses Kreisdiagramm zeigt alle Aufgaben nach Priorität an."
-               },
-               {
-                  "locale": "en",
-                  "value": "This pie chart displays all tasks by priority."
-               },
-               {
-                  "locale": "fr",
-                  "value": "Ce diagramme à secteurs affiche toutes les tâches par priorité."
-               },
-               {
-                  "locale": "es",
-                  "value": "Este gráfico circular muestra todas las tareas por prioridad."
-               }
-         ],
-         "icon": "si si-analytics-pie-2",
-         "refreshInterval": 300
-      }
-   ]
+   [{ "id": "42e2d9afd9824abc8d3a70b9d9867dba",
+      "names": [{
+            "locale": "en",
+            "value": "Task chart"
+         }],
+      "type": "TASK_BY_EXPIRY",
+      "filter": {
+         "timePeriodSelection": "LAST_WEEK",
+         "createdDateFrom": null,
+         "createdDateTo": null,
+         "selectedCaseCategories": ["Alpha_Company"],
+         "selectedRoles": ["Everybody"],
+         "isAllRolesSelected": false,
+         "selectedCaseStates": ["RUNNING"],
+         "isAllCaseStatesSelected": false,
+         "selectedTaskPriorities": ["HIGH"],
+         "isAllTaskPrioritiesSelected": false,
+         "customFieldFilters": {
+            "CustomVarCharField": ["Request for new computer"]
+         }
+      },
+      "position": 1
+   }]
 
+-  ``id``: the identification of chart. An auto-generated UUID.
+-  ``names``: the multilingual display name of the chart.
+-  ``type``: type of chart such as ``TASK_BY_PRIORITY``, ``CASES_BY_STATE``, ``CASES_BY_FINISHED_TASK``, ``CASES_BY_FINISHED_TIME``, ``TASK_BY_EXPIRY`` and ``ELAPSED_TIME_BY_CASE_CATEGORY``
+-  ``filter``: list filters to apply for each chart
 
-- ``id``: ID of the statistic chart
-- ``aggregates``: the aggregation query to make bucket (grouping) or metric aggregations. Please visit `Task Aggregation and Filter`_ and `Case Aggregation and Filter`_ for more details
-- ``filter``: filter conditions for the statistic chart. Multiple conditions are
-  supported. Please note that some filters are incompatible with certain
-  chart types. Please visit `Task Aggregation and Filter`_ and `Case Aggregation
-  and Filter`_ for more details
-- ``chartTarget``: the entity type that you want to use as the target  of the chart. We are supporting the main entity types of the ivy workflow:
-   
-   ``TASK``: Ivy Task
+   -  ``timePeriodSelection``: type of period filter such as ``CUSTOM``, ``LAST_WEEK``, ``LAST_MONTH`` and ``LAST_6_MONTH``
+   -  ``createdDateFrom``: start time for custom period filter
+   -  ``createdDateTo``: end time for custom period filter
+   -  ``selectedCaseCategories``: case category filter
+   -  ``selectedRoles``: role filter
+   -  ``isAllRolesSelected``: indicator to inform if all roles are selected.
+   -  ``selectedCaseStates``: case state filter
+   -  ``isAllCaseStatesSelected``: indicator to inform if all case states are selected.
+   -  ``selectedTaskPriorities``: task priority filter
+   -  ``isAllTaskPrioritiesSelected``: indicator to inform if all priorities are selected.
+   -  ``customFieldFilters``: list CustomField name filters, define by ``ICase.customFields()``
 
-   ``CASE``: Ivy Case
+      -  ``CustomVarCharField``: name of ``ICase.customFields()``
 
-- ``names``: the multilingual display name of the chart
-- ``descriptions``: the multilingual description of the chart
-- ``icon``: the icon of each widget. Portal supports both Streamline and FontAwesome icons
-- ``refreshInterval``: statistic chart refresh interval in seconds
-- ``chartType``: chart type that you want to show on the UI. There are 4 chart types:
-   
-   ``pie``: Pie chart
+-  ``position``: position index of chart. Used to order the charts in the UI
 
-   |pie-chart|
+.. _portal-dashboard-favorite-processes:
 
-   ``bar``: Bar chart
+Portal Dashboard Favorite Processes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+You can include the favorite processes of your custom application via the following
+JSON file. It will be shown as the processes in the application favorite
+section.
 
-   |bar-chart|
+Filename: ``variables.Portal.Dashboard.FavoriteProcesses.json``
 
-   ``line``: Line chart
+Data model:
 
-   |line-chart|
+.. code-block:: html
 
-   ``number``: Labelled number chart
-   
-   |number-chart|
+   [{ "id": "234152a58c7a48a2b63be8a946e5731b",
+      "processType": "IVY_PROCESS",
+      "names": [
+         {
+            "locale": "de",
+            "value": "Investition anlegen"
+         },
+         {
+            "locale": "en",
+            "value": "Create Investment"
+         },
+         {
+            "locale": "fr",
+            "value": "Réaliser un investissement"
+         },
+         {
+            "locale": "es",
+            "value": "Crear investición"
+         }
+      ],
+      "icon": "fa-building",
+      "processId": "Portal/portal-developer-examples/Start Processes/IFrameExample/CreateInvestment.ivp",
+      "index": 1
+   }]
 
-For some specific charts such as ``Bar``, ``Line`` or ``Number``, there are additional and required fields:
+- ``id``: the identification of a process. auto-generated UUID.
+- ``processType``: type of a process such as ``EXPRESS_PROCESS``, ``EXTERNAL_LINK``, ``IVY_PROCESS``.
+- ``names``: the display name of a process. Multilingual name is supported.
+- ``icon``: the style class of the process icon.
+- ``processId``: the process id of the process start.
+- ``index``: the index number to order the processes in the dashboard.
 
-- ``barChartConfig``: required fields for configuring the ``Bar`` chart, please add them if chart type is ``bar`` 
-
-   - ``xTitles``: the multilingual display title for the x-axis
-   - ``yTitles``: the multilingual display title for the y-axis
-   - ``yValue``: add this field with **time** value when you want to show the amount of time on the y-axis
-
-- ``lineChartConfig``: required fields for configuring the ``Line`` chart, please add them if chart type is ``line``
-
-   - ``xTitles``: the multilingual display title for the x-axis
-   - ``yTitles``: the multilingual display title for the y-axis
-
-- ``numberChartConfig``: additional fields for configuring the ``Number`` chart, you can add if chart type is ``number``
-
-   - ``suffixSymbol``: icon next to the number. Portal supports both Streamline and FontAwesome icons
-   
 .. _portal-process-external-link:
 
 Portal Processes External Links
@@ -542,25 +555,20 @@ Filename: ``variables.Portal.Processes.ExternalLinks.json``
 
 Data model:
 
-.. code-block:: javascript
+.. code-block:: html
 
-   [
-      {
-         "id": "01322912db224658a222804802844a7b",
-         "version": "10.0.9",
-         "name": "Download latest |ivy|",
-         "link": "https://developer.axonivy.com/download",
-         "creatorId": 2,
-         "icon": "fa-paperclip",
-         "description": "https://developer.axonivy.com/download",
-         "imageContent": "<your-image-data-as-base64>",
-         "imageLocation": "/com/axonivy/portal/ExternalLink/dd91ec84-c5aa-4202-aeea-4500fbd394ef",
-         "imageType": "jpeg",
-         "permissions": [
-            "Everybody"
-         ]
-      }
-   ]
+   [{  "id": "01322912db224658a222804802844a7b",
+      "version": "10.0.9",
+      "name": "Download latest |ivy|",
+      "link": "https://developer.axonivy.com/download",
+      "creatorId": 2,
+      "icon": "fa-paperclip",
+      "description": "https://developer.axonivy.com/download",
+      "imageContent": "/9j/4AAQSkZJRgABAQEAYABgAAD/2wCEAAMCAgMCAgMDAgM",
+      "imageLocation": "/com/axonivy/portal/ExternalLink/dd91ec84-c5aa-4202-aeea-4500fbd394ef",
+      "imageType": "jpeg",
+      "permissions": ["Everybody"]
+   }]
 
 - ``id``: the identification of a link, auto-generated by UUID
 - ``version``: the version of the json
@@ -574,17 +582,106 @@ Data model:
 - ``imageType``: the extension of the process image. Basically, this should be handled by the engine
 - ``permissions``: users have these roles can see and start the external link. If you don't define it, default role is Everybody
 
+Portal Express Processes
+^^^^^^^^^^^^^^^^^^^^^^^^
+The standard express processes of the Portal are defined in this file:
+
+Filename: ``variables.Portal.Processes.ExpressProcesses.json``
+
+Data model:
+
+.. code-block:: html
+
+   [{ "id": "f281e1ee7fb54bcda8d7a0c64ba46fc8",
+      "processName": "Portal Express process",
+      "processDescription": "Process",
+      "processType": "AHWF",
+      "processPermissions": ["Everybody"],
+      "processOwner": "#portaladmin externalId:889",
+      "processFolder": "8e9870b2-0179-46eb-bdb8",
+      "readyToExecute": true,
+      "processCoOwners": ["#demo externalId:9CA"],
+      "icon": "fa-codepen",
+      "taskDefinitions": [{
+         "type": "USER_TASK",
+         "responsibles": ["Everybody"],
+         "subject": "Express user task",
+         "description": "Express user task",
+         "taskPosition": 1,
+         "untilDays": 2,
+         "formElements": [{
+            "elementID": "Input area2020-09-07 04:57:05",
+            "label": "Input area",
+            "required": true,
+            "intSetting": 7,
+            "elementType": "InputTextArea",
+            "optionStrs": [""],
+            "elementPosition": "HEADER",
+            "indexInPanel": 0
+            }]
+         }, {
+            "type": "EMAIL",
+            "responsibles": [],
+            "taskPosition": 2,
+            "untilDays": 3,
+            "email": {
+               "recipients": "wawatest@ivy.io",
+               "responseTo": "wawa@mail.io",
+               "subject": "Verify Express process",
+               "content": "<p>Email content</p>",
+               "attachments": [],
+               "empty": false
+            }
+         }
+      ],
+      "ableToEdit": true,
+      "useDefaultUI": false
+   }]
+
+-  ``id``: the identification of an express process, auto-generated by UUID
+-  ``processName``: the display name of an express process
+-  ``processDescription``: the description of an express process
+-  ``processType``: type of express processes such as ``AMWF`` and ``AHWF``
+-  ``processPermissions``: the process permissions who can see this express process
+-  ``processOwner``: the user information who create this express process
+-  ``processFolder``: the folder id where the express process use to store data
+-  ``readyToExecute``: indicator to inform that process can start or not
+-  ``processCoOwners``: the user information who can see this express process
+-  ``icon``: the style class of express icon
+-  ``taskDefinitions``: list tasks of the express process
+
+   -  ``type``: type of the express task such as ``USER_TASK``, ``USER_TASK_WITH_EMAIL``, ``APPROVAL``, and ``EMAIL``
+   -  ``responsibles``: responsible for the express task who can work on the task
+   -  ``subject``: the name of an express task
+   -  ``description``: the description of an express task
+   -  ``taskPosition``: the index of a task in the express workflow steps
+   -  ``untilDays``: the expiry day of an express task
+   -  ``formElements``: list forms on the UI of the express task
+
+      -  ``elementID``: auto-generated
+      -  ``label``: the label of the element
+      -  ``required``: indicator to inform that form element is required or not
+      -  ``intSetting``: auto-generated
+      -  ``elementType``: type of element
+      -  ``optionStrs``: select options of an element
+      -  ``elementPosition``: the position of an element on UI
+      -  ``indexInPanel``: auto-generated
+      -  ``email``: define an email task
+
+         -  ``recipients``: the recipients of the email
+         -  ``responseTo``: response to the email
+         -  ``content``: the content of the email
+         -  ``attachments``: list attachments
+         -  ``empty``: indicator to inform that attachment is empty
+
+- ``ableToEdit``: indicator to inform that express can edit
+- ``useDefaultUI``: indicator to inform that express process is using default UI elements
+
 
 .. |portal-header| image:: ../../screenshots/settings/user-settings.png
 .. |global-settings| image:: ../../screenshots/settings/global-settings.png
 .. |global-setting-edit| image:: ../../screenshots/settings/edit-global-settings.png
 .. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
 .. |export-cms| image:: images/export-cms.png
-
-.. _Task Aggregation and Filter: https://developer.axonivy.com/api-browser?configUrl=https%3A%2F%2Fdeveloper.axonivy.com%2Fdoc%2F11.3%2Fopenapi%2Fconfig.json&urls.primaryName=default#/workflow/stats_1 
-.. _Case Aggregation and Filter: https://developer.axonivy.com/api-browser?configUrl=https%3A%2F%2Fdeveloper.axonivy.com%2Fdoc%2F11.3%2Fopenapi%2Fconfig.json&urls.primaryName=default#/workflow/stats
-   
-.. |pie-chart| image:: ../../screenshots/statistic/tasks-by-prior-pie-chart.png
-.. |bar-chart| image:: ../../screenshots/statistic/tasks-by-prior-bar-chart.png
-.. |number-chart| image:: ../../screenshots/statistic/tasks-by-prior-number-chart.png
-.. |line-chart| image:: ../../screenshots/statistic/completed-cases-chart.png
+.. |translate-json| image:: images/translate-json.png
+.. |translate-java| image:: images/translate-java.png   
