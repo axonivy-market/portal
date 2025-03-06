@@ -426,12 +426,12 @@ Data model:
 Portal Statistic Charts
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-.. warning::
-   This variable will be removed in the next LTS version
-
 Defined charts could be used by the :ref:`Statistic widget <portal-statistic-widget>` of Portal dashboard.
 
 Filename: ``variables.Portal.ClientStatistic.json``
+
+.. warning::
+   This variable will be removed in the next LTS version
 
 Data model:
 
