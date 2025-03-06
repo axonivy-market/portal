@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-selenium-test</artifactId>
-  <version>12.0.4-SNAPSHOT</version>
+  <version>12.0.5-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
     <ivy.engine.version>12.0.4</ivy.engine.version>
@@ -17,10 +17,16 @@
       <version>11.3.0</version>
       <scope>test</scope>
     </dependency>
+  <dependency>
+      <groupId>com.codeborne</groupId>
+      <artifactId>selenide-proxy</artifactId>
+      <version>7.7.3</version>
+      <scope>test</scope>
+  </dependency>
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
-      <version>12.0.4-SNAPSHOT</version>
+      <version>12.0.5-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
   </dependencies>
