@@ -72,7 +72,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Axon Ivy Prozess
     DashboardWidgetType:
       CASE: Vorgangs-Widget
-      STATISTIC: Statistik-Widget
       CUSTOM: Benutzerdefiniertes Widget
       NEW: Neues Widget
       NEWS: Nachrichten
@@ -1388,9 +1387,6 @@ Dialogs:
                 la sélection'
             CaseWidgetConfiguration:
               AddFilter: Filter hinzufügen
-            StatisticWidget:
-              IdNotFound: Diagramm mit ID {0} nicht gefunden
-              NoPermissionChartMessage: Sie haben nicht die erforderliche Berechtigung, um diese Karte zu sehen.
             CloneWidgetDialog:
               Header: Clone widget "{0}"
               TargetDashboard: Target dashboard
@@ -1429,6 +1425,9 @@ Dialogs:
               WidgetFilter: Widget-Filter
             PortalDashboardDetailModification:
               CloneWidget: Widget klonen
+            StatisticWidget:
+              IdNotFound: Diagramm mit ID {0} nicht gefunden
+              NoPermissionChartMessage: Sie haben nicht die erforderliche Berechtigung, um diese Karte zu sehen.
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen
@@ -1437,6 +1436,23 @@ Dialogs:
             CaseDetailsIFrameTitle: Falldetails Rahmen
           IFrameTaskTemplate:
             TaskIFrameTitle: Aufgabenrahmen
+        page:
+          StatisticConfiguration:
+            AdvancedConfiguration: Erweiterte Konfiguration
+            Aggregate: Aggregat
+            ChartType: Diagrammtyp
+            Color: Farbe {0}
+            Create: Erstellen
+            EditStatistic: Statistisches Widget bearbeiten
+            For: Für
+            GeneratePreview: Vorschau generieren
+            HideLabel: Etikett ausblenden
+            NewStatistic: Neues Statistik-Widget
+            RefreshInterval: Aktualisierungsintervall
+            RefreshIntervalInSeconds: Aktualisierungsintervall in Sekunden
+            StatisticConfiguration: Konfiguration der Statistik
+            XAxisTitle: Titel der X-Achse
+            YAxisTitle: Titel der Y-Achse
   components:
     CaseDocument:
       FileDate: Änderungsdatum
@@ -1474,7 +1490,9 @@ Labels:
     TaskDetailsResult: ''
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
+  Configuration: Konfiguration
   CreateNewDashboard: Neues Dashboard erstellen
+  Description: Beschreibung
   EditDescription: Beschreibung bearbeiten
   Enums:
     ChatbotCandidateQuestion:
@@ -1567,12 +1585,17 @@ Labels:
     ThemeMode:
       DARK: Dunkel
       LIGHT: Hell
+  Filters: Filter
+  Icon: Symbol
   InsertTask-Explain: Aufgabe einfügen. Meine Aufgabe wird aufgeschoben.
   InsertTheTask: Aufgabe einfügen
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Name: Titel
   Permissions: Berechtigungen
+  Preview: Vorschau
+  Save: Speichern
   Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
