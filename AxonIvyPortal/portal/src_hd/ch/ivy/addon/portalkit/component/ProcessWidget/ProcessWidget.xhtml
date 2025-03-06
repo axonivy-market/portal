@@ -39,7 +39,7 @@
           </div>
 
           <div class="u-hidden-sm-down ui-md-6 ui-lg-5 ui-xl-4 u-no-padding-right u-no-padding-top">
-            <h:form id="process-view-mode" class="md-inputfiled ui-g-12 process-view-mode u-no-padding-right u-no-padding-top md-inputfiled">
+            <h:form id="process-view-mode" class="ui-g-12 process-view-mode u-no-padding-right u-no-padding-top">
               <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewMode')}" for="view-mode-selection" styleClass="view-mode-text"/>
               <p:selectOneButton value="#{processWidgetBean.viewMode}" unselectable="false" id="view-mode-selection" widgetVar="view-mode-selection">
                 <f:selectItems value="#{processWidgetBean.processViewModes}"  var="mode" itemValue="#{mode}" itemLabel="#{mode.label}" />
