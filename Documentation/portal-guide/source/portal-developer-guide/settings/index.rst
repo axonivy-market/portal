@@ -497,7 +497,7 @@ Data model:
 - ``names``: the multilingual display name of the chart
 - ``descriptions``: the multilingual description of the chart
 - ``icon``: the icon of each widget. Portal supports both Streamline and FontAwesome icons
-- ``refreshInterval``: statistic chart refresh interval in seconds
+- ``refreshInterval``: the refresh interval for the statistic chart, specified in seconds. Set this value to 0 to disable auto-refresh.
 - ``chartType``: chart type that you want to show on the UI. There are 4 chart types:
    
    ``pie``: Pie chart
@@ -534,6 +534,7 @@ For some specific charts such as ``Bar``, ``Line`` or ``Number``, there are addi
 - ``numberChartConfig``: additional fields for configuring the ``Number`` chart, you can add if chart type is ``number``
 
    - ``suffixSymbol``: icon next to the number. Portal supports both Streamline and FontAwesome icons
+   - ``hideLabel``: hide the label of the number chart
    
 .. _portal-process-external-link:
 
