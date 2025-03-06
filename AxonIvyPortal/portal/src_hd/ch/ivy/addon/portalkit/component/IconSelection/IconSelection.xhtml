@@ -45,7 +45,7 @@
         trackMouse="true"/>
     </h:panelGroup>
 
-    <p:inputText type="hidden" id="selected-icon-hidden-value" value="#{htmlSanitizerBean.escapeForJS(cc.attrs.value)}" />
+    <p:inputText type="hidden" id="selected-icon-hidden-value" value="#{cc.attrs.value}" />
   </h:panelGroup>
   
   <p:dialog id="select-icon-dialog" widgetVar="#{cc.clientId}-select-icon-dialog" styleClass="select-icon-dialog"

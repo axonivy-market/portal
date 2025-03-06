@@ -32,7 +32,7 @@
                    autoRun="true" actionListener="#{taskWidget.dataModel.loadFirstTime()}"
                    update="dashboard-tasks-container" global="false" async="true" process="@this"
                    oncomplete="loadCaseAndTaskWidgetFirstTime('js-loading-#{taskWidget.id}', 'js-dashboard-tasks-container-#{taskWidget.id}'); #{cc.attrs.onCompleteLoadWidget}; #{cc.attrs.isPreviewMode ? 'calculateFilterPaneltPosition();' : ''}" />
-  <p:inputText type="hidden" value="#{cc.attrs.taskWidgetVar}-#{htmlSanitizerBean.escapeForJS(taskWidget.id)}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
+  <p:inputText type="hidden" value="#{cc.attrs.taskWidgetVar}-#{taskWidget.id}" styleClass="js-table-widget-var" rendered="#{!isPreviewMode}" />
   <div class="ui-g">
     <h:panelGroup layout="block"
       styleClass="js-loading-#{taskWidget.id} task-dashboard-widget__loading-message ui-g-12">
