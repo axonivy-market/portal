@@ -27,21 +27,25 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.bo.BarChartConfig;
-import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.ColumnChartConfig;
 import com.axonivy.portal.bo.LineChartConfig;
 import com.axonivy.portal.bo.NumberChartConfig;
 import com.axonivy.portal.bo.PieChartConfig;
+import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.jsonversion.StatisticJsonVersion;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.util.RoleUtils;
+import com.axonivy.portal.dto.statistic.StatisticFilter;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
-import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.util.DisplayNameUtils;
+import com.axonivy.portal.util.clientstatisticfilter.field.FilterField;
+import com.axonivy.portal.util.clientstatisticfilter.field.TaskFilterFieldFactory;
+import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -76,6 +80,8 @@ public class StatisticWidgetConfigurationBean implements Serializable {
   private List<String> backgroundColors;
   private boolean isEditMode;
   private boolean refreshIntervalEnabled;
+  private List<FilterField> filterFields;
+  
 
   @PostConstruct
   public void init() {
@@ -137,6 +143,8 @@ public class StatisticWidgetConfigurationBean implements Serializable {
     }
     populateBackgroundColorsIfMissing();
     initPermissions();
+    filterFields = new ArrayList<>();
+    filterFields.addAll(TaskFilterFieldFactory.getStandardFilterableFields());
   }
 
   private void populateBackgroundColorsIfMissing() {
@@ -505,4 +513,43 @@ public class StatisticWidgetConfigurationBean implements Serializable {
       PortalNavigator.navigateToDashboardDetailsPage(callbackDashboardId, true);
     }
   }
+
+  public List<FilterField> getFilterFields() {
+    return filterFields;
+  }
+
+  public void setFilterFields(List<FilterField> filterFields) {
+    this.filterFields = filterFields;
+  }
+  
+  public void onSelectFilter(StatisticFilter filter) {
+    String field = Optional.ofNullable(filter).map(StatisticFilter::getFilterField).map(FilterField::getName)
+        .orElse(StringUtils.EMPTY);
+
+    FilterField filterField = TaskFilterFieldFactory.findBy(field);
+
+    if (filterField.getName()
+        .contentEquals(FilterFieldFactory.DEFAULT_FILTER_FIELD)) {
+      filterField.addNewFilter(filter);
+      return;
+    }
+
+    filter.getFilterField().addNewFilter(filter);
+//    initCustomFieldNumberPattern(filter, field, filter.getFilterField());
+  }
+  
+  public void addNewFilter() {
+    if (statistic.getFilters() == null) {
+      statistic.setFilters(new ArrayList<>());
+    }
+
+    StatisticFilter newFilter = new StatisticFilter();
+//    newFilter.setTemp(true);
+    statistic.getFilters().add(newFilter);
+  }
+  
+  public void removeFilter(StatisticFilter filter) {
+    statistic.getFilters().remove(filter);
+  }
+  
 }

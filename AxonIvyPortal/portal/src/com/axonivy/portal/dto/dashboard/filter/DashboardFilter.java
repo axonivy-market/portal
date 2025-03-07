@@ -44,19 +44,14 @@ public class DashboardFilter implements Serializable {
   public static final String ID = "id";
   @JsonIgnore
   public static final String CREATED_DATE = "startTimestamp";
-
   @JsonIgnore
   public static final String DATE_FORMAT = "MM/dd/yyyy HH:mm";
-  
   @JsonIgnore
   public static final String DATE_FORMAT_WITHOUT_TIME = "MM/dd/yyyy";
-  
   @JsonIgnore
   public static final String DMY_DATE_FORMAT = "dd.MM.yyyy HH:mm";
-  
   @JsonIgnore
   public static final String DMY_DATE_FORMAT_WITHOUT_TIME = "dd.MM.yyyy";
-  
   @JsonIgnore
   private static final String DEFAULT = "default";
 
@@ -139,7 +134,7 @@ public class DashboardFilter implements Serializable {
     return CATEGORY.equals(this.field);
   }
 
-  @JsonIgnore
+  @JsonIgnore 
   public boolean isApplication() {
     return APPLICATION.equals(this.field);
   }

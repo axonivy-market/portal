@@ -13,8 +13,6 @@ import java.util.stream.Collectors;
 import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.dto.StatisticDto;
 import com.axonivy.portal.enums.AdditionalChartConfig;
@@ -80,12 +78,12 @@ public class StatisticService {
   }
 
   public AggregationResult getChartData(Statistic chart) {
-    chart.setFilter(StringUtils.stripToNull(chart.getFilter()));
+//    chart.setFilters(StringUtils.stripToNull(chart.getFilters()));
     return switch (chart.getChartTarget()) {
     case CASE -> WorkflowStats.current().caze().aggregate(chart.getAggregates(),
-        chart.getFilter());
+        "");
     case TASK -> WorkflowStats.current().task().aggregate(chart.getAggregates(),
-        chart.getFilter());
+        "");
     default -> throw new PortalException("Cannot parse chartTarget " + chart.getChartTarget());
     };
   }
