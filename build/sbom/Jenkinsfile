@@ -1,0 +1,28 @@
+pipeline {
+   agent any
+
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '1'))
+    disableConcurrentBuilds()
+  }
+
+  triggers {
+    cron '@midnight'
+  }
+
+  stages {
+    stage('build') {
+      steps {
+        script {
+          def release = load 'build/release/release.groovy'
+          try {
+            release.buildAllProducts()
+            release.generateBOM(isReleasingBranch())
+          } finally {
+            release.cleanProductArtifacts()
+          }
+        }
+      }
+    }
+  }
+}
