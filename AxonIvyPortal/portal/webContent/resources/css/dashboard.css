@@ -540,7 +540,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .filter-overlay-panel {
-  max-width: 75rem !important;
+  max-width: 90rem !important;
 }
 
 .filter-overlay-panel__footer > div#manage-filter {

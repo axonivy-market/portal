@@ -19,7 +19,7 @@
           ],
           "map" : {
             "out.name" : "param.user",
-            "out.note" : "param.note",
+            "out.note" : "java.net.URLDecoder.decode(param.note, \"UTF-8\")",
             "out.startDate" : "com.axonivy.portal.userexamples.utils.Dates.parse(param.startDate)"
           }
         },
