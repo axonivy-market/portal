@@ -45,7 +45,10 @@
     <c:set var="defaultNotificationMessage"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/defaultNotificationMessage')}" />
     <p:ajaxExceptionHandler id="portal-ajax-exception-handler" update="exception-dialog:exception-dialog"
-      onexception="portal.notifyError('#{defaultNotificationMessage}', '#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}');" />
+      onexception="showErrorNotification();" />
+    <!--  This remote command is a workaround. since onexception in p:ajaxExceptionHandler always render Japanese text to '??????' -->
+    <p:remoteCommand id="error-notification" name="showErrorNotification" onstart="portal.notifyError('#{defaultNotificationMessage}', '#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}');"/>
+    
     <ic:ch.ivy.addon.portalkit.component.ExceptionDialog id="exception-dialog" widgetVar="exception-dialog"
       pfException="#{pfExceptionHandler}" />
 

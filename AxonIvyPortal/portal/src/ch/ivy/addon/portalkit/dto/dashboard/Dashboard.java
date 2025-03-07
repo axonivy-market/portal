@@ -21,7 +21,6 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;
   private String templateId;
-  @Deprecated(since = "10.0", forRemoval = true)
   @JsonProperty(access = Access.WRITE_ONLY)
   private String title;
   private List<DisplayName> titles;
