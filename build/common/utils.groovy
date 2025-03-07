@@ -102,4 +102,46 @@ def getJenkinsMasterDomain() {
   return env.BUILD_URL.split('/')[2].split(':')[0]
 }
 
+def generateBOM(def uploadDtrack) {
+  def downloadBom = {
+    maven cmd: '-f build/sbom/pom.xml clean package'
+  }
+  runMaven(downloadBom)
+
+  def version = evaluateMavenProperty('ivy-version') // e.g. 13.1.0
+  generateBOMFile(version, 'ch.ivyteam.ivy.designer.product/target/products/AxonIvyDesigner*Linux*.zip', 'designer-linux', uploadDtrack)
+  generateBOMFile(version, 'ch.ivyteam.ivy.designer.product/target/products/AxonIvyDesigner*Windows*.zip', 'designer-windows', uploadDtrack)
+  generateBOMFile(version, 'ch.ivyteam.ivy.designer.product/target/products/AxonIvyDesigner*macOS*.zip', 'designer-macos', uploadDtrack)
+  generateBOMFile(version, 'ch.ivyteam.ivy.server.product/target/products/AxonIvyEngine*_Windows_*.zip', 'engine-windows', uploadDtrack)
+  generateBOMFile(version, 'ch.ivyteam.ivy.server.product/target/products/AxonIvyEngine*_Slim_All*.zip', 'engine-slim', uploadDtrack)
+
+  def fileName = sh (script: "ls workspace/ch.ivyteam.ivy.server.product/target/products/AxonIvyEngine*_Slim_All*.zip | xargs -n 1 basename", returnStdout: true)
+  fileName = fileName.trim()
+  sh "mv workspace/ch.ivyteam.ivy.server.product/target/products/$fileName /tmp/$fileName"
+
+  generateBOMFile(version, 'ch.ivyteam.ivy.server.product/target/products/AxonIvyEngine*_All*.zip', 'engine-all', uploadDtrack)
+  sh "mv /tmp/$fileName workspace/ch.ivyteam.ivy.server.product/target/products/$fileName"
+}
+
+def generateBOMFile(def version, def zip, def project, def uploadDtrack) {
+  def currentDir = pwd()
+  def file = sh (script: "ls workspace/$zip", returnStdout: true)
+  file = file.trim()
+  def fileName = sh (script: "ls workspace/$zip | xargs -n 1 basename", returnStdout: true)
+  fileName = fileName.trim() + ".bom.json"
+  sh "docker run -v $currentDir/$file:/product.zip anchore/syft scan /product.zip -o cyclonedx-json --exclude './**/pom.xml' > build/sbom/target/product.json"
+  sh "docker run -v $currentDir/build/sbom:/sbom cyclonedx/cyclonedx-cli merge --input-files /sbom/target/product.json /sbom/target/sbom/neo-designer-bom.json /sbom/target/sbom/monaco-yaml-ivy-bom.json /sbom/target/sbom/swagger-ui-ivy-bom.json --output-file /sbom/$fileName"
+  
+  if(project.contains("windows")){
+    sh "docker run -v $currentDir/build/sbom:/sbom cyclonedx/cyclonedx-cli merge --input-files /sbom/target/product.json /sbom/target/sbom/temurin-windows-bom.json --output-file /sbom/$fileName";
+  }
+  if(project.contains("macos")){
+    sh "docker run -v $currentDir/build/sbom:/sbom cyclonedx/cyclonedx-cli merge --input-files /sbom/target/product.json /sbom/target/sbom/temurin-mac-bom.json --output-file /sbom/$fileName";
+  }
+  
+  if (uploadDtrack) {
+    uploadBOM(projectName: project, projectVersion: version, bomFile: "build/sbom/$fileName")
+  }
+}
+
 return this
