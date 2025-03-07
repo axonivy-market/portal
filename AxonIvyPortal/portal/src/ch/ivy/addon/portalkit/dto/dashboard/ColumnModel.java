@@ -14,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonIgnoreProperties({"format", "filterType", "filterListOptions", "dateFilterFrom", "dateFilterTo", "userFilter",
@@ -39,5 +41,12 @@ public class ColumnModel extends AbstractColumn implements Serializable {
   @JsonIgnore
   public boolean canQuickSearch() {
     return false;
+  }
+  
+  public String displayStringFieldContent(ICustomFields customFields) {
+    if (Boolean.TRUE.equals(this.hasCmsValues)) {
+      return PortalCustomFieldUtils.getDisplayValueByField(customFields, field);
+    }
+    return customFields.stringField(field).getOrNull();
   }
 }

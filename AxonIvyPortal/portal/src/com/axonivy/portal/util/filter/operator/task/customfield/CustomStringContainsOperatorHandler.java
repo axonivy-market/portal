@@ -1,11 +1,15 @@
 package com.axonivy.portal.util.filter.operator.task.customfield;
 
+import java.util.List;
+
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
+import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class CustomStringContainsOperatorHandler {
 
@@ -25,12 +29,19 @@ public class CustomStringContainsOperatorHandler {
       return null;
     }
     TaskQuery query = TaskQuery.create(); // TODO filterfield correct? business and/or technical cases?
+
     filter.getValues().forEach(text -> {
       TaskQuery subQuery = TaskQuery.create();
       subQuery.where().customField().stringField(filter.getField())
           .isLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
       query.where().or(subQuery);
     });
+    
+    if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(filter.getField())) {
+      TaskQuery addingQuery = buildQueryForCustomFieldWithCmsValue(filter);
+      query.where().or(addingQuery);
+    }
+
     return query;
   }
 
@@ -71,6 +82,22 @@ public class CustomStringContainsOperatorHandler {
 
     TaskQuery query = TaskQuery.create();
     query.where().cases(caseQuery);
+    return query;
+  }
+  
+  public TaskQuery buildQueryForCustomFieldWithCmsValue(DashboardFilter filter) {
+    List<String> keywordList = PortalCustomFieldUtils.getCmsValuesMatchingWithKeywordList(filter.getField(), filter.getFilterType(), filter.getValues());
+
+    TaskQuery query = TaskQuery.create();
+    IFilterQuery filterQuery = query.where();
+    if (CollectionUtils.isEmpty(keywordList)) {
+      // Using an incorrect condition to return empty result
+      filterQuery.taskId().isNull().and().taskId().isNotNull();
+      return query;
+    }
+    for (String keyword : keywordList) {
+      filterQuery.or().customField().stringField(filter.getField()).isEqual(keyword);
+    }
     return query;
   }
 }
