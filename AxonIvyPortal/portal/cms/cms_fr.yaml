@@ -16,6 +16,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       fromBiggerThanTill: '"Jusqu''à" doit être ultérieur à "Depuis"'
       overlappingAbsence: L'absence entre en collision avec une autre absence.
       userNameRequired: Le nom d'utilisateur doit être indiqué.
+    SelectedSubtitutes: Remplaçants sélectionnés
     absences: Absences
     addAbsence: Ajouter une absence
     deputies: Remplaçant
@@ -409,6 +410,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoSelection: Aucune sélection
     ResetToDefaultHeaderText: Réinitialiser les paramètres par défaut ?
     RoleUserInformation: Informations sur le rôle et l'utilisateur
+    StringFormat:
+      DateFromTo: '%s - %s'
+      TextListOut: '%s, %s,..'
+      TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Informations sur les tâches et les cas
     Update: Mettre à jour
     Widget: Widget

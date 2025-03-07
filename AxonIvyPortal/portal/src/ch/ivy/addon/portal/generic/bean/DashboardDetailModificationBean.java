@@ -182,7 +182,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       if (isPublicDashboard) {
         collectedDashboards = DashboardUtils.getPublicDashboards();
       } else {
-        collectedDashboards = DashboardUtils.getPrivateDashboards();
+        String dashboardInUserProperty = readDashboardBySessionUser();
+        collectedDashboards = getVisibleDashboards(dashboardInUserProperty);
       }
     } catch (PortalException e) {
       Ivy.log().error(e);
@@ -502,7 +503,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     widget = null;
     isEditWidget = false;
     PrimeFaces.current().ajax().update("grid-stack");
-    DashboardUtils.updateDashboardCache();
   }
 
   public void onCancel(DashboardWidget widget) {
@@ -874,6 +874,14 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     customWidget.loadParametersFromProcess();
   }
 
+  private List<Dashboard> getVisibleDashboards(String dashboardJson) {
+    if (isPublicDashboard) {
+      return DashboardUtils.jsonToDashboards(dashboardJson);
+    } else {
+      return DashboardUtils.getVisibleDashboards(dashboardJson);
+    }
+  }
+
   public void navigatetoDashboardConfigurationPage() throws IOException {
     String dashboardConfigurationUrl = PortalNavigator.buildDashboardConfigurationUrl();
     FacesContext.getCurrentInstance().getExternalContext().redirect(dashboardConfigurationUrl);
@@ -1204,7 +1212,6 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
           .map(DashboardCustomWidgetData::getStartableProcessStart)
           .map(IWebStartable::getDisplayName).orElse("");
     }
-
-    return String.format("%s (%s)", widgetName, widget.getType().getLabel());
+    return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/TextWithRoundBracket"), widgetName, widget.getType().getLabel());
   }
 }
