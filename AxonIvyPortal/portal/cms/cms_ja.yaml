@@ -65,6 +65,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       EMAIL: メール
       INFORMATION: 情報
       OTHERS: その他
+    BehaviourWhenClickingOnLineInCaseList:
+      ACCESS_BUSINESS_DETAILS: ビジネスの詳細にアクセス
+      ACCESS_CASE_DETAILS: ケースの詳細にアクセス
     BehaviourWhenClickingOnLineInTaskList:
       ACCESS_TASK_DETAILS: タスクの詳細にアクセス
       RUN_TASK: タスクを実行
@@ -213,6 +216,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SearchScopeTaskFields: グローバル検索で一致するタスクを見つけるために、タスクIDのほかに使用するフィールドを定義します。（検索のパフォーマンスに影響する可能性があります）
       ShowLoginPageFooter: ログインページのフッターの表示のオン／オフを切り替えます。
       ShowQRCode: QRコードの表示のオン／オフを切り替えます。
+      behaviourWhenClickingOnLineInCaseList: ダッシュボード・グローバル検索・関連ケース・または複合モードのプロセスウィジェットの各ケースウィジェットでケースをクリックしたときに、ケースの詳細またはビジネスの詳細へのアクセスを切り替えます。
       behaviourWhenClickingOnLineInTaskList: タスク リスト、ダッシュボードのタスク ウィジェット、およびケース詳細ページの関連タスクの行をクリックしたときの動作（タスクを実行するか、タスクの詳細にアクセスするか）を切り替えます。
       chatMaxConnection: 設定された数値は、アクティブなチャットで許可されるタブの数を制御します。それ以上のタブが開かれると、非アクティブなタブではチャットが無効になります。許可される値は 1 から 5 です。
       chatResponseTimeout: 'チャット応答タイムアウトで単位は秒。初期値は 0 で、これはタイムアウトなしを意味します。チャットメッセージがリバースプロキシ Nginx を通過する場合、チャット応答タイムアウトは Nginx タイムアウトよりも短くする必要があります。（例: 60 秒未満）'
@@ -412,6 +416,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       TextWithRoundBracket: '%s（%s）'
     TaskCaseInformation: タスク／ケース情報
     Update: 更新
+    Widget: ウィジェット
     action: アクション
     active: アクティブ
     add: 追加
@@ -760,6 +765,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     columnManagement: 列の管理
     columnType:
       CUSTOM: カスタムフィールド
+      CUSTOM_BUSINESS_CASE: カスタムビジネスケースフィールド
       CUSTOM_CASE: カスタムケースフィールド
       STANDARD: 標準の列
     configuration:
@@ -1191,7 +1197,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       STATE: 状態
       TASK_FOR_UNAVAILABLE_ACTIVATOR: アクティベーターがありません
       abbreviation:
-        PRIORITY: 優先順位
+        PRIORITY: 優先度
     defaultFilter: フィルターの初期値
     destroyTaskMessage: この操作は元に戻せません。このタスクを破棄してもよろしいですか？
     headerTitle:
@@ -1458,6 +1464,8 @@ Dialogs:
               NotificationWidgetConfiguration: 通知ウィジェットの設定
               NotificationWidgetDescription: このウィジェットには、通知設定に基づいてすべての通知が表示されます。
               WidgetFilter: ウィジェットフィルター
+            PortalDashboardDetailModification:
+              CloneWidget: ウィジェット複製
             TaskWidgetConfiguration:
               AddFilter: フィルターの追加
               ResetFilter: フィルターのリセット
