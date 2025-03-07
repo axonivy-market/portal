@@ -8,7 +8,9 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 
 import com.axonivy.portal.components.dto.UserDTO;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
@@ -30,6 +32,10 @@ public class SecurityMemberDisplayNameUtils {
     if(securityMember == null) {
       return stripSharpCharacterFromSecurityMemberName(securityMemberName);
     }
+    if(GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_TECHNICAL_NAME) ){
+      return securityMemberName;
+    }
+
     if(securityMember.isUser()) {
       IUser user = (IUser) securityMember;
       return generateBriefDisplayNameForUser(user, user.getName());

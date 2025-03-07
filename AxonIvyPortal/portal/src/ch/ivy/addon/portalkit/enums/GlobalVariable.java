@@ -87,7 +87,11 @@ public enum GlobalVariable {
       getGlobalSearchScopeCategories(), "GlobalSearchScopeCategoriesNote", getGlobalSearchScopeCategories()),
   APPLICATION_NAME("Portal.ApplicationName", GlobalVariableType.TEXT, "Axon Ivy", "ApplicationName"), HIDE_CASE_CREATOR(
       "Portal.Cases.HideCaseCreator", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseCreator"),
-  ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableDocumentPreview");
+  ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableDocumentPreview"),
+  /**
+   * reminder: create a cms for this variable
+   */
+  SHOW_TECHNICAL_NAME("Portal.ShowTechnicalName", GlobalVariableType.SELECTION, Option.FALSE.toString(), "showTechnicalName");
 ;
 
   private String key;
