@@ -398,10 +398,10 @@
             "locale": "es",
             "value": "Sus tareas"
           },
-	      {
-	        "locale": "ja",
-	        "value": "タスク"
-	      }
+          {
+            "locale": "ja",
+            "value": "タスク"
+          }
         ],
         "layout": {
           "w": 12,
@@ -518,10 +518,10 @@
             "locale": "es",
             "value": "Sus casos"
           },
-	      {
-	        "locale": "ja",
-	        "value": "ケース"
-	      }
+          {
+            "locale": "ja",
+            "value": "ケース"
+          }
         ],
         "layout": {
           "w": 12,

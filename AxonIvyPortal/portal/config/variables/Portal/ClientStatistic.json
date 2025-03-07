@@ -131,7 +131,7 @@
         {
           "locale": "ja",
           "value": "優先度"
-        }        
+        }
       ],
       "yTitles": [
         {
@@ -355,10 +355,10 @@
           "locale": "es",
           "value": "Tiempo medio de ejecución (horas)"
         },
-      {
-        "locale": "ja",
-        "value": "平均実行時間（時間）"
-      }
+        {
+          "locale": "ja",
+          "value": "平均実行時間（時間）"
+        }
       ],
       "yValue": "time"
     }
@@ -560,10 +560,10 @@
           "locale": "es",
           "value": "Cajas acabadas"
         },
-      {
-        "locale": "ja",
-        "value": "終了したケース"
-      }
+        {
+          "locale": "ja",
+          "value": "終了したケース"
+        }
       ]
     }
   },
@@ -767,6 +767,10 @@
         "value": "Tâches ouvertes"
       },
       {
+        "locale": "es",
+        "value": "Tareas Pendientes"
+      },
+      {
         "locale": "ja",
         "value": "オープンなタスク"
       }
@@ -851,7 +855,7 @@
       {
         "locale": "ja",
         "value": "これは、今日期限が切れるタスクの数を表示します。"
-      }      
+      }
     ],
     "icon": "si si-pie-line-graph",
     "refreshInterval": 300,
