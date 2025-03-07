@@ -16,6 +16,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       fromBiggerThanTill: '''Until'' must be later than ''From''.'
       overlappingAbsence: The absence is overlapping with another absence.
       userNameRequired: User name must not be empty.
+    SelectedSubtitutes: Selected subtitutes
     absences: Absences
     addAbsence: Add absence
     deputies: Substitutes
@@ -410,6 +411,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoSelection: No Selection
     ResetToDefaultHeaderText: Reset to default settings?
     RoleUserInformation: Role and User Information
+    StringFormat:
+      DateFromTo: '%s - %s'
+      TextListOut: '%s, %s,..'
+      TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Task and Case Information
     Update: Update
     Widget: Widget
@@ -734,7 +739,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoSavedFilterMessage: No saved filter found. Try to create a new by click on Save Filter button
     NoWidgetAvailable: There are no widgets.
     QuickSearch: Quick search
-    QuickSearchInfo: You can customize the Quick Search's scope in the widgets column management. It searches based on "contains", but be mindful of performance when adding numerous columns.
+    QuickSearchInfo: You can customize the Quick Search's scope in the widgets column management. It searches based on "contains" but be mindful of performance when adding numerous columns.
     QuickSearchScope: 'Search Scope: {0}'
     RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Save a new widget filter

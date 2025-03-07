@@ -52,7 +52,8 @@
     </div>
     <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0 case-details-related-task-table" id="case-details-related-task-table">
       <p:dataTable id="related-tasks" lazy="true" value="#{data.dataModel}" var="task" paginator="true" rows="5"
-        paginatorPosition="bottom" paginatorAlwaysVisible="false"
+        paginatorPosition="bottom" paginatorAlwaysVisible="false" 
+        emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" sortBy="#{caseDetailsBean.sortById}"
         rowIndexVar="rowIndex" rowHover="true" selectionMode="single"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
