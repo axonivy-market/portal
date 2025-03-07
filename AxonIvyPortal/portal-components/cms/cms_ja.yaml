@@ -1,0 +1,99 @@
+Dialogs:
+  com:
+    axonivy:
+      portal:
+        components:
+          Common:
+            Cancel: キャンセル
+            Categories: カテゴリー
+            ConfirmForDelete: このアイテムを削除してもよろしいですか？
+            Confirmation: 確認
+            Description: 説明
+            More: 詳細
+            Name: 名前
+            'No': いいえ
+            NotAvailable: 利用不可
+            Process:
+              ProcessName: プロセス名
+            RequiredFieldMessage: このフィールドは必須です
+            Task:
+              Activator: 責任者
+            Type: タイプ
+            'Yes': はい
+          DocumentTable:
+            Delete: 削除
+            DeleteDocumentNote: '{0} が {1} を削除しました'
+            DeleteSuceed: ファイルが正常に削除されました
+            Download: ダウンロード
+            EmptyFileMessage: ファイルサイズは空にしないでください
+            ErrorFileUploadSize: ファイル サイズは {0} 未満である必要があります
+            FileContainScript: このファイルにはスクリプトが含まれているため、アップロードできません。
+            FileContainVirus: アップロードに失敗しました。ウイルス／感染が検出されました。
+            FileFunction: 機能
+            FileLimitMessage: すでに最大数のファイルがアップロードされています！
+            InvalidFileMessage: このファイルの種類は受け入れられません！
+            Name: ファイル名
+            NoFile: ファイルが見つかりません！
+            Preview: プレビュー
+            Size: ファイルサイズ
+            Type: タイプ
+            Upload: 新しいファイルをアップロード
+            UploadDocumentNote: '{0} が {1} をアップロードしました'
+            UploadFailed: このファイルのアップロード中にエラーが発生しました。管理者にお問い合わせください。
+            UploadFileExists: ファイル：{0} は既に存在します
+            UploadSucceed: ファイルのアップロードに成功しました
+          Enums:
+            BasicDocumentType:
+              CONTRACT: 契約
+              DOCUMENTATION: ドキュメント化
+              EMAIL: メール
+              INFORMATION: 情報
+              OTHERS: その他
+          ProcessChain:
+            currentStepIsNotDefined: プロセスチェーンの現在のステップ ({0}) が定義されていません
+          ProcessHistory:
+            CaseColumn:
+              CreationTime: 作成日
+              Creator: クリエイター
+              Id: ケースID
+              Name: 名前
+              ProcessName: プロセス名
+              State: 状態
+            CaseNameNotAvailable: ［ケース名がありません］
+            CaseState:
+              CREATED: 作成済み
+              DESTROYED: 破棄済み
+              DONE: 完了
+              FAILED: 失敗
+              OPEN: 未完了
+              RUNNING: 進行中
+              ZOMBIE: 破綻
+            DefaultEmptyMessage: ケースはありません
+            NoDescription: 説明なし
+            NoName: 名前なし
+            NotAvailable: 利用不可
+          ProcessViewer:
+            CouldNotFindLinkedProcess: リンクされたプロセスが見つかりませんでした。
+            NoPermissionToView: このプロセスを表示するために必要な権限がありません。
+            ProcessCanNotBeLoaded: プロセスをロードできません。
+            ProcessDetails: プロセスの詳細
+            ProcessId: プロセスID
+            ProcessInfo: プロセス情報
+            ProcessInfoIconTooltip: プロセス開始の詳細を見るにはクリック
+            ProcessIsHidden: 現在のプロセスは非表示になっています。
+            ProcessNotFound: 定義されたプロセスが見つかりません。
+            ProcessType:
+              CASE_MAP: ケースマップ
+              EXTERNAL_LINK: 外部リンク
+              IVY_PROCESS: ビジネスプロセス
+            ProcessViewerIFrameTitle: プロセスビューアーフレーム
+Labels:
+  AI:
+    Error:
+      CanceledFlow: フローをキャンセルしました。ご要望があればお知らせください。
+      ErrorWhenProceedRequest: リクエストの処理中にエラーが発生しました。しばらくしてから、もう一度お試しください。
+      SomethingWentWrong: リクエストの処理中に問題が発生しました。しばらくしてから、もう一度お試しください。
+  DisabledUserPrefix: （無効）
+  NoName: 名前なし
+  NoResults: 結果なし
+  NotAvailable: 利用不可
