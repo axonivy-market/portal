@@ -2188,6 +2188,50 @@
       "connect" : [
         { "id" : "f202", "to" : "f7", "via" : [ { "x" : 408, "y" : 1840 } ] }
       ]
+    }, {
+      "id" : "f203",
+      "type" : "RequestStart",
+      "name" : "grantCaseOwnerTaskDelegatePermission.ivp",
+      "config" : {
+        "signature" : "grantCaseOwnerTaskDelegatePermission",
+        "request" : {
+          "name" : "Grant CaseOwnerTaskDelegate permission"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 48, "y" : 1928 },
+        "labelOffset" : { "x" : 145, "y" : 25 }
+      },
+      "connect" : [
+        { "id" : "f205", "to" : "f204" }
+      ]
+    }, {
+      "id" : "f204",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import java.util.Objects;",
+            "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+            "import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;",
+            "import ch.ivyteam.ivy.security.IPermission;",
+            "",
+            "IPermission iPermission = IPermissionRepository.instance().findByName(PortalPermission.CASE_OWNER_TASK_DELEGATE.getValue());",
+            "if (Objects.nonNull(iPermission)){",
+            "  ISecurityContext.current().securityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 1928 },
+        "size" : { "width" : 40, "height" : 24 }
+      },
+      "connect" : [
+        { "id" : "f206", "to" : "f7", "via" : [ { "x" : 408, "y" : 1928 } ] }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {

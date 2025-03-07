@@ -20,13 +20,17 @@ import ch.ivy.addon.portal.generic.bean.UserMenuBean;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -59,25 +63,31 @@ public class TaskActionBean implements Serializable {
 
   public boolean canDelegate(ITask task) {
     if (task == null) {
-      return false;
-    }
-    
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.DONE, TaskState.FAILED, TaskState.DESTROYED,
-        TaskState.CREATED, TaskState.READY_FOR_JOIN, TaskState.FAILED, TaskState.JOIN_FAILED, TaskState.WAITING_FOR_INTERMEDIATE_EVENT);
-    if (taskStates.contains(task.getState())) {
-      return false;
+        return false;
     }
 
-    if (userCanOnlyDelegateAssignedTask(task)) {
-      return canResume(task);
-    } else {
-      if(isNotDoneForWorkingUser(task)) {
-        return hasPermission(task, IPermission.TASK_WRITE_ACTIVATOR);
-      } else {
+    EnumSet<TaskState> invalidStates = EnumSet.of(
+        TaskState.RESUMED, TaskState.DONE, TaskState.FAILED, 
+        TaskState.DESTROYED, TaskState.CREATED, 
+        TaskState.READY_FOR_JOIN, TaskState.JOIN_FAILED,
+        TaskState.WAITING_FOR_INTERMEDIATE_EVENT
+    );
+    
+    if (invalidStates.contains(task.getState())) {
         return false;
-      }      
     }
-  }
+    
+    if (isCaseOwnerUser(task) && PermissionUtils.hasPortalPermission(PortalPermission.CASE_OWNER_TASK_DELEGATE)) {
+      return hasPermission(task, IPermission.TASK_WRITE_ACTIVATOR);
+    }
+    
+    if (userCanOnlyDelegateAssignedTask(task)) {
+        return canResume(task);
+    }
+    
+    return isNotDoneForWorkingUser(task) && 
+           hasPermission(task, IPermission.TASK_WRITE_ACTIVATOR);
+}
 
   private boolean userCanOnlyDelegateAssignedTask(ITask task) {
     IPermission permission =
@@ -90,6 +100,10 @@ public class TaskActionBean implements Serializable {
 
   public boolean canResume(ITask task) {
     return TaskUtils.canResume(task);
+  }
+  
+  public boolean isCaseOwnerUser(ITask task) {
+    return CaseUtils.isCaseOwnerUser(task.getCase());
   }
 
   public boolean canPark(ITask task) {
