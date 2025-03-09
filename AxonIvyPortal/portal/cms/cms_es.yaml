@@ -236,6 +236,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayAllUsersOfTaskActivator: Esta configuración se utiliza para la componente SecurityMemberDisplayName. Si el SecurityMember es un rol, cambie esta configuración a "true" para ver todos los usuarios de este rol. Si se configura "true", se muestra la información del icono junto al nombre del
         rol.
       displayMessageAfterFinishOrLeaveTask: Se mostrará un mensaje después de finalizar una tarea
+      documentUploadSizeLimit: Establecer el límite de tamaño para el documento subido en megabytes (MB). El valor predeterminado es 20MB.
       embedInFrame: Cambiar a "true" para abrir un proceso o tarea en modo iFrame
       enableCaseOwner: 'Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. '
       enableDeepLTranslation: Establezca esta propiedad en true para activar la traducción de DeepL
@@ -259,6 +260,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideTimeNote: Cambiar a "true" para ocultar horas y minutos de la fecha.
       hideUploadDocumentForDoneCaseNote: Cambiar a "true" para impedir el upload de documentos después de que un caso esté terminado.
       hideYear: activar para ocultar el año, de lo contrario se mostrará.
+      imageUploadSizeLimit: Establecer el límite de tamaño para la imagen subida en megabytes (MB). El valor predeterminado es 6MB.
       loggedInUserFormat: Opción para definir el formato visible del usuario conectado
       refreshTaskListIntervalNote: Actualización de la lista de tareas en segundos
       showAvatar: Para activar/desactivar la visualización de los avatares de los usuarios/roles.

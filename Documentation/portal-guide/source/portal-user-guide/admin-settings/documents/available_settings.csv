@@ -68,3 +68,5 @@ Portal.UserMenu.BaseQRCodeUrl,"",Set Base URL for QR code to display.
 Portal.UserMenu.AppleStoreURL,"",Set URL to download Axon Ivy mobile app on Apple Store.
 Portal.UserMenu.GooglePlayURL,"",Set URL to download Axon Ivy mobile app on Google Play.
 Portal.GlobalSearchScopeCategories,"PROCESSES,TASKS,CASES",Defining the types that the global search will search for.
+Portal.Document.DocumentUploadSizeLimit,"20",Set size limit for upload Document in MegaByte (MB). Default value is 20MB.
+Portal.Document.ImageUploadSizeLimit,"6",Set size limit for upload image in MegaByte (MB). Default value is 6MB.

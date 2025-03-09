@@ -186,10 +186,13 @@ Variables:
 
       # Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.
       EnablePreview: false
-      
+
+      # Set size limit for upload Document in MegaByte (MB). Default value is 20MB.
       DocumentUploadSizeLimit: "20"
-      # Set size limit for upload image in MegaByte. Default value is 6MB.
+
+      # Set size limit for upload image in MegaByte (MB). Default value is 6MB.
       ImageUploadSizeLimit: "6"
+
     DateTimeFormat:
       # Set to true to hide hours and minutes next to date in the datetime format.
       # This setting affects in Tasks, Cases and Statistic results.
