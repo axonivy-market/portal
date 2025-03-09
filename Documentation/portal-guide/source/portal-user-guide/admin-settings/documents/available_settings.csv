@@ -72,3 +72,5 @@ Portal.SearchScope.ByTaskFields,"NAME,DESCRIPTION",Defining the fields that the 
 Portal.GlobalFooterInfo,"Default",Defining the global environment footer info.
 Portal.GlobalSearchScopeCategories,"PROCESSES,TASKS,CASES",Defining the types that the global search will search for.
 Portal.Cases.HideCaseCreator,FALSE,"Set to true to hide case creator in case list, case widget and case details.This setting affects all case queries, e.g. for case list, global search, statistic."
+Portal.Document.DocumentUploadSizeLimit,"20",Set size limit for upload Document in MegaByte (MB). Default value is 20MB.
+Portal.Document.ImageUploadSizeLimit,"6",Set size limit for upload image in MegaByte (MB). Default value is 6MB.

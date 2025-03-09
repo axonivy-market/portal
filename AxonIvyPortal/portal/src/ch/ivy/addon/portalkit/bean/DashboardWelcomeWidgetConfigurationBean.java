@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.bean;
 import static com.axonivy.portal.util.WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT;
 
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
+import com.axonivy.portal.util.PortalSanitizeUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
@@ -85,7 +87,15 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       String fileName = getWidget().getId().concat(DEFAULT_LOCALE_AND_DOT).concat(extension);
       getWidget().setImageLocation(fileName);
       getWidget().setImageType(extension);
-      UploadDocumentUtils.validateUploadedFile(file);
+
+      byte[] content = file.getContent();
+
+      // hanlde sanitize svg
+      if ("svg".equals(extension)) {
+        content = PortalSanitizeUtils.sanitizeSvg(new String(content, StandardCharsets.UTF_8))
+            .getBytes(StandardCharsets.UTF_8);
+      }
+
       // save the temporary image
       imageCMSObject = getWelcomeWidgetImageContentObject(true);
       if (imageCMSObject != null) {
@@ -93,7 +103,14 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       }
     }
   }
-      UploadDocumentUtils.validateUploadedFile(file);
+
+      byte[] content = file.getContent();
+      // hanlde sanitize svg
+      if ("svg".equals(extension)) {
+        content = PortalSanitizeUtils.sanitizeSvg(new String(content, StandardCharsets.UTF_8))
+            .getBytes(StandardCharsets.UTF_8);
+      }
+
   public void initClientTime() {
     parsedClientTime = WelcomeWidgetUtils.parseClientTime();
   }
