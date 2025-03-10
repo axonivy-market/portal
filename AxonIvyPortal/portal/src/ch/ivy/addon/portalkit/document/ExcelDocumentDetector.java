@@ -2,34 +2,42 @@ package ch.ivy.addon.portalkit.document;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.poifs.macros.VBAMacroReader;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
-public class ExcelDocumentDetector implements DocumentDetector{
-  
+public class ExcelDocumentDetector implements DocumentDetector {
+
   @Override
   public boolean isSafe(InputStream inputStream) {
-    boolean isSafe = false;
-    if(!hasMacro(inputStream)){
-      isSafe = true;
-    }
-    return isSafe;
+    return !containsMacrosOrActiveX(inputStream);
   }
 
+  private boolean containsMacrosOrActiveX(InputStream inputStream) {
+    try (POIFSFileSystem fs = new POIFSFileSystem(inputStream);
+        VBAMacroReader vbaMacroReader = new VBAMacroReader(fs)) {
 
-  private boolean hasMacro(InputStream inputStream) {
-    try(VBAMacroReader vbaMacroReader = new VBAMacroReader(inputStream);) {
-      return vbaMacroReader.readMacros() != null && !vbaMacroReader.readMacros().isEmpty();
-    }
-    catch(IllegalArgumentException ex) {
-      //Not contain any VBA script
-      Ivy.log().debug(ex);
-      return false;
+      // Check for VBA macros
+      Map<String, String> macros = vbaMacroReader.readMacros();
+      if (macros != null && !macros.isEmpty()) {
+        Ivy.log().warn("Potential malicious Excel document: VBA macros detected.");
+        return true;
+      }
+
+      // Check for ActiveX controls
+      if (fs.getRoot().hasEntry("Macros") || fs.getRoot().hasEntry("ActiveX")) {
+        Ivy.log().warn("Potential malicious Excel document: ActiveX controls detected.");
+        return true;
+      }
+
+    } catch (IllegalArgumentException ex) {
+      Ivy.log().info("No VBA macros found, safe Excel document: " + ex.getMessage());
     } catch (IOException e) {
-      Ivy.log().error(e);
-      return false;
+      Ivy.log().error("Error scanning Excel document for macros/ActiveX", e);
     }
+    return false;
   }
 }
