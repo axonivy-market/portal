@@ -68,7 +68,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Axon Ivy process
     DashboardWidgetType:
       CASE: Case widget
-      STATISTIC: Statistic widget
       CUSTOM: Custom widget
       NEW: New widget
       PROCESS: Process widget
@@ -1063,6 +1062,7 @@ Dialogs:
                 NewDashboard: Add new dashboard
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Create custom statistic widget
+                DeleteConfirm: Are you sure you want to delete?
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
@@ -1106,6 +1106,23 @@ Dialogs:
               SeeMore: See more
             NewsWidgetConfiguration:
               NewsWidgetDescription: This widget shares relevant information as a News Feed into Axon Ivy.
+        page:
+          StatisticConfiguration:
+            AdvancedConfiguration: Advanced Configuration
+            Aggregate: Aggregate
+            ChartType: Chart type
+            Color: Color {0}
+            Create: Create
+            EditStatistic: Edit Statistic Widget
+            For: For
+            GeneratePreview: Generate preview
+            HideLabel: Hide label
+            NewStatistic: New Statistic Widget
+            RefreshInterval: Refresh interval
+            RefreshIntervalInSeconds: Refresh interval in seconds
+            StatisticConfiguration: Statistic configuration
+            XAxisTitle: X axis title
+            YAxisTitle: Y axis title
   components:
     CaseDocument:
       FileDate: Modified at
@@ -1124,14 +1141,21 @@ Dialogs:
 Labels:
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  Configuration: Configuration
   CreateNewDashboard: Create new dashboard
+  Description: Description
   Enums:
     DashboardStandardTaskColumn:
       EXPIRY: Expiry
       PRIORITY: Priority
       RESPONSIBLE: Responsible
+  Filters: Filters
+  Icon: Icon
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
+  Name: Name
+  Preview: Preview
+  Save: Save
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users

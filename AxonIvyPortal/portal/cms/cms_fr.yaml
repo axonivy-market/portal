@@ -72,7 +72,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Processus Axon Ivy
     DashboardWidgetType:
       CASE: Widget de cas
-      STATISTIC: Widget Statistiques
       CUSTOM: Widget personnalisé
       NEW: Nouveau widget
       NEWS: Nouvelles
@@ -1316,6 +1315,7 @@ Dialogs:
                 NewDashboard: Ajouter un nouveau tableau de bord
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Créer un widget de statistiques personnalisé
+                DeleteConfirm: Êtes-vous sûr de vouloir supprimer ?
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
@@ -1416,9 +1416,6 @@ Dialogs:
                 Fokus auf die erste Aufgabe. Alt + Q: Fokus auf den ersten Fall. Tab: Sequentielles Durchlaufen von Elementen. Esc: Erweiterte Widgets schließen/Kontext Menüs schließen. Enter: Auswahl bestätigen'
             CaseWidgetConfiguration:
               AddFilter: Ajouter un filtre
-            StatisticWidget:
-              IdNotFound: ' Diagramme avec ID {0} non trouvé'
-              NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour consulter ce graphique.
             CloneWidgetDialog:
               Header: Clone widget "{0}"
               TargetDashboard: Target dashboard
@@ -1457,6 +1454,9 @@ Dialogs:
               WidgetFilter: Filtre à widgets
             PortalDashboardDetailModification:
               CloneWidget: Cloner le widget
+            StatisticWidget:
+              IdNotFound: ' Diagramme avec ID {0} non trouvé'
+              NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour consulter ce graphique.
             TaskWidgetConfiguration:
               AddFilter: Ajouter un filtre
               ResetFilter: Réinitialiser le filtre
@@ -1465,6 +1465,23 @@ Dialogs:
             CaseDetailsIFrameTitle: Cadre des détails de l'affaire
           IFrameTaskTemplate:
             TaskIFrameTitle: Cadre de travail
+        page:
+          StatisticConfiguration:
+            AdvancedConfiguration: Configuration avancée
+            Aggregate: Agrégat
+            ChartType: Type de graphique
+            Color: Couleur {0}
+            Create: Créer
+            EditStatistic: Modifier le widget statistique
+            For: Pour
+            GeneratePreview: Générer un aperçu
+            HideLabel: Cacher l'étiquette
+            NewStatistic: Nouveau widget statistique
+            RefreshInterval: Intervalle de rafraîchissement
+            RefreshIntervalInSeconds: Intervalle de rafraîchissement en secondes
+            StatisticConfiguration: Configuration des statistiques
+            XAxisTitle: Titre de l'axe X
+            YAxisTitle: Titre de l'axe des Y
   components:
     CaseDocument:
       FileDate: Modifié le
@@ -1502,7 +1519,9 @@ Labels:
     TaskDetailsResult: ''
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
+  Configuration: Configuration
   CreateNewDashboard: Créer un nouveau tableau de bord
+  Description: Description
   EditDescription: Editer la description
   Enums:
     ChatbotCandidateQuestion:
@@ -1587,12 +1606,17 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
+  Filters: Filtres
+  Icon: Icône
   InsertTask-Explain: Insérer la tâche. Ma tâche sera reportée.
   InsertTheTask: Insérer la tâche.
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Name: Nom
   Permissions: Permissions
+  Preview: Aperçu
+  Save: Enregistrer
   Share: Partager
   Task: Tâche
   TaskItemDetail: Détails de la tâche

@@ -227,7 +227,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     return $("div[id='dashboard-body']").$$(".statistic-chart-widget__chart");
   }
 
-  public SelenideElement getStatisticWidgetConfigurationDialog() {
+  public SelenideElement getStatisticConfigurationDialog() {
     $("[id$=':case-component:dashboard-cases']").shouldBe(appear, DEFAULT_TIMEOUT);
     SelenideElement statisticElement =
         $("div[id^='statistic-client_statistic']").shouldBe(appear, DEFAULT_TIMEOUT).scrollTo();

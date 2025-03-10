@@ -16,10 +16,10 @@ import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.util.DashboardCloneUtils;
 
-import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.widget.DashboardCustomWidgetData;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.service.DashboardService;
@@ -94,8 +94,7 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
     }
 
     String result = cloneWidget.getName();
-    // Statistic widget need to load name from list of pre-built client
-    // statistic
+    // Statistic widget need to load name from list of pre-built statistic
     if (cloneWidget.getType() == DashboardWidgetType.STATISTIC) {
       StatisticDashboardWidget statisticWidget = (StatisticDashboardWidget) cloneWidget;
       result = statisticWidgets.stream()
