@@ -964,6 +964,14 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   .case-detail-body .case-details-related-task-table .related-task-complete-on-column {
     display: none;
   }
+  
+  .case-detail-body .related-cases .more-column {
+    display: none;
+  }
+
+  .case-detail-body .case-details-related-task-table .related-task-more-column {
+    width: fit-content;
+  }
 
 /*   .case-detail-body .name-column, */
 /*   .case-detail-body .case-details-related-task-table .related-task-name-column { */
