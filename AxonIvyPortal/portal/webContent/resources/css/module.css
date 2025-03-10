@@ -890,6 +890,10 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   text-align: center;
 }
 
+.case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
+  display: none;
+}
+
 .case-detail-body .case-details-related-task-table .related-task-complete-on-column {
   width: 136px;
   text-align: center;
