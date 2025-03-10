@@ -49,6 +49,7 @@ public class BaseTest {
   protected String testProcessViewerPermissionUrl =
       "portalKitTestHelper/153CACC26D0D4C3D/testProcessViewerPermission.ivp";
   protected String createTestingTasksUrl = "portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp";
+  protected String createTestDataForCustomFieldsWithCMS = "portal-developer-examples/162511D2577DBA88/createDataForCustomFieldWithCmsValue.ivp";
   protected String createRelatedTaskWithNoResponsible =
       "InternalSupport/14B2FC03D2E87141/TestRelatedTaskWithNoResponsible.ivp";
   protected String createCaseWithTechnicalCaseUrl = "InternalSupport/15B1EA24CCF377E8/OrderPizza.ivp";
