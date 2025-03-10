@@ -620,7 +620,7 @@ Sorting
 
 .. note::
 
-   If ``HasCmsValues = true`` but a translation is missing in a specific language, the untranslated value is sorted below the translated values and displayed with the static value.
+   If ``HasCmsValues = true`` but a translation is missing in a specific language, only the translated values are sorted.
 
 
 Searching
