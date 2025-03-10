@@ -27,11 +27,11 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.bo.BarChartConfig;
-import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.ColumnChartConfig;
 import com.axonivy.portal.bo.LineChartConfig;
 import com.axonivy.portal.bo.NumberChartConfig;
 import com.axonivy.portal.bo.PieChartConfig;
+import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.jsonversion.StatisticJsonVersion;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
@@ -39,8 +39,8 @@ import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
-import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.util.DisplayNameUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -63,6 +63,9 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 @ViewScoped
 @ManagedBean
 public class StatisticConfigurationBean implements Serializable {
+
+  private static final int MIN_REFRESH_INTERVAL_IN_SECONDS = 15;
+  private static final int DEFAULT_REFRESH_INTERVAL_IN_SECONDS = 300;
 
   private static final long serialVersionUID = 1L;
   private Statistic statistic;
@@ -89,7 +92,6 @@ public class StatisticConfigurationBean implements Serializable {
       statistic.setAggregates("priority");
       statistic.setNames(new ArrayList<>());
       statistic.setDescriptions(new ArrayList<>());
-      statistic.setRefreshInterval(0);
       statistic.setChartTarget(ChartTarget.TASK);
       statistic.setChartType(ChartType.BAR);
       statistic.setNumberChartConfig(new NumberChartConfig());
@@ -100,9 +102,13 @@ public class StatisticConfigurationBean implements Serializable {
       xTitles = new ArrayList<>();
       yTitles = new ArrayList<>();
       backgroundColors = new ArrayList<>();
+      refreshIntervalEnabled = false;
       // TODO z1 init category, value. Add action when select chart type
     } else { // existed statistic
       isEditMode = true;
+      if (statistic.getRefreshInterval() != null && statistic.getRefreshInterval() >= MIN_REFRESH_INTERVAL_IN_SECONDS) {
+        refreshIntervalEnabled = true;
+      }
       if (statistic.getNumberChartConfig() == null) {
         statistic.setNumberChartConfig(new NumberChartConfig());
       }
@@ -116,8 +122,8 @@ public class StatisticConfigurationBean implements Serializable {
         statistic.setPieChartConfig(new PieChartConfig() {});
       }
       if (BAR == statistic.getChartType() || LINE == statistic.getChartType()) {
-        ColumnChartConfig config = BAR == statistic.getChartType() ? statistic.getBarChartConfig()
-            : statistic.getLineChartConfig();
+        ColumnChartConfig config =
+            BAR == statistic.getChartType() ? statistic.getBarChartConfig() : statistic.getLineChartConfig();
         xTitles = config.getxTitles() != null ? config.getxTitles() : new ArrayList<>();
         yTitles = config.getyTitles() != null ? config.getyTitles() : new ArrayList<>();
         backgroundColors = config.getBackgroundColors() != null ? config.getBackgroundColors() : new ArrayList<>();
@@ -164,10 +170,18 @@ public class StatisticConfigurationBean implements Serializable {
   public void save() {
     syncUIConfigWithChartConfig();
     resetRedundantChartConfigs(statistic.getChartType(), true);
+    cleanUpConfiguration();
     saveStatisticJson();
-    resetRedundantChartConfigs(statistic.getChartType(), false);
-    populateBackgroundColorsIfMissing();
+    // resetRedundantChartConfigs(statistic.getChartType(), false);
+    // populateBackgroundColorsIfMissing();
     backToDashboardDetailsPageIfPossible();
+  }
+
+  private void cleanUpConfiguration() {
+    if (!refreshIntervalEnabled || statistic.getRefreshInterval() == null
+        || (statistic.getRefreshInterval() < MIN_REFRESH_INTERVAL_IN_SECONDS)) {
+      statistic.setRefreshInterval(null);
+    }
   }
 
   private void syncUIConfigWithChartConfig() {
@@ -329,8 +343,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void updateDescriptionByLocale() {
-    String currentDescription =
-        LanguageUtils.getLocalizedName(statistic.getDescriptions(), statistic.getDescription());
+    String currentDescription = LanguageUtils.getLocalizedName(statistic.getDescriptions(), statistic.getDescription());
     initAndSetValue(currentDescription, statistic.getDescriptions());
   }
 
@@ -480,13 +493,21 @@ public class StatisticConfigurationBean implements Serializable {
     // TODO z1 consider to remove
   }
 
-  private void initPermissions() {
-    statistic.setPermissionDTOs(Optional.ofNullable(statistic).map(Statistic::getPermissions)
-        .orElse(new ArrayList<>()).stream().filter(Objects::nonNull).distinct()
-        .map(permission -> findSecurityMemberDtoByName(permission)).collect(Collectors.toList()));
+  public void onToggleRefreshInterval() {
+    Integer refreshIntervalInSeconds = null;
+    if (refreshIntervalEnabled) {
+      refreshIntervalInSeconds = DEFAULT_REFRESH_INTERVAL_IN_SECONDS;
+    }
+    statistic.setRefreshInterval(refreshIntervalInSeconds);
+  }
 
-    selectedPermissions = Optional.ofNullable(statistic).map(Statistic::getPermissionDTOs)
-        .orElse(new ArrayList<>()).stream().map(SecurityMemberDTO::getName).collect(Collectors.toList());
+  private void initPermissions() {
+    statistic.setPermissionDTOs(Optional.ofNullable(statistic).map(Statistic::getPermissions).orElse(new ArrayList<>())
+        .stream().filter(Objects::nonNull).distinct().map(permission -> findSecurityMemberDtoByName(permission))
+        .collect(Collectors.toList()));
+
+    selectedPermissions = Optional.ofNullable(statistic).map(Statistic::getPermissionDTOs).orElse(new ArrayList<>())
+        .stream().map(SecurityMemberDTO::getName).collect(Collectors.toList());
   }
 
   private SecurityMemberDTO findSecurityMemberDtoByName(String permission) {
