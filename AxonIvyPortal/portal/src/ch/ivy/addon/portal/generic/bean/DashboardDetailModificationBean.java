@@ -1,12 +1,12 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CUSTOM;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NEWS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NOTIFICATION;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS_VIEWER;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.TASK;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 import static ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_CASE_LIST_DASHBOARD;
@@ -49,8 +49,8 @@ import com.axonivy.portal.dto.News;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.util.DashboardCloneUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 import com.google.common.base.Predicate;
@@ -61,7 +61,6 @@ import ch.ivy.addon.portalkit.constant.DashboardConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CombinedProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
@@ -74,6 +73,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.ImageProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessViewerDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetSample;
@@ -127,6 +127,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private Dashboard cloneFromDashboard;
   private DashboardWidget cloneFromWidget;
   private List<Dashboard> cloneableDashboards;
+  private Statistic selectedStatistic;
 
   @PostConstruct
   public void initConfigration() {
@@ -1208,6 +1209,14 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return String.format("%s (%s)", widgetName, widget.getType().getLabel());
   }
   
+  public Statistic getSelectedStatistic() {
+    return selectedStatistic;
+  }
+
+  public void onSelectedDeleteStatistic(Statistic selectedStatistic) {
+    this.selectedStatistic = selectedStatistic;
+  }
+
   public void navigateToCustomStatisticWidgetPage(String id) throws IOException {
     Map<String, String> param = new HashMap<>();
     if (StringUtils.isNotEmpty(id)) {
@@ -1219,8 +1228,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     FacesContext.getCurrentInstance().getExternalContext().redirect(PortalNavigator.buildCustomStatisticUrl(param));
   }
   
-  public void deleteCustomStatisticById(String id) {
-    boolean isRemoveSuccess = statisticWidgets.removeIf(c -> c.getId().equals(id));
+  public void deleteCustomStatistic() {
+    boolean isRemoveSuccess = statisticWidgets.removeIf(c -> c.getId().equals(selectedStatistic.getId()));
     if (isRemoveSuccess) {
       List<Statistic> customStatisticsToSave = statisticWidgets.stream().filter(c -> c.getIsCustom()).collect(Collectors.toList());
       StatisticService.getInstance().saveJsonToVariable(customStatisticsToSave);

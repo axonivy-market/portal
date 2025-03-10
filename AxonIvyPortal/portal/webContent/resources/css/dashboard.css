@@ -868,6 +868,7 @@ span.new-widget-dialog__icon.si, span.new-widget-dialog__icon.fa {
   display: flex;
   width: 100%;
   flex-direction: column;
+  gap: 1rem;
 }
 
 .new-widget-dialog__widget-name {
@@ -878,6 +879,7 @@ span.new-widget-dialog__icon.si, span.new-widget-dialog__icon.fa {
   white-space: nowrap;
   display: block;
   max-width: 20vw;
+  overflow: hidden;
 }
 
 body .ui-widget.new-widget-dialog__introduction {

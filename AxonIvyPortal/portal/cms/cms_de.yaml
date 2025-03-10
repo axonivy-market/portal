@@ -1319,6 +1319,7 @@ Dialogs:
                 NewDashboard: Neues Dashboard hinzufügen
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Benutzerdefiniertes Statistik-Widget erstellen
+                DeleteConfirm: Sind Sie sicher, dass Sie löschen möchten?
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
