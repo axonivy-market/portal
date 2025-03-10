@@ -20,11 +20,11 @@ import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class Statistic extends AbstractConfiguration implements Serializable{
-  
+public class Statistic extends AbstractConfiguration implements Serializable {
+
   private static final long serialVersionUID = -8416553636564399910L;
   public static final String DEFAULT_ICON = "si-pie-line-graph";
-  
+
   private String aggregates;
   private String filter;
   private List<String> permissions;
@@ -54,9 +54,8 @@ public class Statistic extends AbstractConfiguration implements Serializable{
 
   @JsonIgnore
   private List<SecurityMemberDTO> permissionDTOs;
-  
+
   public Statistic() {
-    refreshInterval = 300;
     icon = DEFAULT_ICON;
     isCustom = true;
   }
@@ -84,7 +83,7 @@ public class Statistic extends AbstractConfiguration implements Serializable{
   public void setChartType(ChartType chartType) {
     this.chartType = chartType;
   }
-  
+
   public Integer getRefreshInterval() {
     return refreshInterval;
   }

@@ -1955,3 +1955,7 @@ body.dark .focused {
   position: inherit;
   margin-top: 20px;
 }
+
+.statistic-configuration__preview {
+  max-height: fit-content;
+}
