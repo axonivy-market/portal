@@ -823,11 +823,14 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 80px;
 }
 
-.case-detail-body .responsible-column, .case-detail-body .owner-column {
+.case-detail-body .responsible-column, 
+.case-detail-body .owner-column,
+.case-detail-body .description-column {
   width: 150px;
 }
 
-.case-detail-body .state-column {
+.case-detail-body .state-column,
+.case-detail-body .category-column {
   width: 120px;
   text-align: center;
 }
@@ -876,9 +879,9 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 150px;
 }
 
-/* .case-detail-body .case-details-related-task-table .related-task-description-column { */
-/*   width: 150px; */
-/* } */
+.case-detail-body .case-details-related-task-table .related-task-description-column {
+  width: 150px;
+}
 
 .case-detail-body .case-details-related-task-table .related-task-id-column,
 .case-detail-body .case-details-related-task-table .related-task-created-column,
@@ -938,22 +941,27 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   }
 }
 
-@media screen and (max-width: 101.062em) {
+@media screen and (max-width: 40em) {
   .case-detail-body .name-column .case-description-value,
   .case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
     display: block;
   }
 
   .case-detail-body .description-column,
-/*   .case-detail-body .responsible-column, */
-/*   .case-detail-body .owner-column, */
-/*   .case-detail-body .expiry-column, */
-/*   .case-detail-body .category-column, */
-  .case-detail-body .case-details-related-task-table .related-task-description-column{
-/*   .case-detail-body .case-details-related-task-table .related-task-responsible-column, */
-/*   .case-detail-body .case-details-related-task-table .related-task-created-column, */
-/*   .case-detail-body .case-details-related-task-table .related-task-expiry-column, */
-/*   .case-detail-body .case-details-related-task-table .related-task-complete-on-column { */
+  .case-detail-body .responsible-column,
+  .case-detail-body .owner-column,
+  .case-detail-body .expiry-column,
+  .case-detail-body .category-column,
+  .case-detail-body .id-column,
+  .case-detail-body .created-column,
+  .case-detail-body .state-column,
+  .case-detail-body .case-details-related-task-table .priority-column,
+  .case-detail-body .case-details-related-task-table .related-task-description-column,
+  .case-detail-body .case-details-related-task-table .related-task-id-column,
+  .case-detail-body .case-details-related-task-table .related-task-responsible-column,
+  .case-detail-body .case-details-related-task-table .related-task-created-column,
+  .case-detail-body .case-details-related-task-table .related-task-expiry-column,
+  .case-detail-body .case-details-related-task-table .related-task-complete-on-column {
     display: none;
   }
 
