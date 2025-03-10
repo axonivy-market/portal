@@ -190,27 +190,12 @@ public class DashboardCaseSearchCriteria {
       appendSortByStateIfSet(criteria);
       appendSortByEndDateIfSet(criteria);
       appendSortByCustomFieldIfSet(criteria);
-      determineSortDirection(criteria);
+      if (order != null && isSortDescending()) {
+        order.descending();
+      }
       return this;
     }
     
-    private void determineSortDirection(DashboardCaseSearchCriteria criteria) {
-      if (order != null) {
-        boolean isDescending = criteria.isSortDescending();
-        if (sortStandardColumn) {
-          if (isDescending) {
-            order.descending();
-          }
-        } else {
-          if (isDescending) {
-            order.descendingNullLast();
-          } else {
-            order.ascendingNullLast();
-          }
-        }
-      }
-    }
-
     private void appendSortByEndDateIfSet(DashboardCaseSearchCriteria criteria) {
       if (DashboardStandardCaseColumn.FINISHED.getField().equalsIgnoreCase(criteria.getSortField())) {
         order = query.orderBy().endTimestamp();

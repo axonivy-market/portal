@@ -223,25 +223,10 @@ public class DashboardTaskSearchCriteria {
       appendSortByStateIfSet(criteria);
       appendSortByPriorityIfSet(criteria);
       appendSortByCustomFieldIfSet(criteria);
-      determineSortDirection(criteria);
-      return this;
-    }
-
-    private void determineSortDirection(DashboardTaskSearchCriteria criteria) {
-      if (order != null) {
-        boolean isDescending = criteria.isSortDescending();
-        if (sortStandardColumn) {
-          if (isDescending) {
-            order.descending();
-          }
-        } else {
-          if (isDescending) {
-            order.descendingNullLast();
-          } else {
-            order.ascendingNullLast();
-          }
-        }
+      if (order != null && isSortDescending()) {
+        order.descending();
       }
+      return this;
     }
     
     private void appendSortByNameIfSet(DashboardTaskSearchCriteria criteria) {
