@@ -1315,6 +1315,7 @@ Dialogs:
                 NewDashboard: Ajouter un nouveau tableau de bord
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Créer un widget de statistiques personnalisé
+                DeleteConfirm: Êtes-vous sûr de vouloir supprimer ?
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
