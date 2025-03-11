@@ -34,7 +34,7 @@ pipeline {
         script {
           def utils = load 'build/common/utils.groovy'
           for (module in builtModules) {
-              utils.generateBOMFile(version, module)
+              utils.generateBOMFile(module)
           }
           utils.mergeBOMFiles()
         }
