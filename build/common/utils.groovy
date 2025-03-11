@@ -119,7 +119,7 @@ def generateBOMFile(def moduleDir) {
 
 def mergeBOMFiles() {
   def currentDir = pwd()
-  def sbomFiles = sh (script: "ls ${currentDir}/*/target/*.sbom.json", returnStdout: true).trim().replace("\n", " ")
+  def sbomFiles = sh (script: "find ${currentDir} -type d -name 'target' -exec find {} -type f -name '*.sbom.json' \\;", returnStdout: true).trim().replace("\n", " ")
   sh "docker run -v ${currentDir}/build/sbom:/sbom cyclonedx/cyclonedx-cli merge --input-files ${sbomFiles} --output-file /sbom/portal.sbom.json"
 }
 
