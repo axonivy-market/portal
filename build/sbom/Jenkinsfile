@@ -1,26 +1,48 @@
 pipeline {
-   agent any
+  agent { label 'linux' }
 
   options {
-    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '1'))
-    disableConcurrentBuilds()
+    buildDiscarder(logRotator(numToKeepStr: '50', artifactNumToKeepStr: '5'))
   }
 
   triggers {
-    cron '@midnight'
+    cron('0 13 * * *')
+  }
+
+  environment {
+    engineVersion = '12'
   }
 
   stages {
     stage('build') {
       steps {
         script {
-          def release = load 'build/release/release.groovy'
-          try {
-            release.buildAllProducts()
-            release.generateBOM(isReleasingBranch())
-          } finally {
-            release.cleanProductArtifacts()
+          currentBuild.description = "On ${env.NODE_NAME}"
+          builtModules = []
+          docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+            def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples', 'AxonIvyPortal/portal-selenium-test']
+            for (module in modules) {
+              maven cmd: "clean install -f ${module}/pom.xml"
+              builtModules.add(module)
+            }
           }
+        }
+      }
+    }
+    stage('generate sboms') {
+      steps {
+        script {
+          def iarFiles = sh(script: "find /home/build -type f -name '*.iar'", returnStdout: true).trim().split('\n')
+          iarFiles.each { iarFile ->
+            echo "Processing .iar file: ${iarFile}"
+            sh "mv ${iarFile} ${iarFile.replace('.iar', '.zip')}"
+          }
+          def version = ${env.engineVersion}
+          def utils = load 'build/common/utils.groovy'
+          for (module in builtModules) {
+              utils.generateBOMFile(version, module)
+          }
+          utils.mergeBOMFiles()
         }
       }
     }
