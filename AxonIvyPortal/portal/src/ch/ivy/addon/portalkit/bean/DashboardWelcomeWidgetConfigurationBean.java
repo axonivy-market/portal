@@ -107,7 +107,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       // save the temporary image
       imageCMSObject = getWelcomeWidgetImageContentObject(true);
       if (imageCMSObject != null) {
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(file.getContent());
+        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(content);
       }
     }
   }
@@ -134,7 +134,7 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       // save the temporary image
       imageCMSObjectDarkMode = getWelcomeWidgetImageContentObjectDarkMode(true);
       if (imageCMSObjectDarkMode != null) {
-          WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObjectDarkMode).write().bytes(file.getContent());
+        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObjectDarkMode).write().bytes(content);
         }
 
       }
