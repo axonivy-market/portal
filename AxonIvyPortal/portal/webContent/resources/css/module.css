@@ -945,7 +945,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   }
 }
 
-@media screen and (max-width: 40em) {
+@media screen and (max-width: 45em) {
   .case-detail-body .name-column .case-description-value,
   .case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
     display: block;
@@ -974,7 +974,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   }
 
   .case-detail-body .case-details-related-task-table .related-task-more-column {
-    width: fit-content;
+    width: 25%;
   }
 }
 
