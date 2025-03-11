@@ -111,9 +111,7 @@ def generateBOMFile(def moduleDir) {
     echo "Renamed ${iarFile} to ${zipFile}"
     def inputFile = sh (script: "ls ${zipFile} | xargs -n 1 basename", returnStdout: true).trim()
     def outputFile = inputFile.replace('.zip', '.bom.json')
-    docker.image('anchore/syft').inside('-v ${currentDir}/${moduleDir}/target:/sbom') {
-      sh "syft scan /sbom/${inputFile} -o cyclonedx-json --exclude './**/pom.xml' > /sbom/$outputFile"
-    }
+    sh "docker run -v $zipFile:/portal.zip anchore/syft scan /portal.zip -o cyclonedx-json --exclude './**/pom.xml' > build/sbom/target/$outputFile"
   } else {
     echo "File not found: ${iarFile}"
   }
