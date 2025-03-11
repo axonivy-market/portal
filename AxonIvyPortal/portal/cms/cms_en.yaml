@@ -206,7 +206,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       ApplicationName: The default application name that will be displayed on the page title.
       BaseQRCodeUrl: Set Base URL for QR code to display.
       DefaultThemeMode: The default theme mode of the application
-      EnableDocumentPreview: 'Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
       EnableSwitchThemeModeButton: Set to true to enable the switch theme button.
       GlobalSearchScopeCategoriesNote: Defining the types that the global search will search for
       GooglePlayURL: Set URL to download Axon Ivy mobile app on Google Play.
@@ -237,6 +236,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       embedInFrame: Set to true to start a process/task in IFrame mode
       enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic.
       enableDeepLTranslation: Set this property to true to enable the DeepL translation support
+      enableDocumentPreview: 'Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
       enableGroupChat: Set this property to true to enable group chat function
       enablePrivateChat: Set this property to true to enable private chat function
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
