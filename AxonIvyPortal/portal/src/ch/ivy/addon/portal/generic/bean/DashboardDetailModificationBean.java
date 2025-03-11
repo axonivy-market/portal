@@ -1237,7 +1237,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     }
   }
 
-  public boolean hasStatisticWritePublicPermission() {
-    return PermissionUtils.hasStatisticWritePublicPermission();
+  public boolean canEditStatistic() {
+    return PermissionUtils.hasStatisticWritePublicPermission() && isPublicDashboard;
   }
 }
