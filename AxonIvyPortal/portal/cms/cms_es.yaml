@@ -16,6 +16,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       fromBiggerThanTill: '''Hasta'' debe ser posterior a ''Desde''.'
       overlappingAbsence: La ausencia se superpone con otra ausencia.
       userNameRequired: '''Nombre de usuario'' no debe estar vacío.'
+    SelectedSubtitutes: Sustitutos seleccionados
     absences: Sustitución de permisos
     addAbsence: Agregar ausencia
     deputies: Sustitutos
@@ -412,6 +413,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoSelection: Sin selección
     ResetToDefaultHeaderText: ¿Restablecer la configuración por defecto?
     RoleUserInformation: Informaciones de rol y usuario
+    StringFormat:
+      DateFromTo: '%s - %s'
+      TextListOut: '%s, %s,..'
+      TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Informaciones de tarea y caso
     Update: Aktualizar
     Widget: Widget
@@ -785,7 +790,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         ImageLightMode: Imagen para el modo claro
         ImageStyleClass: Clase de estilo de imagen
         PreviewDarkMode: Vista previa para el modo oscuro
-        PreviewLightMode: Vista previa para el modo claro
+        PreviewLightMode: 'Vista previa para el modo claro '
         PreviewTooltip: Esta vista previa no puede mostrar todos los ajustes, pero sólo debería dar una idea de cómo se verá el widget final, el tamaño de la imagen, la orientación y algunos ajustes CSS no se verán aquí.
         ShowGreeting: Mostrar saludo
         TextColorDarkMode: Color para el modo oscuro
