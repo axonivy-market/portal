@@ -32,12 +32,6 @@ pipeline {
     stage('generate sboms') {
       steps {
         script {
-          def iarFiles = sh(script: "find /home/build -type f -name '*.iar'", returnStdout: true).trim().split('\n')
-          iarFiles.each { iarFile ->
-            echo "Processing .iar file: ${iarFile}"
-            sh "mv ${iarFile} ${iarFile.replace('.iar', '.zip')}"
-          }
-          def version = ${env.engineVersion}
           def utils = load 'build/common/utils.groovy'
           for (module in builtModules) {
               utils.generateBOMFile(version, module)
