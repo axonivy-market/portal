@@ -34,7 +34,7 @@
         process="@this" rendered="#{!readOnly}"
         onclick="PF('#{cc.clientId}-select-icon-dialog').show();"
         oncomplete="loadDialogStreamlineIcon('#{cc.clientId}');">
-        <h:outputText id="selected-icon-display" styleClass="#{iconSelectionBean.iconPattern} #{cc.attrs.value} u-vertical-align-center" />
+        <h:outputText id="selected-icon-display" styleClass="#{iconSelectionBean.iconPattern} #{cc.attrs.value} vertical-align-middle" />
       </p:commandLink>
       <h:panelGroup rendered="#{readOnly}" layout="block" styleClass="select-awesome-icon-button">
         <h:panelGroup id="current-icon-display" styleClass="#{iconSelectionBean.iconPattern} #{cc.attrs.value}" />
@@ -89,7 +89,7 @@
       }
       iconDisplayJQ.removeClass();
       iconDisplayJQ.toggleClass(type === "awesome" ? "fa fa-2x" : "si si-lg");
-      iconDisplayJQ.toggleClass("u-vertical-align-center");
+      iconDisplayJQ.toggleClass("vertical-align-middle");
       iconDisplayJQ.addClass(iconCode);
     }
 

@@ -43,6 +43,14 @@ To add a new language to the Portal, what you have to do is:
    |export-cms|
 
 -  Add the translations for the new language for all CMS entries.
+-  Add the translations for the new language for all json files in the Portal located at Config/variables by adding new locale/value item.
+
+   |translate-json|
+
+-  Add the translations for the new language to DefaultDashboardUtils.java by adding new locale/value item.
+
+   |translate-java|
+
 -  Import the Excel file.
 -  Redeploy the Portal.
 
@@ -87,9 +95,11 @@ Task Permissions
    :bdg-ref-warning:`🔑TaskWriteActivatorOwnTasks <TaskWriteActivatorOwnTasks>`. This permission belongs to the
    PortalPermissions group. It is not assigned to role Everybody by default.
 
+   A case owner is able to delegate all related tasks within their case with permission :bdg-ref-warning:`🔑CaseOwnerTaskDelegate <CaseOwnerTaskDelegate>`. This permission belongs to the
+   PortalPermissions group.
+
    .. important::
-      - Only tasks ready for user processing can be delegated.Therefore, the task state cannot be one of the following: CREATED, DONE, DESTROYED, RESUMED, FAILED.
-      - Tasks can be delegated to another user only if the current user is working on them.
+      - Only tasks ready for user processing can be delegated. Therefore, the task state cannot be one of the following: CREATED, DONE, DESTROYED, RESUMED, FAILED.
 
 - Reset
 
@@ -588,3 +598,5 @@ Data model:
 .. |bar-chart| image:: ../../screenshots/statistic/tasks-by-prior-bar-chart.png
 .. |number-chart| image:: ../../screenshots/statistic/tasks-by-prior-number-chart.png
 .. |line-chart| image:: ../../screenshots/statistic/completed-cases-chart.png
+.. |translate-json| image:: images/translate-json.png
+.. |translate-java| image:: images/translate-java.png   

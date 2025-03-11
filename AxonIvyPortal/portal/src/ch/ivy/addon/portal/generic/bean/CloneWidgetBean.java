@@ -40,12 +40,14 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
   private Dashboard targetDashboard;
   private List<Statistic> statisticWidgets;
 
+  @Override
   @PostConstruct
   public void initConfigration() {
     targetDashboard = null;
     initStatisticWidgets();
   }
 
+  @Override
   public void cloneWidget() {
     if (targetDashboard == null) {
       return;
@@ -113,10 +115,17 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
           .map(DashboardCustomWidgetData::getStartableProcessStart)
           .map(IWebStartable::getDisplayName).orElse("");
     }
+
+    // If cannot get title, set the widget type as the header instead
+    if (StringUtils.isBlank(result)) {
+      result = cloneWidget.getType().getLabel();
+    }
+
     return Ivy.cms().co(CLONE_TO_DASHBOARD_DIALOG_HEADER_CMS,
         Arrays.asList(result));
   }
 
+  @Override
   protected void initStatisticWidgets() {
     statisticWidgets = new ArrayList<>();
     statisticWidgets.addAll(statisticWidgets);

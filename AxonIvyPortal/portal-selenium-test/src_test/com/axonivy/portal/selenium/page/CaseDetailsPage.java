@@ -104,6 +104,10 @@ public class CaseDetailsPage extends TemplatePage {
         .filter(text(taskName)).first().click();
   }
 
+  public void clickOnRelatedCase(String caseName) {
+    $$("div[id$=':related-cases-widget:related-cases'] table tbody tr td span").filter(text(caseName)).first().click();
+  }
+
   public void gotoCaseDetailsPageOfRelatedCase(String caseName) {
     $$("div[id$=':related-cases-widget:related-cases'] table tbody tr td span").filter(text(caseName)).first().click();
     $("div[id$=':general-information:business-case-information']").shouldBe(appear, DEFAULT_TIMEOUT);

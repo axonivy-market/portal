@@ -10,6 +10,8 @@ import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS_VIEWER;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.TASK;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 
+import java.io.IOException;
+
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 
@@ -26,6 +28,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class DashboardCloneUtils {
 
@@ -73,6 +76,14 @@ public class DashboardCloneUtils {
       case WelcomeDashboardWidget welcomeWidget -> {
         widget = welcomeWidget;
         widget.setId(DashboardWidgetUtils.generateNewWidgetId(WELCOME));
+        try {
+          WelcomeWidgetUtils.cloneImage(welcomeWidget.getImageType(),
+              welcomeWidget.getImageLocation(), welcomeWidget, false);
+          WelcomeWidgetUtils.cloneImage(welcomeWidget.getImageTypeDarkMode(),
+              welcomeWidget.getImageLocationDarkMode(), welcomeWidget, true);
+        } catch (IOException e) {
+          Ivy.log().error(e);
+        }
       }
       case NewsDashboardWidget newsWidget -> {
         widget = newsWidget;

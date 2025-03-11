@@ -48,7 +48,7 @@
         "labelOffset" : { "x" : 37, "y" : 35 }
       },
       "connect" : [
-        { "id" : "f7", "to" : "f4" }
+        { "id" : "f7", "to" : "f11" }
       ]
     }, {
       "id" : "f5",
@@ -64,8 +64,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 360, "y" : 192 },
-        "size" : { "width" : 144 }
+        "at" : { "x" : 800, "y" : 193 },
+        "size" : { "width" : 192, "height" : 62 }
       }
     }, {
       "id" : "f4",
@@ -76,11 +76,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 192, "y" : 192 }
+        "at" : { "x" : 592, "y" : 192 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f5" },
-        { "id" : "f9", "to" : "f8", "via" : [ { "x" : 192, "y" : 288 } ] }
+        { "id" : "f9", "to" : "f8", "via" : [ { "x" : 592, "y" : 304 } ] }
       ]
     }, {
       "id" : "f8",
@@ -96,8 +96,53 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 384, "y" : 288 },
+        "at" : { "x" : 800, "y" : 304 },
         "size" : { "width" : 192 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Redirect to business details page",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import javax.faces.context.FacesContext;",
+            "import com.axonivy.portal.util.BusinessDetailsUtils;",
+            "",
+            "FacesContext.getCurrentInstance().getExternalContext().redirect(BusinessDetailsUtils.getAdditionalCaseDetailsPageUri(in.caze));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 360 },
+        "size" : { "width" : 184, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f15", "to" : "f14" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f13" : "com.axonivy.portal.util.CaseBehaviorUtils.canAccessBusinessDetails()",
+          "f12" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 192 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f4" },
+        { "id" : "f13", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 256, "y" : 448 },
+        "labelOffset" : { "x" : 10, "y" : 30 }
       }
     } ]
 }
