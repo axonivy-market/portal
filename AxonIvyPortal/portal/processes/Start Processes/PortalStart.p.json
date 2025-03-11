@@ -4254,14 +4254,19 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 4080 }
+        "at" : { "x" : 96, "y" : 4080 },
+        "labelOffset" : { "x" : -31, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f56", "to" : "f53" }
+        { "id" : "f176", "to" : "S43" }
       ]
     }, {
       "id" : "f53",
       "type" : "DialogCall",
+      "name" : [
+        "Statistic",
+        "Config"
+      ],
       "config" : {
         "dialog" : "com.axonivy.portal.page.StatisticConfiguration:start(String,String)",
         "call" : {
@@ -4272,7 +4277,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 288, "y" : 4080 }
+        "at" : { "x" : 344, "y" : 4080 }
       },
       "connect" : [
         { "id" : "f60", "to" : "f59" }
@@ -4281,8 +4286,86 @@
       "id" : "f59",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 480, "y" : 4080 },
+        "at" : { "x" : 448, "y" : 4080 },
         "labelOffset" : { "x" : 13, "y" : 33 }
       }
+    }, {
+      "id" : "S43",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S43-f94",
+          "type" : "Script",
+          "name" : "Init isAuthorized",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+                "in.isAuthorized = PermissionUtils.hasStatisticWritePublicPermission();"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 160 }
+          },
+          "connect" : [
+            { "id" : "S43-f164", "to" : "S43-f163" }
+          ]
+        }, {
+          "id" : "S43-f163",
+          "type" : "Alternative",
+          "name" : "Authorized?",
+          "config" : {
+            "conditions" : {
+              "S43-f1" : "in.isAuthorized"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 312, "y" : 160 },
+            "labelOffset" : { "x" : 24, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S43-f1", "to" : "S43-g1", "label" : {
+                "name" : "Yes"
+              } },
+            { "id" : "S43-f171", "to" : "S43-f169", "label" : {
+                "name" : "No"
+              } }
+          ]
+        }, {
+          "id" : "S43-f169",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 312, "y" : 248 },
+            "labelOffset" : { "x" : 13, "y" : 33 }
+          }
+        }, {
+          "id" : "S43-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 11, "y" : 27 }
+          },
+          "parentConnector" : "f176",
+          "connect" : [
+            { "id" : "S43-f0", "to" : "S43-f94" }
+          ]
+        }, {
+          "id" : "S43-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 416, "y" : 160 },
+            "labelOffset" : { "x" : 11, "y" : 27 }
+          },
+          "parentConnector" : "f179"
+        } ],
+      "visual" : {
+        "at" : { "x" : 200, "y" : 4080 }
+      },
+      "connect" : [
+        { "id" : "f179", "to" : "f53" }
+      ]
     } ]
 }
