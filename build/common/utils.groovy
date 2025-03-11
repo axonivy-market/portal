@@ -102,7 +102,7 @@ def getJenkinsMasterDomain() {
   return env.BUILD_URL.split('/')[2].split(':')[0]
 }
 
-def generateBOMFile(def version, def moduleDir) {
+def generateBOMFile(def moduleDir) {
   def iarFile = sh(script: "find /home/build/${moduleDir} -type f -name '*.iar'", returnStdout: true).trim()
   if (iarFile) {
     def zipFile = iarFile.replace('.iar', '.zip')
