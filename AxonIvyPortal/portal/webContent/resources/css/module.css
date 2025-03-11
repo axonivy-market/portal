@@ -976,11 +976,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   .case-detail-body .case-details-related-task-table .related-task-more-column {
     width: fit-content;
   }
-
-/*   .case-detail-body .name-column, */
-/*   .case-detail-body .case-details-related-task-table .related-task-name-column { */
-/*     width: 100%; */
-/*   } */
 }
 
 @media screen and (min-width: 101.062em) {
