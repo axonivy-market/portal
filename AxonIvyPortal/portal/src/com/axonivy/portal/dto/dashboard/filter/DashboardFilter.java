@@ -12,7 +12,6 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
-import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldFinishedDate;
@@ -22,16 +21,14 @@ import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomTim
 import com.axonivy.portal.util.filter.field.task.custom.caze.TaskFilterCaseFieldCustomTimestamp;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class DashboardFilter implements Serializable {
+public class DashboardFilter extends BaseFilter implements Serializable {
   private static final long serialVersionUID = -2098346832426240167L;
 
   @JsonIgnore
@@ -55,24 +52,9 @@ public class DashboardFilter implements Serializable {
   @JsonIgnore
   private static final String DEFAULT = "default";
 
-  private String field;
-
-  private String from;
-
-  private String to;
-
-  private List<String> values;
-
-  private String value;
-
-  private FilterOperator operator;
-
   private Long periods;
 
   private FilterPeriodType periodType;
-
-  @JsonProperty("type")
-  private DashboardColumnType filterType;
 
   @JsonIgnore
   private FilterField filterField;
@@ -82,9 +64,6 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   private Date toDate;
-
-  @JsonIgnore
-  private FilterFormat filterFormat;
 
   @JsonIgnore
   private boolean isTemp;
@@ -106,7 +85,7 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isCreatedDateField() {
-    return CREATED_DATE.equals(this.field);
+    return CREATED_DATE.equals(getField());
   }
 
   @JsonIgnore
@@ -116,71 +95,53 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isNumberField() {
-    return (this.filterFormat == FilterFormat.NUMBER) && !isDefaultField();
+    return (getFilterFormat() == FilterFormat.NUMBER) && !isDefaultField();
   }
 
   @JsonIgnore
   public boolean isCreator() {
-    return this.field == DashboardStandardCaseColumn.CREATOR.getField();
+    return getField() == DashboardStandardCaseColumn.CREATOR.getField();
   }
 
   @JsonIgnore
   public boolean isResponsible() {
-    return this.field == DashboardStandardTaskColumn.RESPONSIBLE.getField();
+    return getField() == DashboardStandardTaskColumn.RESPONSIBLE.getField();
   }
 
   @JsonIgnore
   public boolean isCategory() {
-    return CATEGORY.equals(this.field);
+    return CATEGORY.equals(getField());
   }
 
   @JsonIgnore 
   public boolean isApplication() {
-    return APPLICATION.equals(this.field);
+    return APPLICATION.equals(getField());
   }
 
   @JsonIgnore
   public boolean isState() {
-    return STATE.equals(this.field);
+    return STATE.equals(getField());
   }
 
   @JsonIgnore
   public boolean isPriority() {
-    return this.field == DashboardStandardTaskColumn.PRIORITY.getField();
+    return getField() == DashboardStandardTaskColumn.PRIORITY.getField();
   }
 
   @JsonIgnore
   public boolean isId() {
-    return ID.equals(this.field);
+    return ID.equals(getField());
   }
 
   @JsonIgnore
   public boolean isTextField() {
-    return (this.filterFormat == FilterFormat.TEXT || this.filterFormat == FilterFormat.STRING) && !isCategory()
+    return (getFilterFormat() == FilterFormat.TEXT || getFilterFormat() == FilterFormat.STRING) && !isCategory()
         && !isId() && !isApplication() && !isDefaultField();
   }
 
   @JsonIgnore
   public boolean isDefaultField() {
-    return StringUtils.isBlank(this.field);
-  }
-
-  @JsonIgnore
-  public FilterFormat getFilterFormat() {
-    return filterFormat;
-  }
-
-  @JsonIgnore
-  public void setFilterFormat(FilterFormat filterFormat) {
-    this.filterFormat = filterFormat;
-  }
-
-  public FilterOperator getOperator() {
-    return operator;
-  }
-
-  public void setOperator(FilterOperator operator) {
-    this.operator = operator;
+    return StringUtils.isBlank(getField());
   }
 
   public FilterPeriodType getPeriodType() {
@@ -209,14 +170,6 @@ public class DashboardFilter implements Serializable {
     this.filterField = filterField;
   }
 
-  public List<String> getValues() {
-    return values;
-  }
-
-  public void setValues(List<String> values) {
-    this.values = values;
-  }
-
   @JsonIgnore
   public boolean isTemp() {
     return isTemp;
@@ -229,11 +182,11 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public Date getFromDate() {
-    if (fromDate == null && StringUtils.isNotBlank(from)) {
+    if (fromDate == null && StringUtils.isNotBlank(getFrom())) {
       try {
-        fromDate = DateUtils.parseDate(from, DATE_FORMAT, DMY_DATE_FORMAT, DATE_FORMAT_WITHOUT_TIME, DMY_DATE_FORMAT_WITHOUT_TIME);
+        fromDate = DateUtils.parseDate(getFrom(), DATE_FORMAT, DMY_DATE_FORMAT, DATE_FORMAT_WITHOUT_TIME, DMY_DATE_FORMAT_WITHOUT_TIME);
       } catch (ParseException e) {
-        throw new PortalException("Cannot parse date " + from, e);
+        throw new PortalException("Cannot parse date " + getFrom(), e);
       }
     }
     return fromDate;
@@ -246,11 +199,11 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public Date getToDate() {
-    if (toDate == null && StringUtils.isNotBlank(to)) {
+    if (toDate == null && StringUtils.isNotBlank(getTo())) {
       try {
-        toDate = DateUtils.parseDate(to, DATE_FORMAT, DMY_DATE_FORMAT, DATE_FORMAT_WITHOUT_TIME, DMY_DATE_FORMAT_WITHOUT_TIME);
+        toDate = DateUtils.parseDate(getTo(), DATE_FORMAT, DMY_DATE_FORMAT, DATE_FORMAT_WITHOUT_TIME, DMY_DATE_FORMAT_WITHOUT_TIME);
       } catch (ParseException e) {
-        throw new PortalException("Cannot parse date " + to, e);
+        throw new PortalException("Cannot parse date " + getTo(), e);
       }
     }
     return toDate;
@@ -261,31 +214,15 @@ public class DashboardFilter implements Serializable {
     this.toDate = toDate;
   }
 
-  public String getFrom() {
-    return from;
-  }
-
-  public void setFrom(String from) {
-    this.from = from;
-  }
-
-  public String getTo() {
-    return to;
-  }
-
-  public void setTo(String to) {
-    this.to = to;
-  }
-
   @JsonIgnore
   public List<SecurityMemberDTO> getCreators() {
-    return this.values.stream().map(this::findUser)
+    return getValues().stream().map(this::findUser)
         .filter(Objects::nonNull).collect(Collectors.toList());
   }
 
   @JsonIgnore
   public List<SecurityMemberDTO> getResponsibles() {
-    return this.values.stream().map(this::findSecurityMember)
+    return getValues().stream().map(this::findSecurityMember)
         .filter(Objects::nonNull).collect(Collectors.toList());
   }
 
@@ -297,14 +234,6 @@ public class DashboardFilter implements Serializable {
     return ServiceUtilities.findSecurityMemberByName("#".concat(memberName));
   }
 
-  public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
-    this.value = value;
-  }
-
   @JsonIgnore
   public String getNumberPattern() {
     return numberPattern;
@@ -313,21 +242,5 @@ public class DashboardFilter implements Serializable {
   @JsonIgnore
   public void setNumberPattern(String numberPattern) {
     this.numberPattern = numberPattern;
-  }
-
-  public String getField() {
-    return field;
-  }
-
-  public void setField(String field) {
-    this.field = field;
-  }
-
-  public DashboardColumnType getFilterType() {
-    return filterType;
-  }
-
-  public void setFilterType(DashboardColumnType filterType) {
-    this.filterType = filterType;
   }
 }

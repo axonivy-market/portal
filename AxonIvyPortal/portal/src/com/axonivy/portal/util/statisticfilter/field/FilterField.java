@@ -1,4 +1,4 @@
-package com.axonivy.portal.util.clientstatisticfilter.field;
+package com.axonivy.portal.util.statisticfilter.field;
 
 import com.axonivy.portal.dto.statistic.StatisticFilter;
 
@@ -23,4 +23,6 @@ public abstract class FilterField {
   public abstract void initFilter(StatisticFilter filter);
 
   public abstract void addNewFilter(StatisticFilter filter);
+  
+  public abstract String generateStringFilter(StatisticFilter filter);
 }

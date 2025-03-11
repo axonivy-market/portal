@@ -14,6 +14,7 @@
 <cc:implementation>
   <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
   <c:set var="filter" value="#{cc.attrs.filter}" />
+  <c:set var="statistic" value="#{managedBean.statistic}" />
 
   <div class="ui-g-12">
     <h:panelGroup id="filter-selection-panel" layout="block" styleClass="filter-selection-panel">
@@ -21,22 +22,21 @@
         <p:selectOneMenu id="field-selection" value="#{filter.filterField}" converter="pojoConverter">
           <f:selectItems value="#{managedBean.filterFields}" var="field" itemValue="#{field}" itemLabel="#{field.label}" />
           <f:param name="skipValidator" value="true" />
-          <p:ajax event="itemSelect" listener="#{manageBean.onSelectFilter(filter)}" update="filter-selection-panel"
+          <p:ajax event="itemSelect" listener="#{managedBean.onSelectFilter(filter)}" update="filter-selection-panel"
             global="false" />
         </p:selectOneMenu>
       </div>
       
       <h:panelGroup layout="block" rendered="#{filter.isCategory()}">
         <ic:com.axonivy.portal.dashboard.component.filter.CategoryFilter
-          filter="#{filter}" widget="#{widget}"
-          componentToUpdate="#{cc.attrs.componentToUpdate}"
-          filterIndex="#{cc.attrs.filterIndex}"
-          messageId="#{cc.attrs.messageId}" />
+          filter="#{filter}" widgetType="#{statistic.getChartTarget().getName()}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          forStatistic="true" messageId="#{cc.attrs.messageId}" />
       </h:panelGroup>
 
       <h:panelGroup layout="block" rendered="#{filter.isState()}">
         <ic:com.axonivy.portal.dashboard.component.filter.StateFilter filter="#{filter}"
-          widget="#{widget}"
+          widgetType="#{widget.getType()}" forStatistic="true"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
       </h:panelGroup>
@@ -44,8 +44,14 @@
       <h:panelGroup layout="block" rendered="#{filter.isPriority()}">
         <ic:com.axonivy.portal.dashboard.component.filter.PriorityFilter filter="#{filter}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" forStatistic="true" />
       </h:panelGroup>
+      
+<!--       <h:panelGroup layout="block" rendered="#{filter.isFinishedDateField() or filter.isExpiryDateField()}"> -->
+<!--         <ic:com.axonivy.portal.dashboard.component.filter.DateFilter filter="#{filter}" widget="#{widget}" -->
+<!--           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}" -->
+<!--           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"/> -->
+<!--       </h:panelGroup> -->
 
       <div class="remove-filter-panel">
         <p:commandButton id="remove-filter" icon="si si-subtract"
