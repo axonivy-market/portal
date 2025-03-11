@@ -36,10 +36,14 @@ public class CustomStringContainsOperatorHandler {
           .isLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
       query.where().or(subQuery);
     });
-    
+
     if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(filter.getField())) {
-      TaskQuery addingQuery = buildQueryForCustomFieldWithCmsValue(filter);
-      query.where().or(addingQuery);
+      List<String> keywordList = PortalCustomFieldUtils.getCmsValuesMatchingWithKeywordList(filter.getField(),
+          filter.getFilterType(), filter.getValues());
+      if (!keywordList.isEmpty()) {
+        TaskQuery addingQuery = buildQueryForCustomFieldWithCmsValue(filter);
+        query.where().or(addingQuery);
+      }
     }
 
     return query;
@@ -90,11 +94,6 @@ public class CustomStringContainsOperatorHandler {
 
     TaskQuery query = TaskQuery.create();
     IFilterQuery filterQuery = query.where();
-    if (CollectionUtils.isEmpty(keywordList)) {
-      // Using an incorrect condition to return empty result
-      filterQuery.taskId().isNull().and().taskId().isNotNull();
-      return query;
-    }
     for (String keyword : keywordList) {
       filterQuery.or().customField().stringField(filter.getField()).isEqual(keyword);
     }
