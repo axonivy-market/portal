@@ -43,9 +43,9 @@ import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.util.DisplayNameUtils;
-import com.axonivy.portal.util.clientstatisticfilter.field.FilterField;
-import com.axonivy.portal.util.clientstatisticfilter.field.TaskFilterFieldFactory;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
+import com.axonivy.portal.util.statisticfilter.field.FilterField;
+import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
