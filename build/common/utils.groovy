@@ -110,18 +110,16 @@ def generateBOMFile(def moduleDir) {
     sh "mv ${iarFile} ${zipFile}"
     echo "Renamed ${iarFile} to ${zipFile}"
     def inputFile = sh (script: "ls ${zipFile} | xargs -n 1 basename", returnStdout: true).trim()
-    def outputFile = inputFile.replace('.zip', '.bom.json')
-    sh "docker run -v $zipFile:/portal.zip anchore/syft scan /portal.zip -o cyclonedx-json --exclude './**/pom.xml' > build/sbom/target/$outputFile"
+    def outputFile = inputFile.replace('.zip', '.sbom.json')
+    sh "docker run -v ${zipFile}:/portal.zip anchore/syft scan /portal.zip -o cyclonedx-json --exclude './**/pom.xml' > ${currentDir}/${moduleDir}/target/$outputFile"
   } else {
     echo "File not found: ${iarFile}"
   }
 }
 
 def mergeBOMFiles() {
-  def sbomFiles = sh(script: "find /home/build/sbom -name '*.json' -type f", returnStdout: true).trim().replace("\n", " ")
-  docker.image('cyclonedx/cyclonedx-cli').inside('-v /var/tools/maven-cache:/home/build/') {
-    sh "merge --input-files $sbomFiles --output-file /sbom/portal.bom.json"
-  }
+  def sbomFiles = sh (script: "ls ${currentDir}/*/target/*.sbom.json", returnStdout: true).trim().replace("\n", " ")
+  sh "docker run -v ${currentDir}/build/sbom:/sbom cyclonedx/cyclonedx-cli merge --input-files ${sbomFiles} --output-file /sbom/portal.sbom.json"
 }
 
 return this
