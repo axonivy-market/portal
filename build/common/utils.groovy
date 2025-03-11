@@ -103,25 +103,26 @@ def getJenkinsMasterDomain() {
 }
 
 def generateBOMFile(def moduleDir) {
-  def iarFile = sh(script: "find /home/build/${moduleDir} -type f -name '*.iar'", returnStdout: true).trim()
+  def currentDir = pwd()
+  def iarFile = sh (script: "ls ${currentDir}/${moduleDir}/target/*.iar", returnStdout: true).trim()
   if (iarFile) {
     def zipFile = iarFile.replace('.iar', '.zip')
     sh "mv ${iarFile} ${zipFile}"
     echo "Renamed ${iarFile} to ${zipFile}"
-    def fileName = sh (script: "ls ${iarFile} | xargs -n 1 basename", returnStdout: true).trim()
-    fileName = fileName.replace('.iar', '-bom.json')
-    docker.image('anchore/syft').inside('-v /var/tools/maven-cache:/home/build/') {
-      sh "syft scan ${zipFile} -o cyclonedx-json --exclude './**/pom.xml' > home/build/sbom/$fileName"
+    def inputFile = sh (script: "ls ${zipFile} | xargs -n 1 basename", returnStdout: true).trim()
+    def outputFile = inputFile.replace('.zip', '.bom.json')
+    docker.image('anchore/syft').inside('-v ${currentDir}/${moduleDir}/target:/sbom') {
+      sh "syft scan /sbom/${inputFile} -o cyclonedx-json --exclude './**/pom.xml' > /sbom/$outputFile"
     }
   } else {
-    echo "No .iar file found in ${moduleDir}"
+    echo "File not found: ${iarFile}"
   }
 }
 
 def mergeBOMFiles() {
   def sbomFiles = sh(script: "find /home/build/sbom -name '*.json' -type f", returnStdout: true).trim().replace("\n", " ")
   docker.image('cyclonedx/cyclonedx-cli').inside('-v /var/tools/maven-cache:/home/build/') {
-    sh "merge --input-files $sbomFiles --output-file /sbom/portal-bom.json"
+    sh "merge --input-files $sbomFiles --output-file /sbom/portal.bom.json"
   }
 }
 
