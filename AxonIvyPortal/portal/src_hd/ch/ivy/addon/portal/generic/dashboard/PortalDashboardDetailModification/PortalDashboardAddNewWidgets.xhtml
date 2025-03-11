@@ -83,10 +83,10 @@
                     <h:outputText id="statistic-widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
                     <p:tooltip id="statistic-widget-name-tooltip" for="statistic-widget-name" value="#{widget.name}" trackMouse="true" />
                   </div>
-                  <div class="flex flex-none">
+                  <div class="flex flex-none align-items-center">
                     <p:commandButton id="custom-statistic-action-button" icon="fa fa-ellipsis-h"
                       rendered="#{widget.isCustom and dashboardDetailModificationBean.hasStatisticWritePublicPermission()}"
-                      styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page" type="button" />
+                      styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page h-1rem" type="button" />
                     <p:menu id="custom-statistic-action-menu" styleClass="w-auto" overlay="true"
                       trigger="custom-statistic-action-button" my="right top" at="right bottom"
                       rendered="#{widget.isCustom and dashboardDetailModificationBean.hasStatisticWritePublicPermission()}">
@@ -112,7 +112,7 @@
                 <span class="#{iconSelectionBean.generateIconWithFontFamily(widget.icon)} new-widget-dialog__icon" />
               </h:panelGroup>
               <h:panelGroup layout="block" styleClass="ui-panelgrid-blank new-widget-dialog__item-content">
-                <h:outputText id="statistic-widget-description" value="#{widget.description}" styleClass="new-widget-dialog__introduction"/>
+                <h:outputText id="statistic-widget-description" value="#{widget.description}" styleClass="new-widget-dialog__introduction h-3rem"/>
                 <p:tooltip id="statistic-widget-description-tooltip" for="statistic-widget-description" value="#{widget.description}" trackMouse="true" />
                 <p:commandButton id="add-widget" styleClass="new-widget-dialog__add-widget-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
