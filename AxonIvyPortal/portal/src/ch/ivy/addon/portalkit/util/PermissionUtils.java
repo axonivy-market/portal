@@ -227,4 +227,9 @@ public class PermissionUtils {
   public static boolean checkUserSetOwnPasswordPermission() {
     return hasPermission(IPermission.USER_SET_OWN_PASSWORD);
   }
+
+  public static boolean hasStatisticWritePublicPermission() {
+    return hasPortalPermission(PortalPermission.STATISTIC_WRITE_PUBLIC);
+  }
+
 }

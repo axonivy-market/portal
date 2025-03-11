@@ -223,12 +223,17 @@ function previewChart(data, defaultLocale, datePatternConfig) {
     locale = defaultLocale;
   }
   datePattern = datePatternConfig;
-
-  let chartData = generateChart(charts[0], data);
-
-  if (chartData) {
-    chartData.render();
+  try {
+    let chartData = generateChart(charts[0], data);
+    if (chartData) {
+      chartData.render();
+    }
+  } catch (error) {
+    console.error("Error in previewChart:", error);
+    PF('previewButton').enable();
+    renderNotFoundData(charts[0], 'Error while rendering chart');
   }
+
 }
 
 function clearChartInterval() {

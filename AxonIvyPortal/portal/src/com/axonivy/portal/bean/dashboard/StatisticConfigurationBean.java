@@ -68,6 +68,9 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 @ManagedBean
 public class StatisticConfigurationBean implements Serializable {
 
+  private static final int MIN_REFRESH_INTERVAL_IN_SECONDS = 15;
+  private static final int DEFAULT_REFRESH_INTERVAL_IN_SECONDS = 300;
+
   private static final long serialVersionUID = 1L;
   private Statistic statistic;
   private String statisticId;
@@ -95,7 +98,6 @@ public class StatisticConfigurationBean implements Serializable {
       statistic.setAggregates("priority");
       statistic.setNames(new ArrayList<>());
       statistic.setDescriptions(new ArrayList<>());
-      statistic.setRefreshInterval(0);
       statistic.setChartTarget(ChartTarget.TASK);
       statistic.setChartType(ChartType.BAR);
       statistic.setNumberChartConfig(new NumberChartConfig());
@@ -106,9 +108,13 @@ public class StatisticConfigurationBean implements Serializable {
       xTitles = new ArrayList<>();
       yTitles = new ArrayList<>();
       backgroundColors = new ArrayList<>();
+      refreshIntervalEnabled = false;
       // TODO z1 init category, value. Add action when select chart type
     } else { // existed statistic
       isEditMode = true;
+      if (statistic.getRefreshInterval() != null && statistic.getRefreshInterval() >= MIN_REFRESH_INTERVAL_IN_SECONDS) {
+        refreshIntervalEnabled = true;
+      }
       if (statistic.getNumberChartConfig() == null) {
         statistic.setNumberChartConfig(new NumberChartConfig());
       }
@@ -122,8 +128,8 @@ public class StatisticConfigurationBean implements Serializable {
         statistic.setPieChartConfig(new PieChartConfig() {});
       }
       if (BAR == statistic.getChartType() || LINE == statistic.getChartType()) {
-        ColumnChartConfig config = BAR == statistic.getChartType() ? statistic.getBarChartConfig()
-            : statistic.getLineChartConfig();
+        ColumnChartConfig config =
+            BAR == statistic.getChartType() ? statistic.getBarChartConfig() : statistic.getLineChartConfig();
         xTitles = config.getxTitles() != null ? config.getxTitles() : new ArrayList<>();
         yTitles = config.getyTitles() != null ? config.getyTitles() : new ArrayList<>();
         backgroundColors = config.getBackgroundColors() != null ? config.getBackgroundColors() : new ArrayList<>();
@@ -172,10 +178,18 @@ public class StatisticConfigurationBean implements Serializable {
   public void save() {
     syncUIConfigWithChartConfig();
     resetRedundantChartConfigs(statistic.getChartType(), true);
+    cleanUpConfiguration();
     saveStatisticJson();
-    resetRedundantChartConfigs(statistic.getChartType(), false);
-    populateBackgroundColorsIfMissing();
+    // resetRedundantChartConfigs(statistic.getChartType(), false);
+    // populateBackgroundColorsIfMissing();
     backToDashboardDetailsPageIfPossible();
+  }
+
+  private void cleanUpConfiguration() {
+    if (!refreshIntervalEnabled || statistic.getRefreshInterval() == null
+        || (statistic.getRefreshInterval() < MIN_REFRESH_INTERVAL_IN_SECONDS)) {
+      statistic.setRefreshInterval(null);
+    }
   }
 
   private void syncUIConfigWithChartConfig() {
@@ -337,8 +351,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void updateDescriptionByLocale() {
-    String currentDescription =
-        LanguageUtils.getLocalizedName(statistic.getDescriptions(), statistic.getDescription());
+    String currentDescription = LanguageUtils.getLocalizedName(statistic.getDescriptions(), statistic.getDescription());
     initAndSetValue(currentDescription, statistic.getDescriptions());
   }
 
@@ -488,13 +501,21 @@ public class StatisticConfigurationBean implements Serializable {
     // TODO z1 consider to remove
   }
 
-  private void initPermissions() {
-    statistic.setPermissionDTOs(Optional.ofNullable(statistic).map(Statistic::getPermissions)
-        .orElse(new ArrayList<>()).stream().filter(Objects::nonNull).distinct()
-        .map(permission -> findSecurityMemberDtoByName(permission)).collect(Collectors.toList()));
+  public void onToggleRefreshInterval() {
+    Integer refreshIntervalInSeconds = null;
+    if (refreshIntervalEnabled) {
+      refreshIntervalInSeconds = DEFAULT_REFRESH_INTERVAL_IN_SECONDS;
+    }
+    statistic.setRefreshInterval(refreshIntervalInSeconds);
+  }
 
-    selectedPermissions = Optional.ofNullable(statistic).map(Statistic::getPermissionDTOs)
-        .orElse(new ArrayList<>()).stream().map(SecurityMemberDTO::getName).collect(Collectors.toList());
+  private void initPermissions() {
+    statistic.setPermissionDTOs(Optional.ofNullable(statistic).map(Statistic::getPermissions).orElse(new ArrayList<>())
+        .stream().filter(Objects::nonNull).distinct().map(permission -> findSecurityMemberDtoByName(permission))
+        .collect(Collectors.toList()));
+
+    selectedPermissions = Optional.ofNullable(statistic).map(Statistic::getPermissionDTOs).orElse(new ArrayList<>())
+        .stream().map(SecurityMemberDTO::getName).collect(Collectors.toList());
   }
 
   private SecurityMemberDTO findSecurityMemberDtoByName(String permission) {
