@@ -88,8 +88,8 @@ public enum GlobalVariable {
   APPLICATION_NAME("Portal.ApplicationName", GlobalVariableType.TEXT, "Axon Ivy", "ApplicationName"), HIDE_CASE_CREATOR(
       "Portal.Cases.HideCaseCreator", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseCreator"),
   ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableDocumentPreview"),
-  DOCUMENT_UPLOAD_SIZE_LIMIT("Portal.Document.DocumentUploadSizeLimit",GlobalVariableType.NUMBER,"20","documentUploadSizeLimit"),
-  IMAGE_UPLOAD_SIZE_LIMIT("Portal.Document.ImageUploadSizeLimit", GlobalVariableType.NUMBER, "6", "imageUploadSizeLimit");
+  DOCUMENT_UPLOAD_SIZE_LIMIT("Portal.Upload.DocumentUploadSizeLimit",GlobalVariableType.NUMBER,"20","documentUploadSizeLimit"),
+  IMAGE_UPLOAD_SIZE_LIMIT("Portal.Upload.ImageUploadSizeLimit", GlobalVariableType.NUMBER, "6", "imageUploadSizeLimit");
 
   private String key;
   private GlobalVariableType type;

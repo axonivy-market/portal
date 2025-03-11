@@ -17,7 +17,7 @@ public class DocumentDetectorFactory {
     else if (DocumentExtensionConstants.ALLOWED_PDF_FORMAT.contains(fileExtension)) {
       return new PDFDocumentDetector();
     } else if (DocumentExtensionConstants.ALLOWED_SVG_FORMAT.contains(fileExtension)) {
-      return new SVGScriptDetector();
+      return new SVGSecurityScanner();
     }
     return null;
   }
