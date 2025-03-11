@@ -64,7 +64,7 @@ public class CategoryColumnModel extends TaskColumnModel {
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__category u-text-align-center  widget-column";
+    return "dashboard-tasks__category text-center  widget-column";
   }
 
   @Override

@@ -51,6 +51,7 @@ public class DashboardProcessWidgetTest extends BaseTest {
   private static final String ALPHABETICALLY_SORTING = "Alphabetically";
   private static final String SORTING_INDEX = "Sorting index";
   private static final String CUSTOM_ORDER = "Custom order";
+  private static final String MOST_USED = "Most used";
   private NewDashboardPage newDashboardPage;
 
   @Override
@@ -451,6 +452,22 @@ public class DashboardProcessWidgetTest extends BaseTest {
     editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName()
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldNotHave(Condition.exactTextCaseSensitive(CLEAN_ABSENCES), DEFAULT_TIMEOUT);
+  }
+
+  @Test
+  public void testSortProcessCompactProcessModeMostUsed() {
+    resizeBrowserTo2kResolution();
+    createTestingTasks();
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForCaseWidgetLoaded();
+    ProcessEditWidgetNewDashBoardPage editProcessWidgetConfiguration =
+        newDashboardPage.editProcessWidgetConfiguration();
+    editProcessWidgetConfiguration.selectCompactMode();
+    editProcessWidgetConfiguration.selectCompactProcessSorting(MOST_USED);
+    editProcessWidgetConfiguration.getPreviewButton().click();
+    editProcessWidgetConfiguration.getCompactModeProcessPreview().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    editProcessWidgetConfiguration.getCompactModeProcessDisabledFirstProcessItemName()
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).shouldHave(Condition.exactTextCaseSensitive(CATEGORIED_LEAVE_REQUEST));
   }
 
   @Test

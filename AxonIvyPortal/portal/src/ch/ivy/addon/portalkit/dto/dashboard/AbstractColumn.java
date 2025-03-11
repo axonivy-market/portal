@@ -69,6 +69,7 @@ public abstract class AbstractColumn implements Serializable {
   protected Boolean sortDescending;
   protected DashboardColumnType type;
   protected Boolean isCustomAction;
+  protected Boolean hasCmsValues;
   protected String icon;
   protected String description;
 
@@ -479,6 +480,15 @@ public abstract class AbstractColumn implements Serializable {
 
   public void setIsCustomAction(Boolean isCustomAction) {
     this.isCustomAction = isCustomAction;
+  }
+  
+  @JsonIgnore
+  public boolean getHasCmsValues() {
+    return hasCmsValues;
+  }
+  
+  public void setHasCmsValues(Boolean hasCmsValues) {
+    this.hasCmsValues = hasCmsValues;
   }
 
   @JsonIgnore

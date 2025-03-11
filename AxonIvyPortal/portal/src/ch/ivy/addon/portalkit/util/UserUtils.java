@@ -79,7 +79,7 @@ public class UserUtils {
     if (StringUtils.isEmpty(fullname)) {
       return username;
     }
-    return String.format("%s (%s)", fullname, username);
+    return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/TextWithRoundBracket"), fullname, username);
   }
 
   public static List<IUserAbsence> findAbsenceOfUser(IUser iUser) {

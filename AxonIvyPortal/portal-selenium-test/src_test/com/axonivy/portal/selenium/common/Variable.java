@@ -27,6 +27,7 @@ public enum Variable {
   DISPLAY_USERS_OF_TASK_ACTIVATOR("Portal.DisplayUsersOfRole"), ANNOUNCEMENT("Portal.Announcement"),
   THIRD_PARTY_APP("Portal.ThirdPartyApplications"), EXTERNAL_LINK("Portal.Processes.ExternalLinks"),
   TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST("Portal.Tasks.BehaviourWhenClickingOnLineInTaskList"),
+  CASE_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_CASE_LIST("Portal.Cases.BehaviourWhenClickingOnLineInCaseList"),
   TASK_DETAIL("Portal.TaskDetails"), CASE_COLUMN("Portal.Cases.CaseColumn"), CASE_FILTER("Portal.Cases.CaseFilters"),
   CASE_DETAIL("Portal.CaseDetails"), SHOW_AVATAR("Portal.ShowAvatar"),
   GLOBAL_SEARCH_BY_TASK_FIELDS("Portal.SearchScope.ByTaskFields"),

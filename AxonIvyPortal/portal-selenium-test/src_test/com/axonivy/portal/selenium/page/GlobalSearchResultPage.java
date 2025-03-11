@@ -50,11 +50,15 @@ public class GlobalSearchResultPage extends TemplatePage {
     return $("div[id='search-results-tabview:case-results:case-list-scroller']").findAll("li.ui-datascroller-item")
         .size();
   }
+  
+  public void clickOnCase(int index) {
+    String id = "search-results-tabview:case-results:case-list-scroller:" + index + ":case-item";
+    $("div[id='search-results-tabview:case-results:case-list-scroller'] div ul li div[id='" + id + "'] div span.case-info-row").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
 
   public String getNameOfCase(int index) {
     String id = "search-results-tabview:case-results:case-list-scroller:" + index + ":case-item";
-    return $("div[id='search-results-tabview:case-results:case-list-scroller'] div ul li div[id='" + id
-        + "'] div span.case-info-row div span.case-header-name-cell").text();
+    return $("div[id='search-results-tabview:case-results:case-list-scroller'] div ul li div[id='" + id + "'] div span.case-info-row div span.case-header-name-cell").text();
   }
 
   public String getDescriptionOfCase(int index) {

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.enums.GlobalSearchScopeCategory;
 import com.axonivy.portal.enums.SearchScopeCaseField;
@@ -16,6 +17,8 @@ import com.axonivy.portal.response.CaseData;
 import com.axonivy.portal.response.GlobalSearchResponse;
 import com.axonivy.portal.response.ProcessData;
 import com.axonivy.portal.response.TaskData;
+import com.axonivy.portal.util.BusinessDetailsUtils;
+import com.axonivy.portal.util.CaseBehaviorUtils;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
@@ -29,6 +32,7 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
+import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class GlobalSearchService {
@@ -53,7 +57,8 @@ public class GlobalSearchService {
   public GlobalSearchResponse searchCases(SearchPayload payload) {
     CaseSearchCriteria criteria = buildCaseCriteria(payload);
     IvyCaseResultDTO iCases = CaseService.newInstance().findGlobalSearchCasesByCriteria(criteria, 0, PAGE_SIZE);
-    List<CaseData> results = iCases.getCases().stream().map(CaseData::new).toList();
+    boolean canAccessBusinessDetails = CaseBehaviorUtils.canAccessBusinessDetails();
+    List<CaseData> results = iCases.getCases().stream().map(caze -> new CaseData(caze, buildCaseDataLink(caze, canAccessBusinessDetails))).toList();
     return new GlobalSearchResponse(results, iCases.getTotalCases());
   }
 
@@ -177,6 +182,14 @@ public class GlobalSearchService {
       return searchScopeCaseFields;
     }
     return List.of(SearchScopeCaseField.NAME, SearchScopeCaseField.DESCRIPTION, SearchScopeCaseField.CUSTOM);
+  }
+
+  private String buildCaseDataLink(ICase caze, boolean canAccessBusinessDetails) {
+    if (canAccessBusinessDetails) {
+      return BusinessDetailsUtils.getAdditionalCaseDetailsPageUri(caze);
+    } else {
+      return PortalNavigatorAPI.buildUrlToPortalCaseDetailsPageByUUID(caze.uuid());
+    }
   }
 
 }

@@ -23,7 +23,7 @@
     <h:panelGroup id="loading" styleClass="js-loading-#{widget.id}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}</h:panelGroup>
 
     <h:panelGroup id="dashboard-process-cases-container" layout="block"
-      styleClass="ui-g-12 u-padding-0 js-dashboard-cases-container-#{widget.id} u-display-none">
+      styleClass="ui-g-12 u-padding-0 js-dashboard-cases-container-#{widget.id} hidden">
       <p:dataTable id="dashboard-process-cases" widgetVar="dashboard-cases-#{widget.id}" value="#{widget.caseDataModel}" var="caseItem"
         paginatorAlwaysVisible="true" rows="#{widget.rowsPerPage}" paginator="true" paginatorPosition="bottom" lazy="true"
         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}" pageLinks="5"
@@ -31,7 +31,7 @@
         sortBy="#{widget.sortByName}"
         rowIndexVar="rowIndex" rowHover="#{isReadOnlyMode}" selectionMode="single"
         styleClass="dashboard-cases--table #{isReadOnlyMode ? '' : 'dashboard__table--edit'} #{isPreviewMode ? 'dashboard__table--preview' : ''}">
-        <p:ajax event="rowSelect" listener="#{dashboardCaseWidgetBean.navigateToSelectedCaseDetails}" disabled="#{!isReadOnlyMode or isPreviewMode}" />
+        <p:ajax event="rowSelect" listener="#{dashboardCaseWidgetBean.handleRowSelectEventOnCaseWidget}" disabled="#{!isReadOnlyMode or isPreviewMode}" />
 
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortable="true" sortBy="#{name}" field="name" filterable="false"
           styleClass="relevant-cases__name">
@@ -47,7 +47,7 @@
         </p:column>
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" sortable="true" sortBy="#{state}" field="state" filterable="false"
-          styleClass="dashboard-cases__state u-text-align-center u-hidden-sm-down" width="120">
+          styleClass="dashboard-cases__state text-center u-hidden-sm-down" width="120">
           <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{caseItem}" alwaysShowState="true" />
         </p:column>
         
@@ -65,8 +65,8 @@
     function loadCaseFirstTime(widgetId) {
       var loadingId = '.js-loading-' + widgetId;
       var widgetContainer = '.js-dashboard-cases-container-' + widgetId;
-      $(loadingId).addClass('u-display-none');
-      $(widgetContainer).removeClass('u-display-none');
+      $(loadingId).addClass('hidden');
+      $(widgetContainer).removeClass('hidden');
     }
   </script>
 </cc:implementation>

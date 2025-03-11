@@ -317,11 +317,9 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
         .isPresent();
   }
 
-  public void openCloneWidgetDialog(String name, int index) {
-    SelenideElement titleElem = $$("span.widget__header-title")
-        .filter(Condition.text(name)).get(0);
-    titleElem.parent().$(String.format("[id$='clone-widget-%d']", index))
-        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  public void openCloneWidgetDialog(int index) {
+    clickByJavaScript($(String.format("[id$='clone-widget-%d']", index))
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT));
 
     $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
         .shouldBe(appear, DEFAULT_TIMEOUT);
