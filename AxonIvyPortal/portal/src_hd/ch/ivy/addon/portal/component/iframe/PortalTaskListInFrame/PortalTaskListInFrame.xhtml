@@ -74,7 +74,7 @@
                   responsibleName="#{task.getActivatorName()}" responsible="#{task.getActivator()}" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component" rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}"
-                  componentId="creation-time" value="#{task.startTimestamp}" responsiveStyleClass=" u-hidden-md-down js-hidden-when-expand-menu" />
+                  componentId="creation-time" value="#{task.startTimestamp}" responsiveStyleClass="u-hidden-md-down js-hidden-when-expand-menu" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component" rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}"
                   componentId="expiry-time" value="#{task.expiryTimestamp}" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate rendered="#{taskView.dataModel.isSelectedColumn('COMPLETED_ON')}"
