@@ -31,13 +31,12 @@ public class ExternalLinkUtils {
 
       // hanlde sanitize svg
       if ("svg".equals(fileExtension)) {
-        content =
-            PortalSanitizeUtils.sanitizeSvg(new String(content, StandardCharsets.UTF_8))
-                .getBytes(StandardCharsets.UTF_8);
+        content = PortalSanitizeUtils.sanitizeSvg(new String(content, StandardCharsets.UTF_8))
+            .getBytes(StandardCharsets.UTF_8);
       }
 
-      ContentObject imageCMSObject = getApplicationCMS().child().folder(IMAGE_DIRECTORY).child().file(fileName,
-          fileExtension);
+      ContentObject imageCMSObject =
+          getApplicationCMS().child().folder(IMAGE_DIRECTORY).child().file(fileName, fileExtension);
 
       if (imageCMSObject != null) {
         readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(content);
