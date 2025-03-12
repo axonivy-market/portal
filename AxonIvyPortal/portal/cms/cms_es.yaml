@@ -269,7 +269,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       embedInFrame: Cambiar a "true" para abrir un proceso o tarea en modo iFrame
       enableCaseOwner: 'Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. '
       enableDocumentPreview: 'Establecer en "true" para habilitar la vista previa de documentos para ciertos tipos de archivos. Los tipos de archivos compatibles son: pdf, png, jpeg, jpg, txt, log.'
-      enableDocumentPreview: 'Establecer en "true" para habilitar la vista previa de documentos para ciertos tipos de archivos. Los tipos de archivos compatibles son: pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Cambie esta propiedad a "true" para activar el chat de grupos
       enablePrivateChat: Cambie esta propiedad a "true" para activar el chat privado
       enableProcessViewer: Defina esta propiedad como true para habilitar la opción de visor de procesos en las acciones de Tarea/Caso

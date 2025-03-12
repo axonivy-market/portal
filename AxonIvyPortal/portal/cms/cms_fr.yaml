@@ -268,7 +268,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       embedInFrame: Régler sur true pour démarrer un processus/tâche en mode IFrame
       enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
       enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents pour certains types de fichiers. Les types de fichiers pris en charge sont : pdf, png, jpeg, jpg, txt, log.'
-      enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents pour certains types de fichiers. Les types de fichiers pris en charge sont : pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Définissez cette propriété sur true pour activer la fonction de chat de groupe
       enablePrivateChat: Définissez cette propriété à true pour activer la fonction de chat privé
       enableProcessViewer: Définissez cette propriété à true pour activer l'option de visualisation de processus dans les actions de Task/Case.

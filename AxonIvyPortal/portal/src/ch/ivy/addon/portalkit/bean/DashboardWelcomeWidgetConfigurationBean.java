@@ -104,13 +104,6 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
     }
   }
 
-      byte[] content = file.getContent();
-      // hanlde sanitize svg
-      if ("svg".equals(extension)) {
-        content = PortalSanitizeUtils.sanitizeSvg(new String(content, StandardCharsets.UTF_8))
-            .getBytes(StandardCharsets.UTF_8);
-      }
-
   public void initClientTime() {
     parsedClientTime = WelcomeWidgetUtils.parseClientTime();
   }
