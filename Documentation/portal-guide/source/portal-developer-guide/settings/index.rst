@@ -433,10 +433,10 @@ Data model:
 
 Portal Statistic Charts
 ^^^^^^^^^^^^^^^^^^^^^^^
-You can define filter logic, appearance, and other settings for all statistic
+You can define filter logic, appearance, and other settings for custom statistic
 charts that can be used by the :ref:`Statistic widget <portal-statistic-widget>` of Portal dashboard.
 
-Filename: ``variables.Portal.ClientStatistic.json``
+Filename: ``variables.Portal.CustomClientStatistic.json``
 
 Data model:
 
@@ -444,7 +444,7 @@ Data model:
 
    [
       {
-         "id": "1",
+         "id": "20",
          "aggregates": "priority",
          "filter": "businessState:OPEN IN_PROGRESS,canWorkOn",
          "chartTarget": "TASK",
@@ -487,6 +487,7 @@ Data model:
          ],
          "icon": "si si-analytics-pie-2",
          "refreshInterval": 300
+         "backgroundColor": ["#FF6F61", "#6B5B95", "#88B04B", "#F7CAC9"]
       }
    ]
 
@@ -506,7 +507,7 @@ Data model:
 - ``names``: the multilingual display name of the chart
 - ``descriptions``: the multilingual description of the chart
 - ``icon``: the icon of each widget. Portal supports both Streamline and FontAwesome icons
-- ``refreshInterval``: statistic chart refresh interval in seconds
+- ``refreshInterval``: the refresh interval for the statistic chart, specified in seconds. Set this value to 0 to disable auto-refresh.
 - ``chartType``: chart type that you want to show on the UI. There are 4 chart types:
    
    ``pie``: Pie chart
@@ -525,6 +526,8 @@ Data model:
    
    |number-chart|
 
+- ``backgroundColor``: chart color
+
 For some specific charts such as ``Bar``, ``Line`` or ``Number``, there are additional and required fields:
 
 - ``barChartConfig``: required fields for configuring the ``Bar`` chart, please add them if chart type is ``bar`` 
@@ -541,6 +544,7 @@ For some specific charts such as ``Bar``, ``Line`` or ``Number``, there are addi
 - ``numberChartConfig``: additional fields for configuring the ``Number`` chart, you can add if chart type is ``number``
 
    - ``suffixSymbol``: icon next to the number. Portal supports both Streamline and FontAwesome icons
+   - ``hideLabel``: hide the label of the number chart
    
 .. _portal-process-external-link:
 
