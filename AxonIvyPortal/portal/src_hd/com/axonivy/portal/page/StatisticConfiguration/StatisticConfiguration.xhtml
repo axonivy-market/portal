@@ -60,7 +60,6 @@
                       <f:selectItems value="#{statisticConfigurationBean.allChartTypes}" var="type"
                         itemLabel="#{chartType}" itemValue="#{chartType}" />
                       <p:ajax event="itemSelect"
-                        listener="#{statisticConfigurationBean.onSelectChartType(statisticConfigurationBean.statistic.chartType)}"
                         update="x-axis-title-container y-axis-title-container hide-label-container background-colors-container errors-message" />
                     </p:selectOneMenu>
                   </div>
@@ -239,8 +238,9 @@
                   <div class="col-6 text-right">
                     <p:commandButton widgetVar="previewButton"
                       value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GeneratePreview')}"
-                      actionListener="#{statisticConfigurationBean.getPreviewData()}" update="config-panel errors-message"
-                      oncomplete="handlePreviewChart(xhr, status, args)" styleClass="ui-leave-button" />
+                      actionListener="#{statisticConfigurationBean.getPreviewData()}"
+                      update="config-panel errors-message" oncomplete="handlePreviewChart(xhr, status, args)"
+                      styleClass="ui-leave-button" />
                   </div>
                 </div>
                 <div class="col-12">
