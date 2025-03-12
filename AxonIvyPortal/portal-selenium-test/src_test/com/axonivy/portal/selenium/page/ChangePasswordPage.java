@@ -49,7 +49,7 @@ public class ChangePasswordPage extends TemplatePage {
   public void isNewPasswordNotStrongEnough() {
     $("#change-password-form\\:password-setting\\:change-password-messages .ui-messages-error-detail").shouldHave(
         Condition.text(
-            "Password must be at least 4 characters long, contain at least 1 lowercase character, contain at least 1 uppercase character, contain at least 1 number, contain at least 1 special character."),
+            "Password must be at least 4 characters long\n contain at least 1 lowercase character\n contain at least 1 uppercase character\n contain at least 1 number\n contain at least 1 special character"),
         DEFAULT_TIMEOUT);
   }
 
