@@ -159,6 +159,8 @@
               dragDropSupport="true" auto="true" widgetVar="editExternalLinkUpload"
               update="file-upload-panel" 
               allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
+              sizeLimit="#{processWidgetBean.uploadFileLimit}"
+              invalidSizeMessage="#{processWidgetBean.getFileUploadInvalidSizeMessage()}"
               accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFailOnEditExternalLink('editExternalLinkUpload');"
               label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" oncomplete="hideExtendLinkPreviewLabel();"
               invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" dropZone="edit-external-link-preview-image-panel"/>
@@ -356,6 +358,8 @@
           dragDropSupport="true" auto="true" update="file-upload-panel"
           allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
           accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('externalLinkUpload');"
+          sizeLimit="#{externalLinkBean.uploadFileLimit}"
+          invalidSizeMessage="#{externalLinkBean.getFileUploadInvalidSizeMessage()}"
           invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
           dropZone="external-link-preview-image-panel" oncomplete="hideExtendLinkPreviewLabel();"/>
           
