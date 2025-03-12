@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.enums.statistic.ChartAggregates;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.util.DisplayNameUtils;

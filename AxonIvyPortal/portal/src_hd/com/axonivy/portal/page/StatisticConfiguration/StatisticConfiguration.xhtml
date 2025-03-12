@@ -94,8 +94,11 @@
                   <p:outputLabel for="@next"
                     value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Aggregate')}" />
                   <div>
-                    <p:inputText id="aggregates" required="true"
-                      value="#{statisticConfigurationBean.statistic.aggregates}" styleClass="w-full" />
+                    <p:selectOneMenu id="aggregates" required="true" styleClass="w-full"
+                      value="#{statisticConfigurationBean.statistic.aggregates}">
+                      <f:selectItems value="#{statisticConfigurationBean.getAllAvailableAggregates()}" 
+                        var="aggregate" />
+                    </p:selectOneMenu>
                   </div>
                 </div>
 

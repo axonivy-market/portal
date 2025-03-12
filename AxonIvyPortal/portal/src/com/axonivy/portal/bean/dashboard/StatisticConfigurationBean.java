@@ -37,6 +37,7 @@ import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.util.RoleUtils;
+import com.axonivy.portal.enums.statistic.ChartAggregates;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.service.StatisticService;
@@ -86,7 +87,7 @@ public class StatisticConfigurationBean implements Serializable {
     callbackDashboardId = Attrs.currentContext().getAttribute("#{data.callbackDashboardId}", String.class);
     if (statistic == null) {
       statistic = new Statistic();
-      statistic.setAggregates("priority");
+      statistic.setAggregates(ChartAggregates.PRIORITY.name());
       statistic.setNames(new ArrayList<>());
       statistic.setDescriptions(new ArrayList<>());
       statistic.setRefreshInterval(0);
@@ -236,6 +237,9 @@ public class StatisticConfigurationBean implements Serializable {
     Ivy.var().set(PortalVariable.CUSTOM_STATISTIC.key, statisticsJson);
   }
 
+  /**
+   * 
+   * DON'T SEE USAGE, COMMENT OUT FOR LATER USE
   public List<String> completeAggregates(String query) {
     List<String> allAggregates = getAllAvailableAggregates();
     List<String> filteredAggregates = new ArrayList<>();
@@ -248,13 +252,13 @@ public class StatisticConfigurationBean implements Serializable {
 
     return filteredAggregates;
   }
+ */
 
-  private List<String> getAllAvailableAggregates() {
-    List<String> aggregation = List.of("state", "businessState", "priority", "category", "isExpired", "worker.name",
-        "activator.name", "originalActivator.name", "businessRuntime", "workingTime", "numberOfResumes",
-        "startTimestamp", "modifiedTimestamp", "endTimestamp", "expiryTimestamp", "customFields.strings.*",
-        "customFields.numbers.*", "customFields.timestamps.*");
-    return aggregation;
+  public List<String> getAllAvailableAggregates() {
+    List<ChartAggregates> aggregations = Arrays.asList(ChartAggregates.values());
+    List<String> chartAggregations = new ArrayList<>();
+    aggregations.forEach(agg -> chartAggregations.add(agg.getName()));
+    return chartAggregations;
   }
 
   public List<ChartTarget> getAllChartTargets() {
