@@ -447,6 +447,21 @@ Data model:
 
 - ``id``: ID of the statistic chart
 
+- ``barChartConfig``: required fields for configuring the ``Bar`` chart, please add them if chart type is ``bar`` 
+
+   - ``xTitles``: the multilingual display title for the x-axis
+   - ``yTitles``: the multilingual display title for the y-axis
+   - ``yValue``: add this field with **time** value when you want to show the amount of time on the y-axis
+
+- ``lineChartConfig``: required fields for configuring the ``Line`` chart, please add them if chart type is ``line``
+
+   - ``xTitles``: the multilingual display title for the x-axis
+   - ``yTitles``: the multilingual display title for the y-axis
+
+- ``numberChartConfig``: additional fields for configuring the ``Number`` chart, you can add if chart type is ``number``
+
+   - ``suffixSymbol``: icon next to the number. Portal supports both Streamline and FontAwesome icons
+   
 .. _portal-process-external-link:
 
 Portal Processes External Links
