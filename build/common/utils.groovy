@@ -122,7 +122,7 @@ def mergeBOMFiles() {
   def targetDir = "${currentDir}/build/sbom/target"
   sh "mkdir -p ${targetDir}"
   sh """
-  find ${currentDir} -type d -name 'target' -exec find {} -type f -name '*.sbom.json' -exec rsync -R {} ${targetDir}/ \;
+  find ${currentDir} -type d -name 'target' -exec find {} -type f -name '*.sbom.json' -exec rsync -R {} ${targetDir}/
   """
   def sbomFileNames = sh(script: "find ${targetDir} -type f -name '*.sbom.json' -exec basename {} \\;", returnStdout: true).trim().replace("\n", " ")
   echo "Fould SBOM: ${sbomFileNames}"
