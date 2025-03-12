@@ -426,12 +426,13 @@ Data model:
 Portal Statistic Charts
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Defined charts could be used by the :ref:`Statistic widget <portal-statistic-widget>` of Portal dashboard.
+Portal has built-in statistical chart definitions that can be used by the :ref:`Statistic widget <portal-statistic-widget>` in the Portal dashboard. 
 
 Filename: ``variables.Portal.ClientStatistic.json``
 
 .. warning::
-   This variable will be removed in the next LTS version
+   In the next version of Portal, this variable will be removed as we implement a more powerful approach for statistics. 
+   Any modifications to this variable will be lost. Please consider this before making any changes.
 
 Data model:
 
