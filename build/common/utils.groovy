@@ -119,14 +119,13 @@ def generateBOMFile(def moduleDir) {
 
 def mergeBOMFiles() {
   def currentDir = pwd()
-  def targetDir = "${currentDir}/build/sbom/target"
-  sh "mkdir -p ${targetDir}"
+  def targetDir = "${currentDir}/build/sbom"
   sh """
-  find ${currentDir} -type d -name 'target' -exec find {} -type f -name '*.sbom.json' -exec rsync -R {} ${targetDir}/
+  find ${currentDir} -type d -name 'target' -exec find {} -type f -name '*.sbom.json' -exec rsync -R {} ${targetDir}
   """
   def sbomFileNames = sh(script: "find ${targetDir} -type f -name '*.sbom.json' -exec basename {} \\;", returnStdout: true).trim().replace("\n", " ")
   echo "Fould SBOM: ${sbomFileNames}"
-  def sbomFileNames = sbomFileNames.split(" ").collect { "/sbom/target/${it}" }.join(" ")
+  def sbomFileNames = sbomFileNames.split(" ").collect { "/sbom/${it}" }.join(" ")
   echo "Fould Massage SBOM: ${sbomFileNames}"
   sh "docker run -v ${currentDir}/build/sbom:/sbom cyclonedx/cyclonedx-cli merge --input-files ${sbomFileNames} --output-file /sbom/portal.sbom.json"
 }
