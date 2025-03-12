@@ -43,6 +43,14 @@ To add a new language to the Portal, what you have to do is:
    |export-cms|
 
 -  Add the translations for the new language for all CMS entries.
+-  Add the translations for the new language for all json files in the Portal located at Config/variables by adding new locale/value item.
+
+   |translate-json|
+
+-  Add the translations for the new language to DefaultDashboardUtils.java by adding new locale/value item.
+
+   |translate-java|
+
 -  Import the Excel file.
 -  Redeploy the Portal.
 
@@ -513,3 +521,5 @@ Data model:
 
 .. _Task Aggregation and Filter: https://developer.axonivy.com/api-browser?configUrl=https%3A%2F%2Fdeveloper.axonivy.com%2Fdoc%2F11.3%2Fopenapi%2Fconfig.json&urls.primaryName=default#/workflow/stats_1 
 .. _Case Aggregation and Filter: https://developer.axonivy.com/api-browser?configUrl=https%3A%2F%2Fdeveloper.axonivy.com%2Fdoc%2F11.3%2Fopenapi%2Fconfig.json&urls.primaryName=default#/workflow/stats
+.. |translate-json| image:: images/translate-json.png
+.. |translate-java| image:: images/translate-java.png
