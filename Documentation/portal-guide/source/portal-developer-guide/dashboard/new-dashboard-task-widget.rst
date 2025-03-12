@@ -609,7 +609,7 @@ Result
 - If the translation for a value is missing in the CMS, the static value from the entry is used instead.
 
 Sorting, Filtering, and Searching with Multi-Language Custom Fields
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Sorting
 ^^^^^^^
