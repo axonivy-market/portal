@@ -262,10 +262,10 @@ Variables:
     ApplicationName: Axon Ivy
     
     Upload:
-      # Set size limit for upload Document in MegaByte (MB). Default value is 20MB.
+      # Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.
       DocumentUploadSizeLimit: 20
 
-      # Set size limit for upload image in MegaByte (MB). Default value is 6MB.
+      # Set the size limit for uploading images in megabytes (MB). The default value is 6MB.
       ImageUploadSizeLimit: 6
 
   # If set to true, the cron job runs daily (at 6.AM as default) will clean all finished hidden cases in engine.

@@ -232,7 +232,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayAllUsersOfTaskActivator: Ce paramètre est utilisé pour le composant SecurityMemberDisplayName. Si le SecurityMember est un rôle, définissez ce paramètre sur true pour afficher la liste de tous les utilisateurs de ce rôle. Si ce paramètre a la valeur true, des informations sur l'icône sont
         affichées à côté du nom du rôle.
       displayMessageAfterFinishOrLeaveTask: Un message de retour d'information sera affiché lorsque l'utilisateur aura terminé ou quitté une tâche.
-      documentUploadSizeLimit: Définir la limite de taille pour le document téléchargé en mégaoctets (MB). La valeur par défaut est de 20MB.
+      documentUploadSizeLimit: Définissez la limite de taille pour le téléchargement de documents en mégaoctets (Mo). La valeur par défaut est de 20 Mo.
       embedInFrame: Régler sur true pour démarrer un processus/tâche en mode IFrame
       enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
       enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer la prise en charge de la traduction de DeepL.
@@ -257,7 +257,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideTimeNote: Définissez la valeur true pour masquer les heures et les minutes suivantes.
       hideUploadDocumentForDoneCaseNote: Définissez la valeur true pour refuser le téléchargement (également supprimer) du document une fois la requête terminée.
       hideYear: Définissez la valeur true, l'année sera cachée, sinon elle sera montrée.
-      imageUploadSizeLimit: Définir la limite de taille pour l'image téléchargée en mégaoctets (MB). La valeur par défaut est de 6MB.
+      imageUploadSizeLimit: Définissez la limite de taille pour le téléchargement d’images en mégaoctets (Mo). La valeur par défaut est de 6 Mo.
       loggedInUserFormat: L'option pour afficher le format de l'utilisateur connecté
       refreshTaskListIntervalNote: Intervalle d'actualisation de la liste des tâches en secondes.
       showAvatar: Pour activer/désactiver l'affichage des avatars des utilisateurs/rôles.
