@@ -102,6 +102,14 @@ def getJenkinsMasterDomain() {
   return env.BUILD_URL.split('/')[2].split(':')[0]
 }
 
+def generateBOM() {
+  generateBOMFile('AxonIvyPortal/portal-components')
+  generateBOMFile('AxonIvyPortal/portal')
+  generateBOMFile('Showcase/portal-user-examples')
+  generateBOMFile('Showcase/portal-developer-examples')
+  generateBOMFile('Showcase/portal-components-examples')
+}
+
 def generateBOMFile(def moduleDir) {
   def currentDir = pwd()
   def iarFile = sh (script: "ls ${currentDir}/${moduleDir}/target/*.iar", returnStdout: true).trim()
@@ -119,21 +127,27 @@ def generateBOMFile(def moduleDir) {
 
 def mergeBOMFiles() {
   def currentDir = pwd()
-  def targetDir = "${currentDir}/build/sbom"
+  def targetDir = "${currentDir}/build/sbom/target"
+  sh """
+      if [ -d ${targetDir} ]; then
+        echo "Directory exists, emptying it..."
+        rm -rf ${targetDir}/*   # Remove all contents of the directory
+      else
+        echo "Directory does not exist, creating it..."
+        mkdir -p ${targetDir}   # Create the directory
+      fi
+     """
   def sbomFiles = sh (script: "find ${currentDir} -type d -name 'target' -exec find {} -type f -name '*.sbom.json' \\;", returnStdout: true).trim()
   if(sbomFiles) {
     def sbomFileList = sbomFiles.split("\n")
     sbomFileList.each { file ->
-                            sh "cp ${file} ${targetDir}/"
-                            echo "Copied file: ${file} to ${targetDir}/"
-                        }
+                          sh "cp ${file} ${targetDir}/"
+                          echo "Copied file: ${file} to ${targetDir}/"
+                      }
   }
-  
   def sbomFileNames = sh(script: "find ${targetDir} -type f -name '*.sbom.json' -exec basename {} \\;", returnStdout: true).trim().replace("\n", " ")
-  echo "Fould SBOM: ${sbomFileNames}"
   sbomFileNames = sbomFileNames.split(" ").collect { "/sbom/${it}" }.join(" ")
-  echo "Fould Massage SBOM: ${sbomFileNames}"
-  sh "docker run -v ${currentDir}/build/sbom:/sbom cyclonedx/cyclonedx-cli merge --input-files ${sbomFileNames} --output-file /sbom/portal.sbom.json"
+  sh "docker run -v ${targetDir}:/sbom cyclonedx/cyclonedx-cli merge --input-files ${sbomFileNames} --output-file /sbom/portal.sbom.json"
 }
 
 return this
