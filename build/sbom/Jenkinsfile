@@ -19,13 +19,13 @@ pipeline {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
           builtModules = []
-          docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
-            def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
-            for (module in modules) {
-              maven cmd: "clean install -f ${module}/pom.xml"
-              builtModules.add(module)
-            }
-          }
+          // docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+          //   def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
+          //   for (module in modules) {
+          //     maven cmd: "clean install -f ${module}/pom.xml"
+          //     builtModules.add(module)
+          //   }
+          // }
         }
       }
     }
@@ -33,9 +33,9 @@ pipeline {
       steps {
         script {
           def utils = load 'build/common/utils.groovy'
-          for (module in builtModules) {
-              utils.generateBOMFile(module)
-          }
+          // for (module in builtModules) {
+          //     utils.generateBOMFile(module)
+          // }
           utils.mergeBOMFiles()
         }
       }

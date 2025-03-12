@@ -120,9 +120,15 @@ def generateBOMFile(def moduleDir) {
 def mergeBOMFiles() {
   def currentDir = pwd()
   def targetDir = "${currentDir}/build/sbom"
-  sh """
-  find ${currentDir} -type d -name 'target' -exec find {} -type f -name '*.sbom.json' -exec rsync -R {} ${targetDir}
-  """
+  def sbomFiles = sh (script: "find ${currentDir} -type d -name 'target' -exec find {} -type f -name '*.sbom.json' \\;", returnStdout: true).trim()
+  if(sbomFiles) {
+    def sbomFileList = sbomFiles.split("\n")
+    sbomFileList.each { file ->
+                            sh "cp ${file} ${targetDir}/"
+                            echo "Copied file: ${file} to ${targetDir}/"
+                        }
+  }
+  
   def sbomFileNames = sh(script: "find ${targetDir} -type f -name '*.sbom.json' -exec basename {} \\;", returnStdout: true).trim().replace("\n", " ")
   echo "Fould SBOM: ${sbomFileNames}"
   def sbomFileNames = sbomFileNames.split(" ").collect { "/sbom/${it}" }.join(" ")
