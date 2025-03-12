@@ -1,4 +1,4 @@
-package com.axonivy.portal.bean.dashboard;
+package com.axonivy.portal.bean;
 
 import static com.axonivy.portal.enums.statistic.ChartType.BAR;
 import static com.axonivy.portal.enums.statistic.ChartType.LINE;
@@ -10,10 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -41,17 +39,18 @@ import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.service.StatisticService;
-import com.axonivy.portal.util.DisplayNameUtils;
+import com.axonivy.portal.service.multilanguage.StatisticDescriptionMultilanguageService;
+import com.axonivy.portal.service.multilanguage.StatisticNameMultilanguageService;
+import com.axonivy.portal.service.multilanguage.StatisticXTitleMultilanguageService;
+import com.axonivy.portal.service.multilanguage.StatisticYTitleMultilanguageService;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
-import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
-import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -80,6 +79,11 @@ public class StatisticConfigurationBean implements Serializable {
   private boolean isEditMode;
   private boolean refreshIntervalEnabled;
 
+  private StatisticNameMultilanguageService nameMultilanguageService;
+  private StatisticDescriptionMultilanguageService descriptionMultilanguageService;
+  private StatisticXTitleMultilanguageService xTitleMultilanguageService;
+  private StatisticYTitleMultilanguageService yTitleMultilanguageService;
+
   @PostConstruct
   public void init() {
     statisticId = Attrs.currentContext().getAttribute("#{data.id}", String.class);
@@ -103,7 +107,6 @@ public class StatisticConfigurationBean implements Serializable {
       yTitles = new ArrayList<>();
       backgroundColors = new ArrayList<>();
       refreshIntervalEnabled = false;
-      // TODO z1 init category, value. Add action when select chart type
     } else { // existed statistic
       isEditMode = true;
       if (statistic.getRefreshInterval() != null && statistic.getRefreshInterval() >= MIN_REFRESH_INTERVAL_IN_SECONDS) {
@@ -143,6 +146,10 @@ public class StatisticConfigurationBean implements Serializable {
     }
     populateBackgroundColorsIfMissing();
     initPermissions();
+    nameMultilanguageService = new StatisticNameMultilanguageService(statistic);
+    descriptionMultilanguageService = new StatisticDescriptionMultilanguageService(statistic);
+    xTitleMultilanguageService = new StatisticXTitleMultilanguageService(this);
+    yTitleMultilanguageService = new StatisticYTitleMultilanguageService(this);
   }
 
   private void populateBackgroundColorsIfMissing() {
@@ -171,9 +178,13 @@ public class StatisticConfigurationBean implements Serializable {
     syncUIConfigWithChartConfig();
     resetRedundantChartConfigs(statistic.getChartType(), true);
     cleanUpConfiguration();
+    nameMultilanguageService.initMultipleLanguagesForName(statistic.getName());
+    descriptionMultilanguageService.initMultipleLanguagesForName(statistic.getDescription());
+    if (BAR == statistic.getChartType() || LINE == statistic.getChartType()) {
+      xTitleMultilanguageService.initMultipleLanguagesForName(getxTitle());
+      yTitleMultilanguageService.initMultipleLanguagesForName(getyTitle());
+    }
     saveStatisticJson();
-    // resetRedundantChartConfigs(statistic.getChartType(), false);
-    // populateBackgroundColorsIfMissing();
     backToDashboardDetailsPageIfPossible();
   }
 
@@ -182,20 +193,18 @@ public class StatisticConfigurationBean implements Serializable {
         || (statistic.getRefreshInterval() < MIN_REFRESH_INTERVAL_IN_SECONDS)) {
       statistic.setRefreshInterval(null);
     }
+    statistic.setAdditionalConfigs(null);
   }
 
   private void syncUIConfigWithChartConfig() {
     List<SecurityMemberDTO> responsibles = statistic.getPermissionDTOs();
     List<String> permissions = new ArrayList<>();
-    // String displayedPermission = ""; // TODO z1 check out saveDashboardDetail
     if (CollectionUtils.isNotEmpty(responsibles)) {
       Collection<SecurityMemberDTO> distinctPermissionDTOs =
           responsibles.stream().collect(Collectors.toMap(SecurityMemberDTO::getMemberName, responsible -> responsible,
               (responsible1, responsible2) -> responsible1)).values();
       responsibles.clear();
       responsibles.addAll(distinctPermissionDTOs);
-      // displayedPermission =
-      // responsibles.stream().map(SecurityMemberDTO::getDisplayName).collect(Collectors.joining(", "));
       permissions = responsibles.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
       statistic.setPermissions(permissions);
     }
@@ -233,9 +242,6 @@ public class StatisticConfigurationBean implements Serializable {
 
   private void saveStatisticJson() {
     List<Statistic> statistics = StatisticService.getInstance().getCustomStatistic();
-
-    // Statistic existedStatistic =
-    // StatisticService.getInstance().findByIdCustomStatistic(statistic.getId());
     Statistic oldStatistic = null;
     for (int i = 0; i < statistics.size(); i++) {
       if (statistic.getId().equals(statistics.get(i).getId())) {
@@ -307,91 +313,43 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void updateNameForCurrentLanguage() {
-    updateForCurrentLanguage(statistic.getNames(), Statistic::setName);
+    nameMultilanguageService.updateNameForCurrentLanguage();
   }
 
   public void updateDescriptionForCurrentLanguage() {
-    updateForCurrentLanguage(statistic.getDescriptions(), Statistic::setDescription);
+    descriptionMultilanguageService.updateNameForCurrentLanguage();
   }
 
   public void updateCategoryTitleForCurrentLanguage() {
-    updateForCurrentLanguageForColumnChartConfig(xTitles, StatisticConfigurationBean::setxTitle);
+    xTitleMultilanguageService.updateNameForCurrentLanguage();
   }
 
   public void updateValueTitleForCurrentLanguage() {
-    updateForCurrentLanguageForColumnChartConfig(yTitles, StatisticConfigurationBean::setyTitle);
-  }
-
-  private void updateForCurrentLanguage(List<DisplayName> names, BiConsumer<Statistic, String> setNameFunction) {
-    String currentLanguage = UserUtils.getUserLanguage();
-    Optional<DisplayName> optional =
-        names.stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
-    optional.ifPresent(displayName -> setNameFunction.accept(statistic, displayName.getValue()));
-  }
-
-  private void updateForCurrentLanguageForColumnChartConfig(List<DisplayName> names,
-      BiConsumer<StatisticConfigurationBean, String> setNameFunction) {
-    String currentLanguage = UserUtils.getUserLanguage();
-    Optional<DisplayName> optional =
-        names.stream().filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
-    optional.ifPresent(displayName -> setNameFunction.accept(this, displayName.getValue()));
+    yTitleMultilanguageService.updateNameForCurrentLanguage();
   }
 
   public void updateNameByLocale() {
-    String currentName = LanguageUtils.getLocalizedName(statistic.getNames(), statistic.getName());
-    initAndSetValue(currentName, statistic.getNames());
+    nameMultilanguageService.updateNameByLocale();
   }
 
   public void updateDescriptionByLocale() {
-    String currentDescription = LanguageUtils.getLocalizedName(statistic.getDescriptions(), statistic.getDescription());
-    initAndSetValue(currentDescription, statistic.getDescriptions());
+    descriptionMultilanguageService.updateNameByLocale();
   }
 
   public void updateCategoryTitleByLocale() {
-    String currentName = LanguageUtils.getLocalizedName(xTitles, getxTitle());
-    initAndSetValue(currentName, xTitles);
+    xTitleMultilanguageService.updateNameByLocale();
   }
 
   public void updateValueTitleByLocale() {
-    String currentName = LanguageUtils.getLocalizedName(yTitles, getyTitle());
-    initAndSetValue(currentName, yTitles);
-  }
-
-  private void initAndSetValue(String value, List<DisplayName> values) {
-    DisplayNameConvertor.initMultipleLanguages(value, values);
-    DisplayNameConvertor.setValue(value, values);
+    yTitleMultilanguageService.updateNameByLocale();
   }
 
   public List<DisplayName> getNames() {
-    if (statistic == null) {
-      return new ArrayList<>();
-    }
-
-    if (statistic.getNames().isEmpty()) {
-      List<String> supportedLanguages = getSupportedLanguages();
-      for (String language : supportedLanguages) {
-        DisplayName displayName = new DisplayName();
-        displayName.setLocale(Locale.forLanguageTag(language));
-        statistic.getNames().add(displayName);
-      }
-    }
-    return statistic.getNames();
+    return nameMultilanguageService.getNames();
   }
 
   public List<DisplayName> getDescriptions() {
-    if (statistic == null) {
-      return new ArrayList<>();
-    }
-
-    if (statistic.getDescriptions().isEmpty()) {
-      List<String> supportedLanguages = getSupportedLanguages();
-      for (String language : supportedLanguages) {
-        DisplayName displayName = new DisplayName();
-        displayName.setLocale(Locale.forLanguageTag(language));
-        statistic.getDescriptions().add(displayName);
-      }
-    }
-    return statistic.getDescriptions();
+    return descriptionMultilanguageService.getNames();
   }
 
   public String getxTitle() {
@@ -405,18 +363,10 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public List<DisplayName> getxTitles() {
-    if (xTitles == null) {
-      return new ArrayList<>();
-    }
+    return xTitleMultilanguageService.getNames();
+  }
 
-    if (xTitles.isEmpty()) {
-      List<String> supportedLanguages = getSupportedLanguages();
-      for (String language : supportedLanguages) {
-        DisplayName displayName = new DisplayName();
-        displayName.setLocale(Locale.forLanguageTag(language));
-        xTitles.add(displayName);
-      }
-    }
+  public List<DisplayName> getConfigxTitles() {
     return xTitles;
   }
 
@@ -431,24 +381,11 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public List<DisplayName> getyTitles() {
-    if (yTitles == null) {
-      return new ArrayList<>();
-    }
-
-    if (yTitles.isEmpty()) {
-      List<String> supportedLanguages = getSupportedLanguages();
-      for (String language : supportedLanguages) {
-        DisplayName displayName = new DisplayName();
-        displayName.setLocale(Locale.forLanguageTag(language));
-        yTitles.add(displayName);
-      }
-    }
-    return yTitles;
+    return yTitleMultilanguageService.getNames();
   }
 
-  public void setyTitles(List<DisplayName> yTitles) { // TODO z1 should delete?
-    this.yTitles = yTitles;
-    yTitle = DisplayNameUtils.findDisplayNameOfUserLanguage(yTitles);
+  public List<DisplayName> getConfigyTitles() {
+    return yTitles;
   }
 
   public List<String> getBackgroundColors() {
@@ -471,10 +408,6 @@ public class StatisticConfigurationBean implements Serializable {
     this.refreshIntervalEnabled = refreshIntervalEnabled;
   }
 
-  protected List<String> getSupportedLanguages() {
-    return LanguageService.getInstance().getIvyLanguageOfUser().getSupportedLanguages();
-  }
-
   public boolean isRequiredField(DisplayName displayName) {
     String currentLanguage = UserUtils.getUserLanguage();
     String displayLanguage = displayName.getLocale().getLanguage();
@@ -487,10 +420,6 @@ public class StatisticConfigurationBean implements Serializable {
 
   public boolean isShowTranslation(DisplayName title) {
     return DeepLTranslationService.getInstance().isShowTranslation(title.getLocale());
-  }
-
-  public void onSelectChartType(ChartType chartType) {
-    // TODO z1 consider to remove
   }
 
   public void onToggleRefreshInterval() {
@@ -526,4 +455,5 @@ public class StatisticConfigurationBean implements Serializable {
       PortalNavigator.navigateToDashboardDetailsPage(callbackDashboardId, true);
     }
   }
+
 }
