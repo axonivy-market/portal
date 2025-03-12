@@ -47,11 +47,11 @@
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" forStatistic="true" />
       </h:panelGroup>
       
-<!--       <h:panelGroup layout="block" rendered="#{filter.isFinishedDateField() or filter.isExpiryDateField()}"> -->
-<!--         <ic:com.axonivy.portal.dashboard.component.filter.DateFilter filter="#{filter}" widget="#{widget}" -->
-<!--           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}" -->
-<!--           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"/> -->
-<!--       </h:panelGroup> -->
+      <h:panelGroup layout="block">
+        <ic:com.axonivy.portal.dashboard.component.filter.DateFilter filter="#{filter}" widgetType="#{statistic.getChartTarget().getName()}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"/>
+      </h:panelGroup>
 
       <div class="remove-filter-panel">
         <p:commandButton id="remove-filter" icon="si si-subtract"

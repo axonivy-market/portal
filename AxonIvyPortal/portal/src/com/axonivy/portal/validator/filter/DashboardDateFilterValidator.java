@@ -11,7 +11,7 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
@@ -26,7 +26,7 @@ public class DashboardDateFilterValidator implements Validator {
   @Override
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
   
-    DashboardFilter filter = (DashboardFilter) component.getAttributes().get("filter");
+    BaseFilter filter = (BaseFilter) component.getAttributes().get("filter");
     Integer filterIndex = Optional.ofNullable((Integer)component.getAttributes().get("filterIndex")).orElse(0);
     String messageComponentId = Optional.ofNullable((String)component.getAttributes().get("messageId")).orElse(null);
 
@@ -37,7 +37,7 @@ public class DashboardDateFilterValidator implements Validator {
     }
   }
 
-  private void validateBetweenOperator(Date value, DashboardFilter filter, int filterIndex, UIComponent component, String messageComponentId) {
+  private void validateBetweenOperator(Date value, BaseFilter filter, int filterIndex, UIComponent component, String messageComponentId) {
     if (value == null) {
       FacesContext.getCurrentInstance().addMessage(
           messageComponentId,
@@ -56,7 +56,7 @@ public class DashboardDateFilterValidator implements Validator {
     }
   }
 
-  private void validateDefaultOperator(Date value, DashboardFilter filter, int filterIndex, UIComponent component, String messageComponentId) {
+  private void validateDefaultOperator(Date value, BaseFilter filter, int filterIndex, UIComponent component, String messageComponentId) {
     if (value == null) {
       FacesContext.getCurrentInstance().addMessage(
           messageComponentId,

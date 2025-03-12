@@ -10,6 +10,11 @@ public final class PortalConstants {
   public static final int CUSTOM_STRING_FIELD_MAX_LENGTH = 2000;
   public static final int MAX_USERS_IN_AUTOCOMPLETE = 101;
   public static final String COLON = ":";
+  public static final String COMMA = ",";
+  public static final String GREATER_THAN_OR_EQUAL = ">=";
+  public static final String LESS_THAN_OR_EQUAL = "<=";
+  public static final String GREATER_THAN = ">";
+  public static final String LESS_THAN = "<";
   
   private PortalConstants() {}
 }

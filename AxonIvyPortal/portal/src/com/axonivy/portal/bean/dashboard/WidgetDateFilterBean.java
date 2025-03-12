@@ -8,14 +8,15 @@ import java.util.Optional;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 
-import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
-import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -43,7 +44,7 @@ public class WidgetDateFilterBean implements Serializable {
     return filterPeriodTypes;
   }
 
-  public void onChangeOperator(DashboardFilter filter) {
+  public void onChangeOperator(BaseFilter filter) {
     filter.setFromDate(null);
     filter.setToDate(null);
     filter.setFrom(null);
@@ -62,16 +63,16 @@ public class WidgetDateFilterBean implements Serializable {
         TaskFilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
   }
 
-  private String getMessagePrefix(String field, int index, DashboardWidgetType widgetType) {
-    if (DashboardWidgetType.TASK == widgetType) {
+  private String getMessagePrefix(String field, int index, String widgetType) {
+    if ("task" == StringUtils.lowerCase(widgetType)) {
       return getTaskMessagePrefix(field, index);
     }
 
     return getCaseMessagePrefix(field, index);
   }
 
-  public String getWrongFormatMessage(String field, int index, DashboardWidget widget) {
-    return String.join(": ", getMessagePrefix(field, index, widget.getType()),
+  public String getWrongFormatMessage(String field, int index, String widgetType) {
+    return String.join(": ", getMessagePrefix(field, index, widgetType),
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat"));
   }
 
@@ -79,14 +80,14 @@ public class WidgetDateFilterBean implements Serializable {
     return currentFilterPeriodTypes;
   }
 
-  public void updateToDate(DashboardFilter filter) {
-    if (Optional.ofNullable(filter).map(DashboardFilter::getToDate).isPresent()) {
+  public void updateToDate(BaseFilter filter) {
+    if (Optional.ofNullable(filter).map(BaseFilter::getToDate).isPresent()) {
       filter.setTo(formatter.format(filter.getToDate()));
     }
   }
 
-  public void updateFromDate(DashboardFilter filter) {
-    if (Optional.ofNullable(filter).map(DashboardFilter::getFromDate).isPresent()) {
+  public void updateFromDate(BaseFilter filter) {
+    if (Optional.ofNullable(filter).map(BaseFilter::getFromDate).isPresent()) {
       filter.setFrom(formatter.format(filter.getFromDate()));
     }
   }

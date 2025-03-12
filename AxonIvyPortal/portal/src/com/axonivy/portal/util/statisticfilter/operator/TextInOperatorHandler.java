@@ -16,7 +16,7 @@ public class TextInOperatorHandler {
     return instance;
   }
   
-  public String buildStringFilter(StatisticFilter filter) {
+  public String buildFilter(StatisticFilter filter) {
     if (CollectionUtils.isEmpty(filter.getValues())) {
       return "";
     }

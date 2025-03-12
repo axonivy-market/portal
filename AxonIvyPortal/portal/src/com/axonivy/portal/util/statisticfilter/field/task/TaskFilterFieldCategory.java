@@ -55,7 +55,7 @@ public class TaskFilterFieldCategory extends FilterField {
   @Override
   public String generateStringFilter(StatisticFilter filter) {
     return switch (filter.getOperator()) {
-      case IN -> TextInOperatorHandler.getInstance().buildStringFilter(filter);
+      case IN -> TextInOperatorHandler.getInstance().buildFilter(filter);
       default -> null;
     };
   }

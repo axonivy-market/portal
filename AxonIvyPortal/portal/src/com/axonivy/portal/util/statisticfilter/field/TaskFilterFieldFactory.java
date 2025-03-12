@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.axonivy.portal.util.statisticfilter.field.task.TaskFilterFieldCategory;
+import com.axonivy.portal.util.statisticfilter.field.task.TaskFilterFieldCreatedDate;
 import com.axonivy.portal.util.statisticfilter.field.task.TaskFilterFieldPriority;
 import com.axonivy.portal.util.statisticfilter.field.task.TaskFilterFieldState;
 
@@ -19,6 +20,7 @@ public class TaskFilterFieldFactory {
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.CATEGORY.getField(), new TaskFilterFieldCategory());
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.STATE.getField(), new TaskFilterFieldState());
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.PRIORITY.getField(), new TaskFilterFieldPriority());
+    STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.CREATED.getField(), new TaskFilterFieldCreatedDate());
   }
 
   public static List<FilterField> getStandardFilterableFields() {

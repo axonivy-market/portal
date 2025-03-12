@@ -104,7 +104,7 @@ public class StatisticService {
 
   public AggregationResult getChartData(Statistic chart) {
     String filter = processFilter(chart.getFilters());
-//    chart.setFilters(StringUtils.stripToNull(chart.getFilters()));
+    Ivy.log().info(filter);
     return switch (chart.getChartTarget()) {
     case CASE -> WorkflowStats.current().caze().aggregate(chart.getAggregates(),
         filter);
