@@ -131,7 +131,7 @@ def mergeBOMFiles() {
   
   def sbomFileNames = sh(script: "find ${targetDir} -type f -name '*.sbom.json' -exec basename {} \\;", returnStdout: true).trim().replace("\n", " ")
   echo "Fould SBOM: ${sbomFileNames}"
-  def sbomFileNames = sbomFileNames.split(" ").collect { "/sbom/${it}" }.join(" ")
+  sbomFileNames = sbomFileNames.split(" ").collect { "/sbom/${it}" }.join(" ")
   echo "Fould Massage SBOM: ${sbomFileNames}"
   sh "docker run -v ${currentDir}/build/sbom:/sbom cyclonedx/cyclonedx-cli merge --input-files ${sbomFileNames} --output-file /sbom/portal.sbom.json"
 }
