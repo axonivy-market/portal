@@ -14,7 +14,7 @@ pipeline {
   }
 
   stages {
-    stage('build') {
+    stage('Build') {
       steps {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
@@ -27,12 +27,13 @@ pipeline {
         }
       }
     }
-    stage('generate sboms') {
+    stage('Generate BOM') {
       steps {
         script {
           def utils = load 'build/common/utils.groovy'
           utils.generateBOM()
           utils.mergeBOMFiles()
+          utils.uploadBOM('Portal 12', '12', 'build/sbom/target/portal.bom.json', 'odt_dhrsT92Iyov4tM3gf25NfvLJxbAA7eL1')
         }
       }
     }
