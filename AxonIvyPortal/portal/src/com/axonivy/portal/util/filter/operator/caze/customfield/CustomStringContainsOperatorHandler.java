@@ -30,17 +30,21 @@ public class CustomStringContainsOperatorHandler {
       return null;
     }
     CaseQuery query = CaseQuery.create(); // TODO filterfield correct? business and/or technical cases?
-    
+
     filter.getValues().forEach(text -> {
       CaseQuery subQuery = CaseQuery.create();
       subQuery.where().customField().stringField(filter.getField())
           .isLikeIgnoreCase(String.format(LIKE_FORMAT, text.toLowerCase()));
       query.where().or(subQuery);
     });
-    
+
     if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(filter.getField())) {
-      CaseQuery addingQuery = buildQueryForCustomFieldWithCmsValue(filter);
-      query.where().or(addingQuery);
+      List<String> keywordList = PortalCustomFieldUtils.getCmsValuesMatchingWithKeywordList(filter.getField(),
+          DashboardColumnType.CUSTOM_CASE, filter.getValues());
+      if (!keywordList.isEmpty()) {
+        CaseQuery addingQuery = buildQueryForCustomFieldWithCmsValue(filter, keywordList);
+        query.where().or(addingQuery);
+      }
     }
 
     return query;
@@ -60,16 +64,11 @@ public class CustomStringContainsOperatorHandler {
     return query;
   }
   
-  public CaseQuery buildQueryForCustomFieldWithCmsValue(DashboardFilter filter) {
-    List<String> keywordList = PortalCustomFieldUtils.getCmsValuesMatchingWithKeywordList(filter.getField(), DashboardColumnType.CUSTOM_CASE, filter.getValues());
+  public CaseQuery buildQueryForCustomFieldWithCmsValue(DashboardFilter filter, List<String> keywordList) {
 
     CaseQuery query = CaseQuery.create();
     IFilterQuery filterQuery = query.where();
-    if (CollectionUtils.isEmpty(keywordList)) {
-      // Using an incorrect condition to return empty result
-      filterQuery.caseId().isNull().and().caseId().isNotNull();
-      return query;
-    }
+
     for (String keyword : keywordList) {
       filterQuery.or().customField().stringField(filter.getField()).isEqual(keyword);
     }
