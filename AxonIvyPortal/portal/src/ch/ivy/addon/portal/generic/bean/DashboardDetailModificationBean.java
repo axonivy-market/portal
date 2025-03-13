@@ -723,6 +723,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     selectedDashboard.getWidgets().forEach(widget -> {
       DashboardWidgetUtils.buildWidgetColumns(widget);
     });
+    DashboardUtils.updateDashboardCache();
   }
 
   private Dashboard saveDashboardsWithHandlingDefaultDashboards() {
