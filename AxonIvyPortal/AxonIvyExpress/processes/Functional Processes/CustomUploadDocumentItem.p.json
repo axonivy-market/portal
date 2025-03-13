@@ -188,10 +188,10 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.util.UploadDocumentUtils;",
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import org.apache.commons.io.FileUtils;",
             "import java.util.Arrays;",
-            "import ch.ivy.addon.portalkit.masterdata.MasterData;",
             "",
             "in.message = \"\";",
             "in.status = UploadDocumentCheckStatus.OK.toString();",
@@ -203,7 +203,7 @@
             "  in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/emptyFileMessage\");",
             "  in.status = UploadDocumentCheckStatus.FAIL.toString();",
             "} else {",
-            "  Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();",
+            "  Long maxFileUploadSize = UploadDocumentUtils.getDocumentUploadSizeLimit();",
             "  if (in.uploadedFile.getSize() > maxFileUploadSize) {",
             "    in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize\", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));",
             "  }",
