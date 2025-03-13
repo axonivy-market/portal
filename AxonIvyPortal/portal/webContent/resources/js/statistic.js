@@ -149,6 +149,9 @@ function initRefresh() {
         clearInterval(refreshInfo.refreshIntervalId);
       }
       if (refreshInfo.refreshInterval !== 0) {
+        if (refreshInfo.refreshInterval < 60) {
+          refreshInfo.refreshInterval = 60;
+        }
         refreshInfo.refreshIntervalId = setInterval(() => {
           refreshChart(refreshInfo);
         }, refreshInfo.refreshInterval * 1000);

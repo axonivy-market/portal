@@ -31,17 +31,16 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private ChartTarget chartTarget;
   private ChartType chartType;
   private Integer refreshInterval; // in seconds
-  @JsonInclude(value = Include.NON_NULL)
   private BarChartConfig barChartConfig;
-  @JsonInclude(value = Include.NON_NULL)
   private LineChartConfig lineChartConfig;
   private PieChartConfig pieChartConfig;
-  @JsonInclude(value = Include.NON_NULL)
   private NumberChartConfig numberChartConfig;
   private List<DisplayName> names;
+  @JsonIgnore
   @JsonProperty(access = Access.READ_ONLY)
   private String name;
   private List<DisplayName> descriptions;
+  @JsonIgnore
   @JsonProperty(access = Access.READ_ONLY)
   private String description;
   @JsonProperty(access = Access.READ_ONLY)
