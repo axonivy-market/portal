@@ -29,7 +29,7 @@
         value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardDetailModification/CreateCustomStatistic')}"
         icon="si si-analytics-bars" styleClass="primary-color-light-button"
         actionListener="#{dashboardDetailModificationBean.navigateToCustomStatisticWidgetPage(null)}"
-        rendered="#{dashboardDetailModificationBean.hasStatisticWritePublicPermission()}" />
+        rendered="#{dashboardDetailModificationBean.canEditStatistic()}" />
     </div>
   </h:form>
   <div class="new-widget-dialog__content">
@@ -83,13 +83,13 @@
                     <h:outputText id="statistic-widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
                     <p:tooltip id="statistic-widget-name-tooltip" for="statistic-widget-name" value="#{widget.name}" trackMouse="true" />
                   </div>
-                  <div class="flex flex-none align-items-center">
+                  <h:panelGroup styleClass="flex flex-none align-items-center"
+                    rendered="#{widget.isCustom and dashboardDetailModificationBean.canEditStatistic()}">
                     <p:commandButton id="custom-statistic-action-button" icon="fa fa-ellipsis-h"
-                      rendered="#{widget.isCustom and dashboardDetailModificationBean.hasStatisticWritePublicPermission()}"
-                      styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page h-1rem" type="button" />
+                      styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page h-1rem"
+                      type="button" />
                     <p:menu id="custom-statistic-action-menu" styleClass="w-auto" overlay="true"
-                      trigger="custom-statistic-action-button" my="right top" at="right bottom"
-                      rendered="#{widget.isCustom and dashboardDetailModificationBean.hasStatisticWritePublicPermission()}">
+                      trigger="custom-statistic-action-button" my="right top" at="right bottom">
                       <p:menuitem id="edit" process="@this" icon="si si-graphic-tablet-drawing-pen" styleClass=""
                         actionListener="#{dashboardDetailModificationBean.navigateToCustomStatisticWidgetPage(widget.id)}"
                         global="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
@@ -102,7 +102,7 @@
                         oncomplete="PF('remove-statistic-widget-dialog').show()"
                         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
                     </p:menu>
-                  </div>
+                  </h:panelGroup>
                 </div>
               </div>
             </div>
@@ -163,7 +163,7 @@
         </ui:repeat>
       </div>
     </p:fieldset>
-    <div class="js-no-widget u-hidden new-widget-dialog__no-widget-text">
+    <div class="js-no-widget hidden new-widget-dialog__no-widget-text">
       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/NoWidgetAvailable')}</span>
     </div>
   </div>

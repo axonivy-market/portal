@@ -61,7 +61,6 @@
                       <f:selectItems value="#{statisticConfigurationBean.allChartTypes}" var="type"
                         itemLabel="#{chartType}" itemValue="#{chartType}" />
                       <p:ajax event="itemSelect"
-                        listener="#{statisticConfigurationBean.onSelectChartType(statisticConfigurationBean.statistic.chartType)}"
                         update="x-axis-title-container y-axis-title-container hide-label-container background-colors-container errors-message" />
                     </p:selectOneMenu>
                   </div>
@@ -210,9 +209,11 @@
                   <div>
                     <p:inputNumber id="refresh-interval-value"
                       value="#{statisticConfigurationBean.statistic.refreshInterval}" decimalPlaces="0"
+                      maxValue="#{statisticConfigurationBean.getMaxRefreshIntervalInSeconds()}"
                       onkeydown="return event.key !== '-'"
                       disabled="#{not statisticConfigurationBean.refreshIntervalEnabled}" inputStyleClass="w-full">
-                      <f:validateLongRange minimum="15" maximum="1000000" />
+                      <f:validateLongRange minimum="#{statisticConfigurationBean.getMinRefreshIntervalInSeconds()}"
+                        maximum="#{statisticConfigurationBean.getMaxRefreshIntervalInSeconds()}" />
                     </p:inputNumber>
                   </div>
                 </h:panelGroup>
@@ -258,8 +259,9 @@
                   <div class="col-6 text-right">
                     <p:commandButton widgetVar="previewButton"
                       value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GeneratePreview')}"
-                      actionListener="#{statisticConfigurationBean.getPreviewData()}" update="config-panel errors-message"
-                      oncomplete="handlePreviewChart(xhr, status, args)" styleClass="ui-leave-button" />
+                      actionListener="#{statisticConfigurationBean.getPreviewData()}"
+                      update="config-panel errors-message" oncomplete="handlePreviewChart(xhr, status, args)"
+                      styleClass="ui-leave-button" />
                   </div>
                 </div>
                 <div class="col-12">

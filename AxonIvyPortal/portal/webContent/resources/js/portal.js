@@ -224,7 +224,10 @@ var MainMenu = {
       }
       this.removeActiveMenu(activeMenuItemList);
       $currentPageMenu.parent().addClass('active-menuitem');
-      PF('main-menu')?.addMenuitem($currentPageMenu.parent().attr('id'));
+      let pfMainMenu = PF('main-menu');
+      if (pfMainMenu) {
+        pfMainMenu.addMenuitem($currentPageMenu.parent().attr('id'));
+      }
     }
   },
 
@@ -334,9 +337,12 @@ function executeStoreMenuRemoteCommand(menuItem, isWorkingOnATask, isOpenOnNewTa
 }
 
 function fireEventClickOnMenuItem(menuItem, prevMenuItemId) {
-  PF('main-menu').addMenuitem(menuItem);
-  if (prevMenuItemId !== menuItem) {
-    PF('main-menu')?.removeMenuitem(prevMenuItemId);
+  let pfMainMenu = PF('main-menu');
+  if (pfMainMenu) {
+    pfMainMenu.addMenuitem(menuItem);
+    if (prevMenuItemId !== menuItem) {
+      pfMainMenu.removeMenuitem(prevMenuItemId);
+    }
   }
 }
 
@@ -363,7 +369,10 @@ function highlightDashboardItem(menuId) {
 }
 
 function activeMenuItemOnLeftMenu(menuId) {
-  PF('main-menu')?.addMenuitem(menuId);
+  let pfMainMenu = PF('main-menu');
+  if (pfMainMenu) {
+    pfMainMenu.addMenuitem(menuId);
+  }
   let $selectedMenu = $("[id$='" + menuId + "']");
   if (!$selectedMenu.hasClass('active-menuitem') && !$selectedMenu.siblings('.active-menuitem').length) {
     $selectedMenu.addClass('active-menuitem');
@@ -371,7 +380,10 @@ function activeMenuItemOnLeftMenu(menuId) {
 }
 
 function deactivateMenuItemOnLeftMenu(menuId) {
-  PF('main-menu')?.removeMenuitem(menuId);
+  let pfMainMenu = PF('main-menu');
+  if (pfMainMenu) {
+    pfMainMenu.removeMenuitem(menuId);
+  }
   let $removedMenu = $("[id$='" + menuId + "']");
   if ($removedMenu.hasClass('active-menuitem')) {
     $removedMenu.removeClass('active-menuitem');
@@ -504,6 +516,8 @@ $(document).ready(function () {
     'Digit5': [searchInputId],
     'Digit6': useSettingMenuId
   };
+
+  $(searchInputId).attr('role', 'combobox');
 
   function findTargetElementByKey(key) {
     if (key === 'Digit5') {

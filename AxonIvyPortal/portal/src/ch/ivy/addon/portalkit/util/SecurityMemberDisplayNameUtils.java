@@ -166,12 +166,12 @@ public class SecurityMemberDisplayNameUtils {
     }
     CaseOwner first = owners.all().get(0);
     CaseOwner second = owners.all().get(1);
-    
-    return String.format("%s, %s,..", 
+
+    return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/TextListOut"), 
         generateBriefDisplayNameForSecurityMember(first.member(), first.memberName()), 
         generateBriefDisplayNameForSecurityMember(second.member(), second.memberName()));
   }
-  
+
   public static String getFullCaseOwnerDisplay(ICase selectedCase) {
     if (selectedCase == null || CollectionUtils.isEmpty(selectedCase.owners().all())) {
       return "";

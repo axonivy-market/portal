@@ -8,7 +8,9 @@ import static ch.ivy.addon.portalkit.constant.DashboardConstants.WIDGET_ID_PATTE
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -55,11 +57,15 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class DashboardWidgetUtils {
 
+  private static final String HAS_CMS_VALUES_ATTRIBUTE = "HasCmsValues";
   public static final String ICON_ATTRIBUTE = "Icon";
   public static final String IS_CUSTOM_ACTION_ATTRIBUTE = "IsCustomAction";
 
@@ -162,6 +168,7 @@ public class DashboardWidgetUtils {
       column.setHeader(fieldMeta.get().label());
       column.setFormat(DashboardColumnFormat.valueOf(fieldMeta.get().type().name()));
       column.setIsCustomAction(Boolean.valueOf(fieldMeta.get().attribute(IS_CUSTOM_ACTION_ATTRIBUTE)));
+      column.setHasCmsValues(Boolean.valueOf(fieldMeta.get().attribute(HAS_CMS_VALUES_ATTRIBUTE)));
       column.setIcon(fieldMeta.get().attribute(ICON_ATTRIBUTE));
       column.setDescription(fieldMeta.get().description());
       if (column.getIsCustomAction()) {
@@ -350,7 +357,7 @@ public class DashboardWidgetUtils {
     return Optional.of(numberOfFilters <= MAX_NOTI_FILTERS ? String.valueOf(numberOfFilters)
         : String.format(MAX_NOTI_PATTERN, MAX_NOTI_FILTERS));
   }
-  
+
   private static long countProcessFilters(DashboardWidget widget) {
     List<ColumnModel> filterableColumns = ((CompactProcessDashboardWidget) widget).getFilterableColumns();
     int numberOfFilters = 0;
@@ -615,6 +622,8 @@ public class DashboardWidgetUtils {
     } else if (ProcessSorting.BY_CUSTOM_ORDER.name().equals(processSorting)) {
       Map<String, Integer> customIndexs = processWidget.getCustomIndexs();
       processesAfterSorting = sortProcessByCustomOrder(processes, customIndexs);
+    } else if (ProcessSorting.BY_SMART_ORDER.name().equals(processSorting)) {
+      processesAfterSorting = sortProcessByMostUsed(processes);
     }
     return processesAfterSorting;
   }
@@ -750,5 +759,43 @@ public class DashboardWidgetUtils {
     }
     return null;
   }
+
+
+  public static List<DashboardProcess> sortProcessByMostUsed(List<DashboardProcess> processes) {
+    if (processes == null || processes.isEmpty()) {
+      return Collections.emptyList();
+    }
+    Map<String, Long> usageCounts = fetchProcessUsageCounts();
+    processes.sort(
+        Comparator.comparingLong((DashboardProcess p) -> usageCounts.getOrDefault(p.getStartLink(), 0L)).reversed());
+
+    return processes;
+  }
+
+  private static Map<String, Long> fetchProcessUsageCounts() {
+    Map<String, Long> usageCounts = new HashMap<>();
+    int batchSize = 500;
+    int offset = 0;
+    List<ICase> batchResult;
+    String currentUser = Ivy.session().getSessionUser().getName();
+
+    do {
+      CaseQuery query = CaseQuery.create().where().creatorUserName().isEqual(currentUser); // Filter cases by current user
+
+      batchResult = Ivy.wf().getCaseQueryExecutor().getResults(query, offset, batchSize);
+      offset += batchSize;
+
+      for (ICase caze : batchResult) {
+        IProcessStart processStart = caze.getProcessStart();
+        if (processStart != null) {
+          String processStartLink = processStart.getLink().getRelative();
+          usageCounts.put(processStartLink, usageCounts.getOrDefault(processStartLink, 0L) + 1);
+        }
+        }
+      } while (!batchResult.isEmpty());
+
+    return usageCounts;
+  }
+
 
 }

@@ -561,3 +561,96 @@ Below are the definition of these attributes:
       * ``true``: apply quick search for this column.
       * ``false``: do not apply quick search for this column.
       * ``not defined``: the ``name`` and ``description`` columns are ``true``, other columns are ``false`` by default.
+
+Multi-Language Support for Custom String Fields
+-----------------------------------------------
+
+With the **Multi-Language Support for Custom Fields** feature, we enable the provision of values in a custom field in multiple languages.
+The field content is displayed based on the language selected in the custom field.
+
+.. important::
+   Portal only supports Multi-Language for Custom Fields with ``TYPE: STRING``.
+
+Enabling Multi-Language Support
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To allow a custom field to retrieve multilingual values from the CMS, set the ``HasCmsValue`` attribute to ``true`` in the corresponding ``custom-field`` yaml file configuration.
+Otherwise, the logic remains unchanged, and the custom field uses the static value.
+Additionally, the value must be entered and maintained in the CMS in multiple languages.
+
+Following this path to add your custom field values: ``/CustomFields/Tasks/{fieldName}/Values/{value}``
+Please follow this :dev-url:`Localize Label, Description, Category
+and Values </doc/|version|/designer-guide/configuration/custom-fields.html#localize-label-description-category-and-values>`
+to get more information.
+
+Example YAML Configuration
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: yaml
+
+   DriversVehicle:
+      Label: Drivers Vehicle
+      Description: Vehicle they use for delivery
+      HasCmsValues: true
+      TYPE: STRING
+
+In your CMS, the path should be
+``/CustomFields/Tasks/DriversVehicle/Values/Bike``,
+``/CustomFields/Tasks/DriversVehicle/Values/Car`` or
+``/CustomFields/Tasks/DriversVehicle/Values/MonsterTruck``.
+
+|task-field-cms|
+
+Result
+^^^^^^
+
+- If ``HasCmsValues`` is set with ``true``, the values from the CMS are used.
+- If the values are entered and translated in the CMS, then the custom field is displayed based on the selected language.
+- If the translation for a value is missing in the CMS, the static value from the entry is used instead.
+
+Sorting, Filtering, and Searching with Multi-Language Custom Fields
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sorting
+^^^^^^^
+
+1. ``HasCmsValues = false`` or not set. Sorting is performed as usual based on the stored values.
+2. ``HasCmsValues = true``. Sorting is performed based on values translated in the currently selected language.
+
+.. note::
+
+   If ``HasCmsValues = true`` but a translation is missing in a specific language, only the translated values are sorted.
+
+
+Searching
+^^^^^^^^^
+
+1. ``HasCmsValues = false`` or not set. The search is performed as usual based on the stored value.
+2. ``HasCmsValues = true``. The search is conducted in both the CMS translations and the original value.
+
+Example: When language is German, a user can search for **Fahrrad** or the original value **Bike**.
+
+Filtering
+^^^^^^^^^
+
+1. ``HasCmsValues = false`` or not set. Filtering is performed as usual based on the stored value.
+2. ``HasCmsValues = true``. The filter is conducted in both the CMS translations and the original value.
+
+.. important::
+
+   When enabling the Multi-Language for Custom Fields, only accepted ``CONTAINS`` operator.
+
+.. tip::
+
+   If a value needs to be filtered in multiple languages, all corresponding translations must be in the filter.
+
+Conclusion
+^^^^^^^^^^
+
+With Multi-Language Support for Custom Fields, we enable flexible and dynamic
+provision of field content in multiple languages. The functionalities for
+searching, sorting, and filtering have been adapted accordingly to ensure
+consistent behavior for multilingual content.
+
+
+.. |task-field-cms| image:: images/new-dashboard-task-widget/cms-structure-task-field.png

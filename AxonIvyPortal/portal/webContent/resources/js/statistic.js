@@ -149,6 +149,9 @@ function initRefresh() {
         clearInterval(refreshInfo.refreshIntervalId);
       }
       if (refreshInfo.refreshInterval !== 0) {
+        if (refreshInfo.refreshInterval < 60) {
+          refreshInfo.refreshInterval = 60;
+        }
         refreshInfo.refreshIntervalId = setInterval(() => {
           refreshChart(refreshInfo);
         }, refreshInfo.refreshInterval * 1000);
@@ -701,7 +704,7 @@ class ClientNumberChart extends ClientChart {
     let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
     let html =
-      '<div class="u-text-align-center chart-content-card">' +
+      '<div class="text-center chart-content-card">' +
       '    <div class="chart-number-container">' +
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +

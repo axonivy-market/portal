@@ -66,7 +66,7 @@
           u-no-padding-bottom #{processWidgetBean.compactMode ? '' : 'u-no-padding-left'}
           u-invisibility">
         <h:outputText id="no-found-processes" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/noProcesses')}"
-          styleClass="no-process-message js-no-found-processes u-display-none #{processWidgetBean.compactMode ? '' : 'ui-g-12'}" />
+          styleClass="no-process-message js-no-found-processes hidden #{processWidgetBean.compactMode ? '' : 'ui-g-12'}" />
         <!-- Grid mode -->
         <h:panelGroup id="grid-process-container" layout="block" styleClass="ui-g process-group grid-process-container" rendered="#{processWidgetBean.viewMode eq 'GRID'}">
           <ui:repeat id="grid-process-group-alphabet" var="entryProcess" value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}">
