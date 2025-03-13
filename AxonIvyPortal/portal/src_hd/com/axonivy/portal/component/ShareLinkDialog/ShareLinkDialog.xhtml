@@ -34,7 +34,7 @@
         <p:spacer width="15" />
         <p:commandButton id="share-link-copy-button" 
           value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ShareLinkDialog/CopyLink')}"
-          onclick="copyToClipboard('#{cc.attrs.url}')" 
+          onclick="copyToClipboard('#{htmlSanitizerBean.escapeForJS(cc.attrs.url)}')" 
           actionListener="#{masterDataBean.showLinkCopiedMessage()}" global="false" styleClass="w-full"/>
       </h:panelGroup>
     </f:facet>

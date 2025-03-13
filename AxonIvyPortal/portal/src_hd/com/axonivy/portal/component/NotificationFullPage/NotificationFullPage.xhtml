@@ -43,7 +43,7 @@
                     <div class="flex">
                       <div class="flex notifications-indicator">
                         <p:commandLink id="notification-mark-as-read" actionListener="#{notificationBean.markAsRead(notification)}"
-                          process="@this" partialSubmit="true" global="false" onclick="markAsRead('#{notification.id}')"
+                          process="@this" partialSubmit="true" global="false" onclick="markAsRead('#{htmlSanitizerBean.escapeForJS(notification.id)}')"
                           oncomplete="Portal.updateLayoutContent();" update="#{unreadNotificationsId} notification-mark-all-as-read">
                           <i class="notifications-indicator-icon fa #{notification.read ? '': 'fa-circle'}" id="#{notification.id}" />
                         </p:commandLink>
