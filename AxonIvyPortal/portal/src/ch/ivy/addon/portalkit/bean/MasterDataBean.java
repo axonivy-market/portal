@@ -15,6 +15,7 @@ import org.primefaces.PrimeFaces;
 import com.axonivy.portal.components.enums.BasicDocumentType;
 import com.axonivy.portal.components.enums.DocumentType;
 import com.axonivy.portal.components.util.FacesMessageUtils;
+import com.axonivy.portal.util.UploadDocumentUtils;
 
 import ch.ivy.addon.portalkit.enums.ApplicationType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -22,7 +23,6 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
-import ch.ivy.addon.portalkit.masterdata.MasterData;
 import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -82,7 +82,7 @@ public class MasterDataBean implements Serializable {
   }
 
   public Long getFileUploadSizeLimit() {
-    return MasterData.getFileUploadSizeLimit();
+    return UploadDocumentUtils.getDocumentUploadSizeLimit();
   }
   
   public String getFileUploadInvalidSizeMessage() {
