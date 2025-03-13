@@ -127,6 +127,8 @@ async function fetchChartData(chart, chartId) {
     const response = await postFetchApi(statisticApiURL, JSON.stringify({ "chartId": chartId }));
     cloneResponse = response.clone();
     data = await response.json();
+    console.log('LOG data');
+    console.log(data);
     data['statusCode'] = response.status;
     return await data;
   } catch (error) {
@@ -214,6 +216,8 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
 }
 
 function previewChart(data, defaultLocale, datePatternConfig) {
+  console.log('LOG data');
+  console.log(data)
   const charts = document.getElementsByClassName('js-statistic-chart');
   if (!charts || charts.length == 0) {
     return;

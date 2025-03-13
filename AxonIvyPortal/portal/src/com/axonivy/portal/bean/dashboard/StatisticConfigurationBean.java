@@ -202,7 +202,6 @@ public class StatisticConfigurationBean implements Serializable {
     }
     backgroundColors = new ArrayList<>(backgroundColors);
   }
-
   private void resetRedundantChartConfigs(ChartType chartType, boolean isChartConfigAsNull) {
     if (BAR != chartType) {
       statistic.setBarChartConfig(isChartConfigAsNull ? null : new BarChartConfig());
@@ -238,7 +237,6 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   /**
-   * 
    * DON'T SEE USAGE, COMMENT OUT FOR LATER USE
   public List<String> completeAggregates(String query) {
     List<String> allAggregates = getAllAvailableAggregates();
@@ -255,6 +253,10 @@ public class StatisticConfigurationBean implements Serializable {
  */
 
   public List<String> getAllAvailableAggregates() {
+    // TODO: remove log 
+    Ivy.log().info("LOG Chart type: " + statistic.getChartType());
+    Ivy.log().info("LOG Chart target: " + statistic.getChartTarget());
+
     List<ChartAggregates> aggregations = Arrays.asList(ChartAggregates.values());
     List<String> chartAggregations = new ArrayList<>();
     aggregations.forEach(agg -> chartAggregations.add(agg.getName()));
@@ -285,6 +287,8 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void getPreviewData() {
+    Ivy.log().info("PREVIEW ");
+    Ivy.log().info(statistic.getAggregates());
     syncUIConfigWithChartConfig();
     StatisticService statisticService = StatisticService.getInstance();
     statistic.setAdditionalConfigs(new ArrayList<>());
@@ -294,6 +298,10 @@ public class StatisticConfigurationBean implements Serializable {
     PrimeFaces.current().ajax().addCallbackParam("jsonResponse",
         BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic)));
     populateBackgroundColorsIfMissing();
+  }
+  
+  public boolean isCustomFieldsSelected() {
+    return statistic.getAggregates().contains("customFields");
   }
 
   public void updateNameForCurrentLanguage() {
