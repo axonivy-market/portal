@@ -30,22 +30,20 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private List<String> permissions;
   private ChartTarget chartTarget;
   private ChartType chartType;
+  private String icon;
   private Integer refreshInterval; // in seconds
+  @JsonIgnore
+  private String name;
+  private List<DisplayName> names;
+  @JsonIgnore
+  private String description;
+  private List<DisplayName> descriptions;
   private BarChartConfig barChartConfig;
   private LineChartConfig lineChartConfig;
   private PieChartConfig pieChartConfig;
   private NumberChartConfig numberChartConfig;
-  private List<DisplayName> names;
-  @JsonIgnore
-  @JsonProperty(access = Access.READ_ONLY)
-  private String name;
-  private List<DisplayName> descriptions;
-  @JsonIgnore
-  @JsonProperty(access = Access.READ_ONLY)
-  private String description;
   @JsonProperty(access = Access.READ_ONLY)
   private List<Entry<String, String>> additionalConfigs;
-  private String icon;
   @JsonInclude(value = Include.NON_NULL)
   private String manipulateValueBy;
   @JsonIgnore
