@@ -283,12 +283,12 @@ public class StatisticConfigurationBean implements Serializable {
 
   public void onSelectPermissionForDashboard(SelectEvent<Object> event) {
     SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
-    this.selectedPermissions.add(selectedItem.getName());
+    selectedPermissions.add(selectedItem.getName());
   }
 
   public void onUnSelectPermissionForDashboard(UnselectEvent<Object> event) {
     SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
-    this.selectedPermissions.remove(selectedItem.getName());
+    selectedPermissions.remove(selectedItem.getName());
   }
 
   public void getPreviewData() {
@@ -311,11 +311,11 @@ public class StatisticConfigurationBean implements Serializable {
     descriptionMultilanguageService.updateNameForCurrentLanguage();
   }
 
-  public void updateCategoryTitleForCurrentLanguage() {
+  public void updateXTitleForCurrentLanguage() {
     xTitleMultilanguageService.updateNameForCurrentLanguage();
   }
 
-  public void updateValueTitleForCurrentLanguage() {
+  public void updateYTitleForCurrentLanguage() {
     yTitleMultilanguageService.updateNameForCurrentLanguage();
   }
 
@@ -327,11 +327,11 @@ public class StatisticConfigurationBean implements Serializable {
     descriptionMultilanguageService.updateNameByLocale();
   }
 
-  public void updateCategoryTitleByLocale() {
+  public void updateXTitleByLocale() {
     xTitleMultilanguageService.updateNameByLocale();
   }
 
-  public void updateValueTitleByLocale() {
+  public void updateYTitleByLocale() {
     yTitleMultilanguageService.updateNameByLocale();
   }
 
