@@ -150,17 +150,16 @@ def mergeBOMFiles() {
   sh "docker run -v ${targetDir}:/sbom cyclonedx/cyclonedx-cli merge --input-files ${bomFileNames} --output-file /sbom/portal.bom.json"
 }
 
-def uploadBOM(def projectName, def projectVersion, def bomFile, def API_KEY) {
-  // withCredentials([string(credentialsId: 'dependency-track', variable: 'API_KEY')]) {
-    
-  // }
-  sh 'curl -v --fail -X POST http://portal01.server.ivy-cloud.com:8081/api/v1/bom \
+def uploadBOM(def projectName, def projectVersion, def bomFile) {
+  withCredentials([string(credentialsId: 'dependency-track', variable: 'API_KEY')]) {
+    sh 'curl -v --fail -X POST http://portal01.server.ivy-cloud.com:8081/api/v1/bom \
         -H "Content-Type: multipart/form-data" \
         -H "X-API-Key: ' + API_KEY + '" \
         -F "autoCreate=true" \
         -F "projectName=' + projectName + '" \
         -F "projectVersion=' + projectVersion + '" \
         -F "bom=@' + bomFile + '"'
+  }
 }
 
 return this
