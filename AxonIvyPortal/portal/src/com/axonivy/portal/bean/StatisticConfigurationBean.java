@@ -63,10 +63,9 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 @ManagedBean
 public class StatisticConfigurationBean implements Serializable {
 
-  private static final int MIN_REFRESH_INTERVAL_IN_SECONDS = 15;
-  private static final int DEFAULT_REFRESH_INTERVAL_IN_SECONDS = 300;
-
   private static final long serialVersionUID = 1L;
+  private static final int MIN_REFRESH_INTERVAL_IN_SECONDS = 60;
+  private static final int DEFAULT_REFRESH_INTERVAL_IN_SECONDS = 300;
   private Statistic statistic;
   private String statisticId;
   private String callbackDashboardId;
@@ -92,64 +91,76 @@ public class StatisticConfigurationBean implements Serializable {
     }
     callbackDashboardId = Attrs.currentContext().getAttribute("#{data.callbackDashboardId}", String.class);
     if (statistic == null) {
-      statistic = new Statistic();
-      statistic.setAggregates("priority");
-      statistic.setNames(new ArrayList<>());
-      statistic.setDescriptions(new ArrayList<>());
-      statistic.setChartTarget(ChartTarget.TASK);
-      statistic.setChartType(ChartType.BAR);
-      statistic.setNumberChartConfig(new NumberChartConfig());
-      statistic.setBarChartConfig(new BarChartConfig());
-      statistic.setLineChartConfig(new LineChartConfig());
-      statistic.setPieChartConfig(new PieChartConfig() {});
-      statistic.setPermissions(new ArrayList<>(Arrays.asList(ISecurityConstants.TOP_LEVEL_ROLE_NAME)));
-      xTitles = new ArrayList<>();
-      yTitles = new ArrayList<>();
-      backgroundColors = new ArrayList<>();
-      refreshIntervalEnabled = false;
-    } else { // existed statistic
-      isEditMode = true;
-      if (statistic.getRefreshInterval() != null && statistic.getRefreshInterval() >= MIN_REFRESH_INTERVAL_IN_SECONDS) {
-        refreshIntervalEnabled = true;
-      }
-      if (statistic.getNumberChartConfig() == null) {
-        statistic.setNumberChartConfig(new NumberChartConfig());
-      }
-      if (statistic.getBarChartConfig() == null) {
-        statistic.setBarChartConfig(new BarChartConfig());
-      }
-      if (statistic.getLineChartConfig() == null) {
-        statistic.setLineChartConfig(new LineChartConfig());
-      }
-      if (statistic.getPieChartConfig() == null) {
-        statistic.setPieChartConfig(new PieChartConfig() {});
-      }
-      if (BAR == statistic.getChartType() || LINE == statistic.getChartType()) {
-        ColumnChartConfig config =
-            BAR == statistic.getChartType() ? statistic.getBarChartConfig() : statistic.getLineChartConfig();
-        xTitles = config.getxTitles() != null ? config.getxTitles() : new ArrayList<>();
-        yTitles = config.getyTitles() != null ? config.getyTitles() : new ArrayList<>();
-        backgroundColors = config.getBackgroundColors() != null ? config.getBackgroundColors() : new ArrayList<>();
-      } else if (PIE == statistic.getChartType()) {
-        PieChartConfig config = statistic.getPieChartConfig();
-        backgroundColors = config.getBackgroundColors() != null ? config.getBackgroundColors() : new ArrayList<>();
-      } else {
-        backgroundColors = new ArrayList<>();
-      }
-      if (CollectionUtils.isEmpty(statistic.getPermissions())) {
-        statistic.setPermissions(new ArrayList<>(Arrays.asList(ISecurityConstants.TOP_LEVEL_ROLE_NAME)));
-      }
-      if (statistic.getPermissionDTOs() == null) {
-        statistic.setPermissionDTOs(Arrays.asList(SecurityMemberDTOMapper.mapFromRoleDTO(
-            new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));
-      }
+      initNewStatistic();
+    } else {
+      initExistedStatistic();
     }
     populateBackgroundColorsIfMissing();
     initPermissions();
+    initMultilanguageServices();
+  }
+
+  private void initMultilanguageServices() {
     nameMultilanguageService = new StatisticNameMultilanguageService(statistic);
     descriptionMultilanguageService = new StatisticDescriptionMultilanguageService(statistic);
     xTitleMultilanguageService = new StatisticXTitleMultilanguageService(this);
     yTitleMultilanguageService = new StatisticYTitleMultilanguageService(this);
+  }
+
+  private void initExistedStatistic() {
+    isEditMode = true;
+    if (statistic.getRefreshInterval() != null && statistic.getRefreshInterval() >= MIN_REFRESH_INTERVAL_IN_SECONDS) {
+      refreshIntervalEnabled = true;
+    }
+    if (statistic.getNumberChartConfig() == null) {
+      statistic.setNumberChartConfig(new NumberChartConfig());
+    }
+    if (statistic.getBarChartConfig() == null) {
+      statistic.setBarChartConfig(new BarChartConfig());
+    }
+    if (statistic.getLineChartConfig() == null) {
+      statistic.setLineChartConfig(new LineChartConfig());
+    }
+    if (statistic.getPieChartConfig() == null) {
+      statistic.setPieChartConfig(new PieChartConfig() {});
+    }
+    if (BAR == statistic.getChartType() || LINE == statistic.getChartType()) {
+      ColumnChartConfig config =
+          BAR == statistic.getChartType() ? statistic.getBarChartConfig() : statistic.getLineChartConfig();
+      xTitles = config.getxTitles() != null ? config.getxTitles() : new ArrayList<>();
+      yTitles = config.getyTitles() != null ? config.getyTitles() : new ArrayList<>();
+      backgroundColors = config.getBackgroundColors() != null ? config.getBackgroundColors() : new ArrayList<>();
+    } else if (PIE == statistic.getChartType()) {
+      PieChartConfig config = statistic.getPieChartConfig();
+      backgroundColors = config.getBackgroundColors() != null ? config.getBackgroundColors() : new ArrayList<>();
+    } else {
+      backgroundColors = new ArrayList<>();
+    }
+    if (CollectionUtils.isEmpty(statistic.getPermissions())) {
+      statistic.setPermissions(new ArrayList<>(Arrays.asList(ISecurityConstants.TOP_LEVEL_ROLE_NAME)));
+    }
+    if (statistic.getPermissionDTOs() == null) {
+      statistic.setPermissionDTOs(Arrays.asList(SecurityMemberDTOMapper.mapFromRoleDTO(
+          new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));
+    }
+  }
+
+  private void initNewStatistic() {
+    statistic = new Statistic();
+    statistic.setAggregates("priority");
+    statistic.setNames(new ArrayList<>());
+    statistic.setDescriptions(new ArrayList<>());
+    statistic.setChartTarget(ChartTarget.TASK);
+    statistic.setChartType(ChartType.BAR);
+    statistic.setNumberChartConfig(new NumberChartConfig());
+    statistic.setBarChartConfig(new BarChartConfig());
+    statistic.setLineChartConfig(new LineChartConfig());
+    statistic.setPieChartConfig(new PieChartConfig() {});
+    statistic.setPermissions(new ArrayList<>(Arrays.asList(ISecurityConstants.TOP_LEVEL_ROLE_NAME)));
+    xTitles = new ArrayList<>();
+    yTitles = new ArrayList<>();
+    backgroundColors = new ArrayList<>();
+    refreshIntervalEnabled = false;
   }
 
   private void populateBackgroundColorsIfMissing() {
@@ -254,27 +265,6 @@ public class StatisticConfigurationBean implements Serializable {
     }
     String statisticsJson = BusinessEntityConverter.entityToJsonValue(statistics);
     Ivy.var().set(PortalVariable.CUSTOM_STATISTIC.key, statisticsJson);
-  }
-
-  public List<String> completeAggregates(String query) {
-    List<String> allAggregates = getAllAvailableAggregates();
-    List<String> filteredAggregates = new ArrayList<>();
-
-    for (String aggregate : allAggregates) {
-      if (aggregate.toLowerCase().contains(query.toLowerCase())) {
-        filteredAggregates.add(aggregate);
-      }
-    }
-
-    return filteredAggregates;
-  }
-
-  private List<String> getAllAvailableAggregates() {
-    List<String> aggregation = List.of("state", "businessState", "priority", "category", "isExpired", "worker.name",
-        "activator.name", "originalActivator.name", "businessRuntime", "workingTime", "numberOfResumes",
-        "startTimestamp", "modifiedTimestamp", "endTimestamp", "expiryTimestamp", "customFields.strings.*",
-        "customFields.numbers.*", "customFields.timestamps.*");
-    return aggregation;
   }
 
   public List<ChartTarget> getAllChartTargets() {
