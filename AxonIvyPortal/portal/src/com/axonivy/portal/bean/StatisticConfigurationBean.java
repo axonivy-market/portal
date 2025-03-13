@@ -49,6 +49,7 @@ import com.axonivy.portal.util.statisticfilter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
@@ -57,6 +58,7 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
+import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
@@ -501,4 +503,7 @@ public class StatisticConfigurationBean implements Serializable {
     statistic.getFilters().remove(filter);
   }
   
+  public List<SecurityMemberDTO> completeOwners(String query) {
+    return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
+  }
 }

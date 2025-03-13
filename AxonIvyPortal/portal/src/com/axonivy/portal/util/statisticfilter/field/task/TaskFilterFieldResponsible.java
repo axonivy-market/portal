@@ -10,15 +10,15 @@ import com.axonivy.portal.util.statisticfilter.operator.TextInOperatorHandler;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 
-public class TaskFilterFieldCategory extends FilterField {
+public class TaskFilterFieldResponsible extends FilterField{
 
-  public TaskFilterFieldCategory() {
-    super(DashboardStandardTaskColumn.CATEGORY.getField());
+  public TaskFilterFieldResponsible() {
+    super(DashboardStandardTaskColumn.RESPONSIBLE.getField());
   }
 
   @Override
   public String getLabel() {
-    return DashboardStandardTaskColumn.CATEGORY.getLabel();
+    return DashboardStandardTaskColumn.RESPONSIBLE.getLabel();
   }
 
   @Override
@@ -26,6 +26,7 @@ public class TaskFilterFieldCategory extends FilterField {
     filter.setFilterField(this);
     filter.setFilterType(DashboardColumnType.STANDARD);
     filter.setField(getName());
+    
   }
 
   @Override
@@ -42,4 +43,5 @@ public class TaskFilterFieldCategory extends FilterField {
       default -> null;
     };
   }
+
 }

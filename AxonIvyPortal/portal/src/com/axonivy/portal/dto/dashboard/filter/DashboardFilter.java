@@ -19,13 +19,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
-import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class DashboardFilter extends BaseFilter implements Serializable {
   private static final long serialVersionUID = -2098346832426240167L;
-
+  @JsonIgnore
+  public static final String APPLICATION = "application";
+  
   @JsonIgnore
   private FilterField filterField;
 
@@ -48,11 +49,6 @@ public class DashboardFilter extends BaseFilter implements Serializable {
   }
 
   @JsonIgnore
-  public boolean isCreatedDateField() {
-    return CREATED_DATE.equals(getField());
-  }
-
-  @JsonIgnore
   public boolean isExpiryDateField() {
     return filterField instanceof TaskFilterFieldExpiryDate;
   }
@@ -67,29 +63,9 @@ public class DashboardFilter extends BaseFilter implements Serializable {
     return getField() == DashboardStandardCaseColumn.CREATOR.getField();
   }
 
-  @JsonIgnore
-  public boolean isResponsible() {
-    return getField() == DashboardStandardTaskColumn.RESPONSIBLE.getField();
-  }
-
-  @JsonIgnore
-  public boolean isCategory() {
-    return CATEGORY.equals(getField());
-  }
-
   @JsonIgnore 
   public boolean isApplication() {
     return APPLICATION.equals(getField());
-  }
-
-  @JsonIgnore
-  public boolean isState() {
-    return STATE.equals(getField());
-  }
-
-  @JsonIgnore
-  public boolean isPriority() {
-    return getField() == DashboardStandardTaskColumn.PRIORITY.getField();
   }
 
   @JsonIgnore
@@ -132,16 +108,6 @@ public class DashboardFilter extends BaseFilter implements Serializable {
   public List<SecurityMemberDTO> getCreators() {
     return getValues().stream().map(this::findUser)
         .filter(Objects::nonNull).collect(Collectors.toList());
-  }
-
-  @JsonIgnore
-  public List<SecurityMemberDTO> getResponsibles() {
-    return getValues().stream().map(this::findSecurityMember)
-        .filter(Objects::nonNull).collect(Collectors.toList());
-  }
-
-  private SecurityMemberDTO findSecurityMember(String memberName) {
-    return ServiceUtilities.findSecurityMemberByName(memberName);
   }
 
   private SecurityMemberDTO findUser(String memberName) {

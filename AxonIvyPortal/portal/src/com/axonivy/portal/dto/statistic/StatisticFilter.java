@@ -23,11 +23,6 @@ public class StatisticFilter extends BaseFilter implements Serializable{
   }
 
   @JsonIgnore
-  public boolean isPriority() {
-    return DashboardStandardTaskColumn.PRIORITY.getField().equals(getField());
-  }
-
-  @JsonIgnore
   public boolean isState() {
     return DashboardStandardTaskColumn.STATE.getField().equals(getField());
   }

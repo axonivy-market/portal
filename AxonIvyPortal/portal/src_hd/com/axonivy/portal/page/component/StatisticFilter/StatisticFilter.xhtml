@@ -47,10 +47,17 @@
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" forStatistic="true" />
       </h:panelGroup>
       
-      <h:panelGroup layout="block">
+      <h:panelGroup layout="block" rendered="#{filter.isCreatedDateField()}">
         <ic:com.axonivy.portal.dashboard.component.filter.DateFilter filter="#{filter}" widgetType="#{statistic.getChartTarget().getName()}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"/>
+      </h:panelGroup>
+      
+      <h:panelGroup layout="block" rendered="#{filter.isResponsible()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.ResponsibleFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"
+          responsibleCompleteMethod="#{cc.attrs.managedBean.completeOwners}" />
       </h:panelGroup>
 
       <div class="remove-filter-panel">

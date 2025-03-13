@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
@@ -16,6 +19,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -23,12 +28,6 @@ public class BaseFilter implements Serializable{
 
   private static final long serialVersionUID = -5821933108266790192L;
 
-  @JsonIgnore
-  public static final String CATEGORY = "category";
-  @JsonIgnore
-  public static final String STATE = "state";
-  @JsonIgnore
-  public static final String APPLICATION = "application";
   @JsonIgnore
   public static final String ID = "id";
   @JsonIgnore
@@ -168,6 +167,16 @@ public class BaseFilter implements Serializable{
   }
 
   @JsonIgnore
+  public List<SecurityMemberDTO> getResponsibles() {
+    return getValues().stream().map(this::findSecurityMember)
+        .filter(Objects::nonNull).collect(Collectors.toList());
+  }
+
+  private SecurityMemberDTO findSecurityMember(String memberName) {
+    return ServiceUtilities.findSecurityMemberByName(memberName);
+  }
+
+  @JsonIgnore
   public void setToDate(Date toDate) {
     this.toDate = toDate;
   }
@@ -186,5 +195,30 @@ public class BaseFilter implements Serializable{
 
   public void setPeriods(Long periods) {
     this.periods = periods;
+  }
+  
+  @JsonIgnore
+  public boolean isCreatedDateField() {
+    return DashboardStandardTaskColumn.CREATED.getField().equals(getField());
+  }
+  
+  @JsonIgnore
+  public boolean isCategory() {
+    return DashboardStandardTaskColumn.CATEGORY.getField().equals(getField());
+  }
+
+  @JsonIgnore
+  public boolean isState() {
+    return DashboardStandardTaskColumn.STATE.getField().equals(getField());
+  }
+  
+  @JsonIgnore
+  public boolean isPriority() {
+    return DashboardStandardTaskColumn.PRIORITY.getField().equals(getField());
+  }
+  
+  @JsonIgnore
+  public boolean isResponsible() {
+    return DashboardStandardTaskColumn.RESPONSIBLE.getField().equals(getField());
   }
 }

@@ -8,6 +8,7 @@ import java.util.Map;
 import com.axonivy.portal.util.statisticfilter.field.task.TaskFilterFieldCategory;
 import com.axonivy.portal.util.statisticfilter.field.task.TaskFilterFieldCreatedDate;
 import com.axonivy.portal.util.statisticfilter.field.task.TaskFilterFieldPriority;
+import com.axonivy.portal.util.statisticfilter.field.task.TaskFilterFieldResponsible;
 import com.axonivy.portal.util.statisticfilter.field.task.TaskFilterFieldState;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
@@ -21,6 +22,7 @@ public class TaskFilterFieldFactory {
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.STATE.getField(), new TaskFilterFieldState());
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.PRIORITY.getField(), new TaskFilterFieldPriority());
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.CREATED.getField(), new TaskFilterFieldCreatedDate());
+    STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.RESPONSIBLE.getField(), new TaskFilterFieldResponsible());
   }
 
   public static List<FilterField> getStandardFilterableFields() {
@@ -36,7 +38,7 @@ public class TaskFilterFieldFactory {
 //    }
 //    else if (CUSTOM_CASE_FILTER_FIELD.containsKey(field)) {
 //      return CUSTOM_CASE_FILTER_FIELD.get(field);
-//    }
+//    } 
     return null;
   }
 

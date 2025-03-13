@@ -34,8 +34,10 @@ public class TextInOperatorHandler {
   private String changeFilterField(String field) {
     return switch(field) {
       case "state" -> "businessState";
+      case "activator" -> "activator.name";
       default -> field; 
     };
   }
 
 }
+
