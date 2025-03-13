@@ -10,7 +10,6 @@ import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -32,11 +31,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private ChartType chartType;
   private String icon;
   private Integer refreshInterval; // in seconds
-  @JsonIgnore
-  private String name;
   private List<DisplayName> names;
-  @JsonIgnore
-  private String description;
   private List<DisplayName> descriptions;
   private BarChartConfig barChartConfig;
   private LineChartConfig lineChartConfig;
@@ -44,8 +39,11 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private NumberChartConfig numberChartConfig;
   @JsonProperty(access = Access.READ_ONLY)
   private List<Entry<String, String>> additionalConfigs;
-  @JsonInclude(value = Include.NON_NULL)
   private String manipulateValueBy;
+  @JsonIgnore
+  private String name;
+  @JsonIgnore
+  private String description;
   @JsonIgnore
   private Boolean isCustom;
 

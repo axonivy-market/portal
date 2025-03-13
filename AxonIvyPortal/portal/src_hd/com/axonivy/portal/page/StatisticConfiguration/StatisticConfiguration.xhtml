@@ -106,11 +106,11 @@
                       value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/XAxisTitle')}"
                       for="@next" />
                     <div class="ui-inputgroup">
-                      <p:inputText id="category-title" value="#{statisticConfigurationBean.xTitle}" maxlength="200"
+                      <p:inputText id="x-title" value="#{statisticConfigurationBean.xTitle}" maxlength="200"
                         styleClass="w-full" />
-                      <p:commandButton id="category-title-add-language-button" icon="si si-chat-translate"
-                        actionListener="#{statisticConfigurationBean.updateCategoryTitleByLocale()}"
-                        process="category-title" update="category-title-language-config:multiple-languages-dialog"
+                      <p:commandButton id="x-title-add-language-button" icon="si si-chat-translate"
+                        actionListener="#{statisticConfigurationBean.updateXTitleByLocale()}"
+                        process="x-title" update="x-title-language-config:multiple-languages-dialog"
                         oncomplete="PF('multiple-languages-dialog').show();" />
                     </div>
                   </h:panelGroup>
@@ -123,11 +123,11 @@
                       value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/YAxisTitle')}"
                       for="@next" />
                     <div class="ui-inputgroup">
-                      <p:inputText id="value-title" value="#{statisticConfigurationBean.yTitle}" maxlength="200"
+                      <p:inputText id="y-title" value="#{statisticConfigurationBean.yTitle}" maxlength="200"
                         styleClass="w-full" />
-                      <p:commandButton id="value-title-add-language-button" icon="si si-chat-translate"
-                        actionListener="#{statisticConfigurationBean.updateValueTitleByLocale()}" process="value-title"
-                        update="value-title-language-config:multiple-languages-dialog"
+                      <p:commandButton id="y-title-add-language-button" icon="si si-chat-translate"
+                        actionListener="#{statisticConfigurationBean.updateYTitleByLocale()}" process="y-title"
+                        update="y-title-language-config:multiple-languages-dialog"
                         oncomplete="PF('multiple-languages-dialog').show();" />
                     </div>
                   </h:panelGroup>
@@ -276,17 +276,17 @@
                   componentToUpdateOnModify="config-form:description"
                   componentToUpdateOnCreate="config-form:description" titleRequired="false" />
                 <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
-                  id="category-title-language-config" titles="#{statisticConfigurationBean.getxTitles()}"
+                  id="x-title-language-config" titles="#{statisticConfigurationBean.getxTitles()}"
                   managedBean="#{statisticConfigurationBean}" dynamic="true"
-                  updateCurrentLanguage="#{statisticConfigurationBean.updateCategoryTitleForCurrentLanguage()}"
-                  componentToUpdateOnModify="config-form:category-title"
-                  componentToUpdateOnCreate="config-form:category-title" titleRequired="false" />
+                  updateCurrentLanguage="#{statisticConfigurationBean.updateXTitleForCurrentLanguage()}"
+                  componentToUpdateOnModify="config-form:x-title"
+                  componentToUpdateOnCreate="config-form:x-title" titleRequired="false" />
                 <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
-                  id="value-title-language-config" titles="#{statisticConfigurationBean.getyTitles()}"
+                  id="y-title-language-config" titles="#{statisticConfigurationBean.getyTitles()}"
                   managedBean="#{statisticConfigurationBean}" dynamic="true"
-                  updateCurrentLanguage="#{statisticConfigurationBean.updateValueTitleForCurrentLanguage()}"
-                  componentToUpdateOnModify="config-form:value-title"
-                  componentToUpdateOnCreate="config-form:value-title" titleRequired="false" />
+                  updateCurrentLanguage="#{statisticConfigurationBean.updateYTitleForCurrentLanguage()}"
+                  componentToUpdateOnModify="config-form:y-title"
+                  componentToUpdateOnCreate="config-form:y-title" titleRequired="false" />
               </div>
             </div>
           </div>
