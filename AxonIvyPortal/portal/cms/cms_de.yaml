@@ -41,6 +41,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       saveAbsenceSetting: Abwesenheitseinstellungen erfolgreich gespeichert.
       updateAbsence: Abwesenheit erfolgreich aktualisiert
     absenceAndDeputy: Abwesenheiten und Vertretungen
+    activeAbsence: Aktive Abwesenheit
     allAbsences: Abwesenheiten aller Benutzer
     applicationAndRole: Applikation und Rolle
     definedDeputies: Definierte Stellvertreter

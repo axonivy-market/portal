@@ -103,6 +103,26 @@ public class UserUtils {
     return returnString;
   }
 
+  public static String findActiveAbsenceOfUser(IUser iUser) {
+    DateFormat formatter = DateTimeGlobalSettingService.getInstance().getDefaultDateFormatter();
+
+    List<IUserAbsence> findAbsenceOfUser = findAbsenceOfUser(iUser);
+    String returnString = "";
+    Date now = new Date();
+
+    for (IUserAbsence item : findAbsenceOfUser) {
+      Date startTimestamp = item.getStartTimestamp();
+      Date stopTimestamp = item.getStopTimestamp();
+
+      if (!now.before(startTimestamp) && !now.after(stopTimestamp)) {
+        returnString = String.format("%s - %s", formatter.format(startTimestamp), formatter.format(stopTimestamp));
+        break;
+      }
+    }
+    return returnString;
+  }
+
+
   public static void setSessionAttribute(String key, Object value) {
     Ivy.session().setAttribute(key, value);
   }
