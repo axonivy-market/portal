@@ -190,9 +190,11 @@
                   <div>
                     <p:inputNumber id="refresh-interval-value"
                       value="#{statisticConfigurationBean.statistic.refreshInterval}" decimalPlaces="0"
+                      maxValue="#{statisticConfigurationBean.getMaxRefreshIntervalInSeconds()}"
                       onkeydown="return event.key !== '-'"
                       disabled="#{not statisticConfigurationBean.refreshIntervalEnabled}" inputStyleClass="w-full">
-                      <f:validateLongRange minimum="15" maximum="1000000" />
+                      <f:validateLongRange minimum="#{statisticConfigurationBean.getMinRefreshIntervalInSeconds()}"
+                        maximum="#{statisticConfigurationBean.getMaxRefreshIntervalInSeconds()}" />
                     </p:inputNumber>
                   </div>
                 </h:panelGroup>

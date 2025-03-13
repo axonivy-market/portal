@@ -65,6 +65,7 @@ public class StatisticConfigurationBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
   private static final int MIN_REFRESH_INTERVAL_IN_SECONDS = 60;
+  private static final int MAX_REFRESH_INTERVAL_IN_SECONDS = 1000000;
   private static final int DEFAULT_REFRESH_INTERVAL_IN_SECONDS = 300;
   private Statistic statistic;
   private String statisticId;
@@ -436,6 +437,14 @@ public class StatisticConfigurationBean implements Serializable {
 
   public void cancel() {
     backToDashboardDetailsPageIfPossible();
+  }
+
+  public int getMaxRefreshIntervalInSeconds() {
+    return MAX_REFRESH_INTERVAL_IN_SECONDS;
+  }
+
+  public int getMinRefreshIntervalInSeconds() {
+    return MIN_REFRESH_INTERVAL_IN_SECONDS;
   }
 
   private void backToDashboardDetailsPageIfPossible() {
