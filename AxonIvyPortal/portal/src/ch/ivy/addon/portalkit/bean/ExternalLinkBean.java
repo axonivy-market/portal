@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,11 +10,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 
 import com.axonivy.portal.util.ExternalLinkUtils;
+import com.axonivy.portal.util.UploadDocumentUtils;
 
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
@@ -125,4 +128,13 @@ public class ExternalLinkBean implements Serializable {
     DisplayNameConvertor.initMultipleLanguages(value, values);
     DisplayNameConvertor.setValue(value, values);
   }  
+
+  public Long getUploadFileLimit() {
+    return UploadDocumentUtils.getImageUploadSizeLimit();
+  }
+
+  public String getFileUploadInvalidSizeMessage() {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize",
+        Arrays.asList(FileUtils.byteCountToDisplaySize(getUploadFileLimit())));
+  }
 }
