@@ -33,7 +33,7 @@ pipeline {
           def utils = load 'build/common/utils.groovy'
           utils.generateBOM()
           utils.mergeBOMFiles()
-          utils.uploadBOM('Portal 12', '12', 'build/sbom/target/portal.bom.json', 'odt_dhrsT92Iyov4tM3gf25NfvLJxbAA7eL1')
+          utils.uploadBOM('Portal 12', '12', 'build/sbom/target/portal.bom.json')
         }
       }
     }
