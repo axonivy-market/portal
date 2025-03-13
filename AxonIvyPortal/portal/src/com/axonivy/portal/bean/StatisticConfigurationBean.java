@@ -188,7 +188,7 @@ public class StatisticConfigurationBean implements Serializable {
 
   public void save() {
     syncUIConfigWithChartConfig();
-    resetRedundantChartConfigs(statistic.getChartType(), true);
+    cleanUpRedundantChartConfigs(statistic.getChartType());
     cleanUpConfiguration();
     nameMultilanguageService.initMultipleLanguagesForName(statistic.getName());
     descriptionMultilanguageService.initMultipleLanguagesForName(statistic.getDescription());
@@ -237,18 +237,18 @@ public class StatisticConfigurationBean implements Serializable {
     backgroundColors = new ArrayList<>(backgroundColors);
   }
 
-  private void resetRedundantChartConfigs(ChartType chartType, boolean isChartConfigAsNull) {
+  private void cleanUpRedundantChartConfigs(ChartType chartType) {
     if (BAR != chartType) {
-      statistic.setBarChartConfig(isChartConfigAsNull ? null : new BarChartConfig());
+      statistic.setBarChartConfig(null);
     }
     if (LINE != chartType) {
-      statistic.setLineChartConfig(isChartConfigAsNull ? null : new LineChartConfig());
+      statistic.setLineChartConfig(null);
     }
     if (PIE != chartType) {
-      statistic.setPieChartConfig(isChartConfigAsNull ? null : new PieChartConfig());
+      statistic.setPieChartConfig(null);
     }
     if (NUMBER != chartType) {
-      statistic.setNumberChartConfig(isChartConfigAsNull ? null : new NumberChartConfig());
+      statistic.setNumberChartConfig(null);
     }
   }
 
