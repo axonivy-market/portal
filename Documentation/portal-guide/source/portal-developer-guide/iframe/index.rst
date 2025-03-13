@@ -111,7 +111,7 @@ You can configure the UI in one of two ways:
 .. note::
        We recommend to sanitize your parameters before passing them.
 
-#. **Using ``IFrameTaskConfig`` Component** (Recommended)
+#. **Using ``IFrameTaskConfig`` Component**
 
    .. code-block:: xml
 
@@ -135,36 +135,6 @@ You can configure the UI in one of two ways:
                isCardFrame="true"
                viewName="TASK_DETAIL"
             />
-            ...
-         </ui:composition>
-      </h:body>
-
-#. **Using JavaScript**
-
-   .. code-block:: xml
-
-      <h:body>
-         <ui:composition template="/layouts/frame-10.xhtml">
-            ...
-            <script>
-               window.taskName = "Approve Investment";
-               window.taskIcon = "si si-bulb";
-               window.isHideTaskName = false;
-               window.caseId = "123456";
-               window.isHideCaseInfo = false;
-               window.currentProcessStep = 0;
-               window.processSteps = ["Create Investment Request", "Approve Investment Request"];
-               // Convert Java List of steps to JSON format if needed:
-               window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};
-               window.isShowAllSteps = true;
-               window.processChainDirection = "VERTICAL";
-               window.processChainShape = "LINE";
-               window.isHideTaskAction = true;
-               window.isWorkingOnATask = false;
-               window.announcementInvisible = false;
-               window.isCardFrame = true;
-               window.viewName = "TASK_DETAIL";
-            </script>
             ...
          </ui:composition>
       </h:body>
@@ -376,6 +346,13 @@ Developer tips
 If your project has a navigation button that does not complete a task (e.g.,
 Cancel), redirect the user to the desired page (e.g., the application home, task
 list, process list, etc.) in the HTML dialog.
+
+Sanitize JavaScript string
+--------------------------
+
+Whenever you use a Portal feature that communicates through JavaScript, ensure that you sanitize your data before sending it to the Portal
+
+The Portal provides the public API ``SanitizeAPI.escapeForJavascript`` in the ``portal-components`` project to help sanitize JavaScript strings by escaping special characters — one of the most common techniques for JavaScript string sanitization.
 
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
 .. |case-embedInFrame| image:: images/case-embedInFrame.png

@@ -26,10 +26,7 @@
           <p:commandButton id="proceed" actionListener="#{logic.close}" value="Proceed" update="form" icon="pi pi-check" />
         </div>
       </h:form>
-      <script>
-              window.isCardFrame = true;
-              window.announcementInvisible = false;
-            </script>
+      <ic:com.axonivy.portal.components.IFrameTaskConfig isCardFrame="true" announcementInvisible="false" />
     </ui:define>
   </ui:composition>
 </h:body>

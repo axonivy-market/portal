@@ -42,12 +42,12 @@
       <p:commandButton id="expand-link-#{index}" type="button" icon="si si-expand-1"
         styleClass="rounded-button ui-button-outlined expand-link u-mar-right-5 ui-button-widget"
         rendered="#{renderExpandCollapse}"
-        onclick="expandFullscreen(#{index}, '#{widget.id}');#{onClickExpandWidget}"/>
+        onclick="expandFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}');#{onClickExpandWidget}"/>
 
       <p:commandButton id="collapse-link-#{index}" type="button" icon="si si-shrink-1"
         styleClass="rounded-button ui-button-outlined collapse-link u-mar-right-5 ui-button-widget"
         rendered="#{renderExpandCollapse}"
-        onclick="collapseFullscreen(#{index}, '#{widget.id}');#{onClickCollapseWidget}"/>
+        onclick="collapseFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}');#{onClickCollapseWidget}"/>
 
       <p:commandButton id="edit-widget-#{index}"
         icon="si si-pencil"
