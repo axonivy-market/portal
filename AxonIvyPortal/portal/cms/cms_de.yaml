@@ -451,7 +451,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     confirmForDelete: Sind Sie sicher, dass Sie diesen Eintrag löschen wollen?
     confirmation: Bestätigung
     confirmationHeaderText: Sind Sie sicher?
-    continue: Weiterfahren
+    continue: Fortfahren
     create: Erstellt
     creationDate: Erstellungsdatum
     dashboard: Dashboard
@@ -560,7 +560,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     restoreToDefaultChartHeaderText: Auf Standarddiagramme zurücksetzen?
     role: Rolle
     save: Speichern
-    saveAll: Speichern Sie alle
+    saveAll: Speichern
     saveSuccessfully: Daten erfolgreich gespeichert.
     search: Suche
     second: Sekunde
@@ -955,7 +955,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     newPassword: Neues Passwort
     passwordConfirmation: Passwort-Bestätigung
     passwordReset: Kennwort zurücksetzen
-    passwordResetEmailCantSend: Ausnahme beim Senden der E-Mail an Sie. Bitte versuchen Sie es später erneut.
+    passwordResetEmailCantSend: Fehler Senden der E-Mail an Sie ist fehlgeschlagen. Bitte versuchen Sie es später erneut.
     passwordResetEmailContent: '<html>Hallo {0},<br/><br/>Bitte klicken Sie auf diesen Link, um Ihr Passwort zurückzusetzen: <a href="{1}">Passwort zurücksetzen</a><br/><br/>Mit freundlichen Grüßen</html>'
     passwordResetEmailSent: Wenn diese E-Mail-Adresse registriert ist, haben wir einen Link zur Wiederherstellung des Passworts an diese Adresse geschickt.
     passwordResetEmailSubject: E-Mail zum Zurücksetzen des Passworts
