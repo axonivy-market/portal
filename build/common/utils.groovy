@@ -118,7 +118,7 @@ def generateBOMFile(def moduleDir) {
     sh "mv ${iarFile} ${zipFile}"
     echo "Renamed ${iarFile} to ${zipFile}"
     def inputFile = sh (script: "ls ${zipFile} | xargs -n 1 basename", returnStdout: true).trim()
-    def outputFile = inputFile.replace('.zip', '.sbom.json')
+    def outputFile = inputFile.replace('.zip', '.bom.json')
     sh "docker run -v ${zipFile}:/portal.zip anchore/syft scan /portal.zip -o cyclonedx-json --exclude './**/pom.xml' > ${currentDir}/${moduleDir}/target/$outputFile"
   } else {
     echo "File not found: ${iarFile}"
@@ -137,17 +137,30 @@ def mergeBOMFiles() {
         mkdir -p ${targetDir}   # Create the directory
       fi
      """
-  def sbomFiles = sh (script: "find ${currentDir} -type d -name 'target' -exec find {} -type f -name '*.sbom.json' \\;", returnStdout: true).trim()
-  if(sbomFiles) {
-    def sbomFileList = sbomFiles.split("\n")
-    sbomFileList.each { file ->
+  def bomFiles = sh (script: "find ${currentDir} -type d -name 'target' -exec find {} -type f -name '*.bom.json' \\;", returnStdout: true).trim()
+  if(bomFiles) {
+    def bomFileList = bomFiles.split("\n")
+    bomFileList.each { file ->
                           sh "cp ${file} ${targetDir}/"
                           echo "Copied file: ${file} to ${targetDir}/"
                       }
   }
-  def sbomFileNames = sh(script: "find ${targetDir} -type f -name '*.sbom.json' -exec basename {} \\;", returnStdout: true).trim().replace("\n", " ")
-  sbomFileNames = sbomFileNames.split(" ").collect { "/sbom/${it}" }.join(" ")
-  sh "docker run -v ${targetDir}:/sbom cyclonedx/cyclonedx-cli merge --input-files ${sbomFileNames} --output-file /sbom/portal.sbom.json"
+  def bomFileNames = sh(script: "find ${targetDir} -type f -name '*.bom.json' -exec basename {} \\;", returnStdout: true).trim().replace("\n", " ")
+  bomFileNames = bomFileNames.split(" ").collect { "/sbom/${it}" }.join(" ")
+  sh "docker run -v ${targetDir}:/sbom cyclonedx/cyclonedx-cli merge --input-files ${bomFileNames} --output-file /sbom/portal.bom.json"
+}
+
+def uploadBOM(def projectName, def projectVersion, def bomFile, def API_KEY) {
+  // withCredentials([string(credentialsId: 'dependency-track', variable: 'API_KEY')]) {
+    
+  // }
+  sh 'curl -v --fail -X POST http://portal01.server.ivy-cloud.com:8081/api/v1/bom \
+        -H "Content-Type: multipart/form-data" \
+        -H "X-API-Key: ' + API_KEY + '" \
+        -F "autoCreate=true" \
+        -F "projectName=' + projectName + '" \
+        -F "projectVersion=' + projectVersion + '" \
+        -F "bom=@' + bomFile + '"'
 }
 
 return this
