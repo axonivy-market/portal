@@ -76,7 +76,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Axon Ivy process
     DashboardWidgetType:
       CASE: Case widget
-      CLIENT_STATISTIC: Statistic widget
       CUSTOM: Custom widget
       NEW: New widget
       NEWS: News feed
@@ -751,6 +750,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Standard Widgets
     StatisticWidget:
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
+      failToRenderChartMessage: Error while rendering chart. Please retry with different settings.
+      firstConfigChartMessage: No chart available yet. Please configure your settings to generate a chart.
     WelcomeWidgetIntroduction: This widget displays a welcome text and image on dashboard.
     WelcomeWidgetNotFoundMessage: We cannot find the image of widget, please reconfigure your image!
     WidgetFilterName: Widget filter name
@@ -1333,6 +1334,9 @@ Dialogs:
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Add new dashboard
+              PortalDashboardDetailModification:
+                CreateCustomStatistic: Create custom statistic widget
+                DeleteConfirm: Are you sure you want to delete?
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
@@ -1433,9 +1437,6 @@ Dialogs:
                 Alt + W: Focus on to the first task. Alt + Q: Focus on to the first case. Tab: Sequential tabbing through elements. Esc: Close expanded widgets. Enter: Confirm selection.'
             CaseWidgetConfiguration:
               AddFilter: Add filter
-            ClientStatisticWidget:
-              IdNotFound: Chart with ID {0} not found
-              NoPermissionChartMessage: You do not have the required permission to see this chart.
             CloneWidgetDialog:
               Header: Clone widget "{0}"
               TargetDashboard: Target dashboard
@@ -1474,6 +1475,9 @@ Dialogs:
               WidgetFilter: Widget Filter
             PortalDashboardDetailModification:
               CloneWidget: Clone widget
+            StatisticWidget:
+              IdNotFound: Chart with ID {0} not found
+              NoPermissionChartMessage: You do not have the required permission to see this chart.
             TaskWidgetConfiguration:
               AddFilter: Add filter
               ResetFilter: Reset filter
@@ -1482,6 +1486,24 @@ Dialogs:
             CaseDetailsIFrameTitle: Case details frame
           IFrameTaskTemplate:
             TaskIFrameTitle: Task frame
+        page:
+          StatisticConfiguration:
+            AdvancedConfiguration: Advanced Configuration
+            Aggregate: Aggregate
+            ChartType: Chart type
+            Color: Color {0}
+            Create: Create
+            EditStatistic: Edit Statistic Widget
+            For: For
+            GeneratePreview: Generate preview
+            HideLabel: Hide label
+            NewStatistic: New Statistic Widget
+            RefreshInterval: Refresh interval
+            RefreshIntervalInSeconds: Refresh interval in seconds
+            RefreshIntervalInSecondsValidationMessage: 'Refresh interval in seconds: Specified attribute is not between the expected values of {0} and {1}'
+            StatisticConfiguration: Statistic configuration
+            XAxisTitle: X axis title
+            YAxisTitle: Y axis title
   components:
     CaseDocument:
       FileDate: Modified at
@@ -1497,6 +1519,25 @@ Dialogs:
   general:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          ChartTarget:
+            CASE:
+              name: Case
+            TASK:
+              name: Task
+          ChartType:
+            BAR:
+              name: Bar
+            LINE:
+              name: Line
+            NUMBER:
+              name: Number
+            PIE:
+              name: Pie
 Labels:
   AI:
     Error:
@@ -1532,7 +1573,9 @@ Labels:
       {2}
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  Configuration: Configuration
   CreateNewDashboard: Create new dashboard
+  Description: Description
   EditDescription: Edit description
   Enums:
     ChatbotCandidateQuestion:
@@ -1625,12 +1668,18 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Light
+  Filters: Filters
+  Icon: Icon
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Name: Name
   Permissions: Permissions
+  Preview: Preview
+  RequiredFieldMessage: '{0}: Value is required'
+  Save: Save
   Share: Share
   Task: Task
   TaskItemDetail: Task Details

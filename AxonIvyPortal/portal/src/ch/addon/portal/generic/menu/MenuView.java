@@ -288,6 +288,7 @@ public class MenuView implements Serializable {
         setPortalHomeMenuToBreadcrumbModel();
         breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/PortalManagement/AdminSetting"));}
       case NOTIFICATION -> buildBreadCrumbForNotification();
+      case STATISTIC_CONFIGURATION -> buildBreadCrumbForStatisticConfiguration();
       default -> {}
     }
   }
@@ -476,5 +477,11 @@ public class MenuView implements Serializable {
   private void buildBreadCrumbForNotification() {
     setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/notifications/notificationTitle"));
+  }
+
+  private void buildBreadCrumbForStatisticConfiguration() {
+    setPortalHomeMenuToBreadcrumbModel();
+    breadcrumbModel.getElements()
+        .add(buildGenericMenuItem("/Dialogs/com/axonivy/portal/page/StatisticConfiguration/StatisticConfiguration"));
   }
 }

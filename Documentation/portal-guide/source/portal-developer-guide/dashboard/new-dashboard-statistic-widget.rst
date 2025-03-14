@@ -32,9 +32,9 @@ The basic JSON structure of a statistic widget
 
    ``id``: ID of the widget
 
-   ``type``: type of the widget. Use ``client-statistic`` for a client statistic widget
+   ``type``: type of the widget. Use ``client-statistic`` for a statistic widget
 
-   ``layout``: layout definition of the client statistic widget
+   ``layout``: layout definition of the statistic widget
 
       - ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
 
@@ -44,6 +44,6 @@ The basic JSON structure of a statistic widget
 
       - ``h``: HTML DOM Style ``height`` is calculated as formula ``60 * h + 20 * (h - 1)``
    
-   ``chartId``: ID of the standard client statistic chart. For more information, please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>`.
+   ``chartId``: ID of the standard statistic chart. For more information, please refer to :ref:`Portal.StatisticCharts <portal-statistic-charts>`.
 
    ``showFullscreenMode``: visibility of the fullscreen mode icon. The default value is ``true``, set to ``false`` to hide the icon.

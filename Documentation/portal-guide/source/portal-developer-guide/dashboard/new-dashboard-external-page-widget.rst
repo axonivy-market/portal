@@ -55,7 +55,7 @@ Attribute explanation:
 
    ``names``: multi-language names of the widget on the UI
 
-   ``layout``: layout definition of the client statistic widget
+   ``layout``: layout definition of the statistic widget
 
       - ``x``: HTML DOM Style ``left`` is calculated as formula ``x / 12 * 100%``
 

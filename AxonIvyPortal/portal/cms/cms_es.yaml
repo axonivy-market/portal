@@ -76,7 +76,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Proceso de Axon Ivy
     DashboardWidgetType:
       CASE: Widget del caso
-      CLIENT_STATISTIC: Widget de estadísticas
       CUSTOM: Widget personalizado
       NEW: Nuevo widget
       NEWS: Noticias
@@ -748,6 +747,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Widgets estándar
     StatisticWidget:
       EmptyChartDataMessage: No tenemos suficientes datos para crear un buen gráfico.
+      failToRenderChartMessage: Error al renderizar el gráfico. Inténtelo de nuevo con una configuración diferente.
+      firstConfigChartMessage: Aún no hay gráfico disponible. Configure sus ajustes para generar un gráfico.
     WelcomeWidgetIntroduction: Este widget muestra un texto y una imagen de bienvenida en el panel de control.
     WelcomeWidgetNotFoundMessage: No podemos encontrar la imagen del widget, por favor reconfigure su imagen.
     WidgetFilterName: Nombre del filtro del widget
@@ -1331,6 +1332,9 @@ Dialogs:
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Añadir un nuevo cuadro de mandos
+              PortalDashboardDetailModification:
+                CreateCustomStatistic: Crear widget de estadísticas personalizado
+                DeleteConfirm: ¿Está seguro de que desea eliminar?
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
@@ -1389,9 +1393,6 @@ Dialogs:
                 Control. Alt + A: Enfocar en el primer proceso. Alt + W: Enfocar en la primera tarea. Alt + Q: Enfocar en el primer caso. Tab: Tabbing secuencial a través de elementos. Esc: Cerrar widgets expandidos/Cerrar menús contextuales. Enter: Confirmar selección'
             CaseWidgetConfiguration:
               AddFilter: Añadir filtro
-            ClientStatisticWidget:
-              IdNotFound: Grafico con ID {0} no encontrado
-              NoPermissionChartMessage: No tiene permiso para ver este gráfico.
             CloneWidgetDialog:
               Header: Clone widget "{0}"
               TargetDashboard: Target dashboard
@@ -1430,6 +1431,9 @@ Dialogs:
               WidgetFilter: Filtro de widgets
             PortalDashboardDetailModification:
               CloneWidget: Clonar widget
+            StatisticWidget:
+              IdNotFound: Grafico con ID {0} no encontrado
+              NoPermissionChartMessage: No tiene permiso para ver este gráfico.
             TaskWidgetConfiguration:
               AddFilter: Añadir filtro
               ResetFilter: Restablecer filtro
@@ -1438,6 +1442,24 @@ Dialogs:
             CaseDetailsIFrameTitle: Detalles del caso marco
           IFrameTaskTemplate:
             TaskIFrameTitle: Marco de tareas
+        page:
+          StatisticConfiguration:
+            AdvancedConfiguration: Configuración avanzada
+            Aggregate: Agregado
+            ChartType: Tipo de gráfico
+            Color: Color {0}
+            Create: Cree
+            EditStatistic: Editar widget de estadísticas
+            For: Para
+            GeneratePreview: Generar vista previa
+            HideLabel: Ocultar etiqueta
+            NewStatistic: Nuevo widget de estadísticas
+            RefreshInterval: Intervalo de actualización
+            RefreshIntervalInSeconds: Intervalo de actualización en segundos
+            RefreshIntervalInSecondsValidationMessage: 'Intervalo de actualización en segundos: El atributo especificado no está entre los valores esperados de {0} y {1}'
+            StatisticConfiguration: Configuración estadística
+            XAxisTitle: Título del eje X
+            YAxisTitle: Título del eje Y
   components:
     CaseDocument:
       FileDate: Modificado el
@@ -1450,6 +1472,25 @@ Dialogs:
       invalidFileMessage: Tipo de archivo no permitido
       invalidSizeMessage: ¡El archivo es muy grande!
       maximumFileUploadElement: Ya existe un elemento de subir documentos
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          ChartTarget:
+            CASE:
+              name: Caso
+            TASK:
+              name: Tarea
+          ChartType:
+            BAR:
+              name: TODO Bar
+            LINE:
+              name: TODO Line
+            NUMBER:
+              name: TODO Number
+            PIE:
+              name: TODO Pie
 Labels:
   AI:
     Error:
@@ -1475,7 +1516,9 @@ Labels:
     TaskDetailsResult: ''
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
+  Configuration: Configuración
   CreateNewDashboard: Crear un nuevo cuadro de mandos
+  Description: Descripción
   EditDescription: Editar descripción
   Enums:
     DashboardStandardCaseColumn:
@@ -1558,12 +1601,18 @@ Labels:
     ThemeMode:
       DARK: Oscuro
       LIGHT: Luz
+  Filters: Filtros
+  Icon: Icono
   InsertTask-Explain: Insertar la tarea. Mi tarea será pospuesta.
   InsertTheTask: Insertar la tarea.
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Name: Nombre
   Permissions: Permiso
+  Preview: Vista previa
+  RequiredFieldMessage: '{0}: Valor requerido'
+  Save: Guardar
   Share: Compartir
   Task: Tarea
   TaskItemDetail: Detalles de la tarea
