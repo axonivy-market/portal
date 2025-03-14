@@ -77,6 +77,7 @@ public class StatisticConfigurationBean implements Serializable {
   private List<String> backgroundColors;
   private boolean isEditMode;
   private boolean refreshIntervalEnabled;
+  private String customFieldAggregate;
 
   @PostConstruct
   public void init() {
@@ -163,6 +164,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void save() {
+    handleCustomFieldAggregation();
     syncUIConfigWithChartConfig();
     resetRedundantChartConfigs(statistic.getChartType(), true);
     saveStatisticJson();
@@ -253,10 +255,6 @@ public class StatisticConfigurationBean implements Serializable {
  */
 
   public List<String> getAllAvailableAggregates() {
-    // TODO: remove log 
-    Ivy.log().info("LOG Chart type: " + statistic.getChartType());
-    Ivy.log().info("LOG Chart target: " + statistic.getChartTarget());
-
     List<ChartAggregates> aggregations = Arrays.asList(ChartAggregates.values());
     List<String> chartAggregations = new ArrayList<>();
     aggregations.forEach(agg -> chartAggregations.add(agg.getName()));
@@ -287,8 +285,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void getPreviewData() {
-    Ivy.log().info("PREVIEW ");
-    Ivy.log().info(statistic.getAggregates());
+    handleCustomFieldAggregation();
     syncUIConfigWithChartConfig();
     StatisticService statisticService = StatisticService.getInstance();
     statistic.setAdditionalConfigs(new ArrayList<>());
@@ -302,6 +299,14 @@ public class StatisticConfigurationBean implements Serializable {
   
   public boolean isCustomFieldsSelected() {
     return statistic.getAggregates().contains("customFields");
+  }
+  
+  private void handleCustomFieldAggregation() {
+    if (!isCustomFieldsSelected()) {
+      return;
+    }
+    String statisticCustomfieldAggregation = statistic.getAggregates().replace("*", customFieldAggregate);
+    statistic.setAggregates(statisticCustomfieldAggregation);
   }
 
   public void updateNameForCurrentLanguage() {
@@ -516,5 +521,13 @@ public class StatisticConfigurationBean implements Serializable {
     } else {
       PortalNavigator.navigateToDashboardDetailsPage(callbackDashboardId, true);
     }
+  }
+
+  public String getCustomFieldAggregate() {
+    return customFieldAggregate;
+  }
+
+  public void setCustomFieldAggregate(String customFieldAggregate) {
+    this.customFieldAggregate = customFieldAggregate;
   }
 }
