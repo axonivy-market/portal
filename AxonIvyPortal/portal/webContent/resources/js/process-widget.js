@@ -250,21 +250,6 @@ function expandOrCollapseAllCategories(shouldExpand) {
   }
 }
 
-function jumpToProcessGroupByCharacter(event, isCompactMode) {
-  if (isCompactMode === false) {
-    jumpToProcessGroupByCharacterForGridProcess(event);
-    return;
-  }
-
-  var clickedCharacter = getClassNameStartsWith(event.target.className, prefixProcessStart).slice(prefixProcessStart.length);
-  $(".js-process-nav-item.selected").removeClass("selected");
-  var selectedItem = document.getElementById(event.target.id);
-  var processGroupSeleted = document.getElementsByClassName(prefixProcessGroup + clickedCharacter)[0];
-  
-  processGroupSeleted.parentNode.scrollTop = processGroupSeleted.offsetTop - processGroupSeleted.parentNode.offsetTop;
-  setTimeout(function(){ selectedItem.classList.add("selected"); }, 100);
-}
-
 function resetGridViewProcesses(event) {
   let processList = $('.js-process-start-list-item.js-grid-process-index-group');
   processList.show();
@@ -275,22 +260,6 @@ function resetGridViewProcesses(event) {
   let processWidget = new ProcessWidget();
   processWidget.setupScrollbar();
   processWidget.clearSearchField();
-}
-
-function jumpToProcessGroupByCharacterForGridProcess(event) {
-  let processList = $('.js-process-start-list-item.js-grid-process-index-group');
-  processList.show();
-
-  let clickedCharacter = getClassNameStartsWith(event.target.className, prefixProcessStart).slice(prefixProcessStart.length);
-  $(".js-process-nav-item.selected").removeClass("selected");
-  let selectedItem = document.getElementById(event.target.id);
-  let processGroupSeleted = document.getElementsByClassName(prefixProcessGroup + clickedCharacter);
-
-  processList.not(processGroupSeleted).hide();
-  let processWidget = new ProcessWidget();
-  processWidget.setupScrollbar();
-  processWidget.clearSearchField();
-  setTimeout(function(){ selectedItem.classList.add("selected"); }, 100);
 }
 
 function getClassNameStartsWith(classList, prefix) {
