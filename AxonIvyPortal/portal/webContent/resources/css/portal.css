@@ -805,9 +805,6 @@ body .ui-inputfield.case-detail-name-input {
 .case-list .ui-datascroller .ui-datascroller-content {
   background-color: var(--case-list-data-scroller-content-background-color); }
 
-.case-header-action-cell, .task-header-action-cell {
-  border-left: solid 1px var(--header-action-action-left-border-color); }
-
 .action-steps-panel .action-icon {
   font-size: var(--large-font-size); }
 
