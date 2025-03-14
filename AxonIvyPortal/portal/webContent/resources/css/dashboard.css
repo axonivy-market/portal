@@ -273,19 +273,6 @@
    max-height: 95%;
 }
 
-.widget__filter-sidebar-mask,
-.widget__info-sidebar-mask {
-  background-color: lightgray;
-  z-index: 99;
-  width: 100%;
-  height: calc(100% - 49px);
-  position: absolute;
-  left: 0;
-  margin: -10px 0;
-  display: none;
-  opacity: 0.5;
-}
-
 .widget__filter-sidebar,
 .widget__info-sidebar {
   position: absolute;
@@ -311,33 +298,6 @@ body .ui-dialog .ui-dialog-footer .ui-button.dashboard__edit-global-dashboard {
   .dashboard__restore-button {
     margin-right: 0;
   }
-}
-
-.actions-widget {
-  text-align: center;
-  padding-top: 4px;
-}
-
-.action-widget__add-button {
-  margin-bottom: 5px;
-}
-
-.prototype.task-widget-panel .task-name {
-	display: inline;
-}
-
-.prototype.task-widget-panel .action-panel {
-	display: inline;
-}
-
-.prototype.task-widget-panel .action-panel .fa {
-	float: right;
-	color: white;
-	margin: 0 5px;
-}
-
-.task-widget-header-main {
-	margin: 10px 10px 0 10px;	
 }
 
 .dashboard-tasks-container__columns-configuration,
@@ -394,11 +354,6 @@ td.dashboard-tasks__category span {
   td.dashboard-cases__name span {
      max-width: 300px;
   }
-}
-
-.prototype-task-table .default-column {
-	max-width: 300px;
-	width: 300px;
 }
 
 .task-configuration.card,
@@ -496,15 +451,6 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   }
 }
 
-.task-preview__header {
-  margin: 0;
-}
-
-.task-configuration__user-selection>span {
-  width: 90%;
-  float: right;
-}
-
 .task-configuration__responsibles-selection {
   min-width: fit-content;
 }
@@ -594,7 +540,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .filter-overlay-panel {
-  max-width: 75rem !important;
+  max-width: 90rem !important;
 }
 
 .filter-overlay-panel__footer > div#manage-filter {
@@ -697,11 +643,6 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   width: auto;
 }
 
-.case-preview__header {
-  margin-top: auto;
-  padding-bottom: 0;
-}
-
 .process-widget-component.widget__content {
   padding: 0 0 0;
 }
@@ -747,10 +688,6 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
 
 .dashboard__table--preview .ui-avatar.gravatar > img {
   z-index: 0;
-}
-
-.widget-info__state {
-  margin: 2px;
 }
 
 .widget__filter-noti-number {
@@ -969,15 +906,6 @@ body .ui-widget.new-widget-dialog__introduction {
   margin: auto;
 }
 
-.process-configuration__category-panel-footer {
-  margin-top: 10px;
-  text-align: right;
-}
-
-.process-configuration__selectOneMenu-panel .ui-selectonemenu-label {
-  text-overflow: ellipsis;
-}
-
 .process-configuration__select-process {
   overflow: auto;
   max-height: 300px;
@@ -1126,12 +1054,6 @@ body .ui-widget.new-widget-dialog__introduction {
   top: 0;
   padding: .5rem;
   font-size: 18px;
-}
-
-.process-grid-item__action--full-mode {
-  padding: 10px 10px 0 10px;
-  font-size: 18px;
-  float: right;
 }
 
 .widget-height-100 {
@@ -1363,11 +1285,6 @@ body .ui-widget.new-widget-dialog__introduction {
   flex-direction: column;
 }
 
-.statistic-chart-widget__header {
-  width: 100%;
-  border: none;
-}
-
 .statistic-chart-widget__content {
   overflow: hidden;
   width: 100%;
@@ -1379,14 +1296,6 @@ body .ui-widget.new-widget-dialog__introduction {
   height: 350px;
   width: 450px;
   margin: auto;
-}
-
-.chart-information-container {
-  padding: 1em 1.5em;
-}
-
-.chart-information-container .ui-panelgrid tbody tr.ui-widget-content {
-  border-color: var(--widget-advanced-filter-overlay-panel-footer);
 }
 
 .has-avatar .case-info-avatar {
@@ -1575,6 +1484,10 @@ body .ui-widget.new-widget-dialog__introduction {
   overflow: hidden;
 }
 
+.quick-search-input-tooltip {
+  height: 2.5rem;
+}
+
 .welcome-widget-action-group-form {
   position: absolute;
   top: 10px;
@@ -1586,15 +1499,7 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .welcome-widget-configuration .welcome-text-input-panel {
   display: flex;
-  flex-direction: row;
-}
-
-@media screen and (max-width: 1366px) {
-  .welcome-widget-configuration .welcome-text-input-panel {
-   display: flex;
-   flex-direction: column;
-   align-items: flex-start;
-}
+  align-items: center;
 }
 
 .welcome-widget-configuration .welcome-text-input-panel .greeting-text {
@@ -1763,14 +1668,6 @@ body .ui-widget.new-widget-dialog__introduction {
 .widget-preview.widget-preview--statistic .statistic-chart-widget__content {
   height: 440px;
 }
-
-.more-information-wrapper {
-  height: 2.2rem
-}
-
-.dashboard_ui-outputlabel-rfi {
-  margin-left: 0.1em;
-  color: var(--asterik-icon-color); }
 
 .widget__content.case-widget {
   max-height: fit-content;
@@ -2022,4 +1919,8 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
   max-width: calc(100% - 30px);
   display: inline-block;
   overflow: hidden;
+}
+
+.clone-to-dashboard-dialog-header-container {
+  width: calc(100% - 35px);
 }
