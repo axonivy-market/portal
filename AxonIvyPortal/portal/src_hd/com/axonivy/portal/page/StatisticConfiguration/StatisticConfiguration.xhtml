@@ -71,7 +71,7 @@
                     value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/For')}" />
                   <div>
                     <p:selectOneMenu id="target" value="#{statisticConfigurationBean.statistic.chartTarget}"
-                      styleClass="w-full">
+                      styleClass="w-full" onchange="">
                       <f:selectItems value="#{statisticConfigurationBean.allChartTargets}" var="target"
                         itemLabel="#{chartTarget}" itemValue="#{chartTarget}" />
                     </p:selectOneMenu>
@@ -148,14 +148,13 @@
                         <p:commandButton id="add-filter" icon="#{visibilityBean.generateButtonIcon('si si-add-circle')}"
                           update="user-filter" process="user-filter" styleClass="u-mar-right-5 ui-button-flat"
                           actionListener="#{statisticConfigurationBean.addNewFilter()}"
-                          value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/AddFilter')}"
-                          title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/AddFilter')}" immediate="true"
+                          value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/AddFilter')}"
+                          title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/AddFilter')}" immediate="true"
                           partialSubmit="true">
                           <f:param name="skipValidator" value="true" />
                         </p:commandButton>
                       </div>
                     </h:panelGroup>
-<!--                     <p:inputText id="filter" value="#{statisticConfigurationBean.statistic.filter}" class="w-full" /> -->
                   </div>
                 </div>
 

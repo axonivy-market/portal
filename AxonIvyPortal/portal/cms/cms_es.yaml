@@ -1440,6 +1440,7 @@ Dialogs:
             TaskIFrameTitle: Marco de tareas
         page:
           StatisticConfiguration:
+            AddFilter: Añadir filtro
             AdvancedConfiguration: Configuración avanzada
             Aggregate: Agregado
             ChartType: Tipo de gráfico

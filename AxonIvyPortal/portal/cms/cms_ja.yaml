@@ -1474,6 +1474,9 @@ Dialogs:
             CaseDetailsIFrameTitle: ケース詳細フレーム
           IFrameTaskTemplate:
             TaskIFrameTitle: タスクフレーム
+        page:
+          StatisticConfiguration:
+            AddFilter: フィルターを追加
   components:
     CaseDocument:
       FileDate: 変更日時

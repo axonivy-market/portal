@@ -101,8 +101,6 @@ public class StatisticConfigurationBean implements Serializable {
     callbackDashboardId = Attrs.currentContext().getAttribute("#{data.callbackDashboardId}", String.class);
     if (statistic == null) {
       initNewStatistic();
-      filterFields = new ArrayList<>();
-      filterFields.addAll(TaskFilterFieldFactory.getStandardFilterableFields());
     } else {
       initExistedStatistic();
     }
@@ -172,6 +170,8 @@ public class StatisticConfigurationBean implements Serializable {
     yTitles = new ArrayList<>();
     backgroundColors = new ArrayList<>();
     refreshIntervalEnabled = false;
+    filterFields = new ArrayList<>();
+    filterFields.addAll(TaskFilterFieldFactory.getStandardFilterableFields());
   }
 
   private void populateBackgroundColorsIfMissing() {
@@ -486,7 +486,6 @@ public class StatisticConfigurationBean implements Serializable {
     }
 
     filter.getFilterField().addNewFilter(filter);
-//    initCustomFieldNumberPattern(filter, field, filter.getFilterField());
   }
   
   public void addNewFilter() {
@@ -495,7 +494,6 @@ public class StatisticConfigurationBean implements Serializable {
     }
 
     StatisticFilter newFilter = new StatisticFilter();
-//    newFilter.setTemp(true);
     statistic.getFilters().add(newFilter);
   }
   
