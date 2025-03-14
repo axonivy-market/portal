@@ -249,9 +249,13 @@
                   <h:panelGroup id="stat-chart-widget__content" layout="block"
                     styleClass="statistic-chart-widget__content widget__content widget__content">
                     <h:panelGroup styleClass="statistic-chart-widget__chart" layout="block">
-                      <div
-                        class="ui-chart js-statistic-chart statistic-chart-widget__canvas chart-options-config preview-statistic-chart"
-                        data-chart-id="preview-statistic-chart" />
+                      <div class="ui-chart js-statistic-chart statistic-chart-widget__canvas chart-options-config preview-statistic-chart"
+                        data-chart-id="preview-statistic-chart">
+                        <div class="empty-message-container w-35rem">
+                          <i class="si si-analytics-pie-2 empty-message-icon"></i>
+                          <p class="empty-message-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/firstConfigChartMessage')}</p>
+                        </div>
+                      </div>
                     </h:panelGroup>
                   </h:panelGroup>
                 </div>

@@ -216,6 +216,23 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
   });
 }
 
+// Method to render empty preview chart
+function renderFailToRenderChart(chart, additionalConfig) {
+  let failToRenderChartMessage;
+  additionalConfig.find(function (item) {
+    if (Object.keys(item || {})[0] === 'failToRenderChartMessage') {
+      failToRenderChartMessage = item.failToRenderChartMessage;
+    }
+  });
+  // HTML element for the empty chart
+  let failToRenderChartHtml =
+    '<div class="empty-message-container">' +
+    '    <i class="si si-analytics-pie-2 empty-message-icon"></i>' +
+    '    <p class="empty-message-text">' + failToRenderChartMessage + '</p>' +
+    '</div>';
+  $(chart).html(failToRenderChartHtml);
+}
+
 function previewChart(data, defaultLocale, datePatternConfig) {
   const charts = document.getElementsByClassName('js-statistic-chart');
   if (!charts || charts.length == 0) {
@@ -234,7 +251,7 @@ function previewChart(data, defaultLocale, datePatternConfig) {
   } catch (error) {
     console.error("Error in previewChart:", error);
     PF('previewButton').enable();
-    renderNotFoundData(charts[0], 'Error while rendering chart');
+    renderFailToRenderChart(charts[0], data.chartConfig.additionalConfigs);
   }
 
 }
