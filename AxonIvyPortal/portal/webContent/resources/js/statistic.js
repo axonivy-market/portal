@@ -8,6 +8,8 @@ const EMPTY_CHART_MESSAGE =  'emptyChartDataMessage';
 const MANIPULATE_BY = 'manipulateValueBy';
 const CHART_TEXT_COLOR = '#808080';
 const CHART_GRID_COLOR = 'rgba(192, 192, 192, 0.5)';
+const MIN_REFRESH_INTERVAL = 60;
+const SUCCESS_STATUS_CODE = 200;
 
 let locale;
 let datePattern;
@@ -149,8 +151,8 @@ function initRefresh() {
         clearInterval(refreshInfo.refreshIntervalId);
       }
       if (refreshInfo.refreshInterval !== 0) {
-        if (refreshInfo.refreshInterval < 60) {
-          refreshInfo.refreshInterval = 60;
+        if (refreshInfo.refreshInterval < MIN_REFRESH_INTERVAL) {
+          refreshInfo.refreshInterval = MIN_REFRESH_INTERVAL;
         }
         refreshInfo.refreshIntervalId = setInterval(() => {
           refreshChart(refreshInfo);
@@ -181,7 +183,7 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
     let chartId = chart.getAttribute(DATA_CHART_ID);
     let data = await fetchChartData(chart, chartId);
 
-    if (data.statusCode != 200) {
+    if (data.statusCode != SUCCESS_STATUS_CODE) {
       renderNotFoundData(chart, data.errorMessage);
       return;
     }
@@ -216,6 +218,23 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
   });
 }
 
+// Method to render empty preview chart
+function renderFailToRenderChart(chart, additionalConfig) {
+  let failToRenderChartMessage;
+  additionalConfig.find(function (item) {
+    if (Object.keys(item || {})[0] === 'failToRenderChartMessage') {
+      failToRenderChartMessage = item.failToRenderChartMessage;
+    }
+  });
+  // HTML element for the empty chart
+  let failToRenderChartHtml =
+    '<div class="empty-message-container">' +
+    '    <i class="si si-analytics-pie-2 empty-message-icon"></i>' +
+    '    <p class="empty-message-text">' + failToRenderChartMessage + '</p>' +
+    '</div>';
+  $(chart).html(failToRenderChartHtml);
+}
+
 function previewChart(data, defaultLocale, datePatternConfig) {
   const charts = document.getElementsByClassName('js-statistic-chart');
   if (!charts || charts.length == 0) {
@@ -234,7 +253,7 @@ function previewChart(data, defaultLocale, datePatternConfig) {
   } catch (error) {
     console.error("Error in previewChart:", error);
     PF('previewButton').enable();
-    renderNotFoundData(charts[0], 'Error while rendering chart');
+    renderFailToRenderChart(charts[0], data.chartConfig.additionalConfigs);
   }
 
 }

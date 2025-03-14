@@ -109,7 +109,7 @@
 
             <div class="new-widget-dialog__item-details">
               <h:panelGroup layout="block" styleClass="new-widget-dialog__image" >
-                <span class="#{iconSelectionBean.generateIconWithFontFamily(widget.icon)} new-widget-dialog__icon" />
+                <span class="#{iconSelectionBean.generateIconWithFontFamily(htmlSanitizerBean.escapeForIcon(widget.icon))} new-widget-dialog__icon" />
               </h:panelGroup>
               <h:panelGroup layout="block" styleClass="ui-panelgrid-blank new-widget-dialog__item-content">
                 <h:outputText id="statistic-widget-description" value="#{widget.description}" styleClass="new-widget-dialog__introduction h-3rem"/>

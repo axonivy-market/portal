@@ -748,6 +748,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Standard Widgets
     StatisticWidget:
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
+      failToRenderChartMessage: Error while rendering chart. Please retry with different settings.
+      firstConfigChartMessage: No chart available yet. Please configure your settings to generate a chart.
     WelcomeWidgetIntroduction: This widget displays a welcome text and image on dashboard.
     WelcomeWidgetNotFoundMessage: We cannot find the image of widget, please reconfigure your image!
     WidgetFilterName: Widget filter name
@@ -1515,6 +1517,25 @@ Dialogs:
   general:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          ChartTarget:
+            CASE:
+              name: Case
+            TASK:
+              name: Task
+          ChartType:
+            BAR:
+              name: Bar
+            LINE:
+              name: Line
+            NUMBER:
+              name: Number
+            PIE:
+              name: Pie
 Labels:
   AI:
     Error:

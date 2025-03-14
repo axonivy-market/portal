@@ -746,6 +746,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: 標準ウィジェット
     StatisticWidget:
       EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！
+      failToRenderChartMessage: TODO
+      firstConfigChartMessage: TODO
     WelcomeWidgetIntroduction: このウィジェットは、ダッシュボードにウェルカムテキストと画像を表示します。
     WelcomeWidgetNotFoundMessage: ウィジェットの画像が見つかりません。画像を再設定してください。
     WidgetFilterName: ウィジェットフィルター名
@@ -1476,7 +1478,22 @@ Dialogs:
             TaskIFrameTitle: タスクフレーム
         page:
           StatisticConfiguration:
-            AddFilter: フィルターを追加
+            AdvancedConfiguration: TODO Advanced Configuration
+            Aggregate: TODO Aggregate
+            AddFilter: TODO Add filter
+            ChartType: TODO Chart type
+            Color: 色{0}
+            Create: TODO Create
+            EditStatistic: TODO Edit Statistic Widget
+            For: TODO For
+            GeneratePreview: TODO Generate preview
+            HideLabel: TODO Hide label
+            NewStatistic: TODO New Statistic Widget
+            RefreshInterval: TODO Refresh interval
+            RefreshIntervalInSeconds: TODO Refresh interval in seconds
+            StatisticConfiguration: TODO Statistic configuration
+            XAxisTitle: TODO X axis title
+            YAxisTitle: TODO Y axis title
   components:
     CaseDocument:
       FileDate: 変更日時
@@ -1492,6 +1509,25 @@ Dialogs:
   general:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          ChartTarget:
+            CASE:
+              name: ケース
+            TASK:
+              name: タスク
+          ChartType:
+            BAR:
+              name: TODO Bar
+            LINE:
+              name: TODO Line
+            NUMBER:
+              name: TODO Number
+            PIE:
+              name: TODO Pie
 Labels:
   AI:
     Error:
@@ -1524,7 +1560,9 @@ Labels:
       {2}
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
+  Configuration: 設定
   CreateNewDashboard: 新しいダッシュボードを作成
+  Description: 説明
   EditDescription: 説明を編集
   Enums:
     ChatbotCandidateQuestion:
@@ -1617,12 +1655,17 @@ Labels:
     ThemeMode:
       DARK: 暗い
       LIGHT: 明るい
+  Filters: フィルター
+  Icon: アイコン
   InsertTask-Explain: タスクを挿入します。私のタスクは延期されます。
   InsertTheTask: タスクを挿入
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Name: 名前
   Permissions: 権限
+  Preview: プレビュー
+  Save: 保存
   Share: 共有
   Task: タスク
   TaskItemDetail: タスクの詳細

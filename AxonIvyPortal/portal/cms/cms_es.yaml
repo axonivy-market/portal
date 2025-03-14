@@ -745,6 +745,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Widgets estándar
     StatisticWidget:
       EmptyChartDataMessage: No tenemos suficientes datos para crear un buen gráfico.
+      failToRenderChartMessage: Error al renderizar el gráfico. Inténtelo de nuevo con una configuración diferente.
+      firstConfigChartMessage: Aún no hay gráfico disponible. Configure sus ajustes para generar un gráfico.
     WelcomeWidgetIntroduction: Este widget muestra un texto y una imagen de bienvenida en el panel de control.
     WelcomeWidgetNotFoundMessage: No podemos encontrar la imagen del widget, por favor reconfigure su imagen.
     WidgetFilterName: Nombre del filtro del widget
@@ -1468,6 +1470,25 @@ Dialogs:
       invalidFileMessage: Tipo de archivo no permitido
       invalidSizeMessage: ¡El archivo es muy grande!
       maximumFileUploadElement: Ya existe un elemento de subir documentos
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          ChartTarget:
+            CASE:
+              name: Caso
+            TASK:
+              name: Tarea
+          ChartType:
+            BAR:
+              name: TODO Bar
+            LINE:
+              name: TODO Line
+            NUMBER:
+              name: TODO Number
+            PIE:
+              name: TODO Pie
 Labels:
   AI:
     Error:
