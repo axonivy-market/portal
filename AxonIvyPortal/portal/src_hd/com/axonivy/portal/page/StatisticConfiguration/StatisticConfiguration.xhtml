@@ -57,8 +57,8 @@
                   <div>
                     <p:selectOneMenu id="type" value="#{statisticConfigurationBean.statistic.chartType}"
                       styleClass="w-full">
-                      <f:selectItems value="#{statisticConfigurationBean.allChartTypes}" var="type"
-                        itemLabel="#{chartType}" itemValue="#{chartType}" />
+                      <f:selectItems value="#{statisticConfigurationBean.allChartTypes}" var="chartType"
+                        itemLabel="#{chartType.getCmsName()}" itemValue="#{chartType}" />
                       <p:ajax event="itemSelect"
                         update="x-axis-title-container y-axis-title-container hide-label-container background-colors-container errors-message" />
                     </p:selectOneMenu>
@@ -71,8 +71,8 @@
                   <div>
                     <p:selectOneMenu id="target" value="#{statisticConfigurationBean.statistic.chartTarget}"
                       styleClass="w-full">
-                      <f:selectItems value="#{statisticConfigurationBean.allChartTargets}" var="target"
-                        itemLabel="#{chartTarget}" itemValue="#{chartTarget}" />
+                      <f:selectItems value="#{statisticConfigurationBean.allChartTargets}" var="chartTarget"
+                        itemLabel="#{chartTarget.getCmsName()}" itemValue="#{chartTarget}" />
                     </p:selectOneMenu>
                   </div>
                 </div>

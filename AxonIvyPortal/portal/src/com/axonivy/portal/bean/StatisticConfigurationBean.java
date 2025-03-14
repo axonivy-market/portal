@@ -1,9 +1,9 @@
 package com.axonivy.portal.bean;
 
-import static com.axonivy.portal.enums.statistic.ChartType.BAR;
-import static com.axonivy.portal.enums.statistic.ChartType.LINE;
-import static com.axonivy.portal.enums.statistic.ChartType.NUMBER;
-import static com.axonivy.portal.enums.statistic.ChartType.PIE;
+import static com.axonivy.portal.enums.ChartType.BAR;
+import static com.axonivy.portal.enums.ChartType.LINE;
+import static com.axonivy.portal.enums.ChartType.NUMBER;
+import static com.axonivy.portal.enums.ChartType.PIE;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -35,8 +35,8 @@ import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.util.RoleUtils;
-import com.axonivy.portal.enums.statistic.ChartTarget;
-import com.axonivy.portal.enums.statistic.ChartType;
+import com.axonivy.portal.enums.ChartTarget;
+import com.axonivy.portal.enums.ChartType;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.service.multilanguage.StatisticDescriptionMultilanguageService;
@@ -67,6 +67,8 @@ public class StatisticConfigurationBean implements Serializable {
   private static final int MIN_REFRESH_INTERVAL_IN_SECONDS = 60;
   private static final int MAX_REFRESH_INTERVAL_IN_SECONDS = 1000000;
   private static final int DEFAULT_REFRESH_INTERVAL_IN_SECONDS = 300;
+  private static final List<String> DEFAULT_COLORS =
+      Arrays.asList("#6299f7", "#8dc261", "#98bffa", "#bee3cb", "#c8befa", "#f5bf9f", "#f8da96", "#f9908c");
   private Statistic statistic;
   private String statisticId;
   private String callbackDashboardId;
@@ -130,12 +132,14 @@ public class StatisticConfigurationBean implements Serializable {
           BAR == statistic.getChartType() ? statistic.getBarChartConfig() : statistic.getLineChartConfig();
       xTitles = config.getxTitles() != null ? config.getxTitles() : new ArrayList<>();
       yTitles = config.getyTitles() != null ? config.getyTitles() : new ArrayList<>();
-      backgroundColors = config.getBackgroundColors() != null ? config.getBackgroundColors() : new ArrayList<>();
+      backgroundColors =
+          config.getBackgroundColors() != null ? config.getBackgroundColors() : new ArrayList<>(DEFAULT_COLORS);
     } else if (PIE == statistic.getChartType()) {
       PieChartConfig config = statistic.getPieChartConfig();
-      backgroundColors = config.getBackgroundColors() != null ? config.getBackgroundColors() : new ArrayList<>();
+      backgroundColors =
+          config.getBackgroundColors() != null ? config.getBackgroundColors() : new ArrayList<>(DEFAULT_COLORS);
     } else {
-      backgroundColors = new ArrayList<>();
+      backgroundColors = new ArrayList<>(DEFAULT_COLORS);
     }
     if (CollectionUtils.isEmpty(statistic.getPermissions())) {
       statistic.setPermissions(new ArrayList<>(Arrays.asList(ISecurityConstants.TOP_LEVEL_ROLE_NAME)));
@@ -160,7 +164,7 @@ public class StatisticConfigurationBean implements Serializable {
     statistic.setPermissions(new ArrayList<>(Arrays.asList(ISecurityConstants.TOP_LEVEL_ROLE_NAME)));
     xTitles = new ArrayList<>();
     yTitles = new ArrayList<>();
-    backgroundColors = new ArrayList<>();
+    backgroundColors = new ArrayList<>(DEFAULT_COLORS);
     refreshIntervalEnabled = false;
   }
 

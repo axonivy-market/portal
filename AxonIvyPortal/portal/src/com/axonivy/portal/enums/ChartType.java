@@ -1,13 +1,10 @@
-package com.axonivy.portal.enums.statistic;
+package com.axonivy.portal.enums;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ChartType {
-  BAR("bar"), 
-  LINE("line"),
-  PIE("pie"), 
-  NUMBER("number");
-  
+public enum ChartType implements HasCmsName {
+  BAR("bar"), LINE("line"), PIE("pie"), NUMBER("number");
+
   private String name;
 
   private ChartType(String name) {
@@ -16,6 +13,6 @@ public enum ChartType {
 
   @JsonValue
   public String getName() {
-      return name;
+    return name;
   }
 }

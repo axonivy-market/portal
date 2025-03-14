@@ -1508,6 +1508,25 @@ Dialogs:
       invalidFileMessage: Ce type de fichier n'est pas accepté!
       invalidSizeMessage: Le fichier est trop volumineux !
       maximumFileUploadElement: Il existe déjà un élément de téléchargement de fichiers
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          ChartTarget:
+            CASE:
+              name: Dossier
+            TASK:
+              name: Tâche
+          ChartType:
+            BAR:
+              name: TODO Bar
+            LINE:
+              name: TODO Line
+            NUMBER:
+              name: TODO Number
+            PIE:
+              name: TODO Pie
 Labels:
   AI:
     Error:
