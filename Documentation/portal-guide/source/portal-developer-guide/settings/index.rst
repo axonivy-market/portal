@@ -425,10 +425,14 @@ Data model:
 
 Portal Statistic Charts
 ^^^^^^^^^^^^^^^^^^^^^^^
-You can define filter logic, appearance, and other settings for all statistic
-charts that can be used by the :ref:`Statistic widget <portal-statistic-widget>` of Portal dashboard.
+
+Portal has built-in statistical chart definitions that can be used by the :ref:`Statistic widget <portal-statistic-widget>` in the Portal dashboard. 
 
 Filename: ``variables.Portal.ClientStatistic.json``
+
+.. warning::
+   In the next version of Portal, this variable will be removed as we implement a more powerful approach for statistics. 
+   Any modifications to this variable will be lost. Please consider this before making any changes.
 
 Data model:
 
@@ -437,87 +441,11 @@ Data model:
    [
       {
          "id": "1",
-         "aggregates": "priority",
-         "filter": "businessState:OPEN IN_PROGRESS,canWorkOn",
-         "chartTarget": "TASK",
-         "chartType": "pie",
-         "names": [
-               {
-                  "locale": "de",
-                  "value": "Aufgaben nach Prioritäten"
-               },
-               {
-                  "locale": "en",
-                  "value": "Tasks by Priority"
-               },
-               {
-                  "locale": "fr",
-                  "value": "Tâches par Priorité"
-               },
-               {
-                  "locale": "es",
-                  "value": "Tareas por Prioridad"
-               }
-         ],
-         "descriptions": [
-               {
-                  "locale": "de",
-                  "value": "Dieses Kreisdiagramm zeigt alle Aufgaben nach Priorität an."
-               },
-               {
-                  "locale": "en",
-                  "value": "This pie chart displays all tasks by priority."
-               },
-               {
-                  "locale": "fr",
-                  "value": "Ce diagramme à secteurs affiche toutes les tâches par priorité."
-               },
-               {
-                  "locale": "es",
-                  "value": "Este gráfico circular muestra todas las tareas por prioridad."
-               }
-         ],
-         "icon": "si si-analytics-pie-2",
-         "refreshInterval": 300
+         ...
       }
    ]
 
-
 - ``id``: ID of the statistic chart
-- ``aggregates``: the aggregation query to make bucket (grouping) or metric aggregations. Please visit `Task Aggregation and Filter`_ and `Case Aggregation and Filter`_ for more details
-- ``filter``: filter conditions for the statistic chart. Multiple conditions are
-  supported. Please note that some filters are incompatible with certain
-  chart types. Please visit `Task Aggregation and Filter`_ and `Case Aggregation
-  and Filter`_ for more details
-- ``chartTarget``: the entity type that you want to use as the target  of the chart. We are supporting the main entity types of the ivy workflow:
-   
-   ``TASK``: Ivy Task
-
-   ``CASE``: Ivy Case
-
-- ``names``: the multilingual display name of the chart
-- ``descriptions``: the multilingual description of the chart
-- ``icon``: the icon of each widget. Portal supports both Streamline and FontAwesome icons
-- ``refreshInterval``: statistic chart refresh interval in seconds
-- ``chartType``: chart type that you want to show on the UI. There are 4 chart types:
-   
-   ``pie``: Pie chart
-
-   |pie-chart|
-
-   ``bar``: Bar chart
-
-   |bar-chart|
-
-   ``line``: Line chart
-
-   |line-chart|
-
-   ``number``: Labelled number chart
-   
-   |number-chart|
-
-For some specific charts such as ``Bar``, ``Line`` or ``Number``, there are additional and required fields:
 
 - ``barChartConfig``: required fields for configuring the ``Bar`` chart, please add them if chart type is ``bar`` 
 
@@ -585,8 +513,5 @@ Data model:
 
 .. _Task Aggregation and Filter: https://developer.axonivy.com/api-browser?configUrl=https%3A%2F%2Fdeveloper.axonivy.com%2Fdoc%2F11.3%2Fopenapi%2Fconfig.json&urls.primaryName=default#/workflow/stats_1 
 .. _Case Aggregation and Filter: https://developer.axonivy.com/api-browser?configUrl=https%3A%2F%2Fdeveloper.axonivy.com%2Fdoc%2F11.3%2Fopenapi%2Fconfig.json&urls.primaryName=default#/workflow/stats
-   
-.. |pie-chart| image:: ../../screenshots/statistic/tasks-by-prior-pie-chart.png
-.. |bar-chart| image:: ../../screenshots/statistic/tasks-by-prior-bar-chart.png
-.. |number-chart| image:: ../../screenshots/statistic/tasks-by-prior-number-chart.png
-.. |line-chart| image:: ../../screenshots/statistic/completed-cases-chart.png
+.. |translate-json| image:: images/translate-json.png
+.. |translate-java| image:: images/translate-java.png
