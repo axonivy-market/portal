@@ -35,6 +35,7 @@ import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.util.RoleUtils;
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.statistic.StatisticFilter;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
@@ -44,7 +45,6 @@ import com.axonivy.portal.service.multilanguage.StatisticDescriptionMultilanguag
 import com.axonivy.portal.service.multilanguage.StatisticNameMultilanguageService;
 import com.axonivy.portal.service.multilanguage.StatisticXTitleMultilanguageService;
 import com.axonivy.portal.service.multilanguage.StatisticYTitleMultilanguageService;
-import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.statisticfilter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 
@@ -171,6 +171,7 @@ public class StatisticConfigurationBean implements Serializable {
     backgroundColors = new ArrayList<>();
     refreshIntervalEnabled = false;
     filterFields = new ArrayList<>();
+    filterFields.add(TaskFilterFieldFactory.getDefaultFilterField());
     filterFields.addAll(TaskFilterFieldFactory.getStandardFilterableFields());
   }
 
@@ -480,7 +481,7 @@ public class StatisticConfigurationBean implements Serializable {
     FilterField filterField = TaskFilterFieldFactory.findBy(field);
 
     if (filterField.getName()
-        .contentEquals(FilterFieldFactory.DEFAULT_FILTER_FIELD)) {
+        .contentEquals(BaseFilter.DEFAULT)) {
       filterField.addNewFilter(filter);
       return;
     }

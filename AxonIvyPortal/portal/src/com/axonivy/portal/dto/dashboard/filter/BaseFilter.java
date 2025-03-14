@@ -41,7 +41,7 @@ public class BaseFilter implements Serializable{
   @JsonIgnore
   public static final String DMY_DATE_FORMAT_WITHOUT_TIME = "dd.MM.yyyy";
   @JsonIgnore
-  private static final String DEFAULT = "default";
+  public static final String DEFAULT = "default";
 
   private String field;
 

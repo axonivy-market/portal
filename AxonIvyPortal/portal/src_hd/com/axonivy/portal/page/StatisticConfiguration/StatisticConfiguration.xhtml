@@ -71,7 +71,7 @@
                     value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/For')}" />
                   <div>
                     <p:selectOneMenu id="target" value="#{statisticConfigurationBean.statistic.chartTarget}"
-                      styleClass="w-full" onchange="">
+                      styleClass="w-full">
                       <f:selectItems value="#{statisticConfigurationBean.allChartTargets}" var="target"
                         itemLabel="#{chartTarget}" itemValue="#{chartTarget}" />
                     </p:selectOneMenu>

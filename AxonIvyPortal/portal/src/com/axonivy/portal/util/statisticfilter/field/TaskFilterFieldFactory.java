@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.util.statisticfilter.field.task.TaskFilterFieldCategory;
 import com.axonivy.portal.util.statisticfilter.field.task.TaskFilterFieldCreatedDate;
 import com.axonivy.portal.util.statisticfilter.field.task.TaskFilterFieldPriority;
@@ -33,13 +34,9 @@ public class TaskFilterFieldFactory {
     if (STANDARD_FILTER_FIELD.containsKey(field)) {
       return STANDARD_FILTER_FIELD.get(field);
     }
-//    else if (CUSTOM_FILTER_FIELD.containsKey(field)) {
-//      return CUSTOM_FILTER_FIELD.get(field);
-//    }
-//    else if (CUSTOM_CASE_FILTER_FIELD.containsKey(field)) {
-//      return CUSTOM_CASE_FILTER_FIELD.get(field);
-//    } 
-    return null;
+    return BaseFilter.DEFAULT.contentEquals(field)
+        ? new FilterFieldDefault()
+        : null;
   }
 
   public static FilterField findBy(String field, DashboardColumnType type) {
@@ -49,4 +46,7 @@ public class TaskFilterFieldFactory {
     };
   }
   
+  public static FilterField getDefaultFilterField() {
+    return new FilterFieldDefault();
+  }
 }

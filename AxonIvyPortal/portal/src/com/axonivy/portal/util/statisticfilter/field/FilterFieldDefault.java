@@ -1,11 +1,9 @@
-package com.axonivy.portal.util.filter.field;
+package com.axonivy.portal.util.statisticfilter.field;
 
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
-import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.dto.statistic.StatisticFilter;
 
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.query.CaseQuery;
-import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class FilterFieldDefault extends FilterField {
 
@@ -20,23 +18,18 @@ public class FilterFieldDefault extends FilterField {
   }
 
   @Override
-  public void initFilter(DashboardFilter filter) {
+  public void initFilter(StatisticFilter filter) {
     filter.setFilterField(null);
     filter.setField(null);
   }
 
   @Override
-  public void addNewFilter(DashboardFilter filter) {
+  public void addNewFilter(StatisticFilter filter) {
     initFilter(filter);
   }
 
   @Override
-  public CaseQuery generateFilterQuery(DashboardFilter filter) {
-    return null;
-  }
-
-  @Override
-  public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
+  public String generateStringFilter(StatisticFilter filter) {
     return null;
   }
 }
