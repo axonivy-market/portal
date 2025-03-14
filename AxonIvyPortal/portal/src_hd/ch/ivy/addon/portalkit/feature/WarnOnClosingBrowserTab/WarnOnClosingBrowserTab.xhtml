@@ -15,7 +15,7 @@
 	
 	<cc:implementation>
 		<script>
-			var confirmMessage = "#{cc.attrs.confirmMessage}";
+			var confirmMessage = `#{htmlSanitizerBean.escapeForJS(cc.attrs.confirmMessage)}`;
 			var showConfirmDialogBeforeUnload = true;
 			
 			// Attach the event submit for all forms in the page

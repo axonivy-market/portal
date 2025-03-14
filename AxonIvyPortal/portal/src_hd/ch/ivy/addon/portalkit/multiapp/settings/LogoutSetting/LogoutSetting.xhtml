@@ -67,7 +67,7 @@
   <script>
 	function returnHomePage() {
       showConfirmDialogBeforeUnload = false;
-      window.open('#{userMenuBean.logoutPage}', '_self');
+      window.open(`#{htmlSanitizerBean.escapeForJS(userMenuBean.logoutPage)}`, '_self');
 	}
   </script>
 </cc:implementation>

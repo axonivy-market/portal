@@ -54,15 +54,8 @@
           </ui:repeat>
         </h:form>
       </div>
-      <!-- <script> 
-        window.isWorkingOnATask = false; 
-        window.announcementInvisible = false; 
-        window.viewName="TASK_DETAIL";
-        window.taskName = "hola";
-        window.isHideCaseInfo = true;
-        window.isHideTaskAction = true;
-       </script> -->
-      <ic:com.axonivy.portal.components.IFrameTaskConfig isWorkingOnATask="false" viewName="PROCESS" taskName="#{ivy.cms.co('/Processes/UserExampleGuide/name')}" />
+      <ic:com.axonivy.portal.components.IFrameTaskConfig isWorkingOnATask="false" viewName="PROCESS"
+        taskName="#{ivy.cms.co('/Processes/UserExampleGuide/name')}" />
     </ui:define>
   </ui:composition>
 
