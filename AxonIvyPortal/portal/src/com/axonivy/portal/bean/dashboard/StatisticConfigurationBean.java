@@ -238,8 +238,6 @@ public class StatisticConfigurationBean implements Serializable {
     Ivy.var().set(PortalVariable.CUSTOM_STATISTIC.key, statisticsJson);
   }
 
-  /**
-   * DON'T SEE USAGE, COMMENT OUT FOR LATER USE
   public List<String> completeAggregates(String query) {
     List<String> allAggregates = getAllAvailableAggregates();
     List<String> filteredAggregates = new ArrayList<>();
@@ -252,14 +250,40 @@ public class StatisticConfigurationBean implements Serializable {
 
     return filteredAggregates;
   }
- */
 
   public List<String> getAllAvailableAggregates() {
-    List<ChartAggregates> aggregations = Arrays.asList(ChartAggregates.values());
+    List<ChartAggregates> aggregations = filterAggregatesForChartTarget(statistic.getChartTarget());
+    
+    
     List<String> chartAggregations = new ArrayList<>();
     aggregations.forEach(agg -> chartAggregations.add(agg.getName()));
     return chartAggregations;
   }
+  
+  private List<ChartAggregates> filterAggregatesForChartTarget(ChartTarget currentChartTarget) {
+    if(ChartTarget.CASE == currentChartTarget) {
+      return collectAggregatesForCase(statistic.getChartType());
+    }
+
+    return collectAggregatesForTask(statistic.getChartType());
+  }  
+  
+  private List<ChartAggregates> collectAggregatesForCase(ChartType currentChartType){
+    if(ChartType.NUMBER == currentChartType) {
+      return ChartAggregates.CASE_NUMBER_AGGREGATES.stream().toList();
+    }
+    
+    return ChartAggregates.CASE_AGGREGATES.stream().toList();
+  }
+
+  private List<ChartAggregates> collectAggregatesForTask(ChartType currentChartType){
+    if(ChartType.NUMBER == currentChartType) {
+      return ChartAggregates.TASK_NUMBER_AGGREGATES.stream().toList();
+    }
+    
+    return ChartAggregates.TASK_AGGREGATES.stream().toList();
+  }
+
 
   public List<ChartTarget> getAllChartTargets() {
     return Arrays.asList(ChartTarget.values());

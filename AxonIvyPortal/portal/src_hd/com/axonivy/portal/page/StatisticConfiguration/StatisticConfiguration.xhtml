@@ -103,6 +103,7 @@
                       <p:ajax listener="#{statisticConfigurationBean.isCustomFieldsSelected()}" update="chart-aggregation" />
                     </p:selectOneMenu>
                     <p:inputText id="custom-field-input" rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}"
+                      placeholder="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/CustomAggregateInput')}"
                       value="#{statisticConfigurationBean.customFieldAggregate}" maxlength="80" styleClass="mt-2 w-full" />
                   </div>
                 </h:panelGroup>
