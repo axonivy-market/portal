@@ -1498,6 +1498,7 @@ Dialogs:
             NewStatistic: New Statistic Widget
             RefreshInterval: Refresh interval
             RefreshIntervalInSeconds: Refresh interval in seconds
+            RefreshIntervalInSecondsValidationMessage: 'Refresh interval in seconds: Specified attribute is not between the expected values of {0} and {1}'
             StatisticConfiguration: Statistic configuration
             XAxisTitle: X axis title
             YAxisTitle: Y axis title
@@ -1675,6 +1676,7 @@ Labels:
   Name: Name
   Permissions: Permissions
   Preview: Preview
+  RequiredFieldMessage: '{0}: Value is required'
   Save: Save
   Share: Share
   Task: Task

@@ -1454,6 +1454,7 @@ Dialogs:
             NewStatistic: Nuevo widget de estadísticas
             RefreshInterval: Intervalo de actualización
             RefreshIntervalInSeconds: Intervalo de actualización en segundos
+            RefreshIntervalInSecondsValidationMessage: 'Intervalo de actualización en segundos: El atributo especificado no está entre los valores esperados de {0} y {1}'
             StatisticConfiguration: Configuración estadística
             XAxisTitle: Título del eje X
             YAxisTitle: Título del eje Y
@@ -1608,6 +1609,7 @@ Labels:
   Name: Nombre
   Permissions: Permiso
   Preview: Vista previa
+  RequiredFieldMessage: '{0}: Valor requerido'
   Save: Guardar
   Share: Compartir
   Task: Tarea

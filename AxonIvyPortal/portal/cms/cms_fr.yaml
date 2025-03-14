@@ -1493,6 +1493,7 @@ Dialogs:
             NewStatistic: Nouveau widget statistique
             RefreshInterval: Intervalle de rafraîchissement
             RefreshIntervalInSeconds: Intervalle de rafraîchissement en secondes
+            RefreshIntervalInSecondsValidationMessage: 'Intervalle de rafraîchissement en secondes : L''attribut spécifié n''est pas compris entre les valeurs attendues de {0} et {1}'
             StatisticConfiguration: Configuration des statistiques
             XAxisTitle: Titre de l'axe X
             YAxisTitle: Titre de l'axe des Y
@@ -1649,6 +1650,7 @@ Labels:
   Name: Nom
   Permissions: Permissions
   Preview: Aperçu
+  RequiredFieldMessage: '{0} : La valeur est obligatoire'
   Save: Enregistrer
   Share: Partager
   Task: Tâche

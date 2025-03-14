@@ -1490,6 +1490,7 @@ Dialogs:
             NewStatistic: TODO New Statistic Widget
             RefreshInterval: TODO Refresh interval
             RefreshIntervalInSeconds: TODO Refresh interval in seconds
+            RefreshIntervalInSecondsValidationMessage: 'TODO Refresh interval in seconds: Specified attribute is not between the expected values of {0} and {1}'
             StatisticConfiguration: TODO Statistic configuration
             XAxisTitle: TODO X axis title
             YAxisTitle: TODO Y axis title
@@ -1664,6 +1665,7 @@ Labels:
   Name: 名前
   Permissions: 権限
   Preview: プレビュー
+  RequiredFieldMessage: 'TODO {0}: Value is required'
   Save: 保存
   Share: 共有
   Task: タスク

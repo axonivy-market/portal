@@ -1465,6 +1465,7 @@ Dialogs:
             NewStatistic: Neues Statistik-Widget
             RefreshInterval: Aktualisierungsintervall
             RefreshIntervalInSeconds: Aktualisierungsintervall in Sekunden
+            RefreshIntervalInSecondsValidationMessage: 'Aktualisierungsintervall in Sekunden: Das angegebene Attribut liegt nicht zwischen den erwarteten Werten von {0} und {1}'
             StatisticConfiguration: Konfiguration der Statistik
             XAxisTitle: Titel der X-Achse
             YAxisTitle: Titel der Y-Achse
@@ -1629,6 +1630,7 @@ Labels:
   Name: Titel
   Permissions: Berechtigungen
   Preview: Vorschau
+  RequiredFieldMessage: '{0}: Wert ist erforderlich'
   Save: Speichern
   Share: Aktie
   Task: Aufgabe
