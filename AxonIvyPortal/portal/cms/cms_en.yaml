@@ -1516,6 +1516,25 @@ Dialogs:
   general:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          ChartTarget:
+            CASE:
+              name: Case
+            TASK:
+              name: Task
+          ChartType:
+            BAR:
+              name: Bar
+            LINE:
+              name: Line
+            NUMBER:
+              name: Number
+            PIE:
+              name: Pie
 Labels:
   AI:
     Error:

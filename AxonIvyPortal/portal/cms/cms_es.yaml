@@ -1469,6 +1469,25 @@ Dialogs:
       invalidFileMessage: Tipo de archivo no permitido
       invalidSizeMessage: ¡El archivo es muy grande!
       maximumFileUploadElement: Ya existe un elemento de subir documentos
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          ChartTarget:
+            CASE:
+              name: Caso
+            TASK:
+              name: Tarea
+          ChartType:
+            BAR:
+              name: TODO Bar
+            LINE:
+              name: TODO Line
+            NUMBER:
+              name: TODO Number
+            PIE:
+              name: TODO Pie
 Labels:
   AI:
     Error:

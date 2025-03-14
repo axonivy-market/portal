@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
-import com.axonivy.portal.enums.statistic.ChartTarget;
-import com.axonivy.portal.enums.statistic.ChartType;
+import com.axonivy.portal.enums.ChartTarget;
+import com.axonivy.portal.enums.ChartType;
 import com.axonivy.portal.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
