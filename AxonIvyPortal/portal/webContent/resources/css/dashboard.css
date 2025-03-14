@@ -300,11 +300,6 @@ body .ui-dialog .ui-dialog-footer .ui-button.dashboard__edit-global-dashboard {
   }
 }
 
-.actions-widget {
-  text-align: center;
-  padding-top: 4px;
-}
-
 .dashboard-tasks-container__columns-configuration,
 .dashboard-cases-container__columns-configuration  {
   text-align: right;
@@ -545,7 +540,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .filter-overlay-panel {
-  max-width: 75rem !important;
+  max-width: 90rem !important;
 }
 
 .filter-overlay-panel__footer > div#manage-filter {
@@ -1290,11 +1285,6 @@ body .ui-widget.new-widget-dialog__introduction {
   flex-direction: column;
 }
 
-.statistic-chart-widget__header {
-  width: 100%;
-  border: none;
-}
-
 .statistic-chart-widget__content {
   overflow: hidden;
   width: 100%;
@@ -1509,7 +1499,7 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .welcome-widget-configuration .welcome-text-input-panel {
   display: flex;
-  flex-direction: center;
+  align-items: center;
 }
 
 .welcome-widget-configuration .welcome-text-input-panel .greeting-text {
