@@ -206,7 +206,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       ApplicationName: The default application name that will be displayed on the page title.
       BaseQRCodeUrl: Set Base URL for QR code to display.
       DefaultThemeMode: The default theme mode of the application
-      EnableDocumentPreview: 'Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
       EnableSwitchThemeModeButton: Set to true to enable the switch theme button.
       GlobalSearchScopeCategoriesNote: Defining the types that the global search will search for
       GooglePlayURL: Set URL to download Axon Ivy mobile app on Google Play.
@@ -233,9 +232,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       disableTaskCount: Set to true to disable counting task in task list
       displayAllUsersOfTaskActivator: This setting is using for SecurityMemberDisplayName component. If the SecurityMember is a role, set this setting to true to list out all users of this role. If set to true, icon info is shown beside the role name.
       displayMessageAfterFinishOrLeaveTask: A feedback message will be displayed after user finishes or leaves a task.
+      documentUploadSizeLimit: Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.
       embedInFrame: Set to true to start a process/task in IFrame mode
       enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic.
       enableDeepLTranslation: Set this property to true to enable the DeepL translation support
+      enableDocumentPreview: 'Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
       enableGroupChat: Set this property to true to enable group chat function
       enablePrivateChat: Set this property to true to enable private chat function
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
@@ -256,6 +257,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideTimeNote: Set to true to hide hours and minutes next to date.
       hideUploadDocumentForDoneCaseNote: Set to true to deny upload (also delete) document after a case is done.
       hideYear: Set to true, year will be hidden, otherwise it will be shown.
+      imageUploadSizeLimit: Set the size limit for uploading images in megabytes (MB). The default value is 6MB.
       loggedInUserFormat: The option to show logged-in user format
       refreshTaskListIntervalNote: Task list refresh interval in seconds.
       showAvatar: For switch on/off the display of user/role avatars.

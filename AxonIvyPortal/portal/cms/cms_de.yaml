@@ -206,7 +206,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       ApplicationName: Der Standard-Anwendungsname, der im Seitentitel angezeigt wird.
       BaseQRCodeUrl: Legen Sie die Basis-URL für den anzuzeigenden QR-Code fest.
       DefaultThemeMode: Der Standardthemenmodus der Anwendung
-      EnableDocumentPreview: 'Auf "true" setzen, um die Vorschau von Dokumenten für bestimmte Dateitypen zu aktivieren. Unterstützte Dateitypen sind: pdf, png, jpeg, jpg, txt, log.'
       EnableSwitchThemeModeButton: Setzen Sie diesen Wert auf true, um die Schaltfläche "Thema wechseln" zu aktivieren.
       GlobalSearchScopeCategoriesNote: Festlegung der Typen, nach denen bei der globalen Suche gesucht werden soll
       GooglePlayURL: Legen Sie die URL fest, um die Axon Ivy-Mobilanwendung auf Google Play herunterzuladen.
@@ -234,9 +233,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayAllUsersOfTaskActivator: Diese Einstellung wird für die Komponente SecurityMemberDisplayName verwendet. Wenn der SecurityMember eine Rolle ist, setzen Sie diese Einstellung auf true, um alle Benutzer dieser Rolle aufzulisten. Wenn diese Einstellung auf true gesetzt ist, wird neben dem Rollennamen
         eine Symbolinfo angezeigt.
       displayMessageAfterFinishOrLeaveTask: Eine Feedback-Nachricht wird angezeigt, nachdem der Benutzer eine Aufgabe beendet oder verlassen hat.
+      documentUploadSizeLimit: Legen Sie das Größenlimit für das Hochladen von Dokumenten in Megabyte (MB) fest. Der Standardwert beträgt 20 MB.
       embedInFrame: Auf true gesetzt, um einen Prozess/Task im IFrame-Modus zu starten
       enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …
       enableDeepLTranslation: Setzen Sie diese Eigenschaft auf true, um die DeepL Übersetzungsunterstützung zu aktivieren.
+      enableDocumentPreview: 'Auf "true" setzen, um die Vorschau von Dokumenten für bestimmte Dateitypen zu aktivieren. Unterstützte Dateitypen sind: pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
       enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten Chat zu aktivieren
       enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option in Aufgaben-/Vorgang-Aktionen zu aktivieren
@@ -257,6 +258,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideTimeNote: 'Auf "true" Setzen, um Datumsfelder ohne Stunden und Minuten anzuzeigen '
       hideUploadDocumentForDoneCaseNote: Auf "true" setzen, um das Hochladen und Löschen von Dokumenten bei einem abgeschlossenen Vorgang zu unterbinden.
       hideYear: Auf "true" um das Jahr auszublenden, andernfalls wird es angezeigt.
+      imageUploadSizeLimit: Legen Sie das Größenlimit für das Hochladen von Bildern in Megabyte (MB) fest. Der Standardwert beträgt 6 MB.
       loggedInUserFormat: Definiert das Format, um den eingeloggten Benutzer anzuzeigen
       refreshTaskListIntervalNote: Intervall in Sekunden um die Aufgabenliste neu zu laden.
       showAvatar: Zum Ein- und Ausschalten der Anzeige von Benutzer-/Rollenavataren.
