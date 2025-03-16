@@ -16,8 +16,8 @@
   <c:set var="filter" value="#{cc.attrs.filter}" />
   <c:set var="statistic" value="#{managedBean.statistic}" />
 
-  <div class="ui-g-12">
-    <h:panelGroup id="filter-selection-panel" layout="block" styleClass="filter-selection-panel">
+  <div class="ui-g-12 pl-0">
+    <h:panelGroup id="filter-selection-panel" layout="block" styleClass="dashboard-widget-filter__filter-panel filter-selection-panel">
       <div class="ui-fluid md-inputfield filter-selection-panel">
         <p:selectOneMenu id="field-selection" value="#{filter.filterField}" converter="pojoConverter">
           <f:selectItems value="#{managedBean.filterFields}" var="field" itemValue="#{field}" itemLabel="#{field.label}" />
