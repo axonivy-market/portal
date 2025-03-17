@@ -1452,9 +1452,10 @@ Dialogs:
             GeneratePreview: Generar vista previa
             HideLabel: Ocultar etiqueta
             NewStatistic: Nuevo widget de estadísticas
-            RefreshInterval: Intervalo de actualización
-            RefreshIntervalInSeconds: Intervalo de actualización en segundos
+            RefreshInterval: Auto-refresco activado
+            RefreshIntervalInSeconds: Intervalo de actualización automática (segundos)
             RefreshIntervalInSecondsValidationMessage: 'Intervalo de actualización en segundos: El atributo especificado no está entre los valores esperados de {0} y {1}'
+            RefreshIntervalInfo: La estadística puede actualizarse automáticamente tras un periodo determinado. Si se activa, esto puede afectar al rendimiento. El intervalo de actualización automática (segundos) debe ser al menos {0}.
             StatisticConfiguration: Configuración estadística
             XAxisTitle: Título del eje X
             YAxisTitle: Título del eje Y
