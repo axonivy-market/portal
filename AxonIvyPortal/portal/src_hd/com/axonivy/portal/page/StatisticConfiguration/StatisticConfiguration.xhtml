@@ -177,8 +177,11 @@
                 </div>
 
                 <div class="field col-6">
-                  <p:outputLabel for="@next"
+                  <p:outputLabel for="refresh-interval-enabled"
                     value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/RefreshInterval')}" />
+                  <h:outputText id="refresh-interval-info" styleClass="si si-information-circle ml-2" />
+                  <p:tooltip for="refresh-interval-info"
+                    value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/RefreshIntervalInfo', [statisticConfigurationBean.getMinRefreshIntervalInSeconds()])}" />
                   <div>
                     <p:toggleSwitch id="refresh-interval-enabled"
                       value="#{statisticConfigurationBean.refreshIntervalEnabled}" styleClass="col-1">

@@ -1122,8 +1122,6 @@ Dialogs:
             GeneratePreview: Generate preview
             HideLabel: Hide label
             NewStatistic: New Statistic Widget
-            RefreshInterval: Refresh interval
-            RefreshIntervalInSeconds: Refresh interval in seconds
             StatisticConfiguration: Statistic configuration
             XAxisTitle: X axis title
             YAxisTitle: Y axis title
