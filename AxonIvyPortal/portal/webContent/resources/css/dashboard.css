@@ -833,6 +833,7 @@ body .ui-widget.new-widget-dialog__introduction {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  word-break: break-all;
 }
 
 .new-widget-dialog__add-widget-button {
