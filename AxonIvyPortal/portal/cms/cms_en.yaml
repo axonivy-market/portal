@@ -1486,7 +1486,7 @@ Dialogs:
             TaskIFrameTitle: Task frame
         page:
           StatisticConfiguration:
-            AdvancedConfiguration: Advanced Configuration
+            AdvancedConfiguration: Advanced configuration
             Aggregate: Aggregate
             ChartType: Chart type
             Color: Color {0}
