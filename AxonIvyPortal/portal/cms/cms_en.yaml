@@ -1497,8 +1497,10 @@ Dialogs:
             GeneratePreview: Generate preview
             HideLabel: Hide label
             NewStatistic: New Statistic Widget
-            RefreshInterval: Refresh interval
-            RefreshIntervalInSeconds: Refresh interval in seconds
+            RefreshInterval: Auto-refresh enabled
+            RefreshIntervalInSeconds: Auto-refresh interval (seconds)
+            RefreshIntervalInSecondsValidationMessage: 'Auto-refresh interval (seconds): Specified attribute is not between the expected values of {0} and {1}'
+            RefreshIntervalInfo: The statistic can be auto-refreshed after a certain period. If enabled, this may impact performance. Auto-refresh interval (seconds) must be at least {0}.
             StatisticConfiguration: Statistic configuration
             XAxisTitle: X axis title
             YAxisTitle: Y axis title
@@ -1676,6 +1678,7 @@ Labels:
   Name: Name
   Permissions: Permissions
   Preview: Preview
+  RequiredFieldMessage: '{0}: Value is required'
   Save: Save
   Share: Share
   Task: Task

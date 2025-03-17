@@ -5,6 +5,7 @@
   xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="viewName" value="STATISTIC_CONFIGURATION" />
     <ui:define name="head">
       <h:outputScript library="primefaces" name="chartjs/chartjs.js" />
       <h:outputScript name="statistic.js" library="js" />
@@ -23,15 +24,15 @@
             <div class="formgrid grid ">
               <h:panelGroup id="config-panel" layout="block" class="col-6 grid pr-6 m-0">
                 <div class="field col-12">
-                  <h4 class="mb-0">#{ivy.cms.co(statisticConfigurationBean.editMode ?
-                    '/Dialogs/com/axonivy/portal/page/StatisticConfiguration/EditStatistic':
-                    '/Dialogs/com/axonivy/portal/page/StatisticConfiguration/NewStatistic')}</h4>
+                  <h4 class="mb-0">#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/StatisticConfiguration')}</h4>
                 </div>
 
                 <div class="field col-12">
                   <p:outputLabel value="#{ivy.cms.co('/Labels/Name')}" for="@next" />
                   <div class="ui-inputgroup">
                     <p:inputText id="name" value="#{statisticConfigurationBean.statistic.name}" maxlength="200"
+                      required="true"
+                      requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Labels/Name')])}"
                       styleClass="w-full" />
                     <p:commandButton id="add-name-language-button" icon="si si-chat-translate"
                       actionListener="#{statisticConfigurationBean.updateNameByLocale()}" process="name"
@@ -95,6 +96,7 @@
                     value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Aggregate')}" />
                   <div>
                     <p:inputText id="aggregates" required="true"
+                      requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Aggregate')])}"
                       value="#{statisticConfigurationBean.statistic.aggregates}" styleClass="w-full" />
                   </div>
                 </div>
@@ -110,8 +112,8 @@
                       <p:inputText id="x-title" value="#{statisticConfigurationBean.xTitle}" maxlength="200"
                         styleClass="w-full" />
                       <p:commandButton id="x-title-add-language-button" icon="si si-chat-translate"
-                        actionListener="#{statisticConfigurationBean.updateXTitleByLocale()}"
-                        process="x-title" update="x-title-language-config:multiple-languages-dialog"
+                        actionListener="#{statisticConfigurationBean.updateXTitleByLocale()}" process="x-title"
+                        update="x-title-language-config:multiple-languages-dialog"
                         oncomplete="PF('multiple-languages-dialog').show();" />
                     </div>
                   </h:panelGroup>
@@ -172,7 +174,8 @@
                       itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}"
                       converter="pojoConverter" cache="true" maxResults="100" multiple="true"
                       moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
-                      forceSelection="true" required="true">
+                      forceSelection="true" required="true"
+                      requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Labels/Permissions')])}">
                       <p:ajax event="itemSelect" listener="#{statisticConfigurationBean.onSelectPermissionForDashboard}"
                         update="permissions" global="false" process="@this" immediate="true" />
                       <p:ajax event="itemUnselect"
@@ -192,8 +195,11 @@
                 </div>
 
                 <div class="field col-6">
-                  <p:outputLabel for="@next"
+                  <p:outputLabel for="refresh-interval-enabled"
                     value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/RefreshInterval')}" />
+                  <h:outputText id="refresh-interval-info" styleClass="si si-information-circle ml-2" />
+                  <p:tooltip for="refresh-interval-info"
+                    value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/RefreshIntervalInfo', [statisticConfigurationBean.getMinRefreshIntervalInSeconds()])}" />
                   <div>
                     <p:toggleSwitch id="refresh-interval-enabled"
                       value="#{statisticConfigurationBean.refreshIntervalEnabled}" styleClass="col-1">
@@ -210,10 +216,7 @@
                       value="#{statisticConfigurationBean.statistic.refreshInterval}" decimalPlaces="0"
                       maxValue="#{statisticConfigurationBean.getMaxRefreshIntervalInSeconds()}"
                       onkeydown="return event.key !== '-'"
-                      disabled="#{not statisticConfigurationBean.refreshIntervalEnabled}" inputStyleClass="w-full">
-                      <f:validateLongRange minimum="#{statisticConfigurationBean.getMinRefreshIntervalInSeconds()}"
-                        maximum="#{statisticConfigurationBean.getMaxRefreshIntervalInSeconds()}" />
-                    </p:inputNumber>
+                      disabled="#{not statisticConfigurationBean.refreshIntervalEnabled}" inputStyleClass="w-full" />
                   </div>
                 </h:panelGroup>
 
@@ -267,7 +270,8 @@
                   <h:panelGroup id="stat-chart-widget__content" layout="block"
                     styleClass="statistic-chart-widget__content widget__content widget__content">
                     <h:panelGroup styleClass="statistic-chart-widget__chart" layout="block">
-                      <div class="ui-chart js-statistic-chart statistic-chart-widget__canvas chart-options-config preview-statistic-chart"
+                      <div
+                        class="ui-chart js-statistic-chart statistic-chart-widget__canvas chart-options-config preview-statistic-chart"
                         data-chart-id="preview-statistic-chart">
                         <div class="empty-message-container w-35rem">
                           <i class="si si-analytics-pie-2 empty-message-icon"></i>
@@ -280,7 +284,7 @@
 
                 <div class="col-12 text-right mt-3">
                   <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                    styleClass="u-mar-right-15" actionListener="#{statisticConfigurationBean.cancel}" />
+                    styleClass="u-mar-right-15" actionListener="#{statisticConfigurationBean.cancel}" immediate="true" />
                   <p:commandButton
                     value="#{ivy.cms.co(statisticConfigurationBean.editMode ? '/Labels/Save' : '/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
                     action="#{statisticConfigurationBean.save}" update="config-panel errors-message" />
@@ -289,8 +293,7 @@
                 <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="name-language-config"
                   titles="#{statisticConfigurationBean.getNames()}" managedBean="#{statisticConfigurationBean}"
                   dynamic="true" updateCurrentLanguage="#{statisticConfigurationBean.updateNameForCurrentLanguage()}"
-                  componentToUpdateOnModify="config-form:name" componentToUpdateOnCreate="config-form:name"
-                  titleRequired="false" />
+                  componentToUpdateOnModify="config-form:name" componentToUpdateOnCreate="config-form:name" />
                 <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
                   id="description-language-config" titles="#{statisticConfigurationBean.getDescriptions()}"
                   managedBean="#{statisticConfigurationBean}" dynamic="true"
@@ -301,14 +304,14 @@
                   id="x-title-language-config" titles="#{statisticConfigurationBean.getxTitles()}"
                   managedBean="#{statisticConfigurationBean}" dynamic="true"
                   updateCurrentLanguage="#{statisticConfigurationBean.updateXTitleForCurrentLanguage()}"
-                  componentToUpdateOnModify="config-form:x-title"
-                  componentToUpdateOnCreate="config-form:x-title" titleRequired="false" />
+                  componentToUpdateOnModify="config-form:x-title" componentToUpdateOnCreate="config-form:x-title"
+                  titleRequired="false" />
                 <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
                   id="y-title-language-config" titles="#{statisticConfigurationBean.getyTitles()}"
                   managedBean="#{statisticConfigurationBean}" dynamic="true"
                   updateCurrentLanguage="#{statisticConfigurationBean.updateYTitleForCurrentLanguage()}"
-                  componentToUpdateOnModify="config-form:y-title"
-                  componentToUpdateOnCreate="config-form:y-title" titleRequired="false" />
+                  componentToUpdateOnModify="config-form:y-title" componentToUpdateOnCreate="config-form:y-title"
+                  titleRequired="false" />
               </div>
             </div>
           </div>

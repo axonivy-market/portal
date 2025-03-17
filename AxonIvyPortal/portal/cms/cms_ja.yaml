@@ -1489,8 +1489,10 @@ Dialogs:
             GeneratePreview: TODO Generate preview
             HideLabel: TODO Hide label
             NewStatistic: TODO New Statistic Widget
-            RefreshInterval: TODO Refresh interval
-            RefreshIntervalInSeconds: TODO Refresh interval in seconds
+            RefreshInterval: TODO Auto-refresh enabled
+            RefreshIntervalInSeconds: TODO Auto-refresh interval (seconds)
+            RefreshIntervalInSecondsValidationMessage: 'TODO Auto-refresh interval (seconds): Specified attribute is not between the expected values of {0} and {1}'
+            RefreshIntervalInfo: TODO The statistic can be auto-refreshed after a certain period. If enabled, this may impact performance. Auto-refresh interval (seconds) must be at least {0}.
             StatisticConfiguration: TODO Statistic configuration
             XAxisTitle: TODO X axis title
             YAxisTitle: TODO Y axis title
@@ -1665,6 +1667,7 @@ Labels:
   Name: 名前
   Permissions: 権限
   Preview: プレビュー
+  RequiredFieldMessage: 'TODO {0}: Value is required'
   Save: 保存
   Share: 共有
   Task: タスク

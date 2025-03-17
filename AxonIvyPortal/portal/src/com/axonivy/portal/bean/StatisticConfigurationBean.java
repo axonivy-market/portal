@@ -15,8 +15,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -34,6 +36,7 @@ import com.axonivy.portal.bo.jsonversion.StatisticJsonVersion;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
+import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.statistic.StatisticFilter;
@@ -120,6 +123,12 @@ public class StatisticConfigurationBean implements Serializable {
 
   private void initExistedStatistic() {
     isEditMode = true;
+    if (statistic.getNames() == null) {
+      statistic.setNames(new ArrayList<>());
+    }
+    if (statistic.getDescriptions() == null) {
+      statistic.setDescriptions(new ArrayList<>());
+    }
     if (statistic.getRefreshInterval() != null && statistic.getRefreshInterval() >= MIN_REFRESH_INTERVAL_IN_SECONDS) {
       refreshIntervalEnabled = true;
     }
@@ -202,6 +211,9 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void save() {
+    if (isRefreshIntervalInValid()) {
+      return;
+    }
     syncUIConfigWithChartConfig();
     cleanUpRedundantChartConfigs(statistic.getChartType());
     cleanUpConfiguration();
@@ -468,6 +480,22 @@ public class StatisticConfigurationBean implements Serializable {
     } else {
       PortalNavigator.navigateToDashboardDetailsPage(callbackDashboardId, true);
     }
+  }
+
+  private boolean isRefreshIntervalInValid() {
+    if (refreshIntervalEnabled
+        && (statistic.getRefreshInterval() == null || statistic.getRefreshInterval() < MIN_REFRESH_INTERVAL_IN_SECONDS
+            || statistic.getRefreshInterval() > MAX_REFRESH_INTERVAL_IN_SECONDS)) {
+      FacesContext.getCurrentInstance().validationFailed();
+      FacesContext.getCurrentInstance().addMessage(null,
+          FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
+              Ivy.cms().co(
+                  "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/RefreshIntervalInSecondsValidationMessage",
+                  Arrays.asList(MIN_REFRESH_INTERVAL_IN_SECONDS, MAX_REFRESH_INTERVAL_IN_SECONDS)),
+              ""));
+      return true;
+    }
+    return false;
   }
 
   public List<FilterField> getFilterFields() {

@@ -1464,8 +1464,10 @@ Dialogs:
             GeneratePreview: Vorschau generieren
             HideLabel: Etikett ausblenden
             NewStatistic: Neues Statistik-Widget
-            RefreshInterval: Aktualisierungsintervall
-            RefreshIntervalInSeconds: Aktualisierungsintervall in Sekunden
+            RefreshInterval: Automatisches Auffrischen aktiviert
+            RefreshIntervalInSeconds: Intervall für die automatische Aktualisierung (Sekunden)
+            RefreshIntervalInSecondsValidationMessage: 'Intervall für die automatische Aktualisierung (Sekunden): Das angegebene Attribut liegt nicht zwischen den erwarteten Werten von {0} und {1}'
+            RefreshIntervalInfo: Die Statistik kann nach einer bestimmten Zeit automatisch aktualisiert werden. Wenn sie aktiviert ist, kann dies die Leistung beeinträchtigen. Das Intervall für die automatische Aktualisierung (Sekunden) muss mindestens {0} betragen.
             StatisticConfiguration: Konfiguration der Statistik
             XAxisTitle: Titel der X-Achse
             YAxisTitle: Titel der Y-Achse
@@ -1493,13 +1495,13 @@ Enums:
               name: Aufgabe
           ChartType:
             BAR:
-              name: TODO Bar
+              name: Balkendiagramm
             LINE:
-              name: TODO Line
+              name: Liniendiagramm
             NUMBER:
-              name: TODO Number
+              name: Kennzahl / Metrik
             PIE:
-              name: TODO Pie
+              name: Kreisdiagramm
 Labels:
   AI:
     Error:
@@ -1630,6 +1632,7 @@ Labels:
   Name: Titel
   Permissions: Berechtigungen
   Preview: Vorschau
+  RequiredFieldMessage: '{0}: Wert ist erforderlich'
   Save: Speichern
   Share: Aktie
   Task: Aufgabe
