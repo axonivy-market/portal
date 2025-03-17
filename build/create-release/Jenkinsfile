@@ -1,5 +1,5 @@
 pipeline {
-  agent {label 'linux'}
+  agent { label 'linux' }
 
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
@@ -48,7 +48,7 @@ pipeline {
           docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             def pomFiles = []
             POM_FILES.each { pattern ->
-              def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split("\n")
+              def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split('\n')
               pomFiles.addAll(foundFiles)
             }
             pomFiles.each { pomFile ->
@@ -57,11 +57,11 @@ pipeline {
                     def xml = new XmlParser().parseText(xmlContent)
 
                     xml.dependencies.each { dep ->
-                        def groupId = dep.groupId.text()
-                        if (DEPENDENCY_GROUP_IDS.contains(groupId)) {
-                            echo "Updating version of ${groupId} dependency in ${pomFile}"
-                            dep.version[0].value = params.releaseVersion
-                        }
+                  def groupId = dep.groupId.text()
+                  if (DEPENDENCY_GROUP_IDS.contains(groupId)) {
+                    echo "Updating version of ${groupId} dependency in ${pomFile}"
+                    dep.version[0].value = params.releaseVersion
+                  }
                     }
                     def updatedXml = new groovy.xml.XmlUtil().serialize(xml)
                     writeFile(file: pomFile, text: updatedXml)
@@ -71,11 +71,11 @@ pipeline {
               }
             }
 
-            echo "====================Build all modules===================="
+            echo '====================Build all modules===================='
             // module structure [module path, isPossibleToDeploy]
             def modules = [['AxonIvyPortal/portal-components', true], ['AxonIvyPortal/portal', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/portal-user-examples', true], ['Showcase/portal-developer-examples', true], ['Showcase/InternalSupport', false], ['Showcase/portal-components-examples', true], ['AxonIvyPortal/portal-product', true], ['AxonIvyPortal/PortalApp', true], ['Showcase/portal-demo-app', true]]
             for (module in modules) {
-              def mavenGoal = params.deployToRepo && module[1]? 'deploy' : 'install'
+              def mavenGoal = params.deployToRepo && module[1] ? 'deploy' : 'install'
               maven cmd: "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=(7.0.0,] -Divy.compiler.engine.start.timeout=120 %engineDownloadURL% -f ${module[0]}/pom.xml"
             }
 
@@ -95,13 +95,13 @@ pipeline {
             echo "====================Update Portal version for development after release ${params.releaseVersion} ===================="
             def parts = releaseVersion.tokenize('.')
             if (params.deployToRepo && parts.size() == 3 && parts[2].isNumber()) {
-              def nextVersion = ""
+              def nextVersion = ''
               if ((parts[0] as int) % 2 == 0) {
                 nextVersion = "${parts[0]}.${parts[1]}.${(parts[2] as int) + 1}-SNAPSHOT"
               } else {
                 nextVersion = "${parts[0]}.${(parts[1] as int) + 1}.0-SNAPSHOT"
               }
-              build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, "UTF-8")}",
+              build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
                 parameters: [string(name: 'portalVersion', value: "${nextVersion}")],
                 wait: true, propagate: false
             }
@@ -109,10 +109,11 @@ pipeline {
         }
       }
     }
+  }
 
   post {
     always {
-      archiveArtifacts artifacts: "**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip,*/*/pom.xml"
+      archiveArtifacts artifacts: '**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip,*/*/pom.xml'
     }
   }
-  }
+}
