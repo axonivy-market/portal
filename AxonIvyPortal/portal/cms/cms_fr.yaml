@@ -1493,7 +1493,7 @@ Dialogs:
             NewStatistic: Nouveau widget statistique
             RefreshInterval: Actualisation automatique activée
             RefreshIntervalInSeconds: Intervalle de rafraîchissement automatique (secondes)
-            RefreshIntervalInSecondsValidationMessage: 'Intervalle de rafraîchissement en secondes : L''attribut spécifié n''est pas compris entre les valeurs attendues de {0} et {1}'
+            RefreshIntervalInSecondsValidationMessage: 'Intervalle de rafraîchissement automatique (secondes) : L''attribut spécifié n''est pas compris entre les valeurs attendues de {0} et {1}'
             RefreshIntervalInfo: La statistique peut être actualisée automatiquement après une certaine période. Si cette option est activée, elle peut avoir un impact sur les performances. L'intervalle de rafraîchissement automatique (secondes) doit être au moins {0}.
             StatisticConfiguration: Configuration des statistiques
             XAxisTitle: Titre de l'axe X

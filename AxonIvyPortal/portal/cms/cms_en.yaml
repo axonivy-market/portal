@@ -1498,7 +1498,7 @@ Dialogs:
             NewStatistic: New Statistic Widget
             RefreshInterval: Auto-refresh enabled
             RefreshIntervalInSeconds: Auto-refresh interval (seconds)
-            RefreshIntervalInSecondsValidationMessage: 'Refresh interval in seconds: Specified attribute is not between the expected values of {0} and {1}'
+            RefreshIntervalInSecondsValidationMessage: 'Auto-refresh interval (seconds): Specified attribute is not between the expected values of {0} and {1}'
             RefreshIntervalInfo: The statistic can be auto-refreshed after a certain period. If enabled, this may impact performance. Auto-refresh interval (seconds) must be at least {0}.
             StatisticConfiguration: Statistic configuration
             XAxisTitle: X axis title

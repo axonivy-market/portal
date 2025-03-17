@@ -472,8 +472,9 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   private boolean isRefreshIntervalInValid() {
-    if (statistic.getRefreshInterval() < MIN_REFRESH_INTERVAL_IN_SECONDS
-        || statistic.getRefreshInterval() > MAX_REFRESH_INTERVAL_IN_SECONDS) {
+    if (refreshIntervalEnabled
+        && (statistic.getRefreshInterval() == null || statistic.getRefreshInterval() < MIN_REFRESH_INTERVAL_IN_SECONDS
+            || statistic.getRefreshInterval() > MAX_REFRESH_INTERVAL_IN_SECONDS)) {
       FacesContext.getCurrentInstance().validationFailed();
       FacesContext.getCurrentInstance().addMessage(null,
           FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
