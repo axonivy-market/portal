@@ -34,6 +34,7 @@ pipeline {
             def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal']
             def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty('build.plugin.version')
             def utils = load 'build/common/utils.groovy'
+            utils.updatePortalDependenciesAsRangeVersion()
             def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':9000'
             for (module in modules) {
               maven cmd: "clean install -f ${module}/pom.xml"
