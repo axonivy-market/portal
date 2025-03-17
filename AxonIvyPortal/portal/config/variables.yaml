@@ -12,12 +12,13 @@ Variables:
     # [file: json]
     Announcement:
 
-    # Do not change default statistic via this JSON file.
+    # Default configurations for Portal statistic widgets.
+    # Do not edit this variable.
     # [file: json]
     Statistic:
 
-    # You can define the custom statistic via this JSON file.
-    # You can configure dashboards to show the statistics to dashboards.
+    # Custom configurations for Portal statistic widgets.
+    # You can define custom configurations for Portal statistic widgets by edit this variable.
     # [file: json]
     CustomStatistic:
 
