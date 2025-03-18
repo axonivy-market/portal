@@ -110,7 +110,7 @@
                       <p:ajax listener="#{statisticConfigurationBean.isCustomFieldsSelected()}" update="chart-aggregation" />
                     </p:selectOneMenu>
 
-                    <!--                     CUSTOM FIELD SELECTION -->
+                    <!-- CUSTOM FIELD SELECTION -->
                     <p:selectOneMenu id="aggregates-second" required="true" styleClass="w-full mt-2"
                       rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}"
                       value="#{statisticConfigurationBean.currentCustomField}"

@@ -66,6 +66,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 
 @ViewScoped
@@ -86,7 +87,7 @@ public class StatisticConfigurationBean implements Serializable {
   private boolean refreshIntervalEnabled;
   private String customFieldAggregate;
   private String currentCustomField;
-  private String currentCustomFieldType;
+  private CustomFieldType currentCustomFieldType;
 
 
   private static final String CHART_AGGREGATES_CMS_PATH = "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartAggregates/";
@@ -601,10 +602,33 @@ public class StatisticConfigurationBean implements Serializable {
   public void onSelectCustomField() {
     Ivy.log().info("onSelectCustomField");
     Ivy.log().info(currentCustomField);
+    /**
+     * Try to see if this findCustomFieldMeta is working?
+     */
     findCustomFieldMeta().ifPresent(meta -> {
       Ivy.log().info(meta.toString());
-      this.customFieldAggregate = meta.name();
+      this.currentCustomField = meta.name();
+      this.currentCustomFieldType = meta.type();
     });
+    
+    handleCustomFieldAggregateForStatistic();
+  }
+  
+  /**
+   * WORKING HERE
+   */
+  private void handleCustomFieldAggregateForStatistic() {
+    if(CustomFieldType.STRING.equals(this.currentCustomFieldType)) {
+      statistic.setAggregates("customFields.strings." + currentCustomField);
+      return;
+    }
+
+    if(CustomFieldType.NUMBER.equals(this.currentCustomFieldType)) {
+      statistic.setAggregates("customFields.numbers." + currentCustomField);
+      return;
+    }
+
+    statistic.setAggregates("customFields.timestamps." + currentCustomField);
   }
   
   public Optional<ICustomFieldMeta> findCustomFieldMeta() {
@@ -615,7 +639,7 @@ public class StatisticConfigurationBean implements Serializable {
         : ICustomFieldMeta.cases();
 
     
-    metaData = customFieldList.stream().filter(meta -> meta.name().equals(customFieldAggregate)).findFirst();
+    metaData = customFieldList.stream().filter(meta -> meta.name().equals(currentCustomField)).findFirst();
     Ivy.log().info("metaData");
     Ivy.log().info(metaData.get());
     
