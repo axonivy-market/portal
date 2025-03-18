@@ -239,36 +239,34 @@ public class DashboardCaseSearchCriteria {
       }
     }
   
-  private void appendSortByCustomFieldIfSet(DashboardCaseSearchCriteria criteria) {
-    String sortField = criteria.getSortField();
-    if (sortStandardColumn || StringUtils.isBlank(sortField)) {
+    private void appendSortByCustomFieldIfSet(DashboardCaseSearchCriteria criteria) {
+      String sortField = criteria.getSortField();
+      if (sortStandardColumn || StringUtils.isBlank(sortField)) {
         return;
+      }
+
+      DashboardColumnFormat format = columns.stream().filter(c -> StringUtils.equalsIgnoreCase(sortField, c.getField()))
+          .map(ColumnModel::getFormat).findFirst().orElse(DashboardColumnFormat.STRING);
+      final ICustomFieldOrderBy customField = query.orderBy().customField();
+
+      switch (format) {
+        case NUMBER:
+          order = customField.numberField(sortField);
+          break;
+        case TIMESTAMP:
+          order = customField.timestampField(sortField);
+          break;
+        default:
+          if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(sortField)) {
+            order = customField.stringField(sortField)
+                .values(PortalCustomFieldUtils.getAllLocalizedValueOnCaseField(sortField));
+          } else {
+            order = customField.stringField(sortField);
+          }
+          break;
+      }
     }
-    
-    DashboardColumnFormat format = columns.stream()
-        .filter(c -> StringUtils.equalsIgnoreCase(sortField, c.getField()))
-        .map(ColumnModel::getFormat)
-        .findFirst()
-        .orElse(DashboardColumnFormat.STRING);
-    final ICustomFieldOrderBy customField = query.orderBy().customField();
-    
-    switch (format) {
-      case NUMBER:
-        order = customField.numberField(sortField);
-        break;
-      case TIMESTAMP:
-        order = customField.timestampField(sortField);
-        break;
-      default:
-        if (PortalCustomFieldUtils.isSupportMultiLanguageCaseField(sortField)) {
-          order = customField.stringField(sortField).values(PortalCustomFieldUtils.getAllLocalizedValueOnCaseField(sortField));
-        } else {
-          order = customField.stringField(sortField);
-        }
-        break;
-    }
-}
-}
+  }
 
   public List<CaseColumnModel> getColumns() {
     return columns;

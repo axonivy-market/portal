@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 
 import java.util.Objects;
 
-
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;

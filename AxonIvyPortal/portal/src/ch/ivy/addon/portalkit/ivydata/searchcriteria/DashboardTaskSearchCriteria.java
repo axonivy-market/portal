@@ -283,10 +283,9 @@ public class DashboardTaskSearchCriteria {
       if (sortStandardColumn || StringUtils.isBlank(sortField)) {
         return;
       }
-      
-      DashboardColumnFormat format =
-          columns.stream().filter(c -> StringUtils.equalsIgnoreCase(sortField, c.getField()))
-              .map(ColumnModel::getFormat).findFirst().orElse(DashboardColumnFormat.STRING);
+
+      DashboardColumnFormat format = columns.stream().filter(c -> StringUtils.equalsIgnoreCase(sortField, c.getField()))
+          .map(ColumnModel::getFormat).findFirst().orElse(DashboardColumnFormat.STRING);
       final ICustomFieldOrderBy customField = query.orderBy().customField();
 
       switch (format) {
@@ -298,7 +297,8 @@ public class DashboardTaskSearchCriteria {
           break;
         default:
           if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(sortField)) {
-            order = customField.stringField(sortField).values(PortalCustomFieldUtils.getAllLocalizedValueOnTaskField(sortField));
+            order = customField.stringField(sortField)
+                .values(PortalCustomFieldUtils.getAllLocalizedValueOnTaskField(sortField));
           } else {
             order = customField.stringField(sortField);
           }
