@@ -1472,7 +1472,7 @@ Dialogs:
         page:
           StatisticConfiguration:
             AdvancedConfiguration: Advanced Configuration
-            Aggregate: Aggregate
+            Aggregate: Group by
             ChartAggregates:
               ACTIVATOR_NAME: Activator name
               BUSINESS_RUNTIME: Business time

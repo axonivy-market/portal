@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
@@ -58,10 +59,12 @@ import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.custom.field.configuration.internal.CustomFieldMeta;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 
 @ViewScoped
 @ManagedBean
@@ -80,6 +83,8 @@ public class StatisticConfigurationBean implements Serializable {
   private boolean isEditMode;
   private boolean refreshIntervalEnabled;
   private String customFieldAggregate;
+  private ICustomFieldMeta currentCustomField;
+
 
   private static final String CHART_AGGREGATES_CMS_PATH = "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartAggregates/";
 
@@ -338,13 +343,17 @@ public class StatisticConfigurationBean implements Serializable {
   
   private void handleCustomFieldAggregation() {
     if (!isCustomFieldsSelected()) {
+      Ivy.log().info("NO");
+      Ivy.log().info(statistic.getAggregates());
       return;
     }
+      Ivy.log().info("YES");
+      Ivy.log().info(statistic.getAggregates());
     /**
      * when user choose custom field, handle here
      */
-    String statisticCustomfieldAggregation = statistic.getAggregates().replace("*", customFieldAggregate);
-    statistic.setAggregates(statisticCustomfieldAggregation);
+//    String statisticCustomfieldAggregation = statistic.getAggregates().replace("*", customFieldAggregate);
+//    statistic.setAggregates(statisticCustomfieldAggregation);
   }
 
   public void updateNameForCurrentLanguage() {
@@ -534,6 +543,11 @@ public class StatisticConfigurationBean implements Serializable {
   public void onSelectChartType(ChartType chartType) {
     // TODO z1 consider to remove
   }
+  
+  public void onSelectChartTarget(ChartTarget newChartTarget) {
+    statistic.setChartTarget(newChartTarget);
+  }
+
 
   private void initPermissions() {
     statistic.setPermissionDTOs(Optional.ofNullable(statistic).map(Statistic::getPermissions)
@@ -567,5 +581,29 @@ public class StatisticConfigurationBean implements Serializable {
 
   public void setCustomFieldAggregate(String customFieldAggregate) {
     this.customFieldAggregate = customFieldAggregate;
+  }
+  
+  public Set<ICustomFieldMeta> getCustomFieldNames() {
+    Ivy.log().info(statistic.getChartTarget());
+    return statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
+        : ICustomFieldMeta.cases();
+//    List<String> newList = new ArrayList<>();
+//    customFieldList.forEach(customField -> {
+//      newList.add(customField.name());
+//    });
+//    return newList;
+  }
+
+  public void onCustomFieldSelection() {
+    Ivy.log().info(currentCustomField);
+    Ivy.log().info(currentCustomField.type());
+  }
+
+  public ICustomFieldMeta getCurrentCustomField() {
+    return currentCustomField;
+  }
+
+  public void setCurrentCustomField(ICustomFieldMeta currentCustomField) {
+    this.currentCustomField = currentCustomField;
   }
 }

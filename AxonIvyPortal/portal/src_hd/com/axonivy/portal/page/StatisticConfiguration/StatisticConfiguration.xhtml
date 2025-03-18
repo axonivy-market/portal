@@ -77,6 +77,9 @@
                       styleClass="w-full">
                       <f:selectItems value="#{statisticConfigurationBean.allChartTargets}" var="target"
                         itemLabel="#{chartTarget}" itemValue="#{chartTarget}" />
+                      <p:ajax event="itemSelect" 
+                      listener="#{statisticConfigurationBean.onSelectChartTarget(statisticConfigurationBean.statistic.chartTarget)}"
+                        process="config-panel" update="config-panel errors-message" />
                     </p:selectOneMenu>
                   </div>
                 </div>
@@ -106,9 +109,24 @@
                       />
                       <p:ajax listener="#{statisticConfigurationBean.isCustomFieldsSelected()}" update="chart-aggregation" />
                     </p:selectOneMenu>
-                    <p:inputText id="custom-field-input" rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}"
-                      placeholder="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/CustomAggregateInput')}"
-                      value="#{statisticConfigurationBean.customFieldAggregate}" maxlength="80" styleClass="mt-2 w-full" />
+
+                    <!--                     CUSTOM FIELD SELECTION -->
+                    <p:selectOneMenu id="aggregates-second" required="true" styleClass="w-full mt-2"
+                      rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}"
+                      value="#{statisticConfigurationBean.currentCustomField}"
+                      >
+                      <f:selectItems value="#{statisticConfigurationBean.getCustomFieldNames()}"
+                        var="customField"
+                        itemLabel="#{customField.name()}"
+                        />
+                      <p:ajax listener="#{statisticConfigurationBean.onCustomFieldSelection()}" update="chart-aggregation" />
+                    </p:selectOneMenu>
+
+<!--                     <p:inputText id="custom-field-input" -->
+<!--                         rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}" -->
+<!--                         placeholder="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/CustomAggregateInput')}" -->
+<!--                         value="#{statisticConfigurationBean.customFieldAggregate}" -->
+<!--                         maxlength="80" styleClass="mt-2 w-full" /> -->
                   </div>
                 </h:panelGroup>
 
