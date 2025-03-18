@@ -46,71 +46,21 @@ pipeline {
           ]
 
           docker.build('build-portal-modules', '-f build/create-release/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
-            // def pomFiles = []
-            // POM_FILES.each { pattern ->
-            //   def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split('\n')
-            //   pomFiles.addAll(foundFiles)
-            // }
-            // pomFiles.each { pomFile ->
-            //   if (fileExists(pomFile)) {
-            //         def xmlContent = readFile(pomFile)
-            //         def xml = new XmlParser().parseText(xmlContent)
-
-            //         xml.dependencies.each { dep ->
-            //       def groupId = dep.groupId.text()
-            //       if (DEPENDENCY_GROUP_IDS.contains(groupId)) {
-            //         echo "Updating version of ${groupId} dependency in ${pomFile}"
-            //         dep.version[0].value = params.releaseVersion
-            //       }
-            //         }
-            //         def updatedXml = new groovy.xml.XmlUtil().serialize(xml)
-            //         writeFile(file: pomFile, text: updatedXml)
-            //         echo "Updated dependencies in ${pomFile}"
-            //     } else {
-            //         echo "File not found: ${pomFile}"
-            //   }
-            // }
-
-            //POM_FILES.each { pomFilePattern ->
-                        // For each POM file pattern, find all the matching files
-                        //def pomFiles = findFiles(glob: pomFilePattern)
-
             def pomFiles = []
             POM_PATTERN_FILES.each { pattern ->
               def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split('\n')
               pomFiles.addAll(foundFiles)
             }
 
-            //def utils = load 'build/common/utils.groovy'
-
             pomFiles.each { pomFile ->
-              // Command to update dependency versions inside the Docker container
               for (groupId in DEPENDENCY_GROUP_IDS) {
-                //  echo "Updating version for dependencies with groupId: ${groupId} in ${pomFile}"
-                  //sh "sed -i 's|<groupId>\${groupId}</groupId>\\s*<version>.*</version>|<groupId>\${groupId}</groupId><version>${params.releaseVersion}</version>|g' ${pomFile}"
-                  //utils.updateVersion(${pomFile},${groupId}, ${params.releaseVersion})
- // Load the POM file
-                    
-sh """
-                        # Use xmlstarlet to find and update the version of the dependency
-                        xmlstarlet ed --inplace \
-                            -u "//dependencies/dependency[groupId='${groupId}']/version" \
-                            -v '${params.releaseVersion}' ${pomFile}
-                    """
-                    
-                  
+                sh """
+                    xmlstarlet ed --inplace \
+                    -u "//dependencies/dependency[groupId='${groupId}']/version" \
+                    -v '${params.releaseVersion}' ${pomFile}
+                  """
               }
-              // sh """
-              //                       # Iterate over each GROUP_ID and update its version in the POM
-              //                       for GROUP_ID in ${DEPENDENCY_GROUP_IDS.join(' ')}; do
-              //                           echo "Updating version for dependencies with groupId: \$GROUP_ID in ${pomFile}"
-              //                           sed -i 's|<groupId>\${GROUP_ID}</groupId>\\s*<version>.*</version>|<groupId>\${GROUP_ID}</groupId><version>${params.releaseVersion}</version>|g' ${pomFile}
-              //                       done
-              //                   """
-              
             }
-
-           
 
             echo '====================Build all modules===================='
             // module structure [module path, isPossibleToDeploy]
@@ -118,44 +68,44 @@ sh """
             for (module in modules) {
               def mavenGoal = params.deployToRepo && module[1] ? 'deploy' : 'install'
               echo "TEST====================${mavenGoal}====================${module[0]}"
-              //maven cmd: "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=(7.0.0,] -Divy.compiler.engine.start.timeout=120 %engineDownloadURL% -f ${module[0]}/pom.xml"
+              maven cmd: "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=(7.0.0,] -Divy.compiler.engine.start.timeout=120 %engineDownloadURL% -f ${module[0]}/pom.xml"
             }
 
             echo "====================Create release tag ${params.releaseVersion}===================="
 
-            // sh '''
-            //   # Remove created tag
-            //   git push --delete origin "${params.releaseVersion}"
-            //   git tag -d "${params.releaseVersion}"
+            sh '''
+              # Remove created tag
+              git push --delete origin "${params.releaseVersion}"
+              git tag -d "${params.releaseVersion}"
 
-            //   # Create tag for the release
-            //   git commit -a -m "update projects version"
-            //   git tag -a "${params.releaseVersion}" -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}"
-            //   git push origin "${params.releaseVersion}"
-            // '''
+              # Create tag for the release
+              git commit -a -m "update projects version"
+              git tag -a "${params.releaseVersion}" -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}"
+              git push origin "${params.releaseVersion}"
+            '''
 
             echo "====================Update Portal version for development after release ${params.releaseVersion} ===================="
-            // def parts = releaseVersion.tokenize('.')
-            // if (params.deployToRepo && parts.size() == 3 && parts[2].isNumber()) {
-            //   def nextVersion = ''
-            //   if ((parts[0] as int) % 2 == 0) {
-            //     nextVersion = "${parts[0]}.${parts[1]}.${(parts[2] as int) + 1}-SNAPSHOT"
-            //   } else {
-            //     nextVersion = "${parts[0]}.${(parts[1] as int) + 1}.0-SNAPSHOT"
-            //   }
-            //   build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
-            //     parameters: [string(name: 'portalVersion', value: "${nextVersion}")],
-            //     wait: true, propagate: false
-            // }
+            def parts = releaseVersion.tokenize('.')
+            if (params.deployToRepo && parts.size() == 3 && parts[2].isNumber()) {
+              def nextVersion = ''
+              if ((parts[0] as int) % 2 == 0) {
+                nextVersion = "${parts[0]}.${parts[1]}.${(parts[2] as int) + 1}-SNAPSHOT"
+              } else {
+                nextVersion = "${parts[0]}.${(parts[1] as int) + 1}.0-SNAPSHOT"
+              }
+              build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
+                parameters: [string(name: 'portalVersion', value: "${nextVersion}")],
+                wait: true, propagate: false
             }
           }
         }
       }
     }
+  }
 
   post {
     always {
       archiveArtifacts artifacts: '**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip,*/*/pom.xml'
     }
   }
-  }
+}
