@@ -49,6 +49,8 @@ import com.axonivy.portal.util.DisplayNameUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
@@ -83,7 +85,8 @@ public class StatisticConfigurationBean implements Serializable {
   private boolean isEditMode;
   private boolean refreshIntervalEnabled;
   private String customFieldAggregate;
-  private ICustomFieldMeta currentCustomField;
+  private String currentCustomField;
+  private String currentCustomFieldType;
 
 
   private static final String CHART_AGGREGATES_CMS_PATH = "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartAggregates/";
@@ -583,27 +586,53 @@ public class StatisticConfigurationBean implements Serializable {
     this.customFieldAggregate = customFieldAggregate;
   }
   
-  public Set<ICustomFieldMeta> getCustomFieldNames() {
-    Ivy.log().info(statistic.getChartTarget());
-    return statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
+  public List<String> getCustomFieldNames() {
+    Ivy.log().info("getCustomFieldNames");
+    Set<ICustomFieldMeta> customFieldList  = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
         : ICustomFieldMeta.cases();
-//    List<String> newList = new ArrayList<>();
-//    customFieldList.forEach(customField -> {
-//      newList.add(customField.name());
-//    });
-//    return newList;
+    List<String> newList = new ArrayList<>();
+    customFieldList.forEach(customField -> {
+      newList.add(customField.name());
+    });
+
+    return newList;
   }
 
-  public void onCustomFieldSelection() {
+  public void onSelectCustomField() {
+    Ivy.log().info("onSelectCustomField");
     Ivy.log().info(currentCustomField);
-    Ivy.log().info(currentCustomField.type());
+    findCustomFieldMeta().ifPresent(meta -> {
+      Ivy.log().info(meta.toString());
+      this.customFieldAggregate = meta.name();
+    });
+  }
+  
+  public Optional<ICustomFieldMeta> findCustomFieldMeta() {
+    Ivy.log().info("findCustomFieldMeta");
+    Optional<ICustomFieldMeta> metaData = Optional.empty();
+
+    Set<ICustomFieldMeta> customFieldList  = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
+        : ICustomFieldMeta.cases();
+
+    
+    metaData = customFieldList.stream().filter(meta -> meta.name().equals(customFieldAggregate)).findFirst();
+    Ivy.log().info("metaData");
+    Ivy.log().info(metaData.get());
+    
+    return metaData;
   }
 
-  public ICustomFieldMeta getCurrentCustomField() {
+
+  public String getCurrentCustomField() {
     return currentCustomField;
   }
 
-  public void setCurrentCustomField(ICustomFieldMeta currentCustomField) {
+  public void setCurrentCustomField(String currentCustomField) {
     this.currentCustomField = currentCustomField;
   }
+  
+  public List<String> completeCustomFields(String query) {
+    return null;
+  }
+
 }

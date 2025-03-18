@@ -117,9 +117,8 @@
                       >
                       <f:selectItems value="#{statisticConfigurationBean.getCustomFieldNames()}"
                         var="customField"
-                        itemLabel="#{customField.name()}"
                         />
-                      <p:ajax listener="#{statisticConfigurationBean.onCustomFieldSelection()}" update="chart-aggregation" />
+                      <p:ajax listener="#{statisticConfigurationBean.onSelectCustomField()}" update="chart-aggregation" />
                     </p:selectOneMenu>
 
 <!--                     <p:inputText id="custom-field-input" -->
