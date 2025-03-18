@@ -22,9 +22,7 @@ public enum ChartAggregates {
   MODIFIED_TIMESTAMP("modifiedTimestamp"),
   END_TIMESTAMP("endTimestamp"),
   EXPIRY_TIMESTAMP("expiryTimestamp"),
-  CUSTOM_STRING_FIELD("customFields.strings.*"),
-  CUSTOM_NUMBERS_FIELD("customFields.numbers.*"),
-  CUSTOM_TIMESTAMP_FIELD("customFields.timestamps.*");
+  CUSTOM_FIELD("customFields.typeOfCustomField.*");
 
   private ChartAggregates(String name) {
     this.name = name;
@@ -37,19 +35,15 @@ public enum ChartAggregates {
     return name;
   }
 
-  public static final Set<ChartAggregates> TASK_AGGREGATES = Collections
-      .unmodifiableSet(EnumSet.of(BUSINESS_STATE, STATE, PRIORITY, CATEGORY, ACTIVATOR_NAME, START_TIMESTAMP,
-          END_TIMESTAMP, EXPIRY_TIMESTAMP, CUSTOM_STRING_FIELD, CUSTOM_NUMBERS_FIELD, CUSTOM_TIMESTAMP_FIELD));
+  public static final Set<ChartAggregates> TASK_AGGREGATES = Collections.unmodifiableSet(EnumSet.of(BUSINESS_STATE,
+      STATE, PRIORITY, CATEGORY, ACTIVATOR_NAME, START_TIMESTAMP, END_TIMESTAMP, EXPIRY_TIMESTAMP, CUSTOM_FIELD));
 
-  public static final Set<ChartAggregates> CASE_AGGREGATES = Collections
-      .unmodifiableSet(EnumSet.of(BUSINESS_STATE, STATE, PRIORITY, CATEGORY, CREATOR_NAME, START_TIMESTAMP,
-          END_TIMESTAMP, EXPIRY_TIMESTAMP, CUSTOM_STRING_FIELD, CUSTOM_TIMESTAMP_FIELD));
+  public static final Set<ChartAggregates> CASE_AGGREGATES = Collections.unmodifiableSet(EnumSet.of(BUSINESS_STATE,
+      STATE, PRIORITY, CATEGORY, CREATOR_NAME, START_TIMESTAMP, END_TIMESTAMP, EXPIRY_TIMESTAMP, CUSTOM_FIELD));
 
-  public static final Set<ChartAggregates> TASK_NUMBER_AGGREGATES = Collections
-      .unmodifiableSet(EnumSet.of(BUSINESS_STATE, STATE, PRIORITY, CATEGORY, BUSINESS_RUNTIME, WORKING_TIME,
-          NUMBER_OF_RESUMES, CUSTOM_STRING_FIELD, CUSTOM_NUMBERS_FIELD));
+  public static final Set<ChartAggregates> TASK_NUMBER_AGGREGATES = Collections.unmodifiableSet(EnumSet
+      .of(BUSINESS_STATE, STATE, PRIORITY, CATEGORY, BUSINESS_RUNTIME, WORKING_TIME, NUMBER_OF_RESUMES, CUSTOM_FIELD));
 
-  public static final Set<ChartAggregates> CASE_NUMBER_AGGREGATES = Collections
-      .unmodifiableSet(EnumSet.of(BUSINESS_STATE, STATE, PRIORITY, CATEGORY, BUSINESS_RUNTIME, WORKING_TIME,
-          CUSTOM_STRING_FIELD, CUSTOM_NUMBERS_FIELD));
+  public static final Set<ChartAggregates> CASE_NUMBER_AGGREGATES = Collections.unmodifiableSet(
+      EnumSet.of(BUSINESS_STATE, STATE, PRIORITY, CATEGORY, BUSINESS_RUNTIME, WORKING_TIME, CUSTOM_FIELD));
 }

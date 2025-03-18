@@ -1,5 +1,7 @@
 package com.axonivy.portal.bean.dashboard;
 
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+
 import static com.axonivy.portal.enums.statistic.ChartType.BAR;
 import static com.axonivy.portal.enums.statistic.ChartType.LINE;
 import static com.axonivy.portal.enums.statistic.ChartType.NUMBER;
@@ -78,6 +80,8 @@ public class StatisticConfigurationBean implements Serializable {
   private boolean isEditMode;
   private boolean refreshIntervalEnabled;
   private String customFieldAggregate;
+
+  private static final String CHART_AGGREGATES_CMS_PATH = "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartAggregates/";
 
   @PostConstruct
   public void init() {
@@ -238,26 +242,33 @@ public class StatisticConfigurationBean implements Serializable {
     Ivy.var().set(PortalVariable.CUSTOM_STATISTIC.key, statisticsJson);
   }
 
-  public List<String> completeAggregates(String query) {
-    List<String> allAggregates = getAllAvailableAggregates();
-    List<String> filteredAggregates = new ArrayList<>();
-
-    for (String aggregate : allAggregates) {
-      if (aggregate.toLowerCase().contains(query.toLowerCase())) {
-        filteredAggregates.add(aggregate);
-      }
+//  public List<String> completeAggregates(String query) {
+//    List<String> allAggregates = getAllAvailableAggregates();
+//    List<String> filteredAggregates = new ArrayList<>();
+//
+//    for (String aggregate : allAggregates) {
+//      if (aggregate.toLowerCase().contains(query.toLowerCase())) {
+//        filteredAggregates.add(aggregate);
+//      }
+//    }
+//
+//    return filteredAggregates;
+//  }
+  
+  public String getUserFriendlyAggregateName(ChartAggregates selectedAggregate) {
+    if(selectedAggregate == null) {
+      return EMPTY;
     }
-
-    return filteredAggregates;
+    String displayAggregateName = Ivy.cms().co(CHART_AGGREGATES_CMS_PATH + selectedAggregate);
+    return displayAggregateName;
   }
 
-  public List<String> getAllAvailableAggregates() {
+  public List<ChartAggregates> getAllAvailableAggregates() {
     List<ChartAggregates> aggregations = filterAggregatesForChartTarget(statistic.getChartTarget());
     
-    
-    List<String> chartAggregations = new ArrayList<>();
-    aggregations.forEach(agg -> chartAggregations.add(agg.getName()));
-    return chartAggregations;
+//    List<String> chartAggregations = new ArrayList<>();
+//    aggregations.forEach(agg -> chartAggregations.add(agg.getName()));
+    return aggregations;
   }
   
   private List<ChartAggregates> filterAggregatesForChartTarget(ChartTarget currentChartTarget) {
@@ -329,6 +340,9 @@ public class StatisticConfigurationBean implements Serializable {
     if (!isCustomFieldsSelected()) {
       return;
     }
+    /**
+     * when user choose custom field, handle here
+     */
     String statisticCustomfieldAggregation = statistic.getAggregates().replace("*", customFieldAggregate);
     statistic.setAggregates(statisticCustomfieldAggregation);
   }

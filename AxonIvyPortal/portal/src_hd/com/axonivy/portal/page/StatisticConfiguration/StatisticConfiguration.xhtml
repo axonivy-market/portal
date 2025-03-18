@@ -99,7 +99,11 @@
                   <div>
                     <p:selectOneMenu id="aggregates" required="true" styleClass="w-full"
                       value="#{statisticConfigurationBean.statistic.aggregates}">
-                      <f:selectItems value="#{statisticConfigurationBean.getAllAvailableAggregates()}" var="aggregate" />
+                      <f:selectItems value="#{statisticConfigurationBean.getAllAvailableAggregates()}" 
+                        var="aggregate" 
+                        itemValue="#{aggregate.name}"
+                        itemLabel="#{statisticConfigurationBean.getUserFriendlyAggregateName(aggregate)}"
+                      />
                       <p:ajax listener="#{statisticConfigurationBean.isCustomFieldsSelected()}" update="chart-aggregation" />
                     </p:selectOneMenu>
                     <p:inputText id="custom-field-input" rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}"

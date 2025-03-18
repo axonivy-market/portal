@@ -1440,6 +1440,22 @@ Dialogs:
           StatisticConfiguration:
             AdvancedConfiguration: Erweiterte Konfiguration
             Aggregate: Aggregat
+            ChartAggregates:
+              ACTIVATOR_NAME: ''
+              BUSINESS_RUNTIME: ''
+              BUSINESS_STATE: ''
+              CATEGORY: ''
+              CUSTOM_FIELD: ''
+              END_TIMESTAMP: ''
+              EXPIRY_TIMESTAMP: ''
+              IS_EXPIRED: ''
+              MODIFIED_TIMESTAMP: ''
+              NUMBER_OF_RESUMES: ''
+              PRIORITY: ''
+              START_TIMESTAMP: ''
+              STATE: ''
+              WORKER_NAME: ''
+              WORKING_TIME: ''
             ChartType: Diagrammtyp
             Color: Farbe {0}
             Create: Erstellen
