@@ -103,25 +103,31 @@ pipeline {
             }
 
             // Load the POM file
-                    def pom = readMavenPom(file: 'AxonIvyPortal/portal/pom.xml')
+                    def pomFile = 'AxonIvyPortal/portal/pom.xml'
 
-                    // Retrieve the dependencies section
-                    def dependencies = pom.dependencies.dependency
+                    def pomXml = new XmlParser().parse(pomFile)
 
-                    // Define the dependency groupId, artifactId, and new version
+                    // Define the dependency details you want to update
                     def targetGroupId = 'com.axonivy.portal'
                     def newVersion = '2.0.0'
 
-                    // Loop through dependencies and find the one you want to update
+                    // Find all dependencies in the XML
+                    def dependencies = pomXml.dependencies.dependency
+
+                    // Loop through the dependencies and update the one you want
                     dependencies.each { dep ->
                         if (dep.groupId.text() == targetGroupId) {
-                            echo "Updating version of ${dep.groupId.text()} to ${newVersion}"
+                            echo "Updating version of ${dep.artifactId.text()} to ${newVersion}"
                             dep.version[0].value = newVersion  // Update the version
                         }
                     }
 
-                    // Write the modified POM back to file
-                    writeMavenPom file: 'AxonIvyPortal/portal/pom.xml', pom: pom
+                    // Use XmlNodePrinter to convert the modified XML structure back to a string
+                    def writer = new StringWriter()
+                    new XmlNodePrinter(new PrintWriter(writer)).print(pomXml)
+
+                    // Write the modified XML back to the pom.xml file
+                    writeFile file: pomFile, text: writer.toString()
 
             echo '====================Build all modules===================='
             // module structure [module path, isPossibleToDeploy]
