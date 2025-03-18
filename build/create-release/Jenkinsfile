@@ -46,30 +46,48 @@ pipeline {
           ]
 
           docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
-            def pomFiles = []
-            POM_FILES.each { pattern ->
-              def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split('\n')
-              pomFiles.addAll(foundFiles)
-            }
-            pomFiles.each { pomFile ->
-              if (fileExists(pomFile)) {
-                    def xmlContent = readFile(pomFile)
-                    def xml = new XmlParser().parseText(xmlContent)
+            // def pomFiles = []
+            // POM_FILES.each { pattern ->
+            //   def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split('\n')
+            //   pomFiles.addAll(foundFiles)
+            // }
+            // pomFiles.each { pomFile ->
+            //   if (fileExists(pomFile)) {
+            //         def xmlContent = readFile(pomFile)
+            //         def xml = new XmlParser().parseText(xmlContent)
 
-                    xml.dependencies.each { dep ->
-                  def groupId = dep.groupId.text()
-                  if (DEPENDENCY_GROUP_IDS.contains(groupId)) {
-                    echo "Updating version of ${groupId} dependency in ${pomFile}"
-                    dep.version[0].value = params.releaseVersion
-                  }
+            //         xml.dependencies.each { dep ->
+            //       def groupId = dep.groupId.text()
+            //       if (DEPENDENCY_GROUP_IDS.contains(groupId)) {
+            //         echo "Updating version of ${groupId} dependency in ${pomFile}"
+            //         dep.version[0].value = params.releaseVersion
+            //       }
+            //         }
+            //         def updatedXml = new groovy.xml.XmlUtil().serialize(xml)
+            //         writeFile(file: pomFile, text: updatedXml)
+            //         echo "Updated dependencies in ${pomFile}"
+            //     } else {
+            //         echo "File not found: ${pomFile}"
+            //   }
+            // }
+
+            POM_FILES.each { pomFilePattern ->
+                        // For each POM file pattern, find all the matching files
+                        def pomFiles = findFiles(glob: pomFilePattern)
+                        pomFiles.each { pomFile ->
+                            // For each file, run the Docker container to update the versions
+                            docker.image('build-portal-modules').inside('-v /var/tools/maven-cache:/home/build/') {
+                                // Command to update dependency versions inside the Docker container
+                                sh """
+                                    # Iterate over each GROUP_ID and update its version in the POM
+                                    for GROUP_ID in ${DEPENDENCY_GROUP_IDS.join(' ')}; do
+                                        echo "Updating version for dependencies with groupId: \$GROUP_ID in ${pomFile.name}"
+                                        sed -i 's|<groupId>\$GROUP_ID</groupId>\\s*<version>.*</version>|<groupId>\$GROUP_ID</groupId><version>${NEW_VERSION}</version>|g' ${pomFile.name}
+                                    done
+                                """
+                            }
+                        }
                     }
-                    def updatedXml = new groovy.xml.XmlUtil().serialize(xml)
-                    writeFile(file: pomFile, text: updatedXml)
-                    echo "Updated dependencies in ${pomFile}"
-                } else {
-                    echo "File not found: ${pomFile}"
-              }
-            }
 
             echo '====================Build all modules===================='
             // module structure [module path, isPossibleToDeploy]
