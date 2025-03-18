@@ -25,7 +25,7 @@ pipeline {
           currentBuild.description = "On ${env.NODE_NAME}"
           if (!params.buildPluginVersion?.trim().isEmpty() || !params.ivyEngineVersion?.trim().isEmpty()
             || !params.portalVersion?.trim().isEmpty()) {
-            docker.build('update-pom', '-f build/update-pom/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+            docker.build('update-pom', '-f build/Dockerfile.python .').inside('-v /var/tools/maven-cache:/home/build/') {
               withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
                 sshagent(credentials: ['github-axonivy']) {
                   sh """
