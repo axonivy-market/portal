@@ -2,6 +2,7 @@ package com.axonivy.portal.dto.statistic;
 
 import java.io.Serializable;
 
+import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.util.statisticfilter.field.FilterField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,5 +34,15 @@ public class StatisticFilter extends BaseFilter implements Serializable{
 
   public void setFilterField(FilterField filterField) {
     this.filterField = filterField;
+  }
+  
+  @JsonIgnore
+  public boolean isExpiryDateField() {
+    return DashboardStandardTaskColumn.EXPIRY.getField().equals(getField());
+  }
+  
+  @JsonIgnore
+  public boolean isCanWorkOn() {
+    return StatisticConstants.CAN_WORK_ON.equals(getField());
   }
 }

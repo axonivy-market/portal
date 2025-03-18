@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.axonivy.portal.dto.statistic.StatisticFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.statisticfilter.field.FilterField;
-import com.axonivy.portal.util.statisticfilter.operator.TextInOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.text.TextInOperatorHandler;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;

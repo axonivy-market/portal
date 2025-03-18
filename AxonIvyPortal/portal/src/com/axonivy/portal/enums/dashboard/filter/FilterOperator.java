@@ -61,5 +61,6 @@ public enum FilterOperator {
   public static final Set<FilterOperator> APPLICATION_OPERATORS = Collections.unmodifiableSet(EnumSet.of(IN));
   public static final Set<FilterOperator> ID_OPERATORS = Collections.unmodifiableSet(EnumSet.of(CONTAINS));
   public static final Set<FilterOperator> STATISTIC_TEXT_OPERATORS = Collections.unmodifiableSet(EnumSet.of(IN));
+  public static final Set<FilterOperator> STATISTIC_CAN_WORK_ON_OPERATORS = Collections.unmodifiableSet(EnumSet.of(CURRENT_USER));
   
 }

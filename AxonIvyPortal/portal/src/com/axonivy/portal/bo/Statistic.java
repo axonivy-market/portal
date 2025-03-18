@@ -26,6 +26,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   public static final String DEFAULT_ICON = "si-pie-line-graph";
 
   private String aggregates;
+  private String filter;
   private List<StatisticFilter> filters;
   private List<String> permissions;
   private ChartTarget chartTarget;
@@ -78,6 +79,14 @@ public class Statistic extends AbstractConfiguration implements Serializable {
 
   public void setChartType(ChartType chartType) {
     this.chartType = chartType;
+  }
+  
+  public String getFilter() {
+    return filter;
+  }
+
+  public void setFilter(String filter) {
+    this.filter = filter;
   }
 
   public Integer getRefreshInterval() {

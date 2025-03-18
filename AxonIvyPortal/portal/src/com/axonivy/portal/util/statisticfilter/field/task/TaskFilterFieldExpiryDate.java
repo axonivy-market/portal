@@ -15,15 +15,15 @@ import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeTodayYe
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 
-public class TaskFilterFieldCreatedDate extends FilterField{
+public class TaskFilterFieldExpiryDate extends FilterField {
 
-  public TaskFilterFieldCreatedDate() {
-    super(DashboardStandardTaskColumn.CREATED.getField());
+  public TaskFilterFieldExpiryDate() {
+    super(DashboardStandardTaskColumn.EXPIRY.getField());
   }
 
   @Override
   public String getLabel() {
-    return DashboardStandardTaskColumn.CREATED.getLabel();
+    return DashboardStandardTaskColumn.EXPIRY.getLabel();
   }
 
   @Override
@@ -59,5 +59,4 @@ public class TaskFilterFieldCreatedDate extends FilterField{
       default -> null;
     };
   }
-
 }

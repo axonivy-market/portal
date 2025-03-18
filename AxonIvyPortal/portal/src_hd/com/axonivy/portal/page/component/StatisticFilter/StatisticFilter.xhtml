@@ -47,10 +47,10 @@
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" forStatistic="true" />
       </h:panelGroup>
       
-      <h:panelGroup layout="block" rendered="#{filter.isCreatedDateField()}">
+      <h:panelGroup layout="block" rendered="#{filter.isCreatedDateField() or filter.isExpiryDateField()}">
         <ic:com.axonivy.portal.dashboard.component.filter.DateFilter filter="#{filter}" widgetType="#{statistic.getChartTarget().getName()}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"/>
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{widgetDateFilterBean.createdDateOperators}"/>
       </h:panelGroup>
       
       <h:panelGroup layout="block" rendered="#{filter.isResponsible()}">
@@ -58,6 +58,12 @@
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"
           responsibleCompleteMethod="#{cc.attrs.managedBean.completeOwners}" />
+      </h:panelGroup>
+      
+      <h:panelGroup layout="block" rendered="#{filter.isCanWorkOn()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.CanWorkOnFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
       </h:panelGroup>
 
       <div class="remove-filter-panel">
