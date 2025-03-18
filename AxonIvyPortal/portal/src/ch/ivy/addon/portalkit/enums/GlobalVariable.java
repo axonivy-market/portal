@@ -91,7 +91,7 @@ public enum GlobalVariable {
   DOCUMENT_UPLOAD_SIZE_LIMIT("Portal.Upload.DocumentUploadSizeLimit",GlobalVariableType.NUMBER,"20","documentUploadSizeLimit"),
   IMAGE_UPLOAD_SIZE_LIMIT("Portal.Upload.ImageUploadSizeLimit", GlobalVariableType.NUMBER, "6", "imageUploadSizeLimit"),
   DELEGATION_APPEND_OPTION("Portal.DelegationAppendOption", GlobalVariableType.EXTERNAL_SELECTION,
-      DelegationAppendOption.NONE.name(), "delegationAppenOption", getDelegationAppendOption());
+      DelegationAppendOption.NONE.name(), "delegationAppendOption", getDelegationAppendOption());
 
   private String key;
   private GlobalVariableType type;
