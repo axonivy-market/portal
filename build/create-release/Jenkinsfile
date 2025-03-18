@@ -45,7 +45,7 @@ pipeline {
               'com.axonivy.portal'
           ]
 
-          docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+          docker.build('build-portal-modules', '-f build/create-release/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             // def pomFiles = []
             // POM_FILES.each { pattern ->
             //   def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split('\n')
@@ -85,38 +85,21 @@ pipeline {
 
             pomFiles.each { pomFile ->
               // Command to update dependency versions inside the Docker container
-              //for (groupId in DEPENDENCY_GROUP_IDS) {
+              for (groupId in DEPENDENCY_GROUP_IDS) {
                 //  echo "Updating version for dependencies with groupId: ${groupId} in ${pomFile}"
                   //sh "sed -i 's|<groupId>\${groupId}</groupId>\\s*<version>.*</version>|<groupId>\${groupId}</groupId><version>${params.releaseVersion}</version>|g' ${pomFile}"
                   //utils.updateVersion(${pomFile},${groupId}, ${params.releaseVersion})
  // Load the POM file
                     
-
-                    def pomXml = new XmlParser().parse(pomFile)
-
-                    // Define the dependency details you want to update
-                    def targetGroupId = 'com.axonivy.portal'
-                    def newVersion = '2.0.0'
-
-                    // Find all dependencies in the XML
-                    def dependencies = pomXml.dependencies.dependency
-
-                    // Loop through the dependencies and update the one you want
-                    dependencies.each { dep ->
-                        if (dep.groupId.text() == targetGroupId) {
-                            echo "Updating version of ${dep.artifactId.text()} to ${newVersion}"
-                            dep.version[0].value = newVersion  // Update the version
-                        }
-                    }
-
-                    // Use XmlNodePrinter to convert the modified XML structure back to a string
-                    def writer = new StringWriter()
-                    new XmlNodePrinter(new PrintWriter(writer)).print(pomXml)
-
-                    // Write the modified XML back to the pom.xml file
-                    writeFile file: pomFile, text: writer.toString()
+sh """
+                        # Use xmlstarlet to find and update the version of the dependency
+                        xmlstarlet ed --inplace \
+                            -u "//dependencies/dependency[groupId='${groupId}']/version" \
+                            -v '${params.releaseVersion}' ${pomFile}
+                    """
+                    
                   
-              //}
+              }
               // sh """
               //                       # Iterate over each GROUP_ID and update its version in the POM
               //                       for GROUP_ID in ${DEPENDENCY_GROUP_IDS.join(' ')}; do
