@@ -26,10 +26,11 @@ pipeline {
           }
           sh "docker compose -f ${ivyDir}/${engineNames[4]}/docker-compose.yml up -d"
 
-          docker.build('build-portal-10-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+          docker.build('build-portal-10-modules', '-f build/Dockerfile.python .').inside('-v /var/tools/maven-cache:/home/build/') {
             def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal']
             def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty('build.plugin.version')
             def utils = load 'build/common/utils.groovy'
+            utils.updatePortalDependenciesAsRangeVersion()
             def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':9010'
             for (module in modules) {
               maven cmd: "clean install -f ${module}/pom.xml"
