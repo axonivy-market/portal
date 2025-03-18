@@ -32,7 +32,7 @@ pipeline {
           currentBuild.description = "On ${env.NODE_NAME}"
           echo "====================Update pom version to ${params.releaseVersion}===================="
 
-          def POM_FILES = [
+          def POM_PATTERN_FILES = [
               'AxonIvyPortal/*/pom.xml',
               'Showcase/*/pom.xml',
               'AxonIvyPortal/portal-selenium-test/customized_pom.xml',
@@ -76,7 +76,7 @@ pipeline {
                         //def pomFiles = findFiles(glob: pomFilePattern)
 
             def pomFiles = []
-            POM_FILES.each { pattern ->
+            POM_PATTERN_FILES.each { pattern ->
               def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split('\n')
               pomFiles.addAll(foundFiles)
             }
@@ -87,7 +87,7 @@ pipeline {
                                     # Iterate over each GROUP_ID and update its version in the POM
                                     for GROUP_ID in ${DEPENDENCY_GROUP_IDS.join(' ')}; do
                                         echo "Updating version for dependencies with groupId: \$GROUP_ID in ${pomFile}"
-                                        sed -i 's|<groupId>\$GROUP_ID</groupId>\\s*<version>.*</version>|<groupId>\$GROUP_ID</groupId><version>${params.releaseVersion}</version>|g' ${pomFile}
+                                        sed -i 's|<groupId>\${GROUP_ID}</groupId>\\s*<version>.*</version>|<groupId>\${GROUP_ID}</groupId><version>${params.releaseVersion}</version>|g' ${pomFile}
                                     done
                                 """
                         }
@@ -98,6 +98,7 @@ pipeline {
             def modules = [['AxonIvyPortal/portal-components', true], ['AxonIvyPortal/portal', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/portal-user-examples', true], ['Showcase/portal-developer-examples', true], ['Showcase/InternalSupport', false], ['Showcase/portal-components-examples', true], ['AxonIvyPortal/portal-product', true], ['AxonIvyPortal/PortalApp', true], ['Showcase/portal-demo-app', true]]
             for (module in modules) {
               def mavenGoal = params.deployToRepo && module[1] ? 'deploy' : 'install'
+              echo 'TEST====================${mavenGoal}===================='
               maven cmd: "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=(7.0.0,] -Divy.compiler.engine.start.timeout=120 %engineDownloadURL% -f ${module[0]}/pom.xml"
             }
 
