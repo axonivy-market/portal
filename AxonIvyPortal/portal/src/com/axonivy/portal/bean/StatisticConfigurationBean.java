@@ -112,6 +112,8 @@ public class StatisticConfigurationBean implements Serializable {
     populateBackgroundColorsIfMissing();
     initPermissions();
     initMultilanguageServices();
+    initFilterFields();
+    initFilters();
   }
 
   private void initMultilanguageServices() {
@@ -183,9 +185,35 @@ public class StatisticConfigurationBean implements Serializable {
     yTitles = new ArrayList<>();
     backgroundColors = new ArrayList<>(DEFAULT_COLORS);
     refreshIntervalEnabled = false;
+  }
+  
+  private void initFilterFields() {
     filterFields = new ArrayList<>();
     filterFields.add(TaskFilterFieldFactory.getDefaultFilterField());
     filterFields.addAll(TaskFilterFieldFactory.getStandardFilterableFields());
+  }
+  
+  private void initFilters() {
+    if (CollectionUtils.isEmpty(statistic.getFilters())) {
+      return;
+    }
+
+    // If the filter available in the filter list, initialize it
+    for (StatisticFilter filter : statistic.getFilters()) {
+      if (isFilterAvaliable(filter)) {
+        FilterField filterField = TaskFilterFieldFactory
+            .findBy(Optional.ofNullable(filter).map(StatisticFilter::getField).orElse(""),
+                Optional.ofNullable(filter).map(StatisticFilter::getFilterType).orElse(null));
+        if (filterField != null) {
+          filterField.initFilter(filter);
+        }
+      }
+    }
+  }
+  
+  private boolean isFilterAvaliable(StatisticFilter filter) {
+    return Optional.ofNullable(filter).map(StatisticFilter::getField).isPresent() && filterFields.stream()
+        .filter(field -> filter.getField().contentEquals(filter.getField())).findFirst().isPresent();
   }
 
   private void populateBackgroundColorsIfMissing() {

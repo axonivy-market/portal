@@ -17,6 +17,7 @@ import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 import com.axonivy.portal.util.filter.field.TaskFilterFieldFactory;
 
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -64,7 +65,7 @@ public class WidgetDateFilterBean implements Serializable {
   }
 
   private String getMessagePrefix(String field, int index, String widgetType) {
-    if ("task" == StringUtils.lowerCase(widgetType)) {
+    if (PortalConstants.TASK == StringUtils.lowerCase(widgetType)) {
       return getTaskMessagePrefix(field, index);
     }
 

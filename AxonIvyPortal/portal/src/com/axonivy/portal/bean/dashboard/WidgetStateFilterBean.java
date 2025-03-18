@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -28,7 +29,7 @@ public class WidgetStateFilterBean implements Serializable {
   private String statesString;
 
   public void init(BaseFilter filter, String widgetType) {
-    if ("task".equals(StringUtils.lowerCase(widgetType))) {
+    if (PortalConstants.TASK.equals(StringUtils.lowerCase(widgetType))) {
       states = TaskUtils.getValidStates().stream().map(businessState -> businessState.name()).toList();
     } else {
       states = CaseUtils.getValidStates().stream().map(businessState -> businessState.name()).toList();

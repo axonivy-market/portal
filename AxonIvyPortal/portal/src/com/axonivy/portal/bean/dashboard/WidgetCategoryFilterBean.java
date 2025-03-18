@@ -16,6 +16,7 @@ import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
 import ch.ivy.addon.portalkit.bo.CategoryNode;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.TaskTreeUtils;
@@ -56,7 +57,7 @@ public class WidgetCategoryFilterBean implements Serializable {
   }
 
   public void loadCategories(BaseFilter filter, String widgetType) {
-    if ("task".equals(StringUtils.lowerCase(widgetType))) {
+    if (PortalConstants.TASK.equals(StringUtils.lowerCase(widgetType))) {
       this.categoryTree = TaskTreeUtils.buildTaskCategoryCheckboxTreeRootWithoutAllCategoriesNode();
     } else {
       this.categoryTree = CaseTreeUtils.buildCaseCategoryCheckboxTreeRootWithoutAllCategoriesNode();

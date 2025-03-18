@@ -15,6 +15,7 @@ public final class PortalConstants {
   public static final String LESS_THAN_OR_EQUAL = "<=";
   public static final String GREATER_THAN = ">";
   public static final String LESS_THAN = "<";
+  public static final String TASK = "task";
   
   private PortalConstants() {}
 }
