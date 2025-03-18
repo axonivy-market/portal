@@ -120,6 +120,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       STATISTIC: Widget de estadísticas
       TASK: Widget de tareas
       WELCOME: Widget de bienvenida
+    DelegationAppendOption:
+      NONE: Ninguno
+      PARENT_NAME: Nombre del padre
     GlobalVariable:
       Option:
         DISPLAY_NAME: Nombre de pantalla
@@ -260,6 +263,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       defaultSortDirectionOfTaskList: Dirección de clasificación por defecto de la lista de tareas
       defaultSortFieldOfCaseList: Campo de ordenación por defecto de la lista de casos
       defaultSortFieldOfTaskList: Campo de ordenación por defecto de la lista de tareas
+      delegationAppendOption: ''
       disableCaseCount: Cambiar a "true" para desactivar la función contar casos en la lista de casos
       disableTaskCount: Cambiar a "true" para desactivar la función contar tareas en la lista de tareas
       displayAllUsersOfTaskActivator: Esta configuración se utiliza para la componente SecurityMemberDisplayName. Si el SecurityMember es un rol, cambie esta configuración a "true" para ver todos los usuarios de este rol. Si se configura "true", se muestra la información del icono junto al nombre del

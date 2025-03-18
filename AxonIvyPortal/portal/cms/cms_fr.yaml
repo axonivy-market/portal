@@ -120,6 +120,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       STATISTIC: Widget Statistiques
       TASK: Widget Tâche
       WELCOME: Widget de bienvenue
+    DelegationAppendOption:
+      NONE: Aucun
+      PARENT_NAME: Nom du parent
     GlobalVariable:
       Option:
         DISPLAY_NAME: Nom d'affichage
@@ -259,6 +262,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       defaultSortDirectionOfTaskList: Sens de tri par défaut de la liste des tâches
       defaultSortFieldOfCaseList: Champ de tri par défaut de la liste des affaires
       defaultSortFieldOfTaskList: Champ de tri par défaut de la liste des tâches
+      delegationAppendOption: ''
       disableCaseCount: Mettre à true pour désactiver le cas de comptage dans la liste des cas
       disableTaskCount: Mettre à true pour désactiver la tâche de comptage dans la liste des tâches
       displayAllUsersOfTaskActivator: Ce paramètre est utilisé pour le composant SecurityMemberDisplayName. Si le SecurityMember est un rôle, définissez ce paramètre sur true pour afficher la liste de tous les utilisateurs de ce rôle. Si ce paramètre a la valeur true, des informations sur l'icône sont

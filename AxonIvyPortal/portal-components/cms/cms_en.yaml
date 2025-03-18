@@ -94,4 +94,6 @@ Labels:
   DisabledUserPrefix: (disabled)
   NoName: no name
   NoResults: No results
+  None: None
   NotAvailable: N/A
+  ParentRole: Parent role

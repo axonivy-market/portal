@@ -120,6 +120,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       STATISTIC: Statistik-Widget
       TASK: Aufgaben-Widget
       WELCOME: Willkommens-Widget
+    DelegationAppendOption:
+      NONE: Keine
+      PARENT_NAME: Elternname
     GlobalVariable:
       Option:
         DISPLAY_NAME: Anzeigename
@@ -259,6 +262,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       defaultSortDirectionOfTaskList: Standard-Sortierrichtung der Aufgabenliste
       defaultSortFieldOfCaseList: Standard-Sortierfeld der Vorgangsliste
       defaultSortFieldOfTaskList: Standardsortierfeld der Aufgabenliste
+      delegationAppendOption: ''
       disableCaseCount: Auf "true" setzen, um das zählen der Vorgänge in der Vorgangsliste zu deaktivieren
       disableTaskCount: Auf "true" setzen, um das zählen der Aufgaben in der Aufgabenliste zu deaktivieren
       displayAllUsersOfTaskActivator: Diese Einstellung wird für die Komponente SecurityMemberDisplayName verwendet. Wenn der SecurityMember eine Rolle ist, setzen Sie diese Einstellung auf true, um alle Benutzer dieser Rolle aufzulisten. Wenn diese Einstellung auf true gesetzt ist, wird neben dem Rollennamen
