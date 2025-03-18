@@ -1112,7 +1112,6 @@ Dialogs:
               NewsWidgetDescription: This widget shares relevant information as a News Feed into Axon Ivy.
         page:
           StatisticConfiguration:
-            AdvancedConfiguration: Advanced Configuration
             Aggregate: Aggregate
             ChartType: Chart type
             Color: Color {0}
