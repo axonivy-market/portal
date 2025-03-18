@@ -85,7 +85,7 @@ pipeline {
                             // Command to update dependency versions inside the Docker container
                                 sh """
                                     # Iterate over each GROUP_ID and update its version in the POM
-                                    for GROUP_ID in ${DEPENDENCY_GROUP_IDS[@]}; do
+                                    for GROUP_ID in ${DEPENDENCY_GROUP_IDS.join(' ')}; do
                                         echo "Updating version for dependencies with groupId: \$GROUP_ID in ${pomFile}"
                                         sed -i 's|<groupId>\$GROUP_ID</groupId>\\s*<version>.*</version>|<groupId>\$GROUP_ID</groupId><version>${params.releaseVersion}</version>|g' ${pomFile}
                                     done
