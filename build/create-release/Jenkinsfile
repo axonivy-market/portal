@@ -71,20 +71,27 @@ pipeline {
             //   }
             // }
 
-            POM_FILES.each { pomFilePattern ->
+            //POM_FILES.each { pomFilePattern ->
                         // For each POM file pattern, find all the matching files
-                        def pomFiles = findFiles(glob: pomFilePattern)
+                        //def pomFiles = findFiles(glob: pomFilePattern)
+
+            def pomFiles = []
+            POM_FILES.each { pattern ->
+              def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split('\n')
+              pomFiles.addAll(foundFiles)
+            }
+
                         pomFiles.each { pomFile ->
                             // Command to update dependency versions inside the Docker container
                                 sh """
                                     # Iterate over each GROUP_ID and update its version in the POM
-                                    for GROUP_ID in ${DEPENDENCY_GROUP_IDS}; do
-                                        echo "Updating version for dependencies with groupId: \$GROUP_ID in ${pomFile.name}"
-                                        sed -i 's|<groupId>\$GROUP_ID</groupId>\\s*<version>.*</version>|<groupId>\$GROUP_ID</groupId><version>${params.releaseVersion}</version>|g' ${pomFile.name}
+                                    for GROUP_ID in ${DEPENDENCY_GROUP_IDS[@]}; do
+                                        echo "Updating version for dependencies with groupId: \$GROUP_ID in ${pomFile}"
+                                        sed -i 's|<groupId>\$GROUP_ID</groupId>\\s*<version>.*</version>|<groupId>\$GROUP_ID</groupId><version>${params.releaseVersion}</version>|g' ${pomFile}
                                     done
                                 """
                         }
-                    }
+            
 
             echo '====================Build all modules===================='
             // module structure [module path, isPossibleToDeploy]
