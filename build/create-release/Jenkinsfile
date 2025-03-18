@@ -85,25 +85,12 @@ pipeline {
 
             pomFiles.each { pomFile ->
               // Command to update dependency versions inside the Docker container
-              for (groupId in DEPENDENCY_GROUP_IDS) {
-                  echo "Updating version for dependencies with groupId: ${groupId} in ${pomFile}"
+              //for (groupId in DEPENDENCY_GROUP_IDS) {
+                //  echo "Updating version for dependencies with groupId: ${groupId} in ${pomFile}"
                   //sh "sed -i 's|<groupId>\${groupId}</groupId>\\s*<version>.*</version>|<groupId>\${groupId}</groupId><version>${params.releaseVersion}</version>|g' ${pomFile}"
                   //utils.updateVersion(${pomFile},${groupId}, ${params.releaseVersion})
-
-                  
-              }
-              // sh """
-              //                       # Iterate over each GROUP_ID and update its version in the POM
-              //                       for GROUP_ID in ${DEPENDENCY_GROUP_IDS.join(' ')}; do
-              //                           echo "Updating version for dependencies with groupId: \$GROUP_ID in ${pomFile}"
-              //                           sed -i 's|<groupId>\${GROUP_ID}</groupId>\\s*<version>.*</version>|<groupId>\${GROUP_ID}</groupId><version>${params.releaseVersion}</version>|g' ${pomFile}
-              //                       done
-              //                   """
-              
-            }
-
-            // Load the POM file
-                    def pomFile = 'AxonIvyPortal/portal/pom.xml'
+ // Load the POM file
+                    
 
                     def pomXml = new XmlParser().parse(pomFile)
 
@@ -128,6 +115,19 @@ pipeline {
 
                     // Write the modified XML back to the pom.xml file
                     writeFile file: pomFile, text: writer.toString()
+                  
+              //}
+              // sh """
+              //                       # Iterate over each GROUP_ID and update its version in the POM
+              //                       for GROUP_ID in ${DEPENDENCY_GROUP_IDS.join(' ')}; do
+              //                           echo "Updating version for dependencies with groupId: \$GROUP_ID in ${pomFile}"
+              //                           sed -i 's|<groupId>\${GROUP_ID}</groupId>\\s*<version>.*</version>|<groupId>\${GROUP_ID}</groupId><version>${params.releaseVersion}</version>|g' ${pomFile}
+              //                       done
+              //                   """
+              
+            }
+
+           
 
             echo '====================Build all modules===================='
             // module structure [module path, isPossibleToDeploy]
