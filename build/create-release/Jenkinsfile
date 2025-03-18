@@ -75,17 +75,14 @@ pipeline {
                         // For each POM file pattern, find all the matching files
                         def pomFiles = findFiles(glob: pomFilePattern)
                         pomFiles.each { pomFile ->
-                            // For each file, run the Docker container to update the versions
-                            docker.image('build-portal-modules').inside('-v /var/tools/maven-cache:/home/build/') {
-                                // Command to update dependency versions inside the Docker container
+                            // Command to update dependency versions inside the Docker container
                                 sh """
                                     # Iterate over each GROUP_ID and update its version in the POM
-                                    for GROUP_ID in ${DEPENDENCY_GROUP_IDS.join(' ')}; do
+                                    for GROUP_ID in ${DEPENDENCY_GROUP_IDS}; do
                                         echo "Updating version for dependencies with groupId: \$GROUP_ID in ${pomFile.name}"
-                                        sed -i 's|<groupId>\$GROUP_ID</groupId>\\s*<version>.*</version>|<groupId>\$GROUP_ID</groupId><version>${NEW_VERSION}</version>|g' ${pomFile.name}
+                                        sed -i 's|<groupId>\$GROUP_ID</groupId>\\s*<version>.*</version>|<groupId>\$GROUP_ID</groupId><version>${params.releaseVersion}</version>|g' ${pomFile.name}
                                     done
                                 """
-                            }
                         }
                     }
 
