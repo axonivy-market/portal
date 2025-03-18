@@ -134,7 +134,7 @@ try:
       ]:
         versionTag = dependency.find("version")
         if versionTag is not None:
-          versionTag.text = "[" + versionTag.text + ",)"
+          versionTag.text = "[" + versionTag.text + ",12.1.0)"
 
   # Write changes back to the file
   tree.write(filePath, encoding="utf-8", xml_declaration=True)
