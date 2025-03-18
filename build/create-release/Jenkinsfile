@@ -65,10 +65,10 @@ pipeline {
             echo '====================Build all modules===================='
             // module structure [module path, isPossibleToDeploy]
             def modules = [['AxonIvyPortal/portal-components', true], ['AxonIvyPortal/portal', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/portal-user-examples', true], ['Showcase/portal-developer-examples', true], ['Showcase/InternalSupport', false], ['Showcase/portal-components-examples', true], ['AxonIvyPortal/portal-product', true], ['AxonIvyPortal/PortalApp', true], ['Showcase/portal-demo-app', true]]
-            def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty('build.plugin.version')
+            //def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty('build.plugin.version')
             for (module in modules) {
               def mavenGoal = params.deployToRepo && module[1] ? 'deploy' : 'install'
-              maven cmd: "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=(7.0.0,] -Divy.compiler.engine.start.timeout=120 %engineDownloadURL% -f ${module[0]}/pom.xml"
+              maven cmd: "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=${params.releaseVersion} -Divy.compiler.engine.start.timeout=120 %engineDownloadURL% -f ${module[0]}/pom.xml"
               // maven cmd: "clean install -f ${module}/pom.xml"
               // if(mavenGoal) {
               //   maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.target.version=RELEASED"
