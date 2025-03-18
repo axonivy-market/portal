@@ -81,14 +81,16 @@ pipeline {
               pomFiles.addAll(foundFiles)
             }
 
-            def utils = load 'build/common/utils.groovy'
+            //def utils = load 'build/common/utils.groovy'
 
             pomFiles.each { pomFile ->
               // Command to update dependency versions inside the Docker container
               for (groupId in DEPENDENCY_GROUP_IDS) {
                   echo "Updating version for dependencies with groupId: ${groupId} in ${pomFile}"
                   //sh "sed -i 's|<groupId>\${groupId}</groupId>\\s*<version>.*</version>|<groupId>\${groupId}</groupId><version>${params.releaseVersion}</version>|g' ${pomFile}"
-                  utils.updateVersion(${pomFile},${groupId}, ${params.releaseVersion})
+                  //utils.updateVersion(${pomFile},${groupId}, ${params.releaseVersion})
+
+                  
               }
               // sh """
               //                       # Iterate over each GROUP_ID and update its version in the POM
@@ -99,6 +101,27 @@ pipeline {
               //                   """
               
             }
+
+            // Load the POM file
+                    def pom = readMavenPom(file: 'AxonIvyPortal/portal/pom.xml')
+
+                    // Retrieve the dependencies section
+                    def dependencies = pom.dependencies.dependency
+
+                    // Define the dependency groupId, artifactId, and new version
+                    def targetGroupId = 'com.axonivy.portal'
+                    def newVersion = '2.0.0'
+
+                    // Loop through dependencies and find the one you want to update
+                    dependencies.each { dep ->
+                        if (dep.groupId.text() == targetGroupId) {
+                            echo "Updating version of ${dep.groupId.text()} to ${newVersion}"
+                            dep.version[0].value = newVersion  // Update the version
+                        }
+                    }
+
+                    // Write the modified POM back to file
+                    writeMavenPom file: 'AxonIvyPortal/portal/pom.xml', pom: pom
 
             echo '====================Build all modules===================='
             // module structure [module path, isPossibleToDeploy]

@@ -1,6 +1,6 @@
 
-import groovy.xml.XmlSlurper
-import groovy.xml.XmlUtil
+// import groovy.xml.XmlSlurper
+// import groovy.xml.XmlUtil
 
 def init() {
   configFileProvider(
@@ -165,16 +165,16 @@ def uploadBOM(def projectName, def projectVersion, def bomFile) {
   }
 }
 
-def updateVersion(def pomFile, def groupId, def version) {
-  def pom = new XmlSlurper().parse(new File(${pomFile}))
+// def updateVersion(def pomFile, def groupId, def version) {
+//   def pom = new XmlSlurper().parse(new File(${pomFile}))
 
-// Find all dependencies with groupId 'abc' and increment the version
-pom.dependencies.dependency.findAll { it.groupId.text() == ${groupId} }.each { dep ->
-    dep.version[0].value = ${version}  // Change this logic as per your needs
-}
+// // Find all dependencies with groupId 'abc' and increment the version
+// pom.dependencies.dependency.findAll { it.groupId.text() == ${groupId} }.each { dep ->
+//     dep.version[0].value = ${version}  // Change this logic as per your needs
+// }
 
-// Save the updated pom.xml
-def writer = new FileWriter(${pomFile})
-XmlUtil.serialize(pom, writer)
-}
+// // Save the updated pom.xml
+// def writer = new FileWriter(${pomFile})
+// XmlUtil.serialize(pom, writer)
+// }
 return this
