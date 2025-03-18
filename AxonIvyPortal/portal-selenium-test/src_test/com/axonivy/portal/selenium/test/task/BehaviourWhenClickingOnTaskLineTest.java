@@ -25,7 +25,7 @@ import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class BehaviourWhenClickingOnTaskLineTest extends BaseTest {
 
   private static final String YOUR_TASKS_WIDGET = "Your Tasks";
