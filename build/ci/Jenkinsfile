@@ -21,12 +21,14 @@ pipeline {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
           builtModules = []
-          docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+          docker.build('build-portal-modules', '-f build/Dockerfile.python .').inside('-v /var/tools/maven-cache:/home/build/') {
             def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'Showcase/portal-components-examples']
             def changeLog = ''
             if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
               changeLog = sh(returnStdout: true, script: 'git diff --name-only $GIT_COMMIT $GIT_PREVIOUS_SUCCESSFUL_COMMIT').trim()
             }
+            utils = load 'build/common/utils.groovy'
+            utils.updatePortalDependenciesAsRangeVersion()
             for (module in modules) {
               if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1])) {
                 maven cmd: "clean install -f ${module}/pom.xml"
@@ -43,7 +45,6 @@ pipeline {
       steps {
         script {
           def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty("build.plugin.version")
-          def utils = load 'build/common/utils.groovy'
           def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':8012'
           docker.build('deploy-modules-to-engine', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             for (module in builtModules) {
