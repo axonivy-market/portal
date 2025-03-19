@@ -71,16 +71,22 @@ pipeline {
 
             echo "====================Create release tag ${params.releaseVersion}===================="
 
-            // sh """
-            //   # Remove created tag
-            //   git push --delete origin "${params.releaseVersion}"
-            //   git tag -d "${params.releaseVersion}"
-
-            //   # Create tag for the release
-            //   git commit -a -m "update projects version"
-            //   git tag -a "${params.releaseVersion}" -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}"
-            //   git push origin "${params.releaseVersion}"
-            // """
+            withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
+                sshagent(credentials: ['github-axonivy']) {
+                  echo ${BRANCH_NAME}
+                  sh """
+                    # Remove created tag
+                    git remote set-url origin git@github.com:axonivy-market/portal.git
+                    git checkout ${BRANCH_NAME} || git checkout -b ${BRANCH_NAME}
+                    git push --delete origin "${params.releaseVersion}"
+                    git tag -d "${params.releaseVersion}"
+                    # Create tag for the release
+                    git commit -a -m "update projects version"
+                    git tag -a "${params.releaseVersion}" -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}"
+                    git push origin "${params.releaseVersion}"
+                  """
+                }
+              }
 
             echo "====================Update Portal version for development after release ${params.releaseVersion} ===================="
             def parts = releaseVersion.tokenize('.')
