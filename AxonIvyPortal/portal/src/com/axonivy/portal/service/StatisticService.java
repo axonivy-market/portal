@@ -14,6 +14,7 @@ import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 
 import com.axonivy.portal.bo.Statistic;
@@ -108,10 +109,14 @@ public class StatisticService {
 
   public AggregationResult getChartData(Statistic chart) {
     String filter = null;
+    if (StringUtils.isEmpty(chart.getFilter())) {
+      filter = processTaskFilter(chart.getFilters());
+    } else {
+      filter = chart.getFilter();
+    }
     return switch (chart.getChartTarget()) {
       case CASE -> WorkflowStats.current().caze().aggregate(chart.getAggregates(), filter);
       case TASK -> {
-        filter = processTaskFilter(chart.getFilters());
         Ivy.log().info(filter);
         yield WorkflowStats.current().task().aggregate(chart.getAggregates(), filter);
       }

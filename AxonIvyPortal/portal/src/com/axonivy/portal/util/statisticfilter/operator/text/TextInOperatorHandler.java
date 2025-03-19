@@ -1,7 +1,7 @@
 package com.axonivy.portal.util.statisticfilter.operator.text;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.logging.log4j.util.Strings;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.statistic.StatisticFilter;
@@ -20,7 +20,7 @@ public class TextInOperatorHandler {
   
   public String buildFilter(StatisticFilter filter) {
     if (CollectionUtils.isEmpty(filter.getValues())) {
-      return Strings.EMPTY;
+      return StringUtils.EMPTY;
     }
 
     StringBuilder sb = new StringBuilder();

@@ -202,7 +202,7 @@ public class StatisticConfigurationBean implements Serializable {
     for (StatisticFilter filter : statistic.getFilters()) {
       if (isFilterAvaliable(filter)) {
         FilterField filterField = TaskFilterFieldFactory
-            .findBy(Optional.ofNullable(filter).map(StatisticFilter::getField).orElse(""),
+            .findBy(Optional.ofNullable(filter).map(StatisticFilter::getField).orElse(StringUtils.EMPTY),
                 Optional.ofNullable(filter).map(StatisticFilter::getFilterType).orElse(null));
         if (filterField != null) {
           filterField.initFilter(filter);
