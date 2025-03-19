@@ -1,5 +1,5 @@
 name: Documentation
-run-name: 📚 Portal Documentation
+run-name: 📚 Documentation
 on:
   workflow_dispatch:
     inputs:
