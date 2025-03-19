@@ -1,4 +1,4 @@
-name: Cron bot
+name: Cron Bot
 run-name: 🤖 Cron bot walking 
 on:
   schedule:
