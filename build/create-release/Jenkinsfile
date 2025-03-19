@@ -77,11 +77,11 @@ pipeline {
                     # Remove created tag
                     git remote set-url origin git@github.com:axonivy-market/portal.git
                     git checkout ${BRANCH_NAME} || git checkout -b ${BRANCH_NAME}
-                    git fetch --prune origin
+                    git fetch --tags
                     """
 
                   sh """
-                    if git ls-remote --tags origin | grep -q "refs/tags/${params.releaseVersion}"; then
+                    if git tag -l "${params.releaseVersion}"; then
                       echo "Tag ${params.releaseVersion} found on remote. Deleting..."
                     git push --delete origin "${params.releaseVersion}"
                     else
