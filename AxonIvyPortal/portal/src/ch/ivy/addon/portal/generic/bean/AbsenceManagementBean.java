@@ -102,6 +102,10 @@ public class AbsenceManagementBean implements Serializable{
     return iUser != null ? UserUtils.findNextAbsenceOfUser(iUser) : "";
   }
 
+  public String findActiveAbsence(IUser iUser) {
+    return iUser != null ? UserUtils.findActiveAbsenceOfUser(iUser) : "";
+  }
+
   public boolean isSubstitutionCapable() {
     return substitutionCapable;
   }
