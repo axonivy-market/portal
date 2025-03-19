@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get install -y openssh-client\
     && addgroup --gid 1001 build && adduser --uid 1001 --gid 1001 --disabled-password --gecos "" build\
     && apt-get install -y xmlstarlet \
-    && ca-certificates
+    && curl
 
 ENV JDK_DOWNLOAD_URL https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21+1/OpenJDK21U-jdk_x64_linux_21_1.tar.gz
 
@@ -15,8 +15,6 @@ RUN curl -L --fail --silent --show-error --retry 3 $JDK_DOWNLOAD_URL \
 
 ENV JAVA_HOME=/opt/jdk-21
 ENV PATH="$JAVA_HOME/bin:${PATH}"
-
-RUN update-ca-certificates
 
 RUN java -version
 RUN echo $JAVA_HOME
