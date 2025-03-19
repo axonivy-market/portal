@@ -59,10 +59,11 @@ pipeline {
 
             echo '====================Build all modules===================='
             // module structure [module path, isPossibleToDeploy]
+            def rangeVersion = "(7.0.0,]"
             def modules = [['AxonIvyPortal/portal-components', true], ['AxonIvyPortal/portal', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/portal-user-examples', true], ['Showcase/portal-developer-examples', true], ['Showcase/InternalSupport', false], ['Showcase/portal-components-examples', true], ['AxonIvyPortal/portal-product', true], ['AxonIvyPortal/PortalApp', true], ['Showcase/portal-demo-app', true]]
             for (module in modules) {
               def mavenGoal = params.deployToRepo && module[1] ? 'deploy' : 'install'
-              maven cmd: "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=\(7.0.0,] -Divy.compiler.engine.start.timeout=120 %engineDownloadURL% -f ${module[0]}/pom.xml"
+              maven cmd: "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=${rangeVersion} -Divy.compiler.engine.start.timeout=120 %engineDownloadURL% -f ${module[0]}/pom.xml"
             }
 
             echo "====================Create release tag ${params.releaseVersion}===================="
