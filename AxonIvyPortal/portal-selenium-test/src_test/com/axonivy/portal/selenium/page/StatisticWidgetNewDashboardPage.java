@@ -1,38 +1,38 @@
 package com.axonivy.portal.selenium.page;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
-public class ClientStatisticWidgetNewDashboardPage extends TemplatePage {
+public class StatisticWidgetNewDashboardPage extends TemplatePage {
 
   private String widgetId;
   private String widgetName;
 
   @Override
   protected String getLoadedLocator() {
-    return ".js-client-statistic-chart";
+    return ".js-statistic-chart";
   }
 
   public String getChartNameAt(String index) {
-    waitForElementDisplayed(By.className("js-client-statistic-chart"), true);
-    SelenideElement chartId = $("[id$='client-statistic-client_statistic_" + index + "']");
+    waitForElementDisplayed(By.className("js-statistic-chart"), true);
+    SelenideElement chartId = $("[id$='statistic-client_statistic_" + index + "']");
     return chartId.getText();
   }
 
-  public ClientStatisticWidgetNewDashboardPage(String chartName) {
+  public StatisticWidgetNewDashboardPage(String chartName) {
     this("div[id$='stat-chart-widget__content']", chartName);
   }
 
-  public ClientStatisticWidgetNewDashboardPage(String widgetId, String widgetName) {
+  public StatisticWidgetNewDashboardPage(String widgetId, String widgetName) {
     this.widgetId = widgetId;
     this.widgetName = widgetName;
   }

@@ -1,23 +1,23 @@
 package ch.ivy.addon.portalkit.statistics;
 
-import com.axonivy.portal.bo.ClientStatistic;
+import com.axonivy.portal.bo.Statistic;
 
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 
-public class ClientStatisticResponse {
+public class StatisticResponse {
   private AggregationResult result;
-  private ClientStatistic chartConfig;
+  private Statistic chartConfig;
 
-  public ClientStatisticResponse(AggregationResult result, ClientStatistic config) {
+  public StatisticResponse(AggregationResult result, Statistic config) {
     this.result = result;
     this.chartConfig = config;
   }
 
-  public ClientStatistic getChartConfig() {
+  public Statistic getChartConfig() {
     return chartConfig;
   }
 
-  public void setChartConfig(ClientStatistic chartConfig) {
+  public void setChartConfig(Statistic chartConfig) {
     this.chartConfig = chartConfig;
   }
 

@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class ClientStatisticDashboardWidget extends DashboardWidget {
+public class StatisticDashboardWidget extends DashboardWidget {
 
   private static final long serialVersionUID = 1L;
   private String chartId;
   private boolean showFullscreenMode;
 
-  public ClientStatisticDashboardWidget() {
+  public StatisticDashboardWidget() {
     setShowFullscreenMode(true);
   }
 
@@ -22,7 +22,7 @@ public class ClientStatisticDashboardWidget extends DashboardWidget {
 
   @Override
   public DashboardWidgetType getType() {
-    return DashboardWidgetType.CLIENT_STATISTIC;
+    return DashboardWidgetType.STATISTIC;
   }
 
   public String getChartId() {

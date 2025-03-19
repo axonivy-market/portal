@@ -336,7 +336,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
   }
 
   @Test
-  public void screenshotAddClientStatisticWidget() throws IOException {
+  public void screenshotAddStatisticWidget() throws IOException {
     // Take screenshot of Add new widget dialog
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
@@ -348,7 +348,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     detailsEditPage.collapseStandardWidgets();
     ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "add-client-statistic-widget", new ScreenshotMargin(20));
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "add-statistic-widget", new ScreenshotMargin(20));
   }
 
   @Test

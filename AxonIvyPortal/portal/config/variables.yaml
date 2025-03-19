@@ -13,10 +13,15 @@ Variables:
     # [file: json]
     Announcement:
 
-    # You can define the standard client statistic via this JSON file.
-    # You can configure dashboards to show the statistics to dashboards.
+    # Default configurations for Portal statistic widgets.
+    # Do not edit this variable.
     # [file: json]
-    ClientStatistic:
+    Statistic:
+
+    # Custom configurations for Portal statistic widgets.
+    # You can define custom configurations for Portal statistic widgets by edit this variable.
+    # [file: json]
+    CustomStatistic:
 
     # A feedback message will be displayed after user finishes or leaves a task.
     DisplayMessageAfterFinishTask: true

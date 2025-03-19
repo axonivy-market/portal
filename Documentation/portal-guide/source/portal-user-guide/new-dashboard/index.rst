@@ -26,7 +26,7 @@ The following default widgets are available:
 
 #. **Process viewer widget**: This widget provides a visual representation of the process flow.
 
-#. **Client Statistic chart widget**: This widget provides graphical display of client statistical data.
+#. **Statistic chart widget**: This widget provides graphical display of statistical data.
 
 #. **Welcome widget**: This widget greets the user based on the local time and enables a friendlier approach.
 
@@ -471,8 +471,8 @@ After selecting the :guilabel:`Clone` option, the :guilabel:`Clone widget` dialo
    :alt: Dashboard news feed widget's Manage news dialog
 .. |external-page-widget-configuration| image:: ../../screenshots/dashboard/external-page-widget-configuration.png
    :alt: Dashboard external page widget's configuration dialog
-.. |add-statistic-widget| image:: ../../screenshots/new-dashboard/add-client-statistic-widget.png
-   :alt: Add new dashboard client statistic widget
+.. |add-statistic-widget| image:: ../../screenshots/new-dashboard/add-statistic-widget.png
+   :alt: Add new dashboard statistic widget
 .. |notification-widget-configuration| image:: ../../screenshots/new-dashboard/notification-widget-configuration.png
    :alt: Dashboard notification widget's configuration dialog
 .. |notification-widget| image:: ../../screenshots/new-dashboard/notification-widget.png
