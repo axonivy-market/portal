@@ -1,5 +1,7 @@
 package com.axonivy.portal.util;
 
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.log;
+
 import java.io.IOException;
 
 import org.apache.commons.io.FilenameUtils;
@@ -17,6 +19,9 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class UploadDocumentUtils {
 
+  private static GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
+  private static final int MEGABYTE_IN_BYTE = 1048576;
+
   public static String validateUploadedFile(UploadedFile importFile) {
     String validateMessage = "";
     if (importFile == null || importFile.getSize() == 0) {
@@ -32,7 +37,6 @@ public class UploadDocumentUtils {
   }
 
   public static boolean enableVirusScannerForUploadedDocument() {
-    GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
     return globalSettingService
         .findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT);
   }
@@ -75,4 +79,32 @@ public class UploadDocumentUtils {
     return false;
   }
 
+  public static Long getDocumentUploadSizeLimit() {
+    String documentUploadSizeLimit =
+        globalSettingService.findGlobalSettingValue(GlobalVariable.DOCUMENT_UPLOAD_SIZE_LIMIT);
+    int uploadSizeLimitNumber = 0;
+    try {
+      if (StringUtils.isNotBlank(documentUploadSizeLimit)) {
+        uploadSizeLimitNumber = Integer.parseInt(documentUploadSizeLimit);
+      }
+    } catch (NumberFormatException e) {
+      log().error("Document size limit must be an Integer number, check Portal settings again.", e);
+    }
+    Long sizeLimitInByte = (long) (uploadSizeLimitNumber * MEGABYTE_IN_BYTE);
+    return sizeLimitInByte;
+  }
+
+  public static Long getImageUploadSizeLimit() {
+    String imageUploadSizeLimit = globalSettingService.findGlobalSettingValue(GlobalVariable.IMAGE_UPLOAD_SIZE_LIMIT);
+    int uploadSizeLimitNumber = 0;
+    try {
+      if (StringUtils.isNotBlank(imageUploadSizeLimit)) {
+        uploadSizeLimitNumber = Integer.parseInt(imageUploadSizeLimit);
+      }
+    } catch (NumberFormatException e) {
+      log().error("Image size limit must be an Integer number, check Portal settings again.", e);
+    }
+    Long sizeLimitInByte = (long) (uploadSizeLimitNumber * MEGABYTE_IN_BYTE);
+    return sizeLimitInByte;
+  }
 }

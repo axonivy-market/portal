@@ -1,6 +1,8 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -50,5 +52,8 @@ public class DashboardCustomWidgetBean implements Serializable {
     }
     return allCustomDashboardProcesses;
   }
-
+  
+  public String encodeValue(String value) throws UnsupportedEncodingException {
+    return URLEncoder.encode(value, "UTF-8");
+  }
 }

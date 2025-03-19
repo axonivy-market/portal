@@ -21,7 +21,7 @@
   <h:panelGroup id="text-filter-operator-panel" layout="block"
     styleClass="ui-fluid">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
-        <f:selectItems value="#{widgetTextFilterBean.operators}" var="operator"
+        <f:selectItems value="#{widgetTextFilterBean.isCustomFieldWithCms(filter) ? widgetTextFilterBean.operatorsForCustomFieldWithCms : widgetTextFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}"/>
           <p:ajax event="itemSelect" listener="#{widgetTextFilterBean.onChangeOperator(filter)}"
             update="#{cc.attrs.componentToUpdate}" partialSubmit="true" global="false" />
