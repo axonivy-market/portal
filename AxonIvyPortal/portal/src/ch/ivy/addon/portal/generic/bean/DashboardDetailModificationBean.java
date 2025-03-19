@@ -391,10 +391,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   private StatisticDashboardWidget getDefaultStatisticDashboardWidget(String widgetName, String chartId) {
     String widgetId = DashboardWidgetUtils.generateNewWidgetId(STATISTIC);
-    StatisticDashboardWidget widget = null;
-    widget = (StatisticDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName,
-        STATISTIC);
-    widget.setChartId(chartId);
+    StatisticDashboardWidget widget =
+        (StatisticDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName, STATISTIC);
+    if (Optional.ofNullable(widget).isPresent()) {
+      widget.setChartId(chartId);
+    }
     return widget;
   }
 
@@ -1201,7 +1202,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       widgetName = getStatisticWidgets().stream()
           .filter(statistic -> statistic.getId()
               .contentEquals(statisticWidget.getChartId()))
-          .findFirst().map(Statistic::getName).orElse("");
+          .findFirst().map(Statistic::getName).orElseGet(() -> StringUtils.EMPTY);
     }
 
     // For custom widget, need to build before get name
