@@ -54,6 +54,7 @@ import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
@@ -287,8 +288,12 @@ public class StatisticConfigurationBean implements Serializable {
     if(ChartType.NUMBER == currentChartType) {
       return ChartAggregates.CASE_NUMBER_AGGREGATES.stream().toList();
     }
-    
-    return ChartAggregates.CASE_AGGREGATES.stream().toList();
+    boolean hidingCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
+    List<ChartAggregates> aggregates = ChartAggregates.CASE_AGGREGATES.stream()
+        .filter(caseAggregate -> !hidingCaseCreator || !caseAggregate.equals(ChartAggregates.CREATOR_NAME))
+        .toList();
+        
+    return aggregates;
   }
 
   private List<ChartAggregates> collectAggregatesForTask(ChartType currentChartType){
@@ -607,14 +612,13 @@ public class StatisticConfigurationBean implements Serializable {
   
   public Optional<ICustomFieldMeta> findCustomFieldMeta() {
     Optional<ICustomFieldMeta> metaData = Optional.empty();
-    Set<ICustomFieldMeta> customFieldList  = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
+    Set<ICustomFieldMeta> customFieldList = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
         : ICustomFieldMeta.cases();
-    
+
     metaData = customFieldList.stream().filter(meta -> meta.name().equals(currentCustomField)).findFirst();
-    
+
     return metaData;
   }
-
 
   public String getCurrentCustomField() {
     return currentCustomField;
@@ -623,9 +627,4 @@ public class StatisticConfigurationBean implements Serializable {
   public void setCurrentCustomField(String currentCustomField) {
     this.currentCustomField = currentCustomField;
   }
-  
-  public List<String> completeCustomFields(String query) {
-    return null;
-  }
-
 }
