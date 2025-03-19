@@ -80,16 +80,16 @@ pipeline {
                     git fetch --tags
                     """
 
+                  // sh """
+                  //   if git tag -l "${params.releaseVersion}"; then
+                  //     echo "Tag ${params.releaseVersion} found on remote. Deleting..."
+                  //   git push --delete origin "${params.releaseVersion}"
+                  //   else
+                  //     echo "Tag ${params.releaseVersion} does not exist on remote. Skipping delete."
+                  //   fi
+                  //   """
                   sh """
-                    if git tag -l "${params.releaseVersion}"; then
-                      echo "Tag ${params.releaseVersion} found on remote. Deleting..."
-                    git push --delete origin "${params.releaseVersion}"
-                    else
-                      echo "Tag ${params.releaseVersion} does not exist on remote. Skipping delete."
-                    fi
-                    """
-                  sh """
-                    git tag -d "${params.releaseVersion}"
+                    # git tag -d "${params.releaseVersion}"
                     # Create tag for the release
                     git commit -a -m "update projects version"
                     git tag -a "${params.releaseVersion}" -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}"
