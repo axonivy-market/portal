@@ -80,8 +80,7 @@
             "}",
             "in.excludedRoleNames = Arrays.asList(\"Tester\", \"Supporter\");",
             "in.definedRoleNames = Arrays.asList(\"Everybody\");",
-            "in.emptyRoleNames = Arrays.asList(\"\");",
-            "in.roleSelectionSerenityExampleLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/RoleSelectionExample/showRoleSelectionExamplesSerenity.ivp\");"
+            "in.emptyRoleNames = Arrays.asList(\"\");"
           ]
         },
         "sudo" : true

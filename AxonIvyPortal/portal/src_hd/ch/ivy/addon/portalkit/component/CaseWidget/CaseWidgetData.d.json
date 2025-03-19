@@ -37,9 +37,6 @@
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "filterType",
-    "type" : "ch.ivy.addon.portalkit.enums.FilterType"
-  }, {
     "name" : "isFilterExisted",
     "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
@@ -47,15 +44,6 @@
     "name" : "filterGroupId",
     "type" : "Long",
     "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "publicFilters",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData>"
-  }, {
-    "name" : "privateFilters",
-    "type" : "java.util.List<ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData>"
-  }, {
-    "name" : "filterDataToBeDeleted",
-    "type" : "ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData"
   }, {
     "name" : "columnsVisibility",
     "type" : "java.util.List<String>",

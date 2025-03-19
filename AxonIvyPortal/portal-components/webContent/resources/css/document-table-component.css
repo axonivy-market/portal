@@ -126,8 +126,3 @@
 body.freya .document-table-component .upload-container .type-selection-label {
   line-height: 2.5;
 }
-
-body.serenity .document-table-component .upload-container .ui-widget.ui-selectonemenu,
-body.serenity .document-table-component .upload-container .ui-widget.ui-outputlabel {
-  margin-top: 5px;
-}

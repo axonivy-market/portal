@@ -32,10 +32,6 @@
     "type" : "List<String>",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "roleSelectionSerenityExampleLink",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
     "name" : "emptyRoleNames",
     "type" : "List<String>",
     "modifiers" : [ "PERSISTENT" ]

@@ -181,14 +181,8 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   transition: all .2s;
 }
 
-.case-export-to-excel-form .ui-widget,
-.task-export-to-excel-form .ui-widget {
-  width: max-content;	
-}
-
 .task-widget .advanced-filter:hover, .case-widget-container .advanced-filter:hover,
-.task-widget .filter-selection-container:hover, .case-widget-container .filter-selection-container:hover,
-.analysis-task-widget .task-analysis-filter-selection-container:hover {
+.task-widget .filter-selection-container:hover, .case-widget-container .filter-selection-container:hover {
   border-radius: 5px;
 }
 
@@ -209,13 +203,6 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 .task-widget .filter-selection-container, .case-widget-container .filter-selection-container {
   display: inline-block;
   width: calc(100% - 5px);
-}
-
-.analysis-task-widget .filter-selection-container {
-  height: auto !important;
-  min-width: 0;
-  padding-left: 5px;
-  margin-top: 5px;
 }
 
 .task-widget .ui-widget.ui-button.advanced-filter-command:after,
@@ -4314,19 +4301,6 @@ _:-ms-fullscreen, :root .content-link-history {
 
 /*  =================== END TASK TEMPLATE PAGE ========================= */
 
-/*====================FIX FOR SERENITY 2.0 STYLE========================*/
-/**************DATA TABLE START*******************/
-.column-header-top-alignment {
-  vertical-align: baseline;
-}
-/**************DATA TABLE END*******************/
-
-/************** Override *******************/
-body .ui-picklist .ui-picklist-filter-container .ui-icon {
-  top: auto;
-  bottom: 5px;
-  right: 7px;
-}
 @media screen and (max-width: 1320px) {
   .display-full-text {
     display: none !important;

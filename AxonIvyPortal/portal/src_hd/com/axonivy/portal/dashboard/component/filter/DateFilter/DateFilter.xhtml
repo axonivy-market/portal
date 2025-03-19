@@ -22,7 +22,7 @@
   <c:set var="operators" value="#{cc.attrs.operators}" />
 
   <h:panelGroup id="date-filter-operator-panel" layout="block"
-    styleClass="ui-fluid md-inputfield">
+    styleClass="ui-fluid">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{operators ne null ? operators : widgetDateFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
@@ -33,7 +33,7 @@
   </h:panelGroup>
 
   <h:panelGroup id="is-date-panel" layout="block" rendered="#{filter.operator == 'IS'}"
-    styleClass="ui-fluid md-inputfield date-picker-panel">
+    styleClass="ui-fluid date-picker-panel">
     <p:datePicker id="is-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
@@ -48,7 +48,7 @@
   </h:panelGroup>
 
   <h:panelGroup id="is-not-date-panel" layout="block" rendered="#{filter.operator == 'IS_NOT'}"
-    styleClass="ui-fluid md-inputfield date-picker-panel">
+    styleClass="ui-fluid date-picker-panel">
     <p:datePicker id="is-not-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
@@ -63,7 +63,7 @@
   </h:panelGroup>
 
   <h:panelGroup id="before-date-panel" layout="block" rendered="#{filter.operator == 'BEFORE'}"
-    styleClass="ui-fluid md-inputfield date-picker-panel">
+    styleClass="ui-fluid date-picker-panel">
     <p:datePicker id="before-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
@@ -78,7 +78,7 @@
   </h:panelGroup>
 
   <h:panelGroup id="after-date-panel" layout="block" rendered="#{filter.operator == 'AFTER'}"
-    styleClass="ui-fluid md-inputfield date-picker-panel">
+    styleClass="ui-fluid date-picker-panel">
     <p:datePicker id="after-date" value="#{filter.toDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
@@ -94,7 +94,7 @@
 
   <h:panelGroup id="between-dates-panel-from" layout="block"
     rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}"
-    styleClass="ui-fluid md-inputfield date-picker-panel">
+    styleClass="ui-fluid date-picker-panel">
     <p:datePicker id="from-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
@@ -114,7 +114,7 @@
 
   <h:panelGroup id="between-dates-panel-to" layout="block"
     rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}"
-    styleClass="ui-fluid md-inputfield date-picker-panel">
+    styleClass="ui-fluid date-picker-panel">
     <p:datePicker id="to-date" value="#{filter.toDate}" locale="#{localeBean.locale}" disabled="#{readOnly}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateToDate(filter)}" />
@@ -138,7 +138,7 @@
 
   <h:panelGroup id="number-of-periods-panel" layout="block"
     rendered="#{filter.operator == 'LAST' or filter.operator == 'NEXT'}"
-    styleClass="number-of-periods-panel ui-fluid md-inputfield">
+    styleClass="number-of-periods-panel ui-fluid">
     <p:spinner id="number-of-period" value="#{filter.periods}" min="1" disabled="#{readOnly}">
       <p:ajax partialSubmit="true" global="false" />
       <f:param name="skipValidator" value="true" />
@@ -147,7 +147,7 @@
 
   <h:panelGroup id="period-type-panel" layout="block"
     rendered="#{filter.operator == 'LAST' or filter.operator == 'NEXT'}"
-    styleClass="period-type-panel ui-fluid md-inputfield">
+    styleClass="period-type-panel ui-fluid">
     <p:selectOneMenu id="period-n-type-selection" value="#{filter.periodType}" disabled="#{readOnly}">
       <f:selectItems value="#{widgetDateFilterBean.filterPeriodTypes}" var="period"
         itemValue="#{period}" itemLabel="#{period.pluralLabel}" />
