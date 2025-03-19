@@ -23,7 +23,6 @@ pipeline {
 
   environment {
     engineDir = "$env.WORKSPACE/engine"
-    JAVA_HOME = '/opt/temurin/java'
   }
 
   stages {

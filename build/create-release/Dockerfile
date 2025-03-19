@@ -6,3 +6,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get install -y openssh-client\
     && addgroup --gid 1001 build && adduser --uid 1001 --gid 1001 --disabled-password --gecos "" build\
     && apt-get install -y xmlstarlet
+
+# Explicitly set JAVA_HOME
+ENV JAVA_HOME=/opt/java/openjdk
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
