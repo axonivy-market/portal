@@ -1,4 +1,4 @@
-name: Portal Documentation
+name: Documentation
 run-name: 📚 Portal Documentation
 on:
   workflow_dispatch:
