@@ -6,7 +6,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get install -y openssh-client\
     && addgroup --gid 1001 build && adduser --uid 1001 --gid 1001 --disabled-password --gecos "" build\
     && apt-get install -y xmlstarlet \
-    && curl \
     && ca-certificates
 
 ENV JDK_DOWNLOAD_URL https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21+1/OpenJDK21U-jdk_x64_linux_21_1.tar.gz
