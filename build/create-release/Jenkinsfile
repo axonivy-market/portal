@@ -73,7 +73,6 @@ pipeline {
 
             withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
                 sshagent(credentials: ['github-axonivy']) {
-                  echo ${BRANCH_NAME}
                   sh """
                     # Remove created tag
                     git remote set-url origin git@github.com:axonivy-market/portal.git
