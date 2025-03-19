@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
@@ -33,7 +34,7 @@ public class TaskColumnModel extends ColumnModel {
     } else if (isText()) {
       return customFields.textField(field).getOrNull();
     } else {
-      return customFields.stringField(field).getOrNull();
+      return displayStringFieldContent(customFields);
     }
   }
 
