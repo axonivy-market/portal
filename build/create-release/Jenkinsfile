@@ -63,6 +63,7 @@ pipeline {
             }
 
             echo '====================Build all modules===================='
+            echo $JAVA_HOME
             // module structure [module path, isPossibleToDeploy]
             def modules = [['AxonIvyPortal/portal-components', true], ['AxonIvyPortal/portal', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/portal-user-examples', true], ['Showcase/portal-developer-examples', true], ['Showcase/InternalSupport', false], ['Showcase/portal-components-examples', true], ['AxonIvyPortal/portal-product', true], ['AxonIvyPortal/PortalApp', true], ['Showcase/portal-demo-app', true]]
             //def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty('build.plugin.version')
