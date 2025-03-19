@@ -19,7 +19,7 @@
           <p:messages id="errors-message" closable="true" />
         </div>
         <div>
-          <div class="card p-6">
+          <div class="card p-4">
             <div class="formgrid grid ">
               <h:panelGroup id="config-panel" layout="block" class="col-6 grid pr-6 m-0">
                 <div class="field col-12">
@@ -236,7 +236,7 @@
               </h:panelGroup>
               <p:divider layout="vertical" styleClass="m-0" />
               <div class="col-6 grid pl-6 m-0 statistic-configuration__preview">
-                <div class="col-12 flex grid-nogutter">
+                <div class="col-12 flex grid-nogutter p-0">
                   <div class="col-6">
                     <h4 class="mb-0">#{ivy.cms.co('/Labels/Preview')}</h4>
                   </div>
@@ -256,20 +256,12 @@
                         class="ui-chart js-statistic-chart statistic-chart-widget__canvas chart-options-config preview-statistic-chart"
                         data-chart-id="preview-statistic-chart">
                         <div class="empty-message-container w-35rem">
-                          <i class="si si-analytics-pie-2 empty-message-icon"></i>
+                          <i class="si si-analytics-pie-2 empty-message-icon" />
                           <p class="empty-message-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/firstConfigChartMessage')}</p>
                         </div>
                       </div>
                     </h:panelGroup>
                   </h:panelGroup>
-                </div>
-
-                <div class="col-12 text-right mt-3">
-                  <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                    styleClass="u-mar-right-15" actionListener="#{statisticConfigurationBean.cancel}" immediate="true" />
-                  <p:commandButton
-                    value="#{ivy.cms.co(statisticConfigurationBean.editMode ? '/Labels/Save' : '/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
-                    action="#{statisticConfigurationBean.save}" update="config-panel errors-message" />
                 </div>
 
                 <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="name-language-config"
@@ -296,6 +288,13 @@
                   titleRequired="false" />
               </div>
             </div>
+            <div class="col-12 text-right mt-3 p-0">
+              <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                styleClass="u-mar-right-15" actionListener="#{statisticConfigurationBean.cancel}" immediate="true" />
+              <p:commandButton
+                value="#{ivy.cms.co(statisticConfigurationBean.editMode ? '/Labels/Save' : '/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
+                action="#{statisticConfigurationBean.save}" update="config-panel errors-message" />
+            </div>
           </div>
         </div>
 
@@ -303,7 +302,7 @@
           function handlePreviewChart(xhr, status, args) {
             if (args.jsonResponse) {
               const data = JSON.parse(args.jsonResponse);
-              previewChart(data, "#{localeBean.locale}", "#{dateTimePatternBean.datePattern}");
+              previewChart(data, "#{htmlSanitizerBean.sanitize(localeBean.locale)}", "#{htmlSanitizerBean.sanitize(dateTimePatternBean.datePattern)}");
             }
           }
         </script>
