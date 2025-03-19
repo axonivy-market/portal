@@ -14,7 +14,6 @@ public enum ChartAggregates {
   WORKER_NAME("worker.name"),
   ACTIVATOR_NAME("activator.name"),
   CREATOR_NAME("creator.name"),
-  ORIGINAL_ACTIVATOR_NAME("originalActivator.name"),
   BUSINESS_RUNTIME("businessRuntime"),
   WORKING_TIME("workingTime"),
   NUMBER_OF_RESUMES("numberOfResumes"),

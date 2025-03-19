@@ -1473,6 +1473,7 @@ Dialogs:
               BUSINESS_RUNTIME: ''
               BUSINESS_STATE: ''
               CATEGORY: ''
+              CREATOR_NAME: ''
               CUSTOM_FIELD: ''
               END_TIMESTAMP: ''
               EXPIRY_TIMESTAMP: ''

@@ -49,8 +49,6 @@ import com.axonivy.portal.util.DisplayNameUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
-import ch.ivy.addon.portalkit.enums.DashboardColumnType;
-import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
@@ -61,7 +59,6 @@ import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.custom.field.configuration.internal.CustomFieldMeta;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.security.ISecurityConstants;
@@ -275,8 +272,6 @@ public class StatisticConfigurationBean implements Serializable {
   public List<ChartAggregates> getAllAvailableAggregates() {
     List<ChartAggregates> aggregations = filterAggregatesForChartTarget(statistic.getChartTarget());
     
-//    List<String> chartAggregations = new ArrayList<>();
-//    aggregations.forEach(agg -> chartAggregations.add(agg.getName()));
     return aggregations;
   }
   
@@ -346,18 +341,21 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   private void handleCustomFieldAggregation() {
-    if (!isCustomFieldsSelected()) {
-      Ivy.log().info("NO");
-      Ivy.log().info(statistic.getAggregates());
+    if(!isCustomFieldsSelected()) {
       return;
     }
-      Ivy.log().info("YES");
-      Ivy.log().info(statistic.getAggregates());
-    /**
-     * when user choose custom field, handle here
-     */
-//    String statisticCustomfieldAggregation = statistic.getAggregates().replace("*", customFieldAggregate);
-//    statistic.setAggregates(statisticCustomfieldAggregation);
+    
+    if(CustomFieldType.STRING.equals(this.currentCustomFieldType)) {
+      statistic.setAggregates("customFields.strings." + currentCustomField);
+      return;
+    }
+
+    if(CustomFieldType.NUMBER.equals(this.currentCustomFieldType)) {
+      statistic.setAggregates("customFields.numbers." + currentCustomField);
+      return;
+    }
+
+    statistic.setAggregates("customFields.timestamps." + currentCustomField);
   }
 
   public void updateNameForCurrentLanguage() {
@@ -588,7 +586,6 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public List<String> getCustomFieldNames() {
-    Ivy.log().info("getCustomFieldNames");
     Set<ICustomFieldMeta> customFieldList  = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
         : ICustomFieldMeta.cases();
     List<String> newList = new ArrayList<>();
@@ -600,48 +597,20 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void onSelectCustomField() {
-    Ivy.log().info("onSelectCustomField");
-    Ivy.log().info(currentCustomField);
-    /**
-     * Try to see if this findCustomFieldMeta is working?
-     */
     findCustomFieldMeta().ifPresent(meta -> {
-      Ivy.log().info(meta.toString());
       this.currentCustomField = meta.name();
       this.currentCustomFieldType = meta.type();
     });
     
-    handleCustomFieldAggregateForStatistic();
-  }
-  
-  /**
-   * WORKING HERE
-   */
-  private void handleCustomFieldAggregateForStatistic() {
-    if(CustomFieldType.STRING.equals(this.currentCustomFieldType)) {
-      statistic.setAggregates("customFields.strings." + currentCustomField);
-      return;
-    }
-
-    if(CustomFieldType.NUMBER.equals(this.currentCustomFieldType)) {
-      statistic.setAggregates("customFields.numbers." + currentCustomField);
-      return;
-    }
-
-    statistic.setAggregates("customFields.timestamps." + currentCustomField);
+    handleCustomFieldAggregation();
   }
   
   public Optional<ICustomFieldMeta> findCustomFieldMeta() {
-    Ivy.log().info("findCustomFieldMeta");
     Optional<ICustomFieldMeta> metaData = Optional.empty();
-
     Set<ICustomFieldMeta> customFieldList  = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
         : ICustomFieldMeta.cases();
-
     
     metaData = customFieldList.stream().filter(meta -> meta.name().equals(currentCustomField)).findFirst();
-    Ivy.log().info("metaData");
-    Ivy.log().info(metaData.get());
     
     return metaData;
   }

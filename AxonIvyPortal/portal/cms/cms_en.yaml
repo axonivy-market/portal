@@ -1478,6 +1478,7 @@ Dialogs:
               BUSINESS_RUNTIME: Business time
               BUSINESS_STATE: Business state
               CATEGORY: Category
+              CREATOR_NAME: Creator name
               CUSTOM_FIELD: Custom field
               END_TIMESTAMP: End timestamp
               EXPIRY_TIMESTAMP: Expiry timestamp
