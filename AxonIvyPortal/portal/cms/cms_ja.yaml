@@ -1,0 +1,1684 @@
+ch.ivy.addon.portal.generic:
+  CaseDetailsTemplate:
+    noCaseFound: ケースが見つからない、またはこのケースを表示する権限がありません。
+    requestTabTitle: リクエスト
+    statusTabTitle: ケース情報
+  OpenTaskTemplate:
+    browserTabClosingWarning: 進行中のワークが失われます。このまま続けますか？
+    goToSidestepWarning: サイドステップ処理がタスクから直接開始された場合、あなたが現在行っている修正は保存されません。このまま続けますか？
+  PortalName:
+    PortalName: ポータル
+ch.ivy.addon.portalkit.ui.jsf:
+  AbsenceAndDeputy:
+    Messages:
+      errorSelectInvalidDeputy: 代行者は選択済または無効です
+      errorSelectedInPersonalTaskPermanentDeputies: 代行者は「{0}」で選択済です
+      fromBiggerThanTill: 「終了日」は「開始日」より後にしてください。
+      overlappingAbsence: この不在日程は、別の不在日程と重複しています。
+      userNameRequired: ユーザー名は空欄に出来ません。
+    SelectedSubtitutes: 選択された代行者
+    absences: 不在
+    addAbsence: 不在の追加
+    deputies: 代行者
+    description: 不在につながる休暇、病気、その他の外的要因を設定します。
+    editAbsence: 不在の編集
+    from: 開始日
+    noDeputy: 代理なし
+    noPermissionToSeeThisArea: この領域を表示するために必要な権限がありません。
+    period: 期間
+    personalTaskDuringAbsenceDeputies: この不在期間中、個人的に割り当てられたタスクを代行する人
+    personalTaskPermanentDeputies: 個人的に割り当てられたタスクを恒久的に代行する人
+    selectDeputies: 代行者の選択
+    selectedDeputies: 選択された代行者
+    showAbsencesInThePast: 過去の不在を表示
+    substitutedUser: 代行されたユーザー
+    taskForRole: 役割のタスク
+    till: 終了日
+  AbsenceManagement:
+    Messages:
+      addNewAbsence: 新しい不在者が{0}に追加されました
+      removedAbsences: '{0}から削除された不在者'
+      saveAbsenceSetting: 不在設定の保存に成功しました。
+      updateAbsence: 欠席設定の更新に成功しました
+    absenceAndDeputy: 不在者と代行者
+    activeAbsence: 'TODO: Active Absence'
+    allAbsences: すべてのユーザーの不在状況
+    applicationAndRole: アプリケーションと役割
+    definedDeputies: 定義された代行者
+    deputyFor: 私は以下のメンバーの代行者です
+    myAbsences: 私の不在情報
+    myDeputies: 私の代行者情報
+    nextAbsence: 次の不在日程
+    selectedDeputyFor: 選択されたユーザーは、以下のメンバーの代行者です
+    selectedUser: 選択されたユーザー
+  AccessibilityShortcuts:
+    processName: アクセシビリティーショートカットの処理
+  AllTasks:
+    caseDescription: ケースの説明
+    taskDescription: タスクの説明
+    taskState: タスクの状態
+  CaseDocuments:
+    CaseDocumentsPageTitle: ケースドキュメント
+  Enums:
+    BasicDocumentType:
+      CONTRACT: 契約
+      DOCUMENTATION: ドキュメント化
+      EMAIL: メール
+      INFORMATION: 情報
+      OTHERS: その他
+    BehaviourWhenClickingOnLineInCaseList:
+      ACCESS_BUSINESS_DETAILS: ビジネスの詳細にアクセス
+      ACCESS_CASE_DETAILS: ケースの詳細にアクセス
+    BehaviourWhenClickingOnLineInTaskList:
+      ACCESS_TASK_DETAILS: タスクの詳細にアクセス
+      RUN_TASK: タスクを実行
+    DashboardCustomWidgetType:
+      EXTERNAL_URL: 外部 URL
+      PROCESS: Axon Ivy プロセス
+    DashboardWidgetType:
+      CASE: ケースウィジェット
+      CLIENT_STATISTIC: 統計ウィジェット
+      CUSTOM: カスタムウィジェット
+      NEW: 新規ウィジェット
+      NEWS: ニュースフィード
+      NOTIFICATION: 通知
+      PROCESS: プロセスウィジェット
+      PROCESS_VIEWER: プロセスビューアーウィジェット
+      STATISTIC: 統計ウィジェット
+      TASK: タスク ウィジェット
+      WELCOME: ウェルカムウィジェット
+    GlobalVariable:
+      Option:
+        DISPLAY_NAME: 表示名
+        DISPLAY_NAME_USERNAME: 表示名（ユーザー名）
+        'FALSE': 'False'
+        'TRUE': 'True'
+        USERNAME: ユーザー名
+        USERNAME_DISPLAY_NAME: ユーザー名（表示名）
+    ProcessMode:
+      COMPACT: コンパクト
+      GRID: グリッド
+      IMAGE: 画像
+    ProcessSorting:
+      BY_ALPHABETICALLY: アルファベット順
+      BY_CUSTOM_ORDER: ユーザー設定順序
+      BY_INDEX: 並べ替えインデックス
+    ProcessType:
+      EXTERNAL_LINK: 外部リンク
+      IVY_PROCESS: ビジネスプロセス
+    ProcessWidgetMode:
+      COMBINED_MODE: 複合モード
+      COMPACT_MODE: コンパクト モード
+      FULL_MODE: フル モード
+      IMAGE_MODE: イメージ モード
+    ReleaseState:
+      DEPRECATED: 非推奨
+      RELEASED: リリース済み
+    SortDirection:
+      ASC: 昇順で並べ替え
+      DESC: 降順で並べ替え
+    WeekDay:
+      FRIDAY: 金
+      MONDAY: 月
+      SATURDAY: 土
+      SUNDAY: 日
+      THURSDAY: 木
+      TUESDAY: 火
+      WEDNESDAY: 水
+    WelcomeImageFit:
+      CONTAIN: 含む
+      COVER: カバー
+      FILL: 塗りつぶし
+      NONE: なし
+    WelcomeTextPosition:
+      BOTTOM_LEFT: 左下隅
+      BOTTOM_RIGHT: 右下隅
+      CENTER: 中央
+      TOP_LEFT: 左上隅
+      TOP_RIGHT: 右上隅
+    WelcomeTextSize:
+      HEADING_1: 見出し 1
+      HEADING_2: 見出し 2
+      HEADING_3: 見出し 3
+      NORMAL_TEXT: 通常のテキスト
+  MyProfile:
+    DateFormat: 日付の形式
+    FormattingLanguage: 書式設定言語
+    General: 一般
+    Homepage: ホームページ
+    Language: 言語
+    ProcessList: プロセスリスト
+    byDefault: （初期値）
+    defaultOption: 初期値（{0}）
+    defaultViewMode: 表示モードの初期値
+    event: イベント
+    notSubscribed: 通知しない
+    notificationChannels: 通知チャネル
+    notificationChannelsReset: 通知チャネルをリセットしました
+    subscribed: 通知する
+  PortalManagement:
+    AdminSetting: 管理者設定
+  ProcessViewer:
+    Breadcrumb: '{0} プロセスのプロセスビューアー'
+    ProcessViewerText: プロセスビューアー
+    Title: プロセスビューアー
+  TaskDocuments:
+    TaskDocumentsPageTitle: タスクドキュメント
+  adminSettings:
+    addLanguages: 言語の追加
+    addNewApplication: 新規サードパーティーアプリの追加
+    announcement:
+      announcement: 通知
+      announcementsDisabled: 通知は無効になっています。
+      announcementsEnabled: 通知は有効になっています。
+      defaultLanguageRequiredMessage: アプリケーションのデフォルト言語の通知は必須です。
+      disabled: 無効
+      enable: 有効
+      information: この領域に、一般的な情報 (ダウンタイム、変更など) を通知するできます。このメッセージは、すべてのポータル ユーザーが見ることができます。
+      saveChanges: 変更内容を保存
+      tabTitle: 通知
+    appDisplayName: 表示名
+    appDisplayNameRequiredMsg: アプリケーションの表示名を入力してください。
+    appNameCharactersLimit: アプリケーション名に使えるのは [\p{Alnum}_-]+ だけです。
+    appNameRequiredMsg: アプリケーション名を入力してください。
+    applicationHint: 並び替えにドラッグ＆ドロップを使用する。
+    applicationLinkRequiredMsg: ポータルのリンクを入力してください。
+    applicationList:
+      addNewApplication: 新しいアプリケーションの追加
+      applicationSelectionHeader: アプリケーションの選択
+      menuIcon: メニューアイコン
+    applications: アプリケーション
+    applicationtype:
+      thirdPartyApplication: サードパーティーのアプリケーション
+    currentValue: 現在の値
+    defaultApplicationName: Axon Ivy
+    defaultValue: デフォルト値
+    deleteAppConfirmation: このアプリケーションを削除してよろしいですか？
+    dialogclosinginformation:
+      dialogHeader: ポータル設定終了
+      informMessage: ポータル設定を変更した場合、新しい構成を有効にするには現在のページの更新が必要です。
+    duplicatePortalAppMsg: このアプリケーションは既に存在しています。別のアプリケーションを選択してください。
+    editApplication: アプリケーション編集
+    editSetting: 設定の編集
+    embedInFrame: 処理／タスクをIFrameモードで開始
+    emptySupportedLanguages: 追加の言語はサポートされていません
+    globalVariableNote:
+      AppleStoreURL: Apple Store で Axon Ivy モバイル アプリをダウンロードするための URL を設定します。
+      ApplicationName: ページタイトルに表示されるデフォルトのアプリケーション名。
+      BaseQRCodeUrl: 表示するQRコードのベースURLを設定します。
+      DefaultThemeMode: アプリケーションのテーマモードの初期値
+      EnableDocumentPreview: ドキュメントのプレビューを有効にするには true に設定してください。（プレビュー可能なファイルの種類：pdf、png、txt、log）
+      EnableSwitchThemeModeButton: テーマ切り替えボタンを有効にするには true に設定してください。
+      GlobalSearchScopeCategoriesNote: グローバル検索で検索するタイプを定義する
+      GooglePlayURL: Google Play で Axon Ivy モバイル アプリをダウンロードするための URL を設定します。
+      RoleDirectChildrenLimit: 設定された数値は、ロール管理タブに表示される直接の子ロールの数を制御します。有効な数値：10、50、100
+      RoleParentLimit: 設定された数値は、ロール管理タブでロールをフィルタリングするときに表示される親ロールの数を制御します。有効な数値：5、10、20
+      SearchScopeCaseFields: グローバル検索で一致するケースを見つけるために、ケースIDのほかに使用するフィールドを定義します。（検索のパフォーマンスに影響する可能性があります）
+      SearchScopeTaskFields: グローバル検索で一致するタスクを見つけるために、タスクIDのほかに使用するフィールドを定義します。（検索のパフォーマンスに影響する可能性があります）
+      ShowLoginPageFooter: ログインページのフッターの表示のオン／オフを切り替えます。
+      ShowQRCode: QRコードの表示のオン／オフを切り替えます。
+      behaviourWhenClickingOnLineInCaseList: ダッシュボード・グローバル検索・関連ケース・または複合モードのプロセスウィジェットの各ケースウィジェットでケースをクリックしたときに、ケースの詳細またはビジネスの詳細へのアクセスを切り替えます。
+      behaviourWhenClickingOnLineInTaskList: タスク リスト、ダッシュボードのタスク ウィジェット、およびケース詳細ページの関連タスクの行をクリックしたときの動作（タスクを実行するか、タスクの詳細にアクセスするか）を切り替えます。
+      chatMaxConnection: 設定された数値は、アクティブなチャットで許可されるタブの数を制御します。それ以上のタブが開かれると、非アクティブなタブではチャットが無効になります。許可される値は 1 から 5 です。
+      chatResponseTimeout: 'チャット応答タイムアウトで単位は秒。初期値は 0 で、これはタイムアウトなしを意味します。チャットメッセージがリバースプロキシ Nginx を通過する場合、チャット応答タイムアウトは Nginx タイムアウトよりも短くする必要があります。（例: 60 秒未満）'
+      dateFilterWithTime: 時間による日付フィルタリングを有効にするには、true に設定してください。この設定は、タスク リスト、ケース リスト、および統計に影響します。
+      deepLAuthKey: DeepL認証キー（末尾は:fx）
+      defaultHomepage: ホームアイコンまたはロゴをクリックしたときにリダイレクトされる標準ホームページを設定します。この設定は、タスク完了後の終了ページにも適用されます。
+      defaultProcessImage: 画像処理リストに表示される初期画像の標準設定。
+      defaultProcessMode: 処理リストの表示モードの標準設定。
+      defaultSortDirectionOfCaseList: ケースリストのソート方向の初期値
+      defaultSortDirectionOfTaskList: タスクリストのソート方向の初期値
+      defaultSortFieldOfCaseList: ケースリストのソートフィールドの初期値
+      defaultSortFieldOfTaskList: タスクリストのソートフィールドの初期値
+      disableCaseCount: ケース リストでケースのカウントを無効にするには true に設定してください
+      disableTaskCount: タスク リストでタスクのカウントを無効にするには true に設定してください
+      displayAllUsersOfTaskActivator: この設定は SecurityMemberDisplayName コンポーネントに使用します。SecurityMember がロールである場合、この設定を true に設定すると、このロールのすべてのユーザーが一覧表示されます。true に設定すると、ロール名の横にアイコン情報が表示されます。
+      displayMessageAfterFinishOrLeaveTask: ユーザーがタスクを完了または退出すると、フィードバック メッセージが表示されます。
+      embedInFrame: プロセス／タスクをIFrameモードで開始するには true に設定してください
+      enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。
+      enableDeepLTranslation: DeepL翻訳サポートを有効にするには、このプロパティーを true に設定してください。
+      enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
+      enablePrivateChat: 個人用チャット機能を有効にするには、このプロパティーを true に設定してください。
+      enableProcessViewer: タスク／ケースアクションでプロセスビューアーオプションを有効にするには、このプロパティをtrueに設定してください。
+      enableScriptCheckingForUploadedDocumentNote: アップロードされたドキュメントのスクリプトチェックを有効にするには、true に設定してください。現在、この機能は PDF、Excel、Word のチェックをサポートしています。
+      enableVirusScannerForUploadedDocumentNote: アップロードされたドキュメントへのウイルススキャナーを有効にするには true に設定してください。現在、この機能は API VIRUSTOTAL を使用しています。
+      hideCaseCreator: |-
+        ケースリスト、ケースウィジェット、ケースの詳細でケースクリエイターを非表示にするには、true に設定してください。
+        この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。
+      hideCaseDocument: true に設定すると、ケース詳細ページのドキュメントセクションは非表示になり、それ以外の場合は表示されます。
+      hideChangePasswordButtonNote: この変数を true に設定すると、トップメニューの「パスワードの変更」オプションとログインページの「パスワードを忘れた場合」オプションが非表示になります。false に設定すると、これらのオプションが表示されます。
+      hideLogoutButtonNote: true の場合、トップメニューのログアウトボタンは非表示になり、それ以外の場合は表示されます。
+      hideRelatedCaseInfoFromHistory: true の場合、ケース履歴は関連するケース情報を履歴テーブルに表示しません。
+      hideSystemNotesFromHistory: true の場合、管理者以外のユーザーに対してケース／タスクノートは何のシステムノートも表示しません。
+      hideSystemNotesFromHistoryAdministrator: true の場合、管理者に対してケース／タスクノートは何のシステムノートも表示しません。
+      hideSystemTasksFromHistory: true の場合、管理者以外のユーザーに対してケースノートは何のシステムタスクも表示しません。
+      hideSystemTasksFromHistoryAdministrator: true の場合、管理者に対してケースノートは何のシステムタスクも表示しません。
+      hideTaskDocument: true に設定すると、タスク詳細ページのドキュメントセクションは非表示になり、それ以外の場合は表示されます。
+      hideTimeNote: 日付の横の時間と分を非表示にするには、true に設定してください。
+      hideUploadDocumentForDoneCaseNote: ケース完了後のドキュメントのアップロード（および削除）を拒否するには、true に設定します。
+      hideYear: true に設定すると、年は非表示になり、そうでない場合は表示されます。
+      loggedInUserFormat: ログインしたユーザー形式を表示するオプション
+      refreshTaskListIntervalNote: タスクリストの更新間隔。（秒単位）
+      showAvatar: ユーザー／ロールのアバターの表示のオン／オフを切り替えます。
+      showButtonIcon: ボタン内のアイコンの表示のオン／オフを切り替えます。
+      showCaseDurationTime: ケース詳細ページでの所要時間の表示のオン／オフを切り替えます。
+      showErrorLogToConsole: ブラウザコンソールにエラーログを書き込むには、true に設定してください
+      showGlobalSearch: グローバル検索の表示のオン／オフを切り替えます。
+      showProcessInformation: プロセスページ（グリッド モード）とケースの詳細にプロセスの情報を表示するためのリンクを無効にするには、false に設定してください。
+      showQuickGlobalSearch: クイックグローバル検索の表示のオン/オフを切り替えます。
+      showTaskDurationTime: タスク詳細ページでの所要時間の表示のオン／オフを切り替えます。
+      uploadDocumentWhiteListExtensionNote: すべての拡張子を許可する場合は、空欄にしてください。一部の拡張子のみを許可する場合は、対象の拡張子をカンマで区切って入力してください。（例：pdf, txt, doc, docx）
+    key: キー
+    link: リンク
+    loading: 読み込み中
+    loginLogoSizeTooltip: 推奨サイズ<BR/>正方形ロゴ：80 x 80 ピクセル<BR/>長方形ロゴ：191 x 50 ピクセル
+    logoSizeRecommendation:
+      homeRectangleSize: 長方形ロゴ：160 x 42ピクセル
+      homeSquareSize: 正方形ロゴ：75 x 75ピクセル
+      loginRectangleSize: 長方形ロゴ：191 x 50ピクセル
+      loginSquareSize: 正方形ロゴ：80 x 80ピクセル
+      sizeRecommendation: 推奨サイズ
+    note: 注記
+    password: パスワード
+    passwordHint: システム管理者のパスワード
+    passwordRequiredMsg: パスワードを入力してください。
+    pleaseSelect: 選択してください。
+    portalLink: ポータルリンク
+    refreshUserErrorMsg: '{0}個のエラーが見つかりました。詳細なメッセージをご覧ください：<BR/>{1}'
+    refreshUserPermissionSuccessful: '{0}人のユーザーの更新に成功しました。'
+    refreshUserPermissions: 設定を同期する
+    requireToInputServer: アプリケーションのサーバーを選択してください。
+    resetAllSettingsConfirmation: すべての設定を初期値に戻してもよろしいですか?
+    resetSettingConfirmation: この設定を初期値に戻してもよろしいですか?
+    restoreAllToDefault: すべてを初期値に戻す
+    restoreDefault: 初期値に戻す
+    settingApplicationName: アプリケーション名の設定
+    settingMultipleLanguages: 複数言語の設定
+    usernameHint: システム管理者のユーザー名。
+    usernameRequiredMsg: ユーザー名を入力してください。
+    value: 値
+  applicationMenuHeader:
+    MobileApp: Axon Ivy モバイルアプリをダウンロードして接続
+    ThemeSwitcher: テーマ スイッチャー
+    adminSettings: 管理者設定
+    changePassword: パスワードを変更
+  businessCaseState:
+    DESTROYED: 破棄済み
+    DONE: 完了
+    OPEN: 未完了
+  caseDetails:
+    addDocumentHelpText: ファイルをアップロードするには、ドラッグ＆ドロップするか、ファイルを選択してください
+    addNoteHelpText: ここにテキストを入力してください。
+    businessDetailsTitle: ビジネスの詳細
+    deleteFile: ファイル削除
+    documents: ドキュメント
+    downloadFile: ファイルをダウンロード
+    duration: 所要時間
+    history: 履歴
+    noCaseName: ＜ケース名なし＞
+    noDescription: 説明なし
+    noRunningCase: 実行中のケースはありません
+    noRunningTask: 実行中のタスクはありません
+    noRunningTasksAndCasesPermission: さらにタスクが実行中です。このケースに関連するタスクを表示する権限がありません。
+    noSideSteps: サイドステップが見つかりません
+    noTaskName: ＜タスク名なし＞
+    noTasks: タスクなし
+    relatedTasks: 関連するタスク
+    relatedTasksAndCases: 関連するタスクとケース
+    runningTasks: 実行中のタスク
+    showAdditionalPage: ビジネスの詳細
+    showAllTasks: すべてのタスクを表示
+    showAllTechnicalCases: すべての技術ケースを表示
+    showMoreTasks: さらにタスクを表示
+    showMoreTechnicalCases: さらに技術ケースを表示
+    showProcessOverview: プロセスの概要
+    sideSteps: サイドステップ
+    taskIsDestroyed: タスクは破棄されました
+    taskIsDone: タスクは完了しました
+    taskIsFailed: タスクは失敗しました
+    taskIsWaiting: タスクは待機中です
+    taskStateAndResponsible: 状態：{0}、責任者：{1}
+    taskStateIsCreated: タスクの状態は 作成済み です（まだ保存されていません）
+  caseList:
+    cases: ケース
+    confirmDeleteMessage: この操作は元に戻せません。このビジネスオブジェクトを本当に削除しますか？
+    defaultColumns:
+      APPLICATION: アプリケーション
+      CATEGORY: カテゴリー
+      CREATION_TIME: 作成済み
+      CREATOR: クリエイター
+      FINISHED_TIME: 完了
+      ID: ケース ID
+      NAME: 名前／説明
+      OWNER: オーナー
+      STATE: 状態
+    deletionNoteContent: このケースは{0}によって破棄されました
+    destroyCaseMessage: この操作は元に戻せません。このケースとそのすべてのタスクを破棄してもよろしいですか？
+    destroyfail: ケースの破棄に失敗しました。
+    destroysucceed: ケースは正常に破棄されました。
+    downloadZipFileExplanation: エクスポートするケースの数が Excel の行数制限を超えています。そのためデータは複数の Excel ファイルに分割され、ダウンロードするためにZIP ファイルに圧縮されます。
+    error: エラー
+    exportedCasesFileName: AXONIVY_Dataset_Cases_{0}.{1}
+    headerTitle:
+      relatedStatisticHeader: 統計グラフの関連するケース：
+      technicalCaseOfBusinessCaseAlternativeTitle: ケース{0}
+      technicalCasesOfBusinessCaseTitle: 'ビジネスケースの技術的なケース #{0} {1}'
+    relatedCaseHeader: 'ケース #{0} {1}'
+    relatedCases: 関連するケース
+    title: タイトル
+  caseState:
+    CREATED: 作成済み
+    CREATED_UPPERCASE: 作成済み
+    DESTROYED: 破棄済み
+    DESTROYED_UPPERCASE: 破棄済み
+    DONE: 完了
+    DONE_UPPERCASE: 完了
+    FAILED: 失敗
+    INPROGRESS: 実行中
+    OPEN: 未完了
+    OPEN_UPPERCASE: 未完了
+    RUNNING: 実行中
+  chat:
+    chatAssigneeDialogHeader: ユーザーをチャットに追加
+    chatAssigneeDialogHint: あなたのプロセスに関連するチャットに追加する関連ユーザーとグループを選択してください：
+    createProcessChat: プロセスチャットの作成
+    errorSelectInvalidAssignee: 担当者は既に選択されているか無効です
+    failureToCreateProcessChat: プロセスチャットの作成に失敗しました
+    failureToJoinProcessChat: プロセスチャットへの参加に失敗しました
+    groupChatHeader: ケースに関連するチャット
+    joinGroupQuestion: 参加しますか？
+    joinProcessChat: プロセスチャットへ参加
+    joinedProcessChat: あなたは以下のプロセスチャットに参加しました - {0}
+    noAssignees: このグループチャットを作成する担当者を選択してください
+    noGroupChat: グループチャットはありません。
+    noUsers: ユーザーなし
+    participants: 参加者
+    personalChatHeader: 一般チャット
+    processChatIsCreated: プロセスチャット：{0} が作成されました
+    processChatWasCreated: プロセスチャット：{0} は過去に作成されました。もう一度作ることは出来ません。
+    selectedAssignees: 選択した担当者
+    toggleChat: チャット パネルを切り替える
+    typeMessage: ここにメッセージを入力してください。
+    viewParticipant: 参加者を表示
+  common:
+    All: すべて
+    And: と
+    BusinessCaseInformation: ビジネスケース情報
+    Clone: 複製
+    CollapseAll: すべて折りたたむ
+    ExpandAll: すべて展開
+    MoreItemsAvailable: その他のアイテムあり
+    NoSelection: 選択なし
+    ResetToDefaultHeaderText: 初期設定にリセットしますか？
+    RoleUserInformation: ロールとユーザー情報
+    StringFormat:
+      DateFromTo: '%sから%sまで'
+      TextListOut: '%s、%s、。。'
+      TextWithRoundBracket: '%s（%s）'
+    TaskCaseInformation: タスク／ケース情報
+    Update: 更新
+    Widget: ウィジェット
+    action: アクション
+    active: アクティブ
+    add: 追加
+    addDocument: ドキュメントを追加
+    addLink: リンクを追加
+    addNote: ノートを追加
+    allCategories: すべてのカテゴリー
+    allTypes: 戻る
+    allowPng: png形式のみ許可されます
+    apply: 適用
+    at: に
+    author: 作成者
+    back: 戻る
+    backToCaseMap: ケースマップに戻る
+    backgroundColor: 背景色
+    cancel: キャンセル
+    case: ケース
+    caseCategory: ケースカテゴリー
+    caseInformation: ケース情報
+    caseName: ケース名
+    categories: カテゴリー
+    change: 変更
+    close: 閉じる
+    cockpit: コックピット
+    colors: 色
+    comment: コメント
+    completedOn: 完了日
+    confirmForDelete: このアイテムを削除してもよろしいですか?
+    confirmation: 確認
+    confirmationHeaderText: 本当によろしいですか?
+    continue: 続ける
+    create: 作成済み
+    creationDate: 作成日
+    dashboard: ダッシュボード
+    data: データ
+    dateFromBiggerThanTo: 「終了日」は、「開始日」より後にしてください。
+    dateRequired: 日付は空欄にできません。
+    day: 日
+    dayUnit: 日
+    days: 日
+    default: 初期値
+    defaultNotificationMessage: 問題が発生しましたようです。
+    delete: 削除
+    deleteAbsenceHeaderText: この不在日程を削除しますか?
+    deleteChartHeaderText: このチャートを削除しますか?
+    deleteDocumentHeaderText: このドキュメントを削除しますか?
+    deleteFilterHeaderText: このフィルターを削除しますか?
+    deleteSettingHeaderText: この設定を削除しますか?
+    description: 説明
+    design: デザイン
+    destroy: 破棄
+    destroyCaseHeaderText: このケースを破棄しますか？
+    destroyTaskHeaderText: このタスクを破棄しますか？
+    detail: 詳細
+    display: 表示
+    displayAsTopMenu: トップメニューとして表示
+    displayName: 表示名
+    dragAndDropFile: ファイルをドラッグ＆ドロップするか、または
+    dragAndDropImage: 画像をドラッグ＆ドロップするか、または
+    edit: 編集
+    errorAjaxMessage: 一般的な例外があります。
+    errorFileUploadSize: ファイル サイズは {0} 未満である必要があります
+    errorNotification: エラー通知
+    errorXhr: Web サイトのコンテンツを更新できませんでした
+    escalationTaskHeaderText: エスカレーションのトリガー
+    escalationTaskMessage: 有効期限が現在に設定されているため、タスクは期限切れになります。よろしいですか？
+    filter:
+      from: 開始
+      moreOptions: その他のオプション
+      restoreDefaultFilterHeader: 初期値に戻す
+      to: 終了
+      worker: エディター
+      wrongFromDateFormat: 有効な「開始」日を入力してください。日付形式は {0} です
+      wrongToDateFormat: 有効な「終了」日を入力してください。日付形式は {0} です
+    finish: 終了
+    general: 一般
+    generalInformation: 一般情報
+    globalSearch: 検索...
+    goToDetail: 詳細へ移動
+    hasPrecondition: このプロセスには前提条件があります
+    height: 高さ
+    hide: 非表示
+    homeLogo: ホームロゴ
+    hour: 時間
+    hours: 時間
+    inactive: 非アクティブ
+    information: 情報
+    leave: 離れる
+    leaveAndReserve: 休暇と予約
+    linkToCaseDetails: 詳細は、<a href="{0}" >ここ</a>をクリックしてください。
+    loading: 読み込み中
+    loginLogo: ログインロゴ
+    logos: ロゴ
+    mainColor: メインカラー
+    minute: 分
+    minutes: 分
+    more: 詳細
+    moreInformation: 詳細情報
+    myProcesses: マイプロセス
+    name: 名前
+    new: 新規
+    next: 次へ
+    nextStage: 次のステージ
+    'no': いいえ
+    noCategory: ［カテゴリーなし］
+    noDocumentAvailable: ドキュメントがありません
+    noName: 名前なし
+    noNoteAvailable: ノートがありません
+    noNotesFound: ノートが見つかりません
+    noProcessDescription: 下のボタンをクリックしてこのプロセスを実行してください
+    noRecordsFound: レコードが見つかりません。
+    notAvailable: なし
+    note: ノート
+    numberFromBiggerThanTo: 「終了」は、「開始」より大きな値にしてください。
+    numberOfSelectedFilter: 選択されたフィルター
+    ok: OK
+    'on': オン
+    pleaseAddDocument: 上記のリンクにドキュメントを追加してください。
+    pleaseAddNote: 上記のリンクにノートを追加してください。
+    previousStage: 前のステージ
+    private: 個人用
+    process: プロセス
+    processes: プロセス
+    public: 公開用
+    remove: 削除
+    removeSelection: 選択から削除
+    reorder: 並び替え
+    requiredFieldMessage: このフィールドは必須です
+    reserve: 保持
+    reset: リセット
+    resetFilters: フィルターをリセット
+    resetSettingHeaderText: 設定をリセットしますか？
+    resetTaskHeaderText: このタスクをリセットしますか？
+    resetToDefaultMessage: この操作は元に戻せません。初期設定にリセットしてもよろしいですか?
+    resetToStandardFilterHeaderText: 標準フィルターにリセットしますか？
+    restore: リストア
+    restoreToDefaultChartHeaderText: デフォルトのチャートに戻しますか？
+    role: ロール
+    save: 保存
+    saveAll: すべて保存
+    saveSuccessfully: データの保存に成功しました。
+    search: 検索
+    second: 秒
+    seconds: 秒
+    seeDetail: 詳細をご覧ください
+    select: 詳細を表示
+    selectAll: すべて選択
+    selectUsers: ユーザーを選択
+    selectedDay: 選択した日数：{0}
+    send: 送信
+    sessionExpried: セッションの有効期限が切れました。アプリケーションが再起動されます。
+    sessionExpriedInTeams: セッションの有効期限が切れました。アプリケーションが再起動されます。
+    setting: 設定
+    showDetail: 詳細を表示
+    showRelatedCaseInfo: 関連するケース
+    showSystemNotes: システムノート
+    showSystemTasks: システムタスク
+    sorting: 並べ替え
+    start: 開始
+    startProcess: プロセスの開始
+    state: 状態
+    status: ステータス
+    switchToDesktopVersion: デスクトップバージョンに切り替え
+    taskCanceledAndLeftSuccessfully: タスクをキャンセルして正常に終了しました。タスクはダッシュボードまたはタスクリストで見つけることができます。
+    taskFinishedSuccessfully: タスクを正常に完了しました
+    taskFromSubstitution: あなたは代行者なので、このタスクが表示されます
+    taskName: タスク名
+    tasks: タスク
+    theCasemap: このケースマップ
+    theProcess: プロセス
+    timeInformation: 時間情報
+    timestamp: タイムスタンプ
+    topMenuItem: トップメニュー項目
+    type: タイプ
+    typeAdmin: すべての管理者
+    typeAllUsers: すべてのユーザー
+    typeOnlyMe: 自分のみ
+    uploadHere: 有効な日付を入力してください。
+    uploadOneHere: ここにアップロード
+    user: '{0} ユーザー'
+    users: ユーザー
+    via: 経由
+    viewExpired: 現在のビューの有効期限が切れました。ホームページにリダイレクトされます。
+    viewMode: 表示モード
+    visible: 表示
+    waitingDownloadMessage: エクスポートの準備中、数分かかる場合があります
+    warning: 警告
+    welcomeToPortal: ようこそ、ログインしてください
+    wrongDateFormat: 有効な日付を入力してください。
+    year: 年
+    years: 年
+    'yes': はい
+  components:
+    RoleManagement:
+      AssignUsersToRole: ユーザーをロールに割り当てる
+      AssignedUser: 割り当てられたユーザー
+      AvailableUsers: 利用可能なユーザー
+      CannotDeleteRoleTooltip: このロールを削除する権限がありません。システム管理者にお問い合わせください。
+      CannotDeleteUserTooltip: 直接のロール割り当てのみ編集できます。継承されたメンバーシップは編集できません。
+      CannotEditRoleTooltip: ロール情報を変更する権限がありません。システム管理者にお問い合わせください。
+      CannotManageRoleTooltip: どのプロセスにも関係のないロールのロール情報のみを変更できます。
+      CreateRole: 新しいロールを作成する
+      DeleteButtonTitle: ロールの削除
+      EditButtonTitle: ロール情報の編集
+      FilteredRoles: フィルタリングされたロール
+      InheritedMembership: 継承されたメンバーシップ
+      ListUsers: ロール {0} のユーザー
+      Messages:
+        ConfirmDeleteRole: 削除してもよろしいですか？
+        ConfirmDeleteUserOfRole: ロールからユーザーを削除してもよろしいですか?
+        CreateRoleFailed: ロール「{0}」を作成できませんでした
+        CreateRoleSuccess: ロール「{0}」は正常に作成されました
+        DuplicateRole: ロール「{0}」は既にシステム内に存在します。別の名前で試してください
+        MaxSearchLimit: '{0} 件以上の検索結果があります'
+        NotFoundRole: システム内に「{0}」が見つかりません
+        ParentRoleIsRequired: 親ロールは必須です
+        RemoveRoleSuccess: ロール「{0}」は正常に削除されました
+        RoleNameIsRequired: ロール名は必須です
+        RoleNotFound: ロールが見つかりません
+        SearchToSeeMoreRole: 特定のロールを見つけるには検索を使用してください (さらに {0} 個のロールがあります)
+        UpdateRoleSuccess: ロール「{0}」の更新に成功しました
+        UserOfRoleNotFound: このロールを所有するユーザーはいません
+      NumberUsers: '{0} 人のユーザー'
+      ParentRole: 親ロール
+      RemovingRoleHeader: 「{0}」のロールを削除しますか？
+      RoleCreation: ロールの作成
+      RoleDetails: ロールの詳細「{0}」
+      RoleInformation: ロール情報
+      RoleName: ロール名
+      SearchRole: ロールの検索
+      TitlePage: ロールの管理
+      UserAssignment: ユーザーの割り当て
+      UserSelectionLabel: このロールに追加するユーザーを検索
+    SecurityMemberDisplayName:
+      filterByUsername: ユーザー名でフィルタリング
+      filterToSee: さらに表示するにはフィルタリング
+      loadMore: さらに読み込む
+      noUser: ユーザーがいません。
+      roleMemberItemFormat: <li class="tooltip-body-item">{0}</li>
+      roleMemberLineFormat: <p class="tooltip-body-item">{0}</p>
+      roleMembersTooltipFormat: |-
+        <p class="tooltip-header">{0}</p>
+        <ul style="margin: auto; {1}">{2}</ul>
+      tooltipHelper: クリックすると、このロールを直接または間接的に所有するすべてのユーザーが表示されます
+      userOfRoleTitle: '{0} グループのユーザー'
+    passwordValidation:
+      criteria: 基準
+      enablePasswordValidation: パスワード検証を有効にする
+      passwordPolicyType:
+        minCharacter: 文字数の最小値
+        minLowercaseCharacter: 小文字の数の最小値
+        minNumber: 数字の数の最小値
+        minSpecialCharacter: 特殊文字の数の最小値
+        minUppercaseCharacter: 大文字の数の最小値
+      titlePage: ​​パスワード検証
+    processChain:
+      currentStepIsNotDefined: プロセスチェーンの現在のステップ ({0}) が定義されていません
+    taskStart:
+      cannotDelegateTaskMessage: このタスクは、他のユーザーまたはグループに委任できません。
+      cannotStartMessages:
+        cannotStartTask: タスク {0} を開始できません。
+        isAnotherUserWorking: ユーザー「{2}」が現在作業中のため、識別子「{1}」のタスク「{0}」で作業することはできません。
+        noPermission: 権限がないため、タスク {0} を開始できません。
+        taskDone: タスク {0} は完了しているため、開始できません。
+      created: 作成日
+      expired: 有効期限
+      showDetailsHint: 詳細を表示
+      taskDescriptionNotAvailable: ［説明がありません］
+      taskNameNotAvailable: ［タスク名がありません］
+    taskView:
+      DeleteFilter: フィルターを削除
+      adminFilterSetWarning: フィルター セットには、管理者のみが表示できる状態が含まれています。
+      appliedFilters: 適用されたフィルター
+      exportedTasksCasesFileName: AXONIVY_Dataset_Statistics_{0}.{1}
+      exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}.{1}
+      filter: フィルター
+      filterDeletionConfirmation: このフィルターを削除してもよろしいですか？
+      filterExistedValidationError: フィルターは既に存在します
+      filterName: フィルター名
+      filterVisibility: フィルターの可視性
+      noTask: タスクはありません。
+      privateFilter: マイ フィルター
+      publicFilter: 公開用
+      savedFilters: 保存されたフィルター：
+  dashboard:
+    CloneWidget: ウィジェット複製
+    CustomWidgets: カスタムウィジェット
+    DashboardConfiguration:
+      CreateFromScratch: 最初から作成
+      CreateFromScratchDescription: 最初から独自のダッシュボードを作成する
+      CreateNewPrivateDashboard: 新しい個人用ダッシュボードを作成する
+      CreateNewPublicDashboard: 新しい公開用ダッシュボードを作成する
+      Description: この領域では、要件に応じてダッシュボードを構成できます。
+      DoNotSupportMobile: ダッシュボードの設定は、モバイルデバイスではサポートされていません。
+      EditPrivateDashboards: 個人用ダッシュボードを編集する
+      EditPublicDashboards: 公開用ダッシュボードを編集する
+      ExportDashboard: ダッシュボードをエクスポート
+      PrivateDashboard: 個人用ダッシュボード
+      PrivateDashboardConfiguration: 個人用ダッシュボードの設定
+      PublicDashboard: 公開用ダッシュボード
+      PublicDashboardConfiguration: 公開用ダッシュボードの設定
+      ReorderPrivateDashboards: あなたのダッシュボードを並び替える
+      ReorderPublicDashboards: 公開用ダッシュボードを並び替える
+      SelectAction: アクションを選択してください
+      SomeThingWentWrong: 問題が発生しました
+      Title: ダッシュボードの設定
+    EmptyFilterMessage: ウィジェットフィルターが見つかりません
+    ExternalPageWidget: 外部ページ
+    ExternalPageWidgetIntroduction: このウィジェットは外部Webページを表示できます。
+    Filter:
+      FilterOptionHeader: フィルターオプション
+      ManageWidgetFilterHeader: ウィジェットフィルター管理
+      NotFound: フィルターが見つかりません
+      WidgetNameColumn: ウィジェット名
+      WrongDateFormat: 日付が無効です
+    ManageFilter: フィルターの管理
+    NoData: データなし
+    NoSavedFilterMessage: 保存されたフィルターが見つかりません。［フィルターを保存］ ボタンをクリックして新しいフィルターを作成してください
+    NoWidgetAvailable: ウィジェットがありません。
+    QuickSearch: クイック検索
+    QuickSearchInfo: ウィジェットの列管理で、クイック検索の範囲をカスタマイズできます。「含む」に基づいて検索しますが、多数の列を追加する場合はパフォーマンスに注意してください。
+    RestoreDefaultDashboardMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。<span class="dashboard-template-name-message">{0}</span> の標準設定が適用されます。
+    SaveNewWidgetFilterHeader: 新しいウィジェットフィルターを保存
+    SavedFilterHeader: 保存されたフィルター
+    SearchForFilter: フィルターを検索
+    ShareThisDashboard: このダッシュボードを共有
+    StandardWidgets: 標準ウィジェット
+    StatisticWidget:
+      EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！
+    WelcomeWidgetIntroduction: このウィジェットは、ダッシュボードにウェルカムテキストと画像を表示します。
+    WelcomeWidgetNotFoundMessage: ウィジェットの画像が見つかりません。画像を再設定してください。
+    WidgetFilterName: ウィジェットフィルター名
+    WidgetFilters: ウィジェットフィルター
+    YourWelcomeWidget: ウェルカムウィジェット
+    actionSelection: アクションの選択
+    addField: フィールドの追加
+    addWidget: ウィジェットの追加
+    canWorkOn: 作業可能
+    caseList: ケースリスト
+    caseListIntroduction: このウィジェットは、定義された設定に従って関連するケース情報を表示します。
+    caseWidgetInfo:
+      casesByCategory: カテゴリーごとのケース数
+      casesByState: 状態ごとのケース数
+      numberOfCase: ケース
+    category: カテゴリー
+    columnManagement: 列の管理
+    columnType:
+      CUSTOM: カスタムフィールド
+      CUSTOM_BUSINESS_CASE: カスタムビジネスケースフィールド
+      CUSTOM_CASE: カスタムケースフィールド
+      STANDARD: 標準の列
+    configuration:
+      CustomWidgetExternalLinkWarning: 一部のウェブサイトは、セキュリティ上の懸念から iframe と互換性がありません。外部ウェブサイトが正常に動作しない場合は、管理者にお問い合わせください。
+      CustomWidgetTitlePlaceholder: ウィジェットのヘッダーを非表示にするには、空白のままにしてください
+      Parameters: パラメーター
+      RestoreDefaultDashboardTemplateTooltip: ダッシュボードのテンプレートが見つからないため、標準設定にリセットできません。詳細については管理者に確認してください。
+      SelectTheTemplate: このテンプレートを選択
+      SelectYourTemplate: あなたのテンプレートを選択
+      WelcomeConfigurationDescription: この設定領域でウィジェットを設定できます。使用するウェルカムテキストと画像を定義してください。
+      WelcomeWidget:
+        AdvancedSettings: 詳細設定
+        ChooseAFit: フィットを選択
+        DisplayedText: テキストを表示
+        Greeting:
+          Afternoon: こんにちは
+          Evening: こんばんは
+          Morning: おはようございます
+        Image: 画像
+        ImageDarkMode: ダークモードの画像
+        ImageInlineStyle: 画像のインラインスタイル
+        ImageLightMode: ライトモードの画像
+        ImageStyleClass: 画像のスタイルクラス
+        PreviewDarkMode: ダークモードのプレビュー
+        PreviewLightMode: ライトモードのプレビュー
+        PreviewTooltip: このプレビューではすべての設定をレンダリングすることはできませんが、最終的なウィジェットがどのように見えるかイメージを掴めます。画像のサイズ、表示位置、一部の CSS 設定はプレビュー出来ません。
+        ShowGreeting: 挨拶を表示
+        TextColorDarkMode: ダークモードのテキストの色
+        TextColorLightMode: ライトモードのテキストの色
+        TextPosition: テキストの位置
+        TextSize: テキストのサイズ
+        Welcome: ようこそ
+        WelcomeTextStyleClass: ウェルカムテキストのスタイル クラス
+      configuration: 設定
+      configurationDescription: この設定領域でウィジェットを設定できます。必要なフィルターと表示する列を定義してください。
+      customWidgetParamChangedMessage: このプロセスは変更されました。続行するには、更新をクリックしてください。
+      editWidgetHeader: ウィジェット設定の編集
+      import: インポート
+      importFromJsonFile: JSONファイルからインポート
+      newWidgetHeader: 新しい{0}のウィジェット設定
+      pageTitle: ダッシュボード設定
+      processConfigurationDescription: この設定領域でウィジェットを設定できます。必要なフィルターと表示するプロパティーを定義してください。
+      processViewerConfigurationDescription: この設定領域でウィジェットを設定できます。表示する情報を定義してください。
+      tableConfiguration: 表の設定
+      tableConfigurationDesc: 列をクリックすると、列を管理し、また標準の並べ替えを設定できます。
+      yourWidget: ウィジェット
+    createWidget: ウィジェットを追加
+    createdFrom: 作成元
+    createdTo: 作成先
+    customFieldType: カスタムフィールド タイプ
+    dashboardManagement:
+      CreateDashboard: ダッシュボードの作成
+      addDashboard: ダッシュボードの追加
+      dashboardIcon: ダッシュボードアイコン
+      dashboardPermission: ダッシュボードの権限
+      dashboardTitle: ダッシュボードのタイトル
+      deleteDashboardMessage: 「{0}」のダッシュボードを削除してもよろしいですか？
+      editDashboard: ダッシュボードの編集
+      manageDashboard: ダッシュボードの管理
+      removeDashboardHeader: 「{0}」のダッシュボードを削除
+    deleteWidget: ウィジェットを削除
+    downloadZipFileExplanation: エクスポートするアイテム数が Excel の行数の制限を超える場合、データは複数の Excel ファイルに分割され、ZIP ファイルに圧縮されてダウンロードされます。
+    editWidget: ウィジェットの編集
+    existingField: '{0} フィールドは既に存在します'
+    expiryFrom: 有効期限：開始
+    expiryTo: 有効期限：終了
+    export:
+      exportedCasesFileName: AXONIVY_Dataset_Cases_{0}_{1}.{2}
+      exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}_{1}.{2}
+    field: フィールド
+    fieldIsAdded: '{0} フィールドが追加されました'
+    filters: フィルター
+    fullscreenMode: 全画面モード
+    iconMessage:
+      caseWidget:
+        EMPTY_MESSAGE: 現在、利用可能なケースはありません。
+        noCasesFoundWhenFilter: 現在、フィルターを適用した後のケースはありません。
+      taskWidget:
+        EMPTY_MESSAGE: 現在、利用可能なタスクはありません。
+        noTasksFoundWhenFilter: 現在、フィルターを適用した後のタスクはありません。
+    loading: 読み込み中...
+    noCategory: カテゴリーがありません
+    noDashboard: ダッシュボードがありません。少なくとも 1 つのダッシュボードを追加してから、ウィジェットを追加してください。
+    noPermission: ダッシュボードを表示する権限がありません。
+    noWidget: このダッシュボードにはウィジェットが用意されていません
+    numberPattern: 番号パターン
+    preview: プレビュー
+    processList: プロセスリスト
+    processListIntroduction: このウィジェットには、利用可能なプロセス開始が表示されます。さまざまな形式を選択できます。
+    processViewerIntroduction: このウィジェットは、プロセスフローを視覚的に表現します。
+    processWidgetInfo:
+      noProcess: プロセスはありません。
+      numberOfProcessesByType: タイプ別のプロセス数
+    processes:
+      emptyProcess: プロセスが定義されていません。
+      noMatchingProcess: 一致するプロセスはありません。
+      noPermissionToSee: このプロセスを開始するために必要な権限がありません。
+      noProcessSelected: プロセスを選択してください
+    removeWidgetHeader: このウィジェットを削除します
+    removeWidgetMessage: 本当に削除しますか？
+    reorder:
+      dashboardType: ダッシュボー タイプ
+    restoreDefaultHeader: デフォルトののウィジェットに戻す
+    restoreDefaultMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。標準設定が適用されます。
+    select: 選択
+    selectEditAction: どのアクションを実行しますか?
+    showFullWidget: ウィジェット全体を表示
+    statisticChartIntroduction: このウィジェットには、使用可能な統計チャートが表示されます。
+    statisticChartWidget: 統計チャート
+    statisticWidgets: 統計ウィジェット
+    switchToViewMode: 表示モード
+    tasWidgetkInfo:
+      expireToday: 今日期限切れ
+      expiryThisWeek: 今週期限切れ
+      numberOfTasks: タスク
+      numberOfTasksByCategory: カテゴリーごとのタスク数
+      numberOfTasksByState: 状態別のタスク数
+      predefinedFilters: 定義済みフィルター
+    taskList: タスクリスト
+    taskListIntroduction: このウィジェットには、定義された設定に従って関連するタスク情報が表示されます。
+    taskStart: タスクの開始
+    taskWidgetConfiguration: タスクウィジェットの設定
+    topMenuItemInfo: 「トップメニュー項目」チェックボックスをオンにすると、ダッシュボードはナビゲーションバーの上位項目として表示され、リスト位置でソートされます。オフにすると、「ダッシュボード」の下のサブ項目として表示され、同じくリスト位置でソートされます。
+    widgetInfo: ウィジェット情報
+    widgetInfoIcon: ウィジェット情報アイコン
+    widgetTitle: ウィジェットタイトル
+    widgetType: ウィジェットタイプ
+    yourCases: ケース
+    yourCustomWidget: カスタムウィジェット
+    yourNotifications: 通知
+    yourProcessViewer: プロセス ビューアー
+    yourProcesses: プロセス
+    yourTasks: タスク
+  documentFiles:
+    PreviewDocument: タスクの詳細にアクセス
+    deleteDocumentNote: '{0} が {1} を削除しました'
+    deleteSuceed: ファイルの削除に成功しました
+    download: ダウンロード
+    fileContainScript: このファイルにはスクリプトが含まれているため、アップロードできません。
+    fileContainVirus: アップロードに失敗しました。ウイルス／感染が検出されました。
+    fileCouldNotParse: ファイルを解析できませんでした
+    fileEmptyMessage: ファイルは空です
+    name: ファイル名
+    size: ファイルサイズ
+    type: タイプ
+    upload: 新しいファイルをアップロード
+    uploadDocumentNote: '{0} が {1} をアップロードしました'
+    uploadFailed: このファイルのアップロード中にエラーが発生しました。管理者にお問い合わせください。
+    uploadFileExists: ファイル： {0} は既に存在します
+    uploadSucceed: ファイルのアップロードに成功しました
+  emailSetting:
+    dailySummary: 毎日の要約を受信
+    eMail: メール
+    furtherEmailFromApp: アプリケーションからさらにメールを受信
+    invalidEmailFormat: メール形式が無効です
+    mailNotificationOnTaskAssign: タスク割り当てに関するメール通知を受信
+    noSettingMsg: メール設定のアプリケーションがありません。
+  errorPage:
+    '404': 404エラー：ページが見つかりません
+    404Message: 申し訳ありませんが、お探しのリソースは存在しません。
+    '500': 500エラー
+    500Message: 申し訳ありませんが、リクエストされたページの提供中に問題が発生しました。
+    backToHomePage: ホームページに戻る
+    title: エラーページ
+  exceptionDialog:
+    copied: コピー済み
+    copyError: コピーエラー
+    errorId: エラー ID
+    errorType: エラータイプ
+    message: メッセージ
+    pmv: PMV
+    processElementId: プロセス要素 ID
+    stackTrace: スタックトレース
+  forgotPassword:
+    EmailAddress: メールアドレス
+    empty: 空
+    forgotPassword: パスワードを忘れました
+    forgotPasswordError: リクエストの処理中にエラーが発生しました。しばらくしてから、もう一度お試しください。
+    goToForgotPassword: パスワードを忘れた場合のページに移動
+    goToLogin: ログインページに戻る
+    good: Good
+    invalidResetUrl: 要求された URL が無効です
+    invalidToken: トークンが無効です
+    newPassword: 新しいパスワード
+    passwordConfirmation: パスワード（再入力）
+    passwordReset: パスワードのリセット
+    passwordResetEmailCantSend: メールを送信中に例外エラーが発生しました。しばらくしてからもう一度お試しください。
+    passwordResetEmailContent: '<html>{0} 様、<br/><br/>パスワードをリセットするには、このリンクをクリックしてください: <a href="{1}">パスワードをリセット</a><br/><br/>よろしくお願いいたします</html>'
+    passwordResetEmailSent: このメールアドレスが登録されている場合、そのアドレス宛にパスワード回復リンクを送信されます。
+    passwordResetEmailSubject: パスワードをリセットするためのメール
+    passwordResetSuccess: パスワードの変更に成功しました
+    requiredFieldMessage: '{0} が必要です'
+    setANewPassword: 新しいパスワードを設定
+    strong: 強い
+    userNotFound: このメール アドレスが登録されている場合、そのアドレス宛にパスワード回復リンクが送信されます。
+    usersHaveSameEmail: このメールを使用しているユーザーが多数います。管理者にお問い合わせください。
+    weak: 弱い
+  iconselection:
+    iconSelectionDialogHeader: アイコンを選択中
+    seachIconByNamePlaceHolder: 名前でアイコンを検索
+  languageSetting:
+    Language: 言語
+  login:
+    AxonIvyPortal: Axon Ivy Portal
+    Copyright: Copyright Ⓒ Axon Ivy Portal
+    LoginWith: その他のログイン方法
+    PasswordRequiredMessage: パスワードが必要です
+    UsernameRequiredMessage: ユーザー名が必要です
+    login: ログイン
+    loginErrorMessage: ログインしていないか、ユーザー名がこのアプリケーションで認識されていません。システム管理者に問い合わせてください。
+    loginFailed: ログインに失敗しました
+    username: ユーザー名
+  logoutSetting:
+    logout: ログアウト
+  mobile:
+    AppleStore: Apple Store
+    AxonIvyMobile: Axon Ivy Mobile
+    DownloadMobileApp: Axon Ivy Mobile アプリをダウンロードするには
+    GooglePlay: Google Play
+    MenuName: モバイルアプリを接続
+    Platform: プラットフォーム：
+    QRCodeDescription: Axon Ivy モバイルアプリを接続するには、この QR コードをスキャンし、アプリ内で認証情報を入力してください。
+    QRCodeDownloadDescription: モバイルカメラまたは QR リーダーアプリで以下のコードをスキャンしてください。
+  noteHistory:
+    ShowOnlyOpenTasks: 未完了のタスクのみ表示
+    author: 作成者
+    caseExportedFileNamePrefix: Note_history_of_case_{0}
+    caseHistoriesTitle: 履歴
+    caseHistoryPageTitle: ケースノートの履歴
+    columnContent: コンテンツ
+    curentReportOf: の
+    eventType: イベントタイプ
+    exportButton: Excel にエクスポート
+    relatedCase: 関連するケース
+    showMoreBtn: さらに表示
+    taskExportedFileNamePrefix: Note_history_of_task_{0}
+    taskFailReason: 失敗した理由：{0}
+    taskHistoryPageTitle: タスクノートの履歴
+  notes:
+    newNoteHeader: 新規ノートを追加
+    wroteAt: 記入日時
+  notifications:
+    errorNotificationMessage: 新しいパスワードの確認
+    linkToFullScreen: 全画面へのリンク
+    linkToNotificationSettings: 通知設定
+    markAllAsRead: すべて既読にする
+    markAsRead: 既読にする
+    noNotificationText: 通知なし
+    notificationTitle: 通知
+    olderText: 昨日以前
+    onlyUnread: 未読のみ
+    todayText: 今日
+    xDaysAgo: '%s 日前'
+    xHoursAgo: '%s 時間前'
+    xMinutesAgo: '%s 分前'
+    xMonthsAgo: '%s か月前'
+    xSecondsAgo: '%s 秒前'
+    xYearsAgo: '%s 年前'
+  passwordSetting:
+    changePasswordWSError: パスワードの変更中にエラーが発生しました。問題が解決しない場合は、管理者に連絡してください。
+    confirmNewPassword: 新しいパスワードの確認
+    confirmPasswordHaveMatch: 入力した新しいパスワードは、再入力したパスワードと一致しませんでした。
+    currentPassword: 現在のパスワード
+    minCharacterRequired: 少なくとも {0} 文字の長さが必要です。
+    minLowercaseCharacterRequired: 少なくとも {0} 個の小文字を含む必要があります。
+    minNumberRequired: 少なくとも {0} 個の数字を含む必要があります。
+    minSpecialCharacterRequired: 少なくとも {0} 個の特殊文字を含む必要があります。
+    minUppercaseCharacterRequired: 少なくとも {0} 個の大文字を含む必要があります。
+    newPassword: 新しいパスワード
+    noPermission: このパスワードを変更するために必要な権限がありません。サポートが必要な場合は、管理者にお問い合わせください。
+    passwordMust: パスワードは、
+    requireConfirmPassword: パスワード（再入力）が空欄です
+    requireCurrentPassword: 現在のパスワードを入力してください
+    requireNewPassword: 新しいパスワードを入力してください
+    updatePasswordSuccessfully: パスワードの更新に成功しました
+    wrongPassword: 認証に失敗しました。パスワードが間違っているようです。
+  permission:
+    noPermission: このページにアクセスするには、AXONIVY_PORTAL_ADMIN ロールが必要です。管理者にお問い合わせください。
+  processwidget:
+    MoreInformation: 詳細情報
+    addExternalLink: 外部リンクを追加
+    addNewExternalLinkHeader: 外部リンクを追加
+    addNewProcess: 新規プロセスを追加
+    addNewProcessDialogHeader: 新規ユーザープロセスを追加
+    backToOverview: 概要に戻る
+    deleteExternalLinkTooltip: 外部リンクを削除
+    deleteProcess: プロセスを削除
+    deleteProcessItemConfirmation: 以下のプロセスを削除してもよろしいですか？
+    deleteProcessItemHeader: プロセスを削除していますか？
+    displayMode: 表示モード
+    editDialog:
+      dialogCurrentIcon: 現在のアイコン
+      dialogEditInfoTitle: '{0} の情報'
+      dialogHeaderDescription: この領域では、選択したプロセスに関連する情報を編集できます。
+      dialogHeaderTitle: '{0} の情報を編集'
+    editProcesses: プロセスを編集
+    externalLink: 外部リンク
+    externalLinkVisibility: 表示設定
+    goTo: '移動先:'
+    icon: アイコン
+    image: 画像
+    isRequiredMessage: を設定する必要があります
+    linkDescription: リンクの説明
+    noProcess: プロセスがありません。
+    noProcesses: プロセスがありません。
+    private: 個人用
+    processFilterPlaceHolder: 名前、説明、カテゴリー
+    processName: プロセス名
+    processStartLink: プロセス開始リンク
+    processType: プロセスタイプ
+    remove: 削除
+    rolePermissionsRequiredMessage: 権限を設定する必要があります
+    seeAllProcesses: すべてのプロセスを表示
+    selectRoles: ロールを選択
+    sortByName: 名前で並べ替え
+    specialCharacterGroup: 特殊文字
+    startLink: 開始リンク
+    webLinkExample: 例：http://www.example.com
+  projectInfo:
+    applicationProjectVersion: アプリケーションプロジェクトとバージョン
+    engineVersion: エンジンバージョン
+    header: Axon Ivy のバージョン情報
+    info: 情報
+    portalVersion: ポータルバージョン
+    projectName: プロジェクト名
+    version: バージョン
+  searchResult:
+    case: ケース
+    notDisplayResultTabView: 検索結果を表示する権限がありません
+    process: プロセス
+    searchResults: 検索結果
+    searchResultsFor: 「{1}」の検索結果： {0} 件
+  taskActivator:
+    assign: 割り当て
+    cannotAssignTask: このタスクは他のユーザーまたはグループに割り当てることはできません。
+    escalationActivatorDesc: タスクのエスカレーションアクティベーターを指定したユーザーまたはグループに変更します
+    escalationActivatorHeader: タスクエスカレーションアクティベーターの選択
+  taskBusinessState:
+    DELAYED: 遅延
+    DELAYED_UPPERCASE: 遅延
+    DESTROYED: 破棄済み
+    DESTROYED_UPPERCASE: 破棄済み
+    DONE: 完了
+    DONE_UPPERCASE: 完了
+    ERROR: エラー
+    ERROR_UPPERCASE: エラー
+    IN_PROGRESS: 進行中
+    IN_PROGRESS_UPPERCASE: 進行中
+    OPEN: 未完了
+    OPEN_UPPERCASE: 未完了
+    SYSTEM: システム
+  taskDelegate:
+    afterEscalation:
+      delegateNotes: '{0} タスクのエスカレーション アクティベーターが {1} から {2} に変更されました'
+      delegateNotesWithComment: '{0} タスクのエスカレーション アクティベーターが {1} から {2} - {3} に変更されました'
+    delegateComment: タスク {0} は {1} から {2} に委任されました
+    delegateReasonIncludedComment: タスク {0} は {1} から {2} - {3} に委任されました
+    delegateTaskHeaderLabel: 指定されたユーザーまたはグループにタスクを委任する
+    groupSelectionWatermark: グループを選択してください...
+    toGroup: グループ
+    toUser: ユーザー
+    userSelectionWatermark: ユーザーを選択してください...
+  taskDetails:
+    addDocumentHelpText: ファイルをアップロードするには、ドラッグ アンド ドロップするか、ファイルを選択してください
+    addNoteHelpText: ここにテキストを入力してください。
+    afterEscalation: エスカレーション後
+    businessCase: ビジネスケース
+    completedOn: 完了日
+    delayedUntil: この日まで延期
+    deleteFile: ファイルを削除
+    documents: ドキュメント
+    duration: 所要時間
+    events: ワークフローイベント
+    expiry: 有効期限
+    failedDelayValidation: タスク遅延タイムスタンプは空欄または無効な日付形式にすることはできません
+    failedExpiryValidation: タスク有効期限タイムスタンプは過去のものにすることはできません。
+    noDescription: 説明なし
+    noNotes: ノートなし
+    processingTime: 処理時間
+    setDelayTimestamp: '{0} ({1}) はタスク #{2} の遅延時間を {3} に設定しました'
+    setExpiryActivatorAndTimeNotes: '{0}、{1} をタスク エスカレーション アクティベータとして割り当てました'
+    supportFileTypes: サポートされている種類のファイルをアップロードしてください：{0}
+    taskCategory: タスクカテゴリー
+    taskExpiryDisable: このタスクにはエスカレーション処理ロジックが含まれていないため、有効期限を設定できません。
+    technicalCase: テクニカルケース
+    workflowEventDialog: 'タスク #{0} のワークフローイベント'
+    workingUser: 作業中ユーザー
+  taskExpiryDateDialog:
+    message:
+      setDeadlineSuccess: タスクの期限の設定に成功しました。
+    title: タスクの期限
+  taskInformation:
+    clearDelay: 遅延をクリア
+    clearExpiry: 有効期限をクリア
+    delegate: 委任
+    delegateTask: タスクを委任する
+    freeReservationTaskTooltip: リセットを使用してタスクの制御を解除する
+    histories: ノート
+    note: ノートの情報
+    noteDetail: ノートの詳細
+    openRequest: 未完了
+    openTaskTooltip: 未完了のタスク
+    park: パーク
+    parkTaskSuccessfully: タスクのパークに成功しました。
+    reserveTaskTooltip: タスクを予約
+    resetTaskSuccessfully: タスクのパーク解除に成功しました。
+    resetTaskTooltip: タスクをリセット
+    setDeadline: 期限を設定
+    setPriority: 優先度を設定
+    startTask: 開始
+    taskComments: コメント
+    taskDetails: タスクの詳細
+    taskInforDialogTitle: タスク情報
+    taskNotes: ノート
+    triggerEscalation: エスカレーションのトリガー
+  taskList:
+    deadline: 期限
+    default: 初期値
+    defaultColumns:
+      ACTIVATOR: 責任者
+      APPLICATION: アプリケーション
+      CATEGORY: カテゴリー
+      COMPLETED_ON: 完了日
+      CREATION_TIME: 作成日
+      EXPIRY_TIME: 有効期限
+      ID: タスクID
+      NAME: 名前／説明
+      PRIORITY: 優先度
+      STATE: 状態
+      TASK_FOR_UNAVAILABLE_ACTIVATOR: アクティベーターがありません
+      abbreviation:
+        PRIORITY: 優先度
+    defaultFilter: フィルターの初期値
+    destroyTaskMessage: この操作は元に戻せません。このタスクを破棄してもよろしいですか？
+    headerTitle:
+      relatedStatisticHeader: 統計チャートの関連タスク：
+      relatedTasksHeader: ケースの関連タスク
+    lastEdit: 最終更新
+    manageColumns: 列の管理
+    name: 名前
+    newTaskNotification: 新しいタスクがあります。
+    removeExpiryTimeNote: '{0} ({1}) がタスク #{2} の有効期限を削除しました'
+    resetTaskWarning: このタスクはすでに開始されています。再スタートするとこれまでの進捗が失われ、最初からやり直しになります。このタスクをリセットしますか？
+    responsibleAfterEscalation: エスカレーション後の責任者
+    setDeadlineNote: '{0} ({1}) がタスク #{2} の期限を {3} に設定しました'
+    setNameNote: タスク名は {0} によって {1} から {2} に設定されました
+    showOnlyTaskForMissingActivator: アクティベーターがないタスクのみを表示します
+    showOnlyTaskForMissingActivatorDesc: このフィルターは、アクティベーターがない、アクティベーターが見つからない、または無効になっているタスクを表示します。
+    sortFields:
+      CREATION_TIME_ASC: 作成日（古い順）
+      CREATION_TIME_DESC: 作成日（新しい順）
+      EXPIRY_TIME_ASC: 有効期限（古い順）
+      EXPIRY_TIME_DESC: 有効期限（新しい順）
+      PRIORITY_ASC: 優先度（高から低）
+      PRIORITY_DESC: 優先度（低から高）
+    triggerEscalationNote: 'タスク #{2} の {0} ({1}) によってエスカレーションされました'
+    type: タイプ
+  taskPriority:
+    EXCEPTION: 例外
+    EXCEPTION_LOWERCASE: 例外
+    HIGH: 高
+    HIGH_LOWERCASE: 高
+    LOW: 低
+    LOW_LOWERCASE: 低
+    NORMAL: 通常
+    NORMAL_LOWERCASE: 通常
+  taskPriorityDialog:
+    message:
+      setPrioritySuccess: タスクの優先度の設定に成功しました。
+    title: タスクの優先度
+  taskState:
+    CREATED: 作成済み
+    CREATED_UPPERCASE: 作成済み
+    DELAYED: 遅延
+    DELAYED_UPPERCASE: 遅延
+    DESTROYED: 破棄済み
+    DESTROYED_UPPERCASE: 破棄済み
+    DONE: 完了
+    DONE_UPPERCASE: 完了
+    FAILED: 失敗
+    FAILED_UPPERCASE: 失敗
+    INPROGRESS: 進行中
+    JOINING: 参加中
+    JOINING_UPPERCASE: 参加中
+    JOIN_FAILED: 参加失敗
+    JOIN_FAILED_UPPERCASE: 参加失敗
+    OPEN: 未完了
+    OPEN_UPPERCASE: 未完了
+    PARKED: 予約済み
+    READY_FOR_JOIN: 参加準備完了
+    READY_FOR_JOINING: 参加準備完了
+    READY_FOR_JOINING_UPPERCASE: 参加準備完了
+    READY_FOR_JOIN_UPPERCASE: 参加準備完了
+    RESERVED: 予約済み
+    RESUMED: 進行中
+    SUSPENDED: 一時停止中
+    SUSPENDED_UPPERCASE: 一時停止中
+    SYSTEM: システム
+    WAITING: 待機中
+    WAITING_FOR_INTERMEDIATE_EVENT: イベント待機中
+    WAITING_FOR_INTERMEDIATE_EVENT_UPPERCASE: イベント待機中
+  taskView:
+    GlobalSearchText: タスクには、タスク ID{1} にキーワード 「{0}」 が含まれています。
+    filterTextPlaceHolderMobile: 名前または説明
+    filterTextPlaceholder: 名前、説明またはID
+    restoreDefaultFilterMessage: 続行すると、標準フィルターが適用されます。
+    saveFilter: フィルターを保存
+    showFullTaskList: タスクリスト全体を表示
+    sort: 並べ替え
+  taskWarning:
+    createdTaskLeave: このページを離れようとしています。次のいずれかのオプションを選択してください：<UL><LI>&nbsp; &nbsp; 離れる：変更を破棄し、選択したページに移動します。<LI>&nbsp; &nbsp; キャンセル：このタスクの作業を続けます。</UL>
+    createdTaskLogout: このページを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>&nbsp;ログアウ：変更を破棄してログアウトします。<LI>&nbsp;キャンセル：このタスクの作業を続けます。</UL>
+    resetParkTaskBeforeLeave: 進行中のタスクを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>離れる：変更を破棄して選択したページに移動します。<LI>保持：変更を破棄してタスクをタスクリストに保持します。<LI>キャンセル：このタスクの作業を続けます。</UL>
+    resetParkTaskBeforeLogout: 進行中のタスクを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>&nbsp; &nbsp; ログアウト：変更を破棄してログアウトします。<LI>&nbsp; &nbsp; 保持：変更を破棄してタスクを個人用タスクリストに保持します。その後ログアウトします。<LI>&nbsp; &nbsp; キャンセル：このタスクの作業を続けます。</UL>
+    taskNotFound: タスクが存在しないか、このタスクを表示する権限がありません。
+  userProfile:
+    myProfileTitle: マイプロフィール
+  warningBeforeLostSession:
+    refreshSession: セッションを更新
+    warningMessage: セッションはまもなく期限切れになります。アプリケーションを引き続き使用するには、セッションを更新してください。
+Dialogs:
+  Cases:
+    EditWorkflow:
+      CaseDescription: 既存のワークフローを編集
+      CaseName: ワークフローを編集
+  Tasks:
+    TaskDetail:
+      DataDescription: データと説明
+      restoreToDefaultSettings: 初期設定に戻す
+      switchToEditMode: 編集
+      switchToViewMode: 保存
+  agileBPM:
+    define_WF:
+      ErrorSelectInvalidAssignee: 担当者は既に選択されているか無効です
+      ListOfSelectedUser: 選択されたユーザーのリスト
+      ResponsibleDialogHeader: 責任ユーザー
+      SequenceOfTasks: フォロー中のタスク
+      TaskActor: タスクの実行者
+      TaskSubject: タスク名
+      WFCategory: カテゴリー
+      WFSubject: 件名
+    task_Form:
+      AppendATaskAfter: 自分のタスクの後に、１つのタスクをシーケンスに追加します。
+      ErrorEmployeeNotExist: 選択した従業員が存在しません
+      InsertATaskBefore: 自分のタスクの前にタスクを挿入します。自分のタスクは延期されます。
+      MyTaskIsDoneAnd: 自分のタスクは完了し、新しいタスクが追加されます
+  ch:
+    ivy:
+      addon:
+        portal:
+          component:
+            ProcessInformation:
+              ProcessUnavailableTooltip: カスタムウィジェットフレーム
+          generic:
+            GlobalSearch:
+              ViewAllResults: すべての結果を表示
+              noResultsText: 結果はありません。
+            dashboard:
+              PortalDashboardConfiguration:
+                NewDashboard: 新規ダッシュボードを追加
+              component:
+                CustomDashboardWidget:
+                  CouldNotFindLinkedProcess: リンクされたプロセスが見つかりませんでした。
+                  CustomWidgetIFrameTitle: '{0} フレーム'
+                DashboardModification:
+                  Share: 共有
+                ProcessWidgetConfiguration:
+                  DragAndDropToChangeOrder: 順序を入れ替えるにはドラッグ＆ドロップしてください。
+                  DragAndDropTooltip: プレビューをクリックしてください、そして順序を入れ替えるにはドラッグ＆ドロップしてください
+        portalkit:
+          component:
+            CaseItemDetails:
+              ShareCaseDetails: ケースの詳細を共有
+            CaseWidget:
+              CaseCategory: ケースカテゴリー
+              CaseDetail:
+                CaseDetailTitle: ケースの詳細
+                DataDescription: データと説明
+                destroyCase: ケースを破棄
+              CaseOwner: ケースオーナー
+              Finished: 終了
+              GlobalSearchText: ケースには、ケース ID{1} にキーワード「{0}」が含まれています。
+              ShowBusinessDetails: ビジネスの詳細
+              caseNameNotAvailable: ［ケース名がありません］
+              defaultEmptyMessage: ケースはありません
+            CustomIFrameWidget:
+              CustomWidgetIFrameTitle: カスタムウィジェットフレーム
+            IconSelection:
+              IconLinkTooltip: クリックしてアイコンを変更
+            TaskItemDetails:
+              CannotWorkOnDestroyedTaskWarning: タスクは破棄されたため、作業できません。
+              CannotWorkOnTaskWarning: ユーザー <strong>{0}</strong> が現在作業中のため、タスクに取り組むことはできません。
+              InvalidStateInfo: 無効な状態です。
+              ResetTaskWarning: 現在、別のセッションでタスクに取り組んでいます。ブラウザを閉じている場合は、タスクをリセットして再度開始できます。<a href="{0}">リセット</a>
+              ShareTaskDetails: タスクの詳細を共有
+              TaskCompletedByOtherInfo: タスクは、ユーザー <strong>{0}</strong> によって {1} に既に完了しています。
+              TaskCompletedByYouInfo: あなたは、このタスクを {0} に完了しています。
+  com:
+    axonivy:
+      portal:
+        component:
+          ChatDashboard:
+            AddTool: ツールの追加
+            Tools: ツール
+            WelcomeHeaderText: Axon Ivy ポータルへようこそ！
+            WelcomeText: ご利用いただき、ありがとうございます。Axon Ivy ポータルは、シームレスで効率的な体験への入り口です。機能を探索する新規ユーザーでも、リピーターでも、私たちはあらゆる段階であなたを支援します。
+          ShareLinkDialog:
+            CopyLink: リンクをコピー
+            Link: リンク
+            LinkCopied: リンクをコピーしました
+          ToolList:
+            Attributes: 属性
+            Collection: コレクション
+            NoAvailableTools: 利用可能なツールがありません
+        dashboard:
+          component:
+            AccessibilityShortcuts:
+              content: |-
+                <div class="ui-g">
+                <div class="ui-g-3 shortcut-content ">
+                <span class="shortcut-key">Alt + 1</span>ダッシュボード タブにフォーカス
+                </div>
+                <div class="ui-g-3 shortcut-content ">
+                <span class="shortcut-key">Alt + 4</span>ケース タブにフォーカス
+                </div>
+                <div class="ui-g-3 shortcut-content ">
+                <span class="shortcut-key">Alt + A</span>最初のプロセスにフォーカス
+                </div>
+                <div class="ui-g-3 shortcut-content ">
+                <span class="shortcut-key">Tab</span>要素の順にタブ移動
+                </div>
+                <div class="ui-g-3 shortcut-content ">
+                <span class="shortcut-key">Alt + 2</span>プロセスタブにフォーカス
+                </div>
+                <div class="ui-g-3 shortcut-content ">
+                <span class="shortcut-key">Alt + 5</span>検索にフォーカス
+                </div>
+                <div class="ui-g-3 shortcut-content ">
+                <span class="shortcut-key">Alt + W</span>最初のタスクにフォーカス
+                </div>
+                <div class="ui-g-3 shortcut-content">
+                <span class="shortcut-key">Esc</span>展開されたウィジェットを閉じる
+                </div>
+                <div class="ui-g-3 shortcut-content ">
+                <span class="shortcut-key">Alt + 3</span>タスクタブにフォーカス
+                </div>
+                <div class="ui-g-3 shortcut-content ">
+                <span class="shortcut-key">Alt + 6</span>ユーザー設定にフォーカス
+                </div>
+                <div class="ui-g-3 shortcut-content ">
+                <span class="shortcut-key">Alt + Q</span>最初のケースにフォーカス
+                </div>
+                <div class="ui-g-3 shortcut-content ">
+                <span class="shortcut-key">Enter</span>選択を確定
+                </div>
+                </div>
+              title: アクセシビリティ ショートカット。Alt + 1：ダッシュボードタブにフォーカスする。Alt + 2：プロセスタブにフォーカスする。Alt + 3：タスクタブにフォーカスする。Alt + 4：ケースタブにフォーカスする。Alt + 5：検索にフォーカスする。Alt + 6：ユーザー設定にフォーカスする。Alt + A：最初のプロセスにフォーカスする。Alt + W：最初のタスクにフォーカスする。Alt + Q：最初のケースにフォーカスする。Tab：要素の順にタブ移動する。Esc：展開されたウィジェットを閉じる。Enter：選択を確定する。
+            CaseWidgetConfiguration:
+              AddFilter: フィルターを追加
+            ClientStatisticWidget:
+              IdNotFound: ID {0} のチャートが見つかりません
+              NoPermissionChartMessage: このチャートを表示するために必要な権限がありません。
+            CloneWidgetDialog:
+              Header: ウィジェット「{0}」を複製する
+              TargetDashboard: ターゲットダッシュボード
+            CloneWidgetFromDashboardDialog:
+              header: 以下の場所からウィジェットを複製する：
+            DashboardImportDetails:
+              FileInfomation: ファイル情報
+              ImportPrivate: 個人用ダッシュボードをインポートする
+              ImportPublic: 公開用ダッシュボードをインポートする
+              chooseAJsonFile: JSON ファイルを選択してください
+            DashboardSharing:
+              ShareDashboard: ダッシュボードを共有
+            NewsWidget:
+              NewsContentPlaceHolder: ニュースコンテンツを入力
+              NewsContentValidateMessage: '{0} のニュースコンテンツは必須です'
+              NewsTitlePlaceholder: ニュース タイトルを入力
+              NewsTitleValidateMessage: '{0} のニュースタイトルは必須です'
+              NoNewsAvailable: まだニュースはありません
+              Publish: 公開
+              RemoveNewsHeader: ニュースを削除しますか?
+              SeeLess: 表示を減らす
+              SeeMore: 表示を増やす
+              Translate: 翻訳
+            NewsWidgetConfiguration:
+              AddNews: ニュースを追加
+              EditNews: ニュースを編集
+              NewsContentMaxLengthMessage: ニュースの内容は1000文字を超えてはいけません
+              NewsWidgetConfiguration: ニュース配信ウィジェットの設定
+              NewsWidgetDescription: このウィジェットは、関連情報をニュースフィードとして Axon Ivy に共有します。
+              NewsWidgetTitle: ニュースフィードウィジェット
+            NotificationWidget:
+              NoNotificationAvailable: 通知はまだありません
+            NotificationWidgetConfiguration:
+              NotificationWidgetConfiguration: 通知ウィジェットの設定
+              NotificationWidgetDescription: このウィジェットには、通知設定に基づいてすべての通知が表示されます。
+              WidgetFilter: ウィジェットフィルター
+            PortalDashboardDetailModification:
+              CloneWidget: ウィジェット複製
+            TaskWidgetConfiguration:
+              AddFilter: フィルターの追加
+              ResetFilter: フィルターのリセット
+        layouts:
+          AbstractTaskTemplate:
+            CaseDetailsIFrameTitle: ケース詳細フレーム
+          IFrameTaskTemplate:
+            TaskIFrameTitle: タスクフレーム
+  components:
+    CaseDocument:
+      FileDate: 変更日時
+      FileFunctions: 機能
+      NoFiles: ファイルが見つかりません！
+      deleteSucceed: ファイルの削除に成功しました
+      emptyFileMessage: ファイルサイズは空にしないでください
+      fileLimitMessage: すでに最大数のファイルがアップロードされています！
+      fileUploadElementPosition: ファイルのアップロードはヘッダーまたはフッターにのみ配置できます
+      invalidFileMessage: このファイルの種類は受け入れられません！
+      invalidSizeMessage: ファイルが大きすぎます！
+      maximumFileUploadElement: すでにファイルアップロード要素があります
+  general:
+    MaxLabelLenght: '35'
+    maxOptionsLength: '20'
+Labels:
+  AI:
+    Error:
+      CannotFindUser: 申し訳ありませんが、リクエストに一致するユーザーが見つかりません。もう一度お試しください。
+      CannotStartTask: ID {0} のタスクを開始できません
+      InvalidTaskPriority: タスクの優先度が無効です。有効なタスク優先度は、低、通常、高、または例外です。
+      InvalidTaskState: タスクの状態が無効です。有効なタスクの状態は、未完了、完了、進行中、またはエラーです。
+      NoMatchingCase: リクエストに一致するタスクが見つかりません
+      NoMatchingProcesses: 一致するプロセスはありません。
+      NoMatchingTask: リクエストに一致するタスクが見つかりません
+    FindCaseAIResult: ID：{0}、名前：{1}、説明：{2}、状態：{3}
+    FindProcessAIResult: '- ID：{0}、名前：{1}、説明：{2}'
+    FindTaskAIResult: ID：{0}、名前：{1}、説明：{2}、状態：{3}、優先度 {4}
+    FindUserAIResult: ユーザー名：{0}、名前：{1}、メール：{2}、状態：{3}
+    FoundCaseHeader: 見つかったケース：
+    FoundProcessesHeader: 見つかったプロセス：
+    FoundTaskHeader: 見つかったタスク：
+    FoundUsersHeader: 見つかったユーザー：
+    ProcessInfoHeader: |-
+      **プロセス名：** {0}
+      **プロセスの説明：** {1}
+    ProcessInfoHeaderWithParameters: |-
+      - **プロセス名：** {0}
+      - **プロセスの説明：** {1}
+      - **パラメーターの数：** {2}
+    ProcessParameterInfo: 指定の値より小さい
+    ProcessParameterInfoWithValue: 指定の値より小さいか等しい
+    TaskDetailsResult: |-
+      タスクの詳細 **{0} (#{1})**：
+      {2}
+  AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
+  AppendTheTask: タスクを追加
+  CreateNewDashboard: 新しいダッシュボードを作成
+  EditDescription: 説明を編集
+  Enums:
+    ChatbotCandidateQuestion:
+      EXPLORE:
+        header: 機能紹介
+        question: Axon Ivy ポータルの主な機能は何ですか？
+      INTERACT:
+        header: 急ぎのタスク
+        question: 今週中に完了する必要があるすべてのタスクをリストアップしてください
+      TUTORIAL:
+        header: チュートリアル
+        question: Axon Ivy ポータルのドキュメントやチュートリアルはどこにありますか？
+    DashboardStandardCaseColumn:
+      ACTIONS: アクション
+      APPLICATION: アプリケーション
+      CATEGORY: カテゴリー
+      CREATED: 作成日
+      CREATOR: クリエイター
+      DESCRIPTION: 説明
+      FINISHED: 終了日
+      ID: ID
+      NAME: 名前
+      OWNER: ケースオーナー
+      STATE: 状態
+    DashboardStandardTaskColumn:
+      ACTIONS: アクション
+      APPLICATION: アプリケーション
+      CATEGORY: カテゴリー
+      CREATED: 作成日
+      DESCRIPTION: 説明
+      EXPIRY: 有効期限
+      ID: ID
+      NAME: 名前
+      PRIORITY: 優先度
+      RESPONSIBLE: 責任者
+      START: 開始
+      STATE: 状態
+    FilterOperator:
+      AFTER: 指定の値の後にある
+      BEFORE: 指定の値の前にある
+      BETWEEN: 指定の値の間にある
+      CONTAINS: 指定の値を含む
+      CURRENT: 現在
+      CURRENT_USER: 現在のユーザー
+      CURRENT_USER_CAN_WORK_ON: 現在のユーザーが作業できる
+      EMPTY: 空欄である
+      END_WITH: 指定の値で終わる
+      EQUAL: 指定の値と等しい
+      GREATER: 指定の値より大きい
+      GREATER_OR_EQUAL: 指定の値より大きいか等しい
+      IN: 指定の値に含まれる
+      IS: 指定の値である
+      IS_NOT: 指定の値ではない
+      LAST: 過去〇〇以内
+      LESS: 指定の値より小さい
+      LESS_OR_EQUAL: 指定の値より小さいか等しい
+      NEXT: 今後〇〇以内
+      NOT_BETWEEN: 指定の値の間にない
+      NOT_CONTAINS: 指定の値を含まない
+      NOT_EMPTY: 空欄ではない
+      NOT_END_WITH: 指定の値で終わらない
+      NOT_EQUAL: 指定の値と等しくない
+      NOT_IN: 指定の値に含まれない
+      NOT_START_WITH: 指定の値で始まらない
+      NO_CATEGORY: カテゴリーなし
+      START_WITH: 指定の値で始まる
+      TODAY: 今日
+      YESTERDAY: 昨日
+    FilterPeriodType:
+      DAY: 日
+      MONTH: 月
+      Plural:
+        DAY: 日
+        MONTH: 月
+        WEEK: 週
+        YEAR: 年
+      WEEK: 週
+      YEAR: 年
+    GlobalSearchScopeCategory:
+      CASES: ケース
+      PROCESSES: プロセス
+      TASKS: タスク
+    SearchScopeCaseField:
+      CUSTOM: カスタム文字列フィールド
+      DESCRIPTION: 説明
+      NAME: 名前
+    SearchScopeTaskField:
+      DESCRIPTION: 説明
+      NAME: 名前
+    ThemeMode:
+      DARK: 暗い
+      LIGHT: 明るい
+  InsertTask-Explain: タスクを挿入します。私のタスクは延期されます。
+  InsertTheTask: タスクを挿入
+  Login:
+    CompanyName: Axon Ivy Portal
+    Copyright: Copyright Ⓒ Axon Ivy Portal
+  Permissions: 権限
+  Share: 共有
+  Task: タスク
+  TaskItemDetail: タスクの詳細
+  TaskUser-Explain: カンマ区切りのユーザーリスト
+  ToggleMenu: メニューを切り替える
+  ViewAllResults: すべての結果を表示
+  disabledUserPrefix: （無効）
+patterns:
+  datePattern: dd.MM.yyyy
+  dateTimePattern: dd.MM.yyyy HH:mm
+  dateTimestampPattern: dd.MM.yyyy HH:mm:ss.SSS
+  monthDatePattern: MM.dd.yyyy
+  timePattern: HH:mm
+  timestampPattern: HH:mm:ss.SSS
+Processes:
+  Cases:
+    PortalCategory: ポータル
+    PortalInternalProcess:
+      PortalInternalProcessDescription: これはポータルの内部プロセスです
+    SynchronizeDataProcess:
+      AddOrUpdateBusinessEntitiesDescription: ビジネスエンティティーの追加または更新
+      AddOrUpdateBusinessEntityDescription: ビジネスエンティティーの追加または更新
+      AddOrUpdatePropertyOfServerDescription: サーバーのプロパティーの追加または更新
+      DeleteBusinessEntitiesDescription: ビジネスエンティティーの削除
+      DeleteBusinessEntityByPrefixDescription: プロパティプレフィックスによるビジネスエンティティーの削除
+      DeleteBusinessEntityDescription: ビジネスエンティティーの削除
+      DeletePropertiesOfServerDescription: サーバーのプロパティーの削除
+      DeletePropertyOfServerByPrefixDescription: プレフィックスによるサーバーのプロパティーの削除
+      DeletePropertyOfServerDescription: サーバーのプロパティーの削除
+      SynchronizeDataCaseName: データの同期
+    SynchronizeServerProcess:
+      AddServerConfigDescription: サーバー設定の追加
+      DeleteServerConfigurationDescription: サーバー設定の削除
+      SynchronizeServerConfigurationCaseName: サーバー設定の同期
+  portalHome: ポータルホーム
+  portalSettingSaved: ポータル設定が保存されます
+Texts:
+  Approval-Explain: |-
+    <P>
+
+    <B>決定を入力</B>し、<B>送信</B>を押してワークフローを続行します。
+
+    </P>
+  QA-Explain: |-
+    <P>
+
+    質問に答えて、その回答を発信者に <B>送信</B>します。
+
+    </P>
+  QAresponse-Explain: |-
+    <P>
+
+    フォローアップの質問を <B>送信</B> するか、ワークフローを <B>終了</B> することができます。
+
+    </P>
+  ToDo-Explain: |-
+    <P>
+
+    <B> TODO </B> が <B>完了</B> であることを確認するか、または拒否してください。
+
+    </P>
