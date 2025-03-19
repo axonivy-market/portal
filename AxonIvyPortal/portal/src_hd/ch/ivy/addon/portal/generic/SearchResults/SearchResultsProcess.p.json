@@ -19,8 +19,7 @@
           "map" : {
             "out.activeTabIndex" : "param.activeTabIndex",
             "out.dataModel.caseDataModel.notKeepFilter" : "true",
-            "out.dataModel.keyword" : "param.keyword",
-            "out.dataModel.taskDataModel.notKeepFilter" : "true"
+            "out.dataModel.keyword" : "param.keyword"
           },
           "code" : "out.dataModel.search();"
         },

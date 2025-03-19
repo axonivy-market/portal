@@ -115,7 +115,7 @@
                     </p:dataTable>
                   </div>
                   <div class="text-right mt-3 restore-to-default-button">
-                    <p:commandLink id="restore-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-undo')}" 
+                    <p:commandLink id="restore-to-default-button" 
                       global="false"
                       actionListener="#{userProfileBean.resetAllChannel}"
                       update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
