@@ -5,11 +5,6 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
   }
 
-  tools {
-      maven '3.9'
-      jdk '21'
-  }
-
   parameters {
       string(name: 'releaseVersion', defaultValue: '1.0.0-m1', description: 'The release version.')
       string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
@@ -65,14 +60,9 @@ pipeline {
             echo '====================Build all modules===================='
             // module structure [module path, isPossibleToDeploy]
             def modules = [['AxonIvyPortal/portal-components', true], ['AxonIvyPortal/portal', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/portal-user-examples', true], ['Showcase/portal-developer-examples', true], ['Showcase/InternalSupport', false], ['Showcase/portal-components-examples', true], ['AxonIvyPortal/portal-product', true], ['AxonIvyPortal/PortalApp', true], ['Showcase/portal-demo-app', true]]
-            //def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').getProperties().getProperty('build.plugin.version')
             for (module in modules) {
               def mavenGoal = params.deployToRepo && module[1] ? 'deploy' : 'install'
-              maven cmd: "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=${params.releaseVersion} -Divy.compiler.engine.start.timeout=120 %engineDownloadURL% -f ${module[0]}/pom.xml"
-              // maven cmd: "clean install -f ${module}/pom.xml"
-              // if(mavenGoal) {
-              //   maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.target.version=RELEASED"
-              // }
+              maven cmd: "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=\(7.0.0,] -Divy.compiler.engine.start.timeout=120 %engineDownloadURL% -f ${module[0]}/pom.xml"
             }
 
             echo "====================Create release tag ${params.releaseVersion}===================="
@@ -97,9 +87,9 @@ pipeline {
               } else {
                 nextVersion = "${parts[0]}.${(parts[1] as int) + 1}.0-SNAPSHOT"
               }
-              build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
-                parameters: [string(name: 'portalVersion', value: "${nextVersion}")],
-                wait: true, propagate: false
+              // build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
+              //   parameters: [string(name: 'portalVersion', value: "${nextVersion}")],
+              //   wait: true, propagate: false
             }
           }
         }
