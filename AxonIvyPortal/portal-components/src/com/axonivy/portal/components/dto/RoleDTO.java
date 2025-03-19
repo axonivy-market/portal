@@ -26,7 +26,7 @@ public class RoleDTO {
     name = iRole.getName();
     displayName = iRole.getDisplayName();
     memberName = iRole.getMemberName();
-    parentName = (iRole.getParent() == null) ? StringUtils.EMPTY : iRole.getParent().getName();
+    parentName = (iRole.getParent() == null) ? StringUtils.EMPTY : iRole.getParent().getDisplayName();
 
   }
   
