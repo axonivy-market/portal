@@ -97,7 +97,8 @@ public class UserUtils {
       Date startTimestamp = item.getStartTimestamp();
       if (startTimestamp.after(new Date()) && (foundDate == null || startTimestamp.before(foundDate))) {
         foundDate = startTimestamp;
-        returnString = String.format("%s - %s", formatter.format(startTimestamp), formatter.format(item.getStopTimestamp()));
+        returnString = String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/DateFromTo"),
+            formatter.format(startTimestamp), formatter.format(item.getStopTimestamp()));
       }
     }
     return returnString;
@@ -115,7 +116,8 @@ public class UserUtils {
       Date stopTimestamp = item.getStopTimestamp();
 
       if (!now.before(startTimestamp) && !now.after(stopTimestamp)) {
-        returnString = String.format("%s - %s", formatter.format(startTimestamp), formatter.format(stopTimestamp));
+        returnString = String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/DateFromTo"),
+            formatter.format(startTimestamp), formatter.format(stopTimestamp));
         break;
       }
     }
