@@ -49,7 +49,7 @@ pipeline {
 
             pomFiles.each { pomFile ->
             sh """
-              xmlstarlet ed ed --inplace \
+              xmlstarlet ed --inplace \
               -u "/project/version" -v "${params.releaseVersion}" ${pomFile}
               """
               for (groupId in DEPENDENCY_GROUP_IDS) {
