@@ -77,13 +77,23 @@ pipeline {
                     # Remove created tag
                     git remote set-url origin git@github.com:axonivy-market/portal.git
                     git checkout ${BRANCH_NAME} || git checkout -b ${BRANCH_NAME}
-                    git push --delete origin "${params.releaseVersion}"
+                    """
+
+                  sh """
+                    if git ls-remote --tags origin | grep -q "refs/tags/${params.releaseVersion}"; then
+                      echo "Tag ${params.releaseVersion} found on remote. Deleting..."
+                    git push --delete origin "${params.releaseVersion}"   
+                    else
+                      echo "Tag ${params.releaseVersion} does not exist on remote. Skipping delete."
+                    fi
+                    """
+                  sh """
                     git tag -d "${params.releaseVersion}"
                     # Create tag for the release
                     git commit -a -m "update projects version"
                     git tag -a "${params.releaseVersion}" -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}"
                     git push origin "${params.releaseVersion}"
-                  """
+                    """
                 }
               }
 
