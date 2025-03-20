@@ -69,18 +69,19 @@ pipeline {
               } else {
                 nextVersion = "${parts[0]}.${(parts[1] as int) + 1}.0-SNAPSHOT"
               }
-            // build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
-            //   parameters: [string(name: 'portalVersion', value: "${nextVersion}")],
-            //   wait: true, propagate: false
+            build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
+              parameters: [string(name: 'portalVersion', value: "${nextVersion}")],
+              wait: true, propagate: false
             }
           }
 
           def utils = load 'build/common/utils.groovy'
           utils.generateBOM()
           utils.mergeBOMFiles()
+          def currentDir = pwd()
           if(params.deployToRepo) {
-            docker.build('build-portal-modules', '-f build/create-release/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
-              maven cmd: "deploy:deploy-file -Dfile=/build/sbom/target/portal-${params.releaseVersion}.bom.json -DgroupId=com.axonivy.portal -DartifactId=portal-bom -Dversion=${params.releaseVersion} -Dpackaging=json -DrepositoryId=nexus.axonivy.com -Durl=https://nexus.axonivy.com/repository/maven-releases"
+            docker.build('deploy-portal-bom', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+              maven cmd: "deploy:deploy-file -Dfile=${currentDir}/build/sbom/target/portal-${params.releaseVersion}.bom.json -DgroupId=com.axonivy.portal -DartifactId=portal-bom -Dversion=${params.releaseVersion} -Dpackaging=json -DrepositoryId=nexus.axonivy.com -Durl=https://nexus.axonivy.com/repository/maven-releases"
             }
           }
         }
