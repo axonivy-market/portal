@@ -44,7 +44,7 @@ pipeline {
                 def modules = [['AxonIvyPortal/portal-components', true], ['AxonIvyPortal/portal', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/portal-user-examples', true], ['Showcase/portal-developer-examples', true], ['Showcase/InternalSupport', false], ['Showcase/portal-components-examples', true], ['AxonIvyPortal/portal-product', true], ['AxonIvyPortal/PortalApp', true], ['Showcase/portal-demo-app', true]]
                 for (module in modules) {
                   def mavenGoal = params.deployToRepo && module[1] ? 'deploy' : 'install'
-                maven cmd: "clean ${mavenGoal} -Divy.engine.directory=${env.engineDir} -Divy.engine.version=[7.0.0,] -Divy.compiler.engine.start.timeout=120 ${params.engineDownloadURL} -f ${module[0]}/pom.xml"
+                  maven cmd: "clean ${mavenGoal} -Divy.engine.directory=${env.engineDir} -Divy.engine.version=[7.0.0,] -Divy.compiler.engine.start.timeout=120 ${params.engineDownloadURL} -f ${module[0]}/pom.xml"
                 }
 
                 echo "====================Create release tag ${params.releaseVersion}===================="
@@ -72,6 +72,15 @@ pipeline {
             // build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
             //   parameters: [string(name: 'portalVersion', value: "${nextVersion}")],
             //   wait: true, propagate: false
+            }
+          }
+
+          def utils = load 'build/common/utils.groovy'
+          utils.generateBOM()
+          utils.mergeBOMFiles()
+          if(params.deployToRepo) {
+            docker.build('build-portal-modules', '-f build/create-release/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+              maven cmd: "deploy:deploy-file -Dfile=/build/sbom/target/portal-${params.releaseVersion}.bom.json -DgroupId=com.axonivy.portal -DartifactId=portal-bom -Dversion=${params.releaseVersion} -Dpackaging=json -DrepositoryId=nexus.axonivy.com -Durl=https://nexus.axonivy.com/repository/maven-releases"
             }
           }
         }
