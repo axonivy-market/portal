@@ -89,7 +89,9 @@ public enum GlobalVariable {
       "Portal.Cases.HideCaseCreator", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseCreator"),
   ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableDocumentPreview"),
   DOCUMENT_UPLOAD_SIZE_LIMIT("Portal.Upload.DocumentUploadSizeLimit",GlobalVariableType.NUMBER,"20","documentUploadSizeLimit"),
-  IMAGE_UPLOAD_SIZE_LIMIT("Portal.Upload.ImageUploadSizeLimit", GlobalVariableType.NUMBER, "6", "imageUploadSizeLimit");
+  IMAGE_UPLOAD_SIZE_LIMIT("Portal.Upload.ImageUploadSizeLimit", GlobalVariableType.NUMBER, "6", "imageUploadSizeLimit"),
+  DELEGATION_APPEND_OPTION("Portal.DelegationAppendOption", GlobalVariableType.EXTERNAL_SELECTION,
+      DelegationAppendOption.NONE.name(), "delegationAppendOption", getDelegationAppendOption());
 
   private String key;
   private GlobalVariableType type;
@@ -304,5 +306,13 @@ public enum GlobalVariable {
   
   public static GlobalVariable valueOfKey(String key) {
     return keyToVariable.get(key);
+  }
+  
+  private static Map<String, Object> getDelegationAppendOption() {
+    Map<String, Object> result = new HashMap<>();
+    for (DelegationAppendOption option : DelegationAppendOption.values()) {
+      result.put(option.name(), option);
+    }
+    return result;
   }
 }
