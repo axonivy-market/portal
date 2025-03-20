@@ -214,6 +214,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       RoleParentLimit: 'Die eingestellte Zahl steuert die Anzahl der übergeordneten Rollen, die beim Filtern von Rollen auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 5, 10, 20'
       SearchScopeCaseFields: Festlegung der Felder, die bei der globalen Suche verwendet werden sollen, um neben der Fallnummer übereinstimmende Vorgänge zu finden (dies kann die Leistung der Suche beeinflussen)
       SearchScopeTaskFields: Festlegung der Felder, die die globale Suche neben der Aufgabenkennung verwendet, um passende Aufgaben zu finden (dies kann die Leistung der Suche beeinflussen)
+      SessionCacheTimeout: Die Sitzungs-Cache-Zeitüberschreitung im Portal kann zwischen 5 und 1440 Minuten festgelegt werden (Anzahl der Minuten in einem Tag). Um den Sitzungs-Cache bis zum Ende der Benutzersitzung beizubehalten, setze diese Variable auf -1.
       ShowLoginPageFooter: Zum Ein-/Ausschalten der Anzeige der Fußzeile auf der Anmeldeseite.
       ShowQRCode: Zum Ein- und Ausschalten der Anzeige des QR-Codes.
       behaviourWhenClickingOnLineInCaseList: Umschalten zwischen dem Zugriff auf Falldaten oder Geschäftsdaten beim Klicken auf einen Fall im Fall-Widget des Dashboards, in der globalen Suche, in verwandten Fällen und im Prozess-Widget im kombinierten Modus.
