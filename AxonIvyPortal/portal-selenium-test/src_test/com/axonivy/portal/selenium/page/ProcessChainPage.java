@@ -9,7 +9,7 @@ public class ProcessChainPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return ".theme-selection-panel";
+    return ".process-chain-test-button";
   }
 
   public boolean isEmptyNextStepButtonDisplay() {
