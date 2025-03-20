@@ -3,6 +3,9 @@ package com.axonivy.portal.components.dto;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 
 public class RoleDTO {
@@ -11,6 +14,8 @@ public class RoleDTO {
   private String name;
   private String displayName;
   private String memberName;
+  private String parentName;
+
 
   public RoleDTO() {
     super();
@@ -21,6 +26,8 @@ public class RoleDTO {
     name = iRole.getName();
     displayName = iRole.getDisplayName();
     memberName = iRole.getMemberName();
+    parentName = (iRole.getParent() == null) ? StringUtils.EMPTY : iRole.getParent().getDisplayName();
+
   }
   
   public static List<RoleDTO> toRoles(List<IRole> iroles) {
@@ -57,5 +64,18 @@ public class RoleDTO {
 
   public void setMemberName(String memberName) {
     this.memberName = memberName;
+  }
+
+  public String getParentName() {
+    return parentName;
+  }
+
+  public void setParentName(String parentName) {
+    this.parentName = parentName;
+  }
+
+  public String getRoleWithParentName() {
+    return String.format("%s (%s: %s)", getDisplayName(), Ivy.cms().co("/Labels/ParentRole"),
+        getParentName().isEmpty() ? Ivy.cms().co("/Labels/None") : getParentName());
   }
 }

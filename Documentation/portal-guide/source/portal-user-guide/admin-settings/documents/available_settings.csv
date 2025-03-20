@@ -74,3 +74,4 @@ Portal.GlobalSearchScopeCategories,"PROCESSES,TASKS,CASES",Defining the types th
 Portal.Cases.HideCaseCreator,FALSE,"Set to true to hide case creator in case list, case widget and case details.This setting affects all case queries, e.g. for case list, global search, statistic."
 Portal.Upload.DocumentUploadSizeLimit,"20",Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.
 Portal.Upload.ImageUploadSizeLimit,"6",Set the size limit for uploading images in megabytes (MB). The default value is 6MB.
+Portal.DelegationAppendOption,"None",Defines the fields that can be appended to the role group display name.
