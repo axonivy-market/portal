@@ -41,36 +41,6 @@ pipeline {
           ]
 
           docker.build('build-portal-modules', '-f build/create-release/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
-            def pomFiles = []
-            POM_PATTERN_FILES.each { pattern ->
-              def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split('\n')
-              pomFiles.addAll(foundFiles)
-            }
-
-            pomFiles.each { pomFile ->
-            sh """
-              xmlstarlet ed --inplace \
-              -u "/project/version" -v "${params.releaseVersion}" ${pomFile}
-              """
-              for (groupId in DEPENDENCY_GROUP_IDS) {
-                sh """
-                    xmlstarlet ed --inplace \
-                    -u "//dependencies/dependency[groupId='${groupId}']/version" \
-                    -v "${params.releaseVersion}" ${pomFile}
-                  """
-              }
-            }
-
-            echo '====================Build all modules===================='
-            // module structure [module path, isPossibleToDeploy]
-            def modules = [['AxonIvyPortal/portal-components', true], ['AxonIvyPortal/portal', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/portal-user-examples', true], ['Showcase/portal-developer-examples', true], ['Showcase/InternalSupport', false], ['Showcase/portal-components-examples', true], ['AxonIvyPortal/portal-product', true], ['AxonIvyPortal/PortalApp', true], ['Showcase/portal-demo-app', true]]
-            for (module in modules) {
-              def mavenGoal = params.deployToRepo && module[1] ? 'deploy' : 'install'
-              maven cmd: "clean ${mavenGoal} -Divy.engine.directory=${env.engineDir} -Divy.engine.version=[7.0.0,] -Divy.compiler.engine.start.timeout=120 ${params.engineDownloadURL} -f ${module[0]}/pom.xml"
-            }
-
-            echo "====================Create release tag ${params.releaseVersion}===================="
-
             withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
                 sshagent(credentials: ['github-axonivy']) {
                   sh """
@@ -79,6 +49,36 @@ pipeline {
                     git checkout ${BRANCH_NAME} || git checkout -b ${BRANCH_NAME}
                     git fetch --tags
                     """
+
+                def pomFiles = []
+                POM_PATTERN_FILES.each { pattern ->
+                  def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split('\n')
+                  pomFiles.addAll(foundFiles)
+                }
+
+                pomFiles.each { pomFile ->
+                  sh """
+                    xmlstarlet ed --inplace \
+                    -u "/project/version" -v "${params.releaseVersion}" ${pomFile}
+                    """
+                  for (groupId in DEPENDENCY_GROUP_IDS) {
+                    sh """
+                    xmlstarlet ed --inplace \
+                    -u "//dependencies/dependency[groupId='${groupId}']/version" \
+                    -v "${params.releaseVersion}" ${pomFile}
+                  """
+                  }
+                }
+
+                echo '====================Build all modules===================='
+                // module structure [module path, isPossibleToDeploy]
+                def modules = [['AxonIvyPortal/portal-components', true], ['AxonIvyPortal/portal', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/portal-user-examples', true], ['Showcase/portal-developer-examples', true], ['Showcase/InternalSupport', false], ['Showcase/portal-components-examples', true], ['AxonIvyPortal/portal-product', true], ['AxonIvyPortal/PortalApp', true], ['Showcase/portal-demo-app', true]]
+                for (module in modules) {
+                  def mavenGoal = params.deployToRepo && module[1] ? 'deploy' : 'install'
+                  //maven cmd: "clean ${mavenGoal} -Divy.engine.directory=${env.engineDir} -Divy.engine.version=[7.0.0,] -Divy.compiler.engine.start.timeout=120 ${params.engineDownloadURL} -f ${module[0]}/pom.xml"
+                }
+
+                echo "====================Create release tag ${params.releaseVersion}===================="
 
                   // sh """
                   //   if git tag -l "${params.releaseVersion}"; then
@@ -96,7 +96,7 @@ pipeline {
                     git push origin "${params.releaseVersion}"
                     """
                 }
-              }
+            }
 
             echo "====================Update Portal version for development after release ${params.releaseVersion} ===================="
             def parts = releaseVersion.tokenize('.')
@@ -107,9 +107,9 @@ pipeline {
               } else {
                 nextVersion = "${parts[0]}.${(parts[1] as int) + 1}.0-SNAPSHOT"
               }
-              // build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
-              //   parameters: [string(name: 'portalVersion', value: "${nextVersion}")],
-              //   wait: true, propagate: false
+            // build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
+            //   parameters: [string(name: 'portalVersion', value: "${nextVersion}")],
+            //   wait: true, propagate: false
             }
           }
         }
