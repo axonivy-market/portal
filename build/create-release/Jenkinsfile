@@ -27,19 +27,6 @@ pipeline {
           currentBuild.description = "On ${env.NODE_NAME}"
           echo "====================Update pom version to ${params.releaseVersion}===================="
 
-          def POM_PATTERN_FILES = [
-              'AxonIvyPortal/*/pom.xml',
-              'Showcase/*/pom.xml',
-              'AxonIvyPortal/portal-selenium-test/customized_pom.xml',
-              'AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml',
-              'Documentation/public-api/pom.xml'
-          ]
-
-          def DEPENDENCY_GROUP_IDS = [
-              'ch.ivyteam.ivy.project.portal',
-              'com.axonivy.portal'
-          ]
-
           docker.build('build-portal-modules', '-f build/create-release/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
                 sshagent(credentials: ['github-axonivy']) {
@@ -47,35 +34,16 @@ pipeline {
                     # Remove created tag
                     git remote set-url origin git@github.com:axonivy-market/portal.git
                     git checkout ${BRANCH_NAME} || git checkout -b ${BRANCH_NAME}
-                    git fetch --tags
                     """
 
-                def pomFiles = []
-                POM_PATTERN_FILES.each { pattern ->
-                  def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split('\n')
-                  pomFiles.addAll(foundFiles)
-                }
-
-                pomFiles.each { pomFile ->
-                  sh """
-                    xmlstarlet ed --inplace \
-                    -u "/project/version" -v "${params.releaseVersion}" ${pomFile}
-                    """
-                  for (groupId in DEPENDENCY_GROUP_IDS) {
-                    sh """
-                    xmlstarlet ed --inplace \
-                    -u "//dependencies/dependency[groupId='${groupId}']/version" \
-                    -v "${params.releaseVersion}" ${pomFile}
-                  """
-                  }
-                }
+                updateVersion(params.releaseVersion)
 
                 echo '====================Build all modules===================='
                 // module structure [module path, isPossibleToDeploy]
                 def modules = [['AxonIvyPortal/portal-components', true], ['AxonIvyPortal/portal', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/portal-user-examples', true], ['Showcase/portal-developer-examples', true], ['Showcase/InternalSupport', false], ['Showcase/portal-components-examples', true], ['AxonIvyPortal/portal-product', true], ['AxonIvyPortal/PortalApp', true], ['Showcase/portal-demo-app', true]]
                 for (module in modules) {
                   def mavenGoal = params.deployToRepo && module[1] ? 'deploy' : 'install'
-                  //maven cmd: "clean ${mavenGoal} -Divy.engine.directory=${env.engineDir} -Divy.engine.version=[7.0.0,] -Divy.compiler.engine.start.timeout=120 ${params.engineDownloadURL} -f ${module[0]}/pom.xml"
+                maven cmd: "clean ${mavenGoal} -Divy.engine.directory=${env.engineDir} -Divy.engine.version=[7.0.0,] -Divy.compiler.engine.start.timeout=120 ${params.engineDownloadURL} -f ${module[0]}/pom.xml"
                 }
 
                 echo "====================Create release tag ${params.releaseVersion}===================="
@@ -120,6 +88,41 @@ pipeline {
   post {
     always {
       archiveArtifacts artifacts: '**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip,*/*/pom.xml'
+    }
+  }
+}
+
+def updateVersion(def releaseVersion) {
+  def POM_PATTERN_FILES = [
+    'AxonIvyPortal/*/pom.xml',
+    'Showcase/*/pom.xml',
+    'AxonIvyPortal/portal-selenium-test/customized_pom.xml',
+    'AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml',
+    'Documentation/public-api/pom.xml'
+  ]
+
+  def DEPENDENCY_GROUP_IDS = [
+    'ch.ivyteam.ivy.project.portal',
+    'com.axonivy.portal'
+  ]
+
+  def pomFiles = []
+  POM_PATTERN_FILES.each { pattern ->
+  def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split('\n')
+  pomFiles.addAll(foundFiles)
+  }
+
+  pomFiles.each { pomFile ->
+  sh """
+     xmlstarlet ed --inplace \
+     -u "/project/version" -v "${releaseVersion}" ${pomFile}
+     """
+  for (groupId in DEPENDENCY_GROUP_IDS) {
+  sh """
+     xmlstarlet ed --inplace \
+     -u "//dependencies/dependency[groupId='${groupId}']/version" \
+     -v "${releaseVersion}" ${pomFile}
+     """
     }
   }
 }
