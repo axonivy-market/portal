@@ -412,7 +412,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ResetToDefaultHeaderText: 初期設定にリセットしますか？
     RoleUserInformation: ロールとユーザー情報
     StringFormat:
-      DateFromTo: '%sから%sまで'
+      DateFromTo: '%s - %s'
       TextListOut: '%s、%s、。。'
       TextWithRoundBracket: '%s（%s）'
     TaskCaseInformation: タスク／ケース情報
