@@ -20,6 +20,7 @@ import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInCaseList;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.DefaultImage;
+import ch.ivy.addon.portalkit.enums.DelegationAppendOption;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
 import ch.ivy.addon.portalkit.enums.GlobalVariableType;
@@ -131,7 +132,9 @@ public class GlobalSetting extends AbstractConfiguration {
     } else if (object instanceof SearchScopeCaseField castObject) {
       return castObject.getLabel();
     }  else if (object instanceof GlobalSearchScopeCategory) {
-      return ((GlobalSearchScopeCategory)object).getLabel();
+      return ((GlobalSearchScopeCategory) object).getLabel();
+    } else if (object instanceof DelegationAppendOption) {
+      return ((DelegationAppendOption) object).getLabel();
     } else {
       return (String)object;
     }
