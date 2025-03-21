@@ -22,7 +22,7 @@
   <f:event listener="#{widgetCreatorFilterBean.init(cc.attrs.filter)}" type="preRenderComponent" />
 
   <h:panelGroup id="creator-filter-operator-panel" layout="block"
-    styleClass="ui-fluid md-inputfield creator-filter-operation-panel">
+    styleClass="ui-fluid creator-filter-operation-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{widgetCreatorFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
@@ -33,7 +33,7 @@
   </h:panelGroup>
 
   <h:panelGroup id="creator-list-panel" layout="block"
-    styleClass="ui-fluid md-inputfield creator-filter-list" rendered="#{filter.operator == 'IN' or filter.operator == 'NOT_IN'}">
+    styleClass="ui-fluid creator-filter-list" rendered="#{filter.operator == 'IN' or filter.operator == 'NOT_IN'}">
 
     <p:autoComplete id="creators" scrollHeight="210" dropdown="true" size="35"
       completeMethod="#{cc.attrs.creatorCompleteMethod}"
