@@ -59,6 +59,7 @@
             componentId="group-activator-select" selectedRole="#{data.selectedRole}" rendered="#{!data.isUserDelegated}"
             cache="true" queryDelay="500" completeMethod="#{logic.autoCompleteForRoleDelegate}"
             isRenderedMessage="false"
+            appendOption="#{visibilityBean.delegationAppendOption()}"
             autoCompletePanelStyleClass="ui-fluid">
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}"

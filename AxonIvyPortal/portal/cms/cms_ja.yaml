@@ -86,6 +86,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       STATISTIC: 統計ウィジェット
       TASK: タスク ウィジェット
       WELCOME: ウェルカムウィジェット
+    DelegationAppendOption:
+      NONE: なし
+      PARENT_NAME: 'TODO: Parent name'
     GlobalVariable:
       Option:
         DISPLAY_NAME: 表示名
@@ -229,6 +232,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       defaultSortDirectionOfTaskList: タスクリストのソート方向の初期値
       defaultSortFieldOfCaseList: ケースリストのソートフィールドの初期値
       defaultSortFieldOfTaskList: タスクリストのソートフィールドの初期値
+      delegationAppendOption: 'TODO: This setting determines which additional information is included when formatting role names.'
       disableCaseCount: ケース リストでケースのカウントを無効にするには true に設定してください
       disableTaskCount: タスク リストでタスクのカウントを無効にするには true に設定してください
       displayAllUsersOfTaskActivator: この設定は SecurityMemberDisplayName コンポーネントに使用します。SecurityMember がロールである場合、この設定を true に設定すると、このロールのすべてのユーザーが一覧表示されます。true に設定すると、ロール名の横にアイコン情報が表示されます。
@@ -413,6 +417,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     StringFormat:
       DateFromTo: '%s - %s'
       TextListOut: '%s、%s、。。'
+      TextWithContextInBrackets: 'TODO: %s (%s: %s)'
       TextWithRoundBracket: '%s（%s）'
     TaskCaseInformation: タスク／ケース情報
     Update: 更新

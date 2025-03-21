@@ -38,4 +38,8 @@ public class VisibilityBean implements Serializable {
   public boolean isHideCaseCreator() {
     return globalSettingService.isHideCaseCreator();
   }
+
+  public String delegationAppendOption() {
+    return globalSettingService.findGlobalSettingValue(GlobalVariable.DELEGATION_APPEND_OPTION);
+  }
 }

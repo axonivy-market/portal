@@ -95,4 +95,6 @@ Labels:
   DisabledUserPrefix: (inaktiv)
   NoName: kein Name
   NoResults: Keine Ergebnisse
+  None: Keine
   NotAvailable: N/V
+  ParentRole: Übergeordnete Rolle
