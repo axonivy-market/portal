@@ -88,7 +88,8 @@ public class RoleDTO {
   }
 
   public String getRoleWithParentName() {
-    return String.format("%s (%s: %s)", getDisplayName(), Ivy.cms().co("/Labels/ParentRole"),
+    return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/TextWithContextInBrackets"),
+        getDisplayName(), Ivy.cms().co("/Labels/ParentRole"),
         getParentName().isEmpty() ? Ivy.cms().co("/Labels/None") : getParentName());
   }
 
