@@ -1,5 +1,5 @@
-name: Portal Document Screenshot
-run-name: Document Screenshot 
+name: Document Screenshot
+run-name: 🖼️ Document Screenshot 
 on:
   workflow_dispatch:
     inputs:
