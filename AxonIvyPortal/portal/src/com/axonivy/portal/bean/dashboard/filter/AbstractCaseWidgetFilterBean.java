@@ -10,6 +10,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
@@ -88,7 +89,7 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
         .orElse(StringUtils.EMPTY);
     FilterField filterField = FilterFieldFactory.findBy(field);
 
-    if (filterField.getName().contentEquals(FilterFieldFactory.DEFAULT_FILTER_FIELD)) {
+    if (filterField.getName().contentEquals(BaseFilter.DEFAULT)) {
       filterField.addNewFilter(filter);
       return;
     }

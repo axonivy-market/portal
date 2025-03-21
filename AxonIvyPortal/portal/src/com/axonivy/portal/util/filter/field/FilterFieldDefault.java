@@ -1,5 +1,6 @@
 package com.axonivy.portal.util.filter.field;
 
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivyteam.ivy.environment.Ivy;
@@ -9,7 +10,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 public class FilterFieldDefault extends FilterField {
 
   public FilterFieldDefault() {
-    super(FilterFieldFactory.DEFAULT_FILTER_FIELD);
+    super(BaseFilter.DEFAULT);
   }
 
   @Override

@@ -1480,6 +1480,7 @@ Dialogs:
           StatisticConfiguration:
             AdvancedConfiguration: TODO Advanced configuration
             Aggregate: TODO Aggregate
+            AddFilter: TODO Add filter
             ChartType: TODO Chart type
             Color: 色{0}
             Create: TODO Create

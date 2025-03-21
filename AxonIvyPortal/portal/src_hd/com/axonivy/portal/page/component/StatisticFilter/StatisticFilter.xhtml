@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="filter" type="com.axonivy.portal.dto.statistic.StatisticFilter" />
+  <cc:attribute name="managedBean" required="true" />
+  <cc:attribute name="componentToUpdate" required="true" />
+  <cc:attribute name="onCompleteRemoveFilter" />
+  <cc:attribute name="filterIndex" />
+  <cc:attribute name="readOnly" default="false" />
+  <cc:attribute name="messageId" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
+  <c:set var="filter" value="#{cc.attrs.filter}" />
+  <c:set var="statistic" value="#{managedBean.statistic}" />
+
+  <div class="ui-g-12 pl-0">
+    <h:panelGroup id="filter-selection-panel" layout="block" styleClass="dashboard-widget-filter__filter-panel filter-selection-panel">
+      <div class="ui-fluid md-inputfield filter-selection-panel">
+        <p:selectOneMenu id="field-selection" value="#{filter.filterField}" converter="pojoConverter">
+          <f:selectItems value="#{managedBean.filterFields}" var="field" itemValue="#{field}" itemLabel="#{field.label}" />
+          <f:param name="skipValidator" value="true" />
+          <p:ajax event="itemSelect" listener="#{managedBean.onSelectFilter(filter)}" update="filter-selection-panel"
+            global="false" />
+        </p:selectOneMenu>
+      </div>
+      
+      <h:panelGroup layout="block" rendered="#{filter.isCategory()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.CategoryFilter
+          filter="#{filter}" widgetType="#{statistic.getChartTarget().getName()}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          forStatistic="true" messageId="#{cc.attrs.messageId}" />
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" rendered="#{filter.isState()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.StateFilter filter="#{filter}"
+          widgetType="#{widget.getType()}" forStatistic="true"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+      </h:panelGroup>
+
+      <h:panelGroup layout="block" rendered="#{filter.isPriority()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.PriorityFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" forStatistic="true" />
+      </h:panelGroup>
+      
+      <h:panelGroup layout="block" rendered="#{filter.isCreatedDateField() or filter.isExpiryDateField()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.DateFilter filter="#{filter}" widgetType="#{statistic.getChartTarget().getName()}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{widgetDateFilterBean.createdDateOperators}"/>
+      </h:panelGroup>
+      
+      <h:panelGroup layout="block" rendered="#{filter.isResponsible()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.ResponsibleFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"
+          responsibleCompleteMethod="#{cc.attrs.managedBean.completeOwners}" />
+      </h:panelGroup>
+      
+      <h:panelGroup layout="block" rendered="#{filter.isCanWorkOn()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.CanWorkOnFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+      </h:panelGroup>
+
+      <div class="remove-filter-panel">
+        <p:commandButton id="remove-filter" icon="si si-subtract"
+          styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger dashboard-widget-filter__remove-filter"
+          actionListener="#{managedBean.removeFilter(filter)}"
+          update="#{cc.attrs.componentToUpdateWhenRemoveFilter} #{cc.attrs.componentToUpdate}" global="false"
+          oncomplete="#{cc.attrs.onCompleteRemoveFilter}" immediate="true" partialSubmit="true">
+          <f:param name="skipValidator" value="true" />
+        </p:commandButton>
+      </div>
+    </h:panelGroup>
+  </div>
+
+</cc:implementation>
+
+</html>
