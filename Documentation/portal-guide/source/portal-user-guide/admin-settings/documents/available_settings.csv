@@ -70,3 +70,4 @@ Portal.UserMenu.GooglePlayURL,"",Set URL to download Axon Ivy mobile app on Goog
 Portal.GlobalSearchScopeCategories,"PROCESSES,TASKS,CASES",Defining the types that the global search will search for.
 Portal.Upload.DocumentUploadSizeLimit,"20",Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.
 Portal.Upload.ImageUploadSizeLimit,"6",Set the size limit for uploading images in megabytes (MB). The default value is 6MB.
+Portal.DelegationAppendOption,"None",Defines the fields that can be appended to the role group display name.
