@@ -20,10 +20,6 @@
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "filterType",
-    "type" : "ch.ivy.addon.portalkit.enums.FilterType",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
     "name" : "isFilterExisted",
     "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
@@ -66,20 +62,6 @@
     "name" : "startIndex",
     "type" : "Integer",
     "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "taskFilterDataToBeRemoved",
-    "type" : "ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "taskFilterGroupId",
-    "type" : "Long",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "taskPrivateFilters",
-    "type" : "List<ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData>"
-  }, {
-    "name" : "taskPublicFilters",
-    "type" : "List<ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData>"
   }, {
     "name" : "tasks",
     "type" : "java.util.List<ch.ivyteam.ivy.workflow.ITask>"

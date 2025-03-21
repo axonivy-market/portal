@@ -80,7 +80,6 @@
             "in.selectedUserForReadOnlyField = new UserDTO(backendDev1);",
             "in.excludedUsernames = Arrays.asList(\"supporter\", \"tester\");",
             "in.excludeAllRoleNames = Arrays.asList(\"supporter\", \"tester\", \"backendDev1\", \"backendDev2\");",
-            "in.userSelectionSerenityExampleLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/UserSelectionExample/showUserSelectionExamplesSerenity.ivp\");",
             "in.nonExistedRoles = Arrays.asList(\"EmptyRole\");"
           ]
         },

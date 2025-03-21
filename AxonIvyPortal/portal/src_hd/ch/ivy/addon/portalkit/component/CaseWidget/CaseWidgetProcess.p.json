@@ -34,7 +34,7 @@
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 536, "y" : 96 }
+        "at" : { "x" : 448, "y" : 96 }
       }
     }, {
       "id" : "f6",
@@ -165,284 +165,6 @@
         "at" : { "x" : 448, "y" : 288 }
       }
     }, {
-      "id" : "f2",
-      "type" : "Script",
-      "name" : "Load filter set",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.service.CaseFilterService;",
-            "import ch.ivy.addon.portalkit.bean.PermissionBean;",
-            "import ch.ivy.addon.portalkit.enums.FilterType;",
-            "CaseFilterService filterService = new CaseFilterService();",
-            "in.privateFilters = filterService.getPrivateFilterForCurrentUser(in.filterGroupId) as List;",
-            "in.publicFilters = filterService.getPublicFilter(in.filterGroupId) as List;",
-            "in.publicFilters.add(in.dataModel.buildDefaultCaseFilterData());",
-            "in.filterType = FilterType.ONLY_ME;"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 384, "y" : 96 }
-      },
-      "connect" : [
-        { "id" : "f4", "to" : "f1" }
-      ]
-    }, {
-      "id" : "f5",
-      "type" : "HtmlDialogEventStart",
-      "name" : "saveFilter",
-      "config" : {
-        "guid" : "1680C6A623A9C767"
-      },
-      "visual" : {
-        "at" : { "x" : 64, "y" : 384 },
-        "labelOffset" : { "x" : 4, "y" : 37 }
-      },
-      "connect" : [
-        { "id" : "f11", "to" : "f45" }
-      ]
-    }, {
-      "id" : "f47",
-      "type" : "Alternative",
-      "name" : [
-        "is filter",
-        "existed?"
-      ],
-      "config" : {
-        "conditions" : {
-          "f25" : "in.isFilterExisted == false"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 304, "y" : 384 }
-      },
-      "connect" : [
-        { "id" : "f25", "to" : "f24", "label" : {
-            "name" : "no"
-          } },
-        { "id" : "f51", "to" : "f50", "via" : [ { "x" : 304, "y" : 336 } ], "label" : {
-            "name" : "yes",
-            "segment" : 1.3
-          } }
-      ]
-    }, {
-      "id" : "f29",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 568, "y" : 480 }
-      }
-    }, {
-      "id" : "f45",
-      "type" : "Script",
-      "name" : "validate",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
-            "import ch.ivy.addon.portalkit.service.CaseFilterService;",
-            "",
-            "CaseFilterService service = new CaseFilterService();",
-            "in.isFilterExisted = false;",
-            "if (service.isFilterExisted(in.filterSetName, in.filterType, in.filterGroupId)) {",
-            "  FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterExistedValidationError\"), \"\");",
-            "  FacesContext.getCurrentInstance().addMessage(\"\", message);",
-            "  FacesContext.getCurrentInstance().validationFailed();",
-            "  in.isFilterExisted = true;",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 176, "y" : 384 }
-      },
-      "connect" : [
-        { "id" : "f48", "to" : "f47" }
-      ]
-    }, {
-      "id" : "f50",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 560, "y" : 336 }
-      }
-    }, {
-      "id" : "f31",
-      "type" : "Script",
-      "name" : "Clear filter",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.enums.FilterType;",
-            "in.filterType = FilterType.ONLY_ME;",
-            "in.filterSetName = \"\";"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 432, "y" : 480 }
-      },
-      "connect" : [
-        { "id" : "f30", "to" : "f29" }
-      ]
-    }, {
-      "id" : "f24",
-      "type" : "Script",
-      "name" : "save filter set",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.service.CaseFilterService;",
-            "import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;",
-            "import ch.ivy.addon.portalkit.enums.FilterType;",
-            "",
-            "CaseFilterService filterService = new CaseFilterService();",
-            "CaseFilterData filterData = in.dataModel.saveFilter(in.filterSetName, in.filterType, in.filterGroupId);",
-            "if (FilterType.ONLY_ME == filterData.type) {",
-            "  in.privateFilters.add(filterData);",
-            "  in.privateFilters = filterService.sortFilters(in.privateFilters) as List;",
-            "} else {",
-            "  in.publicFilters.add(filterData);",
-            "  in.publicFilters = filterService.sortFilters(in.publicFilters) as List;",
-            "}",
-            "in.dataModel.selectedFilterData = filterData;"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 432, "y" : 384 }
-      },
-      "connect" : [
-        { "id" : "f26", "to" : "f31" }
-      ]
-    }, {
-      "id" : "f28",
-      "type" : "HtmlDialogEventStart",
-      "name" : "clearSaveFilterDialog",
-      "config" : {
-        "guid" : "1680C745298BE4BA"
-      },
-      "visual" : {
-        "at" : { "x" : 64, "y" : 480 }
-      },
-      "connect" : [
-        { "id" : "f12", "to" : "f31" }
-      ]
-    }, {
-      "id" : "f35",
-      "type" : "Script",
-      "name" : "remove filter",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import ch.ivy.addon.portalkit.enums.FilterType;",
-            "import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;",
-            "import ch.ivy.addon.portalkit.service.CaseFilterService;",
-            "",
-            "CaseFilterService service = new CaseFilterService();",
-            "service.delete(in.filterDataToBeDeleted.id);",
-            "",
-            "if(in.filterDataToBeDeleted.type == FilterType.ONLY_ME) {",
-            "  in.privateFilters.remove(in.filterDataToBeDeleted);",
-            "} else {",
-            "  in.publicFilters.remove(in.filterDataToBeDeleted);",
-            "}",
-            "",
-            "if (in.dataModel.#selectedFilterData is initialized && in.dataModel.isSameCaseFilterData(in.filterDataToBeDeleted)) {",
-            "  in.dataModel.resetFilters();",
-            "  in.filteringKeyword = null;",
-            "}"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 216, "y" : 576 }
-      },
-      "connect" : [
-        { "id" : "f40", "to" : "f36" }
-      ]
-    }, {
-      "id" : "f36",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 352, "y" : 576 }
-      }
-    }, {
-      "id" : "f13",
-      "type" : "HtmlDialogEventStart",
-      "name" : "deleteFilter",
-      "config" : {
-        "guid" : "1680C75019258C12"
-      },
-      "visual" : {
-        "at" : { "x" : 64, "y" : 576 },
-        "labelOffset" : { "x" : 17, "y" : 36 }
-      },
-      "connect" : [
-        { "id" : "f14", "to" : "f35" }
-      ]
-    }, {
-      "id" : "f16",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "applyFilter(CaseFilterData)",
-      "config" : {
-        "signature" : "applyFilter",
-        "input" : {
-          "params" : [
-            { "name" : "filterData", "type" : "ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData", "desc" : "" }
-          ],
-          "map" : {
-            "out.filteringKeyword" : "param.filterData.keyword"
-          },
-          "code" : "out.dataModel.applyFilter(param.filterData);"
-        },
-        "guid" : "1680C78D11AA28AB"
-      },
-      "visual" : {
-        "at" : { "x" : 64, "y" : 672 },
-        "labelOffset" : { "x" : 32, "y" : 36 }
-      },
-      "connect" : [
-        { "id" : "f22", "to" : "f17" }
-      ]
-    }, {
-      "id" : "f17",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 352, "y" : 672 }
-      }
-    }, {
-      "id" : "f23",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "setFilterToBeDeleted(CaseFilterData)",
-      "config" : {
-        "signature" : "setFilterToBeDeleted",
-        "input" : {
-          "params" : [
-            { "name" : "caseFilterData", "type" : "ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData", "desc" : "" }
-          ],
-          "map" : {
-            "out.filterDataToBeDeleted" : "param.caseFilterData"
-          }
-        },
-        "guid" : "168A2BE8E0F76EC9"
-      },
-      "visual" : {
-        "at" : { "x" : 64, "y" : 768 },
-        "labelOffset" : { "x" : 53, "y" : 37 }
-      },
-      "connect" : [
-        { "id" : "f32", "to" : "f27" }
-      ]
-    }, {
-      "id" : "f27",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 352, "y" : 768 }
-      }
-    }, {
       "id" : "f33",
       "type" : "HtmlDialogMethodStart",
       "name" : "preRenderTitle()",
@@ -451,7 +173,7 @@
         "guid" : "16FA1C4BE95D211D"
       },
       "visual" : {
-        "at" : { "x" : 64, "y" : 864 },
+        "at" : { "x" : 64, "y" : 384 },
         "labelOffset" : { "x" : 30, "y" : 35 }
       },
       "connect" : [
@@ -467,7 +189,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 216, "y" : 864 },
+        "at" : { "x" : 272, "y" : 384 },
         "size" : { "width" : 144 }
       },
       "connect" : [
@@ -477,36 +199,7 @@
       "id" : "f37",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 864 }
-      }
-    }, {
-      "id" : "f71",
-      "type" : "HtmlDialogMethodStart",
-      "name" : "restoreDefaultFilterSet()",
-      "config" : {
-        "signature" : "restoreDefaultFilterSet",
-        "input" : {
-          "map" : { },
-          "code" : [
-            "out.dataModel.selectedAllFilters = false;",
-            "out.dataModel.selectedFilterData = null;",
-            "out.dataModel.applyFilter(out.dataModel.defaultCaseFilterData);"
-          ]
-        },
-        "guid" : "17033D428A3BF344"
-      },
-      "visual" : {
-        "at" : { "x" : 64, "y" : 968 },
-        "labelOffset" : { "x" : 48, "y" : 35 }
-      },
-      "connect" : [
-        { "id" : "f74", "to" : "f73" }
-      ]
-    }, {
-      "id" : "f73",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 352, "y" : 968 }
+        "at" : { "x" : 448, "y" : 384 }
       }
     }, {
       "id" : "f77",
@@ -533,7 +226,7 @@
         "guid" : "17554B22FBEBCA3F"
       },
       "visual" : {
-        "at" : { "x" : 64, "y" : 1056 },
+        "at" : { "x" : 64, "y" : 488 },
         "labelOffset" : { "x" : 41, "y" : 35 }
       },
       "connect" : [
@@ -559,7 +252,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 640, "y" : 1056 }
+        "at" : { "x" : 696, "y" : 488 }
       },
       "connect" : [
         { "id" : "f88", "to" : "f79" }
@@ -583,7 +276,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 200, "y" : 1056 }
+        "at" : { "x" : 256, "y" : 488 }
       },
       "connect" : [
         { "id" : "f83", "to" : "f76" }
@@ -603,7 +296,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 344, "y" : 1056 }
+        "at" : { "x" : 400, "y" : 488 }
       },
       "connect" : [
         { "id" : "f92", "to" : "f78" }
@@ -612,7 +305,7 @@
       "id" : "f79",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 832, "y" : 1056 }
+        "at" : { "x" : 888, "y" : 488 }
       }
     }, {
       "id" : "f78",
@@ -623,7 +316,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 448, "y" : 1056 }
+        "at" : { "x" : 504, "y" : 488 }
       },
       "connect" : [
         { "id" : "f89", "to" : "f75" },
@@ -639,7 +332,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 600, "y" : 1184 }
+        "at" : { "x" : 656, "y" : 616 }
       },
       "connect" : [
         { "id" : "f91", "to" : "f78" }
@@ -662,7 +355,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 448, "y" : 1184 }
+        "at" : { "x" : 504, "y" : 616 }
       },
       "connect" : [
         { "id" : "f90", "to" : "f82" }
@@ -692,10 +385,10 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 200, "y" : 96 }
+        "at" : { "x" : 256, "y" : 96 }
       },
       "connect" : [
-        { "id" : "f3", "to" : "f2" }
+        { "id" : "f2", "to" : "f1" }
       ]
     }, {
       "id" : "f96",
@@ -710,7 +403,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1152, "y" : 96 },
+        "at" : { "x" : 920, "y" : 96 },
         "size" : { "width" : 128 }
       },
       "connect" : [
@@ -725,7 +418,7 @@
         "guid" : "17592C22E751C221"
       },
       "visual" : {
-        "at" : { "x" : 832, "y" : 96 },
+        "at" : { "x" : 600, "y" : 96 },
         "labelOffset" : { "x" : 41, "y" : 35 }
       },
       "connect" : [
@@ -735,7 +428,7 @@
       "id" : "f95",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1312, "y" : 96 }
+        "at" : { "x" : 1080, "y" : 96 }
       }
     }, {
       "id" : "f94",
@@ -754,7 +447,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 976, "y" : 96 }
+        "at" : { "x" : 744, "y" : 96 }
       },
       "connect" : [
         { "id" : "f98", "to" : "f96" }

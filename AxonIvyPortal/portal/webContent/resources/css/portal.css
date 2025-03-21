@@ -77,13 +77,6 @@ input::-ms-clear {
 body .ui-selectonemenu-panel .ui-selectonemenu-item.ui-state-hover {
   color: var(--hovered-item-select-one-menu-text-color); }
 
-body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span.md-inputwrapper-filled ~ label {
-  color: var(--primary-color); }
-
-body .md-inputfield input.ui-state-filled ~ label,
-body .md-inputfield input:focus ~ label {
-  font-size: var(--small-font-size); }
-
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check,
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close {
   background: none repeat scroll 0 0 var(--ui-inplace-background-color);
@@ -201,10 +194,6 @@ a.compact-task-start-link .task-start-list-item {
 
 .process-widget .ui-orderlist .ui-orderlist-list .order-list-item .action-icon {
   font-size: var(--process-icon-font-size); }
-
-.new-process-dialog .md-inputfield .md-inputwrapper-focus ~ label.new-process-name-label,
-.new-process-dialog .md-inputfield .md-inputwrapper-filled ~ label.new-process-name-label {
-  font-size: var(--small-font-size); }
 
 .process-widget--full .process-grid-view__icon,
 .process-start-list-container .grid-view-form .process-grid-view-icon {
@@ -804,9 +793,6 @@ body .ui-inputfield.case-detail-name-input {
 .case-list .ui-datascroller,
 .case-list .ui-datascroller .ui-datascroller-content {
   background-color: var(--case-list-data-scroller-content-background-color); }
-
-.case-header-action-cell, .task-header-action-cell {
-  border-left: solid 1px var(--header-action-action-left-border-color); }
 
 .action-steps-panel .action-icon {
   font-size: var(--large-font-size); }

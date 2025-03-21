@@ -7,8 +7,6 @@
 <h:body>
   <ui:composition template="/layouts/restricted/IFrameWithoutMenuTemplate.xhtml">
     <ui:param name="loadPortalScript" value="false" />
-    <ui:param name="loadSerenityScript" value="false" />
-    <ui:param name="loadOptionalSerenityCss" value="false" />
   	<ui:param name="inDialog" value="true" />
   	<ui:define name="pageContent">
   		 <ic:ch.ivy.addon.portalkit.component.TaskItemDetails id="task-detail-template" task="#{data.task}" showItemDetailsHeader="true"

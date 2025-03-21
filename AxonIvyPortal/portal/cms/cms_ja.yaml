@@ -41,6 +41,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       saveAbsenceSetting: 不在設定の保存に成功しました。
       updateAbsence: 欠席設定の更新に成功しました
     absenceAndDeputy: 不在者と代行者
+    activeAbsence: 'TODO: Active Absence'
     allAbsences: すべてのユーザーの不在状況
     applicationAndRole: アプリケーションと役割
     definedDeputies: 定義された代行者
@@ -411,7 +412,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     ResetToDefaultHeaderText: 初期設定にリセットしますか？
     RoleUserInformation: ロールとユーザー情報
     StringFormat:
-      DateFromTo: '%sから%sまで'
+      DateFromTo: '%s - %s'
       TextListOut: '%s、%s、。。'
       TextWithRoundBracket: '%s（%s）'
     TaskCaseInformation: タスク／ケース情報
