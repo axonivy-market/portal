@@ -67,7 +67,7 @@
                 <h:panelGroup layout="block" styleClass="text-center" rendered="#{isReadOnlyMode}">
                   <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." icon="si si-button-refresh-arrows"
                     styleClass="rounded-button ui-button-outlined"
-                    onclick="setupNewsWidgetContent('#{widget.id}', true)" />
+                    onclick="setupNewsWidgetContent('#{htmlSanitizerBean.escapeForJS(widget.id)}', true)" />
                 </h:panelGroup>
               </f:facet>
             </p:dataScroller>
