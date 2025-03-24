@@ -24,7 +24,7 @@ import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class QuickSearchTest extends BaseTest {
 
   private static final String YOUR_PROCESSES = "Your Processes";
