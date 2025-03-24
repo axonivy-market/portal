@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.bean;
 import static com.axonivy.portal.util.WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT;
 
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +20,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
+import com.axonivy.portal.util.PortalSanitizeUtils;
+import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -35,7 +38,6 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
 
   private static final long serialVersionUID = 597266282990903281L;
 
-  private static final Long UPLOAD_SIZE_LIMIT = 6291456L;
   private static final String DEFAULT_WELCOME_CMS = "/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/Welcome";
 
   private List<WelcomeTextPosition> textPositions;
@@ -86,10 +88,18 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
       getWidget().setImageLocation(fileName);
       getWidget().setImageType(extension);
 
+      byte[] content = file.getContent();
+
+      // hanlde sanitize svg
+      if ("svg".equals(extension)) {
+        content = PortalSanitizeUtils.sanitizeSvg(new String(content, StandardCharsets.UTF_8))
+            .getBytes(StandardCharsets.UTF_8);
+      }
+
       // save the temporary image
       imageCMSObject = getWelcomeWidgetImageContentObject(true);
       if (imageCMSObject != null) {
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(file.getContent());
+        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(content);
       }
     }
   }
@@ -126,12 +136,12 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   }
 
   public Long getUploadFileLimit() {
-    return UPLOAD_SIZE_LIMIT;
+    return UploadDocumentUtils.getImageUploadSizeLimit();
   }
 
   public String getFileUploadInvalidSizeMessage() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize",
-        Arrays.asList(FileUtils.byteCountToDisplaySize(UPLOAD_SIZE_LIMIT)));
+        Arrays.asList(FileUtils.byteCountToDisplaySize(getUploadFileLimit())));
   }
 
   public boolean isApplicationDefaultEmailLanguage(String language) {
