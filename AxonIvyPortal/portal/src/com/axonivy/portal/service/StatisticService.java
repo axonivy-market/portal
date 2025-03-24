@@ -117,7 +117,6 @@ public class StatisticService {
     return switch (chart.getChartTarget()) {
       case CASE -> WorkflowStats.current().caze().aggregate(chart.getAggregates(), filter);
       case TASK -> {
-        Ivy.log().info(filter);
         yield WorkflowStats.current().task().aggregate(chart.getAggregates(), filter);
       }
       default -> throw new PortalException("Cannot parse chartTarget " + chart.getChartTarget());

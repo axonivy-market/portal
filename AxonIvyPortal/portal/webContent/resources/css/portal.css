@@ -1950,7 +1950,7 @@ body.dark .focused {
 
 /* ======================= PREVIEW STATISTIC CHART ==========================  **/
 
-.chart-options-config {
+.preview-chart-box {
   height: 600px;
   position: inherit;
   margin-top: 20px;
@@ -1961,4 +1961,8 @@ body.dark .focused {
 
 .statistic-configuration__preview {
   max-height: fit-content;
+}
+
+canvas#preview-statistic-chart {
+  height: calc(100% - 20px) !important;
 }

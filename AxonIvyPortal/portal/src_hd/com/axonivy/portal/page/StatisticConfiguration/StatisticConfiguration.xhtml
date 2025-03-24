@@ -271,7 +271,7 @@
                     styleClass="statistic-chart-widget__content widget__content widget__content">
                     <h:panelGroup styleClass="statistic-chart-widget__chart" layout="block">
                       <div
-                        class="ui-chart js-statistic-chart statistic-chart-widget__canvas chart-options-config preview-statistic-chart"
+                        class="ui-chart js-statistic-chart statistic-chart-widget__canvas preview-chart-box preview-statistic-chart"
                         data-chart-id="preview-statistic-chart">
                         <div class="empty-message-container w-35rem">
                           <i class="si si-analytics-pie-2 empty-message-icon" />
@@ -286,7 +286,7 @@
                   titles="#{statisticConfigurationBean.getNames()}" managedBean="#{statisticConfigurationBean}"
                   dynamic="true" updateCurrentLanguage="#{statisticConfigurationBean.updateNameForCurrentLanguage()}"
                   componentToUpdateOnModify="config-form:name" componentToUpdateOnCreate="config-form:name" />
-                <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+                <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration 
                   id="description-language-config" titles="#{statisticConfigurationBean.getDescriptions()}"
                   managedBean="#{statisticConfigurationBean}" dynamic="true"
                   updateCurrentLanguage="#{statisticConfigurationBean.updateDescriptionForCurrentLanguage()}"
