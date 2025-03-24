@@ -164,7 +164,7 @@ function initRefresh() {
 }
 
 function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig, defaultContentLocale) {
-  initData(defaultLocale, defaultContentLocale, datePatternConfig);
+  initConfig(defaultLocale, defaultContentLocale, datePatternConfig);
 
   // Find HTML elements of client charts widget
   const charts = Array.from(document.getElementsByClassName('js-statistic-chart'));
@@ -219,7 +219,7 @@ function previewChart(data, defaultLocale, datePatternConfig, defaultContentLoca
   if (!charts || charts.length == 0) {
     return;
   }
-  initData(defaultLocale, defaultContentLocale, datePatternConfig);
+  initConfig(defaultLocale, defaultContentLocale, datePatternConfig);
   
   try {
     let chartData = generateChart(charts[0], data);
@@ -280,7 +280,7 @@ function renderFailToRenderChart(chart, additionalConfig) {
   $(chart).html(failToRenderChartHtml);
 }
 
-function initData(defaultLocale, defaultContentLocale, datePatternConfig) {
+function initConfig(defaultLocale, defaultContentLocale, datePatternConfig) {
     // If locale didn't initialized, set the default locale to it.
     if (!locale) {
       locale = defaultLocale;
