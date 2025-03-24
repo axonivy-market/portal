@@ -13,11 +13,16 @@ import java.util.stream.Collectors;
 import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.util.Strings;
 
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.dto.StatisticDto;
+import com.axonivy.portal.dto.statistic.StatisticFilter;
 import com.axonivy.portal.enums.AdditionalChartConfig;
+import com.axonivy.portal.util.statisticfilter.field.FilterField;
+import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -78,15 +83,41 @@ public class StatisticService {
           Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/StatisticWidget/NoPermissionChartMessage"));
     }
   }
+  
+  private String processTaskFilter(List<StatisticFilter> filters) {
+    if (CollectionUtils.isEmpty(filters)) {
+      return null;
+    }
+    StringBuilder sbFilter = new StringBuilder();
+    for (StatisticFilter statisticFilter : filters) {
+      if (Optional.ofNullable(statisticFilter).map(StatisticFilter::getOperator).isEmpty()) {
+        continue;
+      }
+      FilterField filterField = TaskFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType());
+      if (filterField != null) {
+        String filterQuery = filterField.generateStringFilter(statisticFilter);
+        if (filterQuery != null) {
+          sbFilter.append(filterQuery).append(",");
+        }
+      }
+    }
+    if (Strings.EMPTY.equals(sbFilter.toString())) {
+      return null;
+    }
+    return sbFilter.toString();
+  }
 
   public AggregationResult getChartData(Statistic chart) {
-    chart.setFilter(StringUtils.stripToNull(chart.getFilter()));
+    String filter = null;
+    if (StringUtils.isEmpty(chart.getFilter())) {
+      filter = processTaskFilter(chart.getFilters());
+    } else {
+      filter = chart.getFilter();
+    }
     return switch (chart.getChartTarget()) {
-    case CASE -> WorkflowStats.current().caze().aggregate(chart.getAggregates(),
-        chart.getFilter());
-    case TASK -> WorkflowStats.current().task().aggregate(chart.getAggregates(),
-        chart.getFilter());
-    default -> throw new PortalException("Cannot parse chartTarget " + chart.getChartTarget());
+      case CASE -> WorkflowStats.current().caze().aggregate(chart.getAggregates(), filter);
+      case TASK ->  WorkflowStats.current().task().aggregate(chart.getAggregates(), filter);
+      default -> throw new PortalException("Cannot parse chartTarget " + chart.getChartTarget());
     };
   }
 

@@ -5,12 +5,13 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.DashboardFilter" />
+  <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.BaseFilter" />
   <cc:attribute name="componentToUpdate" required="true" />
   <cc:attribute name="filterIndex" />
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="messageId" />
-  <cc:attribute name="widget" required="true"/>
+  <cc:attribute name="widgetType" required="true"/>
+  <cc:attribute name="forStatistic" default="false"/>
 </cc:interface>
 
 <cc:implementation>
@@ -18,14 +19,14 @@
   <c:set var="filterIndex" value="#{cc.attrs.filterIndex}" />
   <c:set var="readOnly" value="#{cc.attrs.readOnly}" />
   <c:set var="messageId" value="#{cc.attrs.messageId}" />
-  <c:set var="widget" value="#{cc.attrs.widget}" />
+  <c:set var="widgetType" value="#{cc.attrs.widgetType}" />
 
-  <f:event listener="#{widgetStateFilterBean.init(filter, widget)}" type="preRenderComponent" />
+  <f:event listener="#{widgetStateFilterBean.init(filter, widgetType)}" type="preRenderComponent" />
 
   <h:panelGroup id="state-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield state-filter-operator-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
-        <f:selectItems value="#{widgetStateFilterBean.stateOperators}" var="operator"
+        <f:selectItems value="#{cc.attrs.forStatistic ? widgetStateFilterBean.statisticOperators : widgetStateFilterBean.stateOperators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
       </p:selectOneMenu>
   </h:panelGroup>
@@ -37,7 +38,7 @@
       styleClass="task-configuration__selectcheckboxmenu"
       disabled="#{readOnly}">
       <f:selectItems value="#{widgetStateFilterBean.states}" var="state" itemValue="#{state}"
-        itemLabel="#{widgetStateFilterBean.getUserFriendlyState(state, widget)}" />
+        itemLabel="#{widgetStateFilterBean.getUserFriendlyState(state, widgetType)}" />
       <f:param name="skipValidator" value="true" />
       <p:ajax event="change" update="states-hidden" listener="#{widgetStateFilterBean.updateStatesString(cc.attrs.filter.values)}" global="false" />
       <p:ajax event="toggleSelect" update="states-hidden" listener="#{widgetStateFilterBean.updateStatesString(cc.attrs.filter.values)}" global="false" />

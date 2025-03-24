@@ -15,7 +15,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
-import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
 @ManagedBean
@@ -29,7 +29,7 @@ public class WidgetResponsibleFilterBean implements Serializable {
 
   private List<SecurityMemberDTO> selectedResponsibles;
 
-  public void init(DashboardFilter filter) {
+  public void init(BaseFilter filter) {
     selectedResponsibles = new ArrayList<>();
     if (CollectionUtils.isNotEmpty(filter.getValues())) {
       selectedResponsibles.addAll(filter.getResponsibles());
@@ -40,7 +40,7 @@ public class WidgetResponsibleFilterBean implements Serializable {
     return operators;
   }
 
-  public void onChangeOperator(DashboardFilter filter) {
+  public void onChangeOperator(BaseFilter filter) {
     if (filter.getOperator() == FilterOperator.CURRENT_USER) {
       filter.setValues(new ArrayList<>());
     }
@@ -51,12 +51,12 @@ public class WidgetResponsibleFilterBean implements Serializable {
   }
 
   public void onSelectResponsible(SelectEvent<Object> event) {
-    DashboardFilter filter = (DashboardFilter) event.getComponent().getAttributes().get(FILTER);
+    BaseFilter filter = (BaseFilter) event.getComponent().getAttributes().get(FILTER);
     onChangeResponsibles(filter);
   }
 
   public void onUnselectResponsible(UnselectEvent<Object> event) {
-    DashboardFilter filter = (DashboardFilter) event.getComponent().getAttributes().get(FILTER);
+    BaseFilter filter = (BaseFilter) event.getComponent().getAttributes().get(FILTER);
     onChangeResponsibles(filter);
   }
 
@@ -69,7 +69,7 @@ public class WidgetResponsibleFilterBean implements Serializable {
     this.selectedResponsibles = uniqueSelectedResponsibles;
   }
 
-  public void onChangeResponsibles(DashboardFilter filter) {
+  public void onChangeResponsibles(BaseFilter filter) {
     if (filter.getValues() == null) {
       filter.setValues(new ArrayList<>());
     }
