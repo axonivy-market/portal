@@ -12,6 +12,7 @@
   <cc:attribute name="isImmediate" default="true"/>
 </cc:interface>
 <cc:implementation>
+  <h:outputScript name="icon-selection.js" library="js" />
   <c:set var="tabindex" value="#{cc.attrs.tabindex}"/>
   <c:set var="readOnly" value="#{empty cc.attrs.isReadOnly ? false : cc.attrs.isReadOnly}"/>
   <c:set var="hideIconArray" value="#{empty cc.attrs.hideIconArray ? false : cc.attrs.hideIconArray}"/>
@@ -62,159 +63,15 @@
       </p:fieldset>
       <p:fieldset legend="Awesome" id="awesome-icon" styleClass="MarTop20">
         <ui:repeat var="icon" value="#{masterDataBean.awesomeIcons}">
+          <c:set var="iconCode" value="#{htmlSanitizerBean.escapeForJS(icon.iconCode)}" />
           <h:link id="awesome-icon" styleClass="icon-selection-dialog-selecting-icon icon-color"
-            onclick="updateSelectedIconDisplay('#{icon.iconCode}', 'awesome', '#{cc.clientId}'); createAwesomeTag('#{icon.iconCode}', '#{cc.clientId}');PF('#{cc.clientId}-select-icon-dialog').hide();return false;">
-            <span class="fa #{icon.iconCode} fa-lg" />
+            onclick="updateSelectedIconDisplay('#{iconCode}', 'awesome', '#{cc.clientId}'); createAwesomeTag('#{iconCode}', '#{cc.clientId}');PF('#{cc.clientId}-select-icon-dialog').hide();return false;">
+            <span class="fa #{iconCode} fa-lg" />
           </h:link>
-          <p:tooltip for="awesome-icon" value="#{icon.iconCode}" trackMouse="true" hideEvent="mouseleave click" />
+          <p:tooltip for="awesome-icon" value="#{iconCode}" trackMouse="true" hideEvent="mouseleave click" />
         </ui:repeat>
       </p:fieldset>
     </h:form>
   </p:dialog>
-  
-  <script>
-    function updateSelectedIconDisplay(iconCode, type, clientId) {
-      var iconDisplayJQ = $(PrimeFaces.escapeClientId(clientId + ":current-icon-display"));
-      updateIconDisplay(iconDisplayJQ, iconCode, type);
-      var iconDisplayForLink = $(PrimeFaces.escapeClientId(clientId + ":selected-icon-display"));
-      updateIconDisplay(iconDisplayForLink, iconCode, type);
-
-      var iconHiddenValueJQ = $(PrimeFaces.escapeClientId(clientId + ":selected-icon-hidden-value"));
-      iconHiddenValueJQ.val(iconCode);
-    }
-    
-    function updateIconDisplay(iconDisplayJQ, iconCode, type) {
-      if (iconDisplayJQ === undefined || iconDisplayJQ.length == 0) {
-        return;
-      }
-      iconDisplayJQ.removeClass();
-      iconDisplayJQ.toggleClass(type === "awesome" ? "fa fa-2x" : "si si-lg");
-      iconDisplayJQ.toggleClass("vertical-align-middle");
-      iconDisplayJQ.addClass(iconCode);
-    }
-
-    function resetIconArrayStyle(arrayIconContainer) {
-      if(arrayIconContainer) {
-        $(arrayIconContainer).find('a').addClass('opacity-40');
-        $(arrayIconContainer).find('a').removeClass('highlight-selected-icon');
-      }
-    }
-
-    function highlightSelectedIcon(iconEl) {
-      if(iconEl) {
-        $(iconEl).removeClass('opacity-40');
-        $(iconEl).addClass('highlight-selected-icon');
-      }
-    }
-
-    function createAwesomeTag(iconCode, clientId) {
-        var container = document.getElementById(clientId + ":custom-array-icon");
-        if(container) {
-          resetIconArrayStyle(container);
-          var iconImage = document.createElement("span");
-          iconImage.className = "fa " + iconCode;
-
-          var iconAnchor = document.createElement("a");
-          iconAnchor.className = "icon-selection-array-selecting-icon icon-color highlight-selected-icon";
-          iconAnchor.appendChild(iconImage);
-          iconAnchor.title = iconCode;
-          iconAnchor.onclick = function() {
-            updateSelectedIconDisplay(iconCode, "awesome", clientId);
-            resetIconArrayStyle(container);
-            highlightSelectedIcon(this);
-          };
-          $(container).prepend(iconAnchor);
-          $(container).children().last().remove()
-        }
-    }
-
-    function reoderSelectedIconOnTop(icons, selectedIconCode, clientId) {
-      icons.forEach(function(icon,i){
-        var iconCode = icon.selectorText.substring(1, icon.selectorText.length - 8);
-        if(iconCode === selectedIconCode){
-          icons.splice(i, 1);
-          icons.unshift(icon);
-        }
-      });
-      var container = document.getElementById(clientId + ":custom-array-icon");
-      var numberVisibleIcon = Math.floor($(container).width()/32);
-      icons.splice(numberVisibleIcon, icons.length - numberVisibleIcon);
-    }
-    
-    function loadDialogStreamlineIcon(clientId) {
-      var iconsStylesheet = Object.values(document.styleSheets).filter(sheet => sheet.href?.includes("StreamlineIcons.css"))[0];
-      var icons = Object.values(iconsStylesheet.rules).filter(rule => rule.selectorText?.startsWith(".si-"));
-      icons.sort((a, b) => (a.selectorText > b.selectorText) ? 1 : -1);
-    
-      var selectionIconDialogId = clientId + "-select-icon-dialog";
-      var container = document.getElementById(clientId + ":icons-selection-form:icons");
-      container.innerHTML = "";
-      icons.forEach(icon => {
-        var iconCode = icon.selectorText.substring(1, icon.selectorText.length - 8);
-        var iconImage = document.createElement("i");
-        iconImage.className = "si " + iconCode + " si-lg";
-
-        var iconAnchor = document.createElement("a");
-        iconAnchor.className = "icon-selection-dialog-selecting-icon icon-color";
-        iconAnchor.appendChild(iconImage);
-        iconAnchor.title = iconCode;
-        iconAnchor.onclick = function() {
-          updateSelectedIconDisplay(iconCode, "streamline", clientId);
-          PF(selectionIconDialogId).hide();
-          reloadArrayStreamlineIcon(clientId, iconCode);
-          return false;
-        };
-        
-        container.appendChild(iconAnchor);
-      });
-      
-      var searchField = document.getElementById(clientId + ":search-icon-name-field");
-      searchIconByName(searchField);
-      PF(selectionIconDialogId).initPosition();
-    }
-
-    function reloadArrayStreamlineIcon(clientId, currentIconCode) {
-      var container = document.getElementById(clientId + ":custom-array-icon");
-      if(container) {
-        var iconsStylesheet = Object.values(document.styleSheets).filter(sheet => sheet.href?.includes("StreamlineIcons.css"))[0];
-        var icons = Object.values(iconsStylesheet.rules).filter(rule => rule.selectorText?.startsWith(".si-"));
-        reoderSelectedIconOnTop(icons, currentIconCode, clientId);
-        container.innerHTML = "";
-        icons.forEach((icon, index) => {
-          var iconCode = icon.selectorText.substring(1, icon.selectorText.length - 8);
-          var iconImage = document.createElement("i");
-          iconImage.className = "si " + iconCode;
-          
-          var iconAnchor = document.createElement("a");
-          if(currentIconCode == iconCode) {
-            iconAnchor.className = "icon-selection-array-selecting-icon icon-color highlight-selected-icon";
-          } else {
-            iconAnchor.className = "icon-selection-array-selecting-icon icon-color opacity-40";
-          }
-
-          iconAnchor.appendChild(iconImage);
-          iconAnchor.title = iconCode;
-
-          iconAnchor.onclick = function() {
-            updateSelectedIconDisplay(iconCode, "streamline", clientId);
-            resetIconArrayStyle(container);
-            highlightSelectedIcon(this);
-          };
-          container.appendChild(iconAnchor);
-        });
-      }
-    };
-
-    function loadIconsFirstTime(hideIconArray, clientId, currentIcon) {
-      if(hideIconArray == true) {
-        return;
-      }
-      reloadArrayStreamlineIcon(clientId, currentIcon);
-      if(currentIcon.includes('fa-')) {
-        createAwesomeTag(currentIcon, clientId);
-      }
-    }
-
-  </script>
 </cc:implementation>
 </html>

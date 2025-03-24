@@ -16,12 +16,13 @@
     <ui:define name="pageContent">
         <script>
           function initStatistics() {
-            initClientCharts("#{managedBean.clientStatisticApiUri}" , "#{localeBean.locale}", "#{dateTimePatternBean.datePattern}");
+            initClientCharts("#{htmlSanitizerBean.escapeForJS(managedBean.clientStatisticApiUri)}" , "#{htmlSanitizerBean.escapeForJS(localeBean.locale)}", "#{htmlSanitizerBean.escapeForJS(dateTimePatternBean.datePattern)}");
           }
 
           $(document).ready(function () {
-            loadGrid(#{managedBean.selectedDashboard.isResponsive});
-            updateDashboardWhenResizeWindow(#{managedBean.selectedDashboard.isResponsive});
+            const isResponsive = #{htmlSanitizerBean.escapeForJS(managedBean.selectedDashboard.isResponsive)} ? true : false;
+            loadGrid(isResponsive);
+            updateDashboardWhenResizeWindow(isResponsive);
             setTimeout(() => {
               initStatistics();
             }, 50);
