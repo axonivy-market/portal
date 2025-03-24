@@ -18,7 +18,6 @@ public enum ChartAggregates {
   WORKING_TIME("workingTime"),
   NUMBER_OF_RESUMES("numberOfResumes"),
   START_TIMESTAMP("startTimestamp"),
-  MODIFIED_TIMESTAMP("modifiedTimestamp"),
   END_TIMESTAMP("endTimestamp"),
   EXPIRY_TIMESTAMP("expiryTimestamp"),
   CUSTOM_FIELD("customFields.typeOfCustomField.*");

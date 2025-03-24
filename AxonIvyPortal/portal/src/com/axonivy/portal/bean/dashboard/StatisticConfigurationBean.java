@@ -43,6 +43,7 @@ import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.enums.statistic.ChartAggregates;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
+import com.axonivy.portal.enums.statistic.DateTimeOperator;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.DisplayNameUtils;
@@ -86,6 +87,8 @@ public class StatisticConfigurationBean implements Serializable {
   private String customFieldAggregate;
   private String currentCustomField;
   private CustomFieldType currentCustomFieldType;
+  private boolean isDateTimeSelected;
+  private String aggrgateOperator;
 
 
   private static final String CHART_AGGREGATES_CMS_PATH = "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartAggregates/";
@@ -341,6 +344,10 @@ public class StatisticConfigurationBean implements Serializable {
     populateBackgroundColorsIfMissing();
   }
   
+  public void onAggregationSelection() {
+    this.setDateTimeSelected(statistic.getAggregates().contains("Timestamp"));
+  }
+
   public boolean isCustomFieldsSelected() {
     return statistic.getAggregates().contains("customFields");
   }
@@ -593,19 +600,32 @@ public class StatisticConfigurationBean implements Serializable {
   public List<String> getCustomFieldNames() {
     Set<ICustomFieldMeta> customFieldList  = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
         : ICustomFieldMeta.cases();
-    List<String> newList = new ArrayList<>();
+    List<String> customFieldNameList = new ArrayList<>();
     customFieldList.stream().filter(cf -> !cf.type().equals(CustomFieldType.NUMBER)).forEach(customField -> {
-      newList.add(customField.name());
+      customFieldNameList.add(customField.name());
     });
 
-    return newList;
+    return customFieldNameList;
   }
+  
+  /**
+   * Testing should return user friendly name on UI
+   * Making cms for them
+   */
+  public List<DateTimeOperator> getAvailableOperators() {
+    List<DateTimeOperator> operators = DateTimeOperator.DATE_TIME_OPERATORS.stream().toList();
+
+    return operators ;
+  }
+
 
   public void onSelectCustomField() {
     findCustomFieldMeta().ifPresent(meta -> {
       this.currentCustomField = meta.name();
       this.currentCustomFieldType = meta.type();
     });
+    
+    this.setDateTimeSelected(this.currentCustomFieldType.equals(CustomFieldType.TIMESTAMP));
     
     handleCustomFieldAggregation();
   }
@@ -626,5 +646,21 @@ public class StatisticConfigurationBean implements Serializable {
 
   public void setCurrentCustomField(String currentCustomField) {
     this.currentCustomField = currentCustomField;
+  }
+
+  public boolean isDateTimeSelected() {
+    return isDateTimeSelected;
+  }
+
+  public void setDateTimeSelected(boolean isDateTimeSelected) {
+    this.isDateTimeSelected = isDateTimeSelected;
+  }
+
+  public String getAggrgateOperator() {
+    return aggrgateOperator;
+  }
+
+  public void setAggrgateOperator(String aggrgateOperator) {
+    this.aggrgateOperator = aggrgateOperator;
   }
 }

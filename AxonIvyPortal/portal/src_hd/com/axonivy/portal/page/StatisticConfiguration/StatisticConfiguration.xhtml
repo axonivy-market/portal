@@ -109,16 +109,30 @@
                         var="aggregate" itemValue="#{aggregate.name}"
                         itemLabel="#{statisticConfigurationBean.getUserFriendlyAggregateName(aggregate)}" />
                       <p:ajax
-                        listener="#{statisticConfigurationBean.isCustomFieldsSelected()}"
+                        listener="#{statisticConfigurationBean.onAggregationSelection()}"
                         update="chart-aggregation" />
                     </p:selectOneMenu>
 
                     <!-- CUSTOM FIELD SELECTION -->
-                    <p:selectOneMenu id="aggregates-second" required="true" styleClass="w-full mt-2"
-                      rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}" value="#{statisticConfigurationBean.currentCustomField}">
+                    <p:selectOneMenu id="aggregates-custom-fields" required="true" styleClass="w-full mt-2"
+                      rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}" value="#{statisticConfigurationBean.currentCustomField}"
+                      >
                       <f:selectItems value="#{statisticConfigurationBean.getCustomFieldNames()}" var="customField" />
-                      <p:ajax listener="#{statisticConfigurationBean.onSelectCustomField()}" />
+                      <p:ajax listener="#{statisticConfigurationBean.onSelectCustomField()}" update="chart-aggregation" />
                     </p:selectOneMenu>
+
+                    <!-- OPERATORS SELECTION -->
+                    <p:selectOneMenu id="aggregates-custom-fields-operators"
+                      required="true" styleClass="w-full mt-2"
+                      placeholder="Operator"
+                      rendered="#{statisticConfigurationBean.dateTimeSelected}"
+                      value="#{statisticConfigurationBean.aggrgateOperator}">
+                      <f:selectItems
+                        value="#{statisticConfigurationBean.getAvailableOperators()}"
+                        var="customField" />
+                      <p:ajax listener="#{statisticConfigurationBean.onSelectOperator()}" />
+                    </p:selectOneMenu>
+
                   </div>
                 </h:panelGroup>
 
