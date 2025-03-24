@@ -34,7 +34,6 @@ pipeline {
                     git remote set-url origin git@github.com:axonivy-market/portal.git
                     git reset --hard
                     git clean -fd
-                    git checkout -b ${BRANCH_NAME}
                     git pull origin ${BRANCH_NAME}
                     """
 
