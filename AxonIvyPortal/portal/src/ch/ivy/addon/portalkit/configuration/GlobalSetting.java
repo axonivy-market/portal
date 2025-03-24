@@ -99,14 +99,21 @@ public class GlobalSetting extends AbstractConfiguration {
   }
 
   private String getDisplayValue(Object object) {
-    if (object instanceof Enum<?>) {
-      try {
-        return (String) object.getClass().getMethod("getLabel").invoke(object);
-      } catch (Exception e) {
-        return object.toString();
-      }
-    }
-    return (String) object;
+    return switch (object) {
+      case TaskSortField castObject -> castObject.getLabel();
+      case CaseSortField castObject -> castObject.getLabel();
+      case SortDirection castObject -> castObject.getLabel();
+      case ProcessMode castObject -> castObject.getLabel();
+      case BehaviourWhenClickingOnLineInTaskList castObject -> castObject.getLabel();
+      case BehaviourWhenClickingOnLineInCaseList castObject -> castObject.getLabel();
+      case DefaultImage castObject -> castObject.getLabel();
+      case ThemeMode castObject -> castObject.getLabel();
+      case SearchScopeTaskField castObject -> castObject.getLabel();
+      case SearchScopeCaseField castObject -> castObject.getLabel();
+      case GlobalSearchScopeCategory castObject -> castObject.getLabel();
+      case DelegationAppendOption castObject -> castObject.getLabel();
+      default -> (String) object;
+    };
   }
 
   private String getDisplayValueForMultiExternalSelections(Map<String, Object> optionMap) {
