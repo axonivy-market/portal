@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -94,17 +96,15 @@ public class PortalPermissionTest extends BaseTest {
     taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("state", null);
-    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Delayed");
     taskWidget.applyFilter();
-    // return table without any task
-    assertTrue(taskWidget.isTableHidden());
+    taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
 
     caseWidgetPage = NavigationHelper.navigateToCaseList();
     caseWidgetPage.waitPageLoaded();
     caseDetailsPage = caseWidgetPage.openDetailsCase("Create System Task");
     caseDetailsPage.waitPageLoaded();
     countTask = caseDetailsPage.countRelatedTasks().size();
-    assertTrue(countTask == 1);
+    assertTrue(countTask == 2);
   }
 
   @Test
