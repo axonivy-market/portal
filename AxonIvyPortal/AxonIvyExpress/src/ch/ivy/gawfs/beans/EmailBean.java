@@ -25,11 +25,11 @@ import org.primefaces.model.StreamedContent;
 import org.primefaces.model.file.UploadedFile;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
+import com.axonivy.portal.util.UploadDocumentUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressUserEmail;
 import ch.ivy.addon.portalkit.dto.ExpressAttachment;
 import ch.ivy.addon.portalkit.enums.ExpressEmailAttachmentStatus;
-import ch.ivy.addon.portalkit.masterdata.MasterData;
 import ch.ivy.gawfs.ExpressProcessUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.File;
@@ -88,7 +88,7 @@ public class EmailBean implements Serializable {
     } else if (uploadedFile.getSize() == 0) {
       uploadDocumentCheckMessage = Ivy.cms().co("/Dialogs/components/CaseDocument/emptyFileMessage");
     } else {
-      Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();
+      Long maxFileUploadSize = UploadDocumentUtils.getDocumentUploadSizeLimit();
       if (uploadedFile.getSize() > maxFileUploadSize) {
         uploadDocumentCheckMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize",
             Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));
