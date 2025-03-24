@@ -594,7 +594,7 @@ public class StatisticConfigurationBean implements Serializable {
     Set<ICustomFieldMeta> customFieldList  = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
         : ICustomFieldMeta.cases();
     List<String> newList = new ArrayList<>();
-    customFieldList.forEach(customField -> {
+    customFieldList.stream().filter(cf -> !cf.type().equals(CustomFieldType.NUMBER)).forEach(customField -> {
       newList.add(customField.name());
     });
 
