@@ -1,7 +1,3 @@
-
-// import groovy.xml.XmlSlurper
-// import groovy.xml.XmlUtil
-
 def init() {
   configFileProvider(
       [configFile(fileId: 'properties-config', variable: 'PROPERTIES_CONFIG')]) {

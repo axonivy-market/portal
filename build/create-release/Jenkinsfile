@@ -51,21 +51,16 @@ pipeline {
 
                   sh """
                     if git rev-parse "${params.releaseVersion}" >/dev/null 2>&1; then
-                        echo "Found tag"
+                        echo "Found tag ${params.releaseVersion}"
                         git push --delete origin ${params.releaseVersion}
                         git tag -d "${params.releaseVersion}"
                     else
-                        echo "Tag not found"
+                        echo "Tag not found ${params.releaseVersion}"
                     fi
                     # Create tag for the release
                     git commit -a -m "update projects version"
                     git tag -a "${params.releaseVersion}" -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}"
                     git push origin "${params.releaseVersion}"
-                    if git rev-parse "${params.releaseVersion}" >/dev/null 2>&1; then
-                        echo "Oh Found tag"
-                    else
-                        echo "Oh Tag not found"
-                    fi
                     """
                 }
             }
@@ -80,9 +75,9 @@ pipeline {
                 nextVersion = "${parts[0]}.${(parts[1] as int) + 1}.0-SNAPSHOT"
               }
 
-              // build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
-              // parameters: [string(name: 'portalVersion', value: "${nextVersion}")],
-              // wait: true, propagate: false
+              build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
+              parameters: [string(name: 'portalVersion', value: "${nextVersion}")],
+              wait: true, propagate: false
             }
           }
 
