@@ -1461,6 +1461,12 @@ Dialogs:
             Color: Farbe {0}
             Create: Erstellen
             CustomAggregateInput: Bitte geben Sie benutzerdefinierte Felder ein.
+            DateTimeOperators:
+              DAY: Day
+              HOUR: Hour
+              MONTH: Month
+              WEEK: Week
+              YEAR: Year
             EditStatistic: Statistisches Widget bearbeiten
             For: Für
             GeneratePreview: Vorschau generieren

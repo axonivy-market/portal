@@ -88,10 +88,11 @@ public class StatisticConfigurationBean implements Serializable {
   private String currentCustomField;
   private CustomFieldType currentCustomFieldType;
   private boolean isDateTimeSelected;
-  private String aggrgateOperator;
+  private String dateTimeOperator;
 
 
   private static final String CHART_AGGREGATES_CMS_PATH = "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartAggregates/";
+  private static final String CHART_OPERATORS_CMS_PATH = "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/DateTimeOperators/";
 
   @PostConstruct
   public void init() {
@@ -344,6 +345,13 @@ public class StatisticConfigurationBean implements Serializable {
     populateBackgroundColorsIfMissing();
   }
   
+  public void handleDateTimeOperator() {
+    Ivy.log().info(statistic.getAggregates());
+    String testValue = statistic.getAggregates() + ":" + dateTimeOperator.toLowerCase();
+    Ivy.log().info(testValue);
+//    statistic.setAggregates(statistic.getAggregates() + ":");
+  }
+  
   public void onAggregationSelection() {
     this.setDateTimeSelected(statistic.getAggregates().contains("Timestamp"));
   }
@@ -366,7 +374,7 @@ public class StatisticConfigurationBean implements Serializable {
       statistic.setAggregates("customFields.numbers." + currentCustomField);
       return;
     }
-
+    
     statistic.setAggregates("customFields.timestamps." + currentCustomField);
   }
 
@@ -617,7 +625,14 @@ public class StatisticConfigurationBean implements Serializable {
 
     return operators ;
   }
-
+  
+  public String getUserFriendlyOperatorsName(DateTimeOperator selectedOperator) {
+    if(selectedOperator == null) {
+      return EMPTY;
+    }
+    String displayOperatorName = Ivy.cms().co(CHART_OPERATORS_CMS_PATH + selectedOperator);
+    return displayOperatorName;
+  }
 
   public void onSelectCustomField() {
     findCustomFieldMeta().ifPresent(meta -> {
@@ -625,9 +640,17 @@ public class StatisticConfigurationBean implements Serializable {
       this.currentCustomFieldType = meta.type();
     });
     
+    Ivy.log().info(this.currentCustomFieldType);
+    Ivy.log().info(this.currentCustomFieldType.equals(CustomFieldType.TIMESTAMP));
     this.setDateTimeSelected(this.currentCustomFieldType.equals(CustomFieldType.TIMESTAMP));
     
     handleCustomFieldAggregation();
+  }
+  
+  public void onSelectOperator() {
+    if(dateTimeOperator != null && isCustomFieldsSelected()) {
+      statistic.setAggregates(statistic.getAggregates() + ":" + dateTimeOperator.toLowerCase());
+    }
   }
   
   public Optional<ICustomFieldMeta> findCustomFieldMeta() {
@@ -656,11 +679,12 @@ public class StatisticConfigurationBean implements Serializable {
     this.isDateTimeSelected = isDateTimeSelected;
   }
 
-  public String getAggrgateOperator() {
-    return aggrgateOperator;
+  public String getDateTimeOperator() {
+    return dateTimeOperator;
   }
 
-  public void setAggrgateOperator(String aggrgateOperator) {
-    this.aggrgateOperator = aggrgateOperator;
+  public void setDateTimeOperator(String dateTimeOperator) {
+    this.dateTimeOperator = dateTimeOperator;
   }
+
 }
