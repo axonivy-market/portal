@@ -31,9 +31,10 @@ pipeline {
             withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
                 sshagent(credentials: ['github-axonivy']) {
                   sh """
-                    # Remove created tag
                     git remote set-url origin git@github.com:axonivy-market/portal.git
-                    git checkout ${BRANCH_NAME} || git checkout -b ${BRANCH_NAME}
+                    git reset --hard
+                    git clean -fd
+                    git checkout -b ${BRANCH_NAME}
                     git pull origin ${BRANCH_NAME}
                     """
 
@@ -50,12 +51,22 @@ pipeline {
                 echo "====================Create release tag ${params.releaseVersion}===================="
 
                   sh """
-                    git push --delete origin ${params.releaseVersion}
-                    git tag -d "${params.releaseVersion}"
+                    if git rev-parse "${params.releaseVersion}" >/dev/null 2>&1; then
+                        echo "Found tag"
+                        git push --delete origin ${params.releaseVersion}
+                        git tag -d "${params.releaseVersion}"
+                    else
+                        echo "Tag not found"
+                    fi
                     # Create tag for the release
                     git commit -a -m "update projects version"
                     git tag -a "${params.releaseVersion}" -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}"
                     git push origin "${params.releaseVersion}"
+                    if git rev-parse "${params.releaseVersion}" >/dev/null 2>&1; then
+                        echo "Oh Found tag"
+                    else
+                        echo "Oh Tag not found"
+                    fi
                     """
                 }
             }
