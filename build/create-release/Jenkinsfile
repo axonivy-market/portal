@@ -30,6 +30,7 @@ pipeline {
           docker.build('build-portal-modules', '-f build/create-release/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
                 sshagent(credentials: ['github-axonivy']) {
+
                   sh """
                     git remote set-url origin git@github.com:axonivy-market/portal.git
                     git reset --hard
@@ -77,7 +78,7 @@ pipeline {
 
               build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
               parameters: [string(name: 'portalVersion', value: "${nextVersion}")],
-              wait: true, propagate: false
+              wait: false, propagate: false
             }
           }
 
