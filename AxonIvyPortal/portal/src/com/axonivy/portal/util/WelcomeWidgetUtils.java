@@ -4,6 +4,7 @@ import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
 import java.util.stream.Stream;
@@ -145,7 +146,13 @@ public class WelcomeWidgetUtils {
       ContentObject newImageObject = WelcomeWidgetUtils.getImageContentObject(WelcomeWidgetUtils.getFileNameOfImage(imageLocation), fileExtension);
       if (StringUtils.isNotBlank(widget.getImageContent())) {
         // If has defined content, create new image
-        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(Base64.getDecoder().decode(widget.getImageContent()));
+        byte[] content = Base64.getDecoder().decode(widget.getImageContent());
+        // Handle sanitize SVG
+        if ("svg".equals(fileExtension)) {
+          content = PortalSanitizeUtils.sanitizeSvg(new String(content, StandardCharsets.UTF_8))
+              .getBytes(StandardCharsets.UTF_8);
+        }
+        WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(content);
         widget.setImageLocation(imageLocation);
         widget.setImageContent(null);
       } else {

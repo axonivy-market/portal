@@ -27,12 +27,19 @@ public class ExternalLinkUtils {
       // save the image
       String fileName = UUID.randomUUID().toString();
       String fileExtension = FilenameUtils.getExtension(file.getFileName());
+      byte[] content = file.getContent();
 
-      ContentObject imageCMSObject = getApplicationCMS().child().folder(IMAGE_DIRECTORY).child().file(fileName,
-          fileExtension);
+      // hanlde sanitize svg
+      if ("svg".equals(fileExtension)) {
+        content = PortalSanitizeUtils.sanitizeSvg(new String(content, StandardCharsets.UTF_8))
+            .getBytes(StandardCharsets.UTF_8);
+      }
+
+      ContentObject imageCMSObject =
+          getApplicationCMS().child().folder(IMAGE_DIRECTORY).child().file(fileName, fileExtension);
 
       if (imageCMSObject != null) {
-        readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(file.getContent());
+        readObjectValueOfDefaultLocale(imageCMSObject).write().bytes(content);
         return Pair.of(imageCMSObject.uri(), fileExtension);
       }
     }

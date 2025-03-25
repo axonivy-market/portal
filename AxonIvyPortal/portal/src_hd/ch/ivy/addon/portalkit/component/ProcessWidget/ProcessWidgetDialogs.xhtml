@@ -176,6 +176,8 @@
               update="file-upload-panel"
               allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
               accept=".png,.jpg,.jpeg,.svg"
+              sizeLimit="#{processWidgetBean.uploadFileLimit}"
+              invalidSizeMessage="#{processWidgetBean.getFileUploadInvalidSizeMessage()}"
               label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
               invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" />
             <p:graphicImage id="editing-external-link-preview-image"
@@ -363,6 +365,8 @@
           dragDropSupport="true" auto="true" update="file-upload-panel"
           allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
           accept=".png,.jpg,.jpeg,.svg"
+          sizeLimit="#{externalLinkBean.uploadFileLimit}"
+          invalidSizeMessage="#{externalLinkBean.getFileUploadInvalidSizeMessage()}"
           label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
           invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" />
         <p:graphicImage id="external-link-preview-image"
