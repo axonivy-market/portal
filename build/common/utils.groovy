@@ -161,4 +161,56 @@ def uploadBOM(def projectName, def projectVersion, def bomFile) {
   }
 }
 
+def updatePortalDependenciesAsRangeVersion() {
+  sh '''#!/bin/bash
+    updatePortalVersion() {
+      python3 - <<EOF
+import xml.etree.ElementTree as ET
+from pathlib import Path
+import sys
+
+def stripNamespace(element):
+    # Iterate over all the elements and remove the namespace from the tag
+    for elem in element.iter():
+        # If the tag contains a namespace (indicated by '}')
+        if '}' in elem.tag:
+            elem.tag = elem.tag.split('}', 1)[1]  # Keep only the part after '}'
+    return element
+
+filePath = "$1"
+
+try:
+  tree = ET.parse(filePath)
+  root = tree.getroot()
+  root = stripNamespace(root) # By default, tags like <project> are changed to tag <ns0:project>, need removing namespace
+
+  dependencies = root.find("dependencies")
+  if dependencies is not None:
+    for dependency in dependencies.findall("dependency"):
+      groupId = dependency.find("groupId")
+      if groupId is not None and groupId.text in [
+        "com.axonivy.portal",
+      ]:
+        versionTag = dependency.find("version")
+        if versionTag is not None:
+          versionTag.text = "[" + versionTag.text + ",12.1.0)"
+
+  # Write changes back to the file
+  tree.write(filePath, encoding="utf-8", xml_declaration=True)
+except Exception as e:
+  print(f"Failed to process {filePath}: {e}", file=sys.stderr)
+EOF
+    }
+
+    filePatterns=("AxonIvyPortal/*/pom.xml" "Showcase/*/pom.xml" "AxonIvyPortal/portal-selenium-test/customized_pom.xml"
+        "AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml" "Documentation/public-api/pom.xml")
+
+    for pattern in "${filePatterns[@]}"; do
+      for file in $pattern; do
+        updatePortalVersion "$file"
+      done
+    done
+  '''
+}
+
 return this

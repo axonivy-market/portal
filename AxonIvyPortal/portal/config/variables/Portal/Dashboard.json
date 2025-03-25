@@ -19,6 +19,10 @@
       {
         "locale": "es",
         "value": "Tablero de mandos"
+      },
+      {
+        "locale": "ja",
+        "value": "ダッシュボード"
       }
     ],
     "icon": "si-pie-line-graph",
@@ -42,6 +46,10 @@
           {
             "locale": "es",
             "value": "Sus tareas"
+          },
+          {
+            "locale": "ja",
+            "value": "タスク"
           }
         ],
         "layout": {
@@ -131,6 +139,10 @@
           {
             "locale": "es",
             "value": "Sus casos"
+          },
+          {
+            "locale": "ja",
+            "value": "ケース"
           }
         ],
         "layout": {
@@ -210,6 +222,10 @@
           {
             "locale": "es",
             "value": "Sus procesos"
+          },
+          {
+            "locale": "ja",
+            "value": "プロセス"
           }
         ],
         "layout": {
@@ -253,6 +269,10 @@
           {
             "locale": "es",
             "value": ", bienvenido al portal Axon Ivy!"
+          },
+          {
+            "locale": "ja",
+            "value": "、Axon Ivyへようこそ!"
           }
         ],
         "welcomeImageFit": "COVER",
@@ -349,6 +369,10 @@
       {
         "locale": "es",
         "value": "Tareas"
+      },
+      {
+        "locale": "ja",
+        "value": "タスク"
       }
     ],
     "icon": "si-task-list-edit",
@@ -373,6 +397,10 @@
           {
             "locale": "es",
             "value": "Sus tareas"
+          },
+          {
+            "locale": "ja",
+            "value": "タスク"
           }
         ],
         "layout": {
@@ -461,6 +489,10 @@
       {
         "locale": "es",
         "value": "Casos"
+      },
+      {
+        "locale": "ja",
+        "value": "ケース"
       }
     ],
     "icon": "si-layout-bullets",
@@ -485,6 +517,10 @@
           {
             "locale": "es",
             "value": "Sus casos"
+          },
+          {
+            "locale": "ja",
+            "value": "ケース"
           }
         ],
         "layout": {

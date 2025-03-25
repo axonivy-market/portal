@@ -6,7 +6,7 @@
   <version>12.0.5-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
-    <ivy.engine.version>12.0.4</ivy.engine.version>
+    <ivy.engine.version>12.0.5</ivy.engine.version>
     <build.plugin.version>12.0.1</build.plugin.version>
   </properties>
   <build>

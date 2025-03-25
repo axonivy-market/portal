@@ -68,27 +68,8 @@
       viewName="TASK_DETAIL"
     />
 
-    **2. JavaScript-Based Configuration:**
-    Example:
-    <script>
-        window.taskName = "Approve Investment";
-        window.taskIcon = "si si-bulb";
-        window.isHideTaskName = false;
-        window.caseId = "123456";
-        window.isHideCaseInfo = false;
-        window.currentProcessStep = 0;
-        window.processSteps = ["Create Investment Request", "Approve Investment Request"];
-        // Convert Java List of steps to JSON format if needed:
-        window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};
-        window.isShowAllSteps = true;
-        window.processChainDirection = "VERTICAL";
-        window.processChainShape = "LINE";
-        window.isHideTaskAction = false;
-        window.isWorkingOnATask = false;
-        window.announcementInvisible = false;
-        window.isCardFrame = true;
-        window.viewName = "TASK_DETAIL";
-      </script>
+    **IMPORTANT** 
+    Since Portal 12, the JavaScript-Based Configuration is deprecated, please use the Component-Based Configuration.
     -->
 
 
@@ -116,7 +97,7 @@
     <ui:define name="content">
       <script>
         $(document).ready(function() {
-          var taskUrl = '#{iFrameTaskTemplateBean.taskUrl}';
+          var taskUrl = `#{htmlSanitizerBean.escapeForJS(iFrameTaskTemplateBean.taskUrl)}`;
           if (taskUrl){
             if(taskUrl.endsWith('blank')){
               window.history.back(document.referrer);
