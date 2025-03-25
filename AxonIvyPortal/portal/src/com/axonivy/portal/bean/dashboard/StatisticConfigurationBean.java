@@ -180,6 +180,7 @@ public class StatisticConfigurationBean implements Serializable {
 
   public void save() {
     handleCustomFieldAggregation();
+    handleAggregateWithDateTimeOperator();
     syncUIConfigWithChartConfig();
     resetRedundantChartConfigs(statistic.getChartType(), true);
     saveStatisticJson();
@@ -334,6 +335,7 @@ public class StatisticConfigurationBean implements Serializable {
 
   public void getPreviewData() {
     handleCustomFieldAggregation();
+    handleAggregateWithDateTimeOperator();
     syncUIConfigWithChartConfig();
     StatisticService statisticService = StatisticService.getInstance();
     statistic.setAdditionalConfigs(new ArrayList<>());
@@ -345,11 +347,12 @@ public class StatisticConfigurationBean implements Serializable {
     populateBackgroundColorsIfMissing();
   }
   
-  public void handleDateTimeOperator() {
-    Ivy.log().info(statistic.getAggregates());
-    String testValue = statistic.getAggregates() + ":" + dateTimeOperator.toLowerCase();
-    Ivy.log().info(testValue);
-//    statistic.setAggregates(statistic.getAggregates() + ":");
+  public void handleAggregateWithDateTimeOperator() {
+    if (dateTimeOperator == null) {
+      return;
+    }
+    String testValue = statistic.getAggregates() + ":bucket:" + dateTimeOperator.toLowerCase();
+    statistic.setAggregates(testValue);
   }
   
   public void onAggregationSelection() {
@@ -640,8 +643,6 @@ public class StatisticConfigurationBean implements Serializable {
       this.currentCustomFieldType = meta.type();
     });
     
-    Ivy.log().info(this.currentCustomFieldType);
-    Ivy.log().info(this.currentCustomFieldType.equals(CustomFieldType.TIMESTAMP));
     this.setDateTimeSelected(this.currentCustomFieldType.equals(CustomFieldType.TIMESTAMP));
     
     handleCustomFieldAggregation();
@@ -649,7 +650,7 @@ public class StatisticConfigurationBean implements Serializable {
   
   public void onSelectOperator() {
     if(dateTimeOperator != null && isCustomFieldsSelected()) {
-      statistic.setAggregates(statistic.getAggregates() + ":" + dateTimeOperator.toLowerCase());
+      statistic.setAggregates(statistic.getAggregates() + ":bucket:" + dateTimeOperator.toLowerCase());
     }
   }
   

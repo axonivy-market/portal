@@ -24,6 +24,10 @@ public enum DateTimeOperator {
     return this.name;
   }
   
+  /*
+   * Hour unit is too small > many results > need a way to handle on UI 
+   * or don't support hour
+   */
   public static final Set<DateTimeOperator> DATE_TIME_OPERATORS = Collections
-      .unmodifiableSet(EnumSet.of(YEAR, MONTH, WEEK, DAY, HOUR));
+      .unmodifiableSet(EnumSet.of(YEAR, MONTH, WEEK, DAY));
 }
