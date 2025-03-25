@@ -119,8 +119,8 @@ def updateVersion(def releaseVersion) {
 
   def pomFiles = []
   POM_PATTERN_FILES.each { pattern ->
-  def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split('\n')
-  pomFiles.addAll(foundFiles)
+    def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split('\n')
+    pomFiles.addAll(foundFiles)
   }
 
   pomFiles.each { pomFile ->
