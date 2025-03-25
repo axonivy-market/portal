@@ -71,16 +71,6 @@
       </h:form>
       <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="0"
         processChainShape="LINE" viewName="TASK_DETAIL" isCardFrame="true" taskName="Create new investment request" />
-      <!-- You could also configure by Javascript -->
-      <!-- <script> -->
-      <!--   window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)}; -->
-      <!--   window.currentProcessStep = 0; -->
-      <!--   window.processChainShape = "LINE"; -->
-      <!--   window.viewName = "TASK_DETAIL"; -->
-      <!--   window.isCardFrame = true; -->
-      <!--   window.taskName = "Create new investment request"; -->
-      <!-- </script> -->
-
     </ui:define>
   </ui:composition>
 </h:body>

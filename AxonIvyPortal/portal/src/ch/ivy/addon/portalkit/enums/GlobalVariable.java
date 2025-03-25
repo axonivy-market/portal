@@ -24,7 +24,7 @@ public enum GlobalVariable {
 
   HIDE_LOGOUT_BUTTON("Portal.UserMenu.HideLogoutMenu", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideLogoutButtonNote"),
   HIDE_CHANGE_PASSWORD_BUTTON("Portal.UserMenu.HideChangePasswordMenu", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideChangePasswordButtonNote"),
-  ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT("Portal.Document.EnableScriptChecking", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableScriptCheckingForUploadedDocumentNote"),
+  ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT("Portal.Document.EnableScriptChecking", GlobalVariableType.SELECTION, Option.TRUE.toString(), "enableScriptCheckingForUploadedDocumentNote"),
   ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT("Portal.Document.EnableVirusScanner", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableVirusScannerForUploadedDocumentNote"),
   UPLOAD_DOCUMENT_WHITELIST_EXTENSION("Portal.Document.WhitelistExtension", GlobalVariableType.TEXT, String.join(", ", DocumentExtensionConstants.DEFAULT_WHITELIST_EXTENSION), "uploadDocumentWhiteListExtensionNote"),
   HIDE_TIME("Portal.DateTimeFormat.HideTime", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideTimeNote"),
@@ -84,9 +84,11 @@ public enum GlobalVariable {
           "googlePlayURL"),
   APPLICATION_NAME("Portal.ApplicationName", GlobalVariableType.TEXT, "Axon Ivy", "ApplicationName"), HIDE_CASE_CREATOR(
       "Portal.Cases.HideCaseCreator", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseCreator"),
-  ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview", GlobalVariableType.SELECTION, Option.TRUE.toString(), "enableDocumentPreview");
-
-
+  ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview", GlobalVariableType.SELECTION, Option.TRUE.toString(), "enableDocumentPreview"),
+  DOCUMENT_UPLOAD_SIZE_LIMIT("Portal.Upload.DocumentUploadSizeLimit",GlobalVariableType.NUMBER,"20","documentUploadSizeLimit"),
+  IMAGE_UPLOAD_SIZE_LIMIT("Portal.Upload.ImageUploadSizeLimit", GlobalVariableType.NUMBER, "6", "imageUploadSizeLimit"),
+  DELEGATION_APPEND_OPTION("Portal.DelegationAppendOption", GlobalVariableType.EXTERNAL_SELECTION,
+      DelegationAppendOption.NONE.name(), "delegationAppendOption", getDelegationAppendOption());
 
   private String key;
   private GlobalVariableType type;
@@ -279,5 +281,13 @@ public enum GlobalVariable {
 
   public static GlobalVariable valueOfKey(String key) {
     return keyToVariable.get(key);
+  }
+  
+  private static Map<String, Object> getDelegationAppendOption() {
+    Map<String, Object> result = new HashMap<>();
+    for (DelegationAppendOption option : DelegationAppendOption.values()) {
+      result.put(option.name(), option);
+    }
+    return result;
   }
 }

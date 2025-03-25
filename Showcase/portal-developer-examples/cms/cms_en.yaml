@@ -72,6 +72,11 @@ CustomFields:
     InvoiceTotalAmount:
       Description: Property of Additional Case details page
       Label: Additional Case Data 1
+    Product:
+      Description: Product description
+      Label: Product
+      Values:
+        milktea: Milk tea
     ShipmentDate:
       Description: Shipment date column for example
       Label: Shipment date
@@ -83,6 +88,13 @@ CustomFields:
     CustomTaskWidget: Custom TaskWidget
     DefaultAdditionalCaseDetai: Default additional Case details page
   Tasks:
+    Citizenship:
+      Description: Citizenship description
+      Label: Citizenship
+      Values:
+        korea: Korea
+        singapore: Singapore
+        spain: Spain
     CustomerAddress:
       Description: Customer address field
       Label: Customer address
