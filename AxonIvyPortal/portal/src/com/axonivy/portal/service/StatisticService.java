@@ -64,8 +64,6 @@ public class StatisticService {
     chart.setAdditionalConfigs(new ArrayList<>());
     chart.getAdditionalConfigs().addAll(getAdditionalConfig());
     chart.getAdditionalConfigs().add(getManipulateValueBy(chart));
-    Ivy.log().info("test result: " + result);
-    Ivy.log().info("test result: " + result);
     return new StatisticResponse(result, chart);
   }
 
