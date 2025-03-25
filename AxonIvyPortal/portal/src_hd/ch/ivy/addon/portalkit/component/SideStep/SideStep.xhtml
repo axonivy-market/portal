@@ -47,6 +47,12 @@
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}</span>
     </p:commandLink>
 
+    <p:commandLink id="task-mark-favorite" disabled="#{!taskActionBean.canMarkAsFavorite(task)}" rendered="true" onstart="event.stopPropagation();"
+      styleClass="option-item ui-menu-items" actionListener="#{taskActionBean.markTaskAsFavorite(task)}" update="@parent #{cc.attrs.componentToUpdate}" process="@this">
+      <i class="option-action-icon si si-rating-star-add" />
+      <span class="option-item-label">Mark As Favorite</span>
+    </p:commandLink>
+
     <p:commandLink id="task-reset-command" onstart="event.stopPropagation();" rendered="#{taskActionBean.showResetTask}" disabled="#{!taskActionBean.canReset(task)}"
       styleClass="option-item ui-menu-items" actionListener="#{logic.resetTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
       <i class="option-action-icon si si-undo" />
