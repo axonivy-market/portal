@@ -1495,8 +1495,11 @@ Dialogs:
             Create: Create
             CustomAggregateInput: Please input custom fields.
             DateTimeOperators:
+              AVG: Avg
               DAY: Day
               HOUR: Hour
+              MAX: Max
+              MIN: Min
               MONTH: Month
               WEEK: Week
               YEAR: Year

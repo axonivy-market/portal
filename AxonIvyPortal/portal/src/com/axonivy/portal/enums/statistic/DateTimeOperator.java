@@ -11,6 +11,9 @@ public enum DateTimeOperator {
   MONTH("Month"),
   WEEK("Week"),
   DAY("Day"),
+  MAX("Max"),
+  MIN("Min"),
+  AVG("Avg"),
   HOUR("Hour");
   
   private DateTimeOperator (String name) {
@@ -27,7 +30,12 @@ public enum DateTimeOperator {
   /*
    * Hour unit is too small > many results > need a way to handle on UI 
    * or don't support hour
+   * Currently opt out the metric operator 
+   * since haven't found a way to handle on the UI
    */
+//  public static final Set<DateTimeOperator> DATE_TIME_OPERATORS = Collections
+//      .unmodifiableSet(EnumSet.of(YEAR, MONTH, WEEK, DAY, MAX, MIN, AVG));
   public static final Set<DateTimeOperator> DATE_TIME_OPERATORS = Collections
       .unmodifiableSet(EnumSet.of(YEAR, MONTH, WEEK, DAY));
+
 }

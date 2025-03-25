@@ -1451,8 +1451,11 @@ Dialogs:
             Create: Cree
             CustomAggregateInput: Por favor ingrese campos personalizados.
             DateTimeOperators:
+              AVG: avg
               DAY: Day
               HOUR: Hour
+              MAX: max
+              MIN: min
               MONTH: Month
               WEEK: Week
               YEAR: Year
