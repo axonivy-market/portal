@@ -88,7 +88,7 @@ pipeline {
           def currentDir = pwd()
           if(params.deployToRepo) {
             docker.build('deploy-portal-bom', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
-              maven cmd: "deploy:deploy-file -Dfile=${currentDir}/build/sbom/target/portal-${params.releaseVersion}.bom.json -DgroupId=com.axonivy.portal -DartifactId=portal-bom -Dversion=${params.releaseVersion} -Dpackaging=json -DrepositoryId=nexus.axonivy.com -Durl=https://nexus.axonivy.com/repository/maven-releases"
+              maven cmd: "deploy:deploy-file -Dfile=${currentDir}/build/sbom/target/portal.bom.json -DgroupId=com.axonivy.portal -DartifactId=portal-bom -Dversion=${params.releaseVersion} -Dpackaging=json -DrepositoryId=nexus.axonivy.com -Durl=https://nexus.axonivy.com/repository/maven-releases"
             }
           }
         }

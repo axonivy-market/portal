@@ -9,10 +9,6 @@ pipeline {
     cron('0 13 * * *')
   }
 
-  environment {
-    engineVersion = '12'
-  }
-
   stages {
     stage('Build') {
       steps {
@@ -34,6 +30,8 @@ pipeline {
           utils.generateBOM()
           utils.mergeBOMFiles()
           utils.uploadBOM('portal', '12.0.5-SNAPSHOT', 'build/sbom/target/portal.bom.json')
+
+          archiveArtifacts artifacts: 'build/sbom/target/*.bom.json', allowEmptyArchive: true
         }
       }
     }
