@@ -111,8 +111,12 @@
                     <p:selectOneMenu id="aggregates-custom-fields" required="true" styleClass="w-full mt-2"
                       rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}" value="#{statisticConfigurationBean.currentCustomField}" >
                       <f:selectItems value="#{statisticConfigurationBean.getCustomFieldNames()}" var="customField" />
-                      <p:ajax listener="#{statisticConfigurationBean.onSelectCustomField()}" update="chart-aggregation-operators"/>
+                      <p:ajax listener="#{statisticConfigurationBean.onSelectCustomField()}" update="chart-aggregation-operators custom-field-description"/>
                     </p:selectOneMenu>
+
+                    <p:inputText id="custom-field-description" styleClass="w-full mt-2" readonly="true"
+                      rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}"
+                      value="#{statisticConfigurationBean.currentCustomFieldDescription}" />
                   </div>
                 </h:panelGroup>
 

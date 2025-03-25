@@ -87,6 +87,7 @@ public class StatisticConfigurationBean implements Serializable {
   private String customFieldAggregate;
   private String currentCustomField;
   private CustomFieldType currentCustomFieldType;
+  private String currentCustomFieldDescription;
   private boolean isDateTimeSelected;
   private String dateTimeOperator;
 
@@ -644,6 +645,8 @@ public class StatisticConfigurationBean implements Serializable {
     findCustomFieldMeta().ifPresent(meta -> {
       this.currentCustomField = meta.name();
       this.currentCustomFieldType = meta.type();
+      Ivy.log().info(meta.description());
+      this.setCurrentCustomFieldDescription(meta.description());
     });
     
     this.setDateTimeSelected(this.currentCustomFieldType.equals(CustomFieldType.TIMESTAMP));
@@ -689,6 +692,14 @@ public class StatisticConfigurationBean implements Serializable {
 
   public void setDateTimeOperator(String dateTimeOperator) {
     this.dateTimeOperator = dateTimeOperator;
+  }
+
+  public String getCurrentCustomFieldDescription() {
+    return currentCustomFieldDescription;
+  }
+
+  public void setCurrentCustomFieldDescription(String currentCustomFieldDescription) {
+    this.currentCustomFieldDescription = currentCustomFieldDescription;
   }
 
 }
