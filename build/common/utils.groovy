@@ -122,7 +122,8 @@ def generateBOMFile(def moduleDir) {
 
     def inputFileName = sh (script: "ls ${iarFile} | xargs -n 1 basename", returnStdout: true).trim()
     def outputFile = inputFileName.replace('.iar', '.bom.json')
-    sh "docker run -v ${unzipDir}:/sbom anchore/syft scan /sbom -o cyclonedx-json --exclude './pom.xml' > ${currentDir}/${moduleDir}/target/$outputFile"
+    def mappingDir = inputFileName - '.iar'
+    sh "docker run -v ${unzipDir}:/${mappingDir} anchore/syft scan /${mappingDir} -o cyclonedx-json --exclude './pom.xml' > ${currentDir}/${moduleDir}/target/$outputFile"
   } else {
     echo "File not found: ${iarFile}"
   }
