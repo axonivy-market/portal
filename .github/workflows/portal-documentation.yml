@@ -1,6 +1,7 @@
 name: Documentation
 run-name: 📚 Documentation
 on:
+  push:
   workflow_dispatch:
     inputs:
       ivyVersion:
