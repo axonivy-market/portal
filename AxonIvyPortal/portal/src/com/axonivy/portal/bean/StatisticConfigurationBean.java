@@ -329,6 +329,8 @@ public class StatisticConfigurationBean implements Serializable {
   public void getPreviewData() {
     handleCustomFieldAggregation();
     handleAggregateWithDateTimeOperator();
+    Ivy.log().info("LOGGING");
+    Ivy.log().info(statistic.getAggregates());
     syncUIConfigWithChartConfig();
     StatisticService statisticService = StatisticService.getInstance();
     statistic.setAdditionalConfigs(new ArrayList<>());
@@ -563,8 +565,10 @@ public class StatisticConfigurationBean implements Serializable {
       statistic.setAggregates("customFields.numbers." + currentCustomField);
       return;
     }
-    
-    statistic.setAggregates("customFields.timestamps." + currentCustomField);
+    if(CustomFieldType.TIMESTAMP.equals(this.currentCustomFieldType)) {
+      statistic.setAggregates("customFields.timestamps." + currentCustomField);
+      return;
+    }
   }
 
   public void handleAggregateWithDateTimeOperator() {
@@ -619,6 +623,9 @@ public class StatisticConfigurationBean implements Serializable {
     return displayOperatorName;
   }
 
+  /**
+   * HINT: check this function for resolving the bug
+   */
   public void onSelectAggregates() {
     this.setDateTimeSelected(statistic.getAggregates().contains("Timestamp"));
   }

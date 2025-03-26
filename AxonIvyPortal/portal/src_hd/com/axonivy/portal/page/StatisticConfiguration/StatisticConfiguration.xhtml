@@ -131,7 +131,7 @@
                       value="#{statisticConfigurationBean.dateTimeOperator}">
                       <f:selectItems var="dateTimeOperator" value="#{statisticConfigurationBean.getAvailableOperators()}"
                         itemLabel="#{statisticConfigurationBean.getUserFriendlyOperatorsName(dateTimeOperator)}" />
-                      <p:ajax listener="#{statisticConfigurationBean.onSelectOperator()}" />
+                      <p:ajax listener="#{statisticConfigurationBean.onSelectOperator}" />
                     </p:selectOneMenu>
                   </div>
                 </h:panelGroup>
