@@ -113,12 +113,20 @@ def generateBOMFile(def moduleDir) {
   def currentDir = pwd()
   def iarFile = sh (script: "ls ${currentDir}/${moduleDir}/target/*.iar", returnStdout: true).trim()
   if (iarFile) {
+    def unzipDir = iarFile - '.iar'
+
+    createEmptyFolder(unzipDir);
+
+    sh "unzip ${iarFile} -d ${unzipDir}"
+    echo "Unzip completed to ${unzipDir}"
+
     def zipFile = iarFile.replace('.iar', '.zip')
     sh "mv ${iarFile} ${zipFile}"
     echo "Renamed ${iarFile} to ${zipFile}"
-    def inputFile = sh (script: "ls ${zipFile} | xargs -n 1 basename", returnStdout: true).trim()
-    def outputFile = inputFile.replace('.zip', '.bom.json')
-    sh "docker run -v ${zipFile}:/portal.zip anchore/syft scan /portal.zip -o cyclonedx-json --exclude './${moduleDir}/pom.xml' --exclude './${moduleDir}/lib/generated/*' > ${currentDir}/${moduleDir}/target/$outputFile"
+
+    def inputFileName = sh (script: "ls ${iarFile} | xargs -n 1 basename", returnStdout: true).trim()    
+    def outputFile = inputFileName.replace('.iar', '.bom.json')
+    sh "docker run -v ${unzipDir}:/sbom anchore/syft scan /sbom -o cyclonedx-json --exclude 'sbom/pom.xml' > ${currentDir}/${moduleDir}/target/$outputFile"
   } else {
     echo "File not found: ${iarFile}"
   }
@@ -127,15 +135,9 @@ def generateBOMFile(def moduleDir) {
 def mergeBOMFiles() {
   def currentDir = pwd()
   def targetDir = "${currentDir}/build/sbom/target"
-  sh """
-      if [ -d ${targetDir} ]; then
-        echo "Directory exists, emptying it..."
-        rm -rf ${targetDir}/*   # Remove all contents of the directory
-      else
-        echo "Directory does not exist, creating it..."
-        mkdir -p ${targetDir}   # Create the directory
-      fi
-     """
+
+  createEmptyFolder(targetDir);
+
   def bomFiles = sh (script: "find ${currentDir} -type d -name 'target' -exec find {} -type f -name '*.bom.json' \\;", returnStdout: true).trim()
   if(bomFiles) {
     def bomFileList = bomFiles.split("\n")
@@ -159,6 +161,18 @@ def uploadBOM(def projectName, def projectVersion, def bomFile) {
         -F "projectVersion=' + projectVersion + '" \
         -F "bom=@' + bomFile + '"'
   }
+}
+
+def createEmptyFolder(def folderName) {
+  sh """
+      if [ -d ${folderName} ]; then
+        echo "Directory exists, emptying it..."
+        rm -rf ${folderName}/*   # Remove all contents of the directory
+      else
+        echo "Directory does not exist, creating it..."
+        mkdir -p ${folderName}   # Create the directory
+      fi
+     """
 }
 
 def updatePortalDependenciesAsRangeVersion() {
