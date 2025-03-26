@@ -563,5 +563,9 @@ public class DashboardBean implements Serializable {
   public String getSearchScope() {
     return this.searchScope;
   }
+  
+  public String getDashboardUrlByDashboard(Dashboard dashboard) {
+    return UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId());
+  }
 
 }

@@ -151,6 +151,14 @@
                         index="#{status.index}"
                         id="notification-#{widget.id}" />
                     </c:if>
+                    
+                    <!-- Navigation dashboard widget -->
+                    <c:if test="#{widget.type eq 'NAVIGATION_DASHBOARD'}">
+                      <ic:com.axonivy.portal.dashboard.component.NavigationDashboardWidget widget="#{widget}"
+                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        index="#{status.index}"
+                        id="navigation-dashboard-#{widget.id}" />
+                    </c:if>
                   </div>
                 </div>
               </c:forEach>

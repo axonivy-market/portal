@@ -79,6 +79,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: Vorgangs-Widget
       CLIENT_STATISTIC: Statistik-Widget
       CUSTOM: Benutzerdefiniertes Widget
+      NAVIGATION_DASHBOARD: ''
       NEW: Neues Widget
       NEWS: Nachrichten
       NOTIFICATION: Benachrichtigungen
@@ -899,6 +900,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: Widget-Typ
     yourCases: Ihre Vorgänge
     yourCustomWidget: Ihr benutzerdefiniertes Widget
+    yourNavigationDashboardWidget: Your navigation dashboard widget
     yourNotifications: Ihre Benachrichtigungen
     yourProcessViewer: Ihr Prozessbetrachter
     yourProcesses: Ihre Prozesse
@@ -1416,6 +1418,8 @@ Dialogs:
               chooseAJsonFile: Wählen Sie eine JSON-Datei
             DashboardSharing:
               ShareDashboard: Dashboard teilen
+            NavigationDashboardWidgetConfiguration:
+              NavigationDashboardWidgetConfiguration: Navigation dashboard widget configuration
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
               NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich
