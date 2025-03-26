@@ -30,4 +30,8 @@ public enum DashboardWidgetType {
     return this == TASK || this == CASE || this == PROCESS || this == NEWS || this == CUSTOM || this == PROCESS_VIEWER
         || this == CLIENT_STATISTIC || this == NOTIFICATION;
   }
+
+  public boolean canShowFavorite() {
+    return this == TASK;
+  }
 }

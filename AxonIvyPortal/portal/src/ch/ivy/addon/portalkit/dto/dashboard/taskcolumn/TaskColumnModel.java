@@ -1,10 +1,10 @@
 package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
-
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
@@ -60,10 +60,13 @@ public class TaskColumnModel extends ColumnModel {
         return new ExpiryDateColumnModel();
       } else if (equals(DashboardStandardTaskColumn.CATEGORY, field)) {
         return new CategoryColumnModel();
-      }  else if (equals(DashboardStandardTaskColumn.APPLICATION, field)) {
+      } else if (equals(DashboardStandardTaskColumn.APPLICATION, field)) {
         return new ApplicationColumnModel();
       } else if (equals(DashboardStandardTaskColumn.ACTIONS, field)) {
         return new ActionsColumnModel();
+      } else if (equals(DashboardStandardTaskColumn.FAVORITE, field)) {
+        Ivy.log().error("haha");
+        return new FavoriteColumnModel();
       }
     }
     return new TaskColumnModel();

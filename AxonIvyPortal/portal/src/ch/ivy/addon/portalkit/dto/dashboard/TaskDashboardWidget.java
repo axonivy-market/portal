@@ -294,11 +294,17 @@ public class TaskDashboardWidget extends DashboardWidget {
   }
 
 
-public List<String> getErrors() {
-	return errors;
-}
+  public List<String> getErrors() {
+    return errors;
+  }
 
-public void setErrors(List<String> errors) {
-	this.errors = errors;
-}
+  public void setErrors(List<String> errors) {
+    this.errors = errors;
+  }
+
+  @Override
+  public void toggleShowFavorite() {
+    this.dataModel.setShowFavorite(this.isShowFavorite);
+  }
+
 }

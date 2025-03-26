@@ -37,6 +37,18 @@
   <h:panelGroup layout="block" class="widget__header" rendered="#{not isHeaderHidden}">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{widget.name}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
+    
+     <h:panelGroup id="show-favorite-#{index}" layout="block"
+      styleClass="#{isReadOnlyMode ? 'u-mar-right-10' : 'u-mar-right-5'} widget-header-show-favorite"
+      rendered="#{dashboardBean.canShowFavorite(widget)}">
+      <h:form id="show-favorite-form" >
+      <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
+      <p:toggleSwitch value="#{dashboardBean.showFavorite}">
+        <p:ajax listener="#{dashboardBean.toggleShowFavorite(widget)}"
+          update="#{componentToUpdateOnResetFilter}" />
+      </p:toggleSwitch>
+      </h:form>
+    </h:panelGroup>
 
     <h:panelGroup id="widget-header-quick-search-#{index}" layout="block"
       styleClass="#{isReadOnlyMode ? 'u-mar-right-10' : 'u-mar-right-5'} widget-header-quick-search"

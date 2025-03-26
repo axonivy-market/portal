@@ -4,11 +4,9 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.EnumSet;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -21,7 +19,6 @@ import com.axonivy.portal.components.util.ProcessStartUtils;
 
 import ch.ivy.addon.portal.generic.bean.UserMenuBean;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -379,40 +376,37 @@ public class TaskActionBean implements Serializable {
     return !taskStates.contains(task.getState());
   }
 
+  public String getFavoriteLabel(ITask task) {
+    return TaskUtils.isFavoriteTask(task) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/unmarkAsFavorite")
+        : Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/markAsFavorite");
+  }
+
+  public String getFavoriteIcon(ITask task) {
+    return TaskUtils.isFavoriteTask(task) ? "option-action-icon si si-remove-circle" : "option-action-icon si si-rating-star-add";
+  }
+
+  public String getFavoriteStyleClass(ITask task) {
+    return "option-item ui-menu-items" + (TaskUtils.isFavoriteTask(task) ? " color-destroy" : "");
+  }
+
   public void markTaskAsFavorite(ITask task) {
     if (task == null) {
       return;
     }
-    Set<Long> favoriteTaskIds = getFavoriteTaskIds();
 
-    if (favoriteTaskIds.contains(task.getId())) {
+    Set<Long> favoriteTaskIds = TaskUtils.getFavoriteTaskIds();
+    boolean isFavorite = favoriteTaskIds.contains(task.getId());
+
+    if (isFavorite) {
       favoriteTaskIds.remove(task.getId());
     } else {
       favoriteTaskIds.add(task.getId());
     }
 
-    saveFavoriteTaskIds(favoriteTaskIds);
+    TaskUtils.saveFavoriteTaskIds(favoriteTaskIds);
   }
 
-  private Set<Long> getFavoriteTaskIds() {
-    String favoriteTasksStr = Ivy.session().getSessionUser().getProperty(UserProperty.FAVORITE_TASKS);
-    if (favoriteTasksStr == null || favoriteTasksStr.isEmpty()) {
-      return new HashSet<>();
-    }
-    return Arrays.stream(favoriteTasksStr.split(",")).map(String::trim).filter(s -> !s.isEmpty()).map(Long::parseLong)
-        .collect(Collectors.toSet());
-  }
-
-  private void saveFavoriteTaskIds(Set<Long> favoriteTaskIds) {
-    String updatedFavoriteTasks = favoriteTaskIds.stream().map(String::valueOf).collect(Collectors.joining(","));
-    Ivy.session().getSessionUser().setProperty(UserProperty.FAVORITE_TASKS, updatedFavoriteTasks);
-  }
-
-  public boolean isFavoriteTask(ITask task) {
-    Set<Long> favoriteTaskIds = getFavoriteTaskIds();
-    if (favoriteTaskIds.contains(task.getId())) {
-      return true;
-    }
-    return false;
+  public boolean isTaskFavorite(ITask task) {
+    return TaskUtils.isFavoriteTask(task);
   }
 }

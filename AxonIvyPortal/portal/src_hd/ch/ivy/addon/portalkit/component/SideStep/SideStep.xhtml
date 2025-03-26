@@ -48,9 +48,9 @@
     </p:commandLink>
 
     <p:commandLink id="task-mark-favorite" disabled="#{!taskActionBean.canMarkAsFavorite(task)}" rendered="true" onstart="event.stopPropagation();"
-      styleClass="option-item ui-menu-items" actionListener="#{taskActionBean.markTaskAsFavorite(task)}" update="@parent #{cc.attrs.componentToUpdate}" process="@this">
-      <i class="option-action-icon si si-rating-star-add" />
-      <span class="option-item-label">Mark As Favorite</span>
+      styleClass="#{taskActionBean.getFavoriteStyleClass(task)}" actionListener="#{taskActionBean.markTaskAsFavorite(task)}" update="@parent #{cc.attrs.componentToUpdate}" process="@this">
+      <i class="#{taskActionBean.getFavoriteIcon(task)}" />
+      <span class="option-item-label">#{taskActionBean.getFavoriteLabel(task)}</span>
     </p:commandLink>
 
     <p:commandLink id="task-reset-command" onstart="event.stopPropagation();" rendered="#{taskActionBean.showResetTask}" disabled="#{!taskActionBean.canReset(task)}"

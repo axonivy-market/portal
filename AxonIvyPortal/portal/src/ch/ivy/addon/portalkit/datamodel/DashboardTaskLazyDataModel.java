@@ -144,4 +144,8 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
   public void setCountLoad(int countLoad) {
     this.countLoad = countLoad;
   }
+  
+  public void setShowFavorite(boolean showFavorite) {
+    criteria.setShowFavorite(showFavorite);
+  }
 }

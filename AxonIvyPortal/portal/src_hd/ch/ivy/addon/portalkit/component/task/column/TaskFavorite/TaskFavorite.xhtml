@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<cc:interface componentType="IvyComponent">
+    <cc:attribute name="task" required="true" type="ch.ivyteam.ivy.workflow.ITask" />
+</cc:interface>
+
+<cc:implementation>
+    <c:set var="isFavorite" value="#{taskBean.isFavoriteTask(cc.attrs.task)}" />
+
+    <h:panelGroup styleClass="favorite-task-cell default-task-cell">
+        <h:form id="favorite-form">
+            <p:commandLink action="#{taskBean.toggleFavorite(cc.attrs.task)}" update="@form">
+                <i class="fa #{isFavorite ? 'fa-star' : 'fa-star-o'} favorite-icon" />
+            </p:commandLink>
+            <p:tooltip for="favorite-form" 
+                       value="#{isFavorite ? 'Unmark As Favorite' : 'Mark As Favorite'}" 
+                       trackMouse="true" 
+                       hideEvent="mouseleave click" />
+        </h:form>
+    </h:panelGroup>
+</cc:implementation>
+</html>

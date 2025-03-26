@@ -511,6 +511,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     loginLogo: ログインロゴ
     logos: ロゴ
     mainColor: メインカラー
+    markAsFavorite: 'TODO: Mark As Favorite'
     minute: 分
     minutes: 分
     more: 詳細
@@ -594,6 +595,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: すべての管理者
     typeAllUsers: すべてのユーザー
     typeOnlyMe: 自分のみ
+    unmarkAsFavorite: 'TODO: Unmark As Favorite'
     uploadHere: 有効な日付を入力してください。
     uploadOneHere: ここにアップロード
     user: '{0} ユーザー'
@@ -1553,6 +1555,7 @@ Labels:
       CREATED: 作成日
       DESCRIPTION: 説明
       EXPIRY: 有効期限
+      FAVORITE: ''
       ID: ID
       NAME: 名前
       PRIORITY: 優先度

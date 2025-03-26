@@ -513,6 +513,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     loginLogo: Logo login
     logos: Logos
     mainColor: Couleur principal
+    markAsFavorite: Marquer Comme Favori
     minute: minute
     minutes: minutes
     more: Plus
@@ -596,6 +597,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Tous les administrateurs
     typeAllUsers: Tous les utilisateurs
     typeOnlyMe: Seulement pour moi
+    unmarkAsFavorite: Retirer Des Favoris
     uploadHere: Téléchargez ici
     uploadOneHere: Téléchargez-en un ici
     user: '{0} utilisateur'
@@ -1546,6 +1548,7 @@ Labels:
       CREATED: Date de création
       DESCRIPTION: Description
       EXPIRY: Délai
+      FAVORITE: ''
       ID: Id
       NAME: Nom
       PRIORITY: Priorité

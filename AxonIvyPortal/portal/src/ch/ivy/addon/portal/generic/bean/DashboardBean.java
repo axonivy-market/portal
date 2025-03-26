@@ -89,6 +89,7 @@ public class DashboardBean implements Serializable {
   private String clientStatisticApiUri;
   private String selectedDashboardName;
   private String searchScope;
+  private boolean isShowFavorite = false;
 
   @PostConstruct
   public void init() {
@@ -589,6 +590,24 @@ public class DashboardBean implements Serializable {
 
   public String getSearchScope() {
     return this.searchScope;
+  }
+
+  public boolean canShowFavorite(DashboardWidget widget) {
+    return widget.getType().canShowFavorite();
+  }
+
+  public boolean getShowFavorite() {
+    return this.isShowFavorite;
+  }
+
+  public void setShowFavorite(boolean isShowFavorite) {
+    this.isShowFavorite = isShowFavorite;
+  }
+
+  public void toggleShowFavorite(DashboardWidget widget) {
+    Ivy.log().error("bean" + isShowFavorite);
+    widget.setShowFavorite(isShowFavorite);
+    widget.toggleShowFavorite();
   }
 
 }

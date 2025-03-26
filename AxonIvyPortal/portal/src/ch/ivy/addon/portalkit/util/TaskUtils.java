@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.faces.application.FacesMessage;
@@ -19,6 +21,7 @@ import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
+import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.enums.PortalPage;
@@ -396,6 +399,41 @@ public final class TaskUtils {
       return false;
     }
     return PermissionUtils.hasPermission(permission);
+  }
+
+
+  public void markTaskAsFavorite(ITask task) {
+    if (task == null) {
+      return;
+    }
+
+    Set<Long> favoriteTaskIds = getFavoriteTaskIds();
+    boolean isFavorite = favoriteTaskIds.contains(task.getId());
+
+    if (isFavorite) {
+      favoriteTaskIds.remove(task.getId());
+    } else {
+      favoriteTaskIds.add(task.getId());
+    }
+
+    saveFavoriteTaskIds(favoriteTaskIds);
+  }
+
+  public static Set<Long> getFavoriteTaskIds() {
+    String favoriteTasksStr = Ivy.session().getSessionUser().getProperty(UserProperty.FAVORITE_TASKS);
+    return (favoriteTasksStr == null || favoriteTasksStr.isEmpty()) ? new HashSet<>()
+        : Arrays.stream(favoriteTasksStr.split(",")).map(String::trim).filter(s -> !s.isEmpty()).map(Long::parseLong)
+            .collect(Collectors.toSet());
+  }
+
+  public static void saveFavoriteTaskIds(Set<Long> favoriteTaskIds) {
+    String updatedFavoriteTasks =
+        String.join(",", favoriteTaskIds.stream().map(String::valueOf).toArray(String[]::new));
+    Ivy.session().getSessionUser().setProperty(UserProperty.FAVORITE_TASKS, updatedFavoriteTasks);
+  }
+
+  public static boolean isFavoriteTask(ITask task) {
+    return task != null && getFavoriteTaskIds().contains(task.getId());
   }
 
 }

@@ -2045,3 +2045,11 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
 .clone-to-dashboard-dialog-header-container {
   width: calc(100% - 35px);
 }
+
+.favorite-task-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; 
+  text-align: center;
+}

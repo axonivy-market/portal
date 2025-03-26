@@ -20,7 +20,8 @@ public enum DashboardStandardTaskColumn {
   EXPIRY("expiryTimestamp"), 
   CATEGORY("category"),
   APPLICATION("application"),
-  ACTIONS("actions");
+  ACTIONS("actions"),
+  FAVORITE("favorite");
 
   private final String field;
 
