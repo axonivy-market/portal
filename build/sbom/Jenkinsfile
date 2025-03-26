@@ -27,9 +27,10 @@ pipeline {
       steps {
         script {
           def utils = load 'build/common/utils.groovy'
+          def portalVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').version
           utils.generateBOM()
           utils.mergeBOMFiles()
-          utils.uploadBOM('portal', '12.0.5-SNAPSHOT', 'build/sbom/target/portal.bom.json')
+          utils.uploadBOM('portal', portalVersion, 'build/sbom/target/portal.bom.json')
 
           archiveArtifacts artifacts: 'build/sbom/target/*.bom.json', allowEmptyArchive: true
         }
