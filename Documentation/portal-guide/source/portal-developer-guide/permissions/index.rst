@@ -126,6 +126,9 @@ Portal Case Permissions
 
     - Granted to role Everybody by default
 
+- _`CaseOwnerTaskDelegate`
+    - Permission to delegate related tasks of case where the user is the case owner
+
 Portal General Permissions
 --------------------------
 

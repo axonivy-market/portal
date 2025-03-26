@@ -17,7 +17,9 @@
   
   <cc:implementation>
     <h:panelGroup id="#{cc.attrs.componentId}" rendered="#{cc.attrs.dataModel.isSelectedColumn(cc.attrs.column)}" styleClass="u-text-align-center task-custom-field-cell #{cc.attrs.responsiveStyleClass}" >
-      <h:outputText value="#{cc.attrs.labelValue}" />
+      <h:outputText id="task-custom-field" value="#{cc.attrs.labelValue}" />
+      <p:tooltip id="task-custom-field-tooltip" for="task-custom-field" styleClass="#{cc.attrs.responsiveStyleClass}" trackMouse="true" hideEvent="mouseleave click" 
+        value="#{cc.attrs.labelValue}" />
     </h:panelGroup>
   </cc:implementation>
 </html>

@@ -396,7 +396,7 @@
           },
           {
             "field": "application",
-            "styleClass": "dashboard-tasks__priority u-text-align-center",
+            "styleClass": "dashboard-tasks__priority text-center",
             "style": "width: 80px"
           },
           {
@@ -464,7 +464,7 @@
           },
           {
             "field": "application",
-            "styleClass": "dashboard-tasks__priority u-text-align-center",
+            "styleClass": "dashboard-tasks__priority text-center",
             "style": "width: 80px"
           },
           {

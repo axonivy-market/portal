@@ -12,12 +12,13 @@ Variables:
     # [file: json]
     Announcement:
 
-    # Do not change default statistic via this JSON file.
+    # Default configurations for Portal statistic widgets.
+    # Do not edit this variable.
     # [file: json]
     Statistic:
 
-    # You can define the custom statistic via this JSON file.
-    # You can configure dashboards to show the statistics to dashboards.
+    # Custom configurations for Portal statistic widgets.
+    # You can define custom configurations for Portal statistic widgets by edit this variable.
     # [file: json]
     CustomStatistic:
 
@@ -125,6 +126,10 @@ Variables:
       # Set to true to hide case creator in case widget and case details.
       # This setting affects all case queries, e.g. for case widget, global search, statistic.
       HideCaseCreator: false
+
+      # For switch behaviours (access the case details or business details) when clicking on a case in case widget of dashboard, global search, related cases and process widget in combined mode.
+      # [enum: ACCESS_CASE_DETAILS, ACCESS_BUSINESS_DETAILS]
+      BehaviourWhenClickingOnLineInCaseList: ACCESS_CASE_DETAILS
 
     # You can configure the look and feel for case details according to your needs via this json file.
     # This setting will be taken over for all other case details.

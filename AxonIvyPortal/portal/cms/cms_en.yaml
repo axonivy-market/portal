@@ -16,6 +16,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       fromBiggerThanTill: '''Until'' must be later than ''From''.'
       overlappingAbsence: The absence is overlapping with another absence.
       userNameRequired: User name must not be empty.
+    SelectedSubtitutes: Selected subtitutes
     absences: Absences
     addAbsence: Add absence
     deputies: Substitutes
@@ -64,6 +65,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       EMAIL: Email
       INFORMATION: Information
       OTHERS: Others
+    BehaviourWhenClickingOnLineInCaseList:
+      ACCESS_BUSINESS_DETAILS: Access business details
+      ACCESS_CASE_DETAILS: Access case details
     BehaviourWhenClickingOnLineInTaskList:
       ACCESS_TASK_DETAILS: Access task details
       RUN_TASK: Run the task
@@ -97,6 +101,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       BY_ALPHABETICALLY: Alphabetically
       BY_CUSTOM_ORDER: Custom order
       BY_INDEX: Sorting index
+      BY_SMART_ORDER: Most used
     ProcessType:
       EXTERNAL_LINK: External Link
       IVY_PROCESS: Business Process
@@ -211,6 +216,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SearchScopeTaskFields: Defining the fields that the global search will use to find matching tasks beside task Id (this can influence the performance of the search)
       ShowLoginPageFooter: For switch on/off the display of the footer on the login page.
       ShowQRCode: For switch on/off the display of the QR code.
+      behaviourWhenClickingOnLineInCaseList: Toggle between accessing case details or business details when clicking on a case in the case widget on the dashboard, global search, related cases, and process widget in combined mode.
       behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
       chatResponseTimeout: Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds.
@@ -404,6 +410,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoSelection: No Selection
     ResetToDefaultHeaderText: Reset to default settings?
     RoleUserInformation: Role and User Information
+    StringFormat:
+      DateFromTo: '%s - %s'
+      TextListOut: '%s, %s,..'
+      TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Task and Case Information
     Update: Update
     Widget: Widget
@@ -723,11 +733,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       WidgetNameColumn: Widget name
       WrongDateFormat: The date is invalid
     ManageFilter: Manage filters
+    NoColumnsEnabledForQuickSearch: No columns are enabled for quick search
     NoData: No data
     NoSavedFilterMessage: No saved filter found. Try to create a new by click on Save Filter button
     NoWidgetAvailable: There are no widgets.
     QuickSearch: Quick search
-    QuickSearchInfo: You can customize the Quick Search's scope in the widgets column management. It searches based on "contains," but be mindful of performance when adding numerous columns.
+    QuickSearchInfo: You can customize the Quick Search's scope in the widgets column management. It searches based on "contains", but be mindful of performance when adding numerous columns.
+    QuickSearchScope: 'Search Scope: {0}'
     RestoreDefaultDashboardMessage: If you proceed, you will loose all widgets created by yourself. The standard settings of <span class="dashboard-template-name-message">{0}</span> will be applied.
     SaveNewWidgetFilterHeader: Save a new widget filter
     SavedFilterHeader: Saved filters
@@ -736,6 +748,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Standard Widgets
     StatisticWidget:
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
+      failToRenderChartMessage: Error while rendering chart. Please retry with different settings.
+      firstConfigChartMessage: No chart available yet. Please configure your settings to generate a chart.
     WelcomeWidgetIntroduction: This widget displays a welcome text and image on dashboard.
     WelcomeWidgetNotFoundMessage: We cannot find the image of widget, please reconfigure your image!
     WidgetFilterName: Widget filter name
@@ -1320,6 +1334,7 @@ Dialogs:
                 NewDashboard: Add new dashboard
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Create custom statistic widget
+                DeleteConfirm: Are you sure you want to delete?
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
@@ -1509,8 +1524,10 @@ Dialogs:
             HideLabel: Hide label
             NewStatistic: New Statistic Widget
             Operator: Operator
-            RefreshInterval: Refresh interval
-            RefreshIntervalInSeconds: Refresh interval in seconds
+            RefreshInterval: Auto-refresh enabled
+            RefreshIntervalInSeconds: Auto-refresh interval (seconds)
+            RefreshIntervalInSecondsValidationMessage: 'Auto-refresh interval (seconds): Specified attribute is not between the expected values of {0} and {1}'
+            RefreshIntervalInfo: The statistic can be auto-refreshed after a certain period. If enabled, this may impact performance. Auto-refresh interval (seconds) must be at least {0}.
             StatisticConfiguration: Statistic configuration
             XAxisTitle: X axis title
             YAxisTitle: Y axis title
@@ -1529,6 +1546,25 @@ Dialogs:
   general:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          ChartTarget:
+            CASE:
+              name: Case
+            TASK:
+              name: Task
+          ChartType:
+            BAR:
+              name: Bar
+            LINE:
+              name: Line
+            NUMBER:
+              name: Number
+            PIE:
+              name: Pie
 Labels:
   AI:
     Error:
@@ -1669,6 +1705,7 @@ Labels:
   Name: Name
   Permissions: Permissions
   Preview: Preview
+  RequiredFieldMessage: '{0}: Value is required'
   Save: Save
   Share: Share
   Task: Task

@@ -25,6 +25,10 @@ public class DefaultDashboardUtils {
           {
             "locale": "es",
             "value": "Tareas"
+          },
+          {
+            "locale": "ja",
+            "value": "タスク"
           }
         ],
         "icon": "si-task-list-edit",
@@ -49,6 +53,10 @@ public class DefaultDashboardUtils {
               {
                 "locale": "es",
                 "value": "Sus tareas"
+              },
+              {
+                "locale": "ja",
+                "value": "タスク"
               }
             ],
             "layout": {
@@ -140,6 +148,10 @@ public class DefaultDashboardUtils {
           {
             "locale": "es",
             "value": "Casos"
+          },
+          {
+            "locale": "ja",
+            "value": "ケース"
           }
         ],
         "icon": "si-layout-bullets",
@@ -164,6 +176,10 @@ public class DefaultDashboardUtils {
               {
                 "locale": "es",
                 "value": "Sus casos"
+              },
+              {
+                "locale": "ja",
+                "value": "ケース"
               }
             ],
             "layout": {

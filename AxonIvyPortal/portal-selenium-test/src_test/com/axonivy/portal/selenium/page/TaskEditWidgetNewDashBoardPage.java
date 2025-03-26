@@ -130,8 +130,8 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void waitPreviewTableLoaded() {
-    $(taskEditWidgetId).$(".task-dashboard-widget__loading-message").shouldHave(Condition.cssClass("u-display-none"), DEFAULT_TIMEOUT);
-    $(taskEditWidgetId).$("div[id$=':dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT).shouldNotHave(Condition.cssClass("u-display-none"));
+    $(taskEditWidgetId).$(".task-dashboard-widget__loading-message").shouldHave(Condition.cssClass("hidden"), DEFAULT_TIMEOUT);
+    $(taskEditWidgetId).$("div[id$=':dashboard-tasks-container']").shouldBe(appear, DEFAULT_TIMEOUT).shouldNotHave(Condition.cssClass("hidden"));
   }
 
   public SelenideElement getAddLanguageButton() {

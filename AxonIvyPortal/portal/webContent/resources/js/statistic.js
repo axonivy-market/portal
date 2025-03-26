@@ -8,6 +8,8 @@ const EMPTY_CHART_MESSAGE =  'emptyChartDataMessage';
 const MANIPULATE_BY = 'manipulateValueBy';
 const CHART_TEXT_COLOR = '#808080';
 const CHART_GRID_COLOR = 'rgba(192, 192, 192, 0.5)';
+const MIN_REFRESH_INTERVAL = 60;
+const SUCCESS_STATUS_CODE = 200;
 
 let locale;
 let datePattern;
@@ -149,6 +151,9 @@ function initRefresh() {
         clearInterval(refreshInfo.refreshIntervalId);
       }
       if (refreshInfo.refreshInterval !== 0) {
+        if (refreshInfo.refreshInterval < MIN_REFRESH_INTERVAL) {
+          refreshInfo.refreshInterval = MIN_REFRESH_INTERVAL;
+        }
         refreshInfo.refreshIntervalId = setInterval(() => {
           refreshChart(refreshInfo);
         }, refreshInfo.refreshInterval * 1000);
@@ -178,7 +183,7 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
     let chartId = chart.getAttribute(DATA_CHART_ID);
     let data = await fetchChartData(chart, chartId);
 
-    if (data.statusCode != 200) {
+    if (data.statusCode != SUCCESS_STATUS_CODE) {
       renderNotFoundData(chart, data.errorMessage);
       return;
     }
@@ -213,6 +218,23 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
   });
 }
 
+// Method to render empty preview chart
+function renderFailToRenderChart(chart, additionalConfig) {
+  let failToRenderChartMessage;
+  additionalConfig.find(function (item) {
+    if (Object.keys(item || {})[0] === 'failToRenderChartMessage') {
+      failToRenderChartMessage = item.failToRenderChartMessage;
+    }
+  });
+  // HTML element for the empty chart
+  let failToRenderChartHtml =
+    '<div class="empty-message-container">' +
+    '    <i class="si si-analytics-pie-2 empty-message-icon"></i>' +
+    '    <p class="empty-message-text">' + failToRenderChartMessage + '</p>' +
+    '</div>';
+  $(chart).html(failToRenderChartHtml);
+}
+
 function previewChart(data, defaultLocale, datePatternConfig) {
   console.log('LOG data');
   console.log(data)
@@ -225,12 +247,17 @@ function previewChart(data, defaultLocale, datePatternConfig) {
     locale = defaultLocale;
   }
   datePattern = datePatternConfig;
-
-  let chartData = generateChart(charts[0], data);
-
-  if (chartData) {
-    chartData.render();
+  try {
+    let chartData = generateChart(charts[0], data);
+    if (chartData) {
+      chartData.render();
+    }
+  } catch (error) {
+    console.error("Error in previewChart:", error);
+    PF('previewButton').enable();
+    renderFailToRenderChart(charts[0], data.chartConfig.additionalConfigs);
   }
+
 }
 
 function clearChartInterval() {
@@ -698,7 +725,7 @@ class ClientNumberChart extends ClientChart {
     let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
     let html =
-      '<div class="u-text-align-center chart-content-card">' +
+      '<div class="text-center chart-content-card">' +
       '    <div class="chart-number-container">' +
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +

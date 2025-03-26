@@ -33,7 +33,7 @@
   <c:set var="renderFilter" value="#{isReadOnlyMode and (empty isRenderFilter ? 'true': isRenderFilter)}"/>
   <c:set var="renderInfo" value="#{isReadOnlyMode and (empty isRenderInfo ? 'true': isRenderInfo)}"/>
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
-
+  <f:event listener="#{dashboardBean.setSearchScope(widget)}" type="preRenderComponent" />
   <h:panelGroup layout="block" class="widget__header" rendered="#{not isHeaderHidden}">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{widget.name}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
@@ -46,6 +46,7 @@
       <p:inputText id="quick-search-input-#{index}" value="#{widget.quickSearchKeyword}"
         placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}"
         onkeydown="handleKeyDown(event)" disabled="#{!isReadOnlyMode}">
+        <p:tooltip styleClass="quick-search-input-tooltip"  for="quick-search-input-#{index}" value="#{dashboardBean.searchScope}" position="top" />
         <p:ajax delay="800" listener="#{widget.updateQuickSearchKeyword()}"
           onstart="return shouldTriggerAjax(event)"
           event="keydown" process="@this"
@@ -181,7 +182,7 @@
         dynamic="true">
         <div class="ui-g widget-info--type">
           <h:outputText styleClass="ui-g-8 widget-info-type--label u-no-padding-left" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetType')}" />
-          <h:outputText styleClass="ui-g-4 u-no-padding-bottom u-no-padding-left u-text-align-right" value="#{widget.type.label}" />
+          <h:outputText styleClass="ui-g-4 u-no-padding-bottom u-no-padding-left text-right" value="#{widget.type.label}" />
         </div>
 
         <p:accordionPanel id="statistic-filter-accordion-panel-#{index}"
@@ -250,7 +251,7 @@
                   <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ManageFilter')}</span>
                </p:commandLink>
             </div>
-            <div class="ui-g-9 u-text-align-right ui-sm-12 footer-buttons-container">
+            <div class="ui-g-9 text-right ui-sm-12 footer-buttons-container">
               <div class="ui-g-6 ui-sm-hidden">
               <p:commandButton id="save-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
                 partialSubmit="true"

@@ -16,6 +16,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       fromBiggerThanTill: '"Jusqu''à" doit être ultérieur à "Depuis"'
       overlappingAbsence: L'absence entre en collision avec une autre absence.
       userNameRequired: Le nom d'utilisateur doit être indiqué.
+    SelectedSubtitutes: Remplaçants sélectionnés
     absences: Absences
     addAbsence: Ajouter une absence
     deputies: Remplaçant
@@ -64,6 +65,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       EMAIL: Courriel electronique
       INFORMATION: nformation
       OTHERS: Autres
+    BehaviourWhenClickingOnLineInCaseList:
+      ACCESS_BUSINESS_DETAILS: Accéder aux détails de l’entreprise
+      ACCESS_CASE_DETAILS: Accéder aux détails du dossier
     BehaviourWhenClickingOnLineInTaskList:
       ACCESS_TASK_DETAILS: Accéder aux détails de la tâche
       RUN_TASK: Exécuter la tâche
@@ -97,6 +101,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       BY_ALPHABETICALLY: Alphabétiquement
       BY_CUSTOM_ORDER: Commande personnalisée
       BY_INDEX: Index de tri
+      BY_SMART_ORDER: Le plus utilisé
     ProcessType:
       EXTERNAL_LINK: Lien externe
       IVY_PROCESS: Processus d'entreprise
@@ -209,6 +214,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       RoleParentLimit: 'Le nombre défini contrôle la quantité de rôles parents qui est affichée lors du filtrage des rôles dans l''onglet Gestion des rôles. Nombre valide : 5, 10, 20'
       ShowLoginPageFooter: Pour activer/désactiver l'affichage du pied de page sur la page de connexion.
       ShowQRCode: Pour activer/désactiver l'affichage du code QR.
+      behaviourWhenClickingOnLineInCaseList: Pour alterner entre les comportements (accéder aux détails du dossier ou aux détails de l’entreprise) lors du clic sur un dossier dans le widget de dossier du dashboard, la recherche globale, les dossiers associés et le widget de processus en mode combiné.
       behaviourWhenClickingOnLineInTaskList: Pour changer de comportement (exécuter la tâche ou accéder aux détails de la tâche) en cliquant sur une ligne dans la liste des tâches, le widget des tâches du tableau de bord et les tâches liées dans la page des détails du cas.
       chatMaxConnection: Si le nombre de tabs du browser est supérieur à ce nombre maximum, le chat sera désactivé sur les tabs inactifs du browser. Les valeurs valides sont 1, 2, 3, 4, 5.
       chatResponseTimeout: Délai de réponse au chat en secondes, la valeur par défaut est 0 et signifie aucun délai. Si les messages de chat passent par le proxy inverse Nginx, le délai de réponse du chat doit être inférieur au délai de Nginx, par exemple moins de 60 secondes.
@@ -403,6 +409,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoSelection: Aucune sélection
     ResetToDefaultHeaderText: Réinitialiser les paramètres par défaut ?
     RoleUserInformation: Informations sur le rôle et l'utilisateur
+    StringFormat:
+      DateFromTo: '%s - %s'
+      TextListOut: '%s, %s,..'
+      TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Informations sur les tâches et les cas
     Update: Mettre à jour
     Widget: Widget
@@ -717,11 +727,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       WidgetNameColumn: Nom du widget
       WrongDateFormat: La date n'est pas valide
     ManageFilter: Gérer les filtres
+    NoColumnsEnabledForQuickSearch: Aucune colonne n'est activée pour la recherche rapide
     NoData: Pas de données
     NoSavedFilterMessage: Aucun filtre enregistré n'a été trouvé. Essayez d'en créer un nouveau en cliquant sur le bouton Enregistrer le filtre.
     NoWidgetAvailable: Il n'y a pas de widgets.
     QuickSearch: Recherche rapide
     QuickSearchInfo: Vous pouvez personnaliser la portée de la recherche rapide dans la gestion des colonnes des widgets. La recherche se fait sur la base du critère "contient", mais soyez attentif à la performance lorsque vous ajoutez de nombreuses colonnes.
+    QuickSearchScope: 'Étendue de la recherche: {0}'
     RestoreDefaultDashboardMessage: Si vous procédez ainsi, vous perdrez tous les widgets que vous avez créés. Les paramètres standard de <span class="dashboard-template-name-message">{0}</span> seront appliqués.
     SaveNewWidgetFilterHeader: Enregistrer un nouveau filtre de widget
     SavedFilterHeader: Filtres enregistrés
@@ -730,6 +742,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Widgets standard
     StatisticWidget:
       EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau graphique !
+      failToRenderChartMessage: Erreur lors du rendu du graphique. Veuillez réessayer avec des paramètres différents.
+      firstConfigChartMessage: Aucun graphique disponible pour le moment. Veuillez configurer vos paramètres pour générer un graphique.
     WelcomeWidgetIntroduction: Ce widget affiche un texte et une image de bienvenue sur le tableau de bord.
     WelcomeWidgetNotFoundMessage: Nous ne pouvons pas trouver l'image du widget, veuillez reconfigurer votre image !
     WidgetFilterName: Nom du filtre du widget
@@ -1315,6 +1329,7 @@ Dialogs:
                 NewDashboard: Ajouter un nouveau tableau de bord
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Créer un widget de statistiques personnalisé
+                DeleteConfirm: Êtes-vous sûr de vouloir supprimer ?
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
@@ -1504,8 +1519,10 @@ Dialogs:
             HideLabel: Cacher l'étiquette
             NewStatistic: Nouveau widget statistique
             Operator: Opérateur
-            RefreshInterval: Intervalle de rafraîchissement
-            RefreshIntervalInSeconds: Intervalle de rafraîchissement en secondes
+            RefreshInterval: Actualisation automatique activée
+            RefreshIntervalInSeconds: Intervalle de rafraîchissement automatique (secondes)
+            RefreshIntervalInSecondsValidationMessage: 'Intervalle de rafraîchissement automatique (secondes) : L''attribut spécifié n''est pas compris entre les valeurs attendues de {0} et {1}'
+            RefreshIntervalInfo: La statistique peut être actualisée automatiquement après une certaine période. Si cette option est activée, elle peut avoir un impact sur les performances. L'intervalle de rafraîchissement automatique (secondes) doit être au moins {0}.
             StatisticConfiguration: Configuration des statistiques
             XAxisTitle: Titre de l'axe X
             YAxisTitle: Titre de l'axe des Y
@@ -1521,6 +1538,25 @@ Dialogs:
       invalidFileMessage: Ce type de fichier n'est pas accepté!
       invalidSizeMessage: Le fichier est trop volumineux !
       maximumFileUploadElement: Il existe déjà un élément de téléchargement de fichiers
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          ChartTarget:
+            CASE:
+              name: Dossier
+            TASK:
+              name: Tâche
+          ChartType:
+            BAR:
+              name: TODO Bar
+            LINE:
+              name: TODO Line
+            NUMBER:
+              name: TODO Number
+            PIE:
+              name: TODO Pie
 Labels:
   AI:
     Error:
@@ -1643,6 +1679,7 @@ Labels:
   Name: Nom
   Permissions: Permissions
   Preview: Aperçu
+  RequiredFieldMessage: '{0} : La valeur est obligatoire'
   Save: Enregistrer
   Share: Partager
   Task: Tâche

@@ -18,6 +18,10 @@
       {
         "locale": "es",
         "value": "Patrón estandard"
+      },
+      {
+        "locale": "ja",
+        "value": "初期設テンプレート"
       }
     ],
     "descriptions": [
@@ -36,6 +40,10 @@
       {
         "locale": "es",
         "value": "Crear un panel de control con un widget de bienvenida, una lista de tareas, una lista de casos y un widget de lista de procesos y algunos gráficos estándar."
+      },
+      {
+        "locale": "ja",
+        "value": "ウェルカムウィジェット、タスクリスト、ケースリスト、プロセスリストウィジェット、及びいくつかの標準表示項目を備えたダッシュボードを作成します"
       }
     ],
     "icon": "si-pie-line-graph",
@@ -62,6 +70,10 @@
             {
               "locale": "es",
               "value": "Sus tareas"
+            },
+            {
+              "locale": "ja",
+              "value": "タスク"
             }
           ],
           "layout": {
@@ -152,6 +164,10 @@
             {
               "locale": "es",
               "value": "Sus casos"
+            },
+            {
+              "locale": "ja",
+              "value": "ケース"
             }
           ],
           "layout": {
@@ -231,6 +247,10 @@
             {
               "locale": "es",
               "value": "Sus procesos"
+            },
+            {
+              "locale": "ja",
+              "value": "プロセス"
             }
           ],
           "layout": {
@@ -274,6 +294,10 @@
             {
               "locale": "es",
               "value": ", bienvenido al portal Axon Ivy!"
+            },
+            {
+              "locale": "ja",
+              "value": "、Axon Ivyへようこそ!"
             }
           ],
           "welcomeImageFit": "COVER",
@@ -370,6 +394,10 @@
       {
         "locale": "es",
         "value": "Dos cuadros de mando de la lista de tareas"
+      },
+      {
+        "locale": "ja",
+        "value": "２つのタスクリストのダッシュボード"
       }
     ],
     "descriptions": [
@@ -388,6 +416,10 @@
       {
         "locale": "es",
         "value": "Crear un cuadro de mando con 2 listas de tareas y 1 lista de procesos"
+      },
+      {
+        "locale": "ja",
+        "value": "２つのタスクリストと１つのプロセスリストを含むダッシュボードを作成する"
       }
     ],
     "icon": "si-layout-dashboard",
@@ -542,6 +574,10 @@
             {
               "locale": "en",
               "value": "Your Processes"
+            },
+            {
+              "locale": "ja",
+              "value": "プロセス"
             }
           ],
           "layout": {
@@ -577,6 +613,10 @@
       {
         "locale": "es",
         "value": "Panel de accesibilidad"
+      },
+      {
+        "locale": "ja",
+        "value": "アクセシビリティーダッシュボード"
       }
     ],
     "descriptions": [
@@ -595,6 +635,10 @@
       {
         "locale": "es",
         "value": "Panel de control reducido optimizado para uso de accesibilidad"
+      },
+      {
+        "locale": "ja",
+        "value": "アクセシビリティーのために最適化された縮小ダッシュボード"
       }
     ],
     "icon": "si-layout-dashboard",
@@ -622,6 +666,10 @@
             {
               "locale": "es",
               "value": "Sus tareas"
+            },
+            {
+              "locale": "ja",
+              "value": "タスク"
             }
           ],
           "layout": {
@@ -701,6 +749,10 @@
             {
               "locale": "es",
               "value": "Sus procesos"
+            },
+            {
+              "locale": "ja",
+              "value": "プロセス"
             }
           ],
           "layout": {
@@ -731,6 +783,10 @@
             {
               "locale": "es",
               "value": "Atajos de accesibilidad"
+            },
+            {
+              "locale": "ja",
+              "value": "アクセシビリティーショートカット"
             }
           ],
           "layout": {
@@ -763,6 +819,10 @@
             {
               "locale": "es",
               "value": "Sus casos"
+            },
+            {
+              "locale": "ja",
+              "value": "ケース"
             }
           ],
           "layout": {

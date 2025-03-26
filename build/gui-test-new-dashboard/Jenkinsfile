@@ -1,14 +1,14 @@
 pipeline {
-  agent {label 'portal-slave'}
+  // agent {label 'portal-slave'}
+  agent {label 'tung-pc'}
 
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
   }
 
-  triggers {
-    pollSCM '0 7 * * *'
-    cron('0 11 * * *')
-  }
+  // triggers {
+  //   cron('0 11 * * *')
+  // }
 
   tools {
     maven '3.9'

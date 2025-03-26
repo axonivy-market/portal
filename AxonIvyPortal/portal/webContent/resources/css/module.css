@@ -52,26 +52,6 @@
   }
 }
 
-.widget-header-content-filter {
-  width: 100%;
-}
-
-.widget-header-sub {
-  flex: 1 0 auto;
-  align-self: flex-end;
-}
-
-/* Small screen */
-@media screen and (max-width: 40em) {
-  .widget-header-main-title.compact-mod-title {
-    width: 100%;
-  }
-}
-
-.widget-header-main-menu a:hover {
-  border-bottom: none;
-}
-
 .widget-sort-menu:not(.full-mode), .compact-task-widget .filter-view {
   padding-top: 0 !important;
 }
@@ -1546,6 +1526,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .has-breadcrumb .switch-and-reset-buttons-area,
 .ms-teams-layout .switch-and-reset-buttons-area {
   width: 50%;
+  white-space: nowrap;
 }
 
 .filter-container .widget-title-mobile .top-header-main-title {
@@ -2092,7 +2073,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .workflow-events-dialog {
-  max-width: 55%;
+  max-width: 70%;
 }
 
 .task-workflow-event-command {
@@ -2691,10 +2672,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 /******************************** PROJECT INFO DIALOG ******************************/
-.project-info-dialog {
-  max-width: 600px;
-}
-
 .project-info-dialog .project-version-table .project-version {
   width: 150px;
 }
@@ -2704,7 +2681,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .project-info-dialog .project-version-table .project-state {
-  width: 80px;
+  width: 100px;
 }
 
 @media screen and (max-width: 64.062em) {
@@ -5675,7 +5652,7 @@ a.dashboard-action-container label {
 /* ============ DASHBOARD ======== */
 body .ui-dialog.ui-widget.import-dashboard-dialog{
   min-width: 10rem;
-  max-width: 40rem;
+  max-width: 50rem;
 }
 
 @media screen and (max-width: 40em) {

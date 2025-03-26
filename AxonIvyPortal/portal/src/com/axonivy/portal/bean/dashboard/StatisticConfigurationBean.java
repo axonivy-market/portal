@@ -1,11 +1,10 @@
 package com.axonivy.portal.bean.dashboard;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
-
-import static com.axonivy.portal.enums.statistic.ChartType.BAR;
-import static com.axonivy.portal.enums.statistic.ChartType.LINE;
-import static com.axonivy.portal.enums.statistic.ChartType.NUMBER;
-import static com.axonivy.portal.enums.statistic.ChartType.PIE;
+import static com.axonivy.portal.enums.ChartType.BAR;
+import static com.axonivy.portal.enums.ChartType.LINE;
+import static com.axonivy.portal.enums.ChartType.PIE;
+import static com.axonivy.portal.enums.ChartType.NUMBER;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -40,9 +39,9 @@ import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.util.RoleUtils;
+import com.axonivy.portal.enums.ChartTarget;
+import com.axonivy.portal.enums.ChartType;
 import com.axonivy.portal.enums.statistic.ChartAggregates;
-import com.axonivy.portal.enums.statistic.ChartTarget;
-import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.enums.statistic.DateTimeOperator;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.service.DeepLTranslationService;

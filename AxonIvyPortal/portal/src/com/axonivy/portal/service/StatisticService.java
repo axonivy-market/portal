@@ -91,8 +91,13 @@ public class StatisticService {
   }
 
   public List<Entry<String, String>> getAdditionalConfig() {
-    return List.of(new SimpleEntry<>(AdditionalChartConfig.EMPTY_CHART_DATA_MESSAGE.getKey(),
+    
+    List<Entry<String, String>> entries = new ArrayList<>();
+    entries.add(new SimpleEntry<>(AdditionalChartConfig.EMPTY_CHART_DATA_MESSAGE.getKey(),
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/EmptyChartDataMessage")));
+    entries.add(new SimpleEntry<>(AdditionalChartConfig.FAIL_TO_RENDER_CHART_MESSAGE.getKey(),
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/StatisticWidget/failToRenderChartMessage")));
+    return entries;
   }
 
   private boolean hasPermission(Statistic data) {
@@ -121,19 +126,17 @@ public class StatisticService {
 
   public void saveJsonToVariable(List<Statistic> statistics) {
     String statisticsJson = BusinessEntityConverter.entityToJsonValue(statistics);
-    Ivy.var().set(PortalVariable.CUSTOM_STATISTIC.key, statisticsJson);
+    Ivy.var().set(CUSTOM_STATISTIC_KEY, statisticsJson);
   }
   
   private List<Statistic> getDefaultStatistic() {
     String value = Ivy.var().get(DEFAULT_STATISTIC_KEY);
     List<Statistic> statistics = BusinessEntityConverter.jsonValueToEntities(value, Statistic.class);
-    statistics.stream().forEach(cs -> cs.setIsCustom(false));
+    statistics.forEach(cs -> cs.setIsCustom(false));
     return statistics;
   }
   
   public List<Statistic> getCustomStatistic() {
-    String value = Ivy.var().get(CUSTOM_STATISTIC_KEY);
-    List<Statistic> statistics = BusinessEntityConverter.jsonValueToEntities(value, Statistic.class);
-    return statistics;
+    return BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
   }
 }

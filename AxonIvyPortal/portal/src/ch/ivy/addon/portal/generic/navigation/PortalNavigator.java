@@ -3,6 +3,7 @@ package ch.ivy.addon.portal.generic.navigation;
 import static ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_CASE_LIST_DASHBOARD;
 import static ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_TASK_LIST_DASHBOARD;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -154,15 +155,15 @@ public final class PortalNavigator extends BaseNavigator{
     navigateByKeyword("CaseDetailsPageInFrame.ivp", PORTAL_CASE_DETAILS_IN_FRAME, params);
   }
 
-  public static void navigateToPortalGlobalSearch(String keyword) {
+  public static void navigateToPortalGlobalSearch(String keyword) throws UnsupportedEncodingException {
     Map<String, String> params = new HashMap<>();
-    params.put("keyword", keyword);
+    params.put("keyword",  URLEncoder.encode(keyword, "UTF-8"));
     navigateByKeyword("GlobalSearchPage.ivp", PORTAL_GLOBAL_SEARCH, params);
   }
   
-  public static void navigateToPortalGlobalSearch(String keyword, String activeTabIndex) {
+  public static void navigateToPortalGlobalSearch(String keyword, String activeTabIndex) throws UnsupportedEncodingException {
     Map<String, String> params = new HashMap<>();
-    params.put("keyword", keyword);
+    params.put("keyword", URLEncoder.encode(keyword, "UTF-8"));
     params.put("activeTabIndex", activeTabIndex);
     navigateByKeyword("GlobalSearchPage.ivp", PORTAL_GLOBAL_SEARCH, params);
   }

@@ -36,11 +36,12 @@
     styleClass=" #{cc.attrs.processStyleClass} process-grid-item #{groupCode}">
     <div class="card ui-g-12 #{isExternalLink ? 'js-external-link-process-item' : ''}">
       <h:form id="process-item" target="#{processTarget}"
-        styleClass="grid-view-form u-text-align-center #{isExternalLink ? 'is-external-link' : ''}">
+        styleClass="grid-view-form text-center #{isExternalLink ? 'is-external-link' : ''}">
         <!-- Action -->
         <ic:ch.ivy.addon.portalkit.component.process.ProcessItemAction id="grid-process-action-component" process="#{process}"
           widget="#{cc.attrs.widget}"
           canModify="#{cc.attrs.ableToEdit}"
+          canClone="#{cc.attrs.isInConfiguration}"
           actionListenerOnEditProcess="#{cc.attrs.editActionListener}"
           onCompleteEditProcess="#{cc.attrs.oncompleteEditProcess}"
           componentToUpdateOnEditProcess="#{cc.attrs.componentToUpdateOnEditProcess}"
@@ -71,7 +72,7 @@
         <!-- Process Description -->
         <div class="ui-g-12 process-description js-process-start-list-item-description">
           <h:outputText id="process-description" value="#{not empty process.description ? process.description : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noProcessDescription')}"
-            styleClass="u-text-align-center line-clamp-text-5 process-description__text" />
+            styleClass="text-center line-clamp-text-5 process-description__text" />
           <p:tooltip id="info-workflow-tooltip" for="process-description" value="#{process.description}" position="top"
             trackMouse="true" hideEvent="mouseleave click" styleClass="js-process-start-list-item-description process-tooltip" />
         </div>
