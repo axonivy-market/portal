@@ -72,6 +72,9 @@ import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 public class StatisticConfigurationBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
+  private static final int MIN_REFRESH_INTERVAL_IN_SECONDS = 60;
+  private static final int MAX_REFRESH_INTERVAL_IN_SECONDS = 1000000;
+
   private Statistic statistic;
   private String statisticId;
   private String callbackDashboardId;
@@ -701,4 +704,11 @@ public class StatisticConfigurationBean implements Serializable {
     this.currentCustomFieldDescription = currentCustomFieldDescription;
   }
 
+  public int getMaxRefreshIntervalInSeconds() {
+    return MAX_REFRESH_INTERVAL_IN_SECONDS;
+  }
+
+  public int getMinRefreshIntervalInSeconds() {
+    return MIN_REFRESH_INTERVAL_IN_SECONDS;
+  }
 }
