@@ -117,14 +117,10 @@ def generateBOMFile(def moduleDir) {
 
     createEmptyFolder(unzipDir);
 
-    sh "unzip ${iarFile} -d ${unzipDir}"
+    sh "unzip -q ${iarFile} -d ${unzipDir}"
     echo "Unzip completed to ${unzipDir}"
 
-    def zipFile = iarFile.replace('.iar', '.zip')
-    sh "mv ${iarFile} ${zipFile}"
-    echo "Renamed ${iarFile} to ${zipFile}"
-
-    def inputFileName = sh (script: "ls ${iarFile} | xargs -n 1 basename", returnStdout: true).trim()    
+    def inputFileName = sh (script: "ls ${iarFile} | xargs -n 1 basename", returnStdout: true).trim()
     def outputFile = inputFileName.replace('.iar', '.bom.json')
     sh "docker run -v ${unzipDir}:/sbom anchore/syft scan /sbom -o cyclonedx-json --exclude 'sbom/pom.xml' > ${currentDir}/${moduleDir}/target/$outputFile"
   } else {
