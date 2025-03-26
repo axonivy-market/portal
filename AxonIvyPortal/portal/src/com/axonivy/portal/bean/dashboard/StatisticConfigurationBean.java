@@ -356,10 +356,11 @@ public class StatisticConfigurationBean implements Serializable {
     String finalAggregation = metricOperator.contains(dateTimeOperator)
         ? statistic.getAggregates() + ":" + dateTimeOperator.toLowerCase()
         : statistic.getAggregates() + ":bucket:" + dateTimeOperator.toLowerCase();
+    
     statistic.setAggregates(finalAggregation);
   }
   
-  public void onAggregationSelection() {
+  public void onSelectAggregates() {
     this.setDateTimeSelected(statistic.getAggregates().contains("Timestamp"));
   }
 
@@ -645,7 +646,6 @@ public class StatisticConfigurationBean implements Serializable {
     findCustomFieldMeta().ifPresent(meta -> {
       this.currentCustomField = meta.name();
       this.currentCustomFieldType = meta.type();
-      Ivy.log().info(meta.description());
       this.setCurrentCustomFieldDescription(meta.description());
     });
     

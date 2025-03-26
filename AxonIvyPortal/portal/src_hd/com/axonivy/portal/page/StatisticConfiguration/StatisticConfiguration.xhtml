@@ -103,7 +103,7 @@
                       value="#{statisticConfigurationBean.statistic.aggregates}">
                       <f:selectItems value="#{statisticConfigurationBean.getAllAvailableAggregates()}"
                         var="aggregate" itemValue="#{aggregate.name}" itemLabel="#{statisticConfigurationBean.getUserFriendlyAggregateName(aggregate)}" />
-                      <p:ajax listener="#{statisticConfigurationBean.onAggregationSelection()}"
+                      <p:ajax listener="#{statisticConfigurationBean.onSelectAggregates()}"
                         update="chart-aggregation chart-aggregation-operators" />
                     </p:selectOneMenu>
 
@@ -118,19 +118,17 @@
                       rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}"
                       value="#{statisticConfigurationBean.currentCustomFieldDescription}" />
                   </div>
-                </h:panelGroup>
 
                 <!--  OPERATORS SELECTION -->
-                <h:panelGroup class="field col-12" id="chart-aggregation-operators">
-                  <div>
-                    <p:selectOneMenu id="aggregates-custom-fields-operators" styleClass="w-full"
-                      rendered="#{statisticConfigurationBean.dateTimeSelected}"
+                  <ui:fragment id="chart-aggregation-operators" rendered="#{statisticConfigurationBean.dateTimeSelected}">
+                    <p:selectOneMenu id="aggregates-custom-fields-operators" styleClass="w-full field col-12 mt-2"
                       value="#{statisticConfigurationBean.dateTimeOperator}">
-                      <f:selectItems var="dateTimeOperator" value="#{statisticConfigurationBean.getAvailableOperators()}"
+                      <f:selectItems var="dateTimeOperator"
+                        value="#{statisticConfigurationBean.getAvailableOperators()}"
                         itemLabel="#{statisticConfigurationBean.getUserFriendlyOperatorsName(dateTimeOperator)}" />
                       <p:ajax listener="#{statisticConfigurationBean.onSelectOperator()}" />
                     </p:selectOneMenu>
-                  </div>
+                  </ui:fragment>
                 </h:panelGroup>
 
                 <h:panelGroup layout="block" styleClass="field col-6"
