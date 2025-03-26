@@ -1475,7 +1475,7 @@ Dialogs:
             Aggregate: Group by
             ChartAggregates:
               ACTIVATOR_NAME: Activator name
-              BUSINESS_RUNTIME: Business time
+              BUSINESS_RUNTIME: Business run time
               BUSINESS_STATE: Business state
               CATEGORY: Category
               CREATOR_NAME: Creator name

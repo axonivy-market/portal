@@ -1469,35 +1469,35 @@ Dialogs:
             AdvancedConfiguration: Configuration avancée
             Aggregate: Agrégat
             ChartAggregates:
-              ACTIVATOR_NAME: ''
-              BUSINESS_RUNTIME: ''
-              BUSINESS_STATE: ''
-              CATEGORY: ''
-              CREATOR_NAME: ''
-              CUSTOM_FIELD: ''
-              END_TIMESTAMP: ''
-              EXPIRY_TIMESTAMP: ''
-              IS_EXPIRED: ''
-              MODIFIED_TIMESTAMP: ''
-              NUMBER_OF_RESUMES: ''
-              PRIORITY: ''
-              START_TIMESTAMP: ''
-              STATE: ''
-              WORKER_NAME: ''
-              WORKING_TIME: ''
+              ACTIVATOR_NAME: Nom de l'activateur
+              BUSINESS_RUNTIME: Temps d'exécution de l'activité
+              BUSINESS_STATE: État d'activité
+              CATEGORY: Catégorie
+              CREATOR_NAME: Nom du créateur
+              CUSTOM_FIELD: Champ personnalisé
+              END_TIMESTAMP: Horodatage de fin
+              EXPIRY_TIMESTAMP: Horodatage d'expiration
+              IS_EXPIRED: Est périmé
+              MODIFIED_TIMESTAMP: Horodatage modifié
+              NUMBER_OF_RESUMES: Nombre de reprendre
+              PRIORITY: Priorité
+              START_TIMESTAMP: Horodatage de début
+              STATE: État
+              WORKER_NAME: Nom de l'employé
+              WORKING_TIME: Temps de travail
             ChartType: Type de graphique
             Color: Couleur {0}
             Create: Créer
             CustomAggregateInput: Veuillez saisir des champs personnalisés.
             DateTimeOperators:
-              AVG: avg
-              DAY: Day
-              HOUR: Hour
-              MAX: max
-              MIN: min
-              MONTH: Month
-              WEEK: Week
-              YEAR: Year
+              AVG: Avg
+              DAY: Jour
+              HOUR: Heure
+              MAX: Max
+              MIN: Min
+              MONTH: Mois
+              WEEK: Semaine
+              YEAR: Année
             EditStatistic: Modifier le widget statistique
             For: Pour
             GeneratePreview: Générer un aperçu

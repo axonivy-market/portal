@@ -1441,35 +1441,35 @@ Dialogs:
             AdvancedConfiguration: Erweiterte Konfiguration
             Aggregate: Aggregat
             ChartAggregates:
-              ACTIVATOR_NAME: ''
-              BUSINESS_RUNTIME: ''
-              BUSINESS_STATE: ''
-              CATEGORY: ''
-              CREATOR_NAME: ''
-              CUSTOM_FIELD: ''
-              END_TIMESTAMP: ''
-              EXPIRY_TIMESTAMP: ''
-              IS_EXPIRED: ''
-              MODIFIED_TIMESTAMP: ''
-              NUMBER_OF_RESUMES: ''
-              PRIORITY: ''
-              START_TIMESTAMP: ''
-              STATE: ''
-              WORKER_NAME: ''
-              WORKING_TIME: ''
+              ACTIVATOR_NAME: Name des Aktivators
+              BUSINESS_RUNTIME: Betriebszeit
+              BUSINESS_STATE: Geschäftlicher Zustand
+              CATEGORY: Kategorie
+              CREATOR_NAME: Name des Erstellers
+              CUSTOM_FIELD: Benutzerdefiniertes Feld
+              END_TIMESTAMP: Zeitstempel des Endes
+              EXPIRY_TIMESTAMP: Verfallszeitstempel
+              IS_EXPIRED: Ist abgelaufen
+              MODIFIED_TIMESTAMP: Geänderter Zeitstempel
+              NUMBER_OF_RESUMES: Anzahl der wieder aufnehmen
+              PRIORITY: Priorität
+              START_TIMESTAMP: Zeitstempel des Beginns
+              STATE: Status
+              WORKER_NAME: Name des Arbeiters
+              WORKING_TIME: Arbeitszeiten
             ChartType: Diagrammtyp
             Color: Farbe {0}
             Create: Erstellen
             CustomAggregateInput: Bitte geben Sie benutzerdefinierte Felder ein.
             DateTimeOperators:
-              AVG: avg
-              DAY: Day
-              HOUR: Hour
-              MAX: max
-              MIN: min
-              MONTH: Month
-              WEEK: Week
-              YEAR: Year
+              AVG: Avg
+              DAY: Tag
+              HOUR: Stunde
+              MAX: Max
+              MIN: Min
+              MONTH: Monat
+              WEEK: Woche
+              YEAR: Jahr
             EditStatistic: Statistisches Widget bearbeiten
             For: Für
             GeneratePreview: Vorschau generieren
