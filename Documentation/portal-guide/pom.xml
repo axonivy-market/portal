@@ -63,7 +63,7 @@
     <repository>
       <name>Axonivy Repo</name>
       <id>maven.axonivy.com</id>
-      <url>https://maven.axonivy.com/</url>
+      <url>https://maven.axonivy.com/repository/maven-snapshots/</url>
       <layout>default</layout>
     </repository>
   </repositories>

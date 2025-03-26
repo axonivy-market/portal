@@ -11,10 +11,10 @@
     </properties>
 
     <distributionManagement>
-      <repository>
+      <!-- <repository>
         <id>nexus.axonivy.com</id>
         <url>https://nexus.axonivy.com/repository/maven-releases/</url>
-      </repository>
+      </repository> -->
       <snapshotRepository>
         <id>nexus.axonivy.com</id>
         <url>https://nexus.axonivy.com/repository/maven-snapshots/</url>

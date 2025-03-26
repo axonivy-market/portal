@@ -92,8 +92,8 @@ jobs:
           else
             PHASE="deploy"
           fi
-          echo "Running 'clean $PHASE' for version ${{ steps.get_version.outputs.version }}"
-          mvn clean $PHASE -f Documentation/pom.xml
+          echo "Running 'clean deploy' for version ${{ steps.get_version.outputs.version }}"
+          mvn clean deploy -f Documentation/pom.xml
         env:
           MAVEN_USERNAME: ${{ secrets.NEXUS_AXONIVY_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.NEXUS_AXONIVY_PASSWORD }}
