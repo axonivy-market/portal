@@ -1475,6 +1475,7 @@ Dialogs:
             GeneratePreview: Vorschau generieren
             HideLabel: Etikett ausblenden
             NewStatistic: Neues Statistik-Widget
+            Operator: Operator
             RefreshInterval: Aktualisierungsintervall
             RefreshIntervalInSeconds: Aktualisierungsintervall in Sekunden
             StatisticConfiguration: Konfiguration der Statistik

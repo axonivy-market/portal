@@ -1464,6 +1464,7 @@ Dialogs:
             GeneratePreview: Generar vista previa
             HideLabel: Ocultar etiqueta
             NewStatistic: Nuevo widget de estadísticas
+            Operator: Operador
             RefreshInterval: Intervalo de actualización
             RefreshIntervalInSeconds: Intervalo de actualización en segundos
             StatisticConfiguration: Configuración estadística

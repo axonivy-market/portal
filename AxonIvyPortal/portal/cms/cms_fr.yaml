@@ -1503,6 +1503,7 @@ Dialogs:
             GeneratePreview: Générer un aperçu
             HideLabel: Cacher l'étiquette
             NewStatistic: Nouveau widget statistique
+            Operator: Opérateur
             RefreshInterval: Intervalle de rafraîchissement
             RefreshIntervalInSeconds: Intervalle de rafraîchissement en secondes
             StatisticConfiguration: Configuration des statistiques

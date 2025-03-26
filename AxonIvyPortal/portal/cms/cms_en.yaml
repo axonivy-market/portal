@@ -1508,6 +1508,7 @@ Dialogs:
             GeneratePreview: Generate preview
             HideLabel: Hide label
             NewStatistic: New Statistic Widget
+            Operator: Operator
             RefreshInterval: Refresh interval
             RefreshIntervalInSeconds: Refresh interval in seconds
             StatisticConfiguration: Statistic configuration
