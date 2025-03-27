@@ -507,11 +507,6 @@ public class StatisticConfigurationBean implements Serializable {
     return false;
   }
   
-  /*
-   * MARKING AFTER RESOLVE CONFLICT
-   * WILL REMOVE AFTER PR APPROVE & MERGE
-   * ======================================================================
-   */
   public List<ChartAggregates> getAllAvailableAggregates() {
     List<ChartAggregates> aggregations = filterAggregatesForChartTarget(statistic.getChartTarget());
 
@@ -616,9 +611,6 @@ public class StatisticConfigurationBean implements Serializable {
     return displayOperatorName;
   }
 
-  /**
-   * HINT: check this function for resolving the bug
-   */
   public void onSelectAggregates() {
     this.setDateTimeSelected(statistic.getAggregates().contains("Timestamp"));
   }
