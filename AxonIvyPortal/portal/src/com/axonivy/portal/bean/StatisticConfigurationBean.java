@@ -90,7 +90,6 @@ public class StatisticConfigurationBean implements Serializable {
   private List<String> backgroundColors;
   private boolean isEditMode;
   private boolean refreshIntervalEnabled;
-  private String customFieldAggregate;
   private String currentCustomField;
   private CustomFieldType currentCustomFieldType;
   private String currentCustomFieldDescription;
@@ -329,8 +328,6 @@ public class StatisticConfigurationBean implements Serializable {
   public void getPreviewData() {
     handleCustomFieldAggregation();
     handleAggregateWithDateTimeOperator();
-    Ivy.log().info("LOGGING");
-    Ivy.log().info(statistic.getAggregates());
     syncUIConfigWithChartConfig();
     StatisticService statisticService = StatisticService.getInstance();
     statistic.setAdditionalConfigs(new ArrayList<>());
@@ -511,7 +508,9 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   /*
-   * ====================================================================================================================
+   * MARKING AFTER RESOLVE CONFLICT
+   * WILL REMOVE AFTER PR APPROVE & MERGE
+   * ======================================================================
    */
   public List<ChartAggregates> getAllAvailableAggregates() {
     List<ChartAggregates> aggregations = filterAggregatesForChartTarget(statistic.getChartTarget());
@@ -551,24 +550,26 @@ public class StatisticConfigurationBean implements Serializable {
     return statistic.getAggregates().contains("customFields");
   }
   
+  private void resetCustomFieldAndDateTimeOperator() {
+      this.currentCustomField = null;
+      this.currentCustomFieldType = null;
+      this.dateTimeOperator = null;
+  }
+  
   private void handleCustomFieldAggregation() {
     if(!isCustomFieldsSelected()) {
+      resetCustomFieldAndDateTimeOperator();
       return;
     }
     
-    if(CustomFieldType.STRING.equals(this.currentCustomFieldType)) {
-      statistic.setAggregates("customFields.strings." + currentCustomField);
-      return;
+    switch (this.currentCustomFieldType) {
+    case CustomFieldType.STRING -> statistic.setAggregates("customFields.strings." + currentCustomField);
+    case CustomFieldType.NUMBER -> statistic.setAggregates("customFields.numbers." + currentCustomField);
+    case CustomFieldType.TIMESTAMP -> statistic.setAggregates("customFields.timestamps." + currentCustomField);
+    default -> {}
     }
-
-    if(CustomFieldType.NUMBER.equals(this.currentCustomFieldType)) {
-      statistic.setAggregates("customFields.numbers." + currentCustomField);
-      return;
-    }
-    if(CustomFieldType.TIMESTAMP.equals(this.currentCustomFieldType)) {
-      statistic.setAggregates("customFields.timestamps." + currentCustomField);
-      return;
-    }
+    
+    return;
   }
 
   public void handleAggregateWithDateTimeOperator() {
@@ -581,14 +582,6 @@ public class StatisticConfigurationBean implements Serializable {
         : statistic.getAggregates() + ":bucket:" + dateTimeOperator.toLowerCase();
     
     statistic.setAggregates(finalAggregation);
-  }
-
-  public String getCustomFieldAggregate() {
-    return customFieldAggregate;
-  }
-
-  public void setCustomFieldAggregate(String customFieldAggregate) {
-    this.customFieldAggregate = customFieldAggregate;
   }
 
   public String getCurrentCustomFieldDescription() {
