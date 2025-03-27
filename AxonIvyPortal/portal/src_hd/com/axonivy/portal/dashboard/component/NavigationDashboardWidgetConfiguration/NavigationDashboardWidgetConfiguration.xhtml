@@ -48,11 +48,11 @@
     </h:panelGroup>
     <h:panelGroup id="dashboard-link-group">
       <div class="ui-g-4">
-      <p:outputLabel styleClass="" for="@next" value="Dashboard"/>
+      <p:outputLabel styleClass="" for="@next" value="Navigate to"/>
       </div>
       <div class="ui-g-8">
       <p:selectOneMenu id="dashboard-link-selection-menu" value="#{widget.targetDashboard}" converter="pojoConverter">
-        <f:selectItems value="#{widget.dashboardList}" var="dashboard" itemLabel="#{dashboard.isHidden}" itemValue="#{dashboard}"/>
+        <f:selectItems value="#{widget.dashboardList}" var="dashboard" itemLabel="#{dashboard.title}" itemValue="#{dashboard}"/>
       </p:selectOneMenu>
       </div>
     </h:panelGroup>

@@ -30,8 +30,7 @@
     <ui:define name="widgetContent">
       <div class="w-full widget-height-100">
       <p:button rendered="#{widget.targetDashboard}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only u-mar-right-5"
-       title="#{widget.targetDashboard.title}" href="#{empty widget.targetDashboard ? null :dashboardBean.getDashboardUrlByDashboard(widget.targetDashboard)}" readonly="#{isReadOnlyMode}"/>
-      
+       title="#{widget.targetDashboard.title}" href="#{dashboardBean.getDashboardUrlByDashboard(widget.targetDashboard)}"/>
       </div>
     </ui:define>
   </ui:decorate>

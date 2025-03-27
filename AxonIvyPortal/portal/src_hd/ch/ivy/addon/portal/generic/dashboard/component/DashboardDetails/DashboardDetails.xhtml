@@ -89,12 +89,6 @@
              <div class="ui-g-6 w-full ui-fluid">
                <p:selectBooleanCheckbox id="main-dashboard-menu-item" value="#{managedBean.selectedDashboard.isTopMenu}" required="false" />
              </div>
-             <div class="ui-g-6 w-full manage-dashboard__label">
-               <p:outputLabel for="dashboard-description"  styleClass="font-semibold" value="Hidden" />
-             </div>
-             <div class="ui-g-6 w-full ui-fluid">
-               <p:selectBooleanCheckbox id="hidden-dashboard" value="#{managedBean.selectedDashboard.isHiddenDashboard}" required="false"/>
-             </div>
           </c:if>
         </div>
     </h:form>

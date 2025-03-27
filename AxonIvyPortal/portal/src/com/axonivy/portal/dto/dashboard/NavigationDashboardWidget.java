@@ -16,7 +16,8 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 
 public class NavigationDashboardWidget extends DashboardWidget implements Serializable {
-  private static final long serialVersionUID = -5610954020648136966L;
+  
+  private static final long serialVersionUID = -5650954020648136966L;
   @JsonIgnore
   private List<String> dashboardLinkList;
   private Dashboard targetDashboard;
