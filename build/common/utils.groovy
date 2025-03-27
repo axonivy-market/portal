@@ -104,6 +104,7 @@ def getJenkinsMasterDomain() {
 def generateBOM() {
   generateBOMFile('AxonIvyPortal/portal-components')
   generateBOMFile('AxonIvyPortal/portal')
+  generateBOMFile('AxonIvyPortal/AxonIvyExpress')
   generateBOMFile('Showcase/portal-user-examples')
   generateBOMFile('Showcase/portal-developer-examples')
   generateBOMFile('Showcase/portal-components-examples')
