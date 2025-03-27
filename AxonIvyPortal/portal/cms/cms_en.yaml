@@ -1486,16 +1486,44 @@ Dialogs:
             TaskIFrameTitle: Task frame
         page:
           StatisticConfiguration:
-            AdvancedConfiguration: Advanced configuration
-            Aggregate: Aggregate
+            AdvancedConfiguration: Advanced Configuration
+            Aggregate: Group by
+            ChartAggregates:
+              ACTIVATOR_NAME: Activator name
+              BUSINESS_RUNTIME: Business run time
+              BUSINESS_STATE: Business state
+              CATEGORY: Category
+              CREATOR_NAME: Creator name
+              CUSTOM_FIELD: Custom field
+              END_TIMESTAMP: End timestamp
+              EXPIRY_TIMESTAMP: Expiry timestamp
+              IS_EXPIRED: Is expired
+              MODIFIED_TIMESTAMP: Modified timestamp
+              NUMBER_OF_RESUMES: Number of resumes
+              PRIORITY: Priority
+              START_TIMESTAMP: Start timestamp
+              STATE: State
+              WORKER_NAME: Worker name
+              WORKING_TIME: Working time
             ChartType: Chart type
             Color: Color {0}
             Create: Create
+            CustomAggregateInput: Please input custom fields.
+            DateTimeOperators:
+              AVG: Avg
+              DAY: Day
+              HOUR: Hour
+              MAX: Max
+              MIN: Min
+              MONTH: Month
+              WEEK: Week
+              YEAR: Year
             EditStatistic: Edit Statistic Widget
             For: For
             GeneratePreview: Generate preview
             HideLabel: Hide label
             NewStatistic: New Statistic Widget
+            Operator: Operator
             RefreshInterval: Auto-refresh enabled
             RefreshIntervalInSeconds: Auto-refresh interval (seconds)
             RefreshIntervalInSecondsValidationMessage: 'Auto-refresh interval (seconds): Specified attribute is not between the expected values of {0} and {1}'

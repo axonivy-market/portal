@@ -1444,14 +1444,42 @@ Dialogs:
           StatisticConfiguration:
             AdvancedConfiguration: Configuración avanzada
             Aggregate: Agregado
+            ChartAggregates:
+              ACTIVATOR_NAME: Nombre del activador
+              BUSINESS_RUNTIME: Tiempo de ejecución
+              BUSINESS_STATE: Estado de los negocios
+              CATEGORY: Categoría
+              CREATOR_NAME: Nombre del creador
+              CUSTOM_FIELD: Campo personalizado
+              END_TIMESTAMP: Hora de fin
+              EXPIRY_TIMESTAMP: Hora de expiración
+              IS_EXPIRED: Ha expirado
+              MODIFIED_TIMESTAMP: Hora de modificación
+              NUMBER_OF_RESUMES: Número de currículos
+              PRIORITY: Prioridad
+              START_TIMESTAMP: Fecha de inicio
+              STATE: Estado
+              WORKER_NAME: Nombre del trabajador
+              WORKING_TIME: Tiempo de trabajo
             ChartType: Tipo de gráfico
             Color: Color {0}
             Create: Cree
+            CustomAggregateInput: Por favor ingrese campos personalizados.
+            DateTimeOperators:
+              AVG: Avg
+              DAY: Día
+              HOUR: Hora
+              MAX: Max
+              MIN: Min
+              MONTH: Mes
+              WEEK: Semana
+              YEAR: Año
             EditStatistic: Editar widget de estadísticas
             For: Para
             GeneratePreview: Generar vista previa
             HideLabel: Ocultar etiqueta
             NewStatistic: Nuevo widget de estadísticas
+            Operator: Operador
             RefreshInterval: Auto-refresco activado
             RefreshIntervalInSeconds: Intervalo de actualización automática (segundos)
             RefreshIntervalInSecondsValidationMessage: 'Intervalo de actualización automática (segundos): El atributo especificado no está entre los valores esperados de {0} y {1}'

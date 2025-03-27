@@ -1455,14 +1455,42 @@ Dialogs:
           StatisticConfiguration:
             AdvancedConfiguration: Erweiterte Konfiguration
             Aggregate: Aggregat
+            ChartAggregates:
+              ACTIVATOR_NAME: Name des Aktivators
+              BUSINESS_RUNTIME: Betriebszeit
+              BUSINESS_STATE: Geschäftlicher Zustand
+              CATEGORY: Kategorie
+              CREATOR_NAME: Name des Erstellers
+              CUSTOM_FIELD: Benutzerdefiniertes Feld
+              END_TIMESTAMP: Zeitstempel des Endes
+              EXPIRY_TIMESTAMP: Verfallszeitstempel
+              IS_EXPIRED: Ist abgelaufen
+              MODIFIED_TIMESTAMP: Geänderter Zeitstempel
+              NUMBER_OF_RESUMES: Anzahl der wieder aufnehmen
+              PRIORITY: Priorität
+              START_TIMESTAMP: Zeitstempel des Beginns
+              STATE: Status
+              WORKER_NAME: Name des Arbeiters
+              WORKING_TIME: Arbeitszeiten
             ChartType: Diagrammtyp
             Color: Farbe {0}
             Create: Erstellen
+            CustomAggregateInput: Bitte geben Sie benutzerdefinierte Felder ein.
+            DateTimeOperators:
+              AVG: Avg
+              DAY: Tag
+              HOUR: Stunde
+              MAX: Max
+              MIN: Min
+              MONTH: Monat
+              WEEK: Woche
+              YEAR: Jahr
             EditStatistic: Statistisches Widget bearbeiten
             For: Für
             GeneratePreview: Vorschau generieren
             HideLabel: Etikett ausblenden
             NewStatistic: Neues Statistik-Widget
+            Operator: Operator
             RefreshInterval: Automatisches Auffrischen aktiviert
             RefreshIntervalInSeconds: Intervall für die automatische Aktualisierung (Sekunden)
             RefreshIntervalInSecondsValidationMessage: 'Intervall für die automatische Aktualisierung (Sekunden): Das angegebene Attribut liegt nicht zwischen den erwarteten Werten von {0} und {1}'

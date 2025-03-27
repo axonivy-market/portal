@@ -236,6 +236,8 @@ function renderFailToRenderChart(chart, additionalConfig) {
 }
 
 function previewChart(data, defaultLocale, datePatternConfig) {
+  console.log('LOG data');
+  console.log(data)
   const charts = document.getElementsByClassName('js-statistic-chart');
   if (!charts || charts.length == 0) {
     return;
