@@ -86,6 +86,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       STATISTIC: Statistik-Widget
       TASK: Aufgaben-Widget
       WELCOME: Willkommens-Widget
+    DelegationAppendOption:
+      NONE: Keine
+      PARENT_NAME: Übergeordneter Rollenname
     GlobalVariable:
       Option:
         DISPLAY_NAME: Anzeigename
@@ -231,6 +234,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       defaultSortDirectionOfTaskList: Standard-Sortierrichtung der Aufgabenliste
       defaultSortFieldOfCaseList: Standard-Sortierfeld der Vorgangsliste
       defaultSortFieldOfTaskList: Standardsortierfeld der Aufgabenliste
+      delegationAppendOption: Diese Einstellung bestimmt, welche zusätzlichen Informationen beim Formatieren von Rollennamen enthalten sind.
       disableCaseCount: Auf "true" setzen, um das zählen der Vorgänge in der Vorgangsliste zu deaktivieren
       disableTaskCount: Auf "true" setzen, um das zählen der Aufgaben in der Aufgabenliste zu deaktivieren
       displayAllUsersOfTaskActivator: Diese Einstellung wird für die Komponente SecurityMemberDisplayName verwendet. Wenn der SecurityMember eine Rolle ist, setzen Sie diese Einstellung auf true, um alle Benutzer dieser Rolle aufzulisten. Wenn diese Einstellung auf true gesetzt ist, wird neben dem Rollennamen
@@ -420,6 +424,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     StringFormat:
       DateFromTo: '%s - %s'
       TextListOut: '%s, %s,..'
+      TextWithContextInBrackets: '%s (%s: %s)'
       TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Informationen zu Aufgabe und Vorgang
     Update: Aktualisieren
@@ -649,7 +654,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         UpdateRoleSuccess: Rolle "{0}" erfolgreich aktualisiert
         UserOfRoleNotFound: Kein Benutzer besitzt diese Rolle
       NumberUsers: '{0} Benutzern'
-      ParentRole: Rolle der Eltern
+      ParentRole: Übergeordnete Rolle
       RemovingRoleHeader: Entfernen der "{0}"-Rolle?
       RoleCreation: Rollenerstellung
       RoleDetails: Details zur Rolle "{0}"
