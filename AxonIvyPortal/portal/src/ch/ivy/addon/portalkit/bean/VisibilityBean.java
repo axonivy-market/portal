@@ -42,4 +42,8 @@ public class VisibilityBean implements Serializable {
   public String delegationAppendOption() {
     return globalSettingService.findGlobalSettingValue(GlobalVariable.DELEGATION_APPEND_OPTION);
   }
+
+  public boolean isEnableFavoriteTask() {
+    return globalSettingService.isEnableFavoriteTask();
+  }
 }
