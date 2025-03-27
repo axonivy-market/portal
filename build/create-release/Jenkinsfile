@@ -1,13 +1,8 @@
 pipeline {
-  agent {label 'portal-slave'}
-  
+  agent { label 'linux' }
+
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
-  }
-  
-  tools { 
-      maven '3.9' 
-      jdk '21'
   }
 
   parameters {
@@ -31,57 +26,70 @@ pipeline {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
           echo "====================Update pom version to ${params.releaseVersion}===================="
-          powershell '''
-            #find all pom file of portal project and change their versions and their portal dependencies to releaseVersion
-            $utf8WithoutBom = New-Object System.Text.UTF8Encoding($false)
-            $files = get-childitem AxonIvyPortal/*/pom.xml,Showcase/*/pom.xml,AxonIvyPortal/portal-selenium-test/customized_pom.xml,AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml,Documentation/public-api/pom.xml
-            foreach($file in $files) {
-              $xml = new-object xml
-              $xml.load($file)
-              $xml.project.version = $env:releaseVersion
-              $dependencies = $xml.project.dependencies.ChildNodes
-              foreach($dependency in $dependencies) {
-                if(($dependency.groupId -eq 'ch.ivyteam.ivy.project.portal') -or ($dependency.groupId -eq 'com.axonivy.portal')) {
-                  $dependency.version = $env:releaseVersion
-                }
-              }
-              $sw = New-Object System.IO.StreamWriter($file, $false, $utf8WithoutBom)
-              $xml.Save($sw)
-            }
-          '''
 
-          echo "====================Build all modules===================="
-          // module structure [module path, isPossibleToDeploy]
-          def modules = [['AxonIvyPortal/portal-components', true], ['AxonIvyPortal/portal', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/portal-user-examples', true], ['Showcase/portal-developer-examples', true], ['Showcase/InternalSupport', false], ['Showcase/portal-components-examples', true], ['AxonIvyPortal/portal-product', true], ['AxonIvyPortal/PortalApp', true], ['Showcase/portal-demo-app', true]]
-          for (module in modules) {
-            def mavenGoal = params.deployToRepo && module[1]? 'deploy' : 'install'
-            bat "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=(7.0.0,] -Divy.compiler.engine.start.timeout=120 %engineDownloadURL% -f ${module[0]}/pom.xml"
+          docker.build('build-portal-modules', '-f build/create-release/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+            withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
+                sshagent(credentials: ['github-axonivy']) {
+
+                  sh """
+                    git remote set-url origin git@github.com:axonivy-market/portal.git
+                    git reset --hard
+                    git clean -fd
+                    git pull origin ${BRANCH_NAME}
+                    """
+
+                updateVersion(params.releaseVersion)
+
+                echo '====================Build all modules===================='
+                // module structure [module path, isPossibleToDeploy]
+                def modules = [['AxonIvyPortal/portal-components', true], ['AxonIvyPortal/portal', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/portal-user-examples', true], ['Showcase/portal-developer-examples', true], ['Showcase/InternalSupport', false], ['Showcase/portal-components-examples', true], ['AxonIvyPortal/portal-product', true], ['AxonIvyPortal/PortalApp', true], ['Showcase/portal-demo-app', true]]
+                for (module in modules) {
+                  def mavenGoal = params.deployToRepo && module[1] ? 'deploy' : 'install'
+                  maven cmd: "clean ${mavenGoal} -Divy.engine.directory=${env.engineDir} -Divy.engine.version=[7.0.0,] -Divy.compiler.engine.start.timeout=120 ${params.engineDownloadURL} -f ${module[0]}/pom.xml"
+                }
+
+                echo "====================Create release tag ${params.releaseVersion}===================="
+
+                  sh """
+                    if git rev-parse "${params.releaseVersion}" >/dev/null 2>&1; then
+                        echo "Found tag ${params.releaseVersion}"
+                        git push --delete origin ${params.releaseVersion}
+                        git tag -d "${params.releaseVersion}"
+                    else
+                        echo "Tag not found ${params.releaseVersion}"
+                    fi
+                    # Create tag for the release
+                    git commit -a -m "update projects version"
+                    git tag -a "${params.releaseVersion}" -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}"
+                    git push origin "${params.releaseVersion}"
+                    """
+                }
+            }
+
+            echo "====================Update Portal version for development after release ${params.releaseVersion} ===================="
+            def parts = releaseVersion.tokenize('.')
+            if (params.deployToRepo && parts.size() == 3 && parts[2].isNumber()) {
+              def nextVersion = ''
+              if ((parts[0] as int) % 2 == 0) {
+                nextVersion = "${parts[0]}.${parts[1]}.${(parts[2] as int) + 1}-SNAPSHOT"
+              } else {
+                nextVersion = "${parts[0]}.${(parts[1] as int) + 1}.0-SNAPSHOT"
+              }
+
+              build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, 'UTF-8')}",
+              parameters: [string(name: 'portalVersion', value: "${nextVersion}")],
+              wait: false, propagate: false
+            }
           }
 
-          echo "====================Create release tag ${params.releaseVersion}===================="
-          bat """
-            rem remove created tag
-            git push --delete origin ${params.releaseVersion}
-            git tag -d ${params.releaseVersion}
-
-            rem Create tag for the release
-            git commit -a -m "update projects version"
-            git tag -a ${params.releaseVersion} -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}
-            git push origin ${params.releaseVersion}
-          """
-
-          echo "====================Update Portal version for development after release ${params.releaseVersion} ===================="
-          def parts = releaseVersion.tokenize('.')
-          if (params.deployToRepo && parts.size() == 3 && parts[2].isNumber()) {
-            def nextVersion = ""
-            if ((parts[0] as int) % 2 == 0) {
-              nextVersion = "${parts[0]}.${parts[1]}.${(parts[2] as int) + 1}-SNAPSHOT"
-            } else {
-              nextVersion = "${parts[0]}.${(parts[1] as int) + 1}.0-SNAPSHOT"
+          def utils = load 'build/common/utils.groovy'
+          utils.generateBOM()
+          utils.mergeBOMFiles()
+          def currentDir = pwd()
+          if(params.deployToRepo) {
+            docker.build('deploy-portal-bom', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+              maven cmd: "deploy:deploy-file -Dfile=${currentDir}/build/sbom/target/portal.bom.json -DgroupId=com.axonivy.portal -DartifactId=portal-bom -Dversion=${params.releaseVersion} -Dpackaging=json -DrepositoryId=nexus.axonivy.com -Durl=https://nexus.axonivy.com/repository/maven-releases"
             }
-            build job: "portal-update-pom/${java.net.URLEncoder.encode(env.BRANCH_NAME, "UTF-8")}", 
-              parameters: [string(name: 'portalVersion', value: "${nextVersion}")], 
-              wait: true, propagate: false
           }
         }
       }
@@ -90,7 +98,42 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: "**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip,*/*/pom.xml"
+      archiveArtifacts artifacts: '**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,Showcase/portal-demo-app/target/*.zip,*/*/pom.xml'
+    }
+  }
+}
+
+def updateVersion(def releaseVersion) {
+  def POM_PATTERN_FILES = [
+    'AxonIvyPortal/*/pom.xml',
+    'Showcase/*/pom.xml',
+    'AxonIvyPortal/portal-selenium-test/customized_pom.xml',
+    'AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml',
+    'Documentation/public-api/pom.xml'
+  ]
+
+  def DEPENDENCY_GROUP_IDS = [
+    'ch.ivyteam.ivy.project.portal',
+    'com.axonivy.portal'
+  ]
+
+  def pomFiles = []
+  POM_PATTERN_FILES.each { pattern ->
+    def foundFiles = sh(script: "find ${pattern}", returnStdout: true).trim().split('\n')
+    pomFiles.addAll(foundFiles)
+  }
+
+  pomFiles.each { pomFile ->
+  sh """
+     xmlstarlet ed --inplace \
+     -u "/project/version" -v "${releaseVersion}" ${pomFile}
+     """
+  for (groupId in DEPENDENCY_GROUP_IDS) {
+  sh """
+     xmlstarlet ed --inplace \
+     -u "//dependencies/dependency[groupId='${groupId}']/version" \
+     -v "${releaseVersion}" ${pomFile}
+     """
     }
   }
 }
