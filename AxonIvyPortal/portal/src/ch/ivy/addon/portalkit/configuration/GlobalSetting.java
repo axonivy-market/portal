@@ -8,24 +8,13 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.enums.GlobalSearchScopeCategory;
-import com.axonivy.portal.enums.SearchScopeCaseField;
-import com.axonivy.portal.enums.SearchScopeTaskField;
-import com.axonivy.portal.enums.ThemeMode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
-import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInCaseList;
-import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
-import ch.ivy.addon.portalkit.enums.CaseSortField;
-import ch.ivy.addon.portalkit.enums.DefaultImage;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
 import ch.ivy.addon.portalkit.enums.GlobalVariableType;
-import ch.ivy.addon.portalkit.enums.ProcessMode;
-import ch.ivy.addon.portalkit.enums.SortDirection;
-import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -110,31 +99,21 @@ public class GlobalSetting extends AbstractConfiguration {
   }
 
   private String getDisplayValue(Object object) {
-    if (object instanceof TaskSortField castObject) {
-      return castObject.getLabel();
-    } else if (object instanceof CaseSortField castObject) {
-      return castObject.getLabel();
-    } else if (object instanceof SortDirection castObject) {
-      return castObject.getLabel();
-    } else if (object instanceof ProcessMode castObject) {
-      return castObject.getLabel();
-    } else if (object instanceof BehaviourWhenClickingOnLineInTaskList castObject) {
-      return castObject.getLabel();
-    } else if (object instanceof BehaviourWhenClickingOnLineInCaseList castObject) {
-      return castObject.getLabel();
-    } else if (object instanceof DefaultImage castObject) {
-      return castObject.getLabel();
-    } else if (object instanceof ThemeMode castObject) {
-      return castObject.getLabel();
-    } else if (object instanceof SearchScopeTaskField castObject) {
-      return castObject.getLabel();
-    } else if (object instanceof SearchScopeCaseField castObject) {
-      return castObject.getLabel();
-    }  else if (object instanceof GlobalSearchScopeCategory) {
-      return ((GlobalSearchScopeCategory)object).getLabel();
-    } else {
-      return (String)object;
-    }
+    return switch (object) {
+      case TaskSortField castObject -> castObject.getLabel();
+      case CaseSortField castObject -> castObject.getLabel();
+      case SortDirection castObject -> castObject.getLabel();
+      case ProcessMode castObject -> castObject.getLabel();
+      case BehaviourWhenClickingOnLineInTaskList castObject -> castObject.getLabel();
+      case BehaviourWhenClickingOnLineInCaseList castObject -> castObject.getLabel();
+      case DefaultImage castObject -> castObject.getLabel();
+      case ThemeMode castObject -> castObject.getLabel();
+      case SearchScopeTaskField castObject -> castObject.getLabel();
+      case SearchScopeCaseField castObject -> castObject.getLabel();
+      case GlobalSearchScopeCategory castObject -> castObject.getLabel();
+      case DelegationAppendOption castObject -> castObject.getLabel();
+      default -> (String) object;
+    };
   }
 
   private String getDisplayValueForMultiExternalSelections(Map<String, Object> optionMap) {
