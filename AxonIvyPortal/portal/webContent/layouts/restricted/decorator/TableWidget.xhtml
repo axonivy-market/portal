@@ -40,7 +40,7 @@
     
 <h:panelGroup id="show-favorite-#{index}" layout="block"
     styleClass="#{isReadOnlyMode ? 'u-mar-right-10' : 'u-mar-right-5'} widget-header-show-favorite"
-    rendered="#{visibilityBean.enableFavoriteTask and dashboardBean.canShowFavorite(widget)}">
+    rendered="#{visibilityBean.enableFavoriteTask and dashboardBean.canShowFavorite(widget) and widget.isShowOnlyFavoriteToggle()}">
     <h:form id="show-favorite-form">
         <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
         <h:panelGroup layout="block" styleClass="toggle-container">

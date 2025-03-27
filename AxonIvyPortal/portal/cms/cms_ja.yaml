@@ -753,6 +753,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: 保存されたフィルター
     SearchForFilter: フィルターを検索
     ShareThisDashboard: このダッシュボードを共有
+    ShowOnlyFavoriteToggle: 'TODO: Show ''Only Favorite'' Toggle'
     StandardWidgets: 標準ウィジェット
     StatisticWidget:
       EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！

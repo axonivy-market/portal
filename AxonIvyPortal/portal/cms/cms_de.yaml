@@ -756,6 +756,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Gespeicherte Filter
     SearchForFilter: Nach Filter suchen
     ShareThisDashboard: Teilen Sie dieses Dashboard
+    ShowOnlyFavoriteToggle: „Nur-Favoriten“-Umschalter anzeigen
     StandardWidgets: Standard-Widgets
     StatisticWidget:
       EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
