@@ -10,6 +10,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="index" required="true" />
   <cc:attribute name="widget" required="true" />
+  <cc:attribute name="managedBean" required="true" />
   <cc:attribute name="isReadOnlyMode" default="false" />
 </cc:interface>
 
@@ -20,18 +21,27 @@
     <ui:decorate template="/layouts/restricted/decorator/CardWidget.xhtml">
     <ui:param name="index" value="#{index}" />
     <ui:param name="widget" value="#{widget}" />
-    <ui:param name="panelId" value="notification-widget-#{widget.id}-panel" />
+    <ui:param name="panelId" value="navigation-widget-#{widget.id}-panel" />
     <ui:param name="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
     <ui:param name="isRenderInfo" value="false" />
     <ui:param name="isRenderExpandCollapse" value="false" />
-    <ui:param name="widgetContentStyleClass" value="notification-widget__content-panel" />
-    <ui:param name="unreadNotificationsId" value="#{p:resolveFirstComponentWithId('topbar-unread-notifications-container', view).clientId}" />
 
     <ui:define name="widgetContent">
-      <div class="w-full widget-height-100">
-      <p:button rendered="#{widget.targetDashboard}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only u-mar-right-5"
-       title="#{widget.targetDashboard.title}" href="#{dashboardBean.getDashboardUrlByDashboard(widget.targetDashboard)}"/>
-      </div>
+      <h:panelGroup styleClass="flex flex-column justify-content-center h-full" layout="block">
+        <div class="mt-3 mb-3 ml-1">
+            <h:outputText value="#{widget.description}" />
+        </div>
+        <div class="mt-auto">
+            <p:commandButton styleClass="ui-button w-full ui-button-text-only u-mar-right-5" disabled="#{!isReadOnlyMode}" onstart="remoteNavigationDashboardWidgetCommand(); return false;"
+              href="#{dashboardBean.getDashboardUrlByDashboard(widget.targetDashboard)}" value="Enter Dashboard">
+            </p:commandButton>
+            <p:remoteCommand name="remoteNavigationDashboardWidgetCommand" 
+                  process="@this"
+                  oncomplete=""
+                  action="#{navigationDashboardWidgetBean.setPreviousDashboardInNavigationDashboardWidget(cc.attrs.managedBean.selectedDashboard, widget)}" />
+              
+        </div>
+      </h:panelGroup>
     </ui:define>
   </ui:decorate>
 

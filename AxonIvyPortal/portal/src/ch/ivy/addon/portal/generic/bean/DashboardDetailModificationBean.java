@@ -440,8 +440,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   
   private NavigationDashboardWidget getDefaultNavigationDashboardWidget() {
     String widgetId = DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.NAVIGATION_DASHBOARD);
-    String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourNavigationDashboardWidget");
-    return NavigationDashboardWidget.buildDefaultWidget(widgetId, widgetName);
+    return NavigationDashboardWidget.buildDefaultWidget(widgetId);
   }
 
   public void saveWidget() {

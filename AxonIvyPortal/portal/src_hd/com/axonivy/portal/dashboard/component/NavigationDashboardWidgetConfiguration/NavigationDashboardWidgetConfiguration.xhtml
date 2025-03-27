@@ -35,15 +35,16 @@
           styleClass="widget-configuration__input-text"
           value="#{widget.name}"
           placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/CustomWidgetTitlePlaceholder')}" />
-        <!-- Add language button -->
-        <p:commandButton styleClass="app-setting-button"
-          icon="si si-chat-translate" id="add-language-button"
-          actionListener="#{managedBean.updateWidgetNameByLocale()}"
-          process="widget-title"
-          update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
-          oncomplete="PF('multiple-languages-dialog').show();">
-          <f:param name="skipValidator" value="true" />
-        </p:commandButton>
+      </div>
+      <div class="ui-g-4">
+        <p:outputLabel for="widget-description"
+          value="Description" />
+      </div>
+      <div class="ui-g-8 ui-inputgroup">
+        <p:inputText id="widget-description"
+          styleClass="widget-configuration__input-text"
+          value="#{widget.description}"
+          />
       </div>
     </h:panelGroup>
     <h:panelGroup id="dashboard-link-group">
@@ -51,25 +52,9 @@
       <p:outputLabel styleClass="" for="@next" value="Navigate to"/>
       </div>
       <div class="ui-g-8">
-      <p:selectOneMenu id="dashboard-link-selection-menu" value="#{widget.targetDashboard}" converter="pojoConverter">
-        <f:selectItems value="#{widget.dashboardList}" var="dashboard" itemLabel="#{dashboard.title}" itemValue="#{dashboard}"/>
+      <p:selectOneMenu id="dashboard-link-selection-menu" value="#{widget.targetDashboard}">
+        <f:selectItems value="#{widget.dashboardList}" var="dashboard" itemLabel="#{dashboard.title}" itemValue="#{dashboard.id}"/>
       </p:selectOneMenu>
-      </div>
-    </h:panelGroup>
-
-    <h:panelGroup id="fullscreen-mode-group" rendered="#{managedBean.displayFullscreenModeOption()}"
-      styleClass="ui-g-12 u-padding-0 ui-fluid">
-      <div class="ui-g-4">
-        <p:outputLabel for="fullscreen-option"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/fullscreenMode')}"
-          styleClass="u-mar-right-5" />
-      </div>
-      <div class="ui-g-6 ui-inputgroup">
-        <p:selectBooleanCheckbox id="fullscreen-option"
-          value="#{widget.showFullscreenMode}">
-          <p:ajax process="fullscreen-mode-group"
-            update="fullscreen-mode-group" partialSubmit="true"/>
-        </p:selectBooleanCheckbox>
       </div>
     </h:panelGroup>
 

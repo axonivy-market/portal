@@ -264,7 +264,7 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> getDashboardsWithoutMenuItem() {
-    return collectDashboards().stream().filter(dashboard -> !dashboard.getIsTopMenu()).toList();
+    return collectDashboards().stream().filter(dashboard -> !dashboard.getIsTopMenu() && !dashboard.getIsHiddenOnDashboardMenu()).toList();
   }
 
   public static String getSelectedMainDashboardIdFromSession() {
