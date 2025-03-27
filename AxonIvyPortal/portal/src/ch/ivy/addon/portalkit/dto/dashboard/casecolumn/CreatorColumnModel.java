@@ -62,6 +62,7 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
       return StringUtils.EMPTY;
     }
     ISecurityMember member = caze.getCreatorUser();
+//    SecurityMemberDisplayNameUtils.formatWithTooltip(member, member.getMemberName());
     return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(member, member.getMemberName());
   }
   

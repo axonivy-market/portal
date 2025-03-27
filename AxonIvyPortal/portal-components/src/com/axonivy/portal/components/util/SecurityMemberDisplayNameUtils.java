@@ -72,4 +72,25 @@ public class SecurityMemberDisplayNameUtils {
     return String.format(FORMAT_DISABLED_USER, Ivy.cms().co(DISABLED_USER_PREFIX_CMS), displayName);
   }
 
+  public static String formatWithTooltip(ISecurityMember securityMember,  String displayName) {
+//  Ivy.log().info("====================================");
+//  Ivy.log().info("Security member: " + securityMember);
+//  // fullName
+//  Ivy.log().info("Security member displayName: " + securityMember.getDisplayName());
+//  // userName
+//  Ivy.log().info("Security member getName: " + securityMember.getName());
+//  Ivy.log().info("Display name: " + displayName);
+//  Ivy.log().info("");
+
+    if (securityMember == null || StringUtils.isBlank(securityMember.getName())) {
+      // N/A
+      return StringUtils.EMPTY;
+    }
+
+    String formattedUserName = displayName.startsWith("#") ? displayName.substring(1) : displayName;
+    if (StringUtils.isBlank(securityMember.getDisplayName())) {
+      return "<" + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName") + ">" + " (" + formattedUserName + ")";
+    }
+    return securityMember.getDisplayName() + " (" + formattedUserName + ")";
+  }
 }
