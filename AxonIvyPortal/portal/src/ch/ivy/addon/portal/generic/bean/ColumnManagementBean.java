@@ -153,7 +153,11 @@ public class ColumnManagementBean implements Serializable {
   private List<String> standardFields() {
     List<String> standardFields = new ArrayList<>();
     if (widget.getType() == DashboardWidgetType.TASK) {
+      boolean enableFavoriteTask = GlobalSettingService.getInstance().isEnableFavoriteTask();
       for (DashboardStandardTaskColumn col : DashboardStandardTaskColumn.values()) {
+        if (!enableFavoriteTask && DashboardStandardTaskColumn.FAVORITE == col) {
+          continue;
+        }
         standardFields.add(col.getField());
       }
     } else if (widget.getType() == DashboardWidgetType.CASE) {

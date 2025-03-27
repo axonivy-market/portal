@@ -132,6 +132,7 @@
           <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">
             <ui:include src="ActionsCell.xhtml" />
           </h:panelGroup>
+          
           <h:panelGroup rendered="#{column.field eq 'favorite'}">
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskFavorite task="#{task}"/>
           </h:panelGroup>

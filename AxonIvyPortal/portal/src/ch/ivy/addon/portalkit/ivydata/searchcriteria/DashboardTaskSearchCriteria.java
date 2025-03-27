@@ -22,7 +22,6 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.ICustomFieldOrderBy;
@@ -360,8 +359,14 @@ public class DashboardTaskSearchCriteria {
 
   private void queryFavoriteTasks(TaskQuery query) {
     Set<Long> favoriteTaskIds = TaskUtils.getFavoriteTaskIds();
-    Ivy.log().error(showFavorite);
-    if (!favoriteTaskIds.isEmpty() && showFavorite) {
+
+    if (showFavorite) {
+      if (favoriteTaskIds.isEmpty()) {
+        // Ensure no tasks are returned by applying a condition that will never match
+        query.where().taskId().isLowerThan(0);
+        return;
+      }
+
       long[] taskIdArray = favoriteTaskIds.stream().mapToLong(Long::longValue).toArray();
       query.where().taskId().isIn(taskIdArray);
     }

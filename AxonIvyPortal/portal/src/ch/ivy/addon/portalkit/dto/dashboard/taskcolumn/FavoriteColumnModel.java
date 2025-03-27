@@ -3,6 +3,8 @@ package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 import java.io.Serializable;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class FavoriteColumnModel extends TaskColumnModel implements Serializable {
 
@@ -10,6 +12,7 @@ public class FavoriteColumnModel extends TaskColumnModel implements Serializable
 
   @Override
   public void initDefaultValue() {
+    this.setVisible(GlobalSettingService.getInstance().isEnableFavoriteTask());
     super.initDefaultValue();
     this.field = DashboardStandardTaskColumn.FAVORITE.getField();
     this.styleToDisplay = initDefaultStyle();
@@ -34,7 +37,7 @@ public class FavoriteColumnModel extends TaskColumnModel implements Serializable
 
   @Override
   public String getDefaultHeaderCMS() {
-    return "Favorite";
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/FAVORITE");
   }
 
 }

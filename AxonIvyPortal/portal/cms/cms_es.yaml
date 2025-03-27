@@ -148,9 +148,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     Homepage: Página web
     Language: Idioma
     ProcessList: Lista de procesos
+    TaskList: Lista de tareas
     byDefault: ' por defecto'
     defaultOption: Predeterminado ({0})
     defaultViewMode: Modo predeterminado
+    deleteAllFavoriteTask: 'Todas las tareas favoritas han sido eliminadas para el usuario: {0}.'
     event: Evento
     notSubscribed: No suscrito
     notificationChannels: Canales de notificación
@@ -240,6 +242,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: 'Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. '
       enableDeepLTranslation: Establezca esta propiedad en true para activar la traducción de DeepL
       enableDocumentPreview: 'Establecer en "true" para habilitar la vista previa de documentos para ciertos tipos de archivos. Los tipos de archivos compatibles son: pdf, png, jpeg, jpg, txt, log.'
+      enableFavoriteTask: Establezca esta propiedad en true para habilitar la opción de marcar tareas como favoritas.
       enableGroupChat: Cambie esta propiedad a "true" para activar el chat de grupos
       enablePrivateChat: Cambie esta propiedad a "true" para activar el chat privado
       enableProcessViewer: Defina esta propiedad como true para habilitar la opción de visor de procesos en las acciones de Tarea/Caso
@@ -1196,6 +1199,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPLETED_ON: Completado en
       CREATION_TIME: Creado
       EXPIRY_TIME: Expiración
+      FAVORITE: Favorito
       ID: ID de tarea
       NAME: Nombre / Descripción
       PRIORITY: Prioridad
@@ -1342,6 +1346,9 @@ Dialogs:
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: Arrastrar y soltar para cambiar el orden.
                   DragAndDropTooltip: Haz clic en vista previa y arrastra y suelta para cambiar el orden
+          setting:
+            UserProfile:
+              DeleteAllFavoriteTasks: Eliminar todas las tareas favoritas
         portalkit:
           component:
             CaseItemDetails:
@@ -1370,6 +1377,11 @@ Dialogs:
               ShareTaskDetails: Compartir detalles de la tarea
               TaskCompletedByOtherInfo: La tarea ya ha sido completada por el usuario <strong>{0}</strong> en {1}.
               TaskCompletedByYouInfo: Ya ha completado la tarea en {0}.
+            task:
+              column:
+                TaskFavorite:
+                  MarkAsFavorite: Marcar como favorito
+                  UnmarkAsFavorite: Quitar de favoritos
   com:
     axonivy:
       portal:
@@ -1475,6 +1487,7 @@ Labels:
     ProcessParameterInfo: ''
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
+  AllTasks: Todas las tareas
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
   CreateNewDashboard: Crear un nuevo cuadro de mandos
@@ -1561,6 +1574,7 @@ Labels:
     ThemeMode:
       DARK: Oscuro
       LIGHT: Luz
+  FavoriteTasks: Tareas favoritas
   InsertTask-Explain: Insertar la tarea. Mi tarea será pospuesta.
   InsertTheTask: Insertar la tarea.
   Login:

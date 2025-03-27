@@ -17,7 +17,7 @@
                 <i class="fa #{isFavorite ? 'fa-star' : 'fa-star-o'} favorite-icon" />
             </p:commandLink>
             <p:tooltip for="favorite-form" 
-                       value="#{isFavorite ? 'Unmark As Favorite' : 'Mark As Favorite'}" 
+                       value="#{isFavorite ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/task/column/TaskFavorite/UnmarkAs') : ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/task/column/TaskFavorite/MarkAsFavorite')" 
                        trackMouse="true" 
                        hideEvent="mouseleave click" />
         </h:form>

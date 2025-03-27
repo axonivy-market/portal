@@ -38,4 +38,8 @@ public class VisibilityBean implements Serializable {
   public boolean isHideCaseCreator() {
     return globalSettingService.isHideCaseCreator();
   }
+
+  public boolean isEnableFavoriteTask() {
+    return globalSettingService.isEnableFavoriteTask();
+  }
 }

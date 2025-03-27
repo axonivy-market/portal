@@ -605,7 +605,6 @@ public class DashboardBean implements Serializable {
   }
 
   public void toggleShowFavorite(DashboardWidget widget) {
-    Ivy.log().error("bean" + isShowFavorite);
     widget.setShowFavorite(isShowFavorite);
     widget.toggleShowFavorite();
   }

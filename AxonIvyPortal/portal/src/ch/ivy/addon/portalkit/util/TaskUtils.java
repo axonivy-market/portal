@@ -420,7 +420,11 @@ public final class TaskUtils {
   }
 
   public static Set<Long> getFavoriteTaskIds() {
-    String favoriteTasksStr = Ivy.session().getSessionUser().getProperty(UserProperty.FAVORITE_TASKS);
+    IUser currentUser = Ivy.session().getSessionUser();
+    String favoriteTasksStr = "";
+    if (currentUser != null) {
+      favoriteTasksStr = currentUser.getProperty(UserProperty.FAVORITE_TASKS);
+    }
     return (favoriteTasksStr == null || favoriteTasksStr.isEmpty()) ? new HashSet<>()
         : Arrays.stream(favoriteTasksStr.split(",")).map(String::trim).filter(s -> !s.isEmpty()).map(Long::parseLong)
             .collect(Collectors.toSet());
@@ -434,6 +438,13 @@ public final class TaskUtils {
 
   public static boolean isFavoriteTask(ITask task) {
     return task != null && getFavoriteTaskIds().contains(task.getId());
+  }
+
+  public static void removeAllFavoriteTasks() {
+    IUser currentUser = Ivy.session().getSessionUser();
+    if (currentUser != null) {
+      currentUser.setProperty(UserProperty.FAVORITE_TASKS, StringUtils.EMPTY);
+    }
   }
 
 }
