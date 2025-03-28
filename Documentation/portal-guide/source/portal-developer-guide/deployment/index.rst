@@ -1,14 +1,14 @@
-.. _installation:
+.. _deployment:
 
-Installation
+Deployment
 ************
 
-The Installation section describes all steps necessary to install and configure
+The Deployment section describes all steps necessary to install and configure
 the Portal. If you install your application for the first time, then it is important
 to start with the Basic installation. This section describes all initial steps
 that must be done for the first installation.
 
-Basic Installation
+Basic Deployment
 ==================
 
 Project Modules
