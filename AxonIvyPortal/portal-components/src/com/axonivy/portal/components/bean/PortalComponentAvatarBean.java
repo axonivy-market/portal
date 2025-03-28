@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.faces.bean.ManagedBean;
 
 import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
@@ -68,18 +69,23 @@ public class PortalComponentAvatarBean implements Serializable {
   public String getEmailAddress(RoleDTO role, boolean useLowercaseEmail) {
     return "";
   }
+  
 
-  public String tooltipTechnicalDisplayName(ISecurityMember securityMember,  String displayName) {
-
-    Ivy.log().info("====================================");
-    Ivy.log().info("Security member: " + securityMember);
-    // fullName
-    Ivy.log().info("Security member displayName: " + securityMember.getDisplayName());
-    // userName
-    Ivy.log().info("Security member getName: " + securityMember.getName());
-    Ivy.log().info("Display name: " + displayName);
-    Ivy.log().info("");
-
-    return SecurityMemberDisplayNameUtils.formatWithTooltip(securityMember, displayName);
+  public boolean getPortalShowTechnicalTooltOrDefault(boolean defaultIfEmpty) {
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_TECHNICAL_NAME, defaultIfEmpty);
   }
+  
+  public String tooltipTechnicalDisplayName(ISecurityMember securityMember,  String displayName) {
+    if (securityMember == null || StringUtils.isBlank(securityMember.getName())) {
+      // N/A
+      return StringUtils.EMPTY;
+    }
+
+    String formattedUserName = displayName.startsWith("#") ? displayName.substring(1) : displayName;
+    if (StringUtils.isBlank(securityMember.getDisplayName())) {
+      return "<" + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName") + ">" + " (" + formattedUserName + ")";
+    }
+    return securityMember.getDisplayName() + " (" + formattedUserName + ")";
+  }
+
 }
