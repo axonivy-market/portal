@@ -6,7 +6,7 @@ public enum GlobalVariable {
   ENABLE_VIRUS_SCANNER_FOR_UPLOADED_DOCUMENT("Portal.Document.EnableVirusScanner"),
   UPLOAD_DOCUMENT_WHITELIST_EXTENSION("Portal.Document.WhitelistExtension"),
   SHOW_AVATAR("Portal.ShowAvatar"),
-  SHOW_TECHNICAL_NAME("Portal.ShowTechnicalName");
+  SHOW_TOOLTIP_TECHNICAL_NAME("Portal.ShowTooltipTechnicalName");
 
   private String key;
 

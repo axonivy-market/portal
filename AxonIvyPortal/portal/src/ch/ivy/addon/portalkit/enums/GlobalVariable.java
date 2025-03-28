@@ -88,7 +88,7 @@ public enum GlobalVariable {
   APPLICATION_NAME("Portal.ApplicationName", GlobalVariableType.TEXT, "Axon Ivy", "ApplicationName"), HIDE_CASE_CREATOR(
       "Portal.Cases.HideCaseCreator", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseCreator"),
   ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview", GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableDocumentPreview"),
-  SHOW_TECHNICAL_NAME("Portal.ShowTechnicalName", GlobalVariableType.SELECTION, Option.FALSE.toString(), "showTechnicalName");
+  SHOW_TOOLTIP_TECHNICAL_NAME("Portal.ShowTooltipTechnicalName", GlobalVariableType.SELECTION, Option.FALSE.toString(), "showTooltipTechnicalName");
 ;
 
   private String key;

@@ -71,7 +71,7 @@ public class PortalComponentAvatarBean implements Serializable {
   
 
   public boolean getPortalShowTechnicalTooltipOrDefault(boolean defaultIfEmpty) {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_TECHNICAL_NAME, defaultIfEmpty);
+    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_TOOLTIP_TECHNICAL_NAME, defaultIfEmpty);
   }
   
   public String tooltipTechnicalDisplayName(ISecurityMember securityMember) {
