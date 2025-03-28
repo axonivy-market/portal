@@ -13,7 +13,6 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.enums.GlobalVariable;
 import com.axonivy.portal.components.service.GlobalSettingService;
-import com.axonivy.portal.components.util.SecurityMemberDisplayNameUtils;
 import com.axonivy.portal.components.util.SecurityMemberUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
@@ -71,16 +70,17 @@ public class PortalComponentAvatarBean implements Serializable {
   }
   
 
-  public boolean getPortalShowTechnicalTooltOrDefault(boolean defaultIfEmpty) {
+  public boolean getPortalShowTechnicalTooltipOrDefault(boolean defaultIfEmpty) {
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_TECHNICAL_NAME, defaultIfEmpty);
   }
   
-  public String tooltipTechnicalDisplayName(ISecurityMember securityMember,  String displayName) {
+  public String tooltipTechnicalDisplayName(ISecurityMember securityMember) {
     if (securityMember == null || StringUtils.isBlank(securityMember.getName())) {
       // N/A
       return StringUtils.EMPTY;
     }
 
+    String displayName = securityMember.getMemberName();
     String formattedUserName = displayName.startsWith("#") ? displayName.substring(1) : displayName;
     if (StringUtils.isBlank(securityMember.getDisplayName())) {
       return "<" + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName") + ">" + " (" + formattedUserName + ")";
