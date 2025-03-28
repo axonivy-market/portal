@@ -32,10 +32,6 @@ public class SecurityMemberDisplayNameUtils {
     if(securityMember == null) {
       return stripSharpCharacterFromSecurityMemberName(securityMemberName);
     }
-    if(GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_TECHNICAL_NAME)) {
-      return securityMember.getName();
-    }
-
     if(securityMember.isUser()) {
       IUser user = (IUser) securityMember;
       return generateBriefDisplayNameForUser(user, user.getName());
@@ -78,9 +74,6 @@ public class SecurityMemberDisplayNameUtils {
 
     if (user == null) {
       return stripSharpCharacterFromSecurityMemberName(username);
-    }
-    if(GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_TECHNICAL_NAME)) {
-      return user.getName();
     }
     if (user.isEnabled()) {
       return user.getDisplayName();
