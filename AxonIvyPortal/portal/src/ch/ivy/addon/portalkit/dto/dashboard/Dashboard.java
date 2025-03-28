@@ -34,6 +34,8 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   private String displayedPermission;
   private Boolean isTopMenu;
   private Boolean isHiddenOnDashboardMenu;
+  @JsonIgnore
+  private Boolean isNavigateFromNavigationDashboardWidget;
   
   @JsonIgnore
   private Boolean isResponsive;
@@ -159,6 +161,14 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   
   public void setIsHiddenOnDashboardMenu(Boolean isHiddenOnDashboardMenu) {
     this.isHiddenOnDashboardMenu = isHiddenOnDashboardMenu;
+  }
+  
+  public Boolean getIsNavigateFromNavigationDashboardWidget() {
+    return this.isNavigateFromNavigationDashboardWidget;
+  }
+  
+  public void setIsNavigateFromNavigationDashboardWidget(Boolean isNavigateFromNavigationDashboardWidget) {
+    this.isNavigateFromNavigationDashboardWidget = isNavigateFromNavigationDashboardWidget;
   }
 
   @JsonIgnore

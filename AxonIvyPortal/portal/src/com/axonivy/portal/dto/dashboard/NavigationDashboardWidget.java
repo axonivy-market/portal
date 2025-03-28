@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,13 +17,13 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 public class NavigationDashboardWidget extends DashboardWidget implements Serializable {
   
   private static final long serialVersionUID = -565012312312361L;
+  
+  @JsonIgnore
+  private Dashboard targetDashboard;
 
   @JsonIgnore
-  private String targetDashboard;
-  @JsonIgnore
-  private String previousDashboard;
-  @JsonIgnore
   private List<Dashboard> dashboardList = new ArrayList<>();
+
   private String title;
   private String description;
   private String buttonName;
@@ -53,11 +54,11 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
     return widget;
   }
   
-  public void setTargetDashboard(String targetDashboard) {
+  public void setTargetDashboard(Dashboard targetDashboard) {
     this.targetDashboard = targetDashboard;
   }
   
-  public String getTargetDashboard() {
+  public Dashboard getTargetDashboard() {
     return this.targetDashboard;
   }
   
@@ -97,19 +98,19 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
     this.title = title;
   }
   
-  public String getPreviousDashboard() {
-    return this.previousDashboard;
-  }
-  
-  public void setPreviousDashboard(String dashboardId) {
-    this.previousDashboard = dashboardId;
-  }
-  
   public List<Dashboard> getDashboardList() {
-    List<Dashboard> list = DashboardUtils.getPublicDashboards();
+    List<Dashboard> list = DashboardUtils.getPublicDashboards().stream().filter(dashboard -> !dashboard.getIsTopMenu()).collect(Collectors.toList());
     if (list.isEmpty()) {
       return this.dashboardList;
     }
     return list;
+  }
+  
+  public String getDashboardNameById(String id) {
+    Dashboard dashboard = this.dashboardList.stream().filter(item -> item.getId().equals(id)).findAny().orElse(null);
+    if (dashboard != null) {
+      return dashboard.getTitle();
+    }
+    return "NO dashboard";
   }
 }

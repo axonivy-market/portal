@@ -28,20 +28,18 @@
 
     <ui:define name="widgetContent">
       <h:panelGroup styleClass="flex flex-column justify-content-center h-full" layout="block">
-        <div class="mt-3 mb-3 ml-1">
-            <h:outputText value="#{widget.description}" />
-        </div>
-        <div class="mt-auto">
-            <p:commandButton styleClass="ui-button w-full ui-button-text-only u-mar-right-5" disabled="#{!isReadOnlyMode}" onstart="remoteNavigationDashboardWidgetCommand(); return false;"
-              href="#{dashboardBean.getDashboardUrlByDashboard(widget.targetDashboard)}" value="Enter Dashboard">
-            </p:commandButton>
-            <p:remoteCommand name="remoteNavigationDashboardWidgetCommand" 
-                  process="@this"
-                  oncomplete=""
-                  action="#{navigationDashboardWidgetBean.setPreviousDashboardInNavigationDashboardWidget(cc.attrs.managedBean.selectedDashboard, widget)}" />
-              
-        </div>
-      </h:panelGroup>
+    <div class="mt-3 mb-3 ml-1">
+        <h:outputText value="#{widget.description}" />
+    </div>
+    <div class="mt-auto">
+        <p:commandButton id="enterDashboardBtn"
+                         styleClass="ui-button w-full ui-button-text-only u-mar-right-5"
+                         disabled="#{!isReadOnlyMode}" action="#{navigationDashboardWidgetBean.redirectMethod(widget, managedBean.selectedDashboard)}"
+                         value="Enter Dashboard">
+        </p:commandButton>
+
+    </div>
+</h:panelGroup>
     </ui:define>
   </ui:decorate>
 

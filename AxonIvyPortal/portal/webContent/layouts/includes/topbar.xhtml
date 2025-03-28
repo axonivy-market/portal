@@ -24,8 +24,13 @@
   </div>
 
   <div class="layout-topbar-right">
+
     <ui:insert name="menu-bar">
       <ul id="top-menu" class="layout-topbar-actions topbar-menu animated js-top-menu">
+           <h:form style="right: 50rem; position: relative;">
+               <p:breadCrumb model="#{navigationDashboardWidgetBean.model}">
+               </p:breadCrumb>
+           </h:form>
         <li class="topbar-item breadcrumb-container" >
           <h:panelGroup id="breadcrumb-container">
             <ic:ch.ivy.addon.portal.generic.PortalBreadcrumb id="portal-breadcrumb"

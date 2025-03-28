@@ -43,15 +43,6 @@
             <ui:insert name="headerTitle" />
           </h:panelGroup>
 
-             <p:commandLink rendered="true">
-             <a id="back-to-previous-page" href=""
-               class="task-details-back-btn">
-               <i class="si si-arrow-left-1" />
-               <p:spacer width="3px" />
-               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
-             </a>
-             </p:commandLink>
-
           <h:panelGroup id="dashboard-header-action" rendered="#{!managedBean.isReadOnlyMode}"
             class="dashboard-header__action ui-lg-4 ui-md-5 ui-sm-12">
             <ui:insert name="headerAction" />
