@@ -139,10 +139,14 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
         </div>
         <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
-          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="task-activator"
-           securityMember="#{task.getActivator()}" securityMemberName="#{task.getActivatorName()}"
-           styleClass="text-ellipsis task-activator"
-           securityMemberContainerStyleClass="task-security-member-container" />
+          <h:panelGroup rendered="#{task.responsibles().all().size() lt 2}">
+            <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="task-activator"
+               securityMember="#{task.getActivator()}" securityMemberName="#{task.getActivatorName()}"
+               styleClass="text-ellipsis task-activator" 
+               securityMemberContainerStyleClass="task-security-member-container" />
+          </h:panelGroup>
+          <p:commandLink rendered="#{task.responsibles().all().size() gt 1}" onclick="PF('responsible-dialog').show()" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
+            id="show-responsible-link" value="#{taskDetailsBean.getShortResponsible(task)}" />
         </div>
       </h:panelGroup>
 
@@ -357,6 +361,19 @@
   <p:tooltip for="no-expiry-available expiry-task-time" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskExpiryDisable')}"
     trackMouse="true" hideEvent="mouseleave click" rendered="#{taskBean.isNotDone(task) and taskActionBean.notHaveExpiryHandleLogic(task)}" />
   <p:tooltip for="duration-time-info" value="#{taskActionBean.getDurationOfTaskOnTooltip(task)}" trackMouse="true" hideEvent="mouseleave click" />
-
+  
+  <p:dialog id="responsible-dialog" widgetVar="responsible-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
+    appendTo="@(body)" fitViewport="true" width="350" closeOnEscape="true" dynamic="true" height="400"
+    responsive="true" modal="true" closable="true">
+    <div class="ui-g">
+      <ui:repeat var="responsible" value="#{task.responsibles().all()}" >
+        <div class="ui-g-12">
+          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName 
+              securityMember="#{responsible.get()}" securityMemberName="#{responsible.displayName()}"
+              styleClass="text-ellipsis" />
+        </div>
+      </ui:repeat>
+    </div>
+  </p:dialog>
 </cc:implementation>
 </html>

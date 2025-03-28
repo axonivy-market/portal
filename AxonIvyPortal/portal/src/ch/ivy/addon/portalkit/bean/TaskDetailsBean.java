@@ -215,4 +215,9 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   public SortMeta getSortByCreationTimestamp() {
     return SortFieldUtil.buildSortMeta("creation.timestamp", true);
   }
+  
+  public String getShortResponsible(ITask task) {
+    return SecurityMemberDisplayNameUtils.getShortResponsibleDisplay(task);
+  }
+
 }

@@ -14,8 +14,11 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.caze.owner.CaseOwner;
 import ch.ivyteam.ivy.workflow.caze.owner.CaseOwners;
+import ch.ivyteam.ivy.workflow.task.responsible.Responsible;
+import ch.ivyteam.ivy.workflow.task.responsible.Responsibles;
 
 public class SecurityMemberDisplayNameUtils {
 
@@ -182,5 +185,25 @@ public class SecurityMemberDisplayNameUtils {
         .stream()
         .map(owner -> generateBriefDisplayNameForSecurityMember(owner.member(), owner.memberName()))
         .collect(Collectors.joining(", "));
+  }
+  
+  public static String getShortResponsibleDisplay(ITask task) {
+    if (task == null || CollectionUtils.isEmpty(task.responsibles().all())) {
+      return "";
+    }
+    Responsibles responsibles = task.responsibles();
+    int size = responsibles.all().size();
+    if (size <= 2 ) {
+      return task.responsibles().all()
+          .stream()
+          .map(item -> generateBriefDisplayNameForSecurityMember(item.get(), item.displayName()))
+          .collect(Collectors.joining(", "));
+    }
+    Responsible first = responsibles.all().getFirst();
+    Responsible second = responsibles.all().get(1);
+
+    return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/TextListOut"), 
+        generateBriefDisplayNameForSecurityMember(first.get(), first.displayName()), 
+        generateBriefDisplayNameForSecurityMember(second.get(), second.displayName()));
   }
 }
