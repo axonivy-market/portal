@@ -13,29 +13,6 @@ Before you begin, ensure you have:
 - A properly configured database (e.g., PostgreSQL) ready for connection.
 - An available Axon Ivy Engine package (IAR or ZIP).
 
-Quick Start Guide
-=================
-Follow these steps to get up and running quickly:
-1. **Prepare Project Modules**  
-   Ensure the following modules are ready:
-   - portal-components
-   - portal
-   - your application module (e.g., your-application)
-2. **Build the Modules**  
-   Use Maven to build each module:
-   ````bash
-   mvn clean install -f [module-path]/pom.xml -Divy.engine.directory=[engine-directory]
-   ````
-3. **Deploy the Application**  
-   - Copy the generated IAR/ZIP archives into the engine’s deployment directory.
-4. **Configure the Application**  
-   - Set up your database connections and user access according to your environment.
-5. **Start the Engine**  
-   - Start the Axon Ivy Engine and review logs to ensure a successful startup.
-6. **Verify the Portal**  
-   - Access the Portal via your web browser and confirm all components are working.
-
-Basic Deployment
 ==================
 Project Modules
 ---------------
