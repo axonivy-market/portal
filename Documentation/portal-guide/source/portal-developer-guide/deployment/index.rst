@@ -3,14 +3,40 @@
 Deployment
 ************
 
-The Deployment section describes all steps necessary to install and configure
-the Portal. If you install your application for the first time, then it is important
-to start with the Basic installation. This section describes all initial steps
-that must be done for the first installation.
+This section provides a step-by-step guide for deploying the Portal for the first time.
+It is written with beginners in mind and includes prerequisites, a quick start guide, and detailed instructions.
+
+Prerequisites
+=============
+Before you begin, ensure you have:
+- Java 21 and Maven 3.9.8 installed.
+- A properly configured database (e.g., PostgreSQL) ready for connection.
+- An available Axon Ivy Engine package (IAR or ZIP).
+
+Quick Start Guide
+=================
+Follow these steps to get up and running quickly:
+1. **Prepare Project Modules**  
+   Ensure the following modules are ready:
+   - portal-components
+   - portal
+   - your application module (e.g., your-application)
+2. **Build the Modules**  
+   Use Maven to build each module:
+   ````bash
+   mvn clean install -f [module-path]/pom.xml -Divy.engine.directory=[engine-directory]
+   ````
+3. **Deploy the Application**  
+   - Copy the generated IAR/ZIP archives into the engine’s deployment directory.
+4. **Configure the Application**  
+   - Set up your database connections and user access according to your environment.
+5. **Start the Engine**  
+   - Start the Axon Ivy Engine and review logs to ensure a successful startup.
+6. **Verify the Portal**  
+   - Access the Portal via your web browser and confirm all components are working.
 
 Basic Deployment
 ==================
-
 Project Modules
 ---------------
 
@@ -80,12 +106,12 @@ To configure the Portal Dashboard using the Engine Cockpit UI:
 5. Save changes and restart the application if necessary.
 
 .. hint:: 
-   Please reference to the |Cockpit| guide for more details on how to configure using the Engine Cockpit UI. 
-   :dev-url:`|Cockpit| Cockpit </doc/|version|/engine-guide/reference/engine-cockpit>`.
+   Please reference to the Cockpit guide for more details on how to configure using the Engine Cockpit UI. 
+   :dev-url:`Cockpit </doc/|version|/engine-guide/reference/engine-cockpit>`.
 
 
 **Using Portal Import Dashboard Feature**
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To import dashboards using the Portal interface:
 
@@ -113,6 +139,7 @@ Multi-Application Setup
 
 - Deploy the Portal (portal, portal-components) to a main application.
 - Deploy additional projects separately while ensuring all applications share the same security context.
+- Only one instance of the Portal is required for multiple applications. One Portal per one security context.
 
 Final Steps
 ===========
