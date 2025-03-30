@@ -98,6 +98,7 @@
             <ui:decorate template="/layouts/includes/topbar.xhtml">
               <ui:param name="task" value="#{not empty currentTask ? currentTask : task}" />
               <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
+              <ui:param name="isInDashboard" value="#{isInDashboard}" />
               <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
               <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
               <ui:param name="showGlobalSearch" value="#{showGlobalSearch}" />

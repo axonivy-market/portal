@@ -2045,3 +2045,7 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
 .clone-to-dashboard-dialog-header-container {
   width: calc(100% - 35px);
 }
+
+.dashboard-breadcrumb {
+  border: none;
+}
