@@ -851,6 +851,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: Actualmente, no hay tareas adicionales disponibles.
         noTasksFoundWhenFilter: Actualmente no hay tareas después del filtro aplicado.
     loading: Cargando...
+    navigateDashboard: Navegue por
     noCategory: No hay categorías
     noDashboard: No hay tableros. Añadir al menos un tablero y widgets.
     noPermission: No tienes permisos para ver los dashboards.
@@ -899,7 +900,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: Tipo de widget
     yourCases: Sus casos
     yourCustomWidget: Su widget personalizado
-    yourNavigationDashboardWidget: Your navigation dashboard widget
+    yourNavigationDashboardWidget: Widget del panel de navegación
     yourNotifications: Sus notificaciones
     yourProcessViewer: Su visor de procesos
     yourProcesses: Sus procesos
