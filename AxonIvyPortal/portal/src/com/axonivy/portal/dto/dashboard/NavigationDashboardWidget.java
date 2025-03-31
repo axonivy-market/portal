@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
@@ -121,6 +123,6 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
     if (dashboard != null) {
       return dashboard.getTitle();
     }
-    return "NO dashboard";
+    return StringUtils.EMPTY;
   }
 }

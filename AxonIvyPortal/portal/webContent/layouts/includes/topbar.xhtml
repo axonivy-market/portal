@@ -34,8 +34,8 @@
               isWorkingOnATask="#{isWorkingOnATask}"
               viewName="#{viewName}"
               task="#{task}" case="#{case}" />
-          <h:form id="dashboard-breadcrumb" rendered="#{isInDashboard}">
-            <p:breadCrumb model="#{navigationDashboardWidgetBean.model}" homeDisplay="text" styleClass="border-none"/>
+          <h:form id="navigation-dashboard-breadcrumb" rendered="#{isInDashboard}" >
+            <p:breadCrumb model="#{navigationDashboardWidgetBean.model}" lastItemDisabled="true" homeDisplay="text" styleClass="border-none"/>
           </h:form>
           </h:panelGroup>
         </li>

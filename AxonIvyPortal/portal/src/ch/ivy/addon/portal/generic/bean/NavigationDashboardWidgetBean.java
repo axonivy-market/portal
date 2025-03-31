@@ -2,89 +2,130 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 
-
 import java.io.Serializable;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.DefaultSubMenu;
+import org.primefaces.model.menu.MenuElement;
 import org.primefaces.model.menu.MenuModel;
 
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
-import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 
 @SessionScoped
 @ManagedBean
 public class NavigationDashboardWidgetBean implements Serializable {
   private static final long serialVersionUID = -4224901891867040688L;
-  private MenuModel model;
-  private DefaultSubMenu submenu;
+  private MenuModel model = new DefaultMenuModel();
+  private DefaultSubMenu submenu = DefaultSubMenu.builder().label("Navigation Dashboard Breadcrumb").expanded(true).build();
   
-  @PostConstruct
-  public void buildBreadcrumb() {
-    
-    DashboardBean dashboardBean = ManagedBeans.get("dashboardBean");
-    String dashboardName = Optional.ofNullable(dashboardBean).map(DashboardBean::getSelectedDashboardName).orElse(null);
-    String dashboardId = Optional.ofNullable(dashboardBean).map(DashboardBean::getSelectedDashboardId).orElse(null);
-    String link = getDashboardUrlByDashboard(dashboardId);
-    model = new DefaultMenuModel();
+  public void buildBreadcrumb(NavigationDashboardWidget widget, Dashboard currentDashboard) {
+    int currentIndex = findDashboardIndexInPath(currentDashboard.getId());
+    int targetIndex = findDashboardIndexInPath(widget.getTargetDashboard());
 
-    this.submenu = DefaultSubMenu.builder().label("Dashboard Breadcrumb").expanded(true).build();
+    model.getElements().clear();
 
-    if (dashboardName != null && dashboardId != null) {
-      var item = DefaultMenuItem.builder().value(dashboardName).url(link).build();
-      submenu.getElements().add(item);
-      model.getElements().addAll(submenu.getElements());
-      dashboardBean.getSelectedDashboard().setIsContainNavigationDashboardWidget(true);
+    if (targetIndex >= 0) {
+        
+        List<MenuElement> newList = new ArrayList<>();
+        for (int i = 0; i <= targetIndex; i++) {
+            if (i < submenu.getElements().size()) {
+                newList.add(submenu.getElements().get(i));
+            }
+        }
+        
+        // Update submenu elements
+        submenu.setElements(newList);
+        
+        // Add all elements to model
+        model.getElements().addAll(submenu.getElements());
+    } else {
+        
+        if (currentIndex == -1) {
+            // Current dashboard not in list
+            DefaultMenuItem item = DefaultMenuItem.builder()
+                .id(currentDashboard.getId())
+                .value(currentDashboard.getTitle())
+                .build();
+
+            String oncompleteScript = String.format("#{navigationDashboardWidgetBean.navigateToDashboardWhenClickingOnElement('%s')}", item.getId());
+            item.setCommand(oncompleteScript);
+            
+            submenu.getElements().add(item);
+        }
+
+        // Add target dashboard
+        widget.setTargetDashboardName(widget.getDashboardNameById(widget.getTargetDashboard()));
+        var item = DefaultMenuItem.builder()
+            .id(widget.getTargetDashboard())
+            .value(widget.getTargetDashboardName())
+            .build();
+
+        String oncompleteScript = String.format("#{navigationDashboardWidgetBean.navigateToDashboardWhenClickingOnElement('%s')}", item.getId());
+        item.setCommand(oncompleteScript);
+        
+        submenu.getElements().add(item);
+        model.getElements().addAll(submenu.getElements());
     }
   }
 
-  
-  private void buildNextMenuElement(NavigationDashboardWidget widget) {
-    
-    String dashboardName = widget.getDashboardNameById(widget.getTargetDashboard());
-    String link = getDashboardUrlByDashboard(widget.getTargetDashboard());
-    
-    DefaultMenuItem item = DefaultMenuItem.builder()
-        .value(dashboardName)
-        .url(link)
-        .build();
-    
-    submenu.getElements().add(item);
-    model.getElements().add(submenu.getElements().getLast());
+  public void rebuildBreadcrumbWhenClickingOnElement(String elementId) {
+    int index = findDashboardIndexInPath(elementId);
+    List<MenuElement> newList = new ArrayList<>();
+    for (int i = 0; i <= index; i++) {
+      if (i < submenu.getElements().size()) {
+          newList.add(submenu.getElements().get(i));
+      }
+  }
+    submenu.setElements(newList);
+    model.getElements().clear();
+    model.getElements().addAll(newList);
   }
   
   public void cleanSubitemList() {
+    submenu.getElements().clear();
     model.getElements().clear();
   }
+
+  public void redirectToDashboard(NavigationDashboardWidget widget, Dashboard currentDashboard) throws IOException {
+    buildBreadcrumb(widget, currentDashboard);
+    navigateToDashboard(widget.getTargetDashboard());
+  }
   
-  public void redirectToDashboard(NavigationDashboardWidget widget) throws IOException {
-    String link = getDashboardUrlByDashboard(widget.getTargetDashboard());
-    widget.setTargetDashboardName(widget.getDashboardNameById(widget.getTargetDashboard()));
-    buildNextMenuElement(widget);
-    FacesContext.getCurrentInstance().getExternalContext().redirect(link);
+  public void navigateToDashboardWhenClickingOnElement(String elementId) throws IOException {
+    rebuildBreadcrumbWhenClickingOnElement(elementId);
+    navigateToDashboard(elementId);
+  }
+
+  public void navigateToDashboard(String id) throws IOException {
+    FacesContext.getCurrentInstance().getExternalContext().redirect(getDashboardUrlByDashboard(id));
   }
   
   private String getDashboardUrlByDashboard(String id) {
     return UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(id);
   }
+
+  private int findDashboardIndexInPath(String dashboardId) {
+    List<MenuElement> menuItemList = model.getElements();
+    for (int i = 0; i < menuItemList.size(); i++) {
+        if (menuItemList.get(i).getId().equals(dashboardId)) {
+            return i;
+        }
+    }
+    return -1;
+}
   
   public MenuModel getModel() {
     return this.model;
   }
-  
 }
-
-
