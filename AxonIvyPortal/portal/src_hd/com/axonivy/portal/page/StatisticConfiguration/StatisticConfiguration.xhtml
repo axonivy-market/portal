@@ -107,16 +107,16 @@
                     </p:selectOneMenu>
 
                     <!-- CUSTOM FIELD SELECTION -->
-<!--                     <p:outputLabel id="custom-field-description" -->
-<!--                       for="aggregates-custom-fields" -->
-<!--                       styleClass="w-full mt-2 si si-information-circle" -->
-<!--                       rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}" -->
-<!--                       value=" #{statisticConfigurationBean.currentCustomFieldDescription}" /> -->
-<!--                     <p:selectOneMenu id="aggregates-custom-fields" required="true" styleClass="w-full mt-2" -->
-<!--                       rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}" value="#{statisticConfigurationBean.currentCustomField}" > -->
-<!--                       <f:selectItems value="#{statisticConfigurationBean.getCustomFieldNames()}" var="customField" /> -->
-<!--                       <p:ajax listener="#{statisticConfigurationBean.onSelectCustomField()}" update="chart-aggregation-operators custom-field-description"/> -->
-<!--                     </p:selectOneMenu> -->
+                    <p:outputLabel id="custom-field-description"
+                      for="aggregates-custom-fields"
+                      styleClass="w-full mt-2 si si-information-circle"
+                      rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}"
+                      value=" #{statisticConfigurationBean.currentCustomFieldDescription}" />
+                    <p:selectOneMenu id="aggregates-custom-fields" required="true" styleClass="w-full mt-2"
+                      rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}" value="#{statisticConfigurationBean.currentCustomField}" >
+                      <f:selectItems value="#{statisticConfigurationBean.getCustomFieldNames()}" var="customField" />
+                      <p:ajax listener="#{statisticConfigurationBean.onSelectCustomField()}" update="custom-field-description"/>
+                    </p:selectOneMenu>
                   </div>
                 </h:panelGroup>
 

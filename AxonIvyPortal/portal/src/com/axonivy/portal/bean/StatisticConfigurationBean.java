@@ -328,7 +328,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void getPreviewData() {
-//    handleCustomFieldAggregation();
+    handleCustomFieldAggregation();
 //    handleAggregateWithDateTimeOperator();
     statistic.setAggregates(statistic.getStatisticAggregation().getAggregate().getName());
     syncUIConfigWithChartConfig();
@@ -545,7 +545,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public boolean isCustomFieldsSelected() {
-    return statistic.getAggregates().contains("customFields");
+    return statistic.getStatisticAggregation().getAggregate().name().contains("CUSTOM_FIELD");
   }
   
   private void resetCustomFieldAndDateTimeOperator() {
@@ -555,10 +555,10 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   private void handleCustomFieldAggregation() {
-    if(!isCustomFieldsSelected()) {
-      resetCustomFieldAndDateTimeOperator();
-      return;
-    }
+//    if(!isCustomFieldsSelected()) {
+//      resetCustomFieldAndDateTimeOperator();
+//      return;
+//    }
     
     /*
      * handle:
@@ -566,6 +566,7 @@ public class StatisticConfigurationBean implements Serializable {
      * => error
      */
     if(this.currentCustomFieldType == null) {
+      this.currentCustomFieldType = CustomFieldType.STRING;
       statistic.setAggregates("customFields.strings.HIDE");
       return;
     }
@@ -575,7 +576,7 @@ public class StatisticConfigurationBean implements Serializable {
     case CustomFieldType.STRING -> statistic.setAggregates("customFields.strings." + currentCustomField);
     case CustomFieldType.NUMBER -> statistic.setAggregates("customFields.numbers." + currentCustomField);
     case CustomFieldType.TIMESTAMP -> statistic.setAggregates("customFields.timestamps." + currentCustomField);
-    default -> {}
+    default -> { }
     }
     
     return;
@@ -648,7 +649,7 @@ public class StatisticConfigurationBean implements Serializable {
       this.setCurrentCustomFieldDescription(meta.description());
     });
     
-    this.setDateTimeSelected(this.currentCustomFieldType.equals(CustomFieldType.TIMESTAMP));
+//    this.setDateTimeSelected(this.currentCustomFieldType.equals(CustomFieldType.TIMESTAMP));
     
     handleCustomFieldAggregation();
   }
