@@ -34,6 +34,7 @@ import com.axonivy.portal.bo.LineChartConfig;
 import com.axonivy.portal.bo.NumberChartConfig;
 import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.bo.Statistic;
+import com.axonivy.portal.bo.StatisticAggregation;
 import com.axonivy.portal.bo.jsonversion.StatisticJsonVersion;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
@@ -177,7 +178,8 @@ public class StatisticConfigurationBean implements Serializable {
 
   private void initNewStatistic() {
     statistic = new Statistic();
-    statistic.setAggregates("priority");
+    statistic.setStatisticAggregation(new StatisticAggregation());
+    statistic.getStatisticAggregation().setAggregate(ChartAggregates.PRIORITY);
     statistic.setNames(new ArrayList<>());
     statistic.setDescriptions(new ArrayList<>());
     statistic.setChartTarget(ChartTarget.TASK);
@@ -326,8 +328,9 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void getPreviewData() {
-    handleCustomFieldAggregation();
-    handleAggregateWithDateTimeOperator();
+//    handleCustomFieldAggregation();
+//    handleAggregateWithDateTimeOperator();
+    statistic.setAggregates(statistic.getStatisticAggregation().getAggregate().getName());
     syncUIConfigWithChartConfig();
     StatisticService statisticService = StatisticService.getInstance();
     statistic.setAdditionalConfigs(new ArrayList<>());
@@ -557,6 +560,17 @@ public class StatisticConfigurationBean implements Serializable {
       return;
     }
     
+    /*
+     * handle:
+     * Choose Custom field > click button Generate preview 
+     * => error
+     */
+    if(this.currentCustomFieldType == null) {
+      statistic.setAggregates("customFields.strings.HIDE");
+      return;
+    }
+    // ****************************************************************
+
     switch (this.currentCustomFieldType) {
     case CustomFieldType.STRING -> statistic.setAggregates("customFields.strings." + currentCustomField);
     case CustomFieldType.NUMBER -> statistic.setAggregates("customFields.numbers." + currentCustomField);
@@ -571,6 +585,18 @@ public class StatisticConfigurationBean implements Serializable {
     if (dateTimeOperator == null) {
       return;
     }
+    /**
+     * handle: 
+     * Edit a statistic > change to Custom field > choose ShipmentDate
+     * > click Generate preview > choose CustomerEmail > 
+     * > click Generate preview => error
+     * */
+    if(!statistic.getAggregates().contains("timestamp")) {
+      this.setDateTimeOperator(null);
+      return;
+    }
+    // ****************************************************************
+
     List<String> metricOperator = Arrays.asList("MAX", "MIN", "AVG");
     String finalAggregation = metricOperator.contains(dateTimeOperator)
         ? statistic.getAggregates() + ":" + dateTimeOperator.toLowerCase()
@@ -612,7 +638,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void onSelectAggregates() {
-    this.setDateTimeSelected(statistic.getAggregates().contains("Timestamp"));
+    this.setDateTimeSelected(statistic.getStatisticAggregation().getAggregate().getName().contains("Timestamp"));
   }
 
   public void onSelectCustomField() {
