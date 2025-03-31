@@ -46,6 +46,7 @@ import com.axonivy.portal.bo.ClientStatistic;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.News;
+import com.axonivy.portal.dto.dashboard.InfomationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
@@ -299,6 +300,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         newWidgetHeader = translate("/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidgetConfiguration/NotificationWidgetConfiguration");
         widget = getDefaultNotificationWidget();
       }
+      case INFOMATION ->{
+        newWidgetHeader = translate("/Dialogs/com/axonivy/portal/dashboard/component/InfomationWidgetConfiguration/InfomationWidgetTitle");
+        widget = getDefaultInfomationWidget();
+      }
       default -> {}
     }
   }
@@ -417,6 +422,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     String widgetId = DashboardWidgetUtils.generateNewWidgetId(NEWS);
     String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NEWS");
     return NewsDashboardWidget.buildDefaultWidget(widgetId, widgetName);
+  }
+  
+  private InfomationDashboardWidget getDefaultInfomationWidget() {
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.INFOMATION);
+    String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/INFORMATION");
+    return InfomationDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
 
   public void saveClientStatisticWidget(ClientStatistic clientStatistic) {

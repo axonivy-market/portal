@@ -79,6 +79,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: ケースウィジェット
       CLIENT_STATISTIC: 統計ウィジェット
       CUSTOM: カスタムウィジェット
+      INFORMATION: Infomation
       NEW: 新規ウィジェット
       NEWS: ニュースフィード
       NOTIFICATION: 通知
@@ -1446,6 +1447,8 @@ Dialogs:
               chooseAJsonFile: JSON ファイルを選択してください
             DashboardSharing:
               ShareDashboard: ダッシュボードを共有
+            InfomationWidgetConfiguration:
+              InfomationWidgetTitle: ''
             NewsWidget:
               NewsContentPlaceHolder: ニュースコンテンツを入力
               NewsContentValidateMessage: '{0} のニュースコンテンツは必須です'

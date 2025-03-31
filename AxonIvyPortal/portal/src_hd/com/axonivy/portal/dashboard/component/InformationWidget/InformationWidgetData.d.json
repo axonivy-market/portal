@@ -1,0 +1,6 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
+  "simpleName" : "InformationWidgetData",
+  "namespace" : "com.axonivy.portal.dashboard.component.InformationWidget",
+  "isBusinessCaseData" : false
+}
