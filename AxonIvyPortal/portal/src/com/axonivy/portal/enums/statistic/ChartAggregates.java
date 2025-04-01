@@ -19,7 +19,7 @@ public enum ChartAggregates {
   START_TIMESTAMP("startTimestamp"),
   END_TIMESTAMP("endTimestamp"),
   EXPIRY_TIMESTAMP("expiryTimestamp"),
-  CUSTOM_FIELD("customFields.typeOfCustomField.*");
+  CUSTOM_FIELD("customFields.*.*");
 
   private ChartAggregates(String name) {
     this.name = name;

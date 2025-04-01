@@ -15,6 +15,7 @@ public class StatisticAggregation implements Serializable {
 
   private ChartAggregates aggregate;
   private CustomFieldType customFieldType;
+  private String customFieldValue;
   private DateTimeOperator operator;
 
   public ChartAggregates getAggregate() {
@@ -39,6 +40,14 @@ public class StatisticAggregation implements Serializable {
 
   public void setOperator(DateTimeOperator operator) {
     this.operator = operator;
+  }
+
+  public String getCustomFieldValue() {
+    return customFieldValue;
+  }
+
+  public void setCustomFieldValue(String customFieldValue) {
+    this.customFieldValue = customFieldValue;
   }
 
 }
