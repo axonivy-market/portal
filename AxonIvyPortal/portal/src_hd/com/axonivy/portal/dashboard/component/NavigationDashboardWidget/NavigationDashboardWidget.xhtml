@@ -35,15 +35,9 @@
         <p:commandButton id="enterDashboardBtn"
                          styleClass="ui-button w-full ui-button-text-only u-mar-right-5"
                          disabled="#{!navigationDashboardWidgetBean.hasPermissionToClick(widget) and !isReadOnyMode}" action="#{navigationDashboardWidgetBean.redirectToDashboard(widget, dashboardBean.selectedDashboard)}"
-                         value="Navigate">
+                         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/navigateTo')}">
         </p:commandButton>
     </div>
-    <h:outputScript>
-       function handleBreadcrumbClick(dashboardId) {
-           PF('breadcrumbUpdateCommand').call([{name: 'dashboardId', value: dashboardId}]);
-           return false;
-       }
-</h:outputScript>
 </h:panelGroup>
     </ui:define>
   </ui:decorate>
