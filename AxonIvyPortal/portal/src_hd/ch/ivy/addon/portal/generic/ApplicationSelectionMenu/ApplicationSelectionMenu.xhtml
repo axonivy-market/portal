@@ -20,13 +20,9 @@
 
   <!-- LOGO  -->
   <div class="sidebar-logo">
-    <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" oncomplete="cleanSubitemList();">
+    <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" onclick="cleanNavigationDashboardBreadcrumb();">
       <p:graphicImage styleClass="portal-home-logo" name="#{ivyFreyaTheme.logo}" library="ivy-branding" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}"/>
     </p:commandLink>
-        <p:remoteCommand id="cleanSubitemList" name="cleanSubitemList"
-                         process="@this"
-                         action="#{navigationDashboardWidgetBean.cleanSubitemList()}"/>
-    
     <p:commandLink id="logo-small" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" styleClass="portal-home-logo-small">
       <p:graphicImage styleClass="portal-home-logo portal-home-logo-small" name="logo_small" library="ivy-branding" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
@@ -64,6 +60,8 @@
           actionListener="#{logic.clickBreadcrumb('TASK')}" oncomplete="PF('task-losing-confirmation-dialog').show();" />
         <p:remoteCommand name="navigateToHomeFromBreadcrumb" immediate="true"
           actionListener="#{logic.clickBreadcrumb('HOME')}" oncomplete="PF('task-losing-confirmation-dialog').show();" />
+        <p:remoteCommand name="cleanNavigationDashboardBreadcrumb" id="cleanNavigationDashboardBreadcrumb"
+          actionListener="#{navigationDashboardWidgetBean.removeNavigationDashboardBreadcrumb()}" global="false"/>
       </h:form>
     </div>
   </h:panelGroup>
