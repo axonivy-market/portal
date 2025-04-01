@@ -20,6 +20,9 @@
           immediate="true" process="@this" update="@none" global="false"/>
       </h:form>
       <div class="ui-g js-dashboard__wrapper #{managedBean.isReadOnlyMode ? 'js-view-mode':''}">
+      <div id="screen-reader-notification" aria-live="assertive" class="screenreader-only">
+         #{dashboardBean.getScreenReaderNotificationContent()}
+      </div>
       <!-- Dashboard content -->
       <ui:fragment>
         <h:outputStylesheet library="css" name="dashboard.css" />
