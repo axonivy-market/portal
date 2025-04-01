@@ -44,13 +44,16 @@
       <h:outputText id="welcome-text" styleClass="welcome-text #{widget.welcomeTextStyleClass}" value="#{dashboardWelcomeWidgetBean.sanitizeHTML(widget.welcomeText)}" escape="false" />
 
       <p:graphicImage id="default-image" cache="true" styleClass="welcome-image default-welcome-image js-welcome-image #{widget.imageStyleClass}"
+        alt="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/WelcomeDashboardWidget/WelcomeToAxon')}"
         library="ivy-cms" rendered="#{empty widget.imageLocation}" name="#{dashboardWelcomeWidgetBean.defaultImageLink}" />
 
       <p:graphicImage id="default-image-dark" cache="true" styleClass="welcome-image default-welcome-image-dark js-welcome-image #{widget.imageStyleClass}"
+        alt="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/WelcomeDashboardWidget/WelcomeToAxon')}"
         library="ivy-cms" rendered="#{empty widget.imageLocation}" name="#{dashboardWelcomeWidgetBean.defaultImageDarkLink}" />
 
       <h:panelGroup rendered="#{not empty widget.imageLocation}">
         <p:graphicImage id="welcome-image" styleClass="welcome-image js-welcome-image #{widget.imageStyleClass}"
+          alt="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/WelcomeDashboardWidget/WelcomeToAxon')}"
           library="ivy-cms"
           rendered="#{widget.imageContentObject.exists()}"
           name="#{widget.imageContentObject.uri()}"/>

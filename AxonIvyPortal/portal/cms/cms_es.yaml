@@ -1584,6 +1584,8 @@ Dialogs:
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: Arrastrar y soltar para cambiar el orden.
                   DragAndDropTooltip: Haz clic en vista previa y arrastra y suelta para cambiar el orden
+                WelcomeDashboardWidget:
+                  WelcomeToAxon: Bienvenido a Axon Ivy Portal
         portalkit:
           component:
             CaseItemDetails:
