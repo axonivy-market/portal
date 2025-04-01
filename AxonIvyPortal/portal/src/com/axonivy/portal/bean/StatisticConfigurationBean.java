@@ -217,6 +217,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void save() {
+    Ivy.log().info("isRefreshIntervalInValid " + isRefreshIntervalInValid());
     if (isRefreshIntervalInValid()) {
       return;
     }
@@ -328,7 +329,7 @@ public class StatisticConfigurationBean implements Serializable {
 
   public void getPreviewData() {
     handleCustomFieldAggregation();
-//    handleAggregateWithDateTimeOperator();
+    handleAggregateWithDateTimeOperator();
     syncUIConfigWithChartConfig();
 
     Ivy.log().info("check query aggregate");
@@ -563,7 +564,7 @@ public class StatisticConfigurationBean implements Serializable {
   
   private void handleCustomFieldAggregation() {
     if(!isCustomFieldsSelected()) {
-//      resetCustomFieldAndDateTimeOperator();
+      resetCustomFieldAndDateTimeOperator();
       statistic.setAggregates(statistic.getStatisticAggregation().getAggregate().getName());
       return;
     }
@@ -634,8 +635,8 @@ public class StatisticConfigurationBean implements Serializable {
 
     List<String> metricOperator = Arrays.asList("MAX", "MIN", "AVG");
     String finalAggregation = metricOperator.contains(dateTimeOperator)
-        ? statistic.getAggregates() + ":" + dateTimeOperator.getName()
-        : statistic.getAggregates() + ":bucket:" + dateTimeOperator.getName();
+        ? statistic.getAggregates() + ":" + dateTimeOperator.getName().toLowerCase()
+        : statistic.getAggregates() + ":bucket:" + dateTimeOperator.getName().toLowerCase();
     
     statistic.setAggregates(finalAggregation);
   }
@@ -706,8 +707,10 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void onSelectOperator() {
+    Ivy.log().info(dateTimeOperator);
+    statistic.getStatisticAggregation().setOperator(dateTimeOperator);
     if (dateTimeOperator != null && isCustomFieldsSelected()) {
-      statistic.setAggregates(statistic.getAggregates() + ":bucket:" + dateTimeOperator.toString());
+      statistic.setAggregates(statistic.getAggregates() + ":bucket:" + dateTimeOperator.toString().toLowerCase());
     }
   }
 
