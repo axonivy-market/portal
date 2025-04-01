@@ -12,7 +12,7 @@ import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 
 import java.io.IOException;
 
-import com.axonivy.portal.dto.dashboard.InfomationDashboardWidget;
+import com.axonivy.portal.dto.dashboard.InformationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 
@@ -99,9 +99,9 @@ public class DashboardCloneUtils {
         widget = notificationWidget;
         widget.setId(DashboardWidgetUtils.generateNewWidgetId(NOTIFICATION));
       }
-      case InfomationDashboardWidget infomationWdiget -> {
-        widget = infomationWdiget;
-        widget.setId(DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.INFOMATION));
+      case InformationDashboardWidget informationWdiget -> {
+        widget = informationWdiget;
+        widget.setId(DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.INFORMATION));
       }
       default -> {}
     }

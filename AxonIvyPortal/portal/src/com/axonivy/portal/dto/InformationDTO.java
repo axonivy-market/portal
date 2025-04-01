@@ -5,14 +5,14 @@ import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.enums.InfomationColumn;
+import com.axonivy.portal.enums.InformationColumn;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
 
-public class InfomationDTO extends AbstractConfiguration implements Serializable {
+public class InformationDTO extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = 2826532137796682507L;
 
@@ -22,22 +22,22 @@ public class InfomationDTO extends AbstractConfiguration implements Serializable
   private String content;
 
   @JsonIgnore
-  private Locale local;
+  private Locale locale;
   @JsonIgnore
   private ContentObject contentObject;
 
-  public InfomationDTO() {}
+  public InformationDTO() {}
 
-  public InfomationDTO(ContentObject contentObject) {
+  public InformationDTO(ContentObject contentObject) {
     this.setId(contentObject.name());
     this.contentObject = contentObject;
-    this.icon = getCMSValueByKey(InfomationColumn.ICON);
-    this.name = getCMSValueByKey(InfomationColumn.NAME);
-    this.content = getCMSValueByKey(InfomationColumn.CONTENT);
-    this.local = Ivy.session().getContentLocale();
+    this.icon = getCMSValueByKey(InformationColumn.ICON);
+    this.name = getCMSValueByKey(InformationColumn.NAME);
+    this.content = getCMSValueByKey(InformationColumn.CONTENT);
+    this.locale = Ivy.session().getContentLocale();
   }
 
-  private String getCMSValueByKey(InfomationColumn column) {
+  private String getCMSValueByKey(InformationColumn column) {
     return Ivy.cms().co(contentObject.child().string(column.getKey()).uri());
   }
 
@@ -65,12 +65,12 @@ public class InfomationDTO extends AbstractConfiguration implements Serializable
     this.content = content;
   }
 
-  public Locale getLocal() {
-    return local;
+  public Locale getLocale() {
+    return locale;
   }
 
-  public void setLocal(Locale local) {
-    this.local = local;
+  public void setLocale(Locale local) {
+    this.locale = local;
   }
 
   public ContentObject getContentObject() {

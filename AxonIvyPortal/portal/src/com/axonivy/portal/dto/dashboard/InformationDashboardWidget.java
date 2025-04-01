@@ -2,7 +2,7 @@ package com.axonivy.portal.dto.dashboard;
 
 import java.util.ArrayList;
 
-import com.axonivy.portal.dto.InfomationDTO;
+import com.axonivy.portal.dto.InformationDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
@@ -11,16 +11,16 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 
-public class InfomationDashboardWidget extends DashboardWidget{
+public class InformationDashboardWidget extends DashboardWidget{
 
   private static final long serialVersionUID = -4330932580998493468L;
   @JsonIgnore
-  private InfomationDTO information;
+  private InformationDTO information;
   private boolean showFullscreenMode;
 
 
-  public static InfomationDashboardWidget buildDefaultWidget(String widgetId, String widgetName) {
-    InfomationDashboardWidget widget = new InfomationDashboardWidget();
+  public static InformationDashboardWidget buildDefaultWidget(String widgetId, String widgetName) {
+    InformationDashboardWidget widget = new InformationDashboardWidget();
     widget.setId(widgetId);
     NameResult nameResult = LanguageUtils.collectMultilingualNames(new ArrayList<>(), widgetName);
     widget.setNames(nameResult.names());
@@ -44,14 +44,14 @@ public class InfomationDashboardWidget extends DashboardWidget{
 
   @Override
   public DashboardWidgetType getType() {
-    return DashboardWidgetType.INFOMATION;
+    return DashboardWidgetType.INFORMATION;
   }
 
-  public InfomationDTO getInformation() {
+  public InformationDTO getInformation() {
     return information;
   }
 
-  public void setInformation(InfomationDTO information) {
+  public void setInformation(InformationDTO information) {
     this.information = information;
   }
 

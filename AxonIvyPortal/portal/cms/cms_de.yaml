@@ -79,7 +79,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: Vorgangs-Widget
       CLIENT_STATISTIC: Statistik-Widget
       CUSTOM: Benutzerdefiniertes Widget
-      INFORMATION: Infomation
+      INFORMATION: Information
       NEW: Neues Widget
       NEWS: Nachrichten
       NOTIFICATION: Benachrichtigungen
@@ -1422,8 +1422,8 @@ Dialogs:
               chooseAJsonFile: Wählen Sie eine JSON-Datei
             DashboardSharing:
               ShareDashboard: Dashboard teilen
-            InfomationWidgetConfiguration:
-              InfomationWidgetTitle: ''
+            InformationWidgetConfiguration:
+              InformationWidgetTitle: ''
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
               NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich

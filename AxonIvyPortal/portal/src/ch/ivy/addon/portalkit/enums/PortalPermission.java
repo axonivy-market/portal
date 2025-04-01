@@ -36,7 +36,7 @@ public enum PortalPermission {
   NEWS_MANAGEMENT("NewsManagement", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   PASSWORD_VALIDATION("PasswordValidation", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   CASE_OWNER_TASK_DELEGATE("CaseOwnerTaskDelegate",
-      PortalPermissionGroup.CASE_PERMISSIONS_GROUP), INFOMATION_WIGET_MANAGEMENT("InfomationWidgetManagement",
+      PortalPermissionGroup.CASE_PERMISSIONS_GROUP), INFORMATION_WIGET_MANAGEMENT("InformationWidgetManagement",
           PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP);
 
   private String value;

@@ -1,11 +1,11 @@
 package com.axonivy.portal.enums;
 
-public enum InfomationColumn {
+public enum InformationColumn {
   ICON("icon"), NAME("name"), CONTENT("content");
 
   private String key;
 
-  InfomationColumn(String key) {
+  InformationColumn(String key) {
     this.key = key;
   }
 

@@ -46,7 +46,7 @@ import com.axonivy.portal.bo.ClientStatistic;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.News;
-import com.axonivy.portal.dto.dashboard.InfomationDashboardWidget;
+import com.axonivy.portal.dto.dashboard.InformationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
@@ -145,7 +145,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void initSampleWidgets() {
     if (CollectionUtils.isEmpty(samples)) {
       samples = List.of(taskSample(), caseSample(), processSample(), externalPageSample(),
-          processViewerSample(), welcomeWidgetSample(), newsSample(), notificationSample());
+          processViewerSample(), welcomeWidgetSample(), newsSample(), notificationSample(), informationSample());
       samples = samples.stream().sorted(Comparator.comparing(WidgetSample::getName)).collect(Collectors.toList());
     }
     initCustomWidgets();
@@ -234,6 +234,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NOTIFICATION"),
         NOTIFICATION, "si si-alarm-bell", translate("/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidgetConfiguration/NotificationWidgetDescription"), true);
   }
+  
+  private WidgetSample informationSample() {
+    return new WidgetSample("Information", DashboardWidgetType.INFORMATION, "si si-information-circle", "Description",
+        true);
+  }
 
   public void restore() {
     removeWelcomeWidgetImagesOfDashboard(getSelectedDashboard());
@@ -300,9 +305,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         newWidgetHeader = translate("/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidgetConfiguration/NotificationWidgetConfiguration");
         widget = getDefaultNotificationWidget();
       }
-      case INFOMATION ->{
-        newWidgetHeader = translate("/Dialogs/com/axonivy/portal/dashboard/component/InfomationWidgetConfiguration/InfomationWidgetTitle");
-        widget = getDefaultInfomationWidget();
+      case INFORMATION -> {
+        newWidgetHeader = translate(
+            "/Dialogs/com/axonivy/portal/dashboard/component/InformationWidgetConfiguration/InformationWidgetTitle");
+        widget = getDefaultInformationWidget();
       }
       default -> {}
     }
@@ -424,10 +430,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return NewsDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
   
-  private InfomationDashboardWidget getDefaultInfomationWidget() {
-    String widgetId = DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.INFOMATION);
+  private InformationDashboardWidget getDefaultInformationWidget() {
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.INFORMATION);
     String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/INFORMATION");
-    return InfomationDashboardWidget.buildDefaultWidget(widgetId, widgetName);
+    return InformationDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
 
   public void saveClientStatisticWidget(ClientStatistic clientStatistic) {
@@ -1014,7 +1020,8 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     DashboardWidget processWidget = getWidget();
     if (processWidget != null) {
       componentId = DEFAULT_WIDGET_TITLE_ID;
-      if (NEWS != processWidget.getType() && CASE != processWidget.getType() && TASK != processWidget.getType()) {
+      if (NEWS != processWidget.getType() && CASE != processWidget.getType() && TASK != processWidget.getType()
+          && DashboardWidgetType.INFORMATION != processWidget.getType()) {
         String userFilterId = String.format(DEFAULT_USER_FILTER_ID, processWidget.getId());
         componentId = componentId.concat(" ").concat(userFilterId);
       } 
