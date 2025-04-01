@@ -103,7 +103,7 @@
                       <f:selectItems value="#{statisticConfigurationBean.getAllAvailableAggregates()}"
                         var="aggregate" itemValue="#{aggregate}" itemLabel="#{statisticConfigurationBean.getUserFriendlyAggregateName(aggregate)}" />
                       <p:ajax listener="#{statisticConfigurationBean.onSelectAggregates()}"
-                        update="chart-aggregation" />
+                        update="chart-aggregation " />
                     </p:selectOneMenu>
 
                     <!-- CUSTOM FIELD SELECTION -->

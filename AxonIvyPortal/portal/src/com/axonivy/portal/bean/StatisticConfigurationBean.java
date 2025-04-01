@@ -331,8 +331,14 @@ public class StatisticConfigurationBean implements Serializable {
 //    handleAggregateWithDateTimeOperator();
     syncUIConfigWithChartConfig();
 
+    Ivy.log().info("check query aggregate");
     Ivy.log().info(statistic.getAggregates());
-    Ivy.log().info(statistic.getStatisticAggregation());
+    Ivy.log().info("check aggregate object");
+    Ivy.log().info(statistic.getStatisticAggregation().getAggregate().getName());
+    Ivy.log().info(statistic.getStatisticAggregation().getCustomFieldValue());
+    Ivy.log().info(statistic.getStatisticAggregation().getCustomFieldType());
+    Ivy.log().info(statistic.getStatisticAggregation().getOperator());
+    Ivy.log().info("=====================================================");
     StatisticService statisticService = StatisticService.getInstance();
     statistic.setAdditionalConfigs(new ArrayList<>());
     statistic.getAdditionalConfigs().addAll(statisticService.getAdditionalConfig());
@@ -569,7 +575,10 @@ public class StatisticConfigurationBean implements Serializable {
      */
     if(this.currentCustomFieldType == null) {
       this.currentCustomFieldType = CustomFieldType.STRING;
+      this.currentCustomField = "HIDE";
       statistic.setAggregates("customFields.strings.HIDE");
+      initValueForStatisticAggregation(ChartAggregates.CUSTOM_FIELD, currentCustomFieldType, currentCustomField,
+          dateTimeOperator);
       return;
     }
     // ****************************************************************
@@ -624,11 +633,11 @@ public class StatisticConfigurationBean implements Serializable {
     // ****************************************************************
 
     List<String> metricOperator = Arrays.asList("MAX", "MIN", "AVG");
-//    String finalAggregation = metricOperator.contains(dateTimeOperator)
-//        ? statistic.getAggregates() + ":" + dateTimeOperator.toLowerCase()
-//        : statistic.getAggregates() + ":bucket:" + dateTimeOperator.toLowerCase();
-//    
-//    statistic.setAggregates(finalAggregation);
+    String finalAggregation = metricOperator.contains(dateTimeOperator)
+        ? statistic.getAggregates() + ":" + dateTimeOperator.getName()
+        : statistic.getAggregates() + ":bucket:" + dateTimeOperator.getName();
+    
+    statistic.setAggregates(finalAggregation);
   }
 
   public String getCurrentCustomFieldDescription() {
@@ -668,6 +677,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void onSelectCustomField() {
+    statistic.getStatisticAggregation().setCustomFieldValue(currentCustomField);
     findCustomFieldMeta().ifPresent(meta -> {
       this.currentCustomField = meta.name();
       this.currentCustomFieldType = meta.type();
