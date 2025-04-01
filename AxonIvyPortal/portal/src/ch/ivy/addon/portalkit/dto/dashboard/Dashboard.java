@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import ch.ivy.addon.portalkit.DashboardDisplayType;
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
@@ -32,19 +33,18 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   private List<SecurityMemberDTO> permissionDTOs;
   @JsonIgnore
   private String displayedPermission;
-  private Boolean isTopMenu;
-  private Boolean isHiddenOnDashboardMenu;
+
   @JsonIgnore
   private Boolean isContainNavigationDashboardWidget;
+  private DashboardDisplayType selectedDashboardDisplayType;
   
   @JsonIgnore
   private Boolean isResponsive;
 
   public Dashboard() {
     // Set default values
-    isTopMenu = false;
+    selectedDashboardDisplayType = DashboardDisplayType.SUB_MENU;
     isResponsive = false;
-    isHiddenOnDashboardMenu = false;
   }
 
   public Dashboard(Dashboard dashboard) {
@@ -60,9 +60,8 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     permissions = dashboard.permissions;
     permissionDTOs = dashboard.permissionDTOs;
     displayedPermission = dashboard.displayedPermission;
-    isTopMenu = dashboard.isTopMenu;
+    selectedDashboardDisplayType = dashboard.selectedDashboardDisplayType;
     isResponsive = dashboard.isResponsive;
-    isHiddenOnDashboardMenu = dashboard.isHiddenOnDashboardMenu;
   }
   
   public String getTitle() {
@@ -147,22 +146,6 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     this.templateId = templateId;
   }
 
-  public Boolean getIsTopMenu() {
-    return isTopMenu;
-  }
-
-  public void setIsTopMenu(Boolean isTopMenu) {
-    this.isTopMenu = isTopMenu;
-  }
-  
-  public Boolean getIsHiddenOnDashboardMenu() {
-    return this.isHiddenOnDashboardMenu;
-  }
-  
-  public void setIsHiddenOnDashboardMenu(Boolean isHiddenOnDashboardMenu) {
-    this.isHiddenOnDashboardMenu = isHiddenOnDashboardMenu;
-  }
-  
   public Boolean getIsContainNavigationDashboardWidget() {
     return this.isContainNavigationDashboardWidget;
   }
@@ -187,6 +170,14 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     int result = 1;
     result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
     return result;
+  }
+  
+  public DashboardDisplayType getSelectedDashboardDisplayType() {
+    return this.selectedDashboardDisplayType;
+  }
+  
+  public void setSelectedDashboardDisplayType(DashboardDisplayType selectedDashboardDisplayType) {
+    this.selectedDashboardDisplayType = selectedDashboardDisplayType;
   }
 
   @Override

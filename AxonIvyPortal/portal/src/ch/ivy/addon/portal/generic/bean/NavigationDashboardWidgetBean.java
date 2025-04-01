@@ -92,7 +92,7 @@ public class NavigationDashboardWidgetBean implements Serializable {
     model.getElements().addAll(newList);
   }
   
-  public void cleanSubitemList() {
+  public void removeNavigationDashboardBreadcrumb() {
     submenu.getElements().clear();
     model.getElements().clear();
   }

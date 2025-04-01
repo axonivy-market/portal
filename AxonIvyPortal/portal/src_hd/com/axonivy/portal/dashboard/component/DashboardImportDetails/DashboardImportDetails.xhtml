@@ -157,8 +157,10 @@
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayAsTopMenu')}" />
                   </div>
                   <div class="ui-g-8 ui-fluid">
-                    <p:selectBooleanCheckbox id="main-dashboard-menu-item" value="#{dashboard.isTopMenu}"
-                       required="false" />
+                    <p:selectOneMenu id="dashboard-display-menu" value="#{managedBean.selectedDashboard.selectedDashboardDisplayType}"
+                     styleClass="dashboard-display-dropdown">
+                       <f:selectItems value="#{managedBean.dashboardDisplayTypeList}" var="type" itemLabel="#{managedBean.getDashboardDisplayTypeLabel(type)}" itemValue="#{type}"/>
+                    </p:selectOneMenu>
                   </div>
                 </h:panelGroup>
               </div>

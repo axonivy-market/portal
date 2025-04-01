@@ -35,6 +35,7 @@ import ch.addon.portal.generic.menu.PortalMenuItem.PortalMenuBuilder;
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.DashboardDisplayType;
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
@@ -180,7 +181,7 @@ public class MenuView implements Serializable {
     DefaultSubMenu dashboardGroupMenu = createDashboardGroupMenu(defaultTitle, mainMenuDisplayName, mainMenuIcon);
 
     for (Dashboard board : subItemDashboards) {
-      if (board.getIsTopMenu()) {
+      if (DashboardDisplayType.TOP_MENU.equals(board.getSelectedDashboardDisplayType())) {
         continue;
       }
       String iconClass = determineIconClass(board);

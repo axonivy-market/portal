@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.io.IOException;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -13,7 +14,6 @@ import java.util.UUID;
 import java.util.function.Consumer;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
@@ -22,6 +22,7 @@ import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemp
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ch.ivy.addon.portalkit.DashboardDisplayType;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
@@ -181,7 +182,7 @@ public class DashboardUtils {
 
   public static List<Dashboard> collectMainDashboards() {
     List<Dashboard> collectedDashboards =
-        new ArrayList<>(getPublicDashboards().stream().filter(dashboard -> dashboard.getIsTopMenu()).toList());
+        new ArrayList<>(getPublicDashboards().stream().filter(dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getSelectedDashboardDisplayType())).toList());
     return collectedDashboards;
   }
 
@@ -264,7 +265,7 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> getDashboardsWithoutMenuItem() {
-    return collectDashboards().stream().filter(dashboard -> !dashboard.getIsTopMenu() && !dashboard.getIsHiddenOnDashboardMenu()).toList();
+    return collectDashboards().stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getSelectedDashboardDisplayType())).toList();
   }
 
   public static String getSelectedMainDashboardIdFromSession() {
@@ -281,9 +282,15 @@ public class DashboardUtils {
     if (StringUtils.isEmpty(dashboardId)) {
       return false;
     }
-    boolean isMainDashboard = Optional.ofNullable(getPortalDashboardItemWrapper()).map(wrapper -> wrapper.dashboards())
-        .orElse(new ArrayList<>()).stream().filter(dashboard -> dashboardId.equals(dashboard.getId()))
-        .map(dashboard -> dashboard.getIsTopMenu()).findFirst().orElse(defaultValue);
+    boolean isMainDashboard = Optional.ofNullable(getPortalDashboardItemWrapper())
+        .map(wrapper -> wrapper.dashboards())
+        .orElse(new ArrayList<>())
+        .stream()
+        .filter(dashboard -> dashboardId.equals(dashboard.getId()))
+        .map(dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getSelectedDashboardDisplayType()))
+        .findFirst()
+        .orElse(defaultValue);
+    
     return isMainDashboard;
   }
 
@@ -296,11 +303,11 @@ public class DashboardUtils {
     if (CollectionUtils.isEmpty(dashboards)) {
       return;
     }
-    for (Dashboard dashboard : dashboards) {
-      if (BooleanUtils.isFalse(dashboard.getIsTopMenu())) {
-        dashboard.setIsTopMenu(null);
-      }
-    }
+//    for (Dashboard dashboard : dashboards) {
+//      if (BooleanUtils.isFalse(dashboard.getIsTopMenu())) {
+//        dashboard.setIsTopMenu(null);
+//      }
+//    }
   }
 
   public static boolean isDefaultTaskListDashboard(Dashboard dashboard) {

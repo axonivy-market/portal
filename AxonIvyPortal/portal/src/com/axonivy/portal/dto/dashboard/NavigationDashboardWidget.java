@@ -10,6 +10,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.DashboardDisplayType;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
@@ -109,7 +110,7 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
   }
   
   public List<Dashboard> getDashboardList() {
-    List<Dashboard> list = DashboardUtils.getPublicDashboards().stream().filter(dashboard -> !dashboard.getIsTopMenu()).collect(Collectors.toList());
+    List<Dashboard> list = DashboardUtils.getPublicDashboards().stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getSelectedDashboardDisplayType())).collect(Collectors.toList());
     setDashboardList(list);
     if (list.isEmpty()) {
       return this.dashboardList;
@@ -118,7 +119,7 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
   }
   
   public String getDashboardNameById(String id) {
-    List<Dashboard> list = DashboardUtils.getPublicDashboards().stream().filter(dashboard -> !dashboard.getIsTopMenu()).collect(Collectors.toList());
+    List<Dashboard> list = DashboardUtils.getPublicDashboards().stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getSelectedDashboardDisplayType())).collect(Collectors.toList());
     Dashboard dashboard = list.stream().filter(item -> item.getId().equals(id)).findAny().orElse(null);
     if (dashboard != null) {
       return dashboard.getTitle();

@@ -23,6 +23,7 @@ import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
 import ch.ivy.addon.portal.generic.bean.DashboardModificationBean;
+import ch.ivy.addon.portalkit.DashboardDisplayType;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
@@ -92,7 +93,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
       selectedDashboard.setPermissionDTOs(new ArrayList<>());
       findAndSetPermissions();
       if (!isPublicDashboard) {
-        selectedDashboard.setIsTopMenu(false);
+        selectedDashboard.setSelectedDashboardDisplayType(DashboardDisplayType.SUB_MENU);
       }
     });
 

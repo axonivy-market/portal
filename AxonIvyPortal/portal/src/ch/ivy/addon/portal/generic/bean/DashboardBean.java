@@ -25,6 +25,7 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.service.DeepLTranslationService;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.DashboardDisplayType;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
@@ -85,11 +86,12 @@ public class DashboardBean implements Serializable {
   private String clientStatisticApiUri;
   private String selectedDashboardName;
   private String searchScope;
+  private List<String> dashboardDisplayTypeList;
 
   @PostConstruct
   public void init() {
     currentDashboardIndex = 0;
-
+    
     if (isReadOnlyMode) {
       DashboardUtils.updateDashboardCache();
     }
@@ -197,7 +199,7 @@ public class DashboardBean implements Serializable {
 
   public void handleStartTask(ITask task) throws IOException {
     selectedTask = task;
-    if (selectedDashboard.getIsTopMenu()) {
+    if (DashboardDisplayType.TOP_MENU.equals(selectedDashboard.getSelectedDashboardDisplayType())) {
       TaskUtils.handleStartTask(task, PortalPage.HOME_PAGE, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG,
           selectedDashboardId);
     } else {
@@ -406,11 +408,11 @@ public class DashboardBean implements Serializable {
 
     if (StringUtils.isNotBlank(selectedDashboardId)) {
       return dashboards.stream().filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst()
-          .map(dashboards::indexOf).orElse(dashboards.stream().filter(dashboard -> !dashboard.getIsTopMenu())
+          .map(dashboards::indexOf).orElse(dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getSelectedDashboardDisplayType()))
               .findFirst().map(dashboards::indexOf).orElse(0));
     }
 
-    return dashboards.stream().filter(dashboard -> !dashboard.getIsTopMenu()).findFirst().map(dashboards::indexOf)
+    return dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getSelectedDashboardDisplayType())).findFirst().map(dashboards::indexOf)
         .orElse(0);
   }
 
@@ -567,5 +569,12 @@ public class DashboardBean implements Serializable {
   public String getDashboardUrlByDashboard(String id) {
     return UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(id);
   }
-
+  
+  public List<String> getDashboardDisplayTypeList() {
+    return DashboardDisplayType.getTypeList();
+  }
+  
+  public String getDashboardDisplayTypeLabel(DashboardDisplayType type) {
+    return DashboardDisplayType.getDisplayLabel(type);
+  }
 }
