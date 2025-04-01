@@ -303,11 +303,6 @@ public class DashboardUtils {
     if (CollectionUtils.isEmpty(dashboards)) {
       return;
     }
-//    for (Dashboard dashboard : dashboards) {
-//      if (BooleanUtils.isFalse(dashboard.getIsTopMenu())) {
-//        dashboard.setIsTopMenu(null);
-//      }
-//    }
   }
 
   public static boolean isDefaultTaskListDashboard(Dashboard dashboard) {

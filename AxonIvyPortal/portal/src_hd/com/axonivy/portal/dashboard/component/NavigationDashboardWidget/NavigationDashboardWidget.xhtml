@@ -34,7 +34,7 @@
     <div class="mt-auto">
         <p:commandButton id="enterDashboardBtn"
                          styleClass="ui-button w-full ui-button-text-only u-mar-right-5"
-                         disabled="#{!isReadOnlyMode}" action="#{navigationDashboardWidgetBean.redirectToDashboard(widget, dashboardBean.selectedDashboard)}"
+                         disabled="#{!navigationDashboardWidgetBean.hasPermissionToClick(widget) and !isReadOnyMode}" action="#{navigationDashboardWidgetBean.redirectToDashboard(widget, dashboardBean.selectedDashboard)}"
                          value="Navigate">
         </p:commandButton>
     </div>

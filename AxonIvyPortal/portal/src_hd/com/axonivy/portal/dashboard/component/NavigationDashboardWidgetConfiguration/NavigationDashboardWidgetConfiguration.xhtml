@@ -59,7 +59,7 @@
       <p:outputLabel styleClass="" for="@next" value="Navigate to"/>
       </div>
       <div class="ui-g-8">
-      <p:selectOneMenu id="dashboard-link-selection-menu" value="#{widget.targetDashboard}">
+      <p:selectOneMenu id="dashboard-link-selection-menu" value="#{widget.targetDashboardId}">
         <f:selectItems value="#{widget.dashboardList}" var="dashboard" itemLabel="#{dashboard.title}" itemValue="#{dashboard.id}"/>
       </p:selectOneMenu>
       </div>

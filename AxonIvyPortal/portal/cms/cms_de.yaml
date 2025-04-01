@@ -1421,6 +1421,7 @@ Dialogs:
               ShareDashboard: Dashboard teilen
             NavigationDashboardWidgetConfiguration:
               NavigationDashboardWidgetConfiguration: Navigation dashboard widget configuration
+              NavigationDashboardWidgetDescription: This widget allows users to jump directly to a linked dashboard via button click.
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
               NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich

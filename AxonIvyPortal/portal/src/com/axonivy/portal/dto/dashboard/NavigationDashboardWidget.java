@@ -2,15 +2,14 @@ package com.axonivy.portal.dto.dashboard;
 
 import java.io.Serializable;
 
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.ivy.addon.portalkit.DashboardDisplayType;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
@@ -21,7 +20,7 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
   
   private static final long serialVersionUID = -565012312312361L;
 
-  private String targetDashboard;
+  private String targetDashboardId;
   private String targetDashboardName;
 
   @JsonIgnore
@@ -29,7 +28,6 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
 
   private String title;
   private String description;
-  private String buttonName;
   
   @JsonIgnore
   private Boolean isDisable;
@@ -44,6 +42,7 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
   }
   
   public NavigationDashboardWidget() {
+    this.dashboardList = DashboardUtils.getPublicDashboards();
   }
   
   public static NavigationDashboardWidget buildDefaultWidget(String widgetId) {
@@ -57,16 +56,13 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
     return widget;
   }
   
-  public void setTargetDashboard(String targetDashboard) {
-    this.targetDashboard = targetDashboard;
+  public void setTargetDashboardId(String targetDashboardId) {
+    setTargetDashboardName(targetDashboardId);
+    this.targetDashboardId = targetDashboardId;
   }
   
-  public String getTargetDashboard() {
-    return this.targetDashboard;
-  }
-  
-  public void setDashboardList(List<Dashboard> dashboardList) {
-    this.dashboardList = dashboardList;
+  public String getTargetDashboardId() {
+    return this.targetDashboardId;
   }
   
   public void setIsDisable(Boolean isDisable) {
@@ -85,14 +81,6 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
     this.description = description;
   }
   
-  public String getButtonName() {
-    return this.buttonName;
-  }
-  
-  public void setButtonName(String buttonName) {
-    this.buttonName = buttonName;
-  }
-  
   public String getTitle() {
     return this.title;
   }
@@ -109,18 +97,16 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
     this.targetDashboardName = targetDashboardName;
   }
   
+  public void setDashboardList(List<Dashboard> dashboardList) {
+    this.dashboardList = dashboardList;
+  }
+  
   public List<Dashboard> getDashboardList() {
-    List<Dashboard> list = DashboardUtils.getPublicDashboards().stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getSelectedDashboardDisplayType())).collect(Collectors.toList());
-    setDashboardList(list);
-    if (list.isEmpty()) {
       return this.dashboardList;
-    }
-    return list;
   }
   
   public String getDashboardNameById(String id) {
-    List<Dashboard> list = DashboardUtils.getPublicDashboards().stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getSelectedDashboardDisplayType())).collect(Collectors.toList());
-    Dashboard dashboard = list.stream().filter(item -> item.getId().equals(id)).findAny().orElse(null);
+    Dashboard dashboard = this.dashboardList.stream().filter(item -> item.getId().equals(id)).findAny().orElse(null);
     if (dashboard != null) {
       return dashboard.getTitle();
     }

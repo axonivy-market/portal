@@ -236,7 +236,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   }
   
   private WidgetSample navigationDashboardWidget() {
-    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NAVIGATION_DASHBOARD"), DashboardWidgetType.NAVIGATION_DASHBOARD, "si si-navigation-right-circle", translate("Navigation Dashboard"), true);
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NAVIGATION_DASHBOARD"), DashboardWidgetType.NAVIGATION_DASHBOARD, "si si-navigation-right-circle", translate("/Dialogs/com/axonivy/portal/dashboard/component/NavigationDashboardWidgetConfiguration/NavigationDashboardWidgetDescription"), true);
   }
 
   public void restore() {
