@@ -36,7 +36,6 @@ public class WelcomeWidgetUtils {
     return imageLocation.startsWith(IMAGE_DIRECTORY.concat(FOLDER_DELIMITER).concat(widgetId));
   }
 
-
   /**
    * Silent migrate old welcome widget
    * @param widgetId welcome widget ID
