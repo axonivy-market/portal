@@ -34,8 +34,6 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   @JsonIgnore
   private String displayedPermission;
 
-  @JsonIgnore
-  private Boolean isContainNavigationDashboardWidget;
   private DashboardDisplayType selectedDashboardDisplayType;
   
   @JsonIgnore
@@ -144,14 +142,6 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
 
   public void setTemplateId(String templateId) {
     this.templateId = templateId;
-  }
-
-  public Boolean getIsContainNavigationDashboardWidget() {
-    return this.isContainNavigationDashboardWidget;
-  }
-  
-  public void setIsContainNavigationDashboardWidget(Boolean isContainNavigationDashboardWidget) {
-    this.isContainNavigationDashboardWidget = isContainNavigationDashboardWidget;
   }
 
   @JsonIgnore
