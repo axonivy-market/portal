@@ -591,7 +591,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: プロセス
     timeInformation: 時間情報
     timestamp: タイムスタンプ
-    topMenuItem: トップメニュー項目
     type: タイプ
     typeAdmin: すべての管理者
     typeAllUsers: すべてのユーザー
