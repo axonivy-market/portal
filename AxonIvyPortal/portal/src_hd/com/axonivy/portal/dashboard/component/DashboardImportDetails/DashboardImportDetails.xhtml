@@ -157,7 +157,7 @@
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/display')}" />
                   </div>
                   <div class="ui-g-8 ui-fluid">
-                    <p:selectOneMenu id="dashboard-display-menu" value="#{managedBean.selectedDashboard.selectedDashboardDisplayType}"
+                    <p:selectOneMenu id="dashboard-display-menu" value="#{managedBean.selectedDashboard.dashboardDisplayType}"
                      styleClass="dashboard-display-dropdown">
                        <f:selectItems value="#{managedBean.dashboardDisplayTypeList}" var="type" itemLabel="#{managedBean.getDashboardDisplayTypeLabel(type)}" itemValue="#{type}"/>
                     </p:selectOneMenu>

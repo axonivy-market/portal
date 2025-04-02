@@ -181,7 +181,7 @@ public class MenuView implements Serializable {
     DefaultSubMenu dashboardGroupMenu = createDashboardGroupMenu(defaultTitle, mainMenuDisplayName, mainMenuIcon);
 
     for (Dashboard board : subItemDashboards) {
-      if (DashboardDisplayType.TOP_MENU.equals(board.getSelectedDashboardDisplayType())) {
+      if (DashboardDisplayType.TOP_MENU.equals(board.getDashboardDisplayType())) {
         continue;
       }
       String iconClass = determineIconClass(board);

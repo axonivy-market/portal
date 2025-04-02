@@ -33,14 +33,14 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   private List<SecurityMemberDTO> permissionDTOs;
   @JsonIgnore
   private String displayedPermission;
-  private DashboardDisplayType selectedDashboardDisplayType;
+  private DashboardDisplayType dashboardDisplayType;
   
   @JsonIgnore
   private Boolean isResponsive;
 
   public Dashboard() {
     // Set default values
-    selectedDashboardDisplayType = DashboardDisplayType.SUB_MENU;
+    dashboardDisplayType = DashboardDisplayType.SUB_MENU;
     isResponsive = false;
   }
 
@@ -57,7 +57,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     permissions = dashboard.permissions;
     permissionDTOs = dashboard.permissionDTOs;
     displayedPermission = dashboard.displayedPermission;
-    selectedDashboardDisplayType = dashboard.selectedDashboardDisplayType;
+    dashboardDisplayType = dashboard.dashboardDisplayType;
     isResponsive = dashboard.isResponsive;
   }
   
@@ -161,12 +161,12 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     return result;
   }
   
-  public DashboardDisplayType getSelectedDashboardDisplayType() {
-    return this.selectedDashboardDisplayType;
+  public DashboardDisplayType getDashboardDisplayType() {
+    return this.dashboardDisplayType;
   }
   
-  public void setSelectedDashboardDisplayType(DashboardDisplayType selectedDashboardDisplayType) {
-    this.selectedDashboardDisplayType = selectedDashboardDisplayType;
+  public void setDashboardDisplayType(DashboardDisplayType dashboardDisplayType) {
+    this.dashboardDisplayType = dashboardDisplayType;
   }
 
   @Override

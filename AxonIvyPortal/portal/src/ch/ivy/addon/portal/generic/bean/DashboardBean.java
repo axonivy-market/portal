@@ -199,7 +199,7 @@ public class DashboardBean implements Serializable {
 
   public void handleStartTask(ITask task) throws IOException {
     selectedTask = task;
-    if (DashboardDisplayType.TOP_MENU.equals(selectedDashboard.getSelectedDashboardDisplayType())) {
+    if (DashboardDisplayType.TOP_MENU.equals(selectedDashboard.getDashboardDisplayType())) {
       TaskUtils.handleStartTask(task, PortalPage.HOME_PAGE, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG,
           selectedDashboardId);
     } else {
@@ -408,11 +408,11 @@ public class DashboardBean implements Serializable {
 
     if (StringUtils.isNotBlank(selectedDashboardId)) {
       return dashboards.stream().filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst()
-          .map(dashboards::indexOf).orElse(dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getSelectedDashboardDisplayType()))
+          .map(dashboards::indexOf).orElse(dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType()))
               .findFirst().map(dashboards::indexOf).orElse(0));
     }
 
-    return dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getSelectedDashboardDisplayType())).findFirst().map(dashboards::indexOf)
+    return dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())).findFirst().map(dashboards::indexOf)
         .orElse(0);
   }
 

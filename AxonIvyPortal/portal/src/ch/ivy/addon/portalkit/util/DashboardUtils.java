@@ -182,7 +182,7 @@ public class DashboardUtils {
 
   public static List<Dashboard> collectMainDashboards() {
     List<Dashboard> collectedDashboards =
-        new ArrayList<>(getPublicDashboards().stream().filter(dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getSelectedDashboardDisplayType())).toList());
+        new ArrayList<>(getPublicDashboards().stream().filter(dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getDashboardDisplayType())).toList());
     return collectedDashboards;
   }
 
@@ -265,7 +265,7 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> getDashboardsWithoutMenuItem() {
-    return collectDashboards().stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getSelectedDashboardDisplayType())).toList();
+    return collectDashboards().stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())).toList();
   }
 
   public static String getSelectedMainDashboardIdFromSession() {
@@ -287,7 +287,7 @@ public class DashboardUtils {
         .orElse(new ArrayList<>())
         .stream()
         .filter(dashboard -> dashboardId.equals(dashboard.getId()))
-        .map(dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getSelectedDashboardDisplayType()))
+        .map(dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getDashboardDisplayType()))
         .findFirst()
         .orElse(defaultValue);
     

@@ -10,7 +10,7 @@ import ch.ivy.addon.portalkit.DashboardDisplayType;
 
 public class DashboardTemplateConverter implements IJsonConverter {
 
-  private static final String SELECTED_DASHBOARD_DISPLAY_TYPE = "selectedDashboardDisplayType";
+  private static final String SELECTED_DASHBOARD_DISPLAY_TYPE = "dashboardDisplayType";
   private static final String IS_TOP_MENU = "isTopMenu";
 
   @Override

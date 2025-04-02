@@ -93,7 +93,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
       selectedDashboard.setPermissionDTOs(new ArrayList<>());
       findAndSetPermissions();
       if (!isPublicDashboard) {
-        selectedDashboard.setSelectedDashboardDisplayType(DashboardDisplayType.SUB_MENU);
+        selectedDashboard.setDashboardDisplayType(DashboardDisplayType.SUB_MENU);
       }
     });
 

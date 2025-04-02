@@ -47,7 +47,7 @@
           <p:tooltip for="quick-search-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/topMenuItemInfo')}" />
         </div>
       </f:facet>
-        <h:outputText value="#{dashboardBean.getDashboardDisplayTypeLabel(dashboard.selectedDashboardDisplayType)}" id="menu-item-checkbox"/>
+        <h:outputText value="#{dashboardBean.getDashboardDisplayTypeLabel(dashboard.dashboardDisplayType)}" id="menu-item-checkbox"/>
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
         width="#{dashboardModificationBean.hasExportDashboardPermission() ? '120' : '210'}" styleClass="text-center">
