@@ -79,7 +79,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: Vorgangs-Widget
       CLIENT_STATISTIC: Statistik-Widget
       CUSTOM: Benutzerdefiniertes Widget
-      NAVIGATION_DASHBOARD: ''
+      NAVIGATION_DASHBOARD: Navigation dashboard widget
       NEW: Neues Widget
       NEWS: Nachrichten
       NOTIFICATION: Benachrichtigungen
@@ -900,7 +900,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: Widget-Typ
     yourCases: Ihre Vorgänge
     yourCustomWidget: Ihr benutzerdefiniertes Widget
-    yourNavigationDashboardWidget: Ihr Dashboard-Widget für die Navigation
+    yourNavigationDashboardWidget: Ihr Navigations-Dashboard-Widget
     yourNotifications: Ihre Benachrichtigungen
     yourProcessViewer: Ihr Prozessbetrachter
     yourProcesses: Ihre Prozesse
@@ -1419,8 +1419,8 @@ Dialogs:
             DashboardSharing:
               ShareDashboard: Dashboard teilen
             NavigationDashboardWidgetConfiguration:
-              NavigationDashboardWidgetConfiguration: Navigation dashboard widget configuration
-              NavigationDashboardWidgetDescription: This widget allows users to jump directly to a linked dashboard via button click.
+              NavigationDashboardWidgetConfiguration: Konfiguration des Navigations-Dashboard-Widgets
+              NavigationDashboardWidgetDescription: Dieses Widget ermöglicht es den Benutzern, durch einen Klick auf eine Schaltfläche direkt zu einem verknüpften Dashboard zu springen.
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
               NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich
