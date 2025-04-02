@@ -71,9 +71,9 @@ public class NavigationDashboardWidgetBean implements Serializable {
       var item =
           DefaultMenuItem.builder().id(widget.getTargetDashboardId()).value(widget.getTargetDashboardName()).build();
 
-      String oncompleteScript = String
+      String onCommandScript = String
           .format("#{navigationDashboardWidgetBean.navigateToDashboardWhenClickingOnElement('%s')}", item.getId());
-      item.setCommand(oncompleteScript);
+      item.setCommand(onCommandScript);
 
       submenu.getElements().add(item);
       model.getElements().addAll(submenu.getElements());
