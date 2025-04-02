@@ -23,7 +23,7 @@ import com.codeborne.selenide.Condition;
 import ch.ivy.addon.portalkit.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class StickyNavigationDashboardTest extends BaseTest {
 
   private NewDashboardPage newDashboardPage;
