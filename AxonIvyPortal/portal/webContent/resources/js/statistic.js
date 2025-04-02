@@ -12,6 +12,7 @@ const MIN_REFRESH_INTERVAL = 60;
 const SUCCESS_STATUS_CODE = 200;
 
 let locale;
+let contentLocale;
 let datePattern;
 var statisticApiURL = '';
 var refreshInfos = [];
@@ -162,13 +163,8 @@ function initRefresh() {
   }
 }
 
-function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
-  // If locale didn't initialized, set the default locale to it.
-  if (!locale) {
-    locale = defaultLocale;
-  }
-
-  datePattern = datePatternConfig;
+function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig, defaultContentLocale) {
+  initConfig(defaultLocale, defaultContentLocale, datePatternConfig);
 
   // Find HTML elements of client charts widget
   const charts = Array.from(document.getElementsByClassName('js-statistic-chart'));
@@ -218,33 +214,13 @@ function initClientCharts(statisticEndpoint, defaultLocale, datePatternConfig) {
   });
 }
 
-// Method to render empty preview chart
-function renderFailToRenderChart(chart, additionalConfig) {
-  let failToRenderChartMessage;
-  additionalConfig.find(function (item) {
-    if (Object.keys(item || {})[0] === 'failToRenderChartMessage') {
-      failToRenderChartMessage = item.failToRenderChartMessage;
-    }
-  });
-  // HTML element for the empty chart
-  let failToRenderChartHtml =
-    '<div class="empty-message-container">' +
-    '    <i class="si si-analytics-pie-2 empty-message-icon"></i>' +
-    '    <p class="empty-message-text">' + failToRenderChartMessage + '</p>' +
-    '</div>';
-  $(chart).html(failToRenderChartHtml);
-}
-
-function previewChart(data, defaultLocale, datePatternConfig) {
+function previewChart(data, defaultLocale, datePatternConfig, defaultContentLocale) {
   const charts = document.getElementsByClassName('js-statistic-chart');
   if (!charts || charts.length == 0) {
     return;
   }
-
-  if (!locale) {
-    locale = defaultLocale;
-  }
-  datePattern = datePatternConfig;
+  initConfig(defaultLocale, defaultContentLocale, datePatternConfig);
+  
   try {
     let chartData = generateChart(charts[0], data);
     if (chartData) {
@@ -285,6 +261,43 @@ function renderNotFoundData(chart, errorMessage) {
     `    <span class="empty-message-text">${errorMessage}</span>` +
     `</div>`;
   $(chart).html(noChartDataHtml);
+}
+
+// Method to render empty preview chart
+function renderFailToRenderChart(chart, additionalConfig) {
+  let failToRenderChartMessage;
+  additionalConfig.find(function (item) {
+    if (Object.keys(item || {})[0] === 'failToRenderChartMessage') {
+      failToRenderChartMessage = item.failToRenderChartMessage;
+    }
+  });
+  // HTML element for the empty chart
+  let failToRenderChartHtml =
+    '<div class="empty-message-container">' +
+    '    <i class="si si-analytics-pie-2 empty-message-icon"></i>' +
+    '    <p class="empty-message-text">' + failToRenderChartMessage + '</p>' +
+    '</div>';
+  $(chart).html(failToRenderChartHtml);
+}
+
+function initConfig(defaultLocale, defaultContentLocale, datePatternConfig) {
+    // If locale didn't initialized, set the default locale to it.
+    if (!locale) {
+      locale = defaultLocale;
+    }
+  
+    if (!contentLocale) {
+      contentLocale = defaultContentLocale;
+    }
+    datePattern = datePatternConfig;
+}
+
+function getFormatedTitle(titles) { 
+  const matchingItem = titles.find(item => item.locale === contentLocale);
+  if (matchingItem) {
+    return matchingItem.value;
+  }
+  return '';
 }
 
 // Generic class for Client charts
@@ -363,7 +376,7 @@ class ClientCanvasChart extends ClientChart {
   // Method to init the dashboard statistic widget title
   initWidgetTitle() {
     $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title')
-      .text(this.data.chartConfig.name);
+      .text(getFormatedTitle(this.data.chartConfig.names));
   }
 
   updateClientChart() {
@@ -498,7 +511,7 @@ class ClientCartesianChart extends ClientCanvasChart {
             y: {
               beginAtZero: true,
               title: {
-                text: this.getFormatedTitle(chartTypeConfig.yTitles),
+                text: getFormatedTitle(chartTypeConfig.yTitles),
                 display: chartTypeConfig.yTitles.length > 0,
                 color: CHART_TEXT_COLOR
               },
@@ -512,7 +525,7 @@ class ClientCartesianChart extends ClientCanvasChart {
             },
             x: {
               title: {
-                text: this.getFormatedTitle(chartTypeConfig.xTitles),
+                text: getFormatedTitle(chartTypeConfig.xTitles),
                 display: chartTypeConfig.xTitles.length > 0,
                 color: CHART_TEXT_COLOR
               },
@@ -533,15 +546,6 @@ class ClientCartesianChart extends ClientCanvasChart {
   getChartTitleConfig() { }
 
   getBackgoundColors() { }
-
-  getFormatedTitle(titles) { 
-    let localeCountry = locale.substring(0, locale.indexOf('_'));
-    const matchingItem = titles.find(item => item.locale === localeCountry);
-    if (matchingItem) {
-      return matchingItem.value;
-    }
-    return '';
-  }
 
   processYValue(result, yValue) {
     switch (yValue) {
@@ -684,7 +688,7 @@ class ClientNumberChart extends ClientChart {
 
   render() {
     let config = this.data.chartConfig;
-    this.initWidgetHeaderName(this.chart, config.name);
+    this.initWidgetHeaderName(this.chart, getFormatedTitle(config.names));
     let result = this.fillResult();
 
     if (!result || result.length == 0) {
