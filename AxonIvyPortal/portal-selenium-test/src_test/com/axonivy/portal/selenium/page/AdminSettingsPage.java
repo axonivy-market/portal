@@ -6,13 +6,13 @@ import static com.codeborne.selenide.Selenide.$;
 
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
@@ -190,25 +190,29 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   private void resetGlobalVariable(String variableName) {
-    List<WebElement> tableRows = getAdminTable().findElements(By.tagName("tr"));
-    for (WebElement row : tableRows) {
-      List<WebElement> columns = row.findElements(By.tagName("td"));
-      if (!CollectionUtils.isEmpty(columns)) {
-        WebElement keyColumn = columns.get(0);
-        if (keyColumn.getText().equals(variableName)) {
-          WebElement editButton = row.findElement(By.cssSelector("a[id$=reset]"));
-          $(editButton).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-          $("[id$=':resetConfirmationDialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-          $("button[id='admin-setting-component:reset-setting']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-          $("div[id='portal-management-messages']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-          return;
-        }
+    getAdminTableInput().click();
+    getAdminTableInput().clear();
+    getAdminTableInput().sendKeys(variableName);
+    getAdminTable().$$(By.tagName("tr")).shouldBe(CollectionCondition.size(1), DEFAULT_TIMEOUT);
+    List<SelenideElement> columns = getAdminTable().$$(By.tagName("td"));
+      if (!columns.isEmpty() && columns.get(0).getText().equals(variableName)) {
+        int lastIndex = columns.size() - 1;
+        columns.get(lastIndex).$("a[id$=reset]").shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
+        $("[id$=':resetConfirmationDialog']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+        $("button[id='admin-setting-component:reset-setting']").shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
+        $("div[id='portal-management-messages']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+        return;
       }
-    }
+    return;
   }
 
-  private WebElement getAdminTable() {
-    return $("[id$=':adminTabView:settingTable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  private SelenideElement getAdminTableInput() {
+    return $("input[id^='admin-setting-component:adminTabView:settingTable']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  private SelenideElement getAdminTable() {
+    return $("[id='admin-setting-component:adminTabView:settingTable_data']")
+        .shouldBe(clickable(), DEFAULT_TIMEOUT);
   }
 
 }
