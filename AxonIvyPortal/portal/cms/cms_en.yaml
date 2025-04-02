@@ -853,7 +853,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: Currently, there are no tasks available.
         noTasksFoundWhenFilter: There are currently no tasks after applied filter.
     loading: Loading...
-    navigateTo: Navigate
+    navigate: Navigate
     noCategory: There are no categories
     noDashboard: There are no dashboards. Add at least one dashboard, then add widgets.
     noPermission: You don't have permissions to see dashboards.

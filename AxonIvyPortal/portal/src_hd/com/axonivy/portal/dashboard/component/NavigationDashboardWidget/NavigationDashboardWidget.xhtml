@@ -35,7 +35,7 @@
         <p:commandButton id="enterDashboardBtn"
                          styleClass="ui-button w-full ui-button-text-only u-mar-right-5"
                          disabled="#{navigationDashboardWidgetBean.isNotClickable(widget, isReadOnlyMode)}" action="#{navigationDashboardWidgetBean.redirectToDashboard(widget, dashboardBean.selectedDashboard)}"
-                         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/navigateTo')}">
+                         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/navigate')}">
         </p:commandButton>
     </div>
 </h:panelGroup>

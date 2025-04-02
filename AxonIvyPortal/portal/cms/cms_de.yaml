@@ -851,7 +851,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: Aktuell sind keine weiteren Aufgaben vorhanden.
         noTasksFoundWhenFilter: Derzeit gibt es keine Aufgaben nach dem angewandten Filter.
     loading: Laden...
-    navigateTo: Navigieren Sie
+    navigate: Navigieren Sie
     noCategory: Es gibt keine Kategorien
     noDashboard: Keine Dashboards vorhanden. Fügen Sie mindestens ein Dashboard und anschließend Widgets hinzu.
     noPermission: Sie haben keine Berechtigung, Dashboards zu sehen.

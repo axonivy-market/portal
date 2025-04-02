@@ -850,7 +850,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: Actualmente, no hay tareas adicionales disponibles.
         noTasksFoundWhenFilter: Actualmente no hay tareas después del filtro aplicado.
     loading: Cargando...
-    navigateTo: Navegue por
+    navigate: Navegue por
     noCategory: No hay categorías
     noDashboard: No hay tableros. Añadir al menos un tablero y widgets.
     noPermission: No tienes permisos para ver los dashboards.

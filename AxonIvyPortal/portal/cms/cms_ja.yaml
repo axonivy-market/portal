@@ -848,7 +848,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: 現在、利用可能なタスクはありません。
         noTasksFoundWhenFilter: 現在、フィルターを適用した後のタスクはありません。
     loading: 読み込み中...
-    navigateTo: Navigate
+    navigate: Navigate
     noCategory: カテゴリーがありません
     noDashboard: ダッシュボードがありません。少なくとも 1 つのダッシュボードを追加してから、ウィジェットを追加してください。
     noPermission: ダッシュボードを表示する権限がありません。

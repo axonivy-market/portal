@@ -17,6 +17,8 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
+import ch.ivy.addon.portalkit.DashboardDisplayType;
+
 public class DashboardConfigurationPage extends TemplatePage {
 
   @Override
@@ -124,7 +126,7 @@ public class DashboardConfigurationPage extends TemplatePage {
       int templateIndex) {
     waitForCreateNewDashboardSectionAppear().$("a[id$=':" + templateIndex + ":template']")
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    inputCreateDashboardDialog(newName, icon, newDescription, null, false, false);
+    inputCreateDashboardDialog(newName, icon, newDescription, null, false, DashboardDisplayType.SUB_MENU);
   }
 
   public void createPrivateDashboardFromScratch(String newName, String icon, String newDescription) {
@@ -133,7 +135,7 @@ public class DashboardConfigurationPage extends TemplatePage {
         .shouldBe(getClickableCondition()).click();
     waitForCreateNewDashboardSectionAppear();
     $("a[id$=':create-from-scratch']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    inputCreateDashboardDialog(newName, icon, newDescription, null, false, false);
+    inputCreateDashboardDialog(newName, icon, newDescription, null, false, DashboardDisplayType.SUB_MENU);
   }
 
   private SelenideElement waitForCreateNewDashboardSectionAppear() {
@@ -142,16 +144,16 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public void createPublicDashboardFromScratch(String newName, String icon, String newDescription,
-      List<String> permissions, boolean isTopMenu) {
+      List<String> permissions, DashboardDisplayType type) {
     $("a[id$=':create-from-scratch']").shouldBe(getClickableCondition()).click();
-    inputCreateDashboardDialog(newName, icon, newDescription, permissions, true, isTopMenu);
+    inputCreateDashboardDialog(newName, icon, newDescription, permissions, true, type);
   }
 
   public void createPublicDashboardFromTemplate(String newName, String icon, String newDescription,
       List<String> permissions, int templateIndex) {
     waitForCreateNewDashboardSectionAppear().$("a[id$='" + templateIndex + ":template']")
         .shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition()).click();
-    inputCreateDashboardDialog(newName, icon, newDescription, permissions, true, false);
+    inputCreateDashboardDialog(newName, icon, newDescription, permissions, true, DashboardDisplayType.SUB_MENU);
   }
 
   public SelenideElement openCreateDashboardDialog() {
@@ -225,7 +227,7 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   private void inputCreateDashboardDialog(String newName, String icon, String newDescription, List<String> permissions,
-      boolean isPublicDashboard, boolean isTopMenu) {
+      boolean isPublicDashboard, DashboardDisplayType type) {
     String creationDetailsDialogSelector = isPublicDashboard ? "div.create-public-dashboard-dialog"
         : "div.create-private-dashboard-dialog";
     creationDetailsDialogSelector = creationDetailsDialogSelector.concat("[id$=':dashboard-creation-details-dialog']");
@@ -257,11 +259,18 @@ public class DashboardConfigurationPage extends TemplatePage {
             }
           });
     }
-    if (isTopMenu) {
-      createDashboardDialog.$("div[id$=':main-dashboard-menu-item']").$("div.ui-chkbox-box").click();
-    }
+//    if (isTopMenu) {
+//      createDashboardDialog.$("div[id$=':main-dashboard-menu-item']").$("div.ui-chkbox-box").click();
+//    }
+    selectDashboardDisplayType(type, createDashboardDialog);
     createDashboardDialog.$("button[id$='dashboard-create-button']").click();
     createDashboardDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+  
+  private void selectDashboardDisplayType(DashboardDisplayType type, SelenideElement createDashboardDialog) {
+    String label = DashboardDisplayType.getDisplayLabel(type);
+    createDashboardDialog.$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("ul[id$='dashboard-display-menu_items']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li").filter(Condition.text(label)).first().click();
   }
 
   private void selectDashboardIcon(String icon) {
