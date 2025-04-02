@@ -33,7 +33,6 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   private List<SecurityMemberDTO> permissionDTOs;
   @JsonIgnore
   private String displayedPermission;
-
   private DashboardDisplayType selectedDashboardDisplayType;
   
   @JsonIgnore
