@@ -195,7 +195,6 @@ public class AdminSettingsPage extends TemplatePage {
     getAdminTableInput().sendKeys(variableName);
     getAdminTable().$$(By.tagName("tr")).shouldBe(CollectionCondition.size(1), DEFAULT_TIMEOUT);
     List<SelenideElement> columns = getAdminTable().$$(By.tagName("td"));
-    try {
       if (!columns.isEmpty() && columns.get(0).getText().equals(variableName)) {
         int lastIndex = columns.size() - 1;
         columns.get(lastIndex).$("a[id$=reset]").shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
@@ -204,8 +203,6 @@ public class AdminSettingsPage extends TemplatePage {
         $("div[id='portal-management-messages']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
         return;
       }
-    } catch (Exception ignore) {
-    }
     return;
   }
 
