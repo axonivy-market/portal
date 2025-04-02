@@ -420,7 +420,9 @@ public class TaskDetailsPage extends TemplatePage {
     $("[id$='delay-form:delay-date-calendar_input']").sendKeys(Keys.chord(Keys.CONTROL, "a"));
     $("[id$='delay-form:delay-date-calendar_input']").sendKeys(Keys.BACK_SPACE);
     $("[id$='delay-form:delay-date-calendar_input']").sendKeys(tomorrow);
-    $("[id$='delay-form:delay-date_editor']").$(".ui-inplace-save").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("[id='role-and-user-information']").$("span.text-ellipsis").click();
+    $("[id$='delay-form:delay-date_editor']").shouldBe(appear, DEFAULT_TIMEOUT)
+    .$(".ui-inplace-save").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     
     $("span[id$=':delay-form:delay-date_display']").shouldBe(appear, DEFAULT_TIMEOUT);
     String result = $("span[id$=':delay-form:delay-date_display']").getText();
