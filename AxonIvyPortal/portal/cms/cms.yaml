@@ -1070,6 +1070,8 @@ Dialogs:
                   CouldNotFindLinkedProcess: Could not find the linked process!
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: Drag and drop to change the order.
+                WelcomeDashboardWidget:
+                  WelcomeToAxon: Welcome to Axon Ivy Portal
         portalkit:
           component:
             CaseItemDetails:
