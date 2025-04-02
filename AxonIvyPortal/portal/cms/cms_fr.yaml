@@ -1481,6 +1481,7 @@ Dialogs:
             TaskIFrameTitle: Cadre de travail
         page:
           StatisticConfiguration:
+            AddFilter: Ajouter un filtre
             AdvancedConfiguration: Configuration avancée
             Aggregate: Agrégat
             ChartType: Type de graphique
