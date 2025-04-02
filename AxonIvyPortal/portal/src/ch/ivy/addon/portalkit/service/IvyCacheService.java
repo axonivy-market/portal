@@ -22,10 +22,7 @@ public class IvyCacheService {
   
   private static IvyCacheService instance;
 
-  private static final int SESSION_CACHE_TIMEOUT_MAX_MINUTES = 1440; // amount
-                                                                     // of
-                                                                     // minutes
-                                                                     // in 1 day
+  private static final int SESSION_CACHE_TIMEOUT_MAX_MINUTES = 1440; // amount of minutes in 1 day
   private static final int SESSION_CACHE_TIMEOUT_MIN_MINITES = 5;
   private IvyCacheService() {}
 
@@ -107,7 +104,8 @@ public class IvyCacheService {
    * @param value
    */
   public void setApplicationCache(String groupName, String entryName, Object value) {
-    applicationCache().setEntry(groupName, entryName, value);
+    applicationCache().setEntry(groupName, entryName,
+        SESSION_CACHE_TIMEOUT_MAX_MINUTES, value);
   }
 
   /**
@@ -189,10 +187,10 @@ public class IvyCacheService {
 
   private static int getSessionCacheTimeout() {
     // If cannot parse the number from variable, set its value to the default
-    // value -1
+    // value
     int result = NumberUtils.toInt(
         Ivy.var().get(PortalVariable.SESSION_CACHE_TIMEOUT.key),
-            NumberUtils.INTEGER_MINUS_ONE);
+        SESSION_CACHE_TIMEOUT_MAX_MINUTES);
 
     // If the session timeout is equals to infinity amount (-1), return it
     // directly
@@ -215,5 +213,14 @@ public class IvyCacheService {
 
     // return the amount of seconds
     return result * 60;
+  }
+
+  /**
+   * Invalidate all session cache entries of Portal
+   * 
+   */
+  public void invalidatePortalSessionCacheEntries() {
+    IvyCacheIdentifier.getAllPortalCacheIdentifiers()
+        .forEach(entry -> invalidateSessionGroup(entry));
   }
 }

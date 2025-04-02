@@ -268,7 +268,7 @@ Variables:
       # Set the size limit for uploading images in megabytes (MB). The default value is 6MB.
       ImageUploadSizeLimit: 6
 
-    # The session cache timeout in the Portal can be set between 5 and 1440 minutes (amount of minutes in 1 day).
+    # The session cache timeout in minutes for Portal. This variable can be set between 5 and 1440 minutes (amount of minutes in 1 day).
     # To retain the session cache until the user session ends, set this variable to -1.
     SessionCacheTimeout: 1440
 
