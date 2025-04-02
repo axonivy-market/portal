@@ -320,7 +320,7 @@
           function handlePreviewChart(xhr, status, args) {
             if (args.jsonResponse) {
               const data = JSON.parse(args.jsonResponse);
-              previewChart(data, "#{htmlSanitizerBean.sanitize(localeBean.locale)}", "#{htmlSanitizerBean.sanitize(dateTimePatternBean.datePattern)}", "#{htmlSanitizerBean.sanitize(ivy.session.contentLocale)}");
+              previewChart(data, "#{localeBean.locale}", "#{dateTimePatternBean.datePattern}", "#{ivy.session.contentLocale}");
             }
           }
         </script>
