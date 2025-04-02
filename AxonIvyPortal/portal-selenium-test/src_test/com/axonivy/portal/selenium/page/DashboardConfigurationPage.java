@@ -259,9 +259,7 @@ public class DashboardConfigurationPage extends TemplatePage {
             }
           });
     }
-//    if (isTopMenu) {
-//      createDashboardDialog.$("div[id$=':main-dashboard-menu-item']").$("div.ui-chkbox-box").click();
-//    }
+
     selectDashboardDisplayType(type, createDashboardDialog);
     createDashboardDialog.$("button[id$='dashboard-create-button']").click();
     createDashboardDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
