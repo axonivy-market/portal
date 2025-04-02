@@ -14,19 +14,28 @@
   <cc:attribute name="roleNameStyleClass" />
   <cc:attribute name="securityMemberContainerStyleClass" />
   <cc:attribute name="renderDeputyInfo" default="false" />
+  <cc:attribute name="responsibles" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="securityMember" value="#{cc.attrs.securityMember}" />
   <c:set var="memberName" value="#{cc.attrs.securityMemberName}" />
   <c:set var="alwaysShowAsText" value="#{cc.attrs.alwaysShowAsText}" />
+  <c:set var="responsibles" value="#{cc.attrs.responsibles}" />
 
   <f:event listener="#{securityMemberDisplayNameBean.init()}" type="preRenderComponent" />
   <!-- Display User name as text format -->
   <h:panelGroup id="security-member-container" layout="block" styleClass="security-member-container #{cc.attrs.securityMemberContainerStyleClass}">
     <pc:securityMemberNameAndAvatar securityMember="#{securityMember}" id="name-and-avatar"
       containerStyleClass="#{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator()) ? 'has-deputy-info' : ''}"
-      displayNameId="#{cc.attrs.textId}-text" displayName="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)}" displayNameStyleClass="#{cc.attrs.styleClass}" />
+      displayNameId="#{cc.attrs.textId}-text" displayName="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)}" displayNameStyleClass="#{cc.attrs.styleClass}">
+      <f:facet name="afterName">
+        <h:panelGroup rendered="#{responsibles != null}">
+          <ic:com.axonivy.portal.component.Responsibles responsibles="#{responsibles}" />
+        </h:panelGroup>
+      </f:facet>
+    </pc:securityMemberNameAndAvatar>
+    
     <h:panelGroup id="deputy-info"
       rendered="#{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator())}">
       <i class="si si-information-circle" />

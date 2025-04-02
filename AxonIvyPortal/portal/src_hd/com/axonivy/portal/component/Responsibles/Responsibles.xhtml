@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:p="http://primefaces.org/ui"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface>
+  <cc:attribute name="responsibles" type="ch.ivyteam.ivy.workflow.task.responsible.Responsibles" required="true" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="responsibleSize" value="#{responsibleBean.getResponsiblesSize(cc.attrs.responsibles)}" />
+  <h:panelGroup rendered="#{cc.attrs.responsibles != null and responsibleSize gt 1}"> 
+    <h:panelGroup id="all-responsibles" styleClass="ml-1" >
+      (<i class="mr-1 si si-multiple-neutral-1" /><h:outputText value="#{responsibleSize}" />)
+    </h:panelGroup>
+    <p:tooltip for="all-responsibles" position="top" autoHide="false">
+      <ui:repeat id="task-responsibles" value="#{responsibleBean.getResponsibleLimit10(task.responsibles())}" var="responsible">
+        <div class="py-1">
+          <pc:securityMemberNameAndAvatar displayName="#{portalComponentDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(responsible.get(), responsible.get().getMemberName())}" 
+              securityMember="#{responsible.get()}" />
+        </div>
+      </ui:repeat>
+      <h:panelGroup styleClass="repsonsible-more-text" rendered="#{responsibleSize gt 10}" layout="block">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" />
+      </h:panelGroup>
+    </p:tooltip>
+  </h:panelGroup>
+</cc:implementation>
+</html>

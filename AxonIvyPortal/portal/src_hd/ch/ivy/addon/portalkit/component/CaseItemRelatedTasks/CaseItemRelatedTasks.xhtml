@@ -86,20 +86,7 @@
           <pc:securityMemberNameAndAvatar securityMember="#{task.activator}"
             displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}">
             <f:facet name="afterName">
-              <h:panelGroup rendered="#{task.responsibles().all().size() gt 1}">
-                <h:panelGroup id="all-responsibles" styleClass="ml-1">
-                  (<i class="mr-1 si si-multiple-neutral-1" /><h:outputText value="#{task.responsibles().all().size()}" />)
-                </h:panelGroup>
-                <p:tooltip for="all-responsibles" position="top" autoHide="false">
-                  <ui:repeat id="task-responsibles" value="#{task.responsibles().all()}" var="responsible">
-                    <div class="py-1">
-                      <pc:securityMemberNameAndAvatar
-                        displayName="#{portalComponentDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(responsible.get(), responsible.get().getMemberName())}"
-                        securityMember="#{responsible.get()}" />
-                    </div>
-                  </ui:repeat>
-                </p:tooltip>
-              </h:panelGroup>
+              <ic:com.axonivy.portal.component.Responsibles responsibles="#{task.responsibles()}" />
             </f:facet>
           </pc:securityMemberNameAndAvatar>
         </p:column>

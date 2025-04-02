@@ -145,7 +145,8 @@
                styleClass="text-ellipsis task-activator" 
                securityMemberContainerStyleClass="task-security-member-container" />
           </h:panelGroup>
-          <p:commandLink rendered="#{task.responsibles().all().size() gt 1}" onclick="PF('responsible-dialog').show()" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
+          <p:commandLink rendered="#{task.responsibles().all().size() gt 1}" onclick="PF('responsible-dialog').show()" 
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
             id="show-responsible-link" value="#{taskDetailsBean.getShortResponsible(task)}" />
         </div>
       </h:panelGroup>

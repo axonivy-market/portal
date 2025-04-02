@@ -3,22 +3,10 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf"
   xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
-<pc:securityMemberNameAndAvatar displayName="#{column.display(task)}" securityMember="#{task.getActivator()}"
+<pc:securityMemberNameAndAvatar displayName="#{column.display(task)}" securityMember="#{responsibleBean.getFirstResponsible(task.responsibles())}"
   containerStyleClass="#{task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator()) ? 'has-deputy-info' : ''}">
   <f:facet name="afterName">
-    <h:panelGroup rendered="#{column.getResponsibleSize(task) gt 1}"> 
-      <h:panelGroup id="all-responsibles" styleClass="ml-1" >
-        (<i class="mr-1 si si-multiple-neutral-1" /><h:outputText value="#{column.getResponsibleSize(task)}" />)
-      </h:panelGroup>
-      <p:tooltip for="all-responsibles" position="top" autoHide="false">
-        <ui:repeat id="task-responsibles" value="#{task.responsibles().all()}" var="responsible">
-          <div class="py-1">
-            <pc:securityMemberNameAndAvatar displayName="#{portalComponentDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(responsible.get(), responsible.get().getMemberName())}" 
-                securityMember="#{responsible.get()}" />
-          </div>
-        </ui:repeat>
-      </p:tooltip>
-    </h:panelGroup>
+    <ic:com.axonivy.portal.component.Responsibles responsibles="#{task.responsibles()}" />
     <h:panelGroup id="deputy-info" rendered="#{task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator())}" styleClass="deputy-info">
       <i class="si si-information-circle" />
     </h:panelGroup>
