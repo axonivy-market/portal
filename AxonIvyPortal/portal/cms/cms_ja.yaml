@@ -214,7 +214,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       RoleParentLimit: 設定された数値は、ロール管理タブでロールをフィルタリングするときに表示される親ロールの数を制御します。有効な数値：5、10、20
       SearchScopeCaseFields: グローバル検索で一致するケースを見つけるために、ケースIDのほかに使用するフィールドを定義します。（検索のパフォーマンスに影響する可能性があります）
       SearchScopeTaskFields: グローバル検索で一致するタスクを見つけるために、タスクIDのほかに使用するフィールドを定義します。（検索のパフォーマンスに影響する可能性があります）
-      SessionCacheTimeout: TODO Defines the session cache timeout duration (in seconds) for the Portal. This value can be set between 300 (5 minutes) and 86,400 (24 hours). To keep the session cache active until the user's session ends, set this variable to -1.
+      SessionCacheTimeout: TODO Defines the session cache timeout duration (in seconds) for the Portal. This value can be set between 300 (5 minutes) and 86,400 (24 hours).
       ShowLoginPageFooter: ログインページのフッターの表示のオン／オフを切り替えます。
       ShowQRCode: QRコードの表示のオン／オフを切り替えます。
       behaviourWhenClickingOnLineInCaseList: ダッシュボード・グローバル検索・関連ケース・または複合モードのプロセスウィジェットの各ケースウィジェットでケースをクリックしたときに、ケースの詳細またはビジネスの詳細へのアクセスを切り替えます。
