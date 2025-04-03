@@ -9,21 +9,34 @@
 
 <cc:implementation>
   <c:set var="responsibleSize" value="#{responsibleBean.getResponsiblesSize(cc.attrs.responsibles)}" />
-  <h:panelGroup rendered="#{cc.attrs.responsibles != null and responsibleSize gt 1}"> 
-    <h:panelGroup id="all-responsibles" styleClass="ml-1" >
-      (<i class="mr-1 si si-multiple-neutral-1" /><h:outputText value="#{responsibleSize}" />)
-    </h:panelGroup>
-    <p:tooltip for="all-responsibles" position="top" autoHide="false">
-      <ui:repeat id="task-responsibles" value="#{responsibleBean.getResponsibleLimit10(task.responsibles())}" var="responsible">
-        <div class="py-1">
-          <pc:securityMemberNameAndAvatar displayName="#{portalComponentDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(responsible.get(), responsible.get().getMemberName())}" 
-              securityMember="#{responsible.get()}" />
-        </div>
-      </ui:repeat>
-      <h:panelGroup styleClass="repsonsible-more-text" rendered="#{responsibleSize gt 10}" layout="block">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" />
+  <c:set var="firstResponsible" value="#{responsibleBean.getFirstResponsible(cc.attrs.responsibles)}" />
+  
+  <pc:securityMemberNameAndAvatar displayName="#{responsibleBean.getDisplayName(firstResponsible)}" securityMember="#{firstResponsible}"
+    containerStyleClass="#{responsibleBean.isSubstituteForTask(cc.attrs.responsibles) ? 'has-deputy-info' : ''}"> 
+    <f:facet name="afterName">
+      <h:panelGroup rendered="#{cc.attrs.responsibles != null and responsibleSize gt 1}"> 
+        <h:panelGroup id="all-responsibles" styleClass="ml-1" >
+          (<i class="mr-1 si si-multiple-neutral-1" /><h:outputText value="#{responsibleSize}" />)
+        </h:panelGroup>
+        <p:tooltip for="all-responsibles" position="top" autoHide="false">
+          <ui:repeat id="task-responsibles" value="#{responsibleBean.getResponsibleLimit10(cc.attrs.responsibles)}" var="responsible">
+            <div class="py-1">
+              <pc:securityMemberNameAndAvatar displayName="#{responsibleBean.getDisplayName(responsible.get())}" 
+                  securityMember="#{responsible.get()}" />
+            </div>
+          </ui:repeat>
+          <h:panelGroup styleClass="repsonsible-more-text" rendered="#{responsibleSize gt 10}" layout="block">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." />
+          </h:panelGroup>
+        </p:tooltip>
       </h:panelGroup>
-    </p:tooltip>
-  </h:panelGroup>
+      <h:panelGroup id="deputy-info" rendered="#{responsibleBean.isSubstituteForTask(cc.attrs.responsibles)}" styleClass="deputy-info">
+        <i class="si si-information-circle" />
+      </h:panelGroup>
+      <p:tooltip for="deputy-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskFromSubstitution')}" trackMouse="true" hideEvent="mouseleave click"
+        rendered="#{responsibleBean.isSubstituteForTask(cc.attrs.responsibles)}"/>
+    </f:facet>
+  </pc:securityMemberNameAndAvatar>
+  <cc:renderFacet name="after" />
 </cc:implementation>
 </html>

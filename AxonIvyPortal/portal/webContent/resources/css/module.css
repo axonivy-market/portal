@@ -1770,11 +1770,25 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-start-list .responsible-cell {
-  flex: 0 0 110px;
+  width: 160px
 }
 
 .responsible-cell .name-after-avatar {
-  width: 110px;
+  flex: 1;
+  white-space: nowrap;
+}
+
+.responsible-cell .has-avatar {
+  flex: 1;
+  overflow: hidden;
+}
+
+.responsible-cell .all-repsonsibles {
+  flex-shrink: 0;
+}
+
+.repsonsible-more-text {
+  margin: .25rem 0 .5rem 0;
 }
 
 .task-start-list .category-cell {

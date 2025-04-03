@@ -138,16 +138,11 @@
           <h:outputText styleClass="task-detail-column-title text-ellipsis"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
         </div>
-        <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
-          <h:panelGroup rendered="#{task.responsibles().all().size() lt 2}">
-            <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="task-activator"
-               securityMember="#{task.getActivator()}" securityMemberName="#{task.getActivatorName()}"
-               styleClass="text-ellipsis task-activator" 
-               securityMemberContainerStyleClass="task-security-member-container" />
-          </h:panelGroup>
-          <p:commandLink rendered="#{task.responsibles().all().size() gt 1}" onclick="PF('responsible-dialog').show()" 
-            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
-            id="show-responsible-link" value="#{taskDetailsBean.getShortResponsible(task)}" />
+        <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis flex">
+          <ic:com.axonivy.portal.component.Responsibles responsibles="#{task.responsibles()}" />
+          <p:commandLink onclick="PF('responsible-dialog').show()" styleClass="flex align-items-center ml-2">
+            <i class="si si-expand-6" />
+          </p:commandLink>
         </div>
       </h:panelGroup>
 

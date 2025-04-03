@@ -83,12 +83,7 @@
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
           styleClass="related-task-responsible-column" field="ACTIVATOR" filterable="false" sortable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldActivator)}">
-          <pc:securityMemberNameAndAvatar securityMember="#{task.activator}"
-            displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}">
-            <f:facet name="afterName">
-              <ic:com.axonivy.portal.component.Responsibles responsibles="#{task.responsibles()}" />
-            </f:facet>
-          </pc:securityMemberNameAndAvatar>
+          <ic:com.axonivy.portal.component.Responsibles responsibles="#{task.responsibles()}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}"
           styleClass="related-task-id-column u-hidden-md-down" field="ID" sortBy="#{ID}" filterable="false"

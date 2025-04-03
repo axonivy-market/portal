@@ -8,6 +8,8 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 
+import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.task.responsible.Responsible;
 import ch.ivyteam.ivy.workflow.task.responsible.Responsibles;
@@ -27,5 +29,18 @@ public class ResponsibleBean {
   
   public ISecurityMember getFirstResponsible(Responsibles responsibles) {
     return CollectionUtils.isEmpty(responsibles.all()) ? null : responsibles.all().getFirst().get();
+  }
+  
+  public boolean isSubstituteForTask(Responsibles responsibles) {
+    if (CollectionUtils.isEmpty(responsibles.all())) {
+        return false;
+    }
+    return responsibles.all().stream()
+        .anyMatch(responsible -> 
+            Ivy.session().isMemberThroughActiveSubstitution(responsible.get()));
+  }
+  
+  public String getDisplayName(ISecurityMember firstOne) {
+    return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(firstOne, firstOne.getMemberName());
   }
 }
