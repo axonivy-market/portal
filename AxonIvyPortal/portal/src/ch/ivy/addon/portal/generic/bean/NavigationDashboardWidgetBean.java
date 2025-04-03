@@ -59,9 +59,9 @@ public class NavigationDashboardWidgetBean implements Serializable {
         DefaultMenuItem item =
             DefaultMenuItem.builder().id(currentDashboard.getId()).value(currentDashboard.getTitle()).build();
 
-        String oncompleteScript = String
+        String onCommandScript = String
             .format("#{navigationDashboardWidgetBean.navigateToDashboardWhenClickingOnElement('%s')}", item.getId());
-        item.setCommand(oncompleteScript);
+        item.setCommand(onCommandScript);
 
         submenu.getElements().add(item);
       }
@@ -82,6 +82,10 @@ public class NavigationDashboardWidgetBean implements Serializable {
 
   public void rebuildBreadcrumbWhenClickingOnElement(String elementId) {
     int index = findDashboardIndexInPath(elementId);
+    if (index == 0) {
+      removeNavigationDashboardBreadcrumb();
+      return;
+    }
     List<MenuElement> newList = new ArrayList<>();
     for (int i = 0; i <= index; i++) {
       if (i < submenu.getElements().size()) {
