@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -86,7 +88,6 @@ public class DashboardBean implements Serializable {
   private String clientStatisticApiUri;
   private String selectedDashboardName;
   private String searchScope;
-  private List<String> dashboardDisplayTypeList;
 
   @PostConstruct
   public void init() {
@@ -576,5 +577,9 @@ public class DashboardBean implements Serializable {
   
   public String getDashboardDisplayTypeLabel(DashboardDisplayType type) {
     return DashboardDisplayType.getDisplayLabel(type);
+  }
+  
+  public List<Dashboard> getPublicDashboards() {
+    return DashboardUtils.getPublicDashboards();
   }
 }

@@ -66,7 +66,8 @@
       </div>
       <div class="ui-g-8">
       <p:selectOneMenu styleClass="w-full" id="dashboard-link-selection-menu" value="#{widget.targetDashboardId}">
-        <f:selectItems value="#{widget.dashboardList}" var="dashboard" itemLabel="#{dashboard.title}" itemValue="#{dashboard.id}"/>
+        <f:selectItems value="#{dashboardBean.getPublicDashboards()}" var="dashboard" itemLabel="#{dashboard.title}" itemValue="#{dashboard.id}"/>
+        <p:ajax event="change" listener="#{navigationDashboardWidgetBean.updateTargetDashboardName(widget)}"/>
       </p:selectOneMenu>
       </div>
     </h:panelGroup>

@@ -2,19 +2,11 @@ package com.axonivy.portal.dto.dashboard;
 
 import java.io.Serializable;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
-import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
-import ch.ivy.addon.portalkit.util.DashboardUtils;
 
 public class NavigationDashboardWidget extends DashboardWidget implements Serializable {
   
@@ -22,9 +14,6 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
 
   private String targetDashboardId;
   private String targetDashboardName;
-
-  @JsonIgnore
-  private List<Dashboard> dashboardList = new ArrayList<>();
 
   private String description;
   private String icon;
@@ -42,7 +31,6 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
   }
   
   public NavigationDashboardWidget() {
-    this.dashboardList = DashboardUtils.getPublicDashboards();
   }
   
   public static NavigationDashboardWidget buildDefaultWidget(String widgetId) {
@@ -57,7 +45,6 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
   }
   
   public void setTargetDashboardId(String targetDashboardId) {
-    setTargetDashboardName(targetDashboardId);
     this.targetDashboardId = targetDashboardId;
   }
   
@@ -89,27 +76,11 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
     this.targetDashboardName = targetDashboardName;
   }
   
-  public void setDashboardList(List<Dashboard> dashboardList) {
-    this.dashboardList = dashboardList;
-  }
-  
-  public List<Dashboard> getDashboardList() {
-      return this.dashboardList;
-  }
-  
   public String getIcon() {
     return this.icon;
   }
   
   public void setIcon(String icon) {
     this.icon = icon;
-  }
-  
-  public String getDashboardNameById(String id) {
-    Dashboard dashboard = this.dashboardList.stream().filter(item -> item.getId().equals(id)).findAny().orElse(null);
-    if (dashboard != null) {
-      return dashboard.getTitle();
-    }
-    return StringUtils.EMPTY;
   }
 }

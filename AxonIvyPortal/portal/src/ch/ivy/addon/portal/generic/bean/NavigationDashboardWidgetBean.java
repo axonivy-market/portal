@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -23,14 +25,26 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @SessionScoped
 @ManagedBean
 public class NavigationDashboardWidgetBean implements Serializable {
+  private static final String DEFAULT_DASHBOARD_NAME = "Dashboard";
   private static final long serialVersionUID = -4224901891867040688L;
   private MenuModel model = new DefaultMenuModel();
   private DefaultSubMenu submenu =
       DefaultSubMenu.builder().label("Navigation Dashboard Breadcrumb").expanded(true).build();
+  private Map<String, String> dashboardIdAndNameList;
+  
+  @PostConstruct
+  public void init() {
+    this.dashboardIdAndNameList = DashboardUtils.getPublicDashboards().stream()
+        .collect(Collectors.toMap(
+            dashboard -> dashboard.getId(), 
+            dashboard -> dashboard.getTitle()
+        ));
+  }
 
   public void buildBreadcrumb(NavigationDashboardWidget widget, Dashboard currentDashboard) {
     int currentIndex = findDashboardIndexInPath(currentDashboard.getId());
@@ -39,6 +53,10 @@ public class NavigationDashboardWidgetBean implements Serializable {
     model.getElements().clear();
 
     if (targetIndex >= 0) {
+      if (targetIndex == 0) {
+        removeNavigationDashboardBreadcrumb();
+        return;
+      }
 
       List<MenuElement> newList = new ArrayList<>();
       for (int i = 0; i <= targetIndex; i++) {
@@ -47,15 +65,11 @@ public class NavigationDashboardWidgetBean implements Serializable {
         }
       }
 
-      // Update submenu elements
       submenu.setElements(newList);
-
-      // Add all elements to model
       model.getElements().addAll(submenu.getElements());
     } else {
 
       if (currentIndex == -1) {
-        // Current dashboard not in list
         DefaultMenuItem item =
             DefaultMenuItem.builder().id(currentDashboard.getId()).value(currentDashboard.getTitle()).build();
 
@@ -66,8 +80,6 @@ public class NavigationDashboardWidgetBean implements Serializable {
         submenu.getElements().add(item);
       }
 
-      // Add target dashboard
-      widget.setTargetDashboardName(widget.getDashboardNameById(widget.getTargetDashboardId()));
       var item =
           DefaultMenuItem.builder().id(widget.getTargetDashboardId()).value(widget.getTargetDashboardName()).build();
 
@@ -133,6 +145,13 @@ public class NavigationDashboardWidgetBean implements Serializable {
   public MenuModel getModel() {
     return this.model;
   }
+  
+  public void updateTargetDashboardName(NavigationDashboardWidget widget) {
+    String dashboardName = this.dashboardIdAndNameList.getOrDefault(widget.getTargetDashboardId(), DEFAULT_DASHBOARD_NAME);
+    widget.setTargetDashboardName(dashboardName);
+  }
+  
+  
   
   public Boolean isNotClickable(NavigationDashboardWidget widget, Boolean isReadOnlyMode) {
     if (!isReadOnlyMode) {
