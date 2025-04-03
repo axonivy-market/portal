@@ -17,10 +17,13 @@ public class IvyCacheService {
   public static final int MAX_TIMEOUT = 86400; // amount of seconds in 1 day
   private static final int MIN_TIMEOUT = 300; // amount of seconds in 5 minutes
 
-  private IvyCacheService() {}
-  
+  private static IvyCacheService instance;
+
   public static IvyCacheService getInstance() {
-    return new IvyCacheService();
+    if (instance == null) {
+      instance = new IvyCacheService();
+    }
+    return instance;
   }
   
   /**
