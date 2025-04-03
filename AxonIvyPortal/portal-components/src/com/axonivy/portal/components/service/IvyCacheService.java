@@ -14,8 +14,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class IvyCacheService {
 
-  public static final int MAX_TIMEOUT = 1440; // amount of minutes in 1 day
-  private static final int MIN_TIMEOUT = 5;
+  public static final int MAX_TIMEOUT = 86400; // amount of seconds in 1 day
+  private static final int MIN_TIMEOUT = 300; // amount of seconds in 5 minutes
 
   private IvyCacheService() {}
   
@@ -90,10 +90,9 @@ public class IvyCacheService {
     // If timeout value in the variable is default max value or less than
     // default min value, return the default value
     if (result > MAX_TIMEOUT || result < MIN_TIMEOUT) {
-      return MAX_TIMEOUT * 60;
+      return MAX_TIMEOUT;
     }
 
-    // return the amount of seconds
-    return result * 60;
+    return result;
   }
 }
