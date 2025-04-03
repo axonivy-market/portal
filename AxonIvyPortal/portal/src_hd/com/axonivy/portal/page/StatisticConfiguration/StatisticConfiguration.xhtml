@@ -96,43 +96,38 @@
                 </div>
 
                 <h:panelGroup class="field col-12 mb-2" id="chart-aggregation">
+                  <!-- GROUP BY -->
                   <p:outputLabel for="@next" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Aggregate')}" />
-                  <div>
-                    <p:selectOneMenu id="aggregates" required="true" styleClass="w-full"
-                      value="#{statisticConfigurationBean.statistic.statisticAggregation.aggregate}">
-                      <f:selectItems value="#{statisticConfigurationBean.getAllAvailableAggregates()}"
-                        var="aggregate" itemValue="#{aggregate}" itemLabel="#{statisticConfigurationBean.getUserFriendlyAggregateName(aggregate)}" />
-                      <p:ajax listener="#{statisticConfigurationBean.onSelectAggregates()}"
-                        update="chart-aggregation chart-aggregation-operators" />
-                    </p:selectOneMenu>
+                  <p:selectOneMenu id="aggregates" required="true" styleClass="w-full"
+                    value="#{statisticConfigurationBean.statistic.statisticAggregation.aggregate}">
+                    <f:selectItems value="#{statisticConfigurationBean.getAllAvailableAggregates()}"
+                      var="aggregate" itemValue="#{aggregate}" itemLabel="#{statisticConfigurationBean.getUserFriendlyAggregateName(aggregate)}" />
+                    <p:ajax listener="#{statisticConfigurationBean.onSelectAggregates()}"
+                      update="chart-aggregation" />
+                  </p:selectOneMenu>
 
-                    <!-- CUSTOM FIELD SELECTION -->
-                    <p:outputLabel id="custom-field-description"
-                      for="aggregates-custom-fields"
-                      styleClass="w-full mt-2 si si-information-circle"
-                      rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}"
-                      value=" #{statisticConfigurationBean.currentCustomFieldDescription}" />
-                    <p:selectOneMenu id="aggregates-custom-fields" required="true" styleClass="w-full mt-2"
-                      rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}" value="#{statisticConfigurationBean.currentCustomField}" >
-                      <f:selectItems value="#{statisticConfigurationBean.getCustomFieldNames()}" var="customField" />
-                      <p:ajax listener="#{statisticConfigurationBean.onSelectCustomField()}" update="custom-field-description chart-aggregation-operators"/>
-                    </p:selectOneMenu>
-                  </div>
-                </h:panelGroup>
+                  <!-- CUSTOM FIELD SELECTION -->
+                  <p:outputLabel id="custom-field-description"
+                    for="aggregates-custom-fields"
+                    styleClass="w-full mt-2 si si-information-circle"
+                    rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}"
+                    value=" #{statisticConfigurationBean.currentCustomFieldDescription}" />
+                  <p:selectOneMenu id="aggregates-custom-fields" required="true" styleClass="w-full mt-0"
+                    rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}" value="#{statisticConfigurationBean.currentCustomField}" >
+                    <f:selectItems value="#{statisticConfigurationBean.getCustomFieldNames()}" var="customField" />
+                    <p:ajax listener="#{statisticConfigurationBean.onSelectCustomField()}" update="custom-field-description chart-aggregation" />
+                  </p:selectOneMenu>
 
                   <!--  OPERATORS SELECTION -->
-                <h:panelGroup class="field col-12" id="chart-aggregation-operators">
-                  <div>
-                    <p:outputLabel for="@next" rendered="#{statisticConfigurationBean.dateTimeSelected}"
-                      value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Operator')}" />
-                    <p:selectOneMenu id="aggregates-custom-fields-operators" styleClass="w-full mt-2"
-                      rendered="#{statisticConfigurationBean.dateTimeSelected}"
-                      value="#{statisticConfigurationBean.dateTimeOperator}">
-                      <f:selectItems var="dateTimeOperator" value="#{statisticConfigurationBean.getAvailableOperators()}"
-                        itemLabel="#{statisticConfigurationBean.getUserFriendlyOperatorsName(dateTimeOperator)}" />
-                      <p:ajax listener="#{statisticConfigurationBean.onSelectOperator}" />
-                    </p:selectOneMenu>
-                  </div>
+                  <p:outputLabel for="@next" rendered="#{statisticConfigurationBean.dateTimeSelected}"
+                    styleClass="w-full mt-2"
+                    value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Operator')}" />
+                  <p:selectOneMenu id="aggregates-custom-fields-operators" styleClass="w-full mt-0"
+                    rendered="#{statisticConfigurationBean.dateTimeSelected}" value="#{statisticConfigurationBean.dateTimeOperator}">
+                    <f:selectItems var="dateTimeOperator" value="#{statisticConfigurationBean.getAvailableOperators()}"
+                      itemLabel="#{statisticConfigurationBean.getUserFriendlyOperatorsName(dateTimeOperator)}" />
+                    <p:ajax listener="#{statisticConfigurationBean.onSelectOperator}" />
+                  </p:selectOneMenu>
                 </h:panelGroup>
 
                 <h:panelGroup id="x-axis-title-container" layout="block" styleClass="col-6 p-0">
