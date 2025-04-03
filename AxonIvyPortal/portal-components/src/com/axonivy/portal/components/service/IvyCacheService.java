@@ -4,7 +4,6 @@ import java.util.Objects;
 import java.util.Optional;
 
 import org.apache.commons.lang.math.NumberUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.enums.PortalVariable;
 
@@ -15,8 +14,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class IvyCacheService {
 
-  private static final int SESSION_CACHE_TIMEOUT_MAX_MINUTES = 1440; // amount of minutes in 1 day
-  private static final int SESSION_CACHE_TIMEOUT_MIN_MINITES = 5;
+  public static final int MAX_TIMEOUT = 1440; // amount of minutes in 1 day
+  private static final int MIN_TIMEOUT = 5;
 
   private IvyCacheService() {}
   
@@ -78,34 +77,20 @@ public class IvyCacheService {
     return Ivy.datacache().getSessionCache();
   }
 
-  private static int getSessionCacheTimeout() {
-    // If cannot find the variable, use 1 day as default timeout
-    String resultStr =  Ivy.var().get(PortalVariable.SESSION_CACHE_TIMEOUT.key);
-    if (StringUtils.isBlank(resultStr)) {
-      return SESSION_CACHE_TIMEOUT_MAX_MINUTES;
+  public int getSessionCacheTimeout() {
+    // If cannot parse the number from variable, set its value to the default value
+    int result = NumberUtils.toInt(
+        Ivy.var().get(PortalVariable.SESSION_CACHE_TIMEOUT.key), MAX_TIMEOUT);
+
+    // If the session timeout is equals to infinity amount (-1), return it directly
+    if (result == NumberUtils.INTEGER_MINUS_ONE) {
+      return result;
     }
 
-    // If cannot parse the number from variable, set its value to the default
-    // value -1
-    int result = NumberUtils.toInt(resultStr, NumberUtils.INTEGER_MINUS_ONE);
-
-    // If the session timeout is equals to infinity amount (-1), return it
-    // directly
-    if (result == NumberUtils.FLOAT_MINUS_ONE) {
-      return NumberUtils.INTEGER_MINUS_ONE;
-    }
-
-    // If timeout value in the variable is greater than 1 day, set timeout to 1
-    // day
-    if (result > SESSION_CACHE_TIMEOUT_MAX_MINUTES) {
-      result = SESSION_CACHE_TIMEOUT_MAX_MINUTES;
-    }
-
-    // If timeout value in the variable is less than 5 minutes and different
-    // from -1, set timeout to 5 minutes
-    if (result < SESSION_CACHE_TIMEOUT_MIN_MINITES
-        && result != NumberUtils.INTEGER_MINUS_ONE) {
-      result = SESSION_CACHE_TIMEOUT_MIN_MINITES;
+    // If timeout value in the variable is default max value or less than
+    // default min value, return the default value
+    if (result > MAX_TIMEOUT || result < MIN_TIMEOUT) {
+      return MAX_TIMEOUT * 60;
     }
 
     // return the amount of seconds
