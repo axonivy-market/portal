@@ -14,29 +14,27 @@
   <cc:attribute name="roleNameStyleClass" />
   <cc:attribute name="securityMemberContainerStyleClass" />
   <cc:attribute name="renderDeputyInfo" default="false" />
-  <cc:attribute name="responsibles" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="securityMember" value="#{cc.attrs.securityMember}" />
   <c:set var="memberName" value="#{cc.attrs.securityMemberName}" />
   <c:set var="alwaysShowAsText" value="#{cc.attrs.alwaysShowAsText}" />
-  <c:set var="responsibles" value="#{cc.attrs.responsibles}" />
 
   <f:event listener="#{securityMemberDisplayNameBean.init()}" type="preRenderComponent" />
   <!-- Display User name as text format -->
   <h:panelGroup id="security-member-container" layout="block" styleClass="security-member-container #{cc.attrs.securityMemberContainerStyleClass}">
     <pc:securityMemberNameAndAvatar securityMember="#{securityMember}" id="name-and-avatar"
-      containerStyleClass="#{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator()) ? 'has-deputy-info' : ''}"
+      containerStyleClass="#{cc.attrs.renderDeputyInfo and responsibleBean.isSubstituteForTask(task.responsibles()) ? 'has-deputy-info' : ''}"
       displayNameId="#{cc.attrs.textId}-text" displayName="#{securityMemberDisplayNameBean.getBriefDisplayName(securityMember, memberName)}" displayNameStyleClass="#{cc.attrs.styleClass}" />
     <cc:renderFacet name="afterName" />
     <h:panelGroup id="deputy-info"
-      rendered="#{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator())}">
+      rendered="#{cc.attrs.renderDeputyInfo and responsibleBean.isSubstituteForTask(task.responsibles())}}">
       <i class="si si-information-circle" />
     </h:panelGroup>
     <p:tooltip for="deputy-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskFromSubstitution')}"
       trackMouse="true" hideEvent="mouseleave click"
-      rendered="#{cc.attrs.renderDeputyInfo and task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator())}" />
+      rendered="#{cc.attrs.renderDeputyInfo and responsibleBean.isSubstituteForTask(task.responsibles())}" />
 
     <p:tooltip rendered="#{securityMemberDisplayNameBean.isRenderDisplayNameTooltip(securityMember)}"
       for="#{cc.clientId}:name-and-avatar:#{cc.attrs.textId}-text"
