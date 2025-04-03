@@ -1468,6 +1468,7 @@ Dialogs:
               MODIFIED_TIMESTAMP: Geänderter Zeitstempel
               NUMBER_OF_RESUMES: Anzahl der wieder aufnehmen
               PRIORITY: Priorität
+              RESPONSIBLES_NAME: Verantwortliche
               START_TIMESTAMP: Zeitstempel des Beginns
               STATE: Status
               WORKER_NAME: Name des Arbeiters

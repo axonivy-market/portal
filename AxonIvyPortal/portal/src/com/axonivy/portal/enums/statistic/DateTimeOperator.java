@@ -7,10 +7,10 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum DateTimeOperator {
-  YEAR("Year"),
-  MONTH("Month"),
-  WEEK("Week"),
   DAY("Day"),
+  WEEK("Week"),
+  MONTH("Month"),
+  YEAR("Year"),
   MAX("Max"),
   MIN("Min"),
   AVG("Avg"),
@@ -36,6 +36,6 @@ public enum DateTimeOperator {
 //  public static final Set<DateTimeOperator> DATE_TIME_OPERATORS = Collections
 //      .unmodifiableSet(EnumSet.of(YEAR, MONTH, WEEK, DAY, MAX, MIN, AVG));
   public static final Set<DateTimeOperator> DATE_TIME_OPERATORS = Collections
-      .unmodifiableSet(EnumSet.of(YEAR, MONTH, WEEK, DAY));
+      .unmodifiableSet(EnumSet.of(DAY, WEEK, MONTH, YEAR));
 
 }

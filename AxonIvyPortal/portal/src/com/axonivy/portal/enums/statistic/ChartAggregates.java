@@ -11,6 +11,7 @@ public enum ChartAggregates {
   CATEGORY("category"),
   IS_EXPIRED("isExpired"),
   WORKER_NAME("worker.name"),
+  RESPONSIBLES_NAME("responsibles.name"),
   ACTIVATOR_NAME("activator.name"),
   CREATOR_NAME("creator.name"),
   BUSINESS_RUNTIME("businessRuntime"),
@@ -33,10 +34,12 @@ public enum ChartAggregates {
   }
 
   public static final Set<ChartAggregates> TASK_AGGREGATES = Collections.unmodifiableSet(
-      EnumSet.of(BUSINESS_STATE, PRIORITY, CATEGORY, START_TIMESTAMP, END_TIMESTAMP, EXPIRY_TIMESTAMP, CUSTOM_FIELD));
+      EnumSet.of(BUSINESS_STATE, PRIORITY, CATEGORY, WORKER_NAME, RESPONSIBLES_NAME, START_TIMESTAMP, END_TIMESTAMP,
+          EXPIRY_TIMESTAMP, CUSTOM_FIELD));
 
   public static final Set<ChartAggregates> CASE_AGGREGATES = Collections.unmodifiableSet(
-      EnumSet.of(BUSINESS_STATE, PRIORITY, CATEGORY, CREATOR_NAME, START_TIMESTAMP, END_TIMESTAMP, CUSTOM_FIELD));
+      EnumSet.of(BUSINESS_STATE, PRIORITY, CATEGORY, CREATOR_NAME, START_TIMESTAMP, END_TIMESTAMP,
+          CUSTOM_FIELD));
 
   public static final Set<ChartAggregates> TASK_NUMBER_AGGREGATES = Collections.unmodifiableSet(
       EnumSet.of(BUSINESS_STATE, PRIORITY, CATEGORY, BUSINESS_RUNTIME, WORKING_TIME, NUMBER_OF_RESUMES));

@@ -1457,6 +1457,7 @@ Dialogs:
               MODIFIED_TIMESTAMP: Hora de modificación
               NUMBER_OF_RESUMES: Número de currículos
               PRIORITY: Prioridad
+              RESPONSIBLES_NAME: Responsables
               START_TIMESTAMP: Fecha de inicio
               STATE: Estado
               WORKER_NAME: Nombre del trabajador

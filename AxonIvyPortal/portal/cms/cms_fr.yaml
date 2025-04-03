@@ -1496,6 +1496,7 @@ Dialogs:
               MODIFIED_TIMESTAMP: Horodatage modifié
               NUMBER_OF_RESUMES: Nombre de reprendre
               PRIORITY: Priorité
+              RESPONSIBLES_NAME: Responsables
               START_TIMESTAMP: Horodatage de début
               STATE: État
               WORKER_NAME: Nom de l'employé

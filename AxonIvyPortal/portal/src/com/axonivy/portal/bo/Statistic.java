@@ -38,17 +38,16 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private LineChartConfig lineChartConfig;
   private PieChartConfig pieChartConfig;
   private NumberChartConfig numberChartConfig;
+  private String aggregates;
+  private String manipulateValueBy;
   @JsonProperty(access = Access.READ_ONLY)
   private List<Entry<String, String>> additionalConfigs;
-  private String manipulateValueBy;
   @JsonIgnore
   private String name;
   @JsonIgnore
   private String description;
   @JsonIgnore
   private Boolean isCustom;
-  @JsonIgnore
-  private String aggregates;
   @JsonIgnore
   private List<SecurityMemberDTO> permissionDTOs;
 
