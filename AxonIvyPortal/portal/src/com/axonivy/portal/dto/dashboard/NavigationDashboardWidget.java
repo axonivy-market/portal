@@ -26,8 +26,8 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
   @JsonIgnore
   private List<Dashboard> dashboardList = new ArrayList<>();
 
-  private String title;
   private String description;
+  private String icon;
   
   @JsonIgnore
   private Boolean isDisable;
@@ -49,8 +49,8 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
     var widget = new NavigationDashboardWidget();
     widget.setId(widgetId);
     widget.setLayout(new WidgetLayout());
-    widget.getLayout().setWidth(2);
-    widget.getLayout().setHeight(2);
+    widget.getLayout().setWidth(3);
+    widget.getLayout().setHeight(3);
     widget.getLayout().setAxisX(0);
     widget.getLayout().setAxisY(0);
     return widget;
@@ -80,15 +80,7 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
   public void setDescription(String description) {
     this.description = description;
   }
-  
-  public String getTitle() {
-    return this.title;
-  }
-  
-  public void setTitle(String title) {
-    this.title = title;
-  }
-  
+
   public String getTargetDashboardName() {
     return this.targetDashboardName;
   }
@@ -103,6 +95,14 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
   
   public List<Dashboard> getDashboardList() {
       return this.dashboardList;
+  }
+  
+  public String getIcon() {
+    return this.icon;
+  }
+  
+  public void setIcon(String icon) {
+    this.icon = icon;
   }
   
   public String getDashboardNameById(String id) {

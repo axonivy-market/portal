@@ -14,7 +14,7 @@
   <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
   <!-- Configuration -->
   <h:panelGroup id="user-filter" layout="block"
-    styleClass="card dashboard-card widget-configuration custom-widget-configuration">
+    styleClass="card dashboard-card widget-configuration navigation-dashboard-widget-configuration">
     <div class="user-filter ui-g">
       <div class="ui-g-12 user-filter__header">
         <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}</h2>
@@ -54,6 +54,12 @@
           value="#{widget.description}"/>
       </div>
     </h:panelGroup>
+    <div class="ui-g-4">
+      <h:outputLabel id="navigation-dashboard-widget-icon-label" for="navigation-dashboard-widget-icon" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/icon')}" />
+    </div>
+    <div class="ui-g-12 u-no-padding-top navigation-dashboard-widget-icon">
+      <ic:ch.ivy.addon.portalkit.component.IconSelection id="navigation-dashboard-widget-icon" value="#{widget.icon}"/>
+    </div>
     <h:panelGroup id="dashboard-link-group" styleClass="u-padding-0 ui-fluid">
       <div class="ui-g-4 mt-2">
       <p:outputLabel styleClass="" for="@next" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}"/>

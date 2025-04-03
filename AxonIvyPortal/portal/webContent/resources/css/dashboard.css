@@ -186,8 +186,26 @@
 }
 
 .widget__header .widget__header-title,
-.widget__header .ui-link.si {
+.widget__header .ui-link.si, .navigation-widget-title {
   font-size: var(--widget-header-font-size);
+}
+
+.navigation-widget-title {
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.navigation-dashboard-widget-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
+  text-align: center;
 }
 
 .process-grid-item__action--combined a.si,
