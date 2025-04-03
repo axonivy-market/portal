@@ -25,7 +25,6 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @SessionScoped
 @ManagedBean
@@ -70,22 +69,18 @@ public class NavigationDashboardWidgetBean implements Serializable {
     } else {
 
       if (currentIndex == -1) {
-        DefaultMenuItem item =
-            DefaultMenuItem.builder().id(currentDashboard.getId()).value(currentDashboard.getTitle()).build();
-
-        String onCommandScript = String
-            .format("#{navigationDashboardWidgetBean.navigateToDashboardWhenClickingOnElement('%s')}", item.getId());
-        item.setCommand(onCommandScript);
+        DefaultMenuItem item = DefaultMenuItem.builder().id(currentDashboard.getId()).value(currentDashboard.getTitle())
+            .command(String.format("#{navigationDashboardWidgetBean.navigateToDashboardWhenClickingOnElement('%s')}",
+                currentDashboard.getId()))
+            .build();
 
         submenu.getElements().add(item);
       }
 
-      var item =
-          DefaultMenuItem.builder().id(widget.getTargetDashboardId()).value(widget.getTargetDashboardName()).build();
-
-      String onCommandScript = String
-          .format("#{navigationDashboardWidgetBean.navigateToDashboardWhenClickingOnElement('%s')}", item.getId());
-      item.setCommand(onCommandScript);
+      DefaultMenuItem item = DefaultMenuItem.builder().id(widget.getTargetDashboardId()).value(widget.getTargetDashboardName())
+          .command(String.format("#{navigationDashboardWidgetBean.navigateToDashboardWhenClickingOnElement('%s')}",
+              widget.getTargetDashboardId()))
+          .build();
 
       submenu.getElements().add(item);
       model.getElements().addAll(submenu.getElements());
