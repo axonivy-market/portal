@@ -135,10 +135,9 @@ public class NavigationDashboardWidgetBean implements Serializable {
   }
   
   public Boolean isNotClickable(NavigationDashboardWidget widget, Boolean isReadOnlyMode) {
-    List<String> dashboardIdList = DashboardUtils.collectDashboards().stream().map(dashboard -> dashboard.getId()).collect(Collectors.toList());
-    if (isReadOnlyMode) {
-      return !dashboardIdList.contains(widget.getTargetDashboardId());
+    if (!isReadOnlyMode) {
+        return true;
     }
-    return true;
-  }
+    return !DashboardUtils.collectDashboardIds().contains(widget.getTargetDashboardId());
+}
 }

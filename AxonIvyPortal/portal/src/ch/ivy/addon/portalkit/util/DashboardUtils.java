@@ -10,8 +10,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -434,6 +436,12 @@ public class DashboardUtils {
     cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId);
     cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PUBLIC_DASHBOARDS, sessionUserId);
     cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARDS, sessionUserId);
+  }
+  
+  public static Set<String> collectDashboardIds() {
+    return collectDashboards().stream()
+        .map(Dashboard::getId)
+        .collect(Collectors.toSet());
   }
 
   private static String getSessionUserId() {
