@@ -15,8 +15,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.logging.log4j.util.Strings;
+import org.primefaces.component.tabview.TabView;
+import org.primefaces.event.TabChangeEvent;
 
 import com.axonivy.portal.dto.InformationDTO;
 import com.axonivy.portal.service.DeepLTranslationService;
@@ -28,51 +28,15 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
-public class InformationWidgetBean implements Serializable{
+public class InformationWidgetBean implements Serializable {
 
   private static final long serialVersionUID = 6318866086036423536L;
 
-  private List<Locale> supportedLanguages;
+  private final LanguageService languageService = LanguageService.getInstance();
+  private final List<Locale> supportedLanguages = new ArrayList<>();
+  private final List<InformationDTO> editingInformationList = new ArrayList<>();
   private Locale defaultLanguage;
-  private InformationDTO informationDTO;
-  private boolean canManageInformation;
-  private List<InformationDTO> editingInformationList;
-  private String warningText;
-  private String translatedText;
-
-  @PostConstruct
-  public void init() {
-    canManageInformation = PermissionUtils.hasPortalPermission(PortalPermission.INFORMATION_WIGET_MANAGEMENT);
-    initInformationManagement();
-    editingInformationList = new ArrayList<>();
-    for (var language : supportedLanguages) {
-      var info = new InformationDTO();
-      info.setLocale(language);
-      editingInformationList.add(info);
-    }
-    Ivy.log().error("haha");
-  }
-
-  private void initInformationManagement() {
-    if (CollectionUtils.isEmpty(supportedLanguages)) {
-      supportedLanguages = LanguageService.getInstance().getContentLocales().stream()
-          .filter(distinctBylanguageTag(Locale::toLanguageTag)).collect(Collectors.toList());
-      defaultLanguage = LanguageService.getInstance().getDefaultLanguage();
-    }
-  }
-
-  public static <T> Predicate<T> distinctBylanguageTag(Function<? super T, ?> keyExtractor) {
-    Set<Object> keySet = ConcurrentHashMap.newKeySet();
-    return t -> keySet.add(keyExtractor.apply(t));
-  }
-
-  public List<Locale> getSupportedLanguages() {
-    return supportedLanguages;
-  }
-
-  public void setSupportedLanguages(List<Locale> supportedLanguages) {
-    this.supportedLanguages = supportedLanguages;
-  }
+  private int activeTabIndex = 0;
 
   public Locale getDefaultLanguage() {
     return defaultLanguage;
@@ -80,10 +44,6 @@ public class InformationWidgetBean implements Serializable{
 
   public void setDefaultLanguage(Locale defaultLanguage) {
     this.defaultLanguage = defaultLanguage;
-  }
-
-  public InformationDTO getInformationDTO() {
-    return informationDTO;
   }
 
   public String getWarningText() {
@@ -102,10 +62,6 @@ public class InformationWidgetBean implements Serializable{
     this.translatedText = translatedText;
   }
 
-  public void setInformationDTO(InformationDTO informationDTO) {
-    this.informationDTO = informationDTO;
-  }
-
   public boolean isCanManageInformation() {
     return canManageInformation;
   }
@@ -114,68 +70,94 @@ public class InformationWidgetBean implements Serializable{
     this.canManageInformation = canManageInformation;
   }
 
+  public LanguageService getLanguageService() {
+    return languageService;
+  }
+
+  public List<Locale> getSupportedLanguages() {
+    return supportedLanguages;
+  }
+
   public List<InformationDTO> getEditingInformationList() {
     return editingInformationList;
   }
 
-  public void setEditingInformationList(List<InformationDTO> editingInformationList) {
-    this.editingInformationList = editingInformationList;
+  private String warningText = "";
+  private String translatedText = "";
+  private boolean canManageInformation;
+
+  @PostConstruct
+  public void init() {
+    canManageInformation = PermissionUtils.hasPortalPermission(PortalPermission.INFORMATION_WIGET_MANAGEMENT);
+    loadSupportedLanguages();
+    initializeEditingList();
   }
 
-  public int getActiveTabIndex() {
-    int activeIndex = 0;
-    if (CollectionUtils.isNotEmpty(supportedLanguages)) {
-      activeIndex = supportedLanguages.indexOf(defaultLanguage);
-    }
-    return activeIndex < 0 ? 0 : activeIndex;
+  private void loadSupportedLanguages() {
+    supportedLanguages.addAll(languageService.getContentLocales().stream()
+        .filter(distinctByLanguageTag(Locale::toLanguageTag)).collect(Collectors.toList()));
+    defaultLanguage = languageService.getDefaultLanguage();
   }
 
-  public void translateTitle(Locale language) {
-    translatedText = "";
-    Optional<InformationDTO> optionalDefaultInfos = getDefaultiInfos();
-    if (optionalDefaultInfos.isPresent()) {
-      String translatedTitle = translate(optionalDefaultInfos.get().getName(), language);
-      Optional<InformationDTO> optionalCurrentNews = editingInformationList.stream()
-          .filter(news -> news.getLocale().getLanguage().equals(language.getLanguage())).findFirst();
-      if (optionalCurrentNews.isPresent()) {
-        optionalCurrentNews.get().setName(translatedTitle);
-      }
-      translatedText = translatedTitle;
-    }
-
+  private void initializeEditingList() {
+    supportedLanguages.forEach(locale -> editingInformationList.add(new InformationDTO(locale)));
   }
 
-  private Optional<InformationDTO> getDefaultiInfos() {
+  private static <T> Predicate<T> distinctByLanguageTag(Function<? super T, ?> keyExtractor) {
+    Set<Object> keySet = ConcurrentHashMap.newKeySet();
+    return t -> keySet.add(keyExtractor.apply(t));
+  }
+
+  private Optional<InformationDTO> getDefaultInfo() {
     return editingInformationList.stream()
-        .filter(lang -> defaultLanguage.getLanguage().equals(lang.getLocale().getLanguage())).findFirst();
+        .filter(info -> defaultLanguage.getLanguage().equals(info.getLocale().getLanguage())).findFirst();
   }
 
-  public String translate(String text, Locale target) {
-    String translatedText = Strings.EMPTY;
-    warningText = Strings.EMPTY;
+  public void translateTitle(Locale targetLanguage) {
+    translatedText = "";
+    getDefaultInfo().ifPresent(defaultInfo -> {
+      String translatedTitle = translate(defaultInfo.getName(), targetLanguage);
+      editingInformationList.stream().filter(info -> info.getLocale().equals(targetLanguage)).findFirst()
+          .ifPresent(info -> info.setName(translatedTitle));
+      translatedText = translatedTitle;
+    });
+  }
+
+  public void translateContent(Locale targetLanguage) {
+    getDefaultInfo().ifPresent(defaultInfo -> {
+      String translatedContent = translate(defaultInfo.getContent(), targetLanguage);
+      editingInformationList.stream().filter(info -> info.getLocale().equals(targetLanguage)).findFirst()
+          .ifPresent(info -> info.setContent(translatedContent));
+    });
+  }
+
+  private String translate(String text, Locale targetLanguage) {
+    warningText = "";
     try {
-      translatedText = DeepLTranslationService.getInstance().translate(text, defaultLanguage, target);
+      return DeepLTranslationService.getInstance().translate(text, defaultLanguage, targetLanguage);
     } catch (Exception e) {
       warningText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/SomeThingWentWrong");
-      Ivy.log().error("DeepL Translation Service error: ", e.getMessage());
+      Ivy.log().error("Translation Error: " + e.getMessage(), e);
+      return "";
     }
-    return translatedText;
-
   }
 
   public void resetTranslation() {
     translatedText = "";
   }
 
-  public void translateContent(Locale language) {
-    Optional<InformationDTO> optionalDefaultInfos = getDefaultiInfos();
-    if (optionalDefaultInfos.isPresent()) {
-      String translatedContent = translate(optionalDefaultInfos.get().getContent(), language);
-      Optional<InformationDTO> optionalCurrentNews = editingInformationList.stream()
-          .filter(infos -> infos.getLocale().getLanguage().equals(language.getLanguage())).findFirst();
-      if (optionalCurrentNews.isPresent()) {
-        optionalCurrentNews.get().setContent(translatedContent);
-      }
-    }
+  public int activeTabIndex() {
+    return Math.max(supportedLanguages.indexOf(defaultLanguage), 0);
+  }
+
+  public int getActiveTabIndex() {
+    return activeTabIndex;
+  }
+
+  public void onTabChange(TabChangeEvent<TabView> event) {
+    String selectedLanguageTag = event.getTab().getTitle();
+    supportedLanguages.stream().filter(locale -> locale.getDisplayLanguage().equalsIgnoreCase(selectedLanguageTag))
+        .findFirst().ifPresent(locale -> activeTabIndex = supportedLanguages.indexOf(locale));
   }
 }
+

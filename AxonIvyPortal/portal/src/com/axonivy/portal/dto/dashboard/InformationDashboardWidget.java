@@ -1,9 +1,9 @@
 package com.axonivy.portal.dto.dashboard;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.axonivy.portal.dto.InformationDTO;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
@@ -14,8 +14,9 @@ import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 public class InformationDashboardWidget extends DashboardWidget{
 
   private static final long serialVersionUID = -4330932580998493468L;
-  @JsonIgnore
-  private InformationDTO information;
+
+  private List<InformationDTO> informations;
+
   private boolean showFullscreenMode;
 
 
@@ -47,12 +48,12 @@ public class InformationDashboardWidget extends DashboardWidget{
     return DashboardWidgetType.INFORMATION;
   }
 
-  public InformationDTO getInformation() {
-    return information;
+  public List<InformationDTO> getInformations() {
+    return informations;
   }
 
-  public void setInformation(InformationDTO information) {
-    this.information = information;
+  public void setInformations(List<InformationDTO> informations) {
+    this.informations = informations;
   }
 
   public boolean isShowFullscreenMode() {

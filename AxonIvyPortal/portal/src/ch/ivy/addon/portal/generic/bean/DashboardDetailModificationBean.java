@@ -42,6 +42,7 @@ import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.ColumnResizeEvent;
 
+import com.axonivy.portal.bean.dashboard.InformationWidgetBean;
 import com.axonivy.portal.bo.ClientStatistic;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
@@ -500,6 +501,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       }
       case CASE -> {
         updateCaseWidget(widget);
+      }
+      case INFORMATION -> {
+        InformationWidgetBean infoBean = FacesContext.getCurrentInstance().getApplication().evaluateExpressionGet(
+            FacesContext.getCurrentInstance(), "#{informationWidgetBean}", InformationWidgetBean.class);
+        ((InformationDashboardWidget) widget).setInformations(infoBean.getEditingInformationList());
       }
       default -> {}
     }

@@ -14,59 +14,66 @@
   <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
   <!-- Configuration -->
 
-  <h:panelGroup id="filter-container" layout="block" styleClass="information-widget-configuration" >
+  <h:panelGroup id="filter-container" layout="block"
+    styleClass="card dashboard-card widget-configuration information-widget-configuration">
     <div class="filter-container">
-      <div id="information-widget-configuration-header" class="filter-container__header">
+      <div id="information-widget-configuration-header"
+        class="ui-g-12 filter-container__header">
         <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}</h2>
         <p>#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/NewsWidgetDescription')}</p>
       </div>
-      <h:panelGroup id="widget-title-group">
-      <div >
-        <div >
-          <p:outputLabel for="widget-title"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
+      <h:panelGroup id="widget-title-group" styleClass="w-full ui-fluid display-inline-flex-center">
+        <div>
+          <div class="ui-g-4">
+            <p:outputLabel for="widget-title"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
+          </div>
+          <div class="ui-g-8 ui-inputgroup">
+            <p:inputText id="widget-title"
+              styleClass="widget-configuration__input-text"
+              value="#{widget.name}" />
+            <!-- Add language button -->
+            <p:commandButton styleClass="app-setting-button"
+              icon="si si-chat-translate" id="add-language-button"
+              actionListener="#{managedBean.updateWidgetNameByLocale()}"
+              process="widget-title"
+              update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+              oncomplete="PF('multiple-languages-dialog').show();" />
+          </div>
         </div>
-        <div class="ui-inputgroup">
-          <p:inputText id="widget-title" styleClass="widget-configuration__input-text" value="#{widget.name}" />
-           <!-- Add language button -->
-          <p:commandButton styleClass="app-setting-button"
-            icon="si si-chat-translate" id="add-language-button"
-            actionListener="#{managedBean.updateWidgetNameByLocale()}"
-            process="widget-title"
-            update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
-            oncomplete="PF('multiple-languages-dialog').show();" />
-        </div>
-      </div>
-      <h:form>
-      <c:set var="defaultLang" value="#{InformationWidgetBean.defaultLanguage.toLanguageTag()}" />
-      <p:tabView id="manage-information-tabview" value="#{informationWidgetBean.editingInformationList}" var="info" dynamic="true"
-        widgetVar="manage-info-tabview" activeIndex="#{informationWidgetBean.activeTabIndex}">
-        <c:set var="infoLanguage" value="#{info.locale.toLanguageTag()}" />
-        <c:set var="requiredLanguage" value="#{defaultLang eq infoLanguage}" />
-        <p:ajax event="tabChange" oncomplete="PF('manage-info-dialog').initPosition()"/>
+      </h:panelGroup>
 
-        <p:tab title="#{requiredLanguage ? '* ':''}#{info.locale.displayLanguage}" 
-          titleStyleClass="info-language-tab-#{infoLanguage}">
-          <h:panelGroup id="manage-info-details-container" layout="block">
-            <p:messages id="management-info-message" redisplay="false">
-              <p:autoUpdate />
-            </p:messages>
+    </div>
+  </h:panelGroup>
 
-            <div class="management-info__title-group">
-              <ic:ch.ivy.addon.portalkit.component.IconSelection id="info-icon" value="#{info.icon}"
-                hideIconArray="true" />
-              <div class="ui-fluid management-info__title-input ui-inputgroup">
-                <p:inputText id="info-title" required="#{requiredLanguage and param['skipValidator'] == null}"
-                  placeholder="title"
-                  value="#{info.name}"
-                  requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsTitleValidateMessage', [info.locale.displayLanguage.toLowerCase()])}"
-                  maxlength="200">
-                  <p:ajax event="click" listener="#{informationWidgetBean.translateTitle(info.locale)}"
+<h:form>
+    <c:set var="defaultLang" value="#{informationWidgetBean.defaultLanguage.toLanguageTag()}" />
+    
+    <p:tabView id="manage-information-tabview"
+        value="#{informationWidgetBean.editingInformationList}"
+        var="info"
+        widgetVar="manage-info-tabview"
+        activeIndex="#{informationWidgetBean.activeTabIndex}">
+        
+        <p:ajax event="tabChange" listener="#{informationWidgetBean.onTabChange}" process="@this" update="@form" />
+        
+        <p:tab title="#{info.locale.displayLanguage}" titleStyleClass="info-language-tab-#{info.locale.toLanguageTag()}">
+            <h:panelGroup id="manage-info-details-container" layout="block">
+                <p:messages id="management-info-message" redisplay="false">
+                    <p:autoUpdate />
+                </p:messages>
+
+                <div class="management-info__title-group">
+                    <ic:ch.ivy.addon.portalkit.component.IconSelection id="info-icon" value="#{info.icon}" hideIconArray="true" />
+                    
+                    <div class="ui-fluid management-info__title-input ui-inputgroup">
+                        <p:inputText id="info-title" value="#{info.name}" required="true"
+                            requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsTitleValidateMessage', [info.locale.displayLanguage.toLowerCase()])}" maxlength="200">
+                            <p:ajax event="click" listener="#{informationWidgetBean.translateTitle(info.locale)}"
                     disabled="#{requiredLanguage}" process="@form"
                     partialSubmit="true" global="false" update="translated-text-panel, tranlate-link" />
-                  <f:param name="skipValidator" value="true" />
-                </p:inputText>
-                <p:overlayPanel for="info-title" appendTo="@(body)" my="right top" at="right bottom"
+                        </p:inputText>
+                        <p:overlayPanel for="info-title" appendTo="@(body)" my="right top" at="right bottom"
                   id="overlay-panel-input"
                   styleClass="filter-name-overlay-panel #{requiredLanguage ? 'hidden' : ''}"
                   dynamic="false" dismissable="true" showCloseIcon="true">
@@ -78,20 +85,20 @@
                   </p:commandLink>
                   <h:panelGroup id="translated-text-panel" layout="block">
                     <i id="translating-title"
-                      class="#{empty informationWidgetBean.translatedText and empty informationWidgetBean.warningText ? 'pi pi-spin pi-spinner' : 'hidden'}"></i>
+                      class="#{empty informationWidgetBean.translatedText and empty informationWidgetBean.warningText? 'pi pi-spin pi-spinner' : 'hidden'}"></i>
                     <p:outputPanel id="translated-title"
                       styleClass="#{empty informationWidgetBean.translatedText ? 'hidden' : ''}">#{informationWidgetBean.translatedText}</p:outputPanel>
-                    <p:outputLabel id="warning-text" styleClass="#{empty informationWidgetBean.warningText ? 'hidden' : ''}">
+                    <p:outputLabel id="warning-text" styleClass="#{empty informationWidgetBean.warningText? 'hidden' : ''}">
                       <span class="ui-outputlabel-rfi">#{informationWidgetBean.warningText}</span>
                     </p:outputLabel>
                   </h:panelGroup>
-                </p:overlayPanel>
-              </div>
-            </div>
+                </p:overlayPanel> 
+                    </div>
+                </div>
 
             <div class="management-info__content-group">
-              <p:textEditor id="info-content" height="300px" value="#{info.content}"
-                placeholder=""
+              <p:textEditor widgetVar="infoContentEditor#{info.locale.toLanguageTag()}" id="info-content" height="300px" value="#{info.content}" 
+                placeholder="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsContentPlaceHolder')}"
                 required="#{requiredLanguage and param['skipValidator'] == null}"
                 requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/NewsContentValidateMessage', [info.locale.displayLanguage.toLowerCase()])}">
                 <f:validator validatorId="newsEditorValidator" />
@@ -107,21 +114,20 @@
                       title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Translate')}">
                       <p:ajax event="click"
                         listener="#{informationWidgetBean.translateContent(info.locale)}"
-                        process="@form" update="info-content" />
+                        process="@form" update="info-content" 
+                        oncomplete="if (PF('infoContentEditor#{info.locale.toLanguageTag()}')) PF('infoContentEditor#{info.locale.toLanguageTag()}').init();" />
                         <f:param name="skipValidator" value="true" />
                     </p:commandButton>
                   </span>
                 </f:facet>
               </p:textEditor>
-            </div>
-          </h:panelGroup>
+            </div> 
+            </h:panelGroup>
         </p:tab>
-      </p:tabView>
-      </h:form>
-      
-      </h:panelGroup>
-    </div>
-  </h:panelGroup>
+    </p:tabView>
+
+</h:form>
+
 
   <!-- Multi language dialog-->
   <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
