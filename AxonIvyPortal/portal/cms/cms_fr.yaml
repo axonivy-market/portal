@@ -215,6 +215,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       GooglePlayURL: Définir l'URL pour télécharger l'application mobile Axon Ivy sur Google Play.
       RoleDirectChildrenLimit: 'Le nombre défini contrôle la quantité de rôles d''enfants directs qui est affichée dans l''onglet Gestion des rôles. Nombre valide : 10, 50, 100'
       RoleParentLimit: 'Le nombre défini contrôle la quantité de rôles parents qui est affichée lors du filtrage des rôles dans l''onglet Gestion des rôles. Nombre valide : 5, 10, 20'
+      SessionCacheTimeout: Délai d'expiration du cache de session pour le portail. Définit la durée d'expiration du cache de session (en secondes) pour le portail. Cette valeur peut être définie entre 300 (5 minutes) et 86 400 (24 heures).
       ShowLoginPageFooter: Pour activer/désactiver l'affichage du pied de page sur la page de connexion.
       ShowQRCode: Pour activer/désactiver l'affichage du code QR.
       behaviourWhenClickingOnLineInCaseList: Pour alterner entre les comportements (accéder aux détails du dossier ou aux détails de l’entreprise) lors du clic sur un dossier dans le widget de dossier du dashboard, la recherche globale, les dossiers associés et le widget de processus en mode combiné.
