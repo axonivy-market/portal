@@ -88,7 +88,7 @@ public enum GlobalVariable {
   DOCUMENT_UPLOAD_SIZE_LIMIT("Portal.Upload.DocumentUploadSizeLimit",GlobalVariableType.NUMBER,"20","documentUploadSizeLimit"),
   IMAGE_UPLOAD_SIZE_LIMIT("Portal.Upload.ImageUploadSizeLimit", GlobalVariableType.NUMBER, "6", "imageUploadSizeLimit"),
   SESSION_CACHE_TIMEOUT("Portal.SessionCacheTimeout", GlobalVariableType.NUMBER,
-      "1440", "SessionCacheTimeout");
+      "86400", "SessionCacheTimeout");
 
   private String key;
   private GlobalVariableType type;
