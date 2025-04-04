@@ -633,7 +633,8 @@ public class StatisticConfigurationBean implements Serializable {
     }
     // ****************************************************************
 
-    List<String> metricOperator = Arrays.asList("MAX", "MIN", "AVG");
+    List<DateTimeOperator> metricOperator = Arrays.asList(DateTimeOperator.MIN, DateTimeOperator.MAX,
+        DateTimeOperator.AVG);
     String finalAggregation = metricOperator.contains(dateTimeOperator)
         ? statistic.getAggregates() + ":" + dateTimeOperator.getName().toLowerCase()
         : statistic.getAggregates() + ":bucket:" + dateTimeOperator.getName().toLowerCase();
