@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -34,11 +33,9 @@ public class NavigationDashboardWidgetBean implements Serializable {
   private MenuModel model = new DefaultMenuModel();
   private DefaultSubMenu submenu =
       DefaultSubMenu.builder().label("Navigation Dashboard Breadcrumb").expanded(true).build();
-  private Map<String, String> dashboardIdAndNameList;
-  
-  @PostConstruct
-  public void init() {
-    this.dashboardIdAndNameList = DashboardUtils.getPublicDashboards().stream()
+
+  private Map<String, String> getDashboardNameFromPublicDashboards() {
+    return DashboardUtils.getPublicDashboards().stream()
         .collect(Collectors.toMap(
             dashboard -> dashboard.getId(), 
             dashboard -> dashboard.getTitle()
@@ -48,14 +45,15 @@ public class NavigationDashboardWidgetBean implements Serializable {
   public void buildBreadcrumb(NavigationDashboardWidget widget, Dashboard currentDashboard) {
     int currentIndex = findDashboardIndexInPath(currentDashboard.getId());
     int targetIndex = findDashboardIndexInPath(widget.getTargetDashboardId());
+    widget.setTargetDashboardName(getDashboardNameFromPublicDashboards().getOrDefault(widget.getTargetDashboardId(), DEFAULT_DASHBOARD_NAME));
 
     model.getElements().clear();
-
-    if (targetIndex >= 0) {
-      if (targetIndex == 0) {
-        removeNavigationDashboardBreadcrumb();
-        return;
-      }
+    if (targetIndex == 0) {
+      removeNavigationDashboardBreadcrumb();
+      return;
+    }
+    
+    if (targetIndex > 0) {
 
       List<MenuElement> newList = new ArrayList<>();
       for (int i = 0; i <= targetIndex; i++) {
@@ -140,13 +138,6 @@ public class NavigationDashboardWidgetBean implements Serializable {
   public MenuModel getModel() {
     return this.model;
   }
-  
-  public void updateTargetDashboardName(NavigationDashboardWidget widget) {
-    String dashboardName = this.dashboardIdAndNameList.getOrDefault(widget.getTargetDashboardId(), DEFAULT_DASHBOARD_NAME);
-    widget.setTargetDashboardName(dashboardName);
-  }
-  
-  
   
   public Boolean isNotClickable(NavigationDashboardWidget widget, Boolean isReadOnlyMode) {
     if (!isReadOnlyMode) {
