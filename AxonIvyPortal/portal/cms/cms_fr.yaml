@@ -1506,7 +1506,18 @@ Dialogs:
             Color: Couleur {0}
             Create: Créer
             CustomAggregateInput: Veuillez saisir des champs personnalisés.
-            DateTimeOperators:
+            EditStatistic: Modifier le widget statistique
+            For: Pour
+            GeneratePreview: Générer un aperçu
+            HideLabel: Cacher l'étiquette
+            Interval: Intervalle
+            NewStatistic: Nouveau widget statistique
+            RefreshInterval: Actualisation automatique activée
+            RefreshIntervalInSeconds: Intervalle de rafraîchissement automatique (secondes)
+            RefreshIntervalInSecondsValidationMessage: 'Intervalle de rafraîchissement automatique (secondes) : L''attribut spécifié n''est pas compris entre les valeurs attendues de {0} et {1}'
+            RefreshIntervalInfo: La statistique peut être actualisée automatiquement après une certaine période. Si cette option est activée, elle peut avoir un impact sur les performances. L'intervalle de rafraîchissement automatique (secondes) doit être au moins {0}.
+            StatisticConfiguration: Configuration des statistiques
+            StatisticIntervals:
               AVG: Avg
               DAY: Jour
               HOUR: Heure
@@ -1515,17 +1526,6 @@ Dialogs:
               MONTH: Mois
               WEEK: Semaine
               YEAR: Année
-            EditStatistic: Modifier le widget statistique
-            For: Pour
-            GeneratePreview: Générer un aperçu
-            HideLabel: Cacher l'étiquette
-            NewStatistic: Nouveau widget statistique
-            Operator: Opérateur
-            RefreshInterval: Actualisation automatique activée
-            RefreshIntervalInSeconds: Intervalle de rafraîchissement automatique (secondes)
-            RefreshIntervalInSecondsValidationMessage: 'Intervalle de rafraîchissement automatique (secondes) : L''attribut spécifié n''est pas compris entre les valeurs attendues de {0} et {1}'
-            RefreshIntervalInfo: La statistique peut être actualisée automatiquement après une certaine période. Si cette option est activée, elle peut avoir un impact sur les performances. L'intervalle de rafraîchissement automatique (secondes) doit être au moins {0}.
-            StatisticConfiguration: Configuration des statistiques
             XAxisTitle: Titre de l'axe X
             YAxisTitle: Titre de l'axe des Y
   components:

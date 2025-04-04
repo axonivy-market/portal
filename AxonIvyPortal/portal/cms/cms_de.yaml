@@ -1478,7 +1478,18 @@ Dialogs:
             Color: Farbe {0}
             Create: Erstellen
             CustomAggregateInput: Bitte geben Sie benutzerdefinierte Felder ein.
-            DateTimeOperators:
+            EditStatistic: Statistisches Widget bearbeiten
+            For: Für
+            GeneratePreview: Vorschau generieren
+            HideLabel: Etikett ausblenden
+            Interval: Intervall
+            NewStatistic: Neues Statistik-Widget
+            RefreshInterval: Automatisches Auffrischen aktiviert
+            RefreshIntervalInSeconds: Intervall für die automatische Aktualisierung (Sekunden)
+            RefreshIntervalInSecondsValidationMessage: 'Intervall für die automatische Aktualisierung (Sekunden): Das angegebene Attribut liegt nicht zwischen den erwarteten Werten von {0} und {1}'
+            RefreshIntervalInfo: Die Statistik kann nach einer bestimmten Zeit automatisch aktualisiert werden. Wenn sie aktiviert ist, kann dies die Leistung beeinträchtigen. Das Intervall für die automatische Aktualisierung (Sekunden) muss mindestens {0} betragen.
+            StatisticConfiguration: Konfiguration der Statistik
+            StatisticIntervals:
               AVG: Avg
               DAY: Tag
               HOUR: Stunde
@@ -1487,17 +1498,6 @@ Dialogs:
               MONTH: Monat
               WEEK: Woche
               YEAR: Jahr
-            EditStatistic: Statistisches Widget bearbeiten
-            For: Für
-            GeneratePreview: Vorschau generieren
-            HideLabel: Etikett ausblenden
-            NewStatistic: Neues Statistik-Widget
-            Operator: Operator
-            RefreshInterval: Automatisches Auffrischen aktiviert
-            RefreshIntervalInSeconds: Intervall für die automatische Aktualisierung (Sekunden)
-            RefreshIntervalInSecondsValidationMessage: 'Intervall für die automatische Aktualisierung (Sekunden): Das angegebene Attribut liegt nicht zwischen den erwarteten Werten von {0} und {1}'
-            RefreshIntervalInfo: Die Statistik kann nach einer bestimmten Zeit automatisch aktualisiert werden. Wenn sie aktiviert ist, kann dies die Leistung beeinträchtigen. Das Intervall für die automatische Aktualisierung (Sekunden) muss mindestens {0} betragen.
-            StatisticConfiguration: Konfiguration der Statistik
             XAxisTitle: Titel der X-Achse
             YAxisTitle: Titel der Y-Achse
   components:

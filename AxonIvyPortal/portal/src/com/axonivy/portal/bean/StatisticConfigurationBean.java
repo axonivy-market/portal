@@ -46,7 +46,7 @@ import com.axonivy.portal.dto.statistic.StatisticFilter;
 import com.axonivy.portal.enums.ChartTarget;
 import com.axonivy.portal.enums.ChartType;
 import com.axonivy.portal.enums.statistic.ChartAggregates;
-import com.axonivy.portal.enums.statistic.DateTimeOperator;
+import com.axonivy.portal.enums.statistic.StatisticInterval;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.service.multilanguage.StatisticDescriptionMultilanguageService;
@@ -102,10 +102,10 @@ public class StatisticConfigurationBean implements Serializable {
   private CustomFieldType currentCustomFieldType;
   private String currentCustomFieldDescription;
   private boolean isDateTimeSelected;
-  private DateTimeOperator dateTimeOperator;
+  private StatisticInterval statisticInterval;
 
   private static final String CHART_AGGREGATES_CMS_PATH = "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartAggregates/";
-  private static final String CHART_OPERATORS_CMS_PATH = "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/DateTimeOperators/";
+  private static final String CHART_OPERATORS_CMS_PATH = "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/StatisticIntervals/";
 
   private StatisticNameMultilanguageService nameMultilanguageService;
   private StatisticDescriptionMultilanguageService descriptionMultilanguageService;
@@ -260,7 +260,7 @@ public class StatisticConfigurationBean implements Serializable {
       return;
     }
     handleCustomFieldAggregation();
-    handleAggregateWithDateTimeOperator();
+    handleAggregateWithDateTimeInterval();
     syncUIConfigWithChartConfig();
     cleanUpRedundantChartConfigs(statistic.getChartType());
     cleanUpConfiguration();
@@ -374,7 +374,7 @@ public class StatisticConfigurationBean implements Serializable {
 
   public void getPreviewData() {
     handleCustomFieldAggregation();
-    handleAggregateWithDateTimeOperator();
+    handleAggregateWithDateTimeInterval();
     syncUIConfigWithChartConfig();
     cleanUpFilter();
     Ivy.log().info("check query aggregate");
@@ -383,7 +383,7 @@ public class StatisticConfigurationBean implements Serializable {
     Ivy.log().info(statistic.getStatisticAggregation().getAggregate().getName());
     Ivy.log().info(statistic.getStatisticAggregation().getCustomFieldValue());
     Ivy.log().info(statistic.getStatisticAggregation().getCustomFieldType());
-    Ivy.log().info(statistic.getStatisticAggregation().getOperator());
+    Ivy.log().info(statistic.getStatisticAggregation().getInterval());
     Ivy.log().info("=====================================================");
     StatisticService statisticService = StatisticService.getInstance();
     statistic.setAdditionalConfigs(new ArrayList<>());
@@ -601,15 +601,15 @@ public class StatisticConfigurationBean implements Serializable {
     return statistic.getStatisticAggregation().getAggregate().name().contains("CUSTOM_FIELD");
   }
   
-  private void resetCustomFieldAndDateTimeOperator() {
+  private void resetCustomFieldAndDateTimeInterval() {
       this.currentCustomField = null;
       this.currentCustomFieldType = null;
-      this.dateTimeOperator = null;
+      this.statisticInterval = null;
   }
   
   private void handleCustomFieldAggregation() {
     if(!isCustomFieldsSelected()) {
-      resetCustomFieldAndDateTimeOperator();
+      resetCustomFieldAndDateTimeInterval();
       statistic.setAggregates(statistic.getStatisticAggregation().getAggregate().getName());
       return;
     }
@@ -624,7 +624,7 @@ public class StatisticConfigurationBean implements Serializable {
       this.currentCustomField = "HIDE";
       statistic.setAggregates("customFields.strings.HIDE");
       initValueForStatisticAggregation(ChartAggregates.CUSTOM_FIELD, currentCustomFieldType, currentCustomField,
-          dateTimeOperator);
+          statisticInterval);
       return;
     }
     // ****************************************************************
@@ -633,7 +633,7 @@ public class StatisticConfigurationBean implements Serializable {
     initValueForStatisticAggregation(ChartAggregates.CUSTOM_FIELD,
         currentCustomFieldType,
         currentCustomField,
-        dateTimeOperator);
+        statisticInterval);
     switch (this.currentCustomFieldType) {
     case CustomFieldType.STRING: {
       statistic.setAggregates("customFields.strings." + currentCustomField);
@@ -655,15 +655,15 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public void initValueForStatisticAggregation(ChartAggregates chartAggregates, CustomFieldType customFieldType,
-      String customFieldValue, DateTimeOperator dateTimeOperator) {
+      String customFieldValue, StatisticInterval dateTimeOperator) {
       statistic.getStatisticAggregation().setAggregate(chartAggregates);
       statistic.getStatisticAggregation().setCustomFieldType(customFieldType);
       statistic.getStatisticAggregation().setCustomFieldValue(customFieldValue);
-      statistic.getStatisticAggregation().setOperator(dateTimeOperator);
+      statistic.getStatisticAggregation().setInterval(dateTimeOperator);
   }
 
-  public void handleAggregateWithDateTimeOperator() {
-    if (dateTimeOperator == null) {
+  public void handleAggregateWithDateTimeInterval() {
+    if (statisticInterval == null) {
       return;
     }
     /**
@@ -673,16 +673,16 @@ public class StatisticConfigurationBean implements Serializable {
      * > click Generate preview => error
      * */
     if(!statistic.getAggregates().contains("timestamp")) {
-      this.setDateTimeOperator(null);
+      this.setStatisticInterval(null);
       return;
     }
     // ****************************************************************
 
-    List<DateTimeOperator> metricOperator = Arrays.asList(DateTimeOperator.MIN, DateTimeOperator.MAX,
-        DateTimeOperator.AVG);
-    String finalAggregation = metricOperator.contains(dateTimeOperator)
-        ? statistic.getAggregates() + ":" + dateTimeOperator.getName().toLowerCase()
-        : statistic.getAggregates() + ":bucket:" + dateTimeOperator.getName().toLowerCase();
+    List<StatisticInterval> metricOperator = Arrays.asList(StatisticInterval.MIN, StatisticInterval.MAX,
+        StatisticInterval.AVG);
+    String finalAggregation = metricOperator.contains(statisticInterval)
+        ? statistic.getAggregates() + ":" + statisticInterval.getName().toLowerCase()
+        : statistic.getAggregates() + ":bucket:" + statisticInterval.getName().toLowerCase();
     
     statistic.setAggregates(finalAggregation);
   }
@@ -711,7 +711,7 @@ public class StatisticConfigurationBean implements Serializable {
     return displayAggregateName;
   }
 
-  public String getUserFriendlyOperatorsName(DateTimeOperator selectedOperator) {
+  public String getUserFriendlyIntervalName(StatisticInterval selectedOperator) {
     if(selectedOperator == null) {
       return EMPTY;
     }
@@ -746,17 +746,17 @@ public class StatisticConfigurationBean implements Serializable {
     return metaData;
   }
 
-  public List<DateTimeOperator> getAvailableOperators() {
-    List<DateTimeOperator> operators = DateTimeOperator.DATE_TIME_OPERATORS.stream().toList();
+  public List<StatisticInterval> getAvailableIntervals() {
+    List<StatisticInterval> intervals = StatisticInterval.DATE_TIME_INTERVALS.stream().toList();
 
-    return operators ;
+    return intervals;
   }
 
-  public void onSelectOperator() {
-    Ivy.log().info(dateTimeOperator);
-    statistic.getStatisticAggregation().setOperator(dateTimeOperator);
-    if (dateTimeOperator != null && isCustomFieldsSelected()) {
-      statistic.setAggregates(statistic.getAggregates() + ":bucket:" + dateTimeOperator.toString().toLowerCase());
+  public void onSelectInterval() {
+    Ivy.log().info(statisticInterval);
+    statistic.getStatisticAggregation().setInterval(statisticInterval);
+    if (statisticInterval != null && isCustomFieldsSelected()) {
+      statistic.setAggregates(statistic.getAggregates() + ":bucket:" + statisticInterval.toString().toLowerCase());
     }
   }
 
@@ -782,7 +782,7 @@ public class StatisticConfigurationBean implements Serializable {
   public void onSelectChartTarget(ChartTarget newChartTarget) {
     if (statistic.getChartTarget() != null && statistic.getChartTarget() == newChartTarget) {
       resetAggregateValues();
-      resetCustomFieldAndDateTimeOperator();
+      resetCustomFieldAndDateTimeInterval();
       this.setDateTimeSelected(statistic.getStatisticAggregation().getAggregate().getName().contains("Timestamp"));
     }
     statistic.setChartTarget(newChartTarget);
@@ -792,15 +792,7 @@ public class StatisticConfigurationBean implements Serializable {
     statistic.getStatisticAggregation().setAggregate(ChartAggregates.PRIORITY);
     statistic.getStatisticAggregation().setCustomFieldType(null);
     statistic.getStatisticAggregation().setCustomFieldValue(null);
-    statistic.getStatisticAggregation().setOperator(null);
-  }
-
-  public DateTimeOperator getDateTimeOperator() {
-    return dateTimeOperator;
-  }
-
-  public void setDateTimeOperator(DateTimeOperator dateTimeOperator) {
-    this.dateTimeOperator = dateTimeOperator;
+    statistic.getStatisticAggregation().setInterval(statisticInterval);
   }
 
   public List<FilterField> getFilterFields() {
@@ -841,5 +833,13 @@ public class StatisticConfigurationBean implements Serializable {
   
   public List<SecurityMemberDTO> completeOwners(String query) {
     return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
+  }
+
+  public StatisticInterval getStatisticInterval() {
+    return statisticInterval;
+  }
+
+  public void setStatisticInterval(StatisticInterval statisticInterval) {
+    this.statisticInterval = statisticInterval;
   }
 }

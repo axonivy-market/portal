@@ -1467,7 +1467,18 @@ Dialogs:
             Color: Color {0}
             Create: Cree
             CustomAggregateInput: Por favor ingrese campos personalizados.
-            DateTimeOperators:
+            EditStatistic: Editar widget de estadísticas
+            For: Para
+            GeneratePreview: Generar vista previa
+            HideLabel: Ocultar etiqueta
+            Interval: Intervalo
+            NewStatistic: Nuevo widget de estadísticas
+            RefreshInterval: Auto-refresco activado
+            RefreshIntervalInSeconds: Intervalo de actualización automática (segundos)
+            RefreshIntervalInSecondsValidationMessage: 'Intervalo de actualización automática (segundos): El atributo especificado no está entre los valores esperados de {0} y {1}'
+            RefreshIntervalInfo: La estadística puede actualizarse automáticamente tras un periodo determinado. Si se activa, esto puede afectar al rendimiento. El intervalo de actualización automática (segundos) debe ser al menos {0}.
+            StatisticConfiguration: Configuración estadística
+            StatisticIntervals:
               AVG: Avg
               DAY: Día
               HOUR: Hora
@@ -1476,17 +1487,6 @@ Dialogs:
               MONTH: Mes
               WEEK: Semana
               YEAR: Año
-            EditStatistic: Editar widget de estadísticas
-            For: Para
-            GeneratePreview: Generar vista previa
-            HideLabel: Ocultar etiqueta
-            NewStatistic: Nuevo widget de estadísticas
-            Operator: Operador
-            RefreshInterval: Auto-refresco activado
-            RefreshIntervalInSeconds: Intervalo de actualización automática (segundos)
-            RefreshIntervalInSecondsValidationMessage: 'Intervalo de actualización automática (segundos): El atributo especificado no está entre los valores esperados de {0} y {1}'
-            RefreshIntervalInfo: La estadística puede actualizarse automáticamente tras un periodo determinado. Si se activa, esto puede afectar al rendimiento. El intervalo de actualización automática (segundos) debe ser al menos {0}.
-            StatisticConfiguration: Configuración estadística
             XAxisTitle: Título del eje X
             YAxisTitle: Título del eje Y
   components:

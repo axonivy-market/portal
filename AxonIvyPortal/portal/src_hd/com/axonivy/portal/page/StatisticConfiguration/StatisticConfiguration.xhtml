@@ -119,15 +119,15 @@
                     <p:ajax listener="#{statisticConfigurationBean.onSelectCustomField()}" update="custom-field-description chart-aggregation" />
                   </p:selectOneMenu>
 
-                  <!--  OPERATORS SELECTION -->
+                  <!--  INTERVALS SELECTION -->
                   <p:outputLabel for="@next" rendered="#{statisticConfigurationBean.dateTimeSelected}"
                     styleClass="w-full mt-2"
-                    value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Operator')}" />
-                  <p:selectOneMenu id="aggregates-custom-fields-operators" styleClass="w-full mt-0"
-                    rendered="#{statisticConfigurationBean.dateTimeSelected}" value="#{statisticConfigurationBean.dateTimeOperator}">
-                    <f:selectItems var="dateTimeOperator" value="#{statisticConfigurationBean.getAvailableOperators()}"
-                      itemLabel="#{statisticConfigurationBean.getUserFriendlyOperatorsName(dateTimeOperator)}" />
-                    <p:ajax listener="#{statisticConfigurationBean.onSelectOperator}" />
+                    value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Interval')}" />
+                  <p:selectOneMenu id="aggregates-custom-fields-intervals" styleClass="w-full mt-0"
+                    rendered="#{statisticConfigurationBean.dateTimeSelected}" value="#{statisticConfigurationBean.statisticInterval}">
+                    <f:selectItems var="dateTimeInterval" value="#{statisticConfigurationBean.getAvailableIntervals()}"
+                      itemLabel="#{statisticConfigurationBean.getUserFriendlyIntervalName(dateTimeInterval)}" />
+                    <p:ajax listener="#{statisticConfigurationBean.onSelectInterval}" />
                   </p:selectOneMenu>
                 </h:panelGroup>
 

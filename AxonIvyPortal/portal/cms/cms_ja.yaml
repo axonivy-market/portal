@@ -1478,9 +1478,9 @@ Dialogs:
             TaskIFrameTitle: タスクフレーム
         page:
           StatisticConfiguration:
+            AddFilter: TODO Add filter
             AdvancedConfiguration: TODO Advanced configuration
             Aggregate: TODO Aggregate
-            AddFilter: TODO Add filter
             ChartAggregates:
               RESPONSIBLES_NAME: TODO Responsibles
             ChartType: TODO Chart type
