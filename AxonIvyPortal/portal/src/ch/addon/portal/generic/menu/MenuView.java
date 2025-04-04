@@ -39,6 +39,7 @@ import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
+import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.service.MainMenuEntryService;
@@ -180,7 +181,7 @@ public class MenuView implements Serializable {
     DefaultSubMenu dashboardGroupMenu = createDashboardGroupMenu(defaultTitle, mainMenuDisplayName, mainMenuIcon);
 
     for (Dashboard board : subItemDashboards) {
-      if (board.getIsTopMenu()) {
+      if (DashboardDisplayType.TOP_MENU.equals(board.getDashboardDisplayType())) {
         continue;
       }
       String iconClass = determineIconClass(board);
