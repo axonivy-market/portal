@@ -619,14 +619,14 @@ public class StatisticConfigurationBean implements Serializable {
      * Choose Custom field > click button Generate preview 
      * => error
      */
-    if(this.currentCustomFieldType == null) {
-      this.currentCustomFieldType = CustomFieldType.STRING;
-      this.currentCustomField = "HIDE";
-      statistic.setAggregates("customFields.strings.HIDE");
-      initValueForStatisticAggregation(ChartAggregates.CUSTOM_FIELD, currentCustomFieldType, currentCustomField,
-          statisticInterval);
-      return;
-    }
+//    if(this.currentCustomFieldType == null) {
+//      this.currentCustomFieldType = CustomFieldType.STRING;
+//      this.currentCustomField = "HIDE";
+//      statistic.setAggregates(null);
+//      initValueForStatisticAggregation(ChartAggregates.CUSTOM_FIELD, currentCustomFieldType, currentCustomField,
+//          statisticInterval);
+//      return;
+//    }
     // ****************************************************************
 
     Ivy.log().info(currentCustomField);
@@ -792,6 +792,7 @@ public class StatisticConfigurationBean implements Serializable {
     statistic.getStatisticAggregation().setAggregate(ChartAggregates.PRIORITY);
     statistic.getStatisticAggregation().setCustomFieldType(null);
     statistic.getStatisticAggregation().setCustomFieldValue(null);
+    this.currentCustomFieldDescription = null;
     statistic.getStatisticAggregation().setInterval(statisticInterval);
   }
 

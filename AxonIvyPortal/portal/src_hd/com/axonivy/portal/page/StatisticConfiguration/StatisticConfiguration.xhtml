@@ -114,7 +114,9 @@
                     rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}"
                     value=" #{statisticConfigurationBean.currentCustomFieldDescription}" />
                   <p:selectOneMenu id="aggregates-custom-fields" required="true" styleClass="w-full mt-0"
+                    requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Aggregate')])}"
                     rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}" value="#{statisticConfigurationBean.currentCustomField}" >
+                    <f:selectItem value="#{null}" noSelectionOption="false" />
                     <f:selectItems value="#{statisticConfigurationBean.getCustomFieldNames()}" var="customField" />
                     <p:ajax listener="#{statisticConfigurationBean.onSelectCustomField()}" update="custom-field-description chart-aggregation" />
                   </p:selectOneMenu>
