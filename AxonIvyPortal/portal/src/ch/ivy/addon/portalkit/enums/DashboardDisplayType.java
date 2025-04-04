@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit;
+package ch.ivy.addon.portalkit.enums;
 
 import java.util.Arrays;
 

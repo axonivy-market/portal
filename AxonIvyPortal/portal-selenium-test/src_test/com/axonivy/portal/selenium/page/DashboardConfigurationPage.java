@@ -17,7 +17,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 
-import ch.ivy.addon.portalkit.DashboardDisplayType;
+import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 
 public class DashboardConfigurationPage extends TemplatePage {
 

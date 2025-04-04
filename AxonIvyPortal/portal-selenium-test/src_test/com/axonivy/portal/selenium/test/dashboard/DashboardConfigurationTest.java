@@ -24,7 +24,7 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-import ch.ivy.addon.portalkit.DashboardDisplayType;
+import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 
 @IvyWebTest
 public class DashboardConfigurationTest extends BaseTest {
