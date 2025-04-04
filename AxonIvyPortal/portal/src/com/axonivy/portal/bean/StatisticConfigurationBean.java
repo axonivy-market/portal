@@ -41,6 +41,8 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.RoleUtils;
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
+import com.axonivy.portal.dto.statistic.StatisticFilter;
 import com.axonivy.portal.enums.ChartTarget;
 import com.axonivy.portal.enums.ChartType;
 import com.axonivy.portal.enums.statistic.ChartAggregates;
@@ -51,8 +53,11 @@ import com.axonivy.portal.service.multilanguage.StatisticDescriptionMultilanguag
 import com.axonivy.portal.service.multilanguage.StatisticNameMultilanguageService;
 import com.axonivy.portal.service.multilanguage.StatisticXTitleMultilanguageService;
 import com.axonivy.portal.service.multilanguage.StatisticYTitleMultilanguageService;
+import com.axonivy.portal.util.statisticfilter.field.FilterField;
+import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
@@ -62,6 +67,7 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
+import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
@@ -91,6 +97,7 @@ public class StatisticConfigurationBean implements Serializable {
   private List<String> backgroundColors;
   private boolean isEditMode;
   private boolean refreshIntervalEnabled;
+  private List<FilterField> filterFields;
   private String currentCustomField;
   private CustomFieldType currentCustomFieldType;
   private String currentCustomFieldDescription;
@@ -120,6 +127,8 @@ public class StatisticConfigurationBean implements Serializable {
     populateBackgroundColorsIfMissing();
     initPermissions();
     initMultilanguageServices();
+    initFilterFields();
+    initFilters();
   }
 
   private void initMultilanguageServices() {
@@ -193,6 +202,35 @@ public class StatisticConfigurationBean implements Serializable {
     backgroundColors = new ArrayList<>(DEFAULT_COLORS);
     refreshIntervalEnabled = false;
   }
+  
+  private void initFilterFields() {
+    filterFields = new ArrayList<>();
+    filterFields.add(TaskFilterFieldFactory.getDefaultFilterField());
+    filterFields.addAll(TaskFilterFieldFactory.getStandardFilterableFields());
+  }
+
+  private void initFilters() {
+    if (CollectionUtils.isEmpty(statistic.getFilters())) {
+      return;
+    }
+    
+    // If the filter available in the filter list, initialize it
+    for (StatisticFilter filter : statistic.getFilters()) {
+      if (isFilterAvaliable(filter)) {
+        FilterField filterField = TaskFilterFieldFactory
+            .findBy(Optional.ofNullable(filter).map(StatisticFilter::getField).orElse(StringUtils.EMPTY),
+                Optional.ofNullable(filter).map(StatisticFilter::getFilterType).orElse(null));
+        if (filterField != null) {
+          filterField.initFilter(filter);
+        }
+      }
+    }
+  }
+  
+  private boolean isFilterAvaliable(StatisticFilter filter) {
+    return Optional.ofNullable(filter).map(StatisticFilter::getField).isPresent() && filterFields.stream()
+        .filter(field -> filter.getField().contentEquals(filter.getField())).findFirst().isPresent();
+  }
 
   private void populateBackgroundColorsIfMissing() {
     while (backgroundColors.size() < 8) {
@@ -226,6 +264,7 @@ public class StatisticConfigurationBean implements Serializable {
     syncUIConfigWithChartConfig();
     cleanUpRedundantChartConfigs(statistic.getChartType());
     cleanUpConfiguration();
+    cleanUpFilter();
     nameMultilanguageService.initMultipleLanguagesForName(statistic.getName());
     descriptionMultilanguageService.initMultipleLanguagesForName(statistic.getDescription());
     if (BAR == statistic.getChartType() || LINE == statistic.getChartType()) {
@@ -242,6 +281,12 @@ public class StatisticConfigurationBean implements Serializable {
       statistic.setRefreshInterval(null);
     }
     statistic.setAdditionalConfigs(null);
+  }
+  
+  private void cleanUpFilter() {
+    if (CollectionUtils.isNotEmpty(statistic.getFilters())) {
+      statistic.getFilters().removeIf(filter -> filter.getField() == null);
+    }
   }
 
   private void syncUIConfigWithChartConfig() {
@@ -331,7 +376,7 @@ public class StatisticConfigurationBean implements Serializable {
     handleCustomFieldAggregation();
     handleAggregateWithDateTimeOperator();
     syncUIConfigWithChartConfig();
-
+    cleanUpFilter();
     Ivy.log().info("check query aggregate");
     Ivy.log().info(statistic.getAggregates());
     Ivy.log().info("check aggregate object");
@@ -746,4 +791,43 @@ public class StatisticConfigurationBean implements Serializable {
     this.dateTimeOperator = dateTimeOperator;
   }
 
+  public List<FilterField> getFilterFields() {
+    return filterFields;
+  }
+
+  public void setFilterFields(List<FilterField> filterFields) {
+    this.filterFields = filterFields;
+  }
+  
+  public void onSelectFilter(StatisticFilter filter) {
+    String field = Optional.ofNullable(filter).map(StatisticFilter::getFilterField).map(FilterField::getName)
+        .orElse(StringUtils.EMPTY);
+
+    FilterField filterField = TaskFilterFieldFactory.findBy(field);
+
+    if (filterField.getName()
+        .contentEquals(BaseFilter.DEFAULT)) {
+      filterField.addNewFilter(filter);
+      return;
+    }
+
+    filter.getFilterField().addNewFilter(filter);
+  }
+  
+  public void addNewFilter() {
+    if (statistic.getFilters() == null) {
+      statistic.setFilters(new ArrayList<>());
+    }
+
+    StatisticFilter newFilter = new StatisticFilter();
+    statistic.getFilters().add(newFilter);
+  }
+  
+  public void removeFilter(StatisticFilter filter) {
+    statistic.getFilters().remove(filter);
+  }
+  
+  public List<SecurityMemberDTO> completeOwners(String query) {
+    return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
+  }
 }

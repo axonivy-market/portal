@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.dto.statistic.StatisticFilter;
 import com.axonivy.portal.enums.ChartTarget;
 import com.axonivy.portal.enums.ChartType;
 import com.axonivy.portal.util.DisplayNameUtils;
@@ -26,6 +27,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   public static final String DEFAULT_ICON = "si-pie-line-graph";
 
   private String filter;
+  private List<StatisticFilter> filters;
   private List<String> permissions;
   private ChartTarget chartTarget;
   private ChartType chartType;
@@ -79,6 +81,14 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   public void setChartType(ChartType chartType) {
     this.chartType = chartType;
   }
+  
+  public String getFilter() {
+    return filter;
+  }
+
+  public void setFilter(String filter) {
+    this.filter = filter;
+  }
 
   public Integer getRefreshInterval() {
     return refreshInterval;
@@ -112,12 +122,12 @@ public class Statistic extends AbstractConfiguration implements Serializable {
     this.pieChartConfig = pieChartConfig;
   }
 
-  public String getFilter() {
-    return filter;
+  public List<StatisticFilter> getFilters() {
+    return filters;
   }
 
-  public void setFilter(String filter) {
-    this.filter = filter;
+  public void setFilters(List<StatisticFilter> filters) {
+    this.filters = filters;
   }
 
   public List<String> getPermissions() {

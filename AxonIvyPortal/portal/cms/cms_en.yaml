@@ -1487,6 +1487,7 @@ Dialogs:
         page:
           StatisticConfiguration:
             AdvancedConfiguration: Advanced Configuration
+            AddFilter: Add filter
             Aggregate: Group by
             ChartAggregates:
               ACTIVATOR_NAME: Activator name

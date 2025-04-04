@@ -1453,6 +1453,7 @@ Dialogs:
             TaskIFrameTitle: Aufgabenrahmen
         page:
           StatisticConfiguration:
+            AddFilter: Filter hinzufügen
             AdvancedConfiguration: Erweiterte Konfiguration
             Aggregate: Aggregat
             ChartAggregates:
