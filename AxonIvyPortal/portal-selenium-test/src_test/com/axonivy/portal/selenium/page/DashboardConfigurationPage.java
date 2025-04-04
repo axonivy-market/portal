@@ -259,8 +259,9 @@ public class DashboardConfigurationPage extends TemplatePage {
             }
           });
     }
-
-    selectDashboardDisplayType(type, createDashboardDialog);
+    if (isPublicDashboard) {
+      selectDashboardDisplayType(type, createDashboardDialog);
+    }
     createDashboardDialog.$("button[id$='dashboard-create-button']").click();
     createDashboardDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }

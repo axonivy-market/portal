@@ -18,7 +18,7 @@ public enum DashboardDisplayType {
     
     @JsonValue
     public String getDashboardDisplayType() {
-        return this.name();
+        return this.name().toLowerCase();
     }
 
     public static List<String> getTypeList() {
