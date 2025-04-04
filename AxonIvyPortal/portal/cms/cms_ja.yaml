@@ -1478,9 +1478,11 @@ Dialogs:
             TaskIFrameTitle: タスクフレーム
         page:
           StatisticConfiguration:
-            AdvancedConfiguration: TODO Advanced configuration
-            Aggregate: TODO Aggregate
             AddFilter: TODO Add filter
+            Advanced: TODO Advanced
+            Aggregate: TODO Aggregate
+            ChartAggregates:
+              RESPONSIBLES_NAME: TODO Responsibles
             ChartType: TODO Chart type
             Color: 色{0}
             Create: TODO Create
@@ -1658,6 +1660,7 @@ Labels:
       DARK: 暗い
       LIGHT: 明るい
   Filters: フィルター
+  General: TODO General
   Icon: アイコン
   InsertTask-Explain: タスクを挿入します。私のタスクは延期されます。
   InsertTheTask: タスクを挿入

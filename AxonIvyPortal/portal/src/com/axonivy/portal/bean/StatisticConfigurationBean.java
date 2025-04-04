@@ -4,6 +4,7 @@ import static com.axonivy.portal.enums.ChartType.BAR;
 import static com.axonivy.portal.enums.ChartType.LINE;
 import static com.axonivy.portal.enums.ChartType.NUMBER;
 import static com.axonivy.portal.enums.ChartType.PIE;
+import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -32,6 +34,7 @@ import com.axonivy.portal.bo.LineChartConfig;
 import com.axonivy.portal.bo.NumberChartConfig;
 import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.bo.Statistic;
+import com.axonivy.portal.bo.StatisticAggregation;
 import com.axonivy.portal.bo.jsonversion.StatisticJsonVersion;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
@@ -42,6 +45,8 @@ import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.statistic.StatisticFilter;
 import com.axonivy.portal.enums.ChartTarget;
 import com.axonivy.portal.enums.ChartType;
+import com.axonivy.portal.enums.statistic.ChartAggregates;
+import com.axonivy.portal.enums.statistic.StatisticInterval;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.service.multilanguage.StatisticDescriptionMultilanguageService;
@@ -58,6 +63,7 @@ import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
@@ -67,6 +73,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 
 @ViewScoped
 @ManagedBean
@@ -90,7 +98,14 @@ public class StatisticConfigurationBean implements Serializable {
   private boolean isEditMode;
   private boolean refreshIntervalEnabled;
   private List<FilterField> filterFields;
-  
+  private String currentCustomField;
+  private CustomFieldType currentCustomFieldType;
+  private String currentCustomFieldDescription;
+  private boolean isDateTimeSelected;
+  private StatisticInterval statisticInterval;
+
+  private static final String CHART_AGGREGATES_CMS_PATH = "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartAggregates/";
+  private static final String CHART_OPERATORS_CMS_PATH = "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/StatisticIntervals/";
 
   private StatisticNameMultilanguageService nameMultilanguageService;
   private StatisticDescriptionMultilanguageService descriptionMultilanguageService;
@@ -171,7 +186,8 @@ public class StatisticConfigurationBean implements Serializable {
 
   private void initNewStatistic() {
     statistic = new Statistic();
-    statistic.setAggregates("priority");
+    statistic.setStatisticAggregation(new StatisticAggregation());
+    statistic.getStatisticAggregation().setAggregate(ChartAggregates.PRIORITY);
     statistic.setNames(new ArrayList<>());
     statistic.setDescriptions(new ArrayList<>());
     statistic.setChartTarget(ChartTarget.TASK);
@@ -192,12 +208,12 @@ public class StatisticConfigurationBean implements Serializable {
     filterFields.add(TaskFilterFieldFactory.getDefaultFilterField());
     filterFields.addAll(TaskFilterFieldFactory.getStandardFilterableFields());
   }
-  
+
   private void initFilters() {
     if (CollectionUtils.isEmpty(statistic.getFilters())) {
       return;
     }
-
+    
     // If the filter available in the filter list, initialize it
     for (StatisticFilter filter : statistic.getFilters()) {
       if (isFilterAvaliable(filter)) {
@@ -239,9 +255,12 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void save() {
+    Ivy.log().info("isRefreshIntervalInValid " + isRefreshIntervalInValid());
     if (isRefreshIntervalInValid()) {
       return;
     }
+    handleCustomFieldAggregation();
+    handleAggregateWithDateTimeInterval();
     syncUIConfigWithChartConfig();
     cleanUpRedundantChartConfigs(statistic.getChartType());
     cleanUpConfiguration();
@@ -354,8 +373,18 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void getPreviewData() {
+    handleCustomFieldAggregation();
+    handleAggregateWithDateTimeInterval();
     syncUIConfigWithChartConfig();
     cleanUpFilter();
+    Ivy.log().info("check query aggregate");
+    Ivy.log().info(statistic.getAggregates());
+    Ivy.log().info("check aggregate object");
+    Ivy.log().info(statistic.getStatisticAggregation().getAggregate().getName());
+    Ivy.log().info(statistic.getStatisticAggregation().getCustomFieldValue());
+    Ivy.log().info(statistic.getStatisticAggregation().getCustomFieldType());
+    Ivy.log().info(statistic.getStatisticAggregation().getInterval());
+    Ivy.log().info("=====================================================");
     StatisticService statisticService = StatisticService.getInstance();
     statistic.setAdditionalConfigs(new ArrayList<>());
     statistic.getAdditionalConfigs().addAll(statisticService.getAdditionalConfig());
@@ -533,6 +562,239 @@ public class StatisticConfigurationBean implements Serializable {
     }
     return false;
   }
+  
+  public List<ChartAggregates> getAllAvailableAggregates() {
+    List<ChartAggregates> aggregations = filterAggregatesForChartTarget(statistic.getChartTarget());
+
+    return aggregations;
+  }
+  
+  private List<ChartAggregates> filterAggregatesForChartTarget(ChartTarget currentChartTarget) {
+    if(ChartTarget.CASE == currentChartTarget) {
+      return collectAggregatesForCase(statistic.getChartType());
+    }
+
+    return collectAggregatesForTask(statistic.getChartType());
+  }  
+  
+  private List<ChartAggregates> collectAggregatesForCase(ChartType currentChartType){
+    if(ChartType.NUMBER == currentChartType) {
+      return ChartAggregates.CASE_NUMBER_AGGREGATES.stream().toList();
+    }
+    boolean hidingCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
+    List<ChartAggregates> aggregates = ChartAggregates.CASE_AGGREGATES.stream()
+        .filter(caseAggregate -> !hidingCaseCreator || !caseAggregate.equals(ChartAggregates.CREATOR_NAME))
+        .toList();
+        
+    return aggregates;
+  }
+
+  private List<ChartAggregates> collectAggregatesForTask(ChartType currentChartType){
+    if(ChartType.NUMBER == currentChartType) {
+      return ChartAggregates.TASK_NUMBER_AGGREGATES.stream().toList();
+    }
+    
+    return ChartAggregates.TASK_AGGREGATES.stream().toList();
+  }
+  
+  public boolean isCustomFieldsSelected() {
+    return statistic.getStatisticAggregation().getAggregate().name().contains("CUSTOM_FIELD");
+  }
+  
+  private void resetCustomFieldAndDateTimeInterval() {
+      this.currentCustomField = null;
+      this.currentCustomFieldType = null;
+      this.statisticInterval = null;
+  }
+  
+  private void handleCustomFieldAggregation() {
+    if(!isCustomFieldsSelected()) {
+      resetCustomFieldAndDateTimeInterval();
+      statistic.setAggregates(statistic.getStatisticAggregation().getAggregate().getName());
+      return;
+    }
+    
+    /*
+     * handle:
+     * Choose Custom field > click button Generate preview 
+     * => error
+     */
+//    if(this.currentCustomFieldType == null) {
+//      this.currentCustomFieldType = CustomFieldType.STRING;
+//      this.currentCustomField = "HIDE";
+//      statistic.setAggregates(null);
+//      initValueForStatisticAggregation(ChartAggregates.CUSTOM_FIELD, currentCustomFieldType, currentCustomField,
+//          statisticInterval);
+//      return;
+//    }
+    // ****************************************************************
+
+    Ivy.log().info(currentCustomField);
+    initValueForStatisticAggregation(ChartAggregates.CUSTOM_FIELD,
+        currentCustomFieldType,
+        currentCustomField,
+        statisticInterval);
+    switch (this.currentCustomFieldType) {
+    case CustomFieldType.STRING: {
+      statistic.setAggregates("customFields.strings." + currentCustomField);
+      return;
+    } 
+    case CustomFieldType.NUMBER: {
+      statistic.setAggregates("customFields.numbers." + currentCustomField);
+      return;
+    }
+    case CustomFieldType.TIMESTAMP:
+    {
+      statistic.setAggregates("customFields.timestamps." + currentCustomField);
+      return;
+    }
+    default: { }
+    }
+    
+    return;
+  }
+  
+  public void initValueForStatisticAggregation(ChartAggregates chartAggregates, CustomFieldType customFieldType,
+      String customFieldValue, StatisticInterval dateTimeOperator) {
+      statistic.getStatisticAggregation().setAggregate(chartAggregates);
+      statistic.getStatisticAggregation().setCustomFieldType(customFieldType);
+      statistic.getStatisticAggregation().setCustomFieldValue(customFieldValue);
+      statistic.getStatisticAggregation().setInterval(dateTimeOperator);
+  }
+
+  public void handleAggregateWithDateTimeInterval() {
+    if (statisticInterval == null) {
+      return;
+    }
+    /**
+     * handle: 
+     * Edit a statistic > change to Custom field > choose ShipmentDate
+     * > click Generate preview > choose CustomerEmail > 
+     * > click Generate preview => error
+     * */
+    if(!statistic.getAggregates().contains("timestamp")) {
+      this.setStatisticInterval(null);
+      return;
+    }
+    // ****************************************************************
+
+    List<StatisticInterval> metricOperator = Arrays.asList(StatisticInterval.MIN, StatisticInterval.MAX,
+        StatisticInterval.AVG);
+    String finalAggregation = metricOperator.contains(statisticInterval)
+        ? statistic.getAggregates() + ":" + statisticInterval.getName().toLowerCase()
+        : statistic.getAggregates() + ":bucket:" + statisticInterval.getName().toLowerCase();
+    
+    statistic.setAggregates(finalAggregation);
+  }
+
+  public String getCurrentCustomFieldDescription() {
+    return currentCustomFieldDescription;
+  }
+
+  public void setCurrentCustomFieldDescription(String currentCustomFieldDescription) {
+    this.currentCustomFieldDescription = currentCustomFieldDescription;
+  }
+
+  public boolean isDateTimeSelected() {
+    return isDateTimeSelected;
+  }
+
+  public void setDateTimeSelected(boolean isDateTimeSelected) {
+    this.isDateTimeSelected = isDateTimeSelected;
+  }
+  
+  public String getUserFriendlyAggregateName(ChartAggregates selectedAggregate) {
+    if(selectedAggregate == null) {
+      return EMPTY;
+    }
+    String displayAggregateName = Ivy.cms().co(CHART_AGGREGATES_CMS_PATH + selectedAggregate);
+    return displayAggregateName;
+  }
+
+  public String getUserFriendlyIntervalName(StatisticInterval selectedOperator) {
+    if(selectedOperator == null) {
+      return EMPTY;
+    }
+    String displayOperatorName = Ivy.cms().co(CHART_OPERATORS_CMS_PATH + selectedOperator);
+    return displayOperatorName;
+  }
+
+  public void onSelectAggregates() {
+    this.setDateTimeSelected(statistic.getStatisticAggregation().getAggregate().getName().contains("Timestamp"));
+  }
+
+  public void onSelectCustomField() {
+    statistic.getStatisticAggregation().setCustomFieldValue(currentCustomField);
+    findCustomFieldMeta().ifPresent(meta -> {
+      this.currentCustomField = meta.name();
+      this.currentCustomFieldType = meta.type();
+      this.setCurrentCustomFieldDescription(meta.description());
+    });
+    
+    this.setDateTimeSelected(this.currentCustomFieldType.equals(CustomFieldType.TIMESTAMP));
+    
+    handleCustomFieldAggregation();
+  }
+
+  public Optional<ICustomFieldMeta> findCustomFieldMeta() {
+    Optional<ICustomFieldMeta> metaData = Optional.empty();
+    Set<ICustomFieldMeta> customFieldList = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
+        : ICustomFieldMeta.cases();
+
+    metaData = customFieldList.stream().filter(meta -> meta.name().equals(currentCustomField)).findFirst();
+
+    return metaData;
+  }
+
+  public List<StatisticInterval> getAvailableIntervals() {
+    List<StatisticInterval> intervals = StatisticInterval.DATE_TIME_INTERVALS.stream().toList();
+
+    return intervals;
+  }
+
+  public void onSelectInterval() {
+    Ivy.log().info(statisticInterval);
+    statistic.getStatisticAggregation().setInterval(statisticInterval);
+    if (statisticInterval != null && isCustomFieldsSelected()) {
+      statistic.setAggregates(statistic.getAggregates() + ":bucket:" + statisticInterval.toString().toLowerCase());
+    }
+  }
+
+  public List<String> getCustomFieldNames() {
+    Set<ICustomFieldMeta> customFieldList = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
+        : ICustomFieldMeta.cases();
+    List<String> customFieldNameList = new ArrayList<>();
+    customFieldList.stream().filter(cf -> !cf.type().equals(CustomFieldType.NUMBER)).forEach(customField -> {
+      customFieldNameList.add(customField.name());
+    });
+
+    return customFieldNameList;
+  }
+
+  public String getCurrentCustomField() {
+    return currentCustomField;
+  }
+
+  public void setCurrentCustomField(String currentCustomField) {
+    this.currentCustomField = currentCustomField;
+  }
+
+  public void onSelectChartTarget(ChartTarget newChartTarget) {
+    if (statistic.getChartTarget() != null && statistic.getChartTarget() == newChartTarget) {
+      resetAggregateValues();
+      resetCustomFieldAndDateTimeInterval();
+      this.setDateTimeSelected(statistic.getStatisticAggregation().getAggregate().getName().contains("Timestamp"));
+    }
+    statistic.setChartTarget(newChartTarget);
+  }
+  
+  public void resetAggregateValues() {
+    statistic.getStatisticAggregation().setAggregate(ChartAggregates.PRIORITY);
+    statistic.getStatisticAggregation().setCustomFieldType(null);
+    statistic.getStatisticAggregation().setCustomFieldValue(null);
+    this.currentCustomFieldDescription = null;
+    statistic.getStatisticAggregation().setInterval(statisticInterval);
+  }
 
   public List<FilterField> getFilterFields() {
     return filterFields;
@@ -572,5 +834,13 @@ public class StatisticConfigurationBean implements Serializable {
   
   public List<SecurityMemberDTO> completeOwners(String query) {
     return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
+  }
+
+  public StatisticInterval getStatisticInterval() {
+    return statisticInterval;
+  }
+
+  public void setStatisticInterval(StatisticInterval statisticInterval) {
+    this.statisticInterval = statisticInterval;
   }
 }
