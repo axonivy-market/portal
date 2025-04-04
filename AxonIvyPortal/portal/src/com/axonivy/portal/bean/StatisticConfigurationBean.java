@@ -780,7 +780,19 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void onSelectChartTarget(ChartTarget newChartTarget) {
+    if (statistic.getChartTarget() != null && statistic.getChartTarget() == newChartTarget) {
+      resetAggregateValues();
+      resetCustomFieldAndDateTimeOperator();
+      this.setDateTimeSelected(statistic.getStatisticAggregation().getAggregate().getName().contains("Timestamp"));
+    }
     statistic.setChartTarget(newChartTarget);
+  }
+  
+  public void resetAggregateValues() {
+    statistic.getStatisticAggregation().setAggregate(ChartAggregates.PRIORITY);
+    statistic.getStatisticAggregation().setCustomFieldType(null);
+    statistic.getStatisticAggregation().setCustomFieldValue(null);
+    statistic.getStatisticAggregation().setOperator(null);
   }
 
   public DateTimeOperator getDateTimeOperator() {
