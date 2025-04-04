@@ -268,6 +268,10 @@ Variables:
       # Set the size limit for uploading images in megabytes (MB). The default value is 6MB.
       ImageUploadSizeLimit: 6
 
+    # Defines the fields that can be appended to the role group display name.
+    # [Enum: NONE, PARENT_NAME]
+    DelegationAppendOption: NONE 
+
     # Defines the session cache timeout duration (in seconds) for the Portal. This value can be set between 300 (5 minutes) and 86400 (24 hours).
     SessionCacheTimeout: 86400
 

@@ -86,6 +86,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       STATISTIC: Widget Statistiques
       TASK: Widget Tâche
       WELCOME: Widget de bienvenue
+    DelegationAppendOption:
+      NONE: Aucun
+      PARENT_NAME: Nom de rôle parent
     GlobalVariable:
       Option:
         DISPLAY_NAME: Nom d'affichage
@@ -228,6 +231,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       defaultSortDirectionOfTaskList: Sens de tri par défaut de la liste des tâches
       defaultSortFieldOfCaseList: Champ de tri par défaut de la liste des affaires
       defaultSortFieldOfTaskList: Champ de tri par défaut de la liste des tâches
+      delegationAppendOption: Ce paramètre détermine quelles informations supplémentaires sont incluses lors du formatage des noms de rôle.
       disableCaseCount: Mettre à true pour désactiver le cas de comptage dans la liste des cas
       disableTaskCount: Mettre à true pour désactiver la tâche de comptage dans la liste des tâches
       displayAllUsersOfTaskActivator: Ce paramètre est utilisé pour le composant SecurityMemberDisplayName. Si le SecurityMember est un rôle, définissez ce paramètre sur true pour afficher la liste de tous les utilisateurs de ce rôle. Si ce paramètre a la valeur true, des informations sur l'icône sont
@@ -416,6 +420,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     StringFormat:
       DateFromTo: '%s - %s'
       TextListOut: '%s, %s,..'
+      TextWithContextInBrackets: '%s (%s: %s)'
       TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Informations sur les tâches et les cas
     Update: Mettre à jour
@@ -643,7 +648,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         UpdateRoleSuccess: Le rôle "{0}" a été mis à jour avec succès
         UserOfRoleNotFound: Aucun utilisateur ne possède ce rôle
       NumberUsers: '{0} utilisateurs'
-      ParentRole: Le rôle des parents
+      ParentRole: Rôle supérieur
       RemovingRoleHeader: Suppression du rôle "{0}" ?
       RoleCreation: Création de rôles
       RoleDetails: Détails du rôle "{0}"

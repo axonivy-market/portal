@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,6 +20,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.ICustomFieldOrderBy;
@@ -68,6 +70,7 @@ public class DashboardTaskSearchCriteria {
 
       FilterField filterField = TaskFilterFieldFactory.findBy(filter.getField(), filter.getFilterType());
       if (filterField != null) {
+        
         TaskQuery filterQuery = filterField.generateFilterTaskQuery(filter);
         if (filterQuery != null) {
           query.where().and(filterQuery);
@@ -119,7 +122,6 @@ public class DashboardTaskSearchCriteria {
             appendCustomFieldsForQuickSearchQuery(subQuery, column);
           }
         }
-
         query.where().and(subQuery);
       }
     }
@@ -127,9 +129,19 @@ public class DashboardTaskSearchCriteria {
 
   private void appendCustomFieldsForQuickSearchQuery(TaskQuery subQuery, ColumnModel column) {
     switch (column.getType()) {
-    case CUSTOM_BUSINESS_CASE -> appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column));
-    case CUSTOM_CASE -> appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column));
-    case CUSTOM -> appendQuickSearchTaskQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column));
+    case CUSTOM_BUSINESS_CASE -> appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM_BUSINESS_CASE));
+    case CUSTOM_CASE -> {
+      appendQuickSearchCaseQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM_CASE));
+      if (Boolean.TRUE.equals(column.getHasCmsValues())) {
+        appendQuickSearchCaseQueryByDashboardFilter(subQuery, buildFilterForCustomFieldWithCmsValue(column.getField(), DashboardColumnType.CUSTOM_CASE));
+      }
+    }
+    case CUSTOM -> {
+      appendQuickSearchTaskQueryByDashboardFilter(subQuery, selectCustomFieldToQuickSearchQuery(column, DashboardColumnType.CUSTOM));
+      if (Boolean.TRUE.equals(column.getHasCmsValues())) {
+        appendQuickSearchTaskQueryByDashboardFilter(subQuery, buildFilterForCustomFieldWithCmsValue(column.getField(), DashboardColumnType.CUSTOM));
+      }
+    }
     default -> {}
     }
   }
@@ -141,8 +153,17 @@ public class DashboardTaskSearchCriteria {
     };
   }
   
-  private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column) {
-    return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, DashboardColumnType.CUSTOM);
+  private DashboardFilter selectCustomFieldToQuickSearchQuery(ColumnModel column, DashboardColumnType type) {
+    return buildQuickSearchToDashboardFilter(column.getField(), FilterOperator.CONTAINS, type);
+  }
+  
+  private DashboardFilter buildFilterForCustomFieldWithCmsValue(String columnField, DashboardColumnType type) {
+    DashboardFilter filter = new DashboardFilter();
+    filter.setField(columnField);
+    filter.setFilterType(type);
+    filter.setOperator(FilterOperator.IN);
+    filter.setValues(PortalCustomFieldUtils.getCmsValuesMatchingWithKeywordList(columnField, type, List.of(this.quickSearchKeyword)));
+    return filter; 
   }
 
   private DashboardFilter buildQuickSearchToDashboardFilter(String columnField, FilterOperator operator, DashboardColumnType type) {
@@ -202,7 +223,7 @@ public class DashboardTaskSearchCriteria {
       appendSortByStateIfSet(criteria);
       appendSortByPriorityIfSet(criteria);
       appendSortByCustomFieldIfSet(criteria);
-      if (criteria.isSortDescending() && order != null) {
+      if (order != null && isSortDescending()) {
         order.descending();
       }
       return this;
@@ -258,21 +279,29 @@ public class DashboardTaskSearchCriteria {
     }
 
     private void appendSortByCustomFieldIfSet(DashboardTaskSearchCriteria criteria) {
-      if (!sortStandardColumn) {
-        String sortField = criteria.getSortField();
-        if (StringUtils.isNotBlank(sortField)) {
-          DashboardColumnFormat format =
-              columns.stream().filter(c -> StringUtils.equalsIgnoreCase(sortField, c.getField()))
-                  .map(ColumnModel::getFormat).findFirst().orElse(DashboardColumnFormat.STRING);
-          final ICustomFieldOrderBy customField = query.orderBy().customField();
-          if (format == DashboardColumnFormat.NUMBER) {
-            order = customField.numberField(sortField);
-          } else if (format == DashboardColumnFormat.TIMESTAMP) {
-            order = customField.timestampField(sortField);
+      String sortField = criteria.getSortField();
+      if (sortStandardColumn || StringUtils.isBlank(sortField)) {
+        return;
+      }
+
+      DashboardColumnFormat format = columns.stream().filter(c -> StringUtils.equalsIgnoreCase(sortField, c.getField()))
+          .map(ColumnModel::getFormat).findFirst().orElse(DashboardColumnFormat.STRING);
+      final ICustomFieldOrderBy customField = query.orderBy().customField();
+
+      switch (format) {
+        case NUMBER:
+          order = customField.numberField(sortField);
+          break;
+        case TIMESTAMP:
+          order = customField.timestampField(sortField);
+          break;
+        default:
+          if (PortalCustomFieldUtils.isSupportMultiLanguageTaskField(sortField)) {
+            order = customField.stringField(sortField)
+                .values(PortalCustomFieldUtils.getAllLocalizedValueOnTaskField(sortField));
           } else {
             order = customField.stringField(sortField);
           }
-        }
       }
     }
   }

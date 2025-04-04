@@ -87,6 +87,9 @@ public enum GlobalVariable {
   ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview", GlobalVariableType.SELECTION, Option.TRUE.toString(), "enableDocumentPreview"),
   DOCUMENT_UPLOAD_SIZE_LIMIT("Portal.Upload.DocumentUploadSizeLimit",GlobalVariableType.NUMBER,"20","documentUploadSizeLimit"),
   IMAGE_UPLOAD_SIZE_LIMIT("Portal.Upload.ImageUploadSizeLimit", GlobalVariableType.NUMBER, "6", "imageUploadSizeLimit"),
+  DELEGATION_APPEND_OPTION("Portal.DelegationAppendOption", GlobalVariableType.EXTERNAL_SELECTION,
+      DelegationAppendOption.NONE.name(), "delegationAppendOption",
+      getDelegationAppendOption()),
   SESSION_CACHE_TIMEOUT("Portal.SessionCacheTimeout", GlobalVariableType.NUMBER,
       "86400", "SessionCacheTimeout");
 
@@ -281,5 +284,13 @@ public enum GlobalVariable {
 
   public static GlobalVariable valueOfKey(String key) {
     return keyToVariable.get(key);
+  }
+  
+  private static Map<String, Object> getDelegationAppendOption() {
+    Map<String, Object> result = new HashMap<>();
+    for (DelegationAppendOption option : DelegationAppendOption.values()) {
+      result.put(option.name(), option);
+    }
+    return result;
   }
 }

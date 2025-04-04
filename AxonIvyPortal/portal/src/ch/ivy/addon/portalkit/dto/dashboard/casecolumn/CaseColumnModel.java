@@ -15,7 +15,7 @@ import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 
 public class CaseColumnModel extends ColumnModel {
-
+  
   private static final long serialVersionUID = 7358059302396225605L;
 
   public Object display(ICase caze) {
@@ -27,7 +27,7 @@ public class CaseColumnModel extends ColumnModel {
     } else if (isText()) {
       return customFields.textField(field).getOrNull();
     } else {
-      return customFields.stringField(field).getOrNull();
+      return displayStringFieldContent(customFields);
     }
   }
 

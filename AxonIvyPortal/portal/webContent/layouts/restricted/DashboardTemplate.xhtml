@@ -34,6 +34,10 @@
           immediate="true" process="@this" update="@none" global="false"/>
       </h:form>
       <div class="ui-g js-dashboard__wrapper #{managedBean.isReadOnlyMode ? 'js-view-mode':''}">
+      <div id="screen-reader-notification" aria-live="assertive" class="screenreader-only">
+        #{dashboardBean.getScreenReaderNotificationContent()}
+      </div>
+      
       <!-- Dashboard content -->
       <ui:fragment>
         <h:outputStylesheet library="css" name="dashboard.css" />
@@ -143,7 +147,7 @@
                         index="#{status.index}"
                         id="client-statistic-#{widget.id}" />
                     </c:if>
-                    
+                     
                     <!-- Notification widget -->
                     <c:if test="#{widget.type eq 'NOTIFICATION'}">
                       <ic:com.axonivy.portal.dashboard.component.NotificationWidget widget="#{widget}"
@@ -323,7 +327,9 @@
             url="#{managedBean.dashboardUrl}"
             title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/ShareDashboard')}" />
 
-          <ic:com.axonivy.portal.component.CloneWidgetDialog id="clone-widget-component" />
+          <h:panelGroup layout="block" rendered="#{!managedBean.isReadOnlyMode}">
+            <ic:com.axonivy.portal.component.CloneWidgetDialog id="clone-widget-component" />
+          </h:panelGroup>
 
           </div>
         <h:outputScript library="js" name="dashboard.js" />

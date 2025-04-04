@@ -96,4 +96,6 @@ Labels:
   DisabledUserPrefix: （無効）
   NoName: 名前なし
   NoResults: 結果なし
+  None: なし
   NotAvailable: 利用不可
+  ParentRole: 親ロール
