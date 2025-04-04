@@ -1443,7 +1443,7 @@ Dialogs:
         page:
           StatisticConfiguration:
             AddFilter: Añadir filtro
-            AdvancedConfiguration: Configuración avanzada
+            Advanced: Avanzado
             Aggregate: Agregado
             ChartAggregates:
               ACTIVATOR_NAME: Nombre del activador
@@ -1631,6 +1631,7 @@ Labels:
       DARK: Oscuro
       LIGHT: Luz
   Filters: Filtros
+  General: General
   Icon: Icono
   InsertTask-Explain: Insertar la tarea. Mi tarea será pospuesta.
   InsertTheTask: Insertar la tarea.

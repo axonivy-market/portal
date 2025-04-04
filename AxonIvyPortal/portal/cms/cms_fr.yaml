@@ -1482,7 +1482,7 @@ Dialogs:
         page:
           StatisticConfiguration:
             AddFilter: Ajouter un filtre
-            AdvancedConfiguration: Configuration avancée
+            Advanced: Avancé
             Aggregate: Agrégat
             ChartAggregates:
               ACTIVATOR_NAME: Nom de l'activateur
@@ -1672,6 +1672,7 @@ Labels:
       DARK: Dark
       LIGHT: Lumière
   Filters: Filtres
+  General: Général
   Icon: Icône
   InsertTask-Explain: Insérer la tâche. Ma tâche sera reportée.
   InsertTheTask: Insérer la tâche.

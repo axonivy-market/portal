@@ -1479,7 +1479,7 @@ Dialogs:
         page:
           StatisticConfiguration:
             AddFilter: TODO Add filter
-            AdvancedConfiguration: TODO Advanced configuration
+            Advanced: TODO Advanced
             Aggregate: TODO Aggregate
             ChartAggregates:
               RESPONSIBLES_NAME: TODO Responsibles
@@ -1660,6 +1660,7 @@ Labels:
       DARK: 暗い
       LIGHT: 明るい
   Filters: フィルター
+  General: TODO General
   Icon: アイコン
   InsertTask-Explain: タスクを挿入します。私のタスクは延期されます。
   InsertTheTask: タスクを挿入

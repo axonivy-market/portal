@@ -1487,7 +1487,7 @@ Dialogs:
         page:
           StatisticConfiguration:
             AddFilter: Add filter
-            AdvancedConfiguration: Advanced Configuration
+            Advanced: Advanced
             Aggregate: Group by
             ChartAggregates:
               ACTIVATOR_NAME: Activator name
@@ -1698,6 +1698,7 @@ Labels:
       DARK: Dark
       LIGHT: Light
   Filters: Filters
+  General: General
   Icon: Icon
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task

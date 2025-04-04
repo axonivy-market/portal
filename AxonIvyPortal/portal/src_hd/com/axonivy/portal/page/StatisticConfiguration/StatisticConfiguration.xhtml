@@ -31,6 +31,9 @@
                 </div>
 
                 <div class="field col-12">
+                  <h4 class="mb-0 mt-3">#{ivy.cms.co('/Labels/General')}</h4>
+                </div>
+                <div class="field col-12">
                   <p:outputLabel value="#{ivy.cms.co('/Labels/Name')}" for="@next" />
                   <div class="ui-inputgroup">
                     <p:inputText id="name" value="#{statisticConfigurationBean.statistic.name}" maxlength="#{statisticInput}"
@@ -64,7 +67,7 @@
                       <f:selectItems value="#{statisticConfigurationBean.allChartTypes}" var="chartType"
                         itemLabel="#{chartType.getCmsName()}" itemValue="#{chartType}" />
                       <p:ajax event="itemSelect"
-                        update="x-axis-title-container y-axis-title-container hide-label-container background-colors-container errors-message" />
+                        update="x-axis-title-container y-axis-title-container hide-label-container background-colors-container errors-message chart-aggregation" />
                     </p:selectOneMenu>
                   </div>
                 </div>
@@ -85,7 +88,7 @@
                 </div>
 
                 <div class="field col-12">
-                  <h4 class="mb-0 mt-3">#{ivy.cms.co('/Labels/Configuration')}</h4>
+                  <h4 class="mb-0 mt-3">#{ivy.cms.co('/Labels/Filters')}</h4>
                 </div>
 
                 <div class="field col-12">
@@ -193,7 +196,7 @@
                 </div>
 
                 <div class="field col-12">
-                  <h4 class="mb-0 mt-3">#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/AdvancedConfiguration')}</h4>
+                  <h4 class="mb-0 mt-3">#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Advanced')}</h4>
                 </div>
 
                 <div class="field col-12">

@@ -1454,7 +1454,7 @@ Dialogs:
         page:
           StatisticConfiguration:
             AddFilter: Filter hinzufügen
-            AdvancedConfiguration: Erweiterte Konfiguration
+            Advanced: Fortgeschrittene
             Aggregate: Aggregat
             ChartAggregates:
               ACTIVATOR_NAME: Name des Aktivators
@@ -1652,6 +1652,7 @@ Labels:
       DARK: Dunkel
       LIGHT: Hell
   Filters: Filter
+  General: Allgemein
   Icon: Symbol
   InsertTask-Explain: Aufgabe einfügen. Meine Aufgabe wird aufgeschoben.
   InsertTheTask: Aufgabe einfügen
