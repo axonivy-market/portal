@@ -44,7 +44,6 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
   @PostConstruct
   public void initConfigration() {
     targetDashboard = null;
-    initStatisticWidgets();
   }
 
   @Override
@@ -99,6 +98,10 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
     // Client statistic widget need to load name from list of pre-built client
     // statistic
     if (cloneWidget.getType() == DashboardWidgetType.CLIENT_STATISTIC) {
+      if (statisticWidgets == null) {
+        initStatisticWidgets();
+      }
+      
       ClientStatisticDashboardWidget clientStatisticWidget = (ClientStatisticDashboardWidget) cloneWidget;
       result = statisticWidgets.stream()
           .filter(chart -> chart.getId()
