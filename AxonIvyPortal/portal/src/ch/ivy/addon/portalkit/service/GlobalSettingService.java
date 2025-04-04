@@ -109,4 +109,8 @@ public class GlobalSettingService {
   private IUser sessionUser() {
     return Ivy.session().getSessionUser();
   }
+
+  public boolean isEnableFavoriteTask() {
+    return findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_FAVORITE_TASK);
+  }
 }
