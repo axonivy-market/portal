@@ -1528,6 +1528,156 @@
       "visual" : {
         "at" : { "x" : 1928, "y" : 352 }
       }
+    }, {
+      "id" : "f181",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Create task with 8 responsibles",
+          "description" : "Create task with 8 responsibles",
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"liam\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"marissa\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"CaseOwner\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"HR\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"gm3\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"noah\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"TestRoleInvolved\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"Sales\"));"
+          ]
+        },
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"liam\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"marissa\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"admin\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"HR\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"gm3\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"noah\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"TestRoleInvolved\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"Sales\"));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1808, "y" : 536 }
+      },
+      "connect" : [
+        { "id" : "f182", "to" : "f183" }
+      ]
+    }, {
+      "id" : "f183",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1976, "y" : 536 }
+      }
+    }, {
+      "id" : "f184",
+      "type" : "RequestStart",
+      "name" : "Create task with 8 responsibles",
+      "config" : {
+        "signature" : "TaskWith8Responsibles",
+        "request" : {
+          "name" : "Create task with 8 responsibles"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1648, "y" : 536 }
+      },
+      "connect" : [
+        { "id" : "f185", "to" : "f181" }
+      ]
+    }, {
+      "id" : "f186",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Create task with 20 responsibles",
+          "description" : "Create task with 20 responsibles",
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"admin\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"Developer\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"liam\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"marissa\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"gm3\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"noah\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"mike\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"huang\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"ava\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"olivia\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"ethan\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"sophie\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"costObject1\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"gm2\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"costObject2\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"gm1\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"CaseOwner\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"HR\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"TestRoleInvolved\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"Sales\"));"
+          ]
+        },
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"admin\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"Developer\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"liam\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"marissa\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"gm3\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"noah\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"mike\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"huang\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"ava\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"olivia\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"ethan\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"sophie\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"costObject1\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"gm2\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"costObject2\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"gm1\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"CaseOwner\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"HR\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"TestRoleInvolved\"));",
+            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"Sales\"));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1808, "y" : 648 }
+      },
+      "connect" : [
+        { "id" : "f187", "to" : "f188" }
+      ]
+    }, {
+      "id" : "f188",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1976, "y" : 648 }
+      }
+    }, {
+      "id" : "f189",
+      "type" : "RequestStart",
+      "name" : "Create task with 20 responsibles",
+      "config" : {
+        "signature" : "TaskWith20Responsibles",
+        "request" : {
+          "name" : "Create task with 20 responsibles"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1648, "y" : 648 }
+      },
+      "connect" : [
+        { "id" : "f190", "to" : "f186" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {

@@ -198,6 +198,9 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     return getColumnsOfTableWidget().filter(Condition.cssClass("dashboard-tasks__responsible"));
   }
 
+//  protected String getNumberOfResponsible(int taskIndex) {
+//    
+//  }
 
   public void changeDescriptionOfTask(String description) {
     waitForElementClickableThenClick("a[id$=':task-detail-description:edit-description-link']");

@@ -151,4 +151,14 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
+  
+  @Test
+  public void testMultipleResponsible() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(taskWith20Responsibles);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openTaskDetails(0);
+    
+  }
 }
