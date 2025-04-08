@@ -61,7 +61,7 @@
         <p:remoteCommand name="navigateToHomeFromBreadcrumb" immediate="true"
           actionListener="#{logic.clickBreadcrumb('HOME')}" oncomplete="PF('task-losing-confirmation-dialog').show();" />
         <p:remoteCommand name="cleanNavigationDashboardBreadcrumb" id="cleanNavigationDashboardBreadcrumb"
-          actionListener="#{navigationDashboardWidgetBean.removeNavigationDashboardBreadcrumb()}" global="false"/>
+          actionListener="#{navigationDashboardWidgetBean.cleanNavigationDashboardBreadcrumnWhenClickingOnLogo()}" global="false"/>
       </h:form>
     </div>
   </h:panelGroup>

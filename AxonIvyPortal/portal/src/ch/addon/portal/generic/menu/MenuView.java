@@ -215,7 +215,12 @@ public class MenuView implements Serializable {
 
   private MenuElement createDashboardMenu(Dashboard board, String dashboardLink, String iconClass) {
     var dashboardMenu = new PortalMenuBuilder(board.getTitle(), MenuKind.DASHBOARD, this.isWorkingOnATask)
-        .icon(iconClass).url(dashboardLink).workingTaskId(this.workingTaskId).build();
+        .icon(iconClass)
+        .url(dashboardLink)
+        .commandMethod(String.format("#{navigationDashboardWidgetBean.navigateToDashboardWhenClickingOnElement('%s')}",
+              board.getId()))
+        .workingTaskId(this.workingTaskId)
+        .build();
     dashboardMenu.setId(String.format(SUB_DASHBOARD_MENU_PATTERN, board.getId()));
     return dashboardMenu;
   }

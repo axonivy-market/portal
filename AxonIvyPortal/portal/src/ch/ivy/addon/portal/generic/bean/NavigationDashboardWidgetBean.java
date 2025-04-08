@@ -24,6 +24,7 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @SessionScoped
 @ManagedBean
@@ -52,9 +53,11 @@ public class NavigationDashboardWidgetBean implements Serializable {
       removeNavigationDashboardBreadcrumb();
       return;
     }
-    
-    if (targetIndex > 0) {
 
+    if (targetIndex > 0) {
+      if (targetIndex == currentIndex) {
+        return;
+      }
       List<MenuElement> newList = new ArrayList<>();
       for (int i = 0; i <= targetIndex; i++) {
         if (i < submenu.getElements().size()) {
@@ -103,8 +106,27 @@ public class NavigationDashboardWidgetBean implements Serializable {
   }
 
   public void removeNavigationDashboardBreadcrumb() {
-    submenu.getElements().clear();
-    model.getElements().clear();
+      cleanSubMenu();
+      cleanModel();
+  }
+  
+  public void cleanNavigationDashboardBreadcrumnWhenClickingOnLogo() {
+    if (!this.model.getElements().isEmpty()) {
+      DashboardUtils.storeDashboardInSession(this.model.getElements().getFirst().getId());
+    }
+    removeNavigationDashboardBreadcrumb();
+  }
+  
+  private void cleanSubMenu() {
+    if (!this.submenu.getElements().isEmpty()) {
+      this.submenu.getElements().clear();
+    }
+  }
+  
+  private void cleanModel() {
+    if (!this.model.getElements().isEmpty()) {
+      this.model.getElements().clear();
+    }
   }
 
   public void redirectToDashboard(NavigationDashboardWidget widget, Dashboard currentDashboard) throws IOException {
