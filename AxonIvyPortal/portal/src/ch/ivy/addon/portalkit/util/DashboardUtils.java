@@ -260,10 +260,8 @@ public class DashboardUtils {
   }
 
   public static void storeDashboardInSession(String id, boolean isMainDashboard) {
-    Ivy.log().info(id);
     Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
-    if (!isMainDashboard || isHiddenDashboard(id)) {
-      Ivy.log().info("test");
+    if (!isMainDashboard) {
       Ivy.session().setAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.toString(), id);
     }
   }
@@ -280,22 +278,6 @@ public class DashboardUtils {
     String sessionUserId = UserUtils.getSessionIdentifierAttribteWithInitIfEmpty();
     return (PortalDashboardItemWrapper) IvyCacheService.getInstance()
         .getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
-  }
-  
-  private static boolean isHiddenDashboard(String dashboardId) {
-    if (StringUtils.isEmpty(dashboardId)) {
-      return false;
-    }
-    boolean isHiddenDashboard = Optional.ofNullable(getPortalDashboardItemWrapper())
-        .map(wrapper -> wrapper.dashboards())
-        .orElse(new ArrayList<>())
-        .stream()
-        .filter(dashboard -> dashboardId.equals(dashboard.getId()))
-        .map(dashboard -> DashboardDisplayType.HIDDEN.equals(dashboard.getDashboardDisplayType()))
-        .findFirst()
-        .orElse(Boolean.FALSE);
-
-    return isHiddenDashboard;
   }
   
   public static boolean isMainDashboard(String dashboardId, boolean defaultValue) {

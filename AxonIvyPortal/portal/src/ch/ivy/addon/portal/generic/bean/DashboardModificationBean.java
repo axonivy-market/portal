@@ -38,7 +38,9 @@ import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
+import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
@@ -133,9 +135,33 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
       selectedDashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
       this.dashboards.add(selectedDashboard);
     }
+    
     saveDashboards(new ArrayList<>(this.dashboards));
+    updateSessionAttributeWhenDisplayTypeIsHidden();
   }
+  
+  private void updateSessionAttributeWhenDisplayTypeIsHidden() {
+    String selectedDashboardId = (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.name());
 
+    if (DashboardDisplayType.HIDDEN.equals(this.selectedDashboard.getDashboardDisplayType())
+        && this.selectedDashboard.getId().equals(selectedDashboardId)) {
+
+      String alternativeDashboardId = null;
+      for (Dashboard dashboard : DashboardUtils.getPublicDashboards()) {
+        if (DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())) {
+          alternativeDashboardId = dashboard.getId();
+          break;
+        }
+      }
+
+      if (alternativeDashboardId != null) {
+        DashboardUtils.storeDashboardInSession(alternativeDashboardId);
+      } else {
+        Ivy.session().removeAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.name());
+      }
+    }
+  }
+  
   public void removeDashboard() {
     removeWelcomeWidgetImagesOfDashboard(selectedDashboard);
     this.dashboards.remove(selectedDashboard);

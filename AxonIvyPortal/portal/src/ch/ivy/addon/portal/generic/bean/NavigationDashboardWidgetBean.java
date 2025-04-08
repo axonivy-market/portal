@@ -24,7 +24,6 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @SessionScoped
 @ManagedBean
@@ -33,7 +32,7 @@ public class NavigationDashboardWidgetBean implements Serializable {
   private static final long serialVersionUID = -4224901891867040688L;
   private MenuModel model = new DefaultMenuModel();
   private DefaultSubMenu submenu =
-      DefaultSubMenu.builder().label("Navigation Dashboard Breadcrumb").expanded(true).build();
+      DefaultSubMenu.builder().label("Navigation Dashboard Breadcrumb").build();
 
   private Map<String, String> getDashboardNameFromPublicDashboards() {
     return DashboardUtils.getPublicDashboards().stream()
@@ -44,49 +43,56 @@ public class NavigationDashboardWidgetBean implements Serializable {
   }
 
   public void buildBreadcrumb(NavigationDashboardWidget widget, Dashboard currentDashboard) {
+    String targetId = widget.getTargetDashboardId();
     int currentIndex = findDashboardIndexInPath(currentDashboard.getId());
-    int targetIndex = findDashboardIndexInPath(widget.getTargetDashboardId());
-    widget.setTargetDashboardName(getDashboardNameFromPublicDashboards().getOrDefault(widget.getTargetDashboardId(), DEFAULT_DASHBOARD_NAME));
-
+    int targetIndex = findDashboardIndexInPath(targetId);
+    
+    widget.setTargetDashboardName(getDashboardNameFromPublicDashboards()
+        .getOrDefault(targetId, DEFAULT_DASHBOARD_NAME));
+    
     model.getElements().clear();
+    
     if (targetIndex == 0) {
-      removeNavigationDashboardBreadcrumb();
-      return;
-    }
-
-    if (targetIndex > 0) {
-      if (targetIndex == currentIndex) {
+        removeNavigationDashboardBreadcrumb();
         return;
-      }
-      List<MenuElement> newList = new ArrayList<>();
-      for (int i = 0; i <= targetIndex; i++) {
-        if (i < submenu.getElements().size()) {
-          newList.add(submenu.getElements().get(i));
-        }
-      }
-
-      submenu.setElements(newList);
-      model.getElements().addAll(submenu.getElements());
-    } else {
-
-      if (currentIndex == -1) {
-        DefaultMenuItem item = DefaultMenuItem.builder().id(currentDashboard.getId()).value(currentDashboard.getTitle())
-            .command(String.format("#{navigationDashboardWidgetBean.navigateToDashboardWhenClickingOnElement('%s')}",
-                currentDashboard.getId()))
-            .build();
-
-        submenu.getElements().add(item);
-      }
-
-      DefaultMenuItem item = DefaultMenuItem.builder().id(widget.getTargetDashboardId()).value(widget.getTargetDashboardName())
-          .command(String.format("#{navigationDashboardWidgetBean.navigateToDashboardWhenClickingOnElement('%s')}",
-              widget.getTargetDashboardId()))
-          .build();
-
-      submenu.getElements().add(item);
-      model.getElements().addAll(submenu.getElements());
     }
+    
+    if (targetIndex > 0) {
+        if (targetIndex != currentIndex) {
+            buildSubmenu(targetIndex);
+            model.getElements().addAll(submenu.getElements());
+        }
+        return;
+    }
+    
+    if (currentIndex == -1) {
+        addDashboardToBreadcrumb(currentDashboard.getId(), currentDashboard.getTitle());
+    }
+    
+    addDashboardToBreadcrumb(targetId, widget.getTargetDashboardName());
+    model.getElements().addAll(submenu.getElements());
+}
+  
+  private void buildSubmenu(int targetIndex) {
+    List<MenuElement> menuElementList = new ArrayList<>();
+    int limit = Math.min(targetIndex + 1, submenu.getElements().size());
+    
+    for (int i = 0; i < limit; i++) {
+      menuElementList.add(submenu.getElements().get(i));
+    }
+    
+    submenu.setElements(menuElementList);
+}
+
+  private void addDashboardToBreadcrumb(String dashboardId, String dashboardTitle) {
+    DefaultMenuItem item = DefaultMenuItem.builder().id(dashboardId).value(dashboardTitle)
+        .command(
+            String.format("#{navigationDashboardWidgetBean.navigateToDashboardWhenClickingOnElement('%s')}", dashboardId))
+        .build();
+  
+    submenu.getElements().add(item);
   }
+
 
   public void rebuildBreadcrumbWhenClickingOnElement(String elementId) {
     int index = findDashboardIndexInPath(elementId);
