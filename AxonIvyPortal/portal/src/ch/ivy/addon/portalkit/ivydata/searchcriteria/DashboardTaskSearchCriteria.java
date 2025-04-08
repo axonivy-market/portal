@@ -1,9 +1,9 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -51,7 +51,9 @@ public class DashboardTaskSearchCriteria {
     TaskQuery query = TaskQuery.create();
     queryFilters(query);
     queryCanWorkOn(query);
-    queryFavoriteTasks(query);
+    if (showFavorite) {
+      queryFavoriteTasks(query);
+    }
     return query;
   }
 
@@ -358,17 +360,15 @@ public class DashboardTaskSearchCriteria {
   }
 
   private void queryFavoriteTasks(TaskQuery query) {
-    Set<Long> favoriteTaskIds = TaskUtils.getFavoriteTaskIds();
+    long[] favoriteTaskIds = Optional.ofNullable(TaskUtils.getFavoriteTaskIds()).orElse(Collections.emptySet()).stream()
+        .mapToLong(Long::longValue).toArray();
 
-    if (showFavorite) {
-      if (favoriteTaskIds.isEmpty()) {
-        // Ensure no tasks are returned by applying a condition that will never match
-        query.where().taskId().isLowerThan(0);
-        return;
-      }
-
-      long[] taskIdArray = favoriteTaskIds.stream().mapToLong(Long::longValue).toArray();
-      query.where().taskId().isIn(taskIdArray);
+    if (favoriteTaskIds.length == 0) {
+      query.where().taskId().isLowerThan(0); // no favorite tasks, return empty result
+    } else {
+      query.where().taskId().isIn(favoriteTaskIds);
     }
   }
+
+
 }
