@@ -293,12 +293,8 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public TaskDetailsPage openTaskDetails(int index) {
-    waitForElementDisplayed(By.cssSelector("div.js-task-start-list"), true);
-    return clickOnTaskEntryInFullMode(index);
-  }
-
-  private TaskDetailsPage clickOnTaskEntryInFullMode(int index) {
-    waitForElementClickableThenClick($(By.cssSelector("div[id$='" + index + "\\:task-item\\:task-info']")));
+    $("div[id$=':task-component:dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr td span")
+      .get(index).click();
     return new TaskDetailsPage();
   }
 

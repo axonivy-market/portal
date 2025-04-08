@@ -156,9 +156,11 @@ public class TaskDetailsTest extends BaseTest {
   public void testMultipleResponsible() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(taskWith20Responsibles);
+    redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    taskWidget.openTaskDetails(0);
+    TaskDetailsPage detailsPage = taskWidget.openTaskDetails(0);
+    detailsPage.getAllResponsible().contains("20");
     
   }
 }
