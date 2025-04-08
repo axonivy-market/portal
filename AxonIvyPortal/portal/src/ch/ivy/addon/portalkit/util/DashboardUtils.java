@@ -15,15 +15,19 @@ import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
+import javax.inject.Inject;
+
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
+import com.axonivy.portal.components.jsf.ManagedBeans;
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
 import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemplateMigrator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ch.ivy.addon.portal.generic.bean.NavigationDashboardWidgetBean;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
@@ -261,7 +265,7 @@ public class DashboardUtils {
 
   public static void storeDashboardInSession(String id, boolean isMainDashboard) {
     Ivy.session().setAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.toString(), id);
-    if (!isMainDashboard) {
+    if (!isMainDashboard && !isHiddenDashboard(id)) {
       Ivy.session().setAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.toString(), id);
     }
   }
@@ -279,7 +283,23 @@ public class DashboardUtils {
     return (PortalDashboardItemWrapper) IvyCacheService.getInstance()
         .getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
   }
+  
+  private static boolean isHiddenDashboard(String dashboardId) {
+    if (StringUtils.isEmpty(dashboardId)) {
+      return false;
+    }
+    boolean isHiddenDashboard = Optional.ofNullable(getPortalDashboardItemWrapper())
+        .map(wrapper -> wrapper.dashboards())
+        .orElse(new ArrayList<>())
+        .stream()
+        .filter(dashboard -> dashboardId.equals(dashboard.getId()))
+        .map(dashboard -> DashboardDisplayType.HIDDEN.equals(dashboard.getDashboardDisplayType()))
+        .findFirst()
+        .orElse(Boolean.FALSE);
 
+    return isHiddenDashboard;
+  }
+  
   public static boolean isMainDashboard(String dashboardId, boolean defaultValue) {
     if (StringUtils.isEmpty(dashboardId)) {
       return false;
