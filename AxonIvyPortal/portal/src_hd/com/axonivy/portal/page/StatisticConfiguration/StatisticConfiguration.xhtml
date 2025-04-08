@@ -111,18 +111,18 @@
                   </p:selectOneMenu>
 
                   <!-- CUSTOM FIELD SELECTION -->
-                  <p:outputLabel id="custom-field-description"
-                    for="aggregates-custom-fields"
-                    styleClass="w-full mt-2 si si-information-circle"
-                    rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}"
-                    value=" #{statisticConfigurationBean.currentCustomFieldDescription}" />
-                  <p:selectOneMenu id="aggregates-custom-fields" required="true" styleClass="w-full mt-0"
+                  <p:selectOneMenu id="aggregates-custom-fields" required="true" styleClass="w-full mt-2"
                     requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Aggregate')])}"
                     rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}" value="#{statisticConfigurationBean.currentCustomField}" >
                     <f:selectItem value="#{null}" noSelectionOption="false" />
                     <f:selectItems value="#{statisticConfigurationBean.getCustomFieldNames()}" var="customField" />
                     <p:ajax listener="#{statisticConfigurationBean.onSelectCustomField()}" update="custom-field-description chart-aggregation" />
                   </p:selectOneMenu>
+                  <p:inputText id="custom-field-description" readonly="true" 
+                  rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}"
+                  styleClass="w-full mt-2"
+                  value="#{statisticConfigurationBean.currentCustomFieldDescription}"/>
+                  
 
                   <!--  INTERVALS SELECTION -->
                   <p:outputLabel for="@next" rendered="#{statisticConfigurationBean.dateTimeSelected}"
