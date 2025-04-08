@@ -44,12 +44,12 @@
     <h:form id="show-favorite-form">
         <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
         <h:panelGroup layout="block" styleClass="toggle-container">
+            <h:outputText value="#{ivy.cms.co('/Labels/FavoriteTasks')}"
+                styleClass="toggle-label" />
             <p:toggleSwitch value="#{dashboardBean.showFavorite}" id="show-favorite-toggle">
                 <p:ajax listener="#{dashboardBean.toggleShowFavorite(widget)}"
                     update="#{componentToUpdateOnResetFilter} @form" />
             </p:toggleSwitch>
-            <h:outputText value="#{dashboardBean.showFavorite ? ivy.cms.co('/Labels/FavoriteTasks') : ivy.cms.co('/Labels/AllTasks')}"
-                styleClass="toggle-label" />
         </h:panelGroup>
     </h:form>
 </h:panelGroup>

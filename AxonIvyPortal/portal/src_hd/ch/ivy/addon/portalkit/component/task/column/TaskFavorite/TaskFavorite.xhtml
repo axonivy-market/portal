@@ -13,7 +13,7 @@
 
     <h:panelGroup styleClass="favorite-task-cell default-task-cell">
         <h:form id="favorite-form">
-            <p:commandLink action="#{taskBean.toggleFavorite(cc.attrs.task)}" update="@form">
+            <p:commandLink action="#{taskBean.toggleFavorite(cc.attrs.task)}" update="@form" global="false">
                 <i class="fa #{isFavorite ? 'fa-star' : 'fa-star-o'} favorite-icon" />
             </p:commandLink>
             <p:tooltip for="favorite-form" 
