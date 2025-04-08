@@ -79,7 +79,7 @@
       </div>
 
       <div class="ui-xl-3 ui-lg-3 ui-md-3 ui-sm-4 ui-g-3 u-no-padding-left min-width-column-task-details-when-resize">
-        <div class="ui-g-12 no-padding-column text-content text-ellipsis">
+        <div class="ui-g-12 no-padding-column text-content text-ellipsis"> 
           <h:outputText styleClass="task-detail-column-title"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
         </div>
@@ -139,10 +139,10 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
         </div>
         <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis flex">
-          <ic:com.axonivy.portal.component.Responsibles responsibles="#{task.responsibles()}" />
-          <p:commandLink onclick="PF('responsible-dialog').show()" styleClass="flex align-items-center ml-2">
-            <i class="si si-expand-6" />
-          </p:commandLink>
+          <ic:com.axonivy.portal.component.Responsibles responsibles="#{task.responsibles()}" popupLink="true" onClick="PF('responsible-dialog').show()"/>
+<!--           <p:commandLink onclick="PF('responsible-dialog').show()" styleClass="flex align-items-center ml-2"> -->
+<!--             <i class="si si-expand-6" /><h:outputText styleClass="ml-1" value="See all 20 users" /> -->
+<!--           </p:commandLink> -->
         </div>
       </h:panelGroup>
 
