@@ -10,7 +10,7 @@ Define Navigation Dashboard Widget
 
 The Navigation Dashboard widget of the Portal dashboard allows users to navigate to a target dashboard quickly with a single click.
 
-Below is a sample JSON definition of a navigation dashboard widget in the Portal dashboard
+Below is a sample JSON definition of a navigation dashboard widget in the Portal dashboard.
 
 .. code-block:: javascript
 

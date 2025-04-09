@@ -166,7 +166,7 @@ Structure of the JSON for each dashboard:
 
    ``permissions``: roles can access the dashboard.
 
-   ``dashboardDisplayType``: the display type of your dashboard in the left menu of Portal
+   ``dashboardDisplayType``: the display type of your dashboard in the left menu of Portal.
 
    .. tip:: 
       If you don't define ``permissions`` for a dashboard, every user can see it.
