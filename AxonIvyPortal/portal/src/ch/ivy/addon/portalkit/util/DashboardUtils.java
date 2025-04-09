@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.io.IOException;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -9,11 +10,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
@@ -26,6 +28,7 @@ import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
+import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -181,7 +184,7 @@ public class DashboardUtils {
 
   public static List<Dashboard> collectMainDashboards() {
     List<Dashboard> collectedDashboards =
-        new ArrayList<>(getPublicDashboards().stream().filter(dashboard -> dashboard.getIsTopMenu()).toList());
+        new ArrayList<>(getPublicDashboards().stream().filter(dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getDashboardDisplayType())).toList());
     return collectedDashboards;
   }
 
@@ -205,7 +208,14 @@ public class DashboardUtils {
       DashboardUtils.storeDashboardInSession(dashboardId);
     }
   }
-
+  
+  public static void updateDashboardInSession(SessionAttribute attr, String value) {
+    if (value != null) {
+      Ivy.session().setAttribute(attr.toString(), value);
+    } else {
+      Ivy.session().removeAttribute(attr.name());
+    }
+  }
 
   public static List<Dashboard> convertDashboardsToLatestVersion(String json) {
     try {
@@ -264,7 +274,7 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> getDashboardsWithoutMenuItem() {
-    return collectDashboards().stream().filter(dashboard -> !dashboard.getIsTopMenu()).toList();
+    return collectDashboards().stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())).toList();
   }
 
   public static String getSelectedMainDashboardIdFromSession() {
@@ -276,14 +286,20 @@ public class DashboardUtils {
     return (PortalDashboardItemWrapper) IvyCacheService.getInstance()
         .getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
   }
-
+  
   public static boolean isMainDashboard(String dashboardId, boolean defaultValue) {
     if (StringUtils.isEmpty(dashboardId)) {
       return false;
     }
-    boolean isMainDashboard = Optional.ofNullable(getPortalDashboardItemWrapper()).map(wrapper -> wrapper.dashboards())
-        .orElse(new ArrayList<>()).stream().filter(dashboard -> dashboardId.equals(dashboard.getId()))
-        .map(dashboard -> dashboard.getIsTopMenu()).findFirst().orElse(defaultValue);
+    boolean isMainDashboard = Optional.ofNullable(getPortalDashboardItemWrapper())
+        .map(wrapper -> wrapper.dashboards())
+        .orElse(new ArrayList<>())
+        .stream()
+        .filter(dashboard -> dashboardId.equals(dashboard.getId()))
+        .map(dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getDashboardDisplayType()))
+        .findFirst()
+        .orElse(defaultValue);
+    
     return isMainDashboard;
   }
 
@@ -295,11 +311,6 @@ public class DashboardUtils {
   public static void updatePropertiesToNullIfCurrentValueIsDefaultValue(List<Dashboard> dashboards) {
     if (CollectionUtils.isEmpty(dashboards)) {
       return;
-    }
-    for (Dashboard dashboard : dashboards) {
-      if (BooleanUtils.isFalse(dashboard.getIsTopMenu())) {
-        dashboard.setIsTopMenu(null);
-      }
     }
   }
 
@@ -422,6 +433,7 @@ public class DashboardUtils {
     }
     List<Dashboard> dashboards = new ArrayList<>();
     portalDashboardItemWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
+    
     return getVisibleDashboards(dashboards);
   }
 
@@ -431,6 +443,12 @@ public class DashboardUtils {
     cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId);
     cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PUBLIC_DASHBOARDS, sessionUserId);
     cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARDS, sessionUserId);
+  }
+  
+  public static Set<String> collectDashboardIds() {
+    return collectDashboards().stream()
+        .map(Dashboard::getId)
+        .collect(Collectors.toSet());
   }
 
   private static String getSessionUserId() {
