@@ -20,7 +20,7 @@
   <c:set var="panelId" value="navigation-widget-#{widget.id}-panel"/>
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
 
-  <h:panelGroup id="#{panelId}" styleClass="card-widget-panel" layout="block">
+  <h:panelGroup id="#{panelId}" styleClass="card-widget-panel navigation-dashboard-widget-panel" layout="block">
      <div>
        <h:panelGroup id="widget-header-actions" styleClass="js-navigation-dashboard-widget flex justify-content-end align-items-center navigation-dashboard-widget-panel" layout="block">
          <p:commandButton id="edit-widget-#{index}"
@@ -60,7 +60,7 @@
            
        </h:panelGroup>
      </div>
-       <h:panelGroup styleClass="navigation-dashboard-widget-info #{widget.id} widget__content flex flex-column h-full align-items-center pt-0 overflow-y-hidden" layout="block">
+       <h:panelGroup styleClass="navigation-dashboard-widget-info #{widget.id} widget__content flex flex-column h-full align-items-center overflow-y-hidden" layout="block">
           <div>
               <i class="#{iconSelectionBean.generateIconWithFontFamily(widget.icon)} text-7xl"/>
           </div>

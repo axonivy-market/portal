@@ -1115,4 +1115,8 @@ public class NewDashboardPage extends TemplatePage {
         .filter(widgetTitle -> widgetTitle.is(Condition.text(name))).findFirst()
         .isPresent();
   }
+  
+  public SelenideElement getNavigationDashboardWidgetDialog() {
+    return $("div[class*='navigation-dashboard-widget-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
 }

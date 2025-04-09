@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+
 import static com.codeborne.selenide.Selenide.$;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ import com.axonivy.portal.selenium.page.DashboardNewsWidgetPage;
 import com.axonivy.portal.selenium.page.DashboardNotificationWidgetConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardNotificationWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
-import com.axonivy.portal.selenium.page.NavigationDashboardWidgetPage;
+import com.axonivy.portal.selenium.page.NavigationDashboardWidgetConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
@@ -344,14 +345,28 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
     configPage.selectPublicDashboardType();
-    DashboardModificationPage editPage = new DashboardModificationPage();
-    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
-    detailsEditPage.waitPageLoaded();
-    WebElement newWidgetDialog = detailsEditPage.addWidget();
-    detailsEditPage.collapseStandardWidgets();
-    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "add-client-statistic-widget", new ScreenshotMargin(20));
+    String name = "New public dashboard";
+    String icon = "fa-coffee";
+    String description = "New public dashboard description";
+    List<String> permissions = Arrays.asList("Everybody");
+    configPage.openCreatePublicDashboardMenu();
+    configPage.createPublicDashboardFromScratch(name, icon, description, permissions, DashboardDisplayType.SUB_MENU);
+    NewDashboardDetailsEditPage detailsEditPage = new NewDashboardDetailsEditPage();
+
+    detailsEditPage.addWidget();
+    NavigationDashboardWidgetConfigurationPage navigationDashboardWidget =
+        detailsEditPage.addNavigationDashboardWidgetConfigurationPage();
+    navigationDashboardWidget.waitForSelectionIcon();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(navigationDashboardWidget.getDialog(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "add-navigation-dashboard-widget", new ScreenshotMargin(20));
+    navigationDashboardWidget.setWidgetTitle("Navigate to Tasks");
+    navigationDashboardWidget.setWidgetDescription("Navigate to Tasks description");
+    navigationDashboardWidget.selectTargetDashboard("Tasks");
+    navigationDashboardWidget.save();
+    redirectToNewDashBoard();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newDashboardPage.getNavigationDashboardWidgetDialog(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "navigation-dashboard-widget", new ScreenshotMargin(20));
   }
 
   @Test

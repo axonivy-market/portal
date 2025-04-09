@@ -3,9 +3,10 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+
 
 public class NavigationDashboardWidgetConfigurationPage extends TemplatePage {
-
   @Override
   protected String getLoadedLocator() {
     return "div#new-widget-configuration-dialog";
@@ -44,6 +45,19 @@ public class NavigationDashboardWidgetConfigurationPage extends TemplatePage {
   
   public void save() {
     $("button#widget-configuration-save-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    getDialog().shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+  }
+  
+  public SelenideElement getDialog() {
+    return $("div#new-widget-configuration-dialog");
+  }
+  
+  public void waitForSelectionIcon() {
+    waitForElementDisplayed($("a[class$='highlight-selected-icon']"), isDisplayed());
+  }
+  
+  public void waitForWidgetDialogAppear() {
+    waitForElementDisplayed($("div[class*='navigation-dashboard-widget-panel']"), true);
   }
 
 }

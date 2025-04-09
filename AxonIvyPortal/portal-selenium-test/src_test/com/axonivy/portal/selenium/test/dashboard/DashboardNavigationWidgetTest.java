@@ -10,6 +10,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.NavigationDashboardWidgetConfigurationPage;
 import com.axonivy.portal.selenium.page.NavigationDashboardWidgetPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
@@ -48,7 +49,33 @@ public class DashboardNavigationWidgetTest extends BaseTest{
     NavigationDashboardWidgetPage navigationWidget = new NavigationDashboardWidgetPage();
     ScreenshotUtils.maximizeBrowser();
     navigationWidget.clickOnNavigateButton();
-    newDashboardPage = new NewDashboardPage();  
+    newDashboardPage.waitForTaskWidgetLoaded();
+    assertTrue(newDashboardPage.isTaskListDisplayed());
+    }
+  
+  @Test
+  public void testNavigateToHiddenDashboardUsingWidget() {
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    DashboardModificationPage modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.clickEditDashboardByName("Tasks");
+    modificationPage.selectDashboardDisplayType(DashboardDisplayType.HIDDEN);
+    modificationPage.saveEditDashboard();
+    
+    String name = "New public dashboard";
+    String icon = "fa-coffee";
+    String description = "New public dashboard description";
+    List<String> permissions = Arrays.asList("Everybody");
+    configurationPage.openCreatePublicDashboardMenu();
+    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions, DashboardDisplayType.SUB_MENU);
+    NewDashboardDetailsEditPage detailsEditPage = new NewDashboardDetailsEditPage();
+
+    detailsEditPage.addWidget();
+    addNewNavigationDashboardWidget(detailsEditPage);
+    configurationPage.backToHomePage();
+    NavigationDashboardWidgetPage navigationWidget = new NavigationDashboardWidgetPage();
+    ScreenshotUtils.maximizeBrowser();
+    navigationWidget.clickOnNavigateButton();
+    newDashboardPage.waitForTaskWidgetLoaded();
     assertTrue(newDashboardPage.isTaskListDisplayed());
     }
 
