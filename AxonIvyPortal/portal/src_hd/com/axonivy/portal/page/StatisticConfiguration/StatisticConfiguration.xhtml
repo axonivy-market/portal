@@ -67,6 +67,7 @@
                       <f:selectItems value="#{statisticConfigurationBean.allChartTypes}" var="chartType"
                         itemLabel="#{chartType.getCmsName()}" itemValue="#{chartType}" />
                       <p:ajax event="itemSelect"
+                        listener="#{statisticConfigurationBean.onSelectChartType(statisticConfigurationBean.statistic.chartType)}"
                         update="x-axis-title-container y-axis-title-container hide-label-container background-colors-container errors-message chart-aggregation" />
                     </p:selectOneMenu>
                   </div>

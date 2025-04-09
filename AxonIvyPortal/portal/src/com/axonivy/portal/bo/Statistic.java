@@ -235,7 +235,6 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   }
 
   public void setStatisticAggregation(StatisticAggregation statisticAggregation) {
-    Ivy.log().info("setStatisticAggregation");
     this.statisticAggregation = statisticAggregation;
   }
 }

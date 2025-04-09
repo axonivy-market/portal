@@ -139,6 +139,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   private void initExistedStatistic() {
+    Ivy.log().info("init existed statistic - editing");
     isEditMode = true;
     if (statistic.getNames() == null) {
       statistic.setNames(new ArrayList<>());
@@ -181,6 +182,15 @@ public class StatisticConfigurationBean implements Serializable {
     if (statistic.getPermissionDTOs() == null) {
       statistic.setPermissionDTOs(Arrays.asList(SecurityMemberDTOMapper.mapFromRoleDTO(
           new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));
+    }
+    if(statistic.getStatisticAggregation() != null) {
+      this.currentCustomFieldType = statistic.getStatisticAggregation().getCustomFieldType();
+      this.currentCustomField = statistic.getStatisticAggregation().getCustomFieldValue();
+      this.setDateTimeSelected(CustomFieldType.TIMESTAMP == this.currentCustomFieldType);
+      if(isDateTimeSelected && null != statistic.getStatisticAggregation().getInterval()
+          ) {
+        this.statisticInterval = statistic.getStatisticAggregation().getInterval();
+      }
     }
   }
 
@@ -614,22 +624,6 @@ public class StatisticConfigurationBean implements Serializable {
       return;
     }
     
-    /*
-     * handle:
-     * Choose Custom field > click button Generate preview 
-     * => error
-     */
-//    if(this.currentCustomFieldType == null) {
-//      this.currentCustomFieldType = CustomFieldType.STRING;
-//      this.currentCustomField = "HIDE";
-//      statistic.setAggregates(null);
-//      initValueForStatisticAggregation(ChartAggregates.CUSTOM_FIELD, currentCustomFieldType, currentCustomField,
-//          statisticInterval);
-//      return;
-//    }
-    // ****************************************************************
-
-    Ivy.log().info(currentCustomField);
     initValueForStatisticAggregation(ChartAggregates.CUSTOM_FIELD,
         currentCustomFieldType,
         currentCustomField,
@@ -778,6 +772,15 @@ public class StatisticConfigurationBean implements Serializable {
   public void setCurrentCustomField(String currentCustomField) {
     this.currentCustomField = currentCustomField;
   }
+  
+  public void onSelectChartType(ChartType newChartType) {
+    if (ChartType.NUMBER == statistic.getChartType()) {
+      resetAggregateValues();
+      resetCustomFieldAndDateTimeInterval();
+      this.setDateTimeSelected(false);
+    }
+  }
+
 
   public void onSelectChartTarget(ChartTarget newChartTarget) {
     if (statistic.getChartTarget() != null && statistic.getChartTarget() == newChartTarget) {
@@ -793,7 +796,7 @@ public class StatisticConfigurationBean implements Serializable {
     statistic.getStatisticAggregation().setCustomFieldType(null);
     statistic.getStatisticAggregation().setCustomFieldValue(null);
     this.currentCustomFieldDescription = null;
-    statistic.getStatisticAggregation().setInterval(statisticInterval);
+    statistic.getStatisticAggregation().setInterval(null);
   }
 
   public List<FilterField> getFilterFields() {
