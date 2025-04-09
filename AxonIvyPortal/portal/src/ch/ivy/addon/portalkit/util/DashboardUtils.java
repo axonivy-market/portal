@@ -208,7 +208,14 @@ public class DashboardUtils {
       DashboardUtils.storeDashboardInSession(dashboardId);
     }
   }
-
+  
+  public static void updateDashboardInSession(SessionAttribute attr, String value) {
+    if (value != null) {
+      Ivy.session().setAttribute(attr.toString(), value);
+    } else {
+      Ivy.session().removeAttribute(attr.name());
+    }
+  }
 
   public static List<Dashboard> convertDashboardsToLatestVersion(String json) {
     try {

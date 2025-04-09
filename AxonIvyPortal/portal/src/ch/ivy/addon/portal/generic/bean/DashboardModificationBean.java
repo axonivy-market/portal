@@ -141,23 +141,29 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
   }
   
   private void updateSessionAttributeWhenDisplayTypeIsHidden() {
-    String selectedDashboardId = (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.name());
+    if (!DashboardDisplayType.HIDDEN.equals(this.selectedDashboard.getDashboardDisplayType())) {
+      return;
+    }
 
-    if (DashboardDisplayType.HIDDEN.equals(this.selectedDashboard.getDashboardDisplayType())
-        && this.selectedDashboard.getId().equals(selectedDashboardId)) {
+    String dashboardId = this.selectedDashboard.getId();
+    String selectedId = (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.name());
+    String subSelectedId = (String) Ivy.session().getAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.name());
 
-      String alternativeDashboardId = null;
-      for (Dashboard dashboard : DashboardUtils.getPublicDashboards()) {
-        if (DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())) {
-          alternativeDashboardId = dashboard.getId();
+    if (dashboardId.equals(selectedId) || dashboardId.equals(subSelectedId)) {
+      String alternativeId = null;
+      for (Dashboard d : DashboardUtils.getPublicDashboards()) {
+        if (DashboardDisplayType.SUB_MENU.equals(d.getDashboardDisplayType())) {
+          alternativeId = d.getId();
           break;
         }
       }
 
-      if (alternativeDashboardId != null) {
-        DashboardUtils.storeDashboardInSession(alternativeDashboardId);
-      } else {
-        Ivy.session().removeAttribute(SessionAttribute.SELECTED_DASHBOARD_ID.name());
+      if (dashboardId.equals(selectedId)) {
+        DashboardUtils.updateDashboardInSession(SessionAttribute.SELECTED_DASHBOARD_ID, subSelectedId);
+      }
+
+      if (dashboardId.equals(subSelectedId)) {
+        DashboardUtils.updateDashboardInSession(SessionAttribute.SELECTED_SUB_DASHBOARD_ID, alternativeId);
       }
     }
   }
