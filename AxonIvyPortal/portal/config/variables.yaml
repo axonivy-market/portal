@@ -20,7 +20,7 @@ Variables:
     LoggedInUserFormat: DISPLAY_NAME
 
     # The option to show users' technical name.
-    ShowTechnicalName: false
+    ShowTooltipTechnicalName: false
 
     # For switch on/off the display of global search.
     ShowGlobalSearch: true
