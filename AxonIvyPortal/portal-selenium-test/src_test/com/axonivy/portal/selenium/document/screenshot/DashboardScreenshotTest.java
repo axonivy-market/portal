@@ -357,11 +357,11 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     NavigationDashboardWidgetConfigurationPage navigationDashboardWidget =
         detailsEditPage.addNavigationDashboardWidgetConfigurationPage();
     navigationDashboardWidget.waitForSelectionIcon();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(navigationDashboardWidget.getDialog(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "add-navigation-dashboard-widget", new ScreenshotMargin(20));
     navigationDashboardWidget.setWidgetTitle("Navigate to Tasks");
     navigationDashboardWidget.setWidgetDescription("Navigate to Tasks description");
     navigationDashboardWidget.selectTargetDashboard("Tasks");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(navigationDashboardWidget.getDialog(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "navigation-dashboard-widget-configuration", new ScreenshotMargin(20));
     navigationDashboardWidget.save();
     redirectToNewDashBoard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
