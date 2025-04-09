@@ -22,7 +22,7 @@
 
   <h:panelGroup id="#{panelId}" styleClass="card-widget-panel" layout="block">
      <div>
-       <h:panelGroup id="widget-header-actions" style="padding: 14px 20px 7px; display: flex; justify-content: flex-end; align-items: center; margin-left: 6px;" layout="block">
+       <h:panelGroup id="widget-header-actions" styleClass="js-navigation-dashboard-widget flex justify-content-end align-items-center navigation-dashboard-widget-panel" layout="block">
          <p:commandButton id="edit-widget-#{index}"
            icon="si si-pencil"
            styleClass="rounded-button ui-button-outlined u-hidden-sm-down u-mar-right-5"
@@ -60,7 +60,7 @@
            
        </h:panelGroup>
      </div>
-       <h:panelGroup styleClass="#{widget.id} widget__content flex flex-column h-full align-items-center pt-0 overflow-y-hidden" layout="block">
+       <h:panelGroup styleClass="navigation-dashboard-widget-info #{widget.id} widget__content flex flex-column h-full align-items-center pt-0 overflow-y-hidden" layout="block">
           <div>
               <i class="#{iconSelectionBean.generateIconWithFontFamily(widget.icon)} text-7xl"/>
           </div>
@@ -73,8 +73,8 @@
             </div>
           </h:panelGroup>
        </h:panelGroup>
-       <div class="ml-3 mr-3 mb-3">
-         <p:commandButton id="enterDashboardBtn" styleClass="ui-button w-full ui-button-text-only" disabled="#{navigationDashboardWidgetBean.isNotClickable(widget, isReadOnlyMode)}"
+       <div id="navigation-dashboard-widget-footer" class="ml-3 mr-3 mb-3">
+         <p:commandButton id="navigate-dashboard-button" styleClass="ui-button w-full ui-button-text-only" disabled="#{navigationDashboardWidgetBean.isNotClickable(widget, isReadOnlyMode)}"
                           action="#{navigationDashboardWidgetBean.redirectToDashboard(widget, dashboardBean.selectedDashboard)}"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/navigate')}"/>
        </div>

@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,7 @@ import com.axonivy.portal.selenium.page.DashboardNewsWidgetPage;
 import com.axonivy.portal.selenium.page.DashboardNotificationWidgetConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardNotificationWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
+import com.axonivy.portal.selenium.page.NavigationDashboardWidgetPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
@@ -43,6 +45,7 @@ import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
+import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
@@ -333,6 +336,22 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     homePage = new NewDashboardPage();
     ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetProcessViewerWidget(0),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "process-viewer-widget");
+  }
+  
+  @Test
+  public void screenshotNavigationDashboardWidget() throws IOException {
+    // Take screenshot of Add new widget dialog
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    DashboardModificationPage editPage = new DashboardModificationPage();
+    NewDashboardDetailsEditPage detailsEditPage = editPage.navigateToEditDashboardDetailsByName("Dashboard");
+    detailsEditPage.waitPageLoaded();
+    WebElement newWidgetDialog = detailsEditPage.addWidget();
+    detailsEditPage.collapseStandardWidgets();
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "add-client-statistic-widget", new ScreenshotMargin(20));
   }
 
   @Test

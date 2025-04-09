@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -266,7 +267,7 @@ public class DashboardConfigurationPage extends TemplatePage {
     createDashboardDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
   
-  private void selectDashboardDisplayType(DashboardDisplayType type, SelenideElement createDashboardDialog) {
+  public void selectDashboardDisplayType(DashboardDisplayType type, SelenideElement createDashboardDialog) {
     String label = DashboardDisplayType.getDisplayLabel(type);
     createDashboardDialog.$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     $("ul[id$='dashboard-display-menu_items']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li").filter(Condition.text(label)).first().click();

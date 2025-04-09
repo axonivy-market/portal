@@ -52,6 +52,10 @@ public class NewDashboardPage extends TemplatePage {
   public void waitForAbsencesGrowlMessageDisplay() {
     $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public Boolean isTaskListDisplayed() {
+    return $("div[id*='task-default_task_list_dashboard_task_1']").isDisplayed();
+  }
 
   public void waitForTaskListDisplay() {
     $("div[id='task-task_1:widget-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message")
