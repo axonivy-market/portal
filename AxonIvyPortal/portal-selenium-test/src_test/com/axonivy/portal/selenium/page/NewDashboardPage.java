@@ -52,6 +52,10 @@ public class NewDashboardPage extends TemplatePage {
   public void waitForAbsencesGrowlMessageDisplay() {
     $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public Boolean isTaskListDisplayed() {
+    return $("div[id*='task-default_task_list_dashboard_task_1']").isDisplayed();
+  }
 
   public void waitForTaskListDisplay() {
     $("div[id='task-task_1:widget-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message")
@@ -1110,5 +1114,9 @@ public class NewDashboardPage extends TemplatePage {
     return $$("span.widget__header-title").asFixedIterable().stream()
         .filter(widgetTitle -> widgetTitle.is(Condition.text(name))).findFirst()
         .isPresent();
+  }
+  
+  public SelenideElement getNavigationDashboardWidgetDialog() {
+    return $("div[class*='navigation-dashboard-widget-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }

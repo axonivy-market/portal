@@ -3590,7 +3590,7 @@
             "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
             "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
             "",
-            "in.isMainDashboard = DashboardUtils.isMainDashboard(in.dashboardId, true);",
+            "in.isMainDashboard = DashboardUtils.isMainDashboard(in.dashboardId, false);",
             "DashboardUtils.storeDashboardInSession(in.dashboardId, in.isMainDashboard);",
             "in.isOpenDashboardFromLink = true;",
             "if (in.isOpenWithoutMenu) {",
