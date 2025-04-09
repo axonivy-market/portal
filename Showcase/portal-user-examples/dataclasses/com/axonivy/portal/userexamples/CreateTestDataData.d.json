@@ -1,0 +1,6 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
+  "simpleName" : "CreateTestDataData",
+  "namespace" : "com.axonivy.portal.userexamples",
+  "isBusinessCaseData" : false
+}
