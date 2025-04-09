@@ -22,7 +22,7 @@ Portal.DateTimeFormat.HideTime,FALSE,Set to true to hide hours and minutes next 
 Portal.DateTimeFormat.HideYear,FALSE,"Set to true, year will be hidden, otherwise it will be shown."
 Portal.DisplayMessageAfterFinishTask,TRUE,A feedback message will be displayed after user finishes or leaves a task.
 Portal.DisplayUsersOfRole,FALSE,"| Controls the SecurityMemberDisplayName component.| If true and the SecurityMember is a role, lists all users of this role under the info icon besides the role name."
-Portal.Document.EnableScriptChecking,FALSE,"If true, enables checking uploaded documents for scripting. Supports PDF, Excel, Word."
+Portal.Document.EnableScriptChecking,TRUE,"If true, enables checking uploaded documents for scripting. Supports PDF, Excel, Word."
 Portal.Document.EnableVirusScanner,FALSE,Set to true to enable virus scanner for uploaded document. Currently this function uses the VIRUSTOTAL API.
 Portal.Document.WhitelistExtension,"| doc, docx, xls,
 | xlsx, xlsm, csv,
@@ -72,3 +72,6 @@ Portal.SearchScope.ByTaskFields,"NAME,DESCRIPTION",Defining the fields that the 
 Portal.GlobalFooterInfo,"Default",Defining the global environment footer info.
 Portal.GlobalSearchScopeCategories,"PROCESSES,TASKS,CASES",Defining the types that the global search will search for.
 Portal.Cases.HideCaseCreator,FALSE,"Set to true to hide case creator in case list, case widget and case details.This setting affects all case queries, e.g. for case list, global search, statistic."
+Portal.Upload.DocumentUploadSizeLimit,"20",Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.
+Portal.Upload.ImageUploadSizeLimit,"6",Set the size limit for uploading images in megabytes (MB). The default value is 6MB.
+Portal.DelegationAppendOption,"None",Defines the fields that can be appended to the role group display name.

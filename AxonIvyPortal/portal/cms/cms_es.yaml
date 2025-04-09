@@ -120,6 +120,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       STATISTIC: Widget de estadísticas
       TASK: Widget de tareas
       WELCOME: Widget de bienvenida
+    DelegationAppendOption:
+      NONE: Ninguno
+      PARENT_NAME: Nombre de rol principal
     GlobalVariable:
       Option:
         DISPLAY_NAME: Nombre de pantalla
@@ -260,11 +263,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       defaultSortDirectionOfTaskList: Dirección de clasificación por defecto de la lista de tareas
       defaultSortFieldOfCaseList: Campo de ordenación por defecto de la lista de casos
       defaultSortFieldOfTaskList: Campo de ordenación por defecto de la lista de tareas
+      delegationAppendOption: Esta configuración determina qué información adicional se incluye al formatear los nombres de los roles.
       disableCaseCount: Cambiar a "true" para desactivar la función contar casos en la lista de casos
       disableTaskCount: Cambiar a "true" para desactivar la función contar tareas en la lista de tareas
       displayAllUsersOfTaskActivator: Esta configuración se utiliza para la componente SecurityMemberDisplayName. Si el SecurityMember es un rol, cambie esta configuración a "true" para ver todos los usuarios de este rol. Si se configura "true", se muestra la información del icono junto al nombre del
         rol.
       displayMessageAfterFinishOrLeaveTask: Se mostrará un mensaje después de finalizar una tarea
+      documentUploadSizeLimit: Establece el límite de tamaño para la carga de documentos en megabytes (MB). El valor predeterminado es 20 MB.
       embedInFrame: Cambiar a "true" para abrir un proceso o tarea en modo iFrame
       enableCaseOwner: 'Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. '
       enableDocumentPreview: 'Establecer en "true" para habilitar la vista previa de documentos para ciertos tipos de archivos. Los tipos de archivos compatibles son: pdf, png, jpeg, jpg, txt, log.'
@@ -291,6 +296,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideTimeNote: Cambiar a "true" para ocultar horas y minutos de la fecha.
       hideUploadDocumentForDoneCaseNote: Cambiar a "true" para impedir el upload de documentos después de que un caso esté terminado.
       hideYear: activar para ocultar el año, de lo contrario se mostrará.
+      imageUploadSizeLimit: Establece el límite de tamaño para la carga de imágenes en megabytes (MB). El valor predeterminado es 6 MB.
       loggedInUserFormat: Opción para definir el formato visible del usuario conectado
       refreshTaskListIntervalNote: Actualización de la lista de tareas en segundos
       showAvatar: Para activar/desactivar la visualización de los avatares de los usuarios/roles.
@@ -656,7 +662,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         UpdateRoleSuccess: Rol "{0}" actualizado con éxito
         UserOfRoleNotFound: Ningún usuario posee este rol
       NumberUsers: '{0} usuarios'
-      ParentRole: Papel de los padres
+      ParentRole: Rol superior
       RemovingRoleHeader: ¿Suprimir el papel "{0}"?
       RoleCreation: Creación de roles
       RoleDetails: Detalles de la función "{0}"
@@ -1579,6 +1585,8 @@ Dialogs:
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: Arrastrar y soltar para cambiar el orden.
                   DragAndDropTooltip: Haz clic en vista previa y arrastra y suelta para cambiar el orden
+                WelcomeDashboardWidget:
+                  WelcomeToAxon: Bienvenido a Axon Ivy Portal
         portalkit:
           component:
             CaseItemDetails:

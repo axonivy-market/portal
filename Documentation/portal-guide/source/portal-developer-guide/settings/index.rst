@@ -43,6 +43,14 @@ To add a new language to the Portal, what you have to do is:
    |export-cms|
 
 -  Add the translations for the new language for all CMS entries.
+-  Add the translations for the new language for all json files in the Portal located at Config/variables by adding new locale/value item.
+
+   |translate-json|
+
+-  Add the translations for the new language to DefaultDashboardUtils.java by adding new locale/value item.
+
+   |translate-java|
+
 -  Import the Excel file.
 -  Redeploy the Portal.
 
@@ -675,3 +683,5 @@ Data model:
 .. |global-setting-edit| image:: ../../screenshots/settings/edit-global-settings.png
 .. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
 .. |export-cms| image:: images/export-cms.png
+.. |translate-json| image:: images/translate-json.png
+.. |translate-java| image:: images/translate-java.png   
