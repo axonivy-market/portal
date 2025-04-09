@@ -13,13 +13,10 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
   private static final long serialVersionUID = -565012312312361L;
 
   private String targetDashboardId;
+  @JsonIgnore
   private String targetDashboardName;
-
   private String description;
   private String icon;
-  
-  @JsonIgnore
-  private Boolean isDisable;
   
   @Override
   public void resetWidgetFilters() {}
@@ -51,15 +48,7 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
   public String getTargetDashboardId() {
     return this.targetDashboardId;
   }
-  
-  public void setIsDisable(Boolean isDisable) {
-    this.isDisable = isDisable;
-  }
-  
-  public Boolean getIsDisable() {
-    return this.isDisable;
-  }
-  
+
   public String getDescription() {
     return this.description;
   }
