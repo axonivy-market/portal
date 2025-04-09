@@ -111,6 +111,7 @@ public class StatisticService {
     String filter = null;
     if (StringUtils.isEmpty(chart.getFilter())) {
       filter = processTaskFilter(chart.getFilters());
+      chart.setFilter(filter);
     } else {
       filter = chart.getFilter();
     }
