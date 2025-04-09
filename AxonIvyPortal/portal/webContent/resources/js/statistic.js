@@ -759,14 +759,14 @@ class ClientNumberChart extends ClientChart {
     const aggregateFilter = this.data.chartConfig.aggregates + ':';
     const aggregateFilterRegex = new RegExp('^' + this.data.chartConfig.aggregates + ':');
     let result = [];
-
     this.filters.filter(filter => filter.startsWith(aggregateFilter))
-      .forEach(filter => {
-        // Get states from filter. Expected result: ['OPEN','DONE']
-        filter.replace(aggregateFilterRegex, "").split(' ')
-          .forEach((state) => result.push(state));
-      });
+    .forEach(filter => {
+      // Get states from filter. Expected result: ['OPEN','DONE']
+      filter.replace(aggregateFilterRegex, "").split(' ')
+      .filter(item => item !== "").forEach((state) => result.push(state));
+    });
     // Remove duplicated states if any. ['OPEN','DONE', 'OPEN'] => ['OPEN','DONE']
+    // result = result.filter(item => item !== "" && item !== null);
     return result.filter((item, index) => result.indexOf(item) == index);
   }
 
