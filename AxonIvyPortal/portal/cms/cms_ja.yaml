@@ -1482,7 +1482,22 @@ Dialogs:
             Advanced: TODO Advanced
             Aggregate: TODO Aggregate
             ChartAggregates:
+              ACTIVATOR_NAME: TODO Activator name
+              BUSINESS_RUNTIME: TODO Business runtime
+              BUSINESS_STATE: TODO State
+              CATEGORY: TODO Category
+              CREATOR_NAME: TODO Creator name
+              CUSTOM_FIELD: TODO Custom field
+              END_TIMESTAMP: TODO End timestamp
+              EXPIRY_TIMESTAMP: TODO Expiry timestamp
+              IS_EXPIRED: TODO Is expired
+              MODIFIED_TIMESTAMP: TODO Modified timestamp
+              NUMBER_OF_RESUMES: TODO Number of resumes
+              PRIORITY: TODO Priority
               RESPONSIBLES_NAME: TODO Responsibles
+              START_TIMESTAMP: TODO Start timestamp
+              WORKER_NAME: TODO Worker name
+              WORKING_TIME: TODO Working time
             ChartType: TODO Chart type
             Color: 色{0}
             Create: TODO Create
@@ -1496,6 +1511,15 @@ Dialogs:
             RefreshIntervalInSecondsValidationMessage: 'TODO Auto-refresh interval (seconds): Specified attribute is not between the expected values of {0} and {1}'
             RefreshIntervalInfo: TODO The statistic can be auto-refreshed after a certain period. If enabled, this may impact performance. Auto-refresh interval (seconds) must be at least {0}.
             StatisticConfiguration: TODO Statistic configuration
+            StatisticIntervals:
+              AVG: TODO Avg
+              DAY: TODO Day
+              HOUR: TODO Hour
+              MAX: TODO Max
+              MIN: TODO Min
+              MONTH: TODO Month
+              WEEK: TODO Week
+              YEAR: TODO Year
             XAxisTitle: TODO X axis title
             YAxisTitle: TODO Y axis title
   components:

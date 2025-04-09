@@ -1491,8 +1491,8 @@ Dialogs:
             Aggregate: Group by
             ChartAggregates:
               ACTIVATOR_NAME: Activator name
-              BUSINESS_RUNTIME: Business run time
-              BUSINESS_STATE: Business state
+              BUSINESS_RUNTIME: Business runtime
+              BUSINESS_STATE: State
               CATEGORY: Category
               CREATOR_NAME: Creator name
               CUSTOM_FIELD: Custom field
@@ -1504,7 +1504,6 @@ Dialogs:
               PRIORITY: Priority
               RESPONSIBLES_NAME: Responsibles
               START_TIMESTAMP: Start timestamp
-              STATE: State
               WORKER_NAME: Worker name
               WORKING_TIME: Working time
             ChartType: Chart type

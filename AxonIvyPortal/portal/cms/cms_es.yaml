@@ -1448,7 +1448,7 @@ Dialogs:
             ChartAggregates:
               ACTIVATOR_NAME: Nombre del activador
               BUSINESS_RUNTIME: Tiempo de ejecución
-              BUSINESS_STATE: Estado de los negocios
+              BUSINESS_STATE: Estado
               CATEGORY: Categoría
               CREATOR_NAME: Nombre del creador
               CUSTOM_FIELD: Campo personalizado
@@ -1460,7 +1460,6 @@ Dialogs:
               PRIORITY: Prioridad
               RESPONSIBLES_NAME: Responsables
               START_TIMESTAMP: Fecha de inicio
-              STATE: Estado
               WORKER_NAME: Nombre del trabajador
               WORKING_TIME: Tiempo de trabajo
             ChartType: Tipo de gráfico
