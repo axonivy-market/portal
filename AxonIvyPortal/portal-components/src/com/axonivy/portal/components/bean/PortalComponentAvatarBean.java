@@ -88,4 +88,17 @@ public class PortalComponentAvatarBean implements Serializable {
     return securityMember.getDisplayName() + " (" + formattedUserName + ")";
   }
 
+  public String tooltipTechnicalDisplayName(UserDTO securityMember) {
+    if (securityMember == null || StringUtils.isBlank(securityMember.getName())) {
+      // N/A
+      return StringUtils.EMPTY;
+    }
+
+    String displayName = securityMember.getMemberName();
+    String formattedUserName = displayName.startsWith("#") ? displayName.substring(1) : displayName;
+    if (StringUtils.isBlank(securityMember.getDisplayName())) {
+      return "<" + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName") + ">" + " (" + formattedUserName + ")";
+    }
+    return securityMember.getDisplayName() + " (" + formattedUserName + ")";
+  }
 }
