@@ -615,8 +615,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: El proceso
     timeInformation: Informaciones de tiempo
     timestamp: Marca de tiempo
-    tooltipNoNameFormatted: <{0}> ({1})
-    tooltipUserNameFormatted: '{0} ({1})'
     type: Tipo
     typeAdmin: Todos los administradores
     typeAllUsers: Todos los usuarios
