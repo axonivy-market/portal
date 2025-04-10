@@ -74,42 +74,43 @@ public class PortalComponentAvatarBean implements Serializable {
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_TOOLTIP_TECHNICAL_NAME, defaultIfEmpty);
   }
   
-  public String tooltipTechnicalDisplayName(ISecurityMember securityMember) {
-    if (securityMember == null || StringUtils.isBlank(securityMember.getName())) {
+  /**
+   * Tooltip format: Show display name and the "technical name" (memberName) in parentheses.
+   */
+  public String tooltipTechnicalDisplayName(ISecurityMember member) {
+    if (member == null || StringUtils.isBlank(member.getName())) {
       return StringUtils.EMPTY;
     }
-
-    String displayName = securityMember.getMemberName();
-    String formattedUserName = displayName.startsWith("#") ? displayName.substring(1) : displayName;
-    if (StringUtils.isBlank(securityMember.getDisplayName())) {
-      return String.format("<%s> (%s)", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName"), formattedUserName);
-    }
-    return securityMember.getDisplayName() + " (" + formattedUserName + ")";
+    return buildTooltip(member.getDisplayName(), member.getMemberName());
   }
 
-  public String tooltipTechnicalDisplayName(UserDTO securityMember) {
-    if (securityMember == null || StringUtils.isBlank(securityMember.getName())) {
+  public String tooltipTechnicalDisplayName(UserDTO member) {
+    if (member == null || StringUtils.isBlank(member.getName())) {
       return StringUtils.EMPTY;
     }
-
-    String displayName = securityMember.getMemberName();
-    String formattedUserName = displayName.startsWith("#") ? displayName.substring(1) : displayName;
-    if (StringUtils.isBlank(securityMember.getDisplayName())) {
-      return String.format("<%s> (%s)", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName"), formattedUserName);
-    }
-    return securityMember.getDisplayName() + " (" + formattedUserName + ")";
+    return buildTooltip(member.getDisplayName(), member.getMemberName());
   }
 
-  public String tooltipTechnicalDisplayName(RoleDTO securityMember) {
-    if (securityMember == null || StringUtils.isBlank(securityMember.getName())) {
+  public String tooltipTechnicalDisplayName(RoleDTO member) {
+    if (member == null || StringUtils.isBlank(member.getName())) {
       return StringUtils.EMPTY;
     }
-
-    String displayName = securityMember.getMemberName();
-    String formattedUserName = displayName.startsWith("#") ? displayName.substring(1) : displayName;
-    if (StringUtils.isBlank(securityMember.getDisplayName())) {
-      return String.format("<%s> (%s)", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName"), formattedUserName);
-    }
-    return securityMember.getDisplayName() + " (" + formattedUserName + ")";
+    return buildTooltip(member.getDisplayName(), member.getMemberName());
   }
-}
+
+  /**
+   * Build a tooltip string like: "John Doe (jdoe)"
+   * If display name is empty, fallback to localized "no name" string.
+   */
+  private String buildTooltip(String displayName, String memberName) {
+    // Remove leading "#" if present
+    String formattedUserName = memberName != null && memberName.startsWith("#")
+        ? memberName.substring(1)
+        : memberName;
+
+    if (StringUtils.isBlank(displayName)) {
+      String noNameLabel = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName");
+      return String.format("<%s> (%s)", noNameLabel, formattedUserName);
+    }
+    return String.format("%s (%s)", displayName, formattedUserName);
+  }}
