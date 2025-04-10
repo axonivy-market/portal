@@ -10,3 +10,4 @@ displayNameRendered,true,Boolean,false,"If false, the security member name is hi
 displayNameStyleClass,null,String,false,"The style class is applied for display name element."
 containerStyleClass,null,String,false,"The style class is applied for container element."
 isStandAlone,true,Boolean,false,"Set to false when you use this component in :ref:`components-portal-components-user-selection` and :ref:`components-portal-components-role-selection`."
+isShowTechnicalDisplayNameOnTooltip,false,Boolean,false,"Enable to show users' technical name on tooltips."

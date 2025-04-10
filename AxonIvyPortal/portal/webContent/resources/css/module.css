@@ -773,14 +773,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   align-items: center;
 }
 
-@media screen and (max-width: 40em) {
-  .case-detail-body .card.case-history-component,
-  .case-detail-body .card.case-related-task-component,
-  .case-detail-body .card.case-document-component {
-    height: auto;
-  }
-}
-
 .case-details-related-task-table .ui-datatable-tablewrapper tbody tr td .u-truncate-text {
   display: block;
 }
@@ -799,11 +791,14 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 80px;
 }
 
-.case-detail-body .responsible-column, .case-detail-body .owner-column {
+.case-detail-body .responsible-column, 
+.case-detail-body .owner-column,
+.case-detail-body .description-column {
   width: 150px;
 }
 
-.case-detail-body .state-column {
+.case-detail-body .state-column,
+.case-detail-body .category-column {
   width: 120px;
   text-align: center;
 }
@@ -832,16 +827,29 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   text-align: center;
 }
 
+.case-detail-body .name-column {
+  width: 240px;
+}
+
 .case-detail-body .name-column .case-name-value,
 .case-detail-body .name-column .case-description-value,
 .case-detail-body .case-details-related-task-table .related-task-name-column .task-name-value,
 .case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
+  display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+.case-detail-body .case-details-related-task-table .related-task-name-column {
+  width: 240px;
+}
+
 .case-detail-body .case-details-related-task-table .related-task-responsible-column {
+  width: 150px;
+}
+
+.case-detail-body .case-details-related-task-table .related-task-description-column {
   width: 150px;
 }
 
@@ -850,6 +858,10 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .case-detail-body .case-details-related-task-table .related-task-expiry-column {
   width: 130px;
   text-align: center;
+}
+
+.case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
+  display: none;
 }
 
 .case-detail-body .case-details-related-task-table .related-task-complete-on-column {
@@ -894,7 +906,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 /* Mobile screen */
 @media screen and (max-width: 40em) {
-  .case-detail-body .case-details-related-task-table .related-task-more-column  {
+  .case-detail-body .case-details-related-task-table .related-task-more-column .related-task-name-column {
     width: 60px;
   }
 
@@ -903,7 +915,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   }
 }
 
-@media screen and (max-width: 101.062em) {
+@media screen and (max-width: 45em) {
   .case-detail-body .name-column .case-description-value,
   .case-detail-body .case-details-related-task-table .related-task-name-column .task-description-value {
     display: block;
@@ -914,7 +926,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   .case-detail-body .owner-column,
   .case-detail-body .expiry-column,
   .case-detail-body .category-column,
+  .case-detail-body .id-column,
+  .case-detail-body .created-column,
+  .case-detail-body .state-column,
+  .case-detail-body .case-details-related-task-table .priority-column,
   .case-detail-body .case-details-related-task-table .related-task-description-column,
+  .case-detail-body .case-details-related-task-table .related-task-id-column,
   .case-detail-body .case-details-related-task-table .related-task-responsible-column,
   .case-detail-body .case-details-related-task-table .related-task-created-column,
   .case-detail-body .case-details-related-task-table .related-task-expiry-column,
@@ -922,9 +939,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
     display: none;
   }
 
-  .case-detail-body .name-column,
-  .case-detail-body .case-details-related-task-table .related-task-name-column {
-    width: 100%;
+  .case-detail-body .related-cases .more-column {
+    display: none;
+  }
+
+  .case-detail-body .case-details-related-task-table .related-task-more-column {
+    width: 25%;
   }
 }
 

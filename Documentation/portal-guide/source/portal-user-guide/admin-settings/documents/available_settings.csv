@@ -72,3 +72,4 @@ Portal.Upload.DocumentUploadSizeLimit,20,Set the size limit for uploading docume
 Portal.Upload.ImageUploadSizeLimit,6,Set the size limit for uploading images in megabytes (MB). The default value is 6MB.
 Portal.DelegationAppendOption,None,Defines the fields that can be appended to the role group display name.
 Portal.SessionCacheTimeout,86400,"Defines the session cache timeout duration (in seconds) for the Portal. This value can be set between 300 (5 minutes) and 86,400 (24 hours). To keep the session cache active until the user's session ends, set this variable to -1."
+Portal.ShowTooltipTechnicalName,FALSE,"Enable to show users' technical name on tooltips."

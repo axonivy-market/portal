@@ -273,6 +273,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: プロセスページ（グリッド モード）とケースの詳細にプロセスの情報を表示するためのリンクを無効にするには、false に設定してください。
       showQuickGlobalSearch: クイックグローバル検索の表示のオン/オフを切り替えます。
       showTaskDurationTime: タスク詳細ページでの所要時間の表示のオン／オフを切り替えます。
+      showTooltipTechnicalName: TODO Enable to show users' technical name on tooltips.
       uploadDocumentWhiteListExtensionNote: すべての拡張子を許可する場合は、空欄にしてください。一部の拡張子のみを許可する場合は、対象の拡張子をカンマで区切って入力してください。（例：pdf, txt, doc, docx）
     key: キー
     link: リンク
