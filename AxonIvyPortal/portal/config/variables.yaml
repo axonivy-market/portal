@@ -20,6 +20,9 @@ Variables:
     # [enum: USERNAME, DISPLAY_NAME, DISPLAY_NAME_USERNAME, USERNAME_DISPLAY_NAME]
     LoggedInUserFormat: DISPLAY_NAME
 
+    # Enable to show users' technical name on tooltips.
+    ShowTooltipTechnicalName: false
+
     # For switch on/off the display of global search.
     ShowGlobalSearch: true
 

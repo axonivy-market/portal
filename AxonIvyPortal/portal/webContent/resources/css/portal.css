@@ -650,6 +650,7 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 .case-detail-body .name-column .case-name-value,
 .case-detail-body .case-details-related-task-table .related-task-name-column .task-name-value {
   font-weight: var(--case-item-name-font-weight);
+  text-overflow: ellipsis;
 }
 
 .case-detail-body .name-column .case-description-value,

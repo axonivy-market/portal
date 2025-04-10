@@ -306,6 +306,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showLegacyUI: Pour activer/désactiver l'affichage de l'interface utilisateur héritée.
       showProcessInformation: Définissez la valeur false pour désactiver le lien vers l'option Afficher les informations du processus sur la page processus (mode grille) et détails du cas.
       showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
+      showTooltipTechnicalName: Activer l'affichage du nom technique des utilisateurs dans les infobulles.
       showUserGuide: 'Active le guide d''utilisation interactif "premiers pas" dans le portail lors de la première connexion. '
       statisticChartScalingInterval: Intervalle en secondes pour effectuer les demandes de mise à l'échelle périodique des graphiques statistiques. Si la valeur de l'intervalle est inférieure à 10, la mise à l'échelle périodique des graphiques statistiques est désactivée.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'

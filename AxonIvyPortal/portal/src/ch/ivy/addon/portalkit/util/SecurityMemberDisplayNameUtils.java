@@ -8,7 +8,9 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 
 import com.axonivy.portal.components.dto.UserDTO;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
@@ -73,7 +75,6 @@ public class SecurityMemberDisplayNameUtils {
     if (user == null) {
       return stripSharpCharacterFromSecurityMemberName(username);
     }
-
     if (user.isEnabled()) {
       return user.getDisplayName();
     }
