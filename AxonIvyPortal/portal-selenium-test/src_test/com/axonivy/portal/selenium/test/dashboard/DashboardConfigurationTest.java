@@ -325,6 +325,8 @@ public class DashboardConfigurationTest extends BaseTest {
   }
 
   private DashboardModificationPage navigateToConfigurationAndOpenDashboardModificationPage() {
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitPageLoaded();
     LinkNavigator.redirectToPortalDashboardConfiguration();
     return new DashboardModificationPage();
   }
