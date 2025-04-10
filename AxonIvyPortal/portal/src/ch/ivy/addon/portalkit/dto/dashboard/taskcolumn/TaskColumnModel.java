@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
@@ -41,7 +42,7 @@ public class TaskColumnModel extends ColumnModel {
     if (fieldType == DashboardColumnType.STANDARD) {
       if (equals(DashboardStandardTaskColumn.START, field)) {
         return new StartColumnModel();
-      } else if (equals(DashboardStandardTaskColumn.FAVORITE, field)) {
+      } else if (equals(DashboardStandardTaskColumn.FAVORITE, field) && GlobalSettingService.getInstance().isEnableFavoriteTask()) {
         return new FavoriteColumnModel();
       } else if (equals(DashboardStandardTaskColumn.PRIORITY, field)) {
         return new PriorityColumnModel();

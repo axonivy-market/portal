@@ -89,7 +89,7 @@ public class DashboardBean implements Serializable {
   private String clientStatisticApiUri;
   private String selectedDashboardName;
   private String searchScope;
-  private boolean isShowFavorite = false;
+  private boolean isShowFavorite;
 
   @PostConstruct
   public void init() {

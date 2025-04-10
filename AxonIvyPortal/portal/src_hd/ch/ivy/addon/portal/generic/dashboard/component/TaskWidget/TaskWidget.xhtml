@@ -82,8 +82,8 @@
             </ui:include>
           </h:panelGroup>
           
-          <h:panelGroup rendered="#{column.field eq 'favorite'}">
-            <h:outputText id="task-faorive" value="#{column.display(task)}"/>
+          <h:panelGroup rendered="#{column.field eq 'favorite' and visibilityBean.enableFavoriteTask}">
+            <h:outputText id="task-favorite" value="#{column.display(task)}"/>
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskFavorite task="#{task}"/>
           </h:panelGroup>
           

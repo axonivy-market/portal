@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -390,20 +389,7 @@ public class TaskActionBean implements Serializable {
   }
 
   public void markTaskAsFavorite(ITask task) {
-    if (task == null) {
-      return;
-    }
-
-    Set<Long> favoriteTaskIds = TaskUtils.getFavoriteTaskIds();
-    boolean isFavorite = favoriteTaskIds.contains(task.getId());
-
-    if (isFavorite) {
-      favoriteTaskIds.remove(task.getId());
-    } else {
-      favoriteTaskIds.add(task.getId());
-    }
-
-    TaskUtils.saveFavoriteTaskIds(favoriteTaskIds);
+    TaskUtils.markTaskAsFavorite(task);
   }
 
   public boolean isTaskFavorite(ITask task) {

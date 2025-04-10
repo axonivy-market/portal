@@ -17,6 +17,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
@@ -402,7 +403,7 @@ public final class TaskUtils {
   }
 
 
-  public void markTaskAsFavorite(ITask task) {
+  public static void markTaskAsFavorite(ITask task) {
     if (task == null) {
       return;
     }
@@ -421,13 +422,14 @@ public final class TaskUtils {
 
   public static Set<Long> getFavoriteTaskIds() {
     IUser currentUser = Ivy.session().getSessionUser();
-    String favoriteTasksStr = "";
-    if (currentUser != null) {
-      favoriteTasksStr = currentUser.getProperty(UserProperty.FAVORITE_TASKS);
+    if (currentUser == null) {
+      return new HashSet<>();
     }
-    return (favoriteTasksStr == null || favoriteTasksStr.isEmpty()) ? new HashSet<>()
-        : Arrays.stream(favoriteTasksStr.split(",")).map(String::trim).filter(s -> !s.isEmpty()).map(Long::parseLong)
-            .collect(Collectors.toSet());
+    String favoriteTasksStr = currentUser.getProperty(UserProperty.FAVORITE_TASKS);
+    return StringUtils.isBlank(favoriteTasksStr) ? new HashSet<>()
+        : Arrays.stream(favoriteTasksStr.split(",")).map(String::trim)
+            .map(s -> NumberUtils.toLong(s, -1))
+            .filter(taskId -> taskId != -1).collect(Collectors.toSet());
   }
 
   public static void saveFavoriteTaskIds(Set<Long> favoriteTaskIds) {
