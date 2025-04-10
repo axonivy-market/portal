@@ -97,3 +97,5 @@ Labels:
   None: Aucun
   NotAvailable: '-'
   ParentRole: Rôle supérieur
+  TooltipNoNameFormatted: <{0}> ({1})
+  TooltipUserNameFormatted: '{0} ({1})'

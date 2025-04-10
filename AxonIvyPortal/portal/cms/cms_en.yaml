@@ -305,6 +305,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showLegacyUI: For switch on/off the display of the legacy UI.
       showProcessInformation: Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details.
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
+      showTooltipTechnicalName: Enable to show users' technical name on tooltips.
       showUserGuide: 'Activates the interactive user guide "first steps" in the portal at first login. '
       statisticChartScalingInterval: Interval in seconds to do periodic statistic chart scaling requests. If the interval value is less than 10, periodic statistic chart scaling is disabled.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
