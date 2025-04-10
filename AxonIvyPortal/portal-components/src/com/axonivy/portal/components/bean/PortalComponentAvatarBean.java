@@ -1,6 +1,7 @@
 package com.axonivy.portal.components.bean;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
@@ -137,10 +138,12 @@ public class PortalComponentAvatarBean implements Serializable {
     // Use a placeholder if display name is blank
     if (StringUtils.isBlank(displayName)) {
       String noNameLabel = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName");
-      return String.format("<%s> (%s)", noNameLabel, formattedUserName);
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/tooltipNoNameFormatted",
+          Arrays.asList(noNameLabel, formattedUserName));
     }
 
     // Format: "Display Name (memberName)"
-    return String.format("%s (%s)", displayName, formattedUserName);
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/tooltipUserNameFormatted",
+        Arrays.asList(displayName, formattedUserName));
   }
 }
