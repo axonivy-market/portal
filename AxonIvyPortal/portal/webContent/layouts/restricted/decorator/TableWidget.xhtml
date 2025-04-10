@@ -43,9 +43,9 @@
     rendered="#{visibilityBean.enableFavoriteTask and dashboardBean.canShowFavorite(widget) and widget.isShowOnlyFavoriteToggle()}">
     <h:form id="show-favorite-form">
         <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
-        <h:panelGroup layout="block" styleClass="toggle-container">
+        <h:panelGroup layout="block" styleClass="flex align-items-center justify-content-between gap-2">
             <h:outputText value="#{ivy.cms.co('/Labels/FavoriteTasks')}"
-                styleClass="toggle-label" />
+                styleClass="text-base font-semibold text-left"/>
             <p:toggleSwitch value="#{dashboardBean.showFavorite}" id="show-favorite-toggle">
                 <p:ajax listener="#{dashboardBean.toggleShowFavorite(widget)}"
                     update="#{componentToUpdateOnResetFilter} @form" />

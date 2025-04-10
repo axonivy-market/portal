@@ -11,7 +11,7 @@
 <cc:implementation>
     <c:set var="isFavorite" value="#{taskBean.isFavoriteTask(cc.attrs.task)}" />
 
-    <h:panelGroup styleClass="favorite-task-cell default-task-cell">
+    <h:panelGroup styleClass="default-task-cell flex align-items-center justify-content-center h-full text-center">
         <h:form id="favorite-form">
             <p:commandLink action="#{taskBean.toggleFavorite(cc.attrs.task)}" update="@form" global="false">
                 <i class="fa #{isFavorite ? 'fa-star' : 'fa-star-o'} favorite-icon" />
