@@ -81,7 +81,12 @@
               <ui:param name="ariaLabel" value="#{taskBean.getAriaLabel(task, taskWidget.columns)}" />
             </ui:include>
           </h:panelGroup>
-
+          
+          <h:panelGroup rendered="#{column.field eq 'favorite'}">
+            <h:outputText id="task-faorive" value="#{column.display(task)}"/>
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskFavorite task="#{task}"/>
+          </h:panelGroup>
+          
           <h:panelGroup rendered="#{column.field eq 'priority'}">
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}" alwaysShowPriority="true" />
           </h:panelGroup>
@@ -131,10 +136,6 @@
           
           <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">
             <ui:include src="ActionsCell.xhtml" />
-          </h:panelGroup>
-          
-          <h:panelGroup rendered="#{column.field eq 'favorite'}">
-            <ic:ch.ivy.addon.portalkit.component.task.column.TaskFavorite task="#{task}"/>
           </h:panelGroup>
           
         </p:columns>

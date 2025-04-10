@@ -41,6 +41,8 @@ public class TaskColumnModel extends ColumnModel {
     if (fieldType == DashboardColumnType.STANDARD) {
       if (equals(DashboardStandardTaskColumn.START, field)) {
         return new StartColumnModel();
+      } else if (equals(DashboardStandardTaskColumn.FAVORITE, field)) {
+        return new FavoriteColumnModel();
       } else if (equals(DashboardStandardTaskColumn.PRIORITY, field)) {
         return new PriorityColumnModel();
       } else if (equals(DashboardStandardTaskColumn.ID, field)) {
@@ -63,8 +65,6 @@ public class TaskColumnModel extends ColumnModel {
         return new ApplicationColumnModel();
       } else if (equals(DashboardStandardTaskColumn.ACTIONS, field)) {
         return new ActionsColumnModel();
-      } else if (equals(DashboardStandardTaskColumn.FAVORITE, field)) {
-        return new FavoriteColumnModel();
       }
     }
     return new TaskColumnModel();
