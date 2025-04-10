@@ -38,12 +38,11 @@ public enum ChartAggregates {
           EXPIRY_TIMESTAMP, CUSTOM_FIELD));
 
   public static final Set<ChartAggregates> CASE_AGGREGATES = Collections.unmodifiableSet(
-      EnumSet.of(BUSINESS_STATE, PRIORITY, CATEGORY, CREATOR_NAME, START_TIMESTAMP, END_TIMESTAMP,
-          CUSTOM_FIELD));
+      EnumSet.of(BUSINESS_STATE, CATEGORY, CREATOR_NAME, START_TIMESTAMP, END_TIMESTAMP, CUSTOM_FIELD));
 
   public static final Set<ChartAggregates> TASK_NUMBER_AGGREGATES = Collections.unmodifiableSet(
       EnumSet.of(BUSINESS_STATE, PRIORITY, CATEGORY, BUSINESS_RUNTIME, WORKING_TIME, NUMBER_OF_RESUMES));
 
   public static final Set<ChartAggregates> CASE_NUMBER_AGGREGATES = Collections
-      .unmodifiableSet(EnumSet.of(BUSINESS_STATE, PRIORITY, CATEGORY, BUSINESS_RUNTIME, WORKING_TIME));
+      .unmodifiableSet(EnumSet.of(BUSINESS_STATE, CATEGORY, BUSINESS_RUNTIME, WORKING_TIME));
 }
