@@ -99,3 +99,5 @@ Labels:
   None: なし
   NotAvailable: 利用不可
   ParentRole: 親ロール
+  TooltipNoNameFormatted: TODO <{0}> ({1})
+  TooltipUserNameFormatted: TODO {0} ({1})

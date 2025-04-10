@@ -273,6 +273,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Définissez la valeur false pour désactiver le lien vers l'option Afficher les informations du processus sur la page processus (mode grille) et détails du cas.
       showQuickGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale rapide.
       showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
+      showTooltipTechnicalName: Activer l'affichage du nom technique des utilisateurs dans les infobulles.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
     key: Clé
     link: Lien
