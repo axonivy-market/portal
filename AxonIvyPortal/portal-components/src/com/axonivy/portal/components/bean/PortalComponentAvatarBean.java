@@ -73,32 +73,21 @@ public class PortalComponentAvatarBean implements Serializable {
   public boolean getPortalShowTechnicalTooltipOrDefault(boolean defaultIfEmpty) {
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_TOOLTIP_TECHNICAL_NAME, defaultIfEmpty);
   }
-  
 
   /**
    * Tooltip format: Show display name and the "technical name" (memberName) in parentheses.
-   * Tooltip format: Show display name and the "technical name" (memberName) in
-   * parentheses. Supports different member types: ISecurityMember, UserDTO,
-   * RoleDTO.
+   * Supports different member types: ISecurityMember, UserDTO, RoleDTO.
    */
-  public String tooltipTechnicalDisplayName(ISecurityMember member) {
-    if (member == null || StringUtils.isBlank(member.getName())) {
-
   public String tooltipTechnicalDisplayName(Object member) {
+    // Return empty string if input is null
     if (member == null) {
       return StringUtils.EMPTY;
     }
-    return buildTooltip(member.getDisplayName(), member.getMemberName());
-  }
 
-  public String tooltipTechnicalDisplayName(UserDTO member) {
-    if (member == null || StringUtils.isBlank(member.getName())) {
-      return StringUtils.EMPTY;
     // Handle ISecurityMember objects
     if (member instanceof ISecurityMember securityMember) {
       return formatTooltip(securityMember.getDisplayName(), securityMember.getMemberName(), securityMember.getName());
     }
-    return buildTooltip(member.getDisplayName(), member.getMemberName());
 
     // Handle UserDTO objects
     if (member instanceof UserDTO user) {
@@ -110,11 +99,9 @@ public class PortalComponentAvatarBean implements Serializable {
       return formatTooltip(role.getDisplayName(), role.getMemberName(), role.getName());
     }
 
+    // Fallback for unsupported types
     return StringUtils.EMPTY;
   }
-
-  public String tooltipTechnicalDisplayName(RoleDTO member) {
-    if (member == null || StringUtils.isBlank(member.getName())) {
 
   /**
    * Helper method to validate and format tooltip for a member.
@@ -125,38 +112,35 @@ public class PortalComponentAvatarBean implements Serializable {
    * @return formatted tooltip string or empty if invalid
    */
   private String formatTooltip(String displayName, String memberName, String nameCheck) {
+    // Skip tooltip if identity (nameCheck) is blank
     if (StringUtils.isBlank(nameCheck)) {
       return StringUtils.EMPTY;
     }
-    return buildTooltip(member.getDisplayName(), member.getMemberName());
     return buildTooltip(displayName, memberName);
   }
 
   /**
    * Build a tooltip string like: "John Doe (jdoe)"
-   * If display name is empty, fallback to localized "no name" string.
-   * Build a tooltip string like: "John Doe (jdoe)" - If display name is blank,
-   * fallback to a localized "no name" label. - Removes leading '#' from member
-   * name if present.
+   * - If display name is blank, fallback to a localized "no name" label.
+   * - Removes leading '#' from member name if present.
    *
    * @param displayName the visible name of the user/member
-   * @param memberName  the technical/internal identifier
+   * @param memberName the technical/internal identifier
    * @return formatted tooltip string
    */
   private String buildTooltip(String displayName, String memberName) {
-    // Remove leading "#" if present
-    String formattedUserName = memberName != null && memberName.startsWith("#")
+    // Clean up member name by removing leading "#" if present
     String formattedUserName = (memberName != null && memberName.startsWith("#"))
         ? memberName.substring(1)
         : memberName;
 
+    // Use a placeholder if display name is blank
     if (StringUtils.isBlank(displayName)) {
       String noNameLabel = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName");
       return String.format("<%s> (%s)", noNameLabel, formattedUserName);
     }
 
+    // Format: "Display Name (memberName)"
     return String.format("%s (%s)", displayName, formattedUserName);
-  }}
-}
-
+  }
 }
