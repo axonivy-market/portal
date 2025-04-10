@@ -72,6 +72,10 @@ public class DefaultDashboardUtils {
                 "width": "75"
               },
               {
+                "field": "favorite",
+                "width": "75"
+              },
+              {
                 "field": "priority",
                 "width": "70"
               },

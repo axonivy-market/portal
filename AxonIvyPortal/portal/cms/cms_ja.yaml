@@ -150,9 +150,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     Homepage: ホームページ
     Language: 言語
     ProcessList: プロセスリスト
+    TaskList: 'TODO: Task List'
     byDefault: （初期値）
     defaultOption: 初期値（{0}）
     defaultViewMode: 表示モードの初期値
+    deleteAllFavoriteTask: 'TODO: All favorite tasks have been removed for user: {0}'
     event: イベント
     notSubscribed: 通知しない
     notificationChannels: 通知チャネル
@@ -241,6 +243,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       embedInFrame: プロセス／タスクをIFrameモードで開始するには true に設定してください
       enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。
       enableDeepLTranslation: DeepL翻訳サポートを有効にするには、このプロパティーを true に設定してください。
+      enableFavoriteTask: 'TODO: Set this property to true to enable the ability to mark tasks as favorite.'
       enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
       enablePrivateChat: 個人用チャット機能を有効にするには、このプロパティーを true に設定してください。
       enableProcessViewer: タスク／ケースアクションでプロセスビューアーオプションを有効にするには、このプロパティをtrueに設定してください。
@@ -517,6 +520,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     loginLogo: ログインロゴ
     logos: ロゴ
     mainColor: メインカラー
+    markAsFavorite: 'TODO: Mark As Favorite'
     minute: 分
     minutes: 分
     more: 詳細
@@ -600,6 +604,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: すべての管理者
     typeAllUsers: すべてのユーザー
     typeOnlyMe: 自分のみ
+    unmarkAsFavorite: 'TODO: Unmark As Favorite'
     uploadHere: 有効な日付を入力してください。
     uploadOneHere: ここにアップロード
     user: '{0} ユーザー'
@@ -749,6 +754,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: 保存されたフィルター
     SearchForFilter: フィルターを検索
     ShareThisDashboard: このダッシュボードを共有
+    ShowOnlyFavoriteToggle: 'TODO: Show ''Favorite Tasks'' Toggle'
     StandardWidgets: 標準ウィジェット
     StatisticWidget:
       EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！
@@ -1197,6 +1203,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPLETED_ON: 完了日
       CREATION_TIME: 作成日
       EXPIRY_TIME: 有効期限
+      FAVORITE: Favorite
       ID: タスクID
       NAME: 名前／説明
       PRIORITY: 優先度
@@ -1343,6 +1350,9 @@ Dialogs:
                   DragAndDropTooltip: プレビューをクリックしてください、そして順序を入れ替えるにはドラッグ＆ドロップしてください
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Axon Ivy Portalへようこそ
+          setting:
+            UserProfile:
+              DeleteAllFavoriteTasks: 'TODO: Delete All Favorite Tasks'
         portalkit:
           component:
             CaseItemDetails:
@@ -1371,6 +1381,11 @@ Dialogs:
               ShareTaskDetails: タスクの詳細を共有
               TaskCompletedByOtherInfo: タスクは、ユーザー <strong>{0}</strong> によって {1} に既に完了しています。
               TaskCompletedByYouInfo: あなたは、このタスクを {0} に完了しています。
+            task:
+              column:
+                TaskFavorite:
+                  MarkAsFavorite: 'TODO: Mark As Favorite'
+                  UnmarkAsFavorite: 'TODO: Unmark As Favorite'
   com:
     axonivy:
       portal:
@@ -1527,6 +1542,7 @@ Labels:
     TaskDetailsResult: |-
       タスクの詳細 **{0} (#{1})**：
       {2}
+  AllTasks: 'TODO: All Tasks'
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
   CreateNewDashboard: 新しいダッシュボードを作成
@@ -1561,6 +1577,7 @@ Labels:
       CREATED: 作成日
       DESCRIPTION: 説明
       EXPIRY: 有効期限
+      FAVORITE: ''
       ID: ID
       NAME: 名前
       PRIORITY: 優先度
@@ -1622,6 +1639,7 @@ Labels:
     ThemeMode:
       DARK: 暗い
       LIGHT: 明るい
+  FavoriteTasks: 'TODO: Favorite Tasks'
   InsertTask-Explain: タスクを挿入します。私のタスクは延期されます。
   InsertTheTask: タスクを挿入
   Login:

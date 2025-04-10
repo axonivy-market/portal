@@ -1,7 +1,7 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
 import java.util.ArrayList;
-
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,6 +21,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.ICustomFieldOrderBy;
@@ -36,6 +37,7 @@ public class DashboardTaskSearchCriteria {
   private boolean sortDescending;
   private boolean isInConfiguration;
   private String quickSearchKeyword;
+  private boolean showFavorite;
 
   public TaskQuery buildQuery() {
     TaskQuery query = buildQueryWithoutOrderByClause();
@@ -49,6 +51,9 @@ public class DashboardTaskSearchCriteria {
     TaskQuery query = TaskQuery.create();
     queryFilters(query);
     queryCanWorkOn(query);
+    if (showFavorite) {
+      queryFavoriteTasks(query);
+    }
     return query;
   }
 
@@ -345,4 +350,25 @@ public class DashboardTaskSearchCriteria {
   public void setQuickSearchKeyword(String quickSearchKeyword) {
     this.quickSearchKeyword = quickSearchKeyword;
   }
+
+  public boolean showFavorite() {
+    return showFavorite;
+  }
+
+  public void setShowFavorite(boolean showFavorite) {
+    this.showFavorite = showFavorite;
+  }
+
+  private void queryFavoriteTasks(TaskQuery query) {
+    long[] favoriteTaskIds = Optional.ofNullable(TaskUtils.getFavoriteTaskIds()).orElse(Collections.emptySet()).stream()
+        .mapToLong(Long::longValue).toArray();
+
+    if (favoriteTaskIds.length == 0) {
+      query.where().taskId().isLowerThan(0); // no favorite tasks, return empty result
+    } else {
+      query.where().taskId().isIn(favoriteTaskIds);
+    }
+  }
+
+
 }

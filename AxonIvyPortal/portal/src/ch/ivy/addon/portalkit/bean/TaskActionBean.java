@@ -26,11 +26,9 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
-import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
-import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -59,6 +57,13 @@ public class TaskActionBean implements Serializable {
 
   public boolean canReset(ITask task) {
     return TaskUtils.canReset(task);
+  }
+
+  public boolean canMarkAsFavorite(ITask task) {
+    if (task == null) {
+      return false;
+    }
+    return true;
   }
 
   public boolean canDelegate(ITask task) {
@@ -370,4 +375,24 @@ public class TaskActionBean implements Serializable {
     return !taskStates.contains(task.getState());
   }
 
+  public String getFavoriteLabel(ITask task) {
+    return TaskUtils.isFavoriteTask(task) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/unmarkAsFavorite")
+        : Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/markAsFavorite");
+  }
+
+  public String getFavoriteIcon(ITask task) {
+    return TaskUtils.isFavoriteTask(task) ? "option-action-icon si si-remove-circle" : "option-action-icon si si-rating-star-add";
+  }
+
+  public String getFavoriteStyleClass(ITask task) {
+    return "option-item ui-menu-items" + (TaskUtils.isFavoriteTask(task) ? " color-destroy" : "");
+  }
+
+  public void markTaskAsFavorite(ITask task) {
+    TaskUtils.markTaskAsFavorite(task);
+  }
+
+  public boolean isTaskFavorite(ITask task) {
+    return TaskUtils.isFavoriteTask(task);
+  }
 }
