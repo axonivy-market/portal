@@ -398,4 +398,11 @@ public final class TaskUtils {
     return PermissionUtils.hasPermission(permission);
   }
 
+  public static boolean isResponsibleMember(ITask task) {
+    return task != null && task.responsibles() != null && task
+        .responsibles()
+        .all()
+        .stream()
+        .anyMatch(item -> item.get().isMember(ISession.current(), true));
+  }
 }

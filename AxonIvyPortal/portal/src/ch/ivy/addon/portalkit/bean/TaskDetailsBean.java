@@ -186,7 +186,7 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
 
   private boolean isActivator() {
     ITask selectedTask = getSelectedTaskFromData();
-    return selectedTask.getActivator() == null ? false : selectedTask.getActivator().isMember(ISession.current(), true);
+    return TaskUtils.isResponsibleMember(selectedTask);
   }
 
   private boolean currentIsWorkerUser() {

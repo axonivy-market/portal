@@ -12,12 +12,12 @@
 
 <cc:implementation>
   <c:set var="responsibleSize" value="#{responsibleBean.getResponsiblesSize(cc.attrs.responsibles)}" />
-  <c:set var="firstResponsible" value="#{responsibleBean.getFirstResponsible(cc.attrs.responsibles)}" />
+  <c:set var="responsibles" value="#{cc.attrs.responsibles}" />
   
-  <pc:securityMemberNameAndAvatar displayName="#{responsibleBean.getDisplayName(firstResponsible)}" securityMember="#{firstResponsible}"
-    containerStyleClass="#{responsibleBean.isSubstituteForTask(cc.attrs.responsibles) ? 'has-deputy-info' : ''}"> 
+  <pc:securityMemberNameAndAvatar displayName="#{responsibleBean.getFirstDisplayName(responsibles)}" securityMember="#{responsibleBean.getFirstResponsible(responsibles)}"
+    containerStyleClass="#{responsibleBean.isSubstituteForTask(responsibles) ? 'has-deputy-info' : ''}"> 
     <f:facet name="afterName">
-      <h:panelGroup rendered="#{cc.attrs.responsibles != null and responsibleSize gt 1}"> 
+      <h:panelGroup rendered="#{responsibles != null and responsibleSize gt 1}"> 
         <h:panelGroup id="all-responsibles" styleClass="ml-1" >
           <p:commandLink onclick="#{cc.attrs.onClick}" rendered="#{cc.attrs.popupLink}">
             (<i class="mr-1 si si-multiple-neutral-1" /><h:outputText value="#{responsibleSize}" />)
@@ -28,7 +28,7 @@
         </h:panelGroup>
         <p:tooltip for="all-responsibles" position="top" autoHide="false">
           <div class="py-1">
-            <ui:repeat id="task-responsibles" value="#{responsibleBean.getResponsibleLimit10(cc.attrs.responsibles)}" var="responsible">
+            <ui:repeat id="task-responsibles" value="#{responsibleBean.getResponsibleLimit10(responsibles)}" var="responsible">
               <div class="py-1">
                 <pc:securityMemberNameAndAvatar displayName="#{responsibleBean.getDisplayName(responsible.get())}" 
                     securityMember="#{responsible.get()}" />
@@ -40,11 +40,11 @@
           </h:panelGroup>
         </p:tooltip>
       </h:panelGroup>
-      <h:panelGroup id="deputy-info" rendered="#{responsibleBean.isSubstituteForTask(cc.attrs.responsibles)}" styleClass="deputy-info">
+      <h:panelGroup id="deputy-info" rendered="#{responsibleBean.isSubstituteForTask(responsibles)}" styleClass="deputy-info">
         <i class="si si-information-circle" />
       </h:panelGroup>
       <p:tooltip for="deputy-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskFromSubstitution')}" trackMouse="true" hideEvent="mouseleave click"
-        rendered="#{responsibleBean.isSubstituteForTask(cc.attrs.responsibles)}"/>
+        rendered="#{responsibleBean.isSubstituteForTask(responsibles)}"/>
     </f:facet>
   </pc:securityMemberNameAndAvatar>
   <cc:renderFacet name="after" />

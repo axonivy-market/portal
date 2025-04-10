@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -40,7 +41,15 @@ public class ResponsibleBean {
             Ivy.session().isMemberThroughActiveSubstitution(responsible.get()));
   }
   
-  public String getDisplayName(ISecurityMember firstOne) {
-    return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(firstOne, firstOne.getMemberName());
+  public String getDisplayName(ISecurityMember member) {
+    if (member == null) {
+      return StringUtils.EMPTY;
+    }
+    return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(member, member.getMemberName());
   }
+  
+  public String getFirstDisplayName(Responsibles responsibles) {
+    return getDisplayName(getFirstResponsible(responsibles));
+  }
+  
 }
