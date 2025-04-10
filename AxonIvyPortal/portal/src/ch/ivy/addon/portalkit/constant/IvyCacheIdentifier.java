@@ -1,5 +1,8 @@
 package ch.ivy.addon.portalkit.constant;
 
+import java.util.Arrays;
+import java.util.List;
+
 public final class IvyCacheIdentifier {
 
   public static final String PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME = "PORTAL_ANNOUNCEMENT";
@@ -19,4 +22,12 @@ public final class IvyCacheIdentifier {
   public static final String PORTAL_FORMATTING_LOCALES = "PORTAL_FORMATTING_LOCALES";
 
   private IvyCacheIdentifier() {}
+
+  public static final List<String> getAllPortalCacheIdentifiers() {
+    return Arrays.asList(PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME,
+        LOGOUT_PAGE_CACHE_GROUP_NAME, LOGOUT_PAGE_CACHE_ENTRY_NAME,
+        STATISTIC_COLOR, ROLES_IN_SECURITY_CONTEXT, PORTAL_MENU,
+        PORTAL_CUSTOM_MENU, PORTAL_DASHBOARDS, PORTAL_DASHBOARDS_MENU_ITEM,
+        PORTAL_CONTENT_LOCALES, PORTAL_FORMATTING_LOCALES);
+  }
 }
