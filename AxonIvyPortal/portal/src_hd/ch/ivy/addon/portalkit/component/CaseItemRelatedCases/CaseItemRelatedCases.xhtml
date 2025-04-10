@@ -47,7 +47,7 @@
         sortBy="#{caseDetailsBean.sortById}" styleClass="related-cases" rowHover="true" selectionMode="single"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
         <p:ajax event="rowSelect" listener="#{caseDetailsBean.navigateToSelectedCaseDetails}" />
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" field="NAME" sortBy="#{NAME}" filterable="false" styleClass="name-column u-truncate-text ui-sm-12"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" field="NAME" sortBy="#{NAME}" filterable="false" styleClass="name-column u-truncate-text"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'NAME')}">
           <h:outputText id="case-name" value="#{case.names().current()}" title="#{case.names().current()}" styleClass="case-name-value"/>
           <p:tooltip for="case-name" value="#{case.names().current()}" trackMouse="true" hideEvent="mouseleave click"/>
@@ -61,7 +61,7 @@
           <p:tooltip for="case-description" value="#{caseDescription}" trackMouse="true" hideEvent="mouseleave click"/>
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" field="ID" sortBy="#{ID}" filterable="false" styleClass="id-column u-hidden-md-down"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" field="ID" sortBy="#{ID}" filterable="false" styleClass="id-column"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'ID')}">
           <h:outputText id="related-case-id" value="#{case.id}" />
           <p:tooltip for="related-case-id" value="#{case.id}" trackMouse="true" hideEvent="mouseleave click" />
@@ -79,7 +79,7 @@
             displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(case.owner, case.ownerName)}" />
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" field="CREATION_TIME" sortBy="#{CREATION_TIME}" filterable="false" styleClass="created-column u-hidden-md-down"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" field="CREATION_TIME" sortBy="#{CREATION_TIME}" filterable="false" styleClass="created-column"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'CREATION_TIME')}">
           <h:outputText id="related-case-created-column" value="#{case.startTimestamp}">
             <f:convertDateTime locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.dateTimestampPattern}"/>
@@ -99,7 +99,7 @@
           </p:tooltip>
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" field="STATE" sortBy="#{STATE}" filterable="false" styleClass="state-column u-hidden-md-down"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" field="STATE" sortBy="#{STATE}" filterable="false" styleClass="state-column"
           visible="#{caseDetailsBean.isDisplayColumn(data.caseLazyDataModel, 'STATE')}">
           <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState case="#{case}" alwaysShowState="true"/>
         </p:column>
@@ -110,7 +110,7 @@
           <p:tooltip for="related-case-category" value="#{case.getCategory().getName()}" trackMouse="true" hideEvent="mouseleave click"/>
         </p:column>
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="more-column ui-sm-hidden">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="more-column">
           <div class="case-header-action-cell">
             <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu"
               actionLinkStyleClass="ui-button-text-only" case="#{case}" inFrame="#{cc.attrs.inFrame}" onDestroyComplete="PF('destroy-related-case-dialog').show()"/>

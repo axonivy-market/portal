@@ -99,3 +99,5 @@ Labels:
   None: None
   NotAvailable: N/A
   ParentRole: Parent role
+  TooltipNoNameFormatted: <{0}> ({1})
+  TooltipUserNameFormatted: '{0} ({1})'
