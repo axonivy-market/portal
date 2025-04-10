@@ -753,7 +753,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Filtres enregistrés
     SearchForFilter: Rechercher un filtre
     ShareThisDashboard: Partager ce tableau de bord
-    ShowOnlyFavoriteToggle: Afficher le commutateur « Favoris uniquement »
+    ShowOnlyFavoriteToggle: Afficher le commutateur «Tâches favorites »
     StandardWidgets: Widgets standard
     StatisticWidget:
       EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau graphique !

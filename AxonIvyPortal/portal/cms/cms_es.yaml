@@ -756,7 +756,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Filtros guardados
     SearchForFilter: Buscar un filtro
     ShareThisDashboard: Comparte este panel
-    ShowOnlyFavoriteToggle: Mostrar alternador de "Solo favoritos"
+    ShowOnlyFavoriteToggle: Mostrar alternador de "Tareas favoritas"
     StandardWidgets: Widgets estándar
     StatisticWidget:
       EmptyChartDataMessage: No tenemos suficientes datos para crear un buen gráfico.
