@@ -327,7 +327,7 @@
             </h:form>
           </p:dialog>
 
-          <h:panelGroup rendered="#{managedBean.isShowShareButtonOnDashboard() and not managedBean.isMainDashboardSelected()}" layout="block" styleClass="text-center">
+          <h:panelGroup rendered="#{managedBean.isShowShareButtonOnDashboard() and not managedBean.isMainDashboardSelected() and managedBean.selectedDashboard.dashboardDisplayType ne 'HIDDEN'}" layout="block" styleClass="text-center">
             <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShareThisDashboard')}" 
                   onclick="PF('share-dashboard-dialog').show(); return false;" styleClass="js-share-dashboard-link" />
           </h:panelGroup>
