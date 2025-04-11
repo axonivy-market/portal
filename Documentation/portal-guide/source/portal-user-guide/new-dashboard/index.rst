@@ -36,8 +36,6 @@ The following default widgets are available:
 
 #. **Notifications widget**: This widget displays all Notifications based on your notification settings.
 
-#. **Navigation dashboard widget**: This widget allows users to jump directly to a linked dashboard by clicking a button.
-
 In addition, a developer can provide custom widgets to add relevant project information to your dashboard.
 
 **Task list widget, Case list widget, Process list widget (compact mode)** have the following standard features:
@@ -382,22 +380,6 @@ You can define a Notifications widget to display all Notifications based on your
 
 |notification-widget|
 
-Navigation dashboard widget
-===========================
-
-You can configure a navigation dashboard widget that lets users quickly access a target dashboard with a click.
-
-|navigation-dashboard-widget-configuration|
-
-- This is the sample output of the widget configured above:
-
-|navigation-dashboard-widget|
-
-.. important::
-
-   - If the user does not have the permission to access the dashboard, the button is disabled.
-
-
 Clone a widget
 --------------
 
@@ -513,6 +495,3 @@ After selecting the :guilabel:`Clone` option, the :guilabel:`Clone widget` dialo
    :alt: "Clone widget from" button placed inside the "Add new widget" dialog. The "Clone widget from" dialog will appear after clicking this button.
 .. |clone-widget-from-dialog| image:: ../../screenshots/dashboard-configuration/clone-widget-from-dialog.png
    :alt: "Clone widget from" dialog.
-.. |navigation-dashboard-widget-configuration| image:: ../../screenshots/new-dashboard/navigation-dashboard-widget-configuration.png
-   :alt: Navigation dashboard widget configuration
-.. |navigation-dashboard-widget| image:: ../../screenshots/new-dashboard/navigation-dashboard-widget.png
