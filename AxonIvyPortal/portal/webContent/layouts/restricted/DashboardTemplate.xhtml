@@ -12,8 +12,6 @@
 
     <ui:define name="title">#{managedBean.getSelectedDashboardName()}</ui:define>
     <ui:param name="loadGridStack" value="true" />
-    <ui:param name="isInDashboard" value="true"/>
-
 
     <ui:define name="pageContent">
         <script>
@@ -155,15 +153,6 @@
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
                         index="#{status.index}"
                         id="notification-#{widget.id}" />
-                    </c:if>
-                    
-                    <!-- Navigation dashboard widget -->
-                    <c:if test="#{widget.type eq 'NAVIGATION_DASHBOARD'}">
-                      <ic:com.axonivy.portal.dashboard.component.NavigationDashboardWidget widget="#{widget}"
-                        managedBean="#{managedBean}"
-                        index="#{status.index}"
-                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
-                        id="navigation-dashboard-#{widget.id}" />
                     </c:if>
                   </div>
                 </div>

@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
-import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -41,9 +40,7 @@ import ch.ivyteam.ivy.environment.Ivy;
     @Type(value = WelcomeDashboardWidget.class, name = "welcome"),
     @Type(value = NewsDashboardWidget.class, name = "news"),
     @Type(value = ClientStatisticDashboardWidget.class, name = "client-statistic"),
-    @Type(value = NotificationDashboardWidget.class, name = "notification"),
-    @Type(value = NavigationDashboardWidget.class, name = "navigation-dashboard")
-
+    @Type(value = NotificationDashboardWidget.class, name = "notification")
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public abstract class DashboardWidget implements Serializable {
