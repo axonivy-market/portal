@@ -47,7 +47,7 @@ public class SecurityMemberDisplayNameUtils {
     if(securityMember == null) {
       return stripSharpCharacterFromSecurityMemberName(securityMemberName);
     }
-    if(securityMember.isUser()) {
+    if(securityMember.isUser() && securityMember.available()) {
       IUser user = (IUser) securityMember;
       return generateBriefDisplayNameForUser(user, user.getName());
     }
@@ -61,7 +61,7 @@ public class SecurityMemberDisplayNameUtils {
     if(securityMember == null) {
       return stripSharpCharacterFromSecurityMemberName(securityMemberName);
     }
-    if(securityMember.isUser()) {
+    if(securityMember.isUser() && securityMember.available()) {
       IUser user = (IUser) securityMember;
       return generateFullDisplayNameForUser(user, user.getName());
     }
