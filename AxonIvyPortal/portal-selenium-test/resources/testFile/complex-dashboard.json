@@ -439,7 +439,7 @@
     "permissions": [
       "Everybody"
     ],
-    "dashboardDisplayType": "top_menu"
+    "isTopMenu": true
   },
   {
     "id": "default-case-list-dashboard",
@@ -542,7 +542,7 @@
     "permissions": [
       "Everybody"
     ],
-    "dashboardDisplayType": "top_menu"
+    "isTopMenu": true
   },
   {
     "id": "main-dashboard-1",
@@ -642,7 +642,7 @@
     "permissions": [
       "Everybody"
     ],
-    "dashboardDisplayType": "top_menu"
+    "isTopMenu": true
   },
   {
     "id": "main-dashboard-2",
@@ -733,7 +733,7 @@
     "permissions": [
       "Everybody"
     ],
-    "dashboardDisplayType": "top_menu"
+    "isTopMenu": true
   },
   {
     "id": "sub-dashboard-1",

@@ -79,7 +79,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: ケースウィジェット
       CLIENT_STATISTIC: 統計ウィジェット
       CUSTOM: カスタムウィジェット
-      NAVIGATION_DASHBOARD: ''
       NEW: 新規ウィジェット
       NEWS: ニュースフィード
       NOTIFICATION: 通知
@@ -598,6 +597,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: プロセス
     timeInformation: 時間情報
     timestamp: タイムスタンプ
+    topMenuItem: トップメニュー項目
     type: タイプ
     typeAdmin: すべての管理者
     typeAllUsers: すべてのユーザー
@@ -855,7 +855,6 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: 現在、利用可能なタスクはありません。
         noTasksFoundWhenFilter: 現在、フィルターを適用した後のタスクはありません。
     loading: 読み込み中...
-    navigate: Navigate
     noCategory: カテゴリーがありません
     noDashboard: ダッシュボードがありません。少なくとも 1 つのダッシュボードを追加してから、ウィジェットを追加してください。
     noPermission: ダッシュボードを表示する権限がありません。
@@ -904,7 +903,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: ウィジェットタイプ
     yourCases: ケース
     yourCustomWidget: カスタムウィジェット
-    yourNavigationDashboardWidget: Your navigation dashboard widget
     yourNotifications: 通知
     yourProcessViewer: プロセス ビューアー
     yourProcesses: プロセス
@@ -1452,9 +1450,6 @@ Dialogs:
               chooseAJsonFile: JSON ファイルを選択してください
             DashboardSharing:
               ShareDashboard: ダッシュボードを共有
-            NavigationDashboardWidgetConfiguration:
-              NavigationDashboardWidgetConfiguration: Navigation dashboard widget configuration
-              NavigationDashboardWidgetDescription: This widget allows users to jump directly to a linked dashboard via button click.
             NewsWidget:
               NewsContentPlaceHolder: ニュースコンテンツを入力
               NewsContentValidateMessage: '{0} のニュースコンテンツは必須です'

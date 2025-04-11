@@ -154,13 +154,11 @@
                 <h:panelGroup layout="block" rendered="#{cc.attrs.isPublicDashboard}">
                   <div class="ui-g-4 manage-dashboard__label">
                     <p:outputLabel for="dashboard-description"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/display')}" />
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayAsTopMenu')}" />
                   </div>
                   <div class="ui-g-8 ui-fluid">
-                    <p:selectOneMenu id="dashboard-display-menu" value="#{managedBean.selectedDashboard.dashboardDisplayType}"
-                     styleClass="dashboard-display-dropdown">
-                       <f:selectItems value="#{managedBean.dashboardDisplayTypeList}" var="type" itemLabel="#{managedBean.getDashboardDisplayTypeLabel(type)}" itemValue="#{type}"/>
-                    </p:selectOneMenu>
+                    <p:selectBooleanCheckbox id="main-dashboard-menu-item" value="#{dashboard.isTopMenu}"
+                       required="false" />
                   </div>
                 </h:panelGroup>
               </div>

@@ -20,7 +20,6 @@ import com.axonivy.portal.selenium.page.ReorderDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
 import com.codeborne.selenide.Condition;
 
-import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
@@ -139,7 +138,7 @@ public class StickyNavigationDashboardTest extends BaseTest {
     permissions.add("Everybody");
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions, DashboardDisplayType.SUB_MENU);
+    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions, false);
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     configurationPage = newDashboardDetailsEditPage.backToConfigurationPage();
     newDashboardPage = configurationPage.backToHomePage();
