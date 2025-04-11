@@ -24,8 +24,6 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
-
 @IvyWebTest
 public class DashboardConfigurationTest extends BaseTest {
 
@@ -109,7 +107,7 @@ public class DashboardConfigurationTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions, DashboardDisplayType.SUB_MENU);
+    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions, false);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));

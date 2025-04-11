@@ -26,7 +26,6 @@ import ch.ivy.addon.portal.generic.bean.DashboardModificationBean;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
-import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
@@ -93,7 +92,7 @@ public class DashboardImportBean extends DashboardModificationBean implements Se
       selectedDashboard.setPermissionDTOs(new ArrayList<>());
       findAndSetPermissions();
       if (!isPublicDashboard) {
-        selectedDashboard.setDashboardDisplayType(DashboardDisplayType.SUB_MENU);
+        selectedDashboard.setIsTopMenu(false);
       }
     });
 

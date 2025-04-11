@@ -12,8 +12,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
-import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
-
 public class DashboardModificationPage extends TemplatePage {
 
   @Override
@@ -74,17 +72,6 @@ public class DashboardModificationPage extends TemplatePage {
     deleteConfirmDialog.$("button[id$=':remove-dashboard-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     deleteConfirmDialog.shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
-  }
-  
-  public void selectDashboardDisplayType(DashboardDisplayType type) {
-    String label = DashboardDisplayType.getDisplayLabel(type);
-    $("div.create-public-dashboard-dialog").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
-    .$("div[id$=':dashboard-display-menu']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("ul[id$='dashboard-display-menu_items']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("li").filter(Condition.text(label)).first().click();
-  }
-  
-  public void saveEditDashboard() {
-    getEditDashboardDialog().$("button[id$='dashboard-detail-save-button']").click();
   }
 
   public void editDashboardInfo(String newName, String newDescription, List<String> permissions) {

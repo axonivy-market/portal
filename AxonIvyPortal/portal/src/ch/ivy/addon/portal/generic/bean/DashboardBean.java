@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -41,7 +39,6 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseEmptyMessage;
-import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPage;
@@ -92,7 +89,7 @@ public class DashboardBean implements Serializable {
   @PostConstruct
   public void init() {
     currentDashboardIndex = 0;
-    
+
     if (isReadOnlyMode) {
       DashboardUtils.updateDashboardCache();
     }
@@ -200,7 +197,7 @@ public class DashboardBean implements Serializable {
 
   public void handleStartTask(ITask task) throws IOException {
     selectedTask = task;
-    if (DashboardDisplayType.TOP_MENU.equals(selectedDashboard.getDashboardDisplayType())) {
+    if (selectedDashboard.getIsTopMenu()) {
       TaskUtils.handleStartTask(task, PortalPage.HOME_PAGE, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG,
           selectedDashboardId);
     } else {
@@ -409,11 +406,11 @@ public class DashboardBean implements Serializable {
 
     if (StringUtils.isNotBlank(selectedDashboardId)) {
       return dashboards.stream().filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst()
-          .map(dashboards::indexOf).orElse(dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType()))
+          .map(dashboards::indexOf).orElse(dashboards.stream().filter(dashboard -> !dashboard.getIsTopMenu())
               .findFirst().map(dashboards::indexOf).orElse(0));
     }
 
-    return dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())).findFirst().map(dashboards::indexOf)
+    return dashboards.stream().filter(dashboard -> !dashboard.getIsTopMenu()).findFirst().map(dashboards::indexOf)
         .orElse(0);
   }
 
@@ -566,20 +563,5 @@ public class DashboardBean implements Serializable {
   public String getSearchScope() {
     return this.searchScope;
   }
-  
-  public String getDashboardUrlByDashboard(String id) {
-    return UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(id);
-  }
-  
-  public List<String> getDashboardDisplayTypeList() {
-    return DashboardDisplayType.getTypeList();
-  }
-  
-  public String getDashboardDisplayTypeLabel(DashboardDisplayType type) {
-    return DashboardDisplayType.getDisplayLabel(type);
-  }
-  
-  public List<Dashboard> getPublicDashboards() {
-    return DashboardUtils.getPublicDashboards();
-  }
+
 }

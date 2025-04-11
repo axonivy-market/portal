@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
-
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -212,11 +211,6 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
   public DashboardNotificationWidgetConfigurationPage addNotificationWidget() {
     addWidgetByName(NOTIFICATION_WIDGET);
     return new DashboardNotificationWidgetConfigurationPage();
-  }
-  
-  public NavigationDashboardWidgetConfigurationPage addNavigationDashboardWidgetConfigurationPage() {
-    addWidgetByName("Navigation dashboard widget");
-    return new NavigationDashboardWidgetConfigurationPage();
   }
 
   public void waitForCaseWidgetLoaded() {
