@@ -18,7 +18,6 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.WebElementsCondition;
 
-import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
@@ -47,7 +46,7 @@ public class DashboardRestoreConfigurationTest extends BaseTest {
     var configurationPage = LinkNavigator.navigateToPortalDashboardConfiguration();
     configurationPage.openCreatePublicDashboardMenu();
     configurationPage.createPublicDashboardFromScratch(DASHBOARD_NAME, ICON, DASHBOARD_DESCRIPTION,
-        DASHBOARD_PERMISSION, DashboardDisplayType.SUB_MENU);
+        DASHBOARD_PERMISSION, false);
     verifyEditingDashboardContent(DASHBOARD_NAME, CollectionCondition.empty);
     addNewCaseWidget();
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();

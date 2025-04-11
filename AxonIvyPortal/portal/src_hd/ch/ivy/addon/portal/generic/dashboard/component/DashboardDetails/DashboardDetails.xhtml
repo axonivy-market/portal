@@ -84,13 +84,10 @@
         </div>
           <c:if test="#{isPublicDashboard}">
              <div class="ui-g-6 w-full manage-dashboard__label">
-                <p:outputLabel styleClass="font-semibold" for="@next" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/display')}"/>
+               <p:outputLabel for="dashboard-description"  styleClass="font-semibold" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayAsTopMenu')}" />
              </div>
              <div class="ui-g-6 w-full ui-fluid">
-                <p:selectOneMenu id="dashboard-display-menu" value="#{managedBean.selectedDashboard.dashboardDisplayType}"
-                 styleClass="dashboard-display-dropdown">
-                   <f:selectItems value="#{managedBean.dashboardDisplayTypeList}" var="type" itemLabel="#{managedBean.getDashboardDisplayTypeLabel(type)}" itemValue="#{type}"/>
-                </p:selectOneMenu>
+               <p:selectBooleanCheckbox id="main-dashboard-menu-item" value="#{managedBean.selectedDashboard.isTopMenu}" required="false" />
              </div>
           </c:if>
         </div>

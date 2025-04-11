@@ -17,7 +17,6 @@ import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 
-import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
@@ -67,9 +66,10 @@ public class MenuTest extends BaseTest {
     String description = "Dashboard Menu Item";
     List<String> permissions = new ArrayList<>();
     permissions.add("Everybody");
+    boolean isTopMenu = true;
     var configurationPage = newDashboardPage.openDashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions, DashboardDisplayType.TOP_MENU);
+    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions, isTopMenu);
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     configurationPage = newDashboardDetailsEditPage.backToConfigurationPage();
     newDashboardPage = configurationPage.backToHomePage();
