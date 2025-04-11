@@ -1482,21 +1482,49 @@ Dialogs:
         page:
           StatisticConfiguration:
             AddFilter: Ajouter un filtre
-            AdvancedConfiguration: Configuration avancée
+            Advanced: Avancé
             Aggregate: Agrégat
+            ChartAggregates:
+              ACTIVATOR_NAME: Nom de l'activateur
+              BUSINESS_RUNTIME: Durée d'exécution des activités
+              BUSINESS_STATE: État
+              CATEGORY: Catégorie
+              CREATOR_NAME: Nom du créateur
+              CUSTOM_FIELD: Champ personnalisé
+              END_TIMESTAMP: Horodatage de fin
+              EXPIRY_TIMESTAMP: Horodatage d'expiration
+              IS_EXPIRED: Est périmé
+              MODIFIED_TIMESTAMP: Horodatage modifié
+              NUMBER_OF_RESUMES: Nombre de reprendre
+              PRIORITY: Priorité
+              RESPONSIBLES_NAME: Responsables
+              START_TIMESTAMP: Horodatage de début
+              WORKER_NAME: Nom de l'employé
+              WORKING_TIME: Temps de travail
             ChartType: Type de graphique
             Color: Couleur {0}
             Create: Créer
+            CustomAggregateInput: Veuillez saisir des champs personnalisés.
             EditStatistic: Modifier le widget statistique
             For: Pour
             GeneratePreview: Générer un aperçu
             HideLabel: Cacher l'étiquette
+            Interval: Intervalle
             NewStatistic: Nouveau widget statistique
             RefreshInterval: Actualisation automatique activée
             RefreshIntervalInSeconds: Intervalle de rafraîchissement automatique (secondes)
             RefreshIntervalInSecondsValidationMessage: 'Intervalle de rafraîchissement automatique (secondes) : L''attribut spécifié n''est pas compris entre les valeurs attendues de {0} et {1}'
             RefreshIntervalInfo: La statistique peut être actualisée automatiquement après une certaine période. Si cette option est activée, elle peut avoir un impact sur les performances. L'intervalle de rafraîchissement automatique (secondes) doit être au moins {0}.
             StatisticConfiguration: Configuration des statistiques
+            StatisticIntervals:
+              AVG: Avg
+              DAY: Jour
+              HOUR: Heure
+              MAX: Max
+              MIN: Min
+              MONTH: Mois
+              WEEK: Semaine
+              YEAR: Année
             XAxisTitle: Titre de l'axe X
             YAxisTitle: Titre de l'axe des Y
   components:
@@ -1643,6 +1671,7 @@ Labels:
       DARK: Dark
       LIGHT: Lumière
   Filters: Filtres
+  General: Général
   Icon: Icône
   InsertTask-Explain: Insérer la tâche. Ma tâche sera reportée.
   InsertTheTask: Insérer la tâche.
