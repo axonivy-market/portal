@@ -9,15 +9,15 @@
 </cc:interface>
 
 <cc:implementation>
-    <c:set var="isFavorite" value="#{taskBean.isFavoriteTask(cc.attrs.task)}" />
+    <c:set var="isPinned" value="#{taskBean.isPinnedTask(cc.attrs.task)}" />
 
     <h:panelGroup styleClass="default-task-cell flex align-items-center justify-content-center h-full text-center">
-        <h:form id="favorite-form">
-            <p:commandLink action="#{taskBean.toggleFavorite(cc.attrs.task)}" update="@form" global="false">
-                <i class="fa #{isFavorite ? 'fa-star' : 'fa-star-o'} favorite-icon" />
+        <h:form id="pin-form">
+            <p:commandLink action="#{taskBean.clickOnPinTask(cc.attrs.task)}" update="@form">
+                <i class="fa #{isPinned ? 'fa-star' : 'fa-star-o'} pin-icon" />
             </p:commandLink>
-            <p:tooltip for="favorite-form" 
-                       value="#{isFavorite ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/task/column/TaskFavorite/UnmarkAsFavorite') : ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/task/column/TaskFavorite/MarkAsFavorite')}" 
+            <p:tooltip for="pin-form" 
+                       value="#{isPinned ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/unpin') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pin')}" 
                        trackMouse="true" 
                        hideEvent="mouseleave click" />
         </h:form>

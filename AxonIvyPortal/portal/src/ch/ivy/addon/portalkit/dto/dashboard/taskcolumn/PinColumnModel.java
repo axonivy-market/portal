@@ -5,15 +5,15 @@ import java.io.Serializable;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
-public class FavoriteColumnModel extends TaskColumnModel implements Serializable {
+public class PinColumnModel extends TaskColumnModel implements Serializable {
 
   private static final long serialVersionUID = -7132266991495711489L;
 
   @Override
   public void initDefaultValue() {
-    this.setVisible(GlobalSettingService.getInstance().isEnableFavoriteTask());
+    this.setVisible(GlobalSettingService.getInstance().isEnablePinTask());
     super.initDefaultValue();
-    this.field = DashboardStandardTaskColumn.FAVORITE.getField();
+    this.field = DashboardStandardTaskColumn.PIN.getField();
     this.styleToDisplay = initDefaultStyle();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.sortable = getDefaultSortable();
@@ -21,7 +21,7 @@ public class FavoriteColumnModel extends TaskColumnModel implements Serializable
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-task-__favorite text-center widget-column ui-sm-hidden";
+    return "dashboard-task-__pin text-center widget-column ui-sm-hidden";
   }
 
   @Override
@@ -36,7 +36,7 @@ public class FavoriteColumnModel extends TaskColumnModel implements Serializable
 
   @Override
   public String getDefaultHeaderCMS() {
-    return "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/FAVORITE";
+    return "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PIN";
   }
 
 }

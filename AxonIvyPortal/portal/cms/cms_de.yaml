@@ -155,12 +155,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     byDefault: '  standardmäßig'
     defaultOption: Standard ({0})
     defaultViewMode: Standardanzeige
-    deleteAllFavoriteTask: Alle Favoritenaufgaben wurden für den Benutzer {0} entfernt.
     event: Veranstaltung
     notSubscribed: Nicht abonniert
     notificationChannels: Benachrichtigungskanäle
     notificationChannelsReset: Benachrichtigungskanäle zurücksetzen
     subscribed: abonniert
+    unpinAllPinnedTasks: Alle angehängten Aufgaben wurden für den Benutzer {0} entfernt.
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
@@ -246,8 +246,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …
       enableDeepLTranslation: Setzen Sie diese Eigenschaft auf true, um die DeepL Übersetzungsunterstützung zu aktivieren.
       enableDocumentPreview: 'Auf "true" setzen, um die Vorschau von Dokumenten für bestimmte Dateitypen zu aktivieren. Unterstützte Dateitypen sind: pdf, png, jpeg, jpg, txt, log.'
-      enableFavoriteTask: Setzen Sie diese Eigenschaft auf true, um die Möglichkeit zu aktivieren, Aufgaben als Favoriten zu markieren.
       enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
+      enablePinCase: Setzen Sie diese Eigenschaft auf „true“, um das Anheften von Fällen zu ermöglichen.
+      enablePinTask: Setzen Sie diese Eigenschaft auf „true“, um das Anheften von Aufgaben zu ermöglichen.
       enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten Chat zu aktivieren
       enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option in Aufgaben-/Vorgang-Aktionen zu aktivieren
       enableScriptCheckingForUploadedDocumentNote: 'Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt. '
@@ -525,7 +526,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     loginLogo: Login Logo
     logos: Logos
     mainColor: Hauptfarbe
-    markAsFavorite: Als Favorit Markieren
     minute: Minute
     minutes: Minuten
     more: Mehr
@@ -549,6 +549,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: Ausgewählte Filter
     ok: OK
     'on': am
+    pin: Anheften
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
     pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
     previousStage: Vorherige Stufe
@@ -609,7 +610,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Alle Administratoren
     typeAllUsers: Alle Benutzer
     typeOnlyMe: Nur für mich
-    unmarkAsFavorite: Als Favorit Entfernen
+    unpin: Anheftung aufheben
     uploadHere: Hier hochladen
     uploadOneHere: Auswählen
     user: '{0} Benutzer'
@@ -758,7 +759,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Gespeicherte Filter
     SearchForFilter: Nach Filter suchen
     ShareThisDashboard: Teilen Sie dieses Dashboard
-    ShowOnlyFavoriteToggle: „Favoritenaufgaben“-Umschalter anzeigen
+    ShowPinnedToggle: ' Umschalter „Angeheftete Aufgaben anzeigen“'
     StandardWidgets: Standard-Widgets
     StatisticWidget:
       EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
@@ -1208,9 +1209,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPLETED_ON: Erledigt am
       CREATION_TIME: Erstellt
       EXPIRY_TIME: Ablaufdatum
-      FAVORITE: Favorit
       ID: Aufgaben Id
       NAME: Name / Beschreibung
+      PIN: Anheften
       PRIORITY: Priorität
       STATE: Status
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Fehlender Aktivator
@@ -1359,7 +1360,7 @@ Dialogs:
                   WelcomeToAxon: Willkommen bei Axon Ivy Portal
           setting:
             UserProfile:
-              DeleteAllFavoriteTasks: Alle favorisierten Aufgaben löschen
+              unpinAllPinnedTasks: Alle angehefteten Aufgaben lösen
         portalkit:
           component:
             CaseItemDetails:
@@ -1543,9 +1544,9 @@ Labels:
       CREATED: Erstellt am
       DESCRIPTION: Beschreibung
       EXPIRY: Ablaufdatum
-      FAVORITE: ''
       ID: Id
       NAME: Name
+      PIN: Anheften
       PRIORITY: Priorität
       RESPONSIBLE: Verantwortlich
       START: Start
@@ -1605,13 +1606,13 @@ Labels:
     ThemeMode:
       DARK: Dunkel
       LIGHT: Hell
-  FavoriteTasks: Favoritenaufgaben
   InsertTask-Explain: Aufgabe einfügen. Meine Aufgabe wird aufgeschoben.
   InsertTheTask: Aufgabe einfügen
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Berechtigungen
+  PinnedTasks: Angehängte Aufgaben
   Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails

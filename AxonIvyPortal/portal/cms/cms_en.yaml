@@ -155,12 +155,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     byDefault: ' by default'
     defaultOption: Default ({0})
     defaultViewMode: Default view mode
-    deleteAllFavoriteTask: 'All favorite tasks have been removed for user: {0}'
     event: Event
     notSubscribed: Not subscribed
     notificationChannels: Notification Channels
     notificationChannelsReset: Notification Channels reset
     subscribed: subscribed
+    unpinAllPinnedTasks: 'All pinned tasks have been removed for user: {0}'
   PortalManagement:
     AdminSetting: Admin settings
   ProcessViewer:
@@ -245,8 +245,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic.
       enableDeepLTranslation: Set this property to true to enable the DeepL translation support
       enableDocumentPreview: 'Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
-      enableFavoriteTask: Set this property to true to enable the ability to mark tasks as favorite.
       enableGroupChat: Set this property to true to enable group chat function
+      enablePinCase: Set this property to true to enable the ability to pin cases.
+      enablePinTask: Set this property to true to enable the ability to pin tasks.
       enablePrivateChat: Set this property to true to enable private chat function
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
@@ -524,7 +525,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     loginLogo: Login logo
     logos: Logos
     mainColor: Main color
-    markAsFavorite: Mark As Favorite
     minute: minute
     minutes: minutes
     more: More
@@ -548,6 +548,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: selected filters
     ok: OK
     'on': 'on'
+    pin: Pin
     pleaseAddDocument: Please add a document with the link above.
     pleaseAddNote: Please add a note with the link above.
     previousStage: Previous stage
@@ -608,7 +609,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
-    unmarkAsFavorite: Unmark As Favorite
+    unpin: Unpin
     uploadHere: Upload here
     uploadOneHere: Upload one here
     user: '{0} user'
@@ -760,7 +761,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
     ShareThisDashboard: Share this dashboard
-    ShowOnlyFavoriteToggle: Show 'Favorite Tasks' Toggle
+    ShowPinnedToggle: Show 'Pinned Tasks' Toggle
     StandardWidgets: Standard Widgets
     StatisticWidget:
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
@@ -1209,9 +1210,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPLETED_ON: Completed on
       CREATION_TIME: Created
       EXPIRY_TIME: Expiry
-      FAVORITE: Favorite
       ID: Task Id
       NAME: Name / Description
+      PIN: Pin
       PRIORITY: Priority
       STATE: State
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Missing activator
@@ -1360,7 +1361,7 @@ Dialogs:
                   WelcomeToAxon: Welcome to Axon Ivy Portal
           setting:
             UserProfile:
-              DeleteAllFavoriteTasks: Delete All Favorite Tasks
+              unpinAllPinnedTasks: Unpin all pinned tasks
         portalkit:
           component:
             CaseItemDetails:
@@ -1589,9 +1590,9 @@ Labels:
       CREATED: Created Date
       DESCRIPTION: Description
       EXPIRY: Expiry
-      FAVORITE: Favorite
       ID: Id
       NAME: Name
+      PIN: Pin
       PRIORITY: Priority
       RESPONSIBLE: Responsible
       START: Start
@@ -1651,13 +1652,13 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Light
-  FavoriteTasks: Favorite Tasks
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Permissions
+  PinnedTasks: Pinned Tasks
   Share: Share
   Task: Task
   TaskItemDetail: Task Details

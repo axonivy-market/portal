@@ -155,12 +155,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     byDefault: ' par défaut'
     defaultOption: Par défaut ({0})
     defaultViewMode: Mode de vue par défaut
-    deleteAllFavoriteTask: 'Toutes les tâches favorites ont été supprimées pour l''utilisateur : {0}.'
     event: Événement
     notSubscribed: Pas d'abonnement
     notificationChannels: Canaux de notification
     notificationChannelsReset: Réinitialisation des canaux de notification
     subscribed: abonnée
+    unpinAllPinnedTasks: Toutes les tâches épinglées ont été supprimées pour l’utilisateur {0}.
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
@@ -244,8 +244,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
       enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer la prise en charge de la traduction de DeepL.
       enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents pour certains types de fichiers. Les types de fichiers pris en charge sont : pdf, png, jpeg, jpg, txt, log.'
-      enableFavoriteTask: Définissez cette propriété sur true pour activer la possibilité de marquer des tâches comme favorites.
       enableGroupChat: Définissez cette propriété sur true pour activer la fonction de chat de groupe
+      enablePinCase: Définissez cette propriété sur true pour activer la possibilité d’épingler des cas.
+      enablePinTask: Définissez cette propriété sur true pour activer la possibilité d’épingler des tâches.
       enablePrivateChat: Définissez cette propriété à true pour activer la fonction de chat privé
       enableProcessViewer: Définissez cette propriété à true pour activer l'option de visualisation de processus dans les actions de Task/Case.
       enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la vérification de PDF, Excel, Word.
@@ -523,7 +524,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     loginLogo: Logo login
     logos: Logos
     mainColor: Couleur principal
-    markAsFavorite: Marquer Comme Favori
     minute: minute
     minutes: minutes
     more: Plus
@@ -547,6 +547,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: filtres sélectionnés
     ok: OK
     'on': le
+    pin: Épingler
     pleaseAddDocument: Veuillez ajouter un document avec le lien ci-dessus.
     pleaseAddNote: Veuillez ajouter une note avec le lien ci-dessus.
     previousStage: Étape précédente
@@ -607,7 +608,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Tous les administrateurs
     typeAllUsers: Tous les utilisateurs
     typeOnlyMe: Seulement pour moi
-    unmarkAsFavorite: Retirer Des Favoris
+    unpin: Désépingler
     uploadHere: Téléchargez ici
     uploadOneHere: Téléchargez-en un ici
     user: '{0} utilisateur'
@@ -754,7 +755,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Filtres enregistrés
     SearchForFilter: Rechercher un filtre
     ShareThisDashboard: Partager ce tableau de bord
-    ShowOnlyFavoriteToggle: Afficher le commutateur «Tâches favorites »
+    ShowPinnedToggle: ' Bouton à bascule “Afficher les tâches épinglées”'
     StandardWidgets: Widgets standard
     StatisticWidget:
       EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau graphique !
@@ -1204,9 +1205,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPLETED_ON: Fini le
       CREATION_TIME: Créé
       EXPIRY_TIME: Délai
-      FAVORITE: Favori
       ID: Id de tâche
       NAME: Nom / Description
+      PIN: Épingler
       PRIORITY: Priorité
       STATE: Etat
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Activateur manquant
@@ -1355,7 +1356,7 @@ Dialogs:
                   WelcomeToAxon: Bienvenue à Axon Ivy Portal
           setting:
             UserProfile:
-              DeleteAllFavoriteTasks: Supprimer toutes les tâches favorites
+              unpinAllPinnedTasks: Désépingler toutes les tâches épinglées
         portalkit:
           component:
             CaseItemDetails:
@@ -1571,9 +1572,9 @@ Labels:
       CREATED: Date de création
       DESCRIPTION: Description
       EXPIRY: Délai
-      FAVORITE: ''
       ID: Id
       NAME: Nom
+      PIN: Épingler
       PRIORITY: Priorité
       RESPONSIBLE: Responsable
       START: Démarrage
@@ -1625,13 +1626,13 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
-  FavoriteTasks: Tâches favorites
   InsertTask-Explain: Insérer la tâche. Ma tâche sera reportée.
   InsertTheTask: Insérer la tâche.
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Permissions
+  PinnedTasks: Tâches épinglées
   Share: Partager
   Task: Tâche
   TaskItemDetail: Détails de la tâche

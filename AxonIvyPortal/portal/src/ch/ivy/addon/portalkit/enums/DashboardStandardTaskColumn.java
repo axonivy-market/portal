@@ -10,7 +10,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public enum DashboardStandardTaskColumn {
   START("start"),
-  FAVORITE("favorite"),
+  PIN("pin"),
   PRIORITY("priority"), 
   ID("id"), 
   NAME("name"), 

@@ -110,7 +110,11 @@ public class GlobalSettingService {
     return Ivy.session().getSessionUser();
   }
 
-  public boolean isEnableFavoriteTask() {
-    return findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_FAVORITE_TASK);
+  public boolean isEnablePinTask() {
+    return findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_PIN_TASK);
+  }
+
+  public boolean isEnablePinCase() {
+    return findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_PIN_CASE);
   }
 }

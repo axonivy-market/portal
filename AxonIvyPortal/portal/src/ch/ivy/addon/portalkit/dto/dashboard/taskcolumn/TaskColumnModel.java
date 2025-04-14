@@ -42,8 +42,9 @@ public class TaskColumnModel extends ColumnModel {
     if (fieldType == DashboardColumnType.STANDARD) {
       if (equals(DashboardStandardTaskColumn.START, field)) {
         return new StartColumnModel();
-      } else if (equals(DashboardStandardTaskColumn.FAVORITE, field) && GlobalSettingService.getInstance().isEnableFavoriteTask()) {
-        return new FavoriteColumnModel();
+      } else if (equals(DashboardStandardTaskColumn.PIN, field)
+          && GlobalSettingService.getInstance().isEnablePinTask()) {
+        return new PinColumnModel();
       } else if (equals(DashboardStandardTaskColumn.PRIORITY, field)) {
         return new PriorityColumnModel();
       } else if (equals(DashboardStandardTaskColumn.ID, field)) {

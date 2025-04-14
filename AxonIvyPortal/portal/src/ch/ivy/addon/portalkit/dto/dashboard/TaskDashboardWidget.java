@@ -47,7 +47,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   private boolean enableQuickSearch;
   private boolean showWidgetInfo;
   private boolean showFullscreenMode;
-  private boolean showOnlyFavoriteToggle;
+  private boolean showPinnedToggle;
 
   @JsonIgnore
   private List<String> errors;
@@ -59,7 +59,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     setUserFilters(new ArrayList<>());
     setShowWidgetInfo(true);
     setShowFullscreenMode(true);
-    setShowOnlyFavoriteToggle(true);
+    setShowPinnedToggle(true);
   }
 
   @Override
@@ -305,16 +305,16 @@ public class TaskDashboardWidget extends DashboardWidget {
   }
 
   @Override
-  public void toggleShowFavorite() {
-    this.dataModel.setShowFavorite(this.isShowFavorite);
+  public void toggleShowPinned() {
+    this.dataModel.setShowPinnedItem(isShowPinnedItem);
   }
 
-  public boolean isShowOnlyFavoriteToggle() {
-    return showOnlyFavoriteToggle;
+  public boolean isShowPinnedToggle() {
+    return showPinnedToggle;
   }
 
-  public void setShowOnlyFavoriteToggle(boolean showOnlyFavoriteToggle) {
-    this.showOnlyFavoriteToggle = showOnlyFavoriteToggle;
+  public void setShowPinnedToggle(boolean showPinnedToggle) {
+    this.showPinnedToggle = showPinnedToggle;
   }
 
 }

@@ -153,9 +153,9 @@ public class ColumnManagementBean implements Serializable {
   private List<String> standardFields() {
     List<String> standardFields = new ArrayList<>();
     if (widget.getType() == DashboardWidgetType.TASK) {
-      boolean enableFavoriteTask = GlobalSettingService.getInstance().isEnableFavoriteTask();
+      boolean enablePinTask = GlobalSettingService.getInstance().isEnablePinTask();
       for (DashboardStandardTaskColumn col : DashboardStandardTaskColumn.values()) {
-        if (!enableFavoriteTask && DashboardStandardTaskColumn.FAVORITE == col) {
+        if (!enablePinTask && DashboardStandardTaskColumn.PIN == col) {
           continue;
         }
         standardFields.add(col.getField());

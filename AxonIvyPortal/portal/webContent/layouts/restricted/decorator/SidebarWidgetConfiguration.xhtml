@@ -108,17 +108,17 @@
       </div>
     </h:panelGroup>
     
-    <h:panelGroup id="favorite-toggle-group"
-      rendered="#{visibilityBean.enableFavoriteTask}"
+    <h:panelGroup id="pinned-toggle-group"
+      rendered="#{visibilityBean.enablePinTask}"
       styleClass="ui-g-8 u-padding-0 ui-fluid">
       <div class="ui-g-4">
-        <p:outputLabel for="favorite-option" styleClass="u-mar-right-5"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShowOnlyFavoriteToggle')}"/>
+        <p:outputLabel for="pinned-toggle-option" styleClass="u-mar-right-5"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShowPinnedToggle')}"/>
       </div>
       <div class="ui-g-2 ui-inputgroup">
-        <p:selectBooleanCheckbox id="favorite-option"
-          value="#{widget.ShowOnlyFavoriteToggle}">
-          <p:ajax process="favorite-toggle-group" update="favorite-toggle-group"
+        <p:selectBooleanCheckbox id="pinned-toggle-option"
+          value="#{widget.ShowPinnedToggle}">
+          <p:ajax process="pinned-toggle-group" update="pinned-toggle-group"
             partialSubmit="true" />
         </p:selectBooleanCheckbox>
       </div>

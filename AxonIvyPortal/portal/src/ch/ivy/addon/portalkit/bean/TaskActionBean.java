@@ -59,7 +59,7 @@ public class TaskActionBean implements Serializable {
     return TaskUtils.canReset(task);
   }
 
-  public boolean canMarkAsFavorite(ITask task) {
+  public boolean canPin(ITask task) {
     if (task == null) {
       return false;
     }
@@ -375,24 +375,24 @@ public class TaskActionBean implements Serializable {
     return !taskStates.contains(task.getState());
   }
 
-  public String getFavoriteLabel(ITask task) {
-    return TaskUtils.isFavoriteTask(task) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/unmarkAsFavorite")
-        : Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/markAsFavorite");
+  public String getPinnedLabel(ITask task) {
+    return TaskUtils.isPinnedTask(task) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/unpin")
+        : Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/pin");
   }
 
-  public String getFavoriteIcon(ITask task) {
-    return TaskUtils.isFavoriteTask(task) ? "option-action-icon si si-remove-circle" : "option-action-icon si si-rating-star-add";
+  public String getPinnedIcon(ITask task) {
+    return TaskUtils.isPinnedTask(task) ? "option-action-icon si si-pin-bold" : "option-action-icon si si-pin";
   }
 
-  public String getFavoriteStyleClass(ITask task) {
-    return "option-item ui-menu-items" + (TaskUtils.isFavoriteTask(task) ? " color-destroy" : "");
+  public String getPinnedStyleClass(ITask task) {
+    return "option-item ui-menu-items" + (TaskUtils.isPinnedTask(task) ? " color-destroy" : "");
   }
 
-  public void markTaskAsFavorite(ITask task) {
-    TaskUtils.markTaskAsFavorite(task);
+  public void markTaskAsPinned(ITask task) {
+    TaskUtils.markTaskAsPinned(task);
   }
 
-  public boolean isTaskFavorite(ITask task) {
-    return TaskUtils.isFavoriteTask(task);
+  public boolean isTaskPinned(ITask task) {
+    return TaskUtils.isPinnedTask(task);
   }
 }

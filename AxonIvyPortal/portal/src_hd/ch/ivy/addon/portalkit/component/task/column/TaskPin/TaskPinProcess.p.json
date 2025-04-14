@@ -3,7 +3,7 @@
   "id" : "195D0C13482C0088",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "ch.ivy.addon.portalkit.component.task.column.TaskFavorite.TaskFavoriteData"
+    "data" : "ch.ivy.addon.portalkit.component.task.column.TaskPin.TaskPinData"
   },
   "elements" : [ {
       "id" : "f0",

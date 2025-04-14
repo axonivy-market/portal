@@ -154,12 +154,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     byDefault: （初期値）
     defaultOption: 初期値（{0}）
     defaultViewMode: 表示モードの初期値
-    deleteAllFavoriteTask: 'TODO: All favorite tasks have been removed for user: {0}'
     event: イベント
     notSubscribed: 通知しない
     notificationChannels: 通知チャネル
     notificationChannelsReset: 通知チャネルをリセットしました
     subscribed: 通知する
+    unpinAllPinnedTasks: 'TODO: All pinned tasks have been removed for user: {0}'
   PortalManagement:
     AdminSetting: 管理者設定
   ProcessViewer:
@@ -243,8 +243,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       embedInFrame: プロセス／タスクをIFrameモードで開始するには true に設定してください
       enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。
       enableDeepLTranslation: DeepL翻訳サポートを有効にするには、このプロパティーを true に設定してください。
-      enableFavoriteTask: 'TODO: Set this property to true to enable the ability to mark tasks as favorite.'
       enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
+      enablePinCase: 'TODO: Set this property to true to enable the ability to pin cases.'
+      enablePinTask: 'TODO: Set this property to true to enable the ability to pin tasks.'
       enablePrivateChat: 個人用チャット機能を有効にするには、このプロパティーを true に設定してください。
       enableProcessViewer: タスク／ケースアクションでプロセスビューアーオプションを有効にするには、このプロパティをtrueに設定してください。
       enableScriptCheckingForUploadedDocumentNote: アップロードされたドキュメントのスクリプトチェックを有効にするには、true に設定してください。現在、この機能は PDF、Excel、Word のチェックをサポートしています。
@@ -521,7 +522,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     loginLogo: ログインロゴ
     logos: ロゴ
     mainColor: メインカラー
-    markAsFavorite: 'TODO: Mark As Favorite'
     minute: 分
     minutes: 分
     more: 詳細
@@ -545,6 +545,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: 選択されたフィルター
     ok: OK
     'on': オン
+    pin: 'TODO: Pin'
     pleaseAddDocument: 上記のリンクにドキュメントを追加してください。
     pleaseAddNote: 上記のリンクにノートを追加してください。
     previousStage: 前のステージ
@@ -605,7 +606,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: すべての管理者
     typeAllUsers: すべてのユーザー
     typeOnlyMe: 自分のみ
-    unmarkAsFavorite: 'TODO: Unmark As Favorite'
+    unpin: 'TODO: Unpin'
     uploadHere: 有効な日付を入力してください。
     uploadOneHere: ここにアップロード
     user: '{0} ユーザー'
@@ -755,7 +756,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: 保存されたフィルター
     SearchForFilter: フィルターを検索
     ShareThisDashboard: このダッシュボードを共有
-    ShowOnlyFavoriteToggle: 'TODO: Show ''Favorite Tasks'' Toggle'
+    ShowPinnedToggle: 'TODO: Show ''Pinned Tasks'' Toggle'
     StandardWidgets: 標準ウィジェット
     StatisticWidget:
       EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！
@@ -1204,9 +1205,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPLETED_ON: 完了日
       CREATION_TIME: 作成日
       EXPIRY_TIME: 有効期限
-      FAVORITE: Favorite
       ID: タスクID
       NAME: 名前／説明
+      PIN: 'TODO: Pin'
       PRIORITY: 優先度
       STATE: 状態
       TASK_FOR_UNAVAILABLE_ACTIVATOR: アクティベーターがありません
@@ -1353,7 +1354,7 @@ Dialogs:
                   WelcomeToAxon: Axon Ivy Portalへようこそ
           setting:
             UserProfile:
-              DeleteAllFavoriteTasks: 'TODO: Delete All Favorite Tasks'
+              unpinAllPinnedTasks: 'TODO: Unpin all pinned tasks'
         portalkit:
           component:
             CaseItemDetails:
@@ -1578,9 +1579,9 @@ Labels:
       CREATED: 作成日
       DESCRIPTION: 説明
       EXPIRY: 有効期限
-      FAVORITE: ''
       ID: ID
       NAME: 名前
+      PIN: 'TODO: Pin'
       PRIORITY: 優先度
       RESPONSIBLE: 責任者
       START: 開始
@@ -1640,13 +1641,13 @@ Labels:
     ThemeMode:
       DARK: 暗い
       LIGHT: 明るい
-  FavoriteTasks: 'TODO: Favorite Tasks'
   InsertTask-Explain: タスクを挿入します。私のタスクは延期されます。
   InsertTheTask: タスクを挿入
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: 権限
+  PinnedTasks: 'TODO: Pinned Tasks'
   Share: 共有
   Task: タスク
   TaskItemDetail: タスクの詳細

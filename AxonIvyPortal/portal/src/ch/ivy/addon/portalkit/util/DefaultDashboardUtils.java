@@ -72,7 +72,7 @@ public class DefaultDashboardUtils {
                 "width": "75"
               },
               {
-                "field": "favorite",
+                "field": "pin",
                 "width": "75"
               },
               {

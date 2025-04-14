@@ -111,8 +111,8 @@ public class DashboardWidgetUtils {
       Class<? extends TaskColumnModel> taskColumnModelClass = null;
       if (equals(DashboardStandardTaskColumn.START, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StartColumnModel.class;
-      } else if (equals(DashboardStandardTaskColumn.FAVORITE, field)) {
-        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.FavoriteColumnModel.class;
+      } else if (equals(DashboardStandardTaskColumn.PIN, field)) {
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.PinColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.PRIORITY, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.PriorityColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.ID, field)) {

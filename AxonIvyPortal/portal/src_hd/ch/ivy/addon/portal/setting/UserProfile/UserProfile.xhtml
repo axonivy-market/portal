@@ -47,12 +47,12 @@
                 </h:panelGroup>
 
                 <!-- Task Widget Setting -->
-                 <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{visibilityBean.enableFavoriteTask}">
+                 <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{visibilityBean.enablePinTask}">
                   <div class="setting-header">
                     <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/TaskList')}</h5>
                   </div>
-                    <p:commandButton value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/DeleteAllFavoriteTasks')}"
-                      actionListener="#{userProfileBean.deleteAllFavoriteTasks}"
+                    <p:commandButton value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedTasks')}"
+                      actionListener="#{userProfileBean.unpinAllPinnedTasks}"
                       icon="pi pi-trash" />
                 </h:panelGroup>
               </div>

@@ -49,6 +49,7 @@ public final class TaskUtils {
   private static final String PORTAL_GLOBAL_GROWL_MESSAGE = "portal-global-growl-message";
   private static final String PRIORITY_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/";
   private static final String TASK_BUSINESS_STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/";
+  private static String PinTaskProperty = UserProperty.PIN_TASKS;
 
   private TaskUtils() {}
 
@@ -402,48 +403,48 @@ public final class TaskUtils {
   }
 
 
-  public static void markTaskAsFavorite(ITask task) {
+  public static void markTaskAsPinned(ITask task) {
     if (task == null) {
       return;
     }
 
-    Set<String> favoriteTaskUuids = getFavoriteTaskUuids();
-    boolean isFavorite = favoriteTaskUuids.contains(task.uuid());
+    Set<String> pinnedTaskUuids = getPinnedTaskUuids();
+    boolean ispinned = pinnedTaskUuids.contains(task.uuid());
 
-    if (isFavorite) {
-      favoriteTaskUuids.remove(task.uuid());
+    if (ispinned) {
+      pinnedTaskUuids.remove(task.uuid());
     } else {
-      favoriteTaskUuids.add(task.uuid());
+      pinnedTaskUuids.add(task.uuid());
     }
 
-    saveFavoriteTaskUuids(favoriteTaskUuids);
+    savePinnedTaskUuids(pinnedTaskUuids);
   }
 
-  public static Set<String> getFavoriteTaskUuids() {
+  public static Set<String> getPinnedTaskUuids() {
     IUser currentUser = Ivy.session().getSessionUser();
     if (currentUser == null) {
       return new HashSet<>();
     }
 
-    String favoriteTasksStr = currentUser.getProperty(UserProperty.FAVORITE_TASKS);
-    return StringUtils.isBlank(favoriteTasksStr) ? new HashSet<>()
-        : Arrays.stream(favoriteTasksStr.split(",")).map(String::trim).filter(StringUtils::isNotEmpty)
+    String pinnedTasksStr = currentUser.getProperty(PinTaskProperty);
+    return StringUtils.isBlank(pinnedTasksStr) ? new HashSet<>()
+        : Arrays.stream(pinnedTasksStr.split(",")).map(String::trim).filter(StringUtils::isNotEmpty)
             .collect(Collectors.toSet());
   }
 
-  public static void saveFavoriteTaskUuids(Set<String> favoriteTaskUuids) {
-    String updatedFavoriteTasks = String.join(",", favoriteTaskUuids);
-    Ivy.session().getSessionUser().setProperty(UserProperty.FAVORITE_TASKS, updatedFavoriteTasks);
+  public static void savePinnedTaskUuids(Set<String> pinnedTaskUuids) {
+    String updatedPinnedTasks = String.join(",", pinnedTaskUuids);
+    Ivy.session().getSessionUser().setProperty(PinTaskProperty, updatedPinnedTasks);
   }
 
-  public static boolean isFavoriteTask(ITask task) {
-    return task != null && getFavoriteTaskUuids().contains(task.uuid());
+  public static boolean isPinnedTask(ITask task) {
+    return task != null && getPinnedTaskUuids().contains(task.uuid());
   }
 
-  public static void removeAllFavoriteTasks() {
+  public static void removeAllPinnedTasks() {
     IUser currentUser = Ivy.session().getSessionUser();
     if (currentUser != null) {
-      currentUser.setProperty(UserProperty.FAVORITE_TASKS, StringUtils.EMPTY);
+      currentUser.setProperty(PinTaskProperty, StringUtils.EMPTY);
     }
   }
 

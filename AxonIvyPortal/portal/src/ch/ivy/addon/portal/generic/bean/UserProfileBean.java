@@ -95,11 +95,11 @@ public class UserProfileBean implements Serializable {
     return PermissionUtils.checkAccessFullProcessListPermission();
   }
 
-  public void deleteAllFavoriteTasks() {
+  public void unpinAllPinnedTasks() {
     IUser currentUser = Ivy.session().getSessionUser();
     if (currentUser != null) {
-      TaskUtils.removeAllFavoriteTasks();
-      addMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/deleteAllFavoriteTask",
+      TaskUtils.removeAllPinnedTasks();
+      addMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/unpinAllPinnedTasks",
           Arrays.asList(currentUser.getDisplayName())));
     }
   }

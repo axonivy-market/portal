@@ -31,7 +31,7 @@ public enum DashboardWidgetType {
         || this == CLIENT_STATISTIC || this == NOTIFICATION;
   }
 
-  public boolean canShowFavorite() {
+  public boolean canShowPinnedItemToggle() {
     return this == TASK;
   }
 }

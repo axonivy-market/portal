@@ -89,7 +89,7 @@ public class DashboardBean implements Serializable {
   private String clientStatisticApiUri;
   private String selectedDashboardName;
   private String searchScope;
-  private boolean isShowFavorite;
+  private boolean isShowPinnedItem;
 
   @PostConstruct
   public void init() {
@@ -592,21 +592,21 @@ public class DashboardBean implements Serializable {
     return this.searchScope;
   }
 
-  public boolean canShowFavorite(DashboardWidget widget) {
-    return widget.getType().canShowFavorite();
+  public boolean canShowPinnedItemToggle(DashboardWidget widget) {
+    return widget.getType().canShowPinnedItemToggle();
   }
 
-  public boolean getShowFavorite() {
-    return this.isShowFavorite;
+  public boolean getShowPinnedItem() {
+    return this.isShowPinnedItem;
   }
 
-  public void setShowFavorite(boolean isShowFavorite) {
-    this.isShowFavorite = isShowFavorite;
+  public void setShowPinnedItem(boolean isShowPinnedItem) {
+    this.isShowPinnedItem = isShowPinnedItem;
   }
 
-  public void toggleShowFavorite(DashboardWidget widget) {
-    widget.setShowFavorite(isShowFavorite);
-    widget.toggleShowFavorite();
+  public void togglePinned(DashboardWidget widget) {
+    widget.setShowPinnedItem(isShowPinnedItem);
+    widget.toggleShowPinned();
   }
 
 }

@@ -155,12 +155,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     byDefault: ' por defecto'
     defaultOption: Predeterminado ({0})
     defaultViewMode: Modo predeterminado
-    deleteAllFavoriteTask: 'Todas las tareas favoritas han sido eliminadas para el usuario: {0}.'
     event: Evento
     notSubscribed: No suscrito
     notificationChannels: Canales de notificación
     notificationChannelsReset: Restablecimiento de los canales de notificación
     subscribed: suscrito
+    unpinAllPinnedTasks: Todas las tareas fijadas han sido eliminadas para el usuario {0}.
   PortalManagement:
     AdminSetting: Configuración de administrador
   ProcessViewer:
@@ -247,8 +247,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: 'Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. '
       enableDeepLTranslation: Establezca esta propiedad en true para activar la traducción de DeepL
       enableDocumentPreview: 'Establecer en "true" para habilitar la vista previa de documentos para ciertos tipos de archivos. Los tipos de archivos compatibles son: pdf, png, jpeg, jpg, txt, log.'
-      enableFavoriteTask: Establezca esta propiedad en true para habilitar la opción de marcar tareas como favoritas.
       enableGroupChat: Cambie esta propiedad a "true" para activar el chat de grupos
+      enablePinCase: Establece esta propiedad en true para habilitar la función de fijar casos.
+      enablePinTask: Establece esta propiedad en true para habilitar la función de fijar tareas.
       enablePrivateChat: Cambie esta propiedad a "true" para activar el chat privado
       enableProcessViewer: Defina esta propiedad como true para habilitar la opción de visor de procesos en las acciones de Tarea/Caso
       enableScriptCheckingForUploadedDocumentNote: 'Cambiar a "True" para activar el control de anexos permitidos. De momento se pueden controlar archivos en PDF, word y excel. '
@@ -526,7 +527,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     loginLogo: Logo de inicio de sesión
     logos: Logos
     mainColor: Color principal
-    markAsFavorite: Marcar Como Favorito
     minute: minuto
     minutes: minutos
     more: Mas
@@ -550,6 +550,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: Filtros seleccionados
     ok: OK
     'on': en
+    pin: Fijar
     pleaseAddDocument: Por favor agregue documentos usando el enlace superior
     pleaseAddNote: Por favor agregue notas usando el enlace superior
     previousStage: Etapa anterior
@@ -610,7 +611,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Todos los administradores
     typeAllUsers: Todos los usuarios
     typeOnlyMe: Solo yo
-    unmarkAsFavorite: Quitar De Favoritos
+    unpin: Desfijar
     uploadHere: Cargue aquí
     uploadOneHere: Seleccionar
     user: '{0} usuario'
@@ -757,7 +758,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Filtros guardados
     SearchForFilter: Buscar un filtro
     ShareThisDashboard: Comparte este panel
-    ShowOnlyFavoriteToggle: Mostrar alternador de "Tareas favoritas"
+    ShowPinnedToggle: ' Interruptor “Mostrar tareas fijadas”'
     StandardWidgets: Widgets estándar
     StatisticWidget:
       EmptyChartDataMessage: No tenemos suficientes datos para crear un buen gráfico.
@@ -1207,9 +1208,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPLETED_ON: Completado en
       CREATION_TIME: Creado
       EXPIRY_TIME: Expiración
-      FAVORITE: Favorito
       ID: ID de tarea
       NAME: Nombre / Descripción
+      PIN: Fijar
       PRIORITY: Prioridad
       STATE: Estado
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Falta el activador
@@ -1358,7 +1359,7 @@ Dialogs:
                   WelcomeToAxon: Bienvenido a Axon Ivy Portal
           setting:
             UserProfile:
-              DeleteAllFavoriteTasks: Eliminar todas las tareas favoritas
+              unpinAllPinnedTasks: Desfijar todas las tareas fijadas
         portalkit:
           component:
             CaseItemDetails:
@@ -1522,9 +1523,9 @@ Labels:
       CREATED: Fecha de creación
       DESCRIPTION: Descripción
       EXPIRY: Expiración
-      FAVORITE: ''
       ID: Id
       NAME: Nombre
+      PIN: Fijar
       PRIORITY: Prioridad
       RESPONSIBLE: Responsable
       START: Inicio
@@ -1584,13 +1585,13 @@ Labels:
     ThemeMode:
       DARK: Oscuro
       LIGHT: Luz
-  FavoriteTasks: Tareas favoritas
   InsertTask-Explain: Insertar la tarea. Mi tarea será pospuesta.
   InsertTheTask: Insertar la tarea.
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Permiso
+  PinnedTasks: Tareas fijadas
   Share: Compartir
   Task: Tarea
   TaskItemDetail: Detalles de la tarea

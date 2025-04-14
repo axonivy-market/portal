@@ -38,7 +38,7 @@ public class DashboardTaskSearchCriteria {
   private boolean sortDescending;
   private boolean isInConfiguration;
   private String quickSearchKeyword;
-  private boolean showFavorite;
+  private boolean showPinnedItem;
 
   public TaskQuery buildQuery() {
     TaskQuery query = buildQueryWithoutOrderByClause();
@@ -52,8 +52,8 @@ public class DashboardTaskSearchCriteria {
     TaskQuery query = TaskQuery.create();
     queryFilters(query);
     queryCanWorkOn(query);
-    if (showFavorite) {
-      queryFavoriteTasks(query);
+    if (showPinnedItem) {
+      queryPinnedTasks(query);
     }
     return query;
   }
@@ -352,22 +352,22 @@ public class DashboardTaskSearchCriteria {
     this.quickSearchKeyword = quickSearchKeyword;
   }
 
-  public boolean showFavorite() {
-    return showFavorite;
+  public boolean showPinnedItem() {
+    return showPinnedItem;
   }
 
-  public void setShowFavorite(boolean showFavorite) {
-    this.showFavorite = showFavorite;
+  public void setShowPinnedItem(boolean showPinnedItem) {
+    this.showPinnedItem = showPinnedItem;
   }
 
-  private void queryFavoriteTasks(TaskQuery query) {
-    Set<String> favoriteTaskUuids = Optional.ofNullable(TaskUtils.getFavoriteTaskUuids())
+  private void queryPinnedTasks(TaskQuery query) {
+    Set<String> pinnedTaskUuids = Optional.ofNullable(TaskUtils.getPinnedTaskUuids())
         .orElse(Collections.emptySet());
 
-    if (favoriteTaskUuids.isEmpty()) {
-      query.where().uuid().isEqual("___"); // some value that can never match
+    if (pinnedTaskUuids.isEmpty()) {
+      query.where().uuid().isEqual(StringUtils.EMPTY); // value that can never match
     } else {
-      String[] uuidArray = favoriteTaskUuids.toArray(new String[0]);
+      String[] uuidArray = pinnedTaskUuids.toArray(new String[0]);
       query.where().uuid().isIn(uuidArray);
     }
   }
