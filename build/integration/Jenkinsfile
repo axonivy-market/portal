@@ -108,8 +108,8 @@ def downloadPortalRelease() {
 }
 
 def installPortalToLocalRepo() {
-  def iarFile = env.engineDir + '/AxonIvyPortal/portal/target/*.iar'
-  def pomFile = env.engineDir + '/AxonIvyPortal/portal/target/pom.xml'
+  def iarFile = findFiles(glob: env.releaseDir + '/AxonIvyPortal/portal/target/*.iar')[0].path
+  def pomFile = env.releaseDir + '/AxonIvyPortal/portal/pom.xml'
   def pom = readMavenPom(file: pomFile)
   def groupId = pom.groupId
   def artifactId = pom.artifactId
