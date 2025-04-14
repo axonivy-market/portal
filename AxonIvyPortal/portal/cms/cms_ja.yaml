@@ -1383,11 +1383,6 @@ Dialogs:
               ShareTaskDetails: タスクの詳細を共有
               TaskCompletedByOtherInfo: タスクは、ユーザー <strong>{0}</strong> によって {1} に既に完了しています。
               TaskCompletedByYouInfo: あなたは、このタスクを {0} に完了しています。
-            task:
-              column:
-                TaskFavorite:
-                  MarkAsFavorite: 'TODO: Mark As Favorite'
-                  UnmarkAsFavorite: 'TODO: Unmark As Favorite'
   com:
     axonivy:
       portal:
