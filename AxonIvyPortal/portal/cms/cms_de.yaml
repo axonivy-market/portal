@@ -1419,6 +1419,7 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Widget klonen von
             DashboardImportDetails:
+              DashboardImportTitle: Dashboard {0}
               FileInfomation: Dateiinformationen
               ImportPrivate: Privates Dashboard importieren
               ImportPublic: Öffentliches Dashboard importieren

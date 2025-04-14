@@ -73,7 +73,7 @@
       <f:event listener="#{dashboardImportBean.tabInit()}" type="preRenderComponent" />
       <p:ajax event="tabChange" listener="#{dashboardImportBean.onTabChange(dashboard)}" />
             <p:tab
-              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}#{dashboardImportBean.dashBoardIndex}"
+              title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardImportDetails/DashboardImportTitle', [dashboardImportBean.dashBoardIndex])}"
               id="dashboard_#{dashboardImportBean.dashBoardIndex}">
               <div class="ui-g">
                 <div class="ui-g-4 manage-dashboard__label">
