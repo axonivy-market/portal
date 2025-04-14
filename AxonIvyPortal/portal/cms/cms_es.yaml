@@ -1408,6 +1408,7 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Clonar widget desde
             DashboardImportDetails:
+              DashboardImportTitle: Dashboard {0}
               FileInfomation: Informacion del archivo
               ImportPrivate: Importar panel privado
               ImportPublic: Importar panel público
