@@ -17,7 +17,6 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
@@ -408,38 +407,37 @@ public final class TaskUtils {
       return;
     }
 
-    Set<Long> favoriteTaskIds = getFavoriteTaskIds();
-    boolean isFavorite = favoriteTaskIds.contains(task.getId());
+    Set<String> favoriteTaskUuids = getFavoriteTaskUuids();
+    boolean isFavorite = favoriteTaskUuids.contains(task.uuid());
 
     if (isFavorite) {
-      favoriteTaskIds.remove(task.getId());
+      favoriteTaskUuids.remove(task.uuid());
     } else {
-      favoriteTaskIds.add(task.getId());
+      favoriteTaskUuids.add(task.uuid());
     }
 
-    saveFavoriteTaskIds(favoriteTaskIds);
+    saveFavoriteTaskUuids(favoriteTaskUuids);
   }
 
-  public static Set<Long> getFavoriteTaskIds() {
+  public static Set<String> getFavoriteTaskUuids() {
     IUser currentUser = Ivy.session().getSessionUser();
     if (currentUser == null) {
       return new HashSet<>();
     }
+
     String favoriteTasksStr = currentUser.getProperty(UserProperty.FAVORITE_TASKS);
     return StringUtils.isBlank(favoriteTasksStr) ? new HashSet<>()
-        : Arrays.stream(favoriteTasksStr.split(",")).map(String::trim)
-            .map(s -> NumberUtils.toLong(s, -1))
-            .filter(taskId -> taskId != -1).collect(Collectors.toSet());
+        : Arrays.stream(favoriteTasksStr.split(",")).map(String::trim).filter(StringUtils::isNotEmpty)
+            .collect(Collectors.toSet());
   }
 
-  public static void saveFavoriteTaskIds(Set<Long> favoriteTaskIds) {
-    String updatedFavoriteTasks =
-        String.join(",", favoriteTaskIds.stream().map(String::valueOf).toArray(String[]::new));
+  public static void saveFavoriteTaskUuids(Set<String> favoriteTaskUuids) {
+    String updatedFavoriteTasks = String.join(",", favoriteTaskUuids);
     Ivy.session().getSessionUser().setProperty(UserProperty.FAVORITE_TASKS, updatedFavoriteTasks);
   }
 
   public static boolean isFavoriteTask(ITask task) {
-    return task != null && getFavoriteTaskIds().contains(task.getId());
+    return task != null && getFavoriteTaskUuids().contains(task.uuid());
   }
 
   public static void removeAllFavoriteTasks() {

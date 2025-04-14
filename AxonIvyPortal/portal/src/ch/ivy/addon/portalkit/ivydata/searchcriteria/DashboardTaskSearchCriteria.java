@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -360,15 +361,15 @@ public class DashboardTaskSearchCriteria {
   }
 
   private void queryFavoriteTasks(TaskQuery query) {
-    long[] favoriteTaskIds = Optional.ofNullable(TaskUtils.getFavoriteTaskIds()).orElse(Collections.emptySet()).stream()
-        .mapToLong(Long::longValue).toArray();
+    Set<String> favoriteTaskUuids = Optional.ofNullable(TaskUtils.getFavoriteTaskUuids())
+        .orElse(Collections.emptySet());
 
-    if (favoriteTaskIds.length == 0) {
-      query.where().taskId().isLowerThan(0); // no favorite tasks, return empty result
+    if (favoriteTaskUuids.isEmpty()) {
+      query.where().uuid().isEqual("___"); // some value that can never match
     } else {
-      query.where().taskId().isIn(favoriteTaskIds);
+      String[] uuidArray = favoriteTaskUuids.toArray(new String[0]);
+      query.where().uuid().isIn(uuidArray);
     }
   }
-
 
 }

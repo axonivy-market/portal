@@ -161,16 +161,15 @@ public class TaskBean implements Serializable {
       return;
     }
 
-    Set<Long> favoriteTaskIds = TaskUtils.getFavoriteTaskIds();
-    boolean isFavorite = favoriteTaskIds.contains(task.getId());
-
+    Set<String> favoriteTaskUuids = TaskUtils.getFavoriteTaskUuids();
+    String taskUuid = task.uuid();
+    boolean isFavorite = favoriteTaskUuids.contains(taskUuid);
     if (isFavorite) {
-      favoriteTaskIds.remove(task.getId());
+      favoriteTaskUuids.remove(taskUuid);
     } else {
-      favoriteTaskIds.add(task.getId());
+      favoriteTaskUuids.add(taskUuid);
     }
-
-    TaskUtils.saveFavoriteTaskIds(favoriteTaskIds);
+    TaskUtils.saveFavoriteTaskUuids(favoriteTaskUuids);
   }
 
 }
