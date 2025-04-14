@@ -1443,6 +1443,7 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: 以下の場所からウィジェットを複製する：
             DashboardImportDetails:
+              DashboardImportTitle: ダッシュボード{0}
               FileInfomation: ファイル情報
               ImportPrivate: 個人用ダッシュボードをインポートする
               ImportPublic: 公開用ダッシュボードをインポートする
