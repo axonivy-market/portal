@@ -277,6 +277,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Set to false to disable link to Show Information of process on Processes page (grid mode) and Case Details.
       showQuickGlobalSearch: For switch on/off the display of the quick global search.
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
+      showTooltipTechnicalName: Enable to show users' technical name on tooltips.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
     key: Key
     link: Link

@@ -279,6 +279,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Cambiar a falso para desactivar el enlace "Más información" en la página de Procesos (modo cuadrícula) y Detalles del caso.
       showQuickGlobalSearch: Para activar/desactivar la visualización de la búsqueda global rápida.
       showTaskDurationTime: Activar o desactivar la visibilidad de la duración de la tarea en detalles de tarea.
+      showTooltipTechnicalName: Habilitar para mostrar el nombre técnico de los usuarios en los tooltips.
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
     key: Llave
     link: Enlazar
