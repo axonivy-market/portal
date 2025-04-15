@@ -163,7 +163,7 @@ For the custom widget, we have a new node is ``data`` inside of case details wid
 
       - Key name that will be the parameter name for the Ivy process above. Note: don't use ``caseId``.
 
-      - The key value for the case has to start with ``case.``. Supported are two values: ``case.id``, ``case.category``.
+      - The key value for the case has to start with ``case.``. Supported are three values: ``case.id``, ``case.uuid``, ``case.category``.
 
       - Key value for case custom fields: must start with ``case.customFields.``, followed by custom field name.
 
