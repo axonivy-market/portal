@@ -33,11 +33,22 @@
             <ic:ch.ivy.addon.portal.generic.PortalBreadcrumb id="portal-breadcrumb"
               isWorkingOnATask="#{isWorkingOnATask}"
               viewName="#{viewName}"
-              task="#{task}" case="#{case}" />
-          <h:form id="navigation-dashboard-breadcrumb" rendered="#{isInDashboard}" >
-            <p:breadCrumb model="#{navigationDashboardWidgetBean.model}" lastItemDisabled="true" homeDisplay="text" styleClass="border-none"/>
-          </h:form>
+                    task="#{task}" case="#{case}" />
+            <h:form id="navigation-dashboard-breadcrumb" styleClass="flex justify-content-center"
+             rendered="#{isInDashboard}">
+        <li class="topbar-item">
+          <h:panelGroup rendered="#{isInDashboard}">
+            <p:commandLink id="back-to-previous-dashboard-page" action="#{navigationDashboardWidgetBean.backToPreviousDashboard()}"
+              styleClass="inline-flex align-items-center hover:underline" rendered="#{navigationDashboardWidgetBean.isNavigateToTargetDashboard}" process="@this">
+              <i class="si si-arrow-left-1" />
+              <p:spacer width="3px" />
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
+            </p:commandLink>
+            <h:inputHidden/>
           </h:panelGroup>
+        </li>
+            </h:form>
+           </h:panelGroup>
         </li>
         <li class="topbar-item custom-search-item" jsf:rendered="#{showGlobalSearch or showQuickGlobalSearch}">
           <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" showQuickGlobalSearch="#{showQuickGlobalSearch}"

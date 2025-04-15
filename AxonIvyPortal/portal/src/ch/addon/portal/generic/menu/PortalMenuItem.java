@@ -91,7 +91,7 @@ public class PortalMenuItem extends DefaultMenuItem {
 
     var isOpenOnNewTab = builder.menuKind == MenuKind.EXTERNAL_LINK || builder.menuKind == MenuKind.THIRD_PARTY;
     var onClick = String.format(DEFAULT_ON_CLICK_PATTERN, builder.isWorkingOnATask, isOpenOnNewTab);
-    builder.onClick("cleanNavigationDashboardBreadcrumb()");
+    builder.onClick("removeNavigationDashboardBackButton()");
     this.setOnclick(onClick.concat(isNull(builder.onClick) ? "" : builder.onClick));
 
     this.setTarget(builder.target);
