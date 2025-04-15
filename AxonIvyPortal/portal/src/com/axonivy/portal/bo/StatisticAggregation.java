@@ -2,7 +2,7 @@ package com.axonivy.portal.bo;
 
 import java.io.Serializable;
 
-import com.axonivy.portal.enums.statistic.ChartAggregates;
+import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.StatisticInterval;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -13,17 +13,17 @@ public class StatisticAggregation implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  private ChartAggregates aggregate;
+  private AggregationField aggregationField;
   private CustomFieldType customFieldType;
   private String customFieldValue;
   private StatisticInterval interval;
 
-  public ChartAggregates getAggregate() {
-    return aggregate;
+  public AggregationField getAggregate() {
+    return aggregationField;
   }
 
-  public void setAggregate(ChartAggregates aggregate) {
-    this.aggregate = aggregate;
+  public void setAggregate(AggregationField aggregate) {
+    this.aggregationField = aggregate;
   }
 
   public CustomFieldType getCustomFieldType() {

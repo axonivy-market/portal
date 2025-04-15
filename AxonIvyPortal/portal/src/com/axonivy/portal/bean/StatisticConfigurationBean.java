@@ -45,7 +45,7 @@ import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.statistic.StatisticFilter;
 import com.axonivy.portal.enums.ChartTarget;
 import com.axonivy.portal.enums.ChartType;
-import com.axonivy.portal.enums.statistic.ChartAggregates;
+import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.StatisticInterval;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.service.StatisticService;
@@ -196,7 +196,7 @@ public class StatisticConfigurationBean implements Serializable {
   private void initNewStatistic() {
     statistic = new Statistic();
     statistic.setStatisticAggregation(new StatisticAggregation());
-    statistic.getStatisticAggregation().setAggregate(ChartAggregates.PRIORITY);
+    statistic.getStatisticAggregation().setAggregate(AggregationField.PRIORITY);
     statistic.setNames(new ArrayList<>());
     statistic.setDescriptions(new ArrayList<>());
     statistic.setChartTarget(ChartTarget.TASK);
@@ -563,13 +563,13 @@ public class StatisticConfigurationBean implements Serializable {
     return false;
   }
   
-  public List<ChartAggregates> getAllAvailableAggregates() {
-    List<ChartAggregates> aggregations = filterAggregatesForChartTarget(statistic.getChartTarget());
+  public List<AggregationField> getAllAvailableAggregates() {
+    List<AggregationField> aggregations = filterAggregatesForChartTarget(statistic.getChartTarget());
 
     return aggregations;
   }
   
-  private List<ChartAggregates> filterAggregatesForChartTarget(ChartTarget currentChartTarget) {
+  private List<AggregationField> filterAggregatesForChartTarget(ChartTarget currentChartTarget) {
     if(ChartTarget.CASE == currentChartTarget) {
       return collectAggregatesForCase(statistic.getChartType());
     }
@@ -577,24 +577,24 @@ public class StatisticConfigurationBean implements Serializable {
     return collectAggregatesForTask(statistic.getChartType());
   }  
   
-  private List<ChartAggregates> collectAggregatesForCase(ChartType currentChartType){
+  private List<AggregationField> collectAggregatesForCase(ChartType currentChartType){
     if(ChartType.NUMBER == currentChartType) {
-      return ChartAggregates.CASE_NUMBER_AGGREGATES.stream().toList();
+      return AggregationField.CASE_NUMBER_AGGREGATES.stream().toList();
     }
     boolean hidingCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
-    List<ChartAggregates> aggregates = ChartAggregates.CASE_AGGREGATES.stream()
-        .filter(caseAggregate -> !hidingCaseCreator || !caseAggregate.equals(ChartAggregates.CREATOR_NAME))
+    List<AggregationField> aggregates = AggregationField.CASE_AGGREGATES.stream()
+        .filter(caseAggregate -> !hidingCaseCreator || !caseAggregate.equals(AggregationField.CREATOR_NAME))
         .toList();
         
     return aggregates;
   }
 
-  private List<ChartAggregates> collectAggregatesForTask(ChartType currentChartType){
+  private List<AggregationField> collectAggregatesForTask(ChartType currentChartType){
     if(ChartType.NUMBER == currentChartType) {
-      return ChartAggregates.TASK_NUMBER_AGGREGATES.stream().toList();
+      return AggregationField.TASK_NUMBER_AGGREGATES.stream().toList();
     }
     
-    return ChartAggregates.TASK_AGGREGATES.stream().toList();
+    return AggregationField.TASK_AGGREGATES.stream().toList();
   }
   
   public boolean isCustomFieldsSelected() {
@@ -614,7 +614,7 @@ public class StatisticConfigurationBean implements Serializable {
       return;
     }
     
-    initValueForStatisticAggregation(ChartAggregates.CUSTOM_FIELD,
+    initValueForStatisticAggregation(AggregationField.CUSTOM_FIELD,
         currentCustomFieldType,
         currentCustomField,
         statisticInterval);
@@ -638,7 +638,7 @@ public class StatisticConfigurationBean implements Serializable {
     return;
   }
   
-  public void initValueForStatisticAggregation(ChartAggregates chartAggregates, CustomFieldType customFieldType,
+  public void initValueForStatisticAggregation(AggregationField chartAggregates, CustomFieldType customFieldType,
       String customFieldValue, StatisticInterval dateTimeOperator) {
       statistic.getStatisticAggregation().setAggregate(chartAggregates);
       statistic.getStatisticAggregation().setCustomFieldType(customFieldType);
@@ -680,7 +680,7 @@ public class StatisticConfigurationBean implements Serializable {
     this.isDateTimeSelected = isDateTimeSelected;
   }
   
-  public String getUserFriendlyAggregateName(ChartAggregates selectedAggregate) {
+  public String getUserFriendlyAggregateName(AggregationField selectedAggregate) {
     if(selectedAggregate == null) {
       return EMPTY;
     }
@@ -774,7 +774,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public void resetAggregateValues() {
-    statistic.getStatisticAggregation().setAggregate(ChartAggregates.PRIORITY);
+    statistic.getStatisticAggregation().setAggregate(AggregationField.PRIORITY);
     statistic.getStatisticAggregation().setCustomFieldType(null);
     statistic.getStatisticAggregation().setCustomFieldValue(null);
     this.currentCustomFieldDescription = null;
