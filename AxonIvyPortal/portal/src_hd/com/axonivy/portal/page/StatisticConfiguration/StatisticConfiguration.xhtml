@@ -107,10 +107,10 @@
                   <!-- GROUP BY -->
                   <p:outputLabel for="@next" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Aggregate')}" />
                   <p:selectOneMenu id="aggregates" required="true" styleClass="w-full"
-                    value="#{statisticConfigurationBean.statistic.statisticAggregation.aggregate}">
-                    <f:selectItems value="#{statisticConfigurationBean.getAllAvailableAggregates()}"
-                      var="aggregate" itemValue="#{aggregate}" itemLabel="#{statisticConfigurationBean.getUserFriendlyAggregateName(aggregate)}" />
-                    <p:ajax listener="#{statisticConfigurationBean.onSelectAggregates()}"
+                    value="#{statisticConfigurationBean.statistic.statisticAggregation.aggregationField}">
+                    <f:selectItems value="#{statisticConfigurationBean.getAllAvailableAggregationField()}"
+                      var="aggregate" itemValue="#{aggregate}" itemLabel="#{statisticConfigurationBean.getUserFriendlyAggregationFieldName(aggregate)}" />
+                    <p:ajax listener="#{statisticConfigurationBean.onSelectAggregationField()}"
                       update="chart-aggregation" />
                   </p:selectOneMenu>
 

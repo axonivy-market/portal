@@ -6,7 +6,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum StatisticInterval {
+public enum AggregationInterval {
   DAY("Day"),
   WEEK("Week"),
   MONTH("Month"),
@@ -16,7 +16,7 @@ public enum StatisticInterval {
   AVG("Avg"),
   HOUR("Hour");
   
-  private StatisticInterval (String name) {
+  private AggregationInterval (String name) {
     this.name = name;
   }
   
@@ -35,7 +35,7 @@ public enum StatisticInterval {
    */
 //  public static final Set<DateTimeOperator> DATE_TIME_OPERATORS = Collections
 //      .unmodifiableSet(EnumSet.of(YEAR, MONTH, WEEK, DAY, MAX, MIN, AVG));
-  public static final Set<StatisticInterval> DATE_TIME_INTERVALS = Collections
+  public static final Set<AggregationInterval> DATE_TIME_INTERVALS = Collections
       .unmodifiableSet(EnumSet.of(DAY, WEEK, MONTH, YEAR));
 
 }

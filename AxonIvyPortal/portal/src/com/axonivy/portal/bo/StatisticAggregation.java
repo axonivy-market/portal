@@ -3,7 +3,7 @@ package com.axonivy.portal.bo;
 import java.io.Serializable;
 
 import com.axonivy.portal.enums.statistic.AggregationField;
-import com.axonivy.portal.enums.statistic.StatisticInterval;
+import com.axonivy.portal.enums.statistic.AggregationInterval;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
@@ -16,14 +16,14 @@ public class StatisticAggregation implements Serializable {
   private AggregationField aggregationField;
   private CustomFieldType customFieldType;
   private String customFieldValue;
-  private StatisticInterval interval;
+  private AggregationInterval interval;
 
-  public AggregationField getAggregate() {
+  public AggregationField getAggregationField() {
     return aggregationField;
   }
 
-  public void setAggregate(AggregationField aggregate) {
-    this.aggregationField = aggregate;
+  public void setAggregationField(AggregationField aggregationField) {
+    this.aggregationField = aggregationField;
   }
 
   public CustomFieldType getCustomFieldType() {
@@ -42,11 +42,11 @@ public class StatisticAggregation implements Serializable {
     this.customFieldValue = customFieldValue;
   }
 
-  public StatisticInterval getInterval() {
+  public AggregationInterval getInterval() {
     return interval;
   }
 
-  public void setInterval(StatisticInterval interval) {
+  public void setInterval(AggregationInterval interval) {
     this.interval = interval;
   }
 
