@@ -52,6 +52,7 @@ pipeline {
           '''
 
           downloadPortalRelease()
+          installPortalToLocalRepo()
 
           utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
@@ -103,4 +104,14 @@ def downloadPortalRelease() {
     bat "curl --user ${credentials} --output archive.zip ${env.JENKINS_URL}job/portal-release/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
   }
   unzip zipFile: 'archive.zip', quiet: true
+}
+
+def installPortalToLocalRepo() {
+  def iarFile = findFiles(glob: env.releaseDir + '/AxonIvyPortal/portal/target/*.iar')[0].path
+  def pomFile = env.releaseDir + '/AxonIvyPortal/portal/pom.xml'
+  def pom = readMavenPom(file: pomFile)
+  def groupId = pom.groupId
+  def artifactId = pom.artifactId
+  def version = pom.version
+  bat "mvn install:install-file -Dfile=${iarFile} -DgroupId=${groupId} -DartifactId=${artifactId} -Dversion=${version} -Dpackaging=iar"
 }
