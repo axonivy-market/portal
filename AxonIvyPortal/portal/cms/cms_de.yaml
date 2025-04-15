@@ -1419,6 +1419,7 @@ Dialogs:
             DashboardSharing:
               ShareDashboard: Dashboard teilen
             NavigationDashboardWidgetConfiguration:
+              ButtonName: Schaltfläche Name
               NavigationDashboardWidgetConfiguration: Konfiguration des Navigations-Dashboard-Widgets
               NavigationDashboardWidgetDescription: Dieses Widget ermöglicht es den Benutzern, durch einen Klick auf eine Schaltfläche direkt zu einem verknüpften Dashboard zu springen.
             NewsWidget:

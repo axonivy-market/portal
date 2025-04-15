@@ -1452,6 +1452,7 @@ Dialogs:
             DashboardSharing:
               ShareDashboard: Share Dashboard
             NavigationDashboardWidgetConfiguration:
+              ButtonName: Button Name
               NavigationDashboardWidgetConfiguration: Navigation dashboard widget configuration
               NavigationDashboardWidgetDescription: This widget allows users to jump directly to a linked dashboard by clicking a button.
             NewsWidget:

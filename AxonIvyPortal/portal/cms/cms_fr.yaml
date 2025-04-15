@@ -1447,6 +1447,7 @@ Dialogs:
             DashboardSharing:
               ShareDashboard: Partager le tableau de bord
             NavigationDashboardWidgetConfiguration:
+              ButtonName: Nom du bouton
               NavigationDashboardWidgetConfiguration: Configuration du widget du tableau de bord de navigation
               NavigationDashboardWidgetDescription: Ce widget permet aux utilisateurs d'accéder directement à un tableau de bord lié en cliquant sur un bouton.
             NewsWidget:
