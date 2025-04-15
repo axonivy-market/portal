@@ -1480,13 +1480,13 @@ Dialogs:
           StatisticConfiguration:
             AddFilter: TODO Add filter
             Advanced: TODO Advanced
-            Aggregate: TODO Aggregate
             ChartType: TODO Chart type
             Color: 色{0}
             Create: TODO Create
             EditStatistic: TODO Edit Statistic Widget
             For: TODO For
             GeneratePreview: TODO Generate preview
+            GroupBy: TODO Group by
             HideLabel: TODO Hide label
             NewStatistic: TODO New Statistic Widget
             RefreshInterval: TODO Auto-refresh enabled

@@ -1483,7 +1483,6 @@ Dialogs:
           StatisticConfiguration:
             AddFilter: Ajouter un filtre
             Advanced: Avancé
-            Aggregate: Agrégat
             ChartType: Type de graphique
             Color: Couleur {0}
             Create: Créer
@@ -1491,6 +1490,7 @@ Dialogs:
             EditStatistic: Modifier le widget statistique
             For: Pour
             GeneratePreview: Générer un aperçu
+            GroupBy: Groupe par
             HideLabel: Cacher l'étiquette
             Interval: Intervalle
             NewStatistic: Nouveau widget statistique
