@@ -10,11 +10,7 @@ public enum AggregationInterval {
   DAY("Day"),
   WEEK("Week"),
   MONTH("Month"),
-  YEAR("Year"),
-  MAX("Max"),
-  MIN("Min"),
-  AVG("Avg"),
-  HOUR("Hour");
+  YEAR("Year");
   
   private AggregationInterval (String name) {
     this.name = name;

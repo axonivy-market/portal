@@ -31,9 +31,9 @@ public enum AggregationField {
     return name;
   }
 
-  public static final Set<AggregationField> TASK_AGGREGATES = Collections.unmodifiableSet(
-      EnumSet.of(BUSINESS_STATE, PRIORITY, CATEGORY, WORKER_NAME, RESPONSIBLES_NAME, START_TIMESTAMP, END_TIMESTAMP,
-          EXPIRY_TIMESTAMP, CUSTOM_FIELD));
+  public static final Set<AggregationField> TASK_AGGREGATES = Collections
+      .unmodifiableSet(EnumSet.of(BUSINESS_STATE, PRIORITY, CATEGORY, WORKER_NAME, RESPONSIBLES_NAME, START_TIMESTAMP,
+          END_TIMESTAMP, EXPIRY_TIMESTAMP, CUSTOM_FIELD));
 
   public static final Set<AggregationField> CASE_AGGREGATES = Collections.unmodifiableSet(
       EnumSet.of(BUSINESS_STATE, CATEGORY, CREATOR_NAME, START_TIMESTAMP, END_TIMESTAMP, CUSTOM_FIELD));

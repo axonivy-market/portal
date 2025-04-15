@@ -655,8 +655,7 @@ public class StatisticConfigurationBean implements Serializable {
       return;
     }
 
-    List<AggregationInterval> metricOperator = Arrays.asList(AggregationInterval.MIN, AggregationInterval.MAX,
-        AggregationInterval.AVG);
+    List<AggregationInterval> metricOperator = new ArrayList<>();
     String finalAggregation = metricOperator.contains(aggregationInterval)
         ? statistic.getAggregates() + ":" + aggregationInterval.getName().toLowerCase()
         : statistic.getAggregates() + ":bucket:" + aggregationInterval.getName().toLowerCase();

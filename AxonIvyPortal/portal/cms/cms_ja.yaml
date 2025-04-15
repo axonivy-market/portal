@@ -1512,11 +1512,7 @@ Dialogs:
             RefreshIntervalInfo: TODO The statistic can be auto-refreshed after a certain period. If enabled, this may impact performance. Auto-refresh interval (seconds) must be at least {0}.
             StatisticConfiguration: TODO Statistic configuration
             StatisticIntervals:
-              AVG: TODO Avg
               DAY: TODO Day
-              HOUR: TODO Hour
-              MAX: TODO Max
-              MIN: TODO Min
               MONTH: TODO Month
               WEEK: TODO Week
               YEAR: TODO Year

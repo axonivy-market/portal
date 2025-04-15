@@ -1522,11 +1522,7 @@ Dialogs:
             RefreshIntervalInfo: The statistic can be auto-refreshed after a certain period. If enabled, this may impact performance. Auto-refresh interval (seconds) must be at least {0}.
             StatisticConfiguration: Statistic configuration
             StatisticIntervals:
-              AVG: Avg
               DAY: Day
-              HOUR: Hour
-              MAX: Max
-              MIN: Min
               MONTH: Month
               WEEK: Week
               YEAR: Year

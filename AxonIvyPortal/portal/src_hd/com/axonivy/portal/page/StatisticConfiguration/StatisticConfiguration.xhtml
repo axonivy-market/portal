@@ -39,7 +39,7 @@
                   <div class="ui-inputgroup">
                     <p:inputText id="name" value="#{statisticConfigurationBean.statistic.name}" maxlength="#{statisticInput}"
                       requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Labels/Name')])}"
-                      styleClass="w-full" />
+                      styleClass="w-full" required="true"/>
                     <p:commandButton id="add-name-language-button" icon="si si-chat-translate"
                       actionListener="#{statisticConfigurationBean.updateNameByLocale()}" process="name"
                       update="name-language-config:multiple-languages-dialog"

@@ -1478,11 +1478,7 @@ Dialogs:
             RefreshIntervalInfo: La estadística puede actualizarse automáticamente tras un periodo determinado. Si se activa, esto puede afectar al rendimiento. El intervalo de actualización automática (segundos) debe ser al menos {0}.
             StatisticConfiguration: Configuración estadística
             StatisticIntervals:
-              AVG: Avg
               DAY: Día
-              HOUR: Hora
-              MAX: Max
-              MIN: Min
               MONTH: Mes
               WEEK: Semana
               YEAR: Año

@@ -1517,11 +1517,7 @@ Dialogs:
             RefreshIntervalInfo: La statistique peut être actualisée automatiquement après une certaine période. Si cette option est activée, elle peut avoir un impact sur les performances. L'intervalle de rafraîchissement automatique (secondes) doit être au moins {0}.
             StatisticConfiguration: Configuration des statistiques
             StatisticIntervals:
-              AVG: Avg
               DAY: Jour
-              HOUR: Heure
-              MAX: Max
-              MIN: Min
               MONTH: Mois
               WEEK: Semaine
               YEAR: Année
