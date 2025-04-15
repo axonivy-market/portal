@@ -151,9 +151,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     Homepage: Homepage
     Language: Language
     ProcessList: Process list
+    TaskList: Task List
     byDefault: ' by default'
     defaultOption: Default ({0})
     defaultViewMode: Default view mode
+    deleteAllFavoriteTask: 'All favorite tasks have been removed for user: {0}'
     event: Event
     notSubscribed: Not subscribed
     notificationChannels: Notification Channels
@@ -243,6 +245,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic.
       enableDeepLTranslation: Set this property to true to enable the DeepL translation support
       enableDocumentPreview: 'Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
+      enableFavoriteTask: Set this property to true to enable the ability to mark tasks as favorite.
       enableGroupChat: Set this property to true to enable group chat function
       enablePrivateChat: Set this property to true to enable private chat function
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
@@ -521,6 +524,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     loginLogo: Login logo
     logos: Logos
     mainColor: Main color
+    markAsFavorite: Mark As Favorite
     minute: minute
     minutes: minutes
     more: More
@@ -604,6 +608,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
+    unmarkAsFavorite: Unmark As Favorite
     uploadHere: Upload here
     uploadOneHere: Upload one here
     user: '{0} user'
@@ -755,6 +760,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
     ShareThisDashboard: Share this dashboard
+    ShowOnlyFavoriteToggle: Show 'Favorite Tasks' Toggle
     StandardWidgets: Standard Widgets
     StatisticWidget:
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
@@ -1203,6 +1209,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPLETED_ON: Completed on
       CREATION_TIME: Created
       EXPIRY_TIME: Expiry
+      FAVORITE: Favorite
       ID: Task Id
       NAME: Name / Description
       PRIORITY: Priority
@@ -1351,6 +1358,9 @@ Dialogs:
                   DragAndDropTooltip: Click Preview, then drag and drop to change the order
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Welcome to Axon Ivy Portal
+          setting:
+            UserProfile:
+              DeleteAllFavoriteTasks: Delete All Favorite Tasks
         portalkit:
           component:
             CaseItemDetails:
@@ -1379,6 +1389,11 @@ Dialogs:
               ShareTaskDetails: Share task details
               TaskCompletedByOtherInfo: Task has already been completed by user <strong>{0}</strong> on {1}.
               TaskCompletedByYouInfo: You already have completed the task on {0}.
+            task:
+              column:
+                TaskFavorite:
+                  MarkAsFavorite: Mark As Favorite
+                  UnmarkAsFavorite: Unmark As Favorite
   com:
     axonivy:
       portal:
@@ -1540,6 +1555,7 @@ Labels:
     TaskDetailsResult: |-
       Details of task **{0} (#{1})**:
       {2}
+  AllTasks: All Tasks
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
   CreateNewDashboard: Create new dashboard
@@ -1574,6 +1590,7 @@ Labels:
       CREATED: Created Date
       DESCRIPTION: Description
       EXPIRY: Expiry
+      FAVORITE: Favorite
       ID: Id
       NAME: Name
       PRIORITY: Priority
@@ -1635,6 +1652,7 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Light
+  FavoriteTasks: Favorite Tasks
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Login:

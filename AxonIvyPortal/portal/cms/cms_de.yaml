@@ -151,9 +151,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     Homepage: Homepage
     Language: Sprache
     ProcessList: Prozess-Liste
+    TaskList: Aufgabenliste
     byDefault: '  standardmäßig'
     defaultOption: Standard ({0})
     defaultViewMode: Standardanzeige
+    deleteAllFavoriteTask: Alle Favoritenaufgaben wurden für den Benutzer {0} entfernt.
     event: Veranstaltung
     notSubscribed: Nicht abonniert
     notificationChannels: Benachrichtigungskanäle
@@ -244,6 +246,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …
       enableDeepLTranslation: Setzen Sie diese Eigenschaft auf true, um die DeepL Übersetzungsunterstützung zu aktivieren.
       enableDocumentPreview: 'Auf "true" setzen, um die Vorschau von Dokumenten für bestimmte Dateitypen zu aktivieren. Unterstützte Dateitypen sind: pdf, png, jpeg, jpg, txt, log.'
+      enableFavoriteTask: Setzen Sie diese Eigenschaft auf true, um die Möglichkeit zu aktivieren, Aufgaben als Favoriten zu markieren.
       enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
       enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten Chat zu aktivieren
       enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option in Aufgaben-/Vorgang-Aktionen zu aktivieren
@@ -522,6 +525,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     loginLogo: Login Logo
     logos: Logos
     mainColor: Hauptfarbe
+    markAsFavorite: Als Favorit Markieren
     minute: Minute
     minutes: Minuten
     more: Mehr
@@ -605,6 +609,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Alle Administratoren
     typeAllUsers: Alle Benutzer
     typeOnlyMe: Nur für mich
+    unmarkAsFavorite: Als Favorit Entfernen
     uploadHere: Hier hochladen
     uploadOneHere: Auswählen
     user: '{0} Benutzer'
@@ -753,6 +758,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Gespeicherte Filter
     SearchForFilter: Nach Filter suchen
     ShareThisDashboard: Teilen Sie dieses Dashboard
+    ShowOnlyFavoriteToggle: „Favoritenaufgaben“-Umschalter anzeigen
     StandardWidgets: Standard-Widgets
     StatisticWidget:
       EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
@@ -1202,6 +1208,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       COMPLETED_ON: Erledigt am
       CREATION_TIME: Erstellt
       EXPIRY_TIME: Ablaufdatum
+      FAVORITE: Favorit
       ID: Aufgaben Id
       NAME: Name / Beschreibung
       PRIORITY: Priorität
@@ -1350,6 +1357,9 @@ Dialogs:
                   DragAndDropTooltip: Klicken Sie auf die Vorschau und ändern Sie die Reihenfolge durch Ziehen und Ableg
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Willkommen bei Axon Ivy Portal
+          setting:
+            UserProfile:
+              DeleteAllFavoriteTasks: Alle favorisierten Aufgaben löschen
         portalkit:
           component:
             CaseItemDetails:
@@ -1378,6 +1388,11 @@ Dialogs:
               ShareTaskDetails: Teilen Sie Aufgabendetails
               TaskCompletedByOtherInfo: Die Aufgabe wurde bereits von Benutzer <strong>{0}</strong> an {1} durchgeführt.
               TaskCompletedByYouInfo: Sie haben die Aufgabe auf {0} bereits erledigt.
+            task:
+              column:
+                TaskFavorite:
+                  MarkAsFavorite: Als Favorit markieren
+                  UnmarkAsFavorite: Als Favorit entfernen
   com:
     axonivy:
       portal:
@@ -1494,6 +1509,7 @@ Labels:
     ProcessParameterInfo: ''
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
+  AllTasks: Alle Aufgaben
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
   CreateNewDashboard: Neues Dashboard erstellen
@@ -1528,6 +1544,7 @@ Labels:
       CREATED: Erstellt am
       DESCRIPTION: Beschreibung
       EXPIRY: Ablaufdatum
+      FAVORITE: ''
       ID: Id
       NAME: Name
       PRIORITY: Priorität
@@ -1589,6 +1606,7 @@ Labels:
     ThemeMode:
       DARK: Dunkel
       LIGHT: Hell
+  FavoriteTasks: Favoritenaufgaben
   InsertTask-Explain: Aufgabe einfügen. Meine Aufgabe wird aufgeschoben.
   InsertTheTask: Aufgabe einfügen
   Login:

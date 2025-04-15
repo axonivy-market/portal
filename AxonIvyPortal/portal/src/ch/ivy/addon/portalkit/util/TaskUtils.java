@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.faces.application.FacesMessage;
@@ -19,6 +21,7 @@ import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
+import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.datamodel.internal.RelatedTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.enums.PortalPage;
@@ -396,6 +399,52 @@ public final class TaskUtils {
       return false;
     }
     return PermissionUtils.hasPermission(permission);
+  }
+
+
+  public static void markTaskAsFavorite(ITask task) {
+    if (task == null) {
+      return;
+    }
+
+    Set<String> favoriteTaskUuids = getFavoriteTaskUuids();
+    boolean isFavorite = favoriteTaskUuids.contains(task.uuid());
+
+    if (isFavorite) {
+      favoriteTaskUuids.remove(task.uuid());
+    } else {
+      favoriteTaskUuids.add(task.uuid());
+    }
+
+    saveFavoriteTaskUuids(favoriteTaskUuids);
+  }
+
+  public static Set<String> getFavoriteTaskUuids() {
+    IUser currentUser = Ivy.session().getSessionUser();
+    if (currentUser == null) {
+      return new HashSet<>();
+    }
+
+    String favoriteTasksStr = currentUser.getProperty(UserProperty.FAVORITE_TASKS);
+    return StringUtils.isBlank(favoriteTasksStr) ? new HashSet<>()
+        : Arrays.stream(favoriteTasksStr.split(",")).map(String::trim).filter(StringUtils::isNotEmpty)
+            .collect(Collectors.toSet());
+  }
+
+  public static void saveFavoriteTaskUuids(Set<String> favoriteTaskUuids) {
+    String updatedFavoriteTasks = String.join(",", favoriteTaskUuids);
+    Ivy.session().getSessionUser().setProperty(UserProperty.FAVORITE_TASKS, updatedFavoriteTasks);
+  }
+
+  public static boolean isFavoriteTask(ITask task) {
+    return task != null && getFavoriteTaskUuids().contains(task.uuid());
+  }
+
+  public static void removeAllFavoriteTasks() {
+    IUser currentUser = Ivy.session().getSessionUser();
+    if (currentUser != null) {
+      currentUser.setProperty(UserProperty.FAVORITE_TASKS, StringUtils.EMPTY);
+    }
   }
 
 }
