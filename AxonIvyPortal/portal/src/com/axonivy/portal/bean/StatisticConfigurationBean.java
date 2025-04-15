@@ -139,7 +139,6 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   private void initExistedStatistic() {
-    Ivy.log().info("init existed statistic - editing");
     isEditMode = true;
     if (statistic.getNames() == null) {
       statistic.setNames(new ArrayList<>());
@@ -265,7 +264,6 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void save() {
-    Ivy.log().info("isRefreshIntervalInValid " + isRefreshIntervalInValid());
     if (isRefreshIntervalInValid()) {
       return;
     }
@@ -387,14 +385,6 @@ public class StatisticConfigurationBean implements Serializable {
     handleAggregateWithDateTimeInterval();
     syncUIConfigWithChartConfig();
     cleanUpFilter();
-    Ivy.log().info("check query aggregate");
-    Ivy.log().info(statistic.getAggregates());
-    Ivy.log().info("check aggregate object");
-    Ivy.log().info(statistic.getStatisticAggregation().getAggregate().getName());
-    Ivy.log().info(statistic.getStatisticAggregation().getCustomFieldValue());
-    Ivy.log().info(statistic.getStatisticAggregation().getCustomFieldType());
-    Ivy.log().info(statistic.getStatisticAggregation().getInterval());
-    Ivy.log().info("=====================================================");
     StatisticService statisticService = StatisticService.getInstance();
     statistic.setAdditionalConfigs(new ArrayList<>());
     statistic.getAdditionalConfigs().addAll(statisticService.getAdditionalConfig());
@@ -747,7 +737,6 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void onSelectInterval() {
-    Ivy.log().info(statisticInterval);
     statistic.getStatisticAggregation().setInterval(statisticInterval);
     if (statisticInterval != null && isCustomFieldsSelected()) {
       statistic.setAggregates(statistic.getAggregates() + ":bucket:" + statisticInterval.toString().toLowerCase());
