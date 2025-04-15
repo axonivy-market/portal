@@ -133,7 +133,7 @@
                     styleClass="w-full mt-2"
                     value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Interval')}" />
                   <p:selectOneMenu id="aggregates-custom-fields-intervals" styleClass="w-full mt-0"
-                    rendered="#{statisticConfigurationBean.dateTimeSelected}" value="#{statisticConfigurationBean.statisticInterval}">
+                    rendered="#{statisticConfigurationBean.dateTimeSelected}" value="#{statisticConfigurationBean.aggregationInterval}">
                     <f:selectItems var="dateTimeInterval" value="#{statisticConfigurationBean.getAvailableIntervals()}"
                       itemLabel="#{dateTimeInterval.getCmsName()}" />
                     <p:ajax listener="#{statisticConfigurationBean.onSelectInterval}" />

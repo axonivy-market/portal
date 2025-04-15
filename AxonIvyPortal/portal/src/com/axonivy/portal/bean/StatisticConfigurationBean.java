@@ -600,8 +600,10 @@ public class StatisticConfigurationBean implements Serializable {
   private void resetCustomFieldAndDateTimeInterval() {
       this.currentCustomField = null;
       this.currentCustomFieldType = null;
-      this.aggregationInterval = null;
-  }
+      if(!isDateTimeSelected) {
+        this.aggregationInterval = null;
+      }
+    }
   
   private void handleCustomFieldAggregation() {
     if(!isCustomFieldsSelected()) {
@@ -646,8 +648,14 @@ public class StatisticConfigurationBean implements Serializable {
     if (aggregationInterval == null) {
       return;
     }
-    if(!statistic.getAggregates().contains("timestamp")) {
-      this.setStatisticInterval(null);
+    /**
+    * handle: 
+    * Edit a statistic > change to Custom field > choose ShipmentDate
+    * > click Generate preview > choose CustomerEmail > 
+    * > click Generate preview => error
+    * */
+    if(!statistic.getAggregates().contains("timestamp") && !isDateTimeSelected) {
+      this.setAggregationInterval(null);
       return;
     }
 
@@ -800,11 +808,12 @@ public class StatisticConfigurationBean implements Serializable {
     return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
   }
 
-  public AggregationInterval getStatisticInterval() {
+  public AggregationInterval getAggregationInterval() {
     return aggregationInterval;
   }
 
-  public void setStatisticInterval(AggregationInterval statisticInterval) {
-    this.aggregationInterval = statisticInterval;
+  public void setAggregationInterval(AggregationInterval aggregationInterval) {
+    this.aggregationInterval = aggregationInterval;
   }
+
 }
