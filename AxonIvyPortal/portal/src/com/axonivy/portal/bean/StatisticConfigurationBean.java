@@ -650,17 +650,10 @@ public class StatisticConfigurationBean implements Serializable {
     if (statisticInterval == null) {
       return;
     }
-    /**
-     * handle: 
-     * Edit a statistic > change to Custom field > choose ShipmentDate
-     * > click Generate preview > choose CustomerEmail > 
-     * > click Generate preview => error
-     * */
     if(!statistic.getAggregates().contains("timestamp")) {
       this.setStatisticInterval(null);
       return;
     }
-    // ****************************************************************
 
     List<StatisticInterval> metricOperator = Arrays.asList(StatisticInterval.MIN, StatisticInterval.MAX,
         StatisticInterval.AVG);
