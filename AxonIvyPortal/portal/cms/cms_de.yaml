@@ -1456,23 +1456,6 @@ Dialogs:
             AddFilter: Filter hinzufügen
             Advanced: Fortgeschrittene
             Aggregate: Aggregat
-            ChartAggregates:
-              ACTIVATOR_NAME: Name des Aktivators
-              BUSINESS_RUNTIME: Business-Laufzeit
-              BUSINESS_STATE: Zustand
-              CATEGORY: Kategorie
-              CREATOR_NAME: Name des Erstellers
-              CUSTOM_FIELD: Benutzerdefiniertes Feld
-              END_TIMESTAMP: Zeitstempel des Endes
-              EXPIRY_TIMESTAMP: Verfallszeitstempel
-              IS_EXPIRED: Ist abgelaufen
-              MODIFIED_TIMESTAMP: Geänderter Zeitstempel
-              NUMBER_OF_RESUMES: Anzahl der wieder aufnehmen
-              PRIORITY: Priorität
-              RESPONSIBLES_NAME: Verantwortliche
-              START_TIMESTAMP: Zeitstempel des Beginns
-              WORKER_NAME: Name des Arbeiters
-              WORKING_TIME: Arbeitszeiten
             ChartType: Diagrammtyp
             Color: Farbe {0}
             Create: Erstellen
@@ -1488,11 +1471,6 @@ Dialogs:
             RefreshIntervalInSecondsValidationMessage: 'Intervall für die automatische Aktualisierung (Sekunden): Das angegebene Attribut liegt nicht zwischen den erwarteten Werten von {0} und {1}'
             RefreshIntervalInfo: Die Statistik kann nach einer bestimmten Zeit automatisch aktualisiert werden. Wenn sie aktiviert ist, kann dies die Leistung beeinträchtigen. Das Intervall für die automatische Aktualisierung (Sekunden) muss mindestens {0} betragen.
             StatisticConfiguration: Konfiguration der Statistik
-            StatisticIntervals:
-              DAY: Tag
-              MONTH: Monat
-              WEEK: Woche
-              YEAR: Jahr
             XAxisTitle: Titel der X-Achse
             YAxisTitle: Titel der Y-Achse
   components:
@@ -1526,6 +1504,49 @@ Enums:
               name: Kennzahl / Metrik
             PIE:
               name: Kreisdiagramm
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: Name des Aktivators
+              BUSINESS_RUNTIME:
+                name: Business-Laufzeit
+              BUSINESS_STATE:
+                name: Zustand
+              CATEGORY:
+                name: Kategorie
+              CREATOR_NAME:
+                name: Name des Erstellers
+              CUSTOM_FIELD:
+                name: Benutzerdefiniertes Feld
+              END_TIMESTAMP:
+                name: Zeitstempel des Endes
+              EXPIRY_TIMESTAMP:
+                name: Verfallszeitstempel
+              IS_EXPIRED:
+                name: Ist abgelaufen
+              MODIFIED_TIMESTAMP:
+                name: Geänderter Zeitstempel
+              NUMBER_OF_RESUMES:
+                name: Anzahl der wieder aufnehmen
+              PRIORITY:
+                name: Priorität
+              RESPONSIBLES_NAME:
+                name: Verantwortliche
+              START_TIMESTAMP:
+                name: Zeitstempel des Beginns
+              WORKER_NAME:
+                name: Name des Arbeiters
+              WORKING_TIME:
+                name: Arbeitszeiten
+            AggregationInterval:
+              DAY:
+                name: Tag
+              MONTH:
+                name: Monat
+              WEEK:
+                name: Woche
+              YEAR:
+                name: Jahr
 Labels:
   AI:
     Error:

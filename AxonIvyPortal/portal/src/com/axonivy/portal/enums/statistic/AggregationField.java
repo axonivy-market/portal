@@ -3,9 +3,10 @@ import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Set;
 
+import com.axonivy.portal.enums.HasCmsName;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum AggregationField {
+public enum AggregationField implements HasCmsName {
   BUSINESS_STATE("businessState"),
   PRIORITY("priority"),
   CATEGORY("category"),
@@ -20,11 +21,11 @@ public enum AggregationField {
   EXPIRY_TIMESTAMP("expiryTimestamp"),
   CUSTOM_FIELD("customFields.*.*");
 
+  private String name;
+
   private AggregationField(String name) {
     this.name = name;
   }
-
-  private String name;
 
   @JsonValue
   public String getName() {

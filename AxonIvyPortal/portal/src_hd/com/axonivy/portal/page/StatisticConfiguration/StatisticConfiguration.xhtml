@@ -109,7 +109,7 @@
                   <p:selectOneMenu id="aggregates" required="true" styleClass="w-full"
                     value="#{statisticConfigurationBean.statistic.statisticAggregation.aggregationField}">
                     <f:selectItems value="#{statisticConfigurationBean.getAllAvailableAggregationField()}"
-                      var="aggregate" itemValue="#{aggregate}" itemLabel="#{statisticConfigurationBean.getUserFriendlyAggregationFieldName(aggregate)}" />
+                      var="aggregate" itemValue="#{aggregate}" itemLabel="#{aggregate.getCmsName()}" />
                     <p:ajax listener="#{statisticConfigurationBean.onSelectAggregationField()}"
                       update="chart-aggregation" />
                   </p:selectOneMenu>
@@ -135,7 +135,7 @@
                   <p:selectOneMenu id="aggregates-custom-fields-intervals" styleClass="w-full mt-0"
                     rendered="#{statisticConfigurationBean.dateTimeSelected}" value="#{statisticConfigurationBean.statisticInterval}">
                     <f:selectItems var="dateTimeInterval" value="#{statisticConfigurationBean.getAvailableIntervals()}"
-                      itemLabel="#{statisticConfigurationBean.getUserFriendlyIntervalName(dateTimeInterval)}" />
+                      itemLabel="#{dateTimeInterval.getCmsName()}" />
                     <p:ajax listener="#{statisticConfigurationBean.onSelectInterval}" />
                   </p:selectOneMenu>
                 </h:panelGroup>

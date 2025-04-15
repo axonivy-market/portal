@@ -1445,23 +1445,6 @@ Dialogs:
             AddFilter: Añadir filtro
             Advanced: Avanzado
             Aggregate: Agregado
-            ChartAggregates:
-              ACTIVATOR_NAME: Nombre del activador
-              BUSINESS_RUNTIME: Tiempo de ejecución
-              BUSINESS_STATE: Estado
-              CATEGORY: Categoría
-              CREATOR_NAME: Nombre del creador
-              CUSTOM_FIELD: Campo personalizado
-              END_TIMESTAMP: Hora de fin
-              EXPIRY_TIMESTAMP: Hora de expiración
-              IS_EXPIRED: Ha expirado
-              MODIFIED_TIMESTAMP: Hora de modificación
-              NUMBER_OF_RESUMES: Número de currículos
-              PRIORITY: Prioridad
-              RESPONSIBLES_NAME: Responsables
-              START_TIMESTAMP: Fecha de inicio
-              WORKER_NAME: Nombre del trabajador
-              WORKING_TIME: Tiempo de trabajo
             ChartType: Tipo de gráfico
             Color: Color {0}
             Create: Cree
@@ -1477,11 +1460,6 @@ Dialogs:
             RefreshIntervalInSecondsValidationMessage: 'Intervalo de actualización automática (segundos): El atributo especificado no está entre los valores esperados de {0} y {1}'
             RefreshIntervalInfo: La estadística puede actualizarse automáticamente tras un periodo determinado. Si se activa, esto puede afectar al rendimiento. El intervalo de actualización automática (segundos) debe ser al menos {0}.
             StatisticConfiguration: Configuración estadística
-            StatisticIntervals:
-              DAY: Día
-              MONTH: Mes
-              WEEK: Semana
-              YEAR: Año
             XAxisTitle: Título del eje X
             YAxisTitle: Título del eje Y
   components:
@@ -1515,6 +1493,49 @@ Enums:
               name: Gráfico numérico
             PIE:
               name: Gráfico circular
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: Nombre del activador
+              BUSINESS_RUNTIME:
+                name: Tiempo de ejecución
+              BUSINESS_STATE:
+                name: Estado
+              CATEGORY:
+                name: Categoría
+              CREATOR_NAME:
+                name: Nombre del creador
+              CUSTOM_FIELD:
+                name: Campo personalizado
+              END_TIMESTAMP:
+                name: Hora de fin
+              EXPIRY_TIMESTAMP:
+                name: Hora de expiración
+              IS_EXPIRED:
+                name: Ha expirado
+              MODIFIED_TIMESTAMP:
+                name: Hora de modificación
+              NUMBER_OF_RESUMES:
+                name: Número de currículos
+              PRIORITY:
+                name: Prioridad
+              RESPONSIBLES_NAME:
+                name: Responsables
+              START_TIMESTAMP:
+                name: Fecha de inicio
+              WORKER_NAME:
+                name: Nombre del trabajador
+              WORKING_TIME:
+                name: Tiempo de trabajo
+            AggregationInterval:
+              DAY:
+                name: Día
+              MONTH:
+                name: Mes
+              WEEK:
+                name: Semana
+              YEAR:
+                name: Año
 Labels:
   AI:
     Error:

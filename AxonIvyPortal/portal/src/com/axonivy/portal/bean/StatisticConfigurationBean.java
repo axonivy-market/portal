@@ -4,7 +4,6 @@ import static com.axonivy.portal.enums.ChartType.BAR;
 import static com.axonivy.portal.enums.ChartType.LINE;
 import static com.axonivy.portal.enums.ChartType.NUMBER;
 import static com.axonivy.portal.enums.ChartType.PIE;
-import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -103,9 +102,6 @@ public class StatisticConfigurationBean implements Serializable {
   private String currentCustomFieldDescription;
   private boolean isDateTimeSelected;
   private AggregationInterval aggregationInterval;
-
-  private static final String CHART_AGGREGATES_CMS_PATH = "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ChartAggregates/";
-  private static final String CHART_OPERATORS_CMS_PATH = "/Dialogs/com/axonivy/portal/page/StatisticConfiguration/StatisticIntervals/";
 
   private StatisticNameMultilanguageService nameMultilanguageService;
   private StatisticDescriptionMultilanguageService descriptionMultilanguageService;
@@ -679,22 +675,6 @@ public class StatisticConfigurationBean implements Serializable {
     this.isDateTimeSelected = isDateTimeSelected;
   }
   
-  public String getUserFriendlyAggregationFieldName(AggregationField selectedAggregate) {
-    if(selectedAggregate == null) {
-      return EMPTY;
-    }
-    String displayAggregateName = Ivy.cms().co(CHART_AGGREGATES_CMS_PATH + selectedAggregate);
-    return displayAggregateName;
-  }
-
-  public String getUserFriendlyIntervalName(AggregationInterval selectedOperator) {
-    if(selectedOperator == null) {
-      return EMPTY;
-    }
-    String displayOperatorName = Ivy.cms().co(CHART_OPERATORS_CMS_PATH + selectedOperator);
-    return displayOperatorName;
-  }
-
   public void onSelectAggregationField() {
     this.setDateTimeSelected(statistic.getStatisticAggregation().getAggregationField().getName().contains("Timestamp"));
   }

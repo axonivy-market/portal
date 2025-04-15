@@ -1489,23 +1489,6 @@ Dialogs:
             AddFilter: Add filter
             Advanced: Advanced
             Aggregate: Group by
-            ChartAggregates:
-              ACTIVATOR_NAME: Activator name
-              BUSINESS_RUNTIME: Business runtime
-              BUSINESS_STATE: State
-              CATEGORY: Category
-              CREATOR_NAME: Creator name
-              CUSTOM_FIELD: Custom field
-              END_TIMESTAMP: End timestamp
-              EXPIRY_TIMESTAMP: Expiry timestamp
-              IS_EXPIRED: Is expired
-              MODIFIED_TIMESTAMP: Modified timestamp
-              NUMBER_OF_RESUMES: Number of resumes
-              PRIORITY: Priority
-              RESPONSIBLES_NAME: Responsibles
-              START_TIMESTAMP: Start timestamp
-              WORKER_NAME: Worker name
-              WORKING_TIME: Working time
             ChartType: Chart type
             Color: Color {0}
             Create: Create
@@ -1521,11 +1504,6 @@ Dialogs:
             RefreshIntervalInSecondsValidationMessage: 'Auto-refresh interval (seconds): Specified attribute is not between the expected values of {0} and {1}'
             RefreshIntervalInfo: The statistic can be auto-refreshed after a certain period. If enabled, this may impact performance. Auto-refresh interval (seconds) must be at least {0}.
             StatisticConfiguration: Statistic configuration
-            StatisticIntervals:
-              DAY: Day
-              MONTH: Month
-              WEEK: Week
-              YEAR: Year
             XAxisTitle: X axis title
             YAxisTitle: Y axis title
   components:
@@ -1562,6 +1540,49 @@ Enums:
               name: Number
             PIE:
               name: Pie
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: Activator name
+              BUSINESS_RUNTIME:
+                name: Business runtime
+              BUSINESS_STATE:
+                name: State
+              CATEGORY:
+                name: Category
+              CREATOR_NAME:
+                name: Creator name
+              CUSTOM_FIELD:
+                name: Custom field
+              END_TIMESTAMP:
+                name: End timestamp
+              EXPIRY_TIMESTAMP:
+                name: Expiry timestamp
+              IS_EXPIRED:
+                name: Is expired
+              MODIFIED_TIMESTAMP:
+                name: Modified timestamp
+              NUMBER_OF_RESUMES:
+                name: Number of resumes
+              PRIORITY:
+                name: Priority
+              RESPONSIBLES_NAME:
+                name: Responsibles
+              START_TIMESTAMP:
+                name: Start timestamp
+              WORKER_NAME:
+                name: Worker name
+              WORKING_TIME:
+                name: Working time
+            AggregationInterval:
+              DAY:
+                name: Day
+              MONTH:
+                name: Month
+              WEEK:
+                name: Week
+              YEAR:
+                name: Year
 Labels:
   AI:
     Error:

@@ -1481,23 +1481,6 @@ Dialogs:
             AddFilter: TODO Add filter
             Advanced: TODO Advanced
             Aggregate: TODO Aggregate
-            ChartAggregates:
-              ACTIVATOR_NAME: TODO Activator name
-              BUSINESS_RUNTIME: TODO Business runtime
-              BUSINESS_STATE: TODO State
-              CATEGORY: TODO Category
-              CREATOR_NAME: TODO Creator name
-              CUSTOM_FIELD: TODO Custom field
-              END_TIMESTAMP: TODO End timestamp
-              EXPIRY_TIMESTAMP: TODO Expiry timestamp
-              IS_EXPIRED: TODO Is expired
-              MODIFIED_TIMESTAMP: TODO Modified timestamp
-              NUMBER_OF_RESUMES: TODO Number of resumes
-              PRIORITY: TODO Priority
-              RESPONSIBLES_NAME: TODO Responsibles
-              START_TIMESTAMP: TODO Start timestamp
-              WORKER_NAME: TODO Worker name
-              WORKING_TIME: TODO Working time
             ChartType: TODO Chart type
             Color: 色{0}
             Create: TODO Create
@@ -1511,11 +1494,6 @@ Dialogs:
             RefreshIntervalInSecondsValidationMessage: 'TODO Auto-refresh interval (seconds): Specified attribute is not between the expected values of {0} and {1}'
             RefreshIntervalInfo: TODO The statistic can be auto-refreshed after a certain period. If enabled, this may impact performance. Auto-refresh interval (seconds) must be at least {0}.
             StatisticConfiguration: TODO Statistic configuration
-            StatisticIntervals:
-              DAY: TODO Day
-              MONTH: TODO Month
-              WEEK: TODO Week
-              YEAR: TODO Year
             XAxisTitle: TODO X axis title
             YAxisTitle: TODO Y axis title
   components:
@@ -1552,6 +1530,49 @@ Enums:
               name: TODO Number
             PIE:
               name: TODO Pie
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: TODO Activator name
+              BUSINESS_RUNTIME:
+                name: TODO Business runtime
+              BUSINESS_STATE:
+                name: TODO State
+              CATEGORY:
+                name: TODO Category
+              CREATOR_NAME:
+                name: TODO Creator name
+              CUSTOM_FIELD:
+                name: TODO Custom field
+              END_TIMESTAMP:
+                name: TODO End timestamp
+              EXPIRY_TIMESTAMP:
+                name: TODO Expiry timestamp
+              IS_EXPIRED:
+                name: TODO Is expired
+              MODIFIED_TIMESTAMP:
+                name: TODO Modified timestamp
+              NUMBER_OF_RESUMES:
+                name: TODO Number of resumes
+              PRIORITY:
+                name: TODO Priority
+              RESPONSIBLES_NAME:
+                name: TODO Responsibles
+              START_TIMESTAMP:
+                name: TODO Start timestamp
+              WORKER_NAME:
+                name: TODO Worker name
+              WORKING_TIME:
+                name: TODO Working time
+            AggregationInterval:
+              DAY:
+                name: TODO Day
+              MONTH:
+                name: TODO Month
+              WEEK:
+                name: TODO Week
+              YEAR:
+                name: TODO Year
 Labels:
   AI:
     Error:

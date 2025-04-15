@@ -1484,23 +1484,6 @@ Dialogs:
             AddFilter: Ajouter un filtre
             Advanced: Avancé
             Aggregate: Agrégat
-            ChartAggregates:
-              ACTIVATOR_NAME: Nom de l'activateur
-              BUSINESS_RUNTIME: Durée d'exécution des activités
-              BUSINESS_STATE: État
-              CATEGORY: Catégorie
-              CREATOR_NAME: Nom du créateur
-              CUSTOM_FIELD: Champ personnalisé
-              END_TIMESTAMP: Horodatage de fin
-              EXPIRY_TIMESTAMP: Horodatage d'expiration
-              IS_EXPIRED: Est périmé
-              MODIFIED_TIMESTAMP: Horodatage modifié
-              NUMBER_OF_RESUMES: Nombre de reprendre
-              PRIORITY: Priorité
-              RESPONSIBLES_NAME: Responsables
-              START_TIMESTAMP: Horodatage de début
-              WORKER_NAME: Nom de l'employé
-              WORKING_TIME: Temps de travail
             ChartType: Type de graphique
             Color: Couleur {0}
             Create: Créer
@@ -1516,11 +1499,6 @@ Dialogs:
             RefreshIntervalInSecondsValidationMessage: 'Intervalle de rafraîchissement automatique (secondes) : L''attribut spécifié n''est pas compris entre les valeurs attendues de {0} et {1}'
             RefreshIntervalInfo: La statistique peut être actualisée automatiquement après une certaine période. Si cette option est activée, elle peut avoir un impact sur les performances. L'intervalle de rafraîchissement automatique (secondes) doit être au moins {0}.
             StatisticConfiguration: Configuration des statistiques
-            StatisticIntervals:
-              DAY: Jour
-              MONTH: Mois
-              WEEK: Semaine
-              YEAR: Année
             XAxisTitle: Titre de l'axe X
             YAxisTitle: Titre de l'axe des Y
   components:
@@ -1554,6 +1532,49 @@ Enums:
               name: TODO Number
             PIE:
               name: TODO Pie
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: Nom de l'activateur
+              BUSINESS_RUNTIME:
+                name: Durée d'exécution des activités
+              BUSINESS_STATE:
+                name: État
+              CATEGORY:
+                name: Catégorie
+              CREATOR_NAME:
+                name: Nom du créateur
+              CUSTOM_FIELD:
+                name: Champ personnalisé
+              END_TIMESTAMP:
+                name: Horodatage de fin
+              EXPIRY_TIMESTAMP:
+                name: Horodatage d'expiration
+              IS_EXPIRED:
+                name: Est périmé
+              MODIFIED_TIMESTAMP:
+                name: Horodatage modifié
+              NUMBER_OF_RESUMES:
+                name: Nombre de reprendre
+              PRIORITY:
+                name: Priorité
+              RESPONSIBLES_NAME:
+                name: Responsables
+              START_TIMESTAMP:
+                name: Horodatage de début
+              WORKER_NAME:
+                name: Nom de l'employé
+              WORKING_TIME:
+                name: Temps de travail
+            AggregationInterval:
+              DAY:
+                name: Jour
+              MONTH:
+                name: Mois
+              WEEK:
+                name: Semaine
+              YEAR:
+                name: Année
 Labels:
   AI:
     Error:
