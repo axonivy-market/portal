@@ -1,9 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>public-api</artifactId>
-  <version>10.0.27-SNAPSHOT</version>
+  <version>10.0.27</version>
   <properties>
     <build.plugin.version>10.0.6</build.plugin.version>
     <ivy.engine.version>10.0.7</ivy.engine.version>
@@ -59,7 +59,6 @@
               <name>standardized.maven.processor.classpath</name>
               <value>${ivy.engine.core.classpath}</value>
               <regex>,</regex>
-              
               <replacement>:</replacement>
               <failIfNoMatch>false</failIfNoMatch>
             </configuration>
@@ -71,12 +70,10 @@
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>3.2.0</version>
         <configuration>
-          
           <sourcepath>../../AxonIvyPortal/portal-components/src</sourcepath>
           <subpackages>com.axonivy.portal.components.publicapi</subpackages>
           <additionalOptions>
             <additionalOption>-classpath</additionalOption>
-            
             <additionalOption>${standardized.maven.processor.classpath}</additionalOption>
           </additionalOptions>
           <show>public</show>
