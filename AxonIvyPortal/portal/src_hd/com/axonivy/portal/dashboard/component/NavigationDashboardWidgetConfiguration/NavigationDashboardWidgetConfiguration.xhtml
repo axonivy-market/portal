@@ -27,14 +27,30 @@
     <h:panelGroup id="widget-title-group"
       styleClass="ui-g-12 u-padding-0 ui-fluid">
       <div class="ui-g-4 mt-2">
+        <p:outputLabel for="button-name"
+          value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NavigationDashboardWidgetConfiguration/ButtonName')}" />
+      </div>
+      <div class="ui-g-8 ui-inputgroup">
+        <p:inputText id="button-name"
+          styleClass="widget-configuration__input-text"
+          value="#{widget.buttonName}"/>
+          <!-- Add language button -->
+          <p:commandButton styleClass="app-setting-button"
+            icon="si si-chat-translate" id="button-name-language"
+            actionListener="#{navigationDashboardWidgetBean.updateButtonNameByLocale(widget)}"
+            process="button-name"
+            update="#{cc.clientId}:button-name-language-config:multiple-languages-dialog"
+            oncomplete="PF('multiple-languages-dialog').show();">
+          </p:commandButton>
+      </div>
+      <div class="ui-g-4 mt-2">
         <p:outputLabel for="widget-title"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
       </div>
       <div class="ui-g-8 ui-inputgroup">
         <p:inputText id="widget-title"
           styleClass="widget-configuration__input-text"
-          value="#{widget.name}"
-          placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/CustomWidgetTitlePlaceholder')}" />
+          value="#{widget.name}"/>
           <!-- Add language button -->
           <p:commandButton styleClass="app-setting-button"
             icon="si si-chat-translate" id="title-language-button"
@@ -75,5 +91,7 @@
     <!-- Multi language dialog-->
   <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="title-language-config" titleRequired="false"
     titles="#{managedBean.widget.names}" managedBean="#{managedBean}" componentToUpdateOnCreate="#{cc.attrs.componentToUpdate}" />
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="button-name-language-config" titleRequired="false"
+    titles="#{managedBean.widget.buttonNames}" managedBean="#{managedBean}" componentToUpdateOnCreate="#{cc.attrs.componentToUpdate}" />
 </cc:implementation>
 </html>

@@ -359,6 +359,11 @@ public class DashboardUtils {
     portalPublicDashboardWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
     return dashboards;
   }
+  
+  public static Boolean isHiddenDashboard(String dashboardId) {
+    return getPublicDashboards().stream().anyMatch(dashboard -> dashboard.getId().equals(dashboardId)
+        && dashboard.getDashboardDisplayType() == DashboardDisplayType.HIDDEN);
+  }
 
   public static List<Dashboard> getPrivateDashboards() {
     String sessionIdAttribute = SessionAttribute.SESSION_IDENTIFIER.toString();

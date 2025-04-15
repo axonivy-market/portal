@@ -3,20 +3,30 @@ package ch.ivy.addon.portal.generic.bean;
 import java.io.IOException;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @SessionScoped
@@ -24,7 +34,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class NavigationDashboardWidgetBean implements Serializable {
 
   private static final long serialVersionUID = -4224901891867040688L;
-  private String previousDashboardId;
   private Boolean isNavigateToTargetDashboard;
   private Stack<String> pageHistory = new Stack<>();
   
@@ -51,15 +60,12 @@ public class NavigationDashboardWidgetBean implements Serializable {
   public void clearHistory() {
       pageHistory.clear();
   }
-  public void savePreviousDashboardId(String dashboardId) {
-    setPreviousDashboardId(dashboardId);
-  }
 
   public void redirectToDashboard(NavigationDashboardWidget widget, Dashboard currentDashboard) throws IOException {
     pushPage(currentDashboard.getId());
     setIsNavigateToTargetDashboard(Boolean.TRUE);
     navigateToDashboard(widget.getTargetDashboardId());
-    Ivy.session().removeAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.name());
+    removeSelectedSubDashboardId();
   }
   
   public void backToPreviousDashboard() throws IOException {
@@ -69,7 +75,7 @@ public class NavigationDashboardWidgetBean implements Serializable {
       if (pageHistory.size() == 0) {
         setIsNavigateToTargetDashboard(Boolean.FALSE);
       }
-      Ivy.session().removeAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.name());
+      removeSelectedSubDashboardId();
     }
     else {
       FacesContext.getCurrentInstance().getExternalContext().redirect(PortalNavigator.getPortalStartUrl());
@@ -81,9 +87,12 @@ public class NavigationDashboardWidgetBean implements Serializable {
       clearHistory();
       setIsNavigateToTargetDashboard(Boolean.FALSE);
     }
+    if (DashboardUtils.isHiddenDashboard((String) Ivy.session().getAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.name()))) {
+      removeSelectedSubDashboardId();
+    }
   }
   
-  public void removeSessionAttribute() {
+  public void removeSelectedSubDashboardId() {
     SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.name());
   }
 
@@ -95,14 +104,6 @@ public class NavigationDashboardWidgetBean implements Serializable {
     return UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(id);
   }
 
-  public String getPreviousDashboardId() {
-    return this.previousDashboardId;
-  }
-
-  public void setPreviousDashboardId(String dashboardId) {
-    this.previousDashboardId = dashboardId;
-  }
-  
   public Boolean getIsNavigateToTargetDashboard() {
     return this.isNavigateToTargetDashboard;
   }
@@ -116,5 +117,41 @@ public class NavigationDashboardWidgetBean implements Serializable {
       return true;
     }
     return !DashboardUtils.collectDashboardIds().contains(widget.getTargetDashboardId());
+  }
+  
+  public void updateButtonNameByLocale(NavigationDashboardWidget widget) {
+    String currentButtonName = widget.getButtonName();
+    initMultipleLanguagesForButtonWidgetName(widget, currentButtonName);
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional = widget.getButtonNames().stream()
+        .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+    if (optional.isPresent()) {
+      optional.get().setValue(currentButtonName);
+    }
+  }
+  
+  private void initMultipleLanguagesForButtonWidgetName(NavigationDashboardWidget widget, String currentName) {
+    Map<String, DisplayName> mapLanguage = getMapLanguages(widget);
+    List<String> supportedLanguages = getSupportedLanguages();
+    for (String language : supportedLanguages) {
+      DisplayName localeLanguage = mapLanguage.get(language);
+      if (localeLanguage == null) {
+        DisplayName displayName = new DisplayName();
+        displayName.setLocale(Locale.forLanguageTag(language));
+        displayName.setValue(currentName);
+        widget.getButtonNames().add(displayName);
+      } else if (StringUtils.isBlank(localeLanguage.getValue())) {
+        localeLanguage.setValue(currentName);
+      }
+    }
+  }
+  
+  private Map<String, DisplayName> getMapLanguages(NavigationDashboardWidget widget) {
+    List<DisplayName> languages = widget.getButtonNames();
+    return languages.stream().collect(Collectors.toMap(o -> o.getLocale().toLanguageTag(), o -> o));
+  }
+  
+  private List<String> getSupportedLanguages() {
+    return LanguageService.getInstance().getIvyLanguageOfUser().getSupportedLanguages();
   }
 }

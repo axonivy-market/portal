@@ -76,7 +76,7 @@
        <div id="navigation-dashboard-widget-footer" class="ml-3 mr-3 mb-3">
          <p:commandButton id="navigate-dashboard-button" styleClass="ui-button w-full ui-button-text-only" disabled="#{navigationDashboardWidgetBean.isNotClickable(widget, isReadOnlyMode)}"
                           action="#{navigationDashboardWidgetBean.redirectToDashboard(widget, dashboardBean.selectedDashboard)}"
-                          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/navigate')}"/>
+                          value="#{widget.buttonName}" />
        </div>
   </h:panelGroup>
 </cc:implementation>
