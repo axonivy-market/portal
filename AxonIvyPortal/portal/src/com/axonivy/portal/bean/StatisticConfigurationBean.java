@@ -648,12 +648,6 @@ public class StatisticConfigurationBean implements Serializable {
     if (aggregationInterval == null) {
       return;
     }
-    /**
-    * handle: 
-    * Edit a statistic > change to Custom field > choose ShipmentDate
-    * > click Generate preview > choose CustomerEmail > 
-    * > click Generate preview => error
-    * */
     if(!statistic.getAggregates().contains("timestamp") && !isDateTimeSelected) {
       this.setAggregationInterval(null);
       return;
