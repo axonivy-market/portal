@@ -1454,15 +1454,17 @@ Dialogs:
         page:
           StatisticConfiguration:
             AddFilter: Filter hinzufügen
-            AdvancedConfiguration: Erweiterte Konfiguration
-            Aggregate: Aggregat
+            Advanced: Fortgeschrittene
             ChartType: Diagrammtyp
             Color: Farbe {0}
             Create: Erstellen
+            CustomAggregateInput: Bitte geben Sie benutzerdefinierte Felder ein.
             EditStatistic: Statistisches Widget bearbeiten
             For: Für
             GeneratePreview: Vorschau generieren
+            GroupBy: Gruppe nach
             HideLabel: Etikett ausblenden
+            Interval: Intervall
             NewStatistic: Neues Statistik-Widget
             RefreshInterval: Automatisches Auffrischen aktiviert
             RefreshIntervalInSeconds: Intervall für die automatische Aktualisierung (Sekunden)
@@ -1502,6 +1504,49 @@ Enums:
               name: Kennzahl / Metrik
             PIE:
               name: Kreisdiagramm
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: Name des Aktivators
+              BUSINESS_RUNTIME:
+                name: Business-Laufzeit
+              BUSINESS_STATE:
+                name: Zustand
+              CATEGORY:
+                name: Kategorie
+              CREATOR_NAME:
+                name: Name des Erstellers
+              CUSTOM_FIELD:
+                name: Benutzerdefiniertes Feld
+              END_TIMESTAMP:
+                name: Zeitstempel des Endes
+              EXPIRY_TIMESTAMP:
+                name: Verfallszeitstempel
+              IS_EXPIRED:
+                name: Ist abgelaufen
+              MODIFIED_TIMESTAMP:
+                name: Geänderter Zeitstempel
+              NUMBER_OF_RESUMES:
+                name: Anzahl der wieder aufnehmen
+              PRIORITY:
+                name: Priorität
+              RESPONSIBLES_NAME:
+                name: Verantwortliche
+              START_TIMESTAMP:
+                name: Zeitstempel des Beginns
+              WORKER_NAME:
+                name: Name des Arbeiters
+              WORKING_TIME:
+                name: Arbeitszeiten
+            AggregationInterval:
+              DAY:
+                name: Tag
+              MONTH:
+                name: Monat
+              WEEK:
+                name: Woche
+              YEAR:
+                name: Jahr
 Labels:
   AI:
     Error:
@@ -1623,6 +1668,7 @@ Labels:
       DARK: Dunkel
       LIGHT: Hell
   Filters: Filter
+  General: Allgemein
   Icon: Symbol
   InsertTask-Explain: Aufgabe einfügen. Meine Aufgabe wird aufgeschoben.
   InsertTheTask: Aufgabe einfügen

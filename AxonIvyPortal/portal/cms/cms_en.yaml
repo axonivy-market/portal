@@ -1487,15 +1487,17 @@ Dialogs:
         page:
           StatisticConfiguration:
             AddFilter: Add filter
-            AdvancedConfiguration: Advanced Configuration
-            Aggregate: Aggregate
+            Advanced: Advanced
             ChartType: Chart type
             Color: Color {0}
             Create: Create
+            CustomAggregateInput: Please input custom fields.
             EditStatistic: Edit Statistic Widget
             For: For
             GeneratePreview: Generate preview
+            GroupBy: Group by
             HideLabel: Hide label
+            Interval: Interval
             NewStatistic: New Statistic Widget
             RefreshInterval: Auto-refresh enabled
             RefreshIntervalInSeconds: Auto-refresh interval (seconds)
@@ -1538,6 +1540,49 @@ Enums:
               name: Number
             PIE:
               name: Pie
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: Activator name
+              BUSINESS_RUNTIME:
+                name: Business runtime
+              BUSINESS_STATE:
+                name: State
+              CATEGORY:
+                name: Category
+              CREATOR_NAME:
+                name: Creator name
+              CUSTOM_FIELD:
+                name: Custom field
+              END_TIMESTAMP:
+                name: End timestamp
+              EXPIRY_TIMESTAMP:
+                name: Expiry timestamp
+              IS_EXPIRED:
+                name: Is expired
+              MODIFIED_TIMESTAMP:
+                name: Modified timestamp
+              NUMBER_OF_RESUMES:
+                name: Number of resumes
+              PRIORITY:
+                name: Priority
+              RESPONSIBLES_NAME:
+                name: Responsibles
+              START_TIMESTAMP:
+                name: Start timestamp
+              WORKER_NAME:
+                name: Worker name
+              WORKING_TIME:
+                name: Working time
+            AggregationInterval:
+              DAY:
+                name: Day
+              MONTH:
+                name: Month
+              WEEK:
+                name: Week
+              YEAR:
+                name: Year
 Labels:
   AI:
     Error:
@@ -1669,6 +1714,7 @@ Labels:
       DARK: Dark
       LIGHT: Light
   Filters: Filters
+  General: General
   Icon: Icon
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
