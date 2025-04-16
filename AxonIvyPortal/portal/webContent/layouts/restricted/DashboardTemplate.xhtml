@@ -12,6 +12,8 @@
 
     <ui:define name="title">#{managedBean.getSelectedDashboardName()}</ui:define>
     <ui:param name="loadGridStack" value="true" />
+    <ui:param name="isInDashboard" value="true"/>
+
 
     <ui:define name="pageContent">
         <script>
@@ -153,6 +155,15 @@
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
                         index="#{status.index}"
                         id="notification-#{widget.id}" />
+                    </c:if>
+                    
+                    <!-- Navigation dashboard widget -->
+                    <c:if test="#{widget.type eq 'NAVIGATION_DASHBOARD'}">
+                      <ic:com.axonivy.portal.dashboard.component.NavigationDashboardWidget widget="#{widget}"
+                        managedBean="#{managedBean}"
+                        index="#{status.index}"
+                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        id="navigation-dashboard-#{widget.id}" />
                     </c:if>
                   </div>
                 </div>
@@ -316,7 +327,7 @@
             </h:form>
           </p:dialog>
 
-          <h:panelGroup rendered="#{managedBean.isShowShareButtonOnDashboard() and not managedBean.isMainDashboardSelected()}" layout="block" styleClass="text-center">
+          <h:panelGroup rendered="#{managedBean.isShowShareButtonOnDashboard() and not managedBean.isMainDashboardSelected() and managedBean.selectedDashboard.dashboardDisplayType ne 'HIDDEN'}" layout="block" styleClass="text-center">
             <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShareThisDashboard')}" 
                   onclick="PF('share-dashboard-dialog').show(); return false;" styleClass="js-share-dashboard-link" />
           </h:panelGroup>

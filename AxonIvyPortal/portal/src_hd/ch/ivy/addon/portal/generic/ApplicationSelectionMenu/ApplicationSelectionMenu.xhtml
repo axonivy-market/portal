@@ -20,10 +20,9 @@
 
   <!-- LOGO  -->
   <div class="sidebar-logo">
-    <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" >
-      <p:graphicImage styleClass="portal-home-logo" name="#{ivyFreyaTheme.logo}" library="ivy-branding" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
+    <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" onclick="removeNavigationDashboardBackButton();">
+      <p:graphicImage styleClass="portal-home-logo" name="#{ivyFreyaTheme.logo}" library="ivy-branding" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}"/>
     </p:commandLink>
-    
     <p:commandLink id="logo-small" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" styleClass="portal-home-logo-small">
       <p:graphicImage styleClass="portal-home-logo portal-home-logo-small" name="logo_small" library="ivy-branding" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
@@ -61,6 +60,8 @@
           actionListener="#{logic.clickBreadcrumb('TASK')}" oncomplete="PF('task-losing-confirmation-dialog').show();" />
         <p:remoteCommand name="navigateToHomeFromBreadcrumb" immediate="true"
           actionListener="#{logic.clickBreadcrumb('HOME')}" oncomplete="PF('task-losing-confirmation-dialog').show();" />
+        <p:remoteCommand name="removeNavigationDashboardBackButton" id="removeNavigationDashboardBackButton"
+          actionListener="#{navigationDashboardWidgetBean.removeNavigationDashboardBackButton()}" global="false"/>
       </h:form>
     </div>
   </h:panelGroup>
