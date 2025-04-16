@@ -750,6 +750,11 @@ public class StatisticConfigurationBean implements Serializable {
       resetAggregateValues();
       resetCustomFieldAndDateTimeInterval();
       this.setDateTimeSelected(statistic.getStatisticAggregation().getAggregationField().getName().contains("Timestamp"));
+      /**
+       * try to reset existing filter
+       */
+      initFilterFields();
+      this.statistic.setFilters(new ArrayList<>());
     }
     statistic.setChartTarget(newChartTarget);
   }
