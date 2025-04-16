@@ -13,6 +13,13 @@ import com.axonivy.portal.util.filter.operator.task.expirydate.ExpiryDateIsOpera
 import com.axonivy.portal.util.filter.operator.task.expirydate.ExpiryDateNumberOfPeriodsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.expirydate.ExpiryDateTodayOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.expirydate.ExpiryDateYesterdayOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeAfterOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeBeforeOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeBetweenOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeCurrentPeriodOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeIsOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeNumberOfPeriodsOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeTodayYesterdayOperatorHandler;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
@@ -69,5 +76,23 @@ public class TaskFilterFieldExpiryDate extends FilterField {
   @Override
   public CaseQuery generateFilterQuery(DashboardFilter filter) {
     return null;
+  }
+  
+  @Override
+  public String generateStringFilter(DashboardFilter filter) {
+    return switch (filter.getOperator()) {
+      case BETWEEN -> DatetimeBetweenOperatorHandler.getInstance().buildBetweenFilter(filter);
+      case NOT_BETWEEN -> DatetimeBetweenOperatorHandler.getInstance().buildNotBetweenFilter(filter);
+      case AFTER -> DatetimeAfterOperatorHandler.getInstance().buildFilter(filter);
+      case BEFORE -> DatetimeBeforeOperatorHandler.getInstance().buildFilter(filter);
+      case CURRENT -> DatetimeCurrentPeriodOperatorHandler.getInstance().buildFilter(filter);
+      case LAST -> DatetimeNumberOfPeriodsOperatorHandler.getInstance().buildLastPeriodFilter(filter);
+      case NEXT -> DatetimeNumberOfPeriodsOperatorHandler.getInstance().buildNextPeriodFilter(filter);
+      case TODAY -> DatetimeTodayYesterdayOperatorHandler.getInstance().buildTodayFilter(filter);
+      case YESTERDAY -> DatetimeTodayYesterdayOperatorHandler.getInstance().buildYesterdayFilter(filter);
+      case IS -> DatetimeIsOperatorHandler.getInstance().buildIsFilter(filter);
+      case IS_NOT -> DatetimeIsOperatorHandler.getInstance().buildIsNotFilter(filter);
+      default -> null;
+    };
   }
 }

@@ -12,8 +12,10 @@ import com.axonivy.portal.util.filter.operator.task.customfield.CustomStringInOp
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomStringIsEmptyOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomStringIsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomStringStartWithOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.text.TextInOperatorHandler;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -53,24 +55,33 @@ public class TaskFilterFieldCustomString extends CustomFilterField {
   @Override
   public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
     return switch (filter.getOperator()) {
-    case CONTAINS -> CustomStringContainsOperatorHandler.getInstance().buildContainsQuery(filter);
-    case NOT_CONTAINS -> CustomStringContainsOperatorHandler.getInstance().buildNotContainsQuery(filter);
-    case IS -> CustomStringIsOperatorHandler.getInstance().buildIsQuery(filter);
-    case IS_NOT -> CustomStringIsOperatorHandler.getInstance().buildIsNotQuery(filter);
-    case START_WITH -> CustomStringStartWithOperatorHandler.getInstance().buildStartWithQuery(filter);
-    case NOT_START_WITH -> CustomStringStartWithOperatorHandler.getInstance().buildNotStartWithQuery(filter);
-    case END_WITH -> CustomStringEndWithOperatorHandler.getInstance().buildEndWithQuery(filter);
-    case NOT_END_WITH -> CustomStringEndWithOperatorHandler.getInstance().buildNotEndWithQuery(filter);
-    case EMPTY -> CustomStringIsEmptyOperatorHandler.getInstance().buildIsEmptyQuery(filter);
-    case NOT_EMPTY -> CustomStringIsEmptyOperatorHandler.getInstance().buildNotEmptyQuery(filter);
-    case IN -> CustomStringInOperatorHandler.getInstance().buildInQuery(filter);
-    default -> null;
+      case CONTAINS -> CustomStringContainsOperatorHandler.getInstance().buildContainsQuery(filter);
+      case NOT_CONTAINS -> CustomStringContainsOperatorHandler.getInstance().buildNotContainsQuery(filter);
+      case IS -> CustomStringIsOperatorHandler.getInstance().buildIsQuery(filter);
+      case IS_NOT -> CustomStringIsOperatorHandler.getInstance().buildIsNotQuery(filter);
+      case START_WITH -> CustomStringStartWithOperatorHandler.getInstance().buildStartWithQuery(filter);
+      case NOT_START_WITH -> CustomStringStartWithOperatorHandler.getInstance().buildNotStartWithQuery(filter);
+      case END_WITH -> CustomStringEndWithOperatorHandler.getInstance().buildEndWithQuery(filter);
+      case NOT_END_WITH -> CustomStringEndWithOperatorHandler.getInstance().buildNotEndWithQuery(filter);
+      case EMPTY -> CustomStringIsEmptyOperatorHandler.getInstance().buildIsEmptyQuery(filter);
+      case NOT_EMPTY -> CustomStringIsEmptyOperatorHandler.getInstance().buildNotEmptyQuery(filter);
+      case IN -> CustomStringInOperatorHandler.getInstance().buildInQuery(filter);
+      default -> null;
     };
   }
 
   @Override
   public CaseQuery generateFilterQuery(DashboardFilter filter) {
     return null;
+  }
+  
+  @Override
+  public String generateStringFilter(DashboardFilter filter) {
+    Ivy.log().error("GO HERE TO GENERATE CUSTOM STRING FILTER: {0}", filter.getFilterType());
+    return switch (filter.getOperator()) {
+      case IN -> TextInOperatorHandler.getInstance().buildCustomFieldFilter(filter);
+      default -> null;
+    };
   }
 
 }

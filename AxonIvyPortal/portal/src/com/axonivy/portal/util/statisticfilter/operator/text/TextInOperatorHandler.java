@@ -4,7 +4,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.constant.StatisticConstants;
-import com.axonivy.portal.dto.statistic.StatisticFilter;
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 
@@ -18,7 +18,7 @@ public class TextInOperatorHandler {
     return instance;
   }
   
-  public String buildFilter(StatisticFilter filter) {
+  public String buildFilter(DashboardFilter filter) {
     if (CollectionUtils.isEmpty(filter.getValues())) {
       return StringUtils.EMPTY;
     }
@@ -32,7 +32,7 @@ public class TextInOperatorHandler {
     return sb.toString();
   }
   
-  public String buildFilterWithoutValue(StatisticFilter filter) {
+  public String buildFilterWithoutValue(DashboardFilter filter) {
     return changeFilterField(filter.getField());
   }
   
@@ -42,6 +42,20 @@ public class TextInOperatorHandler {
       case StatisticConstants.ACTIVATOR -> StatisticConstants.RESPONSIBLE_NAME;
       default -> field; 
     };
+  }
+  
+  public String buildCustomFieldFilter(DashboardFilter filter) {
+    if (CollectionUtils.isEmpty(filter.getValues())) {
+      return StringUtils.EMPTY;
+    }
+
+    StringBuilder sb = new StringBuilder();
+    sb.append(StatisticConstants.CUSTOM_STRING + filter.getField())
+      .append(PortalConstants.COLON);
+    for (String value : filter.getValues()) {
+      sb.append(value).append(" ");
+    }
+    return sb.toString();
   }
 
 }

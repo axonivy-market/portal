@@ -13,8 +13,16 @@ import com.axonivy.portal.util.filter.operator.task.customfield.CustomTimestampI
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomTimestampNumberOfPeriodsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomTimestampTodayOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomTimestampYesterdayOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeAfterOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeBeforeOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeBetweenOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeCurrentPeriodOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeIsOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeNumberOfPeriodsOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeTodayYesterdayOperatorHandler;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -75,6 +83,25 @@ public class TaskFilterFieldCustomTimestamp extends CustomFilterField {
   @Override
   public CaseQuery generateFilterQuery(DashboardFilter filter) {
     return null;
+  }
+  
+  @Override
+  public String generateStringFilter(DashboardFilter filter) {
+    Ivy.log().error("GO HERE TO GENERATE CUSTOM TIMESTAMP FILTER: {0}", filter.getFilterType());
+    return switch (filter.getOperator()) {
+      case BETWEEN -> DatetimeBetweenOperatorHandler.getInstance().buildBetweenFilter(filter);
+      case NOT_BETWEEN -> DatetimeBetweenOperatorHandler.getInstance().buildNotBetweenFilter(filter);
+      case AFTER -> DatetimeAfterOperatorHandler.getInstance().buildFilter(filter);
+      case BEFORE -> DatetimeBeforeOperatorHandler.getInstance().buildFilter(filter);
+      case CURRENT -> DatetimeCurrentPeriodOperatorHandler.getInstance().buildFilter(filter);
+      case LAST -> DatetimeNumberOfPeriodsOperatorHandler.getInstance().buildLastPeriodFilter(filter);
+      case NEXT -> DatetimeNumberOfPeriodsOperatorHandler.getInstance().buildNextPeriodFilter(filter);
+      case TODAY -> DatetimeTodayYesterdayOperatorHandler.getInstance().buildTodayFilter(filter);
+      case YESTERDAY -> DatetimeTodayYesterdayOperatorHandler.getInstance().buildYesterdayFilter(filter);
+      case IS -> DatetimeIsOperatorHandler.getInstance().buildIsFilter(filter);
+      case IS_NOT -> DatetimeIsOperatorHandler.getInstance().buildIsNotFilter(filter);
+      default -> null;
+    };
   }
 
 }

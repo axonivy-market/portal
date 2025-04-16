@@ -2,7 +2,7 @@
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="filter" type="com.axonivy.portal.dto.statistic.StatisticFilter" />
+  <cc:attribute name="filter" type="com.axonivy.portal.dto.statistic.DashboardFilter" />
   <cc:attribute name="managedBean" required="true" />
   <cc:attribute name="componentToUpdate" required="true" />
   <cc:attribute name="onCompleteRemoveFilter" />
@@ -47,7 +47,7 @@
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" forStatistic="true" />
       </h:panelGroup>
       
-      <h:panelGroup layout="block" rendered="#{filter.isCreatedDateField() or filter.isExpiryDateField()}">
+      <h:panelGroup layout="block" rendered="#{filter.isCreatedDateField() or filter.isExpiryDateField() or filter.isCustomDateField()}">
         <ic:com.axonivy.portal.dashboard.component.filter.DateFilter filter="#{filter}" widgetType="#{statistic.getChartTarget().getName()}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{widgetDateFilterBean.createdDateOperators}"/>
@@ -62,6 +62,18 @@
       
       <h:panelGroup layout="block" rendered="#{filter.isCanWorkOn()}">
         <ic:com.axonivy.portal.dashboard.component.filter.CanWorkOnFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+      </h:panelGroup>
+      
+      <h:panelGroup layout="block" rendered="#{filter.isTextField()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.TextFilter filter="#{filter}" forStatistic="true"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
+      </h:panelGroup>
+  
+      <h:panelGroup layout="block" rendered="#{filter.isNumberField()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.NumberFilter filter="#{filter}" forStatistic="true"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
       </h:panelGroup>

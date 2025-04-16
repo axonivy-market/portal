@@ -23,6 +23,7 @@ public class WidgetTextFilterBean implements Serializable {
 
   private static List<FilterOperator> operators = FilterOperator.TEXT_OPERATORS.stream().toList();
   private static List<FilterOperator> operatorsForCustomFieldWithCms = Collections.unmodifiableSet(EnumSet.of(FilterOperator.CONTAINS)).stream().toList();
+  private static List<FilterOperator> statisticOperators = FilterOperator.STATISTIC_TEXT_OPERATORS.stream().toList();
 
   public List<FilterOperator> getOperators() {
     return operators;
@@ -59,4 +60,7 @@ public class WidgetTextFilterBean implements Serializable {
     return PortalCustomFieldUtils.isSupportMultiLanguageTaskField(filter.getField());
   }
 
+  public List<FilterOperator> getStatisticOperators() {
+    return statisticOperators;
+  }
 }

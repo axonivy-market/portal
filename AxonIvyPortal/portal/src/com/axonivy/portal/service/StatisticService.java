@@ -14,14 +14,13 @@ import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.dto.StatisticDto;
-import com.axonivy.portal.dto.statistic.StatisticFilter;
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.AdditionalChartConfig;
-import com.axonivy.portal.util.statisticfilter.field.FilterField;
+import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -84,13 +83,13 @@ public class StatisticService {
     }
   }
   
-  private String processTaskFilter(List<StatisticFilter> filters) {
+  private String processTaskFilter(List<DashboardFilter> filters) {
     if (CollectionUtils.isEmpty(filters)) {
       return null;
     }
     StringBuilder sbFilter = new StringBuilder();
-    for (StatisticFilter statisticFilter : filters) {
-      if (Optional.ofNullable(statisticFilter).map(StatisticFilter::getOperator).isEmpty()) {
+    for (DashboardFilter statisticFilter : filters) {
+      if (Optional.ofNullable(statisticFilter).map(DashboardFilter::getOperator).isEmpty()) {
         continue;
       }
       FilterField filterField = TaskFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType());
@@ -104,17 +103,14 @@ public class StatisticService {
     if (Strings.EMPTY.equals(sbFilter.toString())) {
       return null;
     }
+    Ivy.log().error("filter string is {0}", sbFilter.toString());
     return sbFilter.toString();
   }
 
   public AggregationResult getChartData(Statistic chart) {
     String filter = null;
-    if (StringUtils.isEmpty(chart.getFilter())) {
-      filter = processTaskFilter(chart.getFilters());
-      chart.setFilter(filter);
-    } else {
-      filter = chart.getFilter();
-    }
+    filter = processTaskFilter(chart.getFilters());
+    chart.setFilter(filter);
     return switch (chart.getChartTarget()) {
       case CASE -> WorkflowStats.current().caze().aggregate(chart.getAggregates(), filter);
       case TASK ->  WorkflowStats.current().task().aggregate(chart.getAggregates(), filter);

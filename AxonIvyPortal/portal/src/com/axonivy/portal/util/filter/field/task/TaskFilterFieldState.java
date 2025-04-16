@@ -6,6 +6,7 @@ import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.operator.task.state.StateInOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.text.TextInOperatorHandler;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
@@ -49,5 +50,13 @@ public class TaskFilterFieldState extends FilterField {
   @Override
   public CaseQuery generateFilterQuery(DashboardFilter filter) {
     return null;
+  }
+  
+  @Override
+  public String generateStringFilter(DashboardFilter filter) {
+    return switch (filter.getOperator()) {
+      case IN -> TextInOperatorHandler.getInstance().buildFilter(filter);
+      default -> null;
+    };
   }
 }

@@ -39,7 +39,7 @@ import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
-import com.axonivy.portal.dto.statistic.StatisticFilter;
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.ChartTarget;
 import com.axonivy.portal.enums.ChartType;
 import com.axonivy.portal.service.DeepLTranslationService;
@@ -48,7 +48,7 @@ import com.axonivy.portal.service.multilanguage.StatisticDescriptionMultilanguag
 import com.axonivy.portal.service.multilanguage.StatisticNameMultilanguageService;
 import com.axonivy.portal.service.multilanguage.StatisticXTitleMultilanguageService;
 import com.axonivy.portal.service.multilanguage.StatisticYTitleMultilanguageService;
-import com.axonivy.portal.util.statisticfilter.field.FilterField;
+import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -191,6 +191,7 @@ public class StatisticConfigurationBean implements Serializable {
     filterFields = new ArrayList<>();
     filterFields.add(TaskFilterFieldFactory.getDefaultFilterField());
     filterFields.addAll(TaskFilterFieldFactory.getStandardFilterableFields());
+    filterFields.addAll(TaskFilterFieldFactory.getCustomFilterableFields());
   }
   
   private void initFilters() {
@@ -199,11 +200,11 @@ public class StatisticConfigurationBean implements Serializable {
     }
 
     // If the filter available in the filter list, initialize it
-    for (StatisticFilter filter : statistic.getFilters()) {
+    for (DashboardFilter filter : statistic.getFilters()) {
       if (isFilterAvaliable(filter)) {
         FilterField filterField = TaskFilterFieldFactory
-            .findBy(Optional.ofNullable(filter).map(StatisticFilter::getField).orElse(StringUtils.EMPTY),
-                Optional.ofNullable(filter).map(StatisticFilter::getFilterType).orElse(null));
+            .findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(StringUtils.EMPTY),
+                Optional.ofNullable(filter).map(DashboardFilter::getFilterType).orElse(null));
         if (filterField != null) {
           filterField.initFilter(filter);
         }
@@ -211,8 +212,8 @@ public class StatisticConfigurationBean implements Serializable {
     }
   }
   
-  private boolean isFilterAvaliable(StatisticFilter filter) {
-    return Optional.ofNullable(filter).map(StatisticFilter::getField).isPresent() && filterFields.stream()
+  private boolean isFilterAvaliable(DashboardFilter filter) {
+    return Optional.ofNullable(filter).map(DashboardFilter::getField).isPresent() && filterFields.stream()
         .filter(field -> filter.getField().contentEquals(filter.getField())).findFirst().isPresent();
   }
 
@@ -542,14 +543,15 @@ public class StatisticConfigurationBean implements Serializable {
     this.filterFields = filterFields;
   }
   
-  public void onSelectFilter(StatisticFilter filter) {
-    String field = Optional.ofNullable(filter).map(StatisticFilter::getFilterField).map(FilterField::getName)
-        .orElse(StringUtils.EMPTY);
+  public void onSelectFilter(DashboardFilter filter) {
+    String field = Optional.ofNullable(filter)
+        .map(DashboardFilter::getFilterField)
+        .map(FilterField::getName)
+        .orElse(StringUtils.EMPTY); 
 
     FilterField filterField = TaskFilterFieldFactory.findBy(field);
 
-    if (filterField.getName()
-        .contentEquals(BaseFilter.DEFAULT)) {
+    if (filterField.getName().contentEquals(BaseFilter.DEFAULT)) {
       filterField.addNewFilter(filter);
       return;
     }
@@ -562,11 +564,11 @@ public class StatisticConfigurationBean implements Serializable {
       statistic.setFilters(new ArrayList<>());
     }
 
-    StatisticFilter newFilter = new StatisticFilter();
+    DashboardFilter newFilter = new DashboardFilter();
     statistic.getFilters().add(newFilter);
   }
   
-  public void removeFilter(StatisticFilter filter) {
+  public void removeFilter(DashboardFilter filter) {
     statistic.getFilters().remove(filter);
   }
   
