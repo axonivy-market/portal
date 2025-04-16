@@ -1119,4 +1119,19 @@ public class NewDashboardPage extends TemplatePage {
   public SelenideElement getNavigationDashboardWidgetDialog() {
     return $("div[class*='navigation-dashboard-widget-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
+  
+  public Boolean isBackButtonAppear() {
+    return getBackButton().isDisplayed();
+  }
+  
+  public void clickOnBackButton() {
+    getBackButton().click();
+    waitForPageLoad();
+  }
+
+  private SelenideElement getBackButton() {
+    return $("span#breadcrumb-container").shouldBe(Condition.appear, DEFAULT_TIMEOUT).
+    $("form#navigation-dashboard-back-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).
+    $("a[id$=':back-to-previous-dashboard-page']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
 }

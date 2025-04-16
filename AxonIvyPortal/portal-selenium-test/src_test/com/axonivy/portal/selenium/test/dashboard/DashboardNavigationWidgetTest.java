@@ -51,6 +51,8 @@ public class DashboardNavigationWidgetTest extends BaseTest{
     navigationWidget.clickOnNavigateButton();
     newDashboardPage.waitForTaskWidgetLoaded();
     assertTrue(newDashboardPage.isTaskListDisplayed());
+    assertTrue(newDashboardPage.isBackButtonAppear());
+    newDashboardPage.clickOnBackButton();
     }
   
   @Test
