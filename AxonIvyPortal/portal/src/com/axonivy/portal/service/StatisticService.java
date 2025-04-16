@@ -109,12 +109,12 @@ public class StatisticService {
 
   public AggregationResult getChartData(Statistic chart) {
     String filter = null;
-    if (StringUtils.isEmpty(chart.getFilter())) {
-      filter = processTaskFilter(chart.getFilters());
-      chart.setFilter(filter);
-    } else {
-      filter = chart.getFilter();
-    }
+    filter = processTaskFilter(chart.getFilters());
+    chart.setFilter(filter);
+//    if (StringUtils.isEmpty(chart.getFilter())) {
+//    } else {
+//      filter = chart.getFilter();
+//    }
     return switch (chart.getChartTarget()) {
       case CASE -> WorkflowStats.current().caze().aggregate(chart.getAggregates(), filter);
       case TASK ->  WorkflowStats.current().task().aggregate(chart.getAggregates(), filter);
