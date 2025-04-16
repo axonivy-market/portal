@@ -303,7 +303,7 @@
                     <p:commandButton widgetVar="previewButton"
                       value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GeneratePreview')}"
                       actionListener="#{statisticConfigurationBean.getPreviewData()}"
-                      update="errors-message" oncomplete="handlePreviewChart(xhr, status, args)"
+                      update="permissions errors-message" oncomplete="handlePreviewChart(xhr, status, args)"
                       styleClass="ui-leave-button" />
                   </div>
                 </div>
