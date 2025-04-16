@@ -265,6 +265,11 @@ public class StatisticConfigurationBean implements Serializable {
     }
     handleCustomFieldAggregation();
     handleAggregateWithDateTimeInterval();
+  
+    if(!isCustomFieldsSelected()) {
+      statistic.getStatisticAggregation().setCustomFieldType(currentCustomFieldType);
+      statistic.getStatisticAggregation().setCustomFieldValue(currentCustomField);
+    }
     syncUIConfigWithChartConfig();
     cleanUpRedundantChartConfigs(statistic.getChartType());
     cleanUpConfiguration();
