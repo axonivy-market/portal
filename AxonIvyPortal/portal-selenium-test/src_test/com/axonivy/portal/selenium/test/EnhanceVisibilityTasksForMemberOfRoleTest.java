@@ -40,6 +40,11 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
+
+    refreshPage();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForTaskWidgetLoaded();
+
     taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
     // User Guest
     login(TestAccount.GUEST_USER);
@@ -52,6 +57,11 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
+
+    refreshPage();
+    dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForTaskWidgetLoaded();
+
     taskWidget.countAllTasks().shouldHave(size(2), DEFAULT_TIMEOUT);
   }
 
@@ -71,6 +81,11 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.applyFilter();
     // Reserved
     taskWidget.reserveTask(0);
+
+    refreshPage();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForTaskWidgetLoaded();
+
     int countTasksReserved = taskWidget.countAllTasks().size();
     // User Guest
     login(TestAccount.GUEST_USER);
@@ -84,6 +99,11 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
+
+    refreshPage();
+    dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForTaskWidgetLoaded();
+
     assertEquals(countTasksReserved, taskWidget.countAllTasks().size());
   }
 
