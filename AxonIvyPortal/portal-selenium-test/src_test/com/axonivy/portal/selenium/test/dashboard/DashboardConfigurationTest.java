@@ -205,6 +205,9 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testEditPrivateDashboardInfo() {
     redirectToRelativeLink(createSampleDashboardUrl);
+    NewDashboardPage newDashboard = new NewDashboardPage();
+    newDashboard.waitForPageLoad();
+
     var modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
     modificationPage.clickEditDashboardByName(PRIVATE_1);
     modificationPage.editPrivateDashboardInfo(EDITED_PRIVATE_DASHBOARD_1, DASHBOARD_1_DESCRIPTION);
@@ -217,6 +220,9 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testDeletePrivateDashboard() {
     redirectToRelativeLink(createSampleDashboardUrl);
+    NewDashboardPage newDashboard = new NewDashboardPage();
+    newDashboard.waitForPageLoad();
+
     var modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
     modificationPage.clickDeleteDashboardByName(PRIVATE_1);
     modificationPage.getDashboardRows().shouldHave(size(1));
