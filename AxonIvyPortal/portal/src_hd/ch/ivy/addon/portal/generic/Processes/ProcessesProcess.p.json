@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.1/process.json",
   "id" : "150D5B63F4513514",
   "kind" : "HTML_DIALOG",
   "config" : {

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.1/process.json",
   "id" : "182E92730FF57035",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.LeaveRequestProcessData"
@@ -55,7 +55,9 @@
         "task" : {
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createLeaveRequest\", [ivy.session.getSessionUser().getDisplayName()])%>",
           "responsible" : {
-            "activator" : "SELF"
+            "roles" : [
+              "SELF"
+            ]
           },
           "skipTasklist" : true
         },
@@ -84,7 +86,7 @@
           "name" : "<%=in.isApproved? ivy.cms.co(\"/Processes/LeaveRequest/approvalTask\") : ivy.cms.co(\"/Processes/LeaveRequest/rejectedTask\")%>",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
-            "activator" : "in.requester"
+            "script" : "in.requester"
           }
         }
       },
@@ -105,7 +107,7 @@
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/approvalTaskName\", [ivy.security.users().find(in.requester).getDisplayName()])%>",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
-            "activator" : "in.approver"
+            "script" : "in.approver"
           }
         },
         "output" : {
