@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.1/process.json",
   "id" : "181899823E886ABB",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.RoleSelectionExampleData"
@@ -56,7 +56,7 @@
           "description" : "This task is created by Role Selection Example",
           "responsible" : {
             "type" : "ROLE_FROM_ATTRIBUTE",
-            "activator" : "in1.selectedRole.getMemberName()"
+            "script" : "in1.selectedRole.getMemberName()"
           }
         }
       },
