@@ -6,14 +6,12 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="value" required="true" default="fa-play"
     shortDescription="Value expression to bind selected Icon on" />
-  <cc:attribute name="tabindex" required="false" default="1" />
   <cc:attribute name="isReadOnly" default="false" />
   <cc:attribute name="hideIconArray" default="false"/>
   <cc:attribute name="isImmediate" default="true"/>
 </cc:interface>
 <cc:implementation>
   <h:outputScript name="icon-selection.js" library="js" />
-  <c:set var="tabindex" value="#{cc.attrs.tabindex}"/>
   <c:set var="readOnly" value="#{empty cc.attrs.isReadOnly ? false : cc.attrs.isReadOnly}"/>
   <c:set var="hideIconArray" value="#{empty cc.attrs.hideIconArray ? false : cc.attrs.hideIconArray}"/>
   <f:event listener="#{iconSelectionBean.init(cc.attrs.value)}" type="preRenderComponent" />
@@ -22,7 +20,7 @@
   <h:panelGroup id="awesome-icon-selection" styleClass="awesome-icon-selection-panel">
     <h:panelGroup rendered="#{!hideIconArray}" id="menu-icon-container" styleClass="menu-icon-container" layout="block">
       <h:panelGroup id="custom-array-icon" styleClass="custom-array-icon" layout="block"/>
-      <p:commandLink id="change-icon-link" styleClass="select-awesome-icon-button icon-color" tabindex="#{tabindex}"
+      <p:commandLink id="change-icon-link" styleClass="select-awesome-icon-button icon-color"
         process="@this"
         onclick="PF('#{cc.clientId}-select-icon-dialog').show();" oncomplete="loadDialogStreamlineIcon('#{cc.clientId}');"
         rendered="#{!readOnly}">
@@ -30,7 +28,7 @@
         </p:commandLink>
     </h:panelGroup>
     <h:panelGroup rendered="#{hideIconArray}">
-      <p:commandLink id="icon-link" tabindex="#{tabindex}"
+      <p:commandLink id="icon-link"
         styleClass="select-icon-link icon-color"
         process="@this" rendered="#{!readOnly}"
         onclick="PF('#{cc.clientId}-select-icon-dialog').show();"
