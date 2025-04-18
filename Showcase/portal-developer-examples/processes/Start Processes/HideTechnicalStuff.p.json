@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.1/process.json",
   "id" : "16583F0F73864543",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -280,14 +280,16 @@
             "description" : "Report and hide case",
             "responsible" : {
               "type" : "ROLE_FROM_ATTRIBUTE",
-              "activator" : "\"AXONIVY_PORTAL_ADMIN\""
+              "script" : "\"AXONIVY_PORTAL_ADMIN\""
             }
           }, {
             "id" : "TaskB",
             "name" : "Report",
             "description" : "Report but don't hide case. This task should be hidden if you run \"Report and hide case\" task.",
             "responsible" : {
-              "activator" : "CREATOR"
+              "roles" : [
+                "CREATOR"
+              ]
             }
           } ]
       },
@@ -331,7 +333,9 @@
           "description" : "A System task is hidden as default, grant SystemTaskReadAll permission to display all system task",
           "category" : "SystemTask/Hide",
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         }
       },
@@ -364,7 +368,9 @@
           "name" : " I'm a system task with delay",
           "description" : "A System task is hidden as default, grant SystemTaskReadAll permission to display all system task",
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           },
           "delay" : "ivy.cal.getWorkDayIn(new DateTime(), 3).getDurationFromNow()"
         }
