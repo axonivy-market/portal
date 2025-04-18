@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.1/process.json",
   "id" : "189B5CA2807EB1E7",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.RedirectToDetailsPageExampleData"

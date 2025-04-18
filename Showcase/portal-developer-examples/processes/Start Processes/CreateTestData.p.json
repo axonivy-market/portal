@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.1/process.json",
   "id" : "162511D2577DBA88",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -255,7 +255,9 @@
               "name" : "Technical task(JOIN_FAILED)",
               "description" : "Task failed by runtime exception",
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               },
               "skipTasklist" : true,
               "code" : "5/0;"
@@ -320,7 +322,7 @@
             "category" : "Party/Drink",
             "responsible" : {
               "type" : "USER_FROM_ATTRIBUTE",
-              "activator" : "\"demo\""
+              "script" : "\"demo\""
             },
             "expiry" : {
               "timeout" : "new Duration(\"3H\")"
@@ -505,7 +507,9 @@
         "triggerable" : true,
         "task" : {
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         },
         "case" : {
@@ -621,7 +625,7 @@
             "category" : "AnnualLeave",
             "responsible" : {
               "type" : "USER_FROM_ATTRIBUTE",
-              "activator" : "\"demo\""
+              "script" : "\"demo\""
             },
             "expiry" : {
               "timeout" : "new Duration(\"3H\")",
@@ -944,7 +948,9 @@
             "description" : "Cost object task description",
             "category" : "AnnualLeave",
             "responsible" : {
-              "activator" : "CostObject"
+              "roles" : [
+                "CostObject"
+              ]
             },
             "customFields" : [
               { "name" : "days", "type" : "TIMESTAMP", "value" : "new DateTime()" },
@@ -956,7 +962,7 @@
             "description" : "Task for General manager 1",
             "responsible" : {
               "type" : "USER_FROM_ATTRIBUTE",
-              "activator" : "\"gm1\""
+              "script" : "\"gm1\""
             },
             "priority" : {
               "level" : "LOW"
@@ -1120,7 +1126,9 @@
         "task" : {
           "name" : "<%=ivy.cms.co(\"/Processes/Payment/Tasks/Signal/name\")%>",
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         }
       },
@@ -1271,7 +1279,9 @@
         "triggerable" : true,
         "task" : {
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         },
         "case" : {
@@ -1311,7 +1321,9 @@
         "task" : {
           "name" : "System Task",
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         }
       },

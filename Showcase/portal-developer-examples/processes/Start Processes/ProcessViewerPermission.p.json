@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.1/process.json",
   "id" : "183C12775FE2BAB8",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.ProcessViewerPermissionData",
@@ -56,7 +56,9 @@
         "signature" : "startWithPermission",
         "permission" : {
           "anonymous" : false,
-          "role" : "GeneralManager"
+          "roles" : [
+            "GeneralManager"
+          ]
         }
       },
       "visual" : {
