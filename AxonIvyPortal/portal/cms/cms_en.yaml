@@ -1637,7 +1637,7 @@ Labels:
       ACTIONS: Actions
       APPLICATION: Application
       CATEGORY: Category
-      CREATED: Created Date
+      CREATED: Created date
       CREATOR: Creator
       DESCRIPTION: Description
       FINISHED: Finished Date
@@ -1649,7 +1649,7 @@ Labels:
       ACTIONS: Actions
       APPLICATION: Application
       CATEGORY: Category
-      CREATED: Created Date
+      CREATED: Created date
       DESCRIPTION: Description
       EXPIRY: Expiry
       ID: Id
