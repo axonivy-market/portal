@@ -21,6 +21,7 @@ public class NavigationDashboardWidget extends DashboardWidget implements Serial
   private String targetDashboardName;
   private String description;
   private String icon;
+  @JsonIgnore
   private String buttonName;
   private List<DisplayName> buttonNames;
   
