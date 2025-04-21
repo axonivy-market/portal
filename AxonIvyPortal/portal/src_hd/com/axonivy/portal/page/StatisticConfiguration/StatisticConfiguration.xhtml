@@ -103,7 +103,7 @@
                   <h4 class="mb-0 mt-3">#{ivy.cms.co('/Labels/Filters')}</h4>
                 </div>
 
-                <h:panelGroup class="field col-12 mb-3" id="chart-aggregation">
+                <h:panelGroup styleClass="field col-12 mb-3" id="chart-aggregation">
                   <!-- GROUP BY -->
                   <p:outputLabel for="@next" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GroupBy')}" />
                   <p:selectOneMenu id="aggregates" required="true" styleClass="w-full"
@@ -140,29 +140,31 @@
                   </p:selectOneMenu>
                 </h:panelGroup>
 
-                <div class="field col-12">
+                <h:panelGroup styleClass="field col-12" layout="block"
+                  rendered="#{statisticConfigurationBean.statistic.chartTarget.name() eq 'TASK'}">
                   <p:outputLabel for="@next" value="#{ivy.cms.co('/Labels/Filters')}" />
                   <div>
                     <h:panelGroup id="user-filter" layout="block" styleClass="ui-g dashboard-widget-filter__main-panel">
                       <ui:repeat id="filter-list" var="filter" value="#{statisticConfigurationBean.statistic.filters}"
                         varStatus="status">
                         <ic:com.axonivy.portal.page.component.StatisticFilter id="filter-component" filter="#{filter}"
-                            managedBean="#{statisticConfigurationBean}" componentToUpdate="#{p:resolveFirstComponentWithId('user-filter', view).clientId}"
-                            filterIndex="#{status.index}" readOnly="true"/>
+                          managedBean="#{statisticConfigurationBean}"
+                          componentToUpdate="#{p:resolveFirstComponentWithId('user-filter', view).clientId}"
+                          filterIndex="#{status.index}" readOnly="true" />
                       </ui:repeat>
                       <div class="ui-g-12 u-padding-0 MarTop10">
                         <p:commandButton id="add-filter" icon="#{visibilityBean.generateButtonIcon('si si-add-circle')}"
                           update="user-filter" process="user-filter" styleClass="u-mar-right-5 ui-button-flat"
                           actionListener="#{statisticConfigurationBean.addNewFilter()}"
                           value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/AddFilter')}"
-                          title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/AddFilter')}" immediate="true"
-                          partialSubmit="true">
+                          title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/AddFilter')}"
+                          immediate="true" partialSubmit="true">
                           <f:param name="skipValidator" value="true" />
                         </p:commandButton>
                       </div>
                     </h:panelGroup>
                   </div>
-                </div>
+                </h:panelGroup>
 
                 <div class="field col-12">
                   <h4 class="mb-0 mt-3">#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Advanced')}</h4>

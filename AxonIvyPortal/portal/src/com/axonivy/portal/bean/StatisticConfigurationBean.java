@@ -753,6 +753,7 @@ public class StatisticConfigurationBean implements Serializable {
   public void onSelectChartTarget(ChartTarget newChartTarget) {
     if (statistic.getChartTarget() != null && statistic.getChartTarget() == newChartTarget) {
       resetAggregateValues();
+      resetFitlerValues();
       resetCustomFieldAndDateTimeInterval();
       this.setDateTimeSelected(statistic.getStatisticAggregation().getAggregationField().getName().contains("Timestamp"));
       /**
@@ -770,6 +771,12 @@ public class StatisticConfigurationBean implements Serializable {
     statistic.getStatisticAggregation().setCustomFieldValue(null);
     this.currentCustomFieldDescription = null;
     statistic.getStatisticAggregation().setInterval(null);
+  }
+
+  public void resetFitlerValues() {
+    if (statistic.getFilters() != null) {
+      statistic.getFilters().clear();
+    }
   }
 
   public List<FilterField> getFilterFields() {
