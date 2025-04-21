@@ -79,7 +79,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: ケースウィジェット
       CLIENT_STATISTIC: 統計ウィジェット
       CUSTOM: カスタムウィジェット
-      NAVIGATION_DASHBOARD: ''
+      NAVIGATION_DASHBOARD: 'TODO: Navigation dashboard widget'
       NEW: 新規ウィジェット
       NEWS: ニュースフィード
       NOTIFICATION: 通知
@@ -848,7 +848,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: 現在、利用可能なタスクはありません。
         noTasksFoundWhenFilter: 現在、フィルターを適用した後のタスクはありません。
     loading: 読み込み中...
-    navigate: Navigate
+    navigate: 'TODO: Navigate'
     noCategory: カテゴリーがありません
     noDashboard: ダッシュボードがありません。少なくとも 1 つのダッシュボードを追加してから、ウィジェットを追加してください。
     noPermission: ダッシュボードを表示する権限がありません。
@@ -896,7 +896,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     widgetType: ウィジェットタイプ
     yourCases: ケース
     yourCustomWidget: カスタムウィジェット
-    yourNavigationDashboardWidget: Your navigation dashboard widget
+    yourNavigationDashboardWidget: 'TODO: Your navigation dashboard widget'
     yourNotifications: 通知
     yourProcessViewer: プロセス ビューアー
     yourProcesses: プロセス
