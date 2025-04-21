@@ -360,6 +360,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ID: ケース ID
       NAME: 名前／説明
       OWNER: オーナー
+      PIN: 'TODO: Pin'
       STATE: 状態
     deletionNoteContent: このケースは{0}によって破棄されました
     destroyCaseMessage: この操作は元に戻せません。このケースとそのすべてのタスクを破棄してもよろしいですか？
@@ -1566,6 +1567,7 @@ Labels:
       ID: ID
       NAME: 名前
       OWNER: ケースオーナー
+      PIN: 'TODO: Pin'
       STATE: 状態
     DashboardStandardTaskColumn:
       ACTIONS: アクション

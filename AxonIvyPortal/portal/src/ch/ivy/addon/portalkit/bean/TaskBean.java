@@ -170,5 +170,4 @@ public class TaskBean implements Serializable {
     TaskUtils.savePinnedTaskUuids(pinnedTaskUuids);
   }
 
-
 }

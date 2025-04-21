@@ -49,7 +49,7 @@ public final class TaskUtils {
   private static final String PORTAL_GLOBAL_GROWL_MESSAGE = "portal-global-growl-message";
   private static final String PRIORITY_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/";
   private static final String TASK_BUSINESS_STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/";
-  private static String PinTaskProperty = UserProperty.PIN_TASKS;
+  private static String pinTaskProperty = UserProperty.PIN_TASKS;
 
   private TaskUtils() {}
 
@@ -426,7 +426,7 @@ public final class TaskUtils {
       return new HashSet<>();
     }
 
-    String pinnedTasksStr = currentUser.getProperty(PinTaskProperty);
+    String pinnedTasksStr = currentUser.getProperty(pinTaskProperty);
     return StringUtils.isBlank(pinnedTasksStr) ? new HashSet<>()
         : Arrays.stream(pinnedTasksStr.split(",")).map(String::trim).filter(StringUtils::isNotEmpty)
             .collect(Collectors.toSet());
@@ -434,7 +434,7 @@ public final class TaskUtils {
 
   public static void savePinnedTaskUuids(Set<String> pinnedTaskUuids) {
     String updatedPinnedTasks = String.join(",", pinnedTaskUuids);
-    Ivy.session().getSessionUser().setProperty(PinTaskProperty, updatedPinnedTasks);
+    Ivy.session().getSessionUser().setProperty(pinTaskProperty, updatedPinnedTasks);
   }
 
   public static boolean isPinnedTask(ITask task) {
@@ -444,7 +444,7 @@ public final class TaskUtils {
   public static void removeAllPinnedTasks() {
     IUser currentUser = Ivy.session().getSessionUser();
     if (currentUser != null) {
-      currentUser.setProperty(PinTaskProperty, StringUtils.EMPTY);
+      currentUser.setProperty(pinTaskProperty, StringUtils.EMPTY);
     }
   }
 

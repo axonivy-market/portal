@@ -365,6 +365,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ID: ID del caso
       NAME: Nombre / Descripción
       OWNER: Responsables del proceso
+      PIN: Fijar
       STATE: 'Estatus '
     deletionNoteContent: El caso fue destruido por {0}
     destroyCaseMessage: Esta operación no se puede deshacer. ¿Está seguro de que quiere destruir este caso y todas sus tareas?
@@ -1510,6 +1511,7 @@ Labels:
       ID: Id
       NAME: Nombre
       OWNER: Responsables del proceso
+      PIN: Fijar
       STATE: Estado
     DashboardStandardTaskColumn:
       ACTIONS: Acciones

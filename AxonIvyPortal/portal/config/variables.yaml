@@ -101,7 +101,7 @@ Variables:
       # [enum: ACCESS_CASE_DETAILS, ACCESS_BUSINESS_DETAILS]
       BehaviourWhenClickingOnLineInCaseList: ACCESS_CASE_DETAILS
       # Set this property to true to enable the ability to pin cases.
-      EnablePinTask: false
+      EnablePinCase: false
     # You can configure the look and feel for case details according to your needs via this json file.
     # This setting will be taken over for all other case details.
     # [file: json]

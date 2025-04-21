@@ -362,6 +362,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ID: Id du dossier
       NAME: Nom / Description
       OWNER: Responsables de processus
+      PIN: Épingler
       STATE: Etat
     deletionNoteContent: Ce dossier a été supprimé par {0}
     destroyCaseMessage: Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer ce dossier et toutes les tâches associées ?
@@ -1559,6 +1560,7 @@ Labels:
       ID: Id
       NAME: Nom
       OWNER: Responsables de processus
+      PIN: Épingler
       STATE: État
     DashboardStandardTaskColumn:
       ACTIONS: Actions

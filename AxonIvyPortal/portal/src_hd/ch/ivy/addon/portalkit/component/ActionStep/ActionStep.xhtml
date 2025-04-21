@@ -45,6 +45,12 @@
       <span class="action-icon si si-information-circle" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" />
     </p:commandLink>
+    
+    <p:commandLink id="case-pin" disabled="#{!caseActionBean.canPin(case)}" rendered="#{visibilityBean.enablePinCase}" onstart="event.stopPropagation();"
+      styleClass="#{caseActionBean.getPinnedStyleClass(case)}" actionListener="#{caseActionBean.markCaseAsPinned(case)}" update="@parent #{cc.attrs.componentToUpdate}" process="@this">
+      <i class="#{caseActionBean.getPinnedIcon(case)}" />
+      <span class="option-item-label">#{caseActionBean.getPinnedLabel(case)}</span>
+    </p:commandLink>
 
     <p:link id="show-process-overview-link" styleClass="additional-case-details-link action-step-item ui-menu-items"
       rendered="#{showProcessOverview}"
