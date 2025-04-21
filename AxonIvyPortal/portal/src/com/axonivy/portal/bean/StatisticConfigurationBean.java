@@ -296,6 +296,12 @@ public class StatisticConfigurationBean implements Serializable {
   private void cleanUpFilter() {
     if (CollectionUtils.isNotEmpty(statistic.getFilters())) {
       statistic.getFilters().removeIf(filter -> filter.getField() == null);
+    } else {
+      /**
+       * When remove filters in configuration of existing charts
+       * if there's no filters anymore -> filter also should be set to null
+       */
+      statistic.setFilter(null);
     }
   }
 
