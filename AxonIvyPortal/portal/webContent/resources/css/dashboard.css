@@ -197,17 +197,6 @@
   text-align: center;
 }
 
-.navigation-dashboard-widget-description {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  word-wrap: break-word;
-  text-overflow: ellipsis;
-  overflow-wrap: anywhere;
-  text-align: center;
-}
-
 .process-grid-item__action--combined a.si,
 .widget__header-actions > a.si {
   font-size: var(--widget-header-font-size);
