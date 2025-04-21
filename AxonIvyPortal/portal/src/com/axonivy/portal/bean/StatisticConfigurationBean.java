@@ -83,6 +83,7 @@ public class StatisticConfigurationBean implements Serializable {
   private static final int MIN_REFRESH_INTERVAL_IN_SECONDS = 60;
   private static final int MAX_REFRESH_INTERVAL_IN_SECONDS = 1000000;
   private static final int DEFAULT_REFRESH_INTERVAL_IN_SECONDS = 300;
+  private static final String TIMESTAMP = "timestamp";
   private static final List<String> DEFAULT_COLORS =
       Arrays.asList("#6299f7", "#8dc261", "#98bffa", "#bee3cb", "#c8befa", "#f5bf9f", "#f8da96", "#f9908c");
   private Statistic statistic;
@@ -181,9 +182,9 @@ public class StatisticConfigurationBean implements Serializable {
     if(statistic.getStatisticAggregation() != null) {
       this.currentCustomFieldType = statistic.getStatisticAggregation().getCustomFieldType();
       this.currentCustomField = statistic.getStatisticAggregation().getCustomFieldValue();
-      this.setDateTimeSelected(CustomFieldType.TIMESTAMP == this.currentCustomFieldType);
-      if(isDateTimeSelected && null != statistic.getStatisticAggregation().getInterval()
-          ) {
+      this.setDateTimeSelected(CustomFieldType.TIMESTAMP == this.currentCustomFieldType
+          || statistic.getAggregates().toLowerCase().contains(TIMESTAMP));
+      if (isDateTimeSelected && null != statistic.getStatisticAggregation().getInterval()) {
         this.aggregationInterval = statistic.getStatisticAggregation().getInterval();
       }
     }
@@ -650,11 +651,23 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void handleAggregateWithDateTimeInterval() {
+    /**
+     * custom field timestamp
+     * edit > category
+     * JSON existing interval
+     */
     if (aggregationInterval == null) {
+      statistic.getStatisticAggregation().setInterval(null);
       return;
     }
-    if(!statistic.getAggregates().contains("timestamp") && !isDateTimeSelected) {
+    /**
+     * timestamp
+     * edit > custom field not timestamp
+     * JSON existing interval
+     */
+    if(!statistic.getAggregates().toLowerCase().contains(TIMESTAMP) && !isDateTimeSelected) {
       this.setAggregationInterval(null);
+      statistic.getStatisticAggregation().setInterval(null);
       return;
     }
 
@@ -663,6 +676,7 @@ public class StatisticConfigurationBean implements Serializable {
         ? statistic.getAggregates() + ":" + aggregationInterval.getName().toLowerCase()
         : statistic.getAggregates() + ":bucket:" + aggregationInterval.getName().toLowerCase();
     
+    statistic.getStatisticAggregation().setInterval(aggregationInterval);
     statistic.setAggregates(finalAggregation);
   }
 
@@ -683,7 +697,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public void onSelectAggregationField() {
-    this.setDateTimeSelected(statistic.getStatisticAggregation().getAggregationField().getName().contains("Timestamp"));
+    this.setDateTimeSelected(statistic.getStatisticAggregation().getAggregationField().getName().toLowerCase().contains(TIMESTAMP));
   }
 
   public void onSelectCustomField() {
@@ -755,7 +769,8 @@ public class StatisticConfigurationBean implements Serializable {
       resetAggregateValues();
       resetFitlerValues();
       resetCustomFieldAndDateTimeInterval();
-      this.setDateTimeSelected(statistic.getStatisticAggregation().getAggregationField().getName().contains("Timestamp"));
+      this.setDateTimeSelected(
+          statistic.getStatisticAggregation().getAggregationField().getName().toLowerCase().contains(TIMESTAMP));
       /**
        * try to reset existing filter
        */
