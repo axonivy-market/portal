@@ -35,6 +35,24 @@ Below is a sample JSON definition of a navigation dashboard widget in the Portal
         "value": "Navegar al dashboard"
         }
     ],
+    "buttonNames": [
+        {
+        "locale": "en",
+        "value": "Navegue por"
+        },
+        {
+        "locale": "fr",
+        "value": "Naviguer"
+        },
+        {
+        "locale": "de",
+        "value": "navigieren."
+        },
+        {
+        "locale": "es",
+        "value": "Navegue por"
+        }
+    ],
     "layout": {
         "w": 3,
         "h": 3,
@@ -52,6 +70,10 @@ The basic JSON structure of a statistic widget
    ``id``: ID of the widget
 
    ``type``: type of the widget. Use ``navigation-dashboard`` for a navigation dashboard widget
+   
+   ``names``: multilingual name of the widget on the UI
+
+   ``buttonNames``: multilingual button name on the widget
 
    ``layout``: layout definition of the client statistic widget
 
