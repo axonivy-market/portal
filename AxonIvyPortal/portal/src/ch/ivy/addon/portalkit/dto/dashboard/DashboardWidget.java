@@ -68,7 +68,7 @@ public abstract class DashboardWidget implements Serializable {
   @JsonIgnore
   private String quickSearchKeyword;
   @JsonIgnore
-  protected boolean isShowPinnedItem;
+  protected boolean showPinnedItem;
 
   public DashboardWidget() {}
 
@@ -322,12 +322,12 @@ public abstract class DashboardWidget implements Serializable {
 
   @JsonIgnore
   public boolean getShowPinnedItem() {
-    return isShowPinnedItem;
+    return showPinnedItem;
   }
 
   @JsonIgnore
   public void setShowPinnedItem(boolean showPinnedItem) {
-    this.isShowPinnedItem = showPinnedItem;
+    this.showPinnedItem = showPinnedItem;
   }
 
   @JsonIgnore

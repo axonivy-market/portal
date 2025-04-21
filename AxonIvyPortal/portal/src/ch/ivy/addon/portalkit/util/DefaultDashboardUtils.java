@@ -202,6 +202,10 @@ public class DefaultDashboardUtils {
                 "width": "80"
               },
               {
+                "field": "pin",
+                "width": "75"
+              },
+              {
                 "field": "name",
                 "quickSearch": true,
                 "width": "300"

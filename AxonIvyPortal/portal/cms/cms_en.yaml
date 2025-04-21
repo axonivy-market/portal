@@ -145,6 +145,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Heading 3
       NORMAL_TEXT: Normal Text
   MyProfile:
+    CaseList: Case List
     DateFormat: Date Format
     FormattingLanguage: Formatting language
     General: General
@@ -160,7 +161,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: Notification Channels
     notificationChannelsReset: Notification Channels reset
     subscribed: subscribed
-    unpinAllPinnedTasks: 'All pinned tasks have been removed for user: {0}'
+    unpinAllPinnedCases: 'All pinned cases have been removed for user: {0}.'
+    unpinAllPinnedTasks: 'All pinned tasks have been removed for user: {0}.'
   PortalManagement:
     AdminSetting: Admin settings
   ProcessViewer:
@@ -1362,6 +1364,7 @@ Dialogs:
                   WelcomeToAxon: Welcome to Axon Ivy Portal
           setting:
             UserProfile:
+              unpinAllPinnedCases: Unpin all pinned cases
               unpinAllPinnedTasks: Unpin all pinned tasks
         portalkit:
           component:

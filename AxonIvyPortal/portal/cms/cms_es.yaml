@@ -145,6 +145,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rúbrica 3
       NORMAL_TEXT: Texto normal
   MyProfile:
+    CaseList: Case List
     DateFormat: Formato de la fecha
     FormattingLanguage: Lenguaje de formato
     General: Generales
@@ -160,6 +161,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: Canales de notificación
     notificationChannelsReset: Restablecimiento de los canales de notificación
     subscribed: suscrito
+    unpinAllPinnedCases: 'Todos los casos fijados han sido eliminados para el usuario: {0}.'
     unpinAllPinnedTasks: Todas las tareas fijadas han sido eliminadas para el usuario {0}.
   PortalManagement:
     AdminSetting: Configuración de administrador
@@ -1360,6 +1362,7 @@ Dialogs:
                   WelcomeToAxon: Bienvenido a Axon Ivy Portal
           setting:
             UserProfile:
+              unpinAllPinnedCases: Desanclar todos los casos fijados
               unpinAllPinnedTasks: Desfijar todas las tareas fijadas
         portalkit:
           component:

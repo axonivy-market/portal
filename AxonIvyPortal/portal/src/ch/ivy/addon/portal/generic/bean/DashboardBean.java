@@ -593,7 +593,17 @@ public class DashboardBean implements Serializable {
   }
 
   public boolean canShowPinnedItemToggle(DashboardWidget widget) {
-    return widget.getType().canShowPinnedItemToggle();
+    if (widget instanceof TaskDashboardWidget) {
+      return GlobalSettingService.getInstance().isEnablePinTask()
+          && ((TaskDashboardWidget) widget).isShowPinnedToggle();
+    }
+
+    if (widget instanceof CaseDashboardWidget) {
+      return GlobalSettingService.getInstance().isEnablePinCase()
+          && ((CaseDashboardWidget) widget).isShowPinnedToggle();
+    }
+
+    return false;
   }
 
   public boolean getShowPinnedItem() {
@@ -607,6 +617,13 @@ public class DashboardBean implements Serializable {
   public void togglePinned(DashboardWidget widget) {
     widget.setShowPinnedItem(isShowPinnedItem);
     widget.toggleShowPinned();
+  }
+
+  public String showPinnedItemToggleLable(DashboardWidget widget) {
+    if (DashboardWidgetType.TASK.equals(widget.getType())) {
+      return Ivy.cms().co("/Labels/PinnedTasks");
+    }
+    return "Pinned Cases";
   }
 
 }

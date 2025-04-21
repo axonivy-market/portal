@@ -199,8 +199,11 @@ public class DashboardWidgetUtils {
       CaseColumnModel column = columns.get(i);
       Class<? extends CaseColumnModel> caseColumnModelClass = null;
       String field = column.getField();
+
       if (equals(DashboardStandardCaseColumn.ID, field)) {
         caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.IdColumnModel.class;
+      } else if (equals(DashboardStandardCaseColumn.PIN, field)) {
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.PinColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.NAME, field)) {
         caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.NameColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.DESCRIPTION, field)) {

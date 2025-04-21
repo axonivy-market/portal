@@ -40,11 +40,11 @@
     
 <h:panelGroup id="show-pin-#{index}" layout="block"
     styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1' } widget-header-show-pin"
-    rendered="#{visibilityBean.enablePinTask and dashboardBean.canShowPinnedItemToggle(widget) and widget.showPinnedToggle}">
+    rendered="#{dashboardBean.canShowPinnedItemToggle(widget)}">
     <h:form id="show-pin-form">
         <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
         <h:panelGroup layout="block" styleClass="flex align-items-center justify-content-between gap-2">
-            <h:outputText value="#{ivy.cms.co('/Labels/PinnedTasks')}"
+            <h:outputText value="#{dashboardBean.showPinnedItemToggleLable(widget)}"
                 styleClass="text-base font-semibold text-left"/>
             <p:toggleSwitch value="#{dashboardBean.showPinnedItem}" id="show-pin-toggle">
                 <p:ajax listener="#{dashboardBean.togglePinned(widget)}"

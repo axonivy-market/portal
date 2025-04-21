@@ -144,6 +144,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: 見出し 3
       NORMAL_TEXT: 通常のテキスト
   MyProfile:
+    CaseList: ケースリスト
     DateFormat: 日付の形式
     FormattingLanguage: 書式設定言語
     General: 一般
@@ -159,6 +160,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: 通知チャネル
     notificationChannelsReset: 通知チャネルをリセットしました
     subscribed: 通知する
+    unpinAllPinnedCases: 'TODO: All pinned cases have been removed for user: {0}.'
     unpinAllPinnedTasks: 'TODO: All pinned tasks have been removed for user: {0}'
   PortalManagement:
     AdminSetting: 管理者設定
@@ -1355,6 +1357,7 @@ Dialogs:
                   WelcomeToAxon: Axon Ivy Portalへようこそ
           setting:
             UserProfile:
+              unpinAllPinnedCases: 'TODO: Unpin all pinned cases'
               unpinAllPinnedTasks: 'TODO: Unpin all pinned tasks'
         portalkit:
           component:

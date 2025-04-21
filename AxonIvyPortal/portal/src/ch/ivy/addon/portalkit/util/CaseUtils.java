@@ -169,4 +169,10 @@ public final class CaseUtils {
     Ivy.session().getSessionUser().setProperty(pinCaseProperty, updatedPinnedCases);
   }
 
+  public static void removeAllPinnedCase() {
+    IUser currentUser = Ivy.session().getSessionUser();
+    if (currentUser != null) {
+      currentUser.setProperty(pinCaseProperty, StringUtils.EMPTY);
+    }
+  }
 }

@@ -32,6 +32,6 @@ public enum DashboardWidgetType {
   }
 
   public boolean canShowPinnedItemToggle() {
-    return this == TASK;
+    return this == TASK || this == CASE;
   }
 }

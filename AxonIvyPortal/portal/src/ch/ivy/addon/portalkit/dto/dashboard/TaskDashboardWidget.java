@@ -306,7 +306,7 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   @Override
   public void toggleShowPinned() {
-    this.dataModel.setShowPinnedItem(isShowPinnedItem);
+    this.dataModel.setShowPinnedItem(showPinnedItem);
   }
 
   public boolean isShowPinnedToggle() {
