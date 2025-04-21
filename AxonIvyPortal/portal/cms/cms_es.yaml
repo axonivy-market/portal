@@ -1508,13 +1508,11 @@ Enums:
               CUSTOM_FIELD:
                 name: Campo personalizado
               END_TIMESTAMP:
-                name: Hora de fin
+                name: Fecha de finalización
               EXPIRY_TIMESTAMP:
-                name: Hora de expiración
+                name: Fecha de caducidad
               IS_EXPIRED:
                 name: Ha expirado
-              MODIFIED_TIMESTAMP:
-                name: Hora de modificación
               NUMBER_OF_RESUMES:
                 name: Número de currículos
               PRIORITY:
@@ -1522,7 +1520,7 @@ Enums:
               RESPONSIBLES_NAME:
                 name: Responsables
               START_TIMESTAMP:
-                name: Fecha de inicio
+                name: Fecha de creación
               WORKER_NAME:
                 name: Nombre del trabajador
               WORKING_TIME:

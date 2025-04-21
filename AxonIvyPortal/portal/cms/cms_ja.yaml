@@ -1545,13 +1545,11 @@ Enums:
               CUSTOM_FIELD:
                 name: TODO Custom field
               END_TIMESTAMP:
-                name: TODO End timestamp
+                name: TODO Completed date
               EXPIRY_TIMESTAMP:
-                name: TODO Expiry timestamp
+                name: TODO Expiry date
               IS_EXPIRED:
                 name: TODO Is expired
-              MODIFIED_TIMESTAMP:
-                name: TODO Modified timestamp
               NUMBER_OF_RESUMES:
                 name: TODO Number of resumes
               PRIORITY:
@@ -1559,7 +1557,7 @@ Enums:
               RESPONSIBLES_NAME:
                 name: TODO Responsibles
               START_TIMESTAMP:
-                name: TODO Start timestamp
+                name: TODO Created date
               WORKER_NAME:
                 name: TODO Worker name
               WORKING_TIME:

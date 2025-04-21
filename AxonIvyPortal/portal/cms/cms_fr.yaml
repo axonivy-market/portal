@@ -1547,13 +1547,11 @@ Enums:
               CUSTOM_FIELD:
                 name: Champ personnalisé
               END_TIMESTAMP:
-                name: Horodatage de fin
+                name: Date d'achèvement
               EXPIRY_TIMESTAMP:
-                name: Horodatage d'expiration
+                name: Date d'expiration
               IS_EXPIRED:
                 name: Est périmé
-              MODIFIED_TIMESTAMP:
-                name: Horodatage modifié
               NUMBER_OF_RESUMES:
                 name: Nombre de reprendre
               PRIORITY:
@@ -1561,7 +1559,7 @@ Enums:
               RESPONSIBLES_NAME:
                 name: Responsables
               START_TIMESTAMP:
-                name: Horodatage de début
+                name: Date de création
               WORKER_NAME:
                 name: Nom de l'employé
               WORKING_TIME:

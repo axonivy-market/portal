@@ -1555,13 +1555,11 @@ Enums:
               CUSTOM_FIELD:
                 name: Custom field
               END_TIMESTAMP:
-                name: End timestamp
+                name: Completed date
               EXPIRY_TIMESTAMP:
-                name: Expiry timestamp
+                name: Expiry date
               IS_EXPIRED:
                 name: Is expired
-              MODIFIED_TIMESTAMP:
-                name: Modified timestamp
               NUMBER_OF_RESUMES:
                 name: Number of resumes
               PRIORITY:
@@ -1569,7 +1567,7 @@ Enums:
               RESPONSIBLES_NAME:
                 name: Responsibles
               START_TIMESTAMP:
-                name: Start timestamp
+                name: Created date
               WORKER_NAME:
                 name: Worker name
               WORKING_TIME:

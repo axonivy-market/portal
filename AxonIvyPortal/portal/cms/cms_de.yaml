@@ -1519,13 +1519,11 @@ Enums:
               CUSTOM_FIELD:
                 name: Benutzerdefiniertes Feld
               END_TIMESTAMP:
-                name: Zeitstempel des Endes
+                name: Datum der Fertigstellung
               EXPIRY_TIMESTAMP:
-                name: Verfallszeitstempel
+                name: Verfallsdatum
               IS_EXPIRED:
                 name: Ist abgelaufen
-              MODIFIED_TIMESTAMP:
-                name: Geänderter Zeitstempel
               NUMBER_OF_RESUMES:
                 name: Anzahl der wieder aufnehmen
               PRIORITY:
@@ -1533,7 +1531,7 @@ Enums:
               RESPONSIBLES_NAME:
                 name: Verantwortliche
               START_TIMESTAMP:
-                name: Zeitstempel des Beginns
+                name: Erstellungsdatum
               WORKER_NAME:
                 name: Name des Arbeiters
               WORKING_TIME:
