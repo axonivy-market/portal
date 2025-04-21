@@ -890,7 +890,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: このウィジェットには、定義された設定に従って関連するタスク情報が表示されます。
     taskStart: タスクの開始
     taskWidgetConfiguration: タスクウィジェットの設定
-    topMenuItemInfo: 「トップメニュー項目」チェックボックスをオンにすると、ダッシュボードはナビゲーションバーの上位項目として表示され、リスト位置でソートされます。オフにすると、「ダッシュボード」の下のサブ項目として表示され、同じくリスト位置でソートされます。
     widgetInfo: ウィジェット情報
     widgetInfoIcon: ウィジェット情報アイコン
     widgetTitle: ウィジェットタイトル
