@@ -2063,3 +2063,10 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
 .clone-to-dashboard-dialog-header-container {
   width: calc(100% - 35px);
 }
+
+.navigate-dashboard-button-truncate > span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
