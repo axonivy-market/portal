@@ -208,12 +208,15 @@ public class StatisticService {
       switch (customFieldType) {
       case CustomFieldType.STRING: {
         aggregates = "customFields.strings." + chartAggregation.getCustomFieldValue();
+        break;
       }
       case CustomFieldType.NUMBER: {
-
+        Ivy.log().info("CUSTOM FIELD IS TYPE NUMBER! CURRENTLY NOT SUPPORTED");
+        break;
       }
       case CustomFieldType.TIMESTAMP: {
         aggregates = "customFields.timestamps." + chartAggregation.getCustomFieldValue();
+        break;
       }
       default: {
       }
