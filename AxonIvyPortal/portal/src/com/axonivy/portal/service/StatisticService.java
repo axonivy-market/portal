@@ -14,7 +14,6 @@ import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 
 import com.axonivy.portal.bo.Statistic;
@@ -28,6 +27,7 @@ import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.DefaultStatisticService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -36,8 +36,7 @@ import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
 
 public class StatisticService {
-  
-  private static final String DEFAULT_STATISTIC_KEY = PortalVariable.STATISTIC.key;
+
   private static final String CUSTOM_STATISTIC_KEY = PortalVariable.CUSTOM_STATISTIC.key;
   private static StatisticService instance;
 
@@ -182,8 +181,7 @@ public class StatisticService {
   }
   
   private List<Statistic> getDefaultStatistic() {
-    String value = Ivy.var().get(DEFAULT_STATISTIC_KEY);
-    List<Statistic> statistics = BusinessEntityConverter.jsonValueToEntities(value, Statistic.class);
+    List<Statistic> statistics = DefaultStatisticService.getInstance().getPublicConfig();
     statistics.forEach(cs -> cs.setIsCustom(false));
     return statistics;
   }

@@ -1,7 +1,6 @@
 [
   {
     "id": "1",
-    "version": "13.1.0",
     "aggregates": "priority",
     "filter": "businessState:OPEN IN_PROGRESS,canWorkOn",
     "chartTarget": "task",
