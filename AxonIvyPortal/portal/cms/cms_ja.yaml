@@ -359,7 +359,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       OWNER: オーナー
       STATE: 状態
     deletionNoteContent: このケースは{0}によって破棄されました
-    destroyCaseMessage: この操作は元に戻せません。このケースとそのすべてのタスクを破棄してもよろしいですか？
+    destroyCaseMessage: この操作は元に戻せません。このケース <b>{0}</b> とそのすべてのタスクを破棄してもよろしいですか？
     destroyfail: ケースの破棄に失敗しました。
     destroysucceed: ケースは正常に破棄されました。
     downloadZipFileExplanation: エクスポートするケースの数が Excel の行数制限を超えています。そのためデータは複数の Excel ファイルに分割され、ダウンロードするためにZIP ファイルに圧縮されます。
