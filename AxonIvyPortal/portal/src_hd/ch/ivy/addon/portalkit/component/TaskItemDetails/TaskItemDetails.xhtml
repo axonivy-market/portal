@@ -112,7 +112,7 @@
                   actionLinkId="task-detail-more-step" panelWidgetVar="task-side-steps-panel-#{rowIndex}"
                   renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}" task="#{task}"
                   isDisabled="#{taskActionBean.noActionAvailable(task) or cc.attrs.readOnly}"
-                  componentToUpdate="#{informationWidgetComponent} #{historyWidgetComponent}" onDestroyComplete="PF('destroy-task-dialog').show()"
+                  componentToUpdate="#{informationWidgetComponent} #{historyWidgetComponent} #{cc.attrs.componentToUpdate}" onDestroyComplete="PF('destroy-task-dialog').show()"
                   onEscalationComplete="PF('escalation-task-dialog').show()"
                   showInTaskList="false" onDelegateComplete="initDataToDelegate()" onWorkflowEventComplete="initWorkflowEventData()" />
               </h:panelGroup>
@@ -197,7 +197,7 @@
     <ui:param name="iconClass" value="si si-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyTaskHeaderText')}" />
-    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage')}" />
+    <ui:param name="dialogContent" value="#{taskWidgetBean.destroyTaskMessage()}" />
 
     <ui:define name="dialogFooter">
       <h:panelGroup styleClass="flex flex-column">

@@ -5,7 +5,7 @@
   <h:panelGroup styleClass="action-container" rendered="#{!cc.attrs.isAIResult}">
     <ic:ch.ivy.addon.portalkit.component.SideStep id="dashboard-actions-task-#{cc.attrs.taskWidget.id}" actionLinkId="dashboard-task-side-steps-menu"
         panelWidgetVar="dashboard-task-side-steps-panel-#{cc.attrs.clientId}-#{cc.attrs.taskWidget.id}-#{rowIndex}" renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}"
-        buttonStyleClass="" showDetailOption="true"
+        buttonStyleClass="" showDetailOption="true" componentToUpdateOnDestroyTask="#{componentToUpdateOnDestroyTask}"
         task="#{task}" componentToUpdate="#{cc.attrs.componentToUpdateTaskWidget}"
         onDestroyComplete="PF('destroy-task-dialog').show()"
         onDelegateComplete="initDataToDelegate()"

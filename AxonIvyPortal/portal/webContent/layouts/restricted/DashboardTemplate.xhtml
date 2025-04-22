@@ -179,7 +179,7 @@
             <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
             <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyTaskHeaderText')}" />
             <ui:param name="dialogContent"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage')}" />
+              value="#{taskWidgetBean.destroyTaskMessage()}" />
              
             <ui:define name="dialogFooter">
               <h:panelGroup styleClass="flex flex-column">
