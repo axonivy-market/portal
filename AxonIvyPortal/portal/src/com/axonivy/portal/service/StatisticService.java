@@ -14,6 +14,7 @@ import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 
 import com.axonivy.portal.bo.Statistic;

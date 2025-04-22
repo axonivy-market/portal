@@ -33,9 +33,9 @@ public class StatisticChartConverter implements IJsonConverter {
     case ChartType.PIE:
       addPieChartConfig((ObjectNode) jsonNode);
       break;
-    case ChartType.NUMBER:
-      addChartConfig((ObjectNode) jsonNode);
-      break;
+//    case ChartType.NUMBER:
+//      addChartConfig((ObjectNode) jsonNode);
+//      break;
     default:
       break;
     }
