@@ -363,7 +363,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       OWNER: Prozessverantwortlichen
       STATE: Status
     deletionNoteContent: Der Vorgang wurde durch {0} gelöscht.
-    destroyCaseMessage: Diese Operation kann nicht rückgängig gemacht werden. Sind Sie sicher, dass dieser komplette Vorgang gelöscht werden soll?
+    destroyCaseMessage: Diese Operation kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie den Fall <b>{0}</b> und alle seine Aufgaben löschen möchten?
     destroyfail: Beim Löschen des Vorgangs ist ein Fehler aufgetreten.
     destroysucceed: Vorgang wurde erfolgreich gelöscht.
     downloadZipFileExplanation: Die Anzahl der zu exportierenden Vorgänge überschreitet die Grenze der Excel-Zeilen. Daher werden die Daten in mehrere Excel-Dateien aufgeteilt und dann in einer ZIP-Datei zum Herunterladen komprimiert.
