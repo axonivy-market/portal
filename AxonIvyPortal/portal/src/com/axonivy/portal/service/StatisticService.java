@@ -117,7 +117,7 @@ public class StatisticService {
     Ivy.log().info(chart.getAggregates());
     String aggregates = chart.getAggregates();
     filter = processTaskFilter(chart.getFilters());
-    chart.setFilter(filter);
+//    chart.setFilter(filter);
     
     if(StringUtils.isEmpty(aggregates)) {
       // TODO: do aggregates converting here
@@ -125,10 +125,10 @@ public class StatisticService {
     }
 
 // TODO: REMOVE THIS COMMENT AFTER DONE THE STORY
-//    if (StringUtils.isEmpty(chart.getFilter())) {
-//    } else {
-//      filter = chart.getFilter();
-//    }
+    if (StringUtils.isEmpty(chart.getFilter())) {
+    } else {
+      filter = chart.getFilter();
+    }
 // TODO REMOVE LOGGING
     Ivy.log().info("return aggregates: " + aggregates);
     return switch (chart.getChartTarget()) {
