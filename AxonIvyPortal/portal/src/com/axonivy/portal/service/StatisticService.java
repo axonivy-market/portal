@@ -103,7 +103,6 @@ public class StatisticService {
     if (Strings.EMPTY.equals(sbFilter.toString())) {
       return null;
     }
-    Ivy.log().error("filter string is {0}", sbFilter.toString());
     return sbFilter.toString();
   }
 

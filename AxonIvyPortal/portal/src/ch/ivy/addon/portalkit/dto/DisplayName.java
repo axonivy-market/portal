@@ -10,7 +10,7 @@ public class DisplayName {
   private Locale locale;
   private String value;
 
-  public DisplayName() {/* Ivy.log().error("DISPLAYNAME()"); */}
+  public DisplayName() {}
 
   public DisplayName(Locale locale, String value) {
     this.locale = locale;
