@@ -119,6 +119,13 @@ public class StatisticService {
     filter = processTaskFilter(chart.getFilters());
 //    chart.setFilter(filter);
     
+    Ivy.log().info("========= SINGLE FILTER =========");
+    chart.getFilter();
+    Ivy.log().info("========= CHECKING FILTERS =========");
+    if(filter != null) {
+      chart.getFilters().forEach(item -> Ivy.log().info(item.getValues()));
+    }
+
     if(StringUtils.isEmpty(aggregates)) {
       // TODO: do aggregates converting here
       aggregates = convertAggregatesFromChartAggregation(chart);

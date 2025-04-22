@@ -24,7 +24,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = -8416553636564399910L;
   public static final String DEFAULT_ICON = "si-pie-line-graph";
-
+  @JsonProperty(access = Access.WRITE_ONLY)
   private String filter;
   private List<StatisticFilter> filters;
   private List<String> permissions;

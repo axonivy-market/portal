@@ -243,8 +243,28 @@ function clearChartInterval() {
   }
 }
 
-// Function to genearte chart data by chart type
+// Function to generate chart data by chart type
 const generateChart = (chart, data) => {
+  // TODO REMOVE LOGGING
+  // if chartType is number
+  // converting the filters to filter while rendering the number chart
+  console.log(data);
+  console.log("getting filters: ");
+  console.log(data.chartConfig.filters);
+  const filters = data.chartConfig.filters;
+  console.log("CONVERTING FILTERS");
+  if(filters && filters.length > 0) {
+    let filter = '';
+    filters.forEach((item, index) => {
+      if (index === 0) {
+        filter += item;
+      } else {
+        filter += ',' + item;
+      }
+    });
+    data.chartConfig.filter = filter;
+
+  }
   switch (data.chartConfig.chartType) {
     case 'number': return new ClientNumberChart(chart, data);
     case 'bar': return new ClientBarChart(chart, data);
@@ -757,6 +777,7 @@ class ClientNumberChart extends ClientChart {
     const aggregateFilter = this.data.chartConfig.aggregates + ':';
     const aggregateFilterRegex = new RegExp('^' + this.data.chartConfig.aggregates + ':');
     let result = [];
+    // TODO REMOVE LOGGING
     this.filters.filter(filter => filter.startsWith(aggregateFilter))
     .forEach(filter => {
       // Get states from filter. Expected result: ['OPEN','DONE']
