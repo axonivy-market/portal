@@ -138,10 +138,6 @@ public class StatisticService {
     };
   }
   
-  public void convertStatisticAggregationToChartAggregates() {
-    
-  }
-
   public List<Entry<String, String>> getAdditionalConfig() {
     
     List<Entry<String, String>> entries = new ArrayList<>();
