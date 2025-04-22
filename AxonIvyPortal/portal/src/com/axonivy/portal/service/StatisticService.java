@@ -112,64 +112,27 @@ public class StatisticService {
 
   public AggregationResult getChartData(Statistic chart) {
     String filter = null;
-    String aggregates = null;
+//  TODO: remove logging
+    Ivy.log().info("checking aggregates");
+    Ivy.log().info(chart.getAggregates());
+    String aggregates = chart.getAggregates();
     filter = processTaskFilter(chart.getFilters());
     chart.setFilter(filter);
     
-    StatisticAggregation chartAggregation = chart.getStatisticAggregation();
-    String aggregationField = chartAggregation.getAggregationField().getName();
-    Ivy.log().info(aggregationField);
-    AggregationInterval interval = chartAggregation.getInterval();
-    CustomFieldType customFieldType = chartAggregation.getCustomFieldType();
-    if (aggregationField.toLowerCase().contains("custom")) {
-      /**
-       * Custom field
-       */
-      switch (customFieldType) {
-      case CustomFieldType.STRING: {
-        aggregates = "customFields.strings." + chartAggregation.getCustomFieldValue();
-      }
-      case CustomFieldType.NUMBER: {
-
-      }
-      case CustomFieldType.TIMESTAMP: {
-        aggregates = "customFields.timestamps." + chartAggregation.getCustomFieldValue();
-      }
-      default: {
-      }
-      }
-      aggregates = interval != null ? aggregates + ":bucket:" + interval.getName().toLowerCase() : aggregates;
-
-      Ivy.log().info(1);
-    } else if (aggregationField.toLowerCase().contains("timestamp")) {
-      /**
-       * Normal timestamp
-       */
-        if(interval != null) {
-          Ivy.log().info(2.2);
-          aggregates = aggregationField + ":bucket:" + interval.getName().toLowerCase();
-        }
-      Ivy.log().info(2);
-      
-      
-      Ivy.log().info(aggregates);
-    } else if (!aggregationField.toLowerCase().contains("custom")
-        && !aggregationField.toLowerCase().contains("timestamp")) {
-      /**
-       * Normal
-       */
-      Ivy.log().info(3);
-      aggregates = aggregationField;
-      Ivy.log().info(aggregates);
+    if(StringUtils.isEmpty(aggregates)) {
+      // TODO: do aggregates converting here
+      aggregates = convertAggregatesFromChartAggregation(chart);
     }
+
+// TODO: REMOVE THIS COMMENT AFTER DONE THE STORY
 //    if (StringUtils.isEmpty(chart.getFilter())) {
 //    } else {
 //      filter = chart.getFilter();
 //    }
-
+// TODO REMOVE LOGGING
     Ivy.log().info("return aggregates: " + aggregates);
     return switch (chart.getChartTarget()) {
-      case CASE -> WorkflowStats.current().caze().aggregate(chart.getAggregates(), filter);
+      case CASE -> WorkflowStats.current().caze().aggregate(aggregates, filter);
       case TASK ->  WorkflowStats.current().task().aggregate(aggregates, filter);
       default -> throw new PortalException("Cannot parse chartTarget " + chart.getChartTarget());
     };
@@ -228,4 +191,59 @@ public class StatisticService {
   public List<Statistic> getCustomStatistic() {
     return BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
   }
+
+  private String convertAggregatesFromChartAggregation(Statistic chart) {
+//  TODO REMOVE LOGGINGs
+    String aggregates = "";
+    StatisticAggregation chartAggregation = chart.getStatisticAggregation();
+    String aggregationField = chartAggregation.getAggregationField().getName();
+    Ivy.log().info(aggregationField);
+    AggregationInterval interval = chartAggregation.getInterval();
+    CustomFieldType customFieldType = chartAggregation.getCustomFieldType();
+
+    if (aggregationField.toLowerCase().contains("custom")) {
+      /**
+       * Custom field
+       */
+      switch (customFieldType) {
+      case CustomFieldType.STRING: {
+        aggregates = "customFields.strings." + chartAggregation.getCustomFieldValue();
+      }
+      case CustomFieldType.NUMBER: {
+
+      }
+      case CustomFieldType.TIMESTAMP: {
+        aggregates = "customFields.timestamps." + chartAggregation.getCustomFieldValue();
+      }
+      default: {
+      }
+      }
+      aggregates = interval != null ? aggregates + ":bucket:" + interval.getName().toLowerCase() : aggregates;
+
+      Ivy.log().info(1);
+      return aggregates;
+
+    } else if (aggregationField.toLowerCase().contains("timestamp")) {
+      /**
+       * Normal timestamp
+       */
+      if (interval != null) {
+        Ivy.log().info(2.2);
+        aggregates = aggregationField + ":bucket:" + interval.getName().toLowerCase();
+      }
+      Ivy.log().info(2);
+
+      Ivy.log().info(aggregates);
+      return aggregates;
+    }
+    /**
+     * Normal
+     */
+    Ivy.log().info(3);
+    aggregates = aggregationField;
+    Ivy.log().info(aggregates);
+
+    return aggregates;
+  }
+  
 }
