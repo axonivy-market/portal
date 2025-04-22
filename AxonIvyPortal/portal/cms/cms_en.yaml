@@ -1491,7 +1491,6 @@ Dialogs:
             ChartType: Chart type
             Color: Color {0}
             Create: Create
-            CustomAggregateInput: Please input custom fields.
             EditStatistic: Edit Statistic Widget
             For: For
             GeneratePreview: Generate preview

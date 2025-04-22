@@ -1458,7 +1458,6 @@ Dialogs:
             ChartType: Diagrammtyp
             Color: Farbe {0}
             Create: Erstellen
-            CustomAggregateInput: Bitte geben Sie benutzerdefinierte Felder ein.
             EditStatistic: Statistisches Widget bearbeiten
             For: Für
             GeneratePreview: Vorschau generieren

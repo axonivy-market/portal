@@ -1447,7 +1447,6 @@ Dialogs:
             ChartType: Tipo de gráfico
             Color: Color {0}
             Create: Cree
-            CustomAggregateInput: Por favor ingrese campos personalizados.
             EditStatistic: Editar widget de estadísticas
             For: Para
             GeneratePreview: Generar vista previa
