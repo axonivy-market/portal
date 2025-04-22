@@ -36,6 +36,7 @@ public class TaskWidgetBean implements Serializable {
   private Long taskListRefreshInterval;
   private Long expandedTaskId;
   private Long selectedTaskItemId;
+  private String selectedTaskName;
   private TaskLazyDataModel dataModel;
   private Boolean isTaskDetailOpenning;
   private boolean isShowFullTaskList;
@@ -176,5 +177,22 @@ public class TaskWidgetBean implements Serializable {
   
   public boolean isShowGlobalSearchScope() {
     return GlobalSearchService.getInstance().isShowGlobalSearchByTasks();
+  }
+  
+  public String getSelectedTaskName() {
+    return this.selectedTaskName;
+  }
+  
+  public void setSelectedTaskName(String taskName) {
+    this.selectedTaskName = taskName;
+  }
+  
+  public void updateSelectedTaskName(String taskName) {
+    setSelectedTaskName(taskName);
+  }
+  
+  public String destroyTaskMessage() {
+    String taskName = selectedTaskName != null ? this.selectedTaskName : "Task";
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage", List.of(taskName));
   }
 }

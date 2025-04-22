@@ -11,6 +11,7 @@
   <cc:attribute name="isDisabled" default="false" type="java.lang.Boolean" />
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="componentToUpdate" default="" />
+  <cc:attribute name="componentToUpdateOnDestroyTask" default="" />
   <cc:attribute name="buttonStyleClass" />
   <cc:attribute name="renderedAdditionalAction" shortDescription="Control display side steps" />
   <cc:attribute name="currentPortalPage" default="TASK_LIST" />
@@ -106,12 +107,13 @@
     </p:link>
 
     <p:commandLink id="task-destroy-command" disabled="#{!taskActionBean.canDestroyTask(task)}" rendered="#{taskActionBean.showDestroyTask}"
-      styleClass="option-item color-destroy ui-menu-items" update="@parent #{cc.attrs.componentToUpdate}"
-      actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
-      oncomplete="#{cc.attrs.onDestroyComplete}" process="@this" global="false">
+      styleClass="option-item color-destroy ui-menu-items" update="@parent #{cc.attrs.componentToUpdate} #{cc.attrs.componentToUpdateOnDestroyTask}"
+      actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}" onclick="rcUpdateSelectedTaskName();"
+      oncomplete="#{cc.attrs.onDestroyComplete};" process="@this" global="false">
       <i class="option-action-icon pi pi-trash" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
     </p:commandLink>
+    <p:remoteCommand id="rc-update-selected-task-name" name="rcUpdateSelectedTaskName" actionListener="#{taskWidgetBean.updateSelectedTaskName(task.name)}" global="false"/>
 
     <h:panelGroup id="task-additional-actions" styleClass="task-additional-actions-panel" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">
       <f:event listener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId())}" type="preRenderComponent" />
