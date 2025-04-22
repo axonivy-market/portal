@@ -43,20 +43,5 @@ public class TextInOperatorHandler {
       default -> field; 
     };
   }
-  
-  public String buildCustomFieldFilter(DashboardFilter filter) {
-    if (CollectionUtils.isEmpty(filter.getValues())) {
-      return StringUtils.EMPTY;
-    }
-
-    StringBuilder sb = new StringBuilder();
-    sb.append(StatisticConstants.CUSTOM_STRING + filter.getField())
-      .append(PortalConstants.COLON);
-    for (String value : filter.getValues()) {
-      sb.append(value).append(" ");
-    }
-    return sb.toString();
-  }
-
 }
 

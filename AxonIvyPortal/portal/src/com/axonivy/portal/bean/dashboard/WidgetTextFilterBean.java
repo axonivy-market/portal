@@ -49,6 +49,12 @@ public class WidgetTextFilterBean implements Serializable {
         return true;
       }
     }
+    
+    for (FilterOperator operator : statisticOperators) {
+      if (operator == filter.getOperator()) {
+        return true;
+      }
+    }
 
     return false;
   }

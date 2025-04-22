@@ -22,7 +22,6 @@ import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeNumberO
 import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeTodayYesterdayOperatorHandler;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -87,7 +86,6 @@ public class TaskFilterFieldCustomTimestamp extends CustomFilterField {
   
   @Override
   public String generateStringFilter(DashboardFilter filter) {
-    Ivy.log().error("GO HERE TO GENERATE CUSTOM TIMESTAMP FILTER: {0}", filter.getFilterType());
     return switch (filter.getOperator()) {
       case BETWEEN -> DatetimeBetweenOperatorHandler.getInstance().buildBetweenFilter(filter);
       case NOT_BETWEEN -> DatetimeBetweenOperatorHandler.getInstance().buildNotBetweenFilter(filter);

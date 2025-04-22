@@ -12,10 +12,9 @@ import com.axonivy.portal.util.filter.operator.task.customfield.CustomStringInOp
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomStringIsEmptyOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomStringIsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomStringStartWithOperatorHandler;
-import com.axonivy.portal.util.statisticfilter.operator.text.TextInOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.string.StringCustomFieldInOperatorHandler;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -77,9 +76,8 @@ public class TaskFilterFieldCustomString extends CustomFilterField {
   
   @Override
   public String generateStringFilter(DashboardFilter filter) {
-    Ivy.log().error("GO HERE TO GENERATE CUSTOM STRING FILTER: {0}", filter.getFilterType());
     return switch (filter.getOperator()) {
-      case IN -> TextInOperatorHandler.getInstance().buildCustomFieldFilter(filter);
+      case IN -> StringCustomFieldInOperatorHandler.getInstance().buildFilter(filter);
       default -> null;
     };
   }

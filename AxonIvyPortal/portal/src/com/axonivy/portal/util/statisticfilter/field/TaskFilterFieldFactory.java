@@ -39,11 +39,13 @@ public class TaskFilterFieldFactory {
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.EXPIRY.getField(), new TaskFilterFieldExpiryDate());
     STANDARD_FILTER_FIELD.put(StatisticConstants.CAN_WORK_ON, new TaskFilterFieldCanWorkOn());
     for (ICustomFieldMeta customField : ICustomFieldMeta.tasks()) {
-      switch (customField.type()) {
-        case CustomFieldType.STRING -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomString(customField));
-        case CustomFieldType.TIMESTAMP -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomTimestamp(customField));
-        case CustomFieldType.NUMBER -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomNumber(customField));
-        default -> {}
+      if ("true".equalsIgnoreCase(customField.attribute(StatisticConstants.CUSTOM_FIELD_USE_FOR_STATISTIC))) {
+        switch (customField.type()) {
+          case CustomFieldType.STRING -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomString(customField));
+          case CustomFieldType.TIMESTAMP -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomTimestamp(customField));
+          case CustomFieldType.NUMBER -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomNumber(customField));
+          default -> {}
+        }
       }
     }
   }
