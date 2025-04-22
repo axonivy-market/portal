@@ -1518,20 +1518,6 @@ Enums:
     axonivy:
       portal:
         enums:
-          ChartTarget:
-            CASE:
-              name: Dossier
-            TASK:
-              name: Tâche
-          ChartType:
-            BAR:
-              name: TODO Bar
-            LINE:
-              name: TODO Line
-            NUMBER:
-              name: TODO Number
-            PIE:
-              name: TODO Pie
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1571,6 +1557,20 @@ Enums:
                 name: Semaine
               YEAR:
                 name: Année
+            ChartTarget:
+              CASE:
+                name: Dossier
+              TASK:
+                name: Tâche
+            ChartType:
+              BAR:
+                name: TODO Bar
+              LINE:
+                name: TODO Line
+              NUMBER:
+                name: TODO Number
+              PIE:
+                name: TODO Pie
 Labels:
   AI:
     Error:

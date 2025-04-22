@@ -1490,20 +1490,6 @@ Enums:
     axonivy:
       portal:
         enums:
-          ChartTarget:
-            CASE:
-              name: Vorgang
-            TASK:
-              name: Aufgabe
-          ChartType:
-            BAR:
-              name: Balkendiagramm
-            LINE:
-              name: Liniendiagramm
-            NUMBER:
-              name: Kennzahl / Metrik
-            PIE:
-              name: Kreisdiagramm
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1543,6 +1529,20 @@ Enums:
                 name: Woche
               YEAR:
                 name: Jahr
+            ChartTarget:
+              CASE:
+                name: Vorgang
+              TASK:
+                name: Aufgabe
+            ChartType:
+              BAR:
+                name: Balkendiagramm
+              LINE:
+                name: Liniendiagramm
+              NUMBER:
+                name: Kennzahl / Metrik
+              PIE:
+                name: Kreisdiagramm
 Labels:
   AI:
     Error:

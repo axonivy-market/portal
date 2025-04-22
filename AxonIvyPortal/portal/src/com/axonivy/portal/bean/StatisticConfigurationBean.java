@@ -1,9 +1,9 @@
 package com.axonivy.portal.bean;
 
-import static com.axonivy.portal.enums.ChartType.BAR;
-import static com.axonivy.portal.enums.ChartType.LINE;
-import static com.axonivy.portal.enums.ChartType.NUMBER;
-import static com.axonivy.portal.enums.ChartType.PIE;
+import static com.axonivy.portal.enums.statistic.ChartType.BAR;
+import static com.axonivy.portal.enums.statistic.ChartType.LINE;
+import static com.axonivy.portal.enums.statistic.ChartType.NUMBER;
+import static com.axonivy.portal.enums.statistic.ChartType.PIE;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -42,8 +42,8 @@ import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.statistic.StatisticFilter;
-import com.axonivy.portal.enums.ChartTarget;
-import com.axonivy.portal.enums.ChartType;
+import com.axonivy.portal.enums.statistic.ChartTarget;
+import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.AggregationInterval;
 import com.axonivy.portal.service.DeepLTranslationService;
