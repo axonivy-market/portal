@@ -41,9 +41,9 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private NumberChartConfig numberChartConfig;
   @JsonProperty(access = Access.WRITE_ONLY)
   private String aggregates;
-  private String manipulateValueBy;
   @JsonProperty(access = Access.READ_ONLY)
   private List<Entry<String, String>> additionalConfigs;
+  private String manipulateValueBy;
   @JsonIgnore
   private String name;
   @JsonIgnore
