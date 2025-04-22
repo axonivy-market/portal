@@ -243,6 +243,12 @@ function clearChartInterval() {
   }
 }
 
+function removeNearLastCharacter(str, n) {
+  if (!str || str.length <= n) {
+    return ""; // Handle empty or short strings
+  }
+  return str.slice(0, str.length - (n + 1)) + str.slice(str.length - n);
+}
 // Function to generate chart data by chart type
 const generateChart = (chart, data) => {
   // TODO REMOVE LOGGING
@@ -253,18 +259,24 @@ const generateChart = (chart, data) => {
   console.log(data.chartConfig.filters);
   const filters = data.chartConfig.filters;
   console.log("CONVERTING FILTERS");
+  let filter = '';
   if(filters && filters.length > 0) {
-    let filter = '';
     filters.forEach((item, index) => {
-      if (index === 0) {
-        filter += item;
-      } else {
-        filter += ',' + item;
-      }
+      console.log("field: " + item.field);
+      filter += item.field + ":";
+      item.values.forEach((value) => {
+        console.log("value for filter: " + value);
+        filter += value + " ";
+      })
+      filter += ',';
+      filter = removeNearLastCharacter(filter, 1);
     });
-    data.chartConfig.filter = filter;
-
+    filter = removeNearLastCharacter(filter, 0);
   }
+  data.chartConfig.filter = filter;
+
+  console.log("data");
+  console.log(data);
   switch (data.chartConfig.chartType) {
     case 'number': return new ClientNumberChart(chart, data);
     case 'bar': return new ClientBarChart(chart, data);
