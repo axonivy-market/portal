@@ -1524,8 +1524,6 @@ Enums:
                 name: Verfallsdatum
               IS_EXPIRED:
                 name: Ist abgelaufen
-              NUMBER_OF_RESUMES:
-                name: Anzahl der wieder aufnehmen
               PRIORITY:
                 name: Priorität
               RESPONSIBLES_NAME:

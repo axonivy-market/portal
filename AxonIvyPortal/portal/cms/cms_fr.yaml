@@ -1552,8 +1552,6 @@ Enums:
                 name: Date d'expiration
               IS_EXPIRED:
                 name: Est périmé
-              NUMBER_OF_RESUMES:
-                name: Nombre de reprendre
               PRIORITY:
                 name: Priorité
               RESPONSIBLES_NAME:

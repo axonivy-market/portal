@@ -1560,8 +1560,6 @@ Enums:
                 name: Expiry date
               IS_EXPIRED:
                 name: Is expired
-              NUMBER_OF_RESUMES:
-                name: Number of resumes
               PRIORITY:
                 name: Priority
               RESPONSIBLES_NAME:

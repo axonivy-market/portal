@@ -1513,8 +1513,6 @@ Enums:
                 name: Fecha de caducidad
               IS_EXPIRED:
                 name: Ha expirado
-              NUMBER_OF_RESUMES:
-                name: Número de currículos
               PRIORITY:
                 name: Prioridad
               RESPONSIBLES_NAME:

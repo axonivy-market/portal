@@ -1550,8 +1550,6 @@ Enums:
                 name: TODO Expiry date
               IS_EXPIRED:
                 name: TODO Is expired
-              NUMBER_OF_RESUMES:
-                name: TODO Number of resumes
               PRIORITY:
                 name: TODO Priority
               RESPONSIBLES_NAME:
