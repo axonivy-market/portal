@@ -107,7 +107,7 @@
           <p:tab id="case-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" titleStyleClass="case-tab-title"
             rendered="#{dataModel.caseDataModel.criteria.globalSearchScope and caseWidgetBean.showFullCaseList}">
             <div class="js-case-default-widget-container case-default-widget-container js-for-search-result">
-              <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" hideWidgetHeader="true"
+              <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" hideWidgetHeader="true" componentToUpdateOnDestroyCase="search-results-tabview:case-results:destroy-case-confirmation-dialog"
                 dataModel="#{dataModel.caseDataModel}" listHeaderStyleClass="case-in-search">
                 <f:facet name="caseListHeader">
                   <ui:fragment rendered="#{useCaseOverrideListHeader}">
