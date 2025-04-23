@@ -287,7 +287,7 @@ const generateChart = (chart, data) => {
   //   filter = removeCharacterFromLastIndex(filter, 0);
   // }
   /** ************************************************************************ */
-  data.chartConfig.filter = '';
+  data.chartConfig.filter = data.chartConfig.filter ? data.chartConfig.filter : '';
 
   console.log("data");
   console.log(data);
