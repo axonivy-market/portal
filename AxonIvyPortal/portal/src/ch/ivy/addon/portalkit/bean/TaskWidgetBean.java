@@ -21,11 +21,13 @@ import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.exporter.Exporter;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
@@ -189,6 +191,13 @@ public class TaskWidgetBean implements Serializable {
   
   public void updateSelectedTaskName(String taskName) {
     setSelectedTaskName(taskName);
+  }
+  
+  public void updateSelectedTask(Boolean isShowInTaskList, ITask task) {
+    if (isShowInTaskList) {
+      setSelectedTaskItemId(task.getId());
+      setSelectedTaskName(task.names().current());
+    }
   }
   
   public String destroyTaskMessage() {
