@@ -9,7 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.StatisticJsonVersion;
-import com.axonivy.portal.enums.ChartType;
+import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -33,9 +33,9 @@ public class StatisticChartConverter implements IJsonConverter {
     case ChartType.PIE:
       addPieChartConfig((ObjectNode) jsonNode);
       break;
-//    case ChartType.NUMBER:
-//      addChartConfig((ObjectNode) jsonNode);
-//      break;
+    case ChartType.NUMBER:
+      updateNumberChartConfig((ObjectNode) jsonNode);
+      break;
     default:
       break;
     }
@@ -46,7 +46,6 @@ public class StatisticChartConverter implements IJsonConverter {
       List<TextNode> colorNodes = DEFAULT_COLORS.stream().map(color -> new TextNode(color)).collect(Collectors.toList());
       ArrayNode colorArrayNode = JsonNodeFactory.instance.arrayNode();
       colorArrayNode.addAll(colorNodes);
-
       ObjectNode bgColorNode = JsonNodeFactory.instance.objectNode();
       bgColorNode.set("backgroundColors", colorArrayNode);
 
@@ -54,16 +53,15 @@ public class StatisticChartConverter implements IJsonConverter {
     }
   }
 
-  private void addChartConfig(ObjectNode jsonNode) {
-    if (!jsonNode.has("pieChartConfig")) {
-      List<TextNode> colorNodes = DEFAULT_COLORS.stream().map(color -> new TextNode(color)).collect(Collectors.toList());
-      ArrayNode colorArrayNode = JsonNodeFactory.instance.arrayNode();
-      colorArrayNode.addAll(colorNodes);
-
-      ObjectNode bgColorNode = JsonNodeFactory.instance.objectNode();
-      bgColorNode.set("backgroundColors", colorArrayNode);
-
-      jsonNode.set("pieChartConfig", bgColorNode);
+  private void updateNumberChartConfig(ObjectNode jsonNode) {
+    if (jsonNode.has("hideLabel")) {
+      ObjectNode numberChartConfigNode;
+      if (!jsonNode.has("numberChartConfig")) {
+        numberChartConfigNode = JsonNodeFactory.instance.objectNode();
+      } else {
+        numberChartConfigNode = (ObjectNode) jsonNode.get("numberChartConfig");
+      }
+      numberChartConfigNode.set("hideLabel", jsonNode.get("hideLabel"));
     }
   }
 }
