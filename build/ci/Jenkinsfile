@@ -7,10 +7,6 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
   }
 
-  triggers {
-    pollSCM 'H/15 * * * *'
-  }
-
   parameters {
     string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: portal-components,portal,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport,portal-components-examples. E.g. portal-components code is changed, then set this property value portal => portal-components,portal will be built.')
   }
@@ -47,7 +43,7 @@ pipeline {
           def engineUrl = 'http://' + utils.getJenkinsMasterDomain() + ':8000'
           docker.build('deploy-modules-to-engine', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
             for (module in builtModules) {
-              maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Portal -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.test.users=true -Divy.deploy.target.version=RELEASED"
+              maven cmd: "com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.server.id=engine-cockpit -Divy.deploy.engine.app=Statistic -Divy.deploy.method=HTTP -Divy.deploy.engine.url=${engineUrl} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.test.users=true -Divy.deploy.target.version=RELEASED"
             }
           }
         }
