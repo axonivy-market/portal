@@ -78,7 +78,6 @@ public class TaskWidgetTest extends BaseTest {
   public void testPinAndUnpinTask() {
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-
     taskWidget.pinTaskByIndex(0);
     assertEquals(true, taskWidget.isTaskPinned(0));
     NavigationHelper.navigateToTaskList();
@@ -91,16 +90,23 @@ public class TaskWidgetTest extends BaseTest {
   public void testTogglePinnedTask() {
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-
     for (int i = 2; i > 0; i--) {
       taskWidget.pinTaskByIndex(i);
     }
-
     taskWidget.togglePinnedTask();
+    taskWidget.waitUntilTaskFilterReturnResultCount(2);
     int visibleTaskCount = taskWidget.countAllTasks().size();
-    taskWidget.waitUntilTaskCountDifferentThan();
-    System.out.println(visibleTaskCount);
     assertEquals(2, visibleTaskCount);
   }
 
+  @Test
+  public void testClickOnPinColumn() {
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.clickOnPinColumn(0);
+    assertEquals(true, taskWidget.isTaskPinned(0));
+    NavigationHelper.navigateToTaskList();
+    taskWidget.clickOnPinColumn(0);
+    assertEquals(true, taskWidget.isTaskUnpinned(0));
+  }
 }

@@ -239,8 +239,9 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
         .until((driver) -> countAllTasks().size() != 0);
   }
 
-  public void waitUntilTaskCountDifferentThan() {
-    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((driver) -> countAllTasks().size() == 2);
+  public void waitUntilTaskFilterReturnResultCount(int count) {
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
+        .until((driver) -> countAllTasks().size() == count);
   }
 
   public void isDelegateTypeSelectAvailable() {
@@ -335,7 +336,9 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     SelenideElement toggle = $("[id$='show-pin-toggle']");
     toggle.shouldBe(clickable());
     toggle.find(By.className("ui-toggleswitch-slider")).click();
-    // checkNameOfTaskAt(0, "Annual Leave Request");
   }
 
+  public void clickOnPinColumn(int index) {
+    getColumnOfTaskHasIndex(index, "Pin").shouldBe(getClickableCondition()).click();
+  }
 }
