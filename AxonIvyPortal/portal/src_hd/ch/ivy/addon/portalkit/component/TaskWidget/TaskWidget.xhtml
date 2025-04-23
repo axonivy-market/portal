@@ -15,7 +15,7 @@
   <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
   <cc:attribute name="selectedTaskId" />
   <cc:attribute name="showHeaderToolbar" default="true" />
-  <cc:attribute name="componentToUpdateOnDestroyTask" default="" />
+  <cc:attribute name="destroyTaskDialogComponent" default="" />
   <cc:attribute name="noTaskFoundMessage" />
   <cc:attribute name="hideWidgetHeader" default="false" type="java.lang.Boolean" />
   <cc:attribute name="currentPortalPage" default="TASK_LIST" shortDescription="Sticky task list after finish task" />
@@ -133,7 +133,7 @@
             isSelected="#{cc.attrs.selectedTaskId eq task.getId()}"
             dataModel="#{data.dataModel}"
             onDestroyComplete="PF('destroy-task-dialog').show()"
-            onDelegateComplete="initDataToDelegate()" componentToUpdateOnDestroyTask="#{cc.attrs.componentToUpdateOnDestroyTask}"
+            onDelegateComplete="initDataToDelegate()" destroyTaskDialogComponent="#{cc.attrs.destroyTaskDialogComponent}"
             onEscalationComplete="PF('escalation-task-dialog').show()"
             onWorkflowEventComplete="initWorkflowEventData()"
             readOnly="#{cc.attrs.readOnly}"
