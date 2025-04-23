@@ -1516,20 +1516,6 @@ Enums:
     axonivy:
       portal:
         enums:
-          ChartTarget:
-            CASE:
-              name: ケース
-            TASK:
-              name: タスク
-          ChartType:
-            BAR:
-              name: TODO Bar
-            LINE:
-              name: TODO Line
-            NUMBER:
-              name: TODO Number
-            PIE:
-              name: TODO Pie
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1550,8 +1536,6 @@ Enums:
                 name: TODO Expiry date
               IS_EXPIRED:
                 name: TODO Is expired
-              NUMBER_OF_RESUMES:
-                name: TODO Number of resumes
               PRIORITY:
                 name: TODO Priority
               RESPONSIBLES_NAME:
@@ -1571,6 +1555,20 @@ Enums:
                 name: TODO Week
               YEAR:
                 name: TODO Year
+            ChartTarget:
+              CASE:
+                name: ケース
+              TASK:
+                name: タスク
+            ChartType:
+              BAR:
+                name: TODO Bar
+              LINE:
+                name: TODO Line
+              NUMBER:
+                name: TODO Number
+              PIE:
+                name: TODO Pie
 Labels:
   AI:
     Error:

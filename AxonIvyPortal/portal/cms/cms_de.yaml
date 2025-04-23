@@ -1458,7 +1458,6 @@ Dialogs:
             ChartType: Diagrammtyp
             Color: Farbe {0}
             Create: Erstellen
-            CustomAggregateInput: Bitte geben Sie benutzerdefinierte Felder ein.
             EditStatistic: Statistisches Widget bearbeiten
             For: Für
             GeneratePreview: Vorschau generieren
@@ -1490,20 +1489,6 @@ Enums:
     axonivy:
       portal:
         enums:
-          ChartTarget:
-            CASE:
-              name: Vorgang
-            TASK:
-              name: Aufgabe
-          ChartType:
-            BAR:
-              name: Balkendiagramm
-            LINE:
-              name: Liniendiagramm
-            NUMBER:
-              name: Kennzahl / Metrik
-            PIE:
-              name: Kreisdiagramm
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1524,8 +1509,6 @@ Enums:
                 name: Verfallsdatum
               IS_EXPIRED:
                 name: Ist abgelaufen
-              NUMBER_OF_RESUMES:
-                name: Anzahl der wieder aufnehmen
               PRIORITY:
                 name: Priorität
               RESPONSIBLES_NAME:
@@ -1545,6 +1528,20 @@ Enums:
                 name: Woche
               YEAR:
                 name: Jahr
+            ChartTarget:
+              CASE:
+                name: Vorgang
+              TASK:
+                name: Aufgabe
+            ChartType:
+              BAR:
+                name: Balkendiagramm
+              LINE:
+                name: Liniendiagramm
+              NUMBER:
+                name: Kennzahl / Metrik
+              PIE:
+                name: Kreisdiagramm
 Labels:
   AI:
     Error:

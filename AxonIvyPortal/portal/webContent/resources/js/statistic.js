@@ -243,8 +243,40 @@ function clearChartInterval() {
   }
 }
 
-// Function to genearte chart data by chart type
+function removeNearLastCharacter(str, n) {
+  if (!str || str.length <= n) {
+    return ""; // Handle empty or short strings
+  }
+  return str.slice(0, str.length - (n + 1)) + str.slice(str.length - n);
+}
+// Function to generate chart data by chart type
 const generateChart = (chart, data) => {
+  // TODO REMOVE LOGGING
+  // if chartType is number
+  // converting the filters to filter while rendering the number chart
+  console.log(data);
+  console.log("getting filters: ");
+  console.log(data.chartConfig.filters);
+  const filters = data.chartConfig.filters;
+  console.log("CONVERTING FILTERS");
+  let filter = '';
+  if(filters && filters.length > 0) {
+    filters.forEach((item, index) => {
+      console.log("field: " + item.field);
+      filter += item.field + ":";
+      item.values.forEach((value) => {
+        console.log("value for filter: " + value);
+        filter += value + " ";
+      })
+      filter += ',';
+      filter = removeNearLastCharacter(filter, 1);
+    });
+    filter = removeNearLastCharacter(filter, 0);
+  }
+  data.chartConfig.filter = filter;
+
+  console.log("data");
+  console.log(data);
   switch (data.chartConfig.chartType) {
     case 'number': return new ClientNumberChart(chart, data);
     case 'bar': return new ClientBarChart(chart, data);
@@ -757,6 +789,7 @@ class ClientNumberChart extends ClientChart {
     const aggregateFilter = this.data.chartConfig.aggregates + ':';
     const aggregateFilterRegex = new RegExp('^' + this.data.chartConfig.aggregates + ':');
     let result = [];
+    // TODO REMOVE LOGGING
     this.filters.filter(filter => filter.startsWith(aggregateFilter))
     .forEach(filter => {
       // Get states from filter. Expected result: ['OPEN','DONE']

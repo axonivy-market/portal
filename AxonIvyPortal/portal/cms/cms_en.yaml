@@ -1491,7 +1491,6 @@ Dialogs:
             ChartType: Chart type
             Color: Color {0}
             Create: Create
-            CustomAggregateInput: Please input custom fields.
             EditStatistic: Edit Statistic Widget
             For: For
             GeneratePreview: Generate preview
@@ -1526,20 +1525,6 @@ Enums:
     axonivy:
       portal:
         enums:
-          ChartTarget:
-            CASE:
-              name: Case
-            TASK:
-              name: Task
-          ChartType:
-            BAR:
-              name: Bar
-            LINE:
-              name: Line
-            NUMBER:
-              name: Number
-            PIE:
-              name: Pie
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1560,8 +1545,6 @@ Enums:
                 name: Expiry date
               IS_EXPIRED:
                 name: Is expired
-              NUMBER_OF_RESUMES:
-                name: Number of resumes
               PRIORITY:
                 name: Priority
               RESPONSIBLES_NAME:
@@ -1581,6 +1564,20 @@ Enums:
                 name: Week
               YEAR:
                 name: Year
+            ChartTarget:
+              CASE:
+                name: Case
+              TASK:
+                name: Task
+            ChartType:
+              BAR:
+                name: Bar
+              LINE:
+                name: Line
+              NUMBER:
+                name: Number
+              PIE:
+                name: Pie
 Labels:
   AI:
     Error:

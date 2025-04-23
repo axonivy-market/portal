@@ -117,18 +117,25 @@ public class StatisticService {
     Ivy.log().info(chart.getAggregates());
     String aggregates = chart.getAggregates();
     filter = processTaskFilter(chart.getFilters());
-    chart.setFilter(filter);
+//    chart.setFilter(filter);
     
+    Ivy.log().info("========= SINGLE FILTER =========");
+    chart.getFilter();
+    Ivy.log().info("========= CHECKING FILTERS =========");
+    if(filter != null) {
+      chart.getFilters().forEach(item -> Ivy.log().info(item.getValues()));
+    }
+
     if(StringUtils.isEmpty(aggregates)) {
       // TODO: do aggregates converting here
       aggregates = convertAggregatesFromChartAggregation(chart);
     }
 
 // TODO: REMOVE THIS COMMENT AFTER DONE THE STORY
-//    if (StringUtils.isEmpty(chart.getFilter())) {
-//    } else {
-//      filter = chart.getFilter();
-//    }
+    if (StringUtils.isEmpty(chart.getFilter())) {
+    } else {
+      filter = chart.getFilter();
+    }
 // TODO REMOVE LOGGING
     Ivy.log().info("return aggregates: " + aggregates);
     return switch (chart.getChartTarget()) {
@@ -138,10 +145,6 @@ public class StatisticService {
     };
   }
   
-  public void convertStatisticAggregationToChartAggregates() {
-    
-  }
-
   public List<Entry<String, String>> getAdditionalConfig() {
     
     List<Entry<String, String>> entries = new ArrayList<>();
@@ -207,12 +210,15 @@ public class StatisticService {
       switch (customFieldType) {
       case CustomFieldType.STRING: {
         aggregates = "customFields.strings." + chartAggregation.getCustomFieldValue();
+        break;
       }
       case CustomFieldType.NUMBER: {
-
+        Ivy.log().info("CUSTOM FIELD IS TYPE NUMBER! CURRENTLY NOT SUPPORTED");
+        break;
       }
       case CustomFieldType.TIMESTAMP: {
         aggregates = "customFields.timestamps." + chartAggregation.getCustomFieldValue();
+        break;
       }
       default: {
       }

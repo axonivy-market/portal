@@ -1486,7 +1486,6 @@ Dialogs:
             ChartType: Type de graphique
             Color: Couleur {0}
             Create: Créer
-            CustomAggregateInput: Veuillez saisir des champs personnalisés.
             EditStatistic: Modifier le widget statistique
             For: Pour
             GeneratePreview: Générer un aperçu
@@ -1518,20 +1517,6 @@ Enums:
     axonivy:
       portal:
         enums:
-          ChartTarget:
-            CASE:
-              name: Dossier
-            TASK:
-              name: Tâche
-          ChartType:
-            BAR:
-              name: TODO Bar
-            LINE:
-              name: TODO Line
-            NUMBER:
-              name: TODO Number
-            PIE:
-              name: TODO Pie
           statistic:
             AggregationField:
               ACTIVATOR_NAME:
@@ -1552,8 +1537,6 @@ Enums:
                 name: Date d'expiration
               IS_EXPIRED:
                 name: Est périmé
-              NUMBER_OF_RESUMES:
-                name: Nombre de reprendre
               PRIORITY:
                 name: Priorité
               RESPONSIBLES_NAME:
@@ -1573,6 +1556,20 @@ Enums:
                 name: Semaine
               YEAR:
                 name: Année
+            ChartTarget:
+              CASE:
+                name: Dossier
+              TASK:
+                name: Tâche
+            ChartType:
+              BAR:
+                name: TODO Bar
+              LINE:
+                name: TODO Line
+              NUMBER:
+                name: TODO Number
+              PIE:
+                name: TODO Pie
 Labels:
   AI:
     Error:

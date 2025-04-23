@@ -6,8 +6,8 @@ import java.util.Map.Entry;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.statistic.StatisticFilter;
-import com.axonivy.portal.enums.ChartTarget;
-import com.axonivy.portal.enums.ChartType;
+import com.axonivy.portal.enums.statistic.ChartTarget;
+import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -24,7 +24,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = -8416553636564399910L;
   public static final String DEFAULT_ICON = "si-pie-line-graph";
-
+  @JsonProperty(access = Access.WRITE_ONLY)
   private String filter;
   private List<StatisticFilter> filters;
   private List<String> permissions;
@@ -41,9 +41,9 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private NumberChartConfig numberChartConfig;
   @JsonProperty(access = Access.WRITE_ONLY)
   private String aggregates;
-  private String manipulateValueBy;
   @JsonProperty(access = Access.READ_ONLY)
   private List<Entry<String, String>> additionalConfigs;
+  private String manipulateValueBy;
   @JsonIgnore
   private String name;
   @JsonIgnore
