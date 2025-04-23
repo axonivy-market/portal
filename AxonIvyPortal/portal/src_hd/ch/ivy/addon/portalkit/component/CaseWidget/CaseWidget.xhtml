@@ -19,7 +19,7 @@
   <cc:attribute name="isTechnicalCaseView" default="false" />
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="inFrame" default="false" />
-  <cc:attribute name="componentToUpdateOnDestroyCase" default="" />
+  <cc:attribute name="destroyCaseDialogComponent" default="" />
   <cc:facet name="emptyMessage" />
 </cc:interface>
 
@@ -74,7 +74,7 @@
       <h:panelGroup id="case-list" layout="block" styleClass="case-list">
         <p:dataScroller id="case-list-scroller" value="#{data.dataModel}" var="case" chunkSize="#{cc.attrs.chunkSize}"
           lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list" widgetVar="case-list-scroller">
-          <ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item" componentToUpdateOnDestroyCase="#{cc.attrs.componentToUpdateOnDestroyCase}"
+          <ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item" destroyCaseDialogComponent="#{cc.attrs.destroyCaseDialogComponent}"
             onDestroyComplete="PF('destroy-case-dialog').show()" rowIndex="#{rowIndex}"
             itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}" readOnly="#{cc.attrs.readOnly}" inFrame="#{cc.attrs.inFrame}">
             <cc:insertFacet name="caseHeader" />

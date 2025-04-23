@@ -91,7 +91,7 @@
   
               <h:panelGroup styleClass="case-detail-action-command ui-g-8" layout="block">
                 <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-group" actionLinkId="case-details-action-link"
-                  panelWidgetVar="case-details-action-panel" componentToUpdateOnDestroyCase="case-item-details:case-details-container:destroy-case-confirmation-dialog" 
+                  panelWidgetVar="case-details-action-panel" destroyCaseDialogComponent="case-item-details:case-details-container:destroy-case-confirmation-dialog" 
                   case="#{case}" inFrame="#{inFrame}" readOnly="#{readOnly}"
                   renderShowDetailAction="false"
                   onDestroyComplete="PF('destroy-case-dialog').show()" />

@@ -144,7 +144,7 @@
             <ui:param name="onEscalationComplete" value="PF('escalation-task-dialog').show()" />
             <ui:param name="onWorkflowEventComplete" value="initWorkflowEventData()" />
             <ui:param name="inFrame" value="#{cc.attrs.inFrame}" />
-            <ui:param name="componentToUpdateOnDestroyTask" value="#{cc.clientId}:destroy-task-confirmation-dialog" />
+            <ui:param name="destroyTaskDialogComponent" value="#{cc.clientId}:destroy-task-confirmation-dialog" />
           </ui:include>
         </p:column>
       </p:dataTable>
