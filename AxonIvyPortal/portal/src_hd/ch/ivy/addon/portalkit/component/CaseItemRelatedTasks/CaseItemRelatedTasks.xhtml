@@ -204,12 +204,14 @@
       value="#{taskWidgetBean.destroyTaskMessage()}" />
 
     <ui:define name="dialogFooter">
-      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        onclick="PF('destroy-task-dialog').hide();" styleClass="u-mar-right-15" />
+      <h:panelGroup styleClass="flex flex-column">
       <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
-        icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
+        styleClass="portal-remove-button w-full"
         actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
         oncomplete="PF('destroy-task-dialog').hide()" update="#{cc.clientId}:related-tasks" process="@this" />
+      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        onclick="PF('destroy-task-dialog').hide();" styleClass="pt-3 flex justify-content-center" />
+      </h:panelGroup>
     </ui:define>
   </ui:decorate>
   

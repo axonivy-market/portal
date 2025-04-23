@@ -19,6 +19,7 @@
   <cc:attribute name="isTechnicalCaseView" default="false" />
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="inFrame" default="false" />
+  <cc:attribute name="componentToUpdateOnDestroyCase" default="" />
   <cc:facet name="emptyMessage" />
 </cc:interface>
 
@@ -73,7 +74,7 @@
       <h:panelGroup id="case-list" layout="block" styleClass="case-list">
         <p:dataScroller id="case-list-scroller" value="#{data.dataModel}" var="case" chunkSize="#{cc.attrs.chunkSize}"
           lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list" widgetVar="case-list-scroller">
-          <ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item"
+          <ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item" componentToUpdateOnDestroyCase="#{cc.attrs.componentToUpdateOnDestroyCase}"
             onDestroyComplete="PF('destroy-case-dialog').show()" rowIndex="#{rowIndex}"
             itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}" readOnly="#{cc.attrs.readOnly}" inFrame="#{cc.attrs.inFrame}">
             <cc:insertFacet name="caseHeader" />
@@ -86,6 +87,28 @@
       </h:panelGroup>
     </h:panelGroup>
   </div>
+  
+  <!-- Destroy case dialog -->
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="destroy-case-confirmation-dialog" />
+    <ui:param name="widgetVar" value="destroy-case-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="si si-delete-1" />
+    <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyCaseHeaderText')}" />
+    <ui:param name="dialogContent" value="#{caseWidgetBean.destroyCaseMessage()}" />
+    
+    <ui:define name="dialogFooter">
+      <h:panelGroup styleClass="flex flex-column">
+        <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+          styleClass="w-full portal-remove-button"
+          actionListener="#{caseWidgetBean.destroyCase(case)}"
+          oncomplete="backToPrevPage(#{caseWidgetBean.willNavigateBack()});" />
+        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          onclick="PF('destroy-case-dialog').hide();" styleClass="pt-3 flex justify-content-center" />
+        </h:panelGroup>
+    </ui:define>
+  </ui:decorate>
 
   <h:outputText id="hidden-case-count" styleClass="hidden js-hidden-case-count hidden-case-count" value="#{data.dataModel.rowCount}" rendered="#{not data.dataModel.disableCaseCount}" />
   <script type="text/javascript">
