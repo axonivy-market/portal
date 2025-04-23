@@ -1207,7 +1207,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: 優先度
     defaultFilter: フィルターの初期値
-    destroyTaskMessage: この操作は元に戻せません。このタスクを破棄してもよろしいですか？
+    destroyTaskMessage: この操作は元に戻せません。このタスクを破棄してもよろしいですか <b>{0}</b>？
     headerTitle:
       relatedStatisticHeader: 統計チャートの関連タスク：
       relatedTasksHeader: ケースの関連タスク
