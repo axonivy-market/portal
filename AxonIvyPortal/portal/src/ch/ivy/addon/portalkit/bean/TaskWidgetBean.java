@@ -201,8 +201,8 @@ public class TaskWidgetBean implements Serializable {
   }
   
   public String destroyTaskMessage() {
-    String taskName = "Unknown Task";
-    String taskId = "Unknown ID";
+    String taskName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/unknownTask");
+    String taskId = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/unknownId");
     if (this.selectedTaskItemId != null) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage", List.of(this.selectedTaskName, this.selectedTaskItemId));
     }

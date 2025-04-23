@@ -372,6 +372,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'ケース #{0} {1}'
     relatedCases: 関連するケース
     title: タイトル
+    unknownCase: Unknown Case
+    unknownId: Unknown ID
   caseState:
     CREATED: 作成済み
     CREATED_UPPERCASE: 作成済み
@@ -1231,6 +1233,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: 優先度（低から高）
     triggerEscalationNote: 'タスク #{2} の {0} ({1}) によってエスカレーションされました'
     type: タイプ
+    unknownId: Unknown ID
+    unknownTask: Unknown Task
   taskPriority:
     EXCEPTION: 例外
     EXCEPTION_LOWERCASE: 例外
