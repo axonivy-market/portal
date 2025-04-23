@@ -108,12 +108,11 @@
 
     <p:commandLink id="task-destroy-command" disabled="#{!taskActionBean.canDestroyTask(task)}" rendered="#{taskActionBean.showDestroyTask}"
       styleClass="option-item color-destroy ui-menu-items" update="@parent #{cc.attrs.componentToUpdate} #{cc.attrs.destroyTaskDialogComponent}"
-      actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}" onclick="rcUpdateSelectedTaskName();"
+      actionListener="#{taskWidgetBean.updateSelectedTask(isShowInTaskList, task)}"
       oncomplete="#{cc.attrs.onDestroyComplete};" process="@this">
       <i class="option-action-icon pi pi-trash" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
     </p:commandLink>
-    <p:remoteCommand id="rc-update-selected-task-name" name="rcUpdateSelectedTaskName" actionListener="#{taskWidgetBean.updateSelectedTaskName(task.names().current())}" global="false" process="@this"/>
 
     <h:panelGroup id="task-additional-actions" styleClass="task-additional-actions-panel" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">
       <f:event listener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId())}" type="preRenderComponent" />
