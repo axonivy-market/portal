@@ -84,7 +84,15 @@
           styleClass="related-task-responsible-column" field="ACTIVATOR" sortBy="#{ACTIVATOR}" filterable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldActivator)}">
           <pc:securityMemberNameAndAvatar securityMember="#{task.activator}"
-            displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}" />
+            displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}">
+            <f:facet name="afterName">
+              <h:panelGroup id="deputy-info" rendered="#{task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator())}" styleClass="deputy-info mt-1 ml-2">
+                <i class="si si-information-circle" />
+              </h:panelGroup>
+              <p:tooltip for="deputy-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskFromSubstitution')}" trackMouse="true" hideEvent="mouseleave click"
+                rendered="#{task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator())}"/>
+            </f:facet>
+            </pc:securityMemberNameAndAvatar>
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}"
           styleClass="related-task-id-column u-truncate-text" field="ID" sortBy="#{ID}" filterable="false"
