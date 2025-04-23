@@ -258,22 +258,22 @@ const generateChart = (chart, data) => {
   console.log("getting filters: ");
   console.log(data.chartConfig.filters);
   const filters = data.chartConfig.filters;
-  console.log("CONVERTING FILTERS");
-  let filter = '';
-  if(filters && filters.length > 0) {
+  let filter = "";
+  if(filters != null && filters.length > 0) {
+    console.log("CONVERTING FILTERS");
     filters.forEach((item, index) => {
       console.log("field: " + item.field);
       filter += item.field + ":";
       if(item.field.includes("canWorkOn")){
         console.log("value for filter: " + item.operator);
-        filter += item.operator;
+        filter += item.operator + ",";
       } else {
         item.values.forEach((value) => {
           console.log("value for filter: " + value);
           filter += value + " ";
+          filter += ',';
+          filter = removeNearLastCharacter(filter, 1); 
         })
-        filter += ',';
-        filter = removeNearLastCharacter(filter, 1);  
       }
     });
     filter = removeNearLastCharacter(filter, 0);
@@ -794,7 +794,6 @@ class ClientNumberChart extends ClientChart {
     const aggregateFilter = this.data.chartConfig.aggregates + ':';
     const aggregateFilterRegex = new RegExp('^' + this.data.chartConfig.aggregates + ':');
     let result = [];
-    // TODO REMOVE LOGGING
     this.filters.filter(filter => filter.startsWith(aggregateFilter))
     .forEach(filter => {
       // Get states from filter. Expected result: ['OPEN','DONE']
