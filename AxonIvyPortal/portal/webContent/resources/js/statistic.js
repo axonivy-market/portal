@@ -243,7 +243,7 @@ function clearChartInterval() {
   }
 }
 
-function removeNearLastCharacter(str, n) {
+function removeCharacterFromLastIndex(str, n) {
   if (!str || str.length <= n) {
     return ""; // Handle empty or short strings
   }
@@ -254,31 +254,40 @@ const generateChart = (chart, data) => {
   // TODO REMOVE LOGGING
   // if chartType is number
   // converting the filters to filter while rendering the number chart
-  console.log(data);
-  console.log("getting filters: ");
-  console.log(data.chartConfig.filters);
-  const filters = data.chartConfig.filters;
-  let filter = "";
-  if(filters != null && filters.length > 0) {
-    console.log("CONVERTING FILTERS");
-    filters.forEach((item, index) => {
-      console.log("field: " + item.field);
-      filter += item.field + ":";
-      if(item.field.includes("canWorkOn")){
-        console.log("value for filter: " + item.operator);
-        filter += item.operator + ",";
-      } else {
-        item.values.forEach((value) => {
-          console.log("value for filter: " + value);
-          filter += value + " ";
-          filter += ',';
-          filter = removeNearLastCharacter(filter, 1); 
-        })
-      }
-    });
-    filter = removeNearLastCharacter(filter, 0);
-  }
-  data.chartConfig.filter = filter;
+  /** **************************************************************************
+   * SEEM LIKE THE FILTER WON'T HELP AT THIS TIME, REMOVE THEM
+   */
+  // console.log(data);
+  // console.log("getting filters: ");
+  // console.log(data.chartConfig.filters);
+  // const filters = data.chartConfig.filters;
+  // let filter = "";
+  // if(filters != null && filters.length > 0) {
+  //   console.log("CONVERTING FILTERS");
+  //   filters.forEach((item, index) => {
+  //     console.log("field: " + item.field);
+  //     filter += item.field + ":";
+  //     console.log("timestamp: " + item.field.toLowerCase());
+  //     console.log("check timestamp: " + item.field.toLowerCase().includes("timestamp"));
+  //     if(item.field.includes("canWorkOn")){
+  //       console.log("value for filter: " + item.operator);
+  //       filter += item.operator + ",";
+  //     } else if (item.field.toLowerCase().includes("timestamp")) {
+  //       console.log("handle timestamp filter");
+
+  //     } else {
+  //       item.values.forEach((value) => {
+  //         console.log("value for filter: " + value);
+  //         filter += value + " ";
+  //         filter += ',';
+  //         filter = removeCharacterFromLastIndex(filter, 1); 
+  //       })
+  //     }
+  //   });
+  //   filter = removeCharacterFromLastIndex(filter, 0);
+  // }
+  /** ************************************************************************ */
+  data.chartConfig.filter = '';
 
   console.log("data");
   console.log(data);
