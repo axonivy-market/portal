@@ -5,6 +5,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="nameId" default="task-name" />
   <cc:attribute name="componentToUpdate" />
+  <cc:attribute name="destroyTaskDialogComponent" default=""/>
   <cc:attribute name="showItemDetailsHeader" default="true" />
   <cc:attribute name="showItemDetailDocuments" default="true" />
   <cc:attribute name="showItemDetailsNotes" default="true" />
@@ -111,7 +112,7 @@
                 <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" buttonStyleClass="task-action-item-position"
                   actionLinkId="task-detail-more-step" panelWidgetVar="task-side-steps-panel-#{rowIndex}"
                   renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}" task="#{task}"
-                  isDisabled="#{taskActionBean.noActionAvailable(task) or cc.attrs.readOnly}"
+                  isDisabled="#{taskActionBean.noActionAvailable(task) or cc.attrs.readOnly}" destroyTaskDialogComponent="#{cc.attrs.destroyTaskDialogComponent}"
                   componentToUpdate="#{informationWidgetComponent} #{historyWidgetComponent} #{cc.attrs.componentToUpdate}" onDestroyComplete="PF('destroy-task-dialog').show()"
                   onEscalationComplete="PF('escalation-task-dialog').show()"
                   showInTaskList="false" onDelegateComplete="initDataToDelegate()" onWorkflowEventComplete="initWorkflowEventData()" />
@@ -197,7 +198,7 @@
     <ui:param name="iconClass" value="si si-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyTaskHeaderText')}" />
-    <ui:param name="dialogContent" value="#{taskWidgetBean.destroyTaskMessage()}" />
+    <ui:param name="dialogContent" value="#{taskDetailsBean.destroyTaskMessage()}" />
 
     <ui:define name="dialogFooter">
       <h:panelGroup styleClass="flex flex-column">

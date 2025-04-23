@@ -204,7 +204,11 @@ public class CaseWidgetBean implements Serializable {
   }
   
   public String destroyCaseMessage() {
-    String caseName = this.selectedCase != null ? this.selectedCase.names().current() : "Case";
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage", List.of(caseName));
+    String caseName = "Unknown Case";
+    String caseId = "Unknown ID";
+    if (this.selectedCase != null) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage", List.of(this.selectedCase.names().current(), this.selectedCase.getId()));
+    }
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage", List.of(caseName, caseId));
   }
 }
