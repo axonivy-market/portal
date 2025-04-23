@@ -131,12 +131,12 @@ public class StatisticService {
       aggregates = convertAggregatesFromChartAggregation(chart);
     }
 
-// TODO: REMOVE THIS COMMENT AFTER DONE THE STORY
-    if (StringUtils.isEmpty(chart.getFilter())) {
-    } else {
+    // TODO: REMOVE THIS COMMENT AFTER DONE THE STORY
+    if (!StringUtils.isEmpty(chart.getFilter())) {
       filter = chart.getFilter();
     }
-// TODO REMOVE LOGGING
+
+    // TODO REMOVE LOGGING
     Ivy.log().info("return aggregates: " + aggregates);
     return switch (chart.getChartTarget()) {
       case CASE -> WorkflowStats.current().caze().aggregate(aggregates, filter);
