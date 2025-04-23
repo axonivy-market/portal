@@ -264,12 +264,17 @@ const generateChart = (chart, data) => {
     filters.forEach((item, index) => {
       console.log("field: " + item.field);
       filter += item.field + ":";
-      item.values.forEach((value) => {
-        console.log("value for filter: " + value);
-        filter += value + " ";
-      })
-      filter += ',';
-      filter = removeNearLastCharacter(filter, 1);
+      if(item.field.includes("canWorkOn")){
+        console.log("value for filter: " + item.operator);
+        filter += item.operator;
+      } else {
+        item.values.forEach((value) => {
+          console.log("value for filter: " + value);
+          filter += value + " ";
+        })
+        filter += ',';
+        filter = removeNearLastCharacter(filter, 1);  
+      }
     });
     filter = removeNearLastCharacter(filter, 0);
   }
