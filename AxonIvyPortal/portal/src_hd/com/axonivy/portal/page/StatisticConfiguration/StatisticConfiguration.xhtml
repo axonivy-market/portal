@@ -116,7 +116,7 @@
 
                   <!-- CUSTOM FIELD SELECTION -->
                   <p:selectOneMenu id="aggregates-custom-fields" required="true" styleClass="w-full mt-2"
-                    requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Aggregate')])}"
+                    requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GroupBy')])}"
                     rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}" value="#{statisticConfigurationBean.currentCustomField}" >
                     <f:selectItem value="#{null}" noSelectionOption="false" />
                     <f:selectItems value="#{statisticConfigurationBean.getCustomFieldNames()}" var="customField" />
@@ -221,7 +221,7 @@
                       forceSelection="true" required="true"
                       requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Labels/Permissions')])}">
                       <p:ajax event="itemSelect" listener="#{statisticConfigurationBean.onSelectPermissionForDashboard}"
-                        update="permissions" global="false" process="@this" immediate="true" />
+                        update="permissions errors-message" global="false" process="@this" immediate="true" />
                       <p:ajax event="itemUnselect"
                         listener="#{statisticConfigurationBean.onUnSelectPermissionForDashboard}" global="false"
                         process="@this" immediate="true" />
@@ -306,7 +306,7 @@
                     <p:commandButton widgetVar="previewButton"
                       value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GeneratePreview')}"
                       actionListener="#{statisticConfigurationBean.getPreviewData()}"
-                      update="permissions errors-message" oncomplete="handlePreviewChart(xhr, status, args)"
+                      update="config-panel errors-message" oncomplete="handlePreviewChart(xhr, status, args)"
                       styleClass="ui-leave-button" />
                   </div>
                 </div>
