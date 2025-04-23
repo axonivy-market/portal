@@ -1207,7 +1207,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Filtre par défaut
-    destroyTaskMessage: Cette opération ne peut être annulée. Êtes-vous sûr de vouloir détruire cette tâche ?
+    destroyTaskMessage: Cette opération ne peut être annulée. Êtes-vous sûr de vouloir détruire cette tâche <b>{0}</b> ?
     headerTitle:
       relatedStatisticHeader: 'Tâches du diagramme:'
       relatedTasksHeader: Tâches associées au dossier
