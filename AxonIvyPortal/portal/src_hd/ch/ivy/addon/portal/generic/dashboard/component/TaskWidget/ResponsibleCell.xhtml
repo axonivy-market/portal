@@ -6,7 +6,7 @@
 <pc:securityMemberNameAndAvatar displayName="#{column.display(task)}" securityMember="#{task.getActivator()}"
   containerStyleClass="#{task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator()) ? 'has-deputy-info' : ''}">
   <f:facet name="afterName">
-    <h:panelGroup id="deputy-info" rendered="#{task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator())}" styleClass="deputy-info">
+    <h:panelGroup id="deputy-info" rendered="#{task.getActivator() != null and ivy.session.isMemberThroughActiveSubstitution(task.getActivator())}" styleClass="deputy-info mt-1">
       <i class="si si-information-circle" />
     </h:panelGroup>
     <p:tooltip for="deputy-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskFromSubstitution')}" trackMouse="true" hideEvent="mouseleave click"
