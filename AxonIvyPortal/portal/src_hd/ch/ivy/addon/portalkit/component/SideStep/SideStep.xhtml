@@ -113,7 +113,7 @@
       <i class="option-action-icon pi pi-trash" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
     </p:commandLink>
-    <p:remoteCommand id="rc-update-selected-task-name" name="rcUpdateSelectedTaskName" actionListener="#{taskWidgetBean.updateSelectedTaskName(task.name)}" global="false"/>
+    <p:remoteCommand id="rc-update-selected-task-name" name="rcUpdateSelectedTaskName" actionListener="#{taskWidgetBean.updateSelectedTaskName(task.names().current())}" global="false" process="@this"/>
 
     <h:panelGroup id="task-additional-actions" styleClass="task-additional-actions-panel" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">
       <f:event listener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId())}" type="preRenderComponent" />
