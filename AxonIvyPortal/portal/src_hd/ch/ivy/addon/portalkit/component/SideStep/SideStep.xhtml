@@ -109,7 +109,7 @@
     <p:commandLink id="task-destroy-command" disabled="#{!taskActionBean.canDestroyTask(task)}" rendered="#{taskActionBean.showDestroyTask}"
       styleClass="option-item color-destroy ui-menu-items" update="@parent #{cc.attrs.componentToUpdate} #{cc.attrs.destroyTaskDialogComponent}"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}" onclick="rcUpdateSelectedTaskName();"
-      oncomplete="#{cc.attrs.onDestroyComplete};" process="@this" global="false">
+      oncomplete="#{cc.attrs.onDestroyComplete};" process="@this">
       <i class="option-action-icon pi pi-trash" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
     </p:commandLink>
