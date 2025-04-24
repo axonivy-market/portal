@@ -203,7 +203,7 @@ public class CaseWidgetBean implements Serializable {
     return false;
   }
   
-  public String destroyCaseMessage() {
+  public String getDestroyCaseMessage() {
     String caseName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/unknownCase");
     String caseId = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/unknownId");
     if (this.selectedCase != null) {
