@@ -3,11 +3,12 @@ package ch.ivy.addon.portal.generic.bean;
 import java.io.IOException;
 
 import java.io.Serializable;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Stack;
 import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
@@ -35,7 +36,7 @@ public class NavigationDashboardWidgetBean implements Serializable {
 
   private static final long serialVersionUID = -4224901891867040688L;
   private Boolean isNavigateToTargetDashboard;
-  private Stack<String> pageHistory = new Stack<>();
+  private Deque<String> pageHistory = new ArrayDeque<>();
   
   public void pushPage(String pageId) {
       if (!pageHistory.isEmpty() && pageHistory.peek().equals(pageId)) {
@@ -54,7 +55,7 @@ public class NavigationDashboardWidgetBean implements Serializable {
   }
   
   public boolean hasHistory() {
-      return pageHistory.size() > 0;
+      return !pageHistory.isEmpty();
   }
   
   public void clearHistory() {
@@ -72,7 +73,7 @@ public class NavigationDashboardWidgetBean implements Serializable {
     if (hasHistory()) {
       navigateToDashboard(getPreviousPage());
       removeLast();
-      if (pageHistory.size() == 0) {
+      if (pageHistory.isEmpty()) {
         setIsNavigateToTargetDashboard(Boolean.FALSE);
       }
       removeSelectedSubDashboardId();
