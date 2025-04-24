@@ -374,6 +374,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'Dossier #{0} {1}'
     relatedCases: Cas connexes
     title: Titre
+    unknownCase: Cas inconnu
+    unknownId: Inconnu Id
   caseState:
     CREATED: Créé
     CREATED_UPPERCASE: CRÉÉ
@@ -1231,6 +1233,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Priorité (faible à élevée)
     triggerEscalationNote: 'L''escalade a été déclenchée par {0} ({1}) de la tâche #{2}.'
     type: Type
+    unknownId: ID inconnu
+    unknownTask: Tâche inconnue
   taskPriority:
     EXCEPTION: EXCEPTION
     EXCEPTION_LOWERCASE: Exception
