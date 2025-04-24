@@ -376,6 +376,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'Vorgang #{0} {1}'
     relatedCases: Verwandte Vorgänge
     title: Titel
+    unknownCase: Unbekannter Fall
+    unknownId: Unbekannter Id
   caseState:
     CREATED: Erstellt
     CREATED_UPPERCASE: ERSTELLT
@@ -1235,6 +1237,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Priorität (niedrig nach hoch)
     triggerEscalationNote: 'Die Eskalation wurde ausgelöst durch {0} ({1}) der Aufgabe #{2}'
     type: Typ
+    unknownId: Unbekannte ID
+    unknownTask: Unbekannte Aufgabe
   taskPriority:
     EXCEPTION: AUSNAHME
     EXCEPTION_LOWERCASE: Ausnahme

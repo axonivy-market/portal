@@ -21,11 +21,13 @@ import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.exporter.Exporter;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
@@ -191,10 +193,17 @@ public class TaskWidgetBean implements Serializable {
     setSelectedTaskName(taskName);
   }
   
+  public void updateSelectedTask(Boolean isShowInTaskList, ITask task) {
+    if (isShowInTaskList) {
+      setSelectedTaskItemId(task.getId());
+      setSelectedTaskName(task.names().current());
+    }
+  }
+  
   public String destroyTaskMessage() {
-    String taskName = "Unknown Task";
-    String taskId = "Unknown ID";
-    if (this.selectedTaskItemId != null || this.selectedTaskName != null) {
+    String taskName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/unknownTask");
+    String taskId = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/unknownId");
+    if (this.selectedTaskItemId != null) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage", List.of(this.selectedTaskName, this.selectedTaskItemId));
     }
     else return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage", List.of(taskName, taskId));
