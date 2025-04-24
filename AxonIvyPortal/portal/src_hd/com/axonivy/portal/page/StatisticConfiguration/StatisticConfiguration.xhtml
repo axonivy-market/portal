@@ -34,12 +34,13 @@
                   <h4 class="mb-0 mt-3">#{ivy.cms.co('/Labels/General')}</h4>
                 </div>
 
+<!--                 TODO RETURN REQUIRE FOR NAME -->
                 <div class="field col-12">
                   <p:outputLabel value="#{ivy.cms.co('/Labels/Name')}" for="@next" />
                   <div class="ui-inputgroup">
                     <p:inputText id="name" value="#{statisticConfigurationBean.statistic.name}" maxlength="#{statisticInput}"
                       requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Labels/Name')])}"
-                      styleClass="w-full" required="true"/>
+                      styleClass="w-full"/>
                     <p:commandButton id="add-name-language-button" icon="si si-chat-translate"
                       actionListener="#{statisticConfigurationBean.updateNameByLocale()}" process="name"
                       update="name-language-config:multiple-languages-dialog"
@@ -141,8 +142,7 @@
                 </h:panelGroup>
 
                 <!--  FILTERS FOR STATISTIC -->
-                <h:panelGroup styleClass="field col-12" layout="block"
-                  rendered="#{statisticConfigurationBean.statistic.chartTarget.name() eq 'TASK'}">
+                <h:panelGroup styleClass="field col-12" layout="block">
                   <p:outputLabel for="@next" value="#{ivy.cms.co('/Labels/Filters')}" />
                   <div>
                     <h:panelGroup id="user-filter" layout="block" styleClass="ui-g dashboard-widget-filter__main-panel">

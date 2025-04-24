@@ -8,10 +8,11 @@ import com.axonivy.portal.util.statisticfilter.field.FilterField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class StatisticFilter extends BaseFilter implements Serializable{
+public class StatisticFilter extends BaseFilter implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
@@ -44,5 +45,10 @@ public class StatisticFilter extends BaseFilter implements Serializable{
   @JsonIgnore
   public boolean isCanWorkOn() {
     return StatisticConstants.CAN_WORK_ON.equals(getField());
+  }
+  
+  @JsonIgnore
+  public boolean isCreator() {
+    return DashboardStandardCaseColumn.CREATOR.getField().equals(getField());
   }
 }

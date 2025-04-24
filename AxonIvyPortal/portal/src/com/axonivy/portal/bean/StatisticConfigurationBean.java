@@ -52,6 +52,7 @@ import com.axonivy.portal.service.multilanguage.StatisticDescriptionMultilanguag
 import com.axonivy.portal.service.multilanguage.StatisticNameMultilanguageService;
 import com.axonivy.portal.service.multilanguage.StatisticXTitleMultilanguageService;
 import com.axonivy.portal.service.multilanguage.StatisticYTitleMultilanguageService;
+import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 import com.axonivy.portal.util.statisticfilter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 
@@ -196,7 +197,10 @@ public class StatisticConfigurationBean implements Serializable {
     statistic.getStatisticAggregation().setAggregationField(AggregationField.PRIORITY);
     statistic.setNames(new ArrayList<>());
     statistic.setDescriptions(new ArrayList<>());
-    statistic.setChartTarget(ChartTarget.TASK);
+    /**
+     * TODO REVERT CHART TARGET
+     */
+    statistic.setChartTarget(ChartTarget.CASE);
     statistic.setChartType(ChartType.BAR);
     statistic.setNumberChartConfig(new NumberChartConfig());
     statistic.setBarChartConfig(new BarChartConfig());
@@ -211,8 +215,14 @@ public class StatisticConfigurationBean implements Serializable {
   
   private void initFilterFields() {
     filterFields = new ArrayList<>();
-    filterFields.add(TaskFilterFieldFactory.getDefaultFilterField());
-    filterFields.addAll(TaskFilterFieldFactory.getStandardFilterableFields());
+    if (ChartTarget.TASK == statistic.getChartTarget()) {
+      filterFields.add(TaskFilterFieldFactory.getDefaultFilterField());
+      filterFields.addAll(TaskFilterFieldFactory.getStandardFilterableFields());
+    } else {
+      filterFields.add(CaseFilterFieldFactory.getDefaultFilterField());
+      filterFields.addAll(CaseFilterFieldFactory.getStandardFilterableFields());
+    }
+    filterFields.forEach(filter -> Ivy.log().info(filter.getName()));
   }
 
   private void initFilters() {
@@ -782,7 +792,12 @@ public class StatisticConfigurationBean implements Serializable {
     String field = Optional.ofNullable(filter).map(StatisticFilter::getFilterField).map(FilterField::getName)
         .orElse(StringUtils.EMPTY);
 
-    FilterField filterField = TaskFilterFieldFactory.findBy(field);
+    FilterField filterField;
+    if (ChartTarget.TASK == statistic.getChartTarget()) {
+      filterField = TaskFilterFieldFactory.findBy(field);
+    } else {
+      filterField = CaseFilterFieldFactory.findBy(field);
+    }
 
     if (filterField.getName()
         .contentEquals(BaseFilter.DEFAULT)) {
@@ -816,6 +831,16 @@ public class StatisticConfigurationBean implements Serializable {
 
   public void setAggregationInterval(AggregationInterval aggregationInterval) {
     this.aggregationInterval = aggregationInterval;
+  }
+
+  /**
+   * COMPLEX FILTER FOR STATISTIC CASE PART
+   * @param query
+   * @return
+   */
+  public List<SecurityMemberDTO> completeCreators(String query) {
+    return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE).stream()
+        .filter(SecurityMemberDTO::isUser).collect(Collectors.toList());
   }
 
 }

@@ -22,6 +22,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class BaseFilter implements Serializable{
@@ -221,4 +222,20 @@ public class BaseFilter implements Serializable{
   public boolean isResponsible() {
     return DashboardStandardTaskColumn.RESPONSIBLE.getField().equals(getField());
   }
+  
+  /**
+   * TODO 
+   * recheck this function
+   */
+  @JsonIgnore
+  public List<SecurityMemberDTO> getCreators() {
+    return getValues().stream().map(this::findUser)
+        .filter(Objects::nonNull).collect(Collectors.toList());
+  }
+
+  private SecurityMemberDTO findUser(String memberName) {
+    return ServiceUtilities.findSecurityMemberByName(memberName);
+  }
+
+
 }

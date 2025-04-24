@@ -7,6 +7,7 @@ import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.statistic.StatisticFilter;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class TextInOperatorHandler {
   private static TextInOperatorHandler instance;
@@ -29,6 +30,8 @@ public class TextInOperatorHandler {
     for (String value : filter.getValues()) {
       sb.append(value).append(" ");
     }
+
+    Ivy.log().info("sb.toString " + sb.toString());
     return sb.toString();
   }
   
@@ -40,6 +43,7 @@ public class TextInOperatorHandler {
     return switch(field) {
       case StatisticConstants.STATE -> StatisticConstants.BUSSINESS_STATE;
       case StatisticConstants.ACTIVATOR -> StatisticConstants.RESPONSIBLE_NAME;
+      case StatisticConstants.CREATOR -> StatisticConstants.CREATOR_NAME;
       default -> field; 
     };
   }
