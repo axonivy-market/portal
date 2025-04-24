@@ -217,7 +217,7 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
     return SortFieldUtil.buildSortMeta("creation.timestamp", true);
   }
   
-  public String destroyTaskMessage() {
+  public String getDestroyTaskMessage() {
     String taskName = "Unknown Task";
     String taskId = "Unknown ID";
     ITask task = getSelectedTaskFromData();
