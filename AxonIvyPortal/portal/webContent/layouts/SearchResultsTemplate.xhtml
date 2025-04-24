@@ -52,7 +52,7 @@
             rendered="#{dataModel.taskDataModel.criteria.globalSearchScope and taskWidgetBean.showFullTaskList}" >
             <div class="task-list-container js-task-list-container js-for-search-result">
               <ic:ch.ivy.addon.portalkit.component.TaskWidget id="task-results" listHeaderStyleClass="task-in-search"
-                keyword="#{dataModel.taskDataModel.criteria.keyword}" currentPortalPage="SEARCH_RESULTS"
+                keyword="#{dataModel.taskDataModel.criteria.keyword}" currentPortalPage="SEARCH_RESULTS" destroyTaskDialogComponent="search-results-tabview:task-results:destroy-task-confirmation-dialog"
                 dataModel="#{dataModel.taskDataModel}" hideWidgetHeader="true" compactMode="false">
                 <f:facet name="taskListHeader">
                   <ui:fragment rendered="#{useTaskOverrideListHeader}">
@@ -107,7 +107,7 @@
           <p:tab id="case-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" titleStyleClass="case-tab-title"
             rendered="#{dataModel.caseDataModel.criteria.globalSearchScope and caseWidgetBean.showFullCaseList}">
             <div class="js-case-default-widget-container case-default-widget-container js-for-search-result">
-              <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" hideWidgetHeader="true"
+              <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-results" hideWidgetHeader="true" destroyCaseDialogComponent="search-results-tabview:case-results:destroy-case-confirmation-dialog"
                 dataModel="#{dataModel.caseDataModel}" listHeaderStyleClass="case-in-search">
                 <f:facet name="caseListHeader">
                   <ui:fragment rendered="#{useCaseOverrideListHeader}">
