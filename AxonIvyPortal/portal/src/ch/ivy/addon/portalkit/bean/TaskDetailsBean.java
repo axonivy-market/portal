@@ -20,6 +20,7 @@ import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetails;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.jsf.Attrs;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
@@ -214,5 +215,15 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
 
   public SortMeta getSortByCreationTimestamp() {
     return SortFieldUtil.buildSortMeta("creation.timestamp", true);
+  }
+  
+  public String getDestroyTaskMessage() {
+    String taskName = "Unknown Task";
+    String taskId = "Unknown ID";
+    ITask task = getSelectedTaskFromData();
+    if (task != null) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage", List.of(task.names().current(), task.getId()));
+    }
+    else return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage", List.of(taskName, taskId));
   }
 }

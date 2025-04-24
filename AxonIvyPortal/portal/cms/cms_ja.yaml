@@ -359,7 +359,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       OWNER: オーナー
       STATE: 状態
     deletionNoteContent: このケースは{0}によって破棄されました
-    destroyCaseMessage: この操作は元に戻せません。このケースとそのすべてのタスクを破棄してもよろしいですか？
+    destroyCaseMessage: 'この操作は元に戻せません。このケース<b>{0}(ID: {1})</b>とそのすべてのタスクを破棄してもよろしいですか？'
     destroyfail: ケースの破棄に失敗しました。
     destroysucceed: ケースは正常に破棄されました。
     downloadZipFileExplanation: エクスポートするケースの数が Excel の行数制限を超えています。そのためデータは複数の Excel ファイルに分割され、ダウンロードするためにZIP ファイルに圧縮されます。
@@ -372,6 +372,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'ケース #{0} {1}'
     relatedCases: 関連するケース
     title: タイトル
+    unknownCase: 'TODO: Unknown Case'
+    unknownId: 'TODO: Unknown ID'
   caseState:
     CREATED: 作成済み
     CREATED_UPPERCASE: 作成済み
@@ -1207,7 +1209,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: 優先度
     defaultFilter: フィルターの初期値
-    destroyTaskMessage: この操作は元に戻せません。このタスクを破棄してもよろしいですか？
+    destroyTaskMessage: 'この操作は元に戻せません。このタスクを破棄してもよろしいですか<b>{0}(ID: {1})</b>？'
     headerTitle:
       relatedStatisticHeader: 統計チャートの関連タスク：
       relatedTasksHeader: ケースの関連タスク
@@ -1231,6 +1233,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: 優先度（低から高）
     triggerEscalationNote: 'タスク #{2} の {0} ({1}) によってエスカレーションされました'
     type: タイプ
+    unknownId: 'TODO: Unknown ID'
+    unknownTask: 'TODO: Unknown Task'
   taskPriority:
     EXCEPTION: 例外
     EXCEPTION_LOWERCASE: 例外
