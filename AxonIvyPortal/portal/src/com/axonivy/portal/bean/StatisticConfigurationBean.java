@@ -42,10 +42,10 @@ import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.dto.statistic.StatisticFilter;
-import com.axonivy.portal.enums.statistic.ChartTarget;
-import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.AggregationInterval;
+import com.axonivy.portal.enums.statistic.ChartTarget;
+import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.service.multilanguage.StatisticDescriptionMultilanguageService;
@@ -84,7 +84,7 @@ public class StatisticConfigurationBean implements Serializable {
   private static final int MAX_REFRESH_INTERVAL_IN_SECONDS = 1000000;
   private static final int DEFAULT_REFRESH_INTERVAL_IN_SECONDS = 300;
   private static final String TIMESTAMP = "timestamp";
-  private static final List<String> DEFAULT_COLORS =
+  public static final List<String> DEFAULT_COLORS =
       Arrays.asList("#6299f7", "#8dc261", "#98bffa", "#bee3cb", "#c8befa", "#f5bf9f", "#f8da96", "#f9908c");
   private Statistic statistic;
   private String statisticId;

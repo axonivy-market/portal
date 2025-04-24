@@ -1,5 +1,7 @@
 package com.axonivy.portal.service;
 
+import static com.axonivy.portal.bean.StatisticConfigurationBean.DEFAULT_COLORS;
+
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,12 +19,14 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 
+import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
 import com.axonivy.portal.dto.StatisticDto;
 import com.axonivy.portal.dto.statistic.StatisticFilter;
 import com.axonivy.portal.enums.AdditionalChartConfig;
 import com.axonivy.portal.enums.statistic.AggregationInterval;
+import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.util.statisticfilter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 
@@ -177,11 +181,37 @@ public class StatisticService {
   private List<Statistic> getDefaultStatistic() {
     List<Statistic> statistics = DefaultStatisticService.getInstance().getPublicConfig();
     statistics.forEach(cs -> cs.setIsCustom(false));
+    configDefaultStatisticSettings(statistics);
     return statistics;
   }
   
   public List<Statistic> getCustomStatistic() {
-    return BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
+    List<Statistic> statistics =
+        BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
+    configDefaultStatisticSettings(statistics);
+    return statistics;
+  }
+
+  private void configDefaultStatisticSettings(List<Statistic> statistics) {
+    for (Statistic statistic : statistics) {
+      if (ChartType.PIE == statistic.getChartType()) {
+        if (statistic.getPieChartConfig() == null) { // could be null due to migration from version 12
+          PieChartConfig pieChartConfig = new PieChartConfig();
+          pieChartConfig.setBackgroundColors(DEFAULT_COLORS);
+          statistic.setPieChartConfig(pieChartConfig);
+        } else if (CollectionUtils.isEmpty(statistic.getPieChartConfig().getBackgroundColors())) {
+          statistic.getPieChartConfig().setBackgroundColors(DEFAULT_COLORS);
+        }
+      }
+      if (ChartType.BAR == statistic.getChartType()
+          && CollectionUtils.isEmpty(statistic.getBarChartConfig().getBackgroundColors())) {
+        statistic.getBarChartConfig().setBackgroundColors(DEFAULT_COLORS);
+      }
+      if (ChartType.LINE == statistic.getChartType()
+          && CollectionUtils.isEmpty(statistic.getLineChartConfig().getBackgroundColors())) {
+        statistic.getLineChartConfig().setBackgroundColors(DEFAULT_COLORS);
+      }
+    }
   }
 
   private String convertAggregatesFromChartAggregation(Statistic chart) {
