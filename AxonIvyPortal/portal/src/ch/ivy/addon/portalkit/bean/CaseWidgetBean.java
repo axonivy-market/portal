@@ -214,7 +214,7 @@ public class CaseWidgetBean implements Serializable {
       String keyword = Optional.ofNullable(model.getCriteria().getKeyword()).orElse("");
       String searchScopeCaseFieldsString = "";
 
-      if (CollectionUtils.isNotEmpty(model.getCriteria().getSearchScopeCaseFields())) {
+      if (CollectionUtils.isNotEmpty(model.getCriteria().getSearchScopeCaseFields())) { 
         searchScopeCaseFieldsString
           = ", ".concat(String.join(", ", model.getCriteria().getSearchScopeCaseFields().stream().map(SearchScopeCaseField::getLabel).collect(Collectors.toList())));
       }
@@ -233,5 +233,14 @@ public class CaseWidgetBean implements Serializable {
       return CaseService.newInstance().isCaseAccessible(caze.uuid());
     }
     return false;
+  }
+  
+  public String getDestroyCaseMessage() {
+    String caseName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/unknownCase");
+    String caseId = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/unknownId");
+    if (this.selectedCase != null) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage", List.of(this.selectedCase.names().current(), Long.toString(this.selectedCase.getId())));
+    }
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage", List.of(caseName, caseId));
   }
 }
