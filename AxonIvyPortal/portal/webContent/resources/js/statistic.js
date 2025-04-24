@@ -251,46 +251,8 @@ function removeCharacterFromLastIndex(str, n) {
 }
 // Function to generate chart data by chart type
 const generateChart = (chart, data) => {
-  // TODO REMOVE LOGGING
-  // if chartType is number
-  // converting the filters to filter while rendering the number chart
-  /** **************************************************************************
-   * SEEM LIKE THE FILTER WON'T HELP AT THIS TIME, REMOVE THEM
-   */
-  // console.log(data);
-  // console.log("getting filters: ");
-  // console.log(data.chartConfig.filters);
-  // const filters = data.chartConfig.filters;
-  // let filter = "";
-  // if(filters != null && filters.length > 0) {
-  //   console.log("CONVERTING FILTERS");
-  //   filters.forEach((item, index) => {
-  //     console.log("field: " + item.field);
-  //     filter += item.field + ":";
-  //     console.log("timestamp: " + item.field.toLowerCase());
-  //     console.log("check timestamp: " + item.field.toLowerCase().includes("timestamp"));
-  //     if(item.field.includes("canWorkOn")){
-  //       console.log("value for filter: " + item.operator);
-  //       filter += item.operator + ",";
-  //     } else if (item.field.toLowerCase().includes("timestamp")) {
-  //       console.log("handle timestamp filter");
-
-  //     } else {
-  //       item.values.forEach((value) => {
-  //         console.log("value for filter: " + value);
-  //         filter += value + " ";
-  //         filter += ',';
-  //         filter = removeCharacterFromLastIndex(filter, 1); 
-  //       })
-  //     }
-  //   });
-  //   filter = removeCharacterFromLastIndex(filter, 0);
-  // }
-  /** ************************************************************************ */
   data.chartConfig.filter = data.chartConfig.filter ? data.chartConfig.filter : '';
 
-  console.log("data");
-  console.log(data);
   switch (data.chartConfig.chartType) {
     case 'number': return new ClientNumberChart(chart, data);
     case 'bar': return new ClientBarChart(chart, data);

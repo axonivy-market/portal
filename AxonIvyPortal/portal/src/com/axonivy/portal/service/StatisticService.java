@@ -112,32 +112,22 @@ public class StatisticService {
 
   public AggregationResult getChartData(Statistic chart) {
     String filter = null;
-//  TODO: remove logging
-    Ivy.log().info("checking aggregates");
-    Ivy.log().info(chart.getAggregates());
     String aggregates = chart.getAggregates();
     filter = processTaskFilter(chart.getFilters());
-//    chart.setFilter(filter);
     
-    Ivy.log().info("========= SINGLE FILTER =========");
     chart.getFilter();
-    Ivy.log().info("========= CHECKING FILTERS =========");
     if(filter != null) {
       chart.getFilters().forEach(item -> Ivy.log().info(item.getValues()));
     }
 
     if(StringUtils.isEmpty(aggregates)) {
-      // TODO: do aggregates converting here
       aggregates = convertAggregatesFromChartAggregation(chart);
     }
 
-    // TODO: REMOVE THIS COMMENT AFTER DONE THE STORY
     if (!StringUtils.isEmpty(chart.getFilter())) {
       filter = chart.getFilter();
     }
 
-    // TODO REMOVE LOGGING
-    Ivy.log().info("return aggregates: " + aggregates);
     return switch (chart.getChartTarget()) {
       case CASE -> WorkflowStats.current().caze().aggregate(aggregates, filter);
       case TASK ->  WorkflowStats.current().task().aggregate(aggregates, filter);
@@ -195,11 +185,9 @@ public class StatisticService {
   }
 
   private String convertAggregatesFromChartAggregation(Statistic chart) {
-//  TODO REMOVE LOGGINGs
     String aggregates = "";
     StatisticAggregation chartAggregation = chart.getStatisticAggregation();
     String aggregationField = chartAggregation.getAggregationField().getName();
-    Ivy.log().info(aggregationField);
     AggregationInterval interval = chartAggregation.getInterval();
     CustomFieldType customFieldType = chartAggregation.getCustomFieldType();
 
@@ -225,7 +213,6 @@ public class StatisticService {
       }
       aggregates = interval != null ? aggregates + ":bucket:" + interval.getName().toLowerCase() : aggregates;
 
-      Ivy.log().info(1);
       return aggregates;
 
     } else if (aggregationField.toLowerCase().contains("timestamp")) {
@@ -233,20 +220,15 @@ public class StatisticService {
        * Normal timestamp
        */
       if (interval != null) {
-        Ivy.log().info(2.2);
         aggregates = aggregationField + ":bucket:" + interval.getName().toLowerCase();
       }
-      Ivy.log().info(2);
 
-      Ivy.log().info(aggregates);
       return aggregates;
     }
     /**
      * Normal
      */
-    Ivy.log().info(3);
     aggregates = aggregationField;
-    Ivy.log().info(aggregates);
 
     return aggregates;
   }

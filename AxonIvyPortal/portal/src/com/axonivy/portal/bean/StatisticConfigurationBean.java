@@ -297,10 +297,6 @@ public class StatisticConfigurationBean implements Serializable {
     if (CollectionUtils.isNotEmpty(statistic.getFilters())) {
       statistic.getFilters().removeIf(filter -> filter.getField() == null);
     } else {
-      /** TODO: REMOVE THIS COMMENT AFTER DONE THE STORY
-       * When remove filters in configuration of existing charts
-       * if there's no filters anymore -> filter also should be set to null
-       */
       statistic.setFilter(null);
     }
   }
@@ -620,8 +616,6 @@ public class StatisticConfigurationBean implements Serializable {
   private void handleCustomFieldAggregation() {
     if(!isCustomFieldsSelected()) {
       resetCustomFieldAndDateTimeInterval();
-      // TODO: REMOVE THIS COMMENT AFTER DONE THE STORY
-//      statistic.setAggregates(statistic.getStatisticAggregation().getAggregationField().getName());
       return;
     }
     
@@ -631,19 +625,13 @@ public class StatisticConfigurationBean implements Serializable {
         aggregationInterval);
     switch (this.currentCustomFieldType) {
     case CustomFieldType.STRING: {
-      // TODO: REMOVE THIS COMMENT AFTER DONE THE STORY
-//      statistic.setAggregates("customFields.strings." + currentCustomField);
       return;
     } 
     case CustomFieldType.NUMBER: {
-      // TODO: REMOVE THIS COMMENT AFTER DONE THE STORY
-//      statistic.setAggregates("customFields.numbers." + currentCustomField);
       return;
     }
     case CustomFieldType.TIMESTAMP:
     {
-      // TODO: REMOVE THIS COMMENT AFTER DONE THE STORY
-//      statistic.setAggregates("customFields.timestamps." + currentCustomField);
       return;
     }
     default: { }
@@ -661,34 +649,17 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void handleAggregateWithDateTimeInterval() {
-    /** TODO: REMOVE THIS COMMENT AFTER DONE THE STORY
-     * custom field timestamp
-     * edit > category
-     * JSON existing interval
-     */
     if (aggregationInterval == null) {
       statistic.getStatisticAggregation().setInterval(null);
       return;
     }
-    /** TODO: REMOVE THIS COMMENT AFTER DONE THE STORY
-     * timestamp
-     * edit > custom field not timestamp
-     * JSON existing interval
-     */
     if(!statistic.getStatisticAggregation().getAggregationField().getName().toLowerCase().contains(TIMESTAMP) && !isDateTimeSelected) {
       this.setAggregationInterval(null);
       statistic.getStatisticAggregation().setInterval(null);
       return;
     }
 
-    List<AggregationInterval> metricOperator = new ArrayList<>();
-    String finalAggregation = metricOperator.contains(aggregationInterval)
-        ? statistic.getStatisticAggregation().getAggregationField().getName() + ":" + aggregationInterval.getName().toLowerCase()
-        : statistic.getStatisticAggregation().getAggregationField().getName() + ":bucket:" + aggregationInterval.getName().toLowerCase();
-    
     statistic.getStatisticAggregation().setInterval(aggregationInterval);
-//    TODO: REMOVE THIS COMMENT AFTER DONE THE STORY
-//    statistic.setAggregates(finalAggregation);
   }
 
   public String getCurrentCustomFieldDescription() {
@@ -742,10 +713,6 @@ public class StatisticConfigurationBean implements Serializable {
 
   public void onSelectInterval() {
     statistic.getStatisticAggregation().setInterval(aggregationInterval);
-    if (aggregationInterval != null && isCustomFieldsSelected()) {
-//      TODO: REMOVE THIS COMMENT AFTER DONE THE STORY
-//      statistic.setAggregates(statistic.getStatisticAggregation().getAggregationField().getName() + ":bucket:" + aggregationInterval.toString().toLowerCase());
-    }
   }
 
   public List<String> getCustomFieldNames() {
@@ -783,9 +750,6 @@ public class StatisticConfigurationBean implements Serializable {
       resetCustomFieldAndDateTimeInterval();
       this.setDateTimeSelected(
           statistic.getStatisticAggregation().getAggregationField().getName().toLowerCase().contains(TIMESTAMP));
-      /** TODO: REMOVE THIS COMMENT AFTER DONE THE STORY
-       * try to reset existing filter
-       */
       initFilterFields();
       this.statistic.setFilters(new ArrayList<>());
     }
