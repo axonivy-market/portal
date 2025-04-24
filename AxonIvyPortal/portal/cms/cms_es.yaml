@@ -1443,15 +1443,16 @@ Dialogs:
         page:
           StatisticConfiguration:
             AddFilter: Añadir filtro
-            AdvancedConfiguration: Configuración avanzada
-            Aggregate: Agregado
+            Advanced: Avanzado
             ChartType: Tipo de gráfico
             Color: Color {0}
             Create: Cree
             EditStatistic: Editar widget de estadísticas
             For: Para
             GeneratePreview: Generar vista previa
+            GroupBy: Grupo por
             HideLabel: Ocultar etiqueta
+            Interval: Intervalo
             NewStatistic: Nuevo widget de estadísticas
             RefreshInterval: Auto-refresco activado
             RefreshIntervalInSeconds: Intervalo de actualización automática (segundos)
@@ -1477,20 +1478,59 @@ Enums:
     axonivy:
       portal:
         enums:
-          ChartTarget:
-            CASE:
-              name: Caso
-            TASK:
-              name: Tarea
-          ChartType:
-            BAR:
-              name: TODO Bar
-            LINE:
-              name: Gráfico de líneas
-            NUMBER:
-              name: Gráfico numérico
-            PIE:
-              name: Gráfico circular
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: Nombre del activador
+              BUSINESS_RUNTIME:
+                name: Tiempo de ejecución
+              BUSINESS_STATE:
+                name: Estado
+              CATEGORY:
+                name: Categoría
+              CREATOR_NAME:
+                name: Nombre del creador
+              CUSTOM_FIELD:
+                name: Campo personalizado
+              END_TIMESTAMP:
+                name: Fecha de finalización
+              EXPIRY_TIMESTAMP:
+                name: Fecha de caducidad
+              IS_EXPIRED:
+                name: Ha expirado
+              PRIORITY:
+                name: Prioridad
+              RESPONSIBLES_NAME:
+                name: Responsables
+              START_TIMESTAMP:
+                name: Fecha de creación
+              WORKER_NAME:
+                name: Nombre del trabajador
+              WORKING_TIME:
+                name: Tiempo de trabajo
+            AggregationInterval:
+              DAY:
+                name: Día
+              MONTH:
+                name: Mes
+              WEEK:
+                name: Semana
+              YEAR:
+                name: Año
+            ChartTarget:
+              CASE:
+                name: Caso
+              TASK:
+                name: Tarea
+            ChartType:
+              BAR:
+                name: TODO Bar
+              LINE:
+                name: Gráfico de líneas
+              NUMBER:
+                name: Gráfico numérico
+              PIE:
+                name: Gráfico circular
 Labels:
   AI:
     Error:
@@ -1602,6 +1642,7 @@ Labels:
       DARK: Oscuro
       LIGHT: Luz
   Filters: Filtros
+  General: General
   Icon: Icono
   InsertTask-Explain: Insertar la tarea. Mi tarea será pospuesta.
   InsertTheTask: Insertar la tarea.

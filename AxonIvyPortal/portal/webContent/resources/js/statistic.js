@@ -243,8 +243,16 @@ function clearChartInterval() {
   }
 }
 
-// Function to genearte chart data by chart type
+function removeCharacterFromLastIndex(str, n) {
+  if (!str || str.length <= n) {
+    return ""; // Handle empty or short strings
+  }
+  return str.slice(0, str.length - (n + 1)) + str.slice(str.length - n);
+}
+// Function to generate chart data by chart type
 const generateChart = (chart, data) => {
+  data.chartConfig.filter = data.chartConfig.filter ? data.chartConfig.filter : '';
+
   switch (data.chartConfig.chartType) {
     case 'number': return new ClientNumberChart(chart, data);
     case 'bar': return new ClientBarChart(chart, data);
