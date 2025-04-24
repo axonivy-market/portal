@@ -222,7 +222,6 @@ public class StatisticConfigurationBean implements Serializable {
       filterFields.add(CaseFilterFieldFactory.getDefaultFilterField());
       filterFields.addAll(CaseFilterFieldFactory.getStandardFilterableFields());
     }
-    filterFields.forEach(filter -> Ivy.log().info(filter.getName()));
   }
 
   private void initFilters() {
@@ -822,6 +821,9 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public List<SecurityMemberDTO> completeOwners(String query) {
+    // TODO logging query
+    Ivy.log().info("completeOwners");
+    Ivy.log().info(query);
     return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
   }
 
@@ -833,12 +835,10 @@ public class StatisticConfigurationBean implements Serializable {
     this.aggregationInterval = aggregationInterval;
   }
 
-  /**
-   * COMPLEX FILTER FOR STATISTIC CASE PART
-   * @param query
-   * @return
-   */
   public List<SecurityMemberDTO> completeCreators(String query) {
+    // TODO logging query
+    Ivy.log().info("completeCreators");
+    Ivy.log().info(query);
     return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE).stream()
         .filter(SecurityMemberDTO::isUser).collect(Collectors.toList());
   }

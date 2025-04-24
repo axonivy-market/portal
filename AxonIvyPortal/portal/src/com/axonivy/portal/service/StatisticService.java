@@ -23,6 +23,7 @@ import com.axonivy.portal.dto.StatisticDto;
 import com.axonivy.portal.dto.statistic.StatisticFilter;
 import com.axonivy.portal.enums.AdditionalChartConfig;
 import com.axonivy.portal.enums.statistic.AggregationInterval;
+import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 import com.axonivy.portal.util.statisticfilter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
@@ -88,7 +89,7 @@ public class StatisticService {
     }
   }
   
-  private String processTaskFilter(List<StatisticFilter> filters) {
+  private String processFilter(List<StatisticFilter> filters, ChartTarget chartTarget) {
     // TODO remove logging
     Ivy.log().info("processTaskFilter");
     if (CollectionUtils.isEmpty(filters)) {
@@ -100,9 +101,9 @@ public class StatisticService {
       if (Optional.ofNullable(statisticFilter).map(StatisticFilter::getOperator).isEmpty()) {
         continue;
       }
-      // TODO refactor to 2 function based on chartTarget
-      // FilterField filterField = TaskFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType());
-      FilterField filterField = CaseFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType());
+      FilterField filterField = ChartTarget.TASK == chartTarget
+          ? TaskFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType())
+          : CaseFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType());      
 
       if (filterField != null) {
         String filterQuery = filterField.generateStringFilter(statisticFilter);
@@ -128,7 +129,7 @@ public class StatisticService {
   public AggregationResult getChartData(Statistic chart) {
     String filter = null;
     String aggregates = chart.getAggregates();
-    filter = processTaskFilter(chart.getFilters());
+    filter = processFilter(chart.getFilters(), chart.getChartTarget());
     
     chart.getFilter();
     if(StringUtils.isEmpty(aggregates)) {
@@ -248,29 +249,5 @@ public class StatisticService {
 
     return aggregates;
   }
-//  private String processCaseFilter(List<StatisticFilter> filters) {
-//    // TODO remove logging
-//    Ivy.log().info("processTaskFilter");
-//    if (CollectionUtils.isEmpty(filters)) {
-//      return null;
-//    }
-//    StringBuilder sbFilter = new StringBuilder();
-//    for (StatisticFilter statisticFilter : filters) {
-//      if (Optional.ofNullable(statisticFilter).map(StatisticFilter::getOperator).isEmpty()) {
-//        continue;
-//      }
-//      FilterField filterField = TaskFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType());
-//      if (filterField != null) {
-//        String filterQuery = filterField.generateStringFilter(statisticFilter);
-//        if (filterQuery != null) {
-//          sbFilter.append(filterQuery).append(",");
-//        }
-//      }
-//    }
-//    if (Strings.EMPTY.equals(sbFilter.toString())) {
-//      return null;
-//    }
-//    return sbFilter.toString();
-//  }
-  
+
 }

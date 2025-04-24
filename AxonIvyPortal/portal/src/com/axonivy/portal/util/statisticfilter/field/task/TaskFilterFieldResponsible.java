@@ -10,7 +10,7 @@ import com.axonivy.portal.util.statisticfilter.operator.text.TextInOperatorHandl
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 
-public class TaskFilterFieldResponsible extends FilterField{
+public class TaskFilterFieldResponsible extends FilterField {
 
   public TaskFilterFieldResponsible() {
     super(DashboardStandardTaskColumn.RESPONSIBLE.getField());

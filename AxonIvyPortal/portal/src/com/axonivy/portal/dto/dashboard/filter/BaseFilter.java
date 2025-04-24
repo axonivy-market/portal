@@ -22,7 +22,6 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class BaseFilter implements Serializable{
@@ -224,8 +223,7 @@ public class BaseFilter implements Serializable{
   }
   
   /**
-   * TODO 
-   * recheck this function
+   * TODO remove unused stuffs
    */
   @JsonIgnore
   public List<SecurityMemberDTO> getCreators() {
