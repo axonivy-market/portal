@@ -1,5 +1,6 @@
-package com.axonivy.portal.enums;
+package com.axonivy.portal.enums.statistic;
 
+import com.axonivy.portal.enums.HasCmsName;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum ChartTarget implements HasCmsName {
