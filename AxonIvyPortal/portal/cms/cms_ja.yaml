@@ -1478,15 +1478,15 @@ Dialogs:
             TaskIFrameTitle: タスクフレーム
         page:
           StatisticConfiguration:
-            AdvancedConfiguration: TODO Advanced configuration
-            Aggregate: TODO Aggregate
             AddFilter: TODO Add filter
+            Advanced: TODO Advanced
             ChartType: TODO Chart type
             Color: 色{0}
             Create: TODO Create
             EditStatistic: TODO Edit Statistic Widget
             For: TODO For
             GeneratePreview: TODO Generate preview
+            GroupBy: TODO Group by
             HideLabel: TODO Hide label
             NewStatistic: TODO New Statistic Widget
             RefreshInterval: TODO Auto-refresh enabled
@@ -1516,20 +1516,59 @@ Enums:
     axonivy:
       portal:
         enums:
-          ChartTarget:
-            CASE:
-              name: ケース
-            TASK:
-              name: タスク
-          ChartType:
-            BAR:
-              name: TODO Bar
-            LINE:
-              name: TODO Line
-            NUMBER:
-              name: TODO Number
-            PIE:
-              name: TODO Pie
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: TODO Activator name
+              BUSINESS_RUNTIME:
+                name: TODO Business runtime
+              BUSINESS_STATE:
+                name: TODO State
+              CATEGORY:
+                name: TODO Category
+              CREATOR_NAME:
+                name: TODO Creator name
+              CUSTOM_FIELD:
+                name: TODO Custom field
+              END_TIMESTAMP:
+                name: TODO Completed date
+              EXPIRY_TIMESTAMP:
+                name: TODO Expiry date
+              IS_EXPIRED:
+                name: TODO Is expired
+              PRIORITY:
+                name: TODO Priority
+              RESPONSIBLES_NAME:
+                name: TODO Responsibles
+              START_TIMESTAMP:
+                name: TODO Created date
+              WORKER_NAME:
+                name: TODO Worker name
+              WORKING_TIME:
+                name: TODO Working time
+            AggregationInterval:
+              DAY:
+                name: TODO Day
+              MONTH:
+                name: TODO Month
+              WEEK:
+                name: TODO Week
+              YEAR:
+                name: TODO Year
+            ChartTarget:
+              CASE:
+                name: ケース
+              TASK:
+                name: タスク
+            ChartType:
+              BAR:
+                name: TODO Bar
+              LINE:
+                name: TODO Line
+              NUMBER:
+                name: TODO Number
+              PIE:
+                name: TODO Pie
 Labels:
   AI:
     Error:
@@ -1658,6 +1697,7 @@ Labels:
       DARK: 暗い
       LIGHT: 明るい
   Filters: フィルター
+  General: TODO General
   Icon: アイコン
   InsertTask-Explain: タスクを挿入します。私のタスクは延期されます。
   InsertTheTask: タスクを挿入

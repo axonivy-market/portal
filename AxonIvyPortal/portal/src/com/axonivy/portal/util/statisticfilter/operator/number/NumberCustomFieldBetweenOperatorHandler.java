@@ -18,43 +18,23 @@ public class NumberCustomFieldBetweenOperatorHandler {
   }
   
   public String buildFilter(DashboardFilter filter) {
-    if (StringUtils.isEmpty(filter.getFrom()) && StringUtils.isEmpty(filter.getTo())) {
+    if (StringUtils.isEmpty(filter.getFrom()) || StringUtils.isEmpty(filter.getTo())) {
       return StringUtils.EMPTY;
     }
 
-    if (StringUtils.isNotEmpty(filter.getFrom()) && StringUtils.isNotEmpty(filter.getTo())) {
-      StringBuilder sb = new StringBuilder();
-      sb.append(StatisticConstants.CUSTOM_NUMBER)
-        .append(filter.getField())
-        .append(PortalConstants.COLON)
-        .append(">=")
-        .append(filter.getFrom())
-        .append(" ")
-        .append("<=")
-        .append(filter.getTo());
-      return sb.toString();
-    }
-    
-    if (StringUtils.isNotEmpty(filter.getFrom())){
-      StringBuilder sb = new StringBuilder();
-      sb.append(StatisticConstants.CUSTOM_NUMBER)
-        .append(filter.getField())
-        .append(PortalConstants.COLON)
-        .append(">=")
-        .append(filter.getFrom());
-      return sb.toString();
-    }
-    
-    if (StringUtils.isNotEmpty(filter.getTo())){
-      StringBuilder sb = new StringBuilder();
-      sb.append(StatisticConstants.CUSTOM_NUMBER)
-        .append(filter.getField())
-        .append(PortalConstants.COLON)
-        .append("<=")
-        .append(filter.getTo());
-      return sb.toString();
-    }
-    return StringUtils.EMPTY;
+    StringBuilder sb = new StringBuilder();
+    sb.append(StatisticConstants.CUSTOM_NUMBER)
+      .append(filter.getField())
+      .append(PortalConstants.COLON)
+      .append(">=")
+      .append(filter.getFrom())
+      .append(PortalConstants.COMMA)
+      .append(StatisticConstants.CUSTOM_NUMBER)
+      .append(filter.getField())
+      .append(PortalConstants.COLON)
+      .append("<=")
+      .append(filter.getTo());
+    return sb.toString();
     
   }
 }

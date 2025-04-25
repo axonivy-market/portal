@@ -14,7 +14,6 @@ import com.axonivy.portal.util.statisticfilter.operator.number.NumberCustomField
 import com.axonivy.portal.util.statisticfilter.operator.number.NumberCustomFieldGreaterOrEqualOperatorHandler;
 import com.axonivy.portal.util.statisticfilter.operator.number.NumberCustomFieldLessOperatorHandler;
 import com.axonivy.portal.util.statisticfilter.operator.number.NumberCustomFieldLessOrEqualOperatorHandler;
-import com.axonivy.portal.util.statisticfilter.operator.number.NumberCustomFieldNotBetweenOperatorHandler;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
@@ -85,7 +84,6 @@ public class TaskFilterFieldCustomNumber extends CustomFilterField {
       case GREATER -> NumberCustomFieldGreaterOperatorHandler.getInstance().buildFilter(filter);
       case GREATER_OR_EQUAL -> NumberCustomFieldGreaterOrEqualOperatorHandler.getInstance().buildFilter(filter);
       case BETWEEN -> NumberCustomFieldBetweenOperatorHandler.getInstance().buildFilter(filter);
-      case NOT_BETWEEN -> NumberCustomFieldNotBetweenOperatorHandler.getInstance().buildFilter(filter);
       default -> null;
     };
   }

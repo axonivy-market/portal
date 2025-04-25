@@ -13,6 +13,9 @@
     </ui:define>
     <ui:define name="title">#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/StatisticConfiguration')}</ui:define>
     <ui:define name="pageContent">
+      <c:set var="statisticInput" value="200" />
+      <c:set var="statisticCustomAggregateInput" value="100" />
+
       <p:remoteCommand name="preview" action="#{statisticConfigurationBean.getPreviewData}"
         oncomplete="handlePreviewChart(xhr, status, args)" autoRun="#{statisticConfigurationBean.editMode}" />
       <h:form id="config-form">
@@ -28,12 +31,15 @@
                 </div>
 
                 <div class="field col-12">
+                  <h4 class="mb-0 mt-3">#{ivy.cms.co('/Labels/General')}</h4>
+                </div>
+
+                <div class="field col-12">
                   <p:outputLabel value="#{ivy.cms.co('/Labels/Name')}" for="@next" />
                   <div class="ui-inputgroup">
-                    <p:inputText id="name" value="#{statisticConfigurationBean.statistic.name}" maxlength="200"
-                      required="true"
+                    <p:inputText id="name" value="#{statisticConfigurationBean.statistic.name}" maxlength="#{statisticInput}"
                       requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Labels/Name')])}"
-                      styleClass="w-full" />
+                      styleClass="w-full" required="true"/>
                     <p:commandButton id="add-name-language-button" icon="si si-chat-translate"
                       actionListener="#{statisticConfigurationBean.updateNameByLocale()}" process="name"
                       update="name-language-config:multiple-languages-dialog"
@@ -45,7 +51,7 @@
                   <p:outputLabel value="#{ivy.cms.co('/Labels/Description')}" for="@next" />
                   <div class="ui-inputgroup">
                     <p:inputText id="description" value="#{statisticConfigurationBean.statistic.description}"
-                      maxlength="200" styleClass="w-full" />
+                      maxlength="#{statisticInput}" styleClass="w-full" />
                     <p:commandButton id="add-description-language-button" icon="si si-chat-translate"
                       actionListener="#{statisticConfigurationBean.updateDescriptionByLocale()}" process="description"
                       update="description-language-config:multiple-languages-dialog"
@@ -62,7 +68,8 @@
                       <f:selectItems value="#{statisticConfigurationBean.allChartTypes}" var="chartType"
                         itemLabel="#{chartType.getCmsName()}" itemValue="#{chartType}" />
                       <p:ajax event="itemSelect"
-                        update="x-axis-title-container y-axis-title-container hide-label-container background-colors-container errors-message" />
+                        listener="#{statisticConfigurationBean.onSelectChartType(statisticConfigurationBean.statistic.chartType)}"
+                        update="x-axis-title-container y-axis-title-container hide-label-container background-colors-container errors-message chart-aggregation" />
                     </p:selectOneMenu>
                   </div>
                 </div>
@@ -75,14 +82,14 @@
                       styleClass="w-full">
                       <f:selectItems value="#{statisticConfigurationBean.allChartTargets}" var="chartTarget"
                         itemLabel="#{chartTarget.getCmsName()}" itemValue="#{chartTarget}" />
+                      <p:ajax event="itemSelect" 
+                        listener="#{statisticConfigurationBean.onSelectChartTarget(statisticConfigurationBean.statistic.chartTarget)}"
+                        process="config-panel" update="config-panel errors-message" />
                     </p:selectOneMenu>
                   </div>
                 </div>
 
-                <div class="field col-12">
-                  <h4 class="mb-0 mt-3">#{ivy.cms.co('/Labels/Configuration')}</h4>
-                </div>
-
+                <!-- ICON PICKER -->
                 <div class="field col-12">
                   <p:outputLabel for="@next" value="#{ivy.cms.co('/Labels/Icon')}" />
                   <div>
@@ -91,16 +98,80 @@
                   </div>
                 </div>
 
+
                 <div class="field col-12">
-                  <p:outputLabel for="@next"
-                    value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Aggregate')}" />
-                  <div>
-                    <p:inputText id="aggregates" required="true"
-                      requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Aggregate')])}"
-                      value="#{statisticConfigurationBean.statistic.aggregates}" styleClass="w-full" />
-                  </div>
+                  <h4 class="mb-0 mt-3">#{ivy.cms.co('/Labels/Filters')}</h4>
                 </div>
 
+                <h:panelGroup styleClass="field col-12 mb-3" id="chart-aggregation">
+                  <!-- GROUP BY -->
+                  <p:outputLabel for="@next" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GroupBy')}" />
+                  <p:selectOneMenu id="aggregates" required="true" styleClass="w-full"
+                    value="#{statisticConfigurationBean.statistic.statisticAggregation.aggregationField}">
+                    <f:selectItems value="#{statisticConfigurationBean.getAllAvailableAggregationField()}"
+                      var="aggregate" itemValue="#{aggregate}" itemLabel="#{aggregate.getCmsName()}" />
+                    <p:ajax listener="#{statisticConfigurationBean.onSelectAggregationField()}"
+                      update="chart-aggregation" />
+                  </p:selectOneMenu>
+
+                  <!-- CUSTOM FIELD SELECTION -->
+                  <p:selectOneMenu id="aggregates-custom-fields" required="true" styleClass="w-full mt-2"
+                    requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GroupBy')])}"
+                    rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}" value="#{statisticConfigurationBean.currentCustomField}" >
+                    <f:selectItem value="#{null}" noSelectionOption="false" />
+                    <f:selectItems value="#{statisticConfigurationBean.getCustomFieldNames()}" var="customField" />
+                    <p:ajax listener="#{statisticConfigurationBean.onSelectCustomField()}" update="custom-field-description chart-aggregation" />
+                  </p:selectOneMenu>
+                  <p:inputText id="custom-field-description" readonly="true" 
+                  rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}"
+                  styleClass="w-full mt-2"
+                  value="#{statisticConfigurationBean.currentCustomFieldDescription}"/>
+                  
+
+                  <!--  INTERVALS SELECTION -->
+                  <p:outputLabel for="@next" rendered="#{statisticConfigurationBean.dateTimeSelected}"
+                    styleClass="w-full mt-2"
+                    value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Interval')}" />
+                  <p:selectOneMenu id="aggregates-custom-fields-intervals" styleClass="w-full mt-0"
+                    rendered="#{statisticConfigurationBean.dateTimeSelected}" value="#{statisticConfigurationBean.aggregationInterval}">
+                    <f:selectItems var="dateTimeInterval" value="#{statisticConfigurationBean.getAvailableIntervals()}"
+                      itemLabel="#{dateTimeInterval.getCmsName()}" />
+                    <p:ajax listener="#{statisticConfigurationBean.onSelectInterval}" />
+                  </p:selectOneMenu>
+                </h:panelGroup>
+
+                <!--  FILTERS FOR STATISTIC -->
+                <h:panelGroup styleClass="field col-12" layout="block"
+                  rendered="#{statisticConfigurationBean.statistic.chartTarget.name() eq 'TASK'}">
+                  <p:outputLabel for="@next" value="#{ivy.cms.co('/Labels/Filters')}" />
+                  <div>
+                    <h:panelGroup id="user-filter" layout="block" styleClass="ui-g dashboard-widget-filter__main-panel">
+                      <ui:repeat id="filter-list" var="filter" value="#{statisticConfigurationBean.statistic.filters}"
+                        varStatus="status">
+                        <ic:com.axonivy.portal.page.component.StatisticFilter id="filter-component" filter="#{filter}"
+                          managedBean="#{statisticConfigurationBean}"
+                          componentToUpdate="#{p:resolveFirstComponentWithId('user-filter', view).clientId}"
+                          filterIndex="#{status.index}" readOnly="true" />
+                      </ui:repeat>
+                      <div class="ui-g-12 u-padding-0 MarTop10">
+                        <p:commandButton id="add-filter" icon="#{visibilityBean.generateButtonIcon('si si-add-circle')}"
+                          update="user-filter" process="user-filter" styleClass="u-mar-right-5 ui-button-flat"
+                          actionListener="#{statisticConfigurationBean.addNewFilter()}"
+                          value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/AddFilter')}"
+                          title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/AddFilter')}"
+                          immediate="true" partialSubmit="true">
+                          <f:param name="skipValidator" value="true" />
+                        </p:commandButton>
+                      </div>
+                    </h:panelGroup>
+                  </div>
+                </h:panelGroup>
+
+                <div class="field col-12">
+                  <h4 class="mb-0 mt-3">#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Advanced')}</h4>
+                </div>
+
+                <!--  X TITLE -->
                 <h:panelGroup id="x-axis-title-container" layout="block" styleClass="col-6 p-0">
                   <h:panelGroup layout="block" styleClass="field col-12"
                     rendered="#{statisticConfigurationBean.statistic.chartType.name() eq 'BAR' or statisticConfigurationBean.statistic.chartType.name() eq 'LINE'}">
@@ -119,6 +190,7 @@
                   </h:panelGroup>
                 </h:panelGroup>
 
+                <!--  Y TITLE -->
                 <h:panelGroup id="y-axis-title-container" layout="block" styleClass="col-6 p-0">
                   <h:panelGroup layout="block" styleClass="field col-12"
                     rendered="#{statisticConfigurationBean.statistic.chartType.name() eq 'BAR' or statisticConfigurationBean.statistic.chartType.name() eq 'LINE'}">
@@ -137,34 +209,6 @@
                 </h:panelGroup>
 
                 <div class="field col-12">
-                  <p:outputLabel for="@next" value="#{ivy.cms.co('/Labels/Filters')}" />
-                  <div>
-                    <h:panelGroup id="user-filter" layout="block" styleClass="ui-g dashboard-widget-filter__main-panel">
-                      <ui:repeat id="filter-list" var="filter" value="#{statisticConfigurationBean.statistic.filters}"
-                        varStatus="status">
-                        <ic:com.axonivy.portal.page.component.StatisticFilter id="filter-component" filter="#{filter}"
-                            managedBean="#{statisticConfigurationBean}" componentToUpdate="#{p:resolveFirstComponentWithId('user-filter', view).clientId}"
-                            filterIndex="#{status.index}" readOnly="true"/>
-                      </ui:repeat>
-                      <div class="ui-g-12 u-padding-0 MarTop10">
-                        <p:commandButton id="add-filter" icon="#{visibilityBean.generateButtonIcon('si si-add-circle')}"
-                          update="user-filter" process="user-filter" styleClass="u-mar-right-5 ui-button-flat"
-                          actionListener="#{statisticConfigurationBean.addNewFilter()}"
-                          value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/AddFilter')}"
-                          title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/AddFilter')}" immediate="true"
-                          partialSubmit="true">
-                          <f:param name="skipValidator" value="true" />
-                        </p:commandButton>
-                      </div>
-                    </h:panelGroup>
-                  </div>
-                </div>
-
-                <div class="field col-12">
-                  <h4 class="mb-0 mt-3">#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/AdvancedConfiguration')}</h4>
-                </div>
-
-                <div class="field col-12">
                   <p:outputLabel for="@next" value="#{ivy.cms.co('/Labels/Permissions')}" />
                   <div class="w-full ui-fluid">
                     <p:autoComplete id="permissions" scrollHeight="210" dropdown="true"
@@ -177,7 +221,7 @@
                       forceSelection="true" required="true"
                       requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Labels/Permissions')])}">
                       <p:ajax event="itemSelect" listener="#{statisticConfigurationBean.onSelectPermissionForDashboard}"
-                        update="permissions" global="false" process="@this" immediate="true" />
+                        update="permissions errors-message" global="false" process="@this" immediate="true" />
                       <p:ajax event="itemUnselect"
                         listener="#{statisticConfigurationBean.onUnSelectPermissionForDashboard}" global="false"
                         process="@this" immediate="true" />
@@ -262,7 +306,7 @@
                     <p:commandButton widgetVar="previewButton" id="generate-statistic-chart"
                       value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GeneratePreview')}"
                       actionListener="#{statisticConfigurationBean.getPreviewData()}"
-                      update="errors-message" oncomplete="handlePreviewChart(xhr, status, args)"
+                      update="config-panel errors-message" oncomplete="handlePreviewChart(xhr, status, args)"
                       process="config-panel"
                       styleClass="ui-leave-button" />
                   </div>

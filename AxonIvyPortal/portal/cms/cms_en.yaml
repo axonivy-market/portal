@@ -1487,15 +1487,16 @@ Dialogs:
         page:
           StatisticConfiguration:
             AddFilter: Add filter
-            AdvancedConfiguration: Advanced Configuration
-            Aggregate: Aggregate
+            Advanced: Advanced
             ChartType: Chart type
             Color: Color {0}
             Create: Create
             EditStatistic: Edit Statistic Widget
             For: For
             GeneratePreview: Generate preview
+            GroupBy: Group by
             HideLabel: Hide label
+            Interval: Interval
             NewStatistic: New Statistic Widget
             RefreshInterval: Auto-refresh enabled
             RefreshIntervalInSeconds: Auto-refresh interval (seconds)
@@ -1524,20 +1525,59 @@ Enums:
     axonivy:
       portal:
         enums:
-          ChartTarget:
-            CASE:
-              name: Case
-            TASK:
-              name: Task
-          ChartType:
-            BAR:
-              name: Bar
-            LINE:
-              name: Line
-            NUMBER:
-              name: Number
-            PIE:
-              name: Pie
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: Activator name
+              BUSINESS_RUNTIME:
+                name: Business runtime
+              BUSINESS_STATE:
+                name: State
+              CATEGORY:
+                name: Category
+              CREATOR_NAME:
+                name: Creator name
+              CUSTOM_FIELD:
+                name: Custom field
+              END_TIMESTAMP:
+                name: Completed date
+              EXPIRY_TIMESTAMP:
+                name: Expiry date
+              IS_EXPIRED:
+                name: Is expired
+              PRIORITY:
+                name: Priority
+              RESPONSIBLES_NAME:
+                name: Responsibles
+              START_TIMESTAMP:
+                name: Created date
+              WORKER_NAME:
+                name: Worker name
+              WORKING_TIME:
+                name: Working time
+            AggregationInterval:
+              DAY:
+                name: Day
+              MONTH:
+                name: Month
+              WEEK:
+                name: Week
+              YEAR:
+                name: Year
+            ChartTarget:
+              CASE:
+                name: Case
+              TASK:
+                name: Task
+            ChartType:
+              BAR:
+                name: Bar
+              LINE:
+                name: Line
+              NUMBER:
+                name: Number
+              PIE:
+                name: Pie
 Labels:
   AI:
     Error:
@@ -1592,7 +1632,7 @@ Labels:
       ACTIONS: Actions
       APPLICATION: Application
       CATEGORY: Category
-      CREATED: Created Date
+      CREATED: Created date
       CREATOR: Creator
       DESCRIPTION: Description
       FINISHED: Finished Date
@@ -1604,7 +1644,7 @@ Labels:
       ACTIONS: Actions
       APPLICATION: Application
       CATEGORY: Category
-      CREATED: Created Date
+      CREATED: Created date
       DESCRIPTION: Description
       EXPIRY: Expiry
       ID: Id
@@ -1669,6 +1709,7 @@ Labels:
       DARK: Dark
       LIGHT: Light
   Filters: Filters
+  General: General
   Icon: Icon
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task

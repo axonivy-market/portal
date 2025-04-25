@@ -82,7 +82,6 @@ public class TaskFilterFieldExpiryDate extends FilterField {
   public String generateStringFilter(DashboardFilter filter) {
     return switch (filter.getOperator()) {
       case BETWEEN -> DatetimeBetweenOperatorHandler.getInstance().buildBetweenFilter(filter);
-      case NOT_BETWEEN -> DatetimeBetweenOperatorHandler.getInstance().buildNotBetweenFilter(filter);
       case AFTER -> DatetimeAfterOperatorHandler.getInstance().buildFilter(filter);
       case BEFORE -> DatetimeBeforeOperatorHandler.getInstance().buildFilter(filter);
       case CURRENT -> DatetimeCurrentPeriodOperatorHandler.getInstance().buildFilter(filter);
@@ -91,7 +90,6 @@ public class TaskFilterFieldExpiryDate extends FilterField {
       case TODAY -> DatetimeTodayYesterdayOperatorHandler.getInstance().buildTodayFilter(filter);
       case YESTERDAY -> DatetimeTodayYesterdayOperatorHandler.getInstance().buildYesterdayFilter(filter);
       case IS -> DatetimeIsOperatorHandler.getInstance().buildIsFilter(filter);
-      case IS_NOT -> DatetimeIsOperatorHandler.getInstance().buildIsNotFilter(filter);
       default -> null;
     };
   }
