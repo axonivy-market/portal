@@ -188,31 +188,31 @@ public class StatisticService {
   private String convertAggregatesFromChartAggregation(Statistic chart) {
     String aggregates = "";
     StatisticAggregation chartAggregation = chart.getStatisticAggregation();
-    String aggregationField = chartAggregation.getAggregationField().getName();
+    String aggregationField = chartAggregation.getField();
     AggregationInterval interval = chartAggregation.getInterval();
-    CustomFieldType customFieldType = chartAggregation.getCustomFieldType();
 
     if (aggregationField.toLowerCase().contains("custom")) {
       /**
        * Custom field
        */
-      switch (customFieldType) {
-      case CustomFieldType.STRING: {
-        aggregates = "customFields.strings." + chartAggregation.getCustomFieldValue();
-        break;
-      }
-      case CustomFieldType.NUMBER: {
-        Ivy.log().info("CUSTOM FIELD IS TYPE NUMBER! CURRENTLY NOT SUPPORTED");
-        break;
-      }
-      case CustomFieldType.TIMESTAMP: {
-        aggregates = "customFields.timestamps." + chartAggregation.getCustomFieldValue();
-        break;
-      }
-      default: {
-      }
-      }
-      aggregates = interval != null ? aggregates + ":bucket:" + interval.getName().toLowerCase() : aggregates;
+      aggregates = "customFields.strings." + chartAggregation.getField();
+//      switch (customFieldType) {
+//      case CustomFieldType.STRING: {
+//        aggregates = "customFields.strings." + chartAggregation.getCustomFieldValue();
+//        break;
+//      }
+//      case CustomFieldType.NUMBER: {
+//        Ivy.log().info("CUSTOM FIELD IS TYPE NUMBER! CURRENTLY NOT SUPPORTED");
+//        break;
+//      }
+//      case CustomFieldType.TIMESTAMP: {
+//        aggregates = "customFields.timestamps." + chartAggregation.getCustomFieldValue();
+//        break;
+//      }
+//      default: {
+//      }
+//      }
+//      aggregates = interval != null ? aggregates + ":bucket:" + interval.getName().toLowerCase() : aggregates;
 
       return aggregates;
 
