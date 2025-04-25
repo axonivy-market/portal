@@ -99,8 +99,7 @@ public class StatisticConfigurationBean implements Serializable {
   private boolean isEditMode;
   private boolean refreshIntervalEnabled;
   private List<FilterField> filterFields;
-  private String currentCustomField;
-  private CustomFieldType currentCustomFieldType;
+  private String currentField;
   private String currentCustomFieldDescription;
   private boolean isDateTimeSelected;
   private AggregationInterval aggregationInterval;
@@ -181,10 +180,8 @@ public class StatisticConfigurationBean implements Serializable {
           new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));
     }
     if(statistic.getStatisticAggregation() != null) {
-      this.currentCustomFieldType = statistic.getStatisticAggregation().getCustomFieldType();
-      this.currentCustomField = statistic.getStatisticAggregation().getCustomFieldValue();
-      this.setDateTimeSelected(CustomFieldType.TIMESTAMP == this.currentCustomFieldType
-          || statistic.getStatisticAggregation().getAggregationField().getName().toLowerCase().contains(TIMESTAMP));
+      this.currentField = statistic.getStatisticAggregation().getField();
+      this.setDateTimeSelected(statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP));
       if (isDateTimeSelected && null != statistic.getStatisticAggregation().getInterval()) {
         this.aggregationInterval = statistic.getStatisticAggregation().getInterval();
       }
@@ -194,7 +191,7 @@ public class StatisticConfigurationBean implements Serializable {
   private void initNewStatistic() {
     statistic = new Statistic();
     statistic.setStatisticAggregation(new StatisticAggregation());
-    statistic.getStatisticAggregation().setAggregationField(AggregationField.PRIORITY);
+    statistic.getStatisticAggregation().setField("priority");
     statistic.setNames(new ArrayList<>());
     statistic.setDescriptions(new ArrayList<>());
     /**
@@ -273,12 +270,11 @@ public class StatisticConfigurationBean implements Serializable {
     if (isRefreshIntervalInValid()) {
       return;
     }
-    handleCustomFieldAggregation();
+//    handleCustomFieldAggregation();
     handleAggregateWithDateTimeInterval();
   
     if(!isCustomFieldsSelected()) {
-      statistic.getStatisticAggregation().setCustomFieldType(currentCustomFieldType);
-      statistic.getStatisticAggregation().setCustomFieldValue(currentCustomField);
+      statistic.getStatisticAggregation().setField(currentField);
     }
     syncUIConfigWithChartConfig();
     cleanUpRedundantChartConfigs(statistic.getChartType());
@@ -611,12 +607,11 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public boolean isCustomFieldsSelected() {
-    return statistic.getStatisticAggregation().getAggregationField().name().contains("CUSTOM_FIELD");
+    return statistic.getStatisticAggregation().getField().toLowerCase().contains("custom");
   }
   
   private void resetCustomFieldAndDateTimeInterval() {
-      this.currentCustomField = null;
-      this.currentCustomFieldType = null;
+      this.currentField = null;
       if(!isDateTimeSelected) {
         this.aggregationInterval = null;
       }
@@ -628,43 +623,28 @@ public class StatisticConfigurationBean implements Serializable {
       return;
     }
     
-    initValueForStatisticAggregation(AggregationField.CUSTOM_FIELD,
-        currentCustomFieldType,
-        currentCustomField,
-        aggregationInterval);
-    switch (this.currentCustomFieldType) {
-    case CustomFieldType.STRING: {
-      return;
-    } 
-    case CustomFieldType.NUMBER: {
-      return;
-    }
-    case CustomFieldType.TIMESTAMP:
-    {
-      return;
-    }
-    default: { }
-    }
-    
-    return;
+    initValueForStatisticAggregation(currentField, aggregationInterval);
   }
   
-  public void initValueForStatisticAggregation(AggregationField chartAggregates, CustomFieldType customFieldType,
-      String customFieldValue, AggregationInterval dateTimeOperator) {
-      statistic.getStatisticAggregation().setAggregationField(chartAggregates);
-      statistic.getStatisticAggregation().setCustomFieldType(customFieldType);
-      statistic.getStatisticAggregation().setCustomFieldValue(customFieldValue);
+  public void initValueForStatisticAggregation(String field, AggregationInterval dateTimeOperator) {
+      statistic.getStatisticAggregation().setField(field);
       statistic.getStatisticAggregation().setInterval(dateTimeOperator);
   }
 
   public void handleAggregateWithDateTimeInterval() {
+    Ivy.log().info("handleAggregateWithDateTimeInterval");
+    Ivy.log().info("aggregationInterval " + aggregationInterval);
+    Ivy.log().info("statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP) "
+        + statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP));
     if (aggregationInterval == null) {
       statistic.getStatisticAggregation().setInterval(null);
       return;
     }
-    if(!statistic.getStatisticAggregation().getAggregationField().getName().toLowerCase().contains(TIMESTAMP) && !isDateTimeSelected) {
+    Ivy.log().info("isDateTimeSelected " + isDateTimeSelected);
+    if(!statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP) && !isDateTimeSelected) {
       this.setAggregationInterval(null);
       statistic.getStatisticAggregation().setInterval(null);
+      Ivy.log().info("set setAggregationInterval and statisticInterval to null" + isDateTimeSelected);
       return;
     }
 
@@ -688,18 +668,17 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public void onSelectAggregationField() {
-    this.setDateTimeSelected(statistic.getStatisticAggregation().getAggregationField().getName().toLowerCase().contains(TIMESTAMP));
+    this.setDateTimeSelected(statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP));
   }
 
   public void onSelectCustomField() {
-    statistic.getStatisticAggregation().setCustomFieldValue(currentCustomField);
+    statistic.getStatisticAggregation().setField(currentField);
     findCustomFieldMeta().ifPresent(meta -> {
-      this.currentCustomField = meta.name();
-      this.currentCustomFieldType = meta.type();
+      this.currentField = meta.name();
       this.setCurrentCustomFieldDescription(meta.description());
     });
     
-    this.setDateTimeSelected(this.currentCustomFieldType.equals(CustomFieldType.TIMESTAMP));
+    this.setDateTimeSelected(this.currentField.contains(TIMESTAMP));
     
     handleCustomFieldAggregation();
   }
@@ -709,7 +688,7 @@ public class StatisticConfigurationBean implements Serializable {
     Set<ICustomFieldMeta> customFieldList = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
         : ICustomFieldMeta.cases();
 
-    metaData = customFieldList.stream().filter(meta -> meta.name().equals(currentCustomField)).findFirst();
+    metaData = customFieldList.stream().filter(meta -> meta.name().equals(currentField)).findFirst();
 
     return metaData;
   }
@@ -735,14 +714,6 @@ public class StatisticConfigurationBean implements Serializable {
     return customFieldNameList;
   }
 
-  public String getCurrentCustomField() {
-    return currentCustomField;
-  }
-
-  public void setCurrentCustomField(String currentCustomField) {
-    this.currentCustomField = currentCustomField;
-  }
-  
   public void onSelectChartType(ChartType newChartType) {
     if (ChartType.NUMBER == statistic.getChartType()) {
       resetAggregateValues();
@@ -758,7 +729,7 @@ public class StatisticConfigurationBean implements Serializable {
       resetFitlerValues();
       resetCustomFieldAndDateTimeInterval();
       this.setDateTimeSelected(
-          statistic.getStatisticAggregation().getAggregationField().getName().toLowerCase().contains(TIMESTAMP));
+          statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP));
       initFilterFields();
       this.statistic.setFilters(new ArrayList<>());
     }
@@ -766,9 +737,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public void resetAggregateValues() {
-    statistic.getStatisticAggregation().setAggregationField(AggregationField.PRIORITY);
-    statistic.getStatisticAggregation().setCustomFieldType(null);
-    statistic.getStatisticAggregation().setCustomFieldValue(null);
+    statistic.getStatisticAggregation().setField("Priority");
     this.currentCustomFieldDescription = null;
     statistic.getStatisticAggregation().setInterval(null);
   }
