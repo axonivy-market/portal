@@ -273,9 +273,10 @@ public class StatisticConfigurationBean implements Serializable {
 //    handleCustomFieldAggregation();
     handleAggregateWithDateTimeInterval();
   
-    if(!isCustomFieldsSelected()) {
-      statistic.getStatisticAggregation().setField(currentField);
-    }
+//    if(!isCustomFieldsSelected()) {
+//      Ivy.log().info("check current field : " + currentField);
+//      statistic.getStatisticAggregation().setField(currentField);
+//    }
     syncUIConfigWithChartConfig();
     cleanUpRedundantChartConfigs(statistic.getChartType());
     cleanUpConfiguration();
@@ -632,7 +633,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void handleAggregateWithDateTimeInterval() {
-    Ivy.log().info("handleAggregateWithDateTimeInterval");
+    Ivy.log().info("handleAggregateWithDateTimeInterval =======================================================");
     Ivy.log().info("aggregationInterval " + aggregationInterval);
     Ivy.log().info("statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP) "
         + statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP));
@@ -649,6 +650,7 @@ public class StatisticConfigurationBean implements Serializable {
     }
 
     statistic.getStatisticAggregation().setInterval(aggregationInterval);
+    Ivy.log().info("======================================================== handleAggregateWithDateTimeInterval");
   }
 
   public String getCurrentCustomFieldDescription() {
