@@ -109,8 +109,8 @@ public class StatisticService {
         String filterQuery = filterField.generateStringFilter(statisticFilter);
 
         // TODO checking filterQuery
-        Ivy.log().info("checking filter Query: " + filterQuery);
-        Ivy.log().info(filterQuery );
+//        Ivy.log().info("checking filter Query: " + filterQuery);
+//        Ivy.log().info(filterQuery );
 
         if (filterQuery != null) {
           sbFilter.append(filterQuery).append(",");
@@ -122,28 +122,33 @@ public class StatisticService {
     }
     
     // TODO checking filterQuery
-    Ivy.log().info("final sbFilter " + sbFilter.toString());
+//    Ivy.log().info("final sbFilter " + sbFilter.toString());
     return sbFilter.toString();
   }
 
   public AggregationResult getChartData(Statistic chart) {
+    Ivy.log().info("getChartData ==========================================");
+
     String filter = null;
     String aggregates = chart.getAggregates();
     filter = processFilter(chart.getFilters(), chart.getChartTarget());
     
     chart.getFilter();
     if(StringUtils.isEmpty(aggregates)) {
-      aggregates = convertAggregatesFromChartAggregation(chart);
+//      aggregates = convertAggregatesFromChartAggregation(chart);
+      Ivy.log().info("chart.getStatisticAggregation().getField() " + chart.getStatisticAggregation().getField());
+      aggregates = chart.getStatisticAggregation().getField();
     }
 
     if (!StringUtils.isEmpty(chart.getFilter())) {
       filter = chart.getFilter();
     }
 
-    Ivy.log().info("getChartData's querying");
-    Ivy.log().info("filter " + filter);
-    Ivy.log().info("chartTarget " + chart.getChartTarget());
+//    Ivy.log().info("getChartData's querying");
+//    Ivy.log().info("filter " + filter);
+//    Ivy.log().info("chartTarget " + chart.getChartTarget());
 
+    Ivy.log().info("========================================== getChartData");
     return switch (chart.getChartTarget()) {
       case CASE -> WorkflowStats.current().caze().aggregate(aggregates, filter);
       case TASK ->  WorkflowStats.current().task().aggregate(aggregates, filter);

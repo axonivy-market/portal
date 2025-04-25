@@ -59,6 +59,7 @@ import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.jsf.Attrs;
@@ -391,18 +392,23 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void getPreviewData() {
+    Ivy.log().info("getPreviewData =============================");
+    Ivy.log().info("statistic.getStatisticAggregation().getField() " + statistic.getStatisticAggregation().getField());
+    Ivy.log().info("this.currentField " + this.currentField);
     handleCustomFieldAggregation();
-    handleAggregateWithDateTimeInterval();
+//    handleAggregateWithDateTimeInterval();
     syncUIConfigWithChartConfig();
     cleanUpFilter();
     StatisticService statisticService = StatisticService.getInstance();
     statistic.setAdditionalConfigs(new ArrayList<>());
     statistic.getAdditionalConfigs().addAll(statisticService.getAdditionalConfig());
     statistic.getAdditionalConfigs().add(statisticService.getManipulateValueBy(statistic));
+    
     AggregationResult result = statisticService.getChartData(statistic);
     PrimeFaces.current().ajax().addCallbackParam("jsonResponse",
         BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic)));
     populateBackgroundColorsIfMissing();
+    Ivy.log().info("============================= getPreviewData");
   }
 
   public void updateNameForCurrentLanguage() {
@@ -608,6 +614,10 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public boolean isCustomFieldsSelected() {
+//    Ivy.log().info("isCustomFieldsSelected========================================================");
+//    Ivy.log().info("statistic.getStatisticAggregation().getField() " + statistic.getStatisticAggregation().getField());
+//    Ivy.log().info("is field contains custom " + statistic.getStatisticAggregation().getField().toLowerCase().contains("custom"));
+//    Ivy.log().info("======================================================== isCustomFieldsSelected");
     return statistic.getStatisticAggregation().getField().toLowerCase().contains("custom");
   }
   
@@ -623,7 +633,56 @@ public class StatisticConfigurationBean implements Serializable {
       resetCustomFieldAndDateTimeInterval();
       return;
     }
-    
+      /**
+       * HANDLING WHILE CHOOSING CUSTOM FIELD
+       */
+      findCustomFieldMeta().ifPresent(meta -> {
+        switch (meta.type()) {
+        case STRING: {
+          Ivy.log().info("case STRING");
+
+          statistic.getStatisticAggregation().setField("customFields.strings." + meta.name());
+          statistic.getStatisticAggregation().setInterval(null);
+          Ivy.log()
+              .info("statistic.getStatisticAggregation().getField() " + statistic.getStatisticAggregation().getField());
+          Ivy.log()
+              .info("statistic.getStatisticAggregation().getType() " + statistic.getStatisticAggregation().getType());
+          Ivy.log().info(
+              "statistic.getStatisticAggregation().getInterval() " + statistic.getStatisticAggregation().getInterval());
+
+          currentField = statistic.getStatisticAggregation().getField();
+          Ivy.log().info("end case STRING");
+          break;
+        }
+        case TIMESTAMP: {
+          Ivy.log().info("case TIMESTAMP");
+
+          statistic.getStatisticAggregation().setField("customFields.timestamps." + meta.name());
+          this.setDateTimeSelected(true);
+
+          Ivy.log()
+              .info("statistic.getStatisticAggregation().getField " + statistic.getStatisticAggregation().getField());
+          Ivy.log()
+              .info("statistic.getStatisticAggregation().getType() " + statistic.getStatisticAggregation().getType());
+          Ivy.log().info(
+              "statistic.getStatisticAggregation().getInterval() " + statistic.getStatisticAggregation().getInterval());
+
+          currentField = statistic.getStatisticAggregation().getField();
+          Ivy.log().info("end case TIMESTAMP");
+          break;
+        }
+        case TEXT:
+        case NUMBER: {
+          /**
+           * TEXT AND NUMBER CURRENTLY ARE NOT SUPPORTED
+           */
+          Ivy.log().warn("Custom field is TEXT or NUMBER, currently statistic doesn't support them");
+          break;
+        }
+        default: {
+        }
+        }
+      });
     initValueForStatisticAggregation(currentField, aggregationInterval);
   }
   
@@ -674,24 +733,29 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void onSelectCustomField() {
-    statistic.getStatisticAggregation().setField(currentField);
+//    Ivy.log().info("onSelectCustomField========================================================");
+    
+    statistic.getStatisticAggregation().setType(DashboardColumnType.CUSTOM);
+
     findCustomFieldMeta().ifPresent(meta -> {
       this.currentField = meta.name();
       this.setCurrentCustomFieldDescription(meta.description());
     });
-    
-    this.setDateTimeSelected(this.currentField.contains(TIMESTAMP));
-    
-    handleCustomFieldAggregation();
+
+//    handleCustomFieldAggregation();
+//    Ivy.log().info("========================================================onSelectCustomField");
   }
 
   public Optional<ICustomFieldMeta> findCustomFieldMeta() {
+    Ivy.log().info("findCustomFieldMeta ========================================================");
+
     Optional<ICustomFieldMeta> metaData = Optional.empty();
     Set<ICustomFieldMeta> customFieldList = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
         : ICustomFieldMeta.cases();
 
     metaData = customFieldList.stream().filter(meta -> meta.name().equals(currentField)).findFirst();
 
+    Ivy.log().info("======================================================== findCustomFieldMeta");
     return metaData;
   }
 
@@ -812,6 +876,14 @@ public class StatisticConfigurationBean implements Serializable {
     Ivy.log().info(query);
     return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE).stream()
         .filter(SecurityMemberDTO::isUser).collect(Collectors.toList());
+  }
+
+  public String getCurrentField() {
+    return currentField;
+  }
+
+  public void setCurrentField(String currentField) {
+    this.currentField = currentField;
   }
 
 }
