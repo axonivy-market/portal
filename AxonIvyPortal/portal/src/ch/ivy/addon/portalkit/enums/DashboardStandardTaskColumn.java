@@ -18,6 +18,7 @@ public enum DashboardStandardTaskColumn {
   STATE("state"),
   CREATED("startTimestamp"), 
   EXPIRY("expiryTimestamp"), 
+  END("endTimestamp"),
   CATEGORY("category"),
   APPLICATION("application"),
   ACTIONS("actions");

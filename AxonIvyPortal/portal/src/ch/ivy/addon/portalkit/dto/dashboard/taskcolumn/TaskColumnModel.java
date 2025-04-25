@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
-
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
@@ -58,6 +57,8 @@ public class TaskColumnModel extends ColumnModel {
         return new CreatedDateColumnModel();
       } else if (equals(DashboardStandardTaskColumn.EXPIRY, field)) {
         return new ExpiryDateColumnModel();
+      } else if (equals(DashboardStandardTaskColumn.END, field)) {
+        return new EndDateColumnModel();
       } else if (equals(DashboardStandardTaskColumn.CATEGORY, field)) {
         return new CategoryColumnModel();
       }  else if (equals(DashboardStandardTaskColumn.APPLICATION, field)) {
