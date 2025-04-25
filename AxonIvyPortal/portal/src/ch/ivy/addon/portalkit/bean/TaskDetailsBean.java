@@ -218,8 +218,8 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   }
   
   public String getDestroyTaskMessage() {
-    String taskName = "Unknown Task";
-    String taskId = "Unknown ID";
+    String taskName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/unknownTask");
+    String taskId = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/unknownId");
     ITask task = getSelectedTaskFromData();
     if (task != null) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage", List.of(task.names().current(), task.getId()));
