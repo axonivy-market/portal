@@ -121,7 +121,7 @@
                     rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}" value="#{statisticConfigurationBean.currentField}" >
                     <f:selectItem value="#{null}" noSelectionOption="false" />
                     <f:selectItems value="#{statisticConfigurationBean.getCustomFieldNames()}" var="customField" />
-                    <p:ajax listener="#{statisticConfigurationBean.onSelectCustomField()}" update="custom-field-description aggregates-custom-fields-intervals" />
+                    <p:ajax listener="#{statisticConfigurationBean.onSelectCustomField()}" update="custom-field-description chart-aggregation" />
                   </p:selectOneMenu>
                   <p:inputText id="custom-field-description" readonly="true" 
                   rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}"

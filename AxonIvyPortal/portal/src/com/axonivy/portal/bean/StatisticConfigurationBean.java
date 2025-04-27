@@ -100,6 +100,8 @@ public class StatisticConfigurationBean implements Serializable {
   private boolean isEditMode;
   private boolean refreshIntervalEnabled;
   private List<FilterField> filterFields;
+//   treat this as current custom field, whenever user choose custom type
+//   this field will have value otherwise it's null
   private String currentField;
   private String currentCustomFieldDescription;
   private boolean isDateTimeSelected;
@@ -181,11 +183,15 @@ public class StatisticConfigurationBean implements Serializable {
           new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));
     }
     if(statistic.getStatisticAggregation() != null) {
-      this.currentField = statistic.getStatisticAggregation().getField();
-      this.setDateTimeSelected(statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP));
-      if (isDateTimeSelected && null != statistic.getStatisticAggregation().getInterval()) {
-        this.aggregationInterval = statistic.getStatisticAggregation().getInterval();
-      }
+      /**
+       * TODO 
+       * HANDLE THIS EXISTING STATISTIC 
+       */
+//      this.currentField = statistic.getStatisticAggregation().getField();
+//      this.setDateTimeSelected(statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP));
+//      if (isDateTimeSelected && null != statistic.getStatisticAggregation().getInterval()) {
+//        this.aggregationInterval = statistic.getStatisticAggregation().getInterval();
+//      }
     }
   }
 
@@ -195,10 +201,7 @@ public class StatisticConfigurationBean implements Serializable {
     statistic.getStatisticAggregation().setField("priority");
     statistic.setNames(new ArrayList<>());
     statistic.setDescriptions(new ArrayList<>());
-    /**
-     * TODO REVERT CHART TARGET
-     */
-    statistic.setChartTarget(ChartTarget.CASE);
+    statistic.setChartTarget(ChartTarget.TASK);
     statistic.setChartType(ChartType.BAR);
     statistic.setNumberChartConfig(new NumberChartConfig());
     statistic.setBarChartConfig(new BarChartConfig());
@@ -395,8 +398,11 @@ public class StatisticConfigurationBean implements Serializable {
     Ivy.log().info("getPreviewData =============================");
     Ivy.log().info("statistic.getStatisticAggregation().getField() " + statistic.getStatisticAggregation().getField());
     Ivy.log().info("this.currentField " + this.currentField);
-    handleCustomFieldAggregation();
-//    handleAggregateWithDateTimeInterval();
+    if(this.currentField != null) {
+//      handleCustomFieldAggregation();
+      statistic.getStatisticAggregation().setField(this.currentField);
+    }
+    handleAggregateWithDateTimeInterval();
     syncUIConfigWithChartConfig();
     cleanUpFilter();
     StatisticService statisticService = StatisticService.getInstance();
@@ -740,6 +746,10 @@ public class StatisticConfigurationBean implements Serializable {
     findCustomFieldMeta().ifPresent(meta -> {
       this.currentField = meta.name();
       this.setCurrentCustomFieldDescription(meta.description());
+      if(meta.type() == CustomFieldType.TIMESTAMP) {
+        this.isDateTimeSelected = true;
+      }
+      
     });
 
 //    handleCustomFieldAggregation();
@@ -747,15 +757,11 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public Optional<ICustomFieldMeta> findCustomFieldMeta() {
-    Ivy.log().info("findCustomFieldMeta ========================================================");
-
     Optional<ICustomFieldMeta> metaData = Optional.empty();
     Set<ICustomFieldMeta> customFieldList = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
         : ICustomFieldMeta.cases();
 
     metaData = customFieldList.stream().filter(meta -> meta.name().equals(currentField)).findFirst();
-
-    Ivy.log().info("======================================================== findCustomFieldMeta");
     return metaData;
   }
 

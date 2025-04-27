@@ -28,6 +28,7 @@ import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 import com.axonivy.portal.util.statisticfilter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
@@ -35,6 +36,7 @@ import ch.ivy.addon.portalkit.statistics.StatisticResponse;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
 
 public class StatisticService {
@@ -134,20 +136,29 @@ public class StatisticService {
     filter = processFilter(chart.getFilters(), chart.getChartTarget());
     
     chart.getFilter();
+    
+    StatisticAggregation agg = chart.getStatisticAggregation();
+
+    Ivy.log().info("agg field: " + agg.getField());
+    Ivy.log().info("agg type: " + agg.getType());
+    Ivy.log().info("agg interval: " + agg.getInterval());
+
     if(StringUtils.isEmpty(aggregates)) {
-//      aggregates = convertAggregatesFromChartAggregation(chart);
-      Ivy.log().info("chart.getStatisticAggregation().getField() " + chart.getStatisticAggregation().getField());
-      aggregates = chart.getStatisticAggregation().getField();
+      aggregates = convertAggregatesFromChartAggregation(chart);
+//      aggregates = chart.getStatisticAggregation().getField();
     }
 
     if (!StringUtils.isEmpty(chart.getFilter())) {
       filter = chart.getFilter();
     }
 
-//    Ivy.log().info("getChartData's querying");
-//    Ivy.log().info("filter " + filter);
-//    Ivy.log().info("chartTarget " + chart.getChartTarget());
-
+    /**
+     * TODO Prevent aggregates causing error,
+     * temporarily put businessState as a aggregation
+     */
+    Ivy.log().info("TESTING aggregates");
+    Ivy.log().info(aggregates);
+    aggregates = "businessState";
     Ivy.log().info("========================================== getChartData");
     return switch (chart.getChartTarget()) {
       case CASE -> WorkflowStats.current().caze().aggregate(aggregates, filter);
@@ -207,52 +218,35 @@ public class StatisticService {
   }
 
   private String convertAggregatesFromChartAggregation(Statistic chart) {
-    String aggregates = "";
+    // TODO remove logging
+    Ivy.log().info("convertAggregatesFromChartAggregation =============================");
     StatisticAggregation chartAggregation = chart.getStatisticAggregation();
-    String aggregationField = chartAggregation.getField();
-    AggregationInterval interval = chartAggregation.getInterval();
 
-    if (aggregationField.toLowerCase().contains("custom")) {
-      /**
-       * Custom field
-       */
-      aggregates = "customFields.strings." + chartAggregation.getField();
-//      switch (customFieldType) {
-//      case CustomFieldType.STRING: {
-//        aggregates = "customFields.strings." + chartAggregation.getCustomFieldValue();
-//        break;
-//      }
-//      case CustomFieldType.NUMBER: {
-//        Ivy.log().info("CUSTOM FIELD IS TYPE NUMBER! CURRENTLY NOT SUPPORTED");
-//        break;
-//      }
-//      case CustomFieldType.TIMESTAMP: {
-//        aggregates = "customFields.timestamps." + chartAggregation.getCustomFieldValue();
-//        break;
-//      }
-//      default: {
-//      }
-//      }
-//      aggregates = interval != null ? aggregates + ":bucket:" + interval.getName().toLowerCase() : aggregates;
-
-      return aggregates;
-
-    } else if (aggregationField.toLowerCase().contains("timestamp")) {
-      /**
-       * Normal timestamp
-       */
-      if (interval != null) {
-        aggregates = aggregationField + ":bucket:" + interval.getName().toLowerCase();
+    if (chartAggregation.getType() == DashboardColumnType.CUSTOM) {
+      // find the right custom field here. setting aggregates to query
+      if(chart.getStatisticAggregation().getInterval() != null) {
+        /**
+         * INTERVAL NOT NULL -> CUSTOM FIELD IS TIMESTAMP TYPE
+         * return aggregates: customFields.timestamps.<Field>:bucket:<interval>
+         */
+        return "customFields.timestamps." + chartAggregation.getField() + ":bucket:" + chartAggregation.getInterval();
+        
       }
 
-      return aggregates;
+      /**
+       * ELSE INTERVAL IS NULL -> CUSTOM FIELD IS STRING
+       * return aggregates: customFields.strings.<Field>
+       */
+      Ivy.log().info("============================= convertAggregatesFromChartAggregation");
+        return "customFields.timestamps." + chartAggregation.getField();
     }
+    
     /**
-     * Normal
+     * ELSE standard fields
+     * 2 case: timestamp or normal string
+     * return aggregates: <Field>
      */
-    aggregates = aggregationField;
-
-    return aggregates;
+    return chartAggregation.getField();
   }
-
+  
 }
