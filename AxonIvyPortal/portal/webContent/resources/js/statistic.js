@@ -252,7 +252,7 @@ function removeCharacterFromLastIndex(str, n) {
 // Function to generate chart data by chart type
 const generateChart = (chart, data) => {
   data.chartConfig.filter = data.chartConfig.filter ? data.chartConfig.filter : '';
-  
+
   switch (data.chartConfig.chartType) {
     case 'number': return new ClientNumberChart(chart, data);
     case 'bar': return new ClientBarChart(chart, data);
