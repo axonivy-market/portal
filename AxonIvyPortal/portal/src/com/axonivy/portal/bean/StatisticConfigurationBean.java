@@ -100,8 +100,6 @@ public class StatisticConfigurationBean implements Serializable {
   private boolean isEditMode;
   private boolean refreshIntervalEnabled;
   private List<FilterField> filterFields;
-//   treat this as current custom field, whenever user choose custom type
-//   this field will have value otherwise it's null
   private String currentField;
   private String currentCustomFieldDescription;
   private boolean isDateTimeSelected;
@@ -668,9 +666,6 @@ public class StatisticConfigurationBean implements Serializable {
     findCustomFieldMeta().ifPresent(meta -> {
       this.currentField = meta.name();
       this.currentCustomFieldDescription = meta.description();
-//      if(meta.type() == CustomFieldType.TIMESTAMP) {
-//        this.isDateTimeSelected = true;
-//      }
       this.isDateTimeSelected = meta.type() == CustomFieldType.TIMESTAMP;
     });
   }

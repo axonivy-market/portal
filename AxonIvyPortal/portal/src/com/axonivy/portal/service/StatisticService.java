@@ -191,32 +191,25 @@ public class StatisticService {
     StatisticAggregation chartAggregation = chart.getStatisticAggregation();
 
     if (chartAggregation.getType() == DashboardColumnType.CUSTOM) {
-      if(!chartAggregation.getField().equals(AggregationField.CUSTOM_FIELD.getName())) {
+      // INIT EXISTED CUSTOM FIELD STATISTIC WHEN LOADING
+      if (!chartAggregation.getField().equals(AggregationField.CUSTOM_FIELD.getName())) {
         chartAggregation.setCustomFieldValue(chartAggregation.getField());
         chartAggregation.setField(AggregationField.CUSTOM_FIELD.getName());
       }
 
-      if(chart.getStatisticAggregation().getInterval() != null) {
-        /**
-         * INTERVAL NOT NULL -> CUSTOM FIELD IS TIMESTAMP TYPE
-         * return aggregates: customFields.timestamps.<Field>:bucket:<interval>
-         */
-        return "customFields.timestamps." + chartAggregation.getCustomFieldValue() + ":bucket:" + chartAggregation.getInterval().toString().toLowerCase();
-        
+      // CUSTOM FIELD TYPE TIMESTAMP
+      if (chart.getStatisticAggregation().getInterval() != null) {
+        return "customFields.timestamps." + chartAggregation.getCustomFieldValue() + ":bucket:"
+            + chartAggregation.getInterval().toString().toLowerCase();
       }
 
-      /**
-       * ELSE INTERVAL IS NULL -> CUSTOM FIELD IS STRING
-       * return aggregates: customFields.strings.<Field>
-       */
-        return "customFields.strings." + chartAggregation.getCustomFieldValue();
+      // CUSTOM FIELD TYPE STRING
+      return "customFields.strings." + chartAggregation.getCustomFieldValue();
     }
-    
-    /**
-     * ELSE standard fields
-     * 2 case: timestamp or normal string
-     * return aggregates: <Field>
-     */
+
+    // STANDARD FIELD
+    // IF INTERVAL NOT NULL -> TIMESTAMP
+    // OTHERWISE -> STRING
     return chartAggregation.getInterval() == null ? chartAggregation.getField()
         : chartAggregation.getField() + ":bucket:" + chartAggregation.getInterval().toString().toLowerCase();
   }
