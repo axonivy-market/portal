@@ -10,7 +10,7 @@
   <cc:attribute name="filterIndex" />
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="messageId" />
-  <cc:attribute name="forStatistic" default="false"/>
+  <cc:attribute name="operators" />
 </cc:interface>
 
 <cc:implementation>
@@ -22,7 +22,7 @@
   <h:panelGroup id="text-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
-        <f:selectItems value="#{cc.attrs.forStatistic? widgetTextFilterBean.statisticOperators : widgetTextFilterBean.isCustomFieldWithCms(filter) ? widgetTextFilterBean.operatorsForCustomFieldWithCms : widgetTextFilterBean.operators}" var="operator"
+        <f:selectItems value="#{cc.attrs.operators ne null ? cc.attrs.operators : widgetTextFilterBean.isCustomFieldWithCms(filter) ? widgetTextFilterBean.operatorsForCustomFieldWithCms : widgetTextFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}"/>
           <p:ajax event="itemSelect" listener="#{widgetTextFilterBean.onChangeOperator(filter)}"
             update="#{cc.attrs.componentToUpdate}" partialSubmit="true" global="false" />
