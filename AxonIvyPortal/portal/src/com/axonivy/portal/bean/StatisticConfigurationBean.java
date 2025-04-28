@@ -183,15 +183,11 @@ public class StatisticConfigurationBean implements Serializable {
           new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));
     }
     if(statistic.getStatisticAggregation() != null) {
-      /**
-       * TODO 
-       * HANDLE THIS EXISTING STATISTIC 
-       */
-//      this.currentField = statistic.getStatisticAggregation().getField();
-//      this.setDateTimeSelected(statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP));
-//      if (isDateTimeSelected && null != statistic.getStatisticAggregation().getInterval()) {
-//        this.aggregationInterval = statistic.getStatisticAggregation().getInterval();
-//      }
+      StatisticService statisticService = StatisticService.getInstance();
+      StatisticAggregation agg = statistic.getStatisticAggregation();
+      statisticService.convertAggregatesFromChartAggregation(statistic);
+      this.setDateTimeSelected(agg.getInterval() != null);
+      this.aggregationInterval = agg.getInterval(); 
     }
   }
 
@@ -274,13 +270,13 @@ public class StatisticConfigurationBean implements Serializable {
     if (isRefreshIntervalInValid()) {
       return;
     }
-//    handleCustomFieldAggregation();
+    handleCustomFieldAggregation();
     handleAggregateWithDateTimeInterval();
-  
-//    if(!isCustomFieldsSelected()) {
-//      Ivy.log().info("check current field : " + currentField);
-//      statistic.getStatisticAggregation().setField(currentField);
-//    }
+
+    if (isCustomFieldsSelected()) {
+      statistic.getStatisticAggregation().setField(statistic.getStatisticAggregation().getCustomFieldValue());
+    }
+
     syncUIConfigWithChartConfig();
     cleanUpRedundantChartConfigs(statistic.getChartType());
     cleanUpConfiguration();
@@ -395,13 +391,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void getPreviewData() {
-    Ivy.log().info("getPreviewData =============================");
-    Ivy.log().info("statistic.getStatisticAggregation().getField() " + statistic.getStatisticAggregation().getField());
-    Ivy.log().info("this.currentField " + this.currentField);
-    if(this.currentField != null) {
-//      handleCustomFieldAggregation();
-      statistic.getStatisticAggregation().setField(this.currentField);
-    }
+    handleCustomFieldAggregation();
     handleAggregateWithDateTimeInterval();
     syncUIConfigWithChartConfig();
     cleanUpFilter();
@@ -414,7 +404,6 @@ public class StatisticConfigurationBean implements Serializable {
     PrimeFaces.current().ajax().addCallbackParam("jsonResponse",
         BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic)));
     populateBackgroundColorsIfMissing();
-    Ivy.log().info("============================= getPreviewData");
   }
 
   public void updateNameForCurrentLanguage() {
@@ -620,102 +609,37 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public boolean isCustomFieldsSelected() {
-//    Ivy.log().info("isCustomFieldsSelected========================================================");
-//    Ivy.log().info("statistic.getStatisticAggregation().getField() " + statistic.getStatisticAggregation().getField());
-//    Ivy.log().info("is field contains custom " + statistic.getStatisticAggregation().getField().toLowerCase().contains("custom"));
-//    Ivy.log().info("======================================================== isCustomFieldsSelected");
     return statistic.getStatisticAggregation().getField().toLowerCase().contains("custom");
   }
   
   private void resetCustomFieldAndDateTimeInterval() {
-      this.currentField = null;
+      statistic.getStatisticAggregation().setCustomFieldValue(null);
+      statistic.getStatisticAggregation().setType(DashboardColumnType.STANDARD);
       if(!isDateTimeSelected) {
+        statistic.getStatisticAggregation().setInterval(null);
         this.aggregationInterval = null;
       }
     }
   
   private void handleCustomFieldAggregation() {
-    if(!isCustomFieldsSelected()) {
-      resetCustomFieldAndDateTimeInterval();
+    if (isCustomFieldsSelected()) {
       return;
     }
-      /**
-       * HANDLING WHILE CHOOSING CUSTOM FIELD
-       */
-      findCustomFieldMeta().ifPresent(meta -> {
-        switch (meta.type()) {
-        case STRING: {
-          Ivy.log().info("case STRING");
 
-          statistic.getStatisticAggregation().setField("customFields.strings." + meta.name());
-          statistic.getStatisticAggregation().setInterval(null);
-          Ivy.log()
-              .info("statistic.getStatisticAggregation().getField() " + statistic.getStatisticAggregation().getField());
-          Ivy.log()
-              .info("statistic.getStatisticAggregation().getType() " + statistic.getStatisticAggregation().getType());
-          Ivy.log().info(
-              "statistic.getStatisticAggregation().getInterval() " + statistic.getStatisticAggregation().getInterval());
-
-          currentField = statistic.getStatisticAggregation().getField();
-          Ivy.log().info("end case STRING");
-          break;
-        }
-        case TIMESTAMP: {
-          Ivy.log().info("case TIMESTAMP");
-
-          statistic.getStatisticAggregation().setField("customFields.timestamps." + meta.name());
-          this.setDateTimeSelected(true);
-
-          Ivy.log()
-              .info("statistic.getStatisticAggregation().getField " + statistic.getStatisticAggregation().getField());
-          Ivy.log()
-              .info("statistic.getStatisticAggregation().getType() " + statistic.getStatisticAggregation().getType());
-          Ivy.log().info(
-              "statistic.getStatisticAggregation().getInterval() " + statistic.getStatisticAggregation().getInterval());
-
-          currentField = statistic.getStatisticAggregation().getField();
-          Ivy.log().info("end case TIMESTAMP");
-          break;
-        }
-        case TEXT:
-        case NUMBER: {
-          /**
-           * TEXT AND NUMBER CURRENTLY ARE NOT SUPPORTED
-           */
-          Ivy.log().warn("Custom field is TEXT or NUMBER, currently statistic doesn't support them");
-          break;
-        }
-        default: {
-        }
-        }
-      });
-    initValueForStatisticAggregation(currentField, aggregationInterval);
+    resetCustomFieldAndDateTimeInterval();
   }
-  
-  public void initValueForStatisticAggregation(String field, AggregationInterval dateTimeOperator) {
-      statistic.getStatisticAggregation().setField(field);
-      statistic.getStatisticAggregation().setInterval(dateTimeOperator);
-  }
-
   public void handleAggregateWithDateTimeInterval() {
-    Ivy.log().info("handleAggregateWithDateTimeInterval =======================================================");
-    Ivy.log().info("aggregationInterval " + aggregationInterval);
-    Ivy.log().info("statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP) "
-        + statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP));
     if (aggregationInterval == null) {
       statistic.getStatisticAggregation().setInterval(null);
       return;
     }
-    Ivy.log().info("isDateTimeSelected " + isDateTimeSelected);
     if(!statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP) && !isDateTimeSelected) {
       this.setAggregationInterval(null);
       statistic.getStatisticAggregation().setInterval(null);
-      Ivy.log().info("set setAggregationInterval and statisticInterval to null" + isDateTimeSelected);
       return;
     }
 
     statistic.getStatisticAggregation().setInterval(aggregationInterval);
-    Ivy.log().info("======================================================== handleAggregateWithDateTimeInterval");
   }
 
   public String getCurrentCustomFieldDescription() {
@@ -739,21 +663,16 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public void onSelectCustomField() {
-//    Ivy.log().info("onSelectCustomField========================================================");
-    
     statistic.getStatisticAggregation().setType(DashboardColumnType.CUSTOM);
 
     findCustomFieldMeta().ifPresent(meta -> {
       this.currentField = meta.name();
-      this.setCurrentCustomFieldDescription(meta.description());
-      if(meta.type() == CustomFieldType.TIMESTAMP) {
-        this.isDateTimeSelected = true;
-      }
-      
+      this.currentCustomFieldDescription = meta.description();
+//      if(meta.type() == CustomFieldType.TIMESTAMP) {
+//        this.isDateTimeSelected = true;
+//      }
+      this.isDateTimeSelected = meta.type() == CustomFieldType.TIMESTAMP;
     });
-
-//    handleCustomFieldAggregation();
-//    Ivy.log().info("========================================================onSelectCustomField");
   }
 
   public Optional<ICustomFieldMeta> findCustomFieldMeta() {
@@ -761,7 +680,8 @@ public class StatisticConfigurationBean implements Serializable {
     Set<ICustomFieldMeta> customFieldList = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
         : ICustomFieldMeta.cases();
 
-    metaData = customFieldList.stream().filter(meta -> meta.name().equals(currentField)).findFirst();
+    metaData = customFieldList.stream()
+        .filter(meta -> meta.name().equals(statistic.getStatisticAggregation().getCustomFieldValue())).findFirst();
     return metaData;
   }
 
@@ -862,9 +782,6 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public List<SecurityMemberDTO> completeOwners(String query) {
-    // TODO logging query
-    Ivy.log().info("completeOwners");
-    Ivy.log().info(query);
     return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
   }
 
@@ -877,9 +794,6 @@ public class StatisticConfigurationBean implements Serializable {
   }
 
   public List<SecurityMemberDTO> completeCreators(String query) {
-    // TODO logging query
-    Ivy.log().info("completeCreators");
-    Ivy.log().info(query);
     return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE).stream()
         .filter(SecurityMemberDTO::isUser).collect(Collectors.toList());
   }

@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import com.axonivy.portal.enums.statistic.AggregationInterval;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 
@@ -13,9 +15,10 @@ public class StatisticAggregation implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private String field;
+  @JsonProperty(access = Access.WRITE_ONLY)
+  private String customFieldValue;
   private DashboardColumnType type;
   private AggregationInterval interval;
-
 
   public AggregationInterval getInterval() {
     return interval;
@@ -41,5 +44,12 @@ public class StatisticAggregation implements Serializable {
     this.type = type;
   }
 
+  public String getCustomFieldValue() {
+    return customFieldValue;
+  }
+
+  public void setCustomFieldValue(String customFieldValue) {
+    this.customFieldValue = customFieldValue;
+  }
 
 }

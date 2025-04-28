@@ -22,7 +22,7 @@ import com.axonivy.portal.bo.StatisticAggregation;
 import com.axonivy.portal.dto.StatisticDto;
 import com.axonivy.portal.dto.statistic.StatisticFilter;
 import com.axonivy.portal.enums.AdditionalChartConfig;
-import com.axonivy.portal.enums.statistic.AggregationInterval;
+import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 import com.axonivy.portal.util.statisticfilter.field.FilterField;
@@ -35,8 +35,6 @@ import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
-import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
-import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
 
 public class StatisticService {
@@ -92,8 +90,6 @@ public class StatisticService {
   }
   
   private String processFilter(List<StatisticFilter> filters, ChartTarget chartTarget) {
-    // TODO remove logging
-    Ivy.log().info("processTaskFilter");
     if (CollectionUtils.isEmpty(filters)) {
       return null;
     }
@@ -109,11 +105,6 @@ public class StatisticService {
 
       if (filterField != null) {
         String filterQuery = filterField.generateStringFilter(statisticFilter);
-
-        // TODO checking filterQuery
-//        Ivy.log().info("checking filter Query: " + filterQuery);
-//        Ivy.log().info(filterQuery );
-
         if (filterQuery != null) {
           sbFilter.append(filterQuery).append(",");
         }
@@ -122,44 +113,23 @@ public class StatisticService {
     if (Strings.EMPTY.equals(sbFilter.toString())) {
       return null;
     }
-    
-    // TODO checking filterQuery
-//    Ivy.log().info("final sbFilter " + sbFilter.toString());
     return sbFilter.toString();
   }
 
   public AggregationResult getChartData(Statistic chart) {
-    Ivy.log().info("getChartData ==========================================");
-
     String filter = null;
     String aggregates = chart.getAggregates();
     filter = processFilter(chart.getFilters(), chart.getChartTarget());
-    
     chart.getFilter();
-    
-    StatisticAggregation agg = chart.getStatisticAggregation();
-
-    Ivy.log().info("agg field: " + agg.getField());
-    Ivy.log().info("agg type: " + agg.getType());
-    Ivy.log().info("agg interval: " + agg.getInterval());
 
     if(StringUtils.isEmpty(aggregates)) {
       aggregates = convertAggregatesFromChartAggregation(chart);
-//      aggregates = chart.getStatisticAggregation().getField();
     }
 
     if (!StringUtils.isEmpty(chart.getFilter())) {
       filter = chart.getFilter();
     }
 
-    /**
-     * TODO Prevent aggregates causing error,
-     * temporarily put businessState as a aggregation
-     */
-    Ivy.log().info("TESTING aggregates");
-    Ivy.log().info(aggregates);
-    aggregates = "businessState";
-    Ivy.log().info("========================================== getChartData");
     return switch (chart.getChartTarget()) {
       case CASE -> WorkflowStats.current().caze().aggregate(aggregates, filter);
       case TASK ->  WorkflowStats.current().task().aggregate(aggregates, filter);
@@ -217,19 +187,21 @@ public class StatisticService {
     return BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
   }
 
-  private String convertAggregatesFromChartAggregation(Statistic chart) {
-    // TODO remove logging
-    Ivy.log().info("convertAggregatesFromChartAggregation =============================");
+  public String convertAggregatesFromChartAggregation(Statistic chart) {
     StatisticAggregation chartAggregation = chart.getStatisticAggregation();
 
     if (chartAggregation.getType() == DashboardColumnType.CUSTOM) {
-      // find the right custom field here. setting aggregates to query
+      if(!chartAggregation.getField().equals(AggregationField.CUSTOM_FIELD.getName())) {
+        chartAggregation.setCustomFieldValue(chartAggregation.getField());
+        chartAggregation.setField(AggregationField.CUSTOM_FIELD.getName());
+      }
+
       if(chart.getStatisticAggregation().getInterval() != null) {
         /**
          * INTERVAL NOT NULL -> CUSTOM FIELD IS TIMESTAMP TYPE
          * return aggregates: customFields.timestamps.<Field>:bucket:<interval>
          */
-        return "customFields.timestamps." + chartAggregation.getField() + ":bucket:" + chartAggregation.getInterval();
+        return "customFields.timestamps." + chartAggregation.getCustomFieldValue() + ":bucket:" + chartAggregation.getInterval().toString().toLowerCase();
         
       }
 
@@ -237,8 +209,7 @@ public class StatisticService {
        * ELSE INTERVAL IS NULL -> CUSTOM FIELD IS STRING
        * return aggregates: customFields.strings.<Field>
        */
-      Ivy.log().info("============================= convertAggregatesFromChartAggregation");
-        return "customFields.timestamps." + chartAggregation.getField();
+        return "customFields.strings." + chartAggregation.getCustomFieldValue();
     }
     
     /**
@@ -246,7 +217,8 @@ public class StatisticService {
      * 2 case: timestamp or normal string
      * return aggregates: <Field>
      */
-    return chartAggregation.getField();
+    return chartAggregation.getInterval() == null ? chartAggregation.getField()
+        : chartAggregation.getField() + ":bucket:" + chartAggregation.getInterval().toString().toLowerCase();
   }
   
 }
