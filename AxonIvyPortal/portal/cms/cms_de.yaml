@@ -1393,7 +1393,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Standard-Filter
-    destroyTaskMessage: Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie diese Aufgabe zerstören wollen?
+    destroyTaskMessage: 'Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie diese Aufgabe zerstören wollen <b>{0} (ID: {1})</b>?'
     headerTitle:
       relatedStatisticHeader: 'Aufgaben von Diagramm:'
       relatedTasksHeader: Zugehörige Aufgaben
@@ -1417,6 +1417,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Priorität (niedrig nach hoch)
     triggerEscalationNote: 'Die Eskalation wurde ausgelöst durch {0} ({1}) der Aufgabe #{2}'
     type: Typ
+    unknownId: Unbekannte ID
+    unknownTask: Unbekannte Aufgabe
   taskPriority:
     EXCEPTION: AUSNAHME
     EXCEPTION_LOWERCASE: Ausnahme

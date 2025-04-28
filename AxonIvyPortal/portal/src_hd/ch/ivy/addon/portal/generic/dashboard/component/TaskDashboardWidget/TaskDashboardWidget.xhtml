@@ -43,7 +43,7 @@
     </ui:define>
 
     <ui:define name="widgetContent">
-      <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget id="task-component"
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidget id="task-component" destroyTaskDialogComponent="destroy-task-confirmation-dialog"
         taskWidget="#{widget}" isReadOnlyMode="#{isReadOnlyMode}"
         componentToUpdateTaskWidget="@widgetVar(dashboard-tasks-#{widget.id})"/>
     </ui:define>
