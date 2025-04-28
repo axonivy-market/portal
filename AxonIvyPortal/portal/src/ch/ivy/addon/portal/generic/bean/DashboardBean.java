@@ -45,6 +45,7 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
@@ -99,11 +100,11 @@ public class DashboardBean implements Serializable {
     dashboards = collectDashboards();
 
     if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())
-        || isRequestPathForMainOrDetailModification()) {
+        || isRequestPathForMainOrDetailModification() || isNavigateToDashboard()) {
       updateSelectedDashboardIdFromSessionAttribute();
       updateSelectedDashboard();
       storeAndHighlightDashboardIfRequired();
-  }
+    }
     buildWidgetModels(selectedDashboard);
     isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
@@ -117,6 +118,11 @@ public class DashboardBean implements Serializable {
 
     buildClientStatisticApiUri();
   }
+  
+  private boolean isNavigateToDashboard() {
+    Object attr = Ivy.session().getAttribute(SessionAttribute.NAVIGATE_TO_DASHBOARD.name());
+    return attr != null && (boolean) attr;
+}
 
   private void buildClientStatisticApiUri() {
     this.clientStatisticApiUri = FacesContext.getCurrentInstance()

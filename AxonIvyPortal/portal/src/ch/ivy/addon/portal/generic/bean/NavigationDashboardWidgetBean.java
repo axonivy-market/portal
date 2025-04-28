@@ -65,6 +65,7 @@ public class NavigationDashboardWidgetBean implements Serializable {
   public void redirectToDashboard(NavigationDashboardWidget widget, Dashboard currentDashboard) throws IOException {
     pushPage(currentDashboard.getId());
     setIsNavigateToTargetDashboard(Boolean.TRUE);
+    addSessionAttributeNavigateToDashboard();
     navigateToDashboard(widget.getTargetDashboardId());
     removeSelectedSubDashboardId();
   }
@@ -75,6 +76,7 @@ public class NavigationDashboardWidgetBean implements Serializable {
       removeLast();
       if (pageHistory.isEmpty()) {
         setIsNavigateToTargetDashboard(Boolean.FALSE);
+        removeSessionAttributeNavigateToDashboard();
       }
       removeSelectedSubDashboardId();
     }
@@ -83,10 +85,19 @@ public class NavigationDashboardWidgetBean implements Serializable {
     }
   }
   
+  private void addSessionAttributeNavigateToDashboard() {
+    Ivy.session().setAttribute(SessionAttribute.NAVIGATE_TO_DASHBOARD.name(), isNavigateToTargetDashboard);
+  }
+  
+  private void removeSessionAttributeNavigateToDashboard() {
+    Ivy.session().removeAttribute(SessionAttribute.NAVIGATE_TO_DASHBOARD.name());
+  }
+  
   public void removeNavigationDashboardBackButton() {
     if (hasHistory()) {
       clearHistory();
       setIsNavigateToTargetDashboard(Boolean.FALSE);
+      removeSessionAttributeNavigateToDashboard();
     }
     if (DashboardUtils.isHiddenDashboard((String) Ivy.session().getAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.name()))) {
       removeSelectedSubDashboardId();
