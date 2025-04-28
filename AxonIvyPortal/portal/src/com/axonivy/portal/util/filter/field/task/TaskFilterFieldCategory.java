@@ -59,7 +59,7 @@ public class TaskFilterFieldCategory extends FilterField {
   }
   
   @Override
-  public String generateStringFilter(DashboardFilter filter) {
+  public String generateTaskFilter(DashboardFilter filter) {
     return switch (filter.getOperator()) {
       case IN -> TextInOperatorHandler.getInstance().buildFilter(filter);
       default -> null;

@@ -39,7 +39,7 @@ public class TaskFilterFieldCanWorkOn extends FilterField{
   }
 
   @Override
-  public String generateStringFilter(DashboardFilter filter) {
+  public String generateTaskFilter(DashboardFilter filter) {
     return switch (filter.getOperator()) {
       case CURRENT_USER -> TextInOperatorHandler.getInstance().buildFilterWithoutValue(filter);
       default -> null;

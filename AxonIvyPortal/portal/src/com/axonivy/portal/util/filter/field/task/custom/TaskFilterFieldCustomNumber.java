@@ -77,7 +77,7 @@ public class TaskFilterFieldCustomNumber extends CustomFilterField {
   }
   
   @Override
-  public String generateStringFilter(DashboardFilter filter) {
+  public String generateTaskFilter(DashboardFilter filter) {
     return switch (filter.getOperator()) {
       case LESS -> NumberCustomFieldLessOperatorHandler.getInstance().buildFilter(filter);
       case LESS_OR_EQUAL -> NumberCustomFieldLessOrEqualOperatorHandler.getInstance().buildFilter(filter);

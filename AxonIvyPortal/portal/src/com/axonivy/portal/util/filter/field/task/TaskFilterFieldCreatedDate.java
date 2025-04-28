@@ -76,7 +76,7 @@ public class TaskFilterFieldCreatedDate extends FilterField {
   }
   
   @Override
-  public String generateStringFilter(DashboardFilter filter) {
+  public String generateTaskFilter(DashboardFilter filter) {
     return switch (filter.getOperator()) {
       case BETWEEN -> DatetimeBetweenOperatorHandler.getInstance().buildBetweenFilter(filter);
       case AFTER -> DatetimeAfterOperatorHandler.getInstance().buildFilter(filter);

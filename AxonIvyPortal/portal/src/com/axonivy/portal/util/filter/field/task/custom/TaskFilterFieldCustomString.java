@@ -75,7 +75,7 @@ public class TaskFilterFieldCustomString extends CustomFilterField {
   }
   
   @Override
-  public String generateStringFilter(DashboardFilter filter) {
+  public String generateTaskFilter(DashboardFilter filter) {
     return switch (filter.getOperator()) {
       case IN -> StringCustomFieldInOperatorHandler.getInstance().buildFilter(filter);
       default -> null;

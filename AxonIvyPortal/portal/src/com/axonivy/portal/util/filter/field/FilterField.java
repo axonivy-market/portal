@@ -50,7 +50,7 @@ public abstract class FilterField {
     return Objects.equals(name, other.name);
   }
   
-  public String generateStringFilter(DashboardFilter filter) {
+  public String generateTaskFilter(DashboardFilter filter) {
     return filter.getValue();
   }
 

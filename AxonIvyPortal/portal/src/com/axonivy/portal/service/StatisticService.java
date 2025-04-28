@@ -96,7 +96,7 @@ public class StatisticService {
       }
       FilterField filterField = TaskFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType());
       if (filterField != null) {
-        String filterQuery = filterField.generateStringFilter(statisticFilter);
+        String filterQuery = filterField.generateTaskFilter(statisticFilter);
         if (filterQuery != null) {
           sbFilter.append(filterQuery).append(",");
         }
