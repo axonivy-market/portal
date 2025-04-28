@@ -295,7 +295,7 @@
           styleClass="task-start-list js-task-start-list #{data.dataModel.compactMode ? 'compact-mode' : ''} #{data.dataModel.isGuide and cc.attrs.currentPortalPage eq 'HOME_PAGE' ? 'js-is-guide' : ''}">
           <ic:ch.ivy.addon.portalkit.component.TaskItem 
             id="task-item" task="#{task}"
-            rowIndex="#{rowIndex}" currentPortalPage="#{cc.attrs.currentPortalPage}"
+            rowIndex="#{rowIndex}" currentPortalPage="#{cc.attrs.currentPortalPage}" destroyTaskDialogComponent="task-widget:destroy-task-confirmation-dialog"
             isSelected="#{cc.attrs.selectedTaskId eq task.getId()}"
             compactMode="#{data.dataModel.compactMode}" 
             dataModel="#{data.dataModel}"
@@ -441,7 +441,7 @@
     <ui:param name="iconClass" value="si si-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyTaskHeaderText')}" />
-    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage')}" />
+    <ui:param name="dialogContent" value="#{taskWidgetBean.getDestroyTaskMessage()}" />
     
     <ui:define name="dialogFooter">
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"

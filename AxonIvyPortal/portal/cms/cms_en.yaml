@@ -1397,7 +1397,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Default filter
-    destroyTaskMessage: This operation cannot be undone. Are you sure you want to destroy this task?
+    destroyTaskMessage: 'This operation cannot be undone. Are you sure you want to destroy task <b>{0} (ID: {1})</b>?'
     headerTitle:
       relatedStatisticHeader: 'Related tasks of statistic chart: '
       relatedTasksHeader: Related Tasks of Case
@@ -1421,6 +1421,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Priority (Low to high)
     triggerEscalationNote: 'Escalation has been triggered by {0} ({1}) of task #{2}'
     type: Type
+    unknownId: Unknown ID
+    unknownTask: Unknown Task
   taskPriority:
     EXCEPTION: EXCEPTION
     EXCEPTION_LOWERCASE: Exception

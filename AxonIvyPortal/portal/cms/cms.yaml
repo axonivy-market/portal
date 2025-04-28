@@ -1205,7 +1205,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Default filter
-    destroyTaskMessage: This operation cannot be undone. Are you sure you want to destroy this task?
+    destroyTaskMessage: 'This operation cannot be undone. Are you sure you want to destroy task <b>{0} (ID: {1})</b>?'
     headerTitle:
       relatedStatisticHeader: 'Related tasks of statistic chart: '
       relatedTasksHeader: Related Tasks of Case

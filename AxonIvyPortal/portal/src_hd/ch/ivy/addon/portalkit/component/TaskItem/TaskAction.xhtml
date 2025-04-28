@@ -34,7 +34,7 @@
       </p:commandLink>
 
       <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"
-        isDisabled="#{cc.attrs.readOnly}"
+        isDisabled="#{cc.attrs.readOnly}" destroyTaskDialogComponent="#{cc.attrs.destroyTaskDialogComponent}"
         panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false" renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}"
         task="#{task}" componentToUpdate="#{p:resolveFirstComponentWithId('task-start', view).clientId}" currentPortalPage="#{currentPortalPage}" showDetailOption="#{true}" dataModel="#{dataModel}"
         buttonStyleClass="u-hidden-md-down" onDestroyComplete="#{onDestroyComplete}"

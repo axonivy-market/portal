@@ -1397,7 +1397,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Filtro por defecto
-    destroyTaskMessage: Esta operación no se puede revocar. ¿Está seguro de que quiere destruir esta tarea?
+    destroyTaskMessage: 'Esta operación no se puede revocar. ¿Está seguro de que quiere destruir la tarea <b>{0} (ID: {1})</b>?'
     headerTitle:
       relatedStatisticHeader: 'Tareas Relacionadas de la gráfica estadística:'
       relatedTasksHeader: Tareas relacionadas del caso
@@ -1421,6 +1421,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Prioridad (baja - alta)
     triggerEscalationNote: 'Escalación ha sido ejecutada por {0} ({1}) para la tarea #{2}'
     type: Tipo
+    unknownId: ID desconocida
+    unknownTask: Tarea desconocida
   taskPriority:
     EXCEPTION: Excepción
     EXCEPTION_LOWERCASE: Excepción

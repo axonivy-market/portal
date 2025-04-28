@@ -1394,7 +1394,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Filtre par défaut
-    destroyTaskMessage: Cette opération ne peut être annulée. Êtes-vous sûr de vouloir détruire cette tâche ?
+    destroyTaskMessage: 'Cette opération ne peut être annulée. Êtes-vous sûr de vouloir détruire cette tâche <b>{0} (ID: {1})</b> ?'
     headerTitle:
       relatedStatisticHeader: 'Tâches du diagramme:'
       relatedTasksHeader: Tâches associées au dossier
@@ -1418,6 +1418,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Priorité (faible à élevée)
     triggerEscalationNote: 'L''escalade a été déclenchée par {0} ({1}) de la tâche #{2}.'
     type: Type
+    unknownId: Inconnu Id
+    unknownTask: Tâche inconnue
   taskPriority:
     EXCEPTION: EXCEPTION
     EXCEPTION_LOWERCASE: Exception

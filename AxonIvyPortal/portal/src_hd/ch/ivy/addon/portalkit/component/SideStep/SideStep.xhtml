@@ -24,6 +24,7 @@
   <cc:attribute name="showInTaskList" type="java.lang.Boolean" default="true" shortDescription="Indicator to display SideStep in TaskList"/>
   <cc:attribute name="inFrame" default="false"/>
   <cc:attribute name="isPreviewMode" default="false"/>
+  <cc:attribute name="destroyTaskDialogComponent" default=""/>
 </cc:interface>
 
 <cc:implementation>
@@ -82,8 +83,8 @@
     </p:commandLink>
     
     <p:commandLink id="task-destroy-command" disabled="#{!taskActionBean.canDestroyTask(task)}" rendered="#{taskActionBean.showDestroyTask}"
-      styleClass="option-item" update="@parent #{cc.attrs.componentToUpdate}"
-      actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
+      styleClass="option-item" update="@parent #{cc.attrs.componentToUpdate} #{cc.attrs.destroyTaskDialogComponent}"
+      actionListener="#{taskActionBean.updateSelectedTask(isShowInTaskList, task)}"
       oncomplete="#{cc.attrs.onDestroyComplete}" process="@this" global="false">
       <i class="option-action-icon si si-remove" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>

@@ -133,4 +133,15 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   public SortMeta getSortByCreationTimestamp() {
     return SortFieldUtil.buildSortMeta("creation.timestamp", true);
   }
+  
+  public String getDestroyTaskMessage() {
+    String taskName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/unknownTask");
+    String taskId = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/unknownId");
+    ITask task = getSelectedTaskFromData();
+    if (task != null) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage",
+          List.of(task.names().current(), Long.toString(task.getId())));
+    } else
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage", List.of(taskName, taskId));
+  }
 }
