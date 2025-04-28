@@ -12,6 +12,7 @@
   <cc:attribute name="onCompleteLoadWidget" />
   <cc:attribute name="componentToUpdateCaseWidget" />
   <cc:attribute name="caseWidgetVar" default="dashboard-cases" />
+  <cc:attribute name="destroyCaseDialogComponent" default="" />
 </cc:interface>
 
 <cc:implementation>
@@ -112,6 +113,7 @@
           <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">
             <ui:include src="ActionsCell.xhtml">
               <ui:param name="ariaLabel" value="#{caseBean.getAriaLabel(caseItem, caseWidget.columns)}"></ui:param>
+              <ui:param name="destroyCaseDialogComponent" value="#{cc.attrs.destroyCaseDialogComponent}"></ui:param>
             </ui:include>
           </h:panelGroup>
         </p:columns>

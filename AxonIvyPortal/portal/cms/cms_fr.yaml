@@ -391,7 +391,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       OWNER: Propriétaire
       STATE: Etat
     deletionNoteContent: Ce dossier a été supprimé par {0}
-    destroyCaseMessage: Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer ce dossier et toutes les tâches associées ?
+    destroyCaseMessage: 'Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer dossier <b>{0} (ID: {1})</b> et toutes les tâches associées ?'
     destroyfail: Une erreur est survenue lors de la suppression du dossier.
     destroysucceed: Le dossier a été supprimé avec succès
     downloadZipFileExplanation: Le nombre de cas à exporter dépasse la limite des lignes Excel. Par conséquent, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
@@ -404,6 +404,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'Dossier #{0} {1}'
     relatedCases: Cas connexes
     title: Titre
+    unknownCase: Cas inconnu
+    unknownId: Inconnu Id
   caseState:
     CREATED: Créé
     CREATED_UPPERCASE: CRÉÉ

@@ -231,7 +231,7 @@
         <p:dataScroller id="case-list-scroller" value="#{data.dataModel}" var="case" chunkSize="#{cc.attrs.chunkSize}"
           lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list" widgetVar="case-list-scroller">
           <ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item"
-            onDestroyComplete="PF('destroy-case-dialog').show()" rowIndex="#{rowIndex}"
+            onDestroyComplete="PF('destroy-case-dialog').show()" rowIndex="#{rowIndex}" destroyCaseDialogComponent="#{cc.clientId}:destroy-case-confirmation-dialog"
             itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}" readOnly="#{cc.attrs.readOnly}" inFrame="#{cc.attrs.inFrame}">
             <cc:insertFacet name="caseHeader" />
           </ic:ch.ivy.addon.portalkit.component.CaseItem>
@@ -332,7 +332,7 @@
     <ui:param name="iconClass" value="si si-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyCaseHeaderText')}" />
-    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage')}" />
+    <ui:param name="dialogContent" value="#{caseWidgetBean.getDestroyCaseMessage()}" />
     
     <ui:define name="dialogFooter">
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
