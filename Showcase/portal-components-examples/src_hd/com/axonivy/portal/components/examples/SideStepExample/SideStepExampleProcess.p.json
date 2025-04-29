@@ -1,0 +1,177 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.1/process.json",
+  "id" : "19660C0146486D96",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.SideStepExample.SideStepExampleData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(String,Long,String,SideStepType)",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "originalTaskId", "type" : "String", "desc" : "" },
+            { "name" : "caseId", "type" : "Long", "desc" : "" },
+            { "name" : "comment", "type" : "String", "desc" : "" },
+            { "name" : "stepType", "type" : "com.axonivy.portal.components.enums.SideStepType", "desc" : "" }
+          ],
+          "map" : {
+            "out.caseId" : "param.caseId",
+            "out.originalTaskId" : "param.originalTaskId",
+            "out.stepType" : "param.stepType"
+          }
+        },
+        "guid" : "19660C014688AF59"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 96 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 480, "y" : 96 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Load data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.CaseUtils;",
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import com.axonivy.portal.components.dto.UserDTO;",
+            "import com.axonivy.portal.components.examples.leaverequest.LeaveRequest;",
+            "",
+            "ICase caze = CaseUtils.findCase(in.caseId);",
+            "in.leaveRequestData = ivy.repo.find(caze.getBusinessCase(), LeaveRequest.class) as LeaveRequest;",
+            "in.requester = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.requesterUsername));",
+            "in.approver = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.approverUsername));"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 96 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f1", "color" : "default" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "HtmlDialogEventStart",
+      "name" : "submit",
+      "config" : {
+        "guid" : "1966C0E6558A30D7"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 264 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "validation",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "in.isValid = in.leaveRequestData.from.compareTo(in.leaveRequestData.to) > 0? false : true;",
+            "if(!in.isValid) {",
+            "FacesContext.getCurrentInstance().validationFailed();",
+            "FacesContext.getCurrentInstance().addMessage(",
+            "          null,",
+            "          FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(",
+            "              \"/ch.ivy.addon.portalkit.ui.jsf/common/dateFromBiggerThanTo\"), null));",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 264 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f12" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "Alternative",
+      "name" : "valid?",
+      "config" : {
+        "conditions" : {
+          "f13" : "in.isValid"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 360, "y" : 264 },
+        "labelOffset" : { "x" : 8, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f16" },
+        { "id" : "f14", "to" : "f15" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 360, "y" : 360 }
+      }
+    }, {
+      "id" : "f16",
+      "type" : "Script",
+      "name" : "save data",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.SideStepAPI;",
+            "SideStepAPI.handleSaveProcessData(in.leaveRequestData, in.originalTaskId, in.stepType);"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 488, "y" : 264 }
+      },
+      "connect" : [
+        { "id" : "f17", "to" : "f18" }
+      ]
+    }, {
+      "id" : "f18",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 616, "y" : 264 }
+      }
+    }, {
+      "id" : "f19",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "1966C14FD2124120"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 424 }
+      },
+      "connect" : [
+        { "id" : "f21", "to" : "f20" }
+      ]
+    }, {
+      "id" : "f20",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 264, "y" : 424 }
+      }
+    } ]
+}

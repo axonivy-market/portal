@@ -1136,6 +1136,8 @@ Labels:
       RESPONSIBLE: Responsible
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
+  SelectProcess: Select process
+  SideStepProcess: Select a side step process
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users

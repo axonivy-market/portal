@@ -8,12 +8,18 @@ Enums:
     ANNUAL_LEAVE: Ausencia anual
     MATERNITY_LEAVE: Ausencia maternal
     SICK_LEAVE: Ausencia por enfermedad
+  SideStepProcess:
+    PARALLEL: Parallel with main process
+    SWITCH: Switch to side step process
 Labels:
   LeaveRequest:
     LeaveSteps:
       approval: Aprobar
       approvalResult: Resultado del aprobado
+      comment: Comment
       creation: Crear ausencia
+      requesterSideStepComment: Requester side step comment
+      sideStepComment: Additional comment
     approvalResultTaskIntro: Más abajo encontrará un resumen de su solicitud.
     approvalTaskIntro: 'Hay una solicitud para una ausencia. Detalles más abajo:'
     approver: Aprovador

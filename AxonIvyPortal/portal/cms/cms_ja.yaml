@@ -1630,7 +1630,9 @@ Labels:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: 権限
+  SelectProcess: Select process
   Share: 共有
+  SideStepProcess: Side step process
   Task: タスク
   TaskItemDetail: タスクの詳細
   TaskUser-Explain: カンマ区切りのユーザーリスト

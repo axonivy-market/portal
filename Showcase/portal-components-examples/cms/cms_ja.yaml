@@ -8,12 +8,18 @@ Enums:
     ANNUAL_LEAVE: 年次有給休暇
     MATERNITY_LEAVE: 産休
     SICK_LEAVE: 病欠
+  SideStepProcess:
+    PARALLEL: Parallel with main process
+    SWITCH: Switch to side step process
 Labels:
   LeaveRequest:
     LeaveSteps:
       approval: 承認
       approvalResult: 承認結果
+      comment: Comment
       creation: 休暇申請の作成
+      requesterSideStepComment: Requester side step comment
+      sideStepComment: Additional comment
     approvalResultTaskIntro: 以下は休暇申請の概要と承認者からのフィードバックです。
     approvalTaskIntro: 承認が必要な休暇申請があります。詳細は以下のとおりです：
     approver: 承認者

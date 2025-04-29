@@ -8,12 +8,18 @@ Enums:
     ANNUAL_LEAVE: Jahresurlaub
     MATERNITY_LEAVE: Mutterschaftsurlaub
     SICK_LEAVE: Krankenstand
+  SideStepProcess:
+    PARALLEL: Parallel with main process
+    SWITCH: Switch to side step process
 Labels:
   LeaveRequest:
     LeaveSteps:
       approval: Genehmigung
       approvalResult: Genehmigungsergebnis
+      comment: Comment
       creation: Urlaubsantrag erstellen
+      requesterSideStepComment: Requester side step comment
+      sideStepComment: Additional comment
     approvalResultTaskIntro: Unten finden Sie eine Zusammenfassung Ihres Urlaubsantrags und des Feedbacks des Genehmigers.
     approvalTaskIntro: 'Es gibt einen Urlaubsantrag, der Ihre Genehmigung erfordert, Einzelheiten dazu finden Sie unten:'
     approver: Genehmigender

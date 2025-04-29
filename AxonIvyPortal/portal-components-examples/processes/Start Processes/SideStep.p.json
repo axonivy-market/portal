@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id": "1633E7FE0C8BCFA6",
+  "config": {
+    "data": "com.axonivy.portal.components.examples.SideStepData"
+  },
+  "elements": [
+    {
+      "id": "f0",
+      "type": "RequestStart",
+      "name": "createLeaveRequestWithSideStep.ivp",
+      "config": {
+        "signature": "createLeaveRequestWithSideStep",
+        "request": {
+          "name": "Leave Request with Cover Query",
+          "description": "Demonstrates how to use Side Step process to query for leave cover during leave request creation",
+          "category": "Examples"
+        },
+        "case": {
+          "name": "Leave Request with Cover Query",
+          "description": "Leave request process with integrated cover query using Side Step",
+          "customFields": [
+            { "name": "AccountNumber", "type": "NUMBER", "value": "100" },
+            { "name": "CustomerName", "type": "STRING", "value": "\"Demo User\"" },
+            { "name": "SupportData", "type": "STRING", "value": "\"Leave cover query example\"" }
+          ]
+        }
+      },
+      "visual": {
+        "at": { "x": 96, "y": 224 }
+      },
+      "connect": [
+        { "id": "f1", "to": "f2" }
+      ]
+    },
+    {
+      "id": "f2",
+      "type": "Script",
+      "name": "Set side step process using Public API",
+      "config": {
+        "output": {
+          "code": [
+            "import com.axonivy.portal.components.dto.SideStepDTO;",
+            "import com.axonivy.portal.components.publicapi.SideStepAPI;",
+            "",
+            "// Configure side step for cover query",
+            "SideStepAPI.create(SideStepDTO.builder()",
+            "  .path(\"Start Processes/SideStep/queryCover.ivp\")",
+            "  .task(ivy.wfTask)",
+            "  .embedInFrame(true)",
+            "  .build());"
+          ]
+        }
+      },
+      "visual": {
+        "at": { "x": 296, "y": 224 }
+      },
+      "connect": [
+        { "id": "f3", "to": "f4" }
+      ]
+    },
+    {
+      "id": "f4",
+      "type": "UserTask",
+      "name": "LeaveRequestWithCover",
+      "config": {
+        "task": {
+          "name": "Submit Leave Request",
+          "description": "Submit your leave request and arrange cover"
+        }
+      },
+      "visual": {
+        "at": { "x": 496, "y": 224 }
+      },
+      "connect": [
+        { "id": "f5", "to": "f6" }
+      ]
+    },
+    {
+      "id": "f6",
+      "type": "TaskEnd",
+      "visual": {
+        "at": { "x": 696, "y": 224 }
+      }
+    },
+    {
+      "id": "f7",
+      "type": "ProcessAnnotation",
+      "name": [
+        "HOW TO USE SIDE STEP PROCESS:",
+        "",
+        "1. Create the main process (in this case Leave Request) that will contain the side step",
+        "",
+        "2. Create the side step process (queryCover.ivp) that will be called during the main process",
+        "",
+        "3. Two ways to set up side step process:",
+        "",
+        "   - Call SideStepAPI.create(SideStepDTO) or SideStepAPI.create(String)",
+        "",
+        "   - Use SetSideStepProcess subprocess with the friendly URL of your side step process",
+        "",
+        "HOW TO RUN THIS EXAMPLE:",
+        "",
+        "1. Run createLeaveRequestWithSideStep.ivp",
+        "",
+        "2. During the leave request task, click the side step button to query for cover",
+        "",
+        "3. Complete the cover query process which will return to the main leave request"
+      ],
+      "visual": {
+        "at": { "x": 896, "y": 224 },
+        "size": { "width": 480, "height": 320 }
+      }
+    }
+  ]
+} 
