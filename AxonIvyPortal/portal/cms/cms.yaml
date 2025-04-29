@@ -930,7 +930,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     defaultColumns:
       ACTIVATOR: Responsible
       CATEGORY: Category
-      COMPLETED_ON: Completed on
+      COMPLETED: Completed on
       CREATION_TIME: Created
       EXPIRY_TIME: Expiry
       ID: Task Id

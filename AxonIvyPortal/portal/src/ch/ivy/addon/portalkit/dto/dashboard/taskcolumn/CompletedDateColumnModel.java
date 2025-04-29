@@ -17,14 +17,14 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
-public class EndDateColumnModel extends TaskColumnModel{
+public class CompletedDateColumnModel extends TaskColumnModel{
 
   private static final long serialVersionUID = 8668467377280847907L;
 
   @Override
   public void initDefaultValue() {
     super.initDefaultValue();
-    this.field = DashboardStandardTaskColumn.END.getField();
+    this.field = DashboardStandardTaskColumn.COMPLETED.getField();
     this.styleToDisplay = initDefaultStyle();
     this.styleClass = defaultIfEmpty(this.styleClass, getDefaultStyleClass());
     this.format = getDefaultFormat();
@@ -32,7 +32,7 @@ public class EndDateColumnModel extends TaskColumnModel{
 
   @Override
   public String getDefaultHeaderCMS() {
-    return "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/COMPLETED_ON";
+    return "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/COMPLETED";
   }
 
   @Override
@@ -55,7 +55,7 @@ public class EndDateColumnModel extends TaskColumnModel{
     if (task == null) {
       return null;
     }
-    return task.getStartTimestamp();
+    return task.getEndTimestamp();
   }
 
   @Override

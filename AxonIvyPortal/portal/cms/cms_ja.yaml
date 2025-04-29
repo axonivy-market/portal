@@ -1198,7 +1198,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ACTIVATOR: 責任者
       APPLICATION: アプリケーション
       CATEGORY: カテゴリー
-      COMPLETED_ON: 完了日
+      COMPLETED: 完了日
       CREATION_TIME: 作成日
       EXPIRY_TIME: 有効期限
       ID: タスクID
@@ -1565,6 +1565,7 @@ Labels:
       ACTIONS: アクション
       APPLICATION: アプリケーション
       CATEGORY: カテゴリー
+      COMPLETED: ''
       CREATED: 作成日
       DESCRIPTION: 説明
       EXPIRY: 有効期限
