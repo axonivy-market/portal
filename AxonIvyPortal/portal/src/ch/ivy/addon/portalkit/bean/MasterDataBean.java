@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.enums.BasicDocumentType;
@@ -117,12 +118,15 @@ public class MasterDataBean implements Serializable {
   }
   
   public String getPortalApplicationName() {
+    if (getApplicationName().isBlank()) {
+      return PORTAL_NAME;
+    }
     return String.join(" - ", PORTAL_NAME, getApplicationName());
   }
 
   public String getApplicationName() {
     String applicationName = Ivy.var().get(APPLICATION_NAME);
-    return applicationName.isBlank() ? DEFAULT_APPLICATION_NAME : applicationName;
+    return applicationName.isBlank() ? StringUtils.EMPTY : applicationName;
   }
 
   public String getUserLanguage() {
