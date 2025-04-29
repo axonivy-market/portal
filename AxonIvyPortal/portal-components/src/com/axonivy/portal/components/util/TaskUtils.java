@@ -7,6 +7,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
 public final class TaskUtils {
@@ -36,5 +37,18 @@ public final class TaskUtils {
       }
     }
     return currentTasks;
+  }
+  
+  /**
+   * Park The Task.
+   * 
+   * @param task : Task need to be park
+   */
+  public static void parkTask(final ITask task) {
+    Sudo.get(() -> {
+      IWorkflowSession iWorkflowSession = Ivy.session();
+      iWorkflowSession.parkTask(task);
+      return Void.class;
+    });
   }
 }

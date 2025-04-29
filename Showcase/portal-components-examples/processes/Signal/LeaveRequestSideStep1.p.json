@@ -1,0 +1,189 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.1/process.json",
+  "id" : "1966AF48E663B661",
+  "config" : {
+    "data" : "Signal.LeaveRequestSideStep1Data"
+  },
+  "elements" : [ {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 880, "y" : 200 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "SignalStartEvent",
+      "name" : "Signal side step 1",
+      "config" : {
+        "signalCode" : "ch:axonivy:portal:component:example:sideStep1:created",
+        "output" : {
+          "map" : { },
+          "code" : [
+            "import com.axonivy.portal.components.enums.SideStepType;",
+            "import com.axonivy.portal.components.dto.SideStepProcessParam;",
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;",
+            "import com.axonivy.portal.components.dto.SideStepDTO;",
+            "import com.google.gson.Gson;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
+            "",
+            "ivy.log.warn(\"Signal data 1 {0} \", signal.getSignalData());",
+            "SideStepProcessParam data = BusinessEntityConverter.jsonValueToEntity(signal.getSignalData() as String, SideStepProcessParam.class) as SideStepProcessParam;",
+            "",
+            "// custom params",
+            "Map params = data.getSideStepDto().getParams();",
+            "out.originalTaskId = params.get(\"taskId\") as String;",
+            "out.originalCaseId = params.get(\"caseId\") as Long;",
+            "",
+            "// required fields",
+            "out.assignee = data.getAssignee().getName();",
+            "out.comment = data.getComment();",
+            "out.stepType = data.getSelectedStepType();",
+            "ivy.log.warn(\"steptype {0}\", data);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 200 }
+      },
+      "connect" : [
+        { "id" : "f3", "to" : "f15" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "Task for signal 1",
+          "responsible" : {
+            "type" : "USER_FROM_ATTRIBUTE",
+            "script" : "in1.assignee"
+          }
+        },
+        "case" : {
+          "name" : "Side step case 1"
+        },
+        "output" : {
+          "code" : [
+            "",
+            "ivy.case.attachToBusinessCase(in1.originalCaseId);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 584, "y" : 200 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f6", "color" : "default" }
+      ]
+    }, {
+      "id" : "f6",
+      "type" : "DialogCall",
+      "name" : "Side step example 1",
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.SideStepExample:start(String,Long,String,com.axonivy.portal.components.enums.SideStepType)",
+        "call" : {
+          "map" : {
+            "param.originalTaskId" : "in.originalTaskId",
+            "param.caseId" : "in.originalCaseId",
+            "param.comment" : "in.comment",
+            "param.stepType" : "in.stepType"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 760, "y" : 200 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "RequestStart",
+      "name" : "showSideStepBusinessDetails.ivp",
+      "config" : {
+        "signature" : "showSideStepBusinessDetails",
+        "input" : {
+          "params" : [
+            { "name" : "uuid", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.uuid" : "param.uuid"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 368 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Find case by id",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.CaseUtils;",
+            "ivy.log.warn(\"signal case id {0}\", in.uuid);",
+            "out.caze = CaseUtils.findCase(in.uuid);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 440, "y" : 368 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f12", "color" : "default" }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "DialogCall",
+      "name" : [
+        "Customization",
+        "Business Details Page"
+      ],
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.SideStepBusinessDetailsPage:start(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.caze" : "in.caze"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 656, "y" : 368 },
+        "size" : { "width" : 192 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "f14" }
+      ]
+    }, {
+      "id" : "f14",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 880, "y" : 368 }
+      }
+    }, {
+      "id" : "f15",
+      "type" : "SubProcessCall",
+      "name" : "SetBusinessDetailsPage",
+      "config" : {
+        "processCall" : "Functional Processes/SetBusinessDetailsPage:call(String)",
+        "call" : {
+          "map" : {
+            "param.linkToBusinessDetailsPage" : "\"Signal/LeaveRequestSideStep1/showSideStepBusinessDetails.ivp\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 432, "y" : 200 },
+        "size" : { "width" : 176 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f4", "color" : "default" }
+      ]
+    } ]
+}

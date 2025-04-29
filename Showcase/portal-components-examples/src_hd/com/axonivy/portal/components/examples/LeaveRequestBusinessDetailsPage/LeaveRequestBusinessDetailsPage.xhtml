@@ -4,7 +4,7 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
 <h:body>
   <ui:composition template="/layouts/frame-10.xhtml">
-    <ui:define name="title">#{ivy.cms.co("/Labels/LeaveRequest/LeaveSteps/approval")}</ui:define>
+    <ui:define name="title">Leave Request Business Details Page</ui:define>
 
     <ui:define name="content">
       <h:outputStylesheet library="css" name="leave-request-examples.css" />
@@ -12,11 +12,11 @@
       <h:form id="leave-request">
         <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
           <div class="ui-g-12"></div>
-          <p:panel styleClass="card ui-g-12 ui-md-12">
-            <h4>#{ivy.cms.co('/Labels/LeaveRequest/approvalTaskIntro')}</h4>
+          <p:panel styleClass="card ui-g-12">
+            <h4>Leave Request Business Details</h4>
             <h:panelGroup styleClass="ui-g" layout="block">
               <p:messages styleClass="ui-g-12" />
-              <h:panelGrid columns="1" columnClasses="u-text-align-leff ui-g-12" styleClass="ui-g-12">
+              <h:panelGrid columns="1" columnClasses="u-text-align-left ui-g-12" styleClass="ui-g-12">
                 <h:panelGroup class="MarTop10">
                   <p:outputLabel for="requester" value="#{ivy.cms.co('/Labels/LeaveRequest/requester')}" />
                   <p:inputText id="requester" disabled="true" value="#{data.requester.displayName}"
@@ -51,36 +51,43 @@
                 <h:panelGroup>
                   <p:outputLabel for="requester-comment" value="#{ivy.cms.co('/Labels/LeaveRequest/requesterComment')} " />
                   <p:inputTextarea id="requester-comment" value="#{data.leaveRequestData.requesterComment}"
-                    styleClass="MarTop10" disabled="true" rows="5" />
+                    disabled="true" rows="5" styleClass="MarTop10" />
                 </h:panelGroup>
 
                 <h:panelGroup>
-                  <p:outputLabel for="employee-comment" value="Employee Note" />
-                  <p:inputTextarea id="employee-comment" value="#{data.leaveRequestData.sideStepComment1}"
-                    styleClass="MarTop10" disabled="true" rows="5" />
+                  <p:outputLabel for="approver-comment" value="#{ivy.cms.co('/Labels/LeaveRequest/approverComment')}" />
+                  <p:inputTextarea id="approver-comment" value="#{data.leaveRequestData.approverComment}"
+                    disabled="true" rows="5" styleClass="MarTop10" />
                 </h:panelGroup>
                 
                 <h:panelGroup>
-                  <p:outputLabel for="approver-comment" value="#{ivy.cms.co('/Labels/LeaveRequest/approverComment')}" />
-                  <p:inputTextarea id="approver-comment" value="#{data.leaveRequestData.approverComment}"
-                    required="true" rows="5"
-                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/approverComment')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}" />
+                  <p:outputLabel for="side-step-comment-1" value="Side step comment 1" />
+                  <p:inputTextarea id="side-step-comment-1" value="#{data.leaveRequestData.sideStepComment1}"
+                    disabled="true" rows="5" styleClass="MarTop10" />
+                </h:panelGroup>
+                
+                <h:panelGroup>
+                  <p:outputLabel for="side-step-comment-2" value="Side step comment 2" />
+                  <p:inputTextarea id="side-step-comment-2" value="#{data.leaveRequestData.sideStepComment2}"
+                    disabled="true" rows="5" styleClass="MarTop10" />
+                </h:panelGroup>
+                
+                <h:panelGroup>
+                  <p:outputLabel for="side-step-comment-3" value="Side step comment 3" />
+                  <p:inputTextarea id="side-step-comment-3" value="#{data.leaveRequestData.sideStepComment3}"
+                    disabled="true" rows="5" styleClass="MarTop10" />
                 </h:panelGroup>
               </h:panelGrid>
             </h:panelGroup>
 
           </p:panel>
         </h:panelGroup>
-        <p:commandButton value="#{ivy.cms.co('/Dialog/Common/approve')}" icon="si si-check-1"
-          styleClass="Fright MarTop10" partialSubmit="true" id="approved-btn" actionListener="#{logic.approved}"
-          process=":leave-request" update=":leave-request" style="width: auto" />
-        <p:spacer width="5px" styleClass="Fright MarTop10" />
-        <p:commandButton value="#{ivy.cms.co('/Dialog/Common/reject')}" icon="si si-delete" partialSubmit="true"
-          id="rejected-btn" styleClass="secondary-btn Fright MarTop10" actionListener="#{logic.rejected}"
+        <p:commandButton value="#{ivy.cms.co('/Dialog/Common/finish')}" icon="si si-check-1"
+          styleClass="Fright MarTop10" partialSubmit="true" id="finish-btn" actionListener="#{logic.close}"
           process=":leave-request" update=":leave-request" style="width: auto" />
       </h:form>
-      <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="1" />
-
+     <!--  <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="2" />
+ -->
     </ui:define>
   </ui:composition>
 </h:body>

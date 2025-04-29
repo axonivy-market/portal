@@ -118,8 +118,11 @@
                   rendered="#{chatRendererBean.isGroupChatRendered and !(currentTask.state eq 'CREATED')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" update="chat-assignee-dialog" />
     
+                <p:menuitem id="side-steps-process" icon="si si-hierarchy-6 si-rotate-270"
+                  rendered="true" onclick="PF('side-step-process-dialog').show();"
+                  value="Add side-steps process" />
                 <p:divider styleClass="separator"
-                    rendered="#{chatRendererBean.isGroupChatRendered and !(currentTask.state eq 'CREATED')}" />
+                    rendered="true" />
     
                 <p:menuitem id="side-steps-menu" styleClass="empty-side-steps" global="false"
                   disabled="#{empty abstractTaskTemplateBean.sideStepList}" rendered="#{isSideStepDisabled}"
@@ -203,6 +206,87 @@
               <ui:param name="createGroupChat" value="createGroupChat" />
             </ui:include>
           </h:form>
+        </p:dialog>
+        
+        <p:dialog id="side-step-process-dialog" resizable="false" closeOnEscape="true" 
+          header="#{ivy.cms.co('/Labels/SideStepProcess')}" width="20vw" height="35vh"
+          rendered="true" widgetVar="side-step-process-dialog" appendTo="@(body)" modal="true"
+          dynamic="true" responsive="true">
+            <p:messages id="dashboard-detail-messages" showDetail="true" closable="true" styleClass="mb-3" />
+            <h:form id="side-step-process-form" styleClass="ui-fluid">
+              <h:panelGroup styleClass="ui-g" layout="block">
+                <div class="col-12">
+                  <div class="p-inputgroup mb-3">
+                    <span class="p-float-label">
+                     <p:outputLabel for="side-step-process-select" value="Process" />
+                      <p:selectOneMenu id="side-step-process-select" converter="pojoConverter"
+                        value="#{sideStepProcessBean.selectedProcess}" styleClass="w-full">
+                        <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
+                          itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{sideStepProcessBean.getSideStepProcesses(currentTask)}"
+                          var="item" itemLabel="#{item.processName}" itemValue="#{item}" />
+                        <p:ajax event="itemSelect" global="false"/>
+                      </p:selectOneMenu>
+                    </span>
+                  </div>
+                </div>
+                
+                <div class="col-12">
+                  <div class="p-inputgroup mb-3">
+                    <span class="p-float-label">
+                      <p:outputLabel for="leave-type" value="Step type" />
+                      <p:selectOneMenu id="leave-type" value="#{sideStepProcessBean.selectedStepType}" converter="pojoConverter"
+                        required="true" styleClass="w-full"
+                        requiredMessage="Step type: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}">
+                        <f:selectItem itemLabel="" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{sideStepProcessBean.stepTypes}" var="type" itemLabel="#{type.getLabel()}"
+                          itemValue="#{type}" />
+                      </p:selectOneMenu>
+                    </span>
+                  </div>
+                </div>
+                
+                <div class="col-12">
+                  <div class="p-inputgroup mb-3">
+                    <span class="p-float-label">
+                      <p:outputLabel for="approver" value="Assign to" />
+                      <p:selectOneMenu id="approver" value="#{sideStepProcessBean.assignee}" converter="pojoConverter" required="true"
+                        styleClass="w-full"
+                        requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/approver')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}">
+                        <f:selectItem itemLabel="" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{sideStepProcessBean.approvers}" var="approver" itemLabel="#{approver.getDisplayName()}"
+                          itemValue="#{approver}" />
+                      </p:selectOneMenu>
+                    </span>
+                  </div>
+                </div>
+                
+                <div class="col-12">
+                  <div class="p-inputgroup mb-3">
+                    <span class="p-float-label">
+                      <p:outputLabel for="comment" value="Comment" />
+                      <p:inputTextarea id="comment" value="#{sideStepProcessBean.comment}"
+                        required="true" rows="5" styleClass="MarTop10"
+                        requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/comment')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}" />
+                    </span>
+                  </div>
+                </div>
+              </h:panelGroup>
+            </h:form>
+            <f:facet name="footer">
+              <div class="flex justify-content-end gap-2">
+                <p:commandLink id="side-step-process-cancel-button"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                  onclick="PF('side-step-process-dialog').hide()" />
+                <p:spacer width="15px" />
+                <p:commandButton id="side-step-process-submit-button"  
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+                  icon="pi pi-check"
+                  styleClass="p-button-primary"
+                  actionListener="#{sideStepProcessBean.handleSelectProcess()}"
+                  form="side-step-process-form"/>
+              </div>
+            </f:facet>
         </p:dialog>
   
         <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">

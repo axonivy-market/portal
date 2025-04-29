@@ -1641,7 +1641,9 @@ Labels:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Permissions
+  SelectProcess: Select process
   Share: Share
+  SideStepProcess: Select a side step process
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users

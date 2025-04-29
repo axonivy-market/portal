@@ -8,12 +8,18 @@ Enums:
     ANNUAL_LEAVE: Annual Leave
     MATERNITY_LEAVE: Maternity Leave
     SICK_LEAVE: Sick Leave
+  SideStepProcess:
+    PARALLEL: Parallel with main process
+    SWITCH: Switch to side step process
 Labels:
   LeaveRequest:
     LeaveSteps:
       approval: Approval
       approvalResult: Approval Result
+      comment: Comment
       creation: Create leave request
+      requesterSideStepComment: Requester side step comment
+      sideStepComment: Additional comment
     approvalResultTaskIntro: Below is summary of your leave request and feedback from approver.
     approvalTaskIntro: 'There is leave request need your approval, detail is below:'
     approver: Approver

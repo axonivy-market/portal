@@ -1,0 +1,19 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
+  "simpleName" : "SideStepBusinessDetailsPageData",
+  "namespace" : "com.axonivy.portal.components.examples.SideStepBusinessDetailsPage",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "caze",
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "uuid",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "leaveRequestData",
+    "type" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequest",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

@@ -1,0 +1,342 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.1/process.json",
+  "id" : "182E92730FF57036",
+  "config" : {
+    "data" : "com.axonivy.portal.components.examples.LeaveRequestWithSideStepData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "start.ivp",
+      "config" : {
+        "signature" : "start",
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\")%>",
+          "description" : [
+            "This process allow employee to submit their leave request with additional manager notes feature.",
+            "After approver reviews the request, they can add additional information through a side step before final approval."
+          ],
+          "customFields" : [
+            { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" },
+            { "name" : "sideSteps", "value" : "" }
+          ]
+        },
+        "permission" : {
+          "anonymous" : false,
+          "error" : ">> Ignore Exception"
+        },
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createNewLeaveRequest\")%>"
+        },
+        "case" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/leaveRequest\")%>",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 24, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f75" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "UserTask",
+      "name" : "LeaveRequestCreation",
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequestCreation:start()",
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createLeaveRequest\", [ivy.session.getSessionUser().getDisplayName()])%>",
+          "responsible" : {
+            "roles" : [
+              "SELF"
+            ]
+          },
+          "skipTasklist" : true
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.approver" : "result.approverName",
+            "out.requester" : "result.requesterName"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 424, "y" : 192 },
+        "size" : { "width" : 136, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f74", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f3",
+      "type" : "UserTask",
+      "name" : "LeaveRequestApproval",
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequestApproval:start()",
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/approvalTaskName\", [ivy.security.users().find(in.requester).getDisplayName()])%>",
+          "responsible" : {
+            "type" : "USER_FROM_ATTRIBUTE",
+            "script" : "in.approver"
+          },
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
+            "import java.util.Map;",
+            "import java.util.HashMap;",
+            "import com.axonivy.portal.components.dto.SideStepDTO;",
+            "import com.axonivy.portal.components.constant.CustomFields;",
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import com.axonivy.portal.components.dto.UserDTO;",
+            "import com.axonivy.portal.components.examples.leaverequest.LeaveRequest;",
+            "//LeaveRequest requestData = ivy.repo.get(LeaveRequest.class) as LeaveRequest;",
+            "ICase caze = ivy.case;",
+            "",
+            "//ivy.log.info(\"requestData.toString() {0}\", requestData.toString());",
+            "Map params1 = new HashMap();",
+            "params1.put(\"caseId\", caze.getId());",
+            "params1.put(\"stepId\", \"1\");",
+            "params1.put(\"taskId\", task.uuid());",
+            "",
+            "SideStepDTO dto1 = SideStepDTO.builder()",
+            "  .taskId(task.uuid())",
+            "  .processName(\"Side step 1: Add comment\")",
+            "  .signal(\"ch:axonivy:portal:component:example:sideStep1:created\")",
+            "  .params(params1)",
+            "  .build();",
+            "",
+            "Map params2 = new HashMap();",
+            "params2.put(\"stepId\", \"2\");",
+            "params2.put(\"taskId\", task.uuid());",
+            "params2.put(\"caseId\", caze.getId());",
+            "",
+            "SideStepDTO dto2 = SideStepDTO.builder()",
+            "  .taskId(task.uuid())",
+            "  .processName(\"Side step 2: Add comment\")",
+            "  .signal(\"ch:axonivy:portal:component:example:sideStep2:created\")",
+            "  .params(params2)",
+            "  .build();",
+            "",
+            "Map params3 = new HashMap();",
+            "params3.put(\"caseId\", caze.getId());",
+            "params3.put(\"stepId\", \"3\");",
+            "params3.put(\"taskId\", task.uuid());",
+            "",
+            "SideStepDTO dto3 = SideStepDTO.builder()",
+            "  .taskId(task.uuid())",
+            "  .processName(\"Side step 3: Add comment\")",
+            "  .signal(\"ch:axonivy:portal:component:example:sideStep3:created\")",
+            "  .params(params3)",
+            "  .build();",
+            "List dtos = new List();",
+            "",
+            "dtos.add(dto1);",
+            "dtos.add(dto2);",
+            "dtos.add(dto3);",
+            "",
+            "String valueString = BusinessEntityConverter.entityToJsonValue(dtos);",
+            "",
+            "task.customFields().stringField(CustomFields.SIDE_STEPS).set(valueString);"
+          ]
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.isApproved" : "result.isApproved"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 656, "y" : 192 },
+        "size" : { "width" : 160, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "UserTask",
+      "name" : "LeaveRequestSummary",
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.leaverequest.LeaveRequestSummary:start()",
+        "task" : {
+          "name" : "<%=in.isApproved? ivy.cms.co(\"/Processes/LeaveRequest/approvalTask\") : ivy.cms.co(\"/Processes/LeaveRequest/rejectedTask\")%>",
+          "responsible" : {
+            "type" : "USER_FROM_ATTRIBUTE",
+            "script" : "in.requester"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 904, "y" : 192 },
+        "size" : { "width" : 168, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f13" }
+      ]
+    }, {
+      "id" : "f13",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1080, "y" : 192 }
+      }
+    }, {
+      "id" : "f75",
+      "type" : "SubProcessCall",
+      "name" : "SetBusinessDetailsPage",
+      "config" : {
+        "processCall" : "Functional Processes/SetBusinessDetailsPage:call(String)",
+        "call" : {
+          "map" : {
+            "param.linkToBusinessDetailsPage" : "\"Start Processes/LeaveRequestWithSideStep/showLeaveRequestBusinessDetails.ivp\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 192 },
+        "size" : { "width" : 176 }
+      },
+      "connect" : [
+        { "id" : "f76", "to" : "f1", "color" : "default" }
+      ]
+    }, {
+      "id" : "f81",
+      "type" : "DialogCall",
+      "name" : [
+        "Customization",
+        "Business Details Page"
+      ],
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.LeaveRequestBusinessDetailsPage:start(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.caze" : "in.caze"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 376 },
+        "size" : { "width" : 192 }
+      },
+      "connect" : [
+        { "id" : "f82", "to" : "f83" }
+      ]
+    }, {
+      "id" : "f83",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 632, "y" : 376 }
+      }
+    }, {
+      "id" : "f84",
+      "type" : "RequestStart",
+      "name" : "showLeaveRequestBusinessDetails.ivp",
+      "config" : {
+        "signature" : "showLeaveRequestBusinessDetails",
+        "input" : {
+          "params" : [
+            { "name" : "uuid", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.uuid" : "param.uuid"
+          },
+          "code" : "ivy.log.warn(\"uuid {0}\", out.uuid);"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 24, "y" : 376 }
+      },
+      "connect" : [
+        { "id" : "f85", "to" : "f91" }
+      ]
+    }, {
+      "id" : "f86",
+      "type" : "RequestStart",
+      "name" : "showSideStepBusinessDetails.ivp",
+      "config" : {
+        "signature" : "showSideStepBusinessDetails",
+        "input" : {
+          "params" : [
+            { "name" : "caseId", "type" : "Long", "desc" : "" }
+          ],
+          "map" : {
+            "out.caseId" : "param.caseId"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 24, "y" : 520 }
+      },
+      "connect" : [
+        { "id" : "f87", "to" : "f93" }
+      ]
+    }, {
+      "id" : "f88",
+      "type" : "DialogCall",
+      "name" : [
+        "Customization",
+        "Business Details Page"
+      ],
+      "config" : {
+        "dialog" : "com.axonivy.portal.components.examples.SideStepBusinessDetailsPage:start(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.caze" : "in.caze"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 520 },
+        "size" : { "width" : 192 }
+      },
+      "connect" : [
+        { "id" : "f89", "to" : "f90" }
+      ]
+    }, {
+      "id" : "f90",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 632, "y" : 520 }
+      }
+    }, {
+      "id" : "f91",
+      "type" : "Script",
+      "name" : "Find case by id",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.CaseUtils;",
+            "out.caze = CaseUtils.findCase(in.uuid);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 376 }
+      },
+      "connect" : [
+        { "id" : "f92", "to" : "f81", "color" : "default" }
+      ]
+    }, {
+      "id" : "f93",
+      "type" : "Script",
+      "name" : "Find case by id",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.CaseUtils;",
+            "out.caze = CaseUtils.findCase(in.uuid);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 520 }
+      },
+      "connect" : [
+        { "id" : "f94", "to" : "f88", "color" : "default" }
+      ]
+    } ]
+}

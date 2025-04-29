@@ -8,12 +8,18 @@ Enums:
     ANNUAL_LEAVE: Congé annuel
     MATERNITY_LEAVE: Congé de maternité
     SICK_LEAVE: Congés de maladie
+  SideStepProcess:
+    PARALLEL: Parallel with main process
+    SWITCH: Switch to side step process
 Labels:
   LeaveRequest:
     LeaveSteps:
       approval: Approbation
       approvalResult: Résultat de l'approbation
+      comment: Comment
       creation: Créer une demande de congé
+      requesterSideStepComment: Requester side step comment
+      sideStepComment: Additional comment
     approvalResultTaskIntro: Vous trouverez ci-dessous un résumé de votre demande de congé et les commentaires de l'approbateur.
     approvalTaskIntro: 'Toute demande de congé doit être approuvée par vous, dont les détails figurent ci-dessous :'
     approver: Approbateur
