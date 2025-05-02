@@ -363,7 +363,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       OWNER: Responsables del proceso
       STATE: 'Estatus '
     deletionNoteContent: El caso fue destruido por {0}
-    destroyCaseMessage: Esta operación no se puede deshacer. ¿Está seguro de que quiere destruir este caso y todas sus tareas?
+    destroyCaseMessage: Esta operación no se puede deshacer. ¿Está seguro de que quiere destruir el caso <b>{0}</b> y todas sus tareas?
     destroyfail: El caso no ha sido destruido con éxito.
     destroysucceed: El caso ha sido destruido con éxito.
     downloadZipFileExplanation: El número de casos a exportar excede el límite de las filas de Excel. Por lo tanto, los datos serán divididos en múltiples archivos de Excel, luego comprimidos en un archivo ZIP para ser descargados.
@@ -376,6 +376,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'Caso # {0} {1}'
     relatedCases: Casos relacionados
     title: Título
+    unknownCase: Caso desconocido
+    unknownId: Id desconocido
   caseState:
     CREATED: Creado
     CREATED_UPPERCASE: Creado
@@ -1209,7 +1211,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Filtro por defecto
-    destroyTaskMessage: Esta operación no se puede revocar. ¿Está seguro de que quiere destruir esta tarea?
+    destroyTaskMessage: Esta operación no se puede revocar. ¿Está seguro de que quiere destruir la tarea <b>{0} (ID: {1})</b>?
     headerTitle:
       relatedStatisticHeader: 'Tareas Relacionadas de la gráfica estadística:'
       relatedTasksHeader: Tareas relacionadas del caso
@@ -1233,6 +1235,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Prioridad (baja - alta)
     triggerEscalationNote: 'Escalación ha sido ejecutada por {0} ({1}) para la tarea #{2}'
     type: Tipo
+    unknownId: ID desconocida
+    unknownTask: Tarea desconocida
   taskPriority:
     EXCEPTION: Excepción
     EXCEPTION_LOWERCASE: Excepción
