@@ -65,6 +65,14 @@
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
       </h:panelGroup>
+      
+      <h:panelGroup layout="block" rendered="#{filter.isCreator()}">
+        <ic:com.axonivy.portal.dashboard.component.filter.CreatorFilter filter="#{filter}"
+          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}"
+          creatorCompleteMethod="#{cc.attrs.managedBean.completeCreators}" />
+      </h:panelGroup>
+      
 
       <div class="remove-filter-panel">
         <p:commandButton id="remove-filter" icon="si si-subtract"

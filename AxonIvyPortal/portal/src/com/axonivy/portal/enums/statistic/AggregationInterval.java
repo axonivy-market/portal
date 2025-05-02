@@ -8,10 +8,10 @@ import com.axonivy.portal.enums.HasCmsName;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum AggregationInterval implements HasCmsName {
-  DAY("Day"),
-  WEEK("Week"),
-  MONTH("Month"),
-  YEAR("Year");
+  DAY("day"),
+  WEEK("week"),
+  MONTH("month"),
+  YEAR("year");
   
   private String name;
   
