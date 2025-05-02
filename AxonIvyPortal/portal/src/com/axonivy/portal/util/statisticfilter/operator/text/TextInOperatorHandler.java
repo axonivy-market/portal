@@ -7,7 +7,6 @@ import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.statistic.StatisticFilter;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import ch.ivyteam.ivy.environment.Ivy;
 
 public class TextInOperatorHandler {
   private static TextInOperatorHandler instance;
@@ -27,9 +26,7 @@ public class TextInOperatorHandler {
     StringBuilder sb = new StringBuilder();
     String field = changeFilterField(filter.getField());
     sb.append(field).append(PortalConstants.COLON);
-    // TODO finding reason why case and task
-    // have different sb.append value
-    // also refactor the code below
+
     for (String value : filter.getValues()) {
       if (filter.isCreator()) {
         sb.append("#" + value).append(" ");
@@ -38,7 +35,6 @@ public class TextInOperatorHandler {
       }
     }
 
-    Ivy.log().info("sb.toString " + sb.toString());
     return sb.toString();
   }
 

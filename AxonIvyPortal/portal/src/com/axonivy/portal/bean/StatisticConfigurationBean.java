@@ -195,7 +195,7 @@ public class StatisticConfigurationBean implements Serializable {
   private void initNewStatistic() {
     statistic = new Statistic();
     statistic.setStatisticAggregation(new StatisticAggregation());
-    statistic.getStatisticAggregation().setField("priority");
+    statistic.getStatisticAggregation().setField(AggregationField.PRIORITY.getName());
     statistic.setNames(new ArrayList<>());
     statistic.setDescriptions(new ArrayList<>());
     statistic.setChartTarget(ChartTarget.TASK);
@@ -736,7 +736,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public void resetAggregateValues() {
-    statistic.getStatisticAggregation().setField("Priority");
+    statistic.getStatisticAggregation().setField(AggregationField.PRIORITY.getName());
     this.currentCustomFieldDescription = null;
     statistic.getStatisticAggregation().setInterval(null);
   }
