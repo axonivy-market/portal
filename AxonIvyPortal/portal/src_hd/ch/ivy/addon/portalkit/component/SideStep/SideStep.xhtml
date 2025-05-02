@@ -11,6 +11,7 @@
   <cc:attribute name="isDisabled" default="false" type="java.lang.Boolean" />
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="componentToUpdate" default="" />
+  <cc:attribute name="destroyTaskDialogComponent" default="" />
   <cc:attribute name="buttonStyleClass" />
   <cc:attribute name="renderedAdditionalAction" shortDescription="Control display side steps" />
   <cc:attribute name="currentPortalPage" default="TASK_LIST" />
@@ -106,9 +107,9 @@
     </p:link>
 
     <p:commandLink id="task-destroy-command" disabled="#{!taskActionBean.canDestroyTask(task)}" rendered="#{taskActionBean.showDestroyTask}"
-      styleClass="option-item color-destroy ui-menu-items" update="@parent #{cc.attrs.componentToUpdate}"
-      actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
-      oncomplete="#{cc.attrs.onDestroyComplete}" process="@this" global="false">
+      styleClass="option-item color-destroy ui-menu-items" update="@parent #{cc.attrs.componentToUpdate} #{cc.attrs.destroyTaskDialogComponent}"
+      actionListener="#{taskWidgetBean.updateSelectedTask(isShowInTaskList, task)}"
+      oncomplete="#{cc.attrs.onDestroyComplete};" process="@this">
       <i class="option-action-icon pi pi-trash" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
     </p:commandLink>
