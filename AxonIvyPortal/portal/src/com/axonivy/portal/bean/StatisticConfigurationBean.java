@@ -184,6 +184,9 @@ public class StatisticConfigurationBean implements Serializable {
       StatisticService statisticService = StatisticService.getInstance();
       StatisticAggregation agg = statistic.getStatisticAggregation();
       statisticService.convertAggregatesFromChartAggregation(statistic);
+      if(agg.getType() == DashboardColumnType.CUSTOM) {
+        getCustomFieldNames();
+      }
       this.setDateTimeSelected(agg.getInterval() != null);
       this.aggregationInterval = agg.getInterval(); 
     }
@@ -697,6 +700,15 @@ public class StatisticConfigurationBean implements Serializable {
     customFieldList.stream().filter(cf -> !cf.type().equals(CustomFieldType.NUMBER)).forEach(customField -> {
       customFieldNameList.add(customField.name());
     });
+    
+    if(statistic.getStatisticAggregation().getCustomFieldValue() == null
+        && customFieldList != null) {
+      ICustomFieldMeta firstCustomField = customFieldList.iterator().next();
+      StatisticAggregation statisticAggregation = statistic.getStatisticAggregation();
+      statisticAggregation.setCustomFieldValue(firstCustomField.name());
+      statisticAggregation.setType(DashboardColumnType.CUSTOM);
+      this.setCurrentCustomFieldDescription(firstCustomField.description());
+    }
 
     return customFieldNameList;
   }
