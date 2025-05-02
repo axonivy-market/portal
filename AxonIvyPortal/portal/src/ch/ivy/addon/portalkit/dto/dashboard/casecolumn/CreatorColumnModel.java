@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.dto.dashboard.casecolumn;
 
-import static java.util.Objects.isNull;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
