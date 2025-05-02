@@ -6,7 +6,7 @@
     <ic:ch.ivy.addon.portalkit.component.SideStep id="dashboard-actions-task-#{cc.attrs.taskWidget.id}" actionLinkId="dashboard-task-side-steps-menu"
         panelWidgetVar="dashboard-task-side-steps-panel-#{cc.attrs.clientId}-#{cc.attrs.taskWidget.id}-#{rowIndex}" isAdhocExcluded="false" renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}"
         buttonStyleClass="" showDetailOption="true"
-        task="#{task}" componentToUpdate="#{cc.attrs.componentToUpdateTaskWidget}"
+        task="#{task}" componentToUpdate="#{cc.attrs.componentToUpdateTaskWidget}" destroyTaskDialogComponent="#{cc.attrs.destroyTaskDialogComponent}"
         onDestroyComplete="PF('destroy-task-dialog').show()"
         onDelegateComplete="initDataToDelegate()"
         onEscalationComplete="PF('escalation-task-dialog').show()"

@@ -8,6 +8,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
   <cc:attribute name="styleClass" />
+  <cc:attribute name="destroyCaseDialogComponent" default=""/>
   <cc:attribute name="isWorkingOnTask" type="java.lang.Boolean"/>
   <cc:attribute name="inFrame" type="java.lang.Boolean" default="false"/>
   <cc:attribute name="readOnly" type="java.lang.Boolean" default="false"/>
@@ -112,7 +113,7 @@
         
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="more-column">
           <div class="case-header-action-cell">
-            <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu"
+            <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu" destroyCaseDialogComponent="#{cc.clientId}:destroy-related-case-confirmation-dialog"
               actionLinkStyleClass="ui-button-text-only" case="#{case}" isAdhocExcluded="true" inFrame="#{cc.attrs.inFrame}" onDestroyComplete="PF('destroy-related-case-dialog').show()"/>
           </div>
         </p:column>
@@ -133,7 +134,7 @@
     <ui:param name="iconClass" value="si si-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyCaseHeaderText')}" />
-    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage')}" />
+    <ui:param name="dialogContent" value="#{caseWidgetBean.getDestroyCaseMessage()}" />
   
     <ui:define name="dialogFooter">
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
