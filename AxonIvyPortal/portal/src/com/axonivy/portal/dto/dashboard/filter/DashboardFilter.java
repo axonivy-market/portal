@@ -125,6 +125,7 @@ public class DashboardFilter extends BaseFilter implements Serializable {
     this.numberPattern = numberPattern;
   }
   
+  @JsonIgnore
   public boolean isCanWorkOn() {
     return StatisticConstants.CAN_WORK_ON.equals(getField());
   }
