@@ -6,7 +6,7 @@
     <ic:ch.ivy.addon.portalkit.component.ActionStep id="dashboard-actions-case-#{cc.attrs.caseWidget.id}" actionLinkId="dashboard-case-side-steps-menu"
        panelWidgetVar="dashboard-case-side-steps-panel-#{cc.attrs.clientId}-#{cc.attrs.caseWidget.id}-#{rowIndex}" case="#{caseItem}" renderShowDetailAction="true"
        update="#{cc.attrs.componentToUpdateCaseWidget}" onDestroyComplete="PF('destroy-case-dialog').show()"
-       actionLinkStyleClass="ui-inplace-editor" isAdhocExcluded="true"
+       actionLinkStyleClass="ui-inplace-editor" isAdhocExcluded="true" destroyCaseDialogComponent="#{destroyCaseDialogComponent}"
        stepsPanelStyleClass="js-case-side-steps-panel-#{cc.attrs.caseWidget.id}-#{rowIndex}"
        isPreviewMode="#{cc.attrs.isPreviewMode}"
        ariaLabel="#{ariaLabel}"/>

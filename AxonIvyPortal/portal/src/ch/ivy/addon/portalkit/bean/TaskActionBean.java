@@ -281,6 +281,15 @@ public class TaskActionBean implements Serializable {
       }
     }
   }
+  
+  public void updateSelectedTask(boolean isShowInTaskList, ITask task) {
+    if (isShowInTaskList) {
+      TaskWidgetBean taskWidgetBean = ManagedBeans.get("taskWidgetBean");
+      if (taskWidgetBean != null) {
+        taskWidgetBean.updateSelectedTask(isShowInTaskList, task);
+      }
+    }
+  }
 
   public boolean showClearDelayTime(ITask task) {
     return TaskState.DELAYED.equals(task.getState()) && task.getDelayTimestamp() != null && isNotDoneForWorkingUser(task);
