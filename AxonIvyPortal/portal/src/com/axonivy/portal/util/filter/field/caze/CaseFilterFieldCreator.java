@@ -53,5 +53,5 @@ public class CaseFilterFieldCreator extends FilterField {
   public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
     return null;
   }
-
 }
+

@@ -1,4 +1,4 @@
-package com.axonivy.portal.util.statisticfilter.field.task;
+package com.axonivy.portal.util.statisticfilter.field.caze;
 
 import java.util.ArrayList;
 
@@ -8,17 +8,17 @@ import com.axonivy.portal.util.statisticfilter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.operator.text.TextInOperatorHandler;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
-import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 
-public class TaskFilterFieldResponsible extends FilterField {
+public class CaseFilterFieldState extends FilterField {
 
-  public TaskFilterFieldResponsible() {
-    super(DashboardStandardTaskColumn.RESPONSIBLE.getField());
+  public CaseFilterFieldState() {
+    super(DashboardStandardCaseColumn.STATE.getField());
   }
 
   @Override
   public String getLabel() {
-    return DashboardStandardTaskColumn.RESPONSIBLE.getLabel();
+    return DashboardStandardCaseColumn.STATE.getLabel();
   }
 
   @Override
@@ -26,7 +26,6 @@ public class TaskFilterFieldResponsible extends FilterField {
     filter.setFilterField(this);
     filter.setFilterType(DashboardColumnType.STANDARD);
     filter.setField(getName());
-    
   }
 
   @Override
@@ -39,8 +38,8 @@ public class TaskFilterFieldResponsible extends FilterField {
   @Override
   public String generateStringFilter(StatisticFilter filter) {
     return switch (filter.getOperator()) {
-      case IN -> TextInOperatorHandler.getInstance().buildFilter(filter);
-      default -> null;
+    case IN -> TextInOperatorHandler.getInstance().buildFilter(filter);
+    default -> null;
     };
   }
 

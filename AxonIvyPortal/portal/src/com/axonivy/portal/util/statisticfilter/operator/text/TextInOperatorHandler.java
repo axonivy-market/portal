@@ -17,7 +17,7 @@ public class TextInOperatorHandler {
     }
     return instance;
   }
-  
+
   public String buildFilter(StatisticFilter filter) {
     if (CollectionUtils.isEmpty(filter.getValues())) {
       return StringUtils.EMPTY;
@@ -26,23 +26,29 @@ public class TextInOperatorHandler {
     StringBuilder sb = new StringBuilder();
     String field = changeFilterField(filter.getField());
     sb.append(field).append(PortalConstants.COLON);
+
     for (String value : filter.getValues()) {
-      sb.append(value).append(" ");
+      if (filter.isCreator()) {
+        sb.append("#" + value).append(" ");
+      } else {
+        sb.append(value).append(" ");
+      }
     }
+
     return sb.toString();
   }
-  
+
   public String buildFilterWithoutValue(StatisticFilter filter) {
     return changeFilterField(filter.getField());
   }
-  
+
   private String changeFilterField(String field) {
-    return switch(field) {
-      case StatisticConstants.STATE -> StatisticConstants.BUSSINESS_STATE;
-      case StatisticConstants.ACTIVATOR -> StatisticConstants.RESPONSIBLE_NAME;
-      default -> field; 
+    return switch (field) {
+    case StatisticConstants.STATE -> StatisticConstants.BUSSINESS_STATE;
+    case StatisticConstants.ACTIVATOR -> StatisticConstants.RESPONSIBLE_NAME;
+    case StatisticConstants.CREATOR -> StatisticConstants.CREATOR_NAME;
+    default -> field;
     };
   }
 
 }
-
