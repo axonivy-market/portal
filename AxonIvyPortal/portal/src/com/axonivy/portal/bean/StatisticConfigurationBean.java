@@ -187,6 +187,10 @@ public class StatisticConfigurationBean implements Serializable {
       if (isDateTimeSelected && null != statistic.getStatisticAggregation().getInterval()) {
         this.aggregationInterval = statistic.getStatisticAggregation().getInterval();
       }
+    } else {
+      StatisticAggregation statisticAggregation = new StatisticAggregation();
+      statisticAggregation.setAggregationField(AggregationField.PRIORITY);
+      statistic.setStatisticAggregation(statisticAggregation);
     }
   }
 
@@ -283,6 +287,15 @@ public class StatisticConfigurationBean implements Serializable {
     }
     saveStatisticJson();
     backToDashboardDetailsPageIfPossible();
+  }
+
+  public boolean isOutdatedChart(Statistic chart) {
+    if (chart != null) {
+      if (StringUtils.isNotBlank(chart.getAggregates()) | StringUtils.isNotBlank(chart.getFilter())) {
+        return true;
+      }
+    }
+    return false;
   }
 
   private void cleanUpConfiguration() {

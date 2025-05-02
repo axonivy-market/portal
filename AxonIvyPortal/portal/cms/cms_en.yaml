@@ -1505,6 +1505,7 @@ Dialogs:
             StatisticConfiguration: Statistic configuration
             XAxisTitle: X axis title
             YAxisTitle: Y axis title
+            outdatedChartMessage: The chart data is outdated. Please reconfigure and click "Save" to update.
   components:
     CaseDocument:
       FileDate: Modified at

@@ -10,6 +10,7 @@ import com.axonivy.portal.bo.jsonversion.StatisticJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.axonivy.portal.migration.statistic.converter.JsonStatisticConverterFactory;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 
@@ -21,12 +22,12 @@ public class JsonStatisticMigrator {
   private final StatisticJsonVersion version;
 
   public JsonStatisticMigrator(JsonNode node) {
-    this.node = node;
+    this.node = removeDefaultChartsFromClientStatistic((ArrayNode) node);
     this.version = StatisticJsonVersion.LATEST_VERSION;
   }
 
   public JsonStatisticMigrator(JsonNode node, StatisticJsonVersion version) {
-    this.node = node;
+    this.node = removeDefaultChartsFromClientStatistic((ArrayNode) node);
     this.version = version;
   }
 
@@ -64,6 +65,22 @@ public class JsonStatisticMigrator {
 
     converter.convert(chart);
     updateVersion(chart);
+  }
+
+  private JsonNode removeDefaultChartsFromClientStatistic(ArrayNode nodes) {
+    for (int i = nodes.size() - 1; i >= 0; i--) {
+      JsonNode chart = nodes.get(i);
+      String idStr = chart.get("id").asText();
+      try {
+        int id = Integer.parseInt(idStr);
+        if (id >= 1 && id <= 11) {
+          nodes.remove(i);
+        }
+      } catch (NumberFormatException e) {
+        Ivy.log().info("Client statistic contain chart ID is string ", idStr);
+      }
+    }
+    return nodes;
   }
 
   private void updateVersion(JsonNode node) {

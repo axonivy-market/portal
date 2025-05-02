@@ -9,12 +9,10 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
 import com.axonivy.portal.migration.dashboardfilter.migrator.JsonDashboardFilterMigrator;
 import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemplateMigrator;
-import com.axonivy.portal.migration.statistic.migrator.JsonStatisticMigrator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -93,10 +91,6 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
       }
       if (getType() == DashboardTemplate.class) {
         JsonDashboardTemplateMigrator migrator = new JsonDashboardTemplateMigrator(mapper.readTree(jsonValue));
-        return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), getType());
-      }
-      if (getType() == Statistic.class) {
-        JsonStatisticMigrator migrator = new JsonStatisticMigrator(mapper.readTree(jsonValue));
         return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), getType());
       }
     } catch (JsonProcessingException ex) {

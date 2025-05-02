@@ -16,7 +16,7 @@ public class JsonStatisticConverterFactory extends AbstractJsonConverterFactory 
   }
 
   private static final List<IJsonConverter> LE131 = List.of(
-      new com.axonivy.portal.migration.statistic.converter.v131.StatisticChartConverter()
+      new com.axonivy.portal.migration.statistic.converter.v131.ClientStatisticConverter()
     );
 
   static {
