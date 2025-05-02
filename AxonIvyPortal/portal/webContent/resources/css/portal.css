@@ -89,6 +89,12 @@ body .md-inputfield input:focus ~ label {
   background: none repeat scroll 0 0 var(--ui-inplace-background-color);
 }
 
+.ui-disable {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 /* File upload */
 @media (max-width: 1024px) {
   .ui-fileupload-files .ui-fileupload-row > div {

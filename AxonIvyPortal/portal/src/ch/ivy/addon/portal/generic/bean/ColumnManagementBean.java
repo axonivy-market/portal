@@ -27,6 +27,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatorColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
@@ -364,7 +365,14 @@ public class ColumnManagementBean implements Serializable {
   public void handleQuickSearch(ColumnModel column) {
     column.setQuickSearch(BooleanUtils.isFalse(column.getQuickSearch()));
   }
-
+  
+  public boolean isEnableHideCaseCreator(ColumnModel column) {
+    if (column instanceof CreatorColumnModel) {
+      return GlobalSettingService.getInstance().isHideCaseCreator();
+    }
+    return false;
+  }
+  
   public class FetchingField {
     private DashboardColumnType type;
     private String field;
