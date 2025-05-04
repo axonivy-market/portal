@@ -134,9 +134,6 @@ public class TaskBean implements Serializable {
         } else if (DashboardStandardTaskColumn.CREATED.getField().equalsIgnoreCase(col.getField())) {
           String createdDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(task.getStartTimestamp());
           displayTexts.add(col.getHeaderText() + ": " + createdDateString);
-        }else if (DashboardStandardTaskColumn.COMPLETED.getField().equalsIgnoreCase(col.getField())) {
-          String compeletedDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(task.getEndTimestamp());
-          displayTexts.add(col.getHeaderText() + ": " + compeletedDateString);
         } else if (DashboardStandardTaskColumn.EXPIRY.getField().equalsIgnoreCase(col.getField())) {
           if (task.getExpiryTimestamp() != null) {
             String expiryDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(task.getExpiryTimestamp());
