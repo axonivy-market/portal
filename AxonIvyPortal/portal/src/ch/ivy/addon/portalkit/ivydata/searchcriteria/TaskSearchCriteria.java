@@ -193,6 +193,7 @@ public class TaskSearchCriteria {
       appendSortByActivatorIfSet(criteria);
       appendSortByIdIfSet(criteria);
       appendSortByCreationDateIfSet(criteria);
+      appendSortByCompletionDateIfSet(criteria);
       appendSortByExpiryDateIfSet(criteria);
       appendSortByCompletedDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
@@ -246,6 +247,16 @@ public class TaskSearchCriteria {
           query.orderBy().startTimestamp().descending();
         } else {
           query.orderBy().startTimestamp();
+        }
+      }
+    }
+
+    private void appendSortByCompletionDateIfSet(TaskSearchCriteria criteria) {
+      if (TaskSortField.COMPLETED_ON.toString().equalsIgnoreCase(criteria.getSortField())) {
+        if (criteria.isSortDescending()) {
+          query.orderBy().endTimestamp().descending();
+        } else {
+          query.orderBy().endTimestamp();
         }
       }
     }

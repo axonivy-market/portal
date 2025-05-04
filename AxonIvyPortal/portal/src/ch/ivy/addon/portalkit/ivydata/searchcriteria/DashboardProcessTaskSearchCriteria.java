@@ -76,6 +76,7 @@ public class DashboardProcessTaskSearchCriteria {
       appendSortByActivatorIfSet(criteria);
       appendSortByIdIfSet(criteria);
       appendSortByCreationDateIfSet(criteria);
+      appendSortByCompletionDateIfSet(criteria);
       appendSortByExpiryDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
       if (criteria.isSortDescending()) {
@@ -111,6 +112,12 @@ public class DashboardProcessTaskSearchCriteria {
     private void appendSortByCreationDateIfSet(DashboardProcessTaskSearchCriteria criteria) {
       if (DashboardStandardTaskColumn.CREATED.getField().equalsIgnoreCase(criteria.getSortField())) {
         order = query.orderBy().startTimestamp();
+      }
+    }
+
+    private void appendSortByCompletionDateIfSet(DashboardProcessTaskSearchCriteria criteria) {
+      if (DashboardStandardTaskColumn.COMPLETED.getField().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().endTimestamp();
       }
     }
 
