@@ -1489,7 +1489,7 @@ Dialogs:
             GroupBy: TODO Group by
             HideLabel: TODO Hide label
             NewStatistic: TODO New Statistic Widget
-            OutdatedChartMessage: 適用された「グループ化」または「フィルター」の設定は、現在のUI構成と一致していません。再設定してください。
+            OutdatedChartMessage: TODO The applied group-by or filter does not align with the current UI configuration. Please reconfigure it.
             RefreshInterval: TODO Auto-refresh enabled
             RefreshIntervalInSeconds: TODO Auto-refresh interval (seconds)
             RefreshIntervalInSecondsValidationMessage: 'TODO Auto-refresh interval (seconds): Specified attribute is not between the expected values of {0} and {1}'
