@@ -300,10 +300,11 @@
                     <h4 class="mb-0">#{ivy.cms.co('/Labels/Preview')}</h4>
                   </div>
                   <div class="col-6 text-right">
-                    <p:commandButton widgetVar="previewButton"
+                    <p:commandButton widgetVar="previewButton" id="generate-statistic-chart"
                       value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GeneratePreview')}"
                       actionListener="#{statisticConfigurationBean.getPreviewData()}"
                       update="config-panel errors-message" oncomplete="handlePreviewChart(xhr, status, args)"
+                      process="config-panel"
                       styleClass="ui-leave-button" />
                   </div>
                 </div>

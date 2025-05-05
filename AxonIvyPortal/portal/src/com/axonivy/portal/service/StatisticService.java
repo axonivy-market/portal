@@ -10,7 +10,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -20,12 +19,12 @@ import org.apache.logging.log4j.util.Strings;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
 import com.axonivy.portal.dto.StatisticDto;
-import com.axonivy.portal.dto.statistic.StatisticFilter;
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.AdditionalChartConfig;
 import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.ChartTarget;
+import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
-import com.axonivy.portal.util.statisticfilter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
@@ -64,10 +63,9 @@ public class StatisticService {
    * @param payload
    * @return Ivy statistic data from ElasticSearch
    * @throws NotFoundException
-   * @throws NoPermissionException
    */
   public StatisticResponse getStatisticData(StatisticDto payload)
-      throws NotFoundException, NoPermissionException {
+      throws NotFoundException {
     Statistic chart = findByStatisticId(payload.getChartId());
     validateChart(payload.getChartId(), chart);
     AggregationResult result = getChartData(chart);
@@ -89,14 +87,14 @@ public class StatisticService {
     }
   }
   
-  private String processFilter(List<StatisticFilter> filters, ChartTarget chartTarget) {
+  private String processFilter(List<DashboardFilter> filters, ChartTarget chartTarget) {
     if (CollectionUtils.isEmpty(filters)) {
       return null;
     }
 
     StringBuilder sbFilter = new StringBuilder();
-    for (StatisticFilter statisticFilter : filters) {
-      if (Optional.ofNullable(statisticFilter).map(StatisticFilter::getOperator).isEmpty()) {
+    for (DashboardFilter statisticFilter : filters) {
+      if (Optional.ofNullable(statisticFilter).map(DashboardFilter::getOperator).isEmpty()) {
         continue;
       }
       FilterField filterField = ChartTarget.TASK == chartTarget
@@ -104,7 +102,7 @@ public class StatisticService {
           : CaseFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType());      
 
       if (filterField != null) {
-        String filterQuery = filterField.generateStringFilter(statisticFilter);
+        String filterQuery = filterField.generateTaskFilter(statisticFilter);
         if (filterQuery != null) {
           sbFilter.append(filterQuery).append(",");
         }

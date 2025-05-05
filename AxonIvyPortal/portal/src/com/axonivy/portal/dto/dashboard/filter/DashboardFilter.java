@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldFinishedDate;
@@ -104,6 +105,7 @@ public class DashboardFilter extends BaseFilter implements Serializable {
     this.isTemp = isTemp;
   }
 
+  @Override
   @JsonIgnore
   public List<SecurityMemberDTO> getCreators() {
     return getValues().stream().map(this::findUser)
@@ -122,5 +124,9 @@ public class DashboardFilter extends BaseFilter implements Serializable {
   @JsonIgnore
   public void setNumberPattern(String numberPattern) {
     this.numberPattern = numberPattern;
+  }
+  
+  public boolean canWorkOn() {
+    return StatisticConstants.CAN_WORK_ON.equals(getField());
   }
 }

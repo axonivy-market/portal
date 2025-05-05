@@ -49,5 +49,9 @@ public abstract class FilterField {
     FilterField other = (FilterField) obj;
     return Objects.equals(name, other.name);
   }
+  
+  public String generateTaskFilter(DashboardFilter filter) {
+    return filter.getValue();
+  }
 
 }

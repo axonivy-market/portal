@@ -20,6 +20,10 @@ import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomNum
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomString;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomText;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomTimestamp;
+import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomNumber;
+import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomString;
+import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomText;
+import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomTimestamp;
 
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
@@ -45,6 +49,15 @@ public class FilterFieldFactory {
         case TEXT -> CUSTOM_FILTER_FIELD.put(customField.name(), new CaseFilterFieldCustomText(customField));
         case TIMESTAMP -> CUSTOM_FILTER_FIELD.put(customField.name(), new CaseFilterFieldCustomTimestamp(customField));
         case NUMBER -> CUSTOM_FILTER_FIELD.put(customField.name(), new CaseFilterFieldCustomNumber(customField));
+        default -> throw new IllegalArgumentException("Unexpected value: " + customField.type());
+      }
+    }
+    for (ICustomFieldMeta customField : ICustomFieldMeta.tasks()) {
+      switch (customField.type()) {
+        case STRING -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomString(customField));
+        case TEXT -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomText(customField));
+        case TIMESTAMP -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomTimestamp(customField));
+        case NUMBER -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomNumber(customField));
         default -> throw new IllegalArgumentException("Unexpected value: " + customField.type());
       }
     }
