@@ -1493,6 +1493,7 @@ Dialogs:
             HideLabel: Cacher l'étiquette
             Interval: Intervalle
             NewStatistic: Nouveau widget statistique
+            OutdatedChartMessage: Le groupement ou le filtre appliqué ne correspond pas à la configuration actuelle de l'interface. Veuillez le reconfigurer.
             RefreshInterval: Actualisation automatique activée
             RefreshIntervalInSeconds: Intervalle de rafraîchissement automatique (secondes)
             RefreshIntervalInSecondsValidationMessage: 'Intervalle de rafraîchissement automatique (secondes) : L''attribut spécifié n''est pas compris entre les valeurs attendues de {0} et {1}'
@@ -1500,7 +1501,6 @@ Dialogs:
             StatisticConfiguration: Configuration des statistiques
             XAxisTitle: Titre de l'axe X
             YAxisTitle: Titre de l'axe des Y
-            OutdatedChartMessage: Les données du graphique sont obsolètes. Veuillez reconfigurer et cliquer sur « Enregistrer » pour mettre à jour.
   components:
     CaseDocument:
       FileDate: Modifié le

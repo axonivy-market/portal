@@ -58,7 +58,6 @@ import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
-import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -370,8 +369,7 @@ public class StatisticConfigurationBean implements Serializable {
       statistic.setVersion(StatisticJsonVersion.LATEST_VERSION.getValue());
       statistics.add(statistic);
     }
-    String statisticsJson = BusinessEntityConverter.entityToJsonValue(statistics);
-    Ivy.var().set(PortalVariable.CUSTOM_STATISTIC.key, statisticsJson);
+    StatisticService.getInstance().saveJsonToVariable(statistics);
   }
 
   public List<ChartTarget> getAllChartTargets() {

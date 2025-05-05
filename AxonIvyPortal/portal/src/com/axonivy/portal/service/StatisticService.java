@@ -180,6 +180,10 @@ public class StatisticService {
   public void saveJsonToVariable(List<Statistic> statistics) {
     String statisticsJson = BusinessEntityConverter.entityToJsonValue(statistics);
     Ivy.var().set(CUSTOM_STATISTIC_KEY, statisticsJson);
+    String json = Ivy.var().get(CLIENT_STATISTIC_KEY);
+    if (StringUtils.isNotBlank(json)) {
+      Ivy.var().reset(CLIENT_STATISTIC_KEY);
+    }
   }
   
   private List<Statistic> getDefaultStatistic() {

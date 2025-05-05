@@ -1121,10 +1121,10 @@ Dialogs:
             GeneratePreview: Generate preview
             HideLabel: Hide label
             NewStatistic: New Statistic Widget
+            OutdatedChartMessage: The applied group-by or filter does not align with the current UI configuration. Please reconfigure it.
             StatisticConfiguration: Statistic configuration
             XAxisTitle: X axis title
             YAxisTitle: Y axis title
-            OutdatedChartMessage: The chart data is outdated. Please reconfigure and click "Save" to update.
   components:
     CaseDocument:
       FileDate: Modified at
