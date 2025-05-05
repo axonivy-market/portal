@@ -623,7 +623,7 @@ public class DashboardBean implements Serializable {
     if (DashboardWidgetType.TASK.equals(widget.getType())) {
       return Ivy.cms().co("/Labels/PinnedTasks");
     }
-    return "Pinned Cases";
+    return Ivy.cms().co("/Labels/PinnedCases");
   }
 
 }
