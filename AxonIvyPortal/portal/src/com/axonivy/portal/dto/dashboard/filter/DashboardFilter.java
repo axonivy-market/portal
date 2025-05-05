@@ -105,6 +105,7 @@ public class DashboardFilter extends BaseFilter implements Serializable {
     this.isTemp = isTemp;
   }
 
+  @Override
   @JsonIgnore
   public List<SecurityMemberDTO> getCreators() {
     return getValues().stream().map(this::findUser)
@@ -125,8 +126,7 @@ public class DashboardFilter extends BaseFilter implements Serializable {
     this.numberPattern = numberPattern;
   }
   
-  @JsonIgnore
-  public boolean isCanWorkOn() {
+  public boolean canWorkOn() {
     return StatisticConstants.CAN_WORK_ON.equals(getField());
   }
 }

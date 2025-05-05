@@ -221,4 +221,16 @@ public class BaseFilter implements Serializable{
   public boolean isResponsible() {
     return DashboardStandardTaskColumn.RESPONSIBLE.getField().equals(getField());
   }
+  
+  @JsonIgnore
+  public List<SecurityMemberDTO> getCreators() {
+    return getValues().stream().map(this::findUser)
+        .filter(Objects::nonNull).collect(Collectors.toList());
+  }
+
+  private SecurityMemberDTO findUser(String memberName) {
+    return ServiceUtilities.findSecurityMemberByName(memberName);
+  }
+
+
 }

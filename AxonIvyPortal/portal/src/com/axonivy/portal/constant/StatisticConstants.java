@@ -7,6 +7,8 @@ public class StatisticConstants {
   public static final String RESPONSIBLE_NAME = "responsibles.name";
   public static final String ACTIVATOR = "activator";
   public static final String CAN_WORK_ON = "canWorkOn";
+  public static final String CREATOR = "creator";
+  public static final String CREATOR_NAME = "creator.name";
   public static final String CUSTOM_STRING = "customFields.strings.";
   public static final String CUSTOM_NUMBER = "customFields.numbers.";
   public static final String CUSTOM_TIMESTAMP = "customFields.timestamps.";
