@@ -36,6 +36,8 @@ public class WidgetDateFilterBean implements Serializable {
       .stream().toList();
 
   private static SimpleDateFormat formatter = new SimpleDateFormat(DashboardFilter.DATE_FORMAT);
+  
+  private static List<FilterOperator> statisticOperators = FilterOperator.STATISTIC_DATE_OPERATORS.stream().toList();
 
   public List<FilterOperator> getOperators() {
     return operators;
@@ -95,5 +97,9 @@ public class WidgetDateFilterBean implements Serializable {
 
   public List<FilterOperator> getCreatedDateOperators() {
     return createdDateOperators;
+  }
+  
+  public List<FilterOperator> getStatisticOperators() {
+    return statisticOperators;
   }
 }

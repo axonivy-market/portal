@@ -3,7 +3,6 @@ package com.axonivy.portal.rest;
 import java.util.Optional;
 
 import javax.annotation.security.RolesAllowed;
-import javax.naming.NoPermissionException;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -42,8 +41,6 @@ public class StatisticRestService {
       StatisticResponse result = StatisticService.getInstance().getStatisticData(payload);
       return Response.ok(result).build();
     } catch (NotFoundException e) {
-      return Response.ok(e.getMessage()).build();
-    } catch (NoPermissionException e) {
       return Response.ok(e.getMessage()).build();
     }
   }

@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
+import com.axonivy.portal.util.filter.field.FilterField;
+import com.axonivy.portal.util.filter.field.FilterFieldDefault;
 import com.axonivy.portal.util.statisticfilter.field.caze.CaseFilterFieldCategory;
 import com.axonivy.portal.util.statisticfilter.field.caze.CaseFilterFieldCreator;
 import com.axonivy.portal.util.statisticfilter.field.caze.CaseFilterFieldState;
