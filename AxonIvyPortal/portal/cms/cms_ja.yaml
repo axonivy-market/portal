@@ -1496,7 +1496,7 @@ Dialogs:
             StatisticConfiguration: TODO Statistic configuration
             XAxisTitle: TODO X axis title
             YAxisTitle: TODO Y axis title
-            outdatedChartMessage: グラフのデータが古くなっています。「再設定」して「保存」をクリックしてください。
+            OutdatedChartMessage: グラフのデータが古くなっています。「再設定」して「保存」をクリックしてください。
   components:
     CaseDocument:
       FileDate: 変更日時

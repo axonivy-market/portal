@@ -1472,7 +1472,7 @@ Dialogs:
             StatisticConfiguration: Konfiguration der Statistik
             XAxisTitle: Titel der X-Achse
             YAxisTitle: Titel der Y-Achse
-            outdatedChartMessage: Die Diagrammdaten sind veraltet. Bitte neu konfigurieren und auf „Speichern“ klicken, um zu aktualisieren.
+            OutdatedChartMessage: Die Diagrammdaten sind veraltet. Bitte neu konfigurieren und auf „Speichern“ klicken, um zu aktualisieren.
   components:
     CaseDocument:
       FileDate: Änderungsdatum

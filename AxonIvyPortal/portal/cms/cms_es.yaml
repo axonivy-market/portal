@@ -1461,7 +1461,7 @@ Dialogs:
             StatisticConfiguration: Configuración estadística
             XAxisTitle: Título del eje X
             YAxisTitle: Título del eje Y
-            outdatedChartMessage: Los datos del gráfico están desactualizados. Por favor, reconfigure y haga clic en «Guardar» para actualizar.
+            OutdatedChartMessage: Los datos del gráfico están desactualizados. Por favor, reconfigure y haga clic en «Guardar» para actualizar.
   components:
     CaseDocument:
       FileDate: Modificado el

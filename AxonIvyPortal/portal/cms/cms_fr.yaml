@@ -1500,7 +1500,7 @@ Dialogs:
             StatisticConfiguration: Configuration des statistiques
             XAxisTitle: Titre de l'axe X
             YAxisTitle: Titre de l'axe des Y
-            outdatedChartMessage: Les données du graphique sont obsolètes. Veuillez reconfigurer et cliquer sur « Enregistrer » pour mettre à jour.
+            OutdatedChartMessage: Les données du graphique sont obsolètes. Veuillez reconfigurer et cliquer sur « Enregistrer » pour mettre à jour.
   components:
     CaseDocument:
       FileDate: Modifié le
