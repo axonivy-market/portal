@@ -2,7 +2,7 @@
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.DashboardFilter" />
+  <cc:attribute name="filter" type="com.axonivy.portal.dto.statistic.StatisticFilter" />
   <cc:attribute name="managedBean" required="true" />
   <cc:attribute name="componentToUpdate" required="true" />
   <cc:attribute name="onCompleteRemoveFilter" />
@@ -31,12 +31,12 @@
         <ic:com.axonivy.portal.dashboard.component.filter.CategoryFilter
           filter="#{filter}" widgetType="#{statistic.getChartTarget().getName()}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          operators="#{widgetCategoryFilterBean.statisticOperators}" messageId="#{cc.attrs.messageId}" />
+          forStatistic="true" messageId="#{cc.attrs.messageId}" />
       </h:panelGroup>
 
       <h:panelGroup layout="block" rendered="#{filter.isState()}">
         <ic:com.axonivy.portal.dashboard.component.filter.StateFilter filter="#{filter}"
-          widgetType="#{widget.getType()}" operators="#{widgetStateFilterBean.statisticOperators}"
+          widgetType="#{widget.getType()}" forStatistic="true"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
       </h:panelGroup>
@@ -44,13 +44,13 @@
       <h:panelGroup layout="block" rendered="#{filter.isPriority()}">
         <ic:com.axonivy.portal.dashboard.component.filter.PriorityFilter filter="#{filter}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{widgetPriorityFilterBean.statisticOperators}" />
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" forStatistic="true" />
       </h:panelGroup>
       
-      <h:panelGroup layout="block" rendered="#{filter.isCreatedDateField() or filter.isExpiryDateField() or filter.isCustomDateField()}">
+      <h:panelGroup layout="block" rendered="#{filter.isCreatedDateField() or filter.isExpiryDateField()}">
         <ic:com.axonivy.portal.dashboard.component.filter.DateFilter filter="#{filter}" widgetType="#{statistic.getChartTarget().getName()}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{widgetDateFilterBean.statisticOperators}"/>
+          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{widgetDateFilterBean.createdDateOperators}"/>
       </h:panelGroup>
       
       <h:panelGroup layout="block" rendered="#{filter.isResponsible()}">
@@ -60,7 +60,7 @@
           responsibleCompleteMethod="#{cc.attrs.managedBean.completeOwners}" />
       </h:panelGroup>
       
-      <h:panelGroup layout="block" rendered="#{filter.canWorkOn()}">
+      <h:panelGroup layout="block" rendered="#{filter.isCanWorkOn()}">
         <ic:com.axonivy.portal.dashboard.component.filter.CanWorkOnFilter filter="#{filter}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
@@ -73,17 +73,6 @@
           creatorCompleteMethod="#{cc.attrs.managedBean.completeCreators}" />
       </h:panelGroup>
       
-      <h:panelGroup layout="block" rendered="#{filter.isTextField()}">
-        <ic:com.axonivy.portal.dashboard.component.filter.TextFilter filter="#{filter}" operators="#{widgetTextFilterBean.statisticOperators}"
-          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
-      </h:panelGroup>
-
-      <h:panelGroup layout="block" rendered="#{filter.isNumberField()}">
-        <ic:com.axonivy.portal.dashboard.component.filter.NumberFilter filter="#{filter}" operators="#{widgetNumberFilterBean.statisticOperators}"
-          componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
-          readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
-      </h:panelGroup>
 
       <div class="remove-filter-panel">
         <p:commandButton id="remove-filter" icon="si si-subtract"

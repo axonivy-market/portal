@@ -4,9 +4,10 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.constant.StatisticConstants;
-import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.dto.statistic.StatisticFilter;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class TextInOperatorHandler {
   private static TextInOperatorHandler instance;
@@ -18,7 +19,7 @@ public class TextInOperatorHandler {
     return instance;
   }
 
-  public String buildFilter(DashboardFilter filter) {
+  public String buildFilter(StatisticFilter filter) {
     if (CollectionUtils.isEmpty(filter.getValues())) {
       return StringUtils.EMPTY;
     }
@@ -26,7 +27,9 @@ public class TextInOperatorHandler {
     StringBuilder sb = new StringBuilder();
     String field = changeFilterField(filter.getField());
     sb.append(field).append(PortalConstants.COLON);
-
+    // TODO finding reason why case and task
+    // have different sb.append value
+    // also refactor the code below
     for (String value : filter.getValues()) {
       if (filter.isCreator()) {
         sb.append("#" + value).append(" ");
@@ -35,10 +38,11 @@ public class TextInOperatorHandler {
       }
     }
 
+    Ivy.log().info("sb.toString " + sb.toString());
     return sb.toString();
   }
 
-  public String buildFilterWithoutValue(DashboardFilter filter) {
+  public String buildFilterWithoutValue(StatisticFilter filter) {
     return changeFilterField(filter.getField());
   }
 

@@ -34,12 +34,13 @@
                   <h4 class="mb-0 mt-3">#{ivy.cms.co('/Labels/General')}</h4>
                 </div>
 
+<!--                 TODO RETURN REQUIRE FOR NAME -->
                 <div class="field col-12">
                   <p:outputLabel value="#{ivy.cms.co('/Labels/Name')}" for="@next" />
                   <div class="ui-inputgroup">
                     <p:inputText id="name" value="#{statisticConfigurationBean.statistic.name}" maxlength="#{statisticInput}"
                       requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Labels/Name')])}"
-                      styleClass="w-full" required="true"/>
+                      styleClass="w-full"/>
                     <p:commandButton id="add-name-language-button" icon="si si-chat-translate"
                       actionListener="#{statisticConfigurationBean.updateNameByLocale()}" process="name"
                       update="name-language-config:multiple-languages-dialog"
@@ -107,9 +108,9 @@
                   <!-- GROUP BY -->
                   <p:outputLabel for="@next" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GroupBy')}" />
                   <p:selectOneMenu id="aggregates" required="true" styleClass="w-full"
-                    value="#{statisticConfigurationBean.statistic.statisticAggregation.field}">
+                    value="#{statisticConfigurationBean.statistic.statisticAggregation.aggregationField}">
                     <f:selectItems value="#{statisticConfigurationBean.getAllAvailableAggregationField()}"
-                      var="aggregate" itemValue="#{aggregate.name}" itemLabel="#{aggregate.getCmsName()}" />
+                      var="aggregate" itemValue="#{aggregate}" itemLabel="#{aggregate.getCmsName()}" />
                     <p:ajax listener="#{statisticConfigurationBean.onSelectAggregationField()}"
                       update="chart-aggregation" />
                   </p:selectOneMenu>
@@ -117,15 +118,17 @@
                   <!-- CUSTOM FIELD SELECTION -->
                   <p:selectOneMenu id="aggregates-custom-fields" required="true" styleClass="w-full mt-2"
                     requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GroupBy')])}"
-                    rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}" value="#{statisticConfigurationBean.statistic.statisticAggregation.customFieldValue}" >
+                    rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}" value="#{statisticConfigurationBean.currentCustomField}" >
+                    <f:selectItem value="#{null}" noSelectionOption="false" />
                     <f:selectItems value="#{statisticConfigurationBean.getCustomFieldNames()}" var="customField" />
                     <p:ajax listener="#{statisticConfigurationBean.onSelectCustomField()}" update="custom-field-description chart-aggregation" />
                   </p:selectOneMenu>
                   <p:inputText id="custom-field-description" readonly="true" 
                   rendered="#{statisticConfigurationBean.isCustomFieldsSelected()}"
-                  styleClass="w-full mt-2" disabled="true"
+                  styleClass="w-full mt-2"
                   value="#{statisticConfigurationBean.currentCustomFieldDescription}"/>
                   
+
                   <!--  INTERVALS SELECTION -->
                   <p:outputLabel for="@next" rendered="#{statisticConfigurationBean.dateTimeSelected}"
                     styleClass="w-full mt-2"
@@ -300,11 +303,10 @@
                     <h4 class="mb-0">#{ivy.cms.co('/Labels/Preview')}</h4>
                   </div>
                   <div class="col-6 text-right">
-                    <p:commandButton widgetVar="previewButton" id="generate-statistic-chart"
+                    <p:commandButton widgetVar="previewButton"
                       value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/GeneratePreview')}"
                       actionListener="#{statisticConfigurationBean.getPreviewData()}"
-                      update="config-panel errors-message" oncomplete="handlePreviewChart(xhr, status, args)"
-                      process="config-panel"
+                      update="permissions errors-message" oncomplete="handlePreviewChart(xhr, status, args)"
                       styleClass="ui-leave-button" />
                   </div>
                 </div>
