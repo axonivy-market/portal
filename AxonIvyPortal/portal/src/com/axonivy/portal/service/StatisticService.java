@@ -102,7 +102,7 @@ public class StatisticService {
           : CaseFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType());      
 
       if (filterField != null) {
-        String filterQuery = filterField.generateTaskFilter(statisticFilter);
+        String filterQuery = ChartTarget.TASK == chartTarget ? filterField.generateTaskFilter(statisticFilter) : filterField.generateCaseFilter(statisticFilter);
         if (filterQuery != null) {
           sbFilter.append(filterQuery).append(",");
         }

@@ -220,6 +220,7 @@ public class StatisticConfigurationBean implements Serializable {
     } else {
       filterFields.add(CaseFilterFieldFactory.getDefaultFilterField());
       filterFields.addAll(CaseFilterFieldFactory.getStandardFilterableFields());
+      filterFields.addAll(CaseFilterFieldFactory.getCustomFilterableFields());
     }
   }
 
@@ -767,8 +768,7 @@ public class StatisticConfigurationBean implements Serializable {
       filterField = CaseFilterFieldFactory.findBy(field);
     }
 
-    if (filterField.getName()
-        .contentEquals(BaseFilter.DEFAULT)) {
+    if (filterField.getName().contentEquals(BaseFilter.DEFAULT)) {
       filterField.addNewFilter(filter);
       return;
     }
