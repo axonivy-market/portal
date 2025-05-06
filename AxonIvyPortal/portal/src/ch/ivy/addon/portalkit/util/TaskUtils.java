@@ -49,7 +49,7 @@ public final class TaskUtils {
   private static final String PORTAL_GLOBAL_GROWL_MESSAGE = "portal-global-growl-message";
   private static final String PRIORITY_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskPriority/";
   private static final String TASK_BUSINESS_STATE_CMS_PATH = "/ch.ivy.addon.portalkit.ui.jsf/taskBusinessState/";
-  private static String pinTaskProperty = UserProperty.PIN_TASKS;
+  private static String pinTaskProperty = UserProperty.PORTAL_PINED_TASKS;
 
   private TaskUtils() {}
 

@@ -1,8 +1,5 @@
 package com.axonivy.portal.selenium.common;
 
-import ch.ivy.addon.portalkit.enums.GlobalVariableType;
-import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
-
 public enum Variable {
 
   SHOW_QR_CODE("Portal.UserMenu.ShowQRCode"), HIDE_LOGOUT_BUTTON("Portal.UserMenu.HideLogoutMenu"),
@@ -43,8 +40,7 @@ public enum Variable {
   DASHBOARD_MAIN_MENU_ENTRY("Portal.Dashboard.MainMenuEntry"), 
   APPLICATION_NAME("Portal.ApplicationName"),
   ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview"),
-  ENABLE_PIN_TASK("Portal.Tasks.EnablePinTask"),
-  ENABLE_PIN_CASE("Portal.Cases.EnablePinCase");
+  ENABLE_PINED_TASK("Portal.Tasks.EnablePinedTask"), ENABLE_PINED_CASE("Portal.Cases.EnablePinedCase");
 
   private String key;
 

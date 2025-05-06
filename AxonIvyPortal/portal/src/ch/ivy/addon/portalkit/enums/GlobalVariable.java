@@ -90,8 +90,8 @@ public enum GlobalVariable {
   IMAGE_UPLOAD_SIZE_LIMIT("Portal.Upload.ImageUploadSizeLimit", GlobalVariableType.NUMBER, "6", "imageUploadSizeLimit"),
   DELEGATION_APPEND_OPTION("Portal.DelegationAppendOption", GlobalVariableType.EXTERNAL_SELECTION,DelegationAppendOption.NONE.name(), "delegationAppendOption",getDelegationAppendOption()),
   SESSION_CACHE_TIMEOUT("Portal.SessionCacheTimeout", GlobalVariableType.NUMBER,"86400", "SessionCacheTimeout"),
-  ENABLE_PIN_TASK("Portal.Tasks.EnablePinTask",GlobalVariableType.SELECTION, Option.FALSE.toString(), "enablePinTask"),
-  ENABLE_PIN_CASE("Portal.Cases.EnablePinCase",GlobalVariableType.SELECTION, Option.FALSE.toString(),"enablePinCase");
+  ENABLE_PINED_TASK("Portal.Tasks.EnablePinedTask",GlobalVariableType.SELECTION, Option.FALSE.toString(), "enablePinTask"),
+  ENABLE_PINED_CASE("Portal.Cases.EnablePinedCase",GlobalVariableType.SELECTION, Option.FALSE.toString(),"enablePinCase");
 
   private String key;
   private GlobalVariableType type;

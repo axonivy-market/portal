@@ -47,7 +47,7 @@
     </p:commandLink>
     
     <p:commandLink id="case-pin" disabled="#{!caseActionBean.canPin(case)}" rendered="#{visibilityBean.enablePinCase}" onstart="event.stopPropagation();"
-      styleClass="#{caseActionBean.getPinnedStyleClass(case)}" actionListener="#{caseActionBean.markCaseAsPinned(case)}" update="@parent #{cc.attrs.componentToUpdate}" process="@this">
+      styleClass="#{caseActionBean.getPinnedStyleClass(case)}" actionListener="#{caseActionBean.markCaseAsPinned(case)}" update="@parent #{cc.attrs.update}" process="@this">
       <i class="#{caseActionBean.getPinnedIcon(case)}" />
       <span class="option-item-label">#{caseActionBean.getPinnedLabel(case)}</span>
     </p:commandLink>

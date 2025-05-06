@@ -26,7 +26,7 @@ import ch.ivyteam.ivy.workflow.note.Note;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public final class CaseUtils {
-  private static String pinCaseProperty = UserProperty.PIN_CASES;
+  private static String pinCaseProperty = UserProperty.PORTAL_PINED_CASES;
 
   private CaseUtils() {}
 
