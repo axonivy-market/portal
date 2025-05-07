@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "18B4240043B838C5",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -66,7 +66,10 @@
       ],
       "visual" : {
         "at" : { "x" : 799, "y" : 136 },
-        "size" : { "width" : 495, "height" : 132 }
+        "size" : { "width" : 495, "height" : 132 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       }
     }, {
       "id" : "f119",
