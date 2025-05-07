@@ -789,6 +789,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       tooltipHelper: Klicken Sie hier, um alle Benutzer anzuzeigen, die diese Rolle
         direkt oder indirekt besitzen
       userOfRoleTitle: Benutzer der Gruppe {0}
+      roleMemberItemFormat: <li class="tooltip-body-item">{0}</li>
     passwordValidation:
       criteria: Kriterien
       enablePasswordValidation: Kennwortüberprüfung einschalten
