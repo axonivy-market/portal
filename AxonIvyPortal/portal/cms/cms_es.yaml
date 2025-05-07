@@ -1510,7 +1510,7 @@ Labels:
       ACTIONS: Acciones
       APPLICATION: Aplicación
       CATEGORY: Categoría
-      COMPLETED: ''
+      COMPLETED: Fecha de finalización
       CREATED: Fecha de creación
       DESCRIPTION: Descripción
       EXPIRY: Expiración

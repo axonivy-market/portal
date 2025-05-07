@@ -1559,7 +1559,7 @@ Labels:
       ACTIONS: Actions
       APPLICATION: Application
       CATEGORY: Catégorie
-      COMPLETED: ''
+      COMPLETED: Date de fin
       CREATED: Date de création
       DESCRIPTION: Description
       EXPIRY: Délai

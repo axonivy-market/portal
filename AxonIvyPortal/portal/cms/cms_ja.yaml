@@ -1566,7 +1566,7 @@ Labels:
       ACTIONS: アクション
       APPLICATION: アプリケーション
       CATEGORY: カテゴリー
-      COMPLETED: ''
+      COMPLETED: 'TODO: Completed Date'
       CREATED: 作成日
       DESCRIPTION: 説明
       EXPIRY: 有効期限
