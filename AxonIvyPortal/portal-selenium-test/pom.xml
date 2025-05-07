@@ -1,9 +1,9 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-selenium-test</artifactId>
-  <version>13.1.0-SNAPSHOT</version>
+  <version>13.1.0-m275</version>
   <packaging>iar</packaging>
   <properties>
     <ivy.engine.version>13.1.0</ivy.engine.version>
@@ -17,16 +17,16 @@
       <version>11.3.0</version>
       <scope>test</scope>
     </dependency>
-  <dependency>
+    <dependency>
       <groupId>com.codeborne</groupId>
       <artifactId>selenide-proxy</artifactId>
       <version>7.8.1</version>
       <scope>test</scope>
-  </dependency>
+    </dependency>
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
-      <version>13.1.0-SNAPSHOT</version>
+      <version>13.1.0-m275</version>
       <type>iar</type>
     </dependency>
   </dependencies>
