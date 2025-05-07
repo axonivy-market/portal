@@ -1202,6 +1202,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       APPLICATION: Aplicación
       CATEGORY: Categoría
       COMPLETED: Completado en
+      COMPLETED_ON: Completado en
       CREATION_TIME: Creado
       EXPIRY_TIME: Expiración
       ID: ID de tarea
