@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "16583F0F73864543",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -196,7 +196,10 @@
       ],
       "visual" : {
         "at" : { "x" : 1056, "y" : 120 },
-        "size" : { "width" : 528, "height" : 124 }
+        "size" : { "width" : 528, "height" : 124 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       }
     }, {
       "id" : "f23",
@@ -210,7 +213,10 @@
       ],
       "visual" : {
         "at" : { "x" : 1168, "y" : 312 },
-        "size" : { "width" : 752, "height" : 92 }
+        "size" : { "width" : 752, "height" : 92 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       }
     }, {
       "id" : "f26",
@@ -225,7 +231,10 @@
       ],
       "visual" : {
         "at" : { "x" : 1278, "y" : 506 },
-        "size" : { "width" : 960, "height" : 108 }
+        "size" : { "width" : 960, "height" : 108 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       }
     }, {
       "id" : "f27",
@@ -357,7 +366,10 @@
       ],
       "visual" : {
         "at" : { "x" : 1288, "y" : 760 },
-        "size" : { "width" : 960, "height" : 108 }
+        "size" : { "width" : 960, "height" : 108 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       }
     }, {
       "id" : "f35",
