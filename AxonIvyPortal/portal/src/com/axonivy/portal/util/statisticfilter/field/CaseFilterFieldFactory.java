@@ -10,6 +10,7 @@ import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.util.filter.field.CustomFilterField;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldDefault;
+import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldApplication;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCategory;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreator;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldState;
@@ -26,36 +27,11 @@ public class CaseFilterFieldFactory {
   private static final Map<String, FilterField> STANDARD_FILTER_FIELD = new HashMap<>();
   private static final Map<String, CustomFilterField> CUSTOM_FILTER_FIELD = new HashMap<>();
 
-//  state (string)
-//  businessState (string)
-//  priority (string)
-//  category (string)
-//  stage (string)
-//  isBusinessCase (bool)
-//  creator.name (string)
-//  businessRuntime (number)
-//  workingTime (number)
-//  startTimestamp (date)
-//  modifiedTimestamp (date)
-//  endTimestamp (date)
-//  customFields.strings.* (string)
-//  customFields.numbers.* (number)
-//  customFields.timestamps.* (datetime)
-//  owners.name (string)
   static {
-    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.STATE.getField(), new CaseFilterFieldState());
-//    STANDARD_FILTER_FIELD.put(StatisticConstants.BUSSINESS_STATE, new CaseFilterFieldState());
-//    STANDARD_FILTER_FIELD.put(StatisticConstants.PRIORITY, new CaseFilterFieldState());
-    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.CATEGORY.getField(), new CaseFilterFieldCategory());
-//    STANDARD_FILTER_FIELD.put(StatisticConstants.STAGE, new CaseFilterFieldState());
-//    STANDARD_FILTER_FIELD.put(StatisticConstants.IS_BUSINESS_CASE, new CaseFilterFieldState());
     STANDARD_FILTER_FIELD.put(StatisticConstants.CREATOR_NAME, new CaseFilterFieldCreator());
-//    STANDARD_FILTER_FIELD.put(StatisticConstants.BUSINESS_RUNTIME, new CaseFilterFieldCreator());
-//    STANDARD_FILTER_FIELD.put(StatisticConstants.WORKING_TIME, new CaseFilterFieldCreator());
-//    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.CREATED.getField(), new CaseFilterFieldCreator());
-//    STANDARD_FILTER_FIELD.put(StatisticConstants.MODIFIED_TIMESTAMP, new CaseFilterFieldCreator());
-//    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.FINISHED.getField(), new CaseFilterFieldCreator());
-//    STANDARD_FILTER_FIELD.put(StatisticConstants.OWNERS_NAME, new CaseFilterFieldCreator());
+    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.APPLICATION.getField(), new CaseFilterFieldApplication());
+    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.STATE.getField(), new CaseFilterFieldState());
+    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.CATEGORY.getField(), new CaseFilterFieldCategory());
     
     for (ICustomFieldMeta customField : ICustomFieldMeta.cases()) {
       switch (customField.type()) {

@@ -198,7 +198,8 @@ public class StatisticConfigurationBean implements Serializable {
     statistic.getStatisticAggregation().setField(AggregationField.PRIORITY.getName());
     statistic.setNames(new ArrayList<>());
     statistic.setDescriptions(new ArrayList<>());
-    statistic.setChartTarget(ChartTarget.TASK);
+    // TODO PUT BACK TASK TARGET
+    statistic.setChartTarget(ChartTarget.CASE);
     statistic.setChartType(ChartType.BAR);
     statistic.setNumberChartConfig(new NumberChartConfig());
     statistic.setBarChartConfig(new BarChartConfig());
@@ -768,7 +769,7 @@ public class StatisticConfigurationBean implements Serializable {
       filterField = CaseFilterFieldFactory.findBy(field);
     }
 
-    if (filterField.getName().contentEquals(BaseFilter.DEFAULT)) {
+    if (filterField != null && filterField.getName().contentEquals(BaseFilter.DEFAULT)) {
       filterField.addNewFilter(filter);
       return;
     }
