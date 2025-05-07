@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "1756E0BE3BCBAD12",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -353,7 +353,7 @@
       },
       "visual" : {
         "at" : { "x" : 104, "y" : 424 },
-        "labelOffset" : { "x" : 5, "y" : 35 }
+        "labelOffset" : { "x" : 5 }
       },
       "connect" : [
         { "id" : "f62", "to" : "f51" }
@@ -528,7 +528,7 @@
       },
       "visual" : {
         "at" : { "x" : 336, "y" : 320 },
-        "labelOffset" : { "x" : 2, "y" : 35 }
+        "labelOffset" : { "x" : 2 }
       },
       "connect" : [
         { "id" : "f63", "to" : "f39" }
@@ -542,7 +542,7 @@
       },
       "visual" : {
         "at" : { "x" : 704, "y" : 960 },
-        "labelOffset" : { "x" : 6, "y" : 35 }
+        "labelOffset" : { "x" : 6 }
       },
       "connect" : [
         { "id" : "f91", "to" : "f90" }
@@ -918,7 +918,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 584 },
-        "labelOffset" : { "x" : 24, "y" : 35 }
+        "labelOffset" : { "x" : 24 }
       },
       "connect" : [
         { "id" : "f99", "to" : "f98" }
@@ -1033,7 +1033,7 @@
       },
       "visual" : {
         "at" : { "x" : 1208, "y" : 96 },
-        "labelOffset" : { "x" : 24, "y" : 35 }
+        "labelOffset" : { "x" : 24 }
       },
       "connect" : [
         { "id" : "f5", "to" : "f3" }
@@ -1142,7 +1142,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1152 },
-        "labelOffset" : { "x" : 1, "y" : 35 }
+        "labelOffset" : { "x" : 1 }
       },
       "connect" : [
         { "id" : "f68", "to" : "f44" }
@@ -1241,7 +1241,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1408 },
-        "labelOffset" : { "x" : 18, "y" : 35 }
+        "labelOffset" : { "x" : 18 }
       },
       "connect" : [
         { "id" : "f85", "to" : "f75" }
@@ -1309,7 +1309,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 1312 },
-        "labelOffset" : { "x" : 31, "y" : 35 }
+        "labelOffset" : { "x" : 31 }
       },
       "connect" : [
         { "id" : "f83", "to" : "f74" }
