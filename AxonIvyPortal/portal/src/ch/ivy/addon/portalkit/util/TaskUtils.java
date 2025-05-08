@@ -30,7 +30,6 @@ import ch.ivy.addon.portalkit.service.TaskInforActionService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.ISecurityMember;
-import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
@@ -410,13 +409,6 @@ public final class TaskUtils {
     return PermissionUtils.hasPermission(permission);
   }
 
-  public static boolean isResponsibleMember(ITask task) {
-    return task != null && task.responsibles() != null && task
-        .responsibles()
-        .all()
-        .stream()
-        .anyMatch(item -> item.get().isMember(ISession.current(), true));
-  }
   
   public static String toDisplayNameExpiryResponsible(ExpiryResponsibles expiryResponsibles) {
     if (CollectionUtils.isEmpty(expiryResponsibles.all())) {

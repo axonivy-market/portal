@@ -187,7 +187,7 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
 
   private boolean isActivator() {
     ITask selectedTask = getSelectedTaskFromData();
-    return TaskUtils.isResponsibleMember(selectedTask);
+    return isResponsibleMember(selectedTask);
   }
 
   private boolean currentIsWorkerUser() {
@@ -230,4 +230,11 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable").equals(generatedBriefDisplayName);
   }
 
+  public static boolean isResponsibleMember(ITask task) {
+    return task != null && task.responsibles() != null && task
+        .responsibles()
+        .all()
+        .stream()
+        .anyMatch(item -> item.get().isMember(ISession.current(), true));
+  }
 }
