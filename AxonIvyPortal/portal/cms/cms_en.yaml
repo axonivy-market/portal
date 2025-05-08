@@ -1,6 +1,7 @@
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
     noCaseFound: Case not found or you don't have permission to view this case.
+    portalTranslation: Portal translation
     requestTabTitle: Request
     statusTabTitle: Case Information
   OpenTaskTemplate:
