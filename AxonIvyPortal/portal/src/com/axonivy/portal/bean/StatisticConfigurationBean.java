@@ -278,6 +278,7 @@ public class StatisticConfigurationBean implements Serializable {
     cleanUpRedundantChartConfigs(statistic.getChartType());
     cleanUpConfiguration();
     cleanUpFilter();
+    cleanUpAggregations();
     nameMultilanguageService.initMultipleLanguagesForName(statistic.getName());
     descriptionMultilanguageService.initMultipleLanguagesForName(statistic.getDescription());
     if (BAR == statistic.getChartType() || LINE == statistic.getChartType()) {
@@ -305,6 +306,14 @@ public class StatisticConfigurationBean implements Serializable {
     statistic.setAdditionalConfigs(null);
   }
   
+  private void cleanUpAggregations() {
+    if (StringUtils.isNotBlank(statistic.getAggregates())) {
+      if (statistic.getStatisticAggregation() != null && statistic.getStatisticAggregation().getAggregationField() != null) {
+        statistic.setAggregates(null);
+      }
+    }
+  }
+
   private void cleanUpFilter() {
     if (CollectionUtils.isNotEmpty(statistic.getFilters())) {
       statistic.getFilters().removeIf(filter -> filter.getField() == null);
