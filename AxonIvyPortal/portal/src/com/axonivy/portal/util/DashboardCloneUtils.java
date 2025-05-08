@@ -100,7 +100,9 @@ public class DashboardCloneUtils {
       default -> {}
     }
 
-    widget.setAutoPosition(true);
+    if (widget != null) {
+      widget.setAutoPosition(true);
+    }
     return widget;
   }
 }
