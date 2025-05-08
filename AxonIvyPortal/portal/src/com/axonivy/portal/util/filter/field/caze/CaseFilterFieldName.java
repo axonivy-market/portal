@@ -8,9 +8,11 @@ import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.operator.caze.name.NameContainsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.name.NameEndWithOperatorHandler;
+import com.axonivy.portal.util.filter.operator.caze.name.NameInOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.name.NameIsEmptyOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.name.NameIsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.name.NameStartWithOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.string.StringCustomFieldInOperatorHandler;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
@@ -63,5 +65,15 @@ public class CaseFilterFieldName extends FilterField {
   @Override
   public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
     return null;
+  }
+  
+  // TODO TEST TEXT NAME IN FILTER
+  @Override
+  public String generateCaseFilter(DashboardFilter filter) {
+    return switch (filter.getOperator()) {
+    case IN -> NameInOperatorHandler.getInstance().buildFilter(filter);
+    default -> null;
+  };
+
   }
 }

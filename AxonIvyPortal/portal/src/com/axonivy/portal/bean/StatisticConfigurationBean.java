@@ -230,15 +230,20 @@ public class StatisticConfigurationBean implements Serializable {
       return;
     }
     
-    // If the filter available in the filter list, initialize it
     for (DashboardFilter  filter : statistic.getFilters()) {
       if (isFilterAvaliable(filter)) {
-        FilterField filterField = TaskFilterFieldFactory
-            .findBy(Optional.ofNullable(filter).map(DashboardFilter ::getField).orElse(StringUtils.EMPTY),
-                Optional.ofNullable(filter).map(DashboardFilter ::getFilterType).orElse(null));
-        if (filterField != null) {
-          filterField.initFilter(filter);
-        }
+        // If the filter available in the filter list, initialize it
+        FilterField filterField = statistic.getChartTarget() == ChartTarget.TASK
+            ? TaskFilterFieldFactory.findBy( // FIND FILTER FIELD FOR TASK
+                Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(StringUtils.EMPTY),
+                Optional.ofNullable(filter).map(DashboardFilter::getFilterType).orElse(null))
+            : CaseFilterFieldFactory.findBy( // FIND FILTER FIELD FOR CASE
+                Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(StringUtils.EMPTY),
+                Optional.ofNullable(filter).map(DashboardFilter::getFilterType).orElse(null));
+          // TODO avoid nested if
+          if (filterField != null) {
+            filterField.initFilter(filter);
+          }
       }
     }
   }
