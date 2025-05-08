@@ -1529,154 +1529,226 @@
         "at" : { "x" : 1928, "y" : 352 }
       }
     }, {
-      "id" : "f181",
-      "type" : "TaskSwitchEvent",
+      "id" : "f214",
+      "type" : "RequestStart",
+      "name" : "set20Responsible",
       "config" : {
-        "task" : {
-          "name" : "Create task with 8 responsibles",
-          "description" : "Create task with 8 responsibles",
+        "signature" : "set20Responsible"
+      },
+      "visual" : {
+        "at" : { "x" : 1600, "y" : 536 }
+      },
+      "connect" : [
+        { "id" : "f216", "to" : "f215" }
+      ]
+    }, {
+      "id" : "f215",
+      "type" : "Script",
+      "name" : "Set 20 responsible",
+      "config" : {
+        "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.workflow.ITask;",
             "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"liam\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"marissa\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"CaseOwner\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"HR\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"gm3\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"noah\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"TestRoleInvolved\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"Sales\"));"
+            "ITask task = ivy.wf.getTaskQueryExecutor().getFirstResult(TaskQuery.",
+            "create().where().name().isLike(\"Annual Leave Request\")) as ITask;",
+            "",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"admin\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"liam\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"marissa\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"gm3\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"noah\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"mike\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"huang\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"ava\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"olivia\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"ethan\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"sophie\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"costObject1\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"gm2\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"demo\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"gm1\"));",
+            "task.responsibles().add(ISecurityContext.current().roles().find(\"CaseOwner\"));",
+            "task.responsibles().add(ISecurityContext.current().roles().find(\"HR\"));",
+            "task.responsibles().add(ISecurityContext.current().roles().find(\"TestRoleInvolved\"));",
+            "task.responsibles().add(ISecurityContext.current().roles().find(\"Sales\"));"
           ]
-        },
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1776, "y" : 536 }
+      },
+      "connect" : [
+        { "id" : "f223", "to" : "f220" }
+      ]
+    }, {
+      "id" : "f217",
+      "type" : "RequestStart",
+      "name" : "set8Responsible",
+      "config" : {
+        "signature" : "set8Responsible"
+      },
+      "visual" : {
+        "at" : { "x" : 1600, "y" : 640 }
+      },
+      "connect" : [
+        { "id" : "f218", "to" : "f219" }
+      ]
+    }, {
+      "id" : "f219",
+      "type" : "Script",
+      "name" : "Set 8 responsible",
+      "config" : {
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"liam\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"marissa\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"admin\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"HR\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"gm3\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"noah\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"TestRoleInvolved\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"Sales\"));"
+            "ITask task = ivy.wf.getTaskQueryExecutor().getFirstResult(TaskQuery.",
+            "create().where().name().isLike(\"Sick Leave Request\")) as ITask;",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"liam\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"marissa\"));",
+            "task.responsibles().add(ISecurityContext.current().roles().find(\"CaseOwner\"));",
+            "task.responsibles().add(ISecurityContext.current().roles().find(\"HR\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"gm3\"));",
+            "task.responsibles().add(ISecurityContext.current().users().find(\"noah\"));",
+            "task.responsibles().add(ISecurityContext.current().roles().find(\"Sales\"));"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 1808, "y" : 536 }
+        "at" : { "x" : 1776, "y" : 640 }
       },
       "connect" : [
-        { "id" : "f182", "to" : "f183" }
+        { "id" : "f224", "to" : "f222" }
       ]
     }, {
-      "id" : "f183",
+      "id" : "f220",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1976, "y" : 536 }
+        "at" : { "x" : 1920, "y" : 536 }
       }
     }, {
-      "id" : "f184",
+      "id" : "f222",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1920, "y" : 640 }
+      }
+    }, {
+      "id" : "f225",
       "type" : "RequestStart",
-      "name" : "Create task with 8 responsibles",
+      "name" : "set8ExpiryResponsible",
       "config" : {
-        "signature" : "TaskWith8Responsibles",
-        "request" : {
-          "name" : "Create task with 8 responsibles"
-        }
+        "signature" : "set8ExpiryResponsible"
       },
       "visual" : {
-        "at" : { "x" : 1648, "y" : 536 }
+        "at" : { "x" : 2064, "y" : 640 }
       },
       "connect" : [
-        { "id" : "f185", "to" : "f181" }
+        { "id" : "f226", "to" : "f228" }
       ]
     }, {
-      "id" : "f186",
-      "type" : "TaskSwitchEvent",
+      "id" : "f227",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 2384, "y" : 640 }
+      }
+    }, {
+      "id" : "f228",
+      "type" : "Script",
+      "name" : "Set 8 expiry responsible",
       "config" : {
-        "task" : {
-          "name" : "Create task with 20 responsibles",
-          "description" : "Create task with 20 responsibles",
-          "code" : [
-            "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"admin\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"Developer\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"liam\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"marissa\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"gm3\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"noah\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"mike\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"huang\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"ava\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"olivia\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"ethan\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"sophie\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"costObject1\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"gm2\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"costObject2\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"gm1\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"CaseOwner\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"HR\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"TestRoleInvolved\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"Sales\"));"
-          ]
-        },
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
             "",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"admin\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"Developer\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"liam\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"marissa\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"gm3\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"noah\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"mike\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"huang\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"ava\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"olivia\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"ethan\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"sophie\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"costObject1\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"gm2\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"costObject2\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().users().find(\"gm1\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"CaseOwner\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"HR\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"TestRoleInvolved\"));",
-            "ivy.task.responsibles().add(ISecurityContext.current().roles().find(\"Sales\"));"
+            "ITask task = ivy.wf.getTaskQueryExecutor().getFirstResult(TaskQuery.",
+            "create().where().name().isLike(\"Sick Leave Request\")) as ITask;",
+            "",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"liam\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"marissa\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().roles().find(\"CaseOwner\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().roles().find(\"HR\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"gm3\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"noah\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().roles().find(\"Sales\"));"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 1808, "y" : 648 }
+        "at" : { "x" : 2240, "y" : 640 }
       },
       "connect" : [
-        { "id" : "f187", "to" : "f188" }
+        { "id" : "f229", "to" : "f227" }
       ]
     }, {
-      "id" : "f188",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 1976, "y" : 648 }
-      }
-    }, {
-      "id" : "f189",
+      "id" : "f230",
       "type" : "RequestStart",
-      "name" : "Create task with 20 responsibles",
+      "name" : "set20ExpiryResponsible",
       "config" : {
-        "signature" : "TaskWith20Responsibles",
+        "signature" : "set20ExpiryResponsible",
         "request" : {
-          "name" : "Create task with 20 responsibles"
+          "name" : "set20ExpiryResponsible"
         }
       },
       "visual" : {
-        "at" : { "x" : 1648, "y" : 648 }
+        "at" : { "x" : 2064, "y" : 536 }
       },
       "connect" : [
-        { "id" : "f190", "to" : "f186" }
+        { "id" : "f231", "to" : "f233" }
+      ]
+    }, {
+      "id" : "f232",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 2384, "y" : 536 }
+      }
+    }, {
+      "id" : "f233",
+      "type" : "Script",
+      "name" : "Set 20 expiry responsible",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.ITask;",
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import ch.ivyteam.ivy.workflow.query.TaskQuery;",
+            "",
+            "ITask task = ivy.wf.getTaskQueryExecutor().getFirstResult(TaskQuery.",
+            "create().where().name().isLike(\"Annual Leave Request\")) as ITask;",
+            "",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"admin\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"liam\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"marissa\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"gm3\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"noah\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"mike\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"huang\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"ava\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"olivia\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"ethan\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"sophie\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"costObject1\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"gm2\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"costObject2\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().users().find(\"gm1\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().roles().find(\"CaseOwner\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().roles().find(\"HR\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().roles().find(\"TestRoleInvolved\"));",
+            "task.expiry().responsibles().add(ISecurityContext.current().roles().find(\"Sales\"));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 2240, "y" : 536 }
+      },
+      "connect" : [
+        { "id" : "f234", "to" : "f232" }
       ]
     } ],
   "layout" : {
