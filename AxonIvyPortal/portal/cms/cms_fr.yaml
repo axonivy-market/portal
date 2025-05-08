@@ -5,15 +5,18 @@ ch.ivy.addon.portal.generic:
     requestTabTitle: Demande
     statusTabTitle: Informations sur le dossier
   OpenTaskTemplate:
-    browserTabClosingWarning: Votre travail risque d'être perdu. Souhaitez-vous continuer ?
-    goToSidestepWarning: En démarrant un processus sidestep, vos données non sauvegardées seront perdues. Voulez-vous continuer?
+    browserTabClosingWarning: Votre travail risque d'être perdu. Souhaitez-vous continuer
+      ?
+    goToSidestepWarning: En démarrant un processus sidestep, vos données non sauvegardées
+      seront perdues. Voulez-vous continuer?
   PortalName:
     PortalName: Portal
 ch.ivy.addon.portalkit.ui.jsf:
   AbsenceAndDeputy:
     Messages:
       errorSelectInvalidDeputy: Le substitut est déjà sélectionné ou invalide
-      errorSelectedInPersonalTaskPermanentDeputies: Le substitut est déjà sélectionné dans "{0}"
+      errorSelectedInPersonalTaskPermanentDeputies: Le substitut est déjà sélectionné
+        dans "{0}"
       fromBiggerThanTill: '"Jusqu''à" doit être ultérieur à "Depuis"'
       overlappingAbsence: L'absence entre en collision avec une autre absence.
       userNameRequired: Le nom d'utilisateur doit être indiqué.
@@ -21,13 +24,16 @@ ch.ivy.addon.portalkit.ui.jsf:
     absences: Absences
     addAbsence: Ajouter une absence
     deputies: Remplaçant
-    description: Veuillez inscrire vos vacances, maladies ou autres obligations extérieures conduisant à une absence.
+    description: Veuillez inscrire vos vacances, maladies ou autres obligations extérieures
+      conduisant à une absence.
     editAbsence: Editer les absences
     from: Du
     noDeputy: Aucun remplaçant
-    noPermissionToSeeThisArea: Vous n'avez pas l'autorisation requise pour visiter cette zone.
+    noPermissionToSeeThisArea: Vous n'avez pas l'autorisation requise pour visiter
+      cette zone.
     period: Période
-    personalTaskDuringAbsenceDeputies: Remplacer les tâches assignées personnellement pendant l'absence
+    personalTaskDuringAbsenceDeputies: Remplacer les tâches assignées personnellement
+      pendant l'absence
     personalTaskPermanentDeputies: Remplacement permanent des tâches confiées personnellement
     selectDeputies: Choisir des substituts
     selectedDeputies: Substituts sélectionnés
@@ -176,15 +182,19 @@ ch.ivy.addon.portalkit.ui.jsf:
       announcement: Annonce
       announcementsDisabled: Les annonces sont désactivées.
       announcementsEnabled: Les annonces sont activées.
-      defaultLanguageRequiredMessage: L'annonce de la langue par défaut de l'application est requise.
+      defaultLanguageRequiredMessage: L'annonce de la langue par défaut de l'application
+        est requise.
       disabled: Désactivé
       enable: Activer l'annonce
-      information: Vous pouvez annoncer une information générale (par exemple, temps d'arrêt, modifications, etc.) dans cette zone. Ce message peut être vu par tous les utilisateurs du portail.
+      information: Vous pouvez annoncer une information générale (par exemple, temps
+        d'arrêt, modifications, etc.) dans cette zone. Ce message peut être vu par
+        tous les utilisateurs du portail.
       saveChanges: Enregistrer les modifications
       tabTitle: Annonces
     appDisplayName: Nom d'affichage
     appDisplayNameRequiredMsg: Veuillez entrer le nom d'affichage de l'application
-    appNameCharactersLimit: 'Seuls les caractères suivants sont autorisés pour le nom de l''application : [\p{Alnum}_-]+'
+    appNameCharactersLimit: 'Seuls les caractères suivants sont autorisés pour le
+      nom de l''application : [\p{Alnum}_-]+'
     appNameRequiredMsg: Veuillez rentrer le nom de l'application
     applicationHint: L'ordre peut être modifié par glisser/déposer
     applicationLinkRequiredMsg: Veuillez rentrer le lien vers le Portail
@@ -201,86 +211,159 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteAppConfirmation: Etes-vous sûr de vouloir supprimer cette application ?
     dialogclosinginformation:
       dialogHeader: La configuration du portail est terminée
-      informMessage: Les modifications des paramètres du portail nécessitent un rafraîchissement de la page actuelle pour que la nouvelle configuration prenne effet.
+      informMessage: Les modifications des paramètres du portail nécessitent un rafraîchissement
+        de la page actuelle pour que la nouvelle configuration prenne effet.
     duplicatePortalAppMsg: Cette demande existe déjà, veuillez choisir une autre demande.
     editApplication: Editer les paramètres de l'application
     editSetting: Editer les paramètres
     embedInFrame: Démarrer un processus/une tâche en mode IFrame
     emptySupportedLanguages: Il n'y a pas langue supplémentaire supportée
     globalVariableNote:
-      AppleStoreURL: Définir l'URL pour télécharger l'application mobile Axon Ivy sur l'Apple Store.
-      ApplicationName: Le nom de l'application par défaut qui sera affiché dans le titre de la page.
+      AppleStoreURL: Définir l'URL pour télécharger l'application mobile Axon Ivy
+        sur l'Apple Store.
+      ApplicationName: Le nom de l'application par défaut qui sera affiché dans le
+        titre de la page.
       BaseQRCodeUrl: Définir l'URL de base du code QR à afficher.
       DefaultThemeMode: Le mode de thème par défaut de l'application
-      EnableSwitchThemeModeButton: Défini à true pour activer le bouton de changement de thème.
-      GlobalSearchScopeCategoriesNote: Définition des types recherchés par la recherche globale
-      GooglePlayURL: Définir l'URL pour télécharger l'application mobile Axon Ivy sur Google Play.
-      RoleDirectChildrenLimit: 'Le nombre défini contrôle la quantité de rôles d''enfants directs qui est affichée dans l''onglet Gestion des rôles. Nombre valide : 10, 50, 100'
-      RoleParentLimit: 'Le nombre défini contrôle la quantité de rôles parents qui est affichée lors du filtrage des rôles dans l''onglet Gestion des rôles. Nombre valide : 5, 10, 20'
-      SessionCacheTimeout: Délai d'expiration du cache de session pour le portail. Définit la durée d'expiration du cache de session (en secondes) pour le portail. Cette valeur peut être définie entre 300 (5 minutes) et 86 400 (24 heures).
-      ShowLoginPageFooter: Pour activer/désactiver l'affichage du pied de page sur la page de connexion.
+      EnableSwitchThemeModeButton: Défini à true pour activer le bouton de changement
+        de thème.
+      GlobalSearchScopeCategoriesNote: Définition des types recherchés par la recherche
+        globale
+      GooglePlayURL: Définir l'URL pour télécharger l'application mobile Axon Ivy
+        sur Google Play.
+      RoleDirectChildrenLimit: 'Le nombre défini contrôle la quantité de rôles d''enfants
+        directs qui est affichée dans l''onglet Gestion des rôles. Nombre valide :
+        10, 50, 100'
+      RoleParentLimit: 'Le nombre défini contrôle la quantité de rôles parents qui
+        est affichée lors du filtrage des rôles dans l''onglet Gestion des rôles.
+        Nombre valide : 5, 10, 20'
+      SessionCacheTimeout: Délai d'expiration du cache de session pour le portail.
+        Définit la durée d'expiration du cache de session (en secondes) pour le portail.
+        Cette valeur peut être définie entre 300 (5 minutes) et 86 400 (24 heures).
+      ShowLoginPageFooter: Pour activer/désactiver l'affichage du pied de page sur
+        la page de connexion.
       ShowQRCode: Pour activer/désactiver l'affichage du code QR.
-      behaviourWhenClickingOnLineInCaseList: Pour alterner entre les comportements (accéder aux détails du dossier ou aux détails de l’entreprise) lors du clic sur un dossier dans le widget de dossier du dashboard, la recherche globale, les dossiers associés et le widget de processus en mode combiné.
-      behaviourWhenClickingOnLineInTaskList: Pour changer de comportement (exécuter la tâche ou accéder aux détails de la tâche) en cliquant sur une ligne dans la liste des tâches, le widget des tâches du tableau de bord et les tâches liées dans la page des détails du cas.
-      chatMaxConnection: Si le nombre de tabs du browser est supérieur à ce nombre maximum, le chat sera désactivé sur les tabs inactifs du browser. Les valeurs valides sont 1, 2, 3, 4, 5.
-      chatResponseTimeout: Délai de réponse au chat en secondes, la valeur par défaut est 0 et signifie aucun délai. Si les messages de chat passent par le proxy inverse Nginx, le délai de réponse du chat doit être inférieur au délai de Nginx, par exemple moins de 60 secondes.
-      dateFilterWithTime: Défini à true pour activer le filtrage de la date avec l'heure. Ce paramètre s'applique à la liste des tâches, à la liste des cas et aux statistiques.
+      behaviourWhenClickingOnLineInCaseList: Pour alterner entre les comportements
+        (accéder aux détails du dossier ou aux détails de l’entreprise) lors du clic
+        sur un dossier dans le widget de dossier du dashboard, la recherche globale,
+        les dossiers associés et le widget de processus en mode combiné.
+      behaviourWhenClickingOnLineInTaskList: Pour changer de comportement (exécuter
+        la tâche ou accéder aux détails de la tâche) en cliquant sur une ligne dans
+        la liste des tâches, le widget des tâches du tableau de bord et les tâches
+        liées dans la page des détails du cas.
+      chatMaxConnection: Si le nombre de tabs du browser est supérieur à ce nombre
+        maximum, le chat sera désactivé sur les tabs inactifs du browser. Les valeurs
+        valides sont 1, 2, 3, 4, 5.
+      chatResponseTimeout: Délai de réponse au chat en secondes, la valeur par défaut
+        est 0 et signifie aucun délai. Si les messages de chat passent par le proxy
+        inverse Nginx, le délai de réponse du chat doit être inférieur au délai de
+        Nginx, par exemple moins de 60 secondes.
+      dateFilterWithTime: Défini à true pour activer le filtrage de la date avec l'heure.
+        Ce paramètre s'applique à la liste des tâches, à la liste des cas et aux statistiques.
       deepLAuthKey: DeepL Clé d'authentification (doit se terminer par :fx)
-      defaultHomepage: Pour définir la page d'accueil standard vers laquelle sera redirigée la personne qui clique sur l'icône d'accueil ou le logo. Ce paramètre s'applique également à la page de fin après avoir terminé une tâche.
-      defaultProcessImage: Le paramètre standard de l'image par défaut qui sera affichée dans la liste de traitement des images.
-      defaultProcessMode: Le paramètre standard du mode d'affichage dans la liste des processus.
+      defaultHomepage: Pour définir la page d'accueil standard vers laquelle sera
+        redirigée la personne qui clique sur l'icône d'accueil ou le logo. Ce paramètre
+        s'applique également à la page de fin après avoir terminé une tâche.
+      defaultProcessImage: Le paramètre standard de l'image par défaut qui sera affichée
+        dans la liste de traitement des images.
+      defaultProcessMode: Le paramètre standard du mode d'affichage dans la liste
+        des processus.
       defaultSortDirectionOfCaseList: Sens de tri par défaut de la liste des affaires
       defaultSortDirectionOfTaskList: Sens de tri par défaut de la liste des tâches
       defaultSortFieldOfCaseList: Champ de tri par défaut de la liste des affaires
       defaultSortFieldOfTaskList: Champ de tri par défaut de la liste des tâches
-      delegationAppendOption: Ce paramètre détermine quelles informations supplémentaires sont incluses lors du formatage des noms de rôle.
-      disableCaseCount: Mettre à true pour désactiver le cas de comptage dans la liste des cas
-      disableTaskCount: Mettre à true pour désactiver la tâche de comptage dans la liste des tâches
-      displayAllUsersOfTaskActivator: Ce paramètre est utilisé pour le composant SecurityMemberDisplayName. Si le SecurityMember est un rôle, définissez ce paramètre sur true pour afficher la liste de tous les utilisateurs de ce rôle. Si ce paramètre a la valeur true, des informations sur l'icône sont
-        affichées à côté du nom du rôle.
-      displayMessageAfterFinishOrLeaveTask: Un message de retour d'information sera affiché lorsque l'utilisateur aura terminé ou quitté une tâche.
-      documentUploadSizeLimit: Définissez la limite de taille pour le téléchargement de documents en mégaoctets (Mo). La valeur par défaut est de 20 Mo.
+      delegationAppendOption: Ce paramètre détermine quelles informations supplémentaires
+        sont incluses lors du formatage des noms de rôle.
+      disableCaseCount: Mettre à true pour désactiver le cas de comptage dans la liste
+        des cas
+      disableTaskCount: Mettre à true pour désactiver la tâche de comptage dans la
+        liste des tâches
+      displayAllUsersOfTaskActivator: Ce paramètre est utilisé pour le composant SecurityMemberDisplayName.
+        Si le SecurityMember est un rôle, définissez ce paramètre sur true pour afficher
+        la liste de tous les utilisateurs de ce rôle. Si ce paramètre a la valeur
+        true, des informations sur l'icône sont affichées à côté du nom du rôle.
+      displayMessageAfterFinishOrLeaveTask: Un message de retour d'information sera
+        affiché lorsque l'utilisateur aura terminé ou quitté une tâche.
+      documentUploadSizeLimit: Définissez la limite de taille pour le téléchargement
+        de documents en mégaoctets (Mo). La valeur par défaut est de 20 Mo.
       embedInFrame: Régler sur true pour démarrer un processus/tâche en mode IFrame
-      enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
-      enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer la prise en charge de la traduction de DeepL.
-      enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents pour certains types de fichiers. Les types de fichiers pris en charge sont : pdf, png, jpeg, jpg, txt, log.'
-      enableGroupChat: Définissez cette propriété sur true pour activer la fonction de chat de groupe
-      enablePrivateChat: Définissez cette propriété à true pour activer la fonction de chat privé
-      enableProcessViewer: Définissez cette propriété à true pour activer l'option de visualisation de processus dans les actions de Task/Case.
-      enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la vérification de PDF, Excel, Word.
-      enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
+      enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de
+        cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes
+        de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
+      enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer
+        la prise en charge de la traduction de DeepL.
+      enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents
+        pour certains types de fichiers. Les types de fichiers pris en charge sont
+        : pdf, png, jpeg, jpg, txt, log.'
+      enableGroupChat: Définissez cette propriété sur true pour activer la fonction
+        de chat de groupe
+      enablePrivateChat: Définissez cette propriété à true pour activer la fonction
+        de chat privé
+      enableProcessViewer: Définissez cette propriété à true pour activer l'option
+        de visualisation de processus dans les actions de Task/Case.
+      enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la
+        vérification de script pour le document téléchargé. Actuellement, cette fonction
+        prend en charge la vérification de PDF, Excel, Word.
+      enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le
+        scanner de virus pour le document téléchargé. Actuellement, cette fonction
+        utilise l'API VIRUSTOTAL.
       hideCaseCreator: |-
         La valeur "true" permet de masquer le créateur du dossier dans la liste des dossiers, le widget du dossier et les détails du dossier.
         Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
-      hideCaseDocument: Si vous choisissez "true", la section du document dans la page de détail du cas sera invisible, sinon elle sera visible.
-      hideChangePasswordButtonNote: Attribuez la valeur true à cette variable pour masquer l'option "Changer de mot de passe" dans le menu supérieur et l'option "Mot de passe oublié" sur la page de connexion. Si elle vaut false, ces options seront affichées.
-      hideLogoutButtonNote: Si true, le bouton de déconnexion du menu supérieur sera masqué, sinon il sera affiché.
-      hideRelatedCaseInfoFromHistory: Si la valeur est vraie, l'historique des cas n'affiche pas les informations relatives aux cas dans le tableau de l'historique.
-      hideSystemNotesFromHistory: Si vrai, la remarque sur le cas/la tâche n'affiche aucune note de système pour les utilisateurs non administrateurs.
-      hideSystemNotesFromHistoryAdministrator: Si vrai, la remarque sur le cas/la tâche n'affiche aucune note de système pour l'administrateur.
-      hideSystemTasksFromHistory: Si vrai, la remarque sure le cas / de la tâche n'affiche aucune tâche du système pour les utilisateurs non administrateurs.
-      hideSystemTasksFromHistoryAdministrator: Si vrai, la remarque sure le cas / de la tâche n'affiche aucune tâche système pour l'administrateur.
-      hideTaskDocument: Si vous sélectionnez "true", la section du document dans la page de détail de la tâche sera invisible, sinon elle sera visible.
-      hideTimeNote: Définissez la valeur true pour masquer les heures et les minutes suivantes.
-      hideUploadDocumentForDoneCaseNote: Définissez la valeur true pour refuser le téléchargement (également supprimer) du document une fois la requête terminée.
+      hideCaseDocument: Si vous choisissez "true", la section du document dans la
+        page de détail du cas sera invisible, sinon elle sera visible.
+      hideChangePasswordButtonNote: Attribuez la valeur true à cette variable pour
+        masquer l'option "Changer de mot de passe" dans le menu supérieur et l'option
+        "Mot de passe oublié" sur la page de connexion. Si elle vaut false, ces options
+        seront affichées.
+      hideLogoutButtonNote: Si true, le bouton de déconnexion du menu supérieur sera
+        masqué, sinon il sera affiché.
+      hideRelatedCaseInfoFromHistory: Si la valeur est vraie, l'historique des cas
+        n'affiche pas les informations relatives aux cas dans le tableau de l'historique.
+      hideSystemNotesFromHistory: Si vrai, la remarque sur le cas/la tâche n'affiche
+        aucune note de système pour les utilisateurs non administrateurs.
+      hideSystemNotesFromHistoryAdministrator: Si vrai, la remarque sur le cas/la
+        tâche n'affiche aucune note de système pour l'administrateur.
+      hideSystemTasksFromHistory: Si vrai, la remarque sure le cas / de la tâche n'affiche
+        aucune tâche du système pour les utilisateurs non administrateurs.
+      hideSystemTasksFromHistoryAdministrator: Si vrai, la remarque sure le cas /
+        de la tâche n'affiche aucune tâche système pour l'administrateur.
+      hideTaskDocument: Si vous sélectionnez "true", la section du document dans la
+        page de détail de la tâche sera invisible, sinon elle sera visible.
+      hideTimeNote: Définissez la valeur true pour masquer les heures et les minutes
+        suivantes.
+      hideUploadDocumentForDoneCaseNote: Définissez la valeur true pour refuser le
+        téléchargement (également supprimer) du document une fois la requête terminée.
       hideYear: Définissez la valeur true, l'année sera cachée, sinon elle sera montrée.
-      imageUploadSizeLimit: Définissez la limite de taille pour le téléchargement d’images en mégaoctets (Mo). La valeur par défaut est de 6 Mo.
+      imageUploadSizeLimit: Définissez la limite de taille pour le téléchargement
+        d’images en mégaoctets (Mo). La valeur par défaut est de 6 Mo.
       loggedInUserFormat: L'option pour afficher le format de l'utilisateur connecté
-      refreshTaskListIntervalNote: Intervalle d'actualisation de la liste des tâches en secondes.
+      refreshTaskListIntervalNote: Intervalle d'actualisation de la liste des tâches
+        en secondes.
       showAvatar: Pour activer/désactiver l'affichage des avatars des utilisateurs/rôles.
       showButtonIcon: Pour activer/désactiver l'icône d'affichage dans le bouton.
-      showCaseDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de l'affaire.
-      showErrorLogToConsole: Défini à true pour activer l'écriture du journal des erreurs dans la console du navigateur.
+      showCaseDurationTime: Pour activer/désactiver l'affichage de la durée dans la
+        page des détails de l'affaire.
+      showErrorLogToConsole: Défini à true pour activer l'écriture du journal des
+        erreurs dans la console du navigateur.
       showGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale.
-      showProcessInformation: Définissez la valeur false pour désactiver le lien vers l'option Afficher les informations du processus sur la page processus (mode grille) et détails du cas.
-      showQuickGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale rapide.
-      showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
-      showTooltipTechnicalName: Activer l'affichage du nom technique des utilisateurs dans les infobulles.
-      uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
+      showProcessInformation: Définissez la valeur false pour désactiver le lien vers
+        l'option Afficher les informations du processus sur la page processus (mode
+        grille) et détails du cas.
+      showQuickGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale
+        rapide.
+      showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la
+        page des détails de la tâche.
+      showTooltipTechnicalName: Activer l'affichage du nom technique des utilisateurs
+        dans les infobulles.
+      uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez
+        toutes les extensions. Si juste autoriser quelques extensions, listez les
+        extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
     key: Clé
     link: Lien
     loading: CHARGEMENT
-    loginLogoSizeTooltip: 'Taille recommandée<BR/>Logo carré: 80x80 px<BR/>Logo rectangle: 191x50 p'
+    loginLogoSizeTooltip: 'Taille recommandée<BR/>Logo carré: 80x80 px<BR/>Logo rectangle:
+      191x50 p'
     logoSizeRecommendation:
       homeRectangleSize: 'Logo rectangle: 160x42 px'
       homeSquareSize: 'Logo carré: 75x75 px'
@@ -293,12 +376,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     passwordRequiredMsg: Veuillez entrer un mot de passe
     pleaseSelect: Veuillez sélectionner…
     portalLink: Lien vers le Portail
-    refreshUserErrorMsg: '{0} erreur(s) trouvée(s). Voir le rapport détaillé : <BR/> {1}'
+    refreshUserErrorMsg: '{0} erreur(s) trouvée(s). Voir le rapport détaillé : <BR/>
+      {1}'
     refreshUserPermissionSuccessful: '{0} utilisateurs rafraichis avec succès'
     refreshUserPermissions: Synchroniser les paramètres
     requireToInputServer: Veuillez sélectionner un serveur pour l'application
-    resetAllSettingsConfirmation: Êtes-vous sûr de vouloir restaurer les valeurs par défaut pour tous les paramètres?
-    resetSettingConfirmation: Êtes-vous sûr de vouloir restaurer la valeur par défaut pour ce paramètre?
+    resetAllSettingsConfirmation: Êtes-vous sûr de vouloir restaurer les valeurs par
+      défaut pour tous les paramètres?
+    resetSettingConfirmation: Êtes-vous sûr de vouloir restaurer la valeur par défaut
+      pour ce paramètre?
     restoreAllToDefault: Restaurer tous les paramètres par défaut
     restoreDefault: Rétablir la valeur par défaut
     settingApplicationName: Entrer le nom de l'application
@@ -328,7 +414,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     noDescription: Aucune description
     noRunningCase: Aucune cas n'est en cours d'exécution
     noRunningTask: Aucune tâche n'est en cours d'exécution
-    noRunningTasksAndCasesPermission: D'autres tâches sont en cours d'exécution. Vous n'êtes pas autorisé à voir les tâches associées à ce cas.
+    noRunningTasksAndCasesPermission: D'autres tâches sont en cours d'exécution. Vous
+      n'êtes pas autorisé à voir les tâches associées à ce cas.
     noSideSteps: Pas de Sidestep disponible
     noTaskName: < Aucun nom de tâche >
     noTasks: Aucune tâche
@@ -350,7 +437,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskStateIsCreated: L'état de la tâche est créé (non sauvegardé pour l’instant)
   caseList:
     cases: Dossiers
-    confirmDeleteMessage: Cette action ne peut pas être annulée. Voulez-vous vraiment supprimer ?
+    confirmDeleteMessage: Cette action ne peut pas être annulée. Voulez-vous vraiment
+      supprimer ?
     defaultColumns:
       APPLICATION: Application
       CATEGORY: Catégorie
@@ -362,16 +450,21 @@ ch.ivy.addon.portalkit.ui.jsf:
       OWNER: Responsables de processus
       STATE: Etat
     deletionNoteContent: Ce dossier a été supprimé par {0}
-    destroyCaseMessage: 'Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer dossier <b>{0} (ID: {1})</b> et toutes les tâches associées ?'
+    destroyCaseMessage: 'Cette opération ne peut pas être annulée. Êtes-vous sûr de
+      vouloir supprimer dossier <b>{0} (ID: {1})</b> et toutes les tâches associées
+      ?'
     destroyfail: Une erreur est survenue lors de la suppression du dossier.
     destroysucceed: Le dossier a été supprimé avec succès
-    downloadZipFileExplanation: Le nombre de cas à exporter dépasse la limite des lignes Excel. Par conséquent, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
+    downloadZipFileExplanation: Le nombre de cas à exporter dépasse la limite des
+      lignes Excel. Par conséquent, les données seront divisées en plusieurs fichiers
+      Excel, puis compressées dans un fichier ZIP à télécharger.
     error: Erreur
     exportedCasesFileName: AXONIVY_Dataset_Cases_{0}.{1}
     headerTitle:
       relatedStatisticHeader: 'Cas du diagramme:'
       technicalCaseOfBusinessCaseAlternativeTitle: Dossier {0}
-      technicalCasesOfBusinessCaseTitle: 'Cas techniques pour le Business Case #{0} {1}'
+      technicalCasesOfBusinessCaseTitle: 'Cas techniques pour le Business Case #{0}
+        {1}'
     relatedCaseHeader: 'Dossier #{0} {1}'
     relatedCases: Cas connexes
     title: Titre
@@ -391,7 +484,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     RUNNING: En cours
   chat:
     chatAssigneeDialogHeader: Ajouter des utilisateurs au chat
-    chatAssigneeDialogHint: 'Veuillez sélectionner les utilisateurs et les groupes pertinents qui devraient être ajoutés à votre chat lié au processus :'
+    chatAssigneeDialogHint: 'Veuillez sélectionner les utilisateurs et les groupes
+      pertinents qui devraient être ajoutés à votre chat lié au processus :'
     createProcessChat: Créer un chat de processus
     errorSelectInvalidAssignee: Le destinataire est déjà sélectionné ou invalide
     failureToCreateProcessChat: Échec de la création d'un chat de processus
@@ -400,13 +494,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     joinGroupQuestion: Voulez-vous rejoindre le chat ?
     joinProcessChat: Rejoindre le chat de processus
     joinedProcessChat: Vous avez rejoint le chat du processus - {0}
-    noAssignees: Veuillez sélectionner les membres assignés pour créer ce groupe de chat
+    noAssignees: Veuillez sélectionner les membres assignés pour créer ce groupe de
+      chat
     noGroupChat: Il n'y a pas de groupes de chat.
     noUsers: Pas d'utilisateurs
     participants: Participants
     personalChatHeader: Chat général
     processChatIsCreated: 'Chat de processus : {0} est créé'
-    processChatWasCreated: 'Chat de processus : {0} a été créé. Vous ne pouvez pas le créer à nouveau.'
+    processChatWasCreated: 'Chat de processus : {0} a été créé. Vous ne pouvez pas
+      le créer à nouveau.'
     selectedAssignees: Cessionnaires sélectionnés
     toggleChat: Afficher le panneau de discussion
     typeMessage: Tapez votre message ici…
@@ -495,7 +591,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     errorNotification: Notification d'erreurs
     errorXhr: N'a pas réussi à mettre à jour le contenu du site Web
     escalationTaskHeaderText: Escalader
-    escalationTaskMessage: L'expiration est fixée à maintenant, donc la tâche expire. Etes-vous sûr?
+    escalationTaskMessage: L'expiration est fixée à maintenant, donc la tâche expire.
+      Etes-vous sûr?
     filter:
       from: du
       moreOptions: Plus d'options
@@ -543,7 +640,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRecordsFound: Aucun résultat
     notAvailable: '-'
     note: NOTE
-    numberFromBiggerThanTo: L'adresse de destination doit être plus grande que l'adresse de départ.
+    numberFromBiggerThanTo: L'adresse de destination doit être plus grande que l'adresse
+      de départ.
     numberOfSelectedFilter: filtres sélectionnés
     ok: OK
     'on': le
@@ -563,7 +661,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     resetFilters: Réinitialiser les filtres
     resetSettingHeaderText: Rétablir le réglage ?
     resetTaskHeaderText: Réinitialiser cette tâche ?
-    resetToDefaultMessage: Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir rétablir les paramètres par défaut ?
+    resetToDefaultMessage: Cette opération ne peut pas être annulée. Êtes-vous sûr
+      de vouloir rétablir les paramètres par défaut ?
     resetToStandardFilterHeaderText: 'Réinitialiser le filtre standard ? '
     restore: Rétablir
     restoreToDefaultChartHeaderText: Rétablir les graphiques par défaut ?
@@ -593,7 +692,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     state: Etat
     status: Etat
     switchToDesktopVersion: Passer à la version de bureau
-    taskCanceledAndLeftSuccessfully: Vous avez annulé et quitté la tâche avec succès. Vous pouvez trouver la tâche dans le tableau de bord ou dans votre liste de tâches.
+    taskCanceledAndLeftSuccessfully: Vous avez annulé et quitté la tâche avec succès.
+      Vous pouvez trouver la tâche dans le tableau de bord ou dans votre liste de
+      tâches.
     taskFinishedSuccessfully: Vous avez terminé la tâche avec succès
     taskFromSubstitution: Vous voyez cette tâche parce que vous êtes le remplaçant
     taskName: Nom de tâche
@@ -612,7 +713,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     user: '{0} utilisateur'
     users: Utilisateurs
     via: a écrit
-    viewExpired: Votre vue actuelle a expiré. Vous allez être redirigé vers la page d'accueil.
+    viewExpired: Votre vue actuelle a expiré. Vous allez être redirigé vers la page
+      d'accueil.
     viewMode: Mode d'affichage
     visible: Visible
     waitingDownloadMessage: Nous créons l'export, cela peut prendre quelques minutes
@@ -627,10 +729,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       AssignUsersToRole: Attribuer des rôles aux utilisateurs
       AssignedUser: Utilisateurs assignés
       AvailableUsers: Utilisateurs disponibles
-      CannotDeleteRoleTooltip: Vous n'avez pas la permission de supprimer ce rôle. Veuillez contacter votre administrateur système.
-      CannotDeleteUserTooltip: Vous pouvez uniquement modifier les affectations de rôle directes, mais pas les affiliations héritées.
-      CannotEditRoleTooltip: Vous n'avez pas l'autorisation de modifier les informations relatives aux rôles. Veuillez contacter votre administrateur système.
-      CannotManageRoleTooltip: Vous ne pouvez modifier les informations relatives aux rôles que pour les rôles qui ne sont pas impliqués dans un processus.
+      CannotDeleteRoleTooltip: Vous n'avez pas la permission de supprimer ce rôle.
+        Veuillez contacter votre administrateur système.
+      CannotDeleteUserTooltip: Vous pouvez uniquement modifier les affectations de
+        rôle directes, mais pas les affiliations héritées.
+      CannotEditRoleTooltip: Vous n'avez pas l'autorisation de modifier les informations
+        relatives aux rôles. Veuillez contacter votre administrateur système.
+      CannotManageRoleTooltip: Vous ne pouvez modifier les informations relatives
+        aux rôles que pour les rôles qui ne sont pas impliqués dans un processus.
       CreateRole: Créer un nouveau rôle
       DeleteButtonTitle: Supprimer le rôle
       EditButtonTitle: Modifier les informations sur le rôle
@@ -639,17 +745,20 @@ ch.ivy.addon.portalkit.ui.jsf:
       ListUsers: Utilisateurs du rôle {0}
       Messages:
         ConfirmDeleteRole: Vous êtes sûr de vouloir le supprimer ?
-        ConfirmDeleteUserOfRole: Êtes-vous sûr de vouloir retirer ces utilisateurs du rôle ?
+        ConfirmDeleteUserOfRole: Êtes-vous sûr de vouloir retirer ces utilisateurs
+          du rôle ?
         CreateRoleFailed: Le rôle "{0}" n'a pas pu être créé
         CreateRoleSuccess: Rôle "{0}" créé avec succès
-        DuplicateRole: Le rôle "{0}" existe déjà dans le système, essayez avec un autre nom.
+        DuplicateRole: Le rôle "{0}" existe déjà dans le système, essayez avec un
+          autre nom.
         MaxSearchLimit: La recherche actuelle a plus de {0} résultats
         NotFoundRole: Impossible de trouver le "{0}" dans le système.
         ParentRoleIsRequired: Le rôle des parents est obligatoire
         RemoveRoleSuccess: Rôle "{0}" supprimé avec succès
         RoleNameIsRequired: Le nom du rôle est obligatoire
         RoleNotFound: Aucun rôle trouvé
-        SearchToSeeMoreRole: Veuillez utiliser la recherche pour trouver un rôle spécifique ({0} plus de rôles).
+        SearchToSeeMoreRole: Veuillez utiliser la recherche pour trouver un rôle spécifique
+          ({0} plus de rôles).
         UpdateRoleSuccess: Le rôle "{0}" a été mis à jour avec succès
         UserOfRoleNotFound: Aucun utilisateur ne possède ce rôle
       NumberUsers: '{0} utilisateurs'
@@ -668,7 +777,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       filterToSee: Filtrer pour en savoir plus
       loadMore: En savoir plus
       noUser: Il n'y a pas d'utilisateurs.
-      tooltipHelper: Cliquez pour afficher tous les utilisateurs qui possèdent ce rôle directement ou indirectement
+      tooltipHelper: Cliquez pour afficher tous les utilisateurs qui possèdent ce
+        rôle directement ou indirectement
       userOfRoleTitle: Utilisateur du groupe {0}
     passwordValidation:
       criteria: Critères
@@ -681,13 +791,17 @@ ch.ivy.addon.portalkit.ui.jsf:
         minUppercaseCharacter: Caractères majuscules minimum
       titlePage: Validation du mot de passe
     processChain:
-      currentStepIsNotDefined: L'étape actuelle ({0}) de la chaîne de processus n'est pas définie
+      currentStepIsNotDefined: L'étape actuelle ({0}) de la chaîne de processus n'est
+        pas définie
     taskStart:
-      cannotDelegateTaskMessage: Cette tâche ne peut pas être déléguée ä un autre utilisateur ou une autre groupe.
+      cannotDelegateTaskMessage: Cette tâche ne peut pas être déléguée ä un autre
+        utilisateur ou une autre groupe.
       cannotStartMessages:
         cannotStartTask: Vous ne pouvez pas démarrer la tâche {0}.
-        isAnotherUserWorking: Vous ne pouvez pas travailler sur la tâche ''{0}'' avec l'identifiant ''{1}'' car l'utilisateur ''{2}'' travaille actuellement dessus.
-        noPermission: Vous ne pouvez pas démarrer la tâche {0} car vous n'avez pas la permission.
+        isAnotherUserWorking: Vous ne pouvez pas travailler sur la tâche ''{0}'' avec
+          l'identifiant ''{1}'' car l'utilisateur ''{2}'' travaille actuellement dessus.
+        noPermission: Vous ne pouvez pas démarrer la tâche {0} car vous n'avez pas
+          la permission.
         taskDone: Vous ne pouvez pas démarrer la tâche {0} car c'est déjà fait.
       created: Créé le
       expired: Date d''expiration
@@ -696,7 +810,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       taskNameNotAvailable: '[Nom de la tâche non disponible ]'
     taskView:
       DeleteFilter: Supprimer le filtre
-      adminFilterSetWarning: Votre jeu de filtres contient des états qui ne peuvent être vus que par les administrateurs.
+      adminFilterSetWarning: Votre jeu de filtres contient des états qui ne peuvent
+        être vus que par les administrateurs.
       appliedFilters: Filtres appliqués
       exportedTasksCasesFileName: AXONIVY_Dataset_Statistics_{0}.{1}
       exportedTasksFileName: AXONIVY_Dataset_Tasks_{0}.{1}
@@ -714,11 +829,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     CustomWidgets: Widgets personnalisés
     DashboardConfiguration:
       CreateFromScratch: Créer à partir de rien
-      CreateFromScratchDescription: Créez votre propre tableau de bord à partir de zéro
+      CreateFromScratchDescription: Créez votre propre tableau de bord à partir de
+        zéro
       CreateNewPrivateDashboard: Créer un nouveau tableau de bord privé
       CreateNewPublicDashboard: Créer un nouveau tableau de bord public
-      Description: Dans cette zone, vous pouvez configurer les tableaux de bord en fonction de vos besoins.
-      DoNotSupportMobile: La configuration du tableau de bord n'est pas prise en charge pour les appareils mobiles.
+      Description: Dans cette zone, vous pouvez configurer les tableaux de bord en
+        fonction de vos besoins.
+      DoNotSupportMobile: La configuration du tableau de bord n'est pas prise en charge
+        pour les appareils mobiles.
       EditPrivateDashboards: Modifier vos tableaux de bord privés
       EditPublicDashboards: Modifier les tableaux de bord publics
       ExportDashboard: Exporter le tableau de bord
@@ -741,23 +859,33 @@ ch.ivy.addon.portalkit.ui.jsf:
       WidgetNameColumn: Nom du widget
       WrongDateFormat: La date n'est pas valide
     ManageFilter: Gérer les filtres
-    NoColumnsEnabledForQuickSearch: Aucune colonne n'est activée pour la recherche rapide
+    NoColumnsEnabledForQuickSearch: Aucune colonne n'est activée pour la recherche
+      rapide
     NoData: Pas de données
-    NoSavedFilterMessage: Aucun filtre enregistré n'a été trouvé. Essayez d'en créer un nouveau en cliquant sur le bouton Enregistrer le filtre.
+    NoSavedFilterMessage: Aucun filtre enregistré n'a été trouvé. Essayez d'en créer
+      un nouveau en cliquant sur le bouton Enregistrer le filtre.
     NoWidgetAvailable: Il n'y a pas de widgets.
     QuickSearch: Recherche rapide
-    QuickSearchInfo: Vous pouvez personnaliser la portée de la recherche rapide dans la gestion des colonnes des widgets. La recherche se fait sur la base du critère "contient", mais soyez attentif à la performance lorsque vous ajoutez de nombreuses colonnes.
+    QuickSearchInfo: Vous pouvez personnaliser la portée de la recherche rapide dans
+      la gestion des colonnes des widgets. La recherche se fait sur la base du critère
+      "contient", mais soyez attentif à la performance lorsque vous ajoutez de nombreuses
+      colonnes.
     QuickSearchScope: 'Étendue de la recherche: {0}'
-    RestoreDefaultDashboardMessage: Si vous procédez ainsi, vous perdrez tous les widgets que vous avez créés. Les paramètres standard de <span class="dashboard-template-name-message">{0}</span> seront appliqués.
+    RestoreDefaultDashboardMessage: Si vous procédez ainsi, vous perdrez tous les
+      widgets que vous avez créés. Les paramètres standard de <span class="dashboard-template-name-message">{0}</span>
+      seront appliqués.
     SaveNewWidgetFilterHeader: Enregistrer un nouveau filtre de widget
     SavedFilterHeader: Filtres enregistrés
     SearchForFilter: Rechercher un filtre
     ShareThisDashboard: Partager ce tableau de bord
     StandardWidgets: Widgets standard
     StatisticWidget:
-      EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau graphique !
-    WelcomeWidgetIntroduction: Ce widget affiche un texte et une image de bienvenue sur le tableau de bord.
-    WelcomeWidgetNotFoundMessage: Nous ne pouvons pas trouver l'image du widget, veuillez reconfigurer votre image !
+      EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau
+        graphique !
+    WelcomeWidgetIntroduction: Ce widget affiche un texte et une image de bienvenue
+      sur le tableau de bord.
+    WelcomeWidgetNotFoundMessage: Nous ne pouvons pas trouver l'image du widget, veuillez
+      reconfigurer votre image !
     WidgetFilterName: Nom du filtre du widget
     WidgetFilters: Filtres widgets
     YourWelcomeWidget: Votre widget de bienvenue
@@ -766,7 +894,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     addWidget: Ajouter un widget
     canWorkOn: Peut travailler sur
     caseList: Liste des cas
-    caseListIntroduction: Ce widget affiche les informations pertinentes sur l'affaire en fonction des paramètres définis.
+    caseListIntroduction: Ce widget affiche les informations pertinentes sur l'affaire
+      en fonction des paramètres définis.
     caseWidgetInfo:
       casesByCategory: Nombre d'affaires par catégorie
       casesByState: Nombre d'affaires par état
@@ -779,10 +908,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       CUSTOM_CASE: Champ d'affaire personnalisé
       STANDARD: Colonne standard
     configuration:
-      CustomWidgetExternalLinkWarning: Certains web sites ne sont pas compatibles avec les iframe pour des raisons de sécurité. Veuillez contacter votre administrateur si le web site externe ne fonctionne pas correctement.
+      CustomWidgetExternalLinkWarning: Certains web sites ne sont pas compatibles
+        avec les iframe pour des raisons de sécurité. Veuillez contacter votre administrateur
+        si le web site externe ne fonctionne pas correctement.
       CustomWidgetTitlePlaceholder: Laissez-le vide pour masquer l'en-tête du widget
       Parameters: Paramètres
-      RestoreDefaultDashboardTemplateTooltip: Nous ne trouvons pas le modèle de votre tableau de bord, nous ne pouvons donc pas le réinitialiser à la configuration standard. Veuillez vérifier auprès de votre administrateur pour plus de détails!
+      RestoreDefaultDashboardTemplateTooltip: Nous ne trouvons pas le modèle de votre
+        tableau de bord, nous ne pouvons donc pas le réinitialiser à la configuration
+        standard. Veuillez vérifier auprès de votre administrateur pour plus de détails!
       SelectTheTemplate: Sélectionnez le modèle
       SelectYourTemplate: Sélectionnez votre template
       WelcomeConfigurationDescription: ''
@@ -801,7 +934,9 @@ ch.ivy.addon.portalkit.ui.jsf:
         ImageStyleClass: Classe de style d'image
         PreviewDarkMode: Aperçu pour le mode sombre
         PreviewLightMode: Aperçu pour le mode clair
-        PreviewTooltip: Cet aperçu ne peut pas rendre tous les paramètres mais devrait donner une idée de ce à quoi ressemblera le widget final. La taille de l'image, l'orientation et certains paramètres CSS ne seront pas affichés ici.
+        PreviewTooltip: Cet aperçu ne peut pas rendre tous les paramètres mais devrait
+          donner une idée de ce à quoi ressemblera le widget final. La taille de l'image,
+          l'orientation et certains paramètres CSS ne seront pas affichés ici.
         ShowGreeting: Afficher les salutations
         TextColorDarkMode: Couleur pour le mode sombre
         TextColorLightMode: Couleur pour le mode clair
@@ -810,17 +945,24 @@ ch.ivy.addon.portalkit.ui.jsf:
         Welcome: Bienvenue
         WelcomeTextStyleClass: Classe de style de texte de bienvenue
       configuration: Configuration
-      configurationDescription: Vous pouvez configurer votre widget dans cette zone de configuration. Veuillez définir les filtres requis ainsi que les colonnes à afficher.
-      customWidgetParamChangedMessage: Ce processus a changé. Cliquez sur Update pour continuer.
+      configurationDescription: Vous pouvez configurer votre widget dans cette zone
+        de configuration. Veuillez définir les filtres requis ainsi que les colonnes
+        à afficher.
+      customWidgetParamChangedMessage: Ce processus a changé. Cliquez sur Update pour
+        continuer.
       editWidgetHeader: Modifier la configuration du widget
       import: Importer
       importFromJsonFile: Importer depuis un fichier JSON
       newWidgetHeader: Nouvelle configuration du widget {0}
       pageTitle: Configuration du tableau de bord
-      processConfigurationDescription: Vous pouvez configurer votre widget dans cette zone de configuration. Veuillez définir les filtres requis ainsi que les propriétés à afficher.
-      processViewerConfigurationDescription: Vous pouvez configurer votre widget dans cette zone de configuration. Veuillez définir les informations à afficher.
+      processConfigurationDescription: Vous pouvez configurer votre widget dans cette
+        zone de configuration. Veuillez définir les filtres requis ainsi que les propriétés
+        à afficher.
+      processViewerConfigurationDescription: Vous pouvez configurer votre widget dans
+        cette zone de configuration. Veuillez définir les informations à afficher.
       tableConfiguration: Configuration du tableau
-      tableConfigurationDesc: Vous pouvez gérer les colonnes et définir le tri standard en cliquant sur la colonne.
+      tableConfigurationDesc: Vous pouvez gérer les colonnes et définir le tri standard
+        en cliquant sur la colonne.
       yourWidget: Votre widget
     createWidget: Ajouter un widget
     createdFrom: Créé de
@@ -832,12 +974,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       dashboardIcon: Icône du tableau de bord
       dashboardPermission: Autorisation du tableau de bord
       dashboardTitle: Titre du tableau de bord
-      deleteDashboardMessage: Êtes-vous sûr de vouloir supprimer le "{0}" tableau de bord?
+      deleteDashboardMessage: Êtes-vous sûr de vouloir supprimer le "{0}" tableau
+        de bord?
       editDashboard: Modifier le tableau de bord
       manageDashboard: Gérer le tableau de bord
       removeDashboardHeader: Supprimez le tableau de bord "{0}".
     deleteWidget: Supprimer le widget
-    downloadZipFileExplanation: Si le nombre d'éléments à exporter dépasse la limite des lignes Excel, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
+    downloadZipFileExplanation: Si le nombre d'éléments à exporter dépasse la limite
+      des lignes Excel, les données seront divisées en plusieurs fichiers Excel, puis
+      compressées dans un fichier ZIP à télécharger.
     editWidget: Modifier le widget
     existingField: Le champ {0} a déjà été créé
     expiryFrom: Expiration du
@@ -855,17 +1000,21 @@ ch.ivy.addon.portalkit.ui.jsf:
         noCasesFoundWhenFilter: Il n'y a actuellement aucun cas après le filtre appliqué.
       taskWidget:
         EMPTY_MESSAGE: Actuellement, il n'y a pas de tâches supplémentaires disponibles.
-        noTasksFoundWhenFilter: Il n'y a actuellement aucune tâche après le filtre appliqué.
+        noTasksFoundWhenFilter: Il n'y a actuellement aucune tâche après le filtre
+          appliqué.
     loading: Chargement...
     noCategory: Il n'y a pas de catégories
-    noDashboard: Il n'y a pas de tableaux de bord. Ajoutez au moins un tableau de bord, puis ajoutez des widgets.
+    noDashboard: Il n'y a pas de tableaux de bord. Ajoutez au moins un tableau de
+      bord, puis ajoutez des widgets.
     noPermission: Vous n'avez pas les permissions pour voir les tableaux de bord.
     noWidget: Il n'y a pas de widgets fournis pour ce tableau de bord.
     numberPattern: Modèle de numéro
     preview: Aperçu
     processList: Liste des processus
-    processListIntroduction: Ce widget montre les démarrages de processus disponibles. Vous avez la possibilité de choisir différents formats
-    processViewerIntroduction: Ce widget fournit une représentation visuelle du déroulement du processus.
+    processListIntroduction: Ce widget montre les démarrages de processus disponibles.
+      Vous avez la possibilité de choisir différents formats
+    processViewerIntroduction: Ce widget fournit une représentation visuelle du déroulement
+      du processus.
     processWidgetInfo:
       noProcess: Il n'y a pas de processus.
       numberOfProcessesByType: Nombre de processus par type
@@ -879,7 +1028,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     reorder:
       dashboardType: Type de tableau de bord
     restoreDefaultHeader: Restaurer les widgets par défaut
-    restoreDefaultMessage: Si vous procédez ainsi, vous perdrez tous les widgets créés par vous-même. Les paramètres standard seront appliqués.
+    restoreDefaultMessage: Si vous procédez ainsi, vous perdrez tous les widgets créés
+      par vous-même. Les paramètres standard seront appliqués.
     select: Sélectionnez
     selectEditAction: Quelle action voulez-vous effectuer ?
     showFullWidget: Afficher le widget complet
@@ -895,11 +1045,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       numberOfTasksByState: Nombre de tâches par état
       predefinedFilters: Filtres prédéfinis
     taskList: Liste des tâches
-    taskListIntroduction: Ce widget affiche des informations pertinentes sur les tâches selon les paramètres définis.
+    taskListIntroduction: Ce widget affiche des informations pertinentes sur les tâches
+      selon les paramètres définis.
     taskStart: Commencer la tâche
     taskWidgetConfiguration: Configuration du widget de tâches
-    topMenuItemInfo: Si la case "Is Top Menu Item" est cochée, le tableau de bord apparaît comme un élément de niveau supérieur dans la barre de navigation, trié selon sa position dans la liste. Si elle n'est pas cochée, il apparaît comme un sous-élément sous "Tableaux de bord", également trié par position
-      dans la liste.
+    topMenuItemInfo: Si la case "Is Top Menu Item" est cochée, le tableau de bord
+      apparaît comme un élément de niveau supérieur dans la barre de navigation, trié
+      selon sa position dans la liste. Si elle n'est pas cochée, il apparaît comme
+      un sous-élément sous "Tableaux de bord", également trié par position dans la
+      liste.
     widgetInfo: Informations sur le widget
     widgetInfoIcon: Icône d'information du widget
     widgetTitle: Titre du widget
@@ -915,7 +1069,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteDocumentNote: '{0} a supprimé(e) {1}'
     deleteSuceed: Le fichier a été supprimé avec succès
     download: Télécharger
-    fileContainScript: Ce fichier n'est pas autorisé à être téléchargé en raison du contenu du script!
+    fileContainScript: Ce fichier n'est pas autorisé à être téléchargé en raison du
+      contenu du script!
     fileContainVirus: Erreur de téléchargement, virus/infection détecté !
     fileCouldNotParse: Impossible d'analyser le fichier
     fileEmptyMessage: Le fichier est vide
@@ -924,7 +1079,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     type: Type
     upload: Ajouter un nouveau fichier
     uploadDocumentNote: '{0} a téléchargé(e) {1}'
-    uploadFailed: Une erreur est survenue lors de l’envoi du fichier. Veuillez contacter votre administrateur.
+    uploadFailed: Une erreur est survenue lors de l’envoi du fichier. Veuillez contacter
+      votre administrateur.
     uploadFileExists: Le fichier {0} existe déjà
     uploadSucceed: Le fichier a été téléchargé avec succès
   emailSetting:
@@ -932,7 +1088,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     eMail: Courriel
     furtherEmailFromApp: Recevoir d'autres courriels de l'application
     invalidEmailFormat: Format d'e-mail non valide
-    mailNotificationOnTaskAssign: Recevoir une notification par courriel sur l'assignation des tâches
+    mailNotificationOnTaskAssign: Recevoir une notification par courriel sur l'assignation
+      des tâches
     noSettingMsg: Il n'y a pas d'application pour le paramètre Email
   errorPage:
     '404': 404 Page non trouvée
@@ -954,7 +1111,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     EmailAddress: Adresse e-mail
     empty: Vide
     forgotPassword: J'ai oublié mon mot de pas
-    forgotPasswordError: Une erreur s'est produite lors du traitement de votre demande. Veuillez réessayer plus tard.
+    forgotPasswordError: Une erreur s'est produite lors du traitement de votre demande.
+      Veuillez réessayer plus tard.
     goToForgotPassword: Aller à la page des mots de passe oubliés
     goToLogin: Retour à la page de connexion
     good: Bon
@@ -963,16 +1121,22 @@ ch.ivy.addon.portalkit.ui.jsf:
     newPassword: Nouveau mot de passe
     passwordConfirmation: Confirmation du mot de passe
     passwordReset: Réinitialisation du mot de passe
-    passwordResetEmailCantSend: Exception lors de l'envoi d'un courrier électronique. Veuillez réessayer plus tard.
-    passwordResetEmailContent: '<html>Cher/e {0},<br/><br/>Veuillez cliquer sur ce lien pour réinitialiser votre mot de passe : <a href="{1}">Réinitialisation du mot de passe</a><br/><br/>Bonnes salutations</html>.'
-    passwordResetEmailSent: Si cette adresse e-mail est enregistrée, nous lui avons envoyé un lien de récupération du mot de passe.
+    passwordResetEmailCantSend: Exception lors de l'envoi d'un courrier électronique.
+      Veuillez réessayer plus tard.
+    passwordResetEmailContent: '<html>Cher/e {0},<br/><br/>Veuillez cliquer sur ce
+      lien pour réinitialiser votre mot de passe : <a href="{1}">Réinitialisation
+      du mot de passe</a><br/><br/>Bonnes salutations</html>.'
+    passwordResetEmailSent: Si cette adresse e-mail est enregistrée, nous lui avons
+      envoyé un lien de récupération du mot de passe.
     passwordResetEmailSubject: Courriel de réinitialisation du mot de passe
     passwordResetSuccess: Votre mot de passe a été modifié avec succès
     requiredFieldMessage: '{0} est nécessaire'
     setANewPassword: Définir un nouveau mot de passe
     strong: Fort
-    userNotFound: Si cette adresse e-mail est enregistrée, nous lui avons envoyé un lien de récupération du mot de passe.
-    usersHaveSameEmail: De nombreux utilisateurs utilisent ce courrier électronique. Veuillez contacter votre administrateur.
+    userNotFound: Si cette adresse e-mail est enregistrée, nous lui avons envoyé un
+      lien de récupération du mot de passe.
+    usersHaveSameEmail: De nombreux utilisateurs utilisent ce courrier électronique.
+      Veuillez contacter votre administrateur.
     weak: Faible
   iconselection:
     iconSelectionDialogHeader: Choisir une icône
@@ -986,7 +1150,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     PasswordRequiredMessage: Le mot de passe est obligatoire
     UsernameRequiredMessage: Le nom d'utilisateur est obligatoire
     login: Connexion
-    loginErrorMessage: Vous n'êtes pas connecté ou votre nom d'utilisateur n'est pas connu par cette application. Veuillez consulter votre administrateur système.
+    loginErrorMessage: Vous n'êtes pas connecté ou votre nom d'utilisateur n'est pas
+      connu par cette application. Veuillez consulter votre administrateur système.
     loginFailed: Erreur de connexion
     username: Nom d'utilisateur
   logoutSetting:
@@ -998,8 +1163,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     GooglePlay: Google Play
     MenuName: Application mobile Connect
     Platform: 'Plate-forme :'
-    QRCodeDescription: Pour vous connecter à l'application mobile Axon Ivy, scannez ce code QR et entrez vos informations d'identification dans l'application.
-    QRCodeDownloadDescription: Scannez le code ci-dessous à l'aide de votre appareil photo mobile ou d'une application de lecture QR.
+    QRCodeDescription: Pour vous connecter à l'application mobile Axon Ivy, scannez
+      ce code QR et entrez vos informations d'identification dans l'application.
+    QRCodeDownloadDescription: Scannez le code ci-dessous à l'aide de votre appareil
+      photo mobile ou d'une application de lecture QR.
   noteHistory:
     ShowOnlyOpenTasks: Afficher uniquement les tâches en cours
     author: Auteur
@@ -1019,7 +1186,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     newNoteHeader: Ajouter une nouvelle note
     wroteAt: Ajoutée le
   notifications:
-    errorNotificationMessage: Nous n'avons pas pu afficher les détails de la nouvelle tâche. Veuillez contacter votre administrateur pour obtenir de l'aide
+    errorNotificationMessage: Nous n'avons pas pu afficher les détails de la nouvelle
+      tâche. Veuillez contacter votre administrateur pour obtenir de l'aide
     linkToFullScreen: Lien vers le plein écran
     linkToNotificationSettings: Paramètres de notification
     markAllAsRead: Marquer tous comme lus
@@ -1036,9 +1204,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     xSecondsAgo: Il y a %s secondes
     xYearsAgo: Il y a %s ans
   passwordSetting:
-    changePasswordWSError: Une error s'est produite lors du changement de mot de passe. Veuillez contacter votre administrateur si le problème persiste après plusieurs essais.
+    changePasswordWSError: Une error s'est produite lors du changement de mot de passe.
+      Veuillez contacter votre administrateur si le problème persiste après plusieurs
+      essais.
     confirmNewPassword: Confirmer le nouveau mot de passe
-    confirmPasswordHaveMatch: Le nouveau mot de passe saisi ne correspond pas au mot de passe confirmé.
+    confirmPasswordHaveMatch: Le nouveau mot de passe saisi ne correspond pas au mot
+      de passe confirmé.
     currentPassword: Mot de passe actuel
     minCharacterRequired: être d'au moins {0} caractères
     minLowercaseCharacterRequired: contenir au moins {0} caractère minuscule
@@ -1046,7 +1217,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     minSpecialCharacterRequired: contenir au moins {0} caractère spécial
     minUppercaseCharacterRequired: contenir au moins {0} un caractère majuscule
     newPassword: Nouveau mot de passe
-    noPermission: Vous n'avez pas les autorisations nécessaires pour changer le mot de passe. Veuillez contacter votre administrateur pour obtenir de l'aide.
+    noPermission: Vous n'avez pas les autorisations nécessaires pour changer le mot
+      de passe. Veuillez contacter votre administrateur pour obtenir de l'aide.
     passwordMust: Le mot de passe doit
     requireConfirmPassword: Veuillez confirmer votre mot de passe
     requireCurrentPassword: Veuillez indiquer votre mot de passe actuel
@@ -1054,7 +1226,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     updatePasswordSuccessfully: Le mot de passe a été modifié avec succès.
     wrongPassword: Le mot de passe est erroné !
   permission:
-    noPermission: Vous devez avoir le rôle AXONIVY_PORTAL_ADMIN pour accéder à cette page. Veuillez contacter votre administrateur
+    noPermission: Vous devez avoir le rôle AXONIVY_PORTAL_ADMIN pour accéder à cette
+      page. Veuillez contacter votre administrateur
   processwidget:
     MoreInformation: Plus d'informations
     addExternalLink: Ajouter un lien externe
@@ -1064,13 +1237,15 @@ ch.ivy.addon.portalkit.ui.jsf:
     backToOverview: Retour à l'aperçu
     deleteExternalLinkTooltip: Supprimer le lien externe
     deleteProcess: Supprimer processus
-    deleteProcessItemConfirmation: Êtes-vous sûr de vouloir détruire le processus suivant ?
+    deleteProcessItemConfirmation: Êtes-vous sûr de vouloir détruire le processus
+      suivant ?
     deleteProcessItemHeader: Détruire un processus ?
     displayMode: Mode d'affichage
     editDialog:
       dialogCurrentIcon: Icône actuelle
       dialogEditInfoTitle: '{0} Informations'
-      dialogHeaderDescription: Dans cette zone, vous pouvez modifier certaines informations relatives au processus sélectionné.
+      dialogHeaderDescription: Dans cette zone, vous pouvez modifier certaines informations
+        relatives au processus sélectionné.
       dialogHeaderTitle: Modifier les informations pour {0}
     editProcesses: Modifier des processus
     externalLink: lien externe
@@ -1105,14 +1280,17 @@ ch.ivy.addon.portalkit.ui.jsf:
     version: Version
   searchResult:
     case: Dossier
-    notDisplayResultTabView: Vous n'êtes pas autorisé à afficher les résultats de la recherche
+    notDisplayResultTabView: Vous n'êtes pas autorisé à afficher les résultats de
+      la recherche
     process: Processus
     searchResults: Résultats de la recherche
     searchResultsFor: '{0} résultats pour "{1}"'
   taskActivator:
     assign: Assigner
-    cannotAssignTask: Cette tâche ne peut être assignée à aucun autre utilisateur ou groupe.
-    escalationActivatorDesc: Changer l'activateur d'escalade de la tâche à un utilisateur ou un groupe spécifié.
+    cannotAssignTask: Cette tâche ne peut être assignée à aucun autre utilisateur
+      ou groupe.
+    escalationActivatorDesc: Changer l'activateur d'escalade de la tâche à un utilisateur
+      ou un groupe spécifié.
     escalationActivatorHeader: Sélection de l'activateur d'escalade de la tâche
   taskBusinessState:
     DELAYED: Retardé
@@ -1130,8 +1308,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     SYSTEM: SYSTÈME
   taskDelegate:
     afterEscalation:
-      delegateNotes: L'activateur d'escalade de la tâche {0} a été changé de {1} en {2}.
-      delegateNotesWithComment: L'activateur d'escalade de la tâche {0} a été changé de {1} en {2} - {3}
+      delegateNotes: L'activateur d'escalade de la tâche {0} a été changé de {1} en
+        {2}.
+      delegateNotesWithComment: L'activateur d'escalade de la tâche {0} a été changé
+        de {1} en {2} - {3}
     delegateComment: La tâche {0} a été déléguée de {1} à {2}
     delegateReasonIncludedComment: La tâche {0} a été déléguée de {1} à {2} - {3}
     delegateTaskHeaderLabel: Déléguer la tâche à un utilisateur ou à un groupe spécifié
@@ -1151,16 +1331,20 @@ ch.ivy.addon.portalkit.ui.jsf:
     duration: Durée
     events: Événements relatifs au flux de travail
     expiry: Expiration
-    failedDelayValidation: L'horodatage du délai des tâches ne peut pas être une valeur vide ou un format de date non valide
-    failedExpiryValidation: L'horodatage de l'expiration des tâches ne peut pas être dans le passé.
+    failedDelayValidation: L'horodatage du délai des tâches ne peut pas être une valeur
+      vide ou un format de date non valide
+    failedExpiryValidation: L'horodatage de l'expiration des tâches ne peut pas être
+      dans le passé.
     noDescription: Aucune description
     noNotes: Aucune note
     processingTime: Durée de traitement
     setDelayTimestamp: '{0} ({1}) a fixé le délai d''attente de la tâche #{2} à {3}'
-    setExpiryActivatorAndTimeNotes: '{0} et assigner {1} comme activateur d''escalade de tâches'
+    setExpiryActivatorAndTimeNotes: '{0} et assigner {1} comme activateur d''escalade
+      de tâches'
     supportFileTypes: 'Types de fichiers pris en charge pour le téléchargement : {0}'
     taskCategory: Catégorie de tâche
-    taskExpiryDisable: Cette tâche ne contient pas de logique d'escalade. Aucune période d'expiration ne peut donc être définie.
+    taskExpiryDisable: Cette tâche ne contient pas de logique d'escalade. Aucune période
+      d'expiration ne peut donc être définie.
     technicalCase: Dossier technique
     workflowEventDialog: 'Événements du flux de travail de la tâche #{0}'
     workingUser: Gestionnaire
@@ -1210,7 +1394,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Filtre par défaut
-    destroyTaskMessage: 'Cette opération ne peut être annulée. Êtes-vous sûr de vouloir détruire cette tâche <b>{0} (ID: {1})</b> ?'
+    destroyTaskMessage: 'Cette opération ne peut être annulée. Êtes-vous sûr de vouloir
+      détruire cette tâche <b>{0} (ID: {1})</b> ?'
     headerTitle:
       relatedStatisticHeader: 'Tâches du diagramme:'
       relatedTasksHeader: Tâches associées au dossier
@@ -1218,13 +1403,17 @@ ch.ivy.addon.portalkit.ui.jsf:
     manageColumns: Gérer les colonnes
     name: Nom
     newTaskNotification: Vous avez de nouvelles tâches.
-    removeExpiryTimeNote: '{0} ({1}) a supprimé l''heure d''expiration de la tâche #{2}'
-    resetTaskWarning: Cette tâche a déjà été démarrée. Vous perdrez les modifications si vous la redémarrez.  Voulez-vous la réinitialiser ?
+    removeExpiryTimeNote: '{0} ({1}) a supprimé l''heure d''expiration de la tâche
+      #{2}'
+    resetTaskWarning: Cette tâche a déjà été démarrée. Vous perdrez les modifications
+      si vous la redémarrez.  Voulez-vous la réinitialiser ?
     responsibleAfterEscalation: Responsable après escalade
     setDeadlineNote: '{0} ({1}) a défini la date limite de la tâche #{2} à {3}'
     setNameNote: Le nom de la tâche a été modifié de {1} à {2} par {0}
-    showOnlyTaskForMissingActivator: Afficher uniquement les tâches dont l'activateur est manquant.
-    showOnlyTaskForMissingActivatorDesc: Ce filtre montrera les tâches qui n'ont pas d'activateur, l'activateur n'est pas trouvé ou désactivé.
+    showOnlyTaskForMissingActivator: Afficher uniquement les tâches dont l'activateur
+      est manquant.
+    showOnlyTaskForMissingActivatorDesc: Ce filtre montrera les tâches qui n'ont pas
+      d'activateur, l'activateur n'est pas trouvé ou désactivé.
     sortFields:
       CREATION_TIME_ASC: Date de création (le plus ancien en premier)
       CREATION_TIME_DESC: Date de création (le plus récent en premier)
@@ -1232,7 +1421,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME_DESC: Expiration (le plus récent en premier)
       PRIORITY_ASC: Priorité (décroissante)
       PRIORITY_DESC: Priorité (faible à élevée)
-    triggerEscalationNote: 'L''escalade a été déclenchée par {0} ({1}) de la tâche #{2}.'
+    triggerEscalationNote: 'L''escalade a été déclenchée par {0} ({1}) de la tâche
+      #{2}.'
     type: Type
     unknownId: ID inconnu
     unknownTask: Tâche inconnue
@@ -1289,18 +1479,34 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Voir la liste complète des tâches
     sort: Trier
   taskWarning:
-    createdTaskLeave: '<div>Vous êtes sur le point de quitter cette page.<br/>  Choisissez l&apos;&apos;une des options suivantes :</div> <UL><LI>Quitter : abandonnez vos modifications et allez à la page choisie. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
-    createdTaskLogout: '<div>Vous êtes sur le point de quitter cette page.<br/> Choisissez l&apos;&apos;une des options suivantes :</div> <UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
-    resetParkTaskBeforeLeave: '<div>Vous êtes sur le point de laisser une tâche en cours.<br/>Choisissez l&apos;&apos;une des options suivantes :</div><UL> <LI> Quitter : abandonnez vos modifications et allez à la page choisie. <LI> Enregistrer : abandonnez vos modifications et conservez la tâche dans
-      votre liste de tâches personnelles. Ensuite déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
-    resetParkTaskBeforeLogout: '<div>Vous êtes sur le point de laisser une tâche en cours.</br> Choisissez l&apos;&apos;une des options suivantes : </div><UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Enregistrer : annulez vos modifications et conservez la tâche dans votre
-      liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
-    taskNotFound: cette tâche n'existe pas ou vous n'avez pas l'autorisation de la voir.
+    createdTaskLeave: '<div>Vous êtes sur le point de quitter cette page.<br/>  Choisissez
+      l&apos;&apos;une des options suivantes :</div> <UL><LI>Quitter : abandonnez
+      vos modifications et allez à la page choisie. <LI>Annuler : continuez à travailler
+      sur cette tâche. </UL>'
+    createdTaskLogout: '<div>Vous êtes sur le point de quitter cette page.<br/> Choisissez
+      l&apos;&apos;une des options suivantes :</div> <UL> <LI>Déconnecter : abandonnez
+      vos modifications et déconnectez-vous. <LI>Annuler : continuez à travailler
+      sur cette tâche. </UL>'
+    resetParkTaskBeforeLeave: '<div>Vous êtes sur le point de laisser une tâche en
+      cours.<br/>Choisissez l&apos;&apos;une des options suivantes :</div><UL> <LI>
+      Quitter : abandonnez vos modifications et allez à la page choisie. <LI> Enregistrer
+      : abandonnez vos modifications et conservez la tâche dans votre liste de tâches
+      personnelles. Ensuite déconnectez-vous. <LI> Annuler : continuez à travailler
+      sur cette tâche. </UL>'
+    resetParkTaskBeforeLogout: '<div>Vous êtes sur le point de laisser une tâche en
+      cours.</br> Choisissez l&apos;&apos;une des options suivantes : </div><UL> <LI>Déconnecter
+      : abandonnez vos modifications et déconnectez-vous. <LI>Enregistrer : annulez
+      vos modifications et conservez la tâche dans votre liste de tâches personnelles.
+      Ensuite, déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche.
+      </UL>'
+    taskNotFound: cette tâche n'existe pas ou vous n'avez pas l'autorisation de la
+      voir.
   userProfile:
     myProfileTitle: Mon profil
   warningBeforeLostSession:
     refreshSession: Session de rafraîchissement
-    warningMessage: Votre session pourrait bientôt expirer. Veuillez actualiser votre session pour continuer à utiliser l'application.
+    warningMessage: Votre session pourrait bientôt expirer. Veuillez actualiser votre
+      session pour continuer à utiliser l'application.
 Dialogs:
   Cases:
     EditWorkflow:
@@ -1325,7 +1531,8 @@ Dialogs:
     task_Form:
       AppendATaskAfter: Insérer une tâche à la séquence après ma tâche.
       ErrorEmployeeNotExist: L'employé sélectionné n'existe pas
-      InsertATaskBefore: Insérer une tâche à la séquence avant ma tâche. Ma tâche sera reportée.
+      InsertATaskBefore: Insérer une tâche à la séquence avant ma tâche. Ma tâche
+        sera reportée.
       MyTaskIsDoneAnd: Ma tâche est terminée et une nouvelle tâche a été ajoutée
   ch:
     ivy:
@@ -1333,7 +1540,8 @@ Dialogs:
         portal:
           component:
             ProcessInformation:
-              ProcessUnavailableTooltip: Ce processus est indisponible ou vous n'avez pas la permission de le démarrer.
+              ProcessUnavailableTooltip: Ce processus est indisponible ou vous n'avez
+                pas la permission de le démarrer.
           generic:
             GlobalSearch:
               ViewAllResults: Voir tous les résultats
@@ -1349,7 +1557,8 @@ Dialogs:
                   Share: Partager
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: Glisser-déposer pour modifier l'ordre.
-                  DragAndDropTooltip: Cliquer sur l'aperçu puis glisser-déposer pour modifier l'ordre
+                  DragAndDropTooltip: Cliquer sur l'aperçu puis glisser-déposer pour
+                    modifier l'ordre
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Bienvenue à Axon Ivy Portal
         portalkit:
@@ -1373,12 +1582,17 @@ Dialogs:
             IconSelection:
               IconLinkTooltip: Cliquez pour changer d'icône
             TaskItemDetails:
-              CannotWorkOnDestroyedTaskWarning: Vous ne pouvez pas travailler sur la tâche parce qu'elle a été détruite.
-              CannotWorkOnTaskWarning: Vous ne pouvez pas travailler sur cette tâche car l'utilisateur <strong>{0}</strong> y travaille déjà.
+              CannotWorkOnDestroyedTaskWarning: Vous ne pouvez pas travailler sur
+                la tâche parce qu'elle a été détruite.
+              CannotWorkOnTaskWarning: Vous ne pouvez pas travailler sur cette tâche
+                car l'utilisateur <strong>{0}</strong> y travaille déjà.
               InvalidStateInfo: État non valide.
-              ResetTaskWarning: Vous travaillez actuellement sur la tâche dans une autre session. Vous pouvez réinitialiser la tâche et la recommencer si vous avez fermé votre navigateur. <a href="{0}">Réinitialiser</a>
+              ResetTaskWarning: Vous travaillez actuellement sur la tâche dans une
+                autre session. Vous pouvez réinitialiser la tâche et la recommencer
+                si vous avez fermé votre navigateur. <a href="{0}">Réinitialiser</a>
               ShareTaskDetails: Partager les détails de la tâche
-              TaskCompletedByOtherInfo: La tâche a déjà été effectuée par l'utilisateur <strong>{0}</strong> sur {1}.
+              TaskCompletedByOtherInfo: La tâche a déjà été effectuée par l'utilisateur
+                <strong>{0}</strong> sur {1}.
               TaskCompletedByYouInfo: Vous avez déjà accompli la tâche sur {0}.
   com:
     axonivy:
@@ -1388,7 +1602,10 @@ Dialogs:
             AddTool: Ajouter un outil
             Tools: Outils
             WelcomeHeaderText: Bienvenue sur le portail Axon Ivy !
-            WelcomeText: Nous sommes ravis de vous compter parmi nous. Le portail Axon Ivy est votre porte d'entrée pour une expérience transparente et efficace. Que vous soyez un nouvel utilisateur qui explore les fonctionnalités ou un visiteur habituel, nous sommes là pour vous aider à chaque étape.
+            WelcomeText: Nous sommes ravis de vous compter parmi nous. Le portail
+              Axon Ivy est votre porte d'entrée pour une expérience transparente et
+              efficace. Que vous soyez un nouvel utilisateur qui explore les fonctionnalités
+              ou un visiteur habituel, nous sommes là pour vous aider à chaque étape.
           ShareLinkDialog:
             CopyLink: Copier le lien
             Link: Lien
@@ -1439,13 +1656,20 @@ Dialogs:
                       <span class="shortcut-key">Enter</span>Confirmer la sélection
                    </div>
                 </div>
-              title: 'Raccourcis d’accessibilité. Alt + 1: Fokus auf die Dashboards. Alt + 2: Fokus auf die Prozesse. Alt + 3: Fokus auf die Aufgaben. Alt + 4: Fokus auf die Fälle. Alt + 5: Fokus auf die Suche. Alt + 6: Fokus auf die User Einstellungen. Alt + A: Fokus auf den ersten Prozess. Alt + W:
-                Fokus auf die erste Aufgabe. Alt + Q: Fokus auf den ersten Fall. Tab: Sequentielles Durchlaufen von Elementen. Esc: Erweiterte Widgets schließen/Kontext Menüs schließen. Enter: Auswahl bestätigen'
+              title: 'Raccourcis d’accessibilité. Alt + 1: Fokus auf die Dashboards.
+                Alt + 2: Fokus auf die Prozesse. Alt + 3: Fokus auf die Aufgaben.
+                Alt + 4: Fokus auf die Fälle. Alt + 5: Fokus auf die Suche. Alt +
+                6: Fokus auf die User Einstellungen. Alt + A: Fokus auf den ersten
+                Prozess. Alt + W: Fokus auf die erste Aufgabe. Alt + Q: Fokus auf
+                den ersten Fall. Tab: Sequentielles Durchlaufen von Elementen. Esc:
+                Erweiterte Widgets schließen/Kontext Menüs schließen. Enter: Auswahl
+                bestätigen'
             CaseWidgetConfiguration:
               AddFilter: Ajouter un filtre
             ClientStatisticWidget:
               IdNotFound: ' Diagramme avec ID {0} non trouvé'
-              NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour consulter ce graphique.
+              NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour
+                consulter ce graphique.
             CloneWidgetDialog:
               Header: Clone widget "{0}"
               TargetDashboard: Target dashboard
@@ -1473,15 +1697,18 @@ Dialogs:
             NewsWidgetConfiguration:
               AddNews: Ajouter une nouvelle
               EditNews: Nouvelles d'édition
-              NewsContentMaxLengthMessage: Le contenu des actualités ne doit pas dépasser 1000 caractères
+              NewsContentMaxLengthMessage: Le contenu des actualités ne doit pas dépasser
+                1000 caractères
               NewsWidgetConfiguration: Configuration du widget de flux d'informations
-              NewsWidgetDescription: Ce widget partage des informations pertinentes sous forme de fil d'actualité dans Axon Ivy.
+              NewsWidgetDescription: Ce widget partage des informations pertinentes
+                sous forme de fil d'actualité dans Axon Ivy.
               NewsWidgetTitle: Widget de flux d'informations
             NotificationWidget:
               NoNotificationAvailable: Il n'y a pas encore de notifications
             NotificationWidgetConfiguration:
               NotificationWidgetConfiguration: Configuration du widget de notification
-              NotificationWidgetDescription: Ce widget affiche toutes les notifications en fonction de vos paramètres de notification.
+              NotificationWidgetDescription: Ce widget affiche toutes les notifications
+                en fonction de vos paramètres de notification.
               WidgetFilter: Filtre à widgets
             PortalDashboardDetailModification:
               CloneWidget: Cloner le widget
@@ -1501,7 +1728,8 @@ Dialogs:
       deleteSucceed: Le fichier a été supprimé avec succès
       emptyFileMessage: La taille du fichier ne doit pas être vide
       fileLimitMessage: Le nombre maximum de fichiers à télécharger est atteint !
-      fileUploadElementPosition: Le fichier à télécharger ne peut être placé qu’en en-tête ou en pied de page
+      fileUploadElementPosition: Le fichier à télécharger ne peut être placé qu’en
+        en-tête ou en pied de page
       invalidFileMessage: Ce type de fichier n'est pas accepté!
       invalidSizeMessage: Le fichier est trop volumineux !
       maximumFileUploadElement: Il existe déjà un élément de téléchargement de fichiers
@@ -1536,13 +1764,16 @@ Labels:
     ChatbotCandidateQuestion:
       EXPLORE:
         header: Explore
-        question: Quelles sont les principales caractéristiques du portail Axon Ivy ?
+        question: Quelles sont les principales caractéristiques du portail Axon Ivy
+          ?
       INTERACT:
         header: Interact
-        question: Listez toutes les tâches qui doivent être accomplies dans la semaine en cours
+        question: Listez toutes les tâches qui doivent être accomplies dans la semaine
+          en cours
       TUTORIAL:
         header: Tutorial
-        question: Où puis-je trouver la documentation ou les tutoriels pour le portail Axon Ivy ?
+        question: Où puis-je trouver la documentation ou les tutoriels pour le portail
+          Axon Ivy ?
     DashboardStandardCaseColumn:
       ACTIONS: Actions
       APPLICATION: Application
@@ -1641,14 +1872,18 @@ Processes:
     PortalInternalProcess:
       PortalInternalProcessDescription: Ceci est un processus interne du portail
     SynchronizeDataProcess:
-      AddOrUpdateBusinessEntitiesDescription: Ajouter ou mettre à jour des entités business
+      AddOrUpdateBusinessEntitiesDescription: Ajouter ou mettre à jour des entités
+        business
       AddOrUpdateBusinessEntityDescription: Ajouter ou mettre à jour une entité business
-      AddOrUpdatePropertyOfServerDescription: Ajouter ou mettre à jour un paramètre du serveur
+      AddOrUpdatePropertyOfServerDescription: Ajouter ou mettre à jour un paramètre
+        du serveur
       DeleteBusinessEntitiesDescription: Supprimer des entités business
-      DeleteBusinessEntityByPrefixDescription: Supprimer une entité business par préfixe de paramètre
+      DeleteBusinessEntityByPrefixDescription: Supprimer une entité business par préfixe
+        de paramètre
       DeleteBusinessEntityDescription: Supprimer une entité business
       DeletePropertiesOfServerDescription: Supprimer des paramètres du serveur
-      DeletePropertyOfServerByPrefixDescription: Supprimer un paramètre du serveur par préfixe
+      DeletePropertyOfServerByPrefixDescription: Supprimer un paramètre du serveur
+        par préfixe
       DeletePropertyOfServerDescription: 'Supprimer un paramètre du serveur '
       SynchronizeDataCaseName: Synchroniser les données
     SynchronizeServerProcess:
@@ -1658,14 +1893,16 @@ Processes:
   portalHome: Page d'accueil
   portalSettingSaved: Les paramètres du portail sont enregistrés
 Texts:
-  Approval-Explain: "<P>\n\n<B>Veuillez choisir</B> et cliquez sur <B>Envoyer </B>pour poursuivre. \n\n</P>"
+  Approval-Explain: "<P>\n\n<B>Veuillez choisir</B> et cliquez sur <B>Envoyer </B>pour
+    poursuivre. \n\n</P>"
   QA-Explain: |-
     <P>
 
     Répondez à la question et <B>Envoyez </B>votre réponse.
 
     </P>
-  QAresponse-Explain: '<P>  Vous pouvez <B>renvoyer</B> une dernière question ou bien <B>terminer</B> le workflow.</P>  '
+  QAresponse-Explain: '<P>  Vous pouvez <B>renvoyer</B> une dernière question ou bien
+    <B>terminer</B> le workflow.</P>  '
   ToDo-Explain: |-
     <P>
 
