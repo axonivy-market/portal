@@ -32,7 +32,7 @@ public class PortalComponentAvatarBean implements Serializable {
 
   public String getEmailAddress(ISecurityMember securityMember,
       boolean useLowercaseEmail) {
-    if (securityMember == null || !securityMember.isUser()) {
+    if (securityMember == null || !securityMember.available() || !securityMember.isUser()) {
       return "";
     }
 

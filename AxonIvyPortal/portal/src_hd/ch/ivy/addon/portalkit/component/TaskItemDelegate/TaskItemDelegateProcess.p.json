@@ -142,6 +142,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
             "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
             "import org.apache.commons.lang.StringUtils;",
             "",
@@ -155,7 +156,7 @@
             "  in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(in.selectedRole);",
             "}",
             "",
-            "String oldResponsibleName = in.task.getActivator() != null? in.task.getActivator().getDisplayName() : StringUtils.stripStart(in.task.getActivatorName(), \"#\");",
+            "String oldResponsibleName = in.task.responsibles().displayName();",
             "",
             "in.delegateComment = StringUtils.isBlank(in.#taskDelegationComment) ?",
             "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment\", [in.task.getId(), oldResponsibleName, newResponsibleName])",

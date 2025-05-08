@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:p="http://primefaces.org/ui"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface>
+  <cc:attribute name="expiryResponsibles" type="ch.ivyteam.ivy.workflow.task.expiry.responsible.ExpiryResponsibles" required="true" />
+  <cc:attribute name="popupLink" type="java.lang.Boolean" default="false"/>
+  <cc:attribute name="onClick" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="responsibleSize" value="#{expiryRepsonsibleBean.getResponsiblesSize(cc.attrs.expiryResponsibles)}" />
+  <c:set var="expiryResponsibles" value="#{cc.attrs.expiryResponsibles}" />
+  
+  <pc:securityMemberNameAndAvatar displayName="#{expiryRepsonsibleBean.getFirstDisplayName(expiryResponsibles)}" securityMember="#{expiryRepsonsibleBean.getFirstResponsible(expiryResponsibles)}" > 
+    <f:facet name="afterName">
+      <h:panelGroup rendered="#{responsibleSize != null and responsibleSize gt 1}">
+        <h:panelGroup id="all-responsibles" styleClass="ml-1" >
+          <p:commandLink onclick="#{cc.attrs.onClick}" rendered="#{cc.attrs.popupLink}">
+            (<i class="mr-1 si si-multiple-neutral-1" /><h:outputText value="#{responsibleSize}" />)
+          </p:commandLink>
+          <h:panelGroup rendered="#{!cc.attrs.popupLink}">
+            (<i class="mr-1 si si-multiple-neutral-1" /><h:outputText value="#{responsibleSize}" />)
+          </h:panelGroup>
+        </h:panelGroup>
+        <p:tooltip for="all-responsibles" position="top" autoHide="false">
+          <div class="py-1">
+            <ui:repeat id="task-responsibles" value="#{expiryRepsonsibleBean.getResponsibleLimit10(expiryResponsibles)}" var="responsible">
+              <div class="py-1">
+                <pc:securityMemberNameAndAvatar displayName="#{expiryRepsonsibleBean.getDisplayName(responsible.get())}" 
+                    securityMember="#{responsible.get()}" />
+              </div>
+            </ui:repeat>
+          </div>
+          <h:panelGroup styleClass="repsonsible-more-text" rendered="#{responsibleSize gt 10}" layout="block">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." />
+          </h:panelGroup>
+        </p:tooltip>
+      </h:panelGroup>
+     </f:facet>
+  </pc:securityMemberNameAndAvatar>
+  <cc:renderFacet name="after" />
+</cc:implementation>
+</html>

@@ -26,6 +26,7 @@ import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -218,6 +219,15 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   
   public String getShortResponsible(ITask task) {
     return SecurityMemberDisplayNameUtils.getShortResponsibleDisplay(task);
+  }
+
+  public boolean isRenderItemGeneral(ISecurityMember member, String securityMemberName) {
+    return (isShowNotAvailableData && isDisplayNameNotAvailable(member, securityMemberName)) || !isDisplayNameNotAvailable(member, securityMemberName);
+  }
+  
+  public boolean isDisplayNameNotAvailable(ISecurityMember member, String securityMemberName) {
+    String generatedBriefDisplayName =  SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(member, securityMemberName);
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable").equals(generatedBriefDisplayName);
   }
 
 }

@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.bean;
+package com.axonivy.portal.bean;
 
 import java.util.Collections;
 import java.util.List;
@@ -10,35 +10,24 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
-import ch.ivyteam.ivy.workflow.task.responsible.Responsible;
-import ch.ivyteam.ivy.workflow.task.responsible.Responsibles;
+import ch.ivyteam.ivy.workflow.task.expiry.responsible.ExpiryResponsible;
+import ch.ivyteam.ivy.workflow.task.expiry.responsible.ExpiryResponsibles;
 
 @ManagedBean
 @ViewScoped
-public class ResponsibleBean {
-  
-  public int getResponsiblesSize(Responsibles responsibles) {
+public class ExpiryRepsonsibleBean {
+  public int getResponsiblesSize(ExpiryResponsibles responsibles) {
     return CollectionUtils.isEmpty(responsibles.all()) ? 0 : responsibles.all().size();
   }
   
-  public List<Responsible> getResponsibleLimit10(Responsibles responsibles) {
-    List<Responsible> list = responsibles.all();
+  public List<ExpiryResponsible> getResponsibleLimit10(ExpiryResponsibles responsibles) {
+    List<ExpiryResponsible> list = responsibles.all();
     return CollectionUtils.isEmpty(list) ? Collections.emptyList() : list.subList(0, Math.min(10, list.size()));
   }
   
-  public ISecurityMember getFirstResponsible(Responsibles responsibles) {
+  public ISecurityMember getFirstResponsible(ExpiryResponsibles responsibles) {
     return CollectionUtils.isEmpty(responsibles.all()) ? null : responsibles.all().getFirst().get();
-  }
-  
-  public boolean isSubstituteForTask(Responsibles responsibles) {
-    if (CollectionUtils.isEmpty(responsibles.all())) {
-        return false;
-    }
-    return responsibles.all().stream()
-        .anyMatch(responsible -> responsible.get().available() &&
-            Ivy.session().isMemberThroughActiveSubstitution(responsible.get()));
   }
   
   public String getDisplayName(ISecurityMember member) {
@@ -48,8 +37,7 @@ public class ResponsibleBean {
     return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(member, member.getMemberName());
   }
   
-  public String getFirstDisplayName(Responsibles responsibles) {
+  public String getFirstDisplayName(ExpiryResponsibles responsibles) {
     return getDisplayName(getFirstResponsible(responsibles));
   }
-  
 }

@@ -120,7 +120,7 @@
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/RoleUserInformation')}" styleClass="text-ellipsis" />
       </div>
       <h:panelGroup styleClass="ui-g-12 content-field" layout="block"
-        rendered="#{(taskDetailsBean.showNotAvailableData and securityMemberDisplayNameFormatBean.isDisplayNameNotAvailable(task.getWorkerUser(), task.getWorkerUserName())) or not securityMemberDisplayNameFormatBean.isDisplayNameNotAvailable(task.getWorkerUser(), task.getWorkerUserName())}">
+        rendered="#{taskDetailsBean.isRenderItemGeneral(task.getWorkerUser(), task.getWorkerUserName())}">
         <div class="ui-xl-4 ui-lg-4 ui-md-4 ui-sm-4 ui-g-3 u-no-padding-left min-width-column-task-details-when-resize">
           <h:outputText styleClass="task-detail-column-title text-ellipsis"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/workingUser')}" />
@@ -133,7 +133,7 @@
       </h:panelGroup>
 
       <h:panelGroup styleClass="ui-g-12 content-field" layout="block"
-        rendered="#{(taskDetailsBean.showNotAvailableData and securityMemberDisplayNameFormatBean.isDisplayNameNotAvailable(responsibleBean.getFirstResponsible(task.responsibles()), responsibleBean.getFirstDisplayName(task.responsibles()))) or not securityMemberDisplayNameFormatBean.isDisplayNameNotAvailable(responsibleBean.getFirstResponsible(task.responsibles()), responsibleBean.getFirstDisplayName(task.responsibles()))}">
+        rendered="#{taskDetailsBean.isRenderItemGeneral(responsibleBean.getFirstResponsible(task.responsibles()), responsibleBean.getFirstDisplayName(task.responsibles()))}">
         <div class="ui-xl-4 ui-lg-4 ui-md-4 ui-sm-4 ui-g-3 u-no-padding-left min-width-column-task-details-when-resize">
           <h:outputText styleClass="task-detail-column-title text-ellipsis"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
@@ -142,18 +142,14 @@
           <ic:com.axonivy.portal.component.Responsibles responsibles="#{task.responsibles()}" popupLink="true" onClick="PF('responsible-dialog').show()"/>
         </div>
       </h:panelGroup>
-
       <h:panelGroup styleClass="ui-g-12 content-field" layout="block"
-        rendered="#{(taskDetailsBean.showNotAvailableData and securityMemberDisplayNameFormatBean.isDisplayNameNotAvailable(task.getExpiryActivator(), task.getExpiryActivatorName())) or not securityMemberDisplayNameFormatBean.isDisplayNameNotAvailable(task.getExpiryActivator(), task.getExpiryActivatorName())}">
+        rendered="#{taskDetailsBean.isRenderItemGeneral(expiryRepsonsibleBean.getFirstResponsible(task.expiry().responsibles()), expiryRepsonsibleBean.getFirstDisplayName(task.expiry().responsibles()))}">
         <div class="ui-xl-4 ui-lg-4 ui-md-4 ui-sm-4 ui-g-3 u-no-padding-left min-width-column-task-details-when-resize">
           <h:outputText styleClass="task-detail-column-title text-ellipsis"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/afterEscalation')}" />
         </div>
         <div class="ui-xl-8 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
-          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="task-expiry-activator-name" securityMember="#{task.getExpiryActivator()}"
-            securityMemberName="#{task.getExpiryActivatorName()}" styleClass="text-ellipsis task-expiry-activator-name"
-            roleNameStyleClass="ui-md-hidden ui-sm-hidden"
-            securityMemberContainerStyleClass="task-security-member-container"/>
+          <ic:com.axonivy.portal.component.ExpiryResponsible expiryResponsibles="#{task.expiry().responsibles()}" popupLink="true" onClick="PF('expiry-responsible-dialog').show()"/>
           <p:link rendered="#{taskActionBean.canChangeTaskExpiryActivator(task) and !cc.attrs.readOnly}"
             styleClass="task-expiry-activator-edit"
             href="#"
@@ -360,6 +356,20 @@
     responsive="true" modal="true" closable="true">
     <div class="ui-g">
       <ui:repeat var="responsible" value="#{task.responsibles().all()}" >
+        <div class="ui-g-12">
+          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName 
+              securityMember="#{responsible.get()}" securityMemberName="#{responsible.displayName()}"
+              styleClass="text-ellipsis" />
+        </div>
+      </ui:repeat>
+    </div>
+  </p:dialog>
+  
+  <p:dialog id="expiry-responsible-dialog" widgetVar="expiry-responsible-dialog" header="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/TaskItemGeneralInfo/Expiry')}"
+    appendTo="@(body)" fitViewport="true" width="350" closeOnEscape="true" dynamic="true" height="400"
+    responsive="true" modal="true" closable="true">
+    <div class="ui-g">
+      <ui:repeat var="responsible" value="#{task.expiry().responsibles().all()}" >
         <div class="ui-g-12">
           <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName 
               securityMember="#{responsible.get()}" securityMemberName="#{responsible.displayName()}"

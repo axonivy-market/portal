@@ -80,8 +80,7 @@
                         dataModel="#{dataModel.taskDataModel}" />
                     </div>
                     <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component"
-                      dataModel="#{dataModel.taskDataModel}" responsibleName="#{task.getActivatorName()}"
-                      responsible="#{task.getActivator()}" responsibles="#{task.responsibles()}"/>
+                      dataModel="#{dataModel.taskDataModel}" responsibles="#{task.responsibles()}"/>
                     <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.getId()}"
                       dataModel="#{dataModel.taskDataModel}" />
                     <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component"

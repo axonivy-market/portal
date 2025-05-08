@@ -1366,6 +1366,8 @@ Dialogs:
               ShareTaskDetails: Partager les détails de la tâche
               TaskCompletedByOtherInfo: La tâche a déjà été effectuée par l'utilisateur <strong>{0}</strong> sur {1}.
               TaskCompletedByYouInfo: Vous avez déjà accompli la tâche sur {0}.
+            TaskItemGeneralInfo:
+              Expiry: Responsable de l'expiration
   com:
     axonivy:
       portal:

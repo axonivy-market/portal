@@ -1364,6 +1364,8 @@ Dialogs:
               ShareTaskDetails: タスクの詳細を共有
               TaskCompletedByOtherInfo: タスクは、ユーザー <strong>{0}</strong> によって {1} に既に完了しています。
               TaskCompletedByYouInfo: あなたは、このタスクを {0} に完了しています。
+            TaskItemGeneralInfo:
+              Expiry: TODO Expiry Responsible
   com:
     axonivy:
       portal:
