@@ -30,7 +30,6 @@ import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.migration.statistic.migrator.JsonStatisticMigrator;
 import com.axonivy.portal.util.statisticfilter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -180,10 +179,6 @@ public class StatisticService {
   public void saveJsonToVariable(List<Statistic> statistics) {
     String statisticsJson = BusinessEntityConverter.entityToJsonValue(statistics);
     Ivy.var().set(CUSTOM_STATISTIC_KEY, statisticsJson);
-    String json = Ivy.var().get(CLIENT_STATISTIC_KEY);
-    if (StringUtils.isNotBlank(json)) {
-      Ivy.var().reset(CLIENT_STATISTIC_KEY);
-    }
   }
   
   private List<Statistic> getDefaultStatistic() {
@@ -195,25 +190,34 @@ public class StatisticService {
   }
   
   public List<Statistic> getCustomStatistic() {
+    migrateClientStatistic();
     List<Statistic> statistics =
         BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
-    statistics.addAll(getClientStatistic());
     configDefaultStatisticSettings(statistics);
     return statistics;
   }
 
-  public List<Statistic> getClientStatistic() {
+  public void migrateClientStatistic() {
     try {
       String json = Ivy.var().get(CLIENT_STATISTIC_KEY);
       if (StringUtils.isNotBlank(json)) {
-      ObjectMapper mapper = new ObjectMapper();
-      JsonStatisticMigrator migrator = new JsonStatisticMigrator(mapper.readTree(json));
-          return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Statistic.class);
+        List<Statistic> customStatistics = BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
+
+        ObjectMapper mapper = new ObjectMapper();
+        JsonStatisticMigrator migrator = new JsonStatisticMigrator(mapper.readTree(json));
+        List<Statistic> clientStatistics = BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Statistic.class);
+
+        Set<String> seenIds = new HashSet<>();
+        customStatistics = customStatistics.stream().filter(statistic -> seenIds.add(statistic.getId())).collect(Collectors.toList());
+        clientStatistics.stream().filter(obj -> seenIds.add(obj.getId())).forEach(customStatistics::add);
+
+        String statisticsJson = BusinessEntityConverter.entityToJsonValue(customStatistics);
+        Ivy.var().set(CUSTOM_STATISTIC_KEY, statisticsJson);
+        Ivy.var().reset(CLIENT_STATISTIC_KEY);
       }
-    } catch (JsonProcessingException ex) {
-      Ivy.log().error("Failed to read client statistic from JSON {0}", ex);
+    } catch (Exception e) {
+      Ivy.log().warn("Migrate client statistic failed due to ", e);
     }
-    return new ArrayList<>();
   }
 
   private void configDefaultStatisticSettings(List<Statistic> statistics) {

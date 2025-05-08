@@ -290,7 +290,7 @@ public class StatisticConfigurationBean implements Serializable {
 
   public boolean isOutdatedChart(Statistic chart) {
     if (chart != null) {
-      if (StringUtils.isNotBlank(chart.getAggregates()) | StringUtils.isNotBlank(chart.getFilter())) {
+      if (StringUtils.isNotBlank(chart.getAggregates()) || StringUtils.isNotBlank(chart.getFilter())) {
         return true;
       }
     }

@@ -32,8 +32,8 @@ public class JsonStatisticMigrator {
   }
 
   /**
-   * Read version
-   * If version is null, assume that this statistic is created since version 10.0.0 (oldest version)
+   * Read version If version is null, assume that this statistic is created since
+   * version 11.3 (oldest version)
    * 
    * @return json version
    */
@@ -70,15 +70,12 @@ public class JsonStatisticMigrator {
   private JsonNode removeDefaultChartsFromClientStatistic(ArrayNode nodes) {
     for (int i = nodes.size() - 1; i >= 0; i--) {
       JsonNode chart = nodes.get(i);
-      String idStr = chart.get("id").asText();
-      try {
-        int id = Integer.parseInt(idStr);
+      int id = chart.path("id").asInt(Integer.MIN_VALUE);
         if (id >= 1 && id <= 11) {
           nodes.remove(i);
+
         }
-      } catch (NumberFormatException e) {
-        Ivy.log().info("Client statistic contain chart ID is string ", idStr);
-      }
+
     }
     return nodes;
   }

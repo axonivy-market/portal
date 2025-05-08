@@ -21,12 +21,8 @@ public class ClientStatisticConverter implements IJsonConverter {
   @Override
   public void convert(JsonNode jsonNode) {
     ChartType chartType = EnumUtils.getEnum(ChartType.class, StringUtils.upperCase(jsonNode.get("chartType").asText()));
-    switch (chartType) {
-    case ChartType.NUMBER:
+    if (chartType == ChartType.NUMBER) {
       updateNumberChartConfig((ObjectNode) jsonNode);
-      break;
-    default:
-      break;
     }
   }
 
