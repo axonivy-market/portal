@@ -414,6 +414,8 @@ public final class TaskUtils {
     if (CollectionUtils.isEmpty(expiryResponsibles.all())) {
       return "";
     }
-    return StringUtils.join(expiryResponsibles.all().stream().map(i -> i.displayName()).toArray(), ',');
+    return expiryResponsibles.all().stream()
+        .map(item -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(item.get(), item.displayName()))
+        .collect(Collectors.joining(", "));
   }
 }
