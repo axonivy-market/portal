@@ -194,7 +194,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: Aplicación de terceros
     currentValue: Valor actual
-    defaultApplicationName: Axon Ivy
     defaultValue: Valor estándard
     deleteAppConfirmation: ¿Seguro que quiere eliminar esta aplicación?
     dialogclosinginformation:
@@ -207,7 +206,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     emptySupportedLanguages: No se admiten idiomas adicionales
     globalVariableNote:
       AppleStoreURL: Establezca la URL para descargar la aplicación móvil Axon Ivy en Apple Store.
-      ApplicationName: El nombre por defecto de la aplicación que se mostrará en el título de la página.
+      ApplicationName: El nombre de la aplicación que se mostrará en el título de la página.
       BaseQRCodeUrl: Establezca la URL base para mostrar el código QR.
       DefaultThemeMode: El modo de tema por defecto de la aplicación
       EnableSwitchThemeModeButton: Establecer en true para habilitar el botón de cambio de tema.

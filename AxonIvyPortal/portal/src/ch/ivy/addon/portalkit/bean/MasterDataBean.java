@@ -37,8 +37,6 @@ public class MasterDataBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
   private static final String APPLICATION_NAME = GlobalVariable.APPLICATION_NAME.getKey();
-  private static final String DEFAULT_APPLICATION_NAME =
-      Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/defaultApplicationName");
   private static final String PORTAL_NAME = Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalName/PortalName");
 
   public AwesomeIcon[] getAwesomeIcons() {
@@ -118,15 +116,14 @@ public class MasterDataBean implements Serializable {
   }
   
   public String getPortalApplicationName() {
-    if (getApplicationName().isBlank()) {
+    if (StringUtils.isBlank(getApplicationName())) {
       return PORTAL_NAME;
     }
     return String.join(" - ", PORTAL_NAME, getApplicationName());
   }
 
   public String getApplicationName() {
-    String applicationName = Ivy.var().get(APPLICATION_NAME);
-    return applicationName.isBlank() ? StringUtils.EMPTY : applicationName;
+    return Ivy.var().get(APPLICATION_NAME);
   }
 
   public String getUserLanguage() {
