@@ -73,9 +73,7 @@ public class JsonStatisticMigrator {
       int id = chart.path("id").asInt(Integer.MIN_VALUE);
         if (id >= 1 && id <= 11) {
           nodes.remove(i);
-
         }
-
     }
     return nodes;
   }
