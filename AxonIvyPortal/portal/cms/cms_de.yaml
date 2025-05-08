@@ -1,5 +1,6 @@
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
+    caseFound: Case found
     noCaseFound: Vorgang nicht gefunden oder Sie haben keine Berechtigung, diesen Vorgang zu sehen.
     requestTabTitle: Anfrage
     statusTabTitle: Vorgangsinformationen
