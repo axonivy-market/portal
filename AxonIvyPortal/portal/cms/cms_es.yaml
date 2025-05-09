@@ -79,6 +79,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: Widget del caso
       CLIENT_STATISTIC: Widget de estadísticas
       CUSTOM: Widget personalizado
+      NAVIGATION_DASHBOARD: Widget del panel de navegación
       NEW: Nuevo widget
       NEWS: Noticias
       NOTIFICATION: Notificaciones
@@ -604,7 +605,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: El proceso
     timeInformation: Informaciones de tiempo
     timestamp: Marca de tiempo
-    topMenuItem: Elemento del menú superior
     type: Tipo
     typeAdmin: Todos los administradores
     typeAllUsers: Todos los usuarios
@@ -859,6 +859,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: Actualmente, no hay tareas adicionales disponibles.
         noTasksFoundWhenFilter: Actualmente no hay tareas después del filtro aplicado.
     loading: Cargando...
+    navigate: Navegue por
     noCategory: No hay categorías
     noDashboard: No hay tableros. Añadir al menos un tablero y widgets.
     noPermission: No tienes permisos para ver los dashboards.
@@ -900,13 +901,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
     taskStart: Iniciar tarea
     taskWidgetConfiguration: Configuración del widget de tareas
-    topMenuItemInfo: Si la casilla "Elemento del menú superior" está marcada, el tablero aparece como un elemento de nivel superior en la barra de navegación, ordenado según su posición en la lista. Si no está marcada, aparece como un subelemento en "Dashboard", también ordenado por posición en la lista.
     widgetInfo: Información del widget
     widgetInfoIcon: Icono de información del widget
     widgetTitle: Título del widget
     widgetType: Tipo de widget
     yourCases: Sus casos
     yourCustomWidget: Su widget personalizado
+    yourNavigationDashboardWidget: Su widget del dashboard de navegación
     yourNotifications: Sus notificaciones
     yourProcessViewer: Su visor de procesos
     yourProcesses: Sus procesos
@@ -1419,6 +1420,12 @@ Dialogs:
               chooseAJsonFile: Elija un archivo json
             DashboardSharing:
               ShareDashboard: Compartir panel
+            NavigationDashboardWidgetConfiguration:
+              ButtonName: Nombre del botón
+              NavigationDashboardWidgetConfiguration: |+
+                Configuración del widget del dashboard de navegación
+
+              NavigationDashboardWidgetDescription: Este widget permite a los usuarios acceder directamente a un dashboard vinculado haciendo clic en un botón.
             NewsWidget:
               NewsContentPlaceHolder: Introduzca el contenido de las noticias
               NewsContentValidateMessage: El contenido de las noticias en {0} es necesario

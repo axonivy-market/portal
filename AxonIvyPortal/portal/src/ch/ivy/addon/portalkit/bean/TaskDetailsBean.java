@@ -20,7 +20,6 @@ import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetails;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
@@ -187,7 +186,7 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
 
   private boolean isActivator() {
     ITask selectedTask = getSelectedTaskFromData();
-    return selectedTask.getActivator() == null ? false : selectedTask.getActivator().isMember(ISession.current(), true);
+    return selectedTask.getActivator() == null ? false : selectedTask.getActivator().isMember(ISession.current());
   }
 
   private boolean currentIsWorkerUser() {
