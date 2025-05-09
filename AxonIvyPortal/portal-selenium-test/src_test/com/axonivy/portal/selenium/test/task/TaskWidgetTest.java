@@ -72,5 +72,5 @@ public class TaskWidgetTest extends BaseTest {
     taskWidget.waitUntilTaskCountDifferentThanZero();
     assertEquals(4, taskWidget.countAllTasks().size(), "In Task list, Task Count != 4");
   }
-  
+
 }
