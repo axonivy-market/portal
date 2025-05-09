@@ -1,90 +1,81 @@
-name: YAML i18n Diff
+name: YAML to PO Template Converter
 on:
-  push:
   workflow_dispatch:
     inputs:
       source_branch:
-        description: 'Source branch containing translations to compare (default: language)'
+        description: 'Branch containing YAML files to convert'
         required: false
-        default: 'language'
-      base_branch:
-        description: 'Base branch to compare against (default: cms)'
-        required: false
-        default: 'cms'
+        default: 'portal-cms'
       yaml_path:
         description: 'Path to YAML translations directory'
         required: false
-        default: 'translations'
-      create_pr:
-        description: 'Create PR if changes detected'
+        default: 'AxonIvyPortal/portal/cms'
+      output_path:
+        description: 'Path where PO files will be saved'
         required: false
-        default: 'true'
-        type: boolean
+        default: 'po-templates'
+      file_pattern:
+        description: 'Pattern for YAML files to convert (e.g., "cms-*.yml" or "*.yaml")'
+        required: false
+        default: 'cms-*.yml'
 
 jobs:
-  extract-and-diff:
+  convert-yaml-to-po:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout current branch
+    - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.inputs.source_branch || 'language' }}
+        ref: ${{ github.event.inputs.source_branch || 'main' }}
         
     - name: Install yaml2po
       run: |
         sudo apt update
         sudo apt install -y translate-toolkit
+    
+    - name: Prepare output directory
+      run: |
+        mkdir -p ${{ github.event.inputs.output_path || 'po-templates' }}
         
-    - name: Convert YAML to PO
+    - name: Convert YAML files to PO
       run: |
-        mkdir -p extracted/source
-        yaml2po ${{ github.event.inputs.yaml_path || 'translations' }}/en.yaml extracted/source/en.po
+        # Find all files that match the pattern
+        echo "Looking for files matching: ${{ github.event.inputs.file_pattern || 'cms-*.yml' }}"
         
-    - name: Checkout base branch
-      run: |
-        git fetch origin ${{ github.event.inputs.base_branch || 'cms' }}
-        git checkout origin/${{ github.event.inputs.base_branch || 'cms' }}
-        mkdir -p ../base-yaml
-        cp -r ${{ github.event.inputs.yaml_path || 'translations' }} ../base-yaml/
-      shell: bash
-      
-    - name: Convert base YAML to PO
-      working-directory: ../base-yaml
-      run: |
-        mkdir -p ../extracted/base
-        yaml2po ${{ github.event.inputs.yaml_path || 'translations' }}/en.yaml ../extracted/base/en.po
+        # Use find to locate all matching files
+        matched_files=$(find ${{ github.event.inputs.yaml_path || 'translations' }} -name "${{ github.event.inputs.file_pattern || 'cms-*.yml' }}" -type f)
         
-    - name: Compare PO files
-      id: diff
-      run: |
-        if diff -q extracted/source/en.po extracted/base/en.po >/dev/null; then
-          echo "No differences detected between branches"
-          echo "changed=false" >> $GITHUB_OUTPUT
-        else
-          echo "Differences detected between branches"
-          echo "changed=true" >> $GITHUB_OUTPUT
+        if [ -z "$matched_files" ]; then
+          echo "Warning: No files found matching the pattern ${{ github.event.inputs.file_pattern || 'cms-*.yml' }}"
+          echo "Please check your file pattern and path."
+          exit 0
         fi
         
-    - name: Commit and PR if changed
-      if: steps.diff.outputs.changed == 'true' && (github.event.inputs.create_pr == 'true' || github.event.inputs.create_pr == '')
-      run: |
-        # Get user info from the triggering event
-        if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-          # For manual runs, use the user who triggered the workflow
-          GIT_USER_EMAIL="${{ github.event.sender.email || github.actor }}@users.noreply.github.com"
-          GIT_USER_NAME="${{ github.event.sender.name || github.actor }}"
-        else
-          # For push events, use the pusher's info
-          GIT_USER_EMAIL="${{ github.event.pusher.email || github.actor }}@users.noreply.github.com"
-          GIT_USER_NAME="${{ github.event.pusher.name || github.actor }}"
-        fi
-
-        git config user.email "$GIT_USER_EMAIL"
-        git config user.name "$GIT_USER_NAME"
-        git checkout ${{ github.event.inputs.source_branch || 'language' }}
-        git add ${{ github.event.inputs.yaml_path || 'translations' }}/en.yaml
-        git commit -m "Update i18n YAML based on changes"
-        git push origin ${{ github.event.inputs.source_branch || 'language' }}
-        gh pr create --title "Update i18n YAML" --body "Detected changes in YAML via PO diff between ${{ github.event.inputs.source_branch || 'language' }} and ${{ github.event.inputs.base_branch || 'cms' }}\n\nAutomated PR created on behalf of @${{ github.actor }}" --label "i18n"
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Process each found YAML file
+        for yaml_path in $matched_files; do
+          yaml_file=$(basename "$yaml_path")
+          echo "Converting $yaml_file to PO template..."
+          
+          # Get basename without extension for output filename
+          # Handle both .yml and .yaml extensions
+          if [[ "$yaml_file" == *.yml ]]; then
+            filename=$(basename "$yaml_file" .yml)
+          else
+            filename=$(basename "$yaml_file" .yaml)
+          fi
+          
+          # Convert YAML to PO
+          yaml2po "$yaml_path" "${{ github.event.inputs.output_path || 'po-templates' }}/$filename.pot"
+                 
+          echo "Created $filename.pot"
+        done
+        
+        # Show summary
+        echo "Conversion complete. Created $(find ${{ github.event.inputs.output_path || 'po-templates' }} -name "*.pot" | wc -l) PO template files."
+        
+    - name: Upload PO templates as artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: po-templates
+        path: ${{ github.event.inputs.output_path || 'po-templates' }}/*.pot
+        retention-days: 7
