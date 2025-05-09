@@ -1,0 +1,44 @@
+name: Commit Weblate Translations
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  commit-translations:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install Weblate CLI and jq
+      run: |
+        pip install weblate-client
+        sudo apt-get update && sudo apt-get install -y jq
+
+    - name: Configure Weblate CLI
+      run: |
+        mkdir -p ~/.config/weblate
+        cat <<EOF > ~/.config/weblate/client.cfg
+        [weblate]
+        url = https://hosted.weblate.org/api/
+        token = ${{ secrets.WEBLATE_API_TOKEN }}
+        EOF
+
+    - name: Check and commit Weblate changes
+      run: |
+        COMPONENT="portal/portal-cms"
+        echo "Checking uncommitted changes in $COMPONENT..."
+
+        CHANGES=$(wlc show "$COMPONENT" --format json | jq -r '.statistics.uncommitted')
+
+        if [ "$CHANGES" != "0" ]; then
+          echo "Found $CHANGES uncommitted change(s), committing..."
+          wlc commit "$COMPONENT"
+          echo "✅ Commit triggered."
+        else
+          echo "No changes to commit."
+        fi
