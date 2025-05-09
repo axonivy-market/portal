@@ -226,7 +226,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       AppleStoreURL: Legen Sie die URL für den Download der Axon Ivy Mobile App im
         Apple Store fest.
       ApplicationName: Der Name der Anwendung, der in den Seitentitel aufgenommen
-        werden soll.
+        werden soll soll soll
       BaseQRCodeUrl: Legen Sie die Basis-URL für den anzuzeigenden QR-Code fest.
       DefaultThemeMode: Der Standardthemenmodus der Anwendung
       EnableSwitchThemeModeButton: Setzen Sie diesen Wert auf true, um die Schaltfläche
