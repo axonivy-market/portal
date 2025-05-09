@@ -1,5 +1,6 @@
 name: YAML to PO Template Converter
 on:
+  push:
   workflow_dispatch:
     inputs:
       source_branch:
