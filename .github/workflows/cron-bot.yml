@@ -1,7 +1,18 @@
 name: Cron Bot
 run-name: 🤖 Cron Bot
 permissions:
+  actions: write
+  checks: write
   contents: write
+  deployments: write
+  issues: write
+  packages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
+  discussions: write
+  pages: write
 on:
   schedule:
     # Cron at midnight GMT+7
