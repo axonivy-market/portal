@@ -4,6 +4,7 @@ ch.ivy.addon.portal.generic:
     portalTranslation: Portal translation
     requestTabTitle: リクエスト
     statusTabTitle: ケース情報
+    caseFound: case found ja
   OpenTaskTemplate:
     browserTabClosingWarning: 進行中のワークが失われます。このまま続けますか？
     goToSidestepWarning: サイドステップ処理がタスクから直接開始された場合、あなたが現在行っている修正は保存されません。このまま続けますか？
@@ -219,21 +220,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       RoleParentLimit: 設定された数値は、ロール管理タブでロールをフィルタリングするときに表示される親ロールの数を制御します。有効な数値：5、10、20
       SearchScopeCaseFields: グローバル検索で一致するケースを見つけるために、ケースIDのほかに使用するフィールドを定義します。（検索のパフォーマンスに影響する可能性があります）
       SearchScopeTaskFields: グローバル検索で一致するタスクを見つけるために、タスクIDのほかに使用するフィールドを定義します。（検索のパフォーマンスに影響する可能性があります）
-      SessionCacheTimeout: TODO Defines the session cache timeout duration (in seconds)
-        for the Portal. This value can be set between 300 (5 minutes) and 86,400 (24
-        hours).
+      SessionCacheTimeout: TODO Defines the session cache timeout duration (in seconds) for the Portal. This value can be set between 300 (5 minutes) and 86,400 (24 hours).
       ShowLoginPageFooter: ログインページのフッターの表示のオン／オフを切り替えます。
       ShowQRCode: QRコードの表示のオン／オフを切り替えます。
-      behaviourWhenClickingOnLineInCaseList: 
-        ダッシュボード・グローバル検索・関連ケース・または複合モードのプロセスウィジェットの各ケースウィジェットでケースをクリックしたときに、ケースの詳細またはビジネスの詳細へのアクセスを切り替えます。
+      behaviourWhenClickingOnLineInCaseList: ダッシュボード・グローバル検索・関連ケース・または複合モードのプロセスウィジェットの各ケースウィジェットでケースをクリックしたときに、ケースの詳細またはビジネスの詳細へのアクセスを切り替えます。
       behaviourWhenClickingOnLineInTaskList: タスク リスト、ダッシュボードのタスク ウィジェット、およびケース詳細ページの関連タスクの行をクリックしたときの動作（タスクを実行するか、タスクの詳細にアクセスするか）を切り替えます。
-      chatMaxConnection: 
-        設定された数値は、アクティブなチャットで許可されるタブの数を制御します。それ以上のタブが開かれると、非アクティブなタブではチャットが無効になります。許可される値は
-        1 から 5 です。
-      chatResponseTimeout: 'チャット応答タイムアウトで単位は秒。初期値は 0 で、これはタイムアウトなしを意味します。チャットメッセージがリバースプロキシ
-        Nginx を通過する場合、チャット応答タイムアウトは Nginx タイムアウトよりも短くする必要があります。（例: 60 秒未満）'
-      dateFilterWithTime: 時間による日付フィルタリングを有効にするには、true に設定してください。この設定は、タスク リスト、ケース
-        リスト、および統計に影響します。
+      chatMaxConnection: 設定された数値は、アクティブなチャットで許可されるタブの数を制御します。それ以上のタブが開かれると、非アクティブなタブではチャットが無効になります。許可される値は 1 から 5 です。
+      chatResponseTimeout: 'チャット応答タイムアウトで単位は秒。初期値は 0 で、これはタイムアウトなしを意味します。チャットメッセージがリバースプロキシ Nginx を通過する場合、チャット応答タイムアウトは Nginx タイムアウトよりも短くする必要があります。（例: 60 秒未満）'
+      dateFilterWithTime: 時間による日付フィルタリングを有効にするには、true に設定してください。この設定は、タスク リスト、ケース リスト、および統計に影響します。
       deepLAuthKey: DeepL認証キー（末尾は:fx）
       defaultHomepage: ホームアイコンまたはロゴをクリックしたときにリダイレクトされる標準ホームページを設定します。この設定は、タスク完了後の終了ページにも適用されます。
       defaultProcessImage: 画像処理リストに表示される初期画像の標準設定。
@@ -242,12 +236,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       defaultSortDirectionOfTaskList: タスクリストのソート方向の初期値
       defaultSortFieldOfCaseList: ケースリストのソートフィールドの初期値
       defaultSortFieldOfTaskList: タスクリストのソートフィールドの初期値
-      delegationAppendOption: 'TODO: This setting determines which additional information
-        is included when formatting role names.'
+      delegationAppendOption: 'TODO: This setting determines which additional information is included when formatting role names.'
       disableCaseCount: ケース リストでケースのカウントを無効にするには true に設定してください
       disableTaskCount: タスク リストでタスクのカウントを無効にするには true に設定してください
-      displayAllUsersOfTaskActivator: この設定は SecurityMemberDisplayName コンポーネントに使用します。SecurityMember
-        がロールである場合、この設定を true に設定すると、このロールのすべてのユーザーが一覧表示されます。true に設定すると、ロール名の横にアイコン情報が表示されます。
+      displayAllUsersOfTaskActivator: この設定は SecurityMemberDisplayName コンポーネントに使用します。SecurityMember がロールである場合、この設定を true に設定すると、このロールのすべてのユーザーが一覧表示されます。true に設定すると、ロール名の横にアイコン情報が表示されます。
       displayMessageAfterFinishOrLeaveTask: ユーザーがタスクを完了または退出すると、フィードバック メッセージが表示されます。
       embedInFrame: プロセス／タスクをIFrameモードで開始するには true に設定してください
       enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。
@@ -255,16 +247,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
       enablePrivateChat: 個人用チャット機能を有効にするには、このプロパティーを true に設定してください。
       enableProcessViewer: タスク／ケースアクションでプロセスビューアーオプションを有効にするには、このプロパティをtrueに設定してください。
-      enableScriptCheckingForUploadedDocumentNote: アップロードされたドキュメントのスクリプトチェックを有効にするには、true
-        に設定してください。現在、この機能は PDF、Excel、Word のチェックをサポートしています。
-      enableVirusScannerForUploadedDocumentNote: アップロードされたドキュメントへのウイルススキャナーを有効にするには
-        true に設定してください。現在、この機能は API VIRUSTOTAL を使用しています。
+      enableScriptCheckingForUploadedDocumentNote: アップロードされたドキュメントのスクリプトチェックを有効にするには、true に設定してください。現在、この機能は PDF、Excel、Word のチェックをサポートしています。
+      enableVirusScannerForUploadedDocumentNote: アップロードされたドキュメントへのウイルススキャナーを有効にするには true に設定してください。現在、この機能は API VIRUSTOTAL を使用しています。
       hideCaseCreator: |-
         ケースリスト、ケースウィジェット、ケースの詳細でケースクリエイターを非表示にするには、true に設定してください。
         この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。
       hideCaseDocument: true に設定すると、ケース詳細ページのドキュメントセクションは非表示になり、それ以外の場合は表示されます。
-      hideChangePasswordButtonNote: この変数を true に設定すると、トップメニューの「パスワードの変更」オプションとログインページの「パスワードを忘れた場合」オプションが非表示になります。false
-        に設定すると、これらのオプションが表示されます。
+      hideChangePasswordButtonNote: この変数を true に設定すると、トップメニューの「パスワードの変更」オプションとログインページの「パスワードを忘れた場合」オプションが非表示になります。false に設定すると、これらのオプションが表示されます。
       hideLogoutButtonNote: true の場合、トップメニューのログアウトボタンは非表示になり、それ以外の場合は表示されます。
       hideRelatedCaseInfoFromHistory: true の場合、ケース履歴は関連するケース情報を履歴テーブルに表示しません。
       hideSystemNotesFromHistory: true の場合、管理者以外のユーザーに対してケース／タスクノートは何のシステムノートも表示しません。
@@ -282,13 +271,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       showCaseDurationTime: ケース詳細ページでの所要時間の表示のオン／オフを切り替えます。
       showErrorLogToConsole: ブラウザコンソールにエラーログを書き込むには、true に設定してください
       showGlobalSearch: グローバル検索の表示のオン／オフを切り替えます。
-      showProcessInformation: プロセスページ（グリッド モード）とケースの詳細にプロセスの情報を表示するためのリンクを無効にするには、false
-        に設定してください。
+      showProcessInformation: プロセスページ（グリッド モード）とケースの詳細にプロセスの情報を表示するためのリンクを無効にするには、false に設定してください。
       showQuickGlobalSearch: クイックグローバル検索の表示のオン/オフを切り替えます。
       showTaskDurationTime: タスク詳細ページでの所要時間の表示のオン／オフを切り替えます。
       showTooltipTechnicalName: TODO Enable to show users' technical name on tooltips.
-      uploadDocumentWhiteListExtensionNote: すべての拡張子を許可する場合は、空欄にしてください。一部の拡張子のみを許可する場合は、対象の拡張子をカンマで区切って入力してください。（例：pdf,
-        txt, doc, docx）
+      uploadDocumentWhiteListExtensionNote: すべての拡張子を許可する場合は、空欄にしてください。一部の拡張子のみを許可する場合は、対象の拡張子をカンマで区切って入力してください。（例：pdf, txt, doc, docx）
     key: キー
     link: リンク
     loading: 読み込み中
@@ -377,8 +364,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     destroyCaseMessage: 'この操作は元に戻せません。このケース<b>{0}(ID: {1})</b>とそのすべてのタスクを破棄してもよろしいですか？'
     destroyfail: ケースの破棄に失敗しました。
     destroysucceed: ケースは正常に破棄されました。
-    downloadZipFileExplanation: エクスポートするケースの数が Excel の行数制限を超えています。そのためデータは複数の Excel
-      ファイルに分割され、ダウンロードするためにZIP ファイルに圧縮されます。
+    downloadZipFileExplanation: エクスポートするケースの数が Excel の行数制限を超えています。そのためデータは複数の Excel ファイルに分割され、ダウンロードするためにZIP ファイルに圧縮されます。
     error: エラー
     exportedCasesFileName: AXONIVY_Dataset_Cases_{0}.{1}
     headerTitle:
@@ -764,8 +750,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoWidgetAvailable: ウィジェットがありません。
     QuickSearch: クイック検索
     QuickSearchInfo: ウィジェットの列管理で、クイック検索の範囲をカスタマイズできます。「含む」に基づいて検索しますが、多数の列を追加する場合はパフォーマンスに注意してください。
-    RestoreDefaultDashboardMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。<span class="dashboard-template-name-message">{0}</span>
-      の標準設定が適用されます。
+    RestoreDefaultDashboardMessage: 続行すると、自分で作成したすべてのウィジェットが失われます。<span class="dashboard-template-name-message">{0}</span> の標準設定が適用されます。
     SaveNewWidgetFilterHeader: 新しいウィジェットフィルターを保存
     SavedFilterHeader: 保存されたフィルター
     SearchForFilter: フィルターを検索
@@ -818,8 +803,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         ImageStyleClass: 画像のスタイルクラス
         PreviewDarkMode: ダークモードのプレビュー
         PreviewLightMode: ライトモードのプレビュー
-        PreviewTooltip: このプレビューではすべての設定をレンダリングすることはできませんが、最終的なウィジェットがどのように見えるかイメージを掴めます。画像のサイズ、表示位置、一部の
-          CSS 設定はプレビュー出来ません。
+        PreviewTooltip: このプレビューではすべての設定をレンダリングすることはできませんが、最終的なウィジェットがどのように見えるかイメージを掴めます。画像のサイズ、表示位置、一部の CSS 設定はプレビュー出来ません。
         ShowGreeting: 挨拶を表示
         TextColorDarkMode: ダークモードのテキストの色
         TextColorLightMode: ライトモードのテキストの色
@@ -855,8 +839,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       manageDashboard: ダッシュボードの管理
       removeDashboardHeader: 「{0}」のダッシュボードを削除
     deleteWidget: ウィジェットを削除
-    downloadZipFileExplanation: エクスポートするアイテム数が Excel の行数の制限を超える場合、データは複数の Excel ファイルに分割され、ZIP
-      ファイルに圧縮されてダウンロードされます。
+    downloadZipFileExplanation: エクスポートするアイテム数が Excel の行数の制限を超える場合、データは複数の Excel ファイルに分割され、ZIP ファイルに圧縮されてダウンロードされます。
     editWidget: ウィジェットの編集
     existingField: '{0} フィールドは既に存在します'
     expiryFrom: 有効期限：開始
@@ -917,8 +900,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: このウィジェットには、定義された設定に従って関連するタスク情報が表示されます。
     taskStart: タスクの開始
     taskWidgetConfiguration: タスクウィジェットの設定
-    topMenuItemInfo: 
-      「トップメニュー項目」チェックボックスをオンにすると、ダッシュボードはナビゲーションバーの上位項目として表示され、リスト位置でソートされます。オフにすると、「ダッシュボード」の下のサブ項目として表示され、同じくリスト位置でソートされます。
+    topMenuItemInfo: 「トップメニュー項目」チェックボックスをオンにすると、ダッシュボードはナビゲーションバーの上位項目として表示され、リスト位置でソートされます。オフにすると、「ダッシュボード」の下のサブ項目として表示され、同じくリスト位置でソートされます。
     widgetInfo: ウィジェット情報
     widgetInfoIcon: ウィジェット情報アイコン
     widgetTitle: ウィジェットタイトル
@@ -983,8 +965,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     passwordConfirmation: パスワード（再入力）
     passwordReset: パスワードのリセット
     passwordResetEmailCantSend: メールを送信中に例外エラーが発生しました。しばらくしてからもう一度お試しください。
-    passwordResetEmailContent: '<html>{0} 様、<br/><br/>パスワードをリセットするには、このリンクをクリックしてください:
-      <a href="{1}">パスワードをリセット</a><br/><br/>よろしくお願いいたします</html>'
+    passwordResetEmailContent: '<html>{0} 様、<br/><br/>パスワードをリセットするには、このリンクをクリックしてください: <a href="{1}">パスワードをリセット</a><br/><br/>よろしくお願いいたします</html>'
     passwordResetEmailSent: このメールアドレスが登録されている場合、そのアドレス宛にパスワード回復リンクを送信されます。
     passwordResetEmailSubject: パスワードをリセットするためのメール
     passwordResetSuccess: パスワードの変更に成功しました
@@ -1309,15 +1290,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: タスクリスト全体を表示
     sort: 並べ替え
   taskWarning:
-    createdTaskLeave: このページを離れようとしています。次のいずれかのオプションを選択してください：<UL><LI>&nbsp; &nbsp;
-      離れる：変更を破棄し、選択したページに移動します。<LI>&nbsp; &nbsp; キャンセル：このタスクの作業を続けます。</UL>
-    createdTaskLogout: 
-      このページを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>&nbsp;ログアウ：変更を破棄してログアウトします。<LI>&nbsp;キャンセル：このタスクの作業を続けます。</UL>
-    resetParkTaskBeforeLeave: 
-      進行中のタスクを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>離れる：変更を破棄して選択したページに移動します。<LI>保持：変更を破棄してタスクをタスクリストに保持します。<LI>キャンセル：このタスクの作業を続けます。</UL>
-    resetParkTaskBeforeLogout: 進行中のタスクを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>&nbsp;
-      &nbsp; ログアウト：変更を破棄してログアウトします。<LI>&nbsp; &nbsp; 保持：変更を破棄してタスクを個人用タスクリストに保持します。その後ログアウトします。<LI>&nbsp;
-      &nbsp; キャンセル：このタスクの作業を続けます。</UL>
+    createdTaskLeave: このページを離れようとしています。次のいずれかのオプションを選択してください：<UL><LI>&nbsp; &nbsp; 離れる：変更を破棄し、選択したページに移動します。<LI>&nbsp; &nbsp; キャンセル：このタスクの作業を続けます。</UL>
+    createdTaskLogout: このページを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>&nbsp;ログアウ：変更を破棄してログアウトします。<LI>&nbsp;キャンセル：このタスクの作業を続けます。</UL>
+    resetParkTaskBeforeLeave: 進行中のタスクを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>離れる：変更を破棄して選択したページに移動します。<LI>保持：変更を破棄してタスクをタスクリストに保持します。<LI>キャンセル：このタスクの作業を続けます。</UL>
+    resetParkTaskBeforeLogout: 進行中のタスクを離れようとしています。次のオプションのいずれかを選択してください：<UL><LI>&nbsp; &nbsp; ログアウト：変更を破棄してログアウトします。<LI>&nbsp; &nbsp; 保持：変更を破棄してタスクを個人用タスクリストに保持します。その後ログアウトします。<LI>&nbsp; &nbsp; キャンセル：このタスクの作業を続けます。</UL>
     taskNotFound: タスクが存在しないか、このタスクを表示する権限がありません。
   userProfile:
     myProfileTitle: マイプロフィール
@@ -1399,8 +1375,7 @@ Dialogs:
               CannotWorkOnDestroyedTaskWarning: タスクは破棄されたため、作業できません。
               CannotWorkOnTaskWarning: ユーザー <strong>{0}</strong> が現在作業中のため、タスクに取り組むことはできません。
               InvalidStateInfo: 無効な状態です。
-              ResetTaskWarning: 現在、別のセッションでタスクに取り組んでいます。ブラウザを閉じている場合は、タスクをリセットして再度開始できます。<a
-                href="{0}">リセット</a>
+              ResetTaskWarning: 現在、別のセッションでタスクに取り組んでいます。ブラウザを閉じている場合は、タスクをリセットして再度開始できます。<a href="{0}">リセット</a>
               ShareTaskDetails: タスクの詳細を共有
               TaskCompletedByOtherInfo: タスクは、ユーザー <strong>{0}</strong> によって {1} に既に完了しています。
               TaskCompletedByYouInfo: あなたは、このタスクを {0} に完了しています。
@@ -1463,9 +1438,7 @@ Dialogs:
                 <span class="shortcut-key">Enter</span>選択を確定
                 </div>
                 </div>
-              title: アクセシビリティ ショートカット。Alt + 1：ダッシュボードタブにフォーカスする。Alt + 2：プロセスタブにフォーカスする。Alt
-                + 3：タスクタブにフォーカスする。Alt + 4：ケースタブにフォーカスする。Alt + 5：検索にフォーカスする。Alt + 6：ユーザー設定にフォーカスする。Alt
-                + A：最初のプロセスにフォーカスする。Alt + W：最初のタスクにフォーカスする。Alt + Q：最初のケースにフォーカスする。Tab：要素の順にタブ移動する。Esc：展開されたウィジェットを閉じる。Enter：選択を確定する。
+              title: アクセシビリティ ショートカット。Alt + 1：ダッシュボードタブにフォーカスする。Alt + 2：プロセスタブにフォーカスする。Alt + 3：タスクタブにフォーカスする。Alt + 4：ケースタブにフォーカスする。Alt + 5：検索にフォーカスする。Alt + 6：ユーザー設定にフォーカスする。Alt + A：最初のプロセスにフォーカスする。Alt + W：最初のタスクにフォーカスする。Alt + Q：最初のケースにフォーカスする。Tab：要素の順にタブ移動する。Esc：展開されたウィジェットを閉じる。Enter：選択を確定する。
             CaseWidgetConfiguration:
               AddFilter: フィルターを追加
             ClientStatisticWidget:
