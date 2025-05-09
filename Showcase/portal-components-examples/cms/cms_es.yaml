@@ -49,4 +49,5 @@ Processes:
     createLeaveRequest: 'Crear ausencia para: {0}'
     createNewLeaveRequest: 'Tarea de sistema: Crear nueva solicitud para ausencia'
     leaveRequest: Solicitud para ausencia
+    leaveRequestWithSideSteps: Leave request with side step processes
     rejectedTask: Su solicitud para ausencia ha sido denegada

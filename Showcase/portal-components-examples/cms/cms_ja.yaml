@@ -49,4 +49,5 @@ Processes:
     createLeaveRequest: '{0}の休暇申請を作成'
     createNewLeaveRequest: システムタスク：新しい休暇申請の作成を開始
     leaveRequest: 休暇申請
+    leaveRequestWithSideSteps: Leave request with side step processes
     rejectedTask: あなたの休暇申請は却下されました

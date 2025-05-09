@@ -70,7 +70,7 @@
               <div class="field mb-3">
                 <span class="p-float-label">
                   <p:outputLabel for="requester-comment" value="#{ivy.cms.co('/Labels/LeaveRequest/requesterComment')}" />
-                  <p:inputTextarea id="requester-comment" value="#{data.leaveRequestData.sideStepComment1.comment1}"
+                  <p:inputTextarea id="requester-comment" value="#{data.leaveRequestData.sideStepComment2.comment2}"
                     disabled="true" rows="4" styleClass="w-full" autoResize="false"/>
                 </span>
               </div>
@@ -80,7 +80,7 @@
               <div class="field mb-3">
                 <span class="p-float-label">
                   <p:outputLabel for="requester-step-comment" value="#{ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/requesterSideStepComment')}" />
-                  <p:inputTextarea id="requester-step-comment" value="#{data.leaveRequestData.sideStepComment1.question}"
+                  <p:inputTextarea id="requester-step-comment" value="#{data.leaveRequestData.sideStepComment2.question}"
                     required="true" rows="5" styleClass="w-full" autoResize="false"
                     requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/requesterSideStepComment')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}" />
                 </span>
@@ -91,7 +91,7 @@
               <div class="field mb-4">
                 <span class="p-float-label">
                   <p:outputLabel for="approver-comment" value="#{ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/sideStepComment')}" />
-                  <p:inputTextarea id="approver-comment" value="#{data.leaveRequestData.sideStepComment1.answer}"
+                  <p:inputTextarea id="approver-comment" value="#{data.leaveRequestData.sideStepComment2.answer}"
                     required="true" rows="5" styleClass="w-full" autoResize="false"
                     requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/approverComment')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}" />
                 </span>

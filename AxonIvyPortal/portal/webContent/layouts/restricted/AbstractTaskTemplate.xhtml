@@ -284,11 +284,12 @@
                   icon="pi pi-check"
                   styleClass="p-button-primary"
                   actionListener="#{sideStepProcessBean.handleSelectProcess()}"
+                  onclick="PF('side-step-process-dialog').hide()"
                   form="side-step-process-form"/>
               </div>
             </f:facet>
         </p:dialog>
-  
+
         <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
           <ui:param name="id" value="sidestep-task-reset-confirmation-dialog" />
           <ui:param name="widgetVar" value="sidestep-task-reset-confirmation-dialog" />

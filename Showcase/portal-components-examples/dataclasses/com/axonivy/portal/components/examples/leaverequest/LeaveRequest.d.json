@@ -41,7 +41,7 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "sideStepComment1",
-    "type" : "String",
+    "type" : "com.axonivy.portal.components.examples.dto.SideStepExampleDTO",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "sideStepComment2",

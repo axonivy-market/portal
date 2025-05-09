@@ -56,7 +56,7 @@
 
                 <h:panelGroup>
                   <p:outputLabel for="employee-comment" value="Employee Note" />
-                  <p:inputTextarea id="employee-comment" value="#{data.leaveRequestData.sideStepComment1}"
+                  <p:inputTextarea id="employee-comment" value="#{data.leaveRequestData.sideStepComment1.answer}"
                     styleClass="MarTop10" disabled="true" rows="5" />
                 </h:panelGroup>
                 
@@ -80,7 +80,8 @@
           process=":leave-request" update=":leave-request" style="width: auto" />
       </h:form>
       <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="1" />
-
+  
+      <ic:com.axonivy.portal.components.examples.SideStepResultExample data="#{data.leaveRequestData.sideStepComment2}" />
     </ui:define>
   </ui:composition>
 </h:body>

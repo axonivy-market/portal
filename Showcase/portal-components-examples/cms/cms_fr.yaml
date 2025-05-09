@@ -49,4 +49,5 @@ Processes:
     createLeaveRequest: 'Créer une demande de congé pour : {0}'
     createNewLeaveRequest: 'Tâche du système : Commencer à créer une nouvelle demande de congé'
     leaveRequest: Processus d'absence
+    leaveRequestWithSideSteps: Leave request with side step processes
     rejectedTask: Votre demande de congé est rejetée

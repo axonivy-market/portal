@@ -49,4 +49,5 @@ Processes:
     createLeaveRequest: 'Urlaubsantrag anlegen für: {0}'
     createNewLeaveRequest: 'Systemaufgabe: Beginn der Erstellung eines neuen Urlaubsantrags'
     leaveRequest: Abwesenheitsprozess
+    leaveRequestWithSideSteps: Leave request with side step processes
     rejectedTask: Ihr Urlaubsantrag wird abgelehnt
