@@ -10,7 +10,7 @@ on:
       yaml_path:
         description: 'Path to YAML translations directory'
         required: false
-        default: 'AxonIvyPortal/portal/cms'
+        default: 'portal/AxonIvyPortal/portal/cms'
       output_path:
         description: 'Path where PO files will be saved'
         required: false
@@ -31,47 +31,43 @@ jobs:
         
     - name: Install yaml2po
       run: |
+        set -euo pipefail
         sudo apt update
         sudo apt install -y translate-toolkit
     
     - name: Prepare output directory
       run: |
+        set -euo pipefail
         mkdir -p ${{ github.event.inputs.output_path || 'po-templates' }}
         
     - name: Convert YAML files to PO
       run: |
-        # Find all files that match the pattern
+        set -euo pipefail
+
         echo "Looking for files matching: ${{ github.event.inputs.file_pattern || 'cms-*.yml' }}"
-        
-        # Use find to locate all matching files
-        matched_files=$(find ${{ github.event.inputs.yaml_path || 'translations' }} -name "${{ github.event.inputs.file_pattern || 'cms-*.yml' }}" -type f)
-        
+
+        matched_files=$(find ${{ github.event.inputs.yaml_path || 'portal/AxonIvyPortal/portal/cms' }} -name "${{ github.event.inputs.file_pattern || 'cms-*.yml' }}" -type f)
+
         if [ -z "$matched_files" ]; then
-          echo "Warning: No files found matching the pattern ${{ github.event.inputs.file_pattern || 'cms-*.yml' }}"
-          echo "Please check your file pattern and path."
-          exit 0
+          echo "Error: No files found matching the pattern ${{ github.event.inputs.file_pattern || 'cms-*.yml' }}"
+          exit 1
         fi
-        
-        # Process each found YAML file
+
         for yaml_path in $matched_files; do
           yaml_file=$(basename "$yaml_path")
           echo "Converting $yaml_file to PO template..."
-          
-          # Get basename without extension for output filename
-          # Handle both .yml and .yaml extensions
+
           if [[ "$yaml_file" == *.yml ]]; then
             filename=$(basename "$yaml_file" .yml)
           else
             filename=$(basename "$yaml_file" .yaml)
           fi
-          
-          # Convert YAML to PO
+
           yaml2po "$yaml_path" "${{ github.event.inputs.output_path || 'po-templates' }}/$filename.pot"
-                 
+
           echo "Created $filename.pot"
         done
-        
-        # Show summary
+
         echo "Conversion complete. Created $(find ${{ github.event.inputs.output_path || 'po-templates' }} -name "*.pot" | wc -l) PO template files."
         
     - name: Upload PO templates as artifacts
