@@ -103,6 +103,10 @@ public class DefaultDashboardUtils {
                 "width": "95"
               },
               {
+                "field": "endTimestamp",
+                "width": "95"
+              },
+              {
                 "field": "expiryTimestamp",
                 "width": "95"
               },
