@@ -1,0 +1,91 @@
+name: YAML i18n Diff
+on:
+  push:
+    branches: [language]
+  workflow_dispatch:
+    inputs:
+      source_branch:
+        description: 'Source branch containing translations to compare (default: language)'
+        required: false
+        default: 'language'
+      base_branch:
+        description: 'Base branch to compare against (default: cms)'
+        required: false
+        default: 'cms'
+      yaml_path:
+        description: 'Path to YAML translations directory'
+        required: false
+        default: 'translations'
+      create_pr:
+        description: 'Create PR if changes detected'
+        required: false
+        default: 'true'
+        type: boolean
+
+jobs:
+  extract-and-diff:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout current branch
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.inputs.source_branch || 'language' }}
+        
+    - name: Install yaml2po
+      run: |
+        sudo apt update
+        sudo apt install -y translate-toolkit
+        
+    - name: Convert YAML to PO
+      run: |
+        mkdir -p extracted/source
+        yaml2po ${{ github.event.inputs.yaml_path || 'translations' }}/en.yaml extracted/source/en.po
+        
+    - name: Checkout base branch
+      run: |
+        git fetch origin ${{ github.event.inputs.base_branch || 'cms' }}
+        git checkout origin/${{ github.event.inputs.base_branch || 'cms' }}
+        mkdir -p ../base-yaml
+        cp -r ${{ github.event.inputs.yaml_path || 'translations' }} ../base-yaml/
+      shell: bash
+      
+    - name: Convert base YAML to PO
+      working-directory: ../base-yaml
+      run: |
+        mkdir -p ../extracted/base
+        yaml2po ${{ github.event.inputs.yaml_path || 'translations' }}/en.yaml ../extracted/base/en.po
+        
+    - name: Compare PO files
+      id: diff
+      run: |
+        if diff -q extracted/source/en.po extracted/base/en.po >/dev/null; then
+          echo "No differences detected between branches"
+          echo "changed=false" >> $GITHUB_OUTPUT
+        else
+          echo "Differences detected between branches"
+          echo "changed=true" >> $GITHUB_OUTPUT
+        fi
+        
+    - name: Commit and PR if changed
+      if: steps.diff.outputs.changed == 'true' && (github.event.inputs.create_pr == 'true' || github.event.inputs.create_pr == '')
+      run: |
+        # Get user info from the triggering event
+        if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+          # For manual runs, use the user who triggered the workflow
+          GIT_USER_EMAIL="${{ github.event.sender.email || github.actor }}@users.noreply.github.com"
+          GIT_USER_NAME="${{ github.event.sender.name || github.actor }}"
+        else
+          # For push events, use the pusher's info
+          GIT_USER_EMAIL="${{ github.event.pusher.email || github.actor }}@users.noreply.github.com"
+          GIT_USER_NAME="${{ github.event.pusher.name || github.actor }}"
+        fi
+
+        git config user.email "$GIT_USER_EMAIL"
+        git config user.name "$GIT_USER_NAME"
+        git checkout ${{ github.event.inputs.source_branch || 'language' }}
+        git add ${{ github.event.inputs.yaml_path || 'translations' }}/en.yaml
+        git commit -m "Update i18n YAML based on changes"
+        git push origin ${{ github.event.inputs.source_branch || 'language' }}
+        gh pr create --title "Update i18n YAML" --body "Detected changes in YAML via PO diff between ${{ github.event.inputs.source_branch || 'language' }} and ${{ github.event.inputs.base_branch || 'cms' }}\n\nAutomated PR created on behalf of @${{ github.actor }}" --label "i18n"
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
