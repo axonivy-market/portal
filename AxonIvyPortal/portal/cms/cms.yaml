@@ -1098,6 +1098,8 @@ Dialogs:
           component:
             DashboardImportDetails:
               FileInfomation: File Infomation
+            NavigationDashboardWidgetConfiguration:
+              ButtonName: Button Name
             NewsWidget:
               NewsContentPlaceHolder: Enter News content
               NewsContentValidateMessage: News content in {0} is required
