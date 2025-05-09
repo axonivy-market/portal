@@ -46,6 +46,7 @@ import com.axonivy.portal.bo.ClientStatistic;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.News;
+import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
@@ -144,7 +145,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void initSampleWidgets() {
     if (CollectionUtils.isEmpty(samples)) {
       samples = List.of(taskSample(), caseSample(), processSample(), externalPageSample(),
-          processViewerSample(), welcomeWidgetSample(), newsSample(), notificationSample());
+          processViewerSample(), welcomeWidgetSample(), newsSample(), notificationSample(), navigationDashboardWidget());
       samples = samples.stream().sorted(Comparator.comparing(WidgetSample::getName)).collect(Collectors.toList());
     }
     initCustomWidgets();
@@ -233,6 +234,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NOTIFICATION"),
         NOTIFICATION, "si si-alarm-bell", translate("/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidgetConfiguration/NotificationWidgetDescription"), true);
   }
+  
+  private WidgetSample navigationDashboardWidget() {
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NAVIGATION_DASHBOARD"), DashboardWidgetType.NAVIGATION_DASHBOARD, "si si-navigation-right-circle", translate("/Dialogs/com/axonivy/portal/dashboard/component/NavigationDashboardWidgetConfiguration/NavigationDashboardWidgetDescription"), true);
+  }
 
   public void restore() {
     removeWelcomeWidgetImagesOfDashboard(getSelectedDashboard());
@@ -298,6 +303,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       case NOTIFICATION -> {
         newWidgetHeader = translate("/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidgetConfiguration/NotificationWidgetConfiguration");
         widget = getDefaultNotificationWidget();
+      }
+      case NAVIGATION_DASHBOARD -> {
+        newWidgetHeader = translate("/Dialogs/com/axonivy/portal/dashboard/component/NavigationDashboardWidgetConfiguration/NavigationDashboardWidgetConfiguration");
+        widget = getDefaultNavigationDashboardWidget();
       }
       default -> {}
     }
@@ -428,6 +437,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourNotifications");
     return NotificationDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
+  
+  private NavigationDashboardWidget getDefaultNavigationDashboardWidget() {
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.NAVIGATION_DASHBOARD);
+    String buttonName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/navigate");
+    return NavigationDashboardWidget.buildDefaultWidget(widgetId, buttonName);
+  }
 
   public void saveWidget() {
     if (CollectionUtils.isEmpty(this.getSelectedDashboard().getWidgets())) {
@@ -484,6 +499,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       case CASE -> {
         updateCaseWidget(widget);
       }
+
       default -> {}
     }
     updateWidgetPosition(widget);

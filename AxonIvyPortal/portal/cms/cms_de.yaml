@@ -79,6 +79,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: Vorgangs-Widget
       CLIENT_STATISTIC: Statistik-Widget
       CUSTOM: Benutzerdefiniertes Widget
+      NAVIGATION_DASHBOARD: Navigation dashboard widget
       NEW: Neues Widget
       NEWS: Nachrichten
       NOTIFICATION: Benachrichtigungen
@@ -603,7 +604,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: Der Prozess
     timeInformation: Zeitangaben
     timestamp: Zeitstempel
-    topMenuItem: Oberster Menüpunkt
     type: Typ
     typeAdmin: Alle Administratoren
     typeAllUsers: Alle Benutzer
@@ -860,6 +860,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: Aktuell sind keine weiteren Aufgaben vorhanden.
         noTasksFoundWhenFilter: Derzeit gibt es keine Aufgaben nach dem angewandten Filter.
     loading: Laden...
+    navigate: Navigieren Sie
     noCategory: Es gibt keine Kategorien
     noDashboard: Keine Dashboards vorhanden. Fügen Sie mindestens ein Dashboard und anschließend Widgets hinzu.
     noPermission: Sie haben keine Berechtigung, Dashboards zu sehen.
@@ -901,13 +902,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Dieses Widget zeigt relevante Aufgabeninformationen gemäß der definierten Einstellungen an
     taskStart: Aufgabe starten
     taskWidgetConfiguration: Aufgaben-Widget-Konfiguration
-    topMenuItemInfo: Wenn die Checkbox „Oberster Menüpunkt“ aktiviert ist, erscheint das Dashboard als oberstes Element in der Navigationsleiste, sortiert nach Listenposition. Wenn sie deaktiviert ist, wird es als Unterpunkt unter „Dashboards“ angezeigt, ebenfalls nach Listenposition sortiert.
     widgetInfo: Widget-Informationen
     widgetInfoIcon: Widget-Informations-Symbol
     widgetTitle: Widget-Titel
     widgetType: Widget-Typ
     yourCases: Ihre Vorgänge
     yourCustomWidget: Ihr benutzerdefiniertes Widget
+    yourNavigationDashboardWidget: Ihr Navigations-Dashboard-Widget
     yourNotifications: Ihre Benachrichtigungen
     yourProcessViewer: Ihr Prozessbetrachter
     yourProcesses: Ihre Prozesse
@@ -1430,6 +1431,10 @@ Dialogs:
               chooseAJsonFile: Wählen Sie eine JSON-Datei
             DashboardSharing:
               ShareDashboard: Dashboard teilen
+            NavigationDashboardWidgetConfiguration:
+              ButtonName: Schaltfläche Name
+              NavigationDashboardWidgetConfiguration: Konfiguration des Navigations-Dashboard-Widgets
+              NavigationDashboardWidgetDescription: Dieses Widget ermöglicht es den Benutzern, durch einen Klick auf eine Schaltfläche direkt zu einem verknüpften Dashboard zu springen.
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
               NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich

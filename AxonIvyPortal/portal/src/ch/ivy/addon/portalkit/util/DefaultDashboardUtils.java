@@ -123,7 +123,7 @@ public class DefaultDashboardUtils {
         "permissions": [
           "Everybody"
         ],
-        "isTopMenu": true
+        "dashboardDisplayType": "top_menu"
       }
       """;
 
@@ -237,7 +237,7 @@ public class DefaultDashboardUtils {
         "permissions": [
           "Everybody"
         ],
-        "isTopMenu": true
+        "dashboardDisplayType": "top_menu"
       }
       """;
 
