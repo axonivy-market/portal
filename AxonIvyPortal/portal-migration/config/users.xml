@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<userConfig>
-    <user>
-        <username>portal-migration</username>
-        <password>Portal migration user</password>
-        <role>AXONIVY_PORTAL_ADMIN</role>
-    </user>
-</userConfig>
