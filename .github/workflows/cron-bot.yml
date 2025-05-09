@@ -1,5 +1,7 @@
 name: Cron Bot
 run-name: 🤖 Cron Bot
+permissions:
+  contents: write
 on:
   schedule:
     # Cron at midnight GMT+7
