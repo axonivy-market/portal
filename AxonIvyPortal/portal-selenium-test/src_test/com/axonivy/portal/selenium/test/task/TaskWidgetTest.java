@@ -14,7 +14,7 @@ import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class TaskWidgetTest extends BaseTest {
 
   private TaskDetailsPage taskDetailsPage;
@@ -73,14 +73,4 @@ public class TaskWidgetTest extends BaseTest {
     assertEquals(4, taskWidget.countAllTasks().size(), "In Task list, Task Count != 4");
   }
   
-  @Test
-  public void testMultipleResponsible() {
-    login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(taskWith20Responsibles);
-    redirectToRelativeLink(taskWith8Responsibles);
-    NavigationHelper.navigateToTaskList();
-    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    taskWidget.getResponsibleOfTaskAt(0).contains("8");
-    taskWidget.getResponsibleOfTaskAt(1).contains("20");
-  }
 }

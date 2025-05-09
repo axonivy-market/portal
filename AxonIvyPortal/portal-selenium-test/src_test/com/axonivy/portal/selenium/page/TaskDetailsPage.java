@@ -377,9 +377,12 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementClickableThenClick(By.cssSelector(".portal-breadcrumb ol li:nth-of-type(2) .ui-menuitem-link"));
   }
 
-  public String getAllResponsible() {
-    return $("[id$=':all-responsibles'] a").getText();
+  public SelenideElement getAllResponsible() {
+    return $("[id$=':all-responsibles'] a");
   }
-
+  
+  public SelenideElement getAllExpiryResponsible() {
+    return $("[id$=':all-expiry-responsibles'] a");
+  }
 
 }

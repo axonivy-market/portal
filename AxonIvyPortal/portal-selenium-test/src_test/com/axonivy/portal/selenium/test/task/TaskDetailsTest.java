@@ -153,14 +153,14 @@ public class TaskDetailsTest extends BaseTest {
   }
   
   @Test
-  public void testMultipleResponsible() {
+  public void testMultipleExpiryResponsible() {
+    redirectToRelativeLink(taskWithMultiResponsibles);
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(taskWith20Responsibles);
-    redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    TaskDetailsPage detailsPage = taskWidget.openTaskDetails(0);
-    detailsPage.getAllResponsible().contains("20");
-    
+    taskWidget.openDashboardTaskDetails("task with 8 responsible");
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getAllResponsible().shouldHave(Condition.text("8"));
+    taskDetailsPage.getAllExpiryResponsible().shouldHave(Condition.text("8"));
   }
 }
