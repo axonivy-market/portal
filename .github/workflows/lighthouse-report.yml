@@ -1,5 +1,7 @@
 name: Lighthouse Audit
 run-name: 🗼Lighthouse Audit
+permissions:
+  contents: read
 on:
   workflow_dispatch:
 
