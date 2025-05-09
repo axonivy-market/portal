@@ -1,7 +1,6 @@
 name: YAML i18n Diff
 on:
   push:
-    branches: [language]
   workflow_dispatch:
     inputs:
       source_branch:
