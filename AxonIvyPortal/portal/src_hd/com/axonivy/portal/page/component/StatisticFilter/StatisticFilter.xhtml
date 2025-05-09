@@ -47,7 +47,7 @@
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{widgetPriorityFilterBean.statisticOperators}" />
       </h:panelGroup>
       
-      <h:panelGroup layout="block" rendered="#{filter.isCreatedDateField() or filter.isExpiryDateField() or filter.isCustomDateField()}">
+      <h:panelGroup layout="block" rendered="#{filter.isCreatedDateField() or filter.isExpiryDateField() or filter.isCustomDateField() or filter.isFinishedDateField()}">
         <ic:com.axonivy.portal.dashboard.component.filter.DateFilter filter="#{filter}" widgetType="#{statistic.getChartTarget().getName()}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" operators="#{widgetDateFilterBean.statisticOperators}"/>

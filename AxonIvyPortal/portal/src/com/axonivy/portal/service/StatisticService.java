@@ -102,12 +102,16 @@ public class StatisticService {
           : CaseFilterFieldFactory.findBy(statisticFilter.getField(), statisticFilter.getFilterType());      
 
       if (filterField != null) {
-        String filterQuery = ChartTarget.TASK == chartTarget ? filterField.generateTaskFilter(statisticFilter) : filterField.generateCaseFilter(statisticFilter);
+        String filterQuery = ChartTarget.TASK == chartTarget 
+            ? filterField.generateTaskFilter(statisticFilter)
+            : filterField.generateCaseFilter(statisticFilter);
+
         if (filterQuery != null) {
           sbFilter.append(filterQuery).append(",");
         }
       }
     }
+
     if (Strings.EMPTY.equals(sbFilter.toString())) {
       return null;
     }
@@ -118,7 +122,6 @@ public class StatisticService {
     String filter = null;
     String aggregates = chart.getAggregates();
     filter = processFilter(chart.getFilters(), chart.getChartTarget());
-    chart.getFilter();
 
     if(StringUtils.isEmpty(aggregates)) {
       aggregates = convertAggregatesFromChartAggregation(chart);

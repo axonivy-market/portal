@@ -12,8 +12,9 @@ import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldDefault;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldApplication;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCategory;
+import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreatedDate;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreator;
-import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldName;
+import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldFinishedDate;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldState;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomNumber;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomString;
@@ -33,7 +34,12 @@ public class CaseFilterFieldFactory {
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.APPLICATION.getField(), new CaseFilterFieldApplication());
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.STATE.getField(), new CaseFilterFieldState());
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.CATEGORY.getField(), new CaseFilterFieldCategory());
-    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.NAME.getField(), new CaseFilterFieldName()); // TODO TEST TEXT FIELD WITH OPERATOR IN NOT WORKING
+    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.CREATED.getField(), new CaseFilterFieldCreatedDate());
+    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.FINISHED.getField(), new CaseFilterFieldFinishedDate());
+//    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.NAME.getField(), new CaseFilterFieldName()); // TODO TEST THIS FIELD WITH OPERATOR IN NOT WORKING - MAYBE BECAUSE IT'S FORMAT IS TEXT
+                                                                                                         // TODO Also remove NameInOperatorHandler
+//    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.DESCRIPTION.getField(), new CaseFilterFieldDescription()); // TODO TEST THIS FIELD WITH OPERATOR IN NOT WORKING - MAYBE BECAUSE IT'S FORMAT IS TEXT
+//    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.ID.getField(), new CaseFilterFieldId()); // TODO TEST THIS FIELD WITH OPERATOR IN NOT WORKING - MAYBE BECAUSE IT'S FORMAT IS TEXT
     
     for (ICustomFieldMeta customField : ICustomFieldMeta.cases()) {
       switch (customField.type()) {
