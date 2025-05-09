@@ -82,7 +82,8 @@
         </h:panelGroup>
       </h:form>
       <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="0" />
-
+      
+      <ic:com.axonivy.portal.components.examples.SideStepResultExample data="#{data.leaveRequestData.sideStepComment1}" />
     </ui:define>
   </ui:composition>
 </h:body>

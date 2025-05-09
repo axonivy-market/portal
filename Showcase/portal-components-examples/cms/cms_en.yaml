@@ -49,4 +49,5 @@ Processes:
     createLeaveRequest: 'Create leave request for: {0}'
     createNewLeaveRequest: 'System task: Start create new leave request'
     leaveRequest: Leave Request
+    leaveRequestWithSideSteps: Leave request with side step processes
     rejectedTask: Your leave request is rejected

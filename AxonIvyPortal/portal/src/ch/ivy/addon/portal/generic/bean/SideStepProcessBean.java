@@ -18,6 +18,7 @@ import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.enums.SideStepType;
 import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;
 import com.axonivy.portal.components.publicapi.TaskAPI;
+import com.axonivy.portal.components.util.TaskUtils;
 import com.axonivy.portal.components.util.UserUtils;
 
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -84,18 +85,24 @@ public class SideStepProcessBean implements Serializable {
 
   public void handleSelectProcess() {
     if (task != null && selectedProcess != null) {
-      if (selectedStepType == SideStepType.SWITCH) {
-        TaskAPI.setHidePropertyToHideInPortal(task); 
-      }
-
       // newTask.getCase().attachToBusinessCase(task.getCase().getId());
       SideStepProcessParam param = new SideStepProcessParam(selectedProcess, assignee, selectedStepType, comment);
       String jsonSerializedPayload = BusinessEntityConverter.entityToJsonValue(param);
-      Ivy.log().info("Params ne {0}", jsonSerializedPayload);
       Ivy.wf().signals().create().data(jsonSerializedPayload).send(selectedProcess.getSignal());
-      PortalNavigatorInFrameAPI.navigateToPortalHome();
+      if (selectedStepType == SideStepType.SWITCH) {
+        TaskUtils.parkTask(task);
+        TaskAPI.setHidePropertyToHideInPortal(task); 
+        PortalNavigatorInFrameAPI.navigateToPortalHome();
+      }
 
     }
+  }
+  
+  public boolean isCompletedSideStepProcess() {
+    if (selectedProcess != null) {
+      
+    }
+    return false;
   }
 
   public ITask getTask() {
