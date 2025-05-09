@@ -45,7 +45,7 @@ jobs:
         set -euo pipefail
 
         # Convert input into an array
-        IFS=',' read -r -a file_list <<< "${{ github.event.inputs.file_list || 'cms-en.yaml,cms-ja.yaml,cms.yaml,cms-de.yaml,cms-fr.yaml,cms-es.yaml' }}"
+        IFS=',' read -r -a file_list <<< "${{ github.event.inputs.file_list || 'cms-es.yaml' }}"
 
         # Define the YAML directory and output directory
         yaml_dir="${{ github.event.inputs.yaml_path || './AxonIvyPortal/portal/cms' }}"
