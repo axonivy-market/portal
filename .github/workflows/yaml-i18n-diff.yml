@@ -44,31 +44,29 @@ jobs:
       run: |
         set -euo pipefail
 
-        echo "Looking for files matching: ${{ github.event.inputs.file_pattern || 'cms-*.yaml' }}"
+        # Convert input into an array
+        IFS=',' read -r -a file_list <<< "${{ github.event.inputs.file_list || 'cms-en.yaml,cms-ja.yaml,cms.yaml,cms-de.yaml,cms-fr.yaml,cms-es.yaml' }}"
 
-        matched_files=$(find ${{ github.event.inputs.yaml_path || './AxonIvyPortal/portal/cms' }} -name "${{ github.event.inputs.file_pattern || 'cms-*.yaml' }}" -type f)
+        # Define the YAML directory and output directory
+        yaml_dir="${{ github.event.inputs.yaml_path || './AxonIvyPortal/portal/cms' }}"
+        output_dir="${{ github.event.inputs.output_path || 'po-templates' }}"
 
-        if [ -z "$matched_files" ]; then
-          echo "Error: No files found matching the pattern ${{ github.event.inputs.file_pattern || 'cms-*.yaml' }}"
-          exit 1
-        fi
-
-        for yaml_path in $matched_files; do
-          yaml_file=$(basename "$yaml_path")
-          echo "Converting $yaml_file to PO template..."
-
-          if [[ "$yaml_file" == *.yml ]]; then
-            filename=$(basename "$yaml_file" .yaml)
+        # Iterate over the files in the list
+        for file in "${file_list[@]}"; do
+          yaml_path="$yaml_dir/$file"
+          if [ -f "$yaml_path" ]; then
+            echo "Converting $yaml_path to PO template..."
+            filename=$(basename "$yaml_path" .yaml)
+            yaml2po "$yaml_path" "$output_dir/$filename.pot"
+            echo "Created $filename.pot"
           else
-            filename=$(basename "$yaml_file" .yaml)
+            echo "Warning: $yaml_path not found!"
           fi
-
-          yaml2po "$yaml_path" "${{ github.event.inputs.output_path || 'po-templates' }}/$filename.pot"
-
-          echo "Created $filename.pot"
         done
 
-        echo "Conversion complete. Created $(find ${{ github.event.inputs.output_path || 'po-templates' }} -name "*.pot" | wc -l) PO template files."
+        # Show summary of conversion
+        echo "Conversion complete. Created $(find "$output_dir" -name "*.pot" | wc -l) PO template files."  
+
         
     - name: Upload PO templates as artifacts
       uses: actions/upload-artifact@v4
