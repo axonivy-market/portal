@@ -1202,6 +1202,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ACTIVATOR: Responsable
       APPLICATION: Aplicación
       CATEGORY: Categoría
+      COMPLETED: Completado en
       COMPLETED_ON: Completado en
       CREATION_TIME: Creado
       EXPIRY_TIME: Expiración
@@ -1516,6 +1517,7 @@ Labels:
       ACTIONS: Acciones
       APPLICATION: Aplicación
       CATEGORY: Categoría
+      COMPLETED: Fecha de finalización
       CREATED: Fecha de creación
       DESCRIPTION: Descripción
       EXPIRY: Expiración
