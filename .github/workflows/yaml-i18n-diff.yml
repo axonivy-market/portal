@@ -46,7 +46,7 @@ jobs:
 
         echo "Looking for files matching: ${{ github.event.inputs.file_pattern || 'cms-*.yml' }}"
 
-        matched_files=$(find ${{ github.event.inputs.yaml_path || 'portal/AxonIvyPortal/portal/cms' }} -name "${{ github.event.inputs.file_pattern || 'cms-*.yml' }}" -type f)
+        matched_files=$(find ${{ github.event.inputs.yaml_path || './AxonIvyPortal/portal/cms' }} -name "${{ github.event.inputs.file_pattern || 'cms-*.yml' }}" -type f)
 
         if [ -z "$matched_files" ]; then
           echo "Error: No files found matching the pattern ${{ github.event.inputs.file_pattern || 'cms-*.yml' }}"
