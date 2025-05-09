@@ -18,7 +18,7 @@ on:
       file_pattern:
         description: 'Pattern for YAML files to convert (e.g., "cms-*.yml" or "*.yaml")'
         required: false
-        default: 'cms-*.yml'
+        default: 'cms-*.yaml'
 
 jobs:
   convert-yaml-to-po:
@@ -38,19 +38,13 @@ jobs:
     - name: Prepare output directory
       run: |
         set -euo pipefail
-        mkdir -p ${{ github.event.inputs.output_path || 'po-templates' }}
-
-    - name: List files in YAML directory
-      run: |
-        set -e
-        echo "Contents of YAML path:"
-        ls -R ${{ github.event.inputs.yaml_path || './AxonIvyPortal/portal/cms' }}                 
+        mkdir -p ${{ github.event.inputs.output_path || 'po-templates' }}               
         
     - name: Convert YAML files to PO
       run: |
         set -euo pipefail
 
-        echo "Looking for files matching: ${{ github.event.inputs.file_pattern || 'cms-*.yml' }}"
+        echo "Looking for files matching: ${{ github.event.inputs.file_pattern || 'cms-*.yaml' }}"
 
         matched_files=$(find ${{ github.event.inputs.yaml_path || './AxonIvyPortal/portal/cms' }} -name "${{ github.event.inputs.file_pattern || 'cms-*.yml' }}" -type f)
 
