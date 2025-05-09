@@ -27,7 +27,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.inputs.source_branch || 'main' }}
+        ref: ${{ github.event.inputs.source_branch || 'portal-cms' }}
         
     - name: Install yaml2po
       run: |
