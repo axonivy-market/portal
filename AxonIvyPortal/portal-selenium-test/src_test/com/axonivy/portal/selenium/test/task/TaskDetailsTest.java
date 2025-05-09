@@ -162,5 +162,7 @@ public class TaskDetailsTest extends BaseTest {
     TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     taskDetailsPage.getAllResponsible().shouldHave(Condition.text("8"));
     taskDetailsPage.getAllExpiryResponsible().shouldHave(Condition.text("8"));
+    taskDetailsPage.getAllExpiryResponsible().click();
+    taskDetailsPage.getExpiryResponsibleDialog().should(Condition.appear);
   }
 }

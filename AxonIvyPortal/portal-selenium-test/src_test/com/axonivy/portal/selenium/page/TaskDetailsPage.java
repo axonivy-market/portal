@@ -385,4 +385,7 @@ public class TaskDetailsPage extends TemplatePage {
     return $("[id$=':all-expiry-responsibles'] a");
   }
 
+  public SelenideElement getExpiryResponsibleDialog() {
+    return $("[id$=':expiry-responsible-dialog']");
+  }
 }
