@@ -75,7 +75,7 @@ jobs:
         echo "Conversion complete. Created $(find ${{ github.event.inputs.output_path || 'po-templates' }} -name "*.pot" | wc -l) PO template files."
         
     - name: Upload PO templates as artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: po-templates
         path: ${{ github.event.inputs.output_path || 'po-templates' }}/*.pot
