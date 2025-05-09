@@ -56,7 +56,7 @@ public class ResponsibleColumnModel extends TaskColumnModel implements Serializa
 
   @Override
   public Object display(ITask task) {
-    if (task == null || task.responsibles().all().isEmpty()) {
+    if (task == null || CollectionUtils.isEmpty(task.responsibles().all())) {
       return StringUtils.EMPTY;
     }
     ISecurityMember member = task.responsibles().all().getFirst().get();
@@ -93,7 +93,7 @@ public class ResponsibleColumnModel extends TaskColumnModel implements Serializa
   
   @JsonIgnore
   public int getResponsibleSize(ITask task) {
-    if (task == null || task.responsibles().all().isEmpty()) {
+    if (task == null || CollectionUtils.isEmpty(task.responsibles().all())) {
       return 0;
     }
     return task.responsibles().all().size();

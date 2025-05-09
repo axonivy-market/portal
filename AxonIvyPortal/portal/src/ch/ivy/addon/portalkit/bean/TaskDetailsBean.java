@@ -226,7 +226,7 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
   }
   
   public boolean isDisplayNameNotAvailable(ISecurityMember member, String securityMemberName) {
-    String generatedBriefDisplayName =  SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(member, securityMemberName);
+    String generatedBriefDisplayName = SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(member, securityMemberName);
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable").equals(generatedBriefDisplayName);
   }
 

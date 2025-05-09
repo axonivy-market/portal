@@ -9,6 +9,7 @@ public final class PortalConstants {
   public static final String PORTAL_LIBRARY_ID = "com.axonivy.portal:portal";
   public static final int CUSTOM_STRING_FIELD_MAX_LENGTH = 2000;
   public static final int MAX_USERS_IN_AUTOCOMPLETE = 101;
-  
+  public final static int LIMIT_NUMBER_RESPONSIBLE = 10;
+
   private PortalConstants() {}
 }
