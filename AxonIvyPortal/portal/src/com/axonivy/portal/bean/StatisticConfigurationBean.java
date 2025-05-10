@@ -186,6 +186,10 @@ public class StatisticConfigurationBean implements Serializable {
       statisticService.convertAggregatesFromChartAggregation(statistic);
       if(agg.getType() == DashboardColumnType.CUSTOM) {
         getCustomFieldNames();
+
+        findCustomFieldMeta().ifPresent(meta -> {
+          this.currentCustomFieldDescription = meta.description();
+        });
       }
       this.setDateTimeSelected(agg.getInterval() != null);
       this.aggregationInterval = agg.getInterval(); 
