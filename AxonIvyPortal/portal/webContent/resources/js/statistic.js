@@ -253,9 +253,6 @@ function removeCharacterFromLastIndex(str, n) {
 const generateChart = (chart, data) => {
   data.chartConfig.filter = data.chartConfig.filter ? data.chartConfig.filter : '';
   
-  console.log("data check");
-  console.log(data);
-
   switch (data.chartConfig.chartType) {
     case 'number': return new ClientNumberChart(chart, data);
     case 'bar': return new ClientBarChart(chart, data);

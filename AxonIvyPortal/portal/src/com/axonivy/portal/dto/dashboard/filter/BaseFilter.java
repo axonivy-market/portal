@@ -222,9 +222,6 @@ public class BaseFilter implements Serializable{
     return DashboardStandardTaskColumn.RESPONSIBLE.getField().equals(getField());
   }
   
-  /**
-   * TODO remove unused stuffs
-   */
   @JsonIgnore
   public List<SecurityMemberDTO> getCreators() {
     return getValues().stream().map(this::findUser)

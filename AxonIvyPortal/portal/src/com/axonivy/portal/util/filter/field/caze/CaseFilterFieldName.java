@@ -65,10 +65,4 @@ public class CaseFilterFieldName extends FilterField {
     return null;
   }
   
-  // TODO TEST TEXT NAME IN FILTER
-//  public String generateCaseFilter(DashboardFilter filter) {
-//    return switch (filter.getOperator()) {
-//    case IN -> NameInOperatorHandler.getInstance().buildFilter(filter);
-//    default -> null;
-//  };
 }

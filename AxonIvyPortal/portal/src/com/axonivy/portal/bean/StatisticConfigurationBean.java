@@ -244,7 +244,7 @@ public class StatisticConfigurationBean implements Serializable {
             : CaseFilterFieldFactory.findBy( // FIND FILTER FIELD FOR CASE
                 Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(StringUtils.EMPTY),
                 Optional.ofNullable(filter).map(DashboardFilter::getFilterType).orElse(null));
-          // TODO avoid nested if
+
           if (filterField != null) {
             filterField.initFilter(filter);
           }
