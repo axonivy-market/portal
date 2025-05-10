@@ -1,6 +1,6 @@
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
-    caseFound: Case found test test
+    caseFound: Case found DE
     portalTranslation: Portal translation
     noCaseFound: Vorgang nicht gefunden oder Sie haben keine Berechtigung, diesen Vorgang zu sehen.
     requestTabTitle: Anfrage
