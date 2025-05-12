@@ -87,6 +87,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
             .collect(Collectors.joining(", "));
       case ID -> String.valueOf(taskItem.getId());
       case CREATED -> taskItem.getStartTimestamp();
+      case COMPLETED -> taskItem.getEndTimestamp();
       case EXPIRY -> taskItem.getExpiryTimestamp();
       case STATE -> getTaskBusinessState(taskItem.getBusinessState());
       case CATEGORY -> taskItem.getCategory().getPath();

@@ -50,6 +50,7 @@
     shortDescription="Display label with floating style and labelPanelStyleClass can't be applied if it’s enabled." />
   <cc:attribute name="labelPanelStyleClass" shortDescription="Style class of label panel." />
   <cc:attribute name="labelStyleClass" shortDescription="Style class of label." />
+  <cc:attribute name="appendOption" shortDescription="Defines the additional information to append to the role selection display, such as parent name or blank.Value: NONE, PARENT_NAME" />
 
   <!-- Message attributes -->
   <cc:attribute name="isRenderedMessage" default="true"
@@ -96,7 +97,7 @@
       emptyMessage="#{cc.attrs.emptyMessage}"
       inputStyleClass="#{cc.attrs.inputStyleClass}">
       <p:column rendered="#{!cc.attrs.hasCustomizedSelectionList}">
-        <pc:securityMemberNameAndAvatar displayName="#{role.getDisplayName()}" securityMember="#{role}" isStandAlone="false"
+        <pc:securityMemberNameAndAvatar displayName="#{cc.attrs.appendOption eq 'PARENT_NAME' ? role.roleWithParentName : role.displayName}" securityMember="#{role}" isStandAlone="false"
           isShowAvatar="#{cc.attrs.isShowAvatarInSelectionList}" displayNameRendered="#{cc.attrs.displayNameRenderedInSelectionList}"
           displayNameStyleClass="#{cc.attrs.displayNameInSelectionListStyleClass}" containerStyleClass="#{cc.attrs.selectionListContainerStyleClass}" />
       </p:column>

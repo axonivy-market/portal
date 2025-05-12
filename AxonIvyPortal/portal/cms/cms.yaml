@@ -289,7 +289,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       OWNER: Owner
       STATE: State
     deletionNoteContent: The case was destroyed by {0}
-    destroyCaseMessage: This operation cannot be undone. Are you sure you want to destroy this case and all of its tasks?
+    destroyCaseMessage: 'This operation cannot be undone. Are you sure you want to destroy case <b>{0} (ID: {1})</b> and all of its tasks?'
     destroyfail: Case has not been destroyed successfully.
     destroysucceed: Case has been destroyed successfully.
     downloadZipFileExplanation: The number of cases to export exceeds the limit of Excel rows. Therefore, data will be split to multiple Excel files, then compressed in a ZIP file to download.
@@ -930,6 +930,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     defaultColumns:
       ACTIVATOR: Responsible
       CATEGORY: Category
+      COMPLETED: Completed on
       COMPLETED_ON: Completed on
       CREATION_TIME: Created
       EXPIRY_TIME: Expiry
@@ -941,7 +942,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Default filter
-    destroyTaskMessage: This operation cannot be undone. Are you sure you want to destroy this task?
+    destroyTaskMessage: 'This operation cannot be undone. Are you sure you want to destroy this task <b>{0} (ID: {1})</b>?'
     headerTitle:
       relatedStatisticHeader: 'Related tasks of statistic chart: '
       relatedTasksHeader: Related Tasks of Case
@@ -1070,6 +1071,8 @@ Dialogs:
                   CouldNotFindLinkedProcess: Could not find the linked process!
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: Drag and drop to change the order.
+                WelcomeDashboardWidget:
+                  WelcomeToAxon: Welcome to Axon Ivy Portal
         portalkit:
           component:
             CaseItemDetails:
@@ -1098,6 +1101,8 @@ Dialogs:
           component:
             DashboardImportDetails:
               FileInfomation: File Infomation
+            NavigationDashboardWidgetConfiguration:
+              ButtonName: Button Name
             NewsWidget:
               NewsContentPlaceHolder: Enter News content
               NewsContentValidateMessage: News content in {0} is required

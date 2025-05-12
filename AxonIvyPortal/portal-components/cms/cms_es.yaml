@@ -96,4 +96,8 @@ Labels:
   DisabledUserPrefix: (inactivo)
   NoName: Sin nombre
   NoResults: Sin resultados
+  None: Ninguno
   NotAvailable: N/A
+  ParentRole: Rol superior
+  TooltipNoNameFormatted: <{0}> ({1})
+  TooltipUserNameFormatted: '{0} ({1})'

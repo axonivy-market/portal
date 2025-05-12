@@ -1,0 +1,40 @@
+pipeline {
+  agent { label 'linux' }
+
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '50', artifactNumToKeepStr: '5'))
+  }
+
+  triggers {
+    cron('0 13 * * *')
+  }
+
+  stages {
+    stage('Build') {
+      steps {
+        script {
+          currentBuild.description = "On ${env.NODE_NAME}"
+          docker.build('build-portal-modules', '-f build/Dockerfile .').inside('-v /var/tools/maven-cache:/home/build/') {
+            def modules = ['AxonIvyPortal/portal-components', 'AxonIvyPortal/portal', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/portal-components-examples']
+            for (module in modules) {
+              maven cmd: "clean install -f ${module}/pom.xml"
+            }
+          }
+        }
+      }
+    }
+    stage('Generate BOM') {
+      steps {
+        script {
+          def utils = load 'build/common/utils.groovy'
+          def portalVersion = readMavenPom(file: 'AxonIvyPortal/portal-components/pom.xml').version
+          utils.generateBOM()
+          utils.mergeBOMFiles()
+          utils.uploadBOM('portal', portalVersion, 'build/sbom/target/portal.bom.json')
+
+          archiveArtifacts artifacts: 'build/sbom/target/*.bom.json', allowEmptyArchive: true
+        }
+      }
+    }
+  }
+}

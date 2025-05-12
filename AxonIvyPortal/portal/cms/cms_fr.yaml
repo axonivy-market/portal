@@ -79,6 +79,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: Widget de cas
       CLIENT_STATISTIC: Widget Statistiques
       CUSTOM: Widget personnalisé
+      NAVIGATION_DASHBOARD: Widget du tableau de bord de navigation
       NEW: Nouveau widget
       NEWS: Nouvelles
       NOTIFICATION: Notifications
@@ -87,6 +88,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       STATISTIC: Widget Statistiques
       TASK: Widget Tâche
       WELCOME: Widget de bienvenue
+    DelegationAppendOption:
+      NONE: Aucun
+      PARENT_NAME: Nom de rôle parent
     GlobalVariable:
       Option:
         DISPLAY_NAME: Nom d'affichage
@@ -213,6 +217,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       GooglePlayURL: Définir l'URL pour télécharger l'application mobile Axon Ivy sur Google Play.
       RoleDirectChildrenLimit: 'Le nombre défini contrôle la quantité de rôles d''enfants directs qui est affichée dans l''onglet Gestion des rôles. Nombre valide : 10, 50, 100'
       RoleParentLimit: 'Le nombre défini contrôle la quantité de rôles parents qui est affichée lors du filtrage des rôles dans l''onglet Gestion des rôles. Nombre valide : 5, 10, 20'
+      SessionCacheTimeout: Délai d'expiration du cache de session pour le portail. Définit la durée d'expiration du cache de session (en secondes) pour le portail. Cette valeur peut être définie entre 300 (5 minutes) et 86 400 (24 heures).
       ShowLoginPageFooter: Pour activer/désactiver l'affichage du pied de page sur la page de connexion.
       ShowQRCode: Pour activer/désactiver l'affichage du code QR.
       behaviourWhenClickingOnLineInCaseList: Pour alterner entre les comportements (accéder aux détails du dossier ou aux détails de l’entreprise) lors du clic sur un dossier dans le widget de dossier du dashboard, la recherche globale, les dossiers associés et le widget de processus en mode combiné.
@@ -228,6 +233,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       defaultSortDirectionOfTaskList: Sens de tri par défaut de la liste des tâches
       defaultSortFieldOfCaseList: Champ de tri par défaut de la liste des affaires
       defaultSortFieldOfTaskList: Champ de tri par défaut de la liste des tâches
+      delegationAppendOption: Ce paramètre détermine quelles informations supplémentaires sont incluses lors du formatage des noms de rôle.
       disableCaseCount: Mettre à true pour désactiver le cas de comptage dans la liste des cas
       disableTaskCount: Mettre à true pour désactiver la tâche de comptage dans la liste des tâches
       displayAllUsersOfTaskActivator: Ce paramètre est utilisé pour le composant SecurityMemberDisplayName. Si le SecurityMember est un rôle, définissez ce paramètre sur true pour afficher la liste de tous les utilisateurs de ce rôle. Si ce paramètre a la valeur true, des informations sur l'icône sont
@@ -269,6 +275,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Définissez la valeur false pour désactiver le lien vers l'option Afficher les informations du processus sur la page processus (mode grille) et détails du cas.
       showQuickGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale rapide.
       showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
+      showTooltipTechnicalName: Activer l'affichage du nom technique des utilisateurs dans les infobulles.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
     key: Clé
     link: Lien
@@ -355,7 +362,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       OWNER: Responsables de processus
       STATE: Etat
     deletionNoteContent: Ce dossier a été supprimé par {0}
-    destroyCaseMessage: Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer ce dossier et toutes les tâches associées ?
+    destroyCaseMessage: 'Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer dossier <b>{0} (ID: {1})</b> et toutes les tâches associées ?'
     destroyfail: Une erreur est survenue lors de la suppression du dossier.
     destroysucceed: Le dossier a été supprimé avec succès
     downloadZipFileExplanation: Le nombre de cas à exporter dépasse la limite des lignes Excel. Par conséquent, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
@@ -368,6 +375,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'Dossier #{0} {1}'
     relatedCases: Cas connexes
     title: Titre
+    unknownCase: Cas inconnu
+    unknownId: Inconnu Id
   caseState:
     CREATED: Créé
     CREATED_UPPERCASE: CRÉÉ
@@ -416,6 +425,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     StringFormat:
       DateFromTo: '%s - %s'
       TextListOut: '%s, %s,..'
+      TextWithContextInBrackets: '%s (%s: %s)'
       TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Informations sur les tâches et les cas
     Update: Mettre à jour
@@ -592,7 +602,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: Le processus
     timeInformation: Informations sur le temps
     timestamp: Horodatage
-    topMenuItem: Élément du menu supérieur
     type: Type
     typeAdmin: Tous les administrateurs
     typeAllUsers: Tous les utilisateurs
@@ -643,7 +652,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         UpdateRoleSuccess: Le rôle "{0}" a été mis à jour avec succès
         UserOfRoleNotFound: Aucun utilisateur ne possède ce rôle
       NumberUsers: '{0} utilisateurs'
-      ParentRole: Le rôle des parents
+      ParentRole: Rôle supérieur
       RemovingRoleHeader: Suppression du rôle "{0}" ?
       RoleCreation: Création de rôles
       RoleDetails: Détails du rôle "{0}"
@@ -847,6 +856,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: Actuellement, il n'y a pas de tâches supplémentaires disponibles.
         noTasksFoundWhenFilter: Il n'y a actuellement aucune tâche après le filtre appliqué.
     loading: Chargement...
+    navigate: Naviguer
     noCategory: Il n'y a pas de catégories
     noDashboard: Il n'y a pas de tableaux de bord. Ajoutez au moins un tableau de bord, puis ajoutez des widgets.
     noPermission: Vous n'avez pas les permissions pour voir les tableaux de bord.
@@ -888,14 +898,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Ce widget affiche des informations pertinentes sur les tâches selon les paramètres définis.
     taskStart: Commencer la tâche
     taskWidgetConfiguration: Configuration du widget de tâches
-    topMenuItemInfo: Si la case "Is Top Menu Item" est cochée, le tableau de bord apparaît comme un élément de niveau supérieur dans la barre de navigation, trié selon sa position dans la liste. Si elle n'est pas cochée, il apparaît comme un sous-élément sous "Tableaux de bord", également trié par position
-      dans la liste.
     widgetInfo: Informations sur le widget
     widgetInfoIcon: Icône d'information du widget
     widgetTitle: Titre du widget
     widgetType: Type de widget
     yourCases: Vos affaires
     yourCustomWidget: Votre widget personnalisé
+    yourNavigationDashboardWidget: Votre widget du tableau de bord de navigation
     yourNotifications: Vos notifications
     yourProcessViewer: Votre visualisateur de processus
     yourProcesses: Vos processus
@@ -1189,6 +1198,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ACTIVATOR: Responsable
       APPLICATION: Application
       CATEGORY: 'Catégorie '
+      COMPLETED: Fini le
       COMPLETED_ON: Fini le
       CREATION_TIME: Créé
       EXPIRY_TIME: Délai
@@ -1200,7 +1210,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Filtre par défaut
-    destroyTaskMessage: Cette opération ne peut être annulée. Êtes-vous sûr de vouloir détruire cette tâche ?
+    destroyTaskMessage: 'Cette opération ne peut être annulée. Êtes-vous sûr de vouloir détruire cette tâche <b>{0} (ID: {1})</b> ?'
     headerTitle:
       relatedStatisticHeader: 'Tâches du diagramme:'
       relatedTasksHeader: Tâches associées au dossier
@@ -1224,6 +1234,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Priorité (faible à élevée)
     triggerEscalationNote: 'L''escalade a été déclenchée par {0} ({1}) de la tâche #{2}.'
     type: Type
+    unknownId: ID inconnu
+    unknownTask: Tâche inconnue
   taskPriority:
     EXCEPTION: EXCEPTION
     EXCEPTION_LOWERCASE: Exception
@@ -1338,6 +1350,8 @@ Dialogs:
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: Glisser-déposer pour modifier l'ordre.
                   DragAndDropTooltip: Cliquer sur l'aperçu puis glisser-déposer pour modifier l'ordre
+                WelcomeDashboardWidget:
+                  WelcomeToAxon: Bienvenue à Axon Ivy Portal
         portalkit:
           component:
             CaseItemDetails:
@@ -1440,12 +1454,17 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Cloner le widget depuis
             DashboardImportDetails:
+              DashboardImportTitle: Dashboard {0}
               FileInfomation: Informations sur le fichier
               ImportPrivate: Importer un tableau de bord privé
               ImportPublic: Importer un tableau de bord public
               chooseAJsonFile: Choisissez un fichier json
             DashboardSharing:
               ShareDashboard: Partager le tableau de bord
+            NavigationDashboardWidgetConfiguration:
+              ButtonName: Nom du bouton
+              NavigationDashboardWidgetConfiguration: Configuration du widget du tableau de bord de navigation
+              NavigationDashboardWidgetDescription: Ce widget permet aux utilisateurs d'accéder directement à un tableau de bord lié en cliquant sur un bouton.
             NewsWidget:
               NewsContentPlaceHolder: Saisir le contenu de l'actualité
               NewsContentValidateMessage: Le contenu de l'actualité dans {0} est requis
@@ -1546,6 +1565,7 @@ Labels:
       ACTIONS: Actions
       APPLICATION: Application
       CATEGORY: Catégorie
+      COMPLETED: Date de fin
       CREATED: Date de création
       DESCRIPTION: Description
       EXPIRY: Délai

@@ -103,6 +103,10 @@ public class DefaultDashboardUtils {
                 "width": "95"
               },
               {
+                "field": "endTimestamp",
+                "width": "95"
+              },
+              {
                 "field": "expiryTimestamp",
                 "width": "95"
               },
@@ -123,7 +127,7 @@ public class DefaultDashboardUtils {
         "permissions": [
           "Everybody"
         ],
-        "isTopMenu": true
+        "dashboardDisplayType": "top_menu"
       }
       """;
 
@@ -237,7 +241,7 @@ public class DefaultDashboardUtils {
         "permissions": [
           "Everybody"
         ],
-        "isTopMenu": true
+        "dashboardDisplayType": "top_menu"
       }
       """;
 

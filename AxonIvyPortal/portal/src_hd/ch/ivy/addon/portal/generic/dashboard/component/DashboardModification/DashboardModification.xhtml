@@ -42,12 +42,10 @@
         <p:column rendered="#{isPublicDashboard}"  width="20%">
       <f:facet name="header">
         <div class="flex align-items-center gap-2">
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/topMenuItem')}" />
-          <h:outputText id="quick-search-info" styleClass="si si-information-circle" />
-          <p:tooltip for="quick-search-info" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/topMenuItemInfo')}" />
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/display')}" />
         </div>
       </f:facet>
-        <p:selectBooleanCheckbox value="#{dashboard.isTopMenu}" id="menu-item-checkbox" disabled="true" />
+        <h:outputText value="#{dashboardBean.getDashboardDisplayTypeLabel(dashboard.dashboardDisplayType)}" id="dashboard-display-value"/>
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
         width="#{dashboardModificationBean.hasExportDashboardPermission() ? '120' : '210'}" styleClass="text-center">
