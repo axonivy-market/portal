@@ -1197,7 +1197,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ACTIVATOR: 責任者
       APPLICATION: アプリケーション
       CATEGORY: カテゴリー
-      COMPLETED: 完了日
+      COMPLETED: 'TODO: Completed'
       COMPLETED_ON: 完了日
       CREATION_TIME: 作成日
       EXPIRY_TIME: 有効期限
