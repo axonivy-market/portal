@@ -9,8 +9,8 @@ Enums:
     MATERNITY_LEAVE: 産休
     SICK_LEAVE: 病欠
   SideStepProcess:
-    PARALLEL: Parallel with main process
-    SWITCH: Switch to side step process
+    PARALLEL: TODO Parallel with main process
+    SWITCH: TODO Switch to side step process
 Labels:
   LeaveRequest:
     LeaveSteps:
@@ -18,8 +18,8 @@ Labels:
       approvalResult: 承認結果
       comment: Comment
       creation: 休暇申請の作成
-      requesterSideStepComment: Requester side step comment
-      sideStepComment: Additional comment
+      requesterSideStepComment: TODO Requester side step comment
+      sideStepComment: TODO Additional comment
     approvalResultTaskIntro: 以下は休暇申請の概要と承認者からのフィードバックです。
     approvalTaskIntro: 承認が必要な休暇申請があります。詳細は以下のとおりです：
     approver: 承認者
@@ -49,5 +49,5 @@ Processes:
     createLeaveRequest: '{0}の休暇申請を作成'
     createNewLeaveRequest: システムタスク：新しい休暇申請の作成を開始
     leaveRequest: 休暇申請
-    leaveRequestWithSideSteps: Leave request with side step processes
+    leaveRequestWithSideSteps: TODO Leave request with side step processes
     rejectedTask: あなたの休暇申請は却下されました

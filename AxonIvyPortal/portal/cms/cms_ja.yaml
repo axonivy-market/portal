@@ -1109,6 +1109,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     process: プロセス
     searchResults: 検索結果
     searchResultsFor: 「{1}」の検索結果： {0} 件
+  sideSteps:
+    addNew: Add new side steps process
   taskActivator:
     assign: 割り当て
     cannotAssignTask: このタスクは他のユーザーまたはグループに割り当てることはできません。

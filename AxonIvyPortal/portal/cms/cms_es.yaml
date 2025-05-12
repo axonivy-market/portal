@@ -1112,6 +1112,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     process: Proceso
     searchResults: Resultados de la búsqueda
     searchResultsFor: '{0} resultados de búsqueda para "{1}"'
+  sideSteps:
+    addNew: Add new side steps process
   taskActivator:
     assign: Asignar
     cannotAssignTask: Esta tarea no puede ser asignada a otro usuario o grupo.

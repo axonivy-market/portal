@@ -9,8 +9,6 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.constant.CustomFields;
-
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -126,16 +124,6 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
       stages = stages.subList(0, firstTerminatingStageIndex + 1);
     }
     return stages;
-  }
-  
-  public void getSideStepResult() {
-    String sideStepCaseID = task.customFields().stringField(CustomFields.SIDE_STEP_CASE).getOrNull();
-    if (sideStepCaseID != null) {
-      ICase sideStepCase = Ivy.wf().findCase(sideStepCaseID);
-      if (sideStepCase != null) {
-        
-      }
-    }
   }
 
   public int getIndexOfCurrentStage(ICase iCase) {

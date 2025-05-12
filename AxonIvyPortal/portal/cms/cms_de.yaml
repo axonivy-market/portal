@@ -1113,6 +1113,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     process: Prozess
     searchResults: Suchresultate
     searchResultsFor: '{0} Suchresultate für "{1}"'
+  sideSteps:
+    addNew: Add new side steps process
   taskActivator:
     assign: Zuweisen
     cannotAssignTask: Diese Aufgabe kann keinem anderen Benutzer oder keiner anderen Gruppe zugewiesen werden.
