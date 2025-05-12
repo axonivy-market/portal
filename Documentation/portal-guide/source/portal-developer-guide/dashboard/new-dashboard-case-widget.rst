@@ -123,6 +123,8 @@ The basic JSON structure of the case widget
 
             - ``id``: case ID
 
+            - ``Pin``: column which contains Pin button to Pin your case.
+
             - ``name``: case name
 
             - ``description``: case description

@@ -118,6 +118,8 @@ The basic JSON structure of a Task widget
          For standard columns, ``field`` must be one of these:
          
             - ``start``: column which contains start button to start the task directly.
+
+            - ``Pin``: column which contains Pin button to Pin your task.
   
             - ``priority``: task priority
 
