@@ -15,7 +15,6 @@ import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
 import com.axonivy.portal.util.filter.field.FilterField;
-import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldFinishedDate;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomTimestamp;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldExpiryDate;
 import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomTimestamp;
@@ -44,6 +43,9 @@ public class DashboardFilter implements Serializable {
   public static final String ID = "id";
   @JsonIgnore
   public static final String CREATED_DATE = "startTimestamp";
+
+  @JsonIgnore
+  public static final String FINISHED_DATE = "endTimestamp";
 
   @JsonIgnore
   public static final String DATE_FORMAT = "MM/dd/yyyy HH:mm";
@@ -106,7 +108,7 @@ public class DashboardFilter implements Serializable {
 
   @JsonIgnore
   public boolean isFinishedDateField() {
-    return filterField instanceof CaseFilterFieldFinishedDate;
+    return FINISHED_DATE.equals(this.field);
   }
 
   @JsonIgnore
