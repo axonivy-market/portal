@@ -6009,14 +6009,11 @@ a.dashboard-action-container label {
 .dashboard-tasks__responsible .has-deputy-info .name-after-avatar {
   position: relative;
   width: 100%;
-  padding-right: 20px;
   white-space: nowrap;
 }
 
 .dashboard-tasks__responsible .has-deputy-info .deputy-info {
-  position: absolute;
-  top: 0;
-  right: 0;
+  padding-left: 5px;
 }
 
 .dashboard-tasks__responsible {
