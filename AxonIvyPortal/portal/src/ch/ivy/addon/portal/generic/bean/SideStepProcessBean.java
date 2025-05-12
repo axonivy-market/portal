@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.constant.CustomFields;
@@ -21,7 +22,9 @@ import com.axonivy.portal.components.publicapi.TaskAPI;
 import com.axonivy.portal.components.util.TaskUtils;
 import com.axonivy.portal.components.util.UserUtils;
 
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -64,13 +67,20 @@ public class SideStepProcessBean implements Serializable {
   }
 
   private String selectedProcessId;
+  
+  public boolean isRendered(ITask task) {
+    return CollectionUtils.isNotEmpty(getSideStepProcesses(task));
+  }
 
   public List<SideStepDTO> getSideStepProcesses(ITask task) {
     if (sideStepDTOs == null) {
       try {
         if (task != null) {
           this.task = task;
-          String sideStepString = task.customFields().stringField(CustomFields.SIDE_STEPS).getOrNull();
+          String sideStepString = task.getCase().customFields().stringField(CustomFields.SIDE_STEPS_PROCESS).getOrNull();
+          if (StringUtils.isBlank(sideStepString)) {
+            sideStepString = task.customFields().stringField(CustomFields.SIDE_STEPS_TASK).getOrNull();
+          }
           if (StringUtils.isNotBlank(sideStepString)) {
             List<SideStepDTO> sideStepProcesses = BusinessEntityConverter.jsonValueToEntities(sideStepString,
                 SideStepDTO.class);
@@ -85,7 +95,9 @@ public class SideStepProcessBean implements Serializable {
 
   public void handleSelectProcess() {
     if (task != null && selectedProcess != null) {
-      // newTask.getCase().attachToBusinessCase(task.getCase().getId());
+      if (selectedProcess.getOriginalTaskId() == null) {
+        selectedProcess.setOriginalTaskId(task.uuid());
+      }
       SideStepProcessParam param = new SideStepProcessParam(selectedProcess, assignee, selectedStepType, comment);
       String jsonSerializedPayload = BusinessEntityConverter.entityToJsonValue(param);
       Ivy.wf().signals().create().data(jsonSerializedPayload).send(selectedProcess.getSignal());

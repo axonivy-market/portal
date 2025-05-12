@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/13.1.1/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "196A8BB1A00D45BF",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -28,7 +28,7 @@
             "",
             "// custom params",
             "Map params = data.getSideStepDto().getParams();",
-            "out.originalTaskId = params.get(\"taskId\") as String;",
+            "out.originalTaskId = data.getSideStepDto().getOriginalTaskId();",
             "out.originalCaseId = params.get(\"caseId\") as Long;",
             "",
             "// required fields",
