@@ -87,6 +87,9 @@ Dialogs:
               EXTERNAL_LINK: 外部リンク
               IVY_PROCESS: ビジネスプロセス
             ProcessViewerIFrameTitle: プロセスビューアーフレーム
+          SideStepType:
+            PARALLEL: Run parallel with main process
+            SWITCH: Switch to side step process
 Labels:
   AI:
     Error:

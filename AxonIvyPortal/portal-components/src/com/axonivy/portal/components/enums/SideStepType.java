@@ -8,7 +8,7 @@ public enum SideStepType {
   PARALLEL, SWITCH;
 
   public String getLabel() {
-    String label = Ivy.cms().co("/Enums/SideStepProcess/" + name());
+    String label = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/SideStepType/" + name());
     return StringUtils.isBlank(label) ? name() : label;
   }
 }

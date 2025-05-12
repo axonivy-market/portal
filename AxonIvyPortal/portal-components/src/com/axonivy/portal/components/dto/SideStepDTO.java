@@ -49,6 +49,10 @@ public class SideStepDTO implements Serializable {
   public String getOriginalTaskId() {
     return originalTaskId;
   }
+  
+  public void setOriginalTaskId(String originalTaskId) {
+    this.originalTaskId = originalTaskId;
+  }
 
   public Map<String, Object> getParams() {
     return params;
@@ -105,8 +109,8 @@ public class SideStepDTO implements Serializable {
       if (signal == null || signal.trim().isEmpty()) {
         throw new IllegalArgumentException("Signal must be provided");
       }
-      if (taskId == null) {
-        throw new IllegalArgumentException("TaskId must be provided");
+      if (taskId == null && caseId == null) {
+        throw new IllegalArgumentException("TaskId or CaseId must be provided");
       }
     }
   }
