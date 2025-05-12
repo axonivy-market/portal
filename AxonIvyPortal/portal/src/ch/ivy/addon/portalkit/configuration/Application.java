@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.configuration;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -10,6 +12,7 @@ public class Application extends AbstractConfiguration {
   private Integer menuOrdinal;
   private String name;
   private String link;
+  private List<String> permissions;
 
   public Application() {
     setIsPublic(true);
@@ -55,10 +58,18 @@ public class Application extends AbstractConfiguration {
     this.link = link;
   }
 
+  public List<String> getPermissions() {
+    return permissions;
+  }
+
+  public void setPermissions(List<String> permissions) {
+    this.permissions = permissions;
+  }
+
   @Override
   public String toString() {
     return String.format(
-        "Application {displayName=%s, menuIcon=%s, menuOrdinal=%s, name=%s, link=%s, id=%s}", displayName, menuIcon,
-        menuOrdinal, name, link, getId());
+        "Application {displayName=%s, menuIcon=%s, menuOrdinal=%s, name=%s, link=%s, id=%s, premission=%s}", displayName, menuIcon,
+        menuOrdinal, name, link, getId(), permissions);
   }
 }
