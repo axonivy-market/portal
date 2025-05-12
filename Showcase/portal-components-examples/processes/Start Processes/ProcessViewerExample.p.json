@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "1821592826979C20",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.ProcessViewerExampleData"
@@ -104,7 +104,10 @@
       ],
       "visual" : {
         "at" : { "x" : 1424, "y" : 240 },
-        "size" : { "width" : 784, "height" : 268 }
+        "size" : { "width" : 784, "height" : 268 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       }
     }, {
       "id" : "f1",

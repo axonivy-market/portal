@@ -467,7 +467,7 @@
     "permissions": [
       "Everybody"
     ],
-    "isTopMenu": true
+    "dashboardDisplayType": "top_menu"
   },
   {
     "id": "default-case-list-dashboard",
@@ -578,6 +578,6 @@
     "permissions": [
       "Everybody"
     ],
-    "isTopMenu": true
+    "dashboardDisplayType": "top_menu"
   }
 ]

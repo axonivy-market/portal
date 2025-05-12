@@ -79,6 +79,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: Widget de cas
       CLIENT_STATISTIC: Widget Statistiques
       CUSTOM: Widget personnalisé
+      NAVIGATION_DASHBOARD: Widget du tableau de bord de navigation
       NEW: Nouveau widget
       NEWS: Nouvelles
       NOTIFICATION: Notifications
@@ -361,7 +362,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       OWNER: Responsables de processus
       STATE: Etat
     deletionNoteContent: Ce dossier a été supprimé par {0}
-    destroyCaseMessage: Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer ce dossier et toutes les tâches associées ?
+    destroyCaseMessage: 'Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer dossier <b>{0} (ID: {1})</b> et toutes les tâches associées ?'
     destroyfail: Une erreur est survenue lors de la suppression du dossier.
     destroysucceed: Le dossier a été supprimé avec succès
     downloadZipFileExplanation: Le nombre de cas à exporter dépasse la limite des lignes Excel. Par conséquent, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
@@ -374,6 +375,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'Dossier #{0} {1}'
     relatedCases: Cas connexes
     title: Titre
+    unknownCase: Cas inconnu
+    unknownId: Inconnu Id
   caseState:
     CREATED: Créé
     CREATED_UPPERCASE: CRÉÉ
@@ -599,7 +602,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: Le processus
     timeInformation: Informations sur le temps
     timestamp: Horodatage
-    topMenuItem: Élément du menu supérieur
     type: Type
     typeAdmin: Tous les administrateurs
     typeAllUsers: Tous les utilisateurs
@@ -854,6 +856,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: Actuellement, il n'y a pas de tâches supplémentaires disponibles.
         noTasksFoundWhenFilter: Il n'y a actuellement aucune tâche après le filtre appliqué.
     loading: Chargement...
+    navigate: Naviguer
     noCategory: Il n'y a pas de catégories
     noDashboard: Il n'y a pas de tableaux de bord. Ajoutez au moins un tableau de bord, puis ajoutez des widgets.
     noPermission: Vous n'avez pas les permissions pour voir les tableaux de bord.
@@ -895,14 +898,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Ce widget affiche des informations pertinentes sur les tâches selon les paramètres définis.
     taskStart: Commencer la tâche
     taskWidgetConfiguration: Configuration du widget de tâches
-    topMenuItemInfo: Si la case "Is Top Menu Item" est cochée, le tableau de bord apparaît comme un élément de niveau supérieur dans la barre de navigation, trié selon sa position dans la liste. Si elle n'est pas cochée, il apparaît comme un sous-élément sous "Tableaux de bord", également trié par position
-      dans la liste.
     widgetInfo: Informations sur le widget
     widgetInfoIcon: Icône d'information du widget
     widgetTitle: Titre du widget
     widgetType: Type de widget
     yourCases: Vos affaires
     yourCustomWidget: Votre widget personnalisé
+    yourNavigationDashboardWidget: Votre widget du tableau de bord de navigation
     yourNotifications: Vos notifications
     yourProcessViewer: Votre visualisateur de processus
     yourProcesses: Vos processus
@@ -1196,6 +1198,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ACTIVATOR: Responsable
       APPLICATION: Application
       CATEGORY: 'Catégorie '
+      COMPLETED: Fini le
       COMPLETED_ON: Fini le
       CREATION_TIME: Créé
       EXPIRY_TIME: Délai
@@ -1207,7 +1210,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Filtre par défaut
-    destroyTaskMessage: Cette opération ne peut être annulée. Êtes-vous sûr de vouloir détruire cette tâche ?
+    destroyTaskMessage: 'Cette opération ne peut être annulée. Êtes-vous sûr de vouloir détruire cette tâche <b>{0} (ID: {1})</b> ?'
     headerTitle:
       relatedStatisticHeader: 'Tâches du diagramme:'
       relatedTasksHeader: Tâches associées au dossier
@@ -1231,6 +1234,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Priorité (faible à élevée)
     triggerEscalationNote: 'L''escalade a été déclenchée par {0} ({1}) de la tâche #{2}.'
     type: Type
+    unknownId: ID inconnu
+    unknownTask: Tâche inconnue
   taskPriority:
     EXCEPTION: EXCEPTION
     EXCEPTION_LOWERCASE: Exception
@@ -1447,12 +1452,17 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Cloner le widget depuis
             DashboardImportDetails:
+              DashboardImportTitle: Dashboard {0}
               FileInfomation: Informations sur le fichier
               ImportPrivate: Importer un tableau de bord privé
               ImportPublic: Importer un tableau de bord public
               chooseAJsonFile: Choisissez un fichier json
             DashboardSharing:
               ShareDashboard: Partager le tableau de bord
+            NavigationDashboardWidgetConfiguration:
+              ButtonName: Nom du bouton
+              NavigationDashboardWidgetConfiguration: Configuration du widget du tableau de bord de navigation
+              NavigationDashboardWidgetDescription: Ce widget permet aux utilisateurs d'accéder directement à un tableau de bord lié en cliquant sur un bouton.
             NewsWidget:
               NewsContentPlaceHolder: Saisir le contenu de l'actualité
               NewsContentValidateMessage: Le contenu de l'actualité dans {0} est requis
@@ -1553,6 +1563,7 @@ Labels:
       ACTIONS: Actions
       APPLICATION: Application
       CATEGORY: Catégorie
+      COMPLETED: Date de fin
       CREATED: Date de création
       DESCRIPTION: Description
       EXPIRY: Délai

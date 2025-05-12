@@ -79,6 +79,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: Case widget
       CLIENT_STATISTIC: Statistic widget
       CUSTOM: Custom widget
+      NAVIGATION_DASHBOARD: Navigation dashboard widget
       NEW: New widget
       NEWS: News feed
       NOTIFICATION: Notifications
@@ -362,7 +363,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       OWNER: Case Owners
       STATE: State
     deletionNoteContent: The case was destroyed by {0}
-    destroyCaseMessage: This operation cannot be undone. Are you sure you want to destroy this case and all of its tasks?
+    destroyCaseMessage: 'This operation cannot be undone. Are you sure you want to destroy case <b>{0} (ID: {1})</b> and all of its tasks?'
     destroyfail: Case has not been destroyed successfully.
     destroysucceed: Case has been destroyed successfully.
     downloadZipFileExplanation: The number of cases to export exceeds the limit of Excel rows. Therefore, data will be split to multiple Excel files, then compressed in a ZIP file to download.
@@ -375,6 +376,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'Case #{0} {1}'
     relatedCases: Related Cases
     title: Title
+    unknownCase: Unknown Case
+    unknownId: Unknown ID
   caseState:
     CREATED: Created
     CREATED_UPPERCASE: CREATED
@@ -600,7 +603,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: The process
     timeInformation: Time Information
     timestamp: Timestamp
-    topMenuItem: Top Menu Item
     type: Type
     typeAdmin: All administrators
     typeAllUsers: All users
@@ -860,6 +862,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: Currently, there are no tasks available.
         noTasksFoundWhenFilter: There are currently no tasks after applied filter.
     loading: Loading...
+    navigate: Navigate
     noCategory: There are no categories
     noDashboard: There are no dashboards. Add at least one dashboard, then add widgets.
     noPermission: You don't have permissions to see dashboards.
@@ -901,13 +904,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: This widget displays relevant task information according to defined settings.
     taskStart: Task start
     taskWidgetConfiguration: Task Widget Configuration
-    topMenuItemInfo: If the "Top Menu Item" checkbox is checked, the dashboard appears as a top-level item in the navigation bar, sorted by list position. If unchecked, it appears as a sub-item under “Dashboard”, also sorted by list position.
     widgetInfo: Widget information
     widgetInfoIcon: Widget Information Icon
     widgetTitle: Widget Title
     widgetType: Widget type
     yourCases: Your Cases
     yourCustomWidget: Your Custom Widget
+    yourNavigationDashboardWidget: Your navigation dashboard widget
     yourNotifications: Your Notifications
     yourProcessViewer: Your Process Viewer
     yourProcesses: Your Processes
@@ -1201,6 +1204,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ACTIVATOR: Responsible
       APPLICATION: Application
       CATEGORY: Category
+      COMPLETED: Completed
       COMPLETED_ON: Completed on
       CREATION_TIME: Created
       EXPIRY_TIME: Expiry
@@ -1212,7 +1216,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Default filter
-    destroyTaskMessage: This operation cannot be undone. Are you sure you want to destroy this task?
+    destroyTaskMessage: 'This operation cannot be undone. Are you sure you want to destroy task <b>{0} (ID: {1})</b>?'
     headerTitle:
       relatedStatisticHeader: 'Related tasks of statistic chart: '
       relatedTasksHeader: Related Tasks of Case
@@ -1236,6 +1240,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Priority (Low to high)
     triggerEscalationNote: 'Escalation has been triggered by {0} ({1}) of task #{2}'
     type: Type
+    unknownId: Unknown ID
+    unknownTask: Unknown Task
   taskPriority:
     EXCEPTION: EXCEPTION
     EXCEPTION_LOWERCASE: Exception
@@ -1452,12 +1458,17 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Clone widget from
             DashboardImportDetails:
+              DashboardImportTitle: Dashboard {0}
               FileInfomation: File Infomation
               ImportPrivate: Import Private Dashboard
               ImportPublic: Import Public Dashboard
               chooseAJsonFile: Choose a json file
             DashboardSharing:
               ShareDashboard: Share Dashboard
+            NavigationDashboardWidgetConfiguration:
+              ButtonName: Button Name
+              NavigationDashboardWidgetConfiguration: Navigation dashboard widget configuration
+              NavigationDashboardWidgetDescription: This widget allows users to jump directly to a linked dashboard by clicking a button.
             NewsWidget:
               NewsContentPlaceHolder: Enter News content
               NewsContentValidateMessage: News content in {0} is required
@@ -1571,6 +1582,7 @@ Labels:
       ACTIONS: Actions
       APPLICATION: Application
       CATEGORY: Category
+      COMPLETED: Completed Date
       CREATED: Created Date
       DESCRIPTION: Description
       EXPIRY: Expiry

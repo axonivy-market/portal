@@ -79,6 +79,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: Widget del caso
       CLIENT_STATISTIC: Widget de estadísticas
       CUSTOM: Widget personalizado
+      NAVIGATION_DASHBOARD: Widget del panel de navegación
       NEW: Nuevo widget
       NEWS: Noticias
       NOTIFICATION: Notificaciones
@@ -364,7 +365,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       OWNER: Responsables del proceso
       STATE: 'Estatus '
     deletionNoteContent: El caso fue destruido por {0}
-    destroyCaseMessage: Esta operación no se puede deshacer. ¿Está seguro de que quiere destruir este caso y todas sus tareas?
+    destroyCaseMessage: Esta operación no se puede deshacer. ¿Está seguro de que quiere destruir el caso <b>{0}</b> y todas sus tareas?
     destroyfail: El caso no ha sido destruido con éxito.
     destroysucceed: El caso ha sido destruido con éxito.
     downloadZipFileExplanation: El número de casos a exportar excede el límite de las filas de Excel. Por lo tanto, los datos serán divididos en múltiples archivos de Excel, luego comprimidos en un archivo ZIP para ser descargados.
@@ -377,6 +378,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'Caso # {0} {1}'
     relatedCases: Casos relacionados
     title: Título
+    unknownCase: Caso desconocido
+    unknownId: Id desconocido
   caseState:
     CREATED: Creado
     CREATED_UPPERCASE: Creado
@@ -602,7 +605,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: El proceso
     timeInformation: Informaciones de tiempo
     timestamp: Marca de tiempo
-    topMenuItem: Elemento del menú superior
     type: Tipo
     typeAdmin: Todos los administradores
     typeAllUsers: Todos los usuarios
@@ -857,6 +859,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: Actualmente, no hay tareas adicionales disponibles.
         noTasksFoundWhenFilter: Actualmente no hay tareas después del filtro aplicado.
     loading: Cargando...
+    navigate: Navegue por
     noCategory: No hay categorías
     noDashboard: No hay tableros. Añadir al menos un tablero y widgets.
     noPermission: No tienes permisos para ver los dashboards.
@@ -898,13 +901,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
     taskStart: Iniciar tarea
     taskWidgetConfiguration: Configuración del widget de tareas
-    topMenuItemInfo: Si la casilla "Elemento del menú superior" está marcada, el tablero aparece como un elemento de nivel superior en la barra de navegación, ordenado según su posición en la lista. Si no está marcada, aparece como un subelemento en "Dashboard", también ordenado por posición en la lista.
     widgetInfo: Información del widget
     widgetInfoIcon: Icono de información del widget
     widgetTitle: Título del widget
     widgetType: Tipo de widget
     yourCases: Sus casos
     yourCustomWidget: Su widget personalizado
+    yourNavigationDashboardWidget: Su widget del dashboard de navegación
     yourNotifications: Sus notificaciones
     yourProcessViewer: Su visor de procesos
     yourProcesses: Sus procesos
@@ -1199,6 +1202,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ACTIVATOR: Responsable
       APPLICATION: Aplicación
       CATEGORY: Categoría
+      COMPLETED: Completado en
       COMPLETED_ON: Completado en
       CREATION_TIME: Creado
       EXPIRY_TIME: Expiración
@@ -1234,6 +1238,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Prioridad (baja - alta)
     triggerEscalationNote: 'Escalación ha sido ejecutada por {0} ({1}) para la tarea #{2}'
     type: Tipo
+    unknownId: ID desconocida
+    unknownTask: Tarea desconocida
   taskPriority:
     EXCEPTION: Excepción
     EXCEPTION_LOWERCASE: Excepción
@@ -1408,12 +1414,19 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Clonar widget desde
             DashboardImportDetails:
+              DashboardImportTitle: Dashboard {0}
               FileInfomation: Informacion del archivo
               ImportPrivate: Importar panel privado
               ImportPublic: Importar panel público
               chooseAJsonFile: Elija un archivo json
             DashboardSharing:
               ShareDashboard: Compartir panel
+            NavigationDashboardWidgetConfiguration:
+              ButtonName: Nombre del botón
+              NavigationDashboardWidgetConfiguration: |+
+                Configuración del widget del dashboard de navegación
+
+              NavigationDashboardWidgetDescription: Este widget permite a los usuarios acceder directamente a un dashboard vinculado haciendo clic en un botón.
             NewsWidget:
               NewsContentPlaceHolder: Introduzca el contenido de las noticias
               NewsContentValidateMessage: El contenido de las noticias en {0} es necesario
@@ -1504,6 +1517,7 @@ Labels:
       ACTIONS: Acciones
       APPLICATION: Aplicación
       CATEGORY: Categoría
+      COMPLETED: Fecha de finalización
       CREATED: Fecha de creación
       DESCRIPTION: Descripción
       EXPIRY: Expiración

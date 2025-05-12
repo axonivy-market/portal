@@ -26,11 +26,8 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
-import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
-import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
