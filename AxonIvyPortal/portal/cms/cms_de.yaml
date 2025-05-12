@@ -79,6 +79,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       CASE: Vorgangs-Widget
       CLIENT_STATISTIC: Statistik-Widget
       CUSTOM: Benutzerdefiniertes Widget
+      NAVIGATION_DASHBOARD: Navigation dashboard widget
       NEW: Neues Widget
       NEWS: Nachrichten
       NOTIFICATION: Benachrichtigungen
@@ -363,7 +364,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       OWNER: Prozessverantwortlichen
       STATE: Status
     deletionNoteContent: Der Vorgang wurde durch {0} gelöscht.
-    destroyCaseMessage: Diese Operation kann nicht rückgängig gemacht werden. Sind Sie sicher, dass dieser komplette Vorgang gelöscht werden soll?
+    destroyCaseMessage: 'Diese Operation kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie den Fall <b>{0} (ID: {1})</b> und alle seine Aufgaben löschen möchten?'
     destroyfail: Beim Löschen des Vorgangs ist ein Fehler aufgetreten.
     destroysucceed: Vorgang wurde erfolgreich gelöscht.
     downloadZipFileExplanation: Die Anzahl der zu exportierenden Vorgänge überschreitet die Grenze der Excel-Zeilen. Daher werden die Daten in mehrere Excel-Dateien aufgeteilt und dann in einer ZIP-Datei zum Herunterladen komprimiert.
@@ -376,6 +377,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'Vorgang #{0} {1}'
     relatedCases: Verwandte Vorgänge
     title: Titel
+    unknownCase: Unbekannter Fall
+    unknownId: Unbekannter Id
   caseState:
     CREATED: Erstellt
     CREATED_UPPERCASE: ERSTELLT
@@ -601,7 +604,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: Der Prozess
     timeInformation: Zeitangaben
     timestamp: Zeitstempel
-    topMenuItem: Oberster Menüpunkt
     type: Typ
     typeAdmin: Alle Administratoren
     typeAllUsers: Alle Benutzer
@@ -858,6 +860,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: Aktuell sind keine weiteren Aufgaben vorhanden.
         noTasksFoundWhenFilter: Derzeit gibt es keine Aufgaben nach dem angewandten Filter.
     loading: Laden...
+    navigate: Navigieren Sie
     noCategory: Es gibt keine Kategorien
     noDashboard: Keine Dashboards vorhanden. Fügen Sie mindestens ein Dashboard und anschließend Widgets hinzu.
     noPermission: Sie haben keine Berechtigung, Dashboards zu sehen.
@@ -899,13 +902,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Dieses Widget zeigt relevante Aufgabeninformationen gemäß der definierten Einstellungen an
     taskStart: Aufgabe starten
     taskWidgetConfiguration: Aufgaben-Widget-Konfiguration
-    topMenuItemInfo: Wenn die Checkbox „Oberster Menüpunkt“ aktiviert ist, erscheint das Dashboard als oberstes Element in der Navigationsleiste, sortiert nach Listenposition. Wenn sie deaktiviert ist, wird es als Unterpunkt unter „Dashboards“ angezeigt, ebenfalls nach Listenposition sortiert.
     widgetInfo: Widget-Informationen
     widgetInfoIcon: Widget-Informations-Symbol
     widgetTitle: Widget-Titel
     widgetType: Widget-Typ
     yourCases: Ihre Vorgänge
     yourCustomWidget: Ihr benutzerdefiniertes Widget
+    yourNavigationDashboardWidget: Ihr Navigations-Dashboard-Widget
     yourNotifications: Ihre Benachrichtigungen
     yourProcessViewer: Ihr Prozessbetrachter
     yourProcesses: Ihre Prozesse
@@ -1200,6 +1203,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ACTIVATOR: Verantwortlich
       APPLICATION: Anwendung
       CATEGORY: Kategorie
+      COMPLETED: Erledigt am
       COMPLETED_ON: Erledigt am
       CREATION_TIME: Erstellt
       EXPIRY_TIME: Ablaufdatum
@@ -1211,7 +1215,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Standard-Filter
-    destroyTaskMessage: Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie diese Aufgabe zerstören wollen?
+    destroyTaskMessage: 'Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie diese Aufgabe zerstören wollen <b>{0} (ID: {1})</b>?'
     headerTitle:
       relatedStatisticHeader: 'Aufgaben von Diagramm:'
       relatedTasksHeader: Zugehörige Aufgaben
@@ -1235,6 +1239,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Priorität (niedrig nach hoch)
     triggerEscalationNote: 'Die Eskalation wurde ausgelöst durch {0} ({1}) der Aufgabe #{2}'
     type: Typ
+    unknownId: Unbekannte ID
+    unknownTask: Unbekannte Aufgabe
   taskPriority:
     EXCEPTION: AUSNAHME
     EXCEPTION_LOWERCASE: Ausnahme
@@ -1419,12 +1425,17 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Widget klonen von
             DashboardImportDetails:
+              DashboardImportTitle: Dashboard {0}
               FileInfomation: Dateiinformationen
               ImportPrivate: Privates Dashboard importieren
               ImportPublic: Öffentliches Dashboard importieren
               chooseAJsonFile: Wählen Sie eine JSON-Datei
             DashboardSharing:
               ShareDashboard: Dashboard teilen
+            NavigationDashboardWidgetConfiguration:
+              ButtonName: Schaltfläche Name
+              NavigationDashboardWidgetConfiguration: Konfiguration des Navigations-Dashboard-Widgets
+              NavigationDashboardWidgetDescription: Dieses Widget ermöglicht es den Benutzern, durch einen Klick auf eine Schaltfläche direkt zu einem verknüpften Dashboard zu springen.
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
               NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich
@@ -1525,6 +1536,7 @@ Labels:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
       CATEGORY: Kategorie
+      COMPLETED: Abgeschlossenes Datum
       CREATED: Erstellt am
       DESCRIPTION: Beschreibung
       EXPIRY: Ablaufdatum

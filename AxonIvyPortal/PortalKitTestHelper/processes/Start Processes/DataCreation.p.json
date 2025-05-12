@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "153CACC26D0D4C3D",
   "config" : {
     "data" : "portalKit_test.DataCreationData"
@@ -24,7 +24,9 @@
         "triggerable" : true,
         "task" : {
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         },
         "case" : {
@@ -539,7 +541,9 @@
           "name" : "Second Hidden Task",
           "description" : "Task, which has the HIDE additional property, won't be displayed in Portal",
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           },
           "skipTasklist" : true
         },
@@ -594,7 +598,9 @@
           "name" : "First hidden Task",
           "description" : "Task, which has the HIDE additional property, won't be displayed in Portal",
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         },
         "case" : {
@@ -737,7 +743,9 @@
         "triggerable" : true,
         "task" : {
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         }
       },
@@ -852,7 +860,9 @@
         "triggerable" : true,
         "task" : {
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         },
         "case" : {
@@ -896,7 +906,9 @@
         "task" : {
           "name" : "System Task",
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         }
       },
@@ -1093,7 +1105,7 @@
           "name" : "Task for disabled user",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
-            "activator" : "\"visibility_test_user\""
+            "script" : "\"visibility_test_user\""
           }
         }
       },
@@ -1955,7 +1967,9 @@
         "task" : {
           "name" : "First task of the case",
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         },
         "case" : {
@@ -2018,7 +2032,9 @@
             "id" : "TaskJ",
             "name" : "<%= \"Task J \" + in1.persistedCounter + \" of case \" + ivy.case.getId() %>",
             "responsible" : {
-              "activator" : "SYSTEM"
+              "roles" : [
+                "SYSTEM"
+              ]
             }
           } ]
       },
@@ -2265,7 +2281,9 @@
         "triggerable" : true,
         "task" : {
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         },
         "case" : {

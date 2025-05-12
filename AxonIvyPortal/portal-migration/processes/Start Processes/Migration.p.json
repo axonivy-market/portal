@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/11.3.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "175F92F71BC45295",
   "config" : {
     "data" : "portalmigration.Data"
@@ -109,7 +109,10 @@
       "name" : "**This is migration process for Portal configuration**",
       "visual" : {
         "at" : { "x" : 272, "y" : 88 },
-        "size" : { "width" : 384, "height" : 44 }
+        "size" : { "width" : 384, "height" : 44 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       }
     } ]
 }

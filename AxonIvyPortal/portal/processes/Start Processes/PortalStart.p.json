@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "1549F58C18A6C562",
   "config" : {
     "data" : "ch.ivy.addon.portal.generic.PortalStartData"
@@ -1468,7 +1468,10 @@
       ],
       "visual" : {
         "at" : { "x" : 240, "y" : 1759 },
-        "size" : { "width" : 314, "height" : 63 }
+        "size" : { "width" : 314, "height" : 63 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       }
     }, {
       "id" : "f86",

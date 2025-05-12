@@ -145,7 +145,8 @@ Below is a JSON example for configuring a dashboard with one task widget
          "permissions": [
             "Everybody"
          ],
-         "accessibility": false
+         "accessibility": false,
+         "dashboardDisplayType": "sub_menu"
       }
    ]
 
@@ -164,6 +165,8 @@ Structure of the JSON for each dashboard:
    ``icon``: dashboard icon.
 
    ``permissions``: roles can access the dashboard.
+
+   ``dashboardDisplayType``: the display type of your dashboard in the left menu of Portal.
 
    .. tip:: 
       If you don't define ``permissions`` for a dashboard, every user can see it.
@@ -195,6 +198,7 @@ efficiently.
    dashboard-newsfeed-widget
    new-dashboard-external-page-widget
    new-dashboard-notification-widget
+   new-dashboard-navigation-dashboard-widget
 
 .. tip:: 
    To get an understanding of the JSON structure of the custom dashboard,

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "1703222D60B87C28",
   "config" : {
     "data" : "com.axonivy.portal.userexamples.Data"
@@ -18,7 +18,9 @@
         "task" : {
           "name" : "System task : <%=ivy.cms.co(\"/Processes/CaseMap/checkCompanyRegister\")%>",
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         }
       },

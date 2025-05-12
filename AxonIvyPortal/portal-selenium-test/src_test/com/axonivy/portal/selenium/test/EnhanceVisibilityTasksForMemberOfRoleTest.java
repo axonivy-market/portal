@@ -12,6 +12,7 @@ import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
 
@@ -99,6 +100,11 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
+
+    refreshPage();
+    NewDashboardPage dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForTaskWidgetLoaded();
+
     int taskCount = taskWidget.countAllTasks().size();
 
     // User Guest
@@ -112,6 +118,11 @@ public class EnhanceVisibilityTasksForMemberOfRoleTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Open");
     taskWidget.applyFilter();
+
+    refreshPage();
+    dashboardPage = new NewDashboardPage();
+    dashboardPage.waitForTaskWidgetLoaded();
+
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(taskCount));
   }
 

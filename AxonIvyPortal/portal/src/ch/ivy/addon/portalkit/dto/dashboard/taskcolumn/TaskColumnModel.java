@@ -1,7 +1,8 @@
 package ch.ivy.addon.portalkit.dto.dashboard.taskcolumn;
 
-import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import java.util.Optional;
 
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
@@ -39,38 +40,25 @@ public class TaskColumnModel extends ColumnModel {
   }
 
   public static TaskColumnModel constructColumn(DashboardColumnType fieldType, String field) {
-    if (fieldType == DashboardColumnType.STANDARD) {
-      if (equals(DashboardStandardTaskColumn.START, field)) {
-        return new StartColumnModel();
-      } else if (equals(DashboardStandardTaskColumn.PRIORITY, field)) {
-        return new PriorityColumnModel();
-      } else if (equals(DashboardStandardTaskColumn.ID, field)) {
-        return new IdColumnModel();
-      } else if (equals(DashboardStandardTaskColumn.NAME, field)) {
-        return new NameColumnModel();
-      } else if (equals(DashboardStandardTaskColumn.DESCRIPTION, field)) {
-        return new DescriptionColumnModel();
-      } else if (equals(DashboardStandardTaskColumn.RESPONSIBLE, field)) {
-        return new ResponsibleColumnModel();
-      } else if (equals(DashboardStandardTaskColumn.STATE, field)) {
-        return new StateColumnModel();
-      } else if (equals(DashboardStandardTaskColumn.CREATED, field)) {
-        return new CreatedDateColumnModel();
-      } else if (equals(DashboardStandardTaskColumn.EXPIRY, field)) {
-        return new ExpiryDateColumnModel();
-      } else if (equals(DashboardStandardTaskColumn.CATEGORY, field)) {
-        return new CategoryColumnModel();
-      }  else if (equals(DashboardStandardTaskColumn.APPLICATION, field)) {
-        return new ApplicationColumnModel();
-      } else if (equals(DashboardStandardTaskColumn.ACTIONS, field)) {
-        return new ActionsColumnModel();
-      }
+    if (fieldType != DashboardColumnType.STANDARD || field == null) {
+      return new TaskColumnModel();
     }
-    return new TaskColumnModel();
-  }
 
-  private static boolean equals(DashboardStandardTaskColumn column, String field) {
-    return column.getField().equalsIgnoreCase(field);
+    return Optional.ofNullable(DashboardStandardTaskColumn.findBy(field)).map(columnType -> switch (columnType) {
+      case START -> new StartColumnModel();
+      case PRIORITY -> new PriorityColumnModel();
+      case ID -> new IdColumnModel();
+      case NAME -> new NameColumnModel();
+      case DESCRIPTION -> new DescriptionColumnModel();
+      case RESPONSIBLE -> new ResponsibleColumnModel();
+      case STATE -> new StateColumnModel();
+      case CREATED -> new CreatedDateColumnModel();
+      case COMPLETED -> new CompletedDateColumnModel();
+      case EXPIRY -> new ExpiryDateColumnModel();
+      case CATEGORY -> new CategoryColumnModel();
+      case APPLICATION -> new ApplicationColumnModel();
+      case ACTIONS -> new ActionsColumnModel();
+    }).orElse(new TaskColumnModel());
   }
 
   /**

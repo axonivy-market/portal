@@ -158,7 +158,7 @@ public class SecurityUtils {
             try {
               IRole role = ISecurityContext.current().roles().find(rolename);
               if (role != null) {
-                return session.hasRole(role, true);
+                return session.hasRole(role);
               }
               t = -1;
             } catch (Exception ise) {

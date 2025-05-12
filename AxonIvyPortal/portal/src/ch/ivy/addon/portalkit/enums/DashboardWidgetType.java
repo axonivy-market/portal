@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.enums;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum DashboardWidgetType {
-  TASK, CASE, PROCESS, NEW, CUSTOM, PROCESS_VIEWER, WELCOME, NEWS, NOTIFICATION, CLIENT_STATISTIC;
+  TASK, CASE, PROCESS, NEW, CUSTOM, PROCESS_VIEWER, WELCOME, NEWS, NOTIFICATION, CLIENT_STATISTIC, NAVIGATION_DASHBOARD;
 
   public static DashboardWidgetType typeOf(String typeName) {
     for (DashboardWidgetType type : DashboardWidgetType.values()) {

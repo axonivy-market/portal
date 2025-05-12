@@ -66,7 +66,7 @@ public class ChatGroupUtils {
 
   public static boolean hasRole(ISecurityMember securityRole, IUser user) {
     IRole role = getApplication().getSecurityContext().roles().find(securityRole.getName());
-    return user.getUserToken().hasRole(role, false);
+    return user.getUserToken().hasRole(role);
   }
 
   public static Set<String> getAllUsersFromAssigneeNames(Set<String> assigneeNames) {

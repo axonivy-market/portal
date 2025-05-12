@@ -13,6 +13,7 @@
   <cc:attribute name="dataModel" />
   <cc:attribute name="onDestroyComplete" />
   <cc:attribute name="onDelegateComplete" />
+  <cc:attribute name="destroyTaskDialogComponent" default=""/>
   <cc:attribute name="onEscalationComplete" />
   <cc:attribute name="onWorkflowEventComplete" />
   <cc:attribute name="inFrame" default="false" />
@@ -50,6 +51,7 @@
           <ui:param name="onDelegateComplete" value="#{cc.attrs.onDelegateComplete}" />
           <ui:param name="onEscalationComplete" value="#{cc.attrs.onEscalationComplete}" />
           <ui:param name="onWorkflowEventComplete" value="#{cc.attrs.onWorkflowEventComplete}" />
+          <ui:param name="destroyTaskDialogComponent" value="#{cc.attrs.destroyTaskDialogComponent}" />
         </ui:include>
       </f:subview>
     </div>

@@ -73,7 +73,7 @@
       <f:event listener="#{dashboardImportBean.tabInit()}" type="preRenderComponent" />
       <p:ajax event="tabChange" listener="#{dashboardImportBean.onTabChange(dashboard)}" />
             <p:tab
-              title="Dashboard #{dashboardImportBean.dashBoardIndex}"
+              title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardImportDetails/DashboardImportTitle', [dashboardImportBean.dashBoardIndex])}"
               id="dashboard_#{dashboardImportBean.dashBoardIndex}">
               <div class="ui-g">
                 <div class="ui-g-4 manage-dashboard__label">
@@ -154,11 +154,13 @@
                 <h:panelGroup layout="block" rendered="#{cc.attrs.isPublicDashboard}">
                   <div class="ui-g-4 manage-dashboard__label">
                     <p:outputLabel for="dashboard-description"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayAsTopMenu')}" />
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/display')}" />
                   </div>
                   <div class="ui-g-8 ui-fluid">
-                    <p:selectBooleanCheckbox id="main-dashboard-menu-item" value="#{dashboard.isTopMenu}"
-                       required="false" />
+                    <p:selectOneMenu id="dashboard-display-menu" value="#{managedBean.selectedDashboard.dashboardDisplayType}"
+                     styleClass="dashboard-display-dropdown">
+                       <f:selectItems value="#{managedBean.dashboardDisplayTypeList}" var="type" itemLabel="#{managedBean.getDashboardDisplayTypeLabel(type)}" itemValue="#{type}"/>
+                    </p:selectOneMenu>
                   </div>
                 </h:panelGroup>
               </div>

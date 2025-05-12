@@ -1,5 +1,18 @@
 name: Cron Bot
 run-name: 🤖 Cron Bot
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  issues: write
+  packages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
+  discussions: write
+  pages: write
 on:
   schedule:
     # Cron at midnight GMT+7
@@ -29,7 +42,7 @@ jobs:
   trigger-portal-document-screenshot:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         name: Trigger build Portal Documentation Screenshot for master
         if: github.event.schedule == '30 15 * * *'
         with:
@@ -42,7 +55,7 @@ jobs:
               ref: 'master'
             })
 
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         name: Trigger build Portal Documentation Screenshot for release/12.0
         if: github.event.schedule == '0 16 * * *'
         with:
@@ -55,7 +68,7 @@ jobs:
               ref: 'release/12.0'
             })
 
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         name: Trigger build Portal Documentation Screenshot for release/10.0
         if: github.event.schedule == '30 16 * * *'
         with:
@@ -71,7 +84,7 @@ jobs:
   trigger-portal-document:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         name: Trigger build Portal Documentation for master
         if: github.event.schedule == '0 17 * * *'
         with:
@@ -84,7 +97,7 @@ jobs:
               ref: 'master'
             })
 
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         name: Trigger build Portal Documentation for release/12.0
         if: github.event.schedule == '5 17 * * *'
         with:
@@ -97,7 +110,7 @@ jobs:
               ref: 'release/12.0'
             })
 
-      - uses: actions/github-script@v6
+      - uses: actions/github-script@v7
         name: Trigger build Portal Documentation for release/10.0
         if: github.event.schedule == '10 17 * * *'
         with:
@@ -113,7 +126,7 @@ jobs:
   trigger-lighthouse-audit:
       runs-on: ubuntu-latest
       steps:
-        - uses: actions/github-script@v6
+        - uses: actions/github-script@v7
           name: Trigger Lighthouse Audit for master
           if: github.event.schedule == '15 17 * * *'
           with:
@@ -126,7 +139,7 @@ jobs:
                 ref: 'master'
               })
 
-        - uses: actions/github-script@v6
+        - uses: actions/github-script@v7
           name: Trigger Lighthouse Audit for release/10.0
           if: github.event.schedule == '25 17 * * *'
           with:
@@ -139,7 +152,7 @@ jobs:
                 ref: 'release/10.0'
               })
 
-        - uses: actions/github-script@v6
+        - uses: actions/github-script@v7
           name: Trigger Lighthouse Audit for release/12.0
           if: github.event.schedule == '20 17 * * *'
           with:

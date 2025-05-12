@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "15C7B30FB93C827E",
   "config" : {
     "data" : "internaltest.Data"
@@ -52,7 +52,9 @@
         "task" : {
           "name" : "Fix Hardware",
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         },
         "case" : {
@@ -84,7 +86,9 @@
         "triggerable" : true,
         "task" : {
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         },
         "case" : {
@@ -196,7 +200,9 @@
         "triggerable" : true,
         "task" : {
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         }
       },
@@ -355,7 +361,9 @@
         "triggerable" : true,
         "task" : {
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         },
         "case" : {

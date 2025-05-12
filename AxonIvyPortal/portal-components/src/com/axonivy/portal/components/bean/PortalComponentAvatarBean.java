@@ -1,8 +1,8 @@
 package com.axonivy.portal.components.bean;
 
 import java.io.Serializable;
-import java.util.Optional;
 import java.util.Arrays;
+import java.util.Optional;
 
 import javax.faces.bean.ManagedBean;
 
@@ -78,6 +78,8 @@ public class PortalComponentAvatarBean implements Serializable {
   /**
    * Tooltip format: Show display name and the "technical name" (memberName) in parentheses.
    * Supports different member types: ISecurityMember, UserDTO, RoleDTO.
+   * @param member 
+   * @return string
    */
   public String tooltipTechnicalDisplayName(Object member) {
     // Return empty string if input is null

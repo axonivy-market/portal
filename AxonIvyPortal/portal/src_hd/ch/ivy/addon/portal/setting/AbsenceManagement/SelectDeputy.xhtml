@@ -39,7 +39,7 @@
               displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(deputy, deputy.getName())}"
               securityMember="#{deputy}" />
           </p:column>
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="w-1 text-center">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="w-2 text-center">
             <p:commandLink id="delete-deputy" styleClass="si si-bin-1 delete-deputy"
               actionListener="#{logic.removeDeputy(deputy)}" update="deputy-selection-form"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />

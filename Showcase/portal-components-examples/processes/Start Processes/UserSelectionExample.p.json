@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "18189AF10B521DF4",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.UserSelectionExampleData"
@@ -56,7 +56,7 @@
           "description" : "This task is created by User Selection Example",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
-            "activator" : "in1.selectedUser.getName()"
+            "script" : "in1.selectedUser.getName()"
           }
         }
       },

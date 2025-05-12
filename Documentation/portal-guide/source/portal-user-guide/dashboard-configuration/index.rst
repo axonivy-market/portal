@@ -141,8 +141,9 @@ How to: add public dashboard
 #. The :guilabel:`Create new public dashboard` dialog is opened.
 
 #. Enter the mandatory title, permissions to see the public dashboard and the optional description for the public dashboard.
-   If the `Top Menu Item` checkbox is checked, the dashboard appears as a top-level item in the navigation bar. 
-   If unchecked, it appears as a sub-item under `Dashboard` menu item.
+
+#. Select one of the display types for your dashboard. There are three types: ``TOP MENU``, ``SUB MENU``, and ``HIDDEN``. The default value is ``SUB MENU``, which places your dashboard inside the `Dashboard` menu item. 
+   If the ``Top Menu`` is selected, the dashboard appears as a top-level item in the navigation bar. The option ``HIDDEN`` will hide the dashboard from the menu.
 
 #. Create the public dashboard by selecting |add-icon| Create dashboard.
 

@@ -17,6 +17,7 @@
   <cc:attribute name="inFrame" default="false"/>
   <cc:attribute name="isPreviewMode" default="false" type="java.lang.Boolean"/>
   <cc:attribute name="ariaLabel" />
+  <cc:attribute name="destroyCaseDialogComponent" default=""/>
 </cc:interface>
 
 <cc:implementation>
@@ -67,8 +68,8 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText')}" />
     </p:link>
     
-    <p:commandLink id="destroy-case" rendered="#{renderDestroyAction}" update="#{cc.attrs.update}"
-      actionListener="#{caseWidgetBean.setSelectedCase(case)}"
+    <p:commandLink id="destroy-case" rendered="#{renderDestroyAction}" update="#{cc.attrs.update} #{cc.attrs.destroyCaseDialogComponent}"
+      actionListener="#{caseWidgetBean.setSelectedCase(case)}" global="false"
       styleClass="case-command action-step-item color-destroy ui-menu-items" process="@this" oncomplete="#{cc.attrs.onDestroyComplete}">
       <span class="action-icon pi pi-trash" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}" />

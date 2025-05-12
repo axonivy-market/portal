@@ -15,6 +15,7 @@
   <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
   <cc:attribute name="selectedTaskId" />
   <cc:attribute name="showHeaderToolbar" default="true" />
+  <cc:attribute name="destroyTaskDialogComponent" default="" />
   <cc:attribute name="noTaskFoundMessage" />
   <cc:attribute name="hideWidgetHeader" default="false" type="java.lang.Boolean" />
   <cc:attribute name="currentPortalPage" default="TASK_LIST" shortDescription="Sticky task list after finish task" />
@@ -132,7 +133,7 @@
             isSelected="#{cc.attrs.selectedTaskId eq task.getId()}"
             dataModel="#{data.dataModel}"
             onDestroyComplete="PF('destroy-task-dialog').show()"
-            onDelegateComplete="initDataToDelegate()"
+            onDelegateComplete="initDataToDelegate()" destroyTaskDialogComponent="#{cc.attrs.destroyTaskDialogComponent}"
             onEscalationComplete="PF('escalation-task-dialog').show()"
             onWorkflowEventComplete="initWorkflowEventData()"
             readOnly="#{cc.attrs.readOnly}"
@@ -181,16 +182,18 @@
     <ui:param name="iconClass" value="si si-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyTaskHeaderText')}" />
-    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage')}" />
+    <ui:param name="dialogContent" value="#{taskWidgetBean.getDestroyTaskMessage()}" />
     
     <ui:define name="dialogFooter">
-      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        onclick="PF('destroy-task-dialog').hide();" styleClass="u-mar-right-15"/>
-       <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
-        icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
-        actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
-        oncomplete="taskWidget.setupScrollbar();PF('destroy-task-dialog').hide()"
-        update="#{cc.clientId}:task-view" />
+      <h:panelGroup styleClass="flex flex-column">
+        <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+         styleClass="w-full portal-remove-button"
+         actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
+         oncomplete="taskWidget.setupScrollbar();PF('destroy-task-dialog').hide()"
+         update="#{cc.clientId}:task-view" />
+        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          onclick="PF('destroy-task-dialog').hide();" styleClass="pt-3 flex justify-content-center"/>
+      </h:panelGroup>
     </ui:define>
   </ui:decorate>
   

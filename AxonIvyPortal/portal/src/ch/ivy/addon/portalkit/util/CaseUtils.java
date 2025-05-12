@@ -122,6 +122,6 @@ public final class CaseUtils {
         .owners()
         .all()
         .stream()
-        .anyMatch(item -> item.member().isMember(Ivy.session(), true));
+        .anyMatch(item -> item.member().isMember(Ivy.session()));
   }
 }
