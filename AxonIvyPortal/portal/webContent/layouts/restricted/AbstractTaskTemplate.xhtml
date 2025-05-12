@@ -120,9 +120,9 @@
     
                 <p:menuitem id="side-steps-process" icon="si si-hierarchy-6 si-rotate-270"
                   rendered="#{sideStepProcessBean.isRendered(currentTask)}" onclick="PF('side-step-process-dialog').show();"
-                  value="Add side-steps process" />
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/sideSteps/addNew')}" />
                 <p:divider styleClass="separator"
-                    rendered="true" />
+                    rendered="#{chatRendererBean.isGroupChatRendered and !(currentTask.state eq 'CREATED')}" />
     
                 <p:menuitem id="side-steps-menu" styleClass="empty-side-steps" global="false"
                   disabled="#{empty abstractTaskTemplateBean.sideStepList}" rendered="#{isSideStepDisabled}"
