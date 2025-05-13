@@ -11,8 +11,6 @@ import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -24,12 +22,13 @@ public class Statistic extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = -8416553636564399910L;
   public static final String DEFAULT_ICON = "si-pie-line-graph";
+  private String aggregates;
+  private StatisticAggregation statisticAggregation;
   private String filter;
   private List<StatisticFilter> filters;
   private List<String> permissions;
   private ChartTarget chartTarget;
   private ChartType chartType;
-  private StatisticAggregation statisticAggregation;
   private String icon;
   private Integer refreshInterval; // in seconds
   private List<DisplayName> names;
@@ -38,8 +37,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private LineChartConfig lineChartConfig;
   private PieChartConfig pieChartConfig;
   private NumberChartConfig numberChartConfig;
-  private String aggregates;
-  @JsonProperty(access = Access.READ_ONLY)
+  @JsonIgnore
   private List<Entry<String, String>> additionalConfigs;
   private String manipulateValueBy;
   @JsonIgnore
