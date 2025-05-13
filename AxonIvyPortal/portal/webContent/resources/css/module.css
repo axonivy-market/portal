@@ -5456,7 +5456,7 @@ a.dashboard-action-container label {
 }
 
 .dashboard-tasks__responsible .has-deputy-info .deputy-info {
-  position: absolute;
+  position: relative;
   top: 0;
   right: 0;
 }
