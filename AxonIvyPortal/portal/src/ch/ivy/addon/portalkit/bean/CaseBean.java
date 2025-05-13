@@ -18,6 +18,7 @@ import com.axonivy.portal.components.util.ProcessStartUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
@@ -36,11 +37,13 @@ public class CaseBean implements Serializable {
   private static final String OPEN_CASES_LIST = "Start Processes/PortalStart/CaseListPage.ivp";
   private boolean isHideCaseCreator;
   private boolean isCaseOwnerEnabled;
+  private boolean isShowCaseDurationTime;
 
   @PostConstruct
   public void init() {
     isCaseOwnerEnabled = GlobalSettingService.getInstance().isCaseOwnerEnabled();
     isHideCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
+    isShowCaseDurationTime = GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_CASE_DURATION_TIME);
   }
 
   /**
@@ -175,6 +178,10 @@ public class CaseBean implements Serializable {
       }
     }
     return String.join(" - ", displayTexts);
+  }
+
+  public boolean isShowCaseDurationTime() {
+    return isShowCaseDurationTime;
   }
 
 }
