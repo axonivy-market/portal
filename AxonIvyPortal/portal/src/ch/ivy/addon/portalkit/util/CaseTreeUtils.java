@@ -56,6 +56,7 @@ public class CaseTreeUtils {
   private static CategoryTree findAllCaseCategoryTree(CaseQuery caseQuery) {
     Map<String, Object> params = new HashMap<>();
     CaseCategorySearchCriteria criteria = new CaseCategorySearchCriteria();
+    criteria.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     criteria.setCustomCaseQuery(caseQuery);
     params.put("caseCategorySearchCriteria", criteria);
     Map<String, Object> response =
