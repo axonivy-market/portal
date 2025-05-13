@@ -5,12 +5,25 @@
   <artifactId>internalSupport</artifactId>
   <version>13.1.0-SNAPSHOT</version>
   <packaging>iar</packaging>
+
+   <parent>
+    <groupId>com.axonivy.ivy.api</groupId>
+    <artifactId>ivy-project-parent</artifactId>
+    <version>13.1.0-SNAPSHOT</version>
+    <relativePath></relativePath>
+  </parent>
+
   <properties>
-    <build.plugin.version>13.1.0-SNAPSHOT</build.plugin.version>
     <ivy.engine.version>13.1.0</ivy.engine.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <repositories>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
     <repository>
       <name>Axonivy Repo</name>
       <id>maven.axonivy.com</id>
@@ -19,6 +32,10 @@
     </repository>
   </repositories>
   <dependencies>
+     <dependency>
+      <groupId>com.axonivy.ivy.api</groupId>
+      <artifactId>ivy-api</artifactId>
+    </dependency>
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal-developer-examples</artifactId>
@@ -31,8 +48,6 @@
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
-        <version>${build.plugin.version}</version>
-        <extensions>true</extensions>
         <configuration>
           <compilerWarnings>false</compilerWarnings>
         </configuration>

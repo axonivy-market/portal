@@ -6,18 +6,44 @@
   <artifactId>portal-migration-9.4</artifactId>
   <version>13.1.0-SNAPSHOT</version>
   <packaging>iar</packaging>
+
+  <parent>
+    <groupId>com.axonivy.ivy.api</groupId>
+    <artifactId>ivy-project-parent</artifactId>
+    <version>13.1.0-SNAPSHOT</version>
+    <relativePath></relativePath>
+  </parent>
+
   <properties>
     <ivy.engine.version>13.1.0</ivy.engine.version>
-    <build.plugin.version>13.1.0-SNAPSHOT</build.plugin.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
+ <dependencies>
+    <dependency>
+      <groupId>com.axonivy.ivy.api</groupId>
+      <artifactId>ivy-api</artifactId>
+    </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+    <repository>
+      <id>maven.axonivy.com</id>
+      <url>https://maven.axonivy.com</url>
+    </repository>
+  </repositories>
+
   <build>
     <plugins>
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
-        <version>${build.plugin.version}</version>
-        <extensions>true</extensions>
       </plugin>
     </plugins>
   </build>
