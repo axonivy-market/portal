@@ -142,7 +142,7 @@
         </div>
       </h:panelGroup>
 
-      <h:panelGroup styleClass="ui-g-12 content-field" layout="block">
+      <h:panelGroup styleClass="ui-g-12 content-field" layout="block" rendered="#{not empty case and caseBean.showCaseDurationTime}">
         <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 u-no-padding-left min-width-column-task-details-when-resize">
           <h:outputText styleClass="task-detail-column-title"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/processingTime')}" />

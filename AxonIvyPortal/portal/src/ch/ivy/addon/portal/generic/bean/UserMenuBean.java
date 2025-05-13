@@ -85,10 +85,6 @@ public class UserMenuBean implements Serializable {
         && (isShowGlobalSearchByProcesses || isShowGlobalSearchByCases || isShowGlobalSearchByTasks);
   }
 
-  public boolean isShowCaseDurationTime() {
-    return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.SHOW_CASE_DURATION_TIME);
-  }
-
   public boolean isHiddenLogout() {
     return GlobalSettingService.getInstance().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_LOGOUT_BUTTON);
   }
