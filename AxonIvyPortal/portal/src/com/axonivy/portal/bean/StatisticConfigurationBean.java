@@ -224,6 +224,7 @@ public class StatisticConfigurationBean implements Serializable {
     } else {
       filterFields.add(CaseFilterFieldFactory.getDefaultFilterField());
       filterFields.addAll(CaseFilterFieldFactory.getStandardFilterableFields());
+      filterFields.addAll(CaseFilterFieldFactory.getCustomFilterableFields());
     }
   }
 
@@ -232,15 +233,20 @@ public class StatisticConfigurationBean implements Serializable {
       return;
     }
     
-    // If the filter available in the filter list, initialize it
     for (DashboardFilter  filter : statistic.getFilters()) {
       if (isFilterAvaliable(filter)) {
-        FilterField filterField = TaskFilterFieldFactory
-            .findBy(Optional.ofNullable(filter).map(DashboardFilter ::getField).orElse(StringUtils.EMPTY),
-                Optional.ofNullable(filter).map(DashboardFilter ::getFilterType).orElse(null));
-        if (filterField != null) {
-          filterField.initFilter(filter);
-        }
+        // If the filter available in the filter list, initialize it
+        FilterField filterField = statistic.getChartTarget() == ChartTarget.TASK
+            ? TaskFilterFieldFactory.findBy( // FIND FILTER FIELD FOR TASK
+                Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(StringUtils.EMPTY),
+                Optional.ofNullable(filter).map(DashboardFilter::getFilterType).orElse(null))
+            : CaseFilterFieldFactory.findBy( // FIND FILTER FIELD FOR CASE
+                Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(StringUtils.EMPTY),
+                Optional.ofNullable(filter).map(DashboardFilter::getFilterType).orElse(null));
+
+          if (filterField != null) {
+            filterField.initFilter(filter);
+          }
       }
     }
   }
@@ -771,8 +777,7 @@ public class StatisticConfigurationBean implements Serializable {
       filterField = CaseFilterFieldFactory.findBy(field);
     }
 
-    if (filterField.getName()
-        .contentEquals(BaseFilter.DEFAULT)) {
+    if (filterField != null && filterField.getName().contentEquals(BaseFilter.DEFAULT)) {
       filterField.addNewFilter(filter);
       return;
     }
