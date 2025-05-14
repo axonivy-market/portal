@@ -1397,7 +1397,7 @@ Dialogs:
             WelcomeHeaderText: Willkommen auf dem Axon Ivy Portal!
             WelcomeText: Wir freuen uns, Sie an Bord zu haben. Das Axon Ivy Portal ist Ihr Tor zu einer nahtlosen und effizienten Erfahrung. Egal, ob Sie ein neuer Benutzer sind, der die Funktionen erkundet, oder ein wiederkehrender Besucher, wir sind hier, um Sie bei jedem Schritt zu unterstützen.
           Responsibles:
-            Multiple: Multiple
+            Multiple: Mehrere
           ShareLinkDialog:
             CopyLink: Link kopieren
             Link: Link

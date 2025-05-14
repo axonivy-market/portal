@@ -57,5 +57,4 @@ public class ResponsibleBean {
   public String getMoretext(Responsibles responsibles) {
     return Ivy.cms().co("/Labels/AndMore", Arrays.asList(responsibles.all().size() - PortalConstants.LIMIT_NUMBER_RESPONSIBLE));
   }
-  
 }

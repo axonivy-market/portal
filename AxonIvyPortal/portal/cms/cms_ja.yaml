@@ -1391,7 +1391,7 @@ Dialogs:
             WelcomeHeaderText: Axon Ivy ポータルへようこそ！
             WelcomeText: ご利用いただき、ありがとうございます。Axon Ivy ポータルは、シームレスで効率的な体験への入り口です。機能を探索する新規ユーザーでも、リピーターでも、私たちはあらゆる段階であなたを支援します。
           Responsibles:
-            Multiple: Multiple
+            Multiple: TODO 複数
           ShareLinkDialog:
             CopyLink: リンクをコピー
             Link: リンク

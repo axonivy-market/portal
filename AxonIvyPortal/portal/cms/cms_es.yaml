@@ -1391,7 +1391,7 @@ Dialogs:
       portal:
         component:
           Responsibles:
-            Multiple: Multiple
+            Multiple: Múltiple
           ShareLinkDialog:
             CopyLink: Copiar enlace
             Link: Enlace
