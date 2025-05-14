@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -51,6 +52,10 @@ public class ResponsibleBean {
   
   public String getFirstDisplayName(Responsibles responsibles) {
     return getDisplayName(getFirstResponsible(responsibles));
+  }
+  
+  public String getMoretext(Responsibles responsibles) {
+    return Ivy.cms().co("/Labels/AndMore", Arrays.asList(responsibles.all().size() - PortalConstants.LIMIT_NUMBER_RESPONSIBLE));
   }
   
 }

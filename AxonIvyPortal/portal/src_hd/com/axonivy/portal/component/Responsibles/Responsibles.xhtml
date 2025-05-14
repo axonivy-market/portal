@@ -38,7 +38,7 @@
             </ui:repeat>
           </div>
           <h:panelGroup styleClass="repsonsible-more-text" rendered="#{responsibleSize gt 10}" layout="block">
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." />
+            <h:outputText value="#{responsibleBean.getMoretext(responsibles)}" />
           </h:panelGroup>
         </p:tooltip>
       </h:panelGroup>

@@ -1,5 +1,6 @@
 package com.axonivy.portal.bean;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.task.expiry.responsible.ExpiryResponsible;
 import ch.ivyteam.ivy.workflow.task.expiry.responsible.ExpiryResponsibles;
@@ -41,5 +43,9 @@ public class ExpiryRepsonsibleBean {
   
   public String getFirstDisplayName(ExpiryResponsibles responsibles) {
     return getDisplayName(getFirstResponsible(responsibles));
+  }
+  
+  public String getMoretext(ExpiryResponsibles responsibles) {
+    return Ivy.cms().co("/Labels/AndMore", Arrays.asList(responsibles.all().size() - PortalConstants.LIMIT_NUMBER_RESPONSIBLE));
   }
 }

@@ -37,10 +37,7 @@
             </ui:repeat>
           </div>
           <h:panelGroup styleClass="repsonsible-more-text" rendered="#{responsibleSize gt 10}" layout="block">
-            <h:outputText styleClass="expire-today" value="#{widget.numberOfTasksExpireToday}">
-              <f:convertNumber locale="#{localeBean.locale}" />
-            </h:outputText>
-            <h:outputText value="and  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." />
+            <h:outputText value="#{expiryRepsonsibleBean.getMoretext(expiryResponsibles)}" />
           </h:panelGroup>
         </p:tooltip>
       </h:panelGroup>

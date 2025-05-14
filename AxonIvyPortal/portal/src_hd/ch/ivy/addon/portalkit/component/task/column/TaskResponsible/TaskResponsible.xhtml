@@ -19,10 +19,13 @@
   <c:set var="responsibleSize" value="#{responsibleBean.getResponsiblesSize(cc.attrs.responsibles)}" />
 
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('ACTIVATOR')}">
-    <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName textId="#{cc.attrs.componentId}" securityMember="#{responsibleBean.getFirstResponsible(responsibles)}"
-      securityMemberName="#{responsibleBean.getFirstDisplayName(responsibles)}" styleClass="#{cc.attrs.styleClass}"
+    <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName textId="#{cc.attrs.componentId}" 
+      securityMember="#{responsibleSize gt 1 ? null : responsibleBean.getFirstResponsible(responsibles)}"
+      securityMemberName="#{responsibleSize gt 1 ? ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple') : responsibleBean.getFirstDisplayName(responsibles)}" 
+      styleClass="#{cc.attrs.styleClass}"
       securityMemberContainerStyleClass="responsible-cell #{cc.attrs.responsiveStyleClass}"
-      alwaysShowAsText="true" renderDeputyInfo="#{cc.attrs.renderDeputyInfo}">
+      alwaysShowAsText="true" renderDeputyInfo="#{cc.attrs.renderDeputyInfo}"
+      representName="#{responsibleSize gt 1 ? ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple') : null}">
        <f:facet name="afterName">
         <h:panelGroup rendered="#{responsibles != null and responsibleSize gt 1}"> 
           <h:panelGroup id="all-responsibles" styleClass="ml-1" >
@@ -36,7 +39,7 @@
               </div>
             </ui:repeat>
             <h:panelGroup styleClass="repsonsible-more-text" rendered="#{responsibleSize gt 10}" layout="block">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." />
+              <h:outputText value="#{responsibleBean.getMoretext(responsibles)}" />
             </h:panelGroup>
           </p:tooltip>
         </h:panelGroup>
