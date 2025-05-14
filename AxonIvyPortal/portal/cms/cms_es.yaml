@@ -1390,6 +1390,8 @@ Dialogs:
     axonivy:
       portal:
         component:
+          Responsibles:
+            Multiple: Multiple
           ShareLinkDialog:
             CopyLink: Copiar enlace
             Link: Enlace

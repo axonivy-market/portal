@@ -13,7 +13,10 @@
   <c:set var="responsibleSize" value="#{expiryRepsonsibleBean.getResponsiblesSize(cc.attrs.expiryResponsibles)}" />
   <c:set var="expiryResponsibles" value="#{cc.attrs.expiryResponsibles}" />
   
-  <pc:securityMemberNameAndAvatar displayName="#{expiryRepsonsibleBean.getFirstDisplayName(expiryResponsibles)}" securityMember="#{expiryRepsonsibleBean.getFirstResponsible(expiryResponsibles)}" > 
+  <pc:securityMemberNameAndAvatar 
+  	displayName="#{responsibleSize gt 1 ? ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple') : expiryRepsonsibleBean.getFirstDisplayName(expiryResponsibles)}" 
+  	securityMember="#{responsibleSize gt 1 ? null : expiryRepsonsibleBean.getFirstResponsible(expiryResponsibles)}" 
+  	representName="#{responsibleSize gt 1 ? ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple') : null}" > 
     <f:facet name="afterName">
       <h:panelGroup rendered="#{responsibleSize != null and responsibleSize gt 1}">
         <h:panelGroup id="all-expiry-responsibles" styleClass="ml-1" >
@@ -34,7 +37,10 @@
             </ui:repeat>
           </div>
           <h:panelGroup styleClass="repsonsible-more-text" rendered="#{responsibleSize gt 10}" layout="block">
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." />
+            <h:outputText styleClass="expire-today" value="#{widget.numberOfTasksExpireToday}">
+              <f:convertNumber locale="#{localeBean.locale}" />
+            </h:outputText>
+            <h:outputText value="and  #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." />
           </h:panelGroup>
         </p:tooltip>
       </h:panelGroup>

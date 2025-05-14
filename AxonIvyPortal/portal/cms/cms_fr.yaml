@@ -1391,6 +1391,8 @@ Dialogs:
             Tools: Outils
             WelcomeHeaderText: Bienvenue sur le portail Axon Ivy !
             WelcomeText: Nous sommes ravis de vous compter parmi nous. Le portail Axon Ivy est votre porte d'entrée pour une expérience transparente et efficace. Que vous soyez un nouvel utilisateur qui explore les fonctionnalités ou un visiteur habituel, nous sommes là pour vous aider à chaque étape.
+          Responsibles:
+            Multiple: Multiple
           ShareLinkDialog:
             CopyLink: Copier le lien
             Link: Lien

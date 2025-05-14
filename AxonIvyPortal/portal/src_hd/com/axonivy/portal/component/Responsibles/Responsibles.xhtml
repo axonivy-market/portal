@@ -14,8 +14,10 @@
   <c:set var="responsibleSize" value="#{responsibleBean.getResponsiblesSize(cc.attrs.responsibles)}" />
   <c:set var="responsibles" value="#{cc.attrs.responsibles}" />
   
-  <pc:securityMemberNameAndAvatar displayName="#{responsibleBean.getFirstDisplayName(responsibles)}" securityMember="#{responsibleBean.getFirstResponsible(responsibles)}"
-    containerStyleClass="#{responsibleBean.isSubstituteForTask(responsibles) ? 'has-deputy-info' : ''}"> 
+  <pc:securityMemberNameAndAvatar displayName="#{responsibleSize gt 1 ? ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple') : responsibleBean.getFirstDisplayName(responsibles)}" 
+    securityMember="#{responsibleSize gt 1 ? null : responsibleBean.getFirstResponsible(responsibles)}"
+    containerStyleClass="#{responsibleBean.isSubstituteForTask(responsibles) ? 'has-deputy-info' : ''}" 
+    representName="#{responsibleSize gt 1 ? ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple') : null}" > 
     <f:facet name="afterName">
       <h:panelGroup rendered="#{responsibles != null and responsibleSize gt 1}"> 
         <h:panelGroup id="all-responsibles" styleClass="ml-1" >
