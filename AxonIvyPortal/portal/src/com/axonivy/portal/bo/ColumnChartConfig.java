@@ -6,6 +6,8 @@ import com.axonivy.portal.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
@@ -13,9 +15,11 @@ import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 
 public abstract class ColumnChartConfig {
   private List<DisplayName> xTitles;
+  @JsonProperty(access = Access.READ_ONLY)
   @JsonIgnore
   private String xTitle;
   private List<DisplayName> yTitles;
+  @JsonProperty(access = Access.READ_ONLY)
   @JsonIgnore
   private String yTitle;
   @JsonInclude(value = Include.NON_NULL)
