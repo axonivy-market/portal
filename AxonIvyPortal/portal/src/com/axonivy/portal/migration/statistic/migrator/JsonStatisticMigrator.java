@@ -22,12 +22,12 @@ public class JsonStatisticMigrator {
   private final StatisticJsonVersion version;
 
   public JsonStatisticMigrator(JsonNode node) {
-    this.node = removeDefaultChartsFromClientStatistic((ArrayNode) node);
+    this.node = node;
     this.version = StatisticJsonVersion.LATEST_VERSION;
   }
 
   public JsonStatisticMigrator(JsonNode node, StatisticJsonVersion version) {
-    this.node = removeDefaultChartsFromClientStatistic((ArrayNode) node);
+    this.node = node;
     this.version = version;
   }
 
@@ -45,6 +45,8 @@ public class JsonStatisticMigrator {
   }
 
   public JsonNode migrate() {
+    Ivy.log().info("Converting Portal original statistic json: " + node.toString());
+    removeDefaultChartsFromClientStatistic((ArrayNode) node);
     node.elements().forEachRemaining(template -> migrate(template));
     return node;
   }
@@ -67,7 +69,7 @@ public class JsonStatisticMigrator {
     updateVersion(chart);
   }
 
-  private JsonNode removeDefaultChartsFromClientStatistic(ArrayNode nodes) {
+  private void removeDefaultChartsFromClientStatistic(ArrayNode nodes) {
     for (int i = nodes.size() - 1; i >= 0; i--) {
       JsonNode chart = nodes.get(i);
       int id = chart.path("id").asInt(Integer.MIN_VALUE);
@@ -75,7 +77,6 @@ public class JsonStatisticMigrator {
           nodes.remove(i);
         }
     }
-    return nodes;
   }
 
   private void updateVersion(JsonNode node) {

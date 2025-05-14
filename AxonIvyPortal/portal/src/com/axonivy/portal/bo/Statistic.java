@@ -24,12 +24,13 @@ public class Statistic extends AbstractConfiguration implements Serializable {
 
   private static final long serialVersionUID = -8416553636564399910L;
   public static final String DEFAULT_ICON = "si-pie-line-graph";
+  private String aggregates;
+  private StatisticAggregation statisticAggregation;
   private String filter;
   private List<StatisticFilter> filters;
   private List<String> permissions;
   private ChartTarget chartTarget;
   private ChartType chartType;
-  private StatisticAggregation statisticAggregation;
   private String icon;
   private Integer refreshInterval; // in seconds
   private List<DisplayName> names;
@@ -38,7 +39,6 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private LineChartConfig lineChartConfig;
   private PieChartConfig pieChartConfig;
   private NumberChartConfig numberChartConfig;
-  private String aggregates;
   @JsonProperty(access = Access.READ_ONLY)
   private List<Entry<String, String>> additionalConfigs;
   private String manipulateValueBy;
