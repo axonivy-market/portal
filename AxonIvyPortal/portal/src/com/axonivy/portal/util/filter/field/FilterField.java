@@ -53,5 +53,9 @@ public abstract class FilterField {
   public String generateTaskFilter(DashboardFilter filter) {
     return filter.getValue();
   }
+  
+  public String generateCaseFilter(DashboardFilter filter) {
+    return filter.getValue();
+  }
 
 }
