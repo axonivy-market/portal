@@ -60,12 +60,7 @@
       widgetVar="widget-filter-category-panel-#{cc.clientId}"
       styleClass="widget-configuration__category-panel"
       dismissable="false">
-      <!--  ****************************    TODO   ****************************  -->
-      <!--  REMOVE COMMENT AFTER APPROVED PR -->
-      <!--  FORM TAG TO FIX THE BUG:  -->
-      <!--    - WHEN IN CONFIGURATION MODE, TYPING IN CATEGORY NOT WORKING -->
-      <!--  REMOVE FORM TAG TO FIX THE BUG: -->
-      <!--    - WHEN IN NORMAL MODE, CHOOSE CATEGORY > SAVE > OPEN AND REMOVE FILTER > NOT WORKING -->
+
       <h:form rendered="#{widget.isInConfiguration()}">
         <p:tree id="widget-category-filter-tree"
           value="#{widgetCategoryFilterBean.categoryTree}" var="node"
@@ -90,7 +85,7 @@
           <h:outputText value="#{node.value}" />
         </p:treeNode>
       </p:tree>
-      <!--  ********************************************************************  -->
+
       <h:panelGroup id="category-panel-footer" layout="block"
         styleClass="widget-configuration__category-panel-footer">
         <p:commandLink id="cancel-command" styleClass="portal-cancel-button u-mar-right-10"
