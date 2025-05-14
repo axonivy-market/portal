@@ -193,7 +193,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: サードパーティーのアプリケーション
     currentValue: 現在の値
-    defaultApplicationName: Axon Ivy
     defaultValue: デフォルト値
     deleteAppConfirmation: このアプリケーションを削除してよろしいですか？
     dialogclosinginformation:
@@ -206,7 +205,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     emptySupportedLanguages: 追加の言語はサポートされていません
     globalVariableNote:
       AppleStoreURL: Apple Store で Axon Ivy モバイル アプリをダウンロードするための URL を設定します。
-      ApplicationName: ページタイトルに表示されるデフォルトのアプリケーション名。
+      ApplicationName: ページタイトルに表示されるアプリケーション名。
       BaseQRCodeUrl: 表示するQRコードのベースURLを設定します。
       DefaultThemeMode: アプリケーションのテーマモードの初期値
       EnableDocumentPreview: ドキュメントのプレビューを有効にするには true に設定してください。（プレビュー可能なファイルの種類：pdf、png、txt、log）

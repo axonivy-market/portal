@@ -1,5 +1,5 @@
 Key,Default value,Note
-Portal.ApplicationName,Axon Ivy,The default application name that will be displayed on the page title.
+Portal.ApplicationName,Axon Ivy,The application name that will be displayed on the page title.
 Portal.CaseDetails.HideDocument,FALSE,"Set to true, the document section in case detail page will be hidden, otherwise it will be shown."
 Portal.CaseDetails.HideUploadDocumentForDoneCase,FALSE,Set to true to deny upload (also delete) document after a case is done.
 Portal.CaseDetails.ShowDurationTime,TRUE,For switch on/off the display of the duration time in case details page.

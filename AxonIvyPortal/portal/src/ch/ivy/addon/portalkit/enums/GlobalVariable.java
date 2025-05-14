@@ -82,7 +82,7 @@ public enum GlobalVariable {
       "Portal.UserMenu.AppleStoreURL", GlobalVariableType.TEXT,
       "appleStoreURL"), GOOGLE_PLAY_URL("Portal.UserMenu.GooglePlayURL", GlobalVariableType.TEXT,
           "googlePlayURL"),
-  APPLICATION_NAME("Portal.ApplicationName", GlobalVariableType.TEXT, "Axon Ivy", "ApplicationName"), HIDE_CASE_CREATOR(
+  APPLICATION_NAME("Portal.ApplicationName", GlobalVariableType.TEXT, "ApplicationName"), HIDE_CASE_CREATOR(
       "Portal.Cases.HideCaseCreator", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseCreator"),
   ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview", GlobalVariableType.SELECTION, Option.TRUE.toString(), "enableDocumentPreview"),
   SHOW_TOOLTIP_TECHNICAL_NAME("Portal.ShowTooltipTechnicalName", GlobalVariableType.SELECTION, Option.FALSE.toString(), "showTooltipTechnicalName"),
