@@ -34,13 +34,12 @@
                   <h4 class="mb-0 mt-3">#{ivy.cms.co('/Labels/General')}</h4>
                 </div>
 
-                <!--  TODO PUT BACK REQUIRED ATTRIBUTE -->
                 <div class="field col-12">
                   <p:outputLabel value="#{ivy.cms.co('/Labels/Name')}" for="@next" />
                   <div class="ui-inputgroup">
                     <p:inputText id="name" value="#{statisticConfigurationBean.statistic.name}" maxlength="#{statisticInput}"
                       requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Labels/Name')])}"
-                      styleClass="w-full" />
+                      styleClass="w-full" required="true" />
                     <p:commandButton id="add-name-language-button" icon="si si-chat-translate"
                       actionListener="#{statisticConfigurationBean.updateNameByLocale()}" process="name"
                       update="name-language-config:multiple-languages-dialog"

@@ -202,8 +202,7 @@ public class StatisticConfigurationBean implements Serializable {
     statistic.getStatisticAggregation().setField(AggregationField.PRIORITY.getName());
     statistic.setNames(new ArrayList<>());
     statistic.setDescriptions(new ArrayList<>());
-    // TODO PUT BACK TASK TARGET
-    statistic.setChartTarget(ChartTarget.CASE);
+    statistic.setChartTarget(ChartTarget.TASK);
     statistic.setChartType(ChartType.BAR);
     statistic.setNumberChartConfig(new NumberChartConfig());
     statistic.setBarChartConfig(new BarChartConfig());
