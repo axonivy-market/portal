@@ -25,7 +25,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addAbsence: Abwesenheit erfassen
     deputies: Stellvertreter
     description: 'Während meiner Abwesenheit werden Workflow Aufgaben automatisch
-      den definierten Stellvertretern zugeteilt. '
+      den definierten Stellvertretern zugeteilt.'
     editAbsence: Abwesenheiten bearbeiten
     from: Von
     noDeputy: Kein Stellvertreter
