@@ -27,8 +27,8 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
 
   @Override
   public void initDefaultValue() {
-    this.setVisible(!GlobalSettingService.getInstance().isHideCaseCreator());
     super.initDefaultValue();
+    initVisibleValue();
     this.field = DashboardStandardCaseColumn.CREATOR.getField();
     this.styleToDisplay = initDefaultStyle();
     this.format = getDefaultFormat();
@@ -39,6 +39,15 @@ public class CreatorColumnModel extends CaseColumnModel implements Serializable 
   @Override
   public String getDefaultHeaderCMS() {
     return "/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR";
+  }
+  
+  private void initVisibleValue() {
+    if (GlobalSettingService.getInstance().isHideCaseCreator()) {
+      this.setVisible(false);
+      return;
+    }
+    
+    this.setVisible(this.visible == null ? true : this.visible);
   }
 
   @Override

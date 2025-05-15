@@ -19,7 +19,7 @@
         draggableRows="true" rowDragSelector="i.si-move-expand-vertical" lazy="false">
         <p:ajax event="rowReorder" global="false" />
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}" width="70" styleClass="u-text-align-center">
-          <p:commandLink id="toggle-visibility" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget" process="@this"
+          <p:commandLink id="toggle-visibility" styleClass="ui-selectbooleancheckbox ui-chkbox ui-widget #{columnManagementBean.isEnableHideCaseCreator(column) ? 'ui-disable' : ''}" process="@this"
             actionListener="#{columnManagementBean.handleVisibility(column)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}"
             global="false" update="column-management-datatable" partialSubmit="true" immediate="true">
             <h:panelGroup styleClass="ui-chkbox-box ui-widget ui-corner-all ui-state-default #{column.visible ? 'ui-state-active':''}">
