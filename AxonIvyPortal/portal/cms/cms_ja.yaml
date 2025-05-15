@@ -1378,6 +1378,8 @@ Dialogs:
               ShareTaskDetails: タスクの詳細を共有
               TaskCompletedByOtherInfo: タスクは、ユーザー <strong>{0}</strong> によって {1} に既に完了しています。
               TaskCompletedByYouInfo: あなたは、このタスクを {0} に完了しています。
+            TaskItemGeneralInfo:
+              Expiry: TODO Expiry Responsible
   com:
     axonivy:
       portal:
@@ -1387,6 +1389,8 @@ Dialogs:
             Tools: ツール
             WelcomeHeaderText: Axon Ivy ポータルへようこそ！
             WelcomeText: ご利用いただき、ありがとうございます。Axon Ivy ポータルは、シームレスで効率的な体験への入り口です。機能を探索する新規ユーザーでも、リピーターでも、私たちはあらゆる段階であなたを支援します。
+          Responsibles:
+            Multiple: TODO 複数
           ShareLinkDialog:
             CopyLink: リンクをコピー
             Link: リンク
@@ -1539,6 +1543,7 @@ Labels:
     TaskDetailsResult: |-
       タスクの詳細 **{0} (#{1})**：
       {2}
+  AndMore: TODO さらに{0}件...
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
   CreateNewDashboard: 新しいダッシュボードを作成

@@ -40,6 +40,8 @@ import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
+import ch.ivyteam.ivy.workflow.task.expiry.responsible.ExpiryResponsibles;
+import ch.ivyteam.ivy.workflow.task.responsible.Responsible;
 
 public final class TaskUtils {
   private static final String PORTAL_GLOBAL_GROWL = "portal-global-growl";
@@ -127,7 +129,7 @@ public final class TaskUtils {
   @SuppressWarnings("deprecation")
   public static void delegateTask(final ITask iTask, final ISecurityMember iSecurityMember) {
     Sudo.get(() -> {
-      iTask.setActivator(iSecurityMember);
+      iTask.responsibles().set(iSecurityMember);
       iTask.customFields().timestampField(CUSTOM_TIMESTAMP_FIELD5).set(new Date());
       return Void.class;
     });
@@ -141,7 +143,7 @@ public final class TaskUtils {
    */
   public static void delegateTaskAfterEscalation(final ITask iTask, final ISecurityMember iSecurityMember) {
     Sudo.get(() -> {
-      iTask.setExpiryActivator(iSecurityMember);
+      iTask.expiry().responsibles().set(iSecurityMember);
       return Void.class;
     });
   }
@@ -331,9 +333,8 @@ public final class TaskUtils {
     if (task == null) {
       return;
     }
-
-    if (task.getExpiryActivator() == null && task.getExpiryTimestamp() == null) {
-      task.setExpiryActivator(task.getActivator());
+    if (CollectionUtils.isEmpty(task.expiry().responsibles().all()) && task.getExpiryTimestamp() == null) {
+      setResonsibleToExpiryResponsible(task);
     }
     task.setExpiryTimestamp(new Date());
 
@@ -343,6 +344,16 @@ public final class TaskUtils {
     String triggerNote = new TaskInforActionService().prepareTriggerEscalationNoteContent(fullName, userName, taskId);
     task.getCase().createNote(Ivy.session(), triggerNote);
   }
+  
+  public static void setResonsibleToExpiryResponsible(ITask task) {
+    task.expiry().responsibles().all().clear();
+    for (Responsible responsible : task.responsibles().all()) {
+      if(responsible != null) {
+        task.expiry().responsibles().add(responsible.get());
+      }
+    }
+  }
+
 
   /**
    * Convert Ivy task state to portal task state with multiple languages
@@ -398,4 +409,13 @@ public final class TaskUtils {
     return PermissionUtils.hasPermission(permission);
   }
 
+  
+  public static String toDisplayNameExpiryResponsible(ExpiryResponsibles expiryResponsibles) {
+    if (CollectionUtils.isEmpty(expiryResponsibles.all())) {
+      return "";
+    }
+    return expiryResponsibles.all().stream()
+        .map(item -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(item.get(), item.displayName()))
+        .collect(Collectors.joining(", "));
+  }
 }
