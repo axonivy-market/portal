@@ -92,7 +92,7 @@ public class DefaultDashboardUtils {
               },
               {
                 "field": "activator",
-                "width": "120"
+                "width": "145"
               },
               {
                 "field": "state",
