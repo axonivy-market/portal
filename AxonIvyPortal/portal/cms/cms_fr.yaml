@@ -1462,6 +1462,10 @@ Dialogs:
               chooseAJsonFile: Choisissez un fichier json
             DashboardSharing:
               ShareDashboard: Partager le tableau de bord
+            NavigationDashboardWidget:
+              PermissionsDenied: |+
+                Vous n'avez pas la permission d'accéder à ce tableau de bord.
+
             NavigationDashboardWidgetConfiguration:
               ButtonName: Nom du bouton
               NavigationDashboardWidgetConfiguration: Configuration du widget du tableau de bord de navigation

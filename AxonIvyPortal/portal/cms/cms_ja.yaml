@@ -1460,6 +1460,8 @@ Dialogs:
               chooseAJsonFile: JSON ファイルを選択してください
             DashboardSharing:
               ShareDashboard: ダッシュボードを共有
+            NavigationDashboardWidget:
+              PermissionsDenied: TODO You don't have permission to access this dashboard
             NavigationDashboardWidgetConfiguration:
               ButtonName: TODO Button Name
               NavigationDashboardWidgetConfiguration: Navigation dashboard widget configuration

@@ -1104,6 +1104,8 @@ Dialogs:
           component:
             DashboardImportDetails:
               FileInfomation: File Infomation
+            NavigationDashboardWidget:
+              PermissionsDenied: You don't have permission to access this dashboard
             NavigationDashboardWidgetConfiguration:
               ButtonName: Button Name
             NewsWidget:

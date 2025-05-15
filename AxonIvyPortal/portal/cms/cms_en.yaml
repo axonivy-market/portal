@@ -1468,6 +1468,8 @@ Dialogs:
               chooseAJsonFile: Choose a json file
             DashboardSharing:
               ShareDashboard: Share Dashboard
+            NavigationDashboardWidget:
+              PermissionsDenied: You don't have permission to access this dashboard
             NavigationDashboardWidgetConfiguration:
               ButtonName: Button Name
               NavigationDashboardWidgetConfiguration: Navigation dashboard widget configuration

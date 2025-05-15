@@ -1424,6 +1424,8 @@ Dialogs:
               chooseAJsonFile: Elija un archivo json
             DashboardSharing:
               ShareDashboard: Compartir panel
+            NavigationDashboardWidget:
+              PermissionsDenied: No tienes permiso para acceder a este panel.
             NavigationDashboardWidgetConfiguration:
               ButtonName: Nombre del botón
               NavigationDashboardWidgetConfiguration: |+
