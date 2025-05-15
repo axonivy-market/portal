@@ -1540,6 +1540,85 @@
       "visual" : {
         "at" : { "x" : 1928, "y" : 352 }
       }
+    }, {
+      "id" : "f235",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 2296, "y" : 352 }
+      }
+    }, {
+      "id" : "f236",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "task with 20 responsible",
+            "description" : "task with 20 responsible",
+            "responsible" : {
+              "type" : "MEMBERS_FROM_ATTRIBUTE",
+              "script" : "[\"#admin\",\"#liam\",\"#marissa\",\"#gm3\",\"#noah\",\"#mike\",\"#huang\",\"#ava\",\"#olivia\",\"#ethan\",\"#sophie\",\"#costObject1\",\"#gm2\",\"#demo\",\"#gm1\",\"CaseOwner\",\"HR\",\"TestRoleInvolved\",\"Sales\", \"#david\"]"
+            },
+            "expiry" : {
+              "timeout" : "new Duration(0, 0, 3, 0, 0, 0)",
+              "responsible" : {
+                "type" : "MEMBERS_FROM_ATTRIBUTE",
+                "script" : "[\"#admin\",\"#liam\",\"#marissa\",\"#gm3\",\"#noah\",\"#mike\",\"#huang\",\"#ava\",\"#olivia\",\"#costObject1\",\"#gm2\",\"#demo\",\"#gm1\",\"CaseOwner\",\"HR\",\"TestRoleInvolved\",\"Sales\", \"#david\"]"
+              }
+            }
+          }, {
+            "id" : "TaskB",
+            "name" : "task with 8 responsible",
+            "description" : "task with 8 responsible",
+            "responsible" : {
+              "type" : "MEMBERS_FROM_ATTRIBUTE",
+              "script" : "[\"#liam\",\"#marissa\",\"CaseOwner\",\"HR\",\"#gm3\",\"#noah\",\"Sales\",\"#admin\"]"
+            },
+            "expiry" : {
+              "timeout" : "new Duration(0, 0, 3, 0, 0, 0)",
+              "responsible" : {
+                "type" : "MEMBERS_FROM_ATTRIBUTE",
+                "script" : "[\"#liam\",\"#marissa\",\"CaseOwner\",\"#noah\",\"Sales\",\"#admin\"]"
+              }
+            }
+          } ],
+        "case" : {
+          "name" : "Testing Case for Global Search (Name)",
+          "description" : "Testing Case for Global Search (Description)",
+          "customFields" : [
+            { "name" : "testingcase", "type" : "STRING", "value" : "\"Testing Case custom field\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 2208, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f237", "to" : "f239", "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f238", "to" : "f235", "condition" : "ivp==\"TaskB.ivp\"" }
+      ]
+    }, {
+      "id" : "f239",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 2208, "y" : 352 }
+      }
+    }, {
+      "id" : "f240",
+      "type" : "RequestStart",
+      "name" : "TaskWithMultiResponsible.ivp",
+      "config" : {
+        "signature" : "TaskWithMultiResponsible",
+        "request" : {
+          "name" : "Create tasks for Multiple Responsibble Test"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 2208, "y" : 48 },
+        "labelOffset" : { "x" : 25, "y" : 41 }
+      },
+      "connect" : [
+        { "id" : "f241", "to" : "f236", "var" : "in1" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {

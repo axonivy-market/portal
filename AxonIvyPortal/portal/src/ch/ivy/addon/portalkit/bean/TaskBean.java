@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.Objects;
 
 import javax.faces.bean.ManagedBean;
 
@@ -18,7 +17,6 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -64,16 +62,6 @@ public class TaskBean implements Serializable {
       return StringUtils.EMPTY;
     }
     return cms(TASK_BUSINESS_STATE_CMS_PATH + state);
-  }
-
-  public String displayRelatedTaskToolTip(ITask task) {
-    List<Object> params = new ArrayList<>();
-    if (task != null) {
-      ISecurityMember taskActivator = task.getActivator();
-      String taskActivatorName = taskActivator != null? taskActivator.getDisplayName() : StringUtils.stripStart(task.getActivatorName(), "#");
-      params = Arrays.asList(getTranslatedState(task.getBusinessState()), Objects.toString(taskActivatorName, ""));
-    }
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateAndResponsible", params);
   }
 
   private String cms(String uri) {

@@ -196,7 +196,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: Third Party Application
     currentValue: Current value
-    defaultApplicationName: Axon Ivy
     defaultValue: Default value
     deleteAppConfirmation: Are you sure to delete this application ?
     dialogclosinginformation:
@@ -209,7 +208,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     emptySupportedLanguages: No additional languages are supported
     globalVariableNote:
       AppleStoreURL: Set URL to download Axon Ivy mobile app on Apple Store.
-      ApplicationName: The default application name that will be displayed on the page title.
+      ApplicationName: The application name that will be displayed on the page title.
       BaseQRCodeUrl: Set Base URL for QR code to display.
       DefaultThemeMode: The default theme mode of the application
       EnableSwitchThemeModeButton: Set to true to enable the switch theme button.
@@ -1386,6 +1385,8 @@ Dialogs:
               ShareTaskDetails: Share task details
               TaskCompletedByOtherInfo: Task has already been completed by user <strong>{0}</strong> on {1}.
               TaskCompletedByYouInfo: You already have completed the task on {0}.
+            TaskItemGeneralInfo:
+              Expiry: Expiry Responsible
   com:
     axonivy:
       portal:
@@ -1395,6 +1396,8 @@ Dialogs:
             Tools: Tools
             WelcomeHeaderText: Welcome to the Axon Ivy Portal!
             WelcomeText: We are delighted to have you on board. The Axon Ivy Portal is your gateway to a seamless and efficient experience. Whether you are a new user exploring the features or a returning visitor, we're here to assist you every step of the way.
+          Responsibles:
+            Multiple: Multiple
           ShareLinkDialog:
             CopyLink: Copy link
             Link: Link
@@ -1551,6 +1554,7 @@ Labels:
     TaskDetailsResult: |-
       Details of task **{0} (#{1})**:
       {2}
+  AndMore: and {0} more...
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
   CreateNewDashboard: Create new dashboard

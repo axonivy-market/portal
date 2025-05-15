@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.FilterField;
+import com.axonivy.portal.util.filter.operator.task.responsible.ReponsibleContainsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.responsible.ReponsibleCurrentUserOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.responsible.ResponsibleInOperatorHandler;
 
@@ -44,6 +45,7 @@ public class TaskFilterFieldResponsible extends FilterField {
       case IN -> ResponsibleInOperatorHandler.getInstance().buildInQuery(filter);
       case NOT_IN -> ResponsibleInOperatorHandler.getInstance().buildNotInQuery(filter);
       case CURRENT_USER -> ReponsibleCurrentUserOperatorHandler.getInstance().buildQuery();
+      case CONTAINS -> ReponsibleContainsOperatorHandler.getInstance().buildContainsQuery(filter);
       default -> null;
     };
   }

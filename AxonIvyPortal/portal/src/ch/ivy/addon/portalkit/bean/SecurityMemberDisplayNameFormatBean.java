@@ -35,7 +35,7 @@ public class SecurityMemberDisplayNameFormatBean implements Serializable {
   }
 
   public boolean isDisplayNameNotAvailable(ISecurityMember member, String securityMemberName) {
-    String generatedBriefDisplayName =  generateBriefDisplayNameForSecurityMember(member, securityMemberName);
+    String generatedBriefDisplayName = generateBriefDisplayNameForSecurityMember(member, securityMemberName);
     return Ivy.cms().co(NOT_AVAILABLE_CMS).equals(generatedBriefDisplayName);
   }
 
