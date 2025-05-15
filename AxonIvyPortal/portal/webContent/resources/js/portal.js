@@ -749,45 +749,47 @@ $(document).ready(function () {
     }
   });
 
-  setTimeout(function () {
-    var dialog = PF('preview-document-dialog').jq;
+  if ($('[id$=":preview-document-dialog"]').length) {
+    setTimeout(function () {
+      var dialog = PF('preview-document-dialog');
+      const dialogElement = dialog.jq.get(0);
 
-    const dialogElement = dialog.get(0);
-
-    const resizeObserver = new ResizeObserver(function () {
-      adjustMediaHeight();
-    });
-
-    resizeObserver.observe(dialogElement);
-
-    $(document).on('click', '.ui-dialog-titlebar-maximize, .ui-dialog-titlebar-restore', function () {
-      setTimeout(function () {
+      const resizeObserver = new ResizeObserver(function () {
         adjustMediaHeight();
-      }, 50);
-    });
+      });
 
-    function adjustMediaHeight() {
-      var dialog = PF('preview-document-dialog').jq;
-      var media = dialog.find('.ui-widget-content').find('.ui-g-12 object');
+      resizeObserver.observe(dialogElement);
 
-      setTimeout(function () {
-        if (dialog.hasClass('ui-dialog-maximized')) {
-          var newHeight = dialog.height() - 130;
-          media.css('height', newHeight + 'px');
-        } else {
-          media.css('height', '600px');
-        }
+      $(document).on('click', '.ui-dialog-titlebar-maximize, .ui-dialog-titlebar-restore', function () {
+        setTimeout(function () {
+          adjustMediaHeight();
+        }, 50);
+      });
 
-        var resizeEvent = new Event('resize');
-        window.dispatchEvent(resizeEvent);
-      }, 50);
-    }
+      function adjustMediaHeight() {
+        var dialog = PF('preview-document-dialog').jq;
+        var media = dialog.find('.ui-widget-content').find('.ui-g-12 object');
 
-    PF('preview-document-dialog').jq.on('dialogclose', function () {
-      resizeObserver.disconnect();
-    });
+        setTimeout(function () {
+          if (dialog.hasClass('ui-dialog-maximized')) {
+            var newHeight = dialog.height() - 130;
+            media.css('height', newHeight + 'px');
+          } else {
+            media.css('height', '600px');
+          }
 
-  }, 200);
+          var resizeEvent = new Event('resize');
+          window.dispatchEvent(resizeEvent);
+        }, 50);
+      }
+
+      PF('preview-document-dialog').jq.on('dialogclose', function () {
+        resizeObserver.disconnect();
+      });
+
+    }, 200);
+
+  }
 
 
 });
