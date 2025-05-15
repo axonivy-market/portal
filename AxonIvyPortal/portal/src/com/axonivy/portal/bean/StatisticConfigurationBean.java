@@ -41,7 +41,7 @@ import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
-import com.axonivy.portal.dto.statistic.StatisticFilter;
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.AggregationInterval;
 import com.axonivy.portal.enums.statistic.ChartTarget;
@@ -52,12 +52,14 @@ import com.axonivy.portal.service.multilanguage.StatisticDescriptionMultilanguag
 import com.axonivy.portal.service.multilanguage.StatisticNameMultilanguageService;
 import com.axonivy.portal.service.multilanguage.StatisticXTitleMultilanguageService;
 import com.axonivy.portal.service.multilanguage.StatisticYTitleMultilanguageService;
-import com.axonivy.portal.util.statisticfilter.field.FilterField;
+import com.axonivy.portal.util.filter.field.FilterField;
+import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -97,8 +99,7 @@ public class StatisticConfigurationBean implements Serializable {
   private boolean isEditMode;
   private boolean refreshIntervalEnabled;
   private List<FilterField> filterFields;
-  private String currentCustomField;
-  private CustomFieldType currentCustomFieldType;
+  private String currentField;
   private String currentCustomFieldDescription;
   private boolean isDateTimeSelected;
   private AggregationInterval aggregationInterval;
@@ -179,24 +180,25 @@ public class StatisticConfigurationBean implements Serializable {
           new RoleDTO(ISecurityContext.current().roles().find(ISecurityConstants.TOP_LEVEL_ROLE_NAME)))));
     }
     if(statistic.getStatisticAggregation() != null) {
-      this.currentCustomFieldType = statistic.getStatisticAggregation().getCustomFieldType();
-      this.currentCustomField = statistic.getStatisticAggregation().getCustomFieldValue();
-      this.setDateTimeSelected(CustomFieldType.TIMESTAMP == this.currentCustomFieldType
-          || statistic.getStatisticAggregation().getAggregationField().getName().toLowerCase().contains(TIMESTAMP));
-      if (isDateTimeSelected && null != statistic.getStatisticAggregation().getInterval()) {
-        this.aggregationInterval = statistic.getStatisticAggregation().getInterval();
+      StatisticService statisticService = StatisticService.getInstance();
+      StatisticAggregation agg = statistic.getStatisticAggregation();
+      statisticService.convertAggregatesFromChartAggregation(statistic);
+      if(agg.getType() == DashboardColumnType.CUSTOM) {
+        getCustomFieldNames();
+
+        findCustomFieldMeta().ifPresent(meta -> {
+          this.currentCustomFieldDescription = meta.description();
+        });
       }
-    } else {
-      StatisticAggregation statisticAggregation = new StatisticAggregation();
-      statisticAggregation.setAggregationField(AggregationField.PRIORITY);
-      statistic.setStatisticAggregation(statisticAggregation);
+      this.setDateTimeSelected(agg.getInterval() != null);
+      this.aggregationInterval = agg.getInterval(); 
     }
   }
 
   private void initNewStatistic() {
     statistic = new Statistic();
     statistic.setStatisticAggregation(new StatisticAggregation());
-    statistic.getStatisticAggregation().setAggregationField(AggregationField.PRIORITY);
+    statistic.getStatisticAggregation().setField(AggregationField.PRIORITY.getName());
     statistic.setNames(new ArrayList<>());
     statistic.setDescriptions(new ArrayList<>());
     statistic.setChartTarget(ChartTarget.TASK);
@@ -214,8 +216,15 @@ public class StatisticConfigurationBean implements Serializable {
   
   private void initFilterFields() {
     filterFields = new ArrayList<>();
-    filterFields.add(TaskFilterFieldFactory.getDefaultFilterField());
-    filterFields.addAll(TaskFilterFieldFactory.getStandardFilterableFields());
+    if (ChartTarget.TASK == statistic.getChartTarget()) {
+      filterFields.add(TaskFilterFieldFactory.getDefaultFilterField());
+      filterFields.addAll(TaskFilterFieldFactory.getStandardFilterableFields());
+      filterFields.addAll(TaskFilterFieldFactory.getCustomFilterableFields());
+    } else {
+      filterFields.add(CaseFilterFieldFactory.getDefaultFilterField());
+      filterFields.addAll(CaseFilterFieldFactory.getStandardFilterableFields());
+      filterFields.addAll(CaseFilterFieldFactory.getCustomFilterableFields());
+    }
   }
 
   private void initFilters() {
@@ -223,21 +232,26 @@ public class StatisticConfigurationBean implements Serializable {
       return;
     }
     
-    // If the filter available in the filter list, initialize it
-    for (StatisticFilter filter : statistic.getFilters()) {
+    for (DashboardFilter  filter : statistic.getFilters()) {
       if (isFilterAvaliable(filter)) {
-        FilterField filterField = TaskFilterFieldFactory
-            .findBy(Optional.ofNullable(filter).map(StatisticFilter::getField).orElse(StringUtils.EMPTY),
-                Optional.ofNullable(filter).map(StatisticFilter::getFilterType).orElse(null));
-        if (filterField != null) {
-          filterField.initFilter(filter);
-        }
+        // If the filter available in the filter list, initialize it
+        FilterField filterField = statistic.getChartTarget() == ChartTarget.TASK
+            ? TaskFilterFieldFactory.findBy( // FIND FILTER FIELD FOR TASK
+                Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(StringUtils.EMPTY),
+                Optional.ofNullable(filter).map(DashboardFilter::getFilterType).orElse(null))
+            : CaseFilterFieldFactory.findBy( // FIND FILTER FIELD FOR CASE
+                Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(StringUtils.EMPTY),
+                Optional.ofNullable(filter).map(DashboardFilter::getFilterType).orElse(null));
+
+          if (filterField != null) {
+            filterField.initFilter(filter);
+          }
       }
     }
   }
   
-  private boolean isFilterAvaliable(StatisticFilter filter) {
-    return Optional.ofNullable(filter).map(StatisticFilter::getField).isPresent() && filterFields.stream()
+  private boolean isFilterAvaliable(DashboardFilter  filter) {
+    return Optional.ofNullable(filter).map(DashboardFilter ::getField).isPresent() && filterFields.stream()
         .filter(field -> filter.getField().contentEquals(filter.getField())).findFirst().isPresent();
   }
 
@@ -269,11 +283,11 @@ public class StatisticConfigurationBean implements Serializable {
     }
     handleCustomFieldAggregation();
     handleAggregateWithDateTimeInterval();
-  
-    if(!isCustomFieldsSelected()) {
-      statistic.getStatisticAggregation().setCustomFieldType(currentCustomFieldType);
-      statistic.getStatisticAggregation().setCustomFieldValue(currentCustomField);
+
+    if (isCustomFieldsSelected()) {
+      statistic.getStatisticAggregation().setField(statistic.getStatisticAggregation().getCustomFieldValue());
     }
+
     syncUIConfigWithChartConfig();
     cleanUpRedundantChartConfigs(statistic.getChartType());
     cleanUpConfiguration();
@@ -308,7 +322,7 @@ public class StatisticConfigurationBean implements Serializable {
   
   private void cleanUpAggregations() {
     if (StringUtils.isNotBlank(statistic.getAggregates())) {
-      if (statistic.getStatisticAggregation() != null && statistic.getStatisticAggregation().getAggregationField() != null) {
+      if (statistic.getStatisticAggregation() != null && StringUtils.isNotBlank(statistic.getStatisticAggregation().getField())) {
         statistic.setAggregates(null);
       }
     }
@@ -413,6 +427,7 @@ public class StatisticConfigurationBean implements Serializable {
     statistic.setAdditionalConfigs(new ArrayList<>());
     statistic.getAdditionalConfigs().addAll(statisticService.getAdditionalConfig());
     statistic.getAdditionalConfigs().add(statisticService.getManipulateValueBy(statistic));
+    
     AggregationResult result = statisticService.getChartData(statistic);
     PrimeFaces.current().ajax().addCallbackParam("jsonResponse",
         BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic)));
@@ -622,58 +637,31 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public boolean isCustomFieldsSelected() {
-    return statistic.getStatisticAggregation().getAggregationField().name().contains("CUSTOM_FIELD");
+    return statistic.getStatisticAggregation().getField().toLowerCase().contains("custom");
   }
   
   private void resetCustomFieldAndDateTimeInterval() {
-      this.currentCustomField = null;
-      this.currentCustomFieldType = null;
+      statistic.getStatisticAggregation().setCustomFieldValue(null);
+      statistic.getStatisticAggregation().setType(DashboardColumnType.STANDARD);
       if(!isDateTimeSelected) {
+        statistic.getStatisticAggregation().setInterval(null);
         this.aggregationInterval = null;
       }
     }
   
   private void handleCustomFieldAggregation() {
-    if(!isCustomFieldsSelected()) {
-      resetCustomFieldAndDateTimeInterval();
+    if (isCustomFieldsSelected()) {
       return;
     }
-    
-    initValueForStatisticAggregation(AggregationField.CUSTOM_FIELD,
-        currentCustomFieldType,
-        currentCustomField,
-        aggregationInterval);
-    switch (this.currentCustomFieldType) {
-    case CustomFieldType.STRING: {
-      return;
-    } 
-    case CustomFieldType.NUMBER: {
-      return;
-    }
-    case CustomFieldType.TIMESTAMP:
-    {
-      return;
-    }
-    default: { }
-    }
-    
-    return;
-  }
-  
-  public void initValueForStatisticAggregation(AggregationField chartAggregates, CustomFieldType customFieldType,
-      String customFieldValue, AggregationInterval dateTimeOperator) {
-      statistic.getStatisticAggregation().setAggregationField(chartAggregates);
-      statistic.getStatisticAggregation().setCustomFieldType(customFieldType);
-      statistic.getStatisticAggregation().setCustomFieldValue(customFieldValue);
-      statistic.getStatisticAggregation().setInterval(dateTimeOperator);
-  }
 
+    resetCustomFieldAndDateTimeInterval();
+  }
   public void handleAggregateWithDateTimeInterval() {
     if (aggregationInterval == null) {
       statistic.getStatisticAggregation().setInterval(null);
       return;
     }
-    if(!statistic.getStatisticAggregation().getAggregationField().getName().toLowerCase().contains(TIMESTAMP) && !isDateTimeSelected) {
+    if(!statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP) && !isDateTimeSelected) {
       this.setAggregationInterval(null);
       statistic.getStatisticAggregation().setInterval(null);
       return;
@@ -699,20 +687,17 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public void onSelectAggregationField() {
-    this.setDateTimeSelected(statistic.getStatisticAggregation().getAggregationField().getName().toLowerCase().contains(TIMESTAMP));
+    this.setDateTimeSelected(statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP));
   }
 
   public void onSelectCustomField() {
-    statistic.getStatisticAggregation().setCustomFieldValue(currentCustomField);
+    statistic.getStatisticAggregation().setType(DashboardColumnType.CUSTOM);
+
     findCustomFieldMeta().ifPresent(meta -> {
-      this.currentCustomField = meta.name();
-      this.currentCustomFieldType = meta.type();
-      this.setCurrentCustomFieldDescription(meta.description());
+      this.currentField = meta.name();
+      this.currentCustomFieldDescription = meta.description();
+      this.isDateTimeSelected = meta.type() == CustomFieldType.TIMESTAMP;
     });
-    
-    this.setDateTimeSelected(this.currentCustomFieldType.equals(CustomFieldType.TIMESTAMP));
-    
-    handleCustomFieldAggregation();
   }
 
   public Optional<ICustomFieldMeta> findCustomFieldMeta() {
@@ -720,8 +705,8 @@ public class StatisticConfigurationBean implements Serializable {
     Set<ICustomFieldMeta> customFieldList = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
         : ICustomFieldMeta.cases();
 
-    metaData = customFieldList.stream().filter(meta -> meta.name().equals(currentCustomField)).findFirst();
-
+    metaData = customFieldList.stream()
+        .filter(meta -> meta.name().equals(statistic.getStatisticAggregation().getCustomFieldValue())).findFirst();
     return metaData;
   }
 
@@ -742,18 +727,19 @@ public class StatisticConfigurationBean implements Serializable {
     customFieldList.stream().filter(cf -> !cf.type().equals(CustomFieldType.NUMBER)).forEach(customField -> {
       customFieldNameList.add(customField.name());
     });
+    
+    if(statistic.getStatisticAggregation().getCustomFieldValue() == null
+        && customFieldList != null) {
+      ICustomFieldMeta firstCustomField = customFieldList.iterator().next();
+      StatisticAggregation statisticAggregation = statistic.getStatisticAggregation();
+      statisticAggregation.setCustomFieldValue(firstCustomField.name());
+      statisticAggregation.setType(DashboardColumnType.CUSTOM);
+      this.setCurrentCustomFieldDescription(firstCustomField.description());
+    }
 
     return customFieldNameList;
   }
 
-  public String getCurrentCustomField() {
-    return currentCustomField;
-  }
-
-  public void setCurrentCustomField(String currentCustomField) {
-    this.currentCustomField = currentCustomField;
-  }
-  
   public void onSelectChartType(ChartType newChartType) {
     if (ChartType.NUMBER == statistic.getChartType()) {
       resetAggregateValues();
@@ -769,7 +755,7 @@ public class StatisticConfigurationBean implements Serializable {
       resetFitlerValues();
       resetCustomFieldAndDateTimeInterval();
       this.setDateTimeSelected(
-          statistic.getStatisticAggregation().getAggregationField().getName().toLowerCase().contains(TIMESTAMP));
+          statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP));
       initFilterFields();
       this.statistic.setFilters(new ArrayList<>());
     }
@@ -777,9 +763,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public void resetAggregateValues() {
-    statistic.getStatisticAggregation().setAggregationField(AggregationField.PRIORITY);
-    statistic.getStatisticAggregation().setCustomFieldType(null);
-    statistic.getStatisticAggregation().setCustomFieldValue(null);
+    statistic.getStatisticAggregation().setField(AggregationField.PRIORITY.getName());
     this.currentCustomFieldDescription = null;
     statistic.getStatisticAggregation().setInterval(null);
   }
@@ -798,14 +782,18 @@ public class StatisticConfigurationBean implements Serializable {
     this.filterFields = filterFields;
   }
   
-  public void onSelectFilter(StatisticFilter filter) {
-    String field = Optional.ofNullable(filter).map(StatisticFilter::getFilterField).map(FilterField::getName)
+  public void onSelectFilter(DashboardFilter filter) {
+    String field = Optional.ofNullable(filter).map(DashboardFilter::getFilterField).map(FilterField::getName)
         .orElse(StringUtils.EMPTY);
 
-    FilterField filterField = TaskFilterFieldFactory.findBy(field);
+    FilterField filterField;
+    if (ChartTarget.TASK == statistic.getChartTarget()) {
+      filterField = TaskFilterFieldFactory.findBy(field);
+    } else {
+      filterField = CaseFilterFieldFactory.findBy(field);
+    }
 
-    if (filterField.getName()
-        .contentEquals(BaseFilter.DEFAULT)) {
+    if (filterField != null && filterField.getName().contentEquals(BaseFilter.DEFAULT)) {
       filterField.addNewFilter(filter);
       return;
     }
@@ -818,11 +806,11 @@ public class StatisticConfigurationBean implements Serializable {
       statistic.setFilters(new ArrayList<>());
     }
 
-    StatisticFilter newFilter = new StatisticFilter();
+    DashboardFilter newFilter = new DashboardFilter();
     statistic.getFilters().add(newFilter);
   }
   
-  public void removeFilter(StatisticFilter filter) {
+  public void removeFilter(DashboardFilter filter) {
     statistic.getFilters().remove(filter);
   }
   
@@ -836,6 +824,19 @@ public class StatisticConfigurationBean implements Serializable {
 
   public void setAggregationInterval(AggregationInterval aggregationInterval) {
     this.aggregationInterval = aggregationInterval;
+  }
+
+  public List<SecurityMemberDTO> completeCreators(String query) {
+    return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE).stream()
+        .filter(SecurityMemberDTO::isUser).collect(Collectors.toList());
+  }
+
+  public String getCurrentField() {
+    return currentField;
+  }
+
+  public void setCurrentField(String currentField) {
+    this.currentField = currentField;
   }
 
 }

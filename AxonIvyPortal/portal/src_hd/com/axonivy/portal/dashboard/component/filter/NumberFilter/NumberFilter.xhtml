@@ -10,6 +10,7 @@
   <cc:attribute name="filterIndex" />
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="messageId" />
+  <cc:attribute name="operators" />
 </cc:interface>
 
 <cc:implementation>
@@ -21,7 +22,7 @@
   <h:panelGroup id="number-filter-operator-panel" layout="block"
     styleClass="md-inputfield ui-fluid">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
-        <f:selectItems value="#{widgetNumberFilterBean.operators}" var="operator"
+        <f:selectItems value="#{cc.attrs.operators ne null ? cc.attrs.operators : widgetNumberFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetNumberFilterBean.onChangeOperator(filter)}"
             update="#{cc.attrs.componentToUpdate}" />

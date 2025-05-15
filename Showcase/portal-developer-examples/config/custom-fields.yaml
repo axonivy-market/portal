@@ -9,34 +9,41 @@ CustomFields:
       Description: CustomerName
       Type: STRING
       Category: CustomTaskWidget
+      UseForStatistic: true
     ShipmentDate:
       Label: ShipmentDate
       Description: ShipmentDate
       Type: TIMESTAMP
       Category: CustomTaskWidget
+      UseForStatistic: true
     CustomerType:
       Label: CustomerType
       Description: CustomerType
       Category: CustomTaskWidget
       Type: STRING
+      UseForStatistic: true
     CustomerAddress:
       Label: CustomerAddress
       Description: CustomerAddress
       Type: STRING
+      UseForStatistic: true
     CustomerEmail:
       Label: CustomerEmail
       Description: CustomerEmail
       Type: STRING
+      UseForStatistic: true
     AccountNumber:
       Label: AccountNumber
       Description: AccountNumber
       Type: NUMBER
       Category: DefaultAdditionalCaseDetails
+      UseForStatistic: true
     Citizenship:
       Label: Citizenship
       Description: Citizenship
       HasCmsValues: true
       Type: STRING
+      UseForStatistic: true
   Cases:
     DestroyCaseAction:
       Label: Destroy Case Action

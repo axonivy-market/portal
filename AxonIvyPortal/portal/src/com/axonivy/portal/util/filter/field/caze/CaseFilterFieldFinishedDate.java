@@ -13,6 +13,13 @@ import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateIsO
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateNumberOfPeriodsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateTodayOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.finisheddate.FinishedDateYesterdayOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeAfterOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeBeforeOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeBetweenOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeCurrentPeriodOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeIsOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeNumberOfPeriodsOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.datetime.DatetimeTodayYesterdayOperatorHandler;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
@@ -70,4 +77,21 @@ public class CaseFilterFieldFinishedDate extends FilterField {
   public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
     return null;
   }
+  
+  @Override
+  public String generateCaseFilter(DashboardFilter filter) {
+    return switch (filter.getOperator()) {
+    case BETWEEN -> DatetimeBetweenOperatorHandler.getInstance().buildBetweenFilter(filter);
+    case AFTER -> DatetimeAfterOperatorHandler.getInstance().buildFilter(filter);
+    case BEFORE -> DatetimeBeforeOperatorHandler.getInstance().buildFilter(filter);
+    case CURRENT -> DatetimeCurrentPeriodOperatorHandler.getInstance().buildFilter(filter);
+    case LAST -> DatetimeNumberOfPeriodsOperatorHandler.getInstance().buildLastPeriodFilter(filter);
+    case NEXT -> DatetimeNumberOfPeriodsOperatorHandler.getInstance().buildNextPeriodFilter(filter);
+    case TODAY -> DatetimeTodayYesterdayOperatorHandler.getInstance().buildTodayFilter(filter);
+    case YESTERDAY -> DatetimeTodayYesterdayOperatorHandler.getInstance().buildYesterdayFilter(filter);
+    case IS -> DatetimeIsOperatorHandler.getInstance().buildIsFilter(filter);
+    default -> null;
+    };
+  }
+
 }

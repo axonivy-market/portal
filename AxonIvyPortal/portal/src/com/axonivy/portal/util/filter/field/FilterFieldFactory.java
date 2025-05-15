@@ -48,7 +48,6 @@ public class FilterFieldFactory {
         default -> throw new IllegalArgumentException("Unexpected value: " + customField.type());
       }
     }
-
   }
 
   public static FilterField findBy(String field) {
@@ -56,8 +55,7 @@ public class FilterFieldFactory {
     if (result == null) {
       result = findCustomFieldBy(field);
     }
-    return BaseFilter.DEFAULT.contentEquals(field) ? new FilterFieldDefault()
-        : result;
+    return BaseFilter.DEFAULT.contentEquals(field) ? new FilterFieldDefault() : result;
   }
 
   public static CustomFilterField findCustomFieldBy(String field) {

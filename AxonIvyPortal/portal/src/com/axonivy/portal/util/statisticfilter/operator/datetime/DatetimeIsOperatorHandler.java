@@ -2,7 +2,8 @@ package com.axonivy.portal.util.statisticfilter.operator.datetime;
 
 import java.util.Date;
 
-import com.axonivy.portal.dto.statistic.StatisticFilter;
+import com.axonivy.portal.constant.StatisticConstants;
+import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.util.PortalDateUtils;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -18,22 +19,23 @@ public class DatetimeIsOperatorHandler {
     return instance;
   }
   
-  public String buildIsQuery(StatisticFilter filter) {
+  public String buildIsFilter(DashboardFilter filter) {
     if (filter.getFromDate() == null) {
       return null;
     }
     StringBuilder sb = new StringBuilder();
+    String field = filter.isCustomDateField() ? StatisticConstants.CUSTOM_TIMESTAMP + filter.getField() : filter.getField();
     Date from = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getStartOfMinute(filter.getFromDate()) : PortalDateUtils.getStartOfDate(filter.getFromDate());
     Date to = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getFromDate()) : PortalDateUtils.getEndOfDate(filter.getFromDate());
 
-    sb.append(filter.getField()).append(PortalConstants.COLON);
+    sb.append(field).append(PortalConstants.COLON);
     sb.append(PortalConstants.GREATER_THAN_OR_EQUAL).append(PortalDateUtils.toStringIso8601Format(from));
-    sb.append(PortalConstants.COMMA).append(filter.getField()).append(PortalConstants.COLON);
+    sb.append(PortalConstants.COMMA).append(field).append(PortalConstants.COLON);
     sb.append(PortalConstants.LESS_THAN_OR_EQUAL).append(PortalDateUtils.toStringIso8601Format(to));
     return sb.toString();
   }
   
-  public String buildIsNotQuery(StatisticFilter filter) {
+  public String buildIsNotFilter(DashboardFilter filter) {
     if (filter.getFromDate() == null) {
       return null;
     }
@@ -41,10 +43,11 @@ public class DatetimeIsOperatorHandler {
     StringBuilder sb = new StringBuilder();
     Date from = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getStartOfMinute(filter.getFromDate()) : PortalDateUtils.getStartOfDate(filter.getFromDate());
     Date to = DateTimeGlobalSettingService.getInstance().isDateFilterWithTime() ? PortalDateUtils.getEndOfMinute(filter.getFromDate()) : PortalDateUtils.getEndOfDate(filter.getFromDate());
+    String field = filter.isCustomDateField() ? StatisticConstants.CUSTOM_TIMESTAMP + filter.getField() : filter.getField();
 
-    sb.append(filter.getField()).append(PortalConstants.COLON);
+    sb.append(field).append(PortalConstants.COLON);
     sb.append(PortalConstants.GREATER_THAN_OR_EQUAL).append(PortalDateUtils.toStringIso8601Format(to));
-    sb.append(PortalConstants.COMMA).append(filter.getField()).append(PortalConstants.COLON);
+    sb.append(PortalConstants.COMMA).append(field).append(PortalConstants.COLON);
     sb.append(PortalConstants.LESS_THAN_OR_EQUAL).append(PortalDateUtils.toStringIso8601Format(from));
     return sb.toString();
   }
