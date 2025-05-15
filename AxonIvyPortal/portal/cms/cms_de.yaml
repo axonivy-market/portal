@@ -25,7 +25,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addAbsence: Abwesenheit erfassen
     deputies: Stellvertreter
     description: 'Während meiner Abwesenheit werden Workflow Aufgaben automatisch
-      den definierten Stellvertretern zugeteilt. '
+      den definierten Stellvertretern zugeteilt.'
     editAbsence: Abwesenheiten bearbeiten
     from: Von
     noDeputy: Kein Stellvertreter
@@ -182,10 +182,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewApplication: Neue Drittanwendung hinzufügen
     announcement:
       announcement: Ankündigungen
-      announcementsDisabled: Ankündigungen sind deaktiviert
-      announcementsEnabled: Ankündigungen sind aktiviert
+      announcementsDisabled: Ankündigungen sind deaktiviert.
+      announcementsEnabled: Ankündigungen sind aktiviert.
       defaultLanguageRequiredMessage: Ein Ankündigungstext in der standard Applikationssprache
-        ist notwendig
+        ist notwendig.
       disabled: Deaktiviert
       enable: Ansage einschalten
       information: Sie können eine allgemeine Ankündigung in diesem Bereich machen
@@ -197,7 +197,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     appDisplayNameRequiredMsg: Geben Sie einen Anzeigename an.
     appNameCharactersLimit: 'Nur die folgende Charakter sind für Applikationsname
       akzeptabel: [\p{Alnum}_-]+'
-    appNameRequiredMsg: Bitte, geben Sie den Anwendungsnamen an
+    appNameRequiredMsg: Bitte, geben Sie den Anwendungsnamen an.
     applicationHint: Die Reihenfolge kann mit Drag & Drop geändert werden.
     applicationLinkRequiredMsg: Geben Sie den Portal Link an.
     applicationList:
@@ -215,7 +215,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       informMessage: Änderungen an den Portaleinstellungen erfordern eine Aktualisierung
         der aktuellen Seite, damit die neue Konfiguration wirksam wird.
     duplicatePortalAppMsg: 'Diese Anwendung existiert bereits. Bitte wählen Sie eine
-      andere Anwendung. '
+      andere Anwendung.'
     editApplication: Anwendungseinstellungen ändern
     editSetting: Einstellungen ändern
     embedInFrame: Prozess/Task in Iframes Modus starten
@@ -310,7 +310,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option
         in Aufgaben-/Vorgang-Aktionen zu aktivieren
       enableScriptCheckingForUploadedDocumentNote: 'Auf "true" setzen, um die Skriptüberprüfung
-        zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt. '
+        zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt.'
       enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner
         für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion
         die API VIRUSTOTAL.
