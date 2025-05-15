@@ -81,10 +81,9 @@
           <p:tooltip id="related-task-description-tooltip-lg" for="related-task-description-lg" trackMouse="true" hideEvent="mouseleave click" value="#{taskDescription}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
-          styleClass="related-task-responsible-column" field="ACTIVATOR" sortBy="#{ACTIVATOR}" filterable="false"
+          styleClass="related-task-responsible-column" field="ACTIVATOR" filterable="false" sortable="false"
           visible="#{data.dataModel.isSelectedColumn(masterDataBean.taskSortFieldActivator)}">
-          <pc:securityMemberNameAndAvatar securityMember="#{task.activator}"
-            displayName="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}" />
+          <ic:com.axonivy.portal.component.Responsibles responsibles="#{task.responsibles()}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}"
           styleClass="related-task-id-column u-truncate-text" field="ID" sortBy="#{ID}" filterable="false"

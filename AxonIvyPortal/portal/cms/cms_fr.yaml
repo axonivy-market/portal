@@ -1379,6 +1379,8 @@ Dialogs:
               ShareTaskDetails: Partager les détails de la tâche
               TaskCompletedByOtherInfo: La tâche a déjà été effectuée par l'utilisateur <strong>{0}</strong> sur {1}.
               TaskCompletedByYouInfo: Vous avez déjà accompli la tâche sur {0}.
+            TaskItemGeneralInfo:
+              Expiry: Responsable de l'expiration
   com:
     axonivy:
       portal:
@@ -1388,6 +1390,8 @@ Dialogs:
             Tools: Outils
             WelcomeHeaderText: Bienvenue sur le portail Axon Ivy !
             WelcomeText: Nous sommes ravis de vous compter parmi nous. Le portail Axon Ivy est votre porte d'entrée pour une expérience transparente et efficace. Que vous soyez un nouvel utilisateur qui explore les fonctionnalités ou un visiteur habituel, nous sommes là pour vous aider à chaque étape.
+          Responsibles:
+            Multiple: Multiple
           ShareLinkDialog:
             CopyLink: Copier le lien
             Link: Lien
@@ -1531,6 +1535,7 @@ Labels:
     ProcessParameterInfo: ''
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
+  AndMore: 'et {0} de plus...  '
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
   CreateNewDashboard: Créer un nouveau tableau de bord

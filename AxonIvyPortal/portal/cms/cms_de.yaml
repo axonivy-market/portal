@@ -1608,6 +1608,8 @@ Dialogs:
               TaskCompletedByOtherInfo: Die Aufgabe wurde bereits von Benutzer <strong>{0}</strong>
                 an {1} durchgeführt.
               TaskCompletedByYouInfo: Sie haben die Aufgabe auf {0} bereits erledigt.
+            TaskItemGeneralInfo:
+              Expiry: Verfallsverantwortlicher
   com:
     axonivy:
       portal:
@@ -1620,6 +1622,8 @@ Dialogs:
               ist Ihr Tor zu einer nahtlosen und effizienten Erfahrung. Egal, ob Sie
               ein neuer Benutzer sind, der die Funktionen erkundet, oder ein wiederkehrender
               Besucher, wir sind hier, um Sie bei jedem Schritt zu unterstützen.
+          Responsibles:
+            Multiple: Mehrere
           ShareLinkDialog:
             CopyLink: Link kopieren
             Link: Link
@@ -1763,6 +1767,7 @@ Labels:
     ProcessParameterInfo: ''
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
+  AndMore: 'und {0} weitere...  '
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
   CreateNewDashboard: Neues Dashboard erstellen

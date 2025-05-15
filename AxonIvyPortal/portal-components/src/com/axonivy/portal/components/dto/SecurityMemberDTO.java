@@ -29,7 +29,7 @@ public class SecurityMemberDTO implements Serializable {
     this.displayName = securityMember.getDisplayName();
     this.memberName = securityMember.getMemberName();
     this.isUser = securityMember.isUser();
-    if(securityMember.isUser()) {
+    if(securityMember.isUser() && securityMember.available()) {
       IUser user = (IUser) securityMember;
       this.isEnabled = user.isEnabled();
       this.eMailAddress = user.getEMailAddress();

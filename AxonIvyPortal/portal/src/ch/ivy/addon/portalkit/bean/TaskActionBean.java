@@ -10,6 +10,7 @@ import java.util.Objects;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.PF;
 
@@ -143,8 +144,8 @@ public class TaskActionBean implements Serializable {
       return false;
     }
 
-    boolean isAutoDeleteAfterExpiry = StringUtils
-        .isBlank(task.getExpiryActivatorName())
+    boolean isAutoDeleteAfterExpiry = CollectionUtils
+        .isEmpty(task.expiry().responsibles().all())
         && StringUtils.isBlank(task.getExpiryTaskStartElementPid());
 
     boolean hasExpiryHandler = StringUtils
@@ -167,7 +168,7 @@ public class TaskActionBean implements Serializable {
 
   public boolean notHaveExpiryHandleLogic(ITask task) {
     return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
-        && task.getExpiryActivator() == null && StringUtils.isBlank(task.getExpiryTaskStartElementPid());
+        && CollectionUtils.isEmpty(task.expiry().responsibles().all()) && StringUtils.isBlank(task.getExpiryTaskStartElementPid());
   }
 
   public boolean canChangeName(ITask task) {
