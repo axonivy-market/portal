@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<cc:interface componentType="IvyComponent">
+    <cc:attribute name="case" required="true" type="ch.ivyteam.ivy.workflow.ICase" />
+</cc:interface>
+
+<cc:implementation>
+    <c:set var="isPinned" value="#{caseBean.isPinnedCase(cc.attrs.case)}" />
+
+    <h:panelGroup styleClass="case-header-default-cell pin-column flex align-items-center justify-content-center h-full text-center">
+        <h:form id="pin-form">
+            <p:commandLink action="#{caseBean.clickOnPinCase(cc.attrs.case)}" update="@form">
+                <i class="fa #{isPinned ? 'fa-star' : 'fa-star-o'} pin-icon" />
+            </p:commandLink>
+            <p:tooltip for="pin-form" 
+                       value="#{isPinned ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/unpin') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pin')}" 
+                       trackMouse="true" 
+                       hideEvent="mouseleave click" />
+        </h:form>
+    </h:panelGroup>
+</cc:implementation>
+</html>

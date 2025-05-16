@@ -146,12 +146,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rubrique 3
       NORMAL_TEXT: Texte normal
   MyProfile:
+    CaseList: Liste des cas
     DateFormat: Format de la date
     FormattingLanguage: Langue de mise en forme
     General: Général
     Homepage: Page d'accueil
     Language: Langue
     ProcessList: Liste des processus
+    TaskList: Liste des tâches
     byDefault: ' par défaut'
     defaultOption: Par défaut ({0})
     defaultViewMode: Mode de vue par défaut
@@ -160,6 +162,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: Canaux de notification
     notificationChannelsReset: Réinitialisation des canaux de notification
     subscribed: abonnée
+    unpinAllPinnedCases: 'Tous les cas épinglés ont été supprimés pour l''utilisateur : {0}.'
+    unpinAllPinnedTasks: Toutes les tâches épinglées ont été supprimées pour l’utilisateur {0}.
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
@@ -243,6 +247,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer la prise en charge de la traduction de DeepL.
       enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents pour certains types de fichiers. Les types de fichiers pris en charge sont : pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Définissez cette propriété sur true pour activer la fonction de chat de groupe
+      enablePinCase: Définissez cette propriété sur true pour activer la possibilité d’épingler des cas.
+      enablePinTask: Définissez cette propriété sur true pour activer la possibilité d’épingler des tâches.
       enablePrivateChat: Définissez cette propriété à true pour activer la fonction de chat privé
       enableProcessViewer: Définissez cette propriété à true pour activer l'option de visualisation de processus dans les actions de Task/Case.
       enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la vérification de PDF, Excel, Word.
@@ -358,6 +364,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ID: Id du dossier
       NAME: Nom / Description
       OWNER: Responsables de processus
+      PIN: Épingler
       STATE: Etat
     deletionNoteContent: Ce dossier a été supprimé par {0}
     destroyCaseMessage: 'Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer dossier <b>{0} (ID: {1})</b> et toutes les tâches associées ?'
@@ -545,6 +552,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: filtres sélectionnés
     ok: OK
     'on': le
+    pin: Épingler
     pleaseAddDocument: Veuillez ajouter un document avec le lien ci-dessus.
     pleaseAddNote: Veuillez ajouter une note avec le lien ci-dessus.
     previousStage: Étape précédente
@@ -604,6 +612,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Tous les administrateurs
     typeAllUsers: Tous les utilisateurs
     typeOnlyMe: Seulement pour moi
+    unpin: Désépingler
     uploadHere: Téléchargez ici
     uploadOneHere: Téléchargez-en un ici
     user: '{0} utilisateur'
@@ -750,6 +759,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Filtres enregistrés
     SearchForFilter: Rechercher un filtre
     ShareThisDashboard: Partager ce tableau de bord
+    ShowPinnedToggle: ' Bouton à bascule “Afficher les tâches épinglées”'
     StandardWidgets: Widgets standard
     StatisticWidget:
       EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau graphique !
@@ -1204,6 +1214,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME: Délai
       ID: Id de tâche
       NAME: Nom / Description
+      PIN: Épingler
       PRIORITY: Priorité
       STATE: Etat
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Activateur manquant
@@ -1355,6 +1366,10 @@ Dialogs:
                   DragAndDropTooltip: Cliquer sur l'aperçu puis glisser-déposer pour modifier l'ordre
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Bienvenue à Axon Ivy Portal
+          setting:
+            UserProfile:
+              unpinAllPinnedCases: Détacher tous les cas épinglés
+              unpinAllPinnedTasks: Désépingler toutes les tâches épinglées
         portalkit:
           component:
             CaseItemDetails:
@@ -1620,6 +1635,7 @@ Labels:
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
   AndMore: 'et {0} de plus...  '
+  AllTasks: Toutes les tâches
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
   Configuration: Configuration
@@ -1648,6 +1664,7 @@ Labels:
       ID: Id
       NAME: Nom
       OWNER: Responsables de processus
+      PIN: Épingler
       STATE: État
     DashboardStandardTaskColumn:
       ACTIONS: Actions
@@ -1659,6 +1676,7 @@ Labels:
       EXPIRY: Délai
       ID: Id
       NAME: Nom
+      PIN: Épingler
       PRIORITY: Priorité
       RESPONSIBLE: Responsable
       START: Démarrage
@@ -1723,6 +1741,8 @@ Labels:
   Preview: Aperçu
   RequiredFieldMessage: '{0} : La valeur est obligatoire'
   Save: Enregistrer
+  PinnedCases: Cas épinglés
+  PinnedTasks: Tâches épinglées
   Share: Partager
   Task: Tâche
   TaskItemDetail: Détails de la tâche

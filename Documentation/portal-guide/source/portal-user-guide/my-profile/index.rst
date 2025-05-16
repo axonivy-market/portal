@@ -32,6 +32,38 @@ These are options you can modify:
 
 Portal will use the default value defined by the administrator if you don't select an option.  
 
+.. _task-list-configuration:
+
+Task list configuration
+-----------------------
+
+This section has available options which help you to configure your Task list.
+These are options you can modify:
+
+.. table::
+
+   +---------------------------+---------------------------------+
+   | Option                    | Description                     |
+   +===========================+=================================+
+   | Unpin all pinned tasks    | Unpin all of your pinned tasks  |
+   +---------------------------+---------------------------------+
+
+.. _case-list-configuration:
+
+Case list configuration
+-----------------------
+
+This section has available options which help you to configure your Case list.
+These are options you can modify:
+
+.. table::
+
+   +---------------------------+---------------------------------+
+   | Option                    | Description                     |
+   +===========================+=================================+
+   | Unpin all pinned cases    | Unpin all of your pinned cases  |
+   +---------------------------+---------------------------------+
+
 .. _language-settings:
 
 Language settings

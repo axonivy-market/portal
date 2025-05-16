@@ -85,6 +85,10 @@ Variables:
       # For switch behaviours (run the task or access task details) when clicking on a task in task widget of dashboard and task list in case details page.
       # [enum: ACCESS_TASK_DETAILS, RUN_TASK]
       BehaviourWhenClickingOnLineInTaskList: RUN_TASK
+
+      # Set this property to true to enable the ability to pin tasks.
+      EnablePinedTask: false
+
     # You can configure the look and feel for task details according to your needs via this json file.
     # This setting will be taken over for all other task details.
     # [file: json]
@@ -103,6 +107,8 @@ Variables:
       # For switch behaviours (access the case details or business details) when clicking on a case in case widget of dashboard, global search, related cases and process widget in combined mode.
       # [enum: ACCESS_CASE_DETAILS, ACCESS_BUSINESS_DETAILS]
       BehaviourWhenClickingOnLineInCaseList: ACCESS_CASE_DETAILS
+      # Set this property to true to enable the ability to pin cases.
+      EnablePinedCase: false
     # You can configure the look and feel for case details according to your needs via this json file.
     # This setting will be taken over for all other case details.
     # [file: json]
