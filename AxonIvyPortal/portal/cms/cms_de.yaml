@@ -1465,6 +1465,7 @@ Dialogs:
             HideLabel: Etikett ausblenden
             Interval: Intervall
             NewStatistic: Neues Statistik-Widget
+            OutdatedChartMessage: Die angewendete Group-by- oder Filter-Einstellung stimmt nicht mit der aktuellen UI-Konfiguration überein. Bitte konfigurieren Sie sie neu.
             RefreshInterval: Automatisches Auffrischen aktiviert
             RefreshIntervalInSeconds: Intervall für die automatische Aktualisierung (Sekunden)
             RefreshIntervalInSecondsValidationMessage: 'Intervall für die automatische Aktualisierung (Sekunden): Das angegebene Attribut liegt nicht zwischen den erwarteten Werten von {0} und {1}'

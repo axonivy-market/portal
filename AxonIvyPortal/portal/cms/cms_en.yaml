@@ -1498,6 +1498,7 @@ Dialogs:
             HideLabel: Hide label
             Interval: Interval
             NewStatistic: New Statistic Widget
+            OutdatedChartMessage: The applied group-by or filter does not align with the current UI configuration. Please reconfigure it.
             RefreshInterval: Auto-refresh enabled
             RefreshIntervalInSeconds: Auto-refresh interval (seconds)
             RefreshIntervalInSecondsValidationMessage: 'Auto-refresh interval (seconds): Specified attribute is not between the expected values of {0} and {1}'

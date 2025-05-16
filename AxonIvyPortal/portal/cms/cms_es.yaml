@@ -1454,6 +1454,7 @@ Dialogs:
             HideLabel: Ocultar etiqueta
             Interval: Intervalo
             NewStatistic: Nuevo widget de estadísticas
+            OutdatedChartMessage: El agrupamiento o filtro aplicado no coincide con la configuración actual de la interfaz. Por favor, vuelva a configurarlo.
             RefreshInterval: Auto-refresco activado
             RefreshIntervalInSeconds: Intervalo de actualización automática (segundos)
             RefreshIntervalInSecondsValidationMessage: 'Intervalo de actualización automática (segundos): El atributo especificado no está entre los valores esperados de {0} y {1}'

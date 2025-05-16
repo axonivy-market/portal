@@ -36,7 +36,7 @@
 
       <h:panelGroup layout="block" rendered="#{filter.isState()}">
         <ic:com.axonivy.portal.dashboard.component.filter.StateFilter filter="#{filter}"
-          widgetType="#{widget.getType()}" operators="#{widgetStateFilterBean.statisticOperators}"
+          widgetType="#{statistic.getChartTarget().getName()}" operators="#{widgetStateFilterBean.statisticOperators}"
           componentToUpdate="#{cc.attrs.componentToUpdate}" filterIndex="#{cc.attrs.filterIndex}"
           readOnly="#{readOnly}" messageId="#{cc.attrs.messageId}" />
       </h:panelGroup>
