@@ -8,7 +8,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.StatisticJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
-import com.axonivy.portal.migration.statistic.converter.JsonStatisticConverterFactory;
+import com.axonivy.portal.migration.statistic.converter.JsonCustomStatisticConverterFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -16,17 +16,17 @@ import com.fasterxml.jackson.databind.node.TextNode;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
-public class JsonStatisticMigrator {
+public class JsonCustomStatisticMigrator {
 
   private final JsonNode node;
   private final StatisticJsonVersion version;
 
-  public JsonStatisticMigrator(JsonNode node) {
+  public JsonCustomStatisticMigrator(JsonNode node) {
     this.node = node;
     this.version = StatisticJsonVersion.LATEST_VERSION;
   }
 
-  public JsonStatisticMigrator(JsonNode node, StatisticJsonVersion version) {
+  public JsonCustomStatisticMigrator(JsonNode node, StatisticJsonVersion version) {
     this.node = node;
     this.version = version;
   }
@@ -46,13 +46,13 @@ public class JsonStatisticMigrator {
 
   public JsonNode migrate() {
     Ivy.log().info("Converting Portal original statistic json: " + node.toString());
-    removeDefaultChartsFromClientStatistic((ArrayNode) node);
+    filterCustomChartsFromClientStatistic((ArrayNode) node);
     node.elements().forEachRemaining(template -> migrate(template));
     return node;
   }
 
   private void migrate(JsonNode chart) {
-    var converters = JsonStatisticConverterFactory.getConverters(readVersion(chart)).stream()
+    var converters = JsonCustomStatisticConverterFactory.getConverters(readVersion(chart)).stream()
         .filter(conv -> conv.version().compareTo(version) <= 0)
         .collect(Collectors.toList());
 
@@ -69,7 +69,7 @@ public class JsonStatisticMigrator {
     updateVersion(chart);
   }
 
-  private void removeDefaultChartsFromClientStatistic(ArrayNode nodes) {
+  private void filterCustomChartsFromClientStatistic(ArrayNode nodes) {
     for (int i = nodes.size() - 1; i >= 0; i--) {
       JsonNode chart = nodes.get(i);
       int id = chart.path("id").asInt(Integer.MIN_VALUE);

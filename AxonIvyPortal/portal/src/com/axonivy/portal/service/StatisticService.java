@@ -27,10 +27,12 @@ import com.axonivy.portal.enums.AdditionalChartConfig;
 import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
-import com.axonivy.portal.migration.statistic.migrator.JsonStatisticMigrator;
+import com.axonivy.portal.migration.statistic.migrator.JsonCustomStatisticMigrator;
+import com.axonivy.portal.migration.statistic.migrator.JsonDefaultStatisticMigrator;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
@@ -57,6 +59,7 @@ public class StatisticService {
   }
 
   public List<Statistic> findAllCharts() {
+    migrateClientStatistic();
     Set<String> seenIds = new HashSet<>();
     List<Statistic> statistics = getDefaultStatistic();
     statistics = statistics.stream().filter(statistic -> seenIds.add(statistic.getId())).collect(Collectors.toList());
@@ -185,22 +188,8 @@ public class StatisticService {
   }
   
   private List<Statistic> getDefaultStatistic() {
-    String json = Ivy.var().get(CLIENT_STATISTIC_KEY);
-    List<Statistic> statistics;
-    if (StringUtils.isNotBlank(json)) {
-      statistics = BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CLIENT_STATISTIC_KEY), Statistic.class);
-      statistics = statistics.stream().filter(statistic -> {
-        try {
-          int idInt = Integer.parseInt(statistic.getId());
-          return idInt >= 1 && idInt <= 11;
-        } catch (NumberFormatException e) {
-          return false;
-        }
-      }).collect(Collectors.toList());
-    } else {
-      String value = Ivy.var().get(DEFAULT_STATISTIC_KEY);
-      statistics = BusinessEntityConverter.jsonValueToEntities(value, Statistic.class);
-    }
+    String value = Ivy.var().get(DEFAULT_STATISTIC_KEY);
+    List<Statistic> statistics = BusinessEntityConverter.jsonValueToEntities(value, Statistic.class);
 
     statistics.forEach(cs -> cs.setIsCustom(false));
     configDefaultStatisticSettings(statistics);
@@ -208,7 +197,6 @@ public class StatisticService {
   }
   
   public List<Statistic> getCustomStatistic() {
-    migrateClientStatistic();
     List<Statistic> statistics =
         BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
     configDefaultStatisticSettings(statistics);
@@ -219,18 +207,21 @@ public class StatisticService {
     try {
       String json = Ivy.var().get(CLIENT_STATISTIC_KEY);
       if (StringUtils.isNotBlank(json)) {
-        List<Statistic> customStatistics = BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
-
         ObjectMapper mapper = new ObjectMapper();
-        JsonStatisticMigrator migrator = new JsonStatisticMigrator(mapper.readTree(json));
-        List<Statistic> clientStatistics = BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Statistic.class);
+        JsonNode jsonNode = mapper.readTree(json);
+        JsonDefaultStatisticMigrator defaultStatisticMigrator = new JsonDefaultStatisticMigrator(jsonNode);
+        List<Statistic> defaultStatistics = BusinessEntityConverter.convertJsonNodeToList(defaultStatisticMigrator.migrate(), Statistic.class);
+        Ivy.var().set(DEFAULT_STATISTIC_KEY, BusinessEntityConverter.entityToJsonValue(defaultStatistics));
+
+        List<Statistic> customStatistics = BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
+        JsonCustomStatisticMigrator customStatisticMigrator = new JsonCustomStatisticMigrator(jsonNode);
+        List<Statistic> clientStatistics = BusinessEntityConverter.convertJsonNodeToList(customStatisticMigrator.migrate(), Statistic.class);
 
         Set<String> seenIds = new HashSet<>();
         customStatistics = customStatistics.stream().filter(statistic -> seenIds.add(statistic.getId())).collect(Collectors.toList());
         clientStatistics.stream().filter(obj -> seenIds.add(obj.getId())).forEach(customStatistics::add);
 
-        String statisticsJson = BusinessEntityConverter.entityToJsonValue(customStatistics);
-        Ivy.var().set(CUSTOM_STATISTIC_KEY, statisticsJson);
+        Ivy.var().set(CUSTOM_STATISTIC_KEY, BusinessEntityConverter.entityToJsonValue(customStatistics));
         Ivy.var().reset(CLIENT_STATISTIC_KEY);
       }
     } catch (Exception e) {
