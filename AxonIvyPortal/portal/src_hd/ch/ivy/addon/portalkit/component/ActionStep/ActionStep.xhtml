@@ -38,7 +38,7 @@
 
   <p:overlayPanel id="action-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}"
     for="#{cc.attrs.actionLinkId}" my="right top" at="right bottom" showCloseIcon="true" dismissable="true"
-    appendTo="@(body)" styleClass="action-steps-panel #{cc.attrs.stepsPanelStyleClass}" dynamic="true">
+    appendTo="@(body)" styleClass="action-steps-panel #{cc.attrs.stepsPanelStyleClass}" dynamic="true" cache="false">
 
     <p:commandLink id="case-item-open-detail-link" styleClass="case-command action-step-item ui-menu-items"
       actionListener="#{logic.openDetails(case, inFrame)}" rendered="#{showOpenCaseDetail}">
