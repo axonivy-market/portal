@@ -409,7 +409,11 @@
     {
         "id": "5",
         "version": "13.1.0",
-        "aggregates": "startTimestamp:bucket:day",
+        "statisticAggregation": {
+			"field": "startTimestamp",
+			"type": "standard",
+			"interval": "day"
+		},
         "filter": "startTimestamp:>=now-5d/d <=now/d,isInvolved",
         "permissions": [
             "Everybody"
@@ -512,7 +516,11 @@
     {
         "id": "6",
         "version": "13.1.0",
-        "aggregates": "endTimestamp:bucket:day",
+        "statisticAggregation": {
+			"field": "endTimestamp",
+			"type": "standard",
+			"interval": "day"
+		},
         "filter": "endTimestamp:>=now-5d/d <=now/d,isInvolved",
         "permissions": [
             "Everybody"
@@ -680,7 +688,9 @@
                 "value": "これは、ユーザーが関与しているすべての実行中のケースの数を表示します。"
             }
         ],
-        "numberChartConfig": {}
+        "numberChartConfig": {
+          "suffixSymbol": ""
+        }
     },
     {
         "id": "8",
@@ -738,7 +748,9 @@
                 "value": "これは、今週末までに期限が切れるすべてのタスクの数を表示します。"
             }
         ],
-        "numberChartConfig": {}
+        "numberChartConfig": {
+            "suffixSymbol": ""
+        }
     },
     {
         "id": "9",
@@ -815,7 +827,9 @@
                 "value": "これは、ユーザーが作業できるすべてのタスクの数を優先度別に表示します。"
             }
         ],
-        "numberChartConfig": {}
+        "numberChartConfig": {
+            "suffixSymbol": ""
+        }
     },
     {
         "id": "10",
@@ -883,6 +897,7 @@
             }
         ],
         "numberChartConfig": {
+            "suffixSymbol": "",
             "hideLabel": false
         }
     },
@@ -943,6 +958,7 @@
             }
         ],
         "numberChartConfig": {
+            "suffixSymbol": "",
             "hideLabel": true
         }
     }
