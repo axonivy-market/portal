@@ -1756,6 +1756,12 @@ i.dashboard-icon-drag-drop {
 	margin: -15px 0;
 }
 
+.ui-disable {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 .focusable {
   padding: 10px;
   border: 1px solid black;
