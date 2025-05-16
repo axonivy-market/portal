@@ -26,11 +26,9 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
-import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
-import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -59,6 +57,13 @@ public class TaskActionBean implements Serializable {
 
   public boolean canReset(ITask task) {
     return TaskUtils.canReset(task);
+  }
+
+  public boolean canPin(ITask task) {
+    if (task == null) {
+      return false;
+    }
+    return true;
   }
 
   public boolean canDelegate(ITask task) {
@@ -370,4 +375,24 @@ public class TaskActionBean implements Serializable {
     return !taskStates.contains(task.getState());
   }
 
+  public String getPinnedLabel(ITask task) {
+    return TaskUtils.isPinnedTask(task) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/unpin")
+        : Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/pin");
+  }
+
+  public String getPinnedIcon(ITask task) {
+    return TaskUtils.isPinnedTask(task) ? "option-action-icon si si-pin-bold" : "option-action-icon si si-pin";
+  }
+
+  public String getPinnedStyleClass(ITask task) {
+    return "option-item ui-menu-items" + (TaskUtils.isPinnedTask(task) ? " color-destroy" : "");
+  }
+
+  public void markTaskAsPinned(ITask task) {
+    TaskUtils.markTaskAsPinned(task);
+  }
+
+  public boolean isTaskPinned(ITask task) {
+    return TaskUtils.isPinnedTask(task);
+  }
 }

@@ -111,6 +111,8 @@ public class DashboardWidgetUtils {
       Class<? extends TaskColumnModel> taskColumnModelClass = null;
       if (equals(DashboardStandardTaskColumn.START, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StartColumnModel.class;
+      } else if (equals(DashboardStandardTaskColumn.PIN, field)) {
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.PinColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.PRIORITY, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.PriorityColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.ID, field)) {
@@ -199,8 +201,11 @@ public class DashboardWidgetUtils {
       CaseColumnModel column = columns.get(i);
       Class<? extends CaseColumnModel> caseColumnModelClass = null;
       String field = column.getField();
+
       if (equals(DashboardStandardCaseColumn.ID, field)) {
         caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.IdColumnModel.class;
+      } else if (equals(DashboardStandardCaseColumn.PIN, field)) {
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.PinColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.NAME, field)) {
         caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.NameColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.DESCRIPTION, field)) {

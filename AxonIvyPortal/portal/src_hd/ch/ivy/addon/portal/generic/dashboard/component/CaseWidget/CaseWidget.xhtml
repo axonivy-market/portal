@@ -74,6 +74,11 @@
            <p:tooltip value="#{column.headerText}" for="header" />
           </f:facet>
 
+          <h:panelGroup rendered="#{column.field eq 'pin' and visibilityBean.enablePinCase}">
+            <h:outputText id="case-pin" value="#{column.display(caseItem)}"/>
+            <ic:ch.ivy.addon.portalkit.component.cases.column.CasePin case="#{caseItem}"/>
+          </h:panelGroup>
+
           <h:panelGroup rendered="#{column.field eq 'creator'}">
             <pc:securityMemberNameAndAvatar displayName="#{column.display(caseItem)}" securityMember="#{caseItem.getCreatorUser()}" />
           </h:panelGroup>

@@ -1,9 +1,10 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
 import java.util.ArrayList;
-
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -21,6 +22,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.ICustomFieldOrderBy;
@@ -35,6 +37,7 @@ public class DashboardCaseSearchCriteria {
   private boolean sortDescending;
   private boolean isInConfiguration;
   private String quickSearchKeyword;
+  private boolean showPinnedItem;
 
   public CaseQuery buildQuery() {
     CaseQuery query = buildQueryWithoutOrderByClause();
@@ -47,6 +50,9 @@ public class DashboardCaseSearchCriteria {
     CaseQuery query = CaseQuery.businessCases();
     queryFilters(query);
     appendQuickSearchQuery(query);
+    if (showPinnedItem) {
+      queryPinnedCase(query);
+    }
     return query;
   }
 
@@ -299,4 +305,24 @@ public class DashboardCaseSearchCriteria {
   public void setQuickSearchKeyword(String quickSearchKeyword) {
     this.quickSearchKeyword = quickSearchKeyword;
   }
+
+  public boolean showPinnedItem() {
+    return showPinnedItem;
+  }
+
+  public void setShowPinnedItem(boolean showPinnedItem) {
+    this.showPinnedItem = showPinnedItem;
+  }
+
+  private void queryPinnedCase(CaseQuery query) {
+    Set<String> pinnedCaseUuids = Optional.ofNullable(CaseUtils.getPinnedCaseUuids()).orElse(Collections.emptySet());
+
+    if (pinnedCaseUuids.isEmpty()) {
+      query.where().uuid().isEqual(StringUtils.EMPTY); // value that can never match
+    } else {
+      String[] uuidArray = pinnedCaseUuids.toArray(new String[0]);
+      query.where().uuid().isIn(uuidArray);
+    }
+  }
+
 }

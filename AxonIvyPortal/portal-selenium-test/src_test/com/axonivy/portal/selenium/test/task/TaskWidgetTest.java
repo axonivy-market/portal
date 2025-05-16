@@ -30,6 +30,7 @@ public class TaskWidgetTest extends BaseTest {
   public void setup() {
     super.setup();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
+    updateGlobalVariable(Variable.ENABLE_PINED_TASK.getKey(), "true");
     createTestingTasks();
   }
 
@@ -110,4 +111,39 @@ public class TaskWidgetTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(3));
   }
 
+  @Test
+  public void testPinAndUnpinTask() {
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.pinTaskByIndex(0);
+    assertEquals(true, taskWidget.isTaskPinned(0));
+    NavigationHelper.navigateToTaskList();
+    taskWidget.unpinTaskByIndex(0);
+    assertEquals(true, taskWidget.isTaskUnpinned(0));
+
+  }
+
+  @Test
+  public void testTogglePinnedTask() {
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    for (int i = 2; i > 0; i--) {
+      taskWidget.pinTaskByIndex(i);
+    }
+    taskWidget.togglePinnedTask();
+    taskWidget.waitUntilTaskFilterReturnResultCount(2);
+    int visibleTaskCount = taskWidget.countAllTasks().size();
+    assertEquals(2, visibleTaskCount);
+  }
+
+  @Test
+  public void testClickOnPinColumn() {
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.clickOnPinColumn(0);
+    assertEquals(true, taskWidget.isTaskPinned(0));
+    NavigationHelper.navigateToTaskList();
+    taskWidget.clickOnPinColumn(0);
+    assertEquals(true, taskWidget.isTaskUnpinned(0));
+  }
 }
