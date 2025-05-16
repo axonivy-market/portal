@@ -770,15 +770,13 @@ $(document).ready(function () {
         var dialog = PF('preview-document-dialog').jq;
         var media = dialog.find('.ui-widget-content').find('.ui-g-12 object');
 
-        setTimeout(function () {
-          if (dialog.hasClass('ui-dialog-maximized')) {
-            var newHeight = dialog.height() - 130;
-            media.css('height', newHeight + 'px');
-          } else {
-            media.css('height', '600px');
-          }
+        if (dialog.hasClass('ui-dialog-maximized')) {
+          var newHeight = dialog.height() - 130;
+          media.css('height', newHeight + 'px');
+        } else {
+          media.css('height', '600px');
+        }
 
-        }, 50);
       }
 
       PF('preview-document-dialog').jq.on('dialogclose', function () {
