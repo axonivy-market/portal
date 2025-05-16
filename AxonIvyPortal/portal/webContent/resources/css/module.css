@@ -4300,7 +4300,6 @@ _:-ms-fullscreen, :root .content-link-history {
 .case-upload-dialog, .case-view-note-dialog, .document-upload-dialog, .task-note-dialog,
 .task-upload-dialog {
   min-width: 50vw;
-  max-width: 70vw;
 }
 
 @media screen and (max-width: 40em) {
