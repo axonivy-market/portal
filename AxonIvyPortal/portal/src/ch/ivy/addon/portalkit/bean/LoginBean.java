@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -13,6 +15,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 @ViewScoped
 public class LoginBean implements Serializable {
   private MasterDataBean masterDataBean;
+  private static final String LOGIN = 
+      Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/login/login");
 
   public LoginBean() {
     masterDataBean = (MasterDataBean) ManagedBeans.get("masterDataBean");
@@ -30,7 +34,7 @@ public class LoginBean implements Serializable {
   }
 
   public String loginPageTitle() {
-    return String.join(" - ", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/login/login"),
-        masterDataBean.getApplicationName());
+    String applicationName = masterDataBean.getApplicationName();
+    return StringUtils.isBlank(applicationName) ? LOGIN : LOGIN + " - " + applicationName;
   }
 }
