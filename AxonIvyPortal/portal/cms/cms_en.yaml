@@ -1113,6 +1113,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     process: Process
     searchResults: Search Results
     searchResultsFor: '{0} search results for "{1}"'
+  sideSteps:
+    addNew: Add new side steps process
   taskActivator:
     assign: Assign
     cannotAssignTask: This task cannot be assigned to any other user or group.
@@ -1657,7 +1659,9 @@ Labels:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Permissions: Permissions
+  SelectProcess: Select process
   Share: Share
+  SideStepProcess: Select a side step process
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users

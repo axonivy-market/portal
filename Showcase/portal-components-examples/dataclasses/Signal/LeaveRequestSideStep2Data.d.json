@@ -1,0 +1,35 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
+  "simpleName" : "LeaveRequestSideStep2Data",
+  "namespace" : "Signal",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "uuid",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "assignee",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "caze",
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "originalTaskId",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "originalCaseId",
+    "type" : "Long",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "comment",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "stepType",
+    "type" : "com.axonivy.portal.components.enums.SideStepType",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}
