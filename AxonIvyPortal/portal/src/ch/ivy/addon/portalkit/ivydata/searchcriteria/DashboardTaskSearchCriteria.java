@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
@@ -63,7 +62,7 @@ public class DashboardTaskSearchCriteria {
       }
 
       if (to != null) {
-        subQuery.where().startTimestamp().isLowerThan(DateUtils.addDays(to, 1));
+        subQuery.where().startTimestamp().isLowerOrEqualThan(to);
       }
       query.where().and(subQuery);
     }
@@ -77,7 +76,7 @@ public class DashboardTaskSearchCriteria {
       }
 
       if (to != null) {
-        subQuery.where().expiryTimestamp().isLowerThan(DateUtils.addDays(to, 1));
+        subQuery.where().expiryTimestamp().isLowerOrEqualThan(to);
       }
       query.where().and(subQuery);
     }
@@ -297,7 +296,7 @@ public class DashboardTaskSearchCriteria {
       }
  
       if (to != null) {
-        filterQuery.timestampField(field).isLowerThan(DateUtils.addDays(to, 1));
+        filterQuery.timestampField(field).isLowerOrEqualThan(to);
       }
     } else if (column.isText()) {
       queryTextField(filterQuery, field, configuredFilter);
@@ -335,7 +334,7 @@ public class DashboardTaskSearchCriteria {
       }
 
       if (to != null) {
-        filterQuery.timestampField(field).isLowerThan(DateUtils.addDays(to, 1));
+        filterQuery.timestampField(field).isLowerOrEqualThan(to);
       }
     } else if (column.isText()) {
       queryCaseTextField(filterQuery, field, configuredFilter);
@@ -424,29 +423,14 @@ public class DashboardTaskSearchCriteria {
           sortStandardColumn = true;
           final IOrderByQueryColumns orderBy = query.orderBy();
           switch (column) {
-            case PRIORITY:
-              order = orderBy.priority();
-              break;
-            case NAME:
-              order = orderBy.name();
-              break;
-            case RESPONSIBLE:
-              order = orderBy.activatorDisplayName();
-              break;
-            case ID:
-              order = orderBy.taskId();
-              break;
-            case CREATED:
-              order = orderBy.startTimestamp();
-              break;
-            case EXPIRY:
-              order = orderBy.expiryTimestamp();
-              break;
-            case STATE:
-              order = orderBy.state();
-              break;
-            default:
-              break;
+            case PRIORITY -> order = orderBy.priority();
+            case NAME -> order = orderBy.name();
+            case RESPONSIBLE -> orderBy.activatorDisplayName();
+            case ID -> order = orderBy.taskId();
+            case CREATED -> order = orderBy.startTimestamp();
+            case EXPIRY -> order = orderBy.expiryTimestamp();
+            case STATE -> order = orderBy.state();
+            default -> {}
           }
         }
       }
