@@ -166,14 +166,11 @@ public class ColumnManagementBean implements Serializable {
       }
     } else if (widget.getType() == DashboardWidgetType.CASE) {
       var enableCaseOwner = GlobalSettingService.getInstance().isCaseOwnerEnabled();
-      boolean disableCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
       for (DashboardStandardCaseColumn col : DashboardStandardCaseColumn.values()) {
         if (!enableCaseOwner && DashboardStandardCaseColumn.OWNER == col) {
           continue;
         }
-        if (disableCaseCreator && DashboardStandardCaseColumn.CREATOR == col) {
-          continue;
-        }
+
         standardFields.add(col.getField());
       }
     }
