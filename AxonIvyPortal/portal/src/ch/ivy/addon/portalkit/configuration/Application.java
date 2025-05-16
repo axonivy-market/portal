@@ -2,6 +2,8 @@ package ch.ivy.addon.portalkit.configuration;
 
 import java.util.List;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -13,6 +15,8 @@ public class Application extends AbstractConfiguration {
   private String name;
   private String link;
   private List<String> permissions;
+  @JsonIgnore
+  private List<SecurityMemberDTO> permissionDTOs;
 
   public Application() {
     setIsPublic(true);
@@ -64,6 +68,14 @@ public class Application extends AbstractConfiguration {
 
   public void setPermissions(List<String> permissions) {
     this.permissions = permissions;
+  }
+
+  public List<SecurityMemberDTO> getPermissionDTOs() {
+    return permissionDTOs;
+  }
+
+  public void setPermissionDTOs(List<SecurityMemberDTO> permissionDTOs) {
+    this.permissionDTOs = permissionDTOs;
   }
 
   @Override
