@@ -28,7 +28,6 @@
         "chartTarget": "task",
         "chartType": "pie",
         "icon": "si si-analytics-pie-2",
-        "refreshInterval": 300,
         "names": [
             {
                 "locale": "de",
@@ -88,7 +87,6 @@
         "chartTarget": "task",
         "chartType": "bar",
         "icon": "si si-analytics-bars",
-        "refreshInterval": 300,
         "names": [
             {
                 "locale": "de",
@@ -209,7 +207,6 @@
         "chartTarget": "task",
         "chartType": "bar",
         "icon": "si si-analytics-bars",
-        "refreshInterval": 300,
         "names": [
             {
                 "locale": "de",
@@ -312,7 +309,6 @@
         "chartTarget": "case",
         "chartType": "bar",
         "icon": "si si-analytics-bars",
-        "refreshInterval": 300,
         "names": [
             {
                 "locale": "de",
@@ -421,7 +417,6 @@
         "chartTarget": "case",
         "chartType": "line",
         "icon": "si si-analytics-board-graph-line",
-        "refreshInterval": 300,
         "names": [
             {
                 "locale": "de",
@@ -528,7 +523,6 @@
         "chartTarget": "case",
         "chartType": "line",
         "icon": "si si-analytics-board-graph-line",
-        "refreshInterval": 300,
         "names": [
             {
                 "locale": "de",
@@ -643,7 +637,6 @@
         "chartTarget": "case",
         "chartType": "number",
         "icon": "si si-pie-line-graph",
-        "refreshInterval": 300,
         "names": [
             {
                 "locale": "de",
@@ -701,7 +694,6 @@
         "chartTarget": "task",
         "chartType": "number",
         "icon": "si si-pie-line-graph",
-        "refreshInterval": 300,
         "names": [
             {
                 "locale": "de",
@@ -778,7 +770,6 @@
         "chartTarget": "task",
         "chartType": "number",
         "icon": "si si-pie-line-graph",
-        "refreshInterval": 300,
         "names": [
             {
                 "locale": "de",
@@ -845,7 +836,6 @@
         "chartTarget": "task",
         "chartType": "number",
         "icon": "si si-pie-line-graph",
-        "refreshInterval": 300,
         "names": [
             {
                 "locale": "de",
@@ -905,7 +895,6 @@
         "chartTarget": "task",
         "chartType": "number",
         "icon": "si si-pie-line-graph",
-        "refreshInterval": 300,
         "names": [
             {
                 "locale": "de",
