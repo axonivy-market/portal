@@ -40,12 +40,18 @@
 
   <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" appendTo="@(body)"
     styleClass="options-panel #{cc.attrs.sideStepsPanelStyleClass}" dynamic="true" rendered="#{!cc.attrs.isDisabled}"
-    my="right top" at="right bottom" showCloseIcon="true" dismissable="true">
+    my="right top" at="right bottom" showCloseIcon="true" dismissable="true" cache="false">
 
     <p:commandLink id="task-open-detail-command" styleClass="option-item ui-menu-items"
       actionListener="#{logic.openDetails(task, dataModel, cc.attrs.inFrame)}" rendered="#{cc.attrs.showDetailOption}">
       <i class="option-action-icon si si-information-circle" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}</span>
+    </p:commandLink>
+
+    <p:commandLink id="task-pin" disabled="#{!taskActionBean.canPin(task)}" rendered="#{visibilityBean.enablePinTask}" onstart="event.stopPropagation();"
+      styleClass="#{taskActionBean.getPinnedStyleClass(task)}" actionListener="#{taskActionBean.markTaskAsPinned(task)}" update="@parent #{cc.attrs.componentToUpdate}" process="@this">
+      <i class="#{taskActionBean.getPinnedIcon(task)}" />
+      <span class="option-item-label">#{taskActionBean.getPinnedLabel(task)}</span>
     </p:commandLink>
 
     <p:commandLink id="task-reset-command" onstart="event.stopPropagation();" rendered="#{taskActionBean.showResetTask}" disabled="#{!taskActionBean.canReset(task)}"

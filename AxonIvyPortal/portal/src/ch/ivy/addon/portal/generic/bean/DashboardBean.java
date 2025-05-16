@@ -89,6 +89,7 @@ public class DashboardBean implements Serializable {
   private String clientStatisticApiUri;
   private String selectedDashboardName;
   private String searchScope;
+  private boolean isShowPinnedItem;
 
   @PostConstruct
   public void init() {
@@ -589,6 +590,40 @@ public class DashboardBean implements Serializable {
 
   public String getSearchScope() {
     return this.searchScope;
+  }
+
+  public boolean canShowPinnedItemToggle(DashboardWidget widget) {
+    if (widget instanceof TaskDashboardWidget) {
+      return GlobalSettingService.getInstance().isEnablePinTask()
+          && ((TaskDashboardWidget) widget).isShowPinnedToggle();
+    }
+
+    if (widget instanceof CaseDashboardWidget) {
+      return GlobalSettingService.getInstance().isEnablePinCase()
+          && ((CaseDashboardWidget) widget).isShowPinnedToggle();
+    }
+
+    return false;
+  }
+
+  public boolean getShowPinnedItem() {
+    return this.isShowPinnedItem;
+  }
+
+  public void setShowPinnedItem(boolean isShowPinnedItem) {
+    this.isShowPinnedItem = isShowPinnedItem;
+  }
+
+  public void togglePinned(DashboardWidget widget) {
+    widget.setShowPinnedItem(isShowPinnedItem);
+    widget.toggleShowPinned();
+  }
+
+  public String showPinnedItemToggleLable(DashboardWidget widget) {
+    if (DashboardWidgetType.TASK.equals(widget.getType())) {
+      return Ivy.cms().co("/Labels/PinnedTasks");
+    }
+    return Ivy.cms().co("/Labels/PinnedCases");
   }
 
 }
