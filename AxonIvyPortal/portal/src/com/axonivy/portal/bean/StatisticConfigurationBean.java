@@ -192,6 +192,10 @@ public class StatisticConfigurationBean implements Serializable {
       }
       this.setDateTimeSelected(agg.getInterval() != null);
       this.aggregationInterval = agg.getInterval(); 
+    } else {
+      StatisticAggregation statisticAggregation = new StatisticAggregation();
+      statisticAggregation.setField(AggregationField.PRIORITY.getName());
+      statistic.setStatisticAggregation(statisticAggregation);
     }
   }
 

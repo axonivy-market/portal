@@ -183,30 +183,15 @@ public class StatisticService {
     String statisticsJson = BusinessEntityConverter.entityToJsonValue(statistics);
     Ivy.var().set(CUSTOM_STATISTIC_KEY, statisticsJson);
   }
-  
-  private List<Statistic> getDefaultStatistic() {
-    String json = Ivy.var().get(CLIENT_STATISTIC_KEY);
-    List<Statistic> statistics;
-    if (StringUtils.isNotBlank(json)) {
-      statistics = BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CLIENT_STATISTIC_KEY), Statistic.class);
-      statistics = statistics.stream().filter(statistic -> {
-        try {
-          int idInt = Integer.parseInt(statistic.getId());
-          return idInt >= 1 && idInt <= 11;
-        } catch (NumberFormatException e) {
-          return false;
-        }
-      }).collect(Collectors.toList());
-    } else {
-      String value = Ivy.var().get(DEFAULT_STATISTIC_KEY);
-      statistics = BusinessEntityConverter.jsonValueToEntities(value, Statistic.class);
-    }
 
+  private List<Statistic> getDefaultStatistic() {
+    String value = Ivy.var().get(DEFAULT_STATISTIC_KEY);
+    List<Statistic> statistics = BusinessEntityConverter.jsonValueToEntities(value, Statistic.class);
     statistics.forEach(cs -> cs.setIsCustom(false));
     configDefaultStatisticSettings(statistics);
     return statistics;
   }
-  
+
   public List<Statistic> getCustomStatistic() {
     migrateClientStatistic();
     List<Statistic> statistics =
