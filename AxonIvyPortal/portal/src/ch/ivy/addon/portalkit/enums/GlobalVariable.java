@@ -88,11 +88,10 @@ public enum GlobalVariable {
   SHOW_TOOLTIP_TECHNICAL_NAME("Portal.ShowTooltipTechnicalName", GlobalVariableType.SELECTION, Option.FALSE.toString(), "showTooltipTechnicalName"),
   DOCUMENT_UPLOAD_SIZE_LIMIT("Portal.Upload.DocumentUploadSizeLimit",GlobalVariableType.NUMBER,"20","documentUploadSizeLimit"),
   IMAGE_UPLOAD_SIZE_LIMIT("Portal.Upload.ImageUploadSizeLimit", GlobalVariableType.NUMBER, "6", "imageUploadSizeLimit"),
-  DELEGATION_APPEND_OPTION("Portal.DelegationAppendOption", GlobalVariableType.EXTERNAL_SELECTION,
-      DelegationAppendOption.NONE.name(), "delegationAppendOption",
-      getDelegationAppendOption()),
-  SESSION_CACHE_TIMEOUT("Portal.SessionCacheTimeout", GlobalVariableType.NUMBER,
-      "86400", "SessionCacheTimeout");
+  DELEGATION_APPEND_OPTION("Portal.DelegationAppendOption", GlobalVariableType.EXTERNAL_SELECTION,DelegationAppendOption.NONE.name(), "delegationAppendOption",getDelegationAppendOption()),
+  SESSION_CACHE_TIMEOUT("Portal.SessionCacheTimeout", GlobalVariableType.NUMBER,"86400", "SessionCacheTimeout"),
+  ENABLE_PINED_TASK("Portal.Tasks.EnablePinedTask",GlobalVariableType.SELECTION, Option.FALSE.toString(), "enablePinTask"),
+  ENABLE_PINED_CASE("Portal.Cases.EnablePinedCase",GlobalVariableType.SELECTION, Option.FALSE.toString(),"enablePinCase");
 
   private String key;
   private GlobalVariableType type;

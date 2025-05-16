@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 
@@ -17,6 +18,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -154,4 +156,23 @@ public class TaskBean implements Serializable {
     }
     return String.join(" - ", displayTexts);
   }
+
+  public boolean isPinnedTask(ITask task) {
+    return TaskUtils.isPinnedTask(task);
+  }
+  
+  public void clickOnPinTask(ITask task) {
+    if (task == null)
+      return;
+
+    String taskUuid = task.uuid();
+    Set<String> pinnedTaskUuids = TaskUtils.getPinnedTaskUuids();
+
+    if (!pinnedTaskUuids.remove(taskUuid)) {
+      pinnedTaskUuids.add(taskUuid);
+    }
+
+    TaskUtils.savePinnedTaskUuids(pinnedTaskUuids);
+  }
+
 }

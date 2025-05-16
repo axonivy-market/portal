@@ -42,6 +42,7 @@ public class CaseDashboardWidget extends DashboardWidget {
   private boolean enableQuickSearch;
   private boolean showWidgetInfo;
   private boolean showFullscreenMode;
+  private boolean showPinnedToggle;
   
   public CaseDashboardWidget() {
     dataModel = new DashboardCaseLazyDataModel();
@@ -50,6 +51,7 @@ public class CaseDashboardWidget extends DashboardWidget {
     setUserFilters(new ArrayList<>());
     setShowWidgetInfo(true);
     setShowFullscreenMode(true);
+    setShowPinnedToggle(true);
   }
 
   @JsonIgnore
@@ -251,5 +253,18 @@ public class CaseDashboardWidget extends DashboardWidget {
     else {
       this.setQuickSearchKeyword(StringUtils.EMPTY);
     }
+  }
+
+  @Override
+  public void toggleShowPinned() {
+    this.dataModel.setShowPinnedItem(showPinnedItem);
+  }
+
+  public boolean isShowPinnedToggle() {
+    return showPinnedToggle;
+  }
+
+  public void setShowPinnedToggle(boolean showPinnedToggle) {
+    this.showPinnedToggle = showPinnedToggle;
   }
 }

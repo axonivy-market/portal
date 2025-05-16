@@ -67,6 +67,8 @@ public abstract class DashboardWidget implements Serializable {
   protected UserFilterCollection userFilterCollection;
   @JsonIgnore
   private String quickSearchKeyword;
+  @JsonIgnore
+  protected boolean showPinnedItem;
 
   public DashboardWidget() {}
 
@@ -317,4 +319,17 @@ public abstract class DashboardWidget implements Serializable {
   public void setQuickSearchKeyword(String quickSearchKeyword) {
     this.quickSearchKeyword = quickSearchKeyword;
   }
+
+  @JsonIgnore
+  public boolean getShowPinnedItem() {
+    return showPinnedItem;
+  }
+
+  @JsonIgnore
+  public void setShowPinnedItem(boolean showPinnedItem) {
+    this.showPinnedItem = showPinnedItem;
+  }
+
+  @JsonIgnore
+  public void toggleShowPinned() {}
 }
