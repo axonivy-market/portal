@@ -39,6 +39,7 @@ Task list configuration
 
 This section has available options which help you to configure your Task list.
 These are options you can modify:
+
 .. table::
 
    +---------------------------+---------------------------------+
@@ -54,6 +55,7 @@ Case list configuration
 
 This section has available options which help you to configure your Case list.
 These are options you can modify:
+
 .. table::
 
    +---------------------------+---------------------------------+
