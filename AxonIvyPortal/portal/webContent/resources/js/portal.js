@@ -778,8 +778,6 @@ $(document).ready(function () {
             media.css('height', '600px');
           }
 
-          var resizeEvent = new Event('resize');
-          window.dispatchEvent(resizeEvent);
         }, 50);
       }
 
