@@ -688,9 +688,7 @@
                 "value": "これは、ユーザーが関与しているすべての実行中のケースの数を表示します。"
             }
         ],
-        "numberChartConfig": {
-          "suffixSymbol": ""
-        }
+        "numberChartConfig": {}
     },
     {
         "id": "8",
@@ -748,9 +746,7 @@
                 "value": "これは、今週末までに期限が切れるすべてのタスクの数を表示します。"
             }
         ],
-        "numberChartConfig": {
-            "suffixSymbol": ""
-        }
+        "numberChartConfig": {}
     },
     {
         "id": "9",
@@ -827,9 +823,7 @@
                 "value": "これは、ユーザーが作業できるすべてのタスクの数を優先度別に表示します。"
             }
         ],
-        "numberChartConfig": {
-            "suffixSymbol": ""
-        }
+        "numberChartConfig": {}
     },
     {
         "id": "10",
@@ -897,7 +891,6 @@
             }
         ],
         "numberChartConfig": {
-            "suffixSymbol": "",
             "hideLabel": false
         }
     },
@@ -958,7 +951,6 @@
             }
         ],
         "numberChartConfig": {
-            "suffixSymbol": "",
             "hideLabel": true
         }
     }
