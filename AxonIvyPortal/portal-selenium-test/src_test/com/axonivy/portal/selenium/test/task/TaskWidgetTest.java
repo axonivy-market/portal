@@ -1,10 +1,15 @@
 package com.axonivy.portal.selenium.test.task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
+import com.axonivy.portal.selenium.common.FilterOperator;
+import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
@@ -12,6 +17,7 @@ import com.axonivy.portal.selenium.page.CaseDetailsPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
 @IvyWebTest
@@ -72,6 +78,37 @@ public class TaskWidgetTest extends BaseTest {
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.waitUntilTaskCountDifferentThanZero();
     assertEquals(4, taskWidget.countAllTasks().size(), "In Task list, Task Count != 4");
+  }
+
+  @Test
+  public void testFilterDateOnStandardFields() {
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Created Date", FilterOperator.AFTER);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
+    taskWidget.applyFilter();
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(4));
+
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Completed Date", FilterOperator.BEFORE);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.DATE,
+        LocalDate.now().plusDays(1).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+    taskWidget.applyFilter();
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
+
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openFilterWidget();
+    taskWidget.resetFilter();
+    taskWidget.openFilterWidget();
+    taskWidget.addFilter("Expiry", FilterOperator.WITHIN_NEXT);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "2", "Year(s)");
+    taskWidget.applyFilter();
+    taskWidget.countAllTasks().shouldHave(CollectionCondition.size(3));
   }
 
   @Test

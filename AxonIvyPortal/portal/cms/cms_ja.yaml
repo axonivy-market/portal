@@ -197,7 +197,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: サードパーティーのアプリケーション
     currentValue: 現在の値
-    defaultApplicationName: Axon Ivy
     defaultValue: デフォルト値
     deleteAppConfirmation: このアプリケーションを削除してよろしいですか？
     dialogclosinginformation:
@@ -210,7 +209,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     emptySupportedLanguages: 追加の言語はサポートされていません
     globalVariableNote:
       AppleStoreURL: Apple Store で Axon Ivy モバイル アプリをダウンロードするための URL を設定します。
-      ApplicationName: ページタイトルに表示されるデフォルトのアプリケーション名。
+      ApplicationName: ページタイトルに表示されるアプリケーション名。
       BaseQRCodeUrl: 表示するQRコードのベースURLを設定します。
       DefaultThemeMode: アプリケーションのテーマモードの初期値
       EnableDocumentPreview: ドキュメントのプレビューを有効にするには true に設定してください。（プレビュー可能なファイルの種類：pdf、png、txt、log）
@@ -365,7 +364,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PIN: 'TODO: Pin'
       STATE: 状態
     deletionNoteContent: このケースは{0}によって破棄されました
-    destroyCaseMessage: この操作は元に戻せません。このケースとそのすべてのタスクを破棄してもよろしいですか？
+    destroyCaseMessage: 'この操作は元に戻せません。このケース<b>{0}(ID: {1})</b>とそのすべてのタスクを破棄してもよろしいですか？'
     destroyfail: ケースの破棄に失敗しました。
     destroysucceed: ケースは正常に破棄されました。
     downloadZipFileExplanation: エクスポートするケースの数が Excel の行数制限を超えています。そのためデータは複数の Excel ファイルに分割され、ダウンロードするためにZIP ファイルに圧縮されます。
@@ -378,6 +377,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'ケース #{0} {1}'
     relatedCases: 関連するケース
     title: タイトル
+    unknownCase: 'TODO: Unknown Case'
+    unknownId: 'TODO: Unknown ID'
   caseState:
     CREATED: 作成済み
     CREATED_UPPERCASE: 作成済み
@@ -1205,6 +1206,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ACTIVATOR: 責任者
       APPLICATION: アプリケーション
       CATEGORY: カテゴリー
+      COMPLETED: 完了日
       COMPLETED_ON: 完了日
       CREATION_TIME: 作成日
       EXPIRY_TIME: 有効期限
@@ -1217,7 +1219,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: 優先度
     defaultFilter: フィルターの初期値
-    destroyTaskMessage: この操作は元に戻せません。このタスクを破棄してもよろしいですか？
+    destroyTaskMessage: 'この操作は元に戻せません。このタスクを破棄してもよろしいですか<b>{0}(ID: {1})</b>？'
     headerTitle:
       relatedStatisticHeader: 統計チャートの関連タスク：
       relatedTasksHeader: ケースの関連タスク
@@ -1241,6 +1243,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: 優先度（低から高）
     triggerEscalationNote: 'タスク #{2} の {0} ({1}) によってエスカレーションされました'
     type: タイプ
+    unknownId: 'TODO: Unknown ID'
+    unknownTask: 'TODO: Unknown Task'
   taskPriority:
     EXCEPTION: 例外
     EXCEPTION_LOWERCASE: 例外
@@ -1458,6 +1462,7 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: 以下の場所からウィジェットを複製する：
             DashboardImportDetails:
+              DashboardImportTitle: ダッシュボード{0}
               FileInfomation: ファイル情報
               ImportPrivate: 個人用ダッシュボードをインポートする
               ImportPublic: 公開用ダッシュボードをインポートする
@@ -1576,6 +1581,7 @@ Labels:
       ACTIONS: アクション
       APPLICATION: アプリケーション
       CATEGORY: カテゴリー
+      COMPLETED: 'TODO: Completed Date'
       CREATED: 作成日
       DESCRIPTION: 説明
       EXPIRY: 有効期限

@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>internalSupport</artifactId>
-  <version>12.0.5-SNAPSHOT</version>
+  <version>12.0.6-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
     <build.plugin.version>12.0.1</build.plugin.version>
-    <ivy.engine.version>12.0.5</ivy.engine.version>
+    <ivy.engine.version>12.0.6</ivy.engine.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <repositories>
@@ -22,7 +22,7 @@
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal-developer-examples</artifactId>
-      <version>12.0.5-SNAPSHOT</version>
+      <version>12.0.6-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
   </dependencies>

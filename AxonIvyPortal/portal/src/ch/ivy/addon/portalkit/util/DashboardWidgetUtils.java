@@ -127,6 +127,8 @@ public class DashboardWidgetUtils {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StateColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.CREATED, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CreatedDateColumnModel.class;
+      } else if (equals(DashboardStandardTaskColumn.COMPLETED, field)) {
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CompletedDateColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.EXPIRY, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ExpiryDateColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.CATEGORY, field)) {
@@ -227,11 +229,9 @@ public class DashboardWidgetUtils {
       } else {
         column.setType(DashboardColumnType.CUSTOM);
       }
-
       if (caseColumnModelClass != null) {
         column = BusinessEntityConverter.convertValue(column, caseColumnModelClass);
       }
-
       column.initDefaultValue();
       if (column.getType() == DashboardColumnType.CUSTOM) {
         buildCustomColumn(ICustomFieldMeta.cases(), column, field);

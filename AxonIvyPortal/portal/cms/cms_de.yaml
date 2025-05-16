@@ -198,7 +198,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: 3rd Party Anwendung
     currentValue: Aktueller Wert
-    defaultApplicationName: Axon Ivy
     defaultValue: Standard Wert
     deleteAppConfirmation: Sind Sie sicher, dass Sie diese Anwendung entfernen möchten?
     dialogclosinginformation:
@@ -211,7 +210,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     emptySupportedLanguages: Es werden keine weiteren Sprachen unterstützt
     globalVariableNote:
       AppleStoreURL: Legen Sie die URL für den Download der Axon Ivy Mobile App im Apple Store fest.
-      ApplicationName: Der Standard-Anwendungsname, der im Seitentitel angezeigt wird.
+      ApplicationName: Der Name der Anwendung, der auf dem Seitentitel angezeigt werden soll.
       BaseQRCodeUrl: Legen Sie die Basis-URL für den anzuzeigenden QR-Code fest.
       DefaultThemeMode: Der Standardthemenmodus der Anwendung
       EnableSwitchThemeModeButton: Setzen Sie diesen Wert auf true, um die Schaltfläche "Thema wechseln" zu aktivieren.
@@ -369,7 +368,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PIN: Anheften
       STATE: Status
     deletionNoteContent: Der Vorgang wurde durch {0} gelöscht.
-    destroyCaseMessage: Diese Operation kann nicht rückgängig gemacht werden. Sind Sie sicher, dass dieser komplette Vorgang gelöscht werden soll?
+    destroyCaseMessage: 'Diese Operation kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie den Fall <b>{0} (ID: {1})</b> und alle seine Aufgaben löschen möchten?'
     destroyfail: Beim Löschen des Vorgangs ist ein Fehler aufgetreten.
     destroysucceed: Vorgang wurde erfolgreich gelöscht.
     downloadZipFileExplanation: Die Anzahl der zu exportierenden Vorgänge überschreitet die Grenze der Excel-Zeilen. Daher werden die Daten in mehrere Excel-Dateien aufgeteilt und dann in einer ZIP-Datei zum Herunterladen komprimiert.
@@ -382,6 +381,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'Vorgang #{0} {1}'
     relatedCases: Verwandte Vorgänge
     title: Titel
+    unknownCase: Unbekannter Fall
+    unknownId: Unbekannter Id
   caseState:
     CREATED: Erstellt
     CREATED_UPPERCASE: ERSTELLT
@@ -1209,6 +1210,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ACTIVATOR: Verantwortlich
       APPLICATION: Anwendung
       CATEGORY: Kategorie
+      COMPLETED: Erledigt am
       COMPLETED_ON: Erledigt am
       CREATION_TIME: Erstellt
       EXPIRY_TIME: Ablaufdatum
@@ -1221,7 +1223,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Standard-Filter
-    destroyTaskMessage: Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie diese Aufgabe zerstören wollen?
+    destroyTaskMessage: 'Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie diese Aufgabe zerstören wollen <b>{0} (ID: {1})</b>?'
     headerTitle:
       relatedStatisticHeader: 'Aufgaben von Diagramm:'
       relatedTasksHeader: Zugehörige Aufgaben
@@ -1245,6 +1247,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Priorität (niedrig nach hoch)
     triggerEscalationNote: 'Die Eskalation wurde ausgelöst durch {0} ({1}) der Aufgabe #{2}'
     type: Typ
+    unknownId: Unbekannte ID
+    unknownTask: Unbekannte Aufgabe
   taskPriority:
     EXCEPTION: AUSNAHME
     EXCEPTION_LOWERCASE: Ausnahme
@@ -1433,6 +1437,7 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Widget klonen von
             DashboardImportDetails:
+              DashboardImportTitle: Dashboard {0}
               FileInfomation: Dateiinformationen
               ImportPrivate: Privates Dashboard importieren
               ImportPublic: Öffentliches Dashboard importieren
@@ -1541,6 +1546,7 @@ Labels:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
       CATEGORY: Kategorie
+      COMPLETED: Abgeschlossenes Datum
       CREATED: Erstellt am
       DESCRIPTION: Beschreibung
       EXPIRY: Ablaufdatum

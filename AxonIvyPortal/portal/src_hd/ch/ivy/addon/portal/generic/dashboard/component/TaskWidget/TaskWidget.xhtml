@@ -135,7 +135,9 @@
           </h:panelGroup>
           
           <h:panelGroup rendered="#{column.field eq 'actions'}" id="action-cell-item">
-            <ui:include src="ActionsCell.xhtml" />
+            <ui:include src="ActionsCell.xhtml">
+              <ui:param name="destroyTaskDialogComponent" value="destroy-task-confirmation-dialog" />
+            </ui:include>
           </h:panelGroup>
           
         </p:columns>

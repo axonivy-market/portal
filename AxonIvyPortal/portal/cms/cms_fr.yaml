@@ -198,7 +198,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: Application tierce
     currentValue: Valeur actuelle
-    defaultApplicationName: Axon Ivy
     defaultValue: Valeur par défaut
     deleteAppConfirmation: Etes-vous sûr de vouloir supprimer cette application ?
     dialogclosinginformation:
@@ -211,7 +210,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     emptySupportedLanguages: Il n'y a pas langue supplémentaire supportée
     globalVariableNote:
       AppleStoreURL: Définir l'URL pour télécharger l'application mobile Axon Ivy sur l'Apple Store.
-      ApplicationName: Le nom de l'application par défaut qui sera affiché dans le titre de la page.
+      ApplicationName: Le nom de l'application qui sera affiché dans le titre de la page.
       BaseQRCodeUrl: Définir l'URL de base du code QR à afficher.
       DefaultThemeMode: Le mode de thème par défaut de l'application
       EnableSwitchThemeModeButton: Défini à true pour activer le bouton de changement de thème.
@@ -367,7 +366,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PIN: Épingler
       STATE: Etat
     deletionNoteContent: Ce dossier a été supprimé par {0}
-    destroyCaseMessage: Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer ce dossier et toutes les tâches associées ?
+    destroyCaseMessage: 'Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer dossier <b>{0} (ID: {1})</b> et toutes les tâches associées ?'
     destroyfail: Une erreur est survenue lors de la suppression du dossier.
     destroysucceed: Le dossier a été supprimé avec succès
     downloadZipFileExplanation: Le nombre de cas à exporter dépasse la limite des lignes Excel. Par conséquent, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
@@ -380,6 +379,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'Dossier #{0} {1}'
     relatedCases: Cas connexes
     title: Titre
+    unknownCase: Cas inconnu
+    unknownId: Inconnu Id
   caseState:
     CREATED: Créé
     CREATED_UPPERCASE: CRÉÉ
@@ -1205,6 +1206,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ACTIVATOR: Responsable
       APPLICATION: Application
       CATEGORY: 'Catégorie '
+      COMPLETED: Fini le
       COMPLETED_ON: Fini le
       CREATION_TIME: Créé
       EXPIRY_TIME: Délai
@@ -1217,7 +1219,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Filtre par défaut
-    destroyTaskMessage: Cette opération ne peut être annulée. Êtes-vous sûr de vouloir détruire cette tâche ?
+    destroyTaskMessage: 'Cette opération ne peut être annulée. Êtes-vous sûr de vouloir détruire cette tâche <b>{0} (ID: {1})</b> ?'
     headerTitle:
       relatedStatisticHeader: 'Tâches du diagramme:'
       relatedTasksHeader: Tâches associées au dossier
@@ -1241,6 +1243,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Priorité (faible à élevée)
     triggerEscalationNote: 'L''escalade a été déclenchée par {0} ({1}) de la tâche #{2}.'
     type: Type
+    unknownId: ID inconnu
+    unknownTask: Tâche inconnue
   taskPriority:
     EXCEPTION: EXCEPTION
     EXCEPTION_LOWERCASE: Exception
@@ -1461,6 +1465,7 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Cloner le widget depuis
             DashboardImportDetails:
+              DashboardImportTitle: Dashboard {0}
               FileInfomation: Informations sur le fichier
               ImportPrivate: Importer un tableau de bord privé
               ImportPublic: Importer un tableau de bord public
@@ -1569,6 +1574,7 @@ Labels:
       ACTIONS: Actions
       APPLICATION: Application
       CATEGORY: Catégorie
+      COMPLETED: Date de fin
       CREATED: Date de création
       DESCRIPTION: Description
       EXPIRY: Délai

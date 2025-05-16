@@ -135,6 +135,8 @@ The basic JSON structure of a Task widget
 
             - ``startTimestamp``: created date and time of the task
 
+            - ``endTimestamp``: end date and time of the task
+
             - ``expiryTimestamp``: expiry date and time of the task
             
             - ``actions``: for further actions: access task details, reset task, delegate task, reserve, destroy task, trigger escalation task and add Ad-hoc task

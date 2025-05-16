@@ -198,7 +198,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: Aplicación de terceros
     currentValue: Valor actual
-    defaultApplicationName: Axon Ivy
     defaultValue: Valor estándard
     deleteAppConfirmation: ¿Seguro que quiere eliminar esta aplicación?
     dialogclosinginformation:
@@ -211,7 +210,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     emptySupportedLanguages: No se admiten idiomas adicionales
     globalVariableNote:
       AppleStoreURL: Establezca la URL para descargar la aplicación móvil Axon Ivy en Apple Store.
-      ApplicationName: El nombre por defecto de la aplicación que se mostrará en el título de la página.
+      ApplicationName: El nombre de la aplicación que se mostrará en el título de la página.
       BaseQRCodeUrl: Establezca la URL base para mostrar el código QR.
       DefaultThemeMode: El modo de tema por defecto de la aplicación
       EnableSwitchThemeModeButton: Establecer en true para habilitar el botón de cambio de tema.
@@ -370,7 +369,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       PIN: Fijar
       STATE: 'Estatus '
     deletionNoteContent: El caso fue destruido por {0}
-    destroyCaseMessage: Esta operación no se puede deshacer. ¿Está seguro de que quiere destruir este caso y todas sus tareas?
+    destroyCaseMessage: 'Esta operación no se puede deshacer. ¿Está seguro de que quiere destruir el caso <b>{0} (ID: {1})</b> y todas sus tareas?'
     destroyfail: El caso no ha sido destruido con éxito.
     destroysucceed: El caso ha sido destruido con éxito.
     downloadZipFileExplanation: El número de casos a exportar excede el límite de las filas de Excel. Por lo tanto, los datos serán divididos en múltiples archivos de Excel, luego comprimidos en un archivo ZIP para ser descargados.
@@ -383,6 +382,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'Caso # {0} {1}'
     relatedCases: Casos relacionados
     title: Título
+    unknownCase: Caso desconocido
+    unknownId: Id desconocido
   caseState:
     CREATED: Creado
     CREATED_UPPERCASE: Creado
@@ -1208,6 +1209,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ACTIVATOR: Responsable
       APPLICATION: Aplicación
       CATEGORY: Categoría
+      COMPLETED: Completado en
       COMPLETED_ON: Completado en
       CREATION_TIME: Creado
       EXPIRY_TIME: Expiración
@@ -1220,7 +1222,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Filtro por defecto
-    destroyTaskMessage: Esta operación no se puede revocar. ¿Está seguro de que quiere destruir esta tarea?
+    destroyTaskMessage: 'Esta operación no se puede revocar. ¿Está seguro de que quiere destruir la tarea <b>{0} (ID: {1})</b>?'
     headerTitle:
       relatedStatisticHeader: 'Tareas Relacionadas de la gráfica estadística:'
       relatedTasksHeader: Tareas relacionadas del caso
@@ -1244,6 +1246,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Prioridad (baja - alta)
     triggerEscalationNote: 'Escalación ha sido ejecutada por {0} ({1}) para la tarea #{2}'
     type: Tipo
+    unknownId: ID desconocida
+    unknownTask: Tarea desconocida
   taskPriority:
     EXCEPTION: Excepción
     EXCEPTION_LOWERCASE: Excepción
@@ -1422,6 +1426,7 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Clonar widget desde
             DashboardImportDetails:
+              DashboardImportTitle: Dashboard {0}
               FileInfomation: Informacion del archivo
               ImportPrivate: Importar panel privado
               ImportPublic: Importar panel público
@@ -1520,6 +1525,7 @@ Labels:
       ACTIONS: Acciones
       APPLICATION: Aplicación
       CATEGORY: Categoría
+      COMPLETED: Fecha de finalización
       CREATED: Fecha de creación
       DESCRIPTION: Descripción
       EXPIRY: Expiración
