@@ -94,6 +94,21 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
   }
   
   @Test
+  public void screenshotNumberChart() throws IOException {
+    redirectToRelativeLink(createDataCreatedDate);
+    redirectToRelativeLink(createDataForStatisticWidget);
+    redirectToRelativeLink(createDataFinishedDate);
+    redirectToRelativeLink(createCasesForCaseListCustomization);
+    createJSonFile("dashboard-has-one-number-chart.json", PortalVariable.DASHBOARD.key);
+    redirectToNewDashBoard();
+    ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitStatisticChartLoaded();
+    StatisticWidgetNewDashboardPage tasksByPriorWidget = newDashboardPage.selectStatisticChartWidget("Tasks By Priority");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-by-prior-number-chart", new ScreenshotMargin(5, 5));
+  }
+  
+  @Test
   public void screenshotCreateNewCustomStatistic() throws IOException {
     showNewDashboard();
     NewDashboardPage newDashboardPage = new NewDashboardPage();
@@ -112,4 +127,5 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     customStatisticConfigurationPage.waitForPageLoad();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "custom-statistic-widget-configuration-page");
   }
+
 }
