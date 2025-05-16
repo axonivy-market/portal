@@ -32,7 +32,6 @@ import com.axonivy.portal.migration.statistic.migrator.JsonDefaultStatisticMigra
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
@@ -208,13 +207,12 @@ public class StatisticService {
       String json = Ivy.var().get(CLIENT_STATISTIC_KEY);
       if (StringUtils.isNotBlank(json)) {
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode jsonNode = mapper.readTree(json);
-        JsonDefaultStatisticMigrator defaultStatisticMigrator = new JsonDefaultStatisticMigrator(jsonNode);
+        JsonDefaultStatisticMigrator defaultStatisticMigrator = new JsonDefaultStatisticMigrator(mapper.readTree(json));
         List<Statistic> defaultStatistics = BusinessEntityConverter.convertJsonNodeToList(defaultStatisticMigrator.migrate(), Statistic.class);
         Ivy.var().set(DEFAULT_STATISTIC_KEY, BusinessEntityConverter.entityToJsonValue(defaultStatistics));
 
         List<Statistic> customStatistics = BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
-        JsonCustomStatisticMigrator customStatisticMigrator = new JsonCustomStatisticMigrator(jsonNode);
+        JsonCustomStatisticMigrator customStatisticMigrator = new JsonCustomStatisticMigrator(mapper.readTree(json));
         List<Statistic> clientStatistics = BusinessEntityConverter.convertJsonNodeToList(customStatisticMigrator.migrate(), Statistic.class);
 
         Set<String> seenIds = new HashSet<>();
