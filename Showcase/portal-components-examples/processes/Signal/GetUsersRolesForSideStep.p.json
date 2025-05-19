@@ -1,0 +1,130 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "id" : "196E781F0B886363",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "Signal.GetUsersForSideStepData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "getUsersForSideStep()",
+      "config" : {
+        "signature" : "getUsersForSideStep"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 392, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "SubProcessCall",
+      "name" : "Find users for side steps",
+      "config" : {
+        "processCall" : "Ivy Data Processes/PortalComponentSecurityService:findUsers(String,Integer,Integer,java.util.List<String>,java.util.List<String>)",
+        "call" : {
+          "map" : {
+            "param.query" : "\"\"",
+            "param.startIndex" : "0",
+            "param.count" : "10"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.usersToDelegate" : "result.users"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1", "color" : "default" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "CallSubStart",
+      "name" : "getUsersForSideStep2()",
+      "config" : {
+        "signature" : "getUsersForSideStep2"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f10" }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 392, "y" : 192 }
+      }
+    }, {
+      "id" : "f10",
+      "type" : "Script",
+      "name" : "Get users for side steps",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.UserUtils;",
+            "",
+            "out.usersToDelegate = UserUtils.findUsers(\"\", 0, -1, [], []);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f12", "to" : "f9" }
+      ]
+    }, {
+      "id" : "f13",
+      "type" : "CallSubStart",
+      "name" : "getRolesForSideStep()",
+      "config" : {
+        "signature" : "getRolesForSideStep"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 312 }
+      },
+      "connect" : [
+        { "id" : "f16", "to" : "f17" }
+      ]
+    }, {
+      "id" : "f15",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 400, "y" : 312 }
+      }
+    }, {
+      "id" : "f17",
+      "type" : "SubProcessCall",
+      "name" : "Find roles for side steps",
+      "config" : {
+        "processCall" : "Ivy Data Processes/PortalComponentSecurityService:findRolesDTO()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.rolesToDelegate" : "result.roles"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 272, "y" : 312 }
+      },
+      "connect" : [
+        { "id" : "f18", "to" : "f15", "color" : "default" }
+      ]
+    } ]
+}
