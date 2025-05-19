@@ -750,7 +750,7 @@ $(document).ready(function () {
     }
   });
 
-  // HANDLE EXPAND BUTTON IN FILE REVIEW
+  // HANDLE EXPAND BUTTON IN FILE PREVIEW
   function handleExpandButtonInFilePreview(contentWindow) {
     contentWindow = contentWindow || window;
     var $document = $(contentWindow.document);
@@ -760,7 +760,6 @@ $(document).ready(function () {
         var dialog = contentWindow.PF('preview-document-dialog');
         const dialogElement = dialog.jq.get(0);
 
-        dialogElement.addEventListener('transitionend', adjustMediaHeight);
         dialogElement.addEventListener('animationend', adjustMediaHeight);
 
         const resizeObserver = new ResizeObserver(adjustMediaHeight);
@@ -782,16 +781,12 @@ $(document).ready(function () {
           }
         }
 
-/*        contentWindow.PF('preview-document-dialog').jq.on('dialogclose', function () {
-          resizeObserver.disconnect();
-        });*/
-
       }, 200);
     }
   }
 
   handleExpandButtonInFilePreview();
 
-  // END OF HANDLE EXPAND BUTTON IN FILE REVIEW
+  // END OF HANDLE EXPAND BUTTON IN FILE PREVIEW
 });
 // End of accessibility for shortcuts navigation
