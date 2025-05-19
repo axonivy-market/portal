@@ -41,6 +41,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
       case PRIORITY -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY";
       case RESPONSIBLE -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR";
       case CREATED -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME";
+      case COMPLETED -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/COMPLETED";
       case EXPIRY -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME";
       case STATE -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE";
       case CATEGORY -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY";
@@ -79,6 +80,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
           : taskItem.getActivator().getDisplayName();
       case ID -> String.valueOf(taskItem.getId());
       case CREATED -> taskItem.getStartTimestamp();
+      case COMPLETED -> taskItem.getEndTimestamp();
       case EXPIRY -> taskItem.getExpiryTimestamp();
       case STATE -> taskItem.getState();
       case CATEGORY -> taskItem.getCategory().getPath();

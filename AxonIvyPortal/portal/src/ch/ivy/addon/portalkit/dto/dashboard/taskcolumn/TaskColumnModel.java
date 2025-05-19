@@ -52,6 +52,8 @@ public class TaskColumnModel extends ColumnModel {
         return new StateColumnModel();
       } else if (equals(DashboardStandardTaskColumn.CREATED, field)) {
         return new CreatedDateColumnModel();
+      } else if (equals(DashboardStandardTaskColumn.COMPLETED, field)) {
+        return new CompletedDateColumnModel();
       } else if (equals(DashboardStandardTaskColumn.EXPIRY, field)) {
         return new ExpiryDateColumnModel();
       } else if (equals(DashboardStandardTaskColumn.CATEGORY, field)) {

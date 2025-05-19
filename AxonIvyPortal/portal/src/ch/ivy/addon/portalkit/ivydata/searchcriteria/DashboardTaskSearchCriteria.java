@@ -68,6 +68,20 @@ public class DashboardTaskSearchCriteria {
     }
   }
 
+  private void queryCompletedDate(TaskQuery query, Date from, Date to) {
+    if (from != null || to != null) {
+      TaskQuery subQuery = TaskQuery.create();
+      if (from != null) {
+        subQuery.where().endTimestamp().isGreaterOrEqualThan(from);
+      }
+
+      if (to != null) {
+        subQuery.where().endTimestamp().isLowerThan(DateUtils.addDays(to, 1));
+      }
+      query.where().and(subQuery);
+    }
+  }
+
   private void queryExpiryDate(TaskQuery query, Date from, Date to) {
     if (from != null || to != null) {
       TaskQuery subQuery = TaskQuery.create();
@@ -237,6 +251,9 @@ public class DashboardTaskSearchCriteria {
       } else if (equals(column, DashboardStandardTaskColumn.CREATED)) {
         queryCreatedDate(query, Dates.parse(filterFrom), Dates.parse(filterTo));
       
+      } else if (equals(column, DashboardStandardTaskColumn.COMPLETED)) {
+        queryCompletedDate(query, Dates.parse(filterFrom), Dates.parse(filterTo));
+
       } else if (equals(column, DashboardStandardTaskColumn.EXPIRY)) {
         queryExpiryDate(query, Dates.parse(filterFrom), Dates.parse(filterTo));
       
@@ -407,7 +424,8 @@ public class DashboardTaskSearchCriteria {
                                       DashboardStandardTaskColumn.NAME, 
                                       DashboardStandardTaskColumn.RESPONSIBLE, 
                                       DashboardStandardTaskColumn.ID, 
-                                      DashboardStandardTaskColumn.CREATED, 
+                                      DashboardStandardTaskColumn.CREATED,
+                                      DashboardStandardTaskColumn.COMPLETED,
                                       DashboardStandardTaskColumn.EXPIRY, 
                                       DashboardStandardTaskColumn.STATE);
       appendSortByCustomFieldIfSet(criteria);
@@ -428,6 +446,7 @@ public class DashboardTaskSearchCriteria {
             case RESPONSIBLE -> orderBy.activatorDisplayName();
             case ID -> order = orderBy.taskId();
             case CREATED -> order = orderBy.startTimestamp();
+            case COMPLETED -> order = orderBy.endTimestamp();
             case EXPIRY -> order = orderBy.expiryTimestamp();
             case STATE -> order = orderBy.state();
             default -> {}
