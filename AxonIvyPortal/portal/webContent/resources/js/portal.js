@@ -785,21 +785,20 @@ $(document).ready(function () {
   function handleExpandButtonInFilePreview(contentWindow) {
     contentWindow = contentWindow || window;
     var $document = $(contentWindow.document);
+
     if ($document.find('[id$=":preview-document-dialog"]').length) {
       setTimeout(function () {
         var dialog = contentWindow.PF('preview-document-dialog');
         const dialogElement = dialog.jq.get(0);
 
-        const resizeObserver = new ResizeObserver(function () {
-          adjustMediaHeight();
-        });
+        dialogElement.addEventListener('transitionend', adjustMediaHeight);
+        dialogElement.addEventListener('animationend', adjustMediaHeight);
 
+        const resizeObserver = new ResizeObserver(adjustMediaHeight);
         resizeObserver.observe(dialogElement);
 
         $document.on('click', '.ui-dialog-titlebar-maximize, .ui-dialog-titlebar-restore', function () {
-          setTimeout(function () {
-            adjustMediaHeight();
-          }, 120);
+          setTimeout(adjustMediaHeight, 100);
         });
 
         function adjustMediaHeight() {
@@ -814,15 +813,14 @@ $(document).ready(function () {
           }
         }
 
-
-        contentWindow.PF('preview-document-dialog').jq.on('dialogclose', function () {
+/*        contentWindow.PF('preview-document-dialog').jq.on('dialogclose', function () {
           resizeObserver.disconnect();
-        });
+        });*/
 
       }, 200);
-
     }
   }
+
 
   handleExpandButtonInFilePreview();
 
