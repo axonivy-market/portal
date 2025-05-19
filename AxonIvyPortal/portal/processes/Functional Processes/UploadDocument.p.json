@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "16AB53A8F6EAADFB",
   "kind" : "CALLABLE_SUB",
   "config" : {
@@ -67,7 +67,10 @@
       ],
       "visual" : {
         "at" : { "x" : 432, "y" : 112 },
-        "size" : { "width" : 632, "height" : 124 }
+        "size" : { "width" : 632, "height" : 124 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       },
       "connect" : [
         { "id" : "f6", "to" : "f0" }
@@ -224,10 +227,10 @@
           "config" : {
             "output" : {
               "code" : [
+                "import com.axonivy.portal.util.UploadDocumentUtils;",
                 "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
                 "import org.apache.commons.io.FileUtils;",
                 "import java.util.Arrays;",
-                "import ch.ivy.addon.portalkit.masterdata.MasterData;",
                 "",
                 "in.message = \"\";",
                 "in.status = UploadDocumentCheckStatus.OK;",
@@ -239,7 +242,7 @@
                 "  in.message = ivy.cms.co(\"/Dialogs/components/CaseDocument/emptyFileMessage\");",
                 "  in.status = UploadDocumentCheckStatus.FAIL;",
                 "} else {",
-                "  Long maxFileUploadSize = MasterData.getFileUploadSizeLimit();",
+                "  Long maxFileUploadSize = UploadDocumentUtils.getDocumentUploadSizeLimit();",
                 "  if (in.uploadedFile.getSize() > maxFileUploadSize) {",
                 "    in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize\", Arrays.asList(FileUtils.byteCountToDisplaySize(maxFileUploadSize)));",
                 "  }",

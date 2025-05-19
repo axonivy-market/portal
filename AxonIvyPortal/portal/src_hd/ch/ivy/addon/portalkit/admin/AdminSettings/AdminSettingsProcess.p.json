@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "150F0B4F8F3CB2CB",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -21,7 +21,7 @@
       "visual" : {
         "at" : { "x" : 132, "y" : 64 },
         "size" : { "width" : 20, "height" : 20 },
-        "labelOffset" : { "x" : 7, "y" : 35 }
+        "labelOffset" : { "x" : 7 }
       },
       "connect" : [
         { "id" : "f265", "to" : "f1" }
@@ -1172,13 +1172,13 @@
         "at" : { "x" : 704, "y" : 1184 }
       },
       "connect" : [
-        { "id" : "f18", "to" : "f8" }
+        { "id" : "f18", "to" : "f25" }
       ]
     }, {
       "id" : "f8",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 704, "y" : 1264 }
+        "at" : { "x" : 1032, "y" : 1184 }
       }
     }, {
       "id" : "f24",
@@ -1269,6 +1269,30 @@
       },
       "connect" : [
         { "id" : "f46", "to" : "f38" }
+      ]
+    }, {
+      "id" : "f25",
+      "type" : "Script",
+      "name" : "Invalidate cache when changed the cache timeout variable",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.IvyCacheService;",
+            "import ch.ivy.addon.portalkit.enums.PortalVariable;",
+            "",
+            "if (in.selectedSetting.key.contentEquals(PortalVariable.SESSION_CACHE_TIMEOUT.key)) {",
+            "  IvyCacheService.getInstance().invalidatePortalSessionCacheEntries();",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 888, "y" : 1185 },
+        "size" : { "width" : 160, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f52", "to" : "f8", "color" : "default" }
       ]
     } ],
   "layout" : {

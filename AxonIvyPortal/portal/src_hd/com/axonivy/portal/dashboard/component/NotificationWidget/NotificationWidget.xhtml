@@ -61,7 +61,7 @@
                       actionListener="#{widget.markAsRead(notification)}"
                       process="@this" partialSubmit="true"
                       global="false"
-                      onclick="markAsRead('#{widget.id}__#{notification.id}')"
+                      onclick="markAsRead('#{htmlSanitizerBean.escapeForJS(widget.id)}__#{htmlSanitizerBean.escapeForJS(notification.id)}')"
                       oncomplete="Portal.updateLayoutContent();"
                       update="#{unreadNotificationsId}">
                       <i class="notifications-indicator-icon fa #{notification.read ? '': 'fa-circle'}" id="#{widget.id}__#{notification.id}" />

@@ -20,7 +20,7 @@
   <c:set var="messageId" value="#{cc.attrs.messageId}" />
 
   <h:panelGroup id="number-filter-operator-panel" layout="block"
-    styleClass="md-inputfield ui-fluid">
+    styleClass="ui-fluid">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{cc.attrs.operators ne null ? cc.attrs.operators : widgetNumberFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
@@ -32,7 +32,7 @@
 
   <h:panelGroup id="number-panel" layout="block"
     rendered="#{widgetNumberFilterBean.renderSingleNumberFilter(filter)}"
-    styleClass="md-inputfield ui-fluid number-panel">
+    styleClass="ui-fluid number-panel">
     <p:inputNumber id="number" value="#{filter.value}" disabled="#{readOnly}"
       maxValue="999999999.99"
       minValue="-999999999.99"
@@ -49,7 +49,7 @@
 
   <h:panelGroup id="between-number-panel-from" layout="block"
     rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}"
-    styleClass="md-inputfield ui-fluid number-panel">
+    styleClass="ui-fluid number-panel">
     <p:inputNumber id="from-number" value="#{filter.from}" disabled="#{readOnly}"
       maxValue="999999999.99" minValue="-999999999.99"
       onkeypress="if (event.keyCode == 13) { return false; }">
@@ -71,7 +71,7 @@
 
   <h:panelGroup id="between-number-panel-to" layout="block"
     rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}"
-    styleClass="md-inputfield ui-fluid number-panel">
+    styleClass="ui-fluid number-panel">
     <p:inputNumber id="to-number" value="#{filter.to}" disabled="#{readOnly}"
       maxValue="999999999.99"
       minValue="-999999999.99"

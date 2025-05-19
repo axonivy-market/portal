@@ -95,7 +95,7 @@ public class TaskService {
   }
   
   protected TaskQuery queryExcludeSystemTasks() {
-    return TaskQuery.create().where().workerId().isNotEqual(ISecurityContext.current().users().system().getSecurityMemberId());
+    return TaskQuery.create().where().workerId().isNotEqual(ISecurityContext.current().users().system().getSecurityMemberId()).or().workerId().isNull();
   }
 
   protected TaskQuery queryExcludeHiddenTasks() {
@@ -245,7 +245,7 @@ public class TaskService {
       return expiryStatistic;
     }
 
-    private TaskQuery extendQueryWithUserHasPermissionToSee(
+  private TaskQuery extendQueryWithUserHasPermissionToSee(
         TaskSearchCriteria criteria) {
     TaskQuery cloneQuery = criteria.createQuery();
 

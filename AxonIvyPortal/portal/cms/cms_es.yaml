@@ -41,6 +41,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       saveAbsenceSetting: Configuración para ausencias guardada con éxito.
       updateAbsence: Ausencia actualizada con éxito
     absenceAndDeputy: Ausencias y sustituciones
+    activeAbsence: Ausencia activa
     allAbsences: Ausencias de todos los usuarios
     applicationAndRole: Aplicación y rol
     definedDeputies: Sustitutos definidos
@@ -77,6 +78,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     DashboardWidgetType:
       CASE: Widget del caso
       CUSTOM: Widget personalizado
+      NAVIGATION_DASHBOARD: Widget del panel de navegación
       NEW: Nuevo widget
       NEWS: Noticias
       NOTIFICATION: Notificaciones
@@ -85,6 +87,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       STATISTIC: Widget de estadísticas
       TASK: Widget de tareas
       WELCOME: Widget de bienvenida
+    DelegationAppendOption:
+      NONE: Ninguno
+      PARENT_NAME: Nombre de rol principal
     GlobalVariable:
       Option:
         DISPLAY_NAME: Nombre de pantalla
@@ -190,7 +195,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: Aplicación de terceros
     currentValue: Valor actual
-    defaultApplicationName: Axon Ivy
     defaultValue: Valor estándard
     deleteAppConfirmation: ¿Seguro que quiere eliminar esta aplicación?
     dialogclosinginformation:
@@ -203,10 +207,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     emptySupportedLanguages: No se admiten idiomas adicionales
     globalVariableNote:
       AppleStoreURL: Establezca la URL para descargar la aplicación móvil Axon Ivy en Apple Store.
-      ApplicationName: El nombre por defecto de la aplicación que se mostrará en el título de la página.
+      ApplicationName: El nombre de la aplicación que se mostrará en el título de la página.
       BaseQRCodeUrl: Establezca la URL base para mostrar el código QR.
       DefaultThemeMode: El modo de tema por defecto de la aplicación
-      EnableDocumentPreview: 'Establecer en "true" para habilitar la vista previa de documentos para ciertos tipos de archivos. Los tipos de archivos compatibles son: pdf, png, jpeg, jpg, txt, log.'
       EnableSwitchThemeModeButton: Establecer en true para habilitar el botón de cambio de tema.
       GlobalSearchScopeCategoriesNote: Definición de los tipos que buscará la búsqueda global
       GooglePlayURL: Establece la URL para descargar la aplicación móvil Axon Ivy en Google Play.
@@ -214,6 +217,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       RoleParentLimit: 'El número establecido controla la cantidad de roles padre que se muestra al filtrar los roles en la pestaña Gestión de roles. Número válido: 5, 10, 20'
       SearchScopeCaseFields: Definición de los campos que la búsqueda global utilizará para encontrar casos coincidentes además del Id de caso (esto puede influir en el rendimiento de la búsqueda)
       SearchScopeTaskFields: Definir los campos que la búsqueda global utilizará para encontrar tareas coincidentes junto al Id de tarea (esto puede influir en el rendimiento de la búsqueda).
+      SessionCacheTimeout: Tiempo de espera de la caché de sesión para el portal. Define el tiempo de expiración de la caché de sesión (en segundos) para el portal. Este valor puede establecerse entre 300 (5 minutos) y 86.400 (24 horas).
       ShowLoginPageFooter: Para activar/desactivar la visualización del pie de página en la página de acceso.
       ShowQRCode: Para activar/desactivar la visualización del código QR.
       behaviourWhenClickingOnLineInCaseList: Alternar entre acceder a los detalles del caso o los detalles del negocio al hacer clic en un caso en el widget de casos del panel de control, en la búsqueda global, en los casos relacionados y en el widget de procesos en modo combinado.
@@ -230,14 +234,17 @@ ch.ivy.addon.portalkit.ui.jsf:
       defaultSortDirectionOfTaskList: Dirección de clasificación por defecto de la lista de tareas
       defaultSortFieldOfCaseList: Campo de ordenación por defecto de la lista de casos
       defaultSortFieldOfTaskList: Campo de ordenación por defecto de la lista de tareas
+      delegationAppendOption: Esta configuración determina qué información adicional se incluye al formatear los nombres de los roles.
       disableCaseCount: Cambiar a "true" para desactivar la función contar casos en la lista de casos
       disableTaskCount: Cambiar a "true" para desactivar la función contar tareas en la lista de tareas
       displayAllUsersOfTaskActivator: Esta configuración se utiliza para la componente SecurityMemberDisplayName. Si el SecurityMember es un rol, cambie esta configuración a "true" para ver todos los usuarios de este rol. Si se configura "true", se muestra la información del icono junto al nombre del
         rol.
       displayMessageAfterFinishOrLeaveTask: Se mostrará un mensaje después de finalizar una tarea
+      documentUploadSizeLimit: Establece el límite de tamaño para la carga de documentos en megabytes (MB). El valor predeterminado es 20 MB.
       embedInFrame: Cambiar a "true" para abrir un proceso o tarea en modo iFrame
       enableCaseOwner: 'Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. '
       enableDeepLTranslation: Establezca esta propiedad en true para activar la traducción de DeepL
+      enableDocumentPreview: 'Establecer en "true" para habilitar la vista previa de documentos para ciertos tipos de archivos. Los tipos de archivos compatibles son: pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Cambie esta propiedad a "true" para activar el chat de grupos
       enablePrivateChat: Cambie esta propiedad a "true" para activar el chat privado
       enableProcessViewer: Defina esta propiedad como true para habilitar la opción de visor de procesos en las acciones de Tarea/Caso
@@ -258,6 +265,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       hideTimeNote: Cambiar a "true" para ocultar horas y minutos de la fecha.
       hideUploadDocumentForDoneCaseNote: Cambiar a "true" para impedir el upload de documentos después de que un caso esté terminado.
       hideYear: activar para ocultar el año, de lo contrario se mostrará.
+      imageUploadSizeLimit: Establece el límite de tamaño para la carga de imágenes en megabytes (MB). El valor predeterminado es 6 MB.
       loggedInUserFormat: Opción para definir el formato visible del usuario conectado
       refreshTaskListIntervalNote: Actualización de la lista de tareas en segundos
       showAvatar: Para activar/desactivar la visualización de los avatares de los usuarios/roles.
@@ -268,6 +276,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Cambiar a falso para desactivar el enlace "Más información" en la página de Procesos (modo cuadrícula) y Detalles del caso.
       showQuickGlobalSearch: Para activar/desactivar la visualización de la búsqueda global rápida.
       showTaskDurationTime: Activar o desactivar la visibilidad de la duración de la tarea en detalles de tarea.
+      showTooltipTechnicalName: Habilitar para mostrar el nombre técnico de los usuarios en los tooltips.
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
     key: Llave
     link: Enlazar
@@ -354,7 +363,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       OWNER: Responsables del proceso
       STATE: 'Estatus '
     deletionNoteContent: El caso fue destruido por {0}
-    destroyCaseMessage: Esta operación no se puede deshacer. ¿Está seguro de que quiere destruir este caso y todas sus tareas?
+    destroyCaseMessage: Esta operación no se puede deshacer. ¿Está seguro de que quiere destruir el caso <b>{0}</b> y todas sus tareas?
     destroyfail: El caso no ha sido destruido con éxito.
     destroysucceed: El caso ha sido destruido con éxito.
     downloadZipFileExplanation: El número de casos a exportar excede el límite de las filas de Excel. Por lo tanto, los datos serán divididos en múltiples archivos de Excel, luego comprimidos en un archivo ZIP para ser descargados.
@@ -367,6 +376,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'Caso # {0} {1}'
     relatedCases: Casos relacionados
     title: Título
+    unknownCase: Caso desconocido
+    unknownId: Id desconocido
   caseState:
     CREATED: Creado
     CREATED_UPPERCASE: Creado
@@ -415,6 +426,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     StringFormat:
       DateFromTo: '%s - %s'
       TextListOut: '%s, %s,..'
+      TextWithContextInBrackets: '%s (%s: %s)'
       TextWithRoundBracket: '%s (%s)'
     TaskCaseInformation: Informaciones de tarea y caso
     Update: Aktualizar
@@ -591,7 +603,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: El proceso
     timeInformation: Informaciones de tiempo
     timestamp: Marca de tiempo
-    topMenuItem: Elemento del menú superior
     type: Tipo
     typeAdmin: Todos los administradores
     typeAllUsers: Todos los usuarios
@@ -642,7 +653,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         UpdateRoleSuccess: Rol "{0}" actualizado con éxito
         UserOfRoleNotFound: Ningún usuario posee este rol
       NumberUsers: '{0} usuarios'
-      ParentRole: Papel de los padres
+      ParentRole: Rol superior
       RemovingRoleHeader: ¿Suprimir el papel "{0}"?
       RoleCreation: Creación de roles
       RoleDetails: Detalles de la función "{0}"
@@ -848,6 +859,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: Actualmente, no hay tareas adicionales disponibles.
         noTasksFoundWhenFilter: Actualmente no hay tareas después del filtro aplicado.
     loading: Cargando...
+    navigate: Navegue por
     noCategory: No hay categorías
     noDashboard: No hay tableros. Añadir al menos un tablero y widgets.
     noPermission: No tienes permisos para ver los dashboards.
@@ -889,13 +901,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Este widget muestra la información relevante de la tarea según la configuración definida.
     taskStart: Iniciar tarea
     taskWidgetConfiguration: Configuración del widget de tareas
-    topMenuItemInfo: Si la casilla "Elemento del menú superior" está marcada, el tablero aparece como un elemento de nivel superior en la barra de navegación, ordenado según su posición en la lista. Si no está marcada, aparece como un subelemento en "Dashboard", también ordenado por posición en la lista.
     widgetInfo: Información del widget
     widgetInfoIcon: Icono de información del widget
     widgetTitle: Título del widget
     widgetType: Tipo de widget
     yourCases: Sus casos
     yourCustomWidget: Su widget personalizado
+    yourNavigationDashboardWidget: Su widget del dashboard de navegación
     yourNotifications: Sus notificaciones
     yourProcessViewer: Su visor de procesos
     yourProcesses: Sus procesos
@@ -1190,6 +1202,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ACTIVATOR: Responsable
       APPLICATION: Aplicación
       CATEGORY: Categoría
+      COMPLETED: Completado en
       COMPLETED_ON: Completado en
       CREATION_TIME: Creado
       EXPIRY_TIME: Expiración
@@ -1225,6 +1238,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Prioridad (baja - alta)
     triggerEscalationNote: 'Escalación ha sido ejecutada por {0} ({1}) para la tarea #{2}'
     type: Tipo
+    unknownId: ID desconocida
+    unknownTask: Tarea desconocida
   taskPriority:
     EXCEPTION: Excepción
     EXCEPTION_LOWERCASE: Excepción
@@ -1342,6 +1357,8 @@ Dialogs:
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: Arrastrar y soltar para cambiar el orden.
                   DragAndDropTooltip: Haz clic en vista previa y arrastra y suelta para cambiar el orden
+                WelcomeDashboardWidget:
+                  WelcomeToAxon: Bienvenido a Axon Ivy Portal
         portalkit:
           component:
             CaseItemDetails:
@@ -1370,10 +1387,14 @@ Dialogs:
               ShareTaskDetails: Compartir detalles de la tarea
               TaskCompletedByOtherInfo: La tarea ya ha sido completada por el usuario <strong>{0}</strong> en {1}.
               TaskCompletedByYouInfo: Ya ha completado la tarea en {0}.
+            TaskItemGeneralInfo:
+              Expiry: Responsable de la caducidad
   com:
     axonivy:
       portal:
         component:
+          Responsibles:
+            Multiple: Múltiple
           ShareLinkDialog:
             CopyLink: Copiar enlace
             Link: Enlace
@@ -1397,12 +1418,19 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Clonar widget desde
             DashboardImportDetails:
+              DashboardImportTitle: Dashboard {0}
               FileInfomation: Informacion del archivo
               ImportPrivate: Importar panel privado
               ImportPublic: Importar panel público
               chooseAJsonFile: Elija un archivo json
             DashboardSharing:
               ShareDashboard: Compartir panel
+            NavigationDashboardWidgetConfiguration:
+              ButtonName: Nombre del botón
+              NavigationDashboardWidgetConfiguration: |+
+                Configuración del widget del dashboard de navegación
+
+              NavigationDashboardWidgetDescription: Este widget permite a los usuarios acceder directamente a un dashboard vinculado haciendo clic en un botón.
             NewsWidget:
               NewsContentPlaceHolder: Introduzca el contenido de las noticias
               NewsContentValidateMessage: El contenido de las noticias en {0} es necesario
@@ -1555,6 +1583,7 @@ Labels:
     ProcessParameterInfo: ''
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
+  AndMore: 'y {0} más...  '
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
   Configuration: Configuración
@@ -1578,6 +1607,7 @@ Labels:
       ACTIONS: Acciones
       APPLICATION: Aplicación
       CATEGORY: Categoría
+      COMPLETED: Fecha de finalización
       CREATED: Fecha de creación
       DESCRIPTION: Descripción
       EXPIRY: Expiración

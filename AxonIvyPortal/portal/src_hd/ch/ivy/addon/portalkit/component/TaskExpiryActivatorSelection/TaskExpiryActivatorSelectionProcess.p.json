@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "178DA0DE8672E8A1",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -177,8 +177,7 @@
         "guid" : "16EE8CC0919A3695"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 544 },
-        "labelOffset" : { "y" : 35 }
+        "at" : { "x" : 96, "y" : 544 }
       },
       "connect" : [
         { "id" : "f110", "to" : "f107" }
@@ -278,7 +277,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 448 },
-        "labelOffset" : { "x" : 3, "y" : 35 }
+        "labelOffset" : { "x" : 3 }
       },
       "connect" : [
         { "id" : "f4", "to" : "S30" }
@@ -378,6 +377,8 @@
           "config" : {
             "output" : {
               "code" : [
+                "import ch.ivy.addon.portalkit.util.TaskUtils;",
+                "import org.apache.commons.collections4.CollectionUtils;",
                 "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
                 "import org.apache.commons.lang.StringUtils;",
                 "",
@@ -388,8 +389,8 @@
                 "}",
                 "",
                 "String oldResponsibleName = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable\");",
-                "if (in.task.getExpiryActivator() != null) {",
-                "  oldResponsibleName = in.task.getExpiryActivator().getDisplayName();",
+                "if (!CollectionUtils.isEmpty(in.task.expiry().responsibles().all())) {",
+                "  oldResponsibleName = TaskUtils.toDisplayNameExpiryResponsible(in.task.expiry().responsibles());",
                 "}",
                 "String newResponsibleName = in.selectedActivator.getDisplayName();",
                 "",
@@ -483,7 +484,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 160 },
-        "labelOffset" : { "x" : 39, "y" : 35 }
+        "labelOffset" : { "x" : 39 }
       },
       "connect" : [
         { "id" : "f21", "to" : "S10" }

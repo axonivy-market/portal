@@ -7,9 +7,6 @@
     <ui:define name="title">Process History Component Example</ui:define>
     <ui:define name="content">
       <div class="layout-wrapper">
-      <h:form>
-        <ic:com.axonivy.portal.components.examples.internal.ThemeSelection serenityExampleLink="#{data.processHistoryExampleSerenityLink}" />
-      </h:form>
       <h:panelGroup rendered="#{data.showProcessHistoriesOfAlphaCompany}">
         <h1>Process history of Alpha Company</h1>
         <ic:com.axonivy.portal.components.ProcessHistory businessEntityId="alpha" chunkSize="12" dateTimePattern="dd.MM.yyyy" />

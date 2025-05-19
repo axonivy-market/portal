@@ -24,7 +24,6 @@ import com.axonivy.portal.enums.SearchScopeTaskField;
 
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
@@ -61,8 +60,6 @@ public class TaskSearchCriteria {
   private boolean isGlobalSearch;
   private boolean isGlobalSearchScope;
 
-  private List<TaskFilter> legacyFilters;
-
   @SuppressWarnings("deprecation")
   public TaskQuery createQueryToFindLatestTasks(TaskQuery taskQuery, Date timeStamp) {
     if (isAdminQuery) {
@@ -84,7 +81,6 @@ public class TaskSearchCriteria {
     }
 
     addTaskStateQuery(finalQuery);
-    addLegacyTaskFilterQuery(finalQuery);
 
     if (hasTaskId()) {
       finalQuery.where().and(queryForTaskId(getTaskId()));
@@ -124,22 +120,6 @@ public class TaskSearchCriteria {
   private void addTaskStateQuery(TaskQuery finalQuery) {
     if (hasIncludedStates()) {
       finalQuery.where().and(queryForStates(getIncludedStates()));
-    }
-  }
-
-  /**
-   * Append legacy filters of the old Task list
-   * 
-   * @param finalQuery
-   */
-  private void addLegacyTaskFilterQuery(TaskQuery finalQuery) {
-    if (CollectionUtils.isNotEmpty(legacyFilters)) {
-      for (TaskFilter filter : legacyFilters) {
-        TaskQuery subQuery = filter.buildQuery();
-        if (subQuery != null) {
-          finalQuery.where().and(subQuery);
-        }
-      }
     }
   }
 
@@ -513,13 +493,5 @@ public class TaskSearchCriteria {
 
   public void setOnlyShowOpenTask(boolean isOnlyShowOpenTask) {
     this.isOnlyShowOpenTask = isOnlyShowOpenTask;
-  }
-
-  public List<TaskFilter> getLegacyFilters() {
-    return legacyFilters;
-  }
-
-  public void setLegacyFilters(List<TaskFilter> legacyFilters) {
-    this.legacyFilters = legacyFilters;
   }
 }

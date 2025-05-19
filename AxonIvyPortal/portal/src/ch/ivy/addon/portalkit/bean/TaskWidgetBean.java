@@ -1,8 +1,5 @@
 package ch.ivy.addon.portalkit.bean;
 
-import static ch.ivyteam.ivy.workflow.TaskState.DELAYED;
-import static ch.ivyteam.ivy.workflow.TaskState.DESTROYED;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,14 +22,11 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
-import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
-import ch.ivy.addon.portalkit.taskfilter.impl.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
@@ -43,6 +37,7 @@ public class TaskWidgetBean implements Serializable {
   private Long taskListRefreshInterval;
   private Long expandedTaskId;
   private Long selectedTaskItemId;
+  private String selectedTaskName;
   private TaskLazyDataModel dataModel;
   private Boolean isTaskDetailOpenning;
   private boolean isShowFullTaskList;
@@ -86,33 +81,6 @@ public class TaskWidgetBean implements Serializable {
 
   public String createTaskDescriptionInTaskStart(String text) {
     return HtmlParser.extractTextFromHtml(text);
-  }
-
-  public boolean isDeleteFilterEnabledFor(TaskFilterData filterData) {
-    TaskFilterService filterService = new TaskFilterService();
-    return filterService.isDeleteFilterEnabledFor(filterData);
-  }
-
-  /**
-   * If Task State filter is selecting DELAYED or DESTROYED
-   * Then disable option save a filter for all user
-   * @param taskFilters is selected filters
-   */
-  public void verifyTaskStateFilter(List<TaskFilter> taskFilters) {
-    if (!PermissionUtils.checkReadAllTasksPermission()) {
-      isAdminTaskStateIncluded = false;
-      return;
-    }
-    for (TaskFilter filter : taskFilters) {
-      if (filter instanceof TaskStateFilter) {
-        TaskStateFilter taskStateFilter = (TaskStateFilter) filter;
-        if (!taskStateFilter.value().equals(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/all"))) {
-          isAdminTaskStateIncluded = taskStateFilter.getSelectedFilteredStates().contains(DELAYED)
-              || taskStateFilter.getSelectedFilteredStates().contains(DESTROYED);
-        }
-        break;
-      }
-    }
   }
 
   public boolean isAdminTaskStateIncluded() {
@@ -210,5 +178,33 @@ public class TaskWidgetBean implements Serializable {
   
   public boolean isShowGlobalSearchScope() {
     return GlobalSearchService.getInstance().isShowGlobalSearchByTasks();
+  }
+  
+  public String getSelectedTaskName() {
+    return this.selectedTaskName;
+  }
+  
+  public void setSelectedTaskName(String taskName) {
+    this.selectedTaskName = taskName;
+  }
+  
+  public void updateSelectedTaskName(String taskName) {
+    setSelectedTaskName(taskName);
+  }
+  
+  public void updateSelectedTask(Boolean isShowInTaskList, ITask task) {
+    if (isShowInTaskList) {
+      setSelectedTaskItemId(task.getId());
+      setSelectedTaskName(task.names().current());
+    }
+  }
+  
+  public String getDestroyTaskMessage() {
+    String taskName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/unknownTask");
+    String taskId = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/unknownId");
+    if (this.selectedTaskItemId != null && this.selectedTaskName != null) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage", List.of(this.selectedTaskName, this.selectedTaskItemId));
+    }
+    else return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage", List.of(taskName, taskId));
   }
 }

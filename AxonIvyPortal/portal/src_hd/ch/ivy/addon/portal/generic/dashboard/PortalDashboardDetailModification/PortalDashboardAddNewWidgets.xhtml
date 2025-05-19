@@ -241,6 +241,13 @@
        managedBean="#{dashboardDetailModificationBean}"
        componentToUpdate="widget-configuration-form"/>
    </c:if>
+   
+   <c:if test="#{widgetType eq 'NAVIGATION_DASHBOARD'}">
+     <ic:com.axonivy.portal.dashboard.component.NavigationDashboardWidgetConfiguration id="new-widget-configuration-component"
+       widget="#{widget}"
+       managedBean="#{dashboardDetailModificationBean}"
+       componentToUpdate="widget-configuration-form"/>
+   </c:if>
   </h:form>
 
   <f:facet name="footer">
