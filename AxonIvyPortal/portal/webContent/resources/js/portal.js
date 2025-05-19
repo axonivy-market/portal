@@ -758,13 +758,6 @@ $(document).ready(function () {
 
     if ($document.find('[id$=":preview-document-dialog"]').length) {
       setTimeout(function () {
-        var dialog = contentWindow.PF('preview-document-dialog');
-        const dialogElement = dialog.jq.get(0);
-
-        dialogElement.addEventListener('animationend', adjustMediaHeight);
-
-        const resizeObserver = new ResizeObserver(adjustMediaHeight);
-        resizeObserver.observe(dialogElement);
 
         $document.on('click', '.ui-dialog-titlebar-maximize, .ui-dialog-titlebar-restore', function () {
           setTimeout(adjustMediaHeight, 100);
