@@ -242,7 +242,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     embedInFrame: Démarrer un processus/une tâche en mode IFrame
     emptySupportedLanguages: Il n'y a pas langue supplémentaire supportée
     globalVariableNote:
-      ApplicationName: Le nom de l'application par défaut qui sera affiché dans le titre de la page.
+      ApplicationName: Le nom de l'application qui sera affiché dans le titre de la page.
       DefaultThemeMode: Le mode de thème par défaut de l'application
       EnableSwitchThemeModeButton: Défini à true pour activer le bouton de changement de thème.
       GlobalSearchScopeCategoriesNote: Définition des types recherchés par la recherche globale
