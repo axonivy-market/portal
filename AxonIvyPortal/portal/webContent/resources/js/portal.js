@@ -761,7 +761,6 @@ $(document).ready(function () {
         var dialog = contentWindow.PF('preview-document-dialog');
         const dialogElement = dialog.jq.get(0);
 
-        dialogElement.addEventListener('transitionend', adjustMediaHeight);
         dialogElement.addEventListener('animationend', adjustMediaHeight);
 
         const resizeObserver = new ResizeObserver(adjustMediaHeight);
@@ -782,10 +781,6 @@ $(document).ready(function () {
             media.css('height', '600px');
           }
         }
-
-/*        contentWindow.PF('preview-document-dialog').jq.on('dialogclose', function () {
-          resizeObserver.disconnect();
-        });*/
 
       }, 200);
     }
