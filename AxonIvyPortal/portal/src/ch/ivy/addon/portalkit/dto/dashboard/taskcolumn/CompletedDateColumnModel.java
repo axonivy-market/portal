@@ -41,13 +41,14 @@ public class CompletedDateColumnModel extends TaskColumnModel{
   }
 
   @Override
-  protected int getDefaultColumnWidth() {
-    return SMALL_WIDTH;
+  public int getDefaultColumnWidth() {
+    return NORMAL_WIDTH;
   }
+
 
   @Override
   public String getDefaultStyleClass() {
-    return "dashboard-tasks__end-date text-center widget-column";
+    return "dashboard-tasks__end-date u-text-align-center u-padding-0 widget-column";
   }
 
   @Override
