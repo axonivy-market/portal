@@ -1160,7 +1160,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noDescription: Keine Beschreibung vorhanden
     noNotes: Keine Notizen
     processingTime: Bearbeitungszeit
-    setDelayTimestamp: '{0} ({1}) hat die Verzügerungszeit des Tasks #{2} auf {3} gesetzt.'
+    setDelayTimestamp: '{0} ({1}) hat die Verzögerungszeit des Tasks #{2} auf {3} gesetzt.'
     setExpiryActivatorAndTimeNotes: '{0} und weisen Sie {1} als Aktivator für die Aufgabeneskalation zu'
     supportFileTypes: 'Unterstützte Dateitypen für Uploads: {0}'
     taskCategory: Aufgabenkategorie
@@ -1423,6 +1423,9 @@ Dialogs:
                 la sélection'
             CaseWidgetConfiguration:
               AddFilter: Filter hinzufügen
+            ClientStatisticWidget:
+              IdNotFound: Diagramm mit ID {0} nicht gefunden
+              NoPermissionChartMessage: Sie haben nicht die erforderliche Berechtigung, um diese Karte zu sehen.
             CloneWidgetDialog:
               Header: Clone widget "{0}"
               TargetDashboard: Target dashboard
