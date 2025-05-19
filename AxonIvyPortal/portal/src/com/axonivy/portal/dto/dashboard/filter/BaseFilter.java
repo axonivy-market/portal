@@ -33,8 +33,6 @@ public class BaseFilter implements Serializable{
   @JsonIgnore
   public static final String CREATED_DATE = "startTimestamp";
   @JsonIgnore
-  public static final String FINISHED_DATE = "endTimestamp";
-  @JsonIgnore
   public static final String DATE_FORMAT = "MM/dd/yyyy HH:mm";
   @JsonIgnore
   public static final String DATE_FORMAT_WITHOUT_TIME = "MM/dd/yyyy";
@@ -222,6 +220,11 @@ public class BaseFilter implements Serializable{
   @JsonIgnore
   public boolean isResponsible() {
     return DashboardStandardTaskColumn.RESPONSIBLE.getField().equals(getField());
+  }
+  
+  @JsonIgnore
+  public boolean isFinishedDateField() {
+    return DashboardStandardTaskColumn.COMPLETED.getField().equals(getField());
   }
   
   @JsonIgnore
