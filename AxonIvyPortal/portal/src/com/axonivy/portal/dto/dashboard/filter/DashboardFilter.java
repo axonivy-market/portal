@@ -44,11 +44,6 @@ public class DashboardFilter extends BaseFilter implements Serializable {
   }
 
   @JsonIgnore
-  public boolean isFinishedDateField() {
-    return FINISHED_DATE.equals(this.field);
-  }
-
-  @JsonIgnore
   public boolean isExpiryDateField() {
     return filterField instanceof TaskFilterFieldExpiryDate;
   }
