@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
@@ -57,7 +56,7 @@ public class DashboardCaseSearchCriteria {
       }
 
       if (to != null) {
-        subQuery.where().startTimestamp().isLowerThan(DateUtils.addDays(to, 1));
+        subQuery.where().startTimestamp().isLowerOrEqualThan(to);
       }
       query.where().and(subQuery);
     }
@@ -226,7 +225,7 @@ public class DashboardCaseSearchCriteria {
       }
 
       if (to != null) {
-        filterQuery.timestampField(field).isLowerThan(DateUtils.addDays(to, 1));
+        filterQuery.timestampField(field).isLowerOrEqualThan(to);
       }
     } else if (column.isText()) {
       queryTextField(filterQuery, field, configuredFilter);
@@ -250,7 +249,7 @@ public class DashboardCaseSearchCriteria {
       }
 
       if (to != null) {
-        subQuery.where().endTimestamp().isLowerThan(DateUtils.addDays(to, 1));
+        subQuery.where().endTimestamp().isLowerOrEqualThan(to);
       }
       query.where().and(subQuery);
     }
