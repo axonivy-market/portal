@@ -751,7 +751,7 @@ $(document).ready(function () {
     }
   });
 
-  // HANDLE EXPAND BUTTON IN FILE REVIEW
+  // HANDLE EXPAND BUTTON IN FILE PREVIEW
   function handleExpandButtonInFilePreview(contentWindow) {
     contentWindow = contentWindow || window;
     var $document = $(contentWindow.document);
@@ -793,7 +793,7 @@ $(document).ready(function () {
 
   handleExpandButtonInFilePreview();
 
-  // END OF HANDLE EXPAND BUTTON IN FILE REVIEW
+  // END OF HANDLE EXPAND BUTTON IN FILE PREVIEW
 });
 // End of accessibility for shortcuts navigation
 
