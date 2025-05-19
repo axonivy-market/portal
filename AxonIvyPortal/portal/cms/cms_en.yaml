@@ -1558,8 +1558,6 @@ Enums:
                 name: Activator name
               BUSINESS_RUNTIME:
                 name: Business runtime
-              BUSINESS_STATE:
-                name: State
               CATEGORY:
                 name: Category
               CREATOR_NAME:
@@ -1578,6 +1576,8 @@ Enums:
                 name: Responsibles
               START_TIMESTAMP:
                 name: Created date
+              STATE:
+                name: State
               WORKER_NAME:
                 name: Worker name
               WORKING_TIME:

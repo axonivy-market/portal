@@ -21,6 +21,7 @@ import org.apache.logging.log4j.util.Strings;
 import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
+import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.StatisticDto;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.AdditionalChartConfig;
@@ -268,8 +269,14 @@ public class StatisticService {
     // STANDARD FIELD
     // IF INTERVAL NOT NULL -> TIMESTAMP
     // OTHERWISE -> STRING
-    return chartAggregation.getInterval() == null ? chartAggregation.getField()
-        : chartAggregation.getField() + ":bucket:" + chartAggregation.getInterval().toString().toLowerCase();
+    return chartAggregation.getInterval() == null ? transformField(chartAggregation.getField()) : transformField(chartAggregation.getField()) + ":bucket:" + chartAggregation.getInterval().toString().toLowerCase();
+  }
+
+  private String transformField(String field) {
+    return switch (field) {
+    case StatisticConstants.STATE -> StatisticConstants.BUSSINESS_STATE;
+    default -> field;
+    };
   }
   
 }

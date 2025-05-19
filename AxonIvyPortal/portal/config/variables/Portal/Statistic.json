@@ -618,7 +618,7 @@
         "id": "7",
         "version": "13.1.0",
         "statisticAggregation": {
-            "field": "businessState",
+            "field": "state",
             "type": "standard"
         },
         "filters": [
@@ -820,7 +820,7 @@
         "id": "10",
         "version": "13.1.0",
         "statisticAggregation": {
-            "field": "businessState",
+            "field": "state",
             "type": "standard"
         },
         "filters": [
