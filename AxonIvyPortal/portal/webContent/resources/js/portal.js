@@ -778,5 +778,45 @@ $(document).ready(function () {
     }
     registerSearchIconClick();
   });
+
+  // HANDLE EXPAND BUTTON IN FILE REVIEW
+  if ($('[id$=":preview-document-dialog"]').length) {
+    setTimeout(function () {
+      var dialog = PF('preview-document-dialog');
+      const dialogElement = dialog.jq.get(0);
+
+      const resizeObserver = new ResizeObserver(function () {
+        adjustMediaHeight();
+      });
+
+      resizeObserver.observe(dialogElement);
+
+      $(document).on('click', '.ui-dialog-titlebar-maximize, .ui-dialog-titlebar-restore', function () {
+        setTimeout(function () {
+          adjustMediaHeight();
+        }, 50);
+      });
+
+      function adjustMediaHeight() {
+        var dialog = PF('preview-document-dialog').jq;
+        var media = dialog.find('.ui-widget-content').find('.ui-g-12 object');
+
+        if (dialog.hasClass('ui-dialog-maximized')) {
+          var newHeight = dialog.height() - 130;
+          media.css('height', newHeight + 'px');
+        } else {
+          media.css('height', '600px');
+        }
+
+      }
+
+      PF('preview-document-dialog').jq.on('dialogclose', function () {
+        resizeObserver.disconnect();
+      });
+
+    }, 200);
+
+  }
+  // END OF HANDLE EXPAND BUTTON IN FILE REVIEW
 });
 // End of accessibility for shortcuts navigation
