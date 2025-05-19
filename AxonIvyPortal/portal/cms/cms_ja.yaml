@@ -1547,8 +1547,6 @@ Enums:
                 name: TODO Activator name
               BUSINESS_RUNTIME:
                 name: TODO Business runtime
-              BUSINESS_STATE:
-                name: TODO State
               CATEGORY:
                 name: TODO Category
               CREATOR_NAME:
@@ -1567,6 +1565,8 @@ Enums:
                 name: TODO Responsibles
               START_TIMESTAMP:
                 name: TODO Created date
+              STATE:
+                name: TODO State
               WORKER_NAME:
                 name: TODO Worker name
               WORKING_TIME:

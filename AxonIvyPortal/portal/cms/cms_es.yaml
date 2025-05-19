@@ -1513,8 +1513,6 @@ Enums:
                 name: Nombre del activador
               BUSINESS_RUNTIME:
                 name: Tiempo de ejecución
-              BUSINESS_STATE:
-                name: Estado
               CATEGORY:
                 name: Categoría
               CREATOR_NAME:
@@ -1533,6 +1531,8 @@ Enums:
                 name: Responsables
               START_TIMESTAMP:
                 name: Fecha de creación
+              STATE:
+                name: Estado
               WORKER_NAME:
                 name: Nombre del trabajador
               WORKING_TIME:
