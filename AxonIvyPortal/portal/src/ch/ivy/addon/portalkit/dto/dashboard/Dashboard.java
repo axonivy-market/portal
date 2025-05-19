@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 
@@ -32,14 +33,14 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
   private List<SecurityMemberDTO> permissionDTOs;
   @JsonIgnore
   private String displayedPermission;
-  private Boolean isTopMenu;
-
+  private DashboardDisplayType dashboardDisplayType;
+  
   @JsonIgnore
   private Boolean isResponsive;
 
   public Dashboard() {
     // Set default values
-    isTopMenu = false;
+    dashboardDisplayType = DashboardDisplayType.SUB_MENU;
     isResponsive = false;
   }
 
@@ -56,7 +57,7 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     permissions = dashboard.permissions;
     permissionDTOs = dashboard.permissionDTOs;
     displayedPermission = dashboard.displayedPermission;
-    isTopMenu = dashboard.isTopMenu;
+    dashboardDisplayType = dashboard.dashboardDisplayType;
     isResponsive = dashboard.isResponsive;
   }
   
@@ -142,14 +143,6 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     this.templateId = templateId;
   }
 
-  public Boolean getIsTopMenu() {
-    return isTopMenu;
-  }
-
-  public void setIsTopMenu(Boolean isTopMenu) {
-    this.isTopMenu = isTopMenu;
-  }
-
   @JsonIgnore
   public Boolean getIsResponsive() {
     return isResponsive;
@@ -166,6 +159,14 @@ public class Dashboard extends AbstractConfiguration implements Serializable {
     int result = 1;
     result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
     return result;
+  }
+  
+  public DashboardDisplayType getDashboardDisplayType() {
+    return this.dashboardDisplayType;
+  }
+  
+  public void setDashboardDisplayType(DashboardDisplayType dashboardDisplayType) {
+    this.dashboardDisplayType = dashboardDisplayType;
   }
 
   @Override

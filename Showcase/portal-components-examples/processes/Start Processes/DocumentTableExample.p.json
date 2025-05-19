@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "1818938E7EBC9329",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.DocumentTableExampleData"
@@ -88,91 +88,5 @@
       "visual" : {
         "at" : { "x" : 576, "y" : 192 }
       }
-    }, {
-      "id" : "f10",
-      "type" : "DialogCall",
-      "name" : "DocumentTableExampleSerenity",
-      "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.serenity.DocumentTableExampleSerenity:start()"
-      },
-      "visual" : {
-        "at" : { "x" : 328, "y" : 320 },
-        "size" : { "width" : 192 }
-      },
-      "connect" : [
-        { "id" : "f14", "to" : "f11" }
-      ]
-    }, {
-      "id" : "f11",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 576, "y" : 320 }
-      }
-    }, {
-      "id" : "f12",
-      "type" : "RequestStart",
-      "name" : "showDefaultDocumentTableExampleSerenity.ivp",
-      "config" : {
-        "signature" : "showDefaultDocumentTableExampleSerenity",
-        "request" : {
-          "name" : "Show Default Document Table Example in Serenity theme",
-          "isVisibleOnStartList" : false
-        },
-        "case" : {
-          "customFields" : [
-            { "name" : "custom", "type" : "STRING", "value" : "\"true\"" }
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 320 },
-        "labelOffset" : { "x" : 84, "y" : 42 }
-      },
-      "connect" : [
-        { "id" : "f13", "to" : "f10" }
-      ]
-    }, {
-      "id" : "f15",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 576, "y" : 448 }
-      }
-    }, {
-      "id" : "f16",
-      "type" : "RequestStart",
-      "name" : "showCustomizedDocumentTableExampleSerenity.ivp",
-      "config" : {
-        "signature" : "showCustomizedDocumentTableExampleSerenity",
-        "request" : {
-          "name" : "Show Customized Document Table Example in Serenity theme",
-          "isVisibleOnStartList" : false
-        },
-        "case" : {
-          "customFields" : [
-            { "name" : "custom", "type" : "STRING", "value" : "\"true\"" }
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 448 },
-        "labelOffset" : { "x" : 98, "y" : 42 }
-      },
-      "connect" : [
-        { "id" : "f18", "to" : "f17" }
-      ]
-    }, {
-      "id" : "f17",
-      "type" : "DialogCall",
-      "name" : "CustomizedDocumentTableExampleSerenity",
-      "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.serenity.CustomizedDocumentTableExampleSerenity:start()"
-      },
-      "visual" : {
-        "at" : { "x" : 328, "y" : 448 },
-        "size" : { "width" : 256 }
-      },
-      "connect" : [
-        { "id" : "f19", "to" : "f15" }
-      ]
     } ]
 }

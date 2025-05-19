@@ -11,7 +11,6 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.enums.dashboard.filter.FilterFormat;
 import com.axonivy.portal.util.filter.field.FilterField;
-import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldFinishedDate;
 import com.axonivy.portal.util.filter.field.caze.custom.CaseFilterFieldCustomTimestamp;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldExpiryDate;
 import com.axonivy.portal.util.filter.field.task.custom.TaskFilterFieldCustomTimestamp;
@@ -46,7 +45,7 @@ public class DashboardFilter extends BaseFilter implements Serializable {
 
   @JsonIgnore
   public boolean isFinishedDateField() {
-    return filterField instanceof CaseFilterFieldFinishedDate;
+    return FINISHED_DATE.equals(this.field);
   }
 
   @JsonIgnore

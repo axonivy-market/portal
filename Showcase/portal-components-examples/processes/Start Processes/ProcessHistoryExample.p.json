@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "1818977D467E3129",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.ProcessHistoryExampleData"
@@ -41,7 +41,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 128, "y" : 288 },
+        "at" : { "x" : 128, "y" : 168 },
         "labelOffset" : { "x" : 20 }
       },
       "connect" : [
@@ -61,7 +61,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 344, "y" : 288 }
+        "at" : { "x" : 344, "y" : 168 }
       },
       "connect" : [
         { "id" : "f7", "to" : "f6" }
@@ -79,7 +79,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 520, "y" : 288 },
+        "at" : { "x" : 520, "y" : 168 },
         "size" : { "width" : 144 }
       },
       "connect" : [
@@ -95,7 +95,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 704, "y" : 288 },
+        "at" : { "x" : 704, "y" : 168 },
         "labelOffset" : { "x" : 19, "y" : 36 }
       },
       "connect" : [
@@ -105,7 +105,7 @@
       "id" : "f9",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 800, "y" : 288 }
+        "at" : { "x" : 800, "y" : 168 }
       }
     }, {
       "id" : "f12",
@@ -122,7 +122,10 @@
       ],
       "visual" : {
         "at" : { "x" : 1200, "y" : 112 },
-        "size" : { "width" : 672, "height" : 168 }
+        "size" : { "width" : 672, "height" : 168 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       }
     }, {
       "id" : "f13",
@@ -155,7 +158,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 128, "y" : 416 },
+        "at" : { "x" : 128, "y" : 288 },
         "labelOffset" : { "x" : 26, "y" : 36 }
       },
       "connect" : [
@@ -175,7 +178,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 376, "y" : 416 },
+        "at" : { "x" : 376, "y" : 288 },
         "size" : { "width" : 176 }
       },
       "connect" : [
@@ -185,7 +188,7 @@
       "id" : "f18",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 800, "y" : 416 }
+        "at" : { "x" : 800, "y" : 288 }
       }
     }, {
       "id" : "f20",
@@ -201,7 +204,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 128, "y" : 640 },
+        "at" : { "x" : 128, "y" : 392 },
         "labelOffset" : { "x" : 13 }
       },
       "connect" : [
@@ -221,7 +224,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 344, "y" : 640 }
+        "at" : { "x" : 344, "y" : 392 }
       },
       "connect" : [
         { "id" : "f24", "to" : "f23" }
@@ -241,7 +244,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 536, "y" : 640 },
+        "at" : { "x" : 536, "y" : 392 },
         "size" : { "width" : 176 }
       },
       "connect" : [
@@ -251,7 +254,7 @@
       "id" : "f25",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 800, "y" : 640 }
+        "at" : { "x" : 800, "y" : 392 }
       }
     }, {
       "id" : "f27",
@@ -261,7 +264,7 @@
         "signalCode" : "ch:axonivy:portal:example:createbetacompany"
       },
       "visual" : {
-        "at" : { "x" : 128, "y" : 736 },
+        "at" : { "x" : 128, "y" : 488 },
         "labelOffset" : { "x" : 25, "y" : 37 }
       },
       "connect" : [
@@ -280,7 +283,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 520, "y" : 736 },
+        "at" : { "x" : 520, "y" : 488 },
         "size" : { "width" : 144 }
       },
       "connect" : [
@@ -296,7 +299,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 704, "y" : 736 },
+        "at" : { "x" : 704, "y" : 488 },
         "labelOffset" : { "x" : 14, "y" : 36 }
       },
       "connect" : [
@@ -306,7 +309,7 @@
       "id" : "f32",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 800, "y" : 736 }
+        "at" : { "x" : 800, "y" : 488 }
       }
     }, {
       "id" : "f34",
@@ -322,106 +325,20 @@
         "2. Run viewProcessHistoryOfBetaCompany.ivp process, then click \"Open process history dialog\" button. Process history of Beta company will be shown"
       ],
       "visual" : {
-        "at" : { "x" : 1280, "y" : 488 },
-        "size" : { "width" : 832, "height" : 176 }
+        "at" : { "x" : 1280, "y" : 360 },
+        "size" : { "width" : 832, "height" : 176 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       }
-    }, {
-      "id" : "f35",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 800, "y" : 192 }
-      }
-    }, {
-      "id" : "f36",
-      "type" : "RequestStart",
-      "name" : "viewProcessHistoryOfAlphaCompanySerenity.ivp",
-      "config" : {
-        "signature" : "viewProcessHistoryOfAlphaCompanySerenity",
-        "request" : {
-          "name" : "View Process History of Alpha Company in new page (Serenity theme)",
-          "isVisibleOnStartList" : false
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 128, "y" : 192 },
-        "size" : { "width" : 32, "height" : 32 },
-        "labelOffset" : { "x" : 47, "y" : 38 }
-      },
-      "connect" : [
-        { "id" : "f39", "to" : "f37" }
-      ]
-    }, {
-      "id" : "f37",
-      "type" : "DialogCall",
-      "name" : "Alpha Company Process History",
-      "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.serenity.ProcessHistoryExampleSerenity:start(Boolean,Boolean)",
-        "call" : {
-          "map" : {
-            "param.showProcessHistoriesOfAlphaCompany" : "true",
-            "param.showProcessHistoriesOfBetaCompany" : "false"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 384, "y" : 192 },
-        "size" : { "width" : 192 }
-      },
-      "connect" : [
-        { "id" : "f38", "to" : "f35" }
-      ]
-    }, {
-      "id" : "f40",
-      "type" : "DialogCall",
-      "name" : "Beta Company Process History",
-      "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.serenity.ProcessHistoryExampleSerenity:start(Boolean,Boolean)",
-        "call" : {
-          "map" : {
-            "param.showProcessHistoriesOfAlphaCompany" : "false",
-            "param.showProcessHistoriesOfBetaCompany" : "true"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 376, "y" : 544 },
-        "size" : { "width" : 176 }
-      },
-      "connect" : [
-        { "id" : "f44", "to" : "f41" }
-      ]
-    }, {
-      "id" : "f41",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 800, "y" : 544 }
-      }
-    }, {
-      "id" : "f42",
-      "type" : "RequestStart",
-      "name" : "viewProcessHistoryOfBetaCompanySerenity.ivp",
-      "config" : {
-        "signature" : "viewProcessHistoryOfBetaCompanySerenity",
-        "request" : {
-          "name" : "View Process history of beta company in dialog (Serenity theme)",
-          "isVisibleOnStartList" : false
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 128, "y" : 544 },
-        "labelOffset" : { "x" : 48, "y" : 36 }
-      },
-      "connect" : [
-        { "id" : "f43", "to" : "f40" }
-      ]
     } ],
   "layout" : {
     "lanes" : [ {
         "name" : "Alpha",
-        "size" : 352
+        "size" : 231
       }, {
         "name" : "Beta",
-        "size" : 448
+        "size" : 312
       } ]
   }
 }

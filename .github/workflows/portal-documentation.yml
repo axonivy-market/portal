@@ -1,5 +1,18 @@
-name: Portal Documentation
-run-name: 📚 Portal Documentation
+name: Documentation
+run-name: 📚 Documentation
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  issues: write
+  packages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
+  discussions: write
+  pages: write
 on:
   workflow_dispatch:
     inputs:
@@ -41,7 +54,7 @@ jobs:
           echo "Version is $VERSION"
       
       - name: Download artifacts from screenshot workflow
-        uses: dawidd6/action-download-artifact@v8
+        uses: dawidd6/action-download-artifact@v9
         with:
           workflow: portal-document-screenshot-test.yml
           name: screenshots

@@ -24,14 +24,14 @@
   <f:event listener="#{widgetStateFilterBean.init(filter, widgetType)}" type="preRenderComponent" />
 
   <h:panelGroup id="state-filter-operator-panel" layout="block"
-    styleClass="ui-fluid md-inputfield state-filter-operator-panel">
+    styleClass="ui-fluid state-filter-operator-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
         <f:selectItems value="#{cc.attrs.operators ne null ? cc.attrs.operators : widgetStateFilterBean.stateOperators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
       </p:selectOneMenu>
   </h:panelGroup>
 
-  <h:panelGroup id="states-list-panel" layout="block" styleClass="ui-fluid md-inputfield text-list-filter">
+  <h:panelGroup id="states-list-panel" layout="block" styleClass="ui-fluid text-list-filter">
     <p:selectCheckboxMenu id="states" value="#{filter.values}" multiple="true"
       filter="true" filterMatchMode="contains"
       panelStyleClass="task-configuration__selectcheckboxmenu-panel"

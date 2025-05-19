@@ -12,11 +12,13 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.BooleanUtils;
+import org.apache.commons.lang.StringUtils;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.enums.BasicDocumentType;
 import com.axonivy.portal.components.enums.DocumentType;
 import com.axonivy.portal.components.util.FacesMessageUtils;
+import com.axonivy.portal.util.UploadDocumentUtils;
 
 import ch.ivy.addon.portalkit.enums.ApplicationType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -24,7 +26,6 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
-import ch.ivy.addon.portalkit.masterdata.MasterData;
 import ch.ivy.addon.portalkit.service.CaseDocumentService;
 import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -36,8 +37,6 @@ public class MasterDataBean implements Serializable {
 
   private static final long serialVersionUID = 1L;
   private static final String APPLICATION_NAME = GlobalVariable.APPLICATION_NAME.getKey();
-  private static final String DEFAULT_APPLICATION_NAME =
-      Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/defaultApplicationName");
   private static final String PORTAL_NAME = Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalName/PortalName");
 
   public AwesomeIcon[] getAwesomeIcons() {
@@ -85,7 +84,7 @@ public class MasterDataBean implements Serializable {
   }
 
   public Long getFileUploadSizeLimit() {
-    return MasterData.getFileUploadSizeLimit();
+    return UploadDocumentUtils.getDocumentUploadSizeLimit();
   }
   
   public String getFileUploadInvalidSizeMessage() {
@@ -117,12 +116,14 @@ public class MasterDataBean implements Serializable {
   }
   
   public String getPortalApplicationName() {
+    if (StringUtils.isBlank(getApplicationName())) {
+      return PORTAL_NAME;
+    }
     return String.join(" - ", PORTAL_NAME, getApplicationName());
   }
 
   public String getApplicationName() {
-    String applicationName = Ivy.var().get(APPLICATION_NAME);
-    return applicationName.isBlank() ? DEFAULT_APPLICATION_NAME : applicationName;
+    return Ivy.var().get(APPLICATION_NAME);
   }
 
   public String getUserLanguage() {

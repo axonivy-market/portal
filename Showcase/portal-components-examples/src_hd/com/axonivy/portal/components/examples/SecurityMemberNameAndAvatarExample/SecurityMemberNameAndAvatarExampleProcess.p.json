@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "182A5FF24E046384",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -17,13 +17,13 @@
         "at" : { "x" : 96, "y" : 64 }
       },
       "connect" : [
-        { "id" : "f7", "to" : "f6" }
+        { "id" : "f2", "to" : "f1" }
       ]
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 352, "y" : 64 }
+        "at" : { "x" : 224, "y" : 64 }
       }
     }, {
       "id" : "f3",
@@ -44,24 +44,5 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 160 }
       }
-    }, {
-      "id" : "f6",
-      "type" : "Script",
-      "name" : "Init data",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
-            "",
-            "in.securityMemberNameAndAvatarSerenityExampleLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/SecurityMemberNameAndAvatarExample/showSecurityMemberNameAndAvatarExamplesSerenity.ivp\");"
-          ]
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 224, "y" : 64 }
-      },
-      "connect" : [
-        { "id" : "f2", "to" : "f1" }
-      ]
     } ]
 }

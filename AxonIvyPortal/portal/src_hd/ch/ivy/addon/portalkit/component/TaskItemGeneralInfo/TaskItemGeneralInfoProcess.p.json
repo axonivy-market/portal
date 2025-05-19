@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "15493A537A91F8FC",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -42,8 +42,7 @@
         "guid" : "16826946D7BC78E5"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 288 },
-        "labelOffset" : { "y" : 35 }
+        "at" : { "x" : 96, "y" : 288 }
       },
       "connect" : [
         { "id" : "f14", "to" : "f13" }
@@ -55,6 +54,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import org.apache.commons.collections4.CollectionUtils;",
             "import ch.ivy.addon.portalkit.util.TaskUtils;",
             "import java.util.Arrays;",
             "import org.apache.commons.lang3.StringUtils;",
@@ -64,10 +64,9 @@
             "// Behind the scene, Portal sets expiry activator to the current responsible",
             "// then set expiry time in case the task has expiry handler.",
             "boolean isUpdateExpiryActivator = false;",
-            "if (in.task.getExpiryActivator() == null &&",
-            "  StringUtils.isNotBlank(in.task.getExpiryTaskStartElementPid())) {",
-            "",
-            "  in.task.setExpiryActivator(in.task.getActivator());",
+            "if (CollectionUtils.isEmpty(in.task.expiry().responsibles().all()) &&",
+            "    StringUtils.isNotBlank(in.task.getExpiryTaskStartElementPid())) {",
+            "  TaskUtils.setResonsibleToExpiryResponsible(in.task);",
             "  isUpdateExpiryActivator = true;",
             "}",
             "",
@@ -85,7 +84,7 @@
             "}",
             "",
             "if (isUpdateExpiryActivator) {",
-            "  in.changeDeadlineNoteContent = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskDetails/setExpiryActivatorAndTimeNotes\", Arrays.asList(in.changeDeadlineNoteContent, in.task.getExpiryActivator().getDisplayName()));",
+            "  in.changeDeadlineNoteContent = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskDetails/setExpiryActivatorAndTimeNotes\", Arrays.asList(in.changeDeadlineNoteContent, TaskUtils.toDisplayNameExpiryResponsible(in.task.expiry().responsibles())));",
             "}"
           ]
         },

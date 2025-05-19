@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "181897243F2BFDD3",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.ProcessChainExampleData"
@@ -41,43 +41,5 @@
       "connect" : [
         { "id" : "f2", "to" : "f1" }
       ]
-    }, {
-      "id" : "f5",
-      "type" : "DialogCall",
-      "name" : "ProcessChainExampleSerenity",
-      "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.serenity.ProcessChainExampleSerenity:start()"
-      },
-      "visual" : {
-        "at" : { "x" : 296, "y" : 192 },
-        "size" : { "width" : 176 }
-      },
-      "connect" : [
-        { "id" : "f9", "to" : "f7" }
-      ]
-    }, {
-      "id" : "f6",
-      "type" : "RequestStart",
-      "name" : "showProcessChainExamplesSerenity.ivp",
-      "config" : {
-        "signature" : "showProcessChainExamplesSerenity",
-        "request" : {
-          "name" : "Process Chain Example in Serenity theme",
-          "isVisibleOnStartList" : false
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 192 },
-        "labelOffset" : { "x" : 59, "y" : 41 }
-      },
-      "connect" : [
-        { "id" : "f8", "to" : "f5" }
-      ]
-    }, {
-      "id" : "f7",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 448, "y" : 192 }
-      }
     } ]
 }

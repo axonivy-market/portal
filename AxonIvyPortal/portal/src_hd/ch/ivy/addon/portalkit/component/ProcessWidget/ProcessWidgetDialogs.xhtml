@@ -48,7 +48,7 @@
         <h:panelGrid styleClass="ui-g-12 u-no-padding-left" columns="2" columnClasses="edit-process-detail-1st-cell, edit-process-detail-2nd-cell">
           <!-- Process name -->
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}" />
-          <p:inplace editor="true" effectSpeed="fast" styleClass="md-inputfield external-link-edit-block"
+          <p:inplace editor="true" effectSpeed="fast" styleClass="external-link-edit-block"
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
             <f:facet name="output">
@@ -69,7 +69,7 @@
 
           <!-- Start link -->
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')}" />
-          <p:inplace editor="true" styleClass="md-inputfield external-link-edit-block" effectSpeed="fast"
+          <p:inplace editor="true" styleClass="external-link-edit-block" effectSpeed="fast"
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
             <f:facet name="output">
@@ -159,6 +159,8 @@
               dragDropSupport="true" auto="true" widgetVar="editExternalLinkUpload"
               update="file-upload-panel" 
               allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
+              sizeLimit="#{processWidgetBean.uploadFileLimit}"
+              invalidSizeMessage="#{processWidgetBean.getFileUploadInvalidSizeMessage()}"
               accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFailOnEditExternalLink('editExternalLinkUpload');"
               label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" oncomplete="hideExtendLinkPreviewLabel();"
               invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}" dropZone="edit-external-link-preview-image-panel"/>
@@ -356,6 +358,8 @@
           dragDropSupport="true" auto="true" update="file-upload-panel"
           allowTypes="/(\.|\/)(png|jpg|jpeg|svg)$/i"
           accept=".png,.jpg,.jpeg,.svg" onvalidationfailure="handleUploadFileFail('externalLinkUpload');"
+          sizeLimit="#{externalLinkBean.uploadFileLimit}"
+          invalidSizeMessage="#{externalLinkBean.getFileUploadInvalidSizeMessage()}"
           invalidFileMessage="#{ivy.cms.co('/Dialogs/components/CaseDocument/invalidFileMessage')}"
           dropZone="external-link-preview-image-panel" oncomplete="hideExtendLinkPreviewLabel();"/>
           

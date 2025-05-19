@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "18189AF10B521DF4",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.UserSelectionExampleData"
@@ -56,7 +56,7 @@
           "description" : "This task is created by User Selection Example",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
-            "activator" : "in1.selectedUser.getName()"
+            "script" : "in1.selectedUser.getName()"
           }
         }
       },
@@ -65,69 +65,6 @@
       },
       "connect" : [
         { "id" : "f2", "to" : "f1" }
-      ]
-    }, {
-      "id" : "f7",
-      "type" : "DialogCall",
-      "name" : "UserSelectionExampleSerenity",
-      "config" : {
-        "dialog" : "com.axonivy.portal.components.examples.serenity.UserSelectionExampleSerenity:start()",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.selectedUser" : "result.selectedUser"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 296, "y" : 192 },
-        "size" : { "width" : 176 }
-      },
-      "connect" : [
-        { "id" : "f13", "to" : "f10" }
-      ]
-    }, {
-      "id" : "f8",
-      "type" : "RequestStart",
-      "name" : "showUserSelectionExamplesSerenity.ivp",
-      "config" : {
-        "signature" : "showUserSelectionExamplesSerenity",
-        "request" : {
-          "name" : "User Selection Example in Serenity theme",
-          "isVisibleOnStartList" : false
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 192 },
-        "labelOffset" : { "x" : 49, "y" : 37 }
-      },
-      "connect" : [
-        { "id" : "f12", "to" : "f7" }
-      ]
-    }, {
-      "id" : "f9",
-      "type" : "TaskEnd",
-      "visual" : {
-        "at" : { "x" : 576, "y" : 192 }
-      }
-    }, {
-      "id" : "f10",
-      "type" : "TaskSwitchEvent",
-      "config" : {
-        "task" : {
-          "name" : "Task created by User Selection Example",
-          "description" : "This task is created by User Selection Example",
-          "responsible" : {
-            "type" : "USER_FROM_ATTRIBUTE",
-            "activator" : "in1.selectedUser.getName()"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 480, "y" : 192 }
-      },
-      "connect" : [
-        { "id" : "f11", "to" : "f9" }
       ]
     } ]
 }

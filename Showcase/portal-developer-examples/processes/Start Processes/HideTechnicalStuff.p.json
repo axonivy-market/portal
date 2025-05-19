@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "16583F0F73864543",
   "config" : {
     "data" : "com.axonivy.portal.developerexamples.Data"
@@ -196,7 +196,10 @@
       ],
       "visual" : {
         "at" : { "x" : 1056, "y" : 120 },
-        "size" : { "width" : 528, "height" : 124 }
+        "size" : { "width" : 528, "height" : 124 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       }
     }, {
       "id" : "f23",
@@ -210,7 +213,10 @@
       ],
       "visual" : {
         "at" : { "x" : 1168, "y" : 312 },
-        "size" : { "width" : 752, "height" : 92 }
+        "size" : { "width" : 752, "height" : 92 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       }
     }, {
       "id" : "f26",
@@ -225,7 +231,10 @@
       ],
       "visual" : {
         "at" : { "x" : 1278, "y" : 506 },
-        "size" : { "width" : 960, "height" : 108 }
+        "size" : { "width" : 960, "height" : 108 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       }
     }, {
       "id" : "f27",
@@ -280,14 +289,16 @@
             "description" : "Report and hide case",
             "responsible" : {
               "type" : "ROLE_FROM_ATTRIBUTE",
-              "activator" : "\"AXONIVY_PORTAL_ADMIN\""
+              "script" : "\"AXONIVY_PORTAL_ADMIN\""
             }
           }, {
             "id" : "TaskB",
             "name" : "Report",
             "description" : "Report but don't hide case. This task should be hidden if you run \"Report and hide case\" task.",
             "responsible" : {
-              "activator" : "CREATOR"
+              "roles" : [
+                "CREATOR"
+              ]
             }
           } ]
       },
@@ -331,7 +342,9 @@
           "description" : "A System task is hidden as default, grant SystemTaskReadAll permission to display all system task",
           "category" : "SystemTask/Hide",
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         }
       },
@@ -353,7 +366,10 @@
       ],
       "visual" : {
         "at" : { "x" : 1288, "y" : 760 },
-        "size" : { "width" : 960, "height" : 108 }
+        "size" : { "width" : 960, "height" : 108 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       }
     }, {
       "id" : "f35",
@@ -364,7 +380,9 @@
           "name" : " I'm a system task with delay",
           "description" : "A System task is hidden as default, grant SystemTaskReadAll permission to display all system task",
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           },
           "delay" : "ivy.cal.getWorkDayIn(new DateTime(), 3).getDurationFromNow()"
         }

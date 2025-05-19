@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="index" required="true" />
+  <cc:attribute name="widget" required="true" />
+  <cc:attribute name="managedBean" required="true" />
+  <cc:attribute name="isReadOnlyMode" default="false" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="index" value="#{cc.attrs.index}" />
+  <c:set var="widget" value="#{cc.attrs.widget}" />
+  <c:set var="panelId" value="navigation-widget-#{widget.id}-panel"/>
+  <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
+
+  <h:panelGroup id="#{panelId}" styleClass="card-widget-panel navigation-dashboard-widget-panel" layout="block">
+     <div>
+       <h:panelGroup id="widget-header-actions" styleClass="js-navigation-dashboard-widget flex justify-content-end align-items-center navigation-dashboard-widget-panel pt-3 pr-2" layout="block">
+         <p:commandButton id="edit-widget-#{index}"
+           icon="si si-pencil"
+           styleClass="rounded-button ui-button-outlined u-hidden-sm-down u-mar-right-5"
+           oncomplete="PF('new-widget-configuration-dialog').show()"
+           global="false"
+           actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
+           update="new-widget-configuration-dialog"
+           rendered="#{!isReadOnlyMode}"
+           process="@this"
+           partialSubmit="true" />
+         <p:tooltip for="edit-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}" trackMouse="true"
+           hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}"/>
+         <p:commandButton id="clone-widget-#{index}" type="button" icon="si si-copy-paste"
+           styleClass="rounded-button ui-button-outlined u-mar-right-5"
+           rendered="#{!isReadOnlyMode}">
+           <p:ajax event="click" listener="#{cloneWidgetBean.setCloneWidget(widget)}"
+             process="@(this)"
+             update="clone-widget-component:clone-to-dashboard-dialog"
+             oncomplete="PF('clone-to-dashboard-dialog').show();" />
+         </p:commandButton>
+         <p:tooltip for="clone-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CloneWidget')}"
+           trackMouse="true" hideEvent="mouseleave click" />
+         <p:commandButton id="delete-widget-#{index}"
+           icon="si si-bin-1"
+           styleClass="rounded-button ui-button-outlined ui-button-danger"
+           oncomplete="PF('remove-widget-dialog').show()"
+           global="false"
+           actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
+           update="remove-widget-dialog"
+           rendered="#{!isReadOnlyMode}"
+           process="@this"
+           partialSubmit="true" />
+         <p:tooltip for="delete-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}" trackMouse="true"
+           hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}"/>
+           
+       </h:panelGroup>
+     </div>
+       <h:panelGroup styleClass="navigation-dashboard-widget-info widget__content flex flex-column h-full align-items-center overflow-y-hidden" layout="block">
+          <div>
+              <i class="#{iconSelectionBean.generateIconWithFontFamily(widget.icon)} text-7xl"/>
+          </div>
+          <h:panelGroup styleClass="mt-3 w-full" layout="block">
+            <div class="mt-2 navigation-widget-title">
+                <h:outputText styleClass="font-bold" value="#{widget.name}" />
+            </div>
+            <div class="mt-2">
+                <h:outputText styleClass="flex justify-content-center" value="#{widget.description}" />
+            </div>
+          </h:panelGroup>
+       </h:panelGroup>
+       <div id="navigation-dashboard-widget-footer" class="ml-3 mr-3 mb-3 mt-3">
+         <p:commandButton id="navigate-dashboard-button" styleClass="ui-button w-full ui-button-text-only navigate-dashboard-button-truncate" disabled="#{navigationDashboardWidgetBean.isNotClickable(widget, isReadOnlyMode)}"
+                          action="#{navigationDashboardWidgetBean.redirectToDashboard(widget, dashboardBean.selectedDashboard)}"
+                          value="#{widget.buttonName}" />
+       </div>
+  </h:panelGroup>
+</cc:implementation>
+</html>

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "182E92730FF57035",
   "config" : {
     "data" : "com.axonivy.portal.components.examples.LeaveRequestProcessData"
@@ -55,7 +55,9 @@
         "task" : {
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createLeaveRequest\", [ivy.session.getSessionUser().getDisplayName()])%>",
           "responsible" : {
-            "activator" : "SELF"
+            "roles" : [
+              "SELF"
+            ]
           },
           "skipTasklist" : true
         },
@@ -84,7 +86,7 @@
           "name" : "<%=in.isApproved? ivy.cms.co(\"/Processes/LeaveRequest/approvalTask\") : ivy.cms.co(\"/Processes/LeaveRequest/rejectedTask\")%>",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
-            "activator" : "in.requester"
+            "script" : "in.requester"
           }
         }
       },
@@ -105,7 +107,7 @@
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/approvalTaskName\", [ivy.security.users().find(in.requester).getDisplayName()])%>",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
-            "activator" : "in.approver"
+            "script" : "in.approver"
           }
         },
         "output" : {
@@ -132,7 +134,10 @@
       ],
       "visual" : {
         "at" : { "x" : 928, "y" : 64 },
-        "size" : { "width" : 336 }
+        "size" : { "width" : 336, "height" : 60 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       },
       "connect" : [
         { "id" : "f3", "to" : "f29" }
@@ -143,7 +148,10 @@
       "name" : "Approval task for leave request, which is assigned to the selected approver in first task",
       "visual" : {
         "at" : { "x" : 1008, "y" : 288 },
-        "size" : { "width" : 480, "height" : 30 }
+        "size" : { "width" : 480, "height" : 30 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       },
       "connect" : [
         { "id" : "f2", "to" : "f23" }
@@ -157,7 +165,10 @@
       ],
       "visual" : {
         "at" : { "x" : 352, "y" : 64 },
-        "size" : { "width" : 528, "height" : 44 }
+        "size" : { "width" : 528, "height" : 44 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       },
       "connect" : [
         { "id" : "f1", "to" : "f25" }
@@ -171,7 +182,10 @@
       ],
       "visual" : {
         "at" : { "x" : 384, "y" : 288 },
-        "size" : { "width" : 608, "height" : 44 }
+        "size" : { "width" : 608, "height" : 44 },
+        "description" : "",
+        "color" : "",
+        "icon" : ""
       },
       "connect" : [
         { "id" : "f0", "to" : "f24" }
