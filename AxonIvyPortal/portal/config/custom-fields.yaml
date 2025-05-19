@@ -4,7 +4,6 @@ CustomFields:
       Label: Hide task custom field
       Description: Set HIDE to this custom field to mark a task as a hidden task on the Portal
       Type: STRING
-      UseForStatistic: false
   Cases:
     HIDE:
       Label: Hide case custom field
