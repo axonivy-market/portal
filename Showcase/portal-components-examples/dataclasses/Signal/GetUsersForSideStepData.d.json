@@ -1,0 +1,13 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
+  "simpleName" : "GetUsersForSideStepData",
+  "namespace" : "Signal",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "usersToDelegate",
+    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
+  }, {
+    "name" : "rolesToDelegate",
+    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"
+  } ]
+}

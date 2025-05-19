@@ -234,7 +234,7 @@
                   </div>
                 </div>
                 
-                <div class="col-12">
+                <h:panelGroup rendered="#{not empty sideStepProcessBean.stepTypes}" class="col-12">
                   <div class="p-inputgroup mb-3">
                     <span class="p-float-label">
                       <p:outputLabel for="leave-type" value="Step type" />
@@ -247,32 +247,42 @@
                       </p:selectOneMenu>
                     </span>
                   </div>
-                </div>
+                </h:panelGroup>
                 
-                <div class="col-12">
+                <h:panelGroup class="col-12">
                   <div class="p-inputgroup mb-3">
-                    <span class="p-float-label">
-                      <p:outputLabel for="approver" value="Assign to" />
-                      <p:selectOneMenu id="approver" value="#{sideStepProcessBean.assignee}" converter="pojoConverter" required="true"
+                    <h:panelGroup rendered="#{not empty sideStepProcessBean.sideStepInfo.users}" class="p-float-label">
+                      <p:outputLabel for="assignee" value="Assign to user" />
+                      <p:selectOneMenu id="assignee" value="#{sideStepProcessBean.assignee}" converter="pojoConverter" required="true"
                         styleClass="w-full">
                         <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                           itemValue="#{null}" noSelectionOption="true" />
-                        <f:selectItems value="#{sideStepProcessBean.approvers}" var="approver" itemLabel="#{approver.getDisplayName()}"
-                          itemValue="#{approver}" />
+                        <f:selectItems value="#{sideStepProcessBean.sideStepInfo.users}" var="user" itemLabel="#{user.getDisplayName()}"
+                          itemValue="#{user}" />
                       </p:selectOneMenu>
-                    </span>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{not empty sideStepProcessBean.sideStepInfo.roles}" class="p-float-label">
+                      <p:outputLabel for="assignee" value="Assign to role" />
+                      <p:selectOneMenu id="assigneRole" value="#{sideStepProcessBean.assignedRole}" converter="pojoConverter" required="true"
+                        styleClass="w-full">
+                        <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
+                          itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{sideStepProcessBean.sideStepInfo.roles}" var="role" itemLabel="#{role.getDisplayName()}"
+                          itemValue="#{role}" />
+                      </p:selectOneMenu>
+                    </h:panelGroup>
                   </div>
-                </div>
+                </h:panelGroup>
                 
-                <div class="col-12">
+                <h:panelGroup class="col-12">
                   <div class="p-inputgroup mb-3">
                     <span class="p-float-label">
                       <p:outputLabel for="comment" value="Comment" />
                       <p:inputTextarea id="comment" value="#{sideStepProcessBean.comment}"
-                        required="true" rows="5" styleClass="MarTop10"/>
+                        rows="5" styleClass="MarTop10"/>
                     </span>
                   </div>
-                </div>
+                </h:panelGroup>
               </h:panelGroup>
             </h:form>
             <f:facet name="footer">
@@ -286,6 +296,7 @@
                   icon="pi pi-check"
                   styleClass="p-button-primary"
                   actionListener="#{sideStepProcessBean.handleSelectProcess()}"
+                  oncomplete="PF('side-step-process-dialog').hide()"
                   update="side-step-process-form"
                   form="side-step-process-form"/>
               </div>
