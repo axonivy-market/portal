@@ -7,6 +7,10 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
   }
 
+  triggers {
+    pollSCM 'H/15 * * * *'
+  }
+
   parameters {
     string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: portal-components,portal,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport,portal-components-examples. E.g. portal-components code is changed, then set this property value portal => portal-components,portal will be built.')
   }
