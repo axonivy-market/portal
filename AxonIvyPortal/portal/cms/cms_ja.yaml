@@ -1490,10 +1490,10 @@ Dialogs:
               ShareDashboard: ダッシュボードを共有
             NavigationDashboardWidgetConfiguration:
               ButtonName: TODO Button Name
-              NavigationDashboardWidgetConfiguration: Navigation dashboard widget
-                configuration
-              NavigationDashboardWidgetDescription: This widget allows users to jump
-                directly to a linked dashboard via button click.
+              NavigationDashboardWidgetConfiguration: 'TODO: Navigation dashboard
+                widget configuration'
+              NavigationDashboardWidgetDescription: 'TODO: This widget allows users
+                to jump directly to a linked dashboard via button click.'
             NewsWidget:
               NewsContentPlaceHolder: ニュースコンテンツを入力
               NewsContentValidateMessage: '{0} のニュースコンテンツは必須です'
