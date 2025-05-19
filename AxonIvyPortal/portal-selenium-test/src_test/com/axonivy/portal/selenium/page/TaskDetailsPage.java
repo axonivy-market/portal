@@ -104,7 +104,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public SelenideElement getResponsibleAvatar() {
-    return $(".security-member-container > .has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $(".responsibles.has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getShareButton() {

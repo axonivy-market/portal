@@ -47,9 +47,13 @@ public class SecurityMemberDisplayNameUtils {
     if(securityMember == null) {
       return stripSharpCharacterFromSecurityMemberName(securityMemberName);
     }
-    if(securityMember.isUser() && securityMember.available()) {
-      IUser user = (IUser) securityMember;
-      return generateBriefDisplayNameForUser(user, user.getName());
+    if(securityMember.isUser()) {
+      if (securityMember.available()) {
+        IUser user = (IUser) securityMember;
+        return generateBriefDisplayNameForUser(user, user.getName());
+      } else {
+        return formatDisabledUser(securityMember.getDisplayName());
+      }
     }
     return generateBriefDisplayNameForRole(securityMember.getDisplayName(), securityMember.getName());
   }
@@ -61,9 +65,13 @@ public class SecurityMemberDisplayNameUtils {
     if(securityMember == null) {
       return stripSharpCharacterFromSecurityMemberName(securityMemberName);
     }
-    if(securityMember.isUser() && securityMember.available()) {
-      IUser user = (IUser) securityMember;
-      return generateFullDisplayNameForUser(user, user.getName());
+    if(securityMember.isUser()) {
+      if (securityMember.available()) {
+        IUser user = (IUser) securityMember;
+        return generateFullDisplayNameForUser(user, user.getName());
+      } else {
+        return formatDisabledUser(securityMember.getDisplayName());
+      }
     }
     return generateFullDisplayNameForRole(securityMember.getDisplayName(), securityMember.getName());
   }
