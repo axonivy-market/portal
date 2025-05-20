@@ -107,7 +107,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       BY_ALPHABETICALLY: アルファベット順
       BY_CUSTOM_ORDER: ユーザー設定順序
       BY_INDEX: 並べ替えインデックス
-      BY_SMART_ORDER: 最もよく使われる
+      BY_SMART_ORDER: ''
     ProcessType:
       EXTERNAL_LINK: 外部リンク
       IVY_PROCESS: ビジネスプロセス
@@ -289,6 +289,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTooltipTechnicalName: TODO Enable to show users' technical name on tooltips.
       uploadDocumentWhiteListExtensionNote: すべての拡張子を許可する場合は、空欄にしてください。一部の拡張子のみを許可する場合は、対象の拡張子をカンマで区切って入力してください。（例：pdf,
         txt, doc, docx）
+      documentUploadSizeLimit: ''
+      enableDocumentPreview: ''
+      imageUploadSizeLimit: ''
     key: キー
     link: リンク
     loading: 読み込み中
@@ -928,6 +931,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcessViewer: プロセス ビューアー
     yourProcesses: プロセス
     yourTasks: タスク
+    NoColumnsEnabledForQuickSearch: ''
+    QuickSearchScope: ''
   documentFiles:
     PreviewDocument: タスクの詳細にアクセス
     deleteDocumentNote: '{0} が {1} を削除しました'

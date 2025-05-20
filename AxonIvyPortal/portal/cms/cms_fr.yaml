@@ -16,7 +16,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       errorSelectInvalidDeputy: Le substitut est déjà sélectionné ou invalide
       errorSelectedInPersonalTaskPermanentDeputies: Le substitut est déjà sélectionné
         dans "{0}"
-      fromBiggerThanTill: '"Jusqu''à" doit être ultérieur à "Depuis".'
+      fromBiggerThanTill: '"Jusqu''à" doit être ultérieur à "Depuis"'
       overlappingAbsence: L'absence entre en collision avec une autre absence.
       userNameRequired: Le nom d'utilisateur doit être indiqué.
     SelectedSubtitutes: Remplaçants sélectionnés
@@ -358,6 +358,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez
         toutes les extensions. Si juste autoriser quelques extensions, listez les
         extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
+      SearchScopeCaseFields: ''
+      SearchScopeTaskFields: ''
     key: Clé
     link: Lien
     loading: CHARGEMENT
@@ -778,6 +780,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       tooltipHelper: Cliquez pour afficher tous les utilisateurs qui possèdent ce
         rôle directement ou indirectement
       userOfRoleTitle: Utilisateur du groupe {0}
+      roleMemberItemFormat: ''
+      roleMemberLineFormat: ''
+      roleMembersTooltipFormat: ''
     passwordValidation:
       criteria: Critères
       enablePasswordValidation: Activer la validation du mot de passe
@@ -1740,6 +1745,9 @@ Dialogs:
       invalidFileMessage: Ce type de fichier n'est pas accepté!
       invalidSizeMessage: Le fichier est trop volumineux !
       maximumFileUploadElement: Il existe déjà un élément de téléchargement de fichiers
+  general:
+    MaxLabelLenght: ''
+    maxOptionsLength: ''
 Labels:
   AI:
     Error:
@@ -1838,6 +1846,7 @@ Labels:
       START_WITH: Commence par
       TODAY: Aujourd'hui
       YESTERDAY: Hier
+      GREATER: ''
     FilterPeriodType:
       DAY: Jour
       MONTH: Mois
@@ -1855,6 +1864,13 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
+    SearchScopeCaseField:
+      DESCRIPTION: ''
+      CUSTOM: ''
+      NAME: ''
+    SearchScopeTaskField:
+      NAME: ''
+      DESCRIPTION: ''
   InsertTask-Explain: Insérer la tâche. Ma tâche sera reportée.
   InsertTheTask: Insérer la tâche.
   Login:
