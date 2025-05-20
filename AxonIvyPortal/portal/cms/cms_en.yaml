@@ -77,7 +77,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Axon Ivy process
     DashboardWidgetType:
       CASE: Case widget
-      CLIENT_STATISTIC: Statistic widget
       CUSTOM: Custom widget
       NAVIGATION_DASHBOARD: Navigation dashboard widget
       NEW: New widget
@@ -760,6 +759,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Standard Widgets
     StatisticWidget:
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
+      failToRenderChartMessage: Error while rendering chart. Please retry with different settings.
+      firstConfigChartMessage: No chart available yet. Please configure your settings to generate a chart.
     WelcomeWidgetIntroduction: This widget displays a welcome text and image on dashboard.
     WelcomeWidgetNotFoundMessage: We cannot find the image of widget, please reconfigure your image!
     WidgetFilterName: Widget filter name
@@ -1346,6 +1347,9 @@ Dialogs:
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Add new dashboard
+              PortalDashboardDetailModification:
+                CreateCustomStatistic: Create custom statistic widget
+                DeleteConfirm: Are you sure you want to delete?
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
@@ -1452,9 +1456,6 @@ Dialogs:
                 Alt + W: Focus on to the first task. Alt + Q: Focus on to the first case. Tab: Sequential tabbing through elements. Esc: Close expanded widgets. Enter: Confirm selection.'
             CaseWidgetConfiguration:
               AddFilter: Add filter
-            ClientStatisticWidget:
-              IdNotFound: Chart with ID {0} not found
-              NoPermissionChartMessage: You do not have the required permission to see this chart.
             CloneWidgetDialog:
               Header: Clone widget "{0}"
               TargetDashboard: Target dashboard
@@ -1498,6 +1499,9 @@ Dialogs:
               WidgetFilter: Widget Filter
             PortalDashboardDetailModification:
               CloneWidget: Clone widget
+            StatisticWidget:
+              IdNotFound: Chart with ID {0} not found
+              NoPermissionChartMessage: You do not have the required permission to see this chart.
             TaskWidgetConfiguration:
               AddFilter: Add filter
               ResetFilter: Reset filter
@@ -1506,6 +1510,28 @@ Dialogs:
             CaseDetailsIFrameTitle: Case details frame
           IFrameTaskTemplate:
             TaskIFrameTitle: Task frame
+        page:
+          StatisticConfiguration:
+            AddFilter: Add filter
+            Advanced: Advanced
+            ChartType: Chart type
+            Color: Color {0}
+            Create: Create
+            EditStatistic: Edit Statistic Widget
+            For: For
+            GeneratePreview: Generate preview
+            GroupBy: Group by
+            HideLabel: Hide label
+            Interval: Interval
+            NewStatistic: New Statistic Widget
+            OutdatedChartMessage: The applied group-by or filter does not align with the current UI configuration. Please reconfigure it.
+            RefreshInterval: Auto-refresh enabled
+            RefreshIntervalInSeconds: Auto-refresh interval (seconds)
+            RefreshIntervalInSecondsValidationMessage: 'Auto-refresh interval (seconds): Specified attribute is not between the expected values of {0} and {1}'
+            RefreshIntervalInfo: The statistic can be auto-refreshed after a certain period. If enabled, this may impact performance. Auto-refresh interval (seconds) must be at least {0}.
+            StatisticConfiguration: Statistic configuration
+            XAxisTitle: X axis title
+            YAxisTitle: Y axis title
   components:
     CaseDocument:
       FileDate: Modified at
@@ -1521,6 +1547,64 @@ Dialogs:
   general:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: Activator name
+              BUSINESS_RUNTIME:
+                name: Business runtime
+              CATEGORY:
+                name: Category
+              CREATOR_NAME:
+                name: Creator name
+              CUSTOM_FIELD:
+                name: Custom field
+              END_TIMESTAMP:
+                name: Completed date
+              EXPIRY_TIMESTAMP:
+                name: Expiry date
+              IS_EXPIRED:
+                name: Is expired
+              PRIORITY:
+                name: Priority
+              RESPONSIBLES_NAME:
+                name: Responsibles
+              START_TIMESTAMP:
+                name: Created date
+              STATE:
+                name: State
+              WORKER_NAME:
+                name: Worker name
+              WORKING_TIME:
+                name: Working time
+            AggregationInterval:
+              DAY:
+                name: Day
+              MONTH:
+                name: Month
+              WEEK:
+                name: Week
+              YEAR:
+                name: Year
+            ChartTarget:
+              CASE:
+                name: Case
+              TASK:
+                name: Task
+            ChartType:
+              BAR:
+                name: Bar
+              LINE:
+                name: Line
+              NUMBER:
+                name: Number
+              PIE:
+                name: Pie
 Labels:
   AI:
     Error:
@@ -1557,8 +1641,10 @@ Labels:
   AndMore: and {0} more...
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  Configuration: Configuration
   Collapse: Collapse
   CreateNewDashboard: Create new dashboard
+  Description: Description
   EditDescription: Edit description
   Enums:
     ChatbotCandidateQuestion:
@@ -1575,10 +1661,10 @@ Labels:
       ACTIONS: Actions
       APPLICATION: Application
       CATEGORY: Category
-      CREATED: Created Date
+      CREATED: Created date
       CREATOR: Creator
       DESCRIPTION: Description
-      FINISHED: Finished Date
+      FINISHED: Finished date
       ID: Id
       NAME: Name
       OWNER: Case Owners
@@ -1652,13 +1738,20 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Light
+  Filters: Filters
+  General: General
+  Icon: Icon
   Expand: Expand
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Name: Name
   Permissions: Permissions
+  Preview: Preview
+  RequiredFieldMessage: '{0}: Value is required'
+  Save: Save
   Share: Share
   Task: Task
   TaskItemDetail: Task Details

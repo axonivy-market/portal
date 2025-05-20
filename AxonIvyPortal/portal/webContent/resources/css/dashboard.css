@@ -772,7 +772,7 @@ body .dashboard__table--preview.ui-datatable tbody tr.ui-state-hover {
   margin-right: 1em;
 }
 
-span.new-widget-dialog__icon.si {
+span.new-widget-dialog__icon.si, span.new-widget-dialog__icon.fa {
   font-size: 40px;
   text-align: center;
   width: 100%;
@@ -812,6 +812,7 @@ span.new-widget-dialog__icon.si {
   display: flex;
   width: 100%;
   flex-direction: column;
+  gap: 1rem;
 }
 
 .new-widget-dialog__widget-name {
@@ -822,6 +823,7 @@ span.new-widget-dialog__icon.si {
   white-space: nowrap;
   display: block;
   max-width: 20vw;
+  overflow: hidden;
 }
 
 body .ui-widget.new-widget-dialog__introduction {
@@ -838,6 +840,7 @@ body .ui-widget.new-widget-dialog__introduction {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  word-break: break-all;
 }
 
 .new-widget-dialog__add-widget-button {
@@ -1271,15 +1274,14 @@ body .ui-widget.new-widget-dialog__introduction {
 }
 
 /* Statistic chart widget */
-.client-statistic.widget__content {
+.statistic.widget__content {
   padding-bottom: 0;
 }
 
-.client-statistic.widget__content .empty-message-container {
+.statistic.widget__content .empty-message-container {
   text-align: center;
   margin: auto;
 }
-
 .statistic-chart-widget {
   position: relative;
   margin: auto;
@@ -1298,51 +1300,11 @@ body .ui-widget.new-widget-dialog__introduction {
   position: relative;
   padding: 0;
 }
-
-.statistic-chart-widget__chart {
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
-
-.statistic-chart-widget__chart.client-number-chart {
-  overflow: hidden;
-}
-
 .statistic-chart-widget__chart--small {
   height: 350px;
   width: 450px;
   margin: auto;
 }
-
-.statistic-chart-widget__canvas {
-  height: 100%;
-  width: 100%;
-  position: relative;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-direction: row;
-  gap: 30px;
-  cursor: default;
-}
-
-@container (max-width: 200px) {
-  .statistic-chart-widget__canvas {
-    position: relative;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: column;
-    cursor: default;
-    padding: 14px 14px;
-    }
-    
-    .statistic-chart-widget__canvas > .chart-border {
-    display: none;}
-  }
 
 .has-avatar .case-info-avatar {
   float: unset;
@@ -1721,88 +1683,6 @@ body .ui-widget.new-widget-dialog__introduction {
 
 .widget__content.task-widget {
   max-height: fit-content;
-}
-
-.card-widget__content {
-  container-type: size;
-}
-
-.chart-number-container {
-  color: var(--chart-container-number-color);
-  background-color: var(--chart-container-background-color);
-  border-radius: 10px;
-  width: fit-content;
-  margin: auto;
-  padding: 5px 5px;
-}
-
-.chart-number-container > span {
-  padding: 0.2em;
-}
-.chart-border {
-  border: 1px solid var(--ivy-primary-color-grey-light);
-  height: 75%;
-}
-
-.chart-number-animation {
-  -webkit-transition: font-size .3s ease;
-  -moz-transition: font-size .3s ease;
-  transition: font-size .3s ease;
-}
-
-.chart-number-font-size {
-  font-weight: bolder;
-}
-
-.chart-content-card .chart-label-container {
-  word-break: break-word;
-  height: 2em;
-  padding-top: 10px;
-}
-
-.chart-content-card .chart-icon-font-size {
-  font-size: max(1rem, 1.5rem + 5cqh);
-}
-
-.chart-content-card .chart-name-font-size {
-  font-size: max(1.5rem, 1rem + 4cqh);
-}
-
-.chart-content-card .chart-number-font-size {
-    font-size: max(4rem, 1.5rem + 10cqh);
-}
-
-@container (max-width: 200px) {
-  .chart-content-card .chart-icon-font-size {
-    font-size: max(2rem, 1.5rem + 1cqh);
-  }
-
-  .chart-content-card .chart-name-font-size {
-    font-size: max(1.5rem, 1rem + 5cqw);
-  }
-
-  .chart-content-card .chart-number-font-size {
-    font-size: max(2rem, 1.5rem + 15cqh);
-  }
-}
-
-@container (max-height: 200px) {
-  .chart-content-card .chart-icon-font-size {
-    font-size: max(1rem, 1.5rem + 1cqh);
-  }
-
-  .chart-content-card .chart-name-font-size {
-    font-size: max(0.5rem, 1rem + 1cqw);
-  }
-
-  .chart-content-card .chart-number-font-size {
-    font-size: max(3rem, 1.5rem + 10cqh);
-  }
-}
-
-.chart-content-card {
-  position: relative;
-  width: 100%;
 }
 
 .order-list-items .ui-widget-content.ui-orderlist-list.ui-corner-all.ui-sortable{

@@ -77,7 +77,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Processus Axon Ivy
     DashboardWidgetType:
       CASE: Widget de cas
-      CLIENT_STATISTIC: Widget Statistiques
       CUSTOM: Widget personnalisé
       NAVIGATION_DASHBOARD: Widget du tableau de bord de navigation
       NEW: Nouveau widget
@@ -754,6 +753,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Widgets standard
     StatisticWidget:
       EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau graphique !
+      failToRenderChartMessage: Erreur lors du rendu du graphique. Veuillez réessayer avec des paramètres différents.
+      firstConfigChartMessage: Aucun graphique disponible pour le moment. Veuillez configurer vos paramètres pour générer un graphique.
     WelcomeWidgetIntroduction: Ce widget affiche un texte et une image de bienvenue sur le tableau de bord.
     WelcomeWidgetNotFoundMessage: Nous ne pouvons pas trouver l'image du widget, veuillez reconfigurer votre image !
     WidgetFilterName: Nom du filtre du widget
@@ -1340,6 +1341,9 @@ Dialogs:
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Ajouter un nouveau tableau de bord
+              PortalDashboardDetailModification:
+                CreateCustomStatistic: Créer un widget de statistiques personnalisé
+                DeleteConfirm: Êtes-vous sûr de vouloir supprimer ?
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
@@ -1446,9 +1450,6 @@ Dialogs:
                 Fokus auf die erste Aufgabe. Alt + Q: Fokus auf den ersten Fall. Tab: Sequentielles Durchlaufen von Elementen. Esc: Erweiterte Widgets schließen/Kontext Menüs schließen. Enter: Auswahl bestätigen'
             CaseWidgetConfiguration:
               AddFilter: Ajouter un filtre
-            ClientStatisticWidget:
-              IdNotFound: ' Diagramme avec ID {0} non trouvé'
-              NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour consulter ce graphique.
             CloneWidgetDialog:
               Header: Clone widget "{0}"
               TargetDashboard: Target dashboard
@@ -1492,6 +1493,9 @@ Dialogs:
               WidgetFilter: Filtre à widgets
             PortalDashboardDetailModification:
               CloneWidget: Cloner le widget
+            StatisticWidget:
+              IdNotFound: ' Diagramme avec ID {0} non trouvé'
+              NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour consulter ce graphique.
             TaskWidgetConfiguration:
               AddFilter: Ajouter un filtre
               ResetFilter: Réinitialiser le filtre
@@ -1500,6 +1504,28 @@ Dialogs:
             CaseDetailsIFrameTitle: Cadre des détails de l'affaire
           IFrameTaskTemplate:
             TaskIFrameTitle: Cadre de travail
+        page:
+          StatisticConfiguration:
+            AddFilter: Ajouter un filtre
+            Advanced: Avancé
+            ChartType: Type de graphique
+            Color: Couleur {0}
+            Create: Créer
+            EditStatistic: Modifier le widget statistique
+            For: Pour
+            GeneratePreview: Générer un aperçu
+            GroupBy: Groupe par
+            HideLabel: Cacher l'étiquette
+            Interval: Intervalle
+            NewStatistic: Nouveau widget statistique
+            OutdatedChartMessage: Le groupement ou le filtre appliqué ne correspond pas à la configuration actuelle de l'interface. Veuillez le reconfigurer.
+            RefreshInterval: Actualisation automatique activée
+            RefreshIntervalInSeconds: Intervalle de rafraîchissement automatique (secondes)
+            RefreshIntervalInSecondsValidationMessage: 'Intervalle de rafraîchissement automatique (secondes) : L''attribut spécifié n''est pas compris entre les valeurs attendues de {0} et {1}'
+            RefreshIntervalInfo: La statistique peut être actualisée automatiquement après une certaine période. Si cette option est activée, elle peut avoir un impact sur les performances. L'intervalle de rafraîchissement automatique (secondes) doit être au moins {0}.
+            StatisticConfiguration: Configuration des statistiques
+            XAxisTitle: Titre de l'axe X
+            YAxisTitle: Titre de l'axe des Y
   components:
     CaseDocument:
       FileDate: Modifié le
@@ -1512,6 +1538,64 @@ Dialogs:
       invalidFileMessage: Ce type de fichier n'est pas accepté!
       invalidSizeMessage: Le fichier est trop volumineux !
       maximumFileUploadElement: Il existe déjà un élément de téléchargement de fichiers
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: Nom de l'activateur
+              BUSINESS_RUNTIME:
+                name: Durée d'exécution des activités
+              CATEGORY:
+                name: Catégorie
+              CREATOR_NAME:
+                name: Nom du créateur
+              CUSTOM_FIELD:
+                name: Champ personnalisé
+              END_TIMESTAMP:
+                name: Date d'achèvement
+              EXPIRY_TIMESTAMP:
+                name: Date d'expiration
+              IS_EXPIRED:
+                name: Est périmé
+              PRIORITY:
+                name: Priorité
+              RESPONSIBLES_NAME:
+                name: Responsables
+              START_TIMESTAMP:
+                name: Date de création
+              STATE:
+                name: État
+              WORKER_NAME:
+                name: Nom de l'employé
+              WORKING_TIME:
+                name: Temps de travail
+            AggregationInterval:
+              DAY:
+                name: Jour
+              MONTH:
+                name: Mois
+              WEEK:
+                name: Semaine
+              YEAR:
+                name: Année
+            ChartTarget:
+              CASE:
+                name: Dossier
+              TASK:
+                name: Tâche
+            ChartType:
+              BAR:
+                name: TODO Bar
+              LINE:
+                name: TODO Line
+              NUMBER:
+                name: TODO Number
+              PIE:
+                name: TODO Pie
 Labels:
   AI:
     Error:
@@ -1538,8 +1622,10 @@ Labels:
   AndMore: 'et {0} de plus...  '
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
+  Configuration: Configuration
   Collapse: Réduire
   CreateNewDashboard: Créer un nouveau tableau de bord
+  Description: Description
   EditDescription: Editer la description
   Enums:
     ChatbotCandidateQuestion:
@@ -1625,13 +1711,20 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
+  Filters: Filtres
+  General: Général
+  Icon: Icône
   Expand: Développer
   InsertTask-Explain: Insérer la tâche. Ma tâche sera reportée.
   InsertTheTask: Insérer la tâche.
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Name: Nom
   Permissions: Permissions
+  Preview: Aperçu
+  RequiredFieldMessage: '{0} : La valeur est obligatoire'
+  Save: Enregistrer
   Share: Partager
   Task: Tâche
   TaskItemDetail: Détails de la tâche

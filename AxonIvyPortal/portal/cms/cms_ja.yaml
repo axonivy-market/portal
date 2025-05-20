@@ -755,6 +755,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: 標準ウィジェット
     StatisticWidget:
       EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！
+      failToRenderChartMessage: TODO
+      firstConfigChartMessage: TODO
     WelcomeWidgetIntroduction: このウィジェットは、ダッシュボードにウェルカムテキストと画像を表示します。
     WelcomeWidgetNotFoundMessage: ウィジェットの画像が見つかりません。画像を再設定してください。
     WidgetFilterName: ウィジェットフィルター名
@@ -1498,6 +1500,27 @@ Dialogs:
             CaseDetailsIFrameTitle: ケース詳細フレーム
           IFrameTaskTemplate:
             TaskIFrameTitle: タスクフレーム
+        page:
+          StatisticConfiguration:
+            AddFilter: TODO Add filter
+            Advanced: TODO Advanced
+            ChartType: TODO Chart type
+            Color: 色{0}
+            Create: TODO Create
+            EditStatistic: TODO Edit Statistic Widget
+            For: TODO For
+            GeneratePreview: TODO Generate preview
+            GroupBy: TODO Group by
+            HideLabel: TODO Hide label
+            NewStatistic: TODO New Statistic Widget
+            OutdatedChartMessage: TODO The applied group-by or filter does not align with the current UI configuration. Please reconfigure it.
+            RefreshInterval: TODO Auto-refresh enabled
+            RefreshIntervalInSeconds: TODO Auto-refresh interval (seconds)
+            RefreshIntervalInSecondsValidationMessage: 'TODO Auto-refresh interval (seconds): Specified attribute is not between the expected values of {0} and {1}'
+            RefreshIntervalInfo: TODO The statistic can be auto-refreshed after a certain period. If enabled, this may impact performance. Auto-refresh interval (seconds) must be at least {0}.
+            StatisticConfiguration: TODO Statistic configuration
+            XAxisTitle: TODO X axis title
+            YAxisTitle: TODO Y axis title
   components:
     CaseDocument:
       FileDate: 変更日時
@@ -1513,6 +1536,64 @@ Dialogs:
   general:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: TODO Activator name
+              BUSINESS_RUNTIME:
+                name: TODO Business runtime
+              CATEGORY:
+                name: TODO Category
+              CREATOR_NAME:
+                name: TODO Creator name
+              CUSTOM_FIELD:
+                name: TODO Custom field
+              END_TIMESTAMP:
+                name: TODO Completed date
+              EXPIRY_TIMESTAMP:
+                name: TODO Expiry date
+              IS_EXPIRED:
+                name: TODO Is expired
+              PRIORITY:
+                name: TODO Priority
+              RESPONSIBLES_NAME:
+                name: TODO Responsibles
+              START_TIMESTAMP:
+                name: TODO Created date
+              STATE:
+                name: TODO State
+              WORKER_NAME:
+                name: TODO Worker name
+              WORKING_TIME:
+                name: TODO Working time
+            AggregationInterval:
+              DAY:
+                name: TODO Day
+              MONTH:
+                name: TODO Month
+              WEEK:
+                name: TODO Week
+              YEAR:
+                name: TODO Year
+            ChartTarget:
+              CASE:
+                name: ケース
+              TASK:
+                name: タスク
+            ChartType:
+              BAR:
+                name: TODO Bar
+              LINE:
+                name: TODO Line
+              NUMBER:
+                name: TODO Number
+              PIE:
+                name: TODO Pie
 Labels:
   AI:
     Error:
@@ -1546,8 +1627,10 @@ Labels:
   AndMore: TODO さらに{0}件...
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
+  Configuration: 設定
   Collapse: TODO 折りたたむ
   CreateNewDashboard: 新しいダッシュボードを作成
+  Description: 説明
   EditDescription: 説明を編集
   Enums:
     ChatbotCandidateQuestion:
@@ -1641,13 +1724,20 @@ Labels:
     ThemeMode:
       DARK: 暗い
       LIGHT: 明るい
+  Filters: フィルター
+  General: TODO General
+  Icon: アイコン
   Expand: TODO 展開
   InsertTask-Explain: タスクを挿入します。私のタスクは延期されます。
   InsertTheTask: タスクを挿入
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Name: 名前
   Permissions: 権限
+  Preview: プレビュー
+  RequiredFieldMessage: 'TODO {0}: Value is required'
+  Save: 保存
   Share: 共有
   Task: タスク
   TaskItemDetail: タスクの詳細
