@@ -759,7 +759,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Filtres enregistrés
     SearchForFilter: Rechercher un filtre
     ShareThisDashboard: Partager ce tableau de bord
-    ShowPinnedToggle: ' Bouton à bascule “Afficher les tâches épinglées”'
+    ShowPinnedToggle: Afficher le bouton de bascule 'Éléments épinglés'
     StandardWidgets: Widgets standard
     StatisticWidget:
       EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau graphique !
