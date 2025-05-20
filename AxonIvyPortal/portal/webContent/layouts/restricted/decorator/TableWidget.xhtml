@@ -288,6 +288,7 @@
                   oncomplete="PF('filter-overlay-panel-#{index}').hide(); initWidgetFilterHtml('#{widget.id}');"
                   actionListener="#{widget.onResetUserFilters()}"
                   resetValues="true">
+                    <f:param name="skipValidator" value="true" />
                     <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetFilters')}</span>
                   </p:commandLink>
               </div>
