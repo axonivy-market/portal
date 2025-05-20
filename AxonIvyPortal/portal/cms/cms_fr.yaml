@@ -1344,6 +1344,7 @@ Dialogs:
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Créer un widget de statistiques personnalisé
                 DeleteConfirm: Êtes-vous sûr de vouloir supprimer ?
+                RemoveThisStatistic: Supprimer cette statistique personnalisée
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
