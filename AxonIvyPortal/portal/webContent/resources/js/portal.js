@@ -577,6 +577,7 @@ $(document).ready(function () {
           handleFocusOnMainElement(event);
         }
       });
+      handleExpandButtonInFilePreview(document.getElementById("iFrame").contentWindow);
 
     };
   }
@@ -748,5 +749,37 @@ $(document).ready(function () {
       }
     }
   });
+
+  // HANDLE EXPAND BUTTON IN FILE PREVIEW
+  function handleExpandButtonInFilePreview(contentWindow) {
+    contentWindow = contentWindow || window;
+    var $document = $(contentWindow.document);
+
+    if ($document.find('[id$=":preview-document-dialog"]').length) {
+      setTimeout(function () {
+
+        $document.on('click', '.ui-dialog-titlebar-maximize, .ui-dialog-titlebar-restore', function () {
+          setTimeout(adjustMediaHeight, 100);
+        });
+
+        function adjustMediaHeight() {
+          var dialog = contentWindow.PF('preview-document-dialog').jq;
+          var media = dialog.find('.ui-widget-content').find('.ui-g-12 object');
+
+          if (dialog.hasClass('ui-dialog-maximized')) {
+            var newHeight = dialog.height() - 130;
+            media.css('height', newHeight + 'px');
+          } else {
+            media.css('height', '600px');
+          }
+        }
+
+      }, 200);
+    }
+  }
+
+  handleExpandButtonInFilePreview();
+
+  // END OF HANDLE EXPAND BUTTON IN FILE PREVIEW
 });
 // End of accessibility for shortcuts navigation
