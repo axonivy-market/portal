@@ -1557,6 +1557,7 @@ Labels:
   AndMore: and {0} more...
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  Collapse: Collapse
   CreateNewDashboard: Create new dashboard
   EditDescription: Edit description
   Enums:
@@ -1651,6 +1652,7 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Light
+  Expand: Expand
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Login:
