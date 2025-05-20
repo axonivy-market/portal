@@ -1167,7 +1167,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noDescription: Keine Beschreibung vorhanden
     noNotes: Keine Notizen
     processingTime: Bearbeitungszeit
-    setDelayTimestamp: '{0} ({1}) hat die Verzügerungszeit des Tasks #{2} auf {3} gesetzt.'
+    setDelayTimestamp: '{0} ({1}) hat die Verzögerungszeit des Tasks #{2} auf {3} gesetzt.'
     setExpiryActivatorAndTimeNotes: '{0} und weisen Sie {1} als Aktivator für die Aufgabeneskalation zu'
     supportFileTypes: 'Unterstützte Dateitypen für Uploads: {0}'
     taskCategory: Aufgabenkategorie
