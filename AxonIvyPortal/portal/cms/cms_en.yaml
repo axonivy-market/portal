@@ -765,7 +765,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
     ShareThisDashboard: Share this dashboard
-    ShowPinnedToggle: Show 'Pinned Tasks' Toggle
+    ShowPinnedToggle: Show 'Pinned Items' Toggle
     StandardWidgets: Standard Widgets
     StatisticWidget:
       EmptyChartDataMessage: We do not have enough data to create a nice chart!

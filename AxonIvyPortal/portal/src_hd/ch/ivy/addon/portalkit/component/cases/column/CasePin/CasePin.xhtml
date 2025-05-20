@@ -11,16 +11,22 @@
 <cc:implementation>
     <c:set var="isPinned" value="#{caseBean.isPinnedCase(cc.attrs.case)}" />
 
-    <h:panelGroup styleClass="case-header-default-cell pin-column flex align-items-center justify-content-center h-full text-center">
-        <h:form id="pin-form">
-            <p:commandLink action="#{caseBean.clickOnPinCase(cc.attrs.case)}" update="@form">
-                <i class="fa #{isPinned ? 'fa-star' : 'fa-star-o'} pin-icon" />
-            </p:commandLink>
-            <p:tooltip for="pin-form" 
+    <h:form id="pin-form">
+        <p:commandLink 
+            action="#{caseBean.clickOnPinCase(cc.attrs.case)}" 
+            update="@form"
+            style="display: block; width: 100%; height: 100%; text-decoration: none;"
+            onmouseover="this.style.textDecoration='none';"
+            onmouseout="this.style.textDecoration='none';"
+            styleClass="case-header-default-cell pin-column flex align-items-center justify-content-center h-full text-center">
+
+            <i class="#{isPinned ? 'si si-pin-bold' : 'si si-pin'}" />
+
+            <p:tooltip for="@this" 
                        value="#{isPinned ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/unpin') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pin')}" 
                        trackMouse="true" 
                        hideEvent="mouseleave click" />
-        </h:form>
-    </h:panelGroup>
+        </p:commandLink>
+    </h:form>
 </cc:implementation>
 </html>

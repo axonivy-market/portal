@@ -762,7 +762,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Filtros guardados
     SearchForFilter: Buscar un filtro
     ShareThisDashboard: Comparte este panel
-    ShowPinnedToggle: ' Interruptor “Mostrar tareas fijadas”'
+    ShowPinnedToggle: Mostrar alternar 'Elementos fijados'
     StandardWidgets: Widgets estándar
     StatisticWidget:
       EmptyChartDataMessage: No tenemos suficientes datos para crear un buen gráfico.
