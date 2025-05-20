@@ -33,7 +33,10 @@ public class PortalExceptionBean implements Serializable {
   }
 
   private boolean findShowErrorDetailSystemProperty() {
+    // TODO contact ivyTeam to get system property
     return false;
+    // var systemProp = IApplicationConfigurationManager.instance().getSystemProp(SHOW_STACK_TRACE);
+    // return systemProp.getBooleanValue();
   }
 
   public void buildExceptionDialog(ExceptionInfo exceptionInfo) {
