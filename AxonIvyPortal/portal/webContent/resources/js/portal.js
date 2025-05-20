@@ -577,6 +577,8 @@ $(document).ready(function () {
           handleFocusOnMainElement(event);
         }
       });
+      handleExpandButtonInFilePreview(document.getElementById("iFrame").contentWindow);
+
     };
   }
 
@@ -749,45 +751,37 @@ $(document).ready(function () {
     }
   });
 
-  if ($('[id$=":preview-document-dialog"]').length) {
-    setTimeout(function () {
-      var dialog = PF('preview-document-dialog');
-      const dialogElement = dialog.jq.get(0);
+  // HANDLE EXPAND BUTTON IN FILE PREVIEW
+  function handleExpandButtonInFilePreview(contentWindow) {
+    contentWindow = contentWindow || window;
+    var $document = $(contentWindow.document);
 
-      const resizeObserver = new ResizeObserver(function () {
-        adjustMediaHeight();
-      });
+    if ($document.find('[id$=":preview-document-dialog"]').length) {
+      setTimeout(function () {
 
-      resizeObserver.observe(dialogElement);
+        $document.on('click', '.ui-dialog-titlebar-maximize, .ui-dialog-titlebar-restore', function () {
+          setTimeout(adjustMediaHeight, 100);
+        });
 
-      $(document).on('click', '.ui-dialog-titlebar-maximize, .ui-dialog-titlebar-restore', function () {
-        setTimeout(function () {
-          adjustMediaHeight();
-        }, 50);
-      });
+        function adjustMediaHeight() {
+          var dialog = contentWindow.PF('preview-document-dialog').jq;
+          var media = dialog.find('.ui-widget-content').find('.ui-g-12 object');
 
-      function adjustMediaHeight() {
-        var dialog = PF('preview-document-dialog').jq;
-        var media = dialog.find('.ui-widget-content').find('.ui-g-12 object');
-
-        if (dialog.hasClass('ui-dialog-maximized')) {
-          var newHeight = dialog.height() - 130;
-          media.css('height', newHeight + 'px');
-        } else {
-          media.css('height', '600px');
+          if (dialog.hasClass('ui-dialog-maximized')) {
+            var newHeight = dialog.height() - 130;
+            media.css('height', newHeight + 'px');
+          } else {
+            media.css('height', '600px');
+          }
         }
 
-      }
-
-      PF('preview-document-dialog').jq.on('dialogclose', function () {
-        resizeObserver.disconnect();
-      });
-
-    }, 200);
-
+      }, 200);
+    }
   }
 
+  handleExpandButtonInFilePreview();
 
+  // END OF HANDLE EXPAND BUTTON IN FILE PREVIEW
 });
 // End of accessibility for shortcuts navigation
 
