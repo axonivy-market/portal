@@ -545,13 +545,13 @@ public class DashboardConfigurationPage extends TemplatePage {
     $("div#new-widget-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
-  public ClientStatisticWidgetNewDashboardPage addNewStatisticWidget(String widgetName) {
+  public StatisticWidgetNewDashboardPage addNewStatisticWidget(String widgetName) {
     setSearchInput(widgetName);
     $("div.new-widget-dialog__content").shouldBe(appear, DEFAULT_TIMEOUT)
     .$$("div.new-widget-dialog__item").filter(Condition.visible).first().shouldBe(appear, DEFAULT_TIMEOUT)
     .$("div.new-widget-dialog__item-details").shouldBe(appear, DEFAULT_TIMEOUT)
     .$("button[id$='add-widget']").shouldBe(appear, DEFAULT_TIMEOUT).click();
-    return new NewDashboardPage().selectClientStatisticChartWidget(widgetName);
+    return new NewDashboardPage().selectStatisticChartWidget(widgetName);
   }
   
   public void setSearchInput(String widgetName) {

@@ -139,7 +139,7 @@
     
     <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)" 
         header="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" 
-        modal="true" resizable="false" width="850" height="650" styleClass="#{cc.attrs.previewDialogStyleClass}" showEffect="fade" hideEffect="fade" 
+        modal="true" maximizable="true" width="850" height="650" styleClass="#{cc.attrs.previewDialogStyleClass}" showEffect="fade" hideEffect="fade"
         dynamic="true" fitViewport="true" responsive="true">
       <div class="ui-g-12">
         <p:media value="#{data.streamedContent}" width="100%" height="620" styleClass="#{cc.attrs.previewPDFStyleClass}" cache="false" id="media-content" player="pdf" rendered="#{!data.isImage}"/>

@@ -113,7 +113,7 @@
     </h:form>
   </div>
   
-    <p:dialog id="document-upload-dialog"
+  <p:dialog id="document-upload-dialog"
     widgetVar="document-upload-dialog" appendTo="@(body)" dynamic="true"
     modal="true" resizable="false" showEffect="fade" hideEffect="fade" fitViewport="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
@@ -167,9 +167,9 @@
     </div>
   </p:dialog>
   
-  <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)" 
-      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
-      modal="true" resizable="false" width="650" height="630" showEffect="fade" hideEffect="fade" 
+  <p:dialog widgetVar="preview-document-dialog" id="preview-document-dialog" appendTo="@(body)"
+      maximizable="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}"
+      modal="true" showEffect="fade" hideEffect="fade"
       styleClass="case-upload-dialog" dynamic="true" fitViewport="true" responsive="true">
     <div class="ui-g-12">
       <p:media value="#{data.streamedContent}" width="100%" height="600" cache="false" id="media-content" player="pdf" rendered="#{!data.isImage}"/>

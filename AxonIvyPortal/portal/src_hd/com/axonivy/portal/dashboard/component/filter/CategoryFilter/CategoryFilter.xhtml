@@ -5,12 +5,13 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.DashboardFilter" />
+  <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.BaseFilter"/>
   <cc:attribute name="componentToUpdate" required="true" />
   <cc:attribute name="filterIndex" />
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="messageId" />
-  <cc:attribute name="widget" required="true"/>
+  <cc:attribute name="widgetType" required="true"/>
+  <cc:attribute name="operators" />
 </cc:interface>
 
 <cc:implementation>
@@ -18,13 +19,13 @@
   <c:set var="filterIndex" value="#{cc.attrs.filterIndex}" />
   <c:set var="readOnly" value="#{cc.attrs.readOnly}" />
   <c:set var="messageId" value="#{cc.attrs.messageId}" />
-  <c:set var="widget" value="#{cc.attrs.widget}" />
+  <c:set var="widgetType" value="#{cc.attrs.widgetType}" />
 
-  <f:event listener="#{widgetCategoryFilterBean.init(filter, widget)}" type="preRenderComponent" />
+  <f:event listener="#{widgetCategoryFilterBean.init(filter, widgetType)}" type="preRenderComponent" />
   <h:panelGroup id="category-filter-operator-panel" layout="block"
     styleClass="ui-fluid category-filter-operation-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
-        <f:selectItems value="#{widgetCategoryFilterBean.operators}" var="operator"
+        <f:selectItems value="#{cc.attrs.operators ne null ? cc.attrs.operators : widgetCategoryFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetCategoryFilterBean.onChangeOperator(filter)}"
             update="#{cc.attrs.componentToUpdate} category-list-panel" />

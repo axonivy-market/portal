@@ -15,7 +15,7 @@ import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
-import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 
 @ManagedBean
@@ -29,7 +29,7 @@ public class WidgetCreatorFilterBean implements Serializable {
 
   private List<SecurityMemberDTO> selectedCreators;
 
-  public void init(DashboardFilter filter) {
+  public void init(BaseFilter filter) {
     selectedCreators = new ArrayList<>();
     if (CollectionUtils.isNotEmpty(filter.getValues())) {
       selectedCreators.addAll(filter.getCreators());
@@ -40,7 +40,7 @@ public class WidgetCreatorFilterBean implements Serializable {
     return operators;
   }
 
-  public void onChangeOperator(DashboardFilter filter) {
+  public void onChangeOperator(BaseFilter filter) {
     if (filter.getOperator() == FilterOperator.CURRENT_USER) {
       filter.setValues(new ArrayList<>());
     }
@@ -51,12 +51,12 @@ public class WidgetCreatorFilterBean implements Serializable {
   }
 
   public void onSelectCreator(SelectEvent<Object> event) {
-    DashboardFilter filter = (DashboardFilter) event.getComponent().getAttributes().get(FILTER);
+    BaseFilter filter = (BaseFilter) event.getComponent().getAttributes().get(FILTER);
     onChangeCreators(filter);
   }
 
   public void onUnselectCreator(UnselectEvent<Object> event) {
-    DashboardFilter filter = (DashboardFilter) event.getComponent().getAttributes().get(FILTER);
+    BaseFilter filter = (BaseFilter) event.getComponent().getAttributes().get(FILTER);
     onChangeCreators(filter);
   }
 
@@ -69,7 +69,7 @@ public class WidgetCreatorFilterBean implements Serializable {
     this.selectedCreators = uniqueSelectedCreators;
   }
 
-  public void onChangeCreators(DashboardFilter filter) {
+  public void onChangeCreators(BaseFilter filter) {
     if (filter.getValues() == null) {
       filter.setValues(new ArrayList<>());
     }

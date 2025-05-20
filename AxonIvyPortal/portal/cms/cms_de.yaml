@@ -20,7 +20,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     absences: Abwesenheiten
     addAbsence: Abwesenheit erfassen
     deputies: Stellvertreter
-    description: 'Während meiner Abwesenheit werden Workflow Aufgaben automatisch den definierten Stellvertretern zugeteilt. '
+    description: Während meiner Abwesenheit werden Workflow Aufgaben automatisch den definierten Stellvertretern zugeteilt.
     editAbsence: Abwesenheiten bearbeiten
     from: Von
     noDeputy: Kein Stellvertreter
@@ -77,7 +77,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Axon Ivy Prozess
     DashboardWidgetType:
       CASE: Vorgangs-Widget
-      CLIENT_STATISTIC: Statistik-Widget
       CUSTOM: Benutzerdefiniertes Widget
       NAVIGATION_DASHBOARD: Navigation dashboard widget
       NEW: Neues Widget
@@ -174,9 +173,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewApplication: Neue Drittanwendung hinzufügen
     announcement:
       announcement: Ankündigungen
-      announcementsDisabled: Ankündigungen sind deaktiviert
-      announcementsEnabled: Ankündigungen sind aktiviert
-      defaultLanguageRequiredMessage: Ein Ankündigungstext in der standard Applikationssprache ist notwendig
+      announcementsDisabled: Ankündigungen sind deaktiviert.
+      announcementsEnabled: Ankündigungen sind aktiviert.
+      defaultLanguageRequiredMessage: Ein Ankündigungstext in der standard Applikationssprache ist notwendig.
       disabled: Deaktiviert
       enable: Ansage einschalten
       information: Sie können eine allgemeine Ankündigung in diesem Bereich machen (z.B. Wartungsankündigung). Diese Nachricht kann von allen Benutzern gesehen werden.
@@ -185,7 +184,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     appDisplayName: Anzeigename
     appDisplayNameRequiredMsg: Geben Sie einen Anzeigename an.
     appNameCharactersLimit: 'Nur die folgende Charakter sind für Applikationsname akzeptabel: [\p{Alnum}_-]+'
-    appNameRequiredMsg: Bitte, geben Sie den Anwendungsnamen an
+    appNameRequiredMsg: Bitte, geben Sie den Anwendungsnamen an.
     applicationHint: Die Reihenfolge kann mit Drag & Drop geändert werden.
     applicationLinkRequiredMsg: Geben Sie den Portal Link an.
     applicationList:
@@ -201,7 +200,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     dialogclosinginformation:
       dialogHeader: Einstellungen abgeschlossen
       informMessage: Änderungen an den Portaleinstellungen erfordern eine Aktualisierung der aktuellen Seite, damit die neue Konfiguration wirksam wird.
-    duplicatePortalAppMsg: 'Diese Anwendung existiert bereits. Bitte wählen Sie eine andere Anwendung. '
+    duplicatePortalAppMsg: Diese Anwendung existiert bereits. Bitte wählen Sie eine andere Anwendung.
     editApplication: Anwendungseinstellungen ändern
     editSetting: Einstellungen ändern
     embedInFrame: Prozess/Task in Iframes Modus starten
@@ -248,7 +247,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
       enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten Chat zu aktivieren
       enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option in Aufgaben-/Vorgang-Aktionen zu aktivieren
-      enableScriptCheckingForUploadedDocumentNote: 'Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt. '
+      enableScriptCheckingForUploadedDocumentNote: Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt.
       enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
       hideCaseCreator: |
         Auf true setzen, um den Fallersteller in der Fallliste, dem Fall-Widget und den Falldetails auszublenden.
@@ -758,6 +757,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Standard-Widgets
     StatisticWidget:
       EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
+      failToRenderChartMessage: Fehler beim Rendern des Diagramms. Bitte versuchen Sie es mit anderen Einstellungen erneut.
+      firstConfigChartMessage: Noch kein Diagramm verfügbar. Bitte konfigurieren Sie Ihre Einstellungen, um ein Diagramm zu generieren.
     WelcomeWidgetIntroduction: Dieses Widget zeigt einen Willkommenstext und ein Bild auf dem Dashboard an.
     WelcomeWidgetNotFoundMessage: Wir können das Bild des Widgets nicht finden, bitte konfigurieren Sie Ihr Bild neu!
     WidgetFilterName: Name des Widget-Filters
@@ -1159,7 +1160,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noDescription: Keine Beschreibung vorhanden
     noNotes: Keine Notizen
     processingTime: Bearbeitungszeit
-    setDelayTimestamp: '{0} ({1}) hat die Verzügerungszeit des Tasks #{2} auf {3} gesetzt.'
+    setDelayTimestamp: '{0} ({1}) hat die Verzögerungszeit des Tasks #{2} auf {3} gesetzt.'
     setExpiryActivatorAndTimeNotes: '{0} und weisen Sie {1} als Aktivator für die Aufgabeneskalation zu'
     supportFileTypes: 'Unterstützte Dateitypen für Uploads: {0}'
     taskCategory: Aufgabenkategorie
@@ -1345,6 +1346,9 @@ Dialogs:
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Neues Dashboard hinzufügen
+              PortalDashboardDetailModification:
+                CreateCustomStatistic: Benutzerdefiniertes Statistik-Widget erstellen
+                DeleteConfirm: Sind Sie sicher, dass Sie löschen möchten?
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
@@ -1435,8 +1439,6 @@ Dialogs:
               chooseAJsonFile: Wählen Sie eine JSON-Datei
             DashboardSharing:
               ShareDashboard: Dashboard teilen
-            NavigationDashboardWidget:
-              PermissionsDenied: Du hast keine Berechtigung, auf dieses Dashboard zuzugreifen.
             NavigationDashboardWidgetConfiguration:
               ButtonName: Schaltfläche Name
               NavigationDashboardWidgetConfiguration: Konfiguration des Navigations-Dashboard-Widgets
@@ -1467,6 +1469,9 @@ Dialogs:
               WidgetFilter: Widget-Filter
             PortalDashboardDetailModification:
               CloneWidget: Widget klonen
+            StatisticWidget:
+              IdNotFound: Diagramm mit ID {0} nicht gefunden
+              NoPermissionChartMessage: Sie haben nicht die erforderliche Berechtigung, um diese Karte zu sehen.
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen
@@ -1475,6 +1480,28 @@ Dialogs:
             CaseDetailsIFrameTitle: Falldetails Rahmen
           IFrameTaskTemplate:
             TaskIFrameTitle: Aufgabenrahmen
+        page:
+          StatisticConfiguration:
+            AddFilter: Filter hinzufügen
+            Advanced: Fortgeschrittene
+            ChartType: Diagrammtyp
+            Color: Farbe {0}
+            Create: Erstellen
+            EditStatistic: Statistisches Widget bearbeiten
+            For: Für
+            GeneratePreview: Vorschau generieren
+            GroupBy: Gruppe nach
+            HideLabel: Etikett ausblenden
+            Interval: Intervall
+            NewStatistic: Neues Statistik-Widget
+            OutdatedChartMessage: Die angewendete Group-by- oder Filter-Einstellung stimmt nicht mit der aktuellen UI-Konfiguration überein. Bitte konfigurieren Sie sie neu.
+            RefreshInterval: Automatisches Auffrischen aktiviert
+            RefreshIntervalInSeconds: Intervall für die automatische Aktualisierung (Sekunden)
+            RefreshIntervalInSecondsValidationMessage: 'Intervall für die automatische Aktualisierung (Sekunden): Das angegebene Attribut liegt nicht zwischen den erwarteten Werten von {0} und {1}'
+            RefreshIntervalInfo: Die Statistik kann nach einer bestimmten Zeit automatisch aktualisiert werden. Wenn sie aktiviert ist, kann dies die Leistung beeinträchtigen. Das Intervall für die automatische Aktualisierung (Sekunden) muss mindestens {0} betragen.
+            StatisticConfiguration: Konfiguration der Statistik
+            XAxisTitle: Titel der X-Achse
+            YAxisTitle: Titel der Y-Achse
   components:
     CaseDocument:
       FileDate: Änderungsdatum
@@ -1487,6 +1514,64 @@ Dialogs:
       invalidFileMessage: Dateityp nicht gültig!
       invalidSizeMessage: Datei zu groß!
       maximumFileUploadElement: Es gibt bereits ein Datei-Upload-Element
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: Name des Aktivators
+              BUSINESS_RUNTIME:
+                name: Business-Laufzeit
+              CATEGORY:
+                name: Kategorie
+              CREATOR_NAME:
+                name: Name des Erstellers
+              CUSTOM_FIELD:
+                name: Benutzerdefiniertes Feld
+              END_TIMESTAMP:
+                name: Datum der Fertigstellung
+              EXPIRY_TIMESTAMP:
+                name: Verfallsdatum
+              IS_EXPIRED:
+                name: Ist abgelaufen
+              PRIORITY:
+                name: Priorität
+              RESPONSIBLES_NAME:
+                name: Verantwortliche
+              START_TIMESTAMP:
+                name: Erstellungsdatum
+              STATE:
+                name: Zustand
+              WORKER_NAME:
+                name: Name des Arbeiters
+              WORKING_TIME:
+                name: Arbeitszeiten
+            AggregationInterval:
+              DAY:
+                name: Tag
+              MONTH:
+                name: Monat
+              WEEK:
+                name: Woche
+              YEAR:
+                name: Jahr
+            ChartTarget:
+              CASE:
+                name: Vorgang
+              TASK:
+                name: Aufgabe
+            ChartType:
+              BAR:
+                name: Balkendiagramm
+              LINE:
+                name: Liniendiagramm
+              NUMBER:
+                name: Kennzahl / Metrik
+              PIE:
+                name: Kreisdiagramm
 Labels:
   AI:
     Error:
@@ -1513,7 +1598,9 @@ Labels:
   AndMore: 'und {0} weitere...  '
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
+  Configuration: Konfiguration
   CreateNewDashboard: Neues Dashboard erstellen
+  Description: Beschreibung
   EditDescription: Beschreibung bearbeiten
   Enums:
     ChatbotCandidateQuestion:
@@ -1607,12 +1694,19 @@ Labels:
     ThemeMode:
       DARK: Dunkel
       LIGHT: Hell
+  Filters: Filter
+  General: Allgemein
+  Icon: Symbol
   InsertTask-Explain: Aufgabe einfügen. Meine Aufgabe wird aufgeschoben.
   InsertTheTask: Aufgabe einfügen
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Name: Titel
   Permissions: Berechtigungen
+  Preview: Vorschau
+  RequiredFieldMessage: '{0}: Wert ist erforderlich'
+  Save: Speichern
   Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
