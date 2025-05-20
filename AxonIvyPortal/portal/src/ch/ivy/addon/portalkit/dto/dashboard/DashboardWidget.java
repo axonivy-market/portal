@@ -40,7 +40,7 @@ import ch.ivyteam.ivy.environment.Ivy;
     @Type(value = ProcessViewerDashboardWidget.class, name = "process-viewer"),
     @Type(value = WelcomeDashboardWidget.class, name = "welcome"),
     @Type(value = NewsDashboardWidget.class, name = "news"),
-    @Type(value = ClientStatisticDashboardWidget.class, name = "client-statistic"),
+    @Type(value = StatisticDashboardWidget.class, name = "client-statistic"),
     @Type(value = NotificationDashboardWidget.class, name = "notification"),
     @Type(value = NavigationDashboardWidget.class, name = "navigation-dashboard")
 

@@ -30,7 +30,7 @@ import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.AbstractColumn;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.ClientStatisticDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
@@ -391,7 +391,7 @@ public class DashboardWidgetUtils {
       case TASK -> buildDefaultTaskWidget(id, name);
       case CASE -> buildDefaultCaseWidget(id, name);
       case PROCESS -> buildDefaultProcessWidget(id, name);
-      case CLIENT_STATISTIC -> buildDefaultStatisticWidget(id, name, type);
+      case STATISTIC -> buildDefaultStatisticWidget(id, name, type);
       default -> null;
     };
   }
@@ -399,7 +399,7 @@ public class DashboardWidgetUtils {
 
   private static DashboardWidget buildDefaultStatisticWidget(String id, @SuppressWarnings("unused") String name, @SuppressWarnings("unused") DashboardWidgetType widgetType) {
     DashboardWidget widget = null;
-    widget = new ClientStatisticDashboardWidget();
+    widget = new StatisticDashboardWidget();
     widget.setId(id);
     var layout = new WidgetLayout();
     layout.setWidth(5);
