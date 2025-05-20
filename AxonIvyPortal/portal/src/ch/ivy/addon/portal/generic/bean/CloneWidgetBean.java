@@ -97,6 +97,9 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
     String result = cloneWidget.getName();
     // Statistic widget need to load name from list of pre-built statistic
     if (cloneWidget.getType() == DashboardWidgetType.STATISTIC) {
+      if (statisticWidgets == null) {
+        initStatisticWidgets();
+      }
       StatisticDashboardWidget statisticWidget = (StatisticDashboardWidget) cloneWidget;
       result = statisticWidgets.stream()
           .filter(chart -> chart.getId()
@@ -127,7 +130,6 @@ public class CloneWidgetBean extends DashboardDetailModificationBean {
   @Override
   protected void initStatisticWidgets() {
     statisticWidgets = new ArrayList<>();
-    statisticWidgets.addAll(statisticWidgets);
     statisticWidgets
         .addAll(StatisticService.getInstance().findAllCharts());
   }
