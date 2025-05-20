@@ -87,7 +87,7 @@ Variables:
       BehaviourWhenClickingOnLineInTaskList: RUN_TASK
 
       # Set this property to true to enable the ability to pin tasks.
-      EnablePinedTask: false
+      EnablePinedTask: "true"
 
     # You can configure the look and feel for task details according to your needs via this json file.
     # This setting will be taken over for all other task details.
@@ -108,7 +108,7 @@ Variables:
       # [enum: ACCESS_CASE_DETAILS, ACCESS_BUSINESS_DETAILS]
       BehaviourWhenClickingOnLineInCaseList: ACCESS_CASE_DETAILS
       # Set this property to true to enable the ability to pin cases.
-      EnablePinedCase: false
+      EnablePinedCase: "true"
     # You can configure the look and feel for case details according to your needs via this json file.
     # This setting will be taken over for all other case details.
     # [file: json]
