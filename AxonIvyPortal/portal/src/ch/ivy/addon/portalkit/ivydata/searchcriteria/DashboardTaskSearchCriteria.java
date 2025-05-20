@@ -76,7 +76,7 @@ public class DashboardTaskSearchCriteria {
       }
 
       if (to != null) {
-        subQuery.where().endTimestamp().isLowerThan(DateUtils.addDays(to, 1));
+        subQuery.where().endTimestamp().isLowerOrEqualThan(to);
       }
       query.where().and(subQuery);
     }
