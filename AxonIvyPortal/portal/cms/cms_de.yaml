@@ -789,9 +789,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       tooltipHelper: Klicken Sie hier, um alle Benutzer anzuzeigen, die diese Rolle
         direkt oder indirekt besitzen
       userOfRoleTitle: Benutzer der Gruppe {0}
-      roleMemberLineFormat: ''
-      roleMembersTooltipFormat: ''
-      roleMemberItemFormat: ''
     passwordValidation:
       criteria: Kriterien
       enablePasswordValidation: Kennwortüberprüfung einschalten
@@ -1747,9 +1744,6 @@ Dialogs:
       invalidFileMessage: Dateityp nicht gültig!
       invalidSizeMessage: Datei zu groß!
       maximumFileUploadElement: Es gibt bereits ein Datei-Upload-Element
-  general:
-    MaxLabelLenght: ''
-    maxOptionsLength: ''
 Labels:
   AI:
     Error:
