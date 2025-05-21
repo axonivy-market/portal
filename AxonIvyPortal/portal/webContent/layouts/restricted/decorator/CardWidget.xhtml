@@ -33,6 +33,7 @@
     <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block">
       <p:commandButton id="info-sidebar-link-#{index}" type="button" icon="si si-statistics-daytum"
         styleClass="rounded-button ui-button-outlined widget__info-sidebar-link u-mar-right-5"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}"
         rendered="#{renderInfo}" />
       <p:tooltip for="info-sidebar-link-#{index}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}" trackMouse="true"
@@ -41,13 +42,15 @@
 
       <p:commandButton id="expand-link-#{index}" type="button" icon="si si-expand-1"
         styleClass="rounded-button ui-button-outlined expand-link u-mar-right-5 ui-button-widget"
+        ariaLabel="#{ivy.cms.co('/Labels/Expand')}"
         rendered="#{renderExpandCollapse}"
-        onclick="expandFullscreen(#{index}, '#{widget.id}');#{onClickExpandWidget}"/>
+        onclick="expandFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}');#{onClickExpandWidget}"/>
 
       <p:commandButton id="collapse-link-#{index}" type="button" icon="si si-shrink-1"
         styleClass="rounded-button ui-button-outlined collapse-link u-mar-right-5 ui-button-widget"
+        ariaLabel="#{ivy.cms.co('/Labels/Collapse')}"
         rendered="#{renderExpandCollapse}"
-        onclick="collapseFullscreen(#{index}, '#{widget.id}');#{onClickCollapseWidget}"/>
+        onclick="collapseFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}');#{onClickCollapseWidget}"/>
 
       <p:commandButton id="edit-widget-#{index}"
         icon="si si-pencil"

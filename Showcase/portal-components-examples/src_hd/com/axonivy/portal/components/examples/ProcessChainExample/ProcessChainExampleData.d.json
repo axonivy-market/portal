@@ -11,9 +11,5 @@
     "name" : "steps",
     "type" : "java.util.List<String>",
     "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "processChainSerenityExampleLink",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

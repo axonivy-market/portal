@@ -7,8 +7,6 @@
 <h:body>
   <ui:composition template="/layouts/restricted/IFrameWithoutMenuTemplate.xhtml">
     <ui:param name="loadPortalScript" value="false" />
-    <ui:param name="loadSerenityScript" value="false" />
-    <ui:param name="loadOptionalSerenityCss" value="false" />
     <ui:define name="pageContent">
       <f:event listener="#{caseDetailsBean.preRender(data.currentCase, data.showBackButton)}" type="preRenderView" />
       <ic:ch.ivy.addon.portal.component.CaseInformation id="case-item-details"

@@ -1,5 +1,18 @@
-name: Portal Document Screenshot
-run-name: Document Screenshot 
+name: Document Screenshot
+run-name: 🖼️ Document Screenshot 
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  issues: write
+  packages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
+  discussions: write
+  pages: write
 on:
   workflow_dispatch:
     inputs:
@@ -23,10 +36,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
@@ -126,7 +139,7 @@ jobs:
             AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
       
       - name: Report
-        uses: dorny/test-reporter@v1.9.1
+        uses: dorny/test-reporter@v2.0.0
         with:
           artifact: screenshot-test-reports
           name: Screenshot Tests

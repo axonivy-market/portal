@@ -18,8 +18,7 @@
           <h:outputText id="case-id" value="#{data.task.id}" />
 
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
-          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="task-activator" securityMember="#{data.task.getActivator()}"
-            securityMemberName="#{data.task.getActivatorName()}" />
+          <ic:com.axonivy.portal.component.Responsibles responsibles="#{data.task.responsibles()}" />
 
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
           <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state" state="#{data.task.businessState}"

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.Objects;
+import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 
@@ -17,8 +17,8 @@ import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -64,16 +64,6 @@ public class TaskBean implements Serializable {
       return StringUtils.EMPTY;
     }
     return cms(TASK_BUSINESS_STATE_CMS_PATH + state);
-  }
-
-  public String displayRelatedTaskToolTip(ITask task) {
-    List<Object> params = new ArrayList<>();
-    if (task != null) {
-      ISecurityMember taskActivator = task.getActivator();
-      String taskActivatorName = taskActivator != null? taskActivator.getDisplayName() : StringUtils.stripStart(task.getActivatorName(), "#");
-      params = Arrays.asList(getTranslatedState(task.getBusinessState()), Objects.toString(taskActivatorName, ""));
-    }
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateAndResponsible", params);
   }
 
   private String cms(String uri) {
@@ -134,6 +124,11 @@ public class TaskBean implements Serializable {
         } else if (DashboardStandardTaskColumn.CREATED.getField().equalsIgnoreCase(col.getField())) {
           String createdDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(task.getStartTimestamp());
           displayTexts.add(col.getHeaderText() + ": " + createdDateString);
+        } else if (DashboardStandardTaskColumn.COMPLETED.getField().equalsIgnoreCase(col.getField())) {
+          if (task.getEndTimestamp() != null) {
+            String completedDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(task.getEndTimestamp());
+            displayTexts.add(col.getHeaderText() + ": " + completedDateString);
+          }
         } else if (DashboardStandardTaskColumn.EXPIRY.getField().equalsIgnoreCase(col.getField())) {
           if (task.getExpiryTimestamp() != null) {
             String expiryDateString = new SimpleDateFormat(DateTimeGlobalSettingService.getInstance().getGlobalDateTimePattern()).format(task.getExpiryTimestamp());
@@ -149,4 +144,23 @@ public class TaskBean implements Serializable {
     }
     return String.join(" - ", displayTexts);
   }
+
+  public boolean isPinnedTask(ITask task) {
+    return TaskUtils.isPinnedTask(task);
+  }
+  
+  public void clickOnPinTask(ITask task) {
+    if (task == null)
+      return;
+
+    String taskUuid = task.uuid();
+    Set<String> pinnedTaskUuids = TaskUtils.getPinnedTaskUuids();
+
+    if (!pinnedTaskUuids.remove(taskUuid)) {
+      pinnedTaskUuids.add(taskUuid);
+    }
+
+    TaskUtils.savePinnedTaskUuids(pinnedTaskUuids);
+  }
+
 }

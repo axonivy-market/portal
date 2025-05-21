@@ -11,9 +11,5 @@
     "name" : "showProcessHistoriesOfBetaCompany",
     "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "processHistoryExampleSerenityLink",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

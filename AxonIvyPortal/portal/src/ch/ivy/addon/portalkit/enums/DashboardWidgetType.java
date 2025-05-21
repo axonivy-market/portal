@@ -12,7 +12,8 @@ public enum DashboardWidgetType {
   WELCOME(false, false, false),
   NEWS(false, false, true),
   NOTIFICATION(false, false, true),
-  STATISTIC(false, false, true);
+  STATISTIC(false, false, true),
+  NAVIGATION_DASHBOARD(false, false, true);
 
   private boolean canEnableQuickSearch;
   private boolean canShowWidgetInfoOption;
@@ -48,5 +49,9 @@ public enum DashboardWidgetType {
 
   public boolean canShowFullscreenModeOption() {
     return canShowFullscreenModeOption;
+  }
+
+  public boolean canShowPinnedItemToggle() {
+    return this == TASK || this == CASE;
   }
 }

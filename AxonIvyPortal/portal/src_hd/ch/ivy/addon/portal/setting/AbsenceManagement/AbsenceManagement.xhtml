@@ -210,6 +210,14 @@
                         styleClass="substition-role-display-name absence-column-value" />
                     </p:column>
                     <p:column
+                      headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/activeAbsence')}"
+                      styleClass="deputy-for-next-absence"
+                      sortBy="#{absenceManagementBean.findActiveAbsence(substitution.ownerUser)}">
+                      <h:outputText
+                        value="#{absenceManagementBean.findActiveAbsence(substitution.ownerUser)}"
+                        styleClass="absence-column-value" />
+                    </p:column>
+                    <p:column
                       headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/nextAbsence')}"
                       styleClass="deputy-for-next-absence"
                       sortBy="#{absenceManagementBean.findNextAbsence(substitution.ownerUser)}">

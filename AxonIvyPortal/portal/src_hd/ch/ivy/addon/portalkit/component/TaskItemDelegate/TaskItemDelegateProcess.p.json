@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "16EE8CACE2CB2C75",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -39,8 +39,7 @@
         "guid" : "16EE8CC0919A3695"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 656 },
-        "labelOffset" : { "y" : 35 }
+        "at" : { "x" : 96, "y" : 656 }
       },
       "connect" : [
         { "id" : "f110", "to" : "f107" }
@@ -142,6 +141,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.util.TaskUtils;",
             "import ch.ivy.addon.portalkit.util.SecurityMemberUtils;",
             "import org.apache.commons.lang.StringUtils;",
             "",
@@ -155,7 +155,7 @@
             "  in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(in.selectedRole);",
             "}",
             "",
-            "String oldResponsibleName = in.task.getActivator() != null? in.task.getActivator().getDisplayName() : StringUtils.stripStart(in.task.getActivatorName(), \"#\");",
+            "String oldResponsibleName = in.task.responsibles().displayName();",
             "",
             "in.delegateComment = StringUtils.isBlank(in.#taskDelegationComment) ?",
             "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment\", [in.task.getId(), oldResponsibleName, newResponsibleName])",
@@ -379,7 +379,7 @@
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 168 },
-        "labelOffset" : { "x" : 23, "y" : 35 }
+        "labelOffset" : { "x" : 23 }
       },
       "connect" : [
         { "id" : "f14", "to" : "f88" }

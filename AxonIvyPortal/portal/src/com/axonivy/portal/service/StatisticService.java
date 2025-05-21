@@ -1,5 +1,7 @@
 package com.axonivy.portal.service;
 
+import static com.axonivy.portal.bean.StatisticConfigurationBean.DEFAULT_COLORS;
+
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,16 +18,21 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 
+import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
+import com.axonivy.portal.constant.StatisticConstants;
 import com.axonivy.portal.dto.StatisticDto;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.AdditionalChartConfig;
 import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.ChartTarget;
+import com.axonivy.portal.enums.statistic.ChartType;
+import com.axonivy.portal.migration.statistic.migrator.JsonStatisticMigrator;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -37,9 +44,10 @@ import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.workflow.stats.WorkflowStats;
 
 public class StatisticService {
-  
+
   private static final String DEFAULT_STATISTIC_KEY = PortalVariable.STATISTIC.key;
   private static final String CUSTOM_STATISTIC_KEY = PortalVariable.CUSTOM_STATISTIC.key;
+  private static final String CLIENT_STATISTIC_KEY = "Portal.ClientStatistic";
   private static StatisticService instance;
 
   public static StatisticService getInstance() {
@@ -176,16 +184,66 @@ public class StatisticService {
     String statisticsJson = BusinessEntityConverter.entityToJsonValue(statistics);
     Ivy.var().set(CUSTOM_STATISTIC_KEY, statisticsJson);
   }
-  
+
   private List<Statistic> getDefaultStatistic() {
     String value = Ivy.var().get(DEFAULT_STATISTIC_KEY);
     List<Statistic> statistics = BusinessEntityConverter.jsonValueToEntities(value, Statistic.class);
     statistics.forEach(cs -> cs.setIsCustom(false));
+    configDefaultStatisticSettings(statistics);
     return statistics;
   }
-  
+
   public List<Statistic> getCustomStatistic() {
-    return BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
+    migrateClientStatistic();
+    List<Statistic> statistics =
+        BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
+    configDefaultStatisticSettings(statistics);
+    return statistics;
+  }
+
+  public void migrateClientStatistic() {
+    try {
+      String json = Ivy.var().get(CLIENT_STATISTIC_KEY);
+      if (StringUtils.isNotBlank(json)) {
+        List<Statistic> customStatistics = BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
+
+        ObjectMapper mapper = new ObjectMapper();
+        JsonStatisticMigrator migrator = new JsonStatisticMigrator(mapper.readTree(json));
+        List<Statistic> clientStatistics = BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Statistic.class);
+
+        Set<String> seenIds = new HashSet<>();
+        customStatistics = customStatistics.stream().filter(statistic -> seenIds.add(statistic.getId())).collect(Collectors.toList());
+        clientStatistics.stream().filter(obj -> seenIds.add(obj.getId())).forEach(customStatistics::add);
+
+        String statisticsJson = BusinessEntityConverter.entityToJsonValue(customStatistics);
+        Ivy.var().set(CUSTOM_STATISTIC_KEY, statisticsJson);
+        Ivy.var().reset(CLIENT_STATISTIC_KEY);
+      }
+    } catch (Exception e) {
+      Ivy.log().warn("Migrate client statistic failed due to ", e);
+    }
+  }
+
+  private void configDefaultStatisticSettings(List<Statistic> statistics) {
+    for (Statistic statistic : statistics) {
+      if (ChartType.PIE == statistic.getChartType()) {
+        if (statistic.getPieChartConfig() == null) { // could be null due to migration from version 12
+          PieChartConfig pieChartConfig = new PieChartConfig();
+          pieChartConfig.setBackgroundColors(DEFAULT_COLORS);
+          statistic.setPieChartConfig(pieChartConfig);
+        } else if (CollectionUtils.isEmpty(statistic.getPieChartConfig().getBackgroundColors())) {
+          statistic.getPieChartConfig().setBackgroundColors(DEFAULT_COLORS);
+        }
+      }
+      if (ChartType.BAR == statistic.getChartType()
+          && CollectionUtils.isEmpty(statistic.getBarChartConfig().getBackgroundColors())) {
+        statistic.getBarChartConfig().setBackgroundColors(DEFAULT_COLORS);
+      }
+      if (ChartType.LINE == statistic.getChartType()
+          && CollectionUtils.isEmpty(statistic.getLineChartConfig().getBackgroundColors())) {
+        statistic.getLineChartConfig().setBackgroundColors(DEFAULT_COLORS);
+      }
+    }
   }
 
   public String convertAggregatesFromChartAggregation(Statistic chart) {
@@ -211,8 +269,14 @@ public class StatisticService {
     // STANDARD FIELD
     // IF INTERVAL NOT NULL -> TIMESTAMP
     // OTHERWISE -> STRING
-    return chartAggregation.getInterval() == null ? chartAggregation.getField()
-        : chartAggregation.getField() + ":bucket:" + chartAggregation.getInterval().toString().toLowerCase();
+    return chartAggregation.getInterval() == null ? transformField(chartAggregation.getField()) : transformField(chartAggregation.getField()) + ":bucket:" + chartAggregation.getInterval().toString().toLowerCase();
+  }
+
+  private String transformField(String field) {
+    return switch (field) {
+    case StatisticConstants.STATE -> StatisticConstants.BUSSINESS_STATE;
+    default -> field;
+    };
   }
   
 }

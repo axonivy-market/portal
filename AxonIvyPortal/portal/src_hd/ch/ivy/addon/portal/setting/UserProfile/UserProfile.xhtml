@@ -45,6 +45,26 @@
                     </p:selectOneMenu>
                   </div>
                 </h:panelGroup>
+
+                <!-- Task Widget Setting -->
+                 <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{visibilityBean.enablePinTask}">
+                  <div class="setting-header">
+                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/TaskList')}</h5>
+                  </div>
+                    <p:commandButton value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedTasks')}"
+                      actionListener="#{userProfileBean.unpinAllPinnedTasks}"
+                      icon="pi pi-trash" />
+                </h:panelGroup>
+
+              <!-- Case Widget Setting -->
+                 <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{visibilityBean.enablePinCase}">
+                  <div class="setting-header">
+                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/CaseList')}</h5>
+                  </div>
+                    <p:commandButton value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedCases')}"
+                      actionListener="#{userProfileBean.unpinAllPinnedCases}"
+                      icon="pi pi-trash" />
+                </h:panelGroup>
               </div>
               <p:divider layout="vertical" styleClass="responsive-divider"/>
 
@@ -115,7 +135,7 @@
                     </p:dataTable>
                   </div>
                   <div class="text-right mt-3 restore-to-default-button">
-                    <p:commandLink id="restore-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-undo')}" 
+                    <p:commandLink id="restore-to-default-button" 
                       global="false"
                       actionListener="#{userProfileBean.resetAllChannel}"
                       update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"

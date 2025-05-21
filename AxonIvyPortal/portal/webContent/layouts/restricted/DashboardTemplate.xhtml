@@ -12,6 +12,8 @@
 
     <ui:define name="title">#{managedBean.getSelectedDashboardName()}</ui:define>
     <ui:param name="loadGridStack" value="true" />
+    <ui:param name="isInDashboard" value="true"/>
+
 
     <ui:define name="pageContent">
         <script>
@@ -20,8 +22,9 @@
           }
 
           $(document).ready(function () {
-            loadGrid(#{managedBean.selectedDashboard.isResponsive});
-            updateDashboardWhenResizeWindow(#{managedBean.selectedDashboard.isResponsive});
+            const isResponsive = #{htmlSanitizerBean.escapeForJS(managedBean.selectedDashboard.isResponsive)} ? true : false;
+            loadGrid(isResponsive);
+            updateDashboardWhenResizeWindow(isResponsive);
             setTimeout(() => {
               initStatistics();
             }, 50);
@@ -33,6 +36,9 @@
           immediate="true" process="@this" update="@none" global="false"/>
       </h:form>
       <div class="ui-g js-dashboard__wrapper #{managedBean.isReadOnlyMode ? 'js-view-mode':''}">
+      <div id="screen-reader-notification" aria-live="assertive" class="screenreader-only">
+        #{dashboardBean.getScreenReaderNotificationContent()}
+      </div>
       <!-- Dashboard content -->
       <ui:fragment>
         <h:outputStylesheet library="css" name="dashboard.css" />
@@ -150,6 +156,15 @@
                         index="#{status.index}"
                         id="notification-#{widget.id}" />
                     </c:if>
+                    
+                    <!-- Navigation dashboard widget -->
+                    <c:if test="#{widget.type eq 'NAVIGATION_DASHBOARD'}">
+                      <ic:com.axonivy.portal.dashboard.component.NavigationDashboardWidget widget="#{widget}"
+                        managedBean="#{managedBean}"
+                        index="#{status.index}"
+                        isReadOnlyMode="#{managedBean.isReadOnlyMode}"
+                        id="navigation-dashboard-#{widget.id}" />
+                    </c:if>
                   </div>
                 </div>
               </c:forEach>
@@ -175,7 +190,7 @@
             <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
             <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyTaskHeaderText')}" />
             <ui:param name="dialogContent"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage')}" />
+              value="#{taskWidgetBean.getDestroyTaskMessage()}" />
              
             <ui:define name="dialogFooter">
               <h:panelGroup styleClass="flex flex-column">
@@ -227,7 +242,7 @@
             <ui:param name="iconClass" value="si si-delete-1" />
             <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
             <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyCaseHeaderText')}" />
-            <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage')}" />
+            <ui:param name="dialogContent" value="#{caseWidgetBean.getDestroyCaseMessage()}" />
             
            <ui:define name="dialogFooter">
             <h:panelGroup>
@@ -312,7 +327,7 @@
             </h:form>
           </p:dialog>
 
-          <h:panelGroup rendered="#{managedBean.isShowShareButtonOnDashboard() and not managedBean.isMainDashboardSelected()}" layout="block" styleClass="text-center">
+          <h:panelGroup rendered="#{managedBean.isShowShareButtonOnDashboard() and not managedBean.isMainDashboardSelected() and managedBean.selectedDashboard.dashboardDisplayType ne 'HIDDEN'}" layout="block" styleClass="text-center">
             <p:link value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShareThisDashboard')}" 
                   onclick="PF('share-dashboard-dialog').show(); return false;" styleClass="js-share-dashboard-link" />
           </h:panelGroup>
@@ -322,7 +337,9 @@
             url="#{managedBean.dashboardUrl}"
             title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/DashboardSharing/ShareDashboard')}" />
 
-          <ic:com.axonivy.portal.component.CloneWidgetDialog id="clone-widget-component" />
+          <h:panelGroup layout="block" rendered="#{!managedBean.isReadOnlyMode}">
+            <ic:com.axonivy.portal.component.CloneWidgetDialog id="clone-widget-component" />
+          </h:panelGroup>
 
           </div>
         <h:outputScript library="js" name="dashboard.js" />

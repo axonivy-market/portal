@@ -1,18 +1,23 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -21,6 +26,7 @@ import ch.ivyteam.ivy.workflow.note.Note;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public final class CaseUtils {
+  private static String pinCaseProperty = UserProperty.PORTAL_PINNED_CASES;
 
   private CaseUtils() {}
 
@@ -122,6 +128,51 @@ public final class CaseUtils {
         .owners()
         .all()
         .stream()
-        .anyMatch(item -> item.member().isMember(Ivy.session(), true));
+        .anyMatch(item -> item.member().isMember(Ivy.session()));
+  }
+
+  public static boolean isPinnedCase(ICase caze) {
+    return caze != null && getPinnedCaseUuids().contains(caze.uuid());
+  }
+
+  public static Set<String> getPinnedCaseUuids() {
+    IUser currentUser = Ivy.session().getSessionUser();
+    if (currentUser == null) {
+      return new HashSet<>();
+    }
+
+    String pinnedCasesStr = currentUser.getProperty(pinCaseProperty);
+    return StringUtils.isBlank(pinnedCasesStr) ? new HashSet<>()
+        : Arrays.stream(pinnedCasesStr.split(",")).map(String::trim).filter(StringUtils::isNotEmpty)
+            .collect(Collectors.toSet());
+  }
+
+  public static void markCaseAsPinned(ICase caze) {
+    if (caze == null) {
+      return;
+    }
+
+    Set<String> pinnedCaseUuids = getPinnedCaseUuids();
+    boolean ispinned = pinnedCaseUuids.contains(caze.uuid());
+
+    if (ispinned) {
+      pinnedCaseUuids.remove(caze.uuid());
+    } else {
+      pinnedCaseUuids.add(caze.uuid());
+    }
+
+    savePinnedCaseUuids(pinnedCaseUuids);
+  }
+
+  public static void savePinnedCaseUuids(Set<String> pinnedCaseUuids) {
+    String updatedPinnedCases = String.join(",", pinnedCaseUuids);
+    Ivy.session().getSessionUser().setProperty(pinCaseProperty, updatedPinnedCases);
+  }
+
+  public static void removeAllPinnedCase() {
+    IUser currentUser = Ivy.session().getSessionUser();
+    if (currentUser != null) {
+      currentUser.setProperty(pinCaseProperty, StringUtils.EMPTY);
+    }
   }
 }

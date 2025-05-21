@@ -21,6 +21,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.util.Strings;
 import org.primefaces.event.FileUploadEvent;
@@ -32,6 +33,7 @@ import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.service.GlobalSearchService;
 import com.axonivy.portal.util.ExternalLinkUtils;
+import com.axonivy.portal.util.UploadDocumentUtils;
 
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.IvyProcess;
@@ -619,4 +621,14 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       selectedSecurityMemberDTOsWhenCreatingExternalLink.clear();
     }
   }
+
+  public Long getUploadFileLimit() {
+    return UploadDocumentUtils.getImageUploadSizeLimit();
+  }
+
+  public String getFileUploadInvalidSizeMessage() {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/errorFileUploadSize",
+        Arrays.asList(FileUtils.byteCountToDisplaySize(getUploadFileLimit())));
+  }
+
 }

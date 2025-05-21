@@ -1,23 +1,24 @@
 Key,Default value,Note
-Portal.ApplicationName,"Axon Ivy",The default application name that will be displayed on the page title.
+Portal.ApplicationName,Axon Ivy,The application name that will be displayed on the page title.
 Portal.CaseDetails.HideDocument,FALSE,"Set to true, the document section in case detail page will be hidden, otherwise it will be shown."
 Portal.CaseDetails.HideUploadDocumentForDoneCase,FALSE,Set to true to deny upload (also delete) document after a case is done.
 Portal.CaseDetails.ShowDurationTime,TRUE,For switch on/off the display of the duration time in case details page.
 Portal.Cases.EnableOwner,FALSE,"| Set to true to enable filtering case owner when cases are queried. This setting affects all case 
 | queries e.g. for case widget, global search."
 Portal.Cases.HideCaseCreator,FALSE,"Set to true to hide case creator in case widget, case widget and case details. This setting affects all case queries, e.g. for case widget, global search."
+Portal.Cases.EnablePinnedCase,FALSE,"Set this property to true to enable the ability to pin case."
 Portal.Chat.EnableGroup,FALSE,Set this property to true to enable group chat function.
 Portal.Chat.EnablePrivate,FALSE,Set this property to true to enable private chat function.
 Portal.Chat.MaxConnection,3,"| The set number controls the amount of tabs allowed with active chat. If more tabs are opened,
 | the chat will be disabled in inactive tabs. Allowed values are 1 to 5."
 Portal.Chat.ResponseTimeout,0,"| Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through 
 | the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds."
-Portal.DateTimeFormat.DateFilterWithTime,FALSE,"Set to true to enable date filtering with time. This setting affects task widget and case widget."
+Portal.DateTimeFormat.DateFilterWithTime,FALSE,Set to true to enable date filtering with time. This setting affects task widget and case widget.
 Portal.DateTimeFormat.HideTime,FALSE,Set to true to hide hours and minutes next to date.
 Portal.DateTimeFormat.HideYear,FALSE,"Set to true, year will be hidden, otherwise it will be shown."
 Portal.DisplayMessageAfterFinishTask,TRUE,A feedback message will be displayed after user finishes or leaves a task.
 Portal.DisplayUsersOfRole,FALSE,"| Controls the SecurityMemberDisplayName component.| If true and the SecurityMember is a role, lists all users of this role under the info icon besides the role name."
-Portal.Document.EnableScriptChecking,FALSE,"If true, enables checking uploaded documents for scripting. Supports PDF, Excel, Word."
+Portal.Document.EnableScriptChecking,TRUE,"If true, enables checking uploaded documents for scripting. Supports PDF, Excel, Word."
 Portal.Document.EnableVirusScanner,FALSE,Set to true to enable virus scanner for uploaded document. Currently this function uses the VIRUSTOTAL API.
 Portal.Document.WhitelistExtension,"| doc, docx, xls,
 | xlsx, xlsm, csv,
@@ -42,6 +43,7 @@ Portal.TaskDetails.HideDocument,FALSE,"If true, the document section in task det
 Portal.TaskDetails.ShowDurationTime,TRUE,For switch on/off the display of the duration time in task details page.
 Portal.Tasks.BehaviourWhenClickingOnLineInTaskList,Run the task,"| Default behaviors (run the task or access task details) when clicking.
 | on a line in the task widget, task widget of the dashboard or on related tasks in the case details page."
+Portal.Tasks.EnablePinnedTask,FALSE,"Set this property to true to enable the ability to pin tasks."
 Portal.Cases.BehaviourWhenClickingOnLineInCaseList,Access case details,"| Toggle between accessing case details or business details when clicking
 | on a case in the case widget on the dashboard, global search, related cases, and process widget in combined mode."
 Portal.UserMenu.HideChangePasswordMenu,FALSE,"Set this variable to true to hide the ""Change Password"" option in the top menu and the ""Forgotten Password"" option on the login page. If set to false, these options will be shown."
@@ -59,12 +61,17 @@ Portal.Theme.EnableSwitchThemeModeButton,TRUE,"If false, the Switch Theme Mode b
 Portal.Theme.Mode,LIGHT,The default theme mode of the application.
 Portal.SearchScope.ByCaseFields,"NAME, DESCRIPTION, CUSTOM",Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search).
 Portal.SearchScope.ByTaskFields,"NAME, DESCRIPTION",Defining the fields that the global search will use to find matching tasks beside task Id (this can influence the performance of the search).
-Portal.GlobalFooterInfo,"",Defining the global environment footer info.
+Portal.GlobalFooterInfo,,Defining the global environment footer info.
 Portal.DeepL.AuthKey,,DeepL Authentication Key (should end with :fx)
 Portal.DeepL.Enable,FALSE,Set this property to true to enable the DeepL translation support.
 Portal.ShowQuickGlobalSearch,TRUE,For switch on/off the display of the quick global search.
 Portal.UserMenu.ShowQRCode,FALSE,For switch on/off the display of the QR code.
-Portal.UserMenu.BaseQRCodeUrl,"",Set Base URL for QR code to display.
-Portal.UserMenu.AppleStoreURL,"",Set URL to download Axon Ivy mobile app on Apple Store.
-Portal.UserMenu.GooglePlayURL,"",Set URL to download Axon Ivy mobile app on Google Play.
+Portal.UserMenu.BaseQRCodeUrl,,Set Base URL for QR code to display.
+Portal.UserMenu.AppleStoreURL,,Set URL to download Axon Ivy mobile app on Apple Store.
+Portal.UserMenu.GooglePlayURL,,Set URL to download Axon Ivy mobile app on Google Play.
 Portal.GlobalSearchScopeCategories,"PROCESSES,TASKS,CASES",Defining the types that the global search will search for.
+Portal.Upload.DocumentUploadSizeLimit,20,Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.
+Portal.Upload.ImageUploadSizeLimit,6,Set the size limit for uploading images in megabytes (MB). The default value is 6MB.
+Portal.DelegationAppendOption,None,Defines the fields that can be appended to the role group display name.
+Portal.SessionCacheTimeout,86400,"Defines the session cache timeout duration (in seconds) for the Portal. This value can be set between 300 (5 minutes) and 86,400 (24 hours). To keep the session cache active until the user's session ends, set this variable to -1."
+Portal.ShowTooltipTechnicalName,FALSE,"Enable to show users' technical name on tooltips."

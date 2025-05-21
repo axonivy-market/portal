@@ -72,6 +72,10 @@ public class DefaultDashboardUtils {
                 "width": "75"
               },
               {
+                "field": "pin",
+                "width": "75"
+              },
+              {
                 "field": "priority",
                 "width": "70"
               },
@@ -103,6 +107,10 @@ public class DefaultDashboardUtils {
                 "width": "95"
               },
               {
+                "field": "endTimestamp",
+                "width": "95"
+              },
+              {
                 "field": "expiryTimestamp",
                 "width": "95"
               },
@@ -123,7 +131,7 @@ public class DefaultDashboardUtils {
         "permissions": [
           "Everybody"
         ],
-        "isTopMenu": true
+        "dashboardDisplayType": "top_menu"
       }
       """;
 
@@ -198,6 +206,10 @@ public class DefaultDashboardUtils {
                 "width": "80"
               },
               {
+                "field": "pin",
+                "width": "75"
+              },
+              {
                 "field": "name",
                 "quickSearch": true,
                 "width": "300"
@@ -237,7 +249,7 @@ public class DefaultDashboardUtils {
         "permissions": [
           "Everybody"
         ],
-        "isTopMenu": true
+        "dashboardDisplayType": "top_menu"
       }
       """;
 

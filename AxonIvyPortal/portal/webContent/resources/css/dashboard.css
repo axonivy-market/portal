@@ -186,8 +186,15 @@
 }
 
 .widget__header .widget__header-title,
-.widget__header .ui-link.si {
+.widget__header .ui-link.si, .navigation-widget-title {
   font-size: var(--widget-header-font-size);
+}
+
+.navigation-widget-title {
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 
 .process-grid-item__action--combined a.si,
@@ -458,6 +465,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 .widget-configuration__category-panel-footer {
   margin-top: 1rem;
   text-align: right;
+  padding: 0 1.5rem 0 1.5rem;
 }
 
 .field-add-fieldset {
@@ -1925,3 +1933,10 @@ body .widget__content .ui-datatable.dashboard-tasks--table .ui-widget-header the
 .clone-to-dashboard-dialog-header-container {
   width: calc(100% - 35px);
 }
+
+.navigate-dashboard-button-truncate > span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}}

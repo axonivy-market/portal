@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "1818980EC9955786",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -19,22 +19,13 @@
           "map" : {
             "out.showProcessHistoriesOfAlphaCompany" : "param.showProcessHistoriesOfAlphaCompany",
             "out.showProcessHistoriesOfBetaCompany" : "param.showProcessHistoriesOfBetaCompany"
-          },
-          "code" : [
-            "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
-            "",
-            "if (param.showProcessHistoriesOfAlphaCompany) {",
-            "  out.processHistoryExampleSerenityLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessHistoryExample/viewProcessHistoryOfAlphaCompanySerenity.ivp\");",
-            "} else {",
-            "  out.processHistoryExampleSerenityLink = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(\"Start Processes/ProcessHistoryExample/viewProcessHistoryOfBetaCompanySerenity.ivp\");",
-            "}"
-          ]
+          }
         },
         "guid" : "1818980EC9CA1178"
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 },
-        "labelOffset" : { "x" : 55, "y" : 35 }
+        "labelOffset" : { "x" : 55 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f1" }

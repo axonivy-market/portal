@@ -60,7 +60,6 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
-import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
@@ -86,7 +85,7 @@ public class StatisticConfigurationBean implements Serializable {
   private static final int MAX_REFRESH_INTERVAL_IN_SECONDS = 1000000;
   private static final int DEFAULT_REFRESH_INTERVAL_IN_SECONDS = 300;
   private static final String TIMESTAMP = "timestamp";
-  private static final List<String> DEFAULT_COLORS =
+  public static final List<String> DEFAULT_COLORS =
       Arrays.asList("#6299f7", "#8dc261", "#98bffa", "#bee3cb", "#c8befa", "#f5bf9f", "#f8da96", "#f9908c");
   private Statistic statistic;
   private String statisticId;
@@ -193,6 +192,10 @@ public class StatisticConfigurationBean implements Serializable {
       }
       this.setDateTimeSelected(agg.getInterval() != null);
       this.aggregationInterval = agg.getInterval(); 
+    } else {
+      StatisticAggregation statisticAggregation = new StatisticAggregation();
+      statisticAggregation.setField(AggregationField.PRIORITY.getName());
+      statistic.setStatisticAggregation(statisticAggregation);
     }
   }
 
@@ -293,6 +296,7 @@ public class StatisticConfigurationBean implements Serializable {
     cleanUpRedundantChartConfigs(statistic.getChartType());
     cleanUpConfiguration();
     cleanUpFilter();
+    cleanUpAggregations();
     nameMultilanguageService.initMultipleLanguagesForName(statistic.getName());
     descriptionMultilanguageService.initMultipleLanguagesForName(statistic.getDescription());
     if (BAR == statistic.getChartType() || LINE == statistic.getChartType()) {
@@ -303,6 +307,15 @@ public class StatisticConfigurationBean implements Serializable {
     backToDashboardDetailsPageIfPossible();
   }
 
+  public boolean isOutdatedChart(Statistic chart) {
+    if (chart != null) {
+      if (StringUtils.isNotBlank(chart.getAggregates()) || StringUtils.isNotBlank(chart.getFilter())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   private void cleanUpConfiguration() {
     if (!refreshIntervalEnabled || statistic.getRefreshInterval() == null
         || (statistic.getRefreshInterval() < MIN_REFRESH_INTERVAL_IN_SECONDS)) {
@@ -311,6 +324,14 @@ public class StatisticConfigurationBean implements Serializable {
     statistic.setAdditionalConfigs(null);
   }
   
+  private void cleanUpAggregations() {
+    if (StringUtils.isNotBlank(statistic.getAggregates())) {
+      if (statistic.getStatisticAggregation() != null && StringUtils.isNotBlank(statistic.getStatisticAggregation().getField())) {
+        statistic.setAggregates(null);
+      }
+    }
+  }
+
   private void cleanUpFilter() {
     if (CollectionUtils.isNotEmpty(statistic.getFilters())) {
       statistic.getFilters().removeIf(filter -> filter.getField() == null);
@@ -375,8 +396,7 @@ public class StatisticConfigurationBean implements Serializable {
       statistic.setVersion(StatisticJsonVersion.LATEST_VERSION.getValue());
       statistics.add(statistic);
     }
-    String statisticsJson = BusinessEntityConverter.entityToJsonValue(statistics);
-    Ivy.var().set(PortalVariable.CUSTOM_STATISTIC.key, statisticsJson);
+    StatisticService.getInstance().saveJsonToVariable(statistics);
   }
 
   public List<ChartTarget> getAllChartTargets() {

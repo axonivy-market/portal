@@ -9,14 +9,16 @@ import java.util.Set;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum DashboardStandardTaskColumn {
-  START("start"), 
+  START("start"),
+  PIN("pin"),
   PRIORITY("priority"), 
   ID("id"), 
   NAME("name"), 
   DESCRIPTION("description"), 
   RESPONSIBLE("activator"), 
   STATE("state"),
-  CREATED("startTimestamp"), 
+  CREATED("startTimestamp"),
+  COMPLETED("endTimestamp"),
   EXPIRY("expiryTimestamp"), 
   CATEGORY("category"),
   APPLICATION("application"),

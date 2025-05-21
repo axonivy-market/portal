@@ -24,6 +24,8 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
+import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
+
 @IvyWebTest
 public class DashboardConfigurationTest extends BaseTest {
 
@@ -107,7 +109,7 @@ public class DashboardConfigurationTest extends BaseTest {
     LinkNavigator.redirectToPortalDashboardConfiguration();
     var configurationPage = new DashboardConfigurationPage();
     configurationPage.openCreatePublicDashboardMenu();
-    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions, false);
+    configurationPage.createPublicDashboardFromScratch(name, icon, description, permissions, DashboardDisplayType.SUB_MENU);
 
     NewDashboardDetailsEditPage newDashboardDetailsEditPage = new NewDashboardDetailsEditPage();
     newDashboardDetailsEditPage.getTitleByIndex(0).shouldBe(Condition.exactText(name));
@@ -205,6 +207,9 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testEditPrivateDashboardInfo() {
     redirectToRelativeLink(createSampleDashboardUrl);
+    NewDashboardPage newDashboard = new NewDashboardPage();
+    newDashboard.waitForPageLoad();
+
     var modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
     modificationPage.clickEditDashboardByName(PRIVATE_1);
     modificationPage.editPrivateDashboardInfo(EDITED_PRIVATE_DASHBOARD_1, DASHBOARD_1_DESCRIPTION);
@@ -217,6 +222,9 @@ public class DashboardConfigurationTest extends BaseTest {
   @Test
   public void testDeletePrivateDashboard() {
     redirectToRelativeLink(createSampleDashboardUrl);
+    NewDashboardPage newDashboard = new NewDashboardPage();
+    newDashboard.waitForPageLoad();
+
     var modificationPage = navigateToConfigurationAndOpenDashboardModificationPage();
     modificationPage.clickDeleteDashboardByName(PRIVATE_1);
     modificationPage.getDashboardRows().shouldHave(size(1));

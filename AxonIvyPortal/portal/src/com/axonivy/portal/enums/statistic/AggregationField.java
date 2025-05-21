@@ -7,7 +7,7 @@ import com.axonivy.portal.enums.HasCmsName;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum AggregationField implements HasCmsName {
-  BUSINESS_STATE("businessState"),
+  STATE("state"),
   PRIORITY("priority"),
   CATEGORY("category"),
   IS_EXPIRED("isExpired"),
@@ -33,15 +33,15 @@ public enum AggregationField implements HasCmsName {
   }
 
   public static final Set<AggregationField> TASK_AGGREGATES = Collections
-      .unmodifiableSet(EnumSet.of(BUSINESS_STATE, PRIORITY, CATEGORY, WORKER_NAME, RESPONSIBLES_NAME, START_TIMESTAMP,
+      .unmodifiableSet(EnumSet.of(STATE, PRIORITY, CATEGORY, WORKER_NAME, RESPONSIBLES_NAME, START_TIMESTAMP,
           END_TIMESTAMP, EXPIRY_TIMESTAMP, CUSTOM_FIELD));
 
   public static final Set<AggregationField> CASE_AGGREGATES = Collections.unmodifiableSet(
-      EnumSet.of(BUSINESS_STATE, CATEGORY, CREATOR_NAME, START_TIMESTAMP, END_TIMESTAMP, CUSTOM_FIELD));
+      EnumSet.of(STATE, CATEGORY, CREATOR_NAME, START_TIMESTAMP, END_TIMESTAMP, CUSTOM_FIELD));
 
   public static final Set<AggregationField> TASK_NUMBER_AGGREGATES = Collections
-      .unmodifiableSet(EnumSet.of(BUSINESS_STATE, PRIORITY, CATEGORY, BUSINESS_RUNTIME));
+      .unmodifiableSet(EnumSet.of(STATE, PRIORITY, CATEGORY, BUSINESS_RUNTIME));
 
   public static final Set<AggregationField> CASE_NUMBER_AGGREGATES = Collections
-      .unmodifiableSet(EnumSet.of(BUSINESS_STATE, CATEGORY, BUSINESS_RUNTIME));
+      .unmodifiableSet(EnumSet.of(STATE, CATEGORY, BUSINESS_RUNTIME));
 }

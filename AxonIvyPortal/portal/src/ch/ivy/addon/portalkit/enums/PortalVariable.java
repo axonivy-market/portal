@@ -17,8 +17,8 @@ public enum PortalVariable {
   CHATBOT_ENDPOINT("PortalAiUrl"),
   DASHBOARD_MAIN_MENU_ENTRY("Portal.Dashboard.MainMenuEntry"),
   STATISTIC("Portal.Statistic"),
-  CUSTOM_STATISTIC("Portal.CustomStatistic")
-  ;
+  CUSTOM_STATISTIC("Portal.CustomStatistic"),
+  SESSION_CACHE_TIMEOUT("Portal.SessionCacheTimeout");
 
   public String key;
 

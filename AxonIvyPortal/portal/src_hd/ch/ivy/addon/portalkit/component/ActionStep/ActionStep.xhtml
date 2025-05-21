@@ -17,6 +17,7 @@
   <cc:attribute name="inFrame" default="false"/>
   <cc:attribute name="isPreviewMode" default="false" type="java.lang.Boolean"/>
   <cc:attribute name="ariaLabel" />
+  <cc:attribute name="destroyCaseDialogComponent" default=""/>
 </cc:interface>
 
 <cc:implementation>
@@ -38,12 +39,18 @@
 
   <p:overlayPanel id="action-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}"
     for="#{cc.attrs.actionLinkId}" my="right top" at="right bottom" showCloseIcon="true" dismissable="true"
-    appendTo="@(body)" styleClass="action-steps-panel #{cc.attrs.stepsPanelStyleClass}" dynamic="true">
+    appendTo="@(body)" styleClass="action-steps-panel #{cc.attrs.stepsPanelStyleClass}" dynamic="true" cache="false">
 
     <p:commandLink id="case-item-open-detail-link" styleClass="case-command action-step-item ui-menu-items"
       actionListener="#{logic.openDetails(case, inFrame)}" rendered="#{showOpenCaseDetail}">
       <span class="action-icon si si-information-circle" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" />
+    </p:commandLink>
+    
+    <p:commandLink id="case-pin" disabled="#{!caseActionBean.canPin(case)}" rendered="#{visibilityBean.enablePinCase}" onstart="event.stopPropagation();"
+      styleClass="#{caseActionBean.getPinnedStyleClass(case)}" actionListener="#{caseActionBean.markCaseAsPinned(case)}" update="@parent #{cc.attrs.update}" process="@this">
+      <i class="#{caseActionBean.getPinnedIcon(case)}" />
+      <span class="option-item-label">#{caseActionBean.getPinnedLabel(case)}</span>
     </p:commandLink>
 
     <p:link id="show-process-overview-link" styleClass="additional-case-details-link action-step-item ui-menu-items"
@@ -67,8 +74,8 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/ProcessViewer/ProcessViewerText')}" />
     </p:link>
     
-    <p:commandLink id="destroy-case" rendered="#{renderDestroyAction}" update="#{cc.attrs.update}"
-      actionListener="#{caseWidgetBean.setSelectedCase(case)}"
+    <p:commandLink id="destroy-case" rendered="#{renderDestroyAction}" update="#{cc.attrs.update} #{cc.attrs.destroyCaseDialogComponent}"
+      actionListener="#{caseWidgetBean.setSelectedCase(case)}" global="false"
       styleClass="case-command action-step-item color-destroy ui-menu-items" process="@this" oncomplete="#{cc.attrs.onDestroyComplete}">
       <span class="action-icon pi pi-trash" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}" />

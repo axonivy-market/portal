@@ -223,6 +223,11 @@ public class BaseFilter implements Serializable{
   }
   
   @JsonIgnore
+  public boolean isFinishedDateField() {
+    return DashboardStandardTaskColumn.COMPLETED.getField().equals(getField());
+  }
+  
+  @JsonIgnore
   public List<SecurityMemberDTO> getCreators() {
     return getValues().stream().map(this::findUser)
         .filter(Objects::nonNull).collect(Collectors.toList());

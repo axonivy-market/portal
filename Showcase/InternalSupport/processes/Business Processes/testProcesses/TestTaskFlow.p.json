@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "14B2FC03D2E87141",
   "config" : {
     "data" : "internaltest.Data"
@@ -45,7 +45,7 @@
             "name" : "SupportTicket",
             "responsible" : {
               "type" : "USER_FROM_ATTRIBUTE",
-              "activator" : "ivy.session.getSessionUserName()"
+              "script" : "ivy.session.getSessionUserName()"
             },
             "priority" : {
               "level" : "SCRIPT",
@@ -190,7 +190,7 @@
             "category" : "AnnualLeave",
             "responsible" : {
               "type" : "USER_FROM_ATTRIBUTE",
-              "activator" : "\"demoNotExisted\""
+              "script" : "\"demoNotExisted\""
             },
             "expiry" : {
               "timeout" : "new Duration(\"3H\")"
@@ -390,7 +390,7 @@
             "category" : "PersonalRequest/RaiseSalary",
             "responsible" : {
               "type" : "USER_FROM_ATTRIBUTE",
-              "activator" : "\"demo\""
+              "script" : "\"demo\""
             },
             "customFields" : [
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Über\"" }
@@ -401,7 +401,7 @@
             "category" : "PersonalRequest/Vacation",
             "responsible" : {
               "type" : "USER_FROM_ATTRIBUTE",
-              "activator" : "\"demo\""
+              "script" : "\"demo\""
             },
             "customFields" : [
               { "name" : "CustomerName", "type" : "STRING", "value" : "\"Müller\"" }
@@ -493,7 +493,7 @@
             "category" : "AnnualLeave",
             "responsible" : {
               "type" : "USER_FROM_ATTRIBUTE",
-              "activator" : "\"demo\""
+              "script" : "\"demo\""
             },
             "expiry" : {
               "timeout" : "new Duration(\"3H\")"
@@ -595,7 +595,7 @@
             "category" : "AnnualLeave",
             "responsible" : {
               "type" : "USER_FROM_ATTRIBUTE",
-              "activator" : "\"UserA\""
+              "script" : "\"UserA\""
             },
             "expiry" : {
               "timeout" : "new Duration(\"3H\")"
@@ -611,7 +611,7 @@
             "category" : "OtherLeave/SickLeave/Long",
             "responsible" : {
               "type" : "USER_FROM_ATTRIBUTE",
-              "activator" : "\"UserB\""
+              "script" : "\"UserB\""
             },
             "priority" : {
               "level" : "HIGH"
@@ -630,7 +630,7 @@
             "category" : "OtherLeave/Maternity",
             "responsible" : {
               "type" : "USER_FROM_ATTRIBUTE",
-              "activator" : "\"UserC\""
+              "script" : "\"UserC\""
             },
             "priority" : {
               "level" : "LOW"
@@ -648,7 +648,7 @@
             "description" : "Maternity Leave Request Description",
             "responsible" : {
               "type" : "USER_FROM_ATTRIBUTE",
-              "activator" : "\"UserA\""
+              "script" : "\"UserA\""
             }
           } ],
         "case" : {
@@ -838,7 +838,7 @@
           "name" : "Arrange retro meeting",
           "responsible" : {
             "type" : "USER_FROM_ATTRIBUTE",
-            "activator" : "\"Not exist user\""
+            "script" : "\"Not exist user\""
           }
         }
       },
@@ -898,7 +898,9 @@
             "id" : "TaskB",
             "name" : "Estimation meeting",
             "responsible" : {
-              "activator" : "Sales"
+              "roles" : [
+                "Sales"
+              ]
             }
           }, {
             "id" : "TaskA",
@@ -908,7 +910,9 @@
             "id" : "TaskC",
             "name" : "Planning meeting 3",
             "responsible" : {
-              "activator" : "Sales"
+              "roles" : [
+                "Sales"
+              ]
             }
           } ]
       },
@@ -1013,7 +1017,9 @@
             "id" : "TaskA",
             "name" : "Wait for implementation",
             "responsible" : {
-              "activator" : "SYSTEM"
+              "roles" : [
+                "SYSTEM"
+              ]
             }
           } ]
       },
@@ -1030,7 +1036,9 @@
         "task" : {
           "name" : "Review meeting",
           "responsible" : {
-            "activator" : "Sales"
+            "roles" : [
+              "Sales"
+            ]
           },
           "skipTasklist" : true
         }
@@ -1116,7 +1124,9 @@
         "task" : {
           "name" : "System: create note",
           "responsible" : {
-            "activator" : "SYSTEM"
+            "roles" : [
+              "SYSTEM"
+            ]
           }
         }
       },
@@ -1322,7 +1332,7 @@
             "category" : "AnnualLeave",
             "responsible" : {
               "type" : "USER_FROM_ATTRIBUTE",
-              "activator" : "\"demo\""
+              "script" : "\"demo\""
             },
             "expiry" : {
               "timeout" : "new Duration(\"3H\")"
@@ -1441,7 +1451,9 @@
             "name" : "Process With Process Steps",
             "description" : "Process With Process Steps",
             "responsible" : {
-              "activator" : "CREATOR"
+              "roles" : [
+                "CREATOR"
+              ]
             }
           } ],
         "case" : {
@@ -1528,6 +1540,85 @@
       "visual" : {
         "at" : { "x" : 1928, "y" : 352 }
       }
+    }, {
+      "id" : "f235",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 2296, "y" : 352 }
+      }
+    }, {
+      "id" : "f236",
+      "type" : "TaskSwitchGateway",
+      "config" : {
+        "tasks" : [ {
+            "id" : "TaskA",
+            "name" : "task with 20 responsible",
+            "description" : "task with 20 responsible",
+            "responsible" : {
+              "type" : "MEMBERS_FROM_ATTRIBUTE",
+              "script" : "[\"#admin\",\"#liam\",\"#marissa\",\"#gm3\",\"#noah\",\"#mike\",\"#huang\",\"#ava\",\"#olivia\",\"#ethan\",\"#sophie\",\"#costObject1\",\"#gm2\",\"#demo\",\"#gm1\",\"CaseOwner\",\"HR\",\"TestRoleInvolved\",\"Sales\", \"#david\"]"
+            },
+            "expiry" : {
+              "timeout" : "new Duration(0, 0, 3, 0, 0, 0)",
+              "responsible" : {
+                "type" : "MEMBERS_FROM_ATTRIBUTE",
+                "script" : "[\"#admin\",\"#liam\",\"#marissa\",\"#gm3\",\"#noah\",\"#mike\",\"#huang\",\"#ava\",\"#olivia\",\"#costObject1\",\"#gm2\",\"#demo\",\"#gm1\",\"CaseOwner\",\"HR\",\"TestRoleInvolved\",\"Sales\", \"#david\"]"
+              }
+            }
+          }, {
+            "id" : "TaskB",
+            "name" : "task with 8 responsible",
+            "description" : "task with 8 responsible",
+            "responsible" : {
+              "type" : "MEMBERS_FROM_ATTRIBUTE",
+              "script" : "[\"#liam\",\"#marissa\",\"CaseOwner\",\"HR\",\"#gm3\",\"#noah\",\"Sales\",\"#admin\"]"
+            },
+            "expiry" : {
+              "timeout" : "new Duration(0, 0, 3, 0, 0, 0)",
+              "responsible" : {
+                "type" : "MEMBERS_FROM_ATTRIBUTE",
+                "script" : "[\"#liam\",\"#marissa\",\"CaseOwner\",\"#noah\",\"Sales\",\"#admin\"]"
+              }
+            }
+          } ],
+        "case" : {
+          "name" : "Testing Case for Global Search (Name)",
+          "description" : "Testing Case for Global Search (Description)",
+          "customFields" : [
+            { "name" : "testingcase", "type" : "STRING", "value" : "\"Testing Case custom field\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 2208, "y" : 176 }
+      },
+      "connect" : [
+        { "id" : "f237", "to" : "f239", "condition" : "ivp==\"TaskA.ivp\"" },
+        { "id" : "f238", "to" : "f235", "condition" : "ivp==\"TaskB.ivp\"" }
+      ]
+    }, {
+      "id" : "f239",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 2208, "y" : 352 }
+      }
+    }, {
+      "id" : "f240",
+      "type" : "RequestStart",
+      "name" : "TaskWithMultiResponsible.ivp",
+      "config" : {
+        "signature" : "TaskWithMultiResponsible",
+        "request" : {
+          "name" : "Create tasks for Multiple Responsibble Test"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 2208, "y" : 48 },
+        "labelOffset" : { "x" : 25, "y" : 41 }
+      },
+      "connect" : [
+        { "id" : "f241", "to" : "f236", "var" : "in1" }
+      ]
     } ],
   "layout" : {
     "lanes" : [ {

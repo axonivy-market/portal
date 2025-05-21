@@ -25,11 +25,11 @@
     <div class="news-item__actions">
       <p:commandLink id="news-item-see-more" styleClass="u-mar-right-5 hidden"
         value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/SeeMore')}"
-        onclick="seeMoreNewsItemContent('#{newsItemId}')"
+        onclick="seeMoreNewsItemContent('#{htmlSanitizerBean.escapeForJS(newsItemId)}')"
         global="false" process="@none" update="@this" immediate="true" partialSubmit="true"/>
       <p:commandLink id="news-item-see-less" styleClass="u-mar-right-5 hidden"
         value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/SeeLess')}"
-        onclick="seeLessNewsItemContent('#{newsItemId}')"
+        onclick="seeLessNewsItemContent('#{htmlSanitizerBean.escapeForJS(newsItemId)}')"
         global="false" process="@none" update="@this" immediate="true" partialSubmit="true"/>
       <h:panelGroup rendered="#{newsWidgetBean.canManageNews and isReadOnlyMode}" styleClass="news__manage-actions">
         <p:commandLink id="news-item-edit-link"

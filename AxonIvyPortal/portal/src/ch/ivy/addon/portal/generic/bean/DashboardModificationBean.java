@@ -38,11 +38,14 @@ import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
+import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -133,9 +136,18 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
       selectedDashboard.setVersion(DashboardJsonVersion.LATEST_VERSION.getValue());
       this.dashboards.add(selectedDashboard);
     }
+    
     saveDashboards(new ArrayList<>(this.dashboards));
+    updateSessionAttributeWhenDisplayTypeIsHidden();
   }
-
+  
+  private void updateSessionAttributeWhenDisplayTypeIsHidden() {
+    if (!DashboardDisplayType.HIDDEN.equals(this.selectedDashboard.getDashboardDisplayType())) {
+      return;
+    }
+    SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_SUB_DASHBOARD_ID.name());
+  }
+  
   public void removeDashboard() {
     removeWelcomeWidgetImagesOfDashboard(selectedDashboard);
     this.dashboards.remove(selectedDashboard);

@@ -91,7 +91,7 @@
   
               <h:panelGroup styleClass="case-detail-action-command ui-g-8" layout="block">
                 <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-group" actionLinkId="case-details-action-link"
-                  panelWidgetVar="case-details-action-panel"
+                  panelWidgetVar="case-details-action-panel" destroyCaseDialogComponent="case-item-details:case-details-container:destroy-case-confirmation-dialog" 
                   case="#{case}" inFrame="#{inFrame}" readOnly="#{readOnly}"
                   renderShowDetailAction="false"
                   onDestroyComplete="PF('destroy-case-dialog').show()" />
@@ -178,7 +178,7 @@
     <ui:param name="iconClass" value="si si-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyCaseHeaderText')}" />
-    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage')}" />
+    <ui:param name="dialogContent" value="#{caseWidgetBean.getDestroyCaseMessage()}" />
   
     <ui:define name="dialogFooter">
       <h:panelGroup styleClass="flex flex-column">

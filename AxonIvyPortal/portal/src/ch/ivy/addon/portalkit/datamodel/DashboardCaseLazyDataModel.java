@@ -137,4 +137,7 @@ public class DashboardCaseLazyDataModel extends LiveScrollLazyModel<ICase> {
     this.countLoad = countLoad;
   }
 
+  public void setShowPinnedItem(boolean showPinnedItem) {
+    criteria.setShowPinnedItem(showPinnedItem);
+  }
 }

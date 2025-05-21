@@ -118,6 +118,8 @@ The basic JSON structure of a Task widget
          For standard columns, ``field`` must be one of these:
          
             - ``start``: column which contains start button to start the task directly.
+
+            - ``Pin``: column which contains Pin button to Pin your task.
   
             - ``priority``: task priority
 
@@ -132,6 +134,8 @@ The basic JSON structure of a Task widget
             - ``state``: task business state
 
             - ``startTimestamp``: created date and time of the task
+
+            - ``endTimestamp``: end date and time of the task
 
             - ``expiryTimestamp``: expiry date and time of the task
             
@@ -609,7 +613,7 @@ Result
 - If the translation for a value is missing in the CMS, the static value from the entry is used instead.
 
 Sorting, Filtering, and Searching with Multi-Language Custom Fields
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Sorting
 ^^^^^^^
