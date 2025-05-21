@@ -763,7 +763,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Gespeicherte Filter
     SearchForFilter: Nach Filter suchen
     ShareThisDashboard: Teilen Sie dieses Dashboard
-    ShowPinnedToggle: ' Umschalter „Angeheftete Aufgaben anzeigen“'
+    ShowPinnedToggle: '''Angeheftete Elemente'' umschalten anzeigen'
     StandardWidgets: Standard-Widgets
     StatisticWidget:
       EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
@@ -1516,6 +1516,7 @@ Labels:
   AllTasks: Alle Aufgaben
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
+  Collapse: Einklappen
   CreateNewDashboard: Neues Dashboard erstellen
   EditDescription: Beschreibung bearbeiten
   Enums:
@@ -1612,6 +1613,7 @@ Labels:
     ThemeMode:
       DARK: Dunkel
       LIGHT: Hell
+  Expand: Erweitern
   InsertTask-Explain: Aufgabe einfügen. Meine Aufgabe wird aufgeschoben.
   InsertTheTask: Aufgabe einfügen
   Login:

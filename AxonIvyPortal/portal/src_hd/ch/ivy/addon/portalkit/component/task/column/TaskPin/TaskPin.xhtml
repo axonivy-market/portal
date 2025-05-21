@@ -11,16 +11,23 @@
 <cc:implementation>
     <c:set var="isPinned" value="#{taskBean.isPinnedTask(cc.attrs.task)}" />
 
-    <h:panelGroup styleClass="default-task-cell flex align-items-center justify-content-center h-full text-center">
-        <h:form id="pin-form">
-            <p:commandLink action="#{taskBean.clickOnPinTask(cc.attrs.task)}" update="@form">
-                <i class="fa #{isPinned ? 'fa-star' : 'fa-star-o'} pin-icon" />
-            </p:commandLink>
-            <p:tooltip for="pin-form" 
+    <h:form id="pin-form">
+        <p:commandLink 
+            action="#{taskBean.clickOnPinTask(cc.attrs.task)}" 
+            update="@form"
+            style="display: block; width: 100%; height: 100%;"
+            styleClass="default-task-cell flex align-items-center justify-content-center h-full text-center"
+            onmouseover="this.style.textDecoration='none';"
+            onmouseout="this.style.textDecoration='none';">
+
+            <i class="#{isPinned ? 'si si-pin-bold' : 'si si-pin'}" />
+
+            <p:tooltip for="@this" 
                        value="#{isPinned ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/unpin') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pin')}" 
                        trackMouse="true" 
                        hideEvent="mouseleave click" />
-        </h:form>
-    </h:panelGroup>
+        </p:commandLink>
+    </h:form>
 </cc:implementation>
+
 </html>
