@@ -203,20 +203,23 @@ public class StatisticService {
 
   public void migrateClientStatistic() {
     try {
-      String json = Ivy.var().get(CLIENT_STATISTIC_KEY);
-      if (StringUtils.isNotBlank(json)) {
-        List<Statistic> customStatistics = BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
+      String clientStatisticJson = Ivy.var().get(CLIENT_STATISTIC_KEY);
+      if (StringUtils.isNotBlank(clientStatisticJson)) {
+        String customStatisticJson = Ivy.var().get(CUSTOM_STATISTIC_KEY);
+        if (StringUtils.isBlank(customStatisticJson) || "[]".equals(customStatisticJson)) {
+          List<Statistic> customStatistics = BusinessEntityConverter.jsonValueToEntities(Ivy.var().get(CUSTOM_STATISTIC_KEY), Statistic.class);
 
-        ObjectMapper mapper = new ObjectMapper();
-        JsonStatisticMigrator migrator = new JsonStatisticMigrator(mapper.readTree(json));
-        List<Statistic> clientStatistics = BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Statistic.class);
+          ObjectMapper mapper = new ObjectMapper();
+          JsonStatisticMigrator migrator = new JsonStatisticMigrator(mapper.readTree(clientStatisticJson));
+          List<Statistic> clientStatistics = BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), Statistic.class);
 
-        Set<String> seenIds = new HashSet<>();
-        customStatistics = customStatistics.stream().filter(statistic -> seenIds.add(statistic.getId())).collect(Collectors.toList());
-        clientStatistics.stream().filter(obj -> seenIds.add(obj.getId())).forEach(customStatistics::add);
+          Set<String> seenIds = new HashSet<>();
+          customStatistics = customStatistics.stream().filter(statistic -> seenIds.add(statistic.getId())).collect(Collectors.toList());
+          clientStatistics.stream().filter(obj -> seenIds.add(obj.getId())).forEach(customStatistics::add);
 
-        String statisticsJson = BusinessEntityConverter.entityToJsonValue(customStatistics);
-        Ivy.var().set(CUSTOM_STATISTIC_KEY, statisticsJson);
+          String statisticsJson = BusinessEntityConverter.entityToJsonValue(customStatistics);
+          Ivy.var().set(CUSTOM_STATISTIC_KEY, statisticsJson);
+        }
         Ivy.var().reset(CLIENT_STATISTIC_KEY);
       }
     } catch (Exception e) {
