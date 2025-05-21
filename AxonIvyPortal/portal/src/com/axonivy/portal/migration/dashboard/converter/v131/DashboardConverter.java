@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.ValueNode;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class DashboardConverter implements IJsonConverter {
 
@@ -23,16 +24,21 @@ public class DashboardConverter implements IJsonConverter {
   public void convert(JsonNode jsonNode) {
 
     ObjectNode objectNode = (ObjectNode) jsonNode;
-    ValueNode isTopMenuValue = (ValueNode) objectNode.get(IS_TOP_MENU);
+    String dashboardId = objectNode.path("id").asText();
+    boolean isDefaultTaskOrCaseList =
+        "default-task-list-dashboard".equals(dashboardId) || "default-case-list-dashboard".equals(dashboardId);
 
-    if (isTopMenuValue != null && isTopMenuValue.isBoolean()) {
-      boolean isTopMenu = isTopMenuValue.asBoolean();
+    JsonNode isTopMenuNode = objectNode.get(IS_TOP_MENU);
 
+    if (isTopMenuNode != null && isTopMenuNode.isBoolean()) {
+      boolean isTopMenu = isTopMenuNode.asBoolean();
       String displayType = isTopMenu ? DashboardDisplayType.TOP_MENU.getDashboardDisplayType()
           : DashboardDisplayType.SUB_MENU.getDashboardDisplayType();
 
       objectNode.put(SELECTED_DASHBOARD_DISPLAY_TYPE, displayType);
       objectNode.remove(IS_TOP_MENU);
+    } else if (isTopMenuNode == null && isDefaultTaskOrCaseList) {
+      objectNode.put(SELECTED_DASHBOARD_DISPLAY_TYPE, DashboardDisplayType.TOP_MENU.getDashboardDisplayType());
     } else {
       objectNode.put(SELECTED_DASHBOARD_DISPLAY_TYPE, DashboardDisplayType.SUB_MENU.getDashboardDisplayType());
     }
