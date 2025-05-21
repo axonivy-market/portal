@@ -179,9 +179,9 @@ The basic JSON structure of a statistic widget
 
    ``bar/line/pie/numberChartConfig``: This field is additional configuration for each chartType. 
    The configuration field could be ``barChartConfig``, ``lineChartConfig``, ``pieChartConfig`` or ``numberChartConfig``, it depends on the chartType we configured.
-     - For ``barChartConfig`` and ``lineChartConfig`` the value is like the example above. 
-     - For ``pieChartConfig`` the value is like the example above but doesn't contain `xTitles`, `yTitles`.
-     - For ``numberChartConfig``, the value is like the example below.
+      - For ``barChartConfig`` and ``lineChartConfig`` the value is like the example above. 
+      - For ``pieChartConfig`` the value is like the example above but doesn't contain `xTitles`, `yTitles`.
+      - For ``numberChartConfig``, the value is like the example below.
 
 .. code-block:: javascript
 
