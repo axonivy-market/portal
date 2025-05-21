@@ -1119,7 +1119,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     searchResults: Résultats de la recherche
     searchResultsFor: '{0} résultats pour "{1}"'
   sideSteps:
-    addNew: Add new side steps process
+    addNew: Ajouter un nouveau processus d'étapes latérales
   taskActivator:
     assign: Assigner
     cannotAssignTask: Cette tâche ne peut être assignée à aucun autre utilisateur ou groupe.
@@ -1636,13 +1636,13 @@ Labels:
     ProcessParameterInfo: ''
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
-  AndMore: 'et {0} de plus...  '
   AllTasks: Toutes les tâches
+  AndMore: 'et {0} de plus...  '
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
-  Configuration: Configuration
+  AssignTheTaskTo: Attribuer la tâche à un utilisateur ou à un groupe spécifié
   Collapse: Réduire
-  AssignTheTaskTo: Assign the task to a specified user or group
+  Configuration: Configuration
   CreateNewDashboard: Créer un nouveau tableau de bord
   Description: Description
   EditDescription: Editer la description
@@ -1732,10 +1732,10 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
+  Expand: Développer
   Filters: Filtres
   General: Général
   Icon: Icône
-  Expand: Développer
   InsertTask-Explain: Insérer la tâche. Ma tâche sera reportée.
   InsertTheTask: Insérer la tâche.
   Login:
@@ -1743,14 +1743,14 @@ Labels:
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Name: Nom
   Permissions: Permissions
+  PinnedCases: Cas épinglés
+  PinnedTasks: Tâches épinglées
   Preview: Aperçu
   RequiredFieldMessage: '{0} : La valeur est obligatoire'
   Save: Enregistrer
-  PinnedCases: Cas épinglés
-  PinnedTasks: Tâches épinglées
-  SelectProcess: Select process
+  SelectProcess: Sélectionner un processus
   Share: Partager
-  SideStepProcess: Select a side step process
+  SideStepProcess: Sélectionner un processus de pas de côté
   Task: Tâche
   TaskItemDetail: Détails de la tâche
   TaskUser-Explain: Liste d’utilisateurs séparés par des virgules
