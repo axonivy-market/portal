@@ -85,9 +85,10 @@ public class DashboardBean implements Serializable {
   protected String warningText;
   protected String dashboardUrl;
   protected List<Dashboard> importedDashboards;
-  private String clientStatisticApiUri;
+  private String statisticApiUri;
   private String selectedDashboardName;
   private String searchScope;
+  private boolean isShowPinnedItem;
 
   @PostConstruct
   public void init() {
@@ -116,7 +117,7 @@ public class DashboardBean implements Serializable {
       selectedDashboard.setIsResponsive(true);
     }
 
-    buildClientStatisticApiUri();
+    buildStatisticApiUri();
   }
   
   private boolean isNavigateToDashboard() {
@@ -124,8 +125,8 @@ public class DashboardBean implements Serializable {
     return attr != null && (boolean) attr;
 }
 
-  private void buildClientStatisticApiUri() {
-    this.clientStatisticApiUri = FacesContext.getCurrentInstance()
+  private void buildStatisticApiUri() {
+    this.statisticApiUri = FacesContext.getCurrentInstance()
         .getExternalContext().getRequestContextPath() + "/api/statistics/data";
   }
 
@@ -484,8 +485,8 @@ public class DashboardBean implements Serializable {
     this.importedDashboards = importedDashboards;
   }
 
-  public String getClientStatisticApiUri() {
-    return this.clientStatisticApiUri;
+  public String getStatisticApiUri() {
+    return this.statisticApiUri;
   }
 
   public boolean canEnableQuickSearch(DashboardWidget widget) {
@@ -587,4 +588,38 @@ public class DashboardBean implements Serializable {
   public List<Dashboard> getPublicDashboards() {
     return DashboardUtils.getPublicDashboards();
   }
+  public boolean canShowPinnedItemToggle(DashboardWidget widget) {
+    if (widget instanceof TaskDashboardWidget) {
+      return GlobalSettingService.getInstance().isEnablePinTask()
+          && ((TaskDashboardWidget) widget).isShowPinnedToggle();
+    }
+
+    if (widget instanceof CaseDashboardWidget) {
+      return GlobalSettingService.getInstance().isEnablePinCase()
+          && ((CaseDashboardWidget) widget).isShowPinnedToggle();
+    }
+
+    return false;
+  }
+
+  public boolean getShowPinnedItem() {
+    return this.isShowPinnedItem;
+  }
+
+  public void setShowPinnedItem(boolean isShowPinnedItem) {
+    this.isShowPinnedItem = isShowPinnedItem;
+  }
+
+  public void togglePinned(DashboardWidget widget) {
+    widget.setShowPinnedItem(isShowPinnedItem);
+    widget.toggleShowPinned();
+  }
+
+  public String showPinnedItemToggleLable(DashboardWidget widget) {
+    if (DashboardWidgetType.TASK.equals(widget.getType())) {
+      return Ivy.cms().co("/Labels/PinnedTasks");
+    }
+    return Ivy.cms().co("/Labels/PinnedCases");
+  }
+
 }

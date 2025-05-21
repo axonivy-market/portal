@@ -151,4 +151,18 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
+  
+  @Test
+  public void testMultipleExpiryResponsible() {
+    redirectToRelativeLink(taskWithMultiResponsibles);
+    login(TestAccount.ADMIN_USER);
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("task with 8 responsible");
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+    taskDetailsPage.getAllResponsible().shouldHave(Condition.text("8"));
+    taskDetailsPage.getAllExpiryResponsible().shouldHave(Condition.text("6"));
+    taskDetailsPage.getAllExpiryResponsible().click();
+    taskDetailsPage.getExpiryResponsibleDialog().should(Condition.appear);
+  }
 }

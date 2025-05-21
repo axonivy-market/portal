@@ -40,7 +40,7 @@ import ch.ivyteam.ivy.environment.Ivy;
     @Type(value = ProcessViewerDashboardWidget.class, name = "process-viewer"),
     @Type(value = WelcomeDashboardWidget.class, name = "welcome"),
     @Type(value = NewsDashboardWidget.class, name = "news"),
-    @Type(value = ClientStatisticDashboardWidget.class, name = "client-statistic"),
+    @Type(value = StatisticDashboardWidget.class, name = "client-statistic"),
     @Type(value = NotificationDashboardWidget.class, name = "notification"),
     @Type(value = NavigationDashboardWidget.class, name = "navigation-dashboard")
 
@@ -70,6 +70,8 @@ public abstract class DashboardWidget implements Serializable {
   protected UserFilterCollection userFilterCollection;
   @JsonIgnore
   private String quickSearchKeyword;
+  @JsonIgnore
+  protected boolean showPinnedItem;
 
   public DashboardWidget() {}
 
@@ -320,4 +322,17 @@ public abstract class DashboardWidget implements Serializable {
   public void setQuickSearchKeyword(String quickSearchKeyword) {
     this.quickSearchKeyword = quickSearchKeyword;
   }
+
+  @JsonIgnore
+  public boolean getShowPinnedItem() {
+    return showPinnedItem;
+  }
+
+  @JsonIgnore
+  public void setShowPinnedItem(boolean showPinnedItem) {
+    this.showPinnedItem = showPinnedItem;
+  }
+
+  @JsonIgnore
+  public void toggleShowPinned() {}
 }

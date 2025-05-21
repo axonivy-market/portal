@@ -46,6 +46,7 @@ public class TaskColumnModel extends ColumnModel {
 
     return Optional.ofNullable(DashboardStandardTaskColumn.findBy(field)).map(columnType -> switch (columnType) {
       case START -> new StartColumnModel();
+      case PIN -> new PinColumnModel();
       case PRIORITY -> new PriorityColumnModel();
       case ID -> new IdColumnModel();
       case NAME -> new NameColumnModel();

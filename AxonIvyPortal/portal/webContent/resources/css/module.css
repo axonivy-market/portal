@@ -1790,11 +1790,25 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-start-list .responsible-cell {
-  flex: 0 0 110px;
+  width: 160px
 }
 
 .responsible-cell .name-after-avatar {
-  width: 110px;
+  flex: 1;
+  white-space: nowrap;
+}
+
+.responsible-cell .has-avatar {
+  flex: 1;
+  overflow: hidden;
+}
+
+.responsible-cell .all-repsonsibles {
+  flex-shrink: 0;
+}
+
+.repsonsible-more-text {
+  margin: .25rem 0 .5rem 0;
 }
 
 .task-start-list .category-cell {
@@ -4286,7 +4300,6 @@ _:-ms-fullscreen, :root .content-link-history {
 .case-upload-dialog, .case-view-note-dialog, .document-upload-dialog, .task-note-dialog,
 .task-upload-dialog {
   min-width: 50vw;
-  max-width: 70vw;
 }
 
 @media screen and (max-width: 40em) {
@@ -5451,14 +5464,11 @@ a.dashboard-action-container label {
 .dashboard-tasks__responsible .has-deputy-info .name-after-avatar {
   position: relative;
   width: 100%;
-  padding-right: 20px;
   white-space: nowrap;
 }
 
 .dashboard-tasks__responsible .has-deputy-info .deputy-info {
-  position: absolute;
-  top: 0;
-  right: 0;
+  padding-left: 5px
 }
 
 .dashboard-tasks__responsible {

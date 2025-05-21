@@ -39,7 +39,8 @@ public enum Variable {
   ENABLE_SWITCH_THEME_BUTTON("Portal.Theme.EnableSwitchThemeModeButton"), 
   DASHBOARD_MAIN_MENU_ENTRY("Portal.Dashboard.MainMenuEntry"), 
   APPLICATION_NAME("Portal.ApplicationName"),
-  ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview");
+  ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview"),
+  ENABLE_PINNED_TASK("Portal.Tasks.EnablePinnedTask"), ENABLE_PINNED_CASE("Portal.Cases.EnablePinnedCase");
 
   private String key;
 
