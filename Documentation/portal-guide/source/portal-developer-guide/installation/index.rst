@@ -482,6 +482,10 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of |ivy|.
 
+Changes in 12.0.6
+-----------------
+- Introduced the Portal Setting ``Portal.Cases.EnablePinnedCase`` and ``Portal.Tasks.EnablePinnedTask`` to enable the pinning feature for the case and task widgets on the dashboard.
+
 Changes in 12.0.4
 -----------------
 - Introduced the Portal Setting ``Portal.Cases.BehaviourWhenClickingOnLineInCaseList`` to toggle between accessing case details or business details when clicking on a case in the case widget on the dashboard, global search, related cases, and the process widget in combined mode.
