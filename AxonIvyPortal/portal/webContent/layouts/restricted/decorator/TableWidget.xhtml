@@ -114,6 +114,7 @@
         <p:badge value="#{countFilter}" visible="#{countFilter ne '0'}"
           rendered="#{renderFilter}" styleClass="widget__filter-noti-number">
           <p:commandButton id="filter-sidebar-link-#{index}" type="button" icon="si si-filter-1"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters')}"
             styleClass="rounded-button widget__filter-sidebar-link ui-button-outlined" />
         </p:badge>
         <p:tooltip for="filter-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/availableFilters')}"
@@ -122,16 +123,17 @@
 
       <p:commandButton id="info-sidebar-link-#{index}" type="button" icon="si si-statistics-daytum"
         styleClass="rounded-button ui-button-outlined widget__info-sidebar-link u-mar-right-5"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}"
         rendered="#{renderInfo}" />
       <p:tooltip for="info-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}" trackMouse="true"
         rendered="#{renderInfo}"
         hideEvent="mouseleave click" />
 
-      <p:commandButton id="expand-link-#{index}" type="button" icon="si si-expand-1"
+      <p:commandButton id="expand-link-#{index}" type="button" ariaLabel="#{ivy.cms.co('/Labels/Expand')}" icon="si si-expand-1"
         styleClass="rounded-button ui-button-outlined expand-link u-mar-right-5"
         rendered="#{renderExpandCollapse}" onclick="expandFullscreen(#{index}, '#{widget.id}')"/>
 
-      <p:commandButton id="collapse-link-#{index}" type="button" icon="si si-shrink-1"
+      <p:commandButton id="collapse-link-#{index}" type="button" ariaLabel="#{ivy.cms.co('/Labels/Collapse')}" icon="si si-shrink-1"
         styleClass="rounded-button ui-button-outlined collapse-link u-mar-right-5"
         rendered="#{renderExpandCollapse}"
         onclick="collapseFullscreen(#{index}, '#{widget.id}')" />
@@ -281,11 +283,13 @@
     <!-- maximize and minimize buttons in custom widget no header -->
     <p:commandButton id="expand-link-widget-no-header-#{index}"
       type="button" icon="si si-expand-1"
+      ariaLabel="#{ivy.cms.co('/Labels/Expand')}"
       styleClass="rounded-button ui-button-outlined expand-link widget-no-header"
       rendered="#{renderExpandCollapse and isHeaderHidden}"
       onclick="expandFullscreen(#{index}, '#{widget.id}')" />
     <p:commandButton id="collapse-link-widget-no-header-#{index}"
       type="button" icon="si si-shrink-1"
+      ariaLabel="#{ivy.cms.co('/Labels/Expand')}"
       styleClass="rounded-button ui-button-outlined collapse-link widget-no-header"
       rendered="#{renderExpandCollapse and isHeaderHidden}"
       onclick="collapseFullscreen(#{index}, '#{widget.id}')" />

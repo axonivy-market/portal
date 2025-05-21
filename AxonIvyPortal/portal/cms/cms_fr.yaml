@@ -1806,6 +1806,7 @@ Labels:
   AdhocWorkflow: Décrivez votre workflow
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
+  Collapse: Réduire
   EditDescription: Editer la description
   Enums:
     GlobalSearchScopeCategory:
@@ -1822,6 +1823,7 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
+  Expand: Développer
   InsertTask-Explain: Insérer la tâche. Ma tâche sera reportée.
   InsertTheTask: Insérer la tâche.
   Login:

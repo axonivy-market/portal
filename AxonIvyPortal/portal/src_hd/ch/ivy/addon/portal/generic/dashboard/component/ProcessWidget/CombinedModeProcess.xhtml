@@ -24,12 +24,14 @@
 <h:panelGroup id="process-action-read-only" rendered="#{isReadOnlyMode}" styleClass="process-grid-item__action--combined">
   <p:commandButton id="expand-link" type="button"
         icon="si si-expand-1"
+        ariaLabel="#{ivy.cms.co('/Labels/Expand')}"
         styleClass="rounded-button ui-button-outlined expand-link"
         rendered="#{isReadOnlyMode}"
         onclick="expandFullscreen(#{index}, '#{widget.id}')" />
   
   <p:commandButton id="collapse-link" type="button"
         icon="si si-shrink-1"
+        ariaLabel="#{ivy.cms.co('/Labels/Collapse')}"
         styleClass="rounded-button ui-button-outlined collapse-link"
         rendered="#{isReadOnlyMode}"
         onclick="collapseFullscreen(#{index}, '#{widget.id}')" />
