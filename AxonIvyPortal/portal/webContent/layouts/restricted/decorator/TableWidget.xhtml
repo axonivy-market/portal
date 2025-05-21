@@ -37,9 +37,25 @@
   <h:panelGroup layout="block" class="widget__header" rendered="#{not isHeaderHidden}">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{widget.name}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
+    
+<h:panelGroup id="show-pin-#{index}" layout="block"
+    styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1' } widget-header-show-pin"
+    rendered="#{dashboardBean.canShowPinnedItemToggle(widget)}">
+    <h:form id="show-pin-form">
+        <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
+        <h:panelGroup layout="block" styleClass="flex align-items-center justify-content-between gap-2">
+            <h:outputText value="#{dashboardBean.showPinnedItemToggleLable(widget)}"
+                styleClass="text-base font-semibold text-left"/>
+            <p:toggleSwitch value="#{dashboardBean.showPinnedItem}" id="show-pin-toggle">
+                <p:ajax listener="#{dashboardBean.togglePinned(widget)}"
+                    update="#{componentToUpdateOnResetFilter} @form" />
+            </p:toggleSwitch>
+        </h:panelGroup>
+    </h:form>
+</h:panelGroup>
 
     <h:panelGroup id="widget-header-quick-search-#{index}" layout="block"
-      styleClass="#{isReadOnlyMode ? 'u-mar-right-10' : 'u-mar-right-5'} widget-header-quick-search"
+      styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1'} widget-header-quick-search"
       rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch()}">
       <h:form id="quick-search-form" onkeydown="if (isPressedSpecialKeys(event) == true) { return false; }">
       <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />

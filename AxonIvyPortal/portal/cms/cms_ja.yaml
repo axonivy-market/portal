@@ -146,12 +146,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: 見出し 3
       NORMAL_TEXT: 通常のテキスト
   MyProfile:
+    CaseList: ケースリスト
     DateFormat: 日付の形式
     FormattingLanguage: 書式設定言語
     General: 一般
     Homepage: ホームページ
     Language: 言語
     ProcessList: プロセスリスト
+    TaskList: 'TODO: Task List'
     byDefault: （初期値）
     defaultOption: 初期値（{0}）
     defaultViewMode: 表示モードの初期値
@@ -160,6 +162,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: 通知チャネル
     notificationChannelsReset: 通知チャネルをリセットしました
     subscribed: 通知する
+    unpinAllPinnedCases: 'TODO: All pinned cases have been removed for user: {0}.'
+    unpinAllPinnedTasks: 'TODO: All pinned tasks have been removed for user: {0}'
   PortalManagement:
     AdminSetting: 管理者設定
   ProcessViewer:
@@ -243,6 +247,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。
       enableDeepLTranslation: DeepL翻訳サポートを有効にするには、このプロパティーを true に設定してください。
       enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
+      enablePinCase: 'TODO: Set this property to true to enable the ability to pin cases.'
+      enablePinTask: 'TODO: Set this property to true to enable the ability to pin tasks.'
       enablePrivateChat: 個人用チャット機能を有効にするには、このプロパティーを true に設定してください。
       enableProcessViewer: タスク／ケースアクションでプロセスビューアーオプションを有効にするには、このプロパティをtrueに設定してください。
       enableScriptCheckingForUploadedDocumentNote: アップロードされたドキュメントのスクリプトチェックを有効にするには、true に設定してください。現在、この機能は PDF、Excel、Word のチェックをサポートしています。
@@ -357,6 +363,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ID: ケース ID
       NAME: 名前／説明
       OWNER: オーナー
+      PIN: 'TODO: Pin'
       STATE: 状態
     deletionNoteContent: このケースは{0}によって破棄されました
     destroyCaseMessage: 'この操作は元に戻せません。このケース<b>{0}(ID: {1})</b>とそのすべてのタスクを破棄してもよろしいですか？'
@@ -544,6 +551,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: 選択されたフィルター
     ok: OK
     'on': オン
+    pin: 'TODO: Pin'
     pleaseAddDocument: 上記のリンクにドキュメントを追加してください。
     pleaseAddNote: 上記のリンクにノートを追加してください。
     previousStage: 前のステージ
@@ -603,6 +611,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: すべての管理者
     typeAllUsers: すべてのユーザー
     typeOnlyMe: 自分のみ
+    unpin: 'TODO: Unpin'
     uploadHere: 有効な日付を入力してください。
     uploadOneHere: ここにアップロード
     user: '{0} ユーザー'
@@ -752,6 +761,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: 保存されたフィルター
     SearchForFilter: フィルターを検索
     ShareThisDashboard: このダッシュボードを共有
+    ShowPinnedToggle: 'TODO: Show ''Pinned Tasks'' Toggle'
     StandardWidgets: 標準ウィジェット
     StatisticWidget:
       EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！
@@ -1206,6 +1216,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME: 有効期限
       ID: タスクID
       NAME: 名前／説明
+      PIN: 'TODO: Pin'
       PRIORITY: 優先度
       STATE: 状態
       TASK_FOR_UNAVAILABLE_ACTIVATOR: アクティベーターがありません
@@ -1354,6 +1365,10 @@ Dialogs:
                   DragAndDropTooltip: プレビューをクリックしてください、そして順序を入れ替えるにはドラッグ＆ドロップしてください
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Axon Ivy Portalへようこそ
+          setting:
+            UserProfile:
+              unpinAllPinnedCases: 'TODO: Unpin all pinned cases'
+              unpinAllPinnedTasks: 'TODO: Unpin all pinned tasks'
         portalkit:
           component:
             CaseItemDetails:
@@ -1629,6 +1644,7 @@ Labels:
       タスクの詳細 **{0} (#{1})**：
       {2}
   AndMore: TODO さらに{0}件...
+  AllTasks: 'TODO: All Tasks'
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
   Configuration: 設定
@@ -1657,6 +1673,7 @@ Labels:
       ID: ID
       NAME: 名前
       OWNER: ケースオーナー
+      PIN: 'TODO: Pin'
       STATE: 状態
     DashboardStandardTaskColumn:
       ACTIONS: アクション
@@ -1668,6 +1685,7 @@ Labels:
       EXPIRY: 有効期限
       ID: ID
       NAME: 名前
+      PIN: 'TODO: Pin'
       PRIORITY: 優先度
       RESPONSIBLE: 責任者
       START: 開始
@@ -1740,6 +1758,8 @@ Labels:
   Preview: プレビュー
   RequiredFieldMessage: 'TODO {0}: Value is required'
   Save: 保存
+  PinnedCases: 'TODO: Pinned Cases'
+  PinnedTasks: 'TODO: Pinned Tasks'
   Share: 共有
   Task: タスク
   TaskItemDetail: タスクの詳細

@@ -161,7 +161,11 @@ public class ColumnManagementBean implements Serializable {
   private List<String> standardFields() {
     List<String> standardFields = new ArrayList<>();
     if (widget.getType() == DashboardWidgetType.TASK) {
+      boolean enablePinTask = GlobalSettingService.getInstance().isEnablePinTask();
       for (DashboardStandardTaskColumn col : DashboardStandardTaskColumn.values()) {
+        if (!enablePinTask && DashboardStandardTaskColumn.PIN == col) {
+          continue;
+        }
         standardFields.add(col.getField());
       }
     } else if (widget.getType() == DashboardWidgetType.CASE) {

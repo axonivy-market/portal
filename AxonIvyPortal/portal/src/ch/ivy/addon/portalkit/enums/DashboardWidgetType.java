@@ -50,4 +50,8 @@ public enum DashboardWidgetType {
   public boolean canShowFullscreenModeOption() {
     return canShowFullscreenModeOption;
   }
+
+  public boolean canShowPinnedItemToggle() {
+    return this == TASK || this == CASE;
+  }
 }
