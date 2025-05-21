@@ -1509,6 +1509,7 @@ Labels:
     TaskDetailsResult: ''
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
+  AssignTheTaskTo: Assign the task to a specified user or group
   CreateNewDashboard: Neues Dashboard erstellen
   EditDescription: Beschreibung bearbeiten
   Enums:

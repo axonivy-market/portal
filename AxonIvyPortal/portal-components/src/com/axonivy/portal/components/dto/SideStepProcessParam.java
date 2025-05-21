@@ -5,16 +5,16 @@ import com.axonivy.portal.components.enums.SideStepType;
 public class SideStepProcessParam {
 
   private SideStepProcessDTO sideStepDto;
-  private UserDTO assignee;
+  private String memberName;
   private SideStepType selectedStepType;
   private String comment;
 
   public SideStepProcessParam() {
   }
 
-  public SideStepProcessParam(SideStepProcessDTO sideStepDto, UserDTO assignee, SideStepType selectedStepType, String comment) {
+  public SideStepProcessParam(SideStepProcessDTO sideStepDto, String memberName, SideStepType selectedStepType, String comment) {
     this.sideStepDto = sideStepDto;
-    this.assignee = assignee;
+    this.setMemberName(memberName);
     this.selectedStepType = selectedStepType;
     this.comment = comment;
   }
@@ -25,14 +25,6 @@ public class SideStepProcessParam {
 
   public void setSideStepDto(SideStepProcessDTO sideStepDto) {
     this.sideStepDto = sideStepDto;
-  }
-
-  public UserDTO getAssignee() {
-    return assignee;
-  }
-
-  public void setAssignee(UserDTO assignee) {
-    this.assignee = assignee;
   }
 
   public SideStepType getSelectedStepType() {
@@ -49,6 +41,14 @@ public class SideStepProcessParam {
 
   public void setComment(String comment) {
     this.comment = comment;
+  }
+
+  public String getMemberName() {
+    return memberName;
+  }
+
+  public void setMemberName(String memberName) {
+    this.memberName = memberName;
   }
 
 }

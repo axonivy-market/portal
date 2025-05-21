@@ -1536,6 +1536,7 @@ Labels:
     TaskDetailsResult: ''
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
+  AssignTheTaskTo: Assign the task to a specified user or group
   CreateNewDashboard: Créer un nouveau tableau de bord
   EditDescription: Editer la description
   Enums:

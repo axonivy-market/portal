@@ -3,14 +3,24 @@
   "id" : "196E781F0B886363",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "Signal.GetUsersForSideStepData"
+    "data" : "Signal.GetSecurityMembersForSideStepData"
   },
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "getUsersForSideStep()",
+      "name" : "getSecurityMembers()",
       "config" : {
-        "signature" : "getUsersForSideStep"
+        "signature" : "getSecurityMembers",
+        "result" : {
+          "params" : [
+            { "name" : "usersToDelegate", "type" : "java.util.List", "desc" : "" },
+            { "name" : "rolesToDelegate", "type" : "java.util.List", "desc" : "" }
+          ],
+          "map" : {
+            "result.usersToDelegate" : "in.usersToDelegate",
+            "result.rolesToDelegate" : "in.rolesToDelegate"
+          }
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
@@ -22,7 +32,7 @@
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 392, "y" : 64 }
+        "at" : { "x" : 632, "y" : 64 }
       }
     }, {
       "id" : "f3",
@@ -48,14 +58,22 @@
         "at" : { "x" : 264, "y" : 64 }
       },
       "connect" : [
-        { "id" : "f4", "to" : "f1", "color" : "default" }
+        { "id" : "f4", "to" : "f19", "color" : "default" }
       ]
     }, {
       "id" : "f5",
       "type" : "CallSubStart",
-      "name" : "getUsersForSideStep2()",
+      "name" : "getSecurityMembers2()",
       "config" : {
-        "signature" : "getUsersForSideStep2"
+        "signature" : "getSecurityMembers2",
+        "result" : {
+          "params" : [
+            { "name" : "usersToDelegate", "type" : "java.util.List", "desc" : "" }
+          ],
+          "map" : {
+            "result.usersToDelegate" : "in.usersToDelegate"
+          }
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 192 }
@@ -67,7 +85,7 @@
       "id" : "f9",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 392, "y" : 192 }
+        "at" : { "x" : 440, "y" : 192 }
       }
     }, {
       "id" : "f10",
@@ -76,9 +94,11 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.util.RoleUtils;",
             "import com.axonivy.portal.components.util.UserUtils;",
             "",
-            "out.usersToDelegate = UserUtils.findUsers(\"\", 0, -1, [], []);"
+            "out.usersToDelegate = UserUtils.findUsers(\"\", 0, -1, [], []);",
+            "out.rolesToDelegate = RoleUtils.findRoles([], [], \"\");"
           ]
         }
       },
@@ -89,26 +109,7 @@
         { "id" : "f12", "to" : "f9" }
       ]
     }, {
-      "id" : "f13",
-      "type" : "CallSubStart",
-      "name" : "getRolesForSideStep()",
-      "config" : {
-        "signature" : "getRolesForSideStep"
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 312 }
-      },
-      "connect" : [
-        { "id" : "f16", "to" : "f17" }
-      ]
-    }, {
-      "id" : "f15",
-      "type" : "CallSubEnd",
-      "visual" : {
-        "at" : { "x" : 400, "y" : 312 }
-      }
-    }, {
-      "id" : "f17",
+      "id" : "f19",
       "type" : "SubProcessCall",
       "name" : "Find roles for side steps",
       "config" : {
@@ -121,10 +122,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 272, "y" : 312 }
+        "at" : { "x" : 496, "y" : 64 }
       },
       "connect" : [
-        { "id" : "f18", "to" : "f15", "color" : "default" }
+        { "id" : "f20", "to" : "f1", "color" : "default" }
       ]
     } ]
 }

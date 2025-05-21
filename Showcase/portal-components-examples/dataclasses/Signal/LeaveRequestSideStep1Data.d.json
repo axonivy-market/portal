@@ -24,8 +24,8 @@
     "type" : "ch.ivyteam.ivy.workflow.ICase",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "assignee",
-    "type" : "String",
+    "name" : "members",
+    "type" : "java.util.List<String>",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "uuid",

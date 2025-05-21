@@ -17,8 +17,7 @@ public class SideStepProcessDTO implements Serializable {
   private String taskId;
   private String originalTaskId;
   private Map<String, Object> params;
-  private String usersCallable;
-  private String rolesCallable;
+  private String securityMembersCallable;
 
   public SideStepProcessDTO() {
   }
@@ -30,8 +29,7 @@ public class SideStepProcessDTO implements Serializable {
     this.processName = builder.processName;
     this.originalTaskId = builder.originalTaskId;
     this.params = builder.params;
-    this.usersCallable = builder.usersCallable;
-    this.rolesCallable = builder.rolesCallable;
+    this.securityMembersCallable = builder.securityMembersCallable;
   }
 
   public static Builder builder() {
@@ -66,12 +64,8 @@ public class SideStepProcessDTO implements Serializable {
     return processName;
   }
 
-  public String getUsersCallable() {
-    return usersCallable;
-  }
-
-  public String getRolesCallable() {
-    return rolesCallable;
+  public String getSecurityMembersCallable() {
+    return securityMembersCallable;
   }
 
   public static class Builder {
@@ -80,17 +74,11 @@ public class SideStepProcessDTO implements Serializable {
     private String taskId;
     private String processName;
     private String originalTaskId;
-    private String usersCallable;
-    private String rolesCallable;
+    private String securityMembersCallable;
     private Map<String, Object> params;
 
-    public Builder rolesCallable(String rolesCallable) {
-      this.rolesCallable = rolesCallable;
-      return this;
-    }
-
-    public Builder usersCallable(String usersCallable) {
-      this.usersCallable = usersCallable;
+    public Builder securityMembersCallable(String securityMembersCallable) {
+      this.securityMembersCallable = securityMembersCallable;
       return this;
     }
 

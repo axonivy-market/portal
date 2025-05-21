@@ -28,6 +28,8 @@ Labels:
     leaveType: 休暇の種類
     requester: 申請者
     requesterComment: 申請者のコメント
+    stepTypeParallelTitle: This is customized parallel title
+    stepTypeSwitchTitle: This is customized switch title
     submitLeaveRequest: 休暇申請を送信
     to: To
 Processes:

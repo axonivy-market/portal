@@ -1555,6 +1555,7 @@ Labels:
       {2}
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  AssignTheTaskTo: Assign the task to a specified user or group
   CreateNewDashboard: Create new dashboard
   EditDescription: Edit description
   Enums:

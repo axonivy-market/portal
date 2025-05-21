@@ -1544,6 +1544,7 @@ Labels:
       {2}
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
+  AssignTheTaskTo: Assign the task to a specified user or group
   CreateNewDashboard: 新しいダッシュボードを作成
   EditDescription: 説明を編集
   Enums:

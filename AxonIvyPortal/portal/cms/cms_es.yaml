@@ -1500,6 +1500,7 @@ Labels:
     TaskDetailsResult: ''
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
+  AssignTheTaskTo: Assign the task to a specified user or group
   CreateNewDashboard: Crear un nuevo cuadro de mandos
   EditDescription: Editar descripción
   Enums:
