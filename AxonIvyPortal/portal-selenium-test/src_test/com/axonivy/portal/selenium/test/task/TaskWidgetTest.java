@@ -64,7 +64,7 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testDisplayTaskAndCaseCategory() {
-    login(TestAccount.ADMIN_USER);
+    //login(TestAccount.ADMIN_USER);
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openTaskDetailsPageByAction(0);
