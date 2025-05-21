@@ -1505,6 +1505,7 @@ Labels:
   AllTasks: Todas las tareas
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
+  Collapse: Contraer
   CreateNewDashboard: Crear un nuevo cuadro de mandos
   EditDescription: Editar descripción
   Enums:
@@ -1591,6 +1592,7 @@ Labels:
     ThemeMode:
       DARK: Oscuro
       LIGHT: Luz
+  Expand: Expandir
   InsertTask-Explain: Insertar la tarea. Mi tarea será pospuesta.
   InsertTheTask: Insertar la tarea.
   Login:
