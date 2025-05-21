@@ -1810,6 +1810,7 @@ Labels:
   AdhocWorkflow: Describe your Workflow
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  Collapse: Collapse
   EditDescription: Edit description
   Enums:
     GlobalSearchScopeCategory:
@@ -1826,6 +1827,7 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Light
+  Expand: Expand
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Login:

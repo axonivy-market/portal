@@ -1771,6 +1771,7 @@ Labels:
   AdhocWorkflow: Beschreiben Sie Ihren Workflow
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
+  Collapse: Einklappen
   EditDescription: Beschreibung bearbeiten
   Enums:
     GlobalSearchScopeCategory:
@@ -1787,6 +1788,7 @@ Labels:
     ThemeMode:
       DARK: Dunkel
       LIGHT: Hell
+  Expand: Erweitern
   InsertTask-Explain: Aufgabe einfügen. Meine Aufgabe wird aufgeschoben.
   InsertTheTask: Aufgabe einfügen
   Login:
