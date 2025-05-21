@@ -9,18 +9,15 @@ Variables:
     # The standard announcement for Portal, it included a general information (e.g. Downtime, Changes, etc.).
     # This message can be seen by all portal users.
     # [file: json]
-    Announcement:
-
+    Announcement: ""
     # Default configurations for Portal statistic widgets.
     # Do not edit this variable.
     # [file: json]
-    Statistic:
-
+    Statistic: ""
     # Custom configurations for Portal statistic widgets.
     # You can define custom configurations for Portal statistic widgets by edit this variable.
     # [file: json]
-    CustomStatistic:
-
+    CustomStatistic: ""
     # A feedback message will be displayed after user finishes or leaves a task.
     DisplayMessageAfterFinishTask: "true"
     # The option to show logged-in user format.
@@ -40,10 +37,6 @@ Variables:
     # It will be included to the left menu.
     # [file: json]
     ThirdPartyApplications: ""
-    # You can define the standard statistic charts via this JSON file.
-    # It will be shown as the default charts in the statistic page.
-    # [file: json]
-    StatisticCharts: ""
     # [file: json]
     PasswordValidation: ""
     # You can define the own user menu via this JSON file.
