@@ -5,10 +5,7 @@ import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.ValueNode;
-
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
-import ch.ivyteam.ivy.environment.Ivy;
 
 public class DashboardConverter implements IJsonConverter {
 
