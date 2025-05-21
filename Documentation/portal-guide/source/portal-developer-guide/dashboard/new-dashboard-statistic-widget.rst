@@ -177,6 +177,8 @@ The basic JSON structure of a statistic widget
 
    ``names``: name for the statistic chart, multi-language supported.
 
+   ``descriptions``: description for the statistic chart, multi-language supported.
+
    ``bar/line/pie/numberChartConfig``: This field is additional configuration for each chartType. 
    The configuration field could be ``barChartConfig``, ``lineChartConfig``, ``pieChartConfig`` or ``numberChartConfig``, it depends on the chartType we configured.
       - For ``barChartConfig`` and ``lineChartConfig`` the value is like the example above. 
