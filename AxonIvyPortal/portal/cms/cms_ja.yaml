@@ -1551,6 +1551,7 @@ Labels:
   AllTasks: 'TODO: All Tasks'
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
+  Collapse: TODO 折りたたむ
   CreateNewDashboard: 新しいダッシュボードを作成
   EditDescription: 説明を編集
   Enums:
@@ -1647,6 +1648,7 @@ Labels:
     ThemeMode:
       DARK: 暗い
       LIGHT: 明るい
+  Expand: TODO 展開
   InsertTask-Explain: タスクを挿入します。私のタスクは延期されます。
   InsertTheTask: タスクを挿入
   Login:

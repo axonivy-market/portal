@@ -41,11 +41,13 @@
 
       <p:commandButton id="expand-link-#{index}" type="button" icon="si si-expand-1"
         styleClass="rounded-button ui-button-outlined expand-link u-mar-right-5 ui-button-widget"
+        ariaLabel="#{ivy.cms.co('/Labels/Expand')}"
         rendered="#{renderExpandCollapse}"
         onclick="expandFullscreen(#{index}, '#{widget.id}');#{onClickExpandWidget}"/>
 
       <p:commandButton id="collapse-link-#{index}" type="button" icon="si si-shrink-1"
         styleClass="rounded-button ui-button-outlined collapse-link u-mar-right-5 ui-button-widget"
+        ariaLabel="#{ivy.cms.co('/Labels/Collapse')}"
         rendered="#{renderExpandCollapse}"
         onclick="collapseFullscreen(#{index}, '#{widget.id}');#{onClickCollapseWidget}"/>
 
