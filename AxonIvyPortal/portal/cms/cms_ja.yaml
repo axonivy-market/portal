@@ -1644,6 +1644,7 @@ Labels:
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
   Configuration: 設定
+  Collapse: TODO 折りたたむ
   CreateNewDashboard: 新しいダッシュボードを作成
   Description: 説明
   EditDescription: 説明を編集
@@ -1744,6 +1745,7 @@ Labels:
   Filters: フィルター
   General: TODO General
   Icon: アイコン
+  Expand: TODO 展開
   InsertTask-Explain: タスクを挿入します。私のタスクは延期されます。
   InsertTheTask: タスクを挿入
   Login:

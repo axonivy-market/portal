@@ -1603,6 +1603,7 @@ Labels:
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
   Configuration: Configuración
+  Collapse: Contraer
   CreateNewDashboard: Crear un nuevo cuadro de mandos
   Description: Descripción
   EditDescription: Editar descripción
@@ -1693,6 +1694,7 @@ Labels:
   Filters: Filtros
   General: General
   Icon: Icono
+  Expand: Expandir
   InsertTask-Explain: Insertar la tarea. Mi tarea será pospuesta.
   InsertTheTask: Insertar la tarea.
   Login:
