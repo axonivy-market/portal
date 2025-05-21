@@ -1124,7 +1124,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     searchResults: Suchresultate
     searchResultsFor: '{0} Suchresultate für "{1}"'
   sideSteps:
-    addNew: Add new side steps process
+    addNew: Hinzufügen eines neuen Seitenschrittverfahrens
   taskActivator:
     assign: Zuweisen
     cannotAssignTask: Diese Aufgabe kann keinem anderen Benutzer oder keiner anderen Gruppe zugewiesen werden.
@@ -1612,13 +1612,13 @@ Labels:
     ProcessParameterInfo: ''
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
-  AndMore: 'und {0} weitere...  '
   AllTasks: Alle Aufgaben
+  AndMore: 'und {0} weitere...  '
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
-  Configuration: Konfiguration
+  AssignTheTaskTo: Zuweisung der Aufgabe an einen bestimmten Benutzer oder eine Gruppe
   Collapse: Einklappen
-  AssignTheTaskTo: Assign the task to a specified user or group
+  Configuration: Konfiguration
   CreateNewDashboard: Neues Dashboard erstellen
   Description: Beschreibung
   EditDescription: Beschreibung bearbeiten
@@ -1716,10 +1716,10 @@ Labels:
     ThemeMode:
       DARK: Dunkel
       LIGHT: Hell
+  Expand: Erweitern
   Filters: Filter
   General: Allgemein
   Icon: Symbol
-  Expand: Erweitern
   InsertTask-Explain: Aufgabe einfügen. Meine Aufgabe wird aufgeschoben.
   InsertTheTask: Aufgabe einfügen
   Login:
@@ -1727,14 +1727,14 @@ Labels:
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Name: Titel
   Permissions: Berechtigungen
+  PinnedCases: Angeheftete Fälle
+  PinnedTasks: Angehängte Aufgaben
   Preview: Vorschau
   RequiredFieldMessage: '{0}: Wert ist erforderlich'
   Save: Speichern
-  PinnedCases: Angeheftete Fälle
-  PinnedTasks: Angehängte Aufgaben
-  SelectProcess: Select process
+  SelectProcess: Wählen Sie einen Prozess
   Share: Aktie
-  SideStepProcess: Select a side step process
+  SideStepProcess: Wählen Sie ein Seitenschrittverfahren
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
   TaskUser-Explain: Kommaseparierte Liste von Benutzern

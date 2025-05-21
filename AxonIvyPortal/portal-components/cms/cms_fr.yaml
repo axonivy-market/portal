@@ -88,8 +88,8 @@ Dialogs:
               IVY_PROCESS: Processus d'entreprise
             ProcessViewerIFrameTitle: Cadre de visualisation du processus
           SideStepType:
-            PARALLEL: Create a new task and continue working on the current task
-            SWITCH: Park the current task and start working on a new task
+            PARALLEL: Créer une nouvelle tâche et continuer à travailler sur la tâche en cours
+            SWITCH: Mettre de côté la tâche en cours et commencer à travailler sur une nouvelle tâche
 Labels:
   AI:
     Error:

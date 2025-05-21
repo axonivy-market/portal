@@ -88,8 +88,8 @@ Dialogs:
               IVY_PROCESS: ビジネスプロセス
             ProcessViewerIFrameTitle: プロセスビューアーフレーム
           SideStepType:
-            PARALLEL: Create a new task and continue working on the current task
-            SWITCH: Park the current task and start working on a new task
+            PARALLEL: TODO Create a new task and continue working on the current task
+            SWITCH: TODO Park the current task and start working on a new task
 Labels:
   AI:
     Error:

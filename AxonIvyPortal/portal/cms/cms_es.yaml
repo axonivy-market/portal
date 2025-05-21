@@ -1123,7 +1123,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     searchResults: Resultados de la búsqueda
     searchResultsFor: '{0} resultados de búsqueda para "{1}"'
   sideSteps:
-    addNew: Add new side steps process
+    addNew: Añadir un nuevo proceso de pasos laterales
   taskActivator:
     assign: Asignar
     cannotAssignTask: Esta tarea no puede ser asignada a otro usuario o grupo.
@@ -1600,13 +1600,13 @@ Labels:
     ProcessParameterInfo: ''
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
-  AndMore: 'y {0} más...  '
   AllTasks: Todas las tareas
+  AndMore: 'y {0} más...  '
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
-  AssignTheTaskTo: Assign the task to a specified user or group
-  Configuration: Configuración
+  AssignTheTaskTo: Asignar la tarea a un usuario o grupo determinado
   Collapse: Contraer
+  Configuration: Configuración
   CreateNewDashboard: Crear un nuevo cuadro de mandos
   Description: Descripción
   EditDescription: Editar descripción
@@ -1694,10 +1694,10 @@ Labels:
     ThemeMode:
       DARK: Oscuro
       LIGHT: Luz
+  Expand: Expandir
   Filters: Filtros
   General: General
   Icon: Icono
-  Expand: Expandir
   InsertTask-Explain: Insertar la tarea. Mi tarea será pospuesta.
   InsertTheTask: Insertar la tarea.
   Login:
@@ -1705,14 +1705,14 @@ Labels:
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Name: Nombre
   Permissions: Permiso
-  SelectProcess: Select process
+  PinnedCases: Casos fijados
+  PinnedTasks: Tareas fijadas
   Preview: Vista previa
   RequiredFieldMessage: '{0}: Valor requerido'
   Save: Guardar
-  PinnedCases: Casos fijados
-  PinnedTasks: Tareas fijadas
+  SelectProcess: Seleccione un proceso
   Share: Compartir
-  SideStepProcess: Select a side step process
+  SideStepProcess: Seleccione un proceso de paso lateral
   Task: Tarea
   TaskItemDetail: Detalles de la tarea
   TaskUser-Explain: Lista de usuario separados por coma
