@@ -111,10 +111,10 @@ public class GlobalSettingService {
   }
 
   public boolean isEnablePinTask() {
-    return findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_PINED_TASK);
+    return findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_PINNED_TASK);
   }
 
   public boolean isEnablePinCase() {
-    return findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_PINED_CASE);
+    return findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_PINNED_CASE);
   }
 }
