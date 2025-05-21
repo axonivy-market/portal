@@ -11,9 +11,7 @@ import org.primefaces.application.exceptionhandler.ExceptionInfo;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivyteam.ivy.application.IApplicationConfigurationManager;
 import ch.ivyteam.ivy.bpm.error.BpmError;
-import ch.ivyteam.ivy.security.exec.Sudo;
 import ch.ivyteam.util.IvyRuntimeException;
 
 @ManagedBean
@@ -23,20 +21,10 @@ public class PortalExceptionBean implements Serializable {
   private static final long serialVersionUID = -248190912833727736L;
   private static final String PMV = "pmv";
   private static final String PROCESS_ELEMENT = "processElement";
-  private static final String SHOW_STACK_TRACE = "Errors.ShowDetailsToEndUser";
   private String errorId;
   private String pmv;
   private String processElement;
   private ExceptionInfo exceptionInfo;
-
-  public boolean getErrorDetailToEndUser() {
-    return Sudo.get(() -> findShowErrorDetailSystemProperty());
-  }
-
-  private boolean findShowErrorDetailSystemProperty() {
-    var systemProp = IApplicationConfigurationManager.instance().getSystemProp(SHOW_STACK_TRACE);
-    return systemProp.getBooleanValue();
-  }
 
   public void buildExceptionDialog(ExceptionInfo exceptionInfo) {
     if (exceptionInfo != null) {
