@@ -179,19 +179,28 @@ The basic JSON structure of a statistic widget
 
    ``descriptions``: description for the statistic chart, multi-language supported.
 
-   ``bar/line/pie/numberChartConfig``: This field is additional configuration for each chartType. 
-   The configuration field could be ``barChartConfig``, ``lineChartConfig``, ``pieChartConfig`` or ``numberChartConfig``, it depends on the chartType we configured.
-      - For ``barChartConfig`` and ``lineChartConfig`` the value is like the example above. 
-      - For ``pieChartConfig`` the value is like the example above but doesn't contain `xTitles`, `yTitles`.
-      - For ``numberChartConfig``, the value is like the example below.
+For some specific charts such as ``Bar``, ``Pie``, ``Line`` or ``Number``, there are additional and required fields:
 
-.. code-block:: javascript
+- ``barChartConfig``: required fields for configuring the ``Bar`` chart, please add them if chart type is ``bar`` 
 
-  {
-    ...
-    "numberChartConfig": {
-      "hideLabel": false
-    }  
-  }
-..
+   - ``xTitles``: the multilingual display title for the x-axis
 
+   - ``yTitles``: the multilingual display title for the y-axis
+   
+   - ``backgroundColors`` : the colors to display the chart
+
+- ``lineChartConfig``: required fields for configuring the ``Line`` chart, please add them if chart type is ``line``
+
+   - ``xTitles``: the multilingual display title for the x-axis
+
+   - ``yTitles``: the multilingual display title for the y-axis
+
+   - ``backgroundColors`` : the colors to display the chart
+ 
+- ``pieChartConfig``: required fields for configuring the ``Pie`` chart, please add them if chart type is ``pie``
+
+   - ``backgroundColors`` : the colors to display the chart
+
+- ``numberChartConfig``: additional fields for configuring the ``Number`` chart, you can add if chart type is ``number``
+
+   - ``hideLabel``: toggle to show label of the number chart

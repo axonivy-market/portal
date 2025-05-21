@@ -639,7 +639,7 @@ For some specific charts such as ``Bar``, ``Pie``, ``Line`` or ``Number``, there
 
    - ``backgroundColors`` : the colors to display the chart
  
- - ``pieChartConfig``: required fields for configuring the ``Pie`` chart, please add them if chart type is ``pie``
+- ``pieChartConfig``: required fields for configuring the ``Pie`` chart, please add them if chart type is ``pie``
 
    - ``backgroundColors`` : the colors to display the chart
 
