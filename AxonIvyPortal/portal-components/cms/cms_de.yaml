@@ -87,8 +87,8 @@ Dialogs:
               IVY_PROCESS: Geschäftsprozess
             ProcessViewerIFrameTitle: Prozessbetrachterrahmen
           SideStepType:
-            PARALLEL: Run parallel with main process
-            SWITCH: Switch to side step process
+            PARALLEL: Create a new task and continue working on the current task
+            SWITCH: Park the current task and start working on a new task
 Labels:
   AI:
     Error:

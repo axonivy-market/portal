@@ -28,6 +28,8 @@ Labels:
     leaveType: Leave type
     requester: Requester
     requesterComment: Requester comment
+    stepTypeParallelTitle: This is customized parallel title
+    stepTypeSwitchTitle: This is customized switch title
     submitLeaveRequest: Submit leave request
     to: To
 Processes:

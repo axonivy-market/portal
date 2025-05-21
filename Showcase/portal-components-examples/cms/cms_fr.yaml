@@ -28,6 +28,8 @@ Labels:
     leaveType: Type de congé
     requester: Demandeur
     requesterComment: Commentaire du demandeur
+    stepTypeParallelTitle: This is customized parallel title
+    stepTypeSwitchTitle: This is customized switch title
     submitLeaveRequest: Soumettre une demande de congé
     to: Au
 Processes:

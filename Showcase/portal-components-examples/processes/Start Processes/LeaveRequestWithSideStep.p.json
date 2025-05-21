@@ -56,6 +56,7 @@
           },
           "skipTasklist" : true,
           "code" : [
+            "import com.axonivy.portal.components.examples.enums.CustomSignature;",
             "import java.util.Collections;",
             "import com.axonivy.portal.components.ivydata.dto.IvySecurityResultDTO;",
             "import com.axonivy.portal.components.ivydata.service.impl.SecurityService;",
@@ -81,7 +82,7 @@
             "  .taskId(task.uuid())",
             "  .processName(\"Side step 1: Add comment (custom users)\")",
             "  .signal(\"ch:axonivy:portal:component:example:sideStep1:created\")",
-            "  .usersCallable(\"getUsersForSideStep()\")",
+            "  .securityMembersCallable(CustomSignature.GET_SECURITY_MEMBERS_SIDE_STEPS.getSignature())",
             "  .params(params1)",
             "  .build();",
             "",
@@ -124,7 +125,6 @@
             "",
             "",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
-            "ivy.log.warn(\"valueString {0}\", valueString);",
             "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
           ]
         },
@@ -224,7 +224,7 @@
             "",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
             "",
-            "task.customFields().stringField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
+            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
           ]
         },
         "output" : {
@@ -310,7 +310,7 @@
             "",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
             "",
-            "task.customFields().stringField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
+            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
           ]
         }
       },
@@ -620,10 +620,12 @@
             "//sideStepDto.setParallel(false);",
             "//sideStepDto.setParallel(true);",
             "",
+            "sideStepDto.setStepTypeParallelTitle(ivy.cms.co(\"/Labels/LeaveRequest/stepTypeParallelTitle\"));",
+            "sideStepDto.setStepTypeSwitchTitle(ivy.cms.co(\"/Labels/LeaveRequest/stepTypeSwitchTitle\"));",
             "",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
             "",
-            "caze.customFields().stringField(CustomFields.SIDE_STEPS_PROCESS).set(valueString);"
+            "caze.customFields().textField(CustomFields.SIDE_STEPS_PROCESS).set(valueString);"
           ]
         }
       },

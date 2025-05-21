@@ -28,6 +28,8 @@ Labels:
     leaveType: Urlaubsart
     requester: Antragsteller
     requesterComment: Kommentar des Antragstellers
+    stepTypeParallelTitle: This is customized parallel title
+    stepTypeSwitchTitle: This is customized switch title
     submitLeaveRequest: Urlaubsantrag einreichen
     to: Bis
 Processes:

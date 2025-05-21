@@ -14,6 +14,7 @@
         "output" : {
           "map" : { },
           "code" : [
+            "import java.util.Arrays;",
             "import com.axonivy.portal.components.enums.SideStepType;",
             "import com.axonivy.portal.components.dto.SideStepProcessParam;",
             "import ch.ivyteam.ivy.workflow.ICase;",
@@ -23,7 +24,6 @@
             "import java.util.Map;",
             "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
             "",
-            "ivy.log.warn(\"Signal data 3 {0} \", signal.getSignalData());",
             "SideStepProcessParam data = BusinessEntityConverter.jsonValueToEntity(signal.getSignalData() as String, SideStepProcessParam.class) as SideStepProcessParam;",
             "",
             "// custom params",
@@ -32,7 +32,7 @@
             "out.originalCaseId = params.get(\"caseId\") as Long;",
             "",
             "// required fields",
-            "out.assignee = data.getAssignee().getName();",
+            "out.members = Arrays.asList(data.getMemberName());",
             "out.comment = data.getComment();",
             "out.stepType = data.getSelectedStepType();",
             "ivy.log.warn(\"steptype {0}\", data);"
@@ -52,8 +52,8 @@
         "task" : {
           "name" : "<%= com.axonivy.portal.components.publicapi.SideStepAPI.createSideStepTaskName(in1.originalTaskId); %>",
           "responsible" : {
-            "type" : "USER_FROM_ATTRIBUTE",
-            "script" : "in1.assignee"
+            "type" : "MEMBERS_FROM_ATTRIBUTE",
+            "script" : "in1.members"
           }
         },
         "case" : {

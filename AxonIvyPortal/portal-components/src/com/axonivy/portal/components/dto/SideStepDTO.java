@@ -8,6 +8,8 @@ public class SideStepDTO implements Serializable {
 
   private List<SideStepProcessDTO> processes;
   private Boolean parallel;
+  private String stepTypeParallelTitle;
+  private String stepTypeSwitchTitle;
 
   public List<SideStepProcessDTO> getProcesses() {
     return processes;
@@ -23,6 +25,22 @@ public class SideStepDTO implements Serializable {
 
   public void setParallel(Boolean parallel) {
     this.parallel = parallel;
+  }
+
+  public String getStepTypeParallelTitle() {
+    return stepTypeParallelTitle;
+  }
+
+  public void setStepTypeParallelTitle(String stepTypeParallelTitle) {
+    this.stepTypeParallelTitle = stepTypeParallelTitle;
+  }
+
+  public String getStepTypeSwitchTitle() {
+    return stepTypeSwitchTitle;
+  }
+
+  public void setStepTypeSwitchTitle(String stepTypeSwitchTitle) {
+    this.stepTypeSwitchTitle = stepTypeSwitchTitle;
   }
 
 }

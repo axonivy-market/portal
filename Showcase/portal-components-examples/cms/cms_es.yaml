@@ -28,6 +28,8 @@ Labels:
     leaveType: Tipo de ausencia
     requester: Solicitante
     requesterComment: Comentario del solicitante
+    stepTypeParallelTitle: This is customized parallel title
+    stepTypeSwitchTitle: This is customized switch title
     submitLeaveRequest: Presentar solicitud para ausencia
     to: Hasta
 Processes:
