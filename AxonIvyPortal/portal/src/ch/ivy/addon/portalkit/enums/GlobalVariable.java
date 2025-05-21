@@ -91,7 +91,8 @@ public enum GlobalVariable {
   DELEGATION_APPEND_OPTION("Portal.DelegationAppendOption", GlobalVariableType.EXTERNAL_SELECTION,DelegationAppendOption.NONE.name(), "delegationAppendOption",getDelegationAppendOption()),
   SESSION_CACHE_TIMEOUT("Portal.SessionCacheTimeout", GlobalVariableType.NUMBER,"86400", "SessionCacheTimeout"),
   ENABLE_PINNED_TASK("Portal.Tasks.EnablePinnedTask",GlobalVariableType.SELECTION, Option.TRUE.toString(), "enablePinTask"),
-  ENABLE_PINNED_CASE("Portal.Cases.EnablePinnedCase",GlobalVariableType.SELECTION, Option.FALSE.toString(),"enablePinCase");
+  ENABLE_PINNED_CASE("Portal.Cases.EnablePinnedCase", GlobalVariableType.SELECTION, Option.TRUE.toString(),
+      "enablePinCase");
 
   private String key;
   private GlobalVariableType type;
