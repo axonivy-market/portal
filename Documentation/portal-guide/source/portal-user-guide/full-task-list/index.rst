@@ -30,6 +30,8 @@ For each task the following key information is shown in the list:
 
 #. Priority
 
+#. Pin
+
 #. Task ID
 
 #. Name

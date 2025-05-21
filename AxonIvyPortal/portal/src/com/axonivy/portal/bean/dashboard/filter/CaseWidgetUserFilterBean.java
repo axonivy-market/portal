@@ -28,6 +28,7 @@ public class CaseWidgetUserFilterBean extends AbstractCaseWidgetFilterBean imple
   public void preRender(CaseDashboardWidget widget) {
     super.preRender(widget);
     initUSerFilters();
+    widget.setInConfiguration(false);
     originalUserFilters = widget.getUserFilters();
   }
 

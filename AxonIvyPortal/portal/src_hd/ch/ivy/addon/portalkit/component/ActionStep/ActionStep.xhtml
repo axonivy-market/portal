@@ -39,12 +39,18 @@
 
   <p:overlayPanel id="action-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}"
     for="#{cc.attrs.actionLinkId}" my="right top" at="right bottom" showCloseIcon="true" dismissable="true"
-    appendTo="@(body)" styleClass="action-steps-panel #{cc.attrs.stepsPanelStyleClass}" dynamic="true">
+    appendTo="@(body)" styleClass="action-steps-panel #{cc.attrs.stepsPanelStyleClass}" dynamic="true" cache="false">
 
     <p:commandLink id="case-item-open-detail-link" styleClass="case-command action-step-item ui-menu-items"
       actionListener="#{logic.openDetails(case, inFrame)}" rendered="#{showOpenCaseDetail}">
       <span class="action-icon si si-information-circle" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" />
+    </p:commandLink>
+    
+    <p:commandLink id="case-pin" disabled="#{!caseActionBean.canPin(case)}" rendered="#{visibilityBean.enablePinCase}" onstart="event.stopPropagation();"
+      styleClass="#{caseActionBean.getPinnedStyleClass(case)}" actionListener="#{caseActionBean.markCaseAsPinned(case)}" update="@parent #{cc.attrs.update}" process="@this">
+      <i class="#{caseActionBean.getPinnedIcon(case)}" />
+      <span class="option-item-label">#{caseActionBean.getPinnedLabel(case)}</span>
     </p:commandLink>
 
     <p:link id="show-process-overview-link" styleClass="additional-case-details-link action-step-item ui-menu-items"

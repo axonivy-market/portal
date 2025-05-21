@@ -16,8 +16,10 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -82,6 +84,31 @@ public class CaseActionBean implements Serializable {
 
   public boolean showProcessViewer(ICase caze) {
     return ((UserMenuBean) ManagedBeans.get("userMenuBean")).isProcessViewerDisplayed(caze);
+  }
+
+  public boolean canPin(ICase caze) {
+    if (caze == null) {
+      return false;
+    }
+    return true;
+  }
+
+  public String getPinnedStyleClass(ICase caze) {
+    return "aadditional-case-details-link action-step-item ui-menu-items"
+        + (CaseUtils.isPinnedCase(caze) ? " color-destroy" : "");
+  }
+
+  public void markCaseAsPinned(ICase caze) {
+    CaseUtils.markCaseAsPinned(caze);
+  }
+
+  public String getPinnedIcon(ICase caze) {
+    return CaseUtils.isPinnedCase(caze) ? "option-action-icon si si-pin-bold" : "option-action-icon si si-pin";
+  }
+
+  public String getPinnedLabel(ICase caze) {
+    return CaseUtils.isPinnedCase(caze) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/unpin")
+        : Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/pin");
   }
 
 }

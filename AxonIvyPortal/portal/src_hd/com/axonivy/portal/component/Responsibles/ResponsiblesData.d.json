@@ -1,0 +1,6 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
+  "simpleName" : "ResponsiblesData",
+  "namespace" : "com.axonivy.portal.component.Responsibles",
+  "isBusinessCaseData" : false
+}

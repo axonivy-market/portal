@@ -12,6 +12,7 @@ import com.axonivy.portal.util.filter.operator.caze.customfield.CustomStringInOp
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomStringIsEmptyOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomStringIsOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomStringStartWithOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.string.StringCustomFieldInOperatorHandler;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
@@ -70,6 +71,14 @@ public class CaseFilterFieldCustomString extends CustomFilterField {
   @Override
   public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
     return null;
+  }
+  
+  @Override
+  public String generateCaseFilter(DashboardFilter filter) {
+    return switch (filter.getOperator()) {
+      case IN -> StringCustomFieldInOperatorHandler.getInstance().buildFilter(filter);
+      default -> null;
+    };
   }
 
 }

@@ -13,17 +13,24 @@
   onShow="PF('new-widget-dialog').initPosition()">
   <h:form class="w-full flex justify-content-between align-items-center mb-4">
     <div class="new-widget-dialog__search">
-    <p:inputText id="search-input" styleClass="js-search-input new-widget-dialog__search-input"
-      placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}"
-      onkeyup="searchNewWidgetByNameOrDescription(this);" />
-      <span class="si si-search new-widget-dialog__search-icon" />
-  </div>
-  <p:commandButton id="clone-from" type="button" icon="si si-copy-paste" styleClass="primary-color-light-button"
-    value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/PortalDashboardDetailModification/CloneWidget')}">
-      <p:ajax event="click" listener="#{dashboardDetailModificationBean.initCloneWidgetDialog()}"
-        global="false" update="clone-widget-from-dashboard:clone-widget-dialog"
-        oncomplete="PF('clone-widget-dialog').show();" />
-    </p:commandButton>
+      <p:inputText id="search-input" styleClass="js-search-input new-widget-dialog__search-input"
+        placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}"
+        onkeyup="searchNewWidgetByNameOrDescription(this);" />
+        <span class="si si-search new-widget-dialog__search-icon" />
+    </div>
+    <div class="flex flex-row-reverse flex-wrap gap-2">
+      <p:commandButton id="clone-from" type="button" icon="si si-copy-paste" styleClass="primary-color-light-button"
+        value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/PortalDashboardDetailModification/CloneWidget')}">
+          <p:ajax event="click" listener="#{dashboardDetailModificationBean.initCloneWidgetDialog()}"
+            global="false" update="clone-widget-from-dashboard:clone-widget-dialog"
+            oncomplete="PF('clone-widget-dialog').show();" />
+      </p:commandButton>
+      <p:commandButton id="create-custom-statistic"
+        value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardDetailModification/CreateCustomStatistic')}"
+        icon="si si-analytics-bars" styleClass="primary-color-light-button"
+        actionListener="#{dashboardDetailModificationBean.navigateToCustomStatisticWidgetPage(null)}"
+        rendered="#{dashboardDetailModificationBean.canEditStatistic()}" />
+    </div>
   </h:form>
   <div class="new-widget-dialog__content">
     <p:fieldset id="standard-widget-fieldset" toggleable="true"
@@ -70,22 +77,46 @@
           <div class="new-widget-dialog__item card js-widget">
 
             <div class="new-widget-dialog__item-title">
-              <h:outputText id="statistic-widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
-              <p:tooltip id="statistic-widget-name-tooltip" for="statistic-widget-name" value="#{widget.name}" trackMouse="true" />
+              <div class="w-full">
+                <div class="flex gap-3">
+                  <div class="flex flex-1">
+                    <h:outputText id="statistic-widget-name" value="#{widget.name}" styleClass="new-widget-dialog__widget-name"/>
+                    <p:tooltip id="statistic-widget-name-tooltip" for="statistic-widget-name" value="#{widget.name}" trackMouse="true" />
+                  </div>
+                  <h:panelGroup styleClass="flex flex-none align-items-center"
+                    rendered="#{widget.isCustom and dashboardDetailModificationBean.canEditStatistic()}">
+                    <p:commandButton id="custom-statistic-action-button" icon="fa fa-ellipsis-h"
+                      styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page h-1rem"
+                      type="button" />
+                    <p:menu id="custom-statistic-action-menu" styleClass="w-auto" overlay="true"
+                      trigger="custom-statistic-action-button" my="right top" at="right bottom">
+                      <p:menuitem id="edit" process="@this" icon="si si-graphic-tablet-drawing-pen" styleClass=""
+                        actionListener="#{dashboardDetailModificationBean.navigateToCustomStatisticWidgetPage(widget.id)}"
+                        global="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+                        target="_blank" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}" />
+                      <p:menuitem id="delete-dashboard" process="@this"
+                        styleClass="rounded-button ui-button-outlined ui-button-danger color-destroy" icon="si si-bin-1"
+                        global="false"
+                        actionListener="#{dashboardDetailModificationBean.onSelectedDeleteStatistic(widget)}"
+                        title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+                        oncomplete="PF('remove-statistic-widget-dialog').show()"
+                        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
+                    </p:menu>
+                  </h:panelGroup>
+                </div>
+              </div>
             </div>
 
             <div class="new-widget-dialog__item-details">
               <h:panelGroup layout="block" styleClass="new-widget-dialog__image" >
-                <span class="#{widget.icon} new-widget-dialog__icon" />
+                <span class="#{iconSelectionBean.generateIconWithFontFamily(htmlSanitizerBean.sanitize(widget.icon))} new-widget-dialog__icon" />
               </h:panelGroup>
-
               <h:panelGroup layout="block" styleClass="ui-panelgrid-blank new-widget-dialog__item-content">
-                <h:outputText id="statistic-widget-description" value="#{widget.description}" styleClass="new-widget-dialog__introduction"/>
+                <h:outputText id="statistic-widget-description" value="#{widget.description}" styleClass="new-widget-dialog__introduction h-3rem"/>
                 <p:tooltip id="statistic-widget-description-tooltip" for="statistic-widget-description" value="#{widget.description}" trackMouse="true" />
-
                 <p:commandButton id="add-widget" styleClass="new-widget-dialog__add-widget-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
-                  actionListener="#{dashboardDetailModificationBean.saveClientStatisticWidget(widget)}"
+                  actionListener="#{dashboardDetailModificationBean.saveStatisticWidget(widget)}"
                   oncomplete="loadGridAfterAddedNewWidget(); initStatistics();"
                   update="widget-configuration-form load-grid-after-added-new-widget-cmd"
                   partialSubmit="true"
@@ -247,6 +278,29 @@
   </div>
   </f:facet>
 </p:dialog>
+
+<ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+  <ui:param name="id" value="remove-statistic-widget-dialog" />
+  <ui:param name="widgetVar" value="remove-statistic-widget-dialog" />
+  <ui:param name="iconClass" value="si si-delete-1" />
+  <ui:param name="appendTo" value="@(body)" />
+  <ui:param name="closeable" value="true" />
+  <ui:param name="closeOnEscape" value="true" />
+  <ui:param name="iconStyleClass" value="portal-dialog-error-icon portal-dialog-icon" />
+  <ui:param name="headerText"
+    value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardDetailModification/DeleteConfirm')}" />
+  <ui:define name="dialogFooter">
+    <div class="flex flex-column">
+    <p:commandButton id="remove-statistic-button" styleClass="w-full portal-remove-button"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+      actionListener="#{dashboardDetailModificationBean.deleteCustomStatistic()}"
+      update="statistic-widget-fieldset"
+      oncomplete="PF('remove-statistic-widget-dialog').hide();" />
+    <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      onclick="PF('remove-statistic-widget-dialog').hide();" styleClass="ui-button-flat pt-3 flex justify-content-center" />
+    </div>
+  </ui:define>
+</ui:decorate>
 
 <ic:com.axonivy.portal.dashboard.component.CloneWidgetFromDashboardDialog id="clone-widget-from-dashboard"
   managedBean="#{dashboardDetailModificationBean}" />

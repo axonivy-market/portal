@@ -1,6 +1,7 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -15,7 +16,9 @@ import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelSubcriptionDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationEventDTO;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.notification.channel.NotificationSubscription;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -93,4 +96,21 @@ public class UserProfileBean implements Serializable {
     return PermissionUtils.checkAccessFullProcessListPermission();
   }
 
+  public void unpinAllPinnedTasks() {
+    IUser currentUser = Ivy.session().getSessionUser();
+    if (currentUser != null) {
+      TaskUtils.removeAllPinnedTasks();
+      addMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/unpinAllPinnedTasks",
+          Arrays.asList(currentUser.getDisplayName())));
+    }
+  }
+
+  public void unpinAllPinnedCases() {
+    IUser currentUser = Ivy.session().getSessionUser();
+    if (currentUser != null) {
+      CaseUtils.removeAllPinnedCase();
+      addMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/unpinAllPinnedCases",
+          Arrays.asList(currentUser.getDisplayName())));
+    }
+  }
 }

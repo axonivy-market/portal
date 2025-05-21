@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldApplication;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCategory;
 import com.axonivy.portal.util.filter.field.caze.CaseFilterFieldCreatedDate;
@@ -27,7 +28,6 @@ public class FilterFieldFactory {
 
   private static final Map<String, FilterField> STANDARD_FILTER_FIELD = new HashMap<>();
   private static final Map<String, CustomFilterField> CUSTOM_FILTER_FIELD = new HashMap<>();
-  public static final String DEFAULT_FILTER_FIELD = "default";
 
   static {
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.ID.getField(), new CaseFilterFieldId());
@@ -48,7 +48,6 @@ public class FilterFieldFactory {
         default -> throw new IllegalArgumentException("Unexpected value: " + customField.type());
       }
     }
-
   }
 
   public static FilterField findBy(String field) {
@@ -56,8 +55,7 @@ public class FilterFieldFactory {
     if (result == null) {
       result = findCustomFieldBy(field);
     }
-    return DEFAULT_FILTER_FIELD.contentEquals(field) ? new FilterFieldDefault()
-        : result;
+    return BaseFilter.DEFAULT.contentEquals(field) ? new FilterFieldDefault() : result;
   }
 
   public static CustomFilterField findCustomFieldBy(String field) {

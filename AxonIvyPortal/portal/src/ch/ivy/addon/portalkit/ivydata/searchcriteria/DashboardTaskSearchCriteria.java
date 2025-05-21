@@ -1,9 +1,10 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
 import java.util.ArrayList;
-
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -21,6 +22,7 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.PortalCustomFieldUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.ICustomFieldOrderBy;
@@ -36,6 +38,7 @@ public class DashboardTaskSearchCriteria {
   private boolean sortDescending;
   private boolean isInConfiguration;
   private String quickSearchKeyword;
+  private boolean showPinnedItem;
 
   public TaskQuery buildQuery() {
     TaskQuery query = buildQueryWithoutOrderByClause();
@@ -49,6 +52,9 @@ public class DashboardTaskSearchCriteria {
     TaskQuery query = TaskQuery.create();
     queryFilters(query);
     queryCanWorkOn(query);
+    if (showPinnedItem) {
+      queryPinnedTasks(query);
+    }
     return query;
   }
 
@@ -345,4 +351,25 @@ public class DashboardTaskSearchCriteria {
   public void setQuickSearchKeyword(String quickSearchKeyword) {
     this.quickSearchKeyword = quickSearchKeyword;
   }
+
+  public boolean showPinnedItem() {
+    return showPinnedItem;
+  }
+
+  public void setShowPinnedItem(boolean showPinnedItem) {
+    this.showPinnedItem = showPinnedItem;
+  }
+
+  private void queryPinnedTasks(TaskQuery query) {
+    Set<String> pinnedTaskUuids = Optional.ofNullable(TaskUtils.getPinnedTaskUuids())
+        .orElse(Collections.emptySet());
+
+    if (pinnedTaskUuids.isEmpty()) {
+      query.where().uuid().isEqual(StringUtils.EMPTY); // value that can never match
+    } else {
+      String[] uuidArray = pinnedTaskUuids.toArray(new String[0]);
+      query.where().uuid().isIn(uuidArray);
+    }
+  }
+
 }

@@ -28,6 +28,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CreatorColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
@@ -99,6 +100,13 @@ public class ColumnManagementBean implements Serializable {
         .collect(Collectors.toList());
   }
 
+  public boolean isEnableHideCaseCreator(ColumnModel column) {
+    if (column instanceof CreatorColumnModel) {
+      return GlobalSettingService.getInstance().isHideCaseCreator();
+    }
+    return false;
+  }
+  
   public void save() {
     if (widget.getType() == DashboardWidgetType.TASK) {
       TaskDashboardWidget taskWidget = (TaskDashboardWidget) this.widget;
@@ -153,19 +161,20 @@ public class ColumnManagementBean implements Serializable {
   private List<String> standardFields() {
     List<String> standardFields = new ArrayList<>();
     if (widget.getType() == DashboardWidgetType.TASK) {
+      boolean enablePinTask = GlobalSettingService.getInstance().isEnablePinTask();
       for (DashboardStandardTaskColumn col : DashboardStandardTaskColumn.values()) {
+        if (!enablePinTask && DashboardStandardTaskColumn.PIN == col) {
+          continue;
+        }
         standardFields.add(col.getField());
       }
     } else if (widget.getType() == DashboardWidgetType.CASE) {
       var enableCaseOwner = GlobalSettingService.getInstance().isCaseOwnerEnabled();
-      boolean disableCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
       for (DashboardStandardCaseColumn col : DashboardStandardCaseColumn.values()) {
         if (!enableCaseOwner && DashboardStandardCaseColumn.OWNER == col) {
           continue;
         }
-        if (disableCaseCreator && DashboardStandardCaseColumn.CREATOR == col) {
-          continue;
-        }
+
         standardFields.add(col.getField());
       }
     }
@@ -427,6 +436,5 @@ public class ColumnManagementBean implements Serializable {
     public void setField(String field) {
       this.field = field;
     }
-
   }
 }

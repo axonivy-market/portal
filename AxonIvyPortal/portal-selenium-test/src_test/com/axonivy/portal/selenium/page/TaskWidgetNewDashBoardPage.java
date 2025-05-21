@@ -600,12 +600,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void removeFilter(int index) {
-  int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
-  if (currentIndex > 0) {
-    String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
-    $(removeBtn).shouldBe(getClickableCondition()).click();
-    countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
-  }
+    int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
+    if (currentIndex > 0) {
+      String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
+      $(removeBtn).shouldBe(getClickableCondition()).click();
+      countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
+    }
   }
 
   public ElementsCollection countFilterSelect() {

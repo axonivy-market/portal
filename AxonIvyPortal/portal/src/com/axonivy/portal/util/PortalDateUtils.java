@@ -3,6 +3,7 @@ package com.axonivy.portal.util;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -110,5 +111,12 @@ public class PortalDateUtils {
     }
 
     return DateUtils.truncate(date, Calendar.MINUTE);
+  }
+  
+  public static String toStringIso8601Format(Date value) {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+    return value.toInstant()
+        .atZone(ZoneId.systemDefault())
+        .format(formatter);
   }
 }

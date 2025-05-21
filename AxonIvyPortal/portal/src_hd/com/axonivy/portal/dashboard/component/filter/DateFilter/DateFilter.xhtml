@@ -5,12 +5,13 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.DashboardFilter" />
+  <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.BaseFilter" />
   <cc:attribute name="componentToUpdate" required="true" />
   <cc:attribute name="filterIndex" />
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="messageId" />
-  <cc:attribute name="widget" type="ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget" required="true" />
+  <cc:attribute name="widgetType" required="true"/>
+  <cc:attribute name="operators" />
 </cc:interface>
 
 <cc:implementation>
@@ -18,8 +19,8 @@
   <c:set var="filterIndex" value="#{cc.attrs.filterIndex}" />
   <c:set var="readOnly" value="#{cc.attrs.readOnly}" />
   <c:set var="messageId" value="#{cc.attrs.messageId}" />
-  <c:set var="widget" value="#{cc.attrs.widget}" />
   <c:set var="operators" value="#{cc.attrs.operators}" />
+  <c:set var="widgetType" value="#{cc.attrs.widgetType}" />
 
   <h:panelGroup id="date-filter-operator-panel" layout="block"
     styleClass="ui-fluid">
@@ -36,7 +37,7 @@
     styleClass="ui-fluid date-picker-panel">
     <p:datePicker id="is-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
-      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -51,7 +52,7 @@
     styleClass="ui-fluid date-picker-panel">
     <p:datePicker id="is-not-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
-      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -66,7 +67,7 @@
     styleClass="ui-fluid date-picker-panel">
     <p:datePicker id="before-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
-      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -81,7 +82,7 @@
     styleClass="ui-fluid date-picker-panel">
     <p:datePicker id="after-date" value="#{filter.toDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
-      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateToDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -97,7 +98,7 @@
     styleClass="ui-fluid date-picker-panel">
     <p:datePicker id="from-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
-      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -116,7 +117,7 @@
     rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}"
     styleClass="ui-fluid date-picker-panel">
     <p:datePicker id="to-date" value="#{filter.toDate}" locale="#{localeBean.locale}" disabled="#{readOnly}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
-      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateToDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />

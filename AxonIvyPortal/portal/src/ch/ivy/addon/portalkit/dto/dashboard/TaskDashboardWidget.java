@@ -47,6 +47,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   private boolean enableQuickSearch;
   private boolean showWidgetInfo;
   private boolean showFullscreenMode;
+  private boolean showPinnedToggle;
 
   @JsonIgnore
   private List<String> errors;
@@ -58,6 +59,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     setUserFilters(new ArrayList<>());
     setShowWidgetInfo(true);
     setShowFullscreenMode(true);
+    setShowPinnedToggle(true);
   }
 
   @Override
@@ -294,11 +296,25 @@ public class TaskDashboardWidget extends DashboardWidget {
   }
 
 
-public List<String> getErrors() {
-	return errors;
-}
+  public List<String> getErrors() {
+    return errors;
+  }
 
-public void setErrors(List<String> errors) {
-	this.errors = errors;
-}
+  public void setErrors(List<String> errors) {
+    this.errors = errors;
+  }
+
+  @Override
+  public void toggleShowPinned() {
+    this.dataModel.setShowPinnedItem(showPinnedItem);
+  }
+
+  public boolean isShowPinnedToggle() {
+    return showPinnedToggle;
+  }
+
+  public void setShowPinnedToggle(boolean showPinnedToggle) {
+    this.showPinnedToggle = showPinnedToggle;
+  }
+
 }

@@ -11,4 +11,6 @@ public class UserProperty {
   public static final String DATE_FORMAT = "DATE_FORMAT";
   public static final String DEFAULT_PROCESS_MODE = "DEFAULT_PROCESS_MODE";
   public static final String DEFAULT_PROCESS_IMAGE = "DEFAULT_PROCESS_IMAGE";
+  public static final String PORTAL_PINNED_TASKS = "PORTAL_PINNED_TASKS";
+  public static final String PORTAL_PINNED_CASES = "PORTAL_PINNED_CASES";
 }

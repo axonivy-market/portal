@@ -104,7 +104,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public SelenideElement getResponsibleAvatar() {
-    return $(".security-member-container > .has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
+    return $(".responsibles.has-avatar > .ui-avatar").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getShareButton() {
@@ -377,4 +377,15 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementClickableThenClick(By.cssSelector(".portal-breadcrumb ol li:nth-of-type(2) .ui-menuitem-link"));
   }
 
+  public SelenideElement getAllResponsible() {
+    return $("[id$=':all-responsibles'] a");
+  }
+  
+  public SelenideElement getAllExpiryResponsible() {
+    return $("[id$=':all-expiry-responsibles'] a");
+  }
+
+  public SelenideElement getExpiryResponsibleDialog() {
+    return $("[id$=':expiry-responsible-dialog']");
+  }
 }

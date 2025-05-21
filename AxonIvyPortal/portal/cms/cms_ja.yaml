@@ -146,12 +146,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: 見出し 3
       NORMAL_TEXT: 通常のテキスト
   MyProfile:
+    CaseList: ケースリスト
     DateFormat: 日付の形式
     FormattingLanguage: 書式設定言語
     General: 一般
     Homepage: ホームページ
     Language: 言語
     ProcessList: プロセスリスト
+    TaskList: 'TODO: Task List'
     byDefault: （初期値）
     defaultOption: 初期値（{0}）
     defaultViewMode: 表示モードの初期値
@@ -160,6 +162,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: 通知チャネル
     notificationChannelsReset: 通知チャネルをリセットしました
     subscribed: 通知する
+    unpinAllPinnedCases: 'TODO: All pinned cases have been removed for user: {0}.'
+    unpinAllPinnedTasks: 'TODO: All pinned tasks have been removed for user: {0}'
   PortalManagement:
     AdminSetting: 管理者設定
   ProcessViewer:
@@ -195,7 +199,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: サードパーティーのアプリケーション
     currentValue: 現在の値
-    defaultApplicationName: Axon Ivy
     defaultValue: デフォルト値
     deleteAppConfirmation: このアプリケーションを削除してよろしいですか？
     dialogclosinginformation:
@@ -208,7 +211,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     emptySupportedLanguages: 追加の言語はサポートされていません
     globalVariableNote:
       AppleStoreURL: Apple Store で Axon Ivy モバイル アプリをダウンロードするための URL を設定します。
-      ApplicationName: ページタイトルに表示されるデフォルトのアプリケーション名。
+      ApplicationName: ページタイトルに表示されるアプリケーション名。
       BaseQRCodeUrl: 表示するQRコードのベースURLを設定します。
       DefaultThemeMode: アプリケーションのテーマモードの初期値
       EnableDocumentPreview: ドキュメントのプレビューを有効にするには true に設定してください。（プレビュー可能なファイルの種類：pdf、png、txt、log）
@@ -244,6 +247,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。
       enableDeepLTranslation: DeepL翻訳サポートを有効にするには、このプロパティーを true に設定してください。
       enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
+      enablePinCase: 'TODO: Set this property to true to enable the ability to pin cases.'
+      enablePinTask: 'TODO: Set this property to true to enable the ability to pin tasks.'
       enablePrivateChat: 個人用チャット機能を有効にするには、このプロパティーを true に設定してください。
       enableProcessViewer: タスク／ケースアクションでプロセスビューアーオプションを有効にするには、このプロパティをtrueに設定してください。
       enableScriptCheckingForUploadedDocumentNote: アップロードされたドキュメントのスクリプトチェックを有効にするには、true に設定してください。現在、この機能は PDF、Excel、Word のチェックをサポートしています。
@@ -358,6 +363,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ID: ケース ID
       NAME: 名前／説明
       OWNER: オーナー
+      PIN: 'TODO: Pin'
       STATE: 状態
     deletionNoteContent: このケースは{0}によって破棄されました
     destroyCaseMessage: 'この操作は元に戻せません。このケース<b>{0}(ID: {1})</b>とそのすべてのタスクを破棄してもよろしいですか？'
@@ -545,6 +551,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: 選択されたフィルター
     ok: OK
     'on': オン
+    pin: 'TODO: Pin'
     pleaseAddDocument: 上記のリンクにドキュメントを追加してください。
     pleaseAddNote: 上記のリンクにノートを追加してください。
     previousStage: 前のステージ
@@ -604,6 +611,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: すべての管理者
     typeAllUsers: すべてのユーザー
     typeOnlyMe: 自分のみ
+    unpin: 'TODO: Unpin'
     uploadHere: 有効な日付を入力してください。
     uploadOneHere: ここにアップロード
     user: '{0} ユーザー'
@@ -753,9 +761,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: 保存されたフィルター
     SearchForFilter: フィルターを検索
     ShareThisDashboard: このダッシュボードを共有
+    ShowPinnedToggle: 'TODO: Show ''Pinned Tasks'' Toggle'
     StandardWidgets: 標準ウィジェット
     StatisticWidget:
       EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！
+      failToRenderChartMessage: TODO Error while rendering chart. Please retry with different settings.
+      firstConfigChartMessage: TODO No chart available yet. Please configure your settings to generate a chart.
     WelcomeWidgetIntroduction: このウィジェットは、ダッシュボードにウェルカムテキストと画像を表示します。
     WelcomeWidgetNotFoundMessage: ウィジェットの画像が見つかりません。画像を再設定してください。
     WidgetFilterName: ウィジェットフィルター名
@@ -1207,6 +1218,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME: 有効期限
       ID: タスクID
       NAME: 名前／説明
+      PIN: 'TODO: Pin'
       PRIORITY: 優先度
       STATE: 状態
       TASK_FOR_UNAVAILABLE_ACTIVATOR: アクティベーターがありません
@@ -1353,6 +1365,10 @@ Dialogs:
                   DragAndDropTooltip: プレビューをクリックしてください、そして順序を入れ替えるにはドラッグ＆ドロップしてください
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Axon Ivy Portalへようこそ
+          setting:
+            UserProfile:
+              unpinAllPinnedCases: 'TODO: Unpin all pinned cases'
+              unpinAllPinnedTasks: 'TODO: Unpin all pinned tasks'
         portalkit:
           component:
             CaseItemDetails:
@@ -1381,6 +1397,8 @@ Dialogs:
               ShareTaskDetails: タスクの詳細を共有
               TaskCompletedByOtherInfo: タスクは、ユーザー <strong>{0}</strong> によって {1} に既に完了しています。
               TaskCompletedByYouInfo: あなたは、このタスクを {0} に完了しています。
+            TaskItemGeneralInfo:
+              Expiry: TODO Expiry Responsible
   com:
     axonivy:
       portal:
@@ -1390,6 +1408,8 @@ Dialogs:
             Tools: ツール
             WelcomeHeaderText: Axon Ivy ポータルへようこそ！
             WelcomeText: ご利用いただき、ありがとうございます。Axon Ivy ポータルは、シームレスで効率的な体験への入り口です。機能を探索する新規ユーザーでも、リピーターでも、私たちはあらゆる段階であなたを支援します。
+          Responsibles:
+            Multiple: TODO 複数
           ShareLinkDialog:
             CopyLink: リンクをコピー
             Link: リンク
@@ -1497,6 +1517,27 @@ Dialogs:
             CaseDetailsIFrameTitle: ケース詳細フレーム
           IFrameTaskTemplate:
             TaskIFrameTitle: タスクフレーム
+        page:
+          StatisticConfiguration:
+            AddFilter: TODO Add filter
+            Advanced: TODO Advanced
+            ChartType: TODO Chart type
+            Color: 色{0}
+            Create: TODO Create
+            EditStatistic: TODO Edit Statistic Widget
+            For: TODO For
+            GeneratePreview: TODO Generate preview
+            GroupBy: TODO Group by
+            HideLabel: TODO Hide label
+            NewStatistic: TODO New Statistic Widget
+            OutdatedChartMessage: TODO The applied group-by or filter does not align with the current UI configuration. Please reconfigure it.
+            RefreshInterval: TODO Auto-refresh enabled
+            RefreshIntervalInSeconds: TODO Auto-refresh interval (seconds)
+            RefreshIntervalInSecondsValidationMessage: 'TODO Auto-refresh interval (seconds): Specified attribute is not between the expected values of {0} and {1}'
+            RefreshIntervalInfo: TODO The statistic can be auto-refreshed after a certain period. If enabled, this may impact performance. Auto-refresh interval (seconds) must be at least {0}.
+            StatisticConfiguration: TODO Statistic configuration
+            XAxisTitle: TODO X axis title
+            YAxisTitle: TODO Y axis title
   components:
     CaseDocument:
       FileDate: 変更日時
@@ -1512,6 +1553,64 @@ Dialogs:
   general:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: TODO Activator name
+              BUSINESS_RUNTIME:
+                name: TODO Business runtime
+              CATEGORY:
+                name: TODO Category
+              CREATOR_NAME:
+                name: TODO Creator name
+              CUSTOM_FIELD:
+                name: TODO Custom field
+              END_TIMESTAMP:
+                name: TODO Completed date
+              EXPIRY_TIMESTAMP:
+                name: TODO Expiry date
+              IS_EXPIRED:
+                name: TODO Is expired
+              PRIORITY:
+                name: TODO Priority
+              RESPONSIBLES_NAME:
+                name: TODO Responsibles
+              START_TIMESTAMP:
+                name: TODO Created date
+              STATE:
+                name: TODO State
+              WORKER_NAME:
+                name: TODO Worker name
+              WORKING_TIME:
+                name: TODO Working time
+            AggregationInterval:
+              DAY:
+                name: TODO Day
+              MONTH:
+                name: TODO Month
+              WEEK:
+                name: TODO Week
+              YEAR:
+                name: TODO Year
+            ChartTarget:
+              CASE:
+                name: ケース
+              TASK:
+                name: タスク
+            ChartType:
+              BAR:
+                name: TODO Bar
+              LINE:
+                name: TODO Line
+              NUMBER:
+                name: TODO Number
+              PIE:
+                name: TODO Pie
 Labels:
   AI:
     Error:
@@ -1542,10 +1641,15 @@ Labels:
     TaskDetailsResult: |-
       タスクの詳細 **{0} (#{1})**：
       {2}
+  AndMore: TODO さらに{0}件...
+  AllTasks: 'TODO: All Tasks'
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
+  Configuration: 設定
+  Collapse: TODO 折りたたむ
   AssignTheTaskTo: Assign the task to a specified user or group
   CreateNewDashboard: 新しいダッシュボードを作成
+  Description: 説明
   EditDescription: 説明を編集
   Enums:
     ChatbotCandidateQuestion:
@@ -1569,6 +1673,7 @@ Labels:
       ID: ID
       NAME: 名前
       OWNER: ケースオーナー
+      PIN: 'TODO: Pin'
       STATE: 状態
     DashboardStandardTaskColumn:
       ACTIONS: アクション
@@ -1580,6 +1685,7 @@ Labels:
       EXPIRY: 有効期限
       ID: ID
       NAME: 名前
+      PIN: 'TODO: Pin'
       PRIORITY: 優先度
       RESPONSIBLE: 責任者
       START: 開始
@@ -1639,12 +1745,22 @@ Labels:
     ThemeMode:
       DARK: 暗い
       LIGHT: 明るい
+  Filters: フィルター
+  General: TODO General
+  Icon: アイコン
+  Expand: TODO 展開
   InsertTask-Explain: タスクを挿入します。私のタスクは延期されます。
   InsertTheTask: タスクを挿入
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Name: 名前
   Permissions: 権限
+  Preview: プレビュー
+  RequiredFieldMessage: 'TODO {0}: Value is required'
+  Save: 保存
+  PinnedCases: 'TODO: Pinned Cases'
+  PinnedTasks: 'TODO: Pinned Tasks'
   SelectProcess: Select process
   Share: 共有
   SideStepProcess: Side step process

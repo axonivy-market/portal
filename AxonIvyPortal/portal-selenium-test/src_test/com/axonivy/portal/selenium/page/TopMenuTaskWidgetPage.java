@@ -15,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -238,6 +239,11 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
         .until((driver) -> countAllTasks().size() != 0);
   }
 
+  public void waitUntilTaskFilterReturnResultCount(int count) {
+    new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT)
+        .until((driver) -> countAllTasks().size() == count);
+  }
+
   public void isDelegateTypeSelectAvailable() {
     waitForElementDisplayed($("div[id$=':activator-panel']"), true);
   }
@@ -304,5 +310,35 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     $("div[id='escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id='confirm-escalation-dashboard-tasks']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
+  }
+
+  public void pinTaskByIndex(int taskIndex) {
+    clickOnTaskActionLink(taskIndex);
+    clickTaskAction(taskIndex, "Pin");
+  }
+
+  public void unpinTaskByIndex(int taskIndex) {
+    clickOnTaskActionLink(taskIndex);
+    clickTaskAction(taskIndex, "Unpin");
+  }
+
+  public boolean isTaskPinned(int taskIndex) {
+    return getAllTaskActions(taskIndex)
+        .filter(Condition.exactText("Pin")).shouldHave(CollectionCondition.size(0)).isEmpty();
+  }
+
+  public boolean isTaskUnpinned(int taskIndex) {
+    return getAllTaskActions(taskIndex).filter(Condition.exactText("Unpin")).shouldHave(CollectionCondition.size(0))
+        .isEmpty();
+  }
+
+  public void togglePinnedTask() {
+    SelenideElement toggle = $("[id$='show-pin-toggle']");
+    toggle.shouldBe(clickable());
+    toggle.find(By.className("ui-toggleswitch-slider")).click();
+  }
+
+  public void clickOnPinColumn(int index) {
+    getColumnOfTaskHasIndex(index, "Pin").shouldBe(getClickableCondition()).click();
   }
 }

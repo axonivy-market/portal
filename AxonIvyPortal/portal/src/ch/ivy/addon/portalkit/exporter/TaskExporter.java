@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
@@ -84,10 +86,13 @@ public class TaskExporter extends Exporter {
       case ID:
         return String.valueOf(task.getId());
       case ACTIVATOR:
-        if (task.getActivatorName() == null) {
+        if (CollectionUtils.isEmpty(task.responsibles().all())) {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
-        return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(task.getActivator(), task.getActivatorName());
+        return task.responsibles().all()
+            .stream()
+            .map(item -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(item.get(), item.displayName()))
+            .collect(Collectors.joining(", "));
       case PRIORITY:
         return TaskUtils.convertToUserFriendlyTaskPriority(task.getPriority());
       case STATE:

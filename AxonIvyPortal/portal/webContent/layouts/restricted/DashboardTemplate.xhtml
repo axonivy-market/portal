@@ -7,7 +7,7 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="head">
       <h:outputScript library="primefaces" name="chartjs/chartjs.js" />
-      <h:outputScript name="client-statistic.js" library="js" />
+      <h:outputScript name="statistic.js" library="js" />
     </ui:define>
 
     <ui:define name="title">#{managedBean.getSelectedDashboardName()}</ui:define>
@@ -18,7 +18,7 @@
     <ui:define name="pageContent">
         <script>
           function initStatistics() {
-            initClientCharts("#{htmlSanitizerBean.escapeForJS(managedBean.clientStatisticApiUri)}" , "#{htmlSanitizerBean.escapeForJS(localeBean.locale)}", "#{htmlSanitizerBean.escapeForJS(dateTimePatternBean.datePattern)}");
+            initClientCharts("#{managedBean.statisticApiUri}" , "#{localeBean.locale}", "#{dateTimePatternBean.datePattern}", "#{ivy.session.contentLocale}");
           }
 
           $(document).ready(function () {
@@ -56,7 +56,7 @@
 
         <h:form id="dashboard-remote-command-form" prependId="false">
           <h:inputHidden id="dashboard-view-mode" value="#{managedBean.isReadOnlyMode}"/>
-          <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid(#{managedBean.selectedDashboard.isResponsive});dashboardToolKit.responsive(); initStatistics('#{managedBean.clientStatisticApiUri}');" />
+          <p:remoteCommand name="updateDashboardWidget" update="grid-stack" oncomplete="loadGrid(#{managedBean.selectedDashboard.isResponsive});dashboardToolKit.responsive(); initStatistics('#{managedBean.statisticApiUri}');" />
           <p:remoteCommand name="loadAllWidgetSavedFilters" actionListener="#{managedBean.loadAllWidgetSavedFilters()}"
             global="false" process="@this" immediate="true" partialSubmit="true"
             update="delete-saved-filter-form:quick-filter-table"
@@ -141,12 +141,12 @@
                         id="news-#{widget.id}" />
                     </c:if>
 
-                    <!-- Client statistic widget -->
-                    <c:if test="#{widget.type eq 'CLIENT_STATISTIC'}">
-                      <ic:com.axonivy.portal.dashboard.component.ClientStatisticWidget widget="#{widget}"
+                    <!-- Statistic widget -->
+                    <c:if test="#{widget.type eq 'STATISTIC'}">
+                      <ic:com.axonivy.portal.dashboard.component.StatisticWidget widget="#{widget}"
                         isReadOnlyMode="#{managedBean.isReadOnlyMode}"
                         index="#{status.index}"
-                        id="client-statistic-#{widget.id}" />
+                        id="statistic-#{widget.id}" />
                     </c:if>
                     
                     <!-- Notification widget -->

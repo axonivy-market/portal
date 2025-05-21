@@ -64,4 +64,5 @@ public class CaseFilterFieldName extends FilterField {
   public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
     return null;
   }
+  
 }

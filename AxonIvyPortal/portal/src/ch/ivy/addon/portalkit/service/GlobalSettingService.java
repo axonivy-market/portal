@@ -109,4 +109,12 @@ public class GlobalSettingService {
   private IUser sessionUser() {
     return Ivy.session().getSessionUser();
   }
+
+  public boolean isEnablePinTask() {
+    return findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_PINNED_TASK);
+  }
+
+  public boolean isEnablePinCase() {
+    return findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_PINNED_CASE);
+  }
 }

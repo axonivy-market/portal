@@ -35,7 +35,10 @@ public class CaseColumnModel extends ColumnModel {
   public static CaseColumnModel constructColumn(DashboardColumnType fieldType, String field) {
     CaseColumnModel column = new CaseColumnModel();
     if (fieldType == DashboardColumnType.STANDARD) {
-      if (DashboardStandardCaseColumn.ID.getField().equalsIgnoreCase(field)) {
+      if (DashboardStandardCaseColumn.PIN.getField().equalsIgnoreCase(field)
+          && GlobalSettingService.getInstance().isEnablePinCase()) {
+        return new PinColumnModel();
+      } else if (DashboardStandardCaseColumn.ID.getField().equalsIgnoreCase(field)) {
         column = new IdColumnModel();
       } else if (DashboardStandardCaseColumn.NAME.getField().equalsIgnoreCase(field)) {
         column = new NameColumnModel();

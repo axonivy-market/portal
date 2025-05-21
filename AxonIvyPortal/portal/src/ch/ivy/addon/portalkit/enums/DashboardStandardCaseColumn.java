@@ -11,6 +11,7 @@ import java.util.Set;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum DashboardStandardCaseColumn {
+  PIN("pin"),
   ID("id"), 
   NAME("name"), 
   DESCRIPTION("description"), 
@@ -46,7 +47,7 @@ public enum DashboardStandardCaseColumn {
   }
 
   public static List<DashboardStandardCaseColumn> getFilterableFields() {
-    return Arrays.asList(ID, NAME, DESCRIPTION, STATE, CREATOR, CREATED, FINISHED, CATEGORY, APPLICATION);
+    return Arrays.asList(PIN, ID, NAME, DESCRIPTION, STATE, CREATOR, CREATED, FINISHED, CATEGORY, APPLICATION);
   }
 
   public String getLabel() {

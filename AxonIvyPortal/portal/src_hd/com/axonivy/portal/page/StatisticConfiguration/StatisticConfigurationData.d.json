@@ -1,0 +1,15 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "StatisticConfigurationData",
+  "namespace" : "com.axonivy.portal.page.StatisticConfiguration",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "id",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "callbackDashboardId",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

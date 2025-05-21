@@ -12,7 +12,7 @@ import javax.faces.validator.ValidatorException;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
 import ch.ivyteam.ivy.environment.Ivy;
@@ -24,7 +24,7 @@ public class DashboardTextFilterValidator implements Validator {
 
   @Override
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-    DashboardFilter filter = (DashboardFilter) component.getAttributes().get("filter");
+    BaseFilter filter = (BaseFilter) component.getAttributes().get("filter");
     Integer filterIndex = Optional.ofNullable((Integer)component.getAttributes().get("filterIndex")).orElse(0);
     String messageComponentId = Optional.ofNullable((String)component.getAttributes().get("messageId")).orElse(null);
     String componentToValidate =  Optional.ofNullable((String)component.getAttributes().get("componentToValidate")).orElse(null);
@@ -36,7 +36,7 @@ public class DashboardTextFilterValidator implements Validator {
     }
   }
 
-  private void validateDefaultOperator(String value, DashboardFilter filter, int filterIndex, UIComponent component, String messageComponentId) {
+  private void validateDefaultOperator(String value, BaseFilter filter, int filterIndex, UIComponent component, String messageComponentId) {
     if (StringUtils.isBlank(value)) {
       FacesContext.getCurrentInstance().addMessage(
           messageComponentId,
@@ -46,7 +46,7 @@ public class DashboardTextFilterValidator implements Validator {
     }
   }
 
-  private void validateForOtherComponent(String value, DashboardFilter filter, int filterIndex, UIComponent component, String messageComponentId, String componentToValidate) {
+  private void validateForOtherComponent(String value, BaseFilter filter, int filterIndex, UIComponent component, String messageComponentId, String componentToValidate) {
     if (StringUtils.isBlank(value)) {
       FacesContext.getCurrentInstance().addMessage(
           messageComponentId,

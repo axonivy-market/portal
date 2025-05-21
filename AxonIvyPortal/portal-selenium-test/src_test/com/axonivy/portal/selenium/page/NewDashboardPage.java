@@ -134,8 +134,9 @@ public class NewDashboardPage extends TemplatePage {
     return new MainMenuPage();
   }
 
-  public SelenideElement waitAndGetClientStatisticChart(int index) {
-    var widget = $$("[id^='client-statistic-client_statistic']").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
+  public SelenideElement waitAndGetStatisticChart(int index) {
+    var widget =
+        $$("[id^='statistic-client_statistic']").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
         .get(index)
         .shouldBe(appear, DEFAULT_TIMEOUT);
     widget.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
@@ -1056,8 +1057,8 @@ public class NewDashboardPage extends TemplatePage {
     $("ul[id='user-setting-container']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
   
-  public ClientStatisticWidgetNewDashboardPage selectClientStatisticChartWidget(String chartName) {
-    return new ClientStatisticWidgetNewDashboardPage(chartName);
+  public StatisticWidgetNewDashboardPage selectStatisticChartWidget(String chartName) {
+    return new StatisticWidgetNewDashboardPage(chartName);
   }
 
   public SelenideElement getGlobalQuickSearchPanel() {

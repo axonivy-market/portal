@@ -11,13 +11,13 @@
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="messageId" />
   <cc:attribute name="operators" />
-  <cc:attribute name="widget" type="ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget" required="true" />
+  <cc:attribute name="widgetType" required="true"/>
   
 </cc:interface>
 
 <cc:implementation>
   <ic:com.axonivy.portal.dashboard.component.filter.DateFilter componentToUpdate="#{cc.attrs.componentToUpdate}"
-    widget="#{cc.attrs.widget}"
+    widgetType="#{cc.attrs.widgetType}"
     filter="#{cc.attrs.filter}" filterIndex="#{cc.attrs.filterIndex}" messageId="#{cc.attrs.messageId}"
     readOnly="#{cc.attrs.readOnly}" operators="#{widgetDateFilterBean.createdDateOperators}" />
 </cc:implementation>

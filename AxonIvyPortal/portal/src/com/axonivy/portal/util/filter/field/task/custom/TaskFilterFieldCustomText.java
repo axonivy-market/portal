@@ -52,17 +52,17 @@ public class TaskFilterFieldCustomText extends CustomFilterField {
   @Override
   public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
     return switch (filter.getOperator()) {
-    case CONTAINS -> CustomTextContainsOperatorHandler.getInstance().buildContainsQuery(filter);
-    case NOT_CONTAINS -> CustomTextContainsOperatorHandler.getInstance().buildNotContainsQuery(filter);
-    case IS -> CustomTextIsOperatorHandler.getInstance().buildIsQuery(filter);
-    case IS_NOT -> CustomTextIsOperatorHandler.getInstance().buildIsNotQuery(filter);
-    case START_WITH -> CustomTextStartWithOperatorHandler.getInstance().buildStartWithQuery(filter);
-    case NOT_START_WITH -> CustomTextStartWithOperatorHandler.getInstance().buildNotStartWithQuery(filter);
-    case END_WITH -> CustomTextEndWithOperatorHandler.getInstance().buildEndWithQuery(filter);
-    case NOT_END_WITH -> CustomTextEndWithOperatorHandler.getInstance().buildNotEndWithQuery(filter);
-    case EMPTY -> CustomTextIsEmptyOperatorHandler.getInstance().buildIsEmptyQuery(filter);
-    case NOT_EMPTY -> CustomTextIsEmptyOperatorHandler.getInstance().buildNotEmptyQuery(filter);
-    default -> null;
+      case CONTAINS -> CustomTextContainsOperatorHandler.getInstance().buildContainsQuery(filter);
+      case NOT_CONTAINS -> CustomTextContainsOperatorHandler.getInstance().buildNotContainsQuery(filter);
+      case IS -> CustomTextIsOperatorHandler.getInstance().buildIsQuery(filter);
+      case IS_NOT -> CustomTextIsOperatorHandler.getInstance().buildIsNotQuery(filter);
+      case START_WITH -> CustomTextStartWithOperatorHandler.getInstance().buildStartWithQuery(filter);
+      case NOT_START_WITH -> CustomTextStartWithOperatorHandler.getInstance().buildNotStartWithQuery(filter);
+      case END_WITH -> CustomTextEndWithOperatorHandler.getInstance().buildEndWithQuery(filter);
+      case NOT_END_WITH -> CustomTextEndWithOperatorHandler.getInstance().buildNotEndWithQuery(filter);
+      case EMPTY -> CustomTextIsEmptyOperatorHandler.getInstance().buildIsEmptyQuery(filter);
+      case NOT_EMPTY -> CustomTextIsEmptyOperatorHandler.getInstance().buildNotEmptyQuery(filter);
+      default -> null;
     };
   }
 
@@ -70,5 +70,4 @@ public class TaskFilterFieldCustomText extends CustomFilterField {
   public CaseQuery generateFilterQuery(DashboardFilter filter) {
     return null;
   }
-
 }

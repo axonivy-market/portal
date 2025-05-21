@@ -9,6 +9,11 @@ import com.axonivy.portal.util.filter.operator.caze.customfield.CustomNumberEmpt
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomNumberEqualOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomNumberGreaterOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.customfield.CustomNumberLessOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.number.NumberCustomFieldBetweenOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.number.NumberCustomFieldGreaterOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.number.NumberCustomFieldGreaterOrEqualOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.number.NumberCustomFieldLessOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.number.NumberCustomFieldLessOrEqualOperatorHandler;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
@@ -68,6 +73,18 @@ public class CaseFilterFieldCustomNumber extends CustomFilterField {
   @Override
   public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
     return null;
+  }
+  
+  @Override
+  public String generateCaseFilter(DashboardFilter filter) {
+    return switch (filter.getOperator()) {
+      case LESS -> NumberCustomFieldLessOperatorHandler.getInstance().buildFilter(filter);
+      case LESS_OR_EQUAL -> NumberCustomFieldLessOrEqualOperatorHandler.getInstance().buildFilter(filter);
+      case GREATER -> NumberCustomFieldGreaterOperatorHandler.getInstance().buildFilter(filter);
+      case GREATER_OR_EQUAL -> NumberCustomFieldGreaterOrEqualOperatorHandler.getInstance().buildFilter(filter);
+      case BETWEEN -> NumberCustomFieldBetweenOperatorHandler.getInstance().buildFilter(filter);
+      default -> null;
+    };
   }
 
 }

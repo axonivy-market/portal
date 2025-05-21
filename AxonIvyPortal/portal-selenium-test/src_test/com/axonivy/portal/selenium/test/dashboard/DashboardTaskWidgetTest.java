@@ -336,4 +336,13 @@ public class DashboardTaskWidgetTest extends BaseTest {
     assertEquals(AXON_IVY, taskWidget2.getCustomBusinessCaseFieldValueFromRowIndex(0));
     assertEquals(AXON_IVY, taskWidget2.getCustomBusinessCaseFieldValueFromRowIndex(1));
   }
+  
+  @Test
+  public void testMultipleResponsible() {
+    redirectToRelativeLink(taskWithMultiResponsibles);
+    login(TestAccount.ADMIN_USER);
+    redirectToNewDashBoard();
+    TaskWidgetNewDashBoardPage taskWidget = newDashboardPage.selectTaskWidget(YOUR_TASKS_WIDGET);
+    taskWidget.getTheFirstTaskWidgetByColumn("Responsible").text().contains("8");
+  }
 }

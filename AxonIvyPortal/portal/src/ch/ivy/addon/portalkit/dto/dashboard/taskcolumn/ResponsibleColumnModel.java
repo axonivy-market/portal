@@ -56,10 +56,10 @@ public class ResponsibleColumnModel extends TaskColumnModel implements Serializa
 
   @Override
   public Object display(ITask task) {
-    if (task == null || task.getActivator() == null) {
+    if (task == null || CollectionUtils.isEmpty(task.responsibles().all())) {
       return StringUtils.EMPTY;
     }
-    ISecurityMember member = task.getActivator();
+    ISecurityMember member = task.responsibles().all().getFirst().get();
     return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(member, member.getMemberName());
   }
   
@@ -89,6 +89,19 @@ public class ResponsibleColumnModel extends TaskColumnModel implements Serializa
     } else {
       this.userFilterList = new ArrayList<>();
     }
+  }
+  
+  @JsonIgnore
+  public int getResponsibleSize(ITask task) {
+    if (task == null || CollectionUtils.isEmpty(task.responsibles().all())) {
+      return 0;
+    }
+    return task.responsibles().all().size();
+  }
+  
+  @Override
+  public Boolean getDefaultSortable() {
+    return false;
   }
   
   public List<SecurityMemberDTO> completeUserFilterResponsibles(String query) {

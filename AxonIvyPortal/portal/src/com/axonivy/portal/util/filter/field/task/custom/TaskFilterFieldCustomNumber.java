@@ -9,6 +9,11 @@ import com.axonivy.portal.util.filter.operator.task.customfield.CustomNumberEmpt
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomNumberEqualOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomNumberGreaterOperatorHandler;
 import com.axonivy.portal.util.filter.operator.task.customfield.CustomNumberLessOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.number.NumberCustomFieldBetweenOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.number.NumberCustomFieldGreaterOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.number.NumberCustomFieldGreaterOrEqualOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.number.NumberCustomFieldLessOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.number.NumberCustomFieldLessOrEqualOperatorHandler;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
@@ -43,7 +48,7 @@ public class TaskFilterFieldCustomNumber extends CustomFilterField {
   @Override
   public void addNewFilter(DashboardFilter filter) {
     initFilter(filter);
-    filter.setOperator(FilterOperator.NOT_EMPTY);
+    filter.setOperator(FilterOperator.LESS);
     filter.setFrom(null);
     filter.setTo(null);
     filter.setValue(null);
@@ -69,5 +74,17 @@ public class TaskFilterFieldCustomNumber extends CustomFilterField {
   @Override
   public CaseQuery generateFilterQuery(DashboardFilter filter) {
     return null;
+  }
+  
+  @Override
+  public String generateTaskFilter(DashboardFilter filter) {
+    return switch (filter.getOperator()) {
+      case LESS -> NumberCustomFieldLessOperatorHandler.getInstance().buildFilter(filter);
+      case LESS_OR_EQUAL -> NumberCustomFieldLessOrEqualOperatorHandler.getInstance().buildFilter(filter);
+      case GREATER -> NumberCustomFieldGreaterOperatorHandler.getInstance().buildFilter(filter);
+      case GREATER_OR_EQUAL -> NumberCustomFieldGreaterOrEqualOperatorHandler.getInstance().buildFilter(filter);
+      case BETWEEN -> NumberCustomFieldBetweenOperatorHandler.getInstance().buildFilter(filter);
+      default -> null;
+    };
   }
 }

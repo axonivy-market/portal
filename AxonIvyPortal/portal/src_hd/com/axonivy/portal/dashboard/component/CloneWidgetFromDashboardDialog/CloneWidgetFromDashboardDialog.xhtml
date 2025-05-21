@@ -59,7 +59,7 @@
       <h:panelGroup id="clone-footer-panel" layout="block" styleClass="text-right">
       <p:commandButton id="clone-button" styleClass="w-full"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Clone')}"
-        rendered="#{cc.attrs.managedBean.cloneFromWidget eq null or cc.attrs.managedBean.cloneFromWidget.type ne 'CLIENT_STATISTIC'}"
+        rendered="#{cc.attrs.managedBean.cloneFromWidget eq null or cc.attrs.managedBean.cloneFromWidget.type ne 'STATISTIC'}"
         disabled="#{cc.attrs.managedBean.cloneFromWidget eq null}"
         actionListener="#{cc.attrs.managedBean.cloneWidget()}"
         process="clone-widget-form"
@@ -69,7 +69,7 @@
 
       <p:commandButton id="clone-button-statistic" styleClass="w-full"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Clone')}"
-        rendered="#{cc.attrs.managedBean.cloneFromWidget.type eq 'CLIENT_STATISTIC'}"
+        rendered="#{cc.attrs.managedBean.cloneFromWidget.type eq 'STATISTIC'}"
         disabled="#{cc.attrs.managedBean.cloneFromWidget eq null}"
         actionListener="#{cc.attrs.managedBean.cloneWidget()}"
         process="clone-widget-form"

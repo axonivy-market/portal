@@ -5,11 +5,12 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.DashboardFilter" />
+  <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.BaseFilter" />
   <cc:attribute name="componentToUpdate" required="true" />
   <cc:attribute name="filterIndex" />
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="messageId" />
+  <cc:attribute name="operators" />
 </cc:interface>
 
 <cc:implementation>
@@ -23,7 +24,7 @@
   <h:panelGroup id="priority-filter-operator-panel" layout="block"
     styleClass="ui-fluid priority-filter-operator-panel">
       <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
-        <f:selectItems value="#{widgetPriorityFilterBean.priorityOperators}" var="operator"
+        <f:selectItems value="#{cc.attrs.operators ne null ? cc.attrs.operators : widgetPriorityFilterBean.priorityOperators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
       </p:selectOneMenu>
   </h:panelGroup>

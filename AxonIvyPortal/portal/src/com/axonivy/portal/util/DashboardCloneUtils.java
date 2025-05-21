@@ -1,7 +1,7 @@
 package com.axonivy.portal.util;
 
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CLIENT_STATISTIC;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CUSTOM;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NEWS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NOTIFICATION;
@@ -17,7 +17,7 @@ import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.ClientStatisticDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CombinedProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
@@ -91,9 +91,9 @@ public class DashboardCloneUtils {
         widget = newsWidget;
         widget.setId(DashboardWidgetUtils.generateNewWidgetId(NEWS));
       }
-      case ClientStatisticDashboardWidget statisticWidget -> {
+      case StatisticDashboardWidget statisticWidget -> {
         widget = statisticWidget;
-        widget.setId(DashboardWidgetUtils.generateNewWidgetId(CLIENT_STATISTIC));
+        widget.setId(DashboardWidgetUtils.generateNewWidgetId(STATISTIC));
       }
       case NotificationDashboardWidget notificationWidget -> {
         widget = notificationWidget;

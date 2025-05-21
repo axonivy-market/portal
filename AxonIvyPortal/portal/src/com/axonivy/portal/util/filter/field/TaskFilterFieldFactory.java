@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldApplication;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldCategory;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldCreatedDate;
@@ -72,7 +73,7 @@ public class TaskFilterFieldFactory {
     else if (CUSTOM_CASE_FILTER_FIELD.containsKey(field)) {
       return CUSTOM_CASE_FILTER_FIELD.get(field);
     }
-    return FilterFieldFactory.DEFAULT_FILTER_FIELD.contentEquals(field)
+    return BaseFilter.DEFAULT.contentEquals(field)
         ? new FilterFieldDefault()
         : null;
     

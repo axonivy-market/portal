@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -420,4 +421,16 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     return $("span[id$='" + elementIdSuffixForCaseId + "']").getText();
   }
 
+  public void removeFilter(int index) {
+    int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
+    if (currentIndex > 0) {
+      String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
+      $(removeBtn).shouldBe(getClickableCondition()).click();
+      countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
+    }
+  }
+
+  public ElementsCollection countFilterSelect() {
+    return $$("[id$=':filter-component:field-selection_panel']");
+  }
 }

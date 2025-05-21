@@ -37,9 +37,25 @@
   <h:panelGroup layout="block" class="widget__header" rendered="#{not isHeaderHidden}">
     <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{widget.name}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
+    
+<h:panelGroup id="show-pin-#{index}" layout="block"
+    styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1' } widget-header-show-pin"
+    rendered="#{dashboardBean.canShowPinnedItemToggle(widget)}">
+    <h:form id="show-pin-form">
+        <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
+        <h:panelGroup layout="block" styleClass="flex align-items-center justify-content-between gap-2">
+            <h:outputText value="#{dashboardBean.showPinnedItemToggleLable(widget)}"
+                styleClass="text-base font-semibold text-left"/>
+            <p:toggleSwitch value="#{dashboardBean.showPinnedItem}" id="show-pin-toggle">
+                <p:ajax listener="#{dashboardBean.togglePinned(widget)}"
+                    update="#{componentToUpdateOnResetFilter} @form" />
+            </p:toggleSwitch>
+        </h:panelGroup>
+    </h:form>
+</h:panelGroup>
 
     <h:panelGroup id="widget-header-quick-search-#{index}" layout="block"
-      styleClass="#{isReadOnlyMode ? 'u-mar-right-10' : 'u-mar-right-5'} widget-header-quick-search"
+      styleClass="#{isReadOnlyMode ? 'mr-3' : 'mr-1'} widget-header-quick-search"
       rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch()}">
       <h:form id="quick-search-form" onkeydown="if (isPressedSpecialKeys(event) == true) { return false; }">
       <c:set var="widgetContentId" value="#{cc.clientId}:widget-content" />
@@ -111,6 +127,7 @@
         <p:badge value="#{countFilter}" visible="#{countFilter ne '0'}"
           rendered="#{renderFilter}" styleClass="widget__filter-noti-number">
           <p:commandButton id="filter-sidebar-link-#{index}" type="button" icon="si si-filter-1"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters')}"
             styleClass="rounded-button widget__filter-sidebar-link ui-button-outlined ui-button-widget" />
         </p:badge>
         <p:tooltip for="filter-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/filters')}"
@@ -118,6 +135,7 @@
       </span>
 
       <p:commandButton id="info-sidebar-link-#{index}" type="button" icon="si si-statistics-daytum"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}"
         styleClass="rounded-button ui-button-outlined widget__info-sidebar-link u-mar-right-5 ui-button-widget"
         rendered="#{renderInfo}" />
       <p:tooltip for="info-sidebar-link-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfo')}" trackMouse="true"
@@ -125,10 +143,12 @@
         hideEvent="mouseleave click" />
 
       <p:commandButton id="expand-link-#{index}" type="button" icon="si si-expand-1"
+        ariaLabel="#{ivy.cms.co('/Labels/Expand')}"
         styleClass="rounded-button ui-button-outlined expand-link u-mar-right-5 ui-button-widget"
         rendered="#{renderExpandCollapse}" onclick="expandFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')"/>
 
       <p:commandButton id="collapse-link-#{index}" type="button" icon="si si-shrink-1"
+        ariaLabel="#{ivy.cms.co('/Labels/Collapse')}"
         styleClass="rounded-button ui-button-outlined collapse-link u-mar-right-5 ui-button-widget"
         rendered="#{renderExpandCollapse}"
         onclick="collapseFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')" />
@@ -305,11 +325,13 @@
     <!-- maximize and minimize buttons in custom widget no header -->
     <p:commandButton id="expand-link-widget-no-header-#{index}"
       type="button" icon="si si-expand-1"
+      ariaLabel="#{ivy.cms.co('/Labels/Expand')}"
       styleClass="rounded-button ui-button-outlined expand-link widget-no-header ui-button-widget"
       rendered="#{renderExpandCollapse and isHeaderHidden}"
       onclick="expandFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')" />
     <p:commandButton id="collapse-link-widget-no-header-#{index}"
       type="button" icon="si si-shrink-1"
+      ariaLabel="#{ivy.cms.co('/Labels/Collapse')}"
       styleClass="rounded-button ui-button-outlined collapse-link widget-no-header"
       rendered="#{renderExpandCollapse and isHeaderHidden}"
       onclick="collapseFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')" />

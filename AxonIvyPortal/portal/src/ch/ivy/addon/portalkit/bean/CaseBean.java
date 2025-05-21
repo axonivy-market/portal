@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -20,6 +21,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.TimesUtils;
@@ -139,6 +141,24 @@ public class CaseBean implements Serializable {
       }
     }
     return String.join(" - ", displayTexts);
+  }
+
+  public boolean isPinnedCase(ICase caze) {
+    return CaseUtils.isPinnedCase(caze);
+  }
+
+  public void clickOnPinCase(ICase caze) {
+    if (caze == null)
+      return;
+
+    String caseUuid = caze.uuid();
+    Set<String> pinnedCaseUuids = CaseUtils.getPinnedCaseUuids();
+
+    if (!pinnedCaseUuids.remove(caseUuid)) {
+      pinnedCaseUuids.add(caseUuid);
+    }
+
+    CaseUtils.savePinnedCaseUuids(pinnedCaseUuids);
   }
 
 }

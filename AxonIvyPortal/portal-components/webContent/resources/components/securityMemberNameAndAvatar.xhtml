@@ -14,6 +14,7 @@
   <cc:attribute name="securityMember" required="true" />
   <cc:attribute name="displayNameStyleClass" />
   <cc:attribute name="containerStyleClass" />
+  <cc:attribute name="representName" />
   <cc:attribute name="isStandAlone" default="true" />
   <cc:attribute name="isShowTechnicalDisplayNameOnTooltip" default="#{portalComponentAvatarBean.getPortalShowTechnicalTooltipOrDefault(false)}" />
 </cc:interface>
@@ -25,11 +26,11 @@
   <c:set var="tooltipTechnicalDisplayName"
     value="#{cc.attrs.isShowTechnicalDisplayNameOnTooltip ? portalComponentAvatarBean.tooltipTechnicalDisplayName(cc.attrs.securityMember) : cc.attrs.displayName}" />
   <div id="#{cc.attrs.id}" class="#{cc.attrs.isShowAvatar ? 'has-avatar' : ''} #{cc.attrs.containerStyleClass}">
-    <pc:avatar securityMember="#{cc.attrs.securityMember}" rendered="#{cc.attrs.securityMember != null}" renderedAvatar="#{cc.attrs.isShowAvatar}" />
+    <pc:avatar securityMember="#{cc.attrs.securityMember}" rendered="#{cc.attrs.securityMember != null or cc.attrs.representName != null}" renderedAvatar="#{cc.attrs.isShowAvatar}" representName="#{cc.attrs.representName}"/>
     <cc:renderFacet name="alternativeAvatar" />
     <h:outputText id="#{cc.attrs.displayNameId}" value="#{cc.attrs.displayName}"
       rendered="#{cc.attrs.displayNameRendered and !userMenuBean.isMobileDevice()}"
-      styleClass="#{cc.attrs.isShowAvatar ? 'name-after-avatar' : ''} #{cc.attrs.displayNameStyleClass} #{cc.attrs.securityMember == null ? 'u-no-padding-left' : ''}">
+      styleClass="#{cc.attrs.isShowAvatar ? 'name-after-avatar' : ''} #{cc.attrs.displayNameStyleClass} #{(cc.attrs.securityMember == null and cc.attrs.representName == null) ? 'u-no-padding-left' : ''}">
     </h:outputText>
     <p:tooltip for="#{cc.attrs.displayNameId}"
       value="#{tooltipTechnicalDisplayName}"

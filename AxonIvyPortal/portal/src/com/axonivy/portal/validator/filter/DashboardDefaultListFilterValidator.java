@@ -13,7 +13,7 @@ import javax.faces.validator.ValidatorException;
 
 import org.apache.commons.collections4.CollectionUtils;
 
-import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
@@ -28,13 +28,13 @@ public class DashboardDefaultListFilterValidator implements Validator {
   @SuppressWarnings("unchecked")
   public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 
-    DashboardFilter filter = (DashboardFilter) component.getAttributes().get("filter");
+    BaseFilter filter = (BaseFilter) component.getAttributes().get("filter");
     Integer filterIndex = Optional.ofNullable((Integer) component.getAttributes().get("filterIndex")).orElse(0);
     String messageComponentId = Optional.ofNullable((String) component.getAttributes().get("messageId")).orElse(null);
     validateDefaultOperator((ArrayList<String>) value, filter, filterIndex, component, messageComponentId);
   }
 
-  private void validateDefaultOperator(ArrayList<String> value, DashboardFilter filter, int filterIndex,
+  private void validateDefaultOperator(ArrayList<String> value, BaseFilter filter, int filterIndex,
       UIComponent component, String messageComponentId) {
     if (CollectionUtils.isEmpty(value)) {
       FacesContext.getCurrentInstance().addMessage(messageComponentId,

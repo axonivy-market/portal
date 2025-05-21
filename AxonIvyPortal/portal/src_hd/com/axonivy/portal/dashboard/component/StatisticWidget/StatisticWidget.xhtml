@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="widget" required="true" type="com.axonivy.portal.dto.dashboard.StatisticDashboardWidget" />
+  <cc:attribute name="isReadOnlyMode" default="true" />
+  <cc:attribute name="index" default="0" />
+  <cc:attribute name="isPreviewMode" default="false" />
+  <cc:attribute name="isConfigurationMode" default="false" />
+</cc:interface>
+
+<cc:implementation>
+  <h:outputScript library="chartjs-plugin" name="chartjs-plugin-datalabels.min.js"/>
+  <c:set var="widget" value="#{cc.attrs.widget}" />
+  <c:set var="index" value="#{cc.attrs.index}" />
+  <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
+  <c:set var="isPreviewMode" value="#{cc.attrs.isPreviewMode}" />
+  <c:set var="isConfigurationMode" value="#{cc.attrs.isConfigurationMode}" />
+
+  <ui:decorate template="/layouts/restricted/decorator/CardWidget.xhtml">
+    <ui:param name="index" value="#{index}" />
+    <ui:param name="widget" value="#{widget}" />
+    <ui:param name="panelId" value="stat-widget-#{widget.id}-panel" />
+    <ui:param name="isReadOnlyMode" value="#{isReadOnlyMode or isPreviewMode}" />
+    <ui:param name="isRenderInfo" value="false" />
+    <ui:param name="isRenderEdit" value="false" />
+    <ui:param name="isRenderExpandCollapse" value="#{widget.isShowFullscreenMode()}" />
+    <ui:param name="widgetContentStyleClass" value="statistic" />
+
+    <ui:define name="widgetContent">
+      <h:panelGroup id="stat-chart-widget__content" rendered="#{widget.id ne null}" layout="block"
+        styleClass="statistic-chart-widget__content widget__content widget__content">
+
+        <h:panelGroup id="stat-chart-widget__chart-#{index}" layout="block"
+          styleClass="statistic-chart-widget__chart">
+          <h:panelGroup>
+            <div class="ui-chart js-statistic-chart statistic-chart-widget__canvas chart-options"
+                 data-chart-id="#{widget.chartId}" >
+            </div>
+          </h:panelGroup>
+        </h:panelGroup>
+      </h:panelGroup>
+    </ui:define>
+  </ui:decorate>
+</cc:implementation>
+
+</html>
