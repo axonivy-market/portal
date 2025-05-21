@@ -1568,7 +1568,7 @@ Enums:
                 name: Tarea
             ChartType:
               BAR:
-                name: TODO Bar
+                name: Gráfico de barras
               LINE:
                 name: Gráfico de líneas
               NUMBER:
