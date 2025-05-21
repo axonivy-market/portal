@@ -1604,13 +1604,13 @@ Enums:
                 name: Tâche
             ChartType:
               BAR:
-                name: TODO Bar
+                name: Diagramme à barres
               LINE:
-                name: TODO Line
+                name: Diagramme linéaire
               NUMBER:
-                name: TODO Number
+                name: Graphique numérique
               PIE:
-                name: TODO Pie
+                name: Diagramme circulaire
 Labels:
   AI:
     Error:
