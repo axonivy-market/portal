@@ -30,7 +30,7 @@ public class TaskWidgetTest extends BaseTest {
   public void setup() {
     super.setup();
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), "ACCESS_TASK_DETAILS");
-    updateGlobalVariable(Variable.ENABLE_PINED_TASK.getKey(), "true");
+    updateGlobalVariable(Variable.ENABLE_PINNED_TASK.getKey(), "true");
     createTestingTasks();
   }
 

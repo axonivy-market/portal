@@ -484,7 +484,7 @@ releases of |ivy|.
 
 Changes in 12.0.6
 -----------------
-- Introduced the Portal Setting ``Portal.Cases.EnablePinedCase`` and ``Portal.Tasks.EnablePinedTask`` to enable the pinning feature for the case and task widgets on the dashboard.
+- Introduced the Portal Setting ``Portal.Cases.EnablePinnedCase`` and ``Portal.Tasks.EnablePinnedTask`` to enable the pinning feature for the case and task widgets on the dashboard.
 
 Changes in 12.0.4
 -----------------
