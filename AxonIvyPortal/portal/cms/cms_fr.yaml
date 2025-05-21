@@ -759,7 +759,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Filtres enregistrés
     SearchForFilter: Rechercher un filtre
     ShareThisDashboard: Partager ce tableau de bord
-    ShowPinnedToggle: ' Bouton à bascule “Afficher les tâches épinglées”'
+    ShowPinnedToggle: Afficher le bouton de bascule 'Éléments épinglés'
     StandardWidgets: Widgets standard
     StatisticWidget:
       EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau graphique !
@@ -1544,6 +1544,7 @@ Labels:
   AllTasks: Toutes les tâches
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
+  Collapse: Réduire
   CreateNewDashboard: Créer un nouveau tableau de bord
   EditDescription: Editer la description
   Enums:
@@ -1632,6 +1633,7 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
+  Expand: Développer
   InsertTask-Explain: Insérer la tâche. Ma tâche sera reportée.
   InsertTheTask: Insérer la tâche.
   Login:
