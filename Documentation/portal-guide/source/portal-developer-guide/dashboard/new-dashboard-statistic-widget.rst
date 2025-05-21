@@ -18,7 +18,7 @@ Below is a sample JSON definition of a statistic widget in the Portal dashboard
     "id": "3e188e86a6534324b864167320ef3831",
     "version": "13.1.0",
     "statisticAggregation": {
-      "field": "businessState",
+      "field": "state",
       "type": "standard"
     },
     "filters": [
@@ -47,19 +47,19 @@ Below is a sample JSON definition of a statistic widget in the Portal dashboard
       },
       {
         "locale": "fr",
-        "value": "New statistic"
+        "value": "Nouvelle statistique"
       },
       {
         "locale": "de",
-        "value": "New statistic"
+        "value": "Neue Statistik"
       },
       {
         "locale": "ja",
-        "value": "New statistic"
+        "value": "TODO New statistic"
       },
       {
         "locale": "es",
-        "value": "New statistic"
+        "value": "Nueva estadística"
       }
     ],
     "descriptions": [
@@ -69,19 +69,19 @@ Below is a sample JSON definition of a statistic widget in the Portal dashboard
       },
       {
         "locale": "fr",
-        "value": "Demo new statistic"
+        "value": "Démonstration d'une nouvelle statistique"
       },
       {
         "locale": "de",
-        "value": "Demo new statistic"
+        "value": "Neue Demo-Statistik"
       },
       {
         "locale": "ja",
-        "value": "Demo new statistic"
+        "value": "TODO Demo new statistic"
       },
       {
         "locale": "es",
-        "value": "Demo new statistic"
+        "value": "Demo nueva estadística"
       }
     ],
     "barChartConfig": {
@@ -92,19 +92,19 @@ Below is a sample JSON definition of a statistic widget in the Portal dashboard
         },
         {
           "locale": "fr",
-          "value": "State"
+          "value": "État"
         },
         {
           "locale": "de",
-          "value": "State"
+          "value": "Status"
         },
         {
           "locale": "ja",
-          "value": "State"
+          "value": "状態"
         },
         {
           "locale": "es",
-          "value": "State"
+          "value": "Estatus"
         }
       ],
       "yTitles": [
@@ -114,19 +114,19 @@ Below is a sample JSON definition of a statistic widget in the Portal dashboard
         },
         {
           "locale": "fr",
-          "value": "Number of tasks"
+          "value": "Nombre de tâches"
         },
         {
           "locale": "de",
-          "value": "Number of tasks"
+          "value": "Anzahl der Aufgaben"
         },
         {
           "locale": "ja",
-          "value": "Number of tasks"
+          "value": "TODO Number of tasks"
         },
         {
           "locale": "es",
-          "value": "Number of tasks"
+          "value": "Número de tareas"
         }
       ],
       "backgroundColors": [
@@ -177,4 +177,19 @@ The basic JSON structure of a statistic widget
 
    ``names``: name for the statistic chart, multi-language supported.
 
-   ``bar/line/pie/numberChartConfig``: configuration for each chart type.
+   ``bar/line/pie/numberChartConfig``: This field is additional configuration for each chartType. 
+   The configuration field could be ``barChartConfig``, ``lineChartConfig``, ``pieChartConfig`` or ``numberChartConfig``, it depends on the chartType we configured.
+     - For ``barChartConfig`` and ``lineChartConfig`` the value is like the example above. 
+     - For ``pieChartConfig`` the value is like the example above but doesn't contain `xTitles`, `yTitles`.
+     - For ``numberChartConfig``, the value is like the example below.
+
+.. code-block:: javascript
+
+  {
+    ...
+    "numberChartConfig": {
+      "hideLabel": false
+    }  
+  }
+..
+

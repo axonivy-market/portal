@@ -134,10 +134,6 @@ Available values for configuring statistic chart
  * - Filters
    - | Works like complex filter of Portal.
      | Please refer to :ref:`complex-filter` for more details.
- * - X axis title
-   - | X title for the statistic chart.
- * - Y axis title
-   - | Y title for the statistic chart.
  * - Permissions
    - | Permission for the current statistic chart.
  * - Auto-refresh enabled
@@ -146,8 +142,14 @@ Available values for configuring statistic chart
  * - Auto-refresh interval (seconds)
    - | The time for statistic chart to be auto-refreshed in second.
      | Minimum number is 60.
+ * - X axis title
+   - | X title for the statistic chart.
+ * - Y axis title
+   - | Y title for the statistic chart.
  * - Color 1-8
    - | Colors for data in the chart.
+ * - Hide label
+   - | Toggle to show label of number chart.
 
 .. |statistic-widget-list-page| image:: ../../screenshots/statistic/statistic-widget-list.png
    :alt: Statistic widget list
