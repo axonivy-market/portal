@@ -4,16 +4,16 @@ import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
 import com.axonivy.portal.bo.jsonversion.DashboardJsonVersion;
 import com.axonivy.portal.migration.common.IJsonConverter;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.fasterxml.jackson.databind.node.ValueNode;
 
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
-import ch.ivyteam.ivy.environment.Ivy;
 
 public class DashboardConverter implements IJsonConverter {
 
   private static final String SELECTED_DASHBOARD_DISPLAY_TYPE = "dashboardDisplayType";
   private static final String IS_TOP_MENU = "isTopMenu";
+  private static final String PIN = "pin";
 
   @Override
   public AbstractJsonVersion version() {
@@ -43,5 +43,44 @@ public class DashboardConverter implements IJsonConverter {
       objectNode.put(SELECTED_DASHBOARD_DISPLAY_TYPE, DashboardDisplayType.SUB_MENU.getDashboardDisplayType());
     }
 
+    if (isDefaultTaskOrCaseList && objectNode.has("widgets")) {
+      for (JsonNode widgetNode : objectNode.withArray("widgets")) {
+        ObjectNode widgetObject = (ObjectNode) widgetNode;
+
+        if (widgetObject.has("columns")) {
+          ArrayNode columns = (ArrayNode) widgetObject.get("columns");
+
+          boolean hasPin = false;
+          for (JsonNode column : columns) {
+            if ("pin".equals(column.path("field").asText())) {
+              hasPin = true;
+              break;
+            }
+          }
+
+          if (!hasPin) {
+            ObjectNode pinColumn = columns.objectNode();
+            pinColumn.put("field", "pin");
+            pinColumn.put("width", "75");
+
+            ArrayNode updatedColumns = columns.arrayNode();
+            int insertIndex = 1;
+
+            for (int i = 0; i < columns.size(); i++) {
+              if (i == insertIndex) {
+                updatedColumns.add(pinColumn);
+              }
+              updatedColumns.add(columns.get(i));
+            }
+
+            if (insertIndex >= columns.size()) {
+              updatedColumns.add(pinColumn);
+            }
+
+            widgetObject.set("columns", updatedColumns);
+          }
+        }
+      }
+    }
   }
 }

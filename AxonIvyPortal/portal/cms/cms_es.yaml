@@ -146,12 +146,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rúbrica 3
       NORMAL_TEXT: Texto normal
   MyProfile:
+    CaseList: Case List
     DateFormat: Formato de la fecha
     FormattingLanguage: Lenguaje de formato
     General: Generales
     Homepage: Página web
     Language: Idioma
     ProcessList: Lista de procesos
+    TaskList: Lista de tareas
     byDefault: ' por defecto'
     defaultOption: Predeterminado ({0})
     defaultViewMode: Modo predeterminado
@@ -160,6 +162,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: Canales de notificación
     notificationChannelsReset: Restablecimiento de los canales de notificación
     subscribed: suscrito
+    unpinAllPinnedCases: 'Todos los casos fijados han sido eliminados para el usuario: {0}.'
+    unpinAllPinnedTasks: Todas las tareas fijadas han sido eliminadas para el usuario {0}.
   PortalManagement:
     AdminSetting: Configuración de administrador
   ProcessViewer:
@@ -246,6 +250,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableDeepLTranslation: Establezca esta propiedad en true para activar la traducción de DeepL
       enableDocumentPreview: 'Establecer en "true" para habilitar la vista previa de documentos para ciertos tipos de archivos. Los tipos de archivos compatibles son: pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Cambie esta propiedad a "true" para activar el chat de grupos
+      enablePinCase: Establece esta propiedad en true para habilitar la función de fijar casos.
+      enablePinTask: Establece esta propiedad en true para habilitar la función de fijar tareas.
       enablePrivateChat: Cambie esta propiedad a "true" para activar el chat privado
       enableProcessViewer: Defina esta propiedad como true para habilitar la opción de visor de procesos en las acciones de Tarea/Caso
       enableScriptCheckingForUploadedDocumentNote: 'Cambiar a "True" para activar el control de anexos permitidos. De momento se pueden controlar archivos en PDF, word y excel. '
@@ -361,6 +367,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ID: ID del caso
       NAME: Nombre / Descripción
       OWNER: Responsables del proceso
+      PIN: Fijar
       STATE: 'Estatus '
     deletionNoteContent: El caso fue destruido por {0}
     destroyCaseMessage: Esta operación no se puede deshacer. ¿Está seguro de que quiere destruir el caso <b>{0}</b> y todas sus tareas?
@@ -548,6 +555,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: Filtros seleccionados
     ok: OK
     'on': en
+    pin: Fijar
     pleaseAddDocument: Por favor agregue documentos usando el enlace superior
     pleaseAddNote: Por favor agregue notas usando el enlace superior
     previousStage: Etapa anterior
@@ -607,6 +615,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Todos los administradores
     typeAllUsers: Todos los usuarios
     typeOnlyMe: Solo yo
+    unpin: Desfijar
     uploadHere: Cargue aquí
     uploadOneHere: Seleccionar
     user: '{0} usuario'
@@ -753,6 +762,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Filtros guardados
     SearchForFilter: Buscar un filtro
     ShareThisDashboard: Comparte este panel
+    ShowPinnedToggle: Mostrar alternar 'Elementos fijados'
     StandardWidgets: Widgets estándar
     StatisticWidget:
       EmptyChartDataMessage: No tenemos suficientes datos para crear un buen gráfico.
@@ -1208,6 +1218,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME: Expiración
       ID: ID de tarea
       NAME: Nombre / Descripción
+      PIN: Fijar
       PRIORITY: Prioridad
       STATE: Estado
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Falta el activador
@@ -1359,6 +1370,10 @@ Dialogs:
                   DragAndDropTooltip: Haz clic en vista previa y arrastra y suelta para cambiar el orden
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Bienvenido a Axon Ivy Portal
+          setting:
+            UserProfile:
+              unpinAllPinnedCases: Desanclar todos los casos fijados
+              unpinAllPinnedTasks: Desfijar todas las tareas fijadas
         portalkit:
           component:
             CaseItemDetails:
@@ -1584,6 +1599,7 @@ Labels:
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
   AndMore: 'y {0} más...  '
+  AllTasks: Todas las tareas
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
   Configuration: Configuración
@@ -1602,6 +1618,7 @@ Labels:
       ID: Id
       NAME: Nombre
       OWNER: Responsables del proceso
+      PIN: Fijar
       STATE: Estado
     DashboardStandardTaskColumn:
       ACTIONS: Acciones
@@ -1613,6 +1630,7 @@ Labels:
       EXPIRY: Expiración
       ID: Id
       NAME: Nombre
+      PIN: Fijar
       PRIORITY: Prioridad
       RESPONSIBLE: Responsable
       START: Inicio
@@ -1685,6 +1703,8 @@ Labels:
   Preview: Vista previa
   RequiredFieldMessage: '{0}: Valor requerido'
   Save: Guardar
+  PinnedCases: Casos fijados
+  PinnedTasks: Tareas fijadas
   Share: Compartir
   Task: Tarea
   TaskItemDetail: Detalles de la tarea

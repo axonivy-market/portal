@@ -20,6 +20,8 @@ For each case, the list shows the following key information:
 
 #. Case ID
 
+#. Pin
+
 #. Name
 
 #. Description
