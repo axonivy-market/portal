@@ -146,12 +146,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rubrik 3
       NORMAL_TEXT: Normaler Text
   MyProfile:
+    CaseList: Vorfall-Liste
     DateFormat: Datum Format
     FormattingLanguage: Sprache der Formatierung
     General: Allgemeine
     Homepage: Homepage
     Language: Sprache
     ProcessList: Prozess-Liste
+    TaskList: Aufgabenliste
     byDefault: '  standardmäßig'
     defaultOption: Standard ({0})
     defaultViewMode: Standardanzeige
@@ -160,6 +162,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: Benachrichtigungskanäle
     notificationChannelsReset: Benachrichtigungskanäle zurücksetzen
     subscribed: abonniert
+    unpinAllPinnedCases: Alle angehefteten Fälle wurden für den Benutzer {0} entfernt.
+    unpinAllPinnedTasks: Alle angehängten Aufgaben wurden für den Benutzer {0} entfernt.
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
@@ -245,6 +249,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableDeepLTranslation: Setzen Sie diese Eigenschaft auf true, um die DeepL Übersetzungsunterstützung zu aktivieren.
       enableDocumentPreview: 'Auf "true" setzen, um die Vorschau von Dokumenten für bestimmte Dateitypen zu aktivieren. Unterstützte Dateitypen sind: pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
+      enablePinCase: Setzen Sie diese Eigenschaft auf „true“, um das Anheften von Fällen zu ermöglichen.
+      enablePinTask: Setzen Sie diese Eigenschaft auf „true“, um das Anheften von Aufgaben zu ermöglichen.
       enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten Chat zu aktivieren
       enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option in Aufgaben-/Vorgang-Aktionen zu aktivieren
       enableScriptCheckingForUploadedDocumentNote: Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt.
@@ -360,6 +366,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ID: Vorgangs Id
       NAME: Name / Beschreibung
       OWNER: Prozessverantwortlichen
+      PIN: Anheften
       STATE: Status
     deletionNoteContent: Der Vorgang wurde durch {0} gelöscht.
     destroyCaseMessage: 'Diese Operation kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie den Fall <b>{0} (ID: {1})</b> und alle seine Aufgaben löschen möchten?'
@@ -547,6 +554,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: Ausgewählte Filter
     ok: OK
     'on': am
+    pin: Anheften
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
     pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
     previousStage: Vorherige Stufe
@@ -606,6 +614,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Alle Administratoren
     typeAllUsers: Alle Benutzer
     typeOnlyMe: Nur für mich
+    unpin: Anheftung aufheben
     uploadHere: Hier hochladen
     uploadOneHere: Auswählen
     user: '{0} Benutzer'
@@ -754,6 +763,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Gespeicherte Filter
     SearchForFilter: Nach Filter suchen
     ShareThisDashboard: Teilen Sie dieses Dashboard
+    ShowPinnedToggle: '''Angeheftete Elemente'' umschalten anzeigen'
     StandardWidgets: Standard-Widgets
     StatisticWidget:
       EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
@@ -1209,6 +1219,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME: Ablaufdatum
       ID: Aufgaben Id
       NAME: Name / Beschreibung
+      PIN: Anheften
       PRIORITY: Priorität
       STATE: Status
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Fehlender Aktivator
@@ -1360,6 +1371,10 @@ Dialogs:
                   DragAndDropTooltip: Klicken Sie auf die Vorschau und ändern Sie die Reihenfolge durch Ziehen und Ableg
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Willkommen bei Axon Ivy Portal
+          setting:
+            UserProfile:
+              unpinAllPinnedCases: Alle angehefteten Fälle lösen
+              unpinAllPinnedTasks: Alle angehefteten Aufgaben lösen
         portalkit:
           component:
             CaseItemDetails:
@@ -1596,6 +1611,7 @@ Labels:
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
   AndMore: 'und {0} weitere...  '
+  AllTasks: Alle Aufgaben
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
   Configuration: Konfiguration
@@ -1624,6 +1640,7 @@ Labels:
       ID: Id
       NAME: Name
       OWNER: Prozessverantwortlichen
+      PIN: Anheften
       STATE: Status
     DashboardStandardTaskColumn:
       ACTIONS: Aktionen
@@ -1635,6 +1652,7 @@ Labels:
       EXPIRY: Ablaufdatum
       ID: Id
       NAME: Name
+      PIN: Anheften
       PRIORITY: Priorität
       RESPONSIBLE: Verantwortlich
       START: Start
@@ -1707,6 +1725,8 @@ Labels:
   Preview: Vorschau
   RequiredFieldMessage: '{0}: Wert ist erforderlich'
   Save: Speichern
+  PinnedCases: Angeheftete Fälle
+  PinnedTasks: Angehängte Aufgaben
   Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails

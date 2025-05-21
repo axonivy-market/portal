@@ -146,12 +146,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Heading 3
       NORMAL_TEXT: Normal Text
   MyProfile:
+    CaseList: Case List
     DateFormat: Date Format
     FormattingLanguage: Formatting language
     General: General
     Homepage: Homepage
     Language: Language
     ProcessList: Process list
+    TaskList: Task List
     byDefault: ' by default'
     defaultOption: Default ({0})
     defaultViewMode: Default view mode
@@ -160,6 +162,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: Notification Channels
     notificationChannelsReset: Notification Channels reset
     subscribed: subscribed
+    unpinAllPinnedCases: 'All pinned cases have been removed for user: {0}.'
+    unpinAllPinnedTasks: 'All pinned tasks have been removed for user: {0}.'
   PortalManagement:
     AdminSetting: Admin settings
   ProcessViewer:
@@ -244,6 +248,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableDeepLTranslation: Set this property to true to enable the DeepL translation support
       enableDocumentPreview: 'Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
       enableGroupChat: Set this property to true to enable group chat function
+      enablePinCase: Set this property to true to enable the ability to pin cases.
+      enablePinTask: Set this property to true to enable the ability to pin tasks.
       enablePrivateChat: Set this property to true to enable private chat function
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
@@ -359,6 +365,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ID: Case Id
       NAME: Name / Description
       OWNER: Case Owners
+      PIN: Pin
       STATE: State
     deletionNoteContent: The case was destroyed by {0}
     destroyCaseMessage: 'This operation cannot be undone. Are you sure you want to destroy case <b>{0} (ID: {1})</b> and all of its tasks?'
@@ -546,6 +553,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: selected filters
     ok: OK
     'on': 'on'
+    pin: Pin
     pleaseAddDocument: Please add a document with the link above.
     pleaseAddNote: Please add a note with the link above.
     previousStage: Previous stage
@@ -605,6 +613,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
+    unpin: Unpin
     uploadHere: Upload here
     uploadOneHere: Upload one here
     user: '{0} user'
@@ -756,6 +765,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
     ShareThisDashboard: Share this dashboard
+    ShowPinnedToggle: Show 'Pinned Items' Toggle
     StandardWidgets: Standard Widgets
     StatisticWidget:
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
@@ -1210,6 +1220,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME: Expiry
       ID: Task Id
       NAME: Name / Description
+      PIN: Pin
       PRIORITY: Priority
       STATE: State
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Missing activator
@@ -1361,6 +1372,10 @@ Dialogs:
                   DragAndDropTooltip: Click Preview, then drag and drop to change the order
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Welcome to Axon Ivy Portal
+          setting:
+            UserProfile:
+              unpinAllPinnedCases: Unpin all pinned cases
+              unpinAllPinnedTasks: Unpin all pinned tasks
         portalkit:
           component:
             CaseItemDetails:
@@ -1639,6 +1654,7 @@ Labels:
       Details of task **{0} (#{1})**:
       {2}
   AndMore: and {0} more...
+  AllTasks: All Tasks
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
   Configuration: Configuration
@@ -1667,6 +1683,7 @@ Labels:
       ID: Id
       NAME: Name
       OWNER: Case Owners
+      PIN: Pin
       STATE: State
     DashboardStandardTaskColumn:
       ACTIONS: Actions
@@ -1678,6 +1695,7 @@ Labels:
       EXPIRY: Expiry
       ID: Id
       NAME: Name
+      PIN: Pin
       PRIORITY: Priority
       RESPONSIBLE: Responsible
       START: Start
@@ -1750,6 +1768,8 @@ Labels:
   Preview: Preview
   RequiredFieldMessage: '{0}: Value is required'
   Save: Save
+  PinnedCases: Pinned Cases
+  PinnedTasks: Pinned Tasks
   Share: Share
   Task: Task
   TaskItemDetail: Task Details
