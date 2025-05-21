@@ -55,7 +55,7 @@ Below is a sample JSON definition of a statistic widget in the Portal dashboard
       },
       {
         "locale": "ja",
-        "value": "TODO New statistic"
+        "value": "新しい統計"
       },
       {
         "locale": "es",
@@ -77,7 +77,7 @@ Below is a sample JSON definition of a statistic widget in the Portal dashboard
       },
       {
         "locale": "ja",
-        "value": "TODO Demo new statistic"
+        "value": "新しい統計のデモ"
       },
       {
         "locale": "es",
@@ -122,7 +122,7 @@ Below is a sample JSON definition of a statistic widget in the Portal dashboard
         },
         {
           "locale": "ja",
-          "value": "TODO Number of tasks"
+          "value": "タスクの数"
         },
         {
           "locale": "es",

@@ -484,7 +484,7 @@ releases of |ivy|.
 
 Changes in 13.1.0
 -----------------
-- Introduced Custom Statistic Chart. Refer to :ref:`statistic-chart` for more information.
+- Introduced Custom Statistic Chart. Refer to :ref:`statistic-chart` for more information and rename the old file ClientStatistic.json to Statistic.json.
 
 Changes in 12.0.4
 -----------------
