@@ -1639,6 +1639,7 @@ Labels:
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
   Configuration: Configuration
+  Collapse: Réduire
   CreateNewDashboard: Créer un nouveau tableau de bord
   Description: Description
   EditDescription: Editer la description
@@ -1731,6 +1732,7 @@ Labels:
   Filters: Filtres
   General: Général
   Icon: Icône
+  Expand: Développer
   InsertTask-Explain: Insérer la tâche. Ma tâche sera reportée.
   InsertTheTask: Insérer la tâche.
   Login:
