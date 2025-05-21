@@ -407,4 +407,7 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
         .shouldBe(disappear, DEFAULT_TIMEOUT);
   }
+  public void clickOnCreateCustomStatisiticWidget() {
+    $("button[id$=':create-custom-statistic']").shouldBe(getClickableCondition()).click();
+  }
 }
