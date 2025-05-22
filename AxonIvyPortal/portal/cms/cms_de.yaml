@@ -1615,6 +1615,7 @@ Labels:
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
   Configuration: Konfiguration
+  Collapse: Einklappen
   CreateNewDashboard: Neues Dashboard erstellen
   Description: Beschreibung
   EditDescription: Beschreibung bearbeiten
@@ -1715,6 +1716,7 @@ Labels:
   Filters: Filter
   General: Allgemein
   Icon: Symbol
+  Expand: Erweitern
   InsertTask-Explain: Aufgabe einfügen. Meine Aufgabe wird aufgeschoben.
   InsertTheTask: Aufgabe einfügen
   Login:

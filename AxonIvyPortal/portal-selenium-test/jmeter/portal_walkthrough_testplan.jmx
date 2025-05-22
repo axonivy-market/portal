@@ -1122,7 +1122,7 @@
               </elementProp>
               <elementProp name="javax.faces.source" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:11:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command</stringProp>
+                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:12:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.source</stringProp>
@@ -1134,12 +1134,12 @@
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
               </elementProp>
-              <elementProp name="task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:11:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command" elementType="HTTPArgument">
+              <elementProp name="task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:12:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:11:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command</stringProp>
+                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:12:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:11:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command</stringProp>
+                <stringProp name="Argument.name">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:12:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command</stringProp>
               </elementProp>
               <elementProp name="portal-breadcrumb:breadcrumb-form_SUBMIT" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>

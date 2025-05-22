@@ -1604,13 +1604,13 @@ Enums:
                 name: Tâche
             ChartType:
               BAR:
-                name: TODO Bar
+                name: Diagramme à barres
               LINE:
-                name: TODO Line
+                name: Diagramme linéaire
               NUMBER:
-                name: TODO Number
+                name: Graphique numérique
               PIE:
-                name: TODO Pie
+                name: Diagramme circulaire
 Labels:
   AI:
     Error:
@@ -1639,6 +1639,7 @@ Labels:
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
   Configuration: Configuration
+  Collapse: Réduire
   CreateNewDashboard: Créer un nouveau tableau de bord
   Description: Description
   EditDescription: Editer la description
@@ -1731,6 +1732,7 @@ Labels:
   Filters: Filtres
   General: Général
   Icon: Icône
+  Expand: Développer
   InsertTask-Explain: Insérer la tâche. Ma tâche sera reportée.
   InsertTheTask: Insérer la tâche.
   Login:

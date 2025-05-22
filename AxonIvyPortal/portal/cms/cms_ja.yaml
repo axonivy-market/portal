@@ -765,8 +765,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: 標準ウィジェット
     StatisticWidget:
       EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！
-      failToRenderChartMessage: TODO
-      firstConfigChartMessage: TODO
+      failToRenderChartMessage: TODO Error while rendering chart. Please retry with different settings.
+      firstConfigChartMessage: TODO No chart available yet. Please configure your settings to generate a chart.
     WelcomeWidgetIntroduction: このウィジェットは、ダッシュボードにウェルカムテキストと画像を表示します。
     WelcomeWidgetNotFoundMessage: ウィジェットの画像が見つかりません。画像を再設定してください。
     WidgetFilterName: ウィジェットフィルター名
@@ -1644,6 +1644,7 @@ Labels:
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
   Configuration: 設定
+  Collapse: TODO 折りたたむ
   CreateNewDashboard: 新しいダッシュボードを作成
   Description: 説明
   EditDescription: 説明を編集
@@ -1744,6 +1745,7 @@ Labels:
   Filters: フィルター
   General: TODO General
   Icon: アイコン
+  Expand: TODO 展開
   InsertTask-Explain: タスクを挿入します。私のタスクは延期されます。
   InsertTheTask: タスクを挿入
   Login:

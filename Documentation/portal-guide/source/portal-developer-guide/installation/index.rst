@@ -482,6 +482,11 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of |ivy|.
 
+Changes in 13.1.0
+-----------------
+- Introduced Custom Statistic Chart. Refer to :ref:`statistic-chart` for more information. 
+- Rename the old file ``Portal.ClientStatistic`` to ``Portal.Statistic``.
+
 Changes in 12.0.6
 -----------------
 - Introduced the Portal Setting ``Portal.Cases.EnablePinnedCase`` and ``Portal.Tasks.EnablePinnedTask`` to enable the pinning feature for the case and task widgets on the dashboard.
