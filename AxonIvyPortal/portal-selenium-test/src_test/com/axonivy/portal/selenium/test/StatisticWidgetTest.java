@@ -14,7 +14,6 @@ import com.axonivy.portal.selenium.page.StatisticConfigurationPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetNewDashboardPage;
 import com.codeborne.selenide.CollectionCondition;
 
-
 @IvyWebTest
 public class StatisticWidgetTest extends BaseTest {
   private NewDashboardPage newDashboardPage;
@@ -151,6 +150,14 @@ public class StatisticWidgetTest extends BaseTest {
     statisticConfigurationPage.clickGeneratePreviewChart();
     assertEquals(statisticConfigurationPage.getPreviewChartNumberLabel(), "Open");
     assertTrue(statisticConfigurationPage.getPreviewChartNumberValue() == 1);
+
+    statisticConfigurationPage.clickCreateStatisticChart();
+
+    // Add Custom statistic widget
+    configurationPage.clickOnAddWidgetButton();
+    StatisticWidgetNewDashboardPage openCasesWidget = configurationPage.addNewStatisticWidget("Custom statistic chart CASE");
+    openCasesWidget.getAllChartLabels().first().text().equals("Open");
+    openCasesWidget.getAllChartNumbers().shouldHave(CollectionCondition.size(1));
   }
 
   @Test
@@ -261,5 +268,13 @@ public class StatisticWidgetTest extends BaseTest {
     statisticConfigurationPage.clickGeneratePreviewChart();
     assertEquals(statisticConfigurationPage.getPreviewChartNumberLabel(), "Open");
     assertTrue(statisticConfigurationPage.getPreviewChartNumberValue() == 1);
+
+    statisticConfigurationPage.clickCreateStatisticChart();
+
+    // Add Custom statistic widget
+    configurationPage.clickOnAddWidgetButton();
+    StatisticWidgetNewDashboardPage openTasksWidget = configurationPage.addNewStatisticWidget("Custom statistic chart TASK");
+    openTasksWidget.getAllChartLabels().first().text().equals("Open");
+    openTasksWidget.getAllChartNumbers().shouldHave(CollectionCondition.size(1));
   }
 }
