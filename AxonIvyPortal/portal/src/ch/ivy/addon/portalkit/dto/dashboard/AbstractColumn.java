@@ -208,7 +208,7 @@ public abstract class AbstractColumn implements Serializable {
   public void setType(DashboardColumnType type) {
     this.type = type;
   }
-  @JsonIgnore
+
   public String getStyleClass() {
     return styleClass;
   }
