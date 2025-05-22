@@ -7,7 +7,7 @@
     <version>${revision}</version>
 
     <properties>
-        <revision>10.0.28</revision>
+        <revision>10.0.29-SNAPSHOT</revision>
     </properties>
 
     <distributionManagement>
