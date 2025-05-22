@@ -146,7 +146,6 @@
 
 .widget__header-title {
   flex: 1;
-  display: inline-block;
   font-weight: bold;
 }
 
