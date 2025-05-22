@@ -73,7 +73,7 @@ public class DefaultDashboardUtils {
               },
               {
                 "field": "pin",
-                "width": "75"
+                "width": "70"
               },
               {
                 "field": "priority",
@@ -207,7 +207,7 @@ public class DefaultDashboardUtils {
               },
               {
                 "field": "pin",
-                "width": "75"
+                "width": "70"
               },
               {
                 "field": "name",
