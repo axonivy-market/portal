@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>public-api</artifactId>
-  <version>10.0.28-SNAPSHOT</version>
+  <version>10.0.29-SNAPSHOT</version>
   <properties>
     <build.plugin.version>10.0.17</build.plugin.version>
     <ivy.engine.version>10.0.7</ivy.engine.version>
