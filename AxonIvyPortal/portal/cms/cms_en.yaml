@@ -1363,6 +1363,7 @@ Dialogs:
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Create custom statistic widget
                 DeleteConfirm: Are you sure you want to delete?
+                RemoveThisStatistic: Remove this custom statistic
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
@@ -1486,6 +1487,8 @@ Dialogs:
               chooseAJsonFile: Choose a json file
             DashboardSharing:
               ShareDashboard: Share Dashboard
+            NavigationDashboardWidget:
+              PermissionsDenied: You don't have permission to access this dashboard
             NavigationDashboardWidgetConfiguration:
               ButtonName: Button Name
               NavigationDashboardWidgetConfiguration: Navigation dashboard widget configuration

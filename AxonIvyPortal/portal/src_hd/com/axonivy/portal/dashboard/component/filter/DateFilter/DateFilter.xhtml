@@ -129,7 +129,7 @@
   </h:panelGroup>
 
   <h:panelGroup id="current-period-panel" layout="block" rendered="#{filter.operator == 'CURRENT'}">
-    <p:selectOneMenu id="current-period-selection" value="#{filter.periodType}" disabled="#{readOnly}">
+    <p:selectOneMenu id="current-period-selection" value="#{filter.periodType}" disabled="#{readOnly}" styleClass="w-full">
       <f:selectItems value="#{widgetDateFilterBean.currentFilterPeriodTypes}" var="period"
         itemValue="#{period}" itemLabel="#{period.label}" />
       <p:ajax partialSubmit="true" global="false" />
