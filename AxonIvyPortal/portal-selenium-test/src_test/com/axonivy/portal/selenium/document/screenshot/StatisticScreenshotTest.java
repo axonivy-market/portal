@@ -14,6 +14,7 @@ import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.StatisticWidgetNewDashboardPage;
+import com.axonivy.portal.selenium.page.CustomStatisticConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -106,4 +107,25 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     StatisticWidgetNewDashboardPage tasksByPriorWidget = newDashboardPage.selectStatisticChartWidget("Tasks By Priority");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-by-prior-number-chart", new ScreenshotMargin(5, 5));
   }
+  
+  @Test
+  public void screenshotCreateNewCustomStatistic() throws IOException {
+    showNewDashboard();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    ScreenshotUtils.resizeBrowser(new Dimension(1386, 1200));
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    var newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    WebElement newWidgetDialog = newDashboardDetailsEditPage.addWidget();
+    newDashboardDetailsEditPage.collapseStandardWidgets();
+    ScreenshotUtils.executeDecorateJs("highlightCreateCustomStatisticWidgetButton()");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
+        ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "create-new-custom-statistic-widget", new ScreenshotMargin(20));
+
+    newDashboardDetailsEditPage.clickOnCreateCustomStatisiticWidget();
+    CustomStatisticConfigurationPage customStatisticConfigurationPage = new CustomStatisticConfigurationPage();
+    customStatisticConfigurationPage.waitForPageLoad();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "custom-statistic-widget-configuration-page");
+  }
+
 }

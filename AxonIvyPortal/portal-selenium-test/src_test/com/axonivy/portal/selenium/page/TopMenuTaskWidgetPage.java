@@ -315,6 +315,7 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   public void pinTaskByIndex(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
     clickTaskAction(taskIndex, "Pin");
+
   }
 
   public void unpinTaskByIndex(int taskIndex) {
