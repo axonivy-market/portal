@@ -56,14 +56,14 @@ jobs:
           maven-version: 3.9.8
       - name: Export environment variables
         run: |
-          echo "Build screenshot for document. Use 2 inputs: \n 'engineDownloadURL' with default value is 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip', \n 'testPatternToRun' with default value 'com.axonivy.portal.selenium.document.screenshot.*Test'" >> $GITHUB_STEP_SUMMARY
+          echo "Build screenshot for document. Use 2 inputs: \n 'engineDownloadURL' with default value is 'https://developer.axonivy.com/permalink/nightly-12/axonivy-engine.zip', \n 'testPatternToRun' with default value 'com.axonivy.portal.selenium.test.**.*Test'" >> $GITHUB_STEP_SUMMARY
           echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
           
       - name: Set up and verify directories
         run: |
-          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/nightly"
+          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine"
           mkdir -p $ENGINE_DIR
           sudo chown -R $USER:$USER $ENGINE_DIR
           echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
