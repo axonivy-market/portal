@@ -47,11 +47,6 @@
       <url>https://repo.maven.apache.org/maven2</url>
     </repository>
     <repository>
-      <id>maven.axonivy.com</id>
-      <name>Axonivy Repo</name>
-      <url>https://maven.axonivy.com/</url>
-    </repository>
-    <repository>
       <snapshots>
         <updatePolicy>always</updatePolicy>
       </snapshots>
@@ -77,9 +72,6 @@
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
         <extensions>true</extensions>
-        <configuration>
-          <compilerWarnings>false</compilerWarnings>
-        </configuration>
       </plugin>
     </plugins>
   </build>
