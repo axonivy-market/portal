@@ -40,7 +40,11 @@ public class UrlHelpers {
       try {
         URL originalURL = new URL(vmArgUrl);
         URL newURL = new URL(originalURL.getProtocol(), "localhost", originalURL.getPort(), originalURL.getFile());
-        return newURL.toString();
+        
+        // Make sure the engine URL end with slash (/).
+        // Example: https://localhost:8081/
+        String newURLStr = newURL.toString();
+        return newURLStr.endsWith("/") ? newURLStr : newURLStr + "/";
       } catch (MalformedURLException e) {
         throw new PortalGUITestException("Wrong Engine URL");
       }

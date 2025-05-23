@@ -86,7 +86,6 @@ public class ComplexFilterHelper {
   }
   
   public static SelenideElement addFilter(String columnName, FilterOperator operator) {
-    $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT);
     int currentIndex = $(".dashboard-widget-filter__main-panel").$$("div[id$=':filter-component:filter-selection-panel']").size();
     $("button[id$=':add-filter']").shouldBe(getClickableCondition()).click();
     $(".dashboard-widget-filter__main-panel").$$("div[id$=':filter-component:filter-selection-panel']")

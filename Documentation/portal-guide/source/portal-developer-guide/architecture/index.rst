@@ -10,8 +10,6 @@ Architecture
 
 .. _multi-app-structure:
 
-Basically, you can deploy both the Portal and Projects into one application. This makes sense for simple applications. However, migration can be difficult with this approach. So we recommend deploying the Portal and your projects into separate applications.
-
 The Portal multi applications
 =============================
 

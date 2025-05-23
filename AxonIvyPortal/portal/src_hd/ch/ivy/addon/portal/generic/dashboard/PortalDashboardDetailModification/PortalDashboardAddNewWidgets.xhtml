@@ -288,7 +288,9 @@
   <ui:param name="closeOnEscape" value="true" />
   <ui:param name="iconStyleClass" value="portal-dialog-error-icon portal-dialog-icon" />
   <ui:param name="headerText"
-    value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardDetailModification/DeleteConfirm')}" />
+    value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardDetailModification/RemoveThisStatistic')}" />
+  <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/removeWidgetMessage')}" />
+    
   <ui:define name="dialogFooter">
     <div class="flex flex-column">
     <p:commandButton id="remove-statistic-button" styleClass="w-full portal-remove-button"
