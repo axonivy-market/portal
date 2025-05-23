@@ -545,6 +545,11 @@ public class DashboardConfigurationPage extends TemplatePage {
     $("div#new-widget-dialog").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
+  public StatisticConfigurationPage clickOnCreateCustomStatisticWidgetButton() {
+    $("button[id$='create-custom-statistic']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    return new StatisticConfigurationPage();
+  }
+
   public StatisticWidgetNewDashboardPage addNewStatisticWidget(String widgetName) {
     setSearchInput(widgetName);
     $("div.new-widget-dialog__content").shouldBe(appear, DEFAULT_TIMEOUT)

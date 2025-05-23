@@ -179,9 +179,9 @@ The basic JSON structure of a statistic widget
 
    ``descriptions``: description for the statistic chart, multi-language supported.
 
-For some specific charts such as ``Bar``, ``Pie``, ``Line`` or ``Number``, there are additional and required fields:
+For some specific charts such as ``Bar``, ``Pie``, ``Line`` or ``Number``, there are additional fields:
 
-- ``barChartConfig``: required fields for configuring the ``Bar`` chart, please add them if chart type is ``bar`` 
+- ``barChartConfig``: additional fields for configuring the ``Bar`` chart, you can add if chart type is ``bar`` 
 
    - ``xTitles``: the multilingual display title for the x-axis
 
@@ -189,7 +189,7 @@ For some specific charts such as ``Bar``, ``Pie``, ``Line`` or ``Number``, there
    
    - ``backgroundColors`` : the colors to display the chart
 
-- ``lineChartConfig``: required fields for configuring the ``Line`` chart, please add them if chart type is ``line``
+- ``lineChartConfig``: additional fields for configuring the ``Line`` chart, you can add if chart type is ``line``
 
    - ``xTitles``: the multilingual display title for the x-axis
 
@@ -197,7 +197,7 @@ For some specific charts such as ``Bar``, ``Pie``, ``Line`` or ``Number``, there
 
    - ``backgroundColors`` : the colors to display the chart
  
-- ``pieChartConfig``: required fields for configuring the ``Pie`` chart, please add them if chart type is ``pie``
+- ``pieChartConfig``: additional fields for configuring the ``Pie`` chart, you can add if chart type is ``pie``
 
    - ``backgroundColors`` : the colors to display the chart
 

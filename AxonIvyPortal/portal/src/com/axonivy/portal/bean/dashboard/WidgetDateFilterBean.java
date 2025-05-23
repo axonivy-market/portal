@@ -67,7 +67,7 @@ public class WidgetDateFilterBean implements Serializable {
   }
 
   private String getMessagePrefix(String field, int index, String widgetType) {
-    if (PortalConstants.TASK == StringUtils.lowerCase(widgetType)) {
+    if (PortalConstants.TASK.equals(StringUtils.lowerCase(widgetType))) {
       return getTaskMessagePrefix(field, index);
     }
 

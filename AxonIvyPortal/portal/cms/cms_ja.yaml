@@ -1354,6 +1354,8 @@ Dialogs:
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: 新規ダッシュボードを追加
+              PortalDashboardDetailModification:
+                RemoveThisStatistic: TODO このカスタム統計を削除する
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: リンクされたプロセスが見つかりませんでした。
@@ -1479,6 +1481,8 @@ Dialogs:
               chooseAJsonFile: JSON ファイルを選択してください
             DashboardSharing:
               ShareDashboard: ダッシュボードを共有
+            NavigationDashboardWidget:
+              PermissionsDenied: TODO You don't have permission to access this dashboard
             NavigationDashboardWidgetConfiguration:
               ButtonName: TODO Button Name
               NavigationDashboardWidgetConfiguration: Navigation dashboard widget configuration

@@ -15,7 +15,7 @@ Basic Installation
 Project Modules
 ---------------
 
-The application consists of 3 process modules. For detailed information
+The application consists of 2 process modules. For detailed information
 on each module, refer to :ref:`architecture`.
 
 -  portal-components
