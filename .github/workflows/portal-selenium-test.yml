@@ -31,6 +31,7 @@ on:
         type: string
         default: 'https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine-windows.zip'
         required: true
+  push:
 
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
