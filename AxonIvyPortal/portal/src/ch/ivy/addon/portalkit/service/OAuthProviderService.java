@@ -3,8 +3,9 @@ package ch.ivy.addon.portalkit.service;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
 
@@ -27,8 +28,13 @@ public class OAuthProviderService {
 
   public List<OAuthProvider> getOAuthProviders(String callbackUrl) {
     var securityContext = (ISecurityContextInternal) ISecurityContext.current();
-    return securityContext.identityProviders().stream().filter(p -> p.authenticator() instanceof OAuth2Authenticator)
-        .map(p -> toOAuthPovider(p, callbackUrl)).collect(Collectors.toList());
+    IdentityProvider identityProvider = securityContext.identityProvider();
+    if (identityProvider.authenticator() instanceof OAuth2Authenticator) {
+      return Arrays.asList(toOAuthPovider(identityProvider, callbackUrl));
+    }
+
+    return new ArrayList<>();
+
   }
 
   private OAuthProvider toOAuthPovider(IdentityProvider provider, String callbackUrl) {

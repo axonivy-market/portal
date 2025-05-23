@@ -8,7 +8,7 @@ import ch.ivyteam.ivy.security.restricted.ISecurityContextInternal;
 public class SecuritySystemUtils {
   public static boolean isIvySecuritySystem() {
     return Sudo.get(() -> {
-      var provider = ((ISecurityContextInternal) ISecurityContext.current()).identityProviders().get(0);
+      var provider = ((ISecurityContextInternal) ISecurityContext.current()).identityProvider();
       return provider instanceof IvySecuritySystem;
     });
   }

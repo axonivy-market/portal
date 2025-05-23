@@ -260,7 +260,7 @@
 },
 {
   "id": "default-task-list-dashboard",
-  "version": "12.0.0",
+  "version": "13.1.0",
   "templateId": "create-from-scratch",
   "titles": [
     {
@@ -372,7 +372,7 @@
 },
 {
   "id": "default-case-list-dashboard",
-  "version": "12.0.0",
+  "version": "13.1.0",
   "templateId": "create-from-scratch",
   "titles": [
     {

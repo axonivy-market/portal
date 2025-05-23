@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<role>
-    <identifier>Everybody</identifier>
-    <role>
-        <identifier>AXONIVY_PORTAL_ADMIN</identifier>
-        <displayName>Portal Admin</displayName>
-    </role>
-</role>
