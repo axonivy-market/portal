@@ -37,6 +37,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
   static final String ERROR = "Error";
 
   static final String DETAILS = "Details";
+  static final String PIN = "Pin";
   static final String PROCESS_VIEWER = "Process Viewer";
   static final String CLEAR_EXPIRY = "Clear expiry";
   static final String DELEGATE = "Delegate";
@@ -69,18 +70,18 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     newDashboardPage.waitForTaskListDisplay();
     TaskWidgetNewDashBoardPage taskWidget = new TaskWidgetNewDashBoardPage();
     // TaskState : Ready for Join <=> TaskBusinessState : Done
-    assertTaskActionsByTaskState("Done", Arrays.asList(DETAILS, PROCESS_VIEWER));
+    assertTaskActionsByTaskState("Done", Arrays.asList(DETAILS, PIN, PROCESS_VIEWER));
     // TaskState : Suspended <=> TaskBusinessState : Open
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
     assertTaskActionsByTaskState("Open",
-        Arrays.asList(DETAILS, DELEGATE, RESERVE, CLEAR_EXPIRY, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, PIN, DELEGATE, RESERVE, CLEAR_EXPIRY, PROCESS_VIEWER));
     // TaskState : Done <=> TaskBusinessState : Done
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
-    assertTaskActionsByTaskState("Done", Arrays.asList(DETAILS, PROCESS_VIEWER));
+    assertTaskActionsByTaskState("Done", Arrays.asList(DETAILS, PIN, PROCESS_VIEWER));
   }
 
   @Test
@@ -91,13 +92,13 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
 
     // Ready for Join
     assertTaskActionsByTaskStateAndName(DONE, "Task Switch A",
-        Arrays.asList(DETAILS, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, PIN, RESET, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     // Suspended
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
-    assertTaskActionsByTaskStateAndName(OPEN, "Sick Leave Request", Arrays.asList(DETAILS, DELEGATE, RESERVE,
+    assertTaskActionsByTaskStateAndName(OPEN, "Sick Leave Request", Arrays.asList(DETAILS, PIN, DELEGATE, RESERVE,
         CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     // Done
@@ -105,21 +106,21 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     removeAllExistingFilter();
     taskWidget.applyFilter();
     assertTaskActionsByTaskStateAndName(DONE, "Categoried Leave Request",
-        Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, PIN, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     // Delayed
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
     assertTaskActionsByTaskStateAndName(DELAYED, "Task Switch C",
-        Arrays.asList(DETAILS, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, PIN, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     // Destroyed
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
     assertTaskActionsByTaskStateAndName(DESTROYED, "Task Switch B",
-        Arrays.asList(DETAILS, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, PIN, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
 
   @Test
@@ -142,7 +143,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.removeFilter(0);
     taskWidget.applyFilter();
-    assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
+    assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, PIN, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
         WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     login(TestAccount.DEMO_USER);
@@ -159,7 +160,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.removeFilter(1);
     taskWidget.applyFilter();
     assertTaskActionsByTaskState(IN_PROGRESS,
-        Arrays.asList(DETAILS, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, PIN, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER));
   }
 
   private void filterTaskByNameAndState(String name, String state) {
@@ -181,13 +182,13 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     refreshPage();
 
     // Reserved for admin user
-    assertTaskActionsByTaskState(OPEN, Arrays.asList(DETAILS, DELEGATE, RESET, CLEAR_EXPIRY, DESTROY,
+    assertTaskActionsByTaskState(OPEN, Arrays.asList(DETAILS, PIN, DELEGATE, RESET, CLEAR_EXPIRY, DESTROY,
         TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
     login(TestAccount.DEMO_USER);
     createTasksForTesting();
     // Reserved for normal user
-    assertTaskActionsByTaskState(OPEN, Arrays.asList(DETAILS, PROCESS_VIEWER));
+    assertTaskActionsByTaskState(OPEN, Arrays.asList(DETAILS, PIN, PROCESS_VIEWER));
   }
 
   private void createTasksForTesting() {
@@ -209,18 +210,18 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     // Failed
     resizeBrowserTo2kResolution();
     assertTaskActionsByTaskStateAndName(ERROR, "Signal create Task failed",
-        Arrays.asList(DETAILS, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, PIN, RESET, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     // Join failed
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
     assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task",
-        Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, PIN, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
     // waiting for event
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
-    assertTaskActionsByTaskState(ERROR, Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+    assertTaskActionsByTaskState(ERROR, Arrays.asList(DETAILS, PIN, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
 
   private void assertTaskActionsByTaskState(String state, List<String> taskActionsInTask) {

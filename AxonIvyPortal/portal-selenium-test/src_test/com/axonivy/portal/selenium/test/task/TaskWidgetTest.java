@@ -123,18 +123,6 @@ public class TaskWidgetTest extends BaseTest {
 
   }
 
-  @Test
-  public void testTogglePinnedTask() {
-    NavigationHelper.navigateToTaskList();
-    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
-    for (int i = 2; i > 0; i--) {
-      taskWidget.pinTaskByIndex(i);
-    }
-    taskWidget.togglePinnedTask();
-    taskWidget.waitUntilTaskFilterReturnResultCount(2);
-    int visibleTaskCount = taskWidget.countAllTasks().size();
-    assertEquals(2, visibleTaskCount);
-  }
 
   @Test
   public void testClickOnPinColumn() {

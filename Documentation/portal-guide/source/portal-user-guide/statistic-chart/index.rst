@@ -13,7 +13,7 @@ How to use
 
 To utilize the Statistic feature on the Dashboard Configuration, follow these steps:
 
-- Navigate to Dashboard Configuration of the dashboard where you want to add the widget and select :guilabel:`Add Widget`.
+- Navigate to Dashboard Configuration of the dashboard where you want to add the widget and select :guilabel:`Add Widget` for predefined Standard Charts or :guilabel:`Create custom statistic widget` for configuring new statistic chart.
 
 - From the dropdown menu labeled **Statistic Widgets**, choose from a variety of insightful charts.
 
@@ -37,7 +37,7 @@ Available Standard Charts
     - Chart type: :bdg-info:`Bar`
 
 - Tasks By Priority
-
+ 
     |tasks-by-prior-bar-chart|
 
     - This bar chart displays all tasks that the user can work on grouped by priority.
@@ -98,6 +98,58 @@ Available Standard Charts
 
     - This chart shows all tasks that are due today.
     - Chart type: :bdg-info:`Number`
+    
+How to configure new statistic chart
+------------------------------------
+
+- Navigate to Dashboard Configuration of the dashboard and select :guilabel:`Create custom statistic widget`.
+
+    |create-new-custom-statistic-widget|
+
+- From the configuration for statistic chart, fill in the form to create new statistic chart.
+
+    |custom-statistic-widget-configuration-page|
+
+Available values for configuring statistic chart 
+------------------------------------------------
+
+.. list-table::
+
+ * - **Value**
+   - **Usage Guideline**
+ * - Name
+   - | Name of the statistic chart.
+ * - Description
+   - | Description for the statistic chart.
+ * - Chart type
+   - | Type of the chart (Bar, Line, Pie, Number).
+ * - For
+   - | Chart target (Task, Case).
+ * - Icon
+   - | Icon for custom statistic chart.
+     | Click on the plus icon at the end of the line to see full list of icons.
+ * - Group by
+   - | Aggregation to group all the results, the drop down values depend on the chart target.
+     | Currently we don't support aggregations have type number.
+ * - Filters
+   - | Works like complex filter of Portal.
+     | Please refer to :ref:`complex-filter` for more details.
+ * - Permissions
+   - | Permission for the current statistic chart.
+ * - Auto-refresh enabled
+   - | The statistic can be auto-refreshed after a certain prediod.
+     | Click on this button to turn on/off the feature.
+ * - Auto-refresh interval (seconds)
+   - | The time for statistic chart to be auto-refreshed in second.
+     | Minimum number is 60.
+ * - X axis title
+   - | X title for the statistic chart.
+ * - Y axis title
+   - | Y title for the statistic chart.
+ * - Color 1-8
+   - | Colors for data in the chart.
+ * - Hide label
+   - | Toggle to show label of number chart.
 
 .. |statistic-widget-list-page| image:: ../../screenshots/statistic/statistic-widget-list.png
    :alt: Statistic widget list
@@ -125,3 +177,7 @@ Available Standard Charts
    :alt: Top priority tasks chart
 .. |running-cases-chart| image:: ../../screenshots/statistic/running-cases-chart.png
    :alt: Running cases chart
+.. |create-new-custom-statistic-widget| image:: ../../screenshots/statistic/create-new-custom-statistic-widget.png
+   :alt: Create new custom statistic widget
+.. |custom-statistic-widget-configuration-page| image:: ../../screenshots/statistic/custom-statistic-widget-configuration-page.png
+   :alt: Custom statistic widet configuration page

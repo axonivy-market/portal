@@ -46,7 +46,7 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
     newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
     // In progress
     assertCaseActionsByCaseState("Open",
-        Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
+        Arrays.asList("Details", "Pin", "Process overview", "Business details", "Process Viewer"));
   }
 
   @Test
@@ -71,16 +71,16 @@ public class DashboardCaseWidgetActionTest extends BaseTest {
 
     // In progress
     assertCaseActionsByCaseState("Open",
-        Arrays.asList("Details", "Process overview", "Business details", "Destroy", "Process Viewer"));
+        Arrays.asList("Details", "Pin", "Process overview", "Business details", "Destroy", "Process Viewer"));
     // Done
     assertCaseActionsByCaseState("Done",
-        Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
+        Arrays.asList("Details", "Pin", "Process overview", "Business details", "Process Viewer"));
     // Destroyed
     filterByCaseState("Open");
     caseWidget.destroyCase(0);
     caseWidget.waitTableLoaded();
     assertCaseActionsByCaseState("Destroyed",
-        Arrays.asList("Details", "Process overview", "Business details", "Process Viewer"));
+        Arrays.asList("Details", "Pin", "Process overview", "Business details", "Process Viewer"));
   }
 
   private void assertCaseActionsByCaseState(String state, List<String> caseActionsInCase) {
