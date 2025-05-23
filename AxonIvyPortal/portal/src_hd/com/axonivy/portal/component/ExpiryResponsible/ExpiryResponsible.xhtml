@@ -7,6 +7,8 @@
   <cc:attribute name="expiryResponsibles" type="ch.ivyteam.ivy.workflow.task.expiry.responsible.ExpiryResponsibles" required="true" />
   <cc:attribute name="popupLink" type="java.lang.Boolean" default="false"/>
   <cc:attribute name="onClick" />
+  <cc:attribute name="isShowTechnicalDisplayNameOnTooltip" default="#{portalComponentAvatarBean.getPortalShowTechnicalTooltipOrDefault(false)}" />
+  <cc:attribute name="isShowAvatar" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
 </cc:interface>
 
 <cc:implementation>
@@ -16,7 +18,8 @@
   <pc:securityMemberNameAndAvatar 
   	displayName="#{responsibleSize gt 1 ? ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple') : expiryRepsonsibleBean.getFirstDisplayName(expiryResponsibles)}" 
   	securityMember="#{responsibleSize gt 1 ? null : expiryRepsonsibleBean.getFirstResponsible(expiryResponsibles)}" 
-  	representName="#{responsibleSize gt 1 ? ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple') : null}" > 
+  	representName="#{responsibleSize gt 1 ? ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple') : null}" 
+    isShowTechnicalDisplayNameOnTooltip="#{responsibleSize gt 1 ? false : null}" > 
     <f:facet name="afterName">
       <h:panelGroup rendered="#{responsibleSize != null and responsibleSize gt 1}">
         <h:panelGroup id="all-expiry-responsibles" styleClass="ml-1" >
@@ -31,8 +34,17 @@
           <div class="py-1">
             <ui:repeat id="task-responsibles" value="#{expiryRepsonsibleBean.getResponsibleLimit10(expiryResponsibles)}" var="responsible">
               <div class="py-1">
-                <pc:securityMemberNameAndAvatar displayName="#{expiryRepsonsibleBean.getDisplayName(responsible.get())}" 
-                    securityMember="#{responsible.get()}" />
+                <div class="#{cc.attrs.isShowAvatar ? 'has-avatar' : ''}">
+                  <pc:avatar securityMember="#{responsible.get()}"
+                    rendered="#{responsible.get() != null}"
+                    renderedAvatar="#{cc.attrs.isShowAvatar}" />
+                  <cc:renderFacet name="alternativeAvatar" />
+                  <h:outputText id="username"
+                    value="#{cc.attrs.isShowTechnicalDisplayNameOnTooltip ? portalComponentAvatarBean.tooltipTechnicalDisplayName(responsible.get()) : expiryRepsonsibleBean.getDisplayName(responsible.get())}"
+                    rendered="#{!userMenuBean.isMobileDevice()}"
+                    styleClass="#{cc.attrs.isShowAvatar ? 'name-after-avatar' : ''} #{responsible.get() == null ? 'u-no-padding-left' : ''}">
+                  </h:outputText>
+                </div>
               </div>
             </ui:repeat>
           </div>

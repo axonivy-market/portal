@@ -1359,6 +1359,7 @@ Dialogs:
               PortalDashboardDetailModification:
                 CreateCustomStatistic: Crear widget de estadísticas personalizado
                 DeleteConfirm: ¿Está seguro de que desea eliminar?
+                RemoveThisStatistic: Eliminar esta estadística personalizada
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
@@ -1440,6 +1441,8 @@ Dialogs:
               chooseAJsonFile: Elija un archivo json
             DashboardSharing:
               ShareDashboard: Compartir panel
+            NavigationDashboardWidget:
+              PermissionsDenied: No tienes permiso para acceder a este panel.
             NavigationDashboardWidgetConfiguration:
               ButtonName: Nombre del botón
               NavigationDashboardWidgetConfiguration: |+
