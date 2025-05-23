@@ -35,7 +35,7 @@ on:
 
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
-  ENGINE_URL: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip
+  ENGINE_URL: https://developer.axonivy.com/permalink/nightly-12/axonivy-engine.zip
   
 jobs:
   portal-selenium-test:
