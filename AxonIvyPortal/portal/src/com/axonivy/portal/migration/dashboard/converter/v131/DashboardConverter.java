@@ -6,6 +6,7 @@ import com.axonivy.portal.migration.common.IJsonConverter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 
 public class DashboardConverter implements IJsonConverter {
@@ -51,7 +52,7 @@ public class DashboardConverter implements IJsonConverter {
 
           boolean hasPin = false;
           for (JsonNode column : columns) {
-            if ("pin".equals(column.path("field").asText())) {
+            if (PIN.equals(column.path("field").asText())) {
               hasPin = true;
               break;
             }
@@ -59,7 +60,7 @@ public class DashboardConverter implements IJsonConverter {
 
           if (!hasPin) {
             ObjectNode pinColumn = columns.objectNode();
-            pinColumn.put("field", "pin");
+            pinColumn.put("field", PIN);
             pinColumn.put("width", "75");
 
             ArrayNode updatedColumns = columns.arrayNode();
