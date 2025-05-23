@@ -1,0 +1,134 @@
+name: Portal Selenium test
+run-name: 🖼️ Portal Selenium test
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  issues: write
+  packages: write
+  pull-requests: write
+  repository-projects: write
+  security-events: write
+  statuses: write
+  discussions: write
+  pages: write
+on:
+  workflow_dispatch:
+    inputs:
+      testPatternToRun:
+        description: 'Test pattern to run'
+        type: string
+        default: 'com.axonivy.portal.selenium.test.**.*Test'
+        required: true
+      engineDownloadURL:
+        description: |
+          url to download engine
+          Where to download engine? e.g.
+            -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-12/axonivy-engine-windows.zip for nightly 12
+            -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
+            -Divy.engine.list.url=https://jenkins.ivyteam.io/job/core_product/job/release%252F9.4/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build 9.4
+        type: string
+        default: 'https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine-windows.zip'
+        required: true
+
+env:
+  ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
+  ENGINE_URL: https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip
+  
+jobs:
+  portal-selenium-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Set up Maven
+        uses: stCarolas/setup-maven@v5
+        with:
+          maven-version: 3.9.8
+      - name: Export environment variables
+        run: |
+          echo "Build screenshot for document. Use 2 inputs: \n 'engineDownloadURL' with default value is 'https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip', \n 'testPatternToRun' with default value 'com.axonivy.portal.selenium.document.screenshot.*Test'" >> $GITHUB_STEP_SUMMARY
+          echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+          echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
+          echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
+          
+      - name: Set up and verify directories
+        run: |
+          ENGINE_DIR="${GITHUB_WORKSPACE}/ivy/engine/nightly"
+          mkdir -p $ENGINE_DIR
+          sudo chown -R $USER:$USER $ENGINE_DIR
+          echo "ENGINE_DIR=$ENGINE_DIR" >> $GITHUB_ENV
+
+      - name: Download engine
+        run: |
+          cd $ENGINE_DIR
+          wget $ENGINE_URL -O axonivy-engine.zip
+          unzip -o axonivy-engine.zip -d .
+          rm axonivy-engine.zip
+
+      - name: Verify engine directory
+        run: |
+          if [ ! -d "$ENGINE_DIR" ]; then
+            echo "Engine directory does not exist"
+            exit 1
+          fi
+
+      - name: Build Portal modules
+        run: |
+          modules=(
+            "AxonIvyPortal/portal-components"
+            "AxonIvyPortal/portal"
+            "AxonIvyPortal/PortalKitTestHelper"
+            "Showcase/portal-user-examples"
+            "Showcase/portal-developer-examples"
+            "Showcase/InternalSupport"
+            "Showcase/portal-components-examples"
+            "AxonIvyPortal/PortalApp"
+            "Showcase/portal-demo-app"
+          )
+          for module in "${modules[@]}"; do
+            mvn clean install -f $module/pom.xml -Divy.engine.directory=$ENGINE_DIR
+          done
+
+      - name: Deploy Portal Modules
+        run: |
+          DEPLOYMENT=$ENGINE_DIR/system/demo-applications/demo-portal
+          rm -rf $DEPLOYMENT/*
+          cp Showcase/portal-demo-app/target/*.zip $DEPLOYMENT
+          cp Showcase/portal-developer-examples/target/*.iar $DEPLOYMENT
+          cp Showcase/portal-components-examples/target/*.iar $DEPLOYMENT
+     
+      - name: Run test
+        id: run-test        
+        run: |
+          mvn clean install -f AxonIvyPortal/portal-selenium-test/pom.xml -Divy.engine.download.url=${{ inputs.engineDownloadURL }} -Dtest=${{ inputs.testPatternToRun }} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=$ENGINE_DIR -Divy.deploy.timeout.seconds=60 -Divy.engine.start.timeout.seconds=150
+        continue-on-error: true
+
+      - name: Log out on failures
+        if: job.steps.run-test.status == failure()
+        run: |
+          cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
+
+      - name: Archive test reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: selenium-test-reports-archive
+          retention-days: 5
+          path: |
+            AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
+      
+      - name: Report
+        uses: dorny/test-reporter@v2.0.0
+        with:
+          artifact: selenium-test-report
+          name: Selenium tests report
+          path: '*.xml'
+          reporter: java-junit
