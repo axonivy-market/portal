@@ -70,72 +70,72 @@ public class StatisticWidgetTest extends BaseTest {
     StatisticConfigurationPage statisticConfigurationPage = configurationPage.clickOnCreateCustomStatisticWidgetButton();
     statisticConfigurationPage.setChartName("Custom statistic chart CASE");
     // Chart target to CASE
-    statisticConfigurationPage.changeChartTargetTo(0);
+    statisticConfigurationPage.changeChartTarget("Case");
     assertTrue(statisticConfigurationPage.getPermissions().size() == 2);
 
     statisticConfigurationPage.clickGeneratePreviewChart();
     statisticConfigurationPage.chartCanvasVisible();
 
     // BAR chart
-    statisticConfigurationPage.changeChartTypeTo(0);
+    statisticConfigurationPage.changeChartType("Bar");
     statisticConfigurationPage.clickGeneratePreviewChart();
     assertEquals(statisticConfigurationPage.getAggregationItems().size(), 6);
     // Change to Created date
-    statisticConfigurationPage.changeGroupByTo(3);
+    statisticConfigurationPage.changeGroupBy("Created date");
     assertEquals(statisticConfigurationPage.getTimeIntervalItems().size(), 4);
     // Change to Completed date
-    statisticConfigurationPage.changeGroupByTo(4);
+    statisticConfigurationPage.changeGroupBy("Completed date");
     assertEquals(statisticConfigurationPage.getTimeIntervalItems().size(), 4);
     // Change to Custom field
-    statisticConfigurationPage.changeGroupByTo(5);
+    statisticConfigurationPage.changeGroupBy("Custom field");
     assertTrue(statisticConfigurationPage.getCaseCustomFieldItems().size() > 0);
     statisticConfigurationPage.axisXYVisible();
     statisticConfigurationPage.autoRefeshToggleVisible();
     statisticConfigurationPage.backgroundColorVisible();
 
     // LINE chart
-    statisticConfigurationPage.changeChartTypeTo(1);
+    statisticConfigurationPage.changeChartType("Line");
     assertEquals(statisticConfigurationPage.getAggregationItems().size(), 6);
     // Change to Created date
-    statisticConfigurationPage.changeGroupByTo(3);
+    statisticConfigurationPage.changeGroupBy("Created date");
     assertEquals(statisticConfigurationPage.getTimeIntervalItems().size(), 4);
     // Change to Completed date
-    statisticConfigurationPage.changeGroupByTo(4);
+    statisticConfigurationPage.changeGroupBy("Completed date");
     assertEquals(statisticConfigurationPage.getTimeIntervalItems().size(), 4);
     // Change to Custom field
-    statisticConfigurationPage.changeGroupByTo(5);
+    statisticConfigurationPage.changeGroupBy("Custom field");
     assertTrue(statisticConfigurationPage.getCaseCustomFieldItems().size() > 0);
     statisticConfigurationPage.axisXYVisible();
     statisticConfigurationPage.autoRefeshToggleVisible();
     statisticConfigurationPage.backgroundColorVisible();
 
     // PIE chart
-    statisticConfigurationPage.changeChartTypeTo(2);
+    statisticConfigurationPage.changeChartType("Pie");
     assertEquals(statisticConfigurationPage.getAggregationItems().size(), 6);
     // Change to Created date
-    statisticConfigurationPage.changeGroupByTo(3);
+    statisticConfigurationPage.changeGroupBy("Created date");
     assertEquals(statisticConfigurationPage.getTimeIntervalItems().size(), 4);
     // Change to Completed date
-    statisticConfigurationPage.changeGroupByTo(4);
+    statisticConfigurationPage.changeGroupBy("Completed date");
     assertEquals(statisticConfigurationPage.getTimeIntervalItems().size(), 4);
     // Change to Custom field
-    statisticConfigurationPage.changeGroupByTo(5);
+    statisticConfigurationPage.changeGroupBy("Custom field");
     assertTrue(statisticConfigurationPage.getCaseCustomFieldItems().size() > 0);
     statisticConfigurationPage.autoRefeshToggleVisible();
     statisticConfigurationPage.backgroundColorVisible();
 
     // NUMBER chart
-    statisticConfigurationPage.changeChartTypeTo(3);
+    statisticConfigurationPage.changeChartType("Number");
     // Change to State
-    statisticConfigurationPage.changeGroupByTo(0);
+    statisticConfigurationPage.changeGroupBy("State");
     assertEquals(statisticConfigurationPage.getAggregationItems().size(), 3);
     statisticConfigurationPage.autoRefeshToggleVisible();
     statisticConfigurationPage.hideLabelVisible();
 
     // Configure for Filter
-    statisticConfigurationPage.changeChartTypeTo(3);
+    statisticConfigurationPage.changeChartType("Number");
     // Change to State
-    statisticConfigurationPage.changeGroupByTo(0);
+    statisticConfigurationPage.changeGroupBy("State");
 
     // Filter State
     statisticConfigurationPage.addFilter("State", null);
@@ -175,85 +175,85 @@ public class StatisticWidgetTest extends BaseTest {
     StatisticConfigurationPage statisticConfigurationPage = configurationPage.clickOnCreateCustomStatisticWidgetButton();
     statisticConfigurationPage.setChartName("Custom statistic chart TASK");
     // Chart target to TASK
-    statisticConfigurationPage.changeChartTargetTo(1);
+    statisticConfigurationPage.changeChartTarget("Task");
     assertTrue(statisticConfigurationPage.getPermissions().size() == 2);
 
     statisticConfigurationPage.clickGeneratePreviewChart();
     statisticConfigurationPage.chartCanvasVisible();
 
     // BAR chart
-    statisticConfigurationPage.changeChartTypeTo(0);
+    statisticConfigurationPage.changeChartType("Bar");
     statisticConfigurationPage.clickGeneratePreviewChart();
     // Assert default Group is State
     assertEquals(statisticConfigurationPage.getAggregationItems().size(), 9);
     // Change to Created date
-    statisticConfigurationPage.changeGroupByTo(5);
+    statisticConfigurationPage.changeGroupBy("Created date");
     assertEquals(statisticConfigurationPage.getTimeIntervalItems().size(), 4);
     // Change to Completed date
-    statisticConfigurationPage.changeGroupByTo(6);
+    statisticConfigurationPage.changeGroupBy("Completed date");
     assertEquals(statisticConfigurationPage.getTimeIntervalItems().size(), 4);
     // Change to Expiry date
-    statisticConfigurationPage.changeGroupByTo(7);
+    statisticConfigurationPage.changeGroupBy("Expiry date");
     assertEquals(statisticConfigurationPage.getTimeIntervalItems().size(), 4);
     // Change to Custom field
-    statisticConfigurationPage.changeGroupByTo(8);
+    statisticConfigurationPage.changeGroupBy("Custom field");
     assertTrue(statisticConfigurationPage.getCaseCustomFieldItems().size() > 0);
     statisticConfigurationPage.axisXYVisible();
     statisticConfigurationPage.autoRefeshToggleVisible();
     statisticConfigurationPage.backgroundColorVisible();
 
     // LINE chart
-    statisticConfigurationPage.changeChartTypeTo(1);
+    statisticConfigurationPage.changeChartType("Line");
     statisticConfigurationPage.clickGeneratePreviewChart();
     // Assert default Group is State
     assertEquals(statisticConfigurationPage.getAggregationItems().size(), 9);
     // Change to Created date
-    statisticConfigurationPage.changeGroupByTo(5);
+    statisticConfigurationPage.changeGroupBy("Created date");
     assertEquals(statisticConfigurationPage.getTimeIntervalItems().size(), 4);
     // Change to Completed date
-    statisticConfigurationPage.changeGroupByTo(6);
+    statisticConfigurationPage.changeGroupBy("Completed date");
     assertEquals(statisticConfigurationPage.getTimeIntervalItems().size(), 4);
     // Change to Expiry date
-    statisticConfigurationPage.changeGroupByTo(7);
+    statisticConfigurationPage.changeGroupBy("Expiry date");
     assertEquals(statisticConfigurationPage.getTimeIntervalItems().size(), 4);
     // Change to Custom field
-    statisticConfigurationPage.changeGroupByTo(8);
+    statisticConfigurationPage.changeGroupBy("Custom field");
     assertTrue(statisticConfigurationPage.getCaseCustomFieldItems().size() > 0);
     statisticConfigurationPage.axisXYVisible();
     statisticConfigurationPage.autoRefeshToggleVisible();
     statisticConfigurationPage.backgroundColorVisible();
 
     // PIE chart
-    statisticConfigurationPage.changeChartTypeTo(2);
+    statisticConfigurationPage.changeChartType("Pie");
     statisticConfigurationPage.clickGeneratePreviewChart();
     // Assert default Group is State
     assertEquals(statisticConfigurationPage.getAggregationItems().size(), 9);
     // Change to Created date
-    statisticConfigurationPage.changeGroupByTo(5);
+    statisticConfigurationPage.changeGroupBy("Created date");
     assertEquals(statisticConfigurationPage.getTimeIntervalItems().size(), 4);
     // Change to Completed date
-    statisticConfigurationPage.changeGroupByTo(6);
+    statisticConfigurationPage.changeGroupBy("Completed date");
     assertEquals(statisticConfigurationPage.getTimeIntervalItems().size(), 4);
     // Change to Expiry date
-    statisticConfigurationPage.changeGroupByTo(7);
+    statisticConfigurationPage.changeGroupBy("Expiry date");
     assertEquals(statisticConfigurationPage.getTimeIntervalItems().size(), 4);
     // Change to Custom field
-    statisticConfigurationPage.changeGroupByTo(8);
+    statisticConfigurationPage.changeGroupBy("Custom field");
     assertTrue(statisticConfigurationPage.getCaseCustomFieldItems().size() > 0);
     statisticConfigurationPage.autoRefeshToggleVisible();
     statisticConfigurationPage.backgroundColorVisible();
 
     // NUMBER chart
-    statisticConfigurationPage.changeChartTypeTo(3);
+    statisticConfigurationPage.changeChartType("Number");
     // Change to State
-    statisticConfigurationPage.changeGroupByTo(0);
+    statisticConfigurationPage.changeGroupBy("State");
     assertEquals(statisticConfigurationPage.getAggregationItems().size(), 4);
     statisticConfigurationPage.autoRefeshToggleVisible();
     statisticConfigurationPage.hideLabelVisible();
 
     // Configure for Filter
-    statisticConfigurationPage.changeChartTypeTo(3);
-    statisticConfigurationPage.changeGroupByTo(0);
+    statisticConfigurationPage.changeChartType("Number");
+    statisticConfigurationPage.changeGroupBy("State");
 
     // Filter State
     statisticConfigurationPage.addFilter("State", null);

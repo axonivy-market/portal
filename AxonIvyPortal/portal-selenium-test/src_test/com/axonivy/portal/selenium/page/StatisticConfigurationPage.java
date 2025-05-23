@@ -22,19 +22,19 @@ public class StatisticConfigurationPage extends TemplatePage {
     $("input[id$='config-form:name']").shouldBe(appear, DEFAULT_TIMEOUT).sendKeys(name);
   }
 
-  public void changeChartTargetTo(int chartTargetIndex) {
+  public void changeChartTarget(String chartTargetName) {
     $("div[id$='config-form:target'] div.ui-selectonemenu-trigger").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("li[id$='config-form:target_" + chartTargetIndex + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $$("li[id^='config-form:target_']").filter(text(chartTargetName)).first().shouldBe(getClickableCondition()).click();
   }
 
-  public void changeChartTypeTo(int chartTypeIndex) {
+  public void changeChartType(String chartTypeName) {
     $("div[id$='config-form:type'] div.ui-selectonemenu-trigger").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-    $("li[id$='config-form:type_" + chartTypeIndex + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $$("li[id^='config-form:type_']").filter(text(chartTypeName)).first().shouldBe(getClickableCondition()).click();
   }
   
-  public void changeGroupByTo(int groupIndex) {
+  public void changeGroupBy(String groupByName) {
     $("div[id$='config-form:aggregates'] div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
-    $("li[id$='config-form:aggregates_" + groupIndex + "']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $$("li[id^='config-form:aggregates_']").filter(text(groupByName)).first().shouldBe(getClickableCondition()).click();
   }
 
   public ElementsCollection getPermissions() {
