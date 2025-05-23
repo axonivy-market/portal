@@ -24,7 +24,6 @@
   </distributionManagement>
   <properties>
     <ivy.engine.version>13.1.0</ivy.engine.version>
-    <build.plugin.version>13.1.0-SNAPSHOT</build.plugin.version>
   </properties>
   <dependencies>
     <dependency>
