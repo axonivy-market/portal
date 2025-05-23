@@ -24,7 +24,6 @@
   </distributionManagement>
   <properties>
     <ivy.engine.version>13.1.0</ivy.engine.version>
-    <build.plugin.version>13.1.0-SNAPSHOT</build.plugin.version>
   </properties>
   <dependencies>
     <dependency>
@@ -49,11 +48,6 @@
       </snapshots>
       <id>central</id>
       <url>https://repo.maven.apache.org/maven2</url>
-    </repository>
-    <repository>
-      <id>maven.axonivy.com</id>
-      <name>Axonivy Repo</name>
-      <url>https://maven.axonivy.com/</url>
     </repository>
     <repository>
       <snapshots>
@@ -82,9 +76,6 @@
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
         <extensions>true</extensions>
-        <configuration>
-          <compilerWarnings>false</compilerWarnings>
-        </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
