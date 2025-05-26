@@ -185,7 +185,10 @@
   margin-left: 6px;
 }
 
-.widget__header .widget__header-title,
+.widget__header .widget__header-title {
+  font-size: var(--default-widget-header-font-size)
+}
+
 .widget__header .ui-link.si, .navigation-widget-title {
   font-size: var(--widget-header-font-size);
 }
@@ -209,7 +212,6 @@
 
 .widget__header-title {
   flex: 1;
-  display: inline-block;
   font-weight: bold;
 }
 
