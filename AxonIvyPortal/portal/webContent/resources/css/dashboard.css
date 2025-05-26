@@ -489,7 +489,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .filter-overlay-panel.ui-widget-content>.ui-overlaypanel-content {
-  max-width: max-content;
+  width: 850px;
   padding: 0;
 }
 
