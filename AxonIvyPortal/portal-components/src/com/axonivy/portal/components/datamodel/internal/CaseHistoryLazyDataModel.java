@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.model.SortOrder;
+import org.primefaces.model.FilterMeta;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortMeta;
 
 import com.axonivy.portal.components.enums.AdditionalProperty;
 import com.axonivy.portal.components.enums.CaseSortField;
@@ -15,13 +17,11 @@ import com.axonivy.portal.components.ivydata.searchcriteria.CaseSearchCriteria;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.components.util.PermissionUtils;
 
-import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-@SuppressWarnings("deprecation")
-public class CaseHistoryLazyDataModel extends LazyDataModel7<ICase> {
+public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
 
   private static final long serialVersionUID = 3023805225538732101L;
 
@@ -51,10 +51,9 @@ public class CaseHistoryLazyDataModel extends LazyDataModel7<ICase> {
     crit.setCaseOwnerEnabled(isCaseOwnerEnabled);
     return crit;
   }
-
+  
   @Override
-  public List<ICase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
-      Map<String, Object> filters) {
+  public List<ICase> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
     if (first == 0) {
       initializedDataModel(criteria);
     }
@@ -155,4 +154,12 @@ public class CaseHistoryLazyDataModel extends LazyDataModel7<ICase> {
     }
     return rowIndex >= 0 && rowIndex < data.size();
   }
+
+  @Override
+  public int count(Map<String, FilterMeta> filterBy) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
+  
 }
