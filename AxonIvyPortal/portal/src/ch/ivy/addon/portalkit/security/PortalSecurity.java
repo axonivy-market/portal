@@ -92,6 +92,7 @@ public enum PortalSecurity {
     IUser adminUser = userRepo.findWithExternalLookup(Username.ADMIN);
     if (adminUser != null) {
       for (IPermission permission : Permissions.ADMIN_USER_ADDITIONAL) {
+        Ivy.log().error("init admin permisison");
         grantPermission(permission.getName(), adminUser);
       }
       grantPermissionsToSecurityMember(Permissions.ALL_PORTAL_PERMISSIONS, adminUser);
