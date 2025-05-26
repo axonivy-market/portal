@@ -5,6 +5,8 @@
   --small-font-size: 80%;
   --default-font-size: 1rem;
   --priority-font-size: 1.4rem;
+  --default-widget-header-font-size: 1.2rem;
+  
 
     /* AxonIvy Colors: */
   --ivy-primary-color-black: hsl(0, 0%, 11%);
