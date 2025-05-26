@@ -71,9 +71,6 @@
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
         <extensions>true</extensions>
-        <configuration>
-          <failOnWarning>false</failOnWarning>
-        </configuration>
       </plugin>
     </plugins>
   </build>
