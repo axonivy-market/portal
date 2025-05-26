@@ -613,7 +613,7 @@ class ClientNumberChart extends ClientChart {
   initWidgetHeaderName(chart, widgetName) {
     let widgetHeader = $(chart).parents(".card-widget-panel")
       .find(".widget__header")
-	  .find(".widget__header-title")
+      .find(".widget__header-title")
       .find("h1").get(0);
     if (widgetHeader) {
       widgetHeader.textContent = widgetName;
