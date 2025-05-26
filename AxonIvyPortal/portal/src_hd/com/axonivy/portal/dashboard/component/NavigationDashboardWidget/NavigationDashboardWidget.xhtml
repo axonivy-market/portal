@@ -65,8 +65,10 @@
               <i class="#{iconSelectionBean.generateIconWithFontFamily(widget.icon)} text-7xl"/>
           </div>
           <h:panelGroup styleClass="mt-3 w-full" layout="block">
-            <div class="mt-2 navigation-widget-title">
-                <h:outputText styleClass="font-bold" value="#{widget.name}" />
+            <div class="mt-2">
+              <h1 class="navigation-widget-title font-bold">
+                #{widget.name}
+              </h1>
             </div>
             <div class="mt-2">
                 <h:outputText styleClass="flex justify-content-center" value="#{widget.description}" />

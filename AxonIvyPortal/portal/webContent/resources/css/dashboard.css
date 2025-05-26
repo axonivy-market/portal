@@ -193,7 +193,7 @@
   font-size: var(--widget-header-font-size);
 }
 
-.navigation-widget-title {
+.navigation-widget-title{
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis;
