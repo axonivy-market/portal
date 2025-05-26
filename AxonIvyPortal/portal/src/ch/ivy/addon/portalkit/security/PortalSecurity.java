@@ -7,6 +7,7 @@ import java.util.Objects;
 import org.apache.commons.collections4.CollectionUtils;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
