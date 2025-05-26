@@ -52,7 +52,7 @@ public class DashboardConverter implements IJsonConverter {
 
           boolean hasPin = false;
           for (JsonNode column : columns) {
-            if ("pin".equals(column.path("field").asText())) {
+            if (PIN.equals(column.path("field").asText())) {
               hasPin = true;
               break;
             }
@@ -60,7 +60,7 @@ public class DashboardConverter implements IJsonConverter {
 
           if (!hasPin) {
             ObjectNode pinColumn = columns.objectNode();
-            pinColumn.put("field", "pin");
+            pinColumn.put("field", PIN);
             pinColumn.put("width", "75");
 
             ArrayNode updatedColumns = columns.arrayNode();

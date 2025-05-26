@@ -32,6 +32,7 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IUserToken;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -234,8 +235,7 @@ public class AiService {
 
   public AiResultDTO generateStartTasksAiResult(String taskId) {
     if (!NumberUtils.isDigits(taskId)) {
-      return AiAssistantAPI.generateErrorAiResult(
-          Ivy.cms().co("/Labels/AI/Error/CannotStartTask"));
+      return AiAssistantAPI.generateErrorAiResult(Ivy.cms().co("/Labels/AI/Error/CannotStartTask"));
     }
     TaskQuery query = TaskQuery.create();
     query.where().taskId().isEqual(Long.valueOf(taskId));
@@ -243,10 +243,13 @@ public class AiService {
     ITask foundTask = Optional.ofNullable(
         DashboardTaskService.getInstance().findByTaskQuery(query, 0, 1).get(0))
         .orElse(null);
+    
+    if (foundTask == null) {
+      return AiAssistantAPI.generateErrorAiResult(Ivy.cms().co("/Labels/AI/Error/CannotStartTask"));
+    }
 
-    if (foundTask == null || !foundTask
-        .canUserResumeTask(Ivy.session().getSessionUser().getUserToken())
-        .wasSuccessful()) {
+    IUserToken userToken = Ivy.session().getSessionUser().getUserToken();
+    if (!foundTask.canUserResumeTask(userToken).wasSuccessful()) {
       return AiAssistantAPI.generateErrorAiResult(
           Ivy.cms().co("/Labels/AI/Error/CannotStartTask",
               Arrays.asList(Long.toString(foundTask.getId()))));
