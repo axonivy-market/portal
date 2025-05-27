@@ -130,7 +130,7 @@ jobs:
       - name: Archive test reports
         uses: actions/upload-artifact@v4
         with:
-          name: selenium-test-reports-archive
+          name: selenium-test-reports
           retention-days: 5
           path: |
             AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
@@ -138,7 +138,7 @@ jobs:
       - name: Report
         uses: dorny/test-reporter@v2.0.0
         with:
-          artifact: selenium-test-report
-          name: Selenium tests report
+          artifact: selenium-test-reports
+          name: Selenium tests
           path: '*.xml'
           reporter: java-junit
