@@ -164,7 +164,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannelsReset: 通知チャネルをリセットしました
     subscribed: 通知する
     unpinAllPinnedCases: 'TODO: All pinned cases have been removed for user: {0}.'
-    unpinAllPinnedTasks: 'TODO: All pinned tasks have been removed for user: {0}'
+    unpinAllPinnedTasks: 'TODO: All pinned tasks have been removed for user: {0}.'
   PortalManagement:
     AdminSetting: 管理者設定
   ProcessViewer:
