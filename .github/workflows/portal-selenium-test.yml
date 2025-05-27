@@ -55,9 +55,10 @@ jobs:
         uses: stCarolas/setup-maven@v5
         with:
           maven-version: 3.9.8
+    
       - name: Export environment variables
         run: |
-          echo "Build screenshot for document. Use 2 inputs: \n 'engineDownloadURL' with default value is 'https://developer.axonivy.com/permalink/nightly-12/axonivy-engine.zip', \n 'testPatternToRun' with default value 'com.axonivy.portal.selenium.test.**.*Test'" >> $GITHUB_STEP_SUMMARY
+          echo "Build Selenium tests. Use 2 inputs: \n 'engineDownloadURL' with default value is 'https://developer.axonivy.com/permalink/nightly-12/axonivy-engine.zip', \n 'testPatternToRun' with default value 'com.axonivy.portal.selenium.test.**.*Test'" >> $GITHUB_STEP_SUMMARY
           echo "export IVY_JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
           echo "export PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
@@ -125,7 +126,7 @@ jobs:
           name: screenshots
           retention-days: 5
           path: |
-            AxonIvyPortal/portal-selenium-test/target/*.zip
+            AxonIvyPortal/portal-selenium-test/target/selenide/reports/*
 
       - name: Archive test reports
         uses: actions/upload-artifact@v4
