@@ -732,8 +732,7 @@ public class StatisticConfigurationBean implements Serializable {
       customFieldNameList.add(customField.name());
     });
     
-    if(statistic.getStatisticAggregation().getCustomFieldValue() == null
-        && customFieldList != null) {
+    if(statistic.getStatisticAggregation().getCustomFieldValue() == null) {
       ICustomFieldMeta firstCustomField = customFieldList.iterator().next();
       StatisticAggregation statisticAggregation = statistic.getStatisticAggregation();
       statisticAggregation.setCustomFieldValue(firstCustomField.name());

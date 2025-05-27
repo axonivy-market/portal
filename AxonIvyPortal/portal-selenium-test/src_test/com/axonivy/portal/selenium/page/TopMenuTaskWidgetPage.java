@@ -127,10 +127,16 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   }
 
   private void clickTaskAction(int taskIndex, String actionName) {
-    $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex)).filter(appear)
-        .first().shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']")
-        .filter(Condition.not(Condition.cssClass("ui-state-disabled"))).filter(text(actionName)).first()
-        .shouldBe(getClickableCondition()).click();
+    SelenideElement taskPanel =
+        $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex))
+            .filter(appear).first().shouldBe(appear, DEFAULT_TIMEOUT);
+
+    SelenideElement overlay = taskPanel.$("div.ui-overlaypanel-content").shouldBe(appear, DEFAULT_TIMEOUT);
+
+    ElementsCollection actionItems = overlay.$$("a.option-item")
+        .filter(Condition.not(Condition.cssClass("ui-state-disabled"))).filter(text(actionName));
+
+    actionItems.first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void destroyTask(int taskIndex) {
