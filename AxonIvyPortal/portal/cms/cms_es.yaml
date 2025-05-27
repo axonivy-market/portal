@@ -184,7 +184,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewApplication: Crear nueva aplicación de terceros
     announcement:
       announcement: Aviso
-      announcementsDisabled: Los avisos están deactivados
+      announcementsDisabled: Los avisos están deactivados.
       announcementsEnabled: Los avisos están activados
       defaultLanguageRequiredMessage: 'Texto requerido en el idioma estándard de la
         aplicación '
