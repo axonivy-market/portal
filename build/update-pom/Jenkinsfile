@@ -180,10 +180,10 @@ try:
   if parent is not None:
     groupId = parent.find("groupId")
     artifactId = parent.find("artifactId")
-    parentVersion = parent.find("version")
-    if (groupId is not None and artifactId is not None and parentVersion is not None and
+    versionTag = parent.find("version")
+    if (groupId is not None and artifactId is not None and versionTag is not None and
         groupId.text == "com.axonivy.ivy.api" and artifactId.text == "ivy-project-parent"):
-      parentVersion.text = parentVersion
+      versionTag.text = parentVersion
 
   # Write changes back to the file
   tree.write(filePath, encoding="utf-8", xml_declaration=True)
