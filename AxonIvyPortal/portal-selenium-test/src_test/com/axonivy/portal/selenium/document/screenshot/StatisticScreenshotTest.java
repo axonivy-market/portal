@@ -13,7 +13,8 @@ import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
-import com.axonivy.portal.selenium.page.ClientStatisticWidgetNewDashboardPage;
+import com.axonivy.portal.selenium.page.StatisticWidgetNewDashboardPage;
+import com.axonivy.portal.selenium.page.CustomStatisticConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
@@ -56,15 +57,15 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitStatisticChartLoaded();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "dashboard-statistic-widget-demo");
-    ClientStatisticWidgetNewDashboardPage tasksByPriorWidget = newDashboardPage.selectClientStatisticChartWidget("Tasks By Priority");
-    ClientStatisticWidgetNewDashboardPage topPriorWidget = newDashboardPage.selectClientStatisticChartWidget("Top Priority: 3 Days");
-    ClientStatisticWidgetNewDashboardPage runningCasesWidget = newDashboardPage.selectClientStatisticChartWidget("Running Cases");
-    ClientStatisticWidgetNewDashboardPage newCasesWidget = newDashboardPage.selectClientStatisticChartWidget("New Cases Per Day");
-    ClientStatisticWidgetNewDashboardPage avgRuntimeWidget = newDashboardPage.selectClientStatisticChartWidget("Case Category Avg. Runtime");
-    ClientStatisticWidgetNewDashboardPage dueTodayWidget = newDashboardPage.selectClientStatisticChartWidget("Due Today");
-    ClientStatisticWidgetNewDashboardPage completedCasesPerDayWidget = newDashboardPage.selectClientStatisticChartWidget("Completed Cases Per Day");
-    ClientStatisticWidgetNewDashboardPage tasksExpireTheEndOfWeek = newDashboardPage.selectClientStatisticChartWidget("Tasks that expire by the end of the week");
-    ClientStatisticWidgetNewDashboardPage openTasksWidget = newDashboardPage.selectClientStatisticChartWidget("Open Tasks");
+    StatisticWidgetNewDashboardPage tasksByPriorWidget = newDashboardPage.selectStatisticChartWidget("Tasks By Priority");
+    StatisticWidgetNewDashboardPage topPriorWidget = newDashboardPage.selectStatisticChartWidget("Top Priority: 3 Days");
+    StatisticWidgetNewDashboardPage runningCasesWidget = newDashboardPage.selectStatisticChartWidget("Running Cases");
+    StatisticWidgetNewDashboardPage newCasesWidget = newDashboardPage.selectStatisticChartWidget("New Cases Per Day");
+    StatisticWidgetNewDashboardPage avgRuntimeWidget = newDashboardPage.selectStatisticChartWidget("Case Category Avg. Runtime");
+    StatisticWidgetNewDashboardPage dueTodayWidget = newDashboardPage.selectStatisticChartWidget("Due Today");
+    StatisticWidgetNewDashboardPage completedCasesPerDayWidget = newDashboardPage.selectStatisticChartWidget("Completed Cases Per Day");
+    StatisticWidgetNewDashboardPage tasksExpireTheEndOfWeek = newDashboardPage.selectStatisticChartWidget("Tasks that expire by the end of the week");
+    StatisticWidgetNewDashboardPage openTasksWidget = newDashboardPage.selectStatisticChartWidget("Open Tasks");
 
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-by-prior-pie-chart", new ScreenshotMargin(5, 5));
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(topPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "top-prior-chart", new ScreenshotMargin(5, 5));
@@ -88,7 +89,7 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitStatisticChartLoaded();
-    ClientStatisticWidgetNewDashboardPage tasksByPriorWidget = newDashboardPage.selectClientStatisticChartWidget("Tasks By Priority");
+    StatisticWidgetNewDashboardPage tasksByPriorWidget = newDashboardPage.selectStatisticChartWidget("Tasks By Priority");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-by-prior-bar-chart", new ScreenshotMargin(5, 5));
   }
   
@@ -103,7 +104,28 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitStatisticChartLoaded();
-    ClientStatisticWidgetNewDashboardPage tasksByPriorWidget = newDashboardPage.selectClientStatisticChartWidget("Tasks By Priority");
+    StatisticWidgetNewDashboardPage tasksByPriorWidget = newDashboardPage.selectStatisticChartWidget("Tasks By Priority");
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorWidget.getWidget(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "tasks-by-prior-number-chart", new ScreenshotMargin(5, 5));
   }
+  
+  @Test
+  public void screenshotCreateNewCustomStatistic() throws IOException {
+    showNewDashboard();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    ScreenshotUtils.resizeBrowser(new Dimension(1386, 1200));
+    var configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    var newDashboardDetailsEditPage = modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    WebElement newWidgetDialog = newDashboardDetailsEditPage.addWidget();
+    newDashboardDetailsEditPage.collapseStandardWidgets();
+    ScreenshotUtils.executeDecorateJs("highlightCreateCustomStatisticWidgetButton()");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
+        ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "create-new-custom-statistic-widget", new ScreenshotMargin(20));
+
+    newDashboardDetailsEditPage.clickOnCreateCustomStatisiticWidget();
+    CustomStatisticConfigurationPage customStatisticConfigurationPage = new CustomStatisticConfigurationPage();
+    customStatisticConfigurationPage.waitForPageLoad();
+    ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "custom-statistic-widget-configuration-page");
+  }
+
 }

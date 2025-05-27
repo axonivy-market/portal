@@ -85,7 +85,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Axon Ivy Prozess
     DashboardWidgetType:
       CASE: Vorgangs-Widget
-      CLIENT_STATISTIC: Statistik-Widget
       CUSTOM: Benutzerdefiniertes Widget
       NAVIGATION_DASHBOARD: Navigation dashboard widget
       NEW: Neues Widget
@@ -155,12 +154,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rubrik 3
       NORMAL_TEXT: Normaler Text
   MyProfile:
+    CaseList: Vorfall-Liste
     DateFormat: Datum Format
     FormattingLanguage: Sprache der Formatierung
     General: Allgemeine
     Homepage: Homepage
     Language: Sprache
     ProcessList: Prozess-Liste
+    TaskList: Aufgabenliste
     byDefault: '  standardmäßig'
     defaultOption: Standard ({0})
     defaultViewMode: Standardanzeige
@@ -169,6 +170,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: Benachrichtigungskanäle
     notificationChannelsReset: Benachrichtigungskanäle zurücksetzen
     subscribed: abonniert
+    unpinAllPinnedCases: Alle angehefteten Fälle wurden für den Benutzer {0} entfernt.
+    unpinAllPinnedTasks: Alle angehängten Aufgaben wurden für den Benutzer {0} entfernt.
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
@@ -294,26 +297,16 @@ ch.ivy.addon.portalkit.ui.jsf:
       documentUploadSizeLimit: Legen Sie das Größenlimit für das Hochladen von Dokumenten
         in Megabyte (MB) fest. Der Standardwert beträgt 20 MB.
       embedInFrame: Auf true gesetzt, um einen Prozess/Task im IFrame-Modus zu starten
-      enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers
-        bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich
-        auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik,
-        …
-      enableDeepLTranslation: Setzen Sie diese Eigenschaft auf true, um die DeepL
-        Übersetzungsunterstützung zu aktivieren.
-      enableDocumentPreview: 'Auf "true" setzen, um die Vorschau von Dokumenten für
-        bestimmte Dateitypen zu aktivieren. Unterstützte Dateitypen sind: pdf, png,
-        jpeg, jpg, txt, log.'
-      enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat
-        zu aktivieren
-      enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten
-        Chat zu aktivieren
-      enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option
-        in Aufgaben-/Vorgang-Aktionen zu aktivieren
-      enableScriptCheckingForUploadedDocumentNote: Auf "true" setzen, um die Skriptüberprüfung
-        zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt.
-      enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner
-        für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion
-        die API VIRUSTOTAL.
+      enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …
+      enableDeepLTranslation: Setzen Sie diese Eigenschaft auf true, um die DeepL Übersetzungsunterstützung zu aktivieren.
+      enableDocumentPreview: 'Auf "true" setzen, um die Vorschau von Dokumenten für bestimmte Dateitypen zu aktivieren. Unterstützte Dateitypen sind: pdf, png, jpeg, jpg, txt, log.'
+      enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
+      enablePinCase: Setzen Sie diese Eigenschaft auf „true“, um das Anheften von Fällen zu ermöglichen.
+      enablePinTask: Setzen Sie diese Eigenschaft auf „true“, um das Anheften von Aufgaben zu ermöglichen.
+      enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten Chat zu aktivieren
+      enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option in Aufgaben-/Vorgang-Aktionen zu aktivieren
+      enableScriptCheckingForUploadedDocumentNote: Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt.
+      enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
       hideCaseCreator: |
         Auf true setzen, um den Fallersteller in der Fallliste, dem Fall-Widget und den Falldetails auszublenden.
         Diese Einstellung wirkt sich auf alle Fallabfragen aus, z. B. für Fallliste, globale Suche, Statistik.
@@ -456,6 +449,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ID: Vorgangs Id
       NAME: Name / Beschreibung
       OWNER: Prozessverantwortlichen
+      PIN: Anheften
       STATE: Status
     deletionNoteContent: Der Vorgang wurde durch {0} gelöscht.
     destroyCaseMessage: 'Diese Operation kann nicht rückgängig gemacht werden. Sind
@@ -655,6 +649,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: Ausgewählte Filter
     ok: OK
     'on': am
+    pin: Anheften
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
     pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
     previousStage: Vorherige Stufe
@@ -716,6 +711,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Alle Administratoren
     typeAllUsers: Alle Benutzer
     typeOnlyMe: Nur für mich
+    unpin: Anheftung aufheben
     uploadHere: Hier hochladen
     uploadOneHere: Auswählen
     user: '{0} Benutzer'
@@ -888,14 +884,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Gespeicherte Filter
     SearchForFilter: Nach Filter suchen
     ShareThisDashboard: Teilen Sie dieses Dashboard
+    ShowPinnedToggle: '''Angeheftete Elemente'' umschalten anzeigen'
     StandardWidgets: Standard-Widgets
     StatisticWidget:
-      EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm
-        zu erstellen!
-    WelcomeWidgetIntroduction: Dieses Widget zeigt einen Willkommenstext und ein Bild
-      auf dem Dashboard an.
-    WelcomeWidgetNotFoundMessage: Wir können das Bild des Widgets nicht finden, bitte
-      konfigurieren Sie Ihr Bild neu!
+      EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
+      failToRenderChartMessage: Fehler beim Rendern des Diagramms. Bitte versuchen Sie es mit anderen Einstellungen erneut.
+      firstConfigChartMessage: Noch kein Diagramm verfügbar. Bitte konfigurieren Sie Ihre Einstellungen, um ein Diagramm zu generieren.
+    WelcomeWidgetIntroduction: Dieses Widget zeigt einen Willkommenstext und ein Bild auf dem Dashboard an.
+    WelcomeWidgetNotFoundMessage: Wir können das Bild des Widgets nicht finden, bitte konfigurieren Sie Ihr Bild neu!
     WidgetFilterName: Name des Widget-Filters
     WidgetFilters: Widget-Filter
     YourWelcomeWidget: Ihr Willkommens-Widget
@@ -1405,6 +1401,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME: Ablaufdatum
       ID: Aufgaben Id
       NAME: Name / Beschreibung
+      PIN: Anheften
       PRIORITY: Priorität
       STATE: Status
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Fehlender Aktivator
@@ -1561,6 +1558,10 @@ Dialogs:
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Neues Dashboard hinzufügen
+              PortalDashboardDetailModification:
+                CreateCustomStatistic: Benutzerdefiniertes Statistik-Widget erstellen
+                DeleteConfirm: Sind Sie sicher, dass Sie löschen möchten?
+                RemoveThisStatistic: Diese benutzerdefinierte Statistik entfernen
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden
@@ -1574,6 +1575,10 @@ Dialogs:
                     die Reihenfolge durch Ziehen und Ableg
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Willkommen bei Axon Ivy Portal
+          setting:
+            UserProfile:
+              unpinAllPinnedCases: Alle angehefteten Fälle lösen
+              unpinAllPinnedTasks: Alle angehefteten Aufgaben lösen
         portalkit:
           component:
             CaseItemDetails:
@@ -1723,6 +1728,9 @@ Dialogs:
               WidgetFilter: Widget-Filter
             PortalDashboardDetailModification:
               CloneWidget: Widget klonen
+            StatisticWidget:
+              IdNotFound: Diagramm mit ID {0} nicht gefunden
+              NoPermissionChartMessage: Sie haben nicht die erforderliche Berechtigung, um diese Karte zu sehen.
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen
@@ -1731,6 +1739,28 @@ Dialogs:
             CaseDetailsIFrameTitle: Falldetails Rahmen
           IFrameTaskTemplate:
             TaskIFrameTitle: Aufgabenrahmen
+        page:
+          StatisticConfiguration:
+            AddFilter: Filter hinzufügen
+            Advanced: Fortgeschrittene
+            ChartType: Diagrammtyp
+            Color: Farbe {0}
+            Create: Erstellen
+            EditStatistic: Statistisches Widget bearbeiten
+            For: Für
+            GeneratePreview: Vorschau generieren
+            GroupBy: Gruppe nach
+            HideLabel: Etikett ausblenden
+            Interval: Intervall
+            NewStatistic: Neues Statistik-Widget
+            OutdatedChartMessage: Die angewendete Group-by- oder Filter-Einstellung stimmt nicht mit der aktuellen UI-Konfiguration überein. Bitte konfigurieren Sie sie neu.
+            RefreshInterval: Automatisches Auffrischen aktiviert
+            RefreshIntervalInSeconds: Intervall für die automatische Aktualisierung (Sekunden)
+            RefreshIntervalInSecondsValidationMessage: 'Intervall für die automatische Aktualisierung (Sekunden): Das angegebene Attribut liegt nicht zwischen den erwarteten Werten von {0} und {1}'
+            RefreshIntervalInfo: Die Statistik kann nach einer bestimmten Zeit automatisch aktualisiert werden. Wenn sie aktiviert ist, kann dies die Leistung beeinträchtigen. Das Intervall für die automatische Aktualisierung (Sekunden) muss mindestens {0} betragen.
+            StatisticConfiguration: Konfiguration der Statistik
+            XAxisTitle: Titel der X-Achse
+            YAxisTitle: Titel der Y-Achse
   components:
     CaseDocument:
       FileDate: Änderungsdatum
@@ -1744,6 +1774,64 @@ Dialogs:
       invalidFileMessage: Dateityp nicht gültig!
       invalidSizeMessage: Datei zu groß!
       maximumFileUploadElement: Es gibt bereits ein Datei-Upload-Element
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: Name des Aktivators
+              BUSINESS_RUNTIME:
+                name: Business-Laufzeit
+              CATEGORY:
+                name: Kategorie
+              CREATOR_NAME:
+                name: Name des Erstellers
+              CUSTOM_FIELD:
+                name: Benutzerdefiniertes Feld
+              END_TIMESTAMP:
+                name: Datum der Fertigstellung
+              EXPIRY_TIMESTAMP:
+                name: Verfallsdatum
+              IS_EXPIRED:
+                name: Ist abgelaufen
+              PRIORITY:
+                name: Priorität
+              RESPONSIBLES_NAME:
+                name: Verantwortliche
+              START_TIMESTAMP:
+                name: Erstellungsdatum
+              STATE:
+                name: Zustand
+              WORKER_NAME:
+                name: Name des Arbeiters
+              WORKING_TIME:
+                name: Arbeitszeiten
+            AggregationInterval:
+              DAY:
+                name: Tag
+              MONTH:
+                name: Monat
+              WEEK:
+                name: Woche
+              YEAR:
+                name: Jahr
+            ChartTarget:
+              CASE:
+                name: Vorgang
+              TASK:
+                name: Aufgabe
+            ChartType:
+              BAR:
+                name: Balkendiagramm
+              LINE:
+                name: Liniendiagramm
+              NUMBER:
+                name: Kennzahl / Metrik
+              PIE:
+                name: Kreisdiagramm
 Labels:
   AI:
     Error:
@@ -1768,9 +1856,13 @@ Labels:
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
   AndMore: 'und {0} weitere...  '
+  AllTasks: Alle Aufgaben
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
+  Configuration: Konfiguration
+  Collapse: Einklappen
   CreateNewDashboard: Neues Dashboard erstellen
+  Description: Beschreibung
   EditDescription: Beschreibung bearbeiten
   Enums:
     ChatbotCandidateQuestion:
@@ -1796,6 +1888,7 @@ Labels:
       ID: Id
       NAME: Name
       OWNER: Prozessverantwortlichen
+      PIN: Anheften
       STATE: Status
     DashboardStandardTaskColumn:
       ACTIONS: Aktionen
@@ -1807,6 +1900,7 @@ Labels:
       EXPIRY: Ablaufdatum
       ID: Id
       NAME: Name
+      PIN: Anheften
       PRIORITY: Priorität
       RESPONSIBLE: Verantwortlich
       START: Start
@@ -1866,12 +1960,22 @@ Labels:
     ThemeMode:
       DARK: Dunkel
       LIGHT: Hell
+  Filters: Filter
+  General: Allgemein
+  Icon: Symbol
+  Expand: Erweitern
   InsertTask-Explain: Aufgabe einfügen. Meine Aufgabe wird aufgeschoben.
   InsertTheTask: Aufgabe einfügen
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Name: Titel
   Permissions: Berechtigungen
+  Preview: Vorschau
+  RequiredFieldMessage: '{0}: Wert ist erforderlich'
+  Save: Speichern
+  PinnedCases: Angeheftete Fälle
+  PinnedTasks: Angehängte Aufgaben
   Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails

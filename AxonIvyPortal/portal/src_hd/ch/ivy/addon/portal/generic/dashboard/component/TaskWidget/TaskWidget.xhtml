@@ -81,7 +81,12 @@
               <ui:param name="ariaLabel" value="#{taskBean.getAriaLabel(task, taskWidget.columns)}" />
             </ui:include>
           </h:panelGroup>
-
+          
+          <h:panelGroup rendered="#{column.field eq 'pin' and visibilityBean.enablePinTask}">
+            <h:outputText id="task-pin" value="#{column.display(task)}"/>
+            <ic:ch.ivy.addon.portalkit.component.task.column.TaskPin task="#{task}"/>
+          </h:panelGroup>
+          
           <h:panelGroup rendered="#{column.field eq 'priority'}">
             <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority priority="#{task.priority}" alwaysShowPriority="true" />
           </h:panelGroup>
@@ -134,6 +139,7 @@
               <ui:param name="destroyTaskDialogComponent" value="destroy-task-confirmation-dialog" />
             </ui:include>
           </h:panelGroup>
+          
         </p:columns>
       </p:dataTable>
       <h:panelGroup layout="block" id="empty-message-container"

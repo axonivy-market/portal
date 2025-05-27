@@ -22,6 +22,5 @@ Axon Ivy Portal is incorporating Weblate into its localization workflow to facil
 | ------- | ------------------ |
 | 13.x.x  | :white_check_mark: |
 | 12.0.x  | :white_check_mark: |
-| 11.x.x  | :white_check_mark: |
 | 10.0.x  | :white_check_mark:  |
 | <= 8.x.x   | :x:                |

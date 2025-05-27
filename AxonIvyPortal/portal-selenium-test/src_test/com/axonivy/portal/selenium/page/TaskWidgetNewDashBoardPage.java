@@ -69,7 +69,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return 0;
   }
 
-  private SelenideElement getColumnOfCaseHasActionIndex(int index, String columnName) {
+  private SelenideElement getColumnOfTaskHasActionIndex(int index, String columnName) {
     int startIndex = getIndexWidgetByColumnScrollable(columnName);
     return getColumnOfTableWidget(index).get(startIndex).$("span a");
   }
@@ -289,7 +289,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnTaskActionLink(int taskIndex) {
-    getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getColumnOfTaskHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id$=':side-steps-panel'] div.task-additional-actions-panel").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public boolean isTaskAdditionActionDisplay(String taskName) {

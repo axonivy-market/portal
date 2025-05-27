@@ -56,6 +56,7 @@ public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_DASHBOARD_CONFIGURATION_EDIT_PAGE = "Start Processes/PortalStart/PortalDashboardConfigurationEditPage.ivp";
   private static final String PORTAL_NOTIFICATION_FULLPAGE =  "Start Processes/PortalStart/NotificationFullPage.ivp";
   private static final String PORTAL_NOTIFICATION_FULLPAGE_START =  "/NotificationFullPage.ivp";
+  private static final String PORTAL_CUSTOM_STATISTIC = "Start Processes/PortalStart/StatisticConfiguration.ivp";
   
   private final static String DASHBOARD_PARAM = "isShowDashboard";
   
@@ -269,5 +270,9 @@ public final class PortalNavigator extends BaseNavigator{
         .findAssistantDashboardProcess();
     return Optional.ofNullable(process).map(IProcessStart::getLinkEmbedded)
         .map(WebLink::getRelative).orElse("");
+  }
+  
+  public static String buildCustomStatisticUrl(Map<String, String> param) {
+    return buildUrlByKeyword(PORTAL_CUSTOM_STATISTIC, PORTAL_CUSTOM_STATISTIC, param);
   }
 }

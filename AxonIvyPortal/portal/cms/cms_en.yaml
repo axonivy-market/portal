@@ -77,7 +77,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Axon Ivy process
     DashboardWidgetType:
       CASE: Case widget
-      CLIENT_STATISTIC: Statistic widget
       CUSTOM: Custom widget
       NAVIGATION_DASHBOARD: Navigation dashboard widget
       NEW: New widget
@@ -147,12 +146,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Heading 3
       NORMAL_TEXT: Normal Text
   MyProfile:
+    CaseList: Case List
     DateFormat: Date Format
     FormattingLanguage: Formatting language
     General: General
     Homepage: Homepage
     Language: Language
     ProcessList: Process list
+    TaskList: Task List
     byDefault: ' by default'
     defaultOption: Default ({0})
     defaultViewMode: Default view mode
@@ -161,6 +162,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: Notification Channels
     notificationChannelsReset: Notification Channels reset
     subscribed: subscribed
+    unpinAllPinnedCases: 'All pinned cases have been removed for user: {0}.'
+    unpinAllPinnedTasks: 'All pinned tasks have been removed for user: {0}.'
   PortalManagement:
     AdminSetting: Admin settings
   ProcessViewer:
@@ -245,6 +248,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableDeepLTranslation: Set this property to true to enable the DeepL translation support
       enableDocumentPreview: 'Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
       enableGroupChat: Set this property to true to enable group chat function
+      enablePinCase: Set this property to true to enable the ability to pin cases.
+      enablePinTask: Set this property to true to enable the ability to pin tasks.
       enablePrivateChat: Set this property to true to enable private chat function
       enableProcessViewer: Set this property to true to enable process viewer option in Task/Case actions
       enableScriptCheckingForUploadedDocumentNote: Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
@@ -360,6 +365,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ID: Case Id
       NAME: Name / Description
       OWNER: Case Owners
+      PIN: Pin
       STATE: State
     deletionNoteContent: The case was destroyed by {0}
     destroyCaseMessage: 'This operation cannot be undone. Are you sure you want to destroy case <b>{0} (ID: {1})</b> and all of its tasks?'
@@ -547,6 +553,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: selected filters
     ok: OK
     'on': 'on'
+    pin: Pin
     pleaseAddDocument: Please add a document with the link above.
     pleaseAddNote: Please add a note with the link above.
     previousStage: Previous stage
@@ -606,6 +613,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: All administrators
     typeAllUsers: All users
     typeOnlyMe: Only me
+    unpin: Unpin
     uploadHere: Upload here
     uploadOneHere: Upload one here
     user: '{0} user'
@@ -757,9 +765,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Saved filters
     SearchForFilter: Search for filter
     ShareThisDashboard: Share this dashboard
+    ShowPinnedToggle: Show 'Pinned Items' Toggle
     StandardWidgets: Standard Widgets
     StatisticWidget:
       EmptyChartDataMessage: We do not have enough data to create a nice chart!
+      failToRenderChartMessage: Error while rendering chart. Please retry with different settings.
+      firstConfigChartMessage: No chart available yet. Please configure your settings to generate a chart.
     WelcomeWidgetIntroduction: This widget displays a welcome text and image on dashboard.
     WelcomeWidgetNotFoundMessage: We cannot find the image of widget, please reconfigure your image!
     WidgetFilterName: Widget filter name
@@ -1209,6 +1220,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME: Expiry
       ID: Task Id
       NAME: Name / Description
+      PIN: Pin
       PRIORITY: Priority
       STATE: State
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Missing activator
@@ -1346,6 +1358,10 @@ Dialogs:
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Add new dashboard
+              PortalDashboardDetailModification:
+                CreateCustomStatistic: Create custom statistic widget
+                DeleteConfirm: Are you sure you want to delete?
+                RemoveThisStatistic: Remove this custom statistic
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Could not find the linked process!
@@ -1357,6 +1373,10 @@ Dialogs:
                   DragAndDropTooltip: Click Preview, then drag and drop to change the order
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Welcome to Axon Ivy Portal
+          setting:
+            UserProfile:
+              unpinAllPinnedCases: Unpin all pinned cases
+              unpinAllPinnedTasks: Unpin all pinned tasks
         portalkit:
           component:
             CaseItemDetails:
@@ -1452,9 +1472,6 @@ Dialogs:
                 Alt + W: Focus on to the first task. Alt + Q: Focus on to the first case. Tab: Sequential tabbing through elements. Esc: Close expanded widgets. Enter: Confirm selection.'
             CaseWidgetConfiguration:
               AddFilter: Add filter
-            ClientStatisticWidget:
-              IdNotFound: Chart with ID {0} not found
-              NoPermissionChartMessage: You do not have the required permission to see this chart.
             CloneWidgetDialog:
               Header: Clone widget "{0}"
               TargetDashboard: Target dashboard
@@ -1468,6 +1485,8 @@ Dialogs:
               chooseAJsonFile: Choose a json file
             DashboardSharing:
               ShareDashboard: Share Dashboard
+            NavigationDashboardWidget:
+              PermissionsDenied: You don't have permission to access this dashboard
             NavigationDashboardWidgetConfiguration:
               ButtonName: Button Name
               NavigationDashboardWidgetConfiguration: Navigation dashboard widget configuration
@@ -1498,6 +1517,9 @@ Dialogs:
               WidgetFilter: Widget Filter
             PortalDashboardDetailModification:
               CloneWidget: Clone widget
+            StatisticWidget:
+              IdNotFound: Chart with ID {0} not found
+              NoPermissionChartMessage: You do not have the required permission to see this chart.
             TaskWidgetConfiguration:
               AddFilter: Add filter
               ResetFilter: Reset filter
@@ -1506,6 +1528,28 @@ Dialogs:
             CaseDetailsIFrameTitle: Case details frame
           IFrameTaskTemplate:
             TaskIFrameTitle: Task frame
+        page:
+          StatisticConfiguration:
+            AddFilter: Add filter
+            Advanced: Advanced
+            ChartType: Chart type
+            Color: Color {0}
+            Create: Create
+            EditStatistic: Edit Statistic Widget
+            For: For
+            GeneratePreview: Generate preview
+            GroupBy: Group by
+            HideLabel: Hide label
+            Interval: Interval
+            NewStatistic: New Statistic Widget
+            OutdatedChartMessage: The applied group-by or filter does not align with the current UI configuration. Please reconfigure it.
+            RefreshInterval: Auto-refresh enabled
+            RefreshIntervalInSeconds: Auto-refresh interval (seconds)
+            RefreshIntervalInSecondsValidationMessage: 'Auto-refresh interval (seconds): Specified attribute is not between the expected values of {0} and {1}'
+            RefreshIntervalInfo: The statistic can be auto-refreshed after a certain period. If enabled, this may impact performance. Auto-refresh interval (seconds) must be at least {0}.
+            StatisticConfiguration: Statistic configuration
+            XAxisTitle: X axis title
+            YAxisTitle: Y axis title
   components:
     CaseDocument:
       FileDate: Modified at
@@ -1521,6 +1565,64 @@ Dialogs:
   general:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: Activator name
+              BUSINESS_RUNTIME:
+                name: Business runtime
+              CATEGORY:
+                name: Category
+              CREATOR_NAME:
+                name: Creator name
+              CUSTOM_FIELD:
+                name: Custom field
+              END_TIMESTAMP:
+                name: Completed date
+              EXPIRY_TIMESTAMP:
+                name: Expiry date
+              IS_EXPIRED:
+                name: Is expired
+              PRIORITY:
+                name: Priority
+              RESPONSIBLES_NAME:
+                name: Responsibles
+              START_TIMESTAMP:
+                name: Created date
+              STATE:
+                name: State
+              WORKER_NAME:
+                name: Worker name
+              WORKING_TIME:
+                name: Working time
+            AggregationInterval:
+              DAY:
+                name: Day
+              MONTH:
+                name: Month
+              WEEK:
+                name: Week
+              YEAR:
+                name: Year
+            ChartTarget:
+              CASE:
+                name: Case
+              TASK:
+                name: Task
+            ChartType:
+              BAR:
+                name: Bar
+              LINE:
+                name: Line
+              NUMBER:
+                name: Number
+              PIE:
+                name: Pie
 Labels:
   AI:
     Error:
@@ -1555,9 +1657,13 @@ Labels:
       Details of task **{0} (#{1})**:
       {2}
   AndMore: and {0} more...
+  AllTasks: All Tasks
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  Configuration: Configuration
+  Collapse: Collapse
   CreateNewDashboard: Create new dashboard
+  Description: Description
   EditDescription: Edit description
   Enums:
     ChatbotCandidateQuestion:
@@ -1574,13 +1680,14 @@ Labels:
       ACTIONS: Actions
       APPLICATION: Application
       CATEGORY: Category
-      CREATED: Created Date
+      CREATED: Created date
       CREATOR: Creator
       DESCRIPTION: Description
-      FINISHED: Finished Date
+      FINISHED: Finished date
       ID: Id
       NAME: Name
       OWNER: Case Owners
+      PIN: Pin
       STATE: State
     DashboardStandardTaskColumn:
       ACTIONS: Actions
@@ -1592,6 +1699,7 @@ Labels:
       EXPIRY: Expiry
       ID: Id
       NAME: Name
+      PIN: Pin
       PRIORITY: Priority
       RESPONSIBLE: Responsible
       START: Start
@@ -1651,12 +1759,22 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Light
+  Filters: Filters
+  General: General
+  Icon: Icon
+  Expand: Expand
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Name: Name
   Permissions: Permissions
+  Preview: Preview
+  RequiredFieldMessage: '{0}: Value is required'
+  Save: Save
+  PinnedCases: Pinned Cases
+  PinnedTasks: Pinned Tasks
   Share: Share
   Task: Task
   TaskItemDetail: Task Details

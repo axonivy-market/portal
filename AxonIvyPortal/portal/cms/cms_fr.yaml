@@ -83,7 +83,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Processus Axon Ivy
     DashboardWidgetType:
       CASE: Widget de cas
-      CLIENT_STATISTIC: Widget Statistiques
       CUSTOM: Widget personnalisé
       NAVIGATION_DASHBOARD: Widget du tableau de bord de navigation
       NEW: Nouveau widget
@@ -153,12 +152,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rubrique 3
       NORMAL_TEXT: Texte normal
   MyProfile:
+    CaseList: Liste des cas
     DateFormat: Format de la date
     FormattingLanguage: Langue de mise en forme
     General: Général
     Homepage: Page d'accueil
     Language: Langue
     ProcessList: Liste des processus
+    TaskList: Liste des tâches
     byDefault: ' par défaut'
     defaultOption: Par défaut ({0})
     defaultViewMode: Mode de vue par défaut
@@ -167,6 +168,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: Canaux de notification
     notificationChannelsReset: Réinitialisation des canaux de notification
     subscribed: abonnée
+    unpinAllPinnedCases: 'Tous les cas épinglés ont été supprimés pour l''utilisateur : {0}.'
+    unpinAllPinnedTasks: Toutes les tâches épinglées ont été supprimées pour l’utilisateur {0}.
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
@@ -286,26 +289,16 @@ ch.ivy.addon.portalkit.ui.jsf:
       documentUploadSizeLimit: Définissez la limite de taille pour le téléchargement
         de documents en mégaoctets (Mo). La valeur par défaut est de 20 Mo.
       embedInFrame: Régler sur true pour démarrer un processus/tâche en mode IFrame
-      enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de
-        cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes
-        de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
-      enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer
-        la prise en charge de la traduction de DeepL.
-      enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents
-        pour certains types de fichiers. Les types de fichiers pris en charge sont
-        : pdf, png, jpeg, jpg, txt, log.'
-      enableGroupChat: Définissez cette propriété sur true pour activer la fonction
-        de chat de groupe
-      enablePrivateChat: Définissez cette propriété à true pour activer la fonction
-        de chat privé
-      enableProcessViewer: Définissez cette propriété à true pour activer l'option
-        de visualisation de processus dans les actions de Task/Case.
-      enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la
-        vérification de script pour le document téléchargé. Actuellement, cette fonction
-        prend en charge la vérification de PDF, Excel, Word.
-      enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le
-        scanner de virus pour le document téléchargé. Actuellement, cette fonction
-        utilise l'API VIRUSTOTAL.
+      enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
+      enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer la prise en charge de la traduction de DeepL.
+      enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents pour certains types de fichiers. Les types de fichiers pris en charge sont : pdf, png, jpeg, jpg, txt, log.'
+      enableGroupChat: Définissez cette propriété sur true pour activer la fonction de chat de groupe
+      enablePinCase: Définissez cette propriété sur true pour activer la possibilité d’épingler des cas.
+      enablePinTask: Définissez cette propriété sur true pour activer la possibilité d’épingler des tâches.
+      enablePrivateChat: Définissez cette propriété à true pour activer la fonction de chat privé
+      enableProcessViewer: Définissez cette propriété à true pour activer l'option de visualisation de processus dans les actions de Task/Case.
+      enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la vérification de PDF, Excel, Word.
+      enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
       hideCaseCreator: |-
         La valeur "true" permet de masquer le créateur du dossier dans la liste des dossiers, le widget du dossier et les détails du dossier.
         Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
@@ -447,6 +440,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ID: Id du dossier
       NAME: Nom / Description
       OWNER: Responsables de processus
+      PIN: Épingler
       STATE: Etat
     deletionNoteContent: Ce dossier a été supprimé par {0}
     destroyCaseMessage: 'Cette opération ne peut pas être annulée. Êtes-vous sûr de
@@ -644,6 +638,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: filtres sélectionnés
     ok: OK
     'on': le
+    pin: Épingler
     pleaseAddDocument: Veuillez ajouter un document avec le lien ci-dessus.
     pleaseAddNote: Veuillez ajouter une note avec le lien ci-dessus.
     previousStage: Étape précédente
@@ -706,6 +701,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Tous les administrateurs
     typeAllUsers: Tous les utilisateurs
     typeOnlyMe: Seulement pour moi
+    unpin: Désépingler
     uploadHere: Téléchargez ici
     uploadOneHere: Téléchargez-en un ici
     user: '{0} utilisateur'
@@ -876,14 +872,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Filtres enregistrés
     SearchForFilter: Rechercher un filtre
     ShareThisDashboard: Partager ce tableau de bord
+    ShowPinnedToggle: Afficher le bouton de bascule 'Éléments épinglés'
     StandardWidgets: Widgets standard
     StatisticWidget:
-      EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau
-        graphique !
-    WelcomeWidgetIntroduction: Ce widget affiche un texte et une image de bienvenue
-      sur le tableau de bord.
-    WelcomeWidgetNotFoundMessage: Nous ne pouvons pas trouver l'image du widget, veuillez
-      reconfigurer votre image !
+      EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau graphique !
+      failToRenderChartMessage: Erreur lors du rendu du graphique. Veuillez réessayer avec des paramètres différents.
+      firstConfigChartMessage: Aucun graphique disponible pour le moment. Veuillez configurer vos paramètres pour générer un graphique.
+    WelcomeWidgetIntroduction: Ce widget affiche un texte et une image de bienvenue sur le tableau de bord.
+    WelcomeWidgetNotFoundMessage: Nous ne pouvons pas trouver l'image du widget, veuillez reconfigurer votre image !
     WidgetFilterName: Nom du filtre du widget
     WidgetFilters: Filtres widgets
     YourWelcomeWidget: Votre widget de bienvenue
@@ -1384,6 +1380,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME: Délai
       ID: Id de tâche
       NAME: Nom / Description
+      PIN: Épingler
       PRIORITY: Priorité
       STATE: Etat
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Activateur manquant
@@ -1545,6 +1542,10 @@ Dialogs:
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Ajouter un nouveau tableau de bord
+              PortalDashboardDetailModification:
+                CreateCustomStatistic: Créer un widget de statistiques personnalisé
+                DeleteConfirm: Êtes-vous sûr de vouloir supprimer ?
+                RemoveThisStatistic: Supprimer cette statistique personnalisée
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
@@ -1557,6 +1558,10 @@ Dialogs:
                     modifier l'ordre
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Bienvenue à Axon Ivy Portal
+          setting:
+            UserProfile:
+              unpinAllPinnedCases: Détacher tous les cas épinglés
+              unpinAllPinnedTasks: Désépingler toutes les tâches épinglées
         portalkit:
           component:
             CaseItemDetails:
@@ -1666,10 +1671,6 @@ Dialogs:
                 bestätigen'
             CaseWidgetConfiguration:
               AddFilter: Ajouter un filtre
-            ClientStatisticWidget:
-              IdNotFound: ' Diagramme avec ID {0} non trouvé'
-              NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour
-                consulter ce graphique.
             CloneWidgetDialog:
               Header: Clone widget "{0}"
               TargetDashboard: Target dashboard
@@ -1683,6 +1684,10 @@ Dialogs:
               chooseAJsonFile: Choisissez un fichier json
             DashboardSharing:
               ShareDashboard: Partager le tableau de bord
+            NavigationDashboardWidget:
+              PermissionsDenied: |+
+                Vous n'avez pas la permission d'accéder à ce tableau de bord.
+
             NavigationDashboardWidgetConfiguration:
               ButtonName: Nom du bouton
               NavigationDashboardWidgetConfiguration: Configuration du widget du tableau
@@ -1719,6 +1724,9 @@ Dialogs:
               WidgetFilter: Filtre à widgets
             PortalDashboardDetailModification:
               CloneWidget: Cloner le widget
+            StatisticWidget:
+              IdNotFound: ' Diagramme avec ID {0} non trouvé'
+              NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour consulter ce graphique.
             TaskWidgetConfiguration:
               AddFilter: Ajouter un filtre
               ResetFilter: Réinitialiser le filtre
@@ -1727,6 +1735,28 @@ Dialogs:
             CaseDetailsIFrameTitle: Cadre des détails de l'affaire
           IFrameTaskTemplate:
             TaskIFrameTitle: Cadre de travail
+        page:
+          StatisticConfiguration:
+            AddFilter: Ajouter un filtre
+            Advanced: Avancé
+            ChartType: Type de graphique
+            Color: Couleur {0}
+            Create: Créer
+            EditStatistic: Modifier le widget statistique
+            For: Pour
+            GeneratePreview: Générer un aperçu
+            GroupBy: Groupe par
+            HideLabel: Cacher l'étiquette
+            Interval: Intervalle
+            NewStatistic: Nouveau widget statistique
+            OutdatedChartMessage: Le groupement ou le filtre appliqué ne correspond pas à la configuration actuelle de l'interface. Veuillez le reconfigurer.
+            RefreshInterval: Actualisation automatique activée
+            RefreshIntervalInSeconds: Intervalle de rafraîchissement automatique (secondes)
+            RefreshIntervalInSecondsValidationMessage: 'Intervalle de rafraîchissement automatique (secondes) : L''attribut spécifié n''est pas compris entre les valeurs attendues de {0} et {1}'
+            RefreshIntervalInfo: La statistique peut être actualisée automatiquement après une certaine période. Si cette option est activée, elle peut avoir un impact sur les performances. L'intervalle de rafraîchissement automatique (secondes) doit être au moins {0}.
+            StatisticConfiguration: Configuration des statistiques
+            XAxisTitle: Titre de l'axe X
+            YAxisTitle: Titre de l'axe des Y
   components:
     CaseDocument:
       FileDate: Modifié le
@@ -1740,6 +1770,64 @@ Dialogs:
       invalidFileMessage: Ce type de fichier n'est pas accepté!
       invalidSizeMessage: Le fichier est trop volumineux !
       maximumFileUploadElement: Il existe déjà un élément de téléchargement de fichiers
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: Nom de l'activateur
+              BUSINESS_RUNTIME:
+                name: Durée d'exécution des activités
+              CATEGORY:
+                name: Catégorie
+              CREATOR_NAME:
+                name: Nom du créateur
+              CUSTOM_FIELD:
+                name: Champ personnalisé
+              END_TIMESTAMP:
+                name: Date d'achèvement
+              EXPIRY_TIMESTAMP:
+                name: Date d'expiration
+              IS_EXPIRED:
+                name: Est périmé
+              PRIORITY:
+                name: Priorité
+              RESPONSIBLES_NAME:
+                name: Responsables
+              START_TIMESTAMP:
+                name: Date de création
+              STATE:
+                name: État
+              WORKER_NAME:
+                name: Nom de l'employé
+              WORKING_TIME:
+                name: Temps de travail
+            AggregationInterval:
+              DAY:
+                name: Jour
+              MONTH:
+                name: Mois
+              WEEK:
+                name: Semaine
+              YEAR:
+                name: Année
+            ChartTarget:
+              CASE:
+                name: Dossier
+              TASK:
+                name: Tâche
+            ChartType:
+              BAR:
+                name: Diagramme à barres
+              LINE:
+                name: Diagramme linéaire
+              NUMBER:
+                name: Graphique numérique
+              PIE:
+                name: Diagramme circulaire
 Labels:
   AI:
     Error:
@@ -1764,9 +1852,13 @@ Labels:
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
   AndMore: 'et {0} de plus...  '
+  AllTasks: Toutes les tâches
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
+  Configuration: Configuration
+  Collapse: Réduire
   CreateNewDashboard: Créer un nouveau tableau de bord
+  Description: Description
   EditDescription: Editer la description
   Enums:
     ChatbotCandidateQuestion:
@@ -1793,6 +1885,7 @@ Labels:
       ID: Id
       NAME: Nom
       OWNER: Responsables de processus
+      PIN: Épingler
       STATE: État
     DashboardStandardTaskColumn:
       ACTIONS: Actions
@@ -1804,6 +1897,7 @@ Labels:
       EXPIRY: Délai
       ID: Id
       NAME: Nom
+      PIN: Épingler
       PRIORITY: Priorité
       RESPONSIBLE: Responsable
       START: Démarrage
@@ -1855,12 +1949,22 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
+  Filters: Filtres
+  General: Général
+  Icon: Icône
+  Expand: Développer
   InsertTask-Explain: Insérer la tâche. Ma tâche sera reportée.
   InsertTheTask: Insérer la tâche.
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Name: Nom
   Permissions: Permissions
+  Preview: Aperçu
+  RequiredFieldMessage: '{0} : La valeur est obligatoire'
+  Save: Enregistrer
+  PinnedCases: Cas épinglés
+  PinnedTasks: Tâches épinglées
   Share: Partager
   Task: Tâche
   TaskItemDetail: Détails de la tâche

@@ -82,7 +82,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Proceso de Axon Ivy
     DashboardWidgetType:
       CASE: Widget del caso
-      CLIENT_STATISTIC: Widget de estadísticas
       CUSTOM: Widget personalizado
       NAVIGATION_DASHBOARD: Widget del panel de navegación
       NEW: Nuevo widget
@@ -152,12 +151,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rúbrica 3
       NORMAL_TEXT: Texto normal
   MyProfile:
+    CaseList: Case List
     DateFormat: Formato de la fecha
     FormattingLanguage: Lenguaje de formato
     General: Generales
     Homepage: Página web
     Language: Idioma
     ProcessList: Lista de procesos
+    TaskList: Lista de tareas
     byDefault: ' por defecto'
     defaultOption: Predeterminado ({0})
     defaultViewMode: Modo predeterminado
@@ -166,6 +167,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: Canales de notificación
     notificationChannelsReset: Restablecimiento de los canales de notificación
     subscribed: suscrito
+    unpinAllPinnedCases: 'Todos los casos fijados han sido eliminados para el usuario: {0}.'
+    unpinAllPinnedTasks: Todas las tareas fijadas han sido eliminadas para el usuario {0}.
   PortalManagement:
     AdminSetting: Configuración de administrador
   ProcessViewer:
@@ -302,6 +305,8 @@ ch.ivy.addon.portalkit.ui.jsf:
         de documentos para ciertos tipos de archivos. Los tipos de archivos compatibles
         son: pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Cambie esta propiedad a "true" para activar el chat de grupos
+      enablePinCase: Establece esta propiedad en true para habilitar la función de fijar casos.
+      enablePinTask: Establece esta propiedad en true para habilitar la función de fijar tareas.
       enablePrivateChat: Cambie esta propiedad a "true" para activar el chat privado
       enableProcessViewer: Defina esta propiedad como true para habilitar la opción
         de visor de procesos en las acciones de Tarea/Caso
@@ -449,6 +454,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       ID: ID del caso
       NAME: Nombre / Descripción
       OWNER: Responsables del proceso
+      PIN: Fijar
       STATE: 'Estatus '
     deletionNoteContent: El caso fue destruido por {0}
     destroyCaseMessage: Esta operación no se puede deshacer. ¿Está seguro de que quiere
@@ -644,6 +650,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: Filtros seleccionados
     ok: OK
     'on': en
+    pin: Fijar
     pleaseAddDocument: Por favor agregue documentos usando el enlace superior
     pleaseAddNote: Por favor agregue notas usando el enlace superior
     previousStage: Etapa anterior
@@ -705,6 +712,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     typeAdmin: Todos los administradores
     typeAllUsers: Todos los usuarios
     typeOnlyMe: Solo yo
+    unpin: Desfijar
     uploadHere: Cargue aquí
     uploadOneHere: Seleccionar
     user: '{0} usuario'
@@ -868,13 +876,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Filtros guardados
     SearchForFilter: Buscar un filtro
     ShareThisDashboard: Comparte este panel
+    ShowPinnedToggle: Mostrar alternar 'Elementos fijados'
     StandardWidgets: Widgets estándar
     StatisticWidget:
       EmptyChartDataMessage: No tenemos suficientes datos para crear un buen gráfico.
-    WelcomeWidgetIntroduction: Este widget muestra un texto y una imagen de bienvenida
-      en el panel de control.
-    WelcomeWidgetNotFoundMessage: No podemos encontrar la imagen del widget, por favor
-      reconfigure su imagen.
+      failToRenderChartMessage: Error al renderizar el gráfico. Inténtelo de nuevo con una configuración diferente.
+      firstConfigChartMessage: Aún no hay gráfico disponible. Configure sus ajustes para generar un gráfico.
+    WelcomeWidgetIntroduction: Este widget muestra un texto y una imagen de bienvenida en el panel de control.
+    WelcomeWidgetNotFoundMessage: No podemos encontrar la imagen del widget, por favor reconfigure su imagen.
     WidgetFilterName: Nombre del filtro del widget
     WidgetFilters: Filtros de widgets
     YourWelcomeWidget: Su widget de bienvenida
@@ -1366,6 +1375,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       EXPIRY_TIME: Expiración
       ID: ID de tarea
       NAME: Nombre / Descripción
+      PIN: Fijar
       PRIORITY: Prioridad
       STATE: Estado
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Falta el activador
@@ -1522,6 +1532,10 @@ Dialogs:
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Añadir un nuevo cuadro de mandos
+              PortalDashboardDetailModification:
+                CreateCustomStatistic: Crear widget de estadísticas personalizado
+                DeleteConfirm: ¿Está seguro de que desea eliminar?
+                RemoveThisStatistic: Eliminar esta estadística personalizada
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: ¡No se pudo encontrar el proceso vinculado!
@@ -1534,6 +1548,10 @@ Dialogs:
                     para cambiar el orden
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Bienvenido a Axon Ivy Portal
+          setting:
+            UserProfile:
+              unpinAllPinnedCases: Desanclar todos los casos fijados
+              unpinAllPinnedTasks: Desfijar todas las tareas fijadas
         portalkit:
           component:
             CaseItemDetails:
@@ -1618,9 +1636,6 @@ Dialogs:
                 expandidos/Cerrar menús contextuales. Enter: Confirmar selección'
             CaseWidgetConfiguration:
               AddFilter: Añadir filtro
-            ClientStatisticWidget:
-              IdNotFound: Grafico con ID {0} no encontrado
-              NoPermissionChartMessage: No tiene permiso para ver este gráfico.
             CloneWidgetDialog:
               Header: Clone widget "{0}"
               TargetDashboard: Target dashboard
@@ -1634,6 +1649,8 @@ Dialogs:
               chooseAJsonFile: Elija un archivo json
             DashboardSharing:
               ShareDashboard: Compartir panel
+            NavigationDashboardWidget:
+              PermissionsDenied: No tienes permiso para acceder a este panel.
             NavigationDashboardWidgetConfiguration:
               ButtonName: Nombre del botón
               NavigationDashboardWidgetConfiguration: |+
@@ -1671,6 +1688,9 @@ Dialogs:
               WidgetFilter: Filtro de widgets
             PortalDashboardDetailModification:
               CloneWidget: Clonar widget
+            StatisticWidget:
+              IdNotFound: Grafico con ID {0} no encontrado
+              NoPermissionChartMessage: No tiene permiso para ver este gráfico.
             TaskWidgetConfiguration:
               AddFilter: Añadir filtro
               ResetFilter: Restablecer filtro
@@ -1679,6 +1699,28 @@ Dialogs:
             CaseDetailsIFrameTitle: Detalles del caso marco
           IFrameTaskTemplate:
             TaskIFrameTitle: Marco de tareas
+        page:
+          StatisticConfiguration:
+            AddFilter: Añadir filtro
+            Advanced: Avanzado
+            ChartType: Tipo de gráfico
+            Color: Color {0}
+            Create: Cree
+            EditStatistic: Editar widget de estadísticas
+            For: Para
+            GeneratePreview: Generar vista previa
+            GroupBy: Grupo por
+            HideLabel: Ocultar etiqueta
+            Interval: Intervalo
+            NewStatistic: Nuevo widget de estadísticas
+            OutdatedChartMessage: El agrupamiento o filtro aplicado no coincide con la configuración actual de la interfaz. Por favor, vuelva a configurarlo.
+            RefreshInterval: Auto-refresco activado
+            RefreshIntervalInSeconds: Intervalo de actualización automática (segundos)
+            RefreshIntervalInSecondsValidationMessage: 'Intervalo de actualización automática (segundos): El atributo especificado no está entre los valores esperados de {0} y {1}'
+            RefreshIntervalInfo: La estadística puede actualizarse automáticamente tras un periodo determinado. Si se activa, esto puede afectar al rendimiento. El intervalo de actualización automática (segundos) debe ser al menos {0}.
+            StatisticConfiguration: Configuración estadística
+            XAxisTitle: Título del eje X
+            YAxisTitle: Título del eje Y
   components:
     CaseDocument:
       FileDate: Modificado el
@@ -1692,6 +1734,64 @@ Dialogs:
       invalidFileMessage: Tipo de archivo no permitido
       invalidSizeMessage: ¡El archivo es muy grande!
       maximumFileUploadElement: Ya existe un elemento de subir documentos
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: Nombre del activador
+              BUSINESS_RUNTIME:
+                name: Tiempo de ejecución
+              CATEGORY:
+                name: Categoría
+              CREATOR_NAME:
+                name: Nombre del creador
+              CUSTOM_FIELD:
+                name: Campo personalizado
+              END_TIMESTAMP:
+                name: Fecha de finalización
+              EXPIRY_TIMESTAMP:
+                name: Fecha de caducidad
+              IS_EXPIRED:
+                name: Ha expirado
+              PRIORITY:
+                name: Prioridad
+              RESPONSIBLES_NAME:
+                name: Responsables
+              START_TIMESTAMP:
+                name: Fecha de creación
+              STATE:
+                name: Estado
+              WORKER_NAME:
+                name: Nombre del trabajador
+              WORKING_TIME:
+                name: Tiempo de trabajo
+            AggregationInterval:
+              DAY:
+                name: Día
+              MONTH:
+                name: Mes
+              WEEK:
+                name: Semana
+              YEAR:
+                name: Año
+            ChartTarget:
+              CASE:
+                name: Caso
+              TASK:
+                name: Tarea
+            ChartType:
+              BAR:
+                name: Gráfico de barras
+              LINE:
+                name: Gráfico de líneas
+              NUMBER:
+                name: Gráfico numérico
+              PIE:
+                name: Gráfico circular
 Labels:
   AI:
     Error:
@@ -1716,9 +1816,13 @@ Labels:
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
   AndMore: 'y {0} más...  '
+  AllTasks: Todas las tareas
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
+  Configuration: Configuración
+  Collapse: Contraer
   CreateNewDashboard: Crear un nuevo cuadro de mandos
+  Description: Descripción
   EditDescription: Editar descripción
   Enums:
     DashboardStandardCaseColumn:
@@ -1732,6 +1836,7 @@ Labels:
       ID: Id
       NAME: Nombre
       OWNER: Responsables del proceso
+      PIN: Fijar
       STATE: Estado
     DashboardStandardTaskColumn:
       ACTIONS: Acciones
@@ -1743,6 +1848,7 @@ Labels:
       EXPIRY: Expiración
       ID: Id
       NAME: Nombre
+      PIN: Fijar
       PRIORITY: Prioridad
       RESPONSIBLE: Responsable
       START: Inicio
@@ -1802,12 +1908,22 @@ Labels:
     ThemeMode:
       DARK: Oscuro
       LIGHT: Luz
+  Filters: Filtros
+  General: General
+  Icon: Icono
+  Expand: Expandir
   InsertTask-Explain: Insertar la tarea. Mi tarea será pospuesta.
   InsertTheTask: Insertar la tarea.
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Name: Nombre
   Permissions: Permiso
+  Preview: Vista previa
+  RequiredFieldMessage: '{0}: Valor requerido'
+  Save: Guardar
+  PinnedCases: Casos fijados
+  PinnedTasks: Tareas fijadas
   Share: Compartir
   Task: Tarea
   TaskItemDetail: Detalles de la tarea
