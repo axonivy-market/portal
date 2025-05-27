@@ -105,7 +105,7 @@ def stripNamespace(element):
     for elem in element.iter():
         # If the tag contains a namespace (indicated by '}')
         if '}' in elem.tag:
-            elem.tag = elem.tag.split('}', 1)[1]  # Keep only the part after '}'
+            elem.tag = elem.tag.split('}', 1)[1]
     return element
 
 portalVersion = "$portalVersion"
@@ -158,11 +158,9 @@ from pathlib import Path
 import sys
 
 def stripNamespace(element):
-    # Iterate over all the elements and remove the namespace from the tag
     for elem in element.iter():
-        # If the tag contains a namespace (indicated by '}')
         if '}' in elem.tag:
-            elem.tag = elem.tag.split('}', 1)[1]  # Keep only the part after '}'
+            elem.tag = elem.tag.split('}', 1)[1]
     return element
 
 parentVersion = "$parentVersion"
@@ -171,21 +169,17 @@ filePath = "$1"
 try:
   tree = ET.parse(filePath)
   root = tree.getroot()
-  root = stripNamespace(root) # By default, tags like <project> are changed to tag <ns0:project>, need removing namespace
-  version = root.find("version")
-  if version is not None:
-    version.text = parentVersion
+  root = stripNamespace(root)
 
   parent = root.find("parent")
   if parent is not None:
     groupId = parent.find("groupId")
     artifactId = parent.find("artifactId")
-    parentVersion = parent.find("version")
-    if (groupId is not None and artifactId is not None and parentVersion is not None and
+    versionTag = parent.find("version")
+    if (groupId is not None and artifactId is not None and versionTag is not None and
         groupId.text == "com.axonivy.ivy.api" and artifactId.text == "ivy-project-parent"):
-      parentVersion.text = parentVersion
+      versionTag.text = parentVersion
 
-  # Write changes back to the file
   tree.write(filePath, encoding="utf-8", xml_declaration=True)
 except Exception as e:
   print(f"Failed to process {filePath}: {e}", file=sys.stderr)
