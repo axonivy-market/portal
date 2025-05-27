@@ -79,6 +79,7 @@
   --portal-dialog-icon-font-size: 5rem;
   --widget-header-font-size: var(--large-font-size);
   --widget-header-font-weight: bold;
+  --default-widget-header-font-size: 1.2rem;
   --process-warning-icon-font-weight: bold;
   --process-icon-font-size: 1.5rem;
   --process-grid-icon-font-size: 4.8rem;
