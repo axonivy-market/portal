@@ -7,6 +7,7 @@ import java.util.Objects;
 import org.apache.commons.collections4.CollectionUtils;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -92,6 +93,7 @@ public enum PortalSecurity {
     IUser adminUser = userRepo.findWithExternalLookup(Username.ADMIN);
     if (adminUser != null) {
       for (IPermission permission : Permissions.ADMIN_USER_ADDITIONAL) {
+        Ivy.log().error("init admin permisison");
         grantPermission(permission.getName(), adminUser);
       }
       grantPermissionsToSecurityMember(Permissions.ALL_PORTAL_PERMISSIONS, adminUser);
