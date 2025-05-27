@@ -29,6 +29,7 @@ public class TaskPriorityChangeTest extends BaseTest {
     int priorityIntValue = 2;
     String priorityStringValue = "NORMAL";
     NavigationHelper.navigateToTaskList();
+    resizeBrowserTo2kResolution();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     TaskDetailsPage taskDetailsPage = taskWidget.openTaskDetailsPageByAction(firstTask);
     taskDetailsPage.changePriorityOfTask(priorityIntValue);
