@@ -167,8 +167,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: Canales de notificación
     notificationChannelsReset: Restablecimiento de los canales de notificación
     subscribed: suscrito
-    unpinAllPinnedCases: 'Todos los casos fijados han sido eliminados para el usuario: {0}.'
-    unpinAllPinnedTasks: Todas las tareas fijadas han sido eliminadas para el usuario {0}.
+    unpinAllPinnedCases: 'Todos los casos fijados han sido eliminados para el usuario:
+      {0}.'
+    unpinAllPinnedTasks: Todas las tareas fijadas han sido eliminadas para el usuario
+      {0}.
   PortalManagement:
     AdminSetting: Configuración de administrador
   ProcessViewer:
@@ -305,8 +307,10 @@ ch.ivy.addon.portalkit.ui.jsf:
         de documentos para ciertos tipos de archivos. Los tipos de archivos compatibles
         son: pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Cambie esta propiedad a "true" para activar el chat de grupos
-      enablePinCase: Establece esta propiedad en true para habilitar la función de fijar casos.
-      enablePinTask: Establece esta propiedad en true para habilitar la función de fijar tareas.
+      enablePinCase: Establece esta propiedad en true para habilitar la función de
+        fijar casos.
+      enablePinTask: Establece esta propiedad en true para habilitar la función de
+        fijar tareas.
       enablePrivateChat: Cambie esta propiedad a "true" para activar el chat privado
       enableProcessViewer: Defina esta propiedad como true para habilitar la opción
         de visor de procesos en las acciones de Tarea/Caso
@@ -880,10 +884,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: Widgets estándar
     StatisticWidget:
       EmptyChartDataMessage: No tenemos suficientes datos para crear un buen gráfico.
-      failToRenderChartMessage: Error al renderizar el gráfico. Inténtelo de nuevo con una configuración diferente.
-      firstConfigChartMessage: Aún no hay gráfico disponible. Configure sus ajustes para generar un gráfico.
-    WelcomeWidgetIntroduction: Este widget muestra un texto y una imagen de bienvenida en el panel de control.
-    WelcomeWidgetNotFoundMessage: No podemos encontrar la imagen del widget, por favor reconfigure su imagen.
+      failToRenderChartMessage: Error al renderizar el gráfico. Inténtelo de nuevo
+        con una configuración diferente.
+      firstConfigChartMessage: Aún no hay gráfico disponible. Configure sus ajustes
+        para generar un gráfico.
+    WelcomeWidgetIntroduction: Este widget muestra un texto y una imagen de bienvenida
+      en el panel de control.
+    WelcomeWidgetNotFoundMessage: No podemos encontrar la imagen del widget, por favor
+      reconfigure su imagen.
     WidgetFilterName: Nombre del filtro del widget
     WidgetFilters: Filtros de widgets
     YourWelcomeWidget: Su widget de bienvenida
@@ -1713,11 +1721,17 @@ Dialogs:
             HideLabel: Ocultar etiqueta
             Interval: Intervalo
             NewStatistic: Nuevo widget de estadísticas
-            OutdatedChartMessage: El agrupamiento o filtro aplicado no coincide con la configuración actual de la interfaz. Por favor, vuelva a configurarlo.
+            OutdatedChartMessage: El agrupamiento o filtro aplicado no coincide con
+              la configuración actual de la interfaz. Por favor, vuelva a configurarlo.
             RefreshInterval: Auto-refresco activado
             RefreshIntervalInSeconds: Intervalo de actualización automática (segundos)
-            RefreshIntervalInSecondsValidationMessage: 'Intervalo de actualización automática (segundos): El atributo especificado no está entre los valores esperados de {0} y {1}'
-            RefreshIntervalInfo: La estadística puede actualizarse automáticamente tras un periodo determinado. Si se activa, esto puede afectar al rendimiento. El intervalo de actualización automática (segundos) debe ser al menos {0}.
+            RefreshIntervalInSecondsValidationMessage: 'Intervalo de actualización
+              automática (segundos): El atributo especificado no está entre los valores
+              esperados de {0} y {1}'
+            RefreshIntervalInfo: La estadística puede actualizarse automáticamente
+              tras un periodo determinado. Si se activa, esto puede afectar al rendimiento.
+              El intervalo de actualización automática (segundos) debe ser al menos
+              {0}.
             StatisticConfiguration: Configuración estadística
             XAxisTitle: Título del eje X
             YAxisTitle: Título del eje Y
