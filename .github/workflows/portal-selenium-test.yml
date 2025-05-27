@@ -36,7 +36,7 @@ on:
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine
   ENGINE_URL: https://developer.axonivy.com/permalink/nightly-12/axonivy-engine.zip
-  TEST_PATTERN_TO_RUN: com.axonivy.portal.selenium.test.dashboard.DashboardTaskWidgetFilterTest
+  TEST_PATTERN_TO_RUN: com.axonivy.portal.selenium.test.task.TaskPriorityChangeTest
   
 jobs:
   portal-selenium-test:
@@ -141,6 +141,6 @@ jobs:
         with:
           artifact: selenium-test-reports
           name: Selenium tests
-          path: '*.xml'
+          path: '*.xml,*.txt'
           reporter: java-junit
           use-actions-summary: 'true'
