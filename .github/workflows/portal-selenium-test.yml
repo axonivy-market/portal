@@ -141,6 +141,6 @@ jobs:
         with:
           artifact: selenium-test-reports
           name: Selenium tests
-          path: '*.xml,*.txt'
+          path: '*.xml'
           reporter: java-junit
           use-actions-summary: 'true'
