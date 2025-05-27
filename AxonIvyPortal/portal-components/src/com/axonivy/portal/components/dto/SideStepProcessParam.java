@@ -1,9 +1,16 @@
 package com.axonivy.portal.components.dto;
 
+import java.io.Serializable;
+
 import com.axonivy.portal.components.enums.SideStepType;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
-public class SideStepProcessParam {
-
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class SideStepProcessParam implements Serializable{
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -4988849644631374542L;
   private SideStepProcessDTO sideStepDto;
   private String memberName;
   private SideStepType selectedStepType;
