@@ -11,7 +11,7 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class TaskPriorityChangeTest extends BaseTest {
 
   @Override
@@ -29,6 +29,7 @@ public class TaskPriorityChangeTest extends BaseTest {
     int priorityIntValue = 2;
     String priorityStringValue = "NORMAL";
     NavigationHelper.navigateToTaskList();
+    resizeBrowserTo2kResolution();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     TaskDetailsPage taskDetailsPage = taskWidget.openTaskDetailsPageByAction(firstTask);
     taskDetailsPage.changePriorityOfTask(priorityIntValue);
