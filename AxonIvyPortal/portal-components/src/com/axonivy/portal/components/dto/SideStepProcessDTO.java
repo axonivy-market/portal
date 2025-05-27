@@ -3,9 +3,12 @@ package com.axonivy.portal.components.dto;
 import java.io.Serializable;
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 /**
  * DTO for configuring Side Step process
  */
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class SideStepProcessDTO implements Serializable {
   /**
   * 
