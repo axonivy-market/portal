@@ -7,7 +7,7 @@ ch.ivy.addon.portal.generic:
     browserTabClosingWarning: Durch diese Aktion gehen ungespeicherte Änderungen verloren. Möchten Sie wirklich fortfahren?
     goToSidestepWarning: Bei starten eines Sidestep Prozesses werden die aktuelle Eingaben nicht gespeichert. Möchten Sie sich trotzdem fortsetzen?
   PortalName:
-    PortalName: Portal
+    PortalName: Portal DE
 ch.ivy.addon.portalkit.ui.jsf:
   AbsenceAndDeputy:
     Messages:
