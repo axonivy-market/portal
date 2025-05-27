@@ -18,7 +18,7 @@ public class NavigationDashboardWidgetPage extends TemplatePage {
   }
   
   public void clickOnNavigateButton() {
-    $("div#navigation-dashboard-widget-footer").shouldBe(Condition.appear, DEFAULT_TIMEOUT).
+    $("[id$=':navigation-dashboard-widget-footer']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).
     $("button[id$='navigate-dashboard-button']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     waitForPageLoad();
   }
