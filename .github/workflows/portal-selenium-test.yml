@@ -36,7 +36,7 @@ on:
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine
   ENGINE_URL: https://developer.axonivy.com/permalink/nightly-12/axonivy-engine.zip
-  TEST_PATTERN_TO_RUN: com.axonivy.portal.selenium.test.**.*Test
+  TEST_PATTERN_TO_RUN: com.axonivy.portal.selenium.test.task.TaskPriorityChangeTest
   
 jobs:
   portal-selenium-test:
@@ -118,6 +118,14 @@ jobs:
         if: job.steps.run-test.status == failure()
         run: |
           cat AxonIvyPortal/portal-selenium-test/target/testEngineOut.log 
+
+      - name: Archive screenshot image
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          retention-days: 5
+          path: |
+            AxonIvyPortal/portal-selenium-test/target/*.zip
 
       - name: Archive test reports
         uses: actions/upload-artifact@v4
