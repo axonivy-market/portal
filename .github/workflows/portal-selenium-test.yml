@@ -64,7 +64,7 @@ jobs:
             const list = mergedToday.map(pr =>
               `- [#${pr.number}](${pr.html_url}) ${pr.title} by @${pr.user.login}`
             ).join('\n');
-
+            console.log(list);
             const mdresult = await github.rest.markdown.render({
               text: list,
             });
