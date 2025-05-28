@@ -56,7 +56,7 @@ jobs:
               {
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                base: branch,
+                base: 'master',
                 state: 'closed',
                 per_page: 30
               }
