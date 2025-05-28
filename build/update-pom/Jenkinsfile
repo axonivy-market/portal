@@ -25,7 +25,7 @@ pipeline {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
           if (!params.buildPluginVersion?.trim().isEmpty() || !params.ivyEngineVersion?.trim().isEmpty()
-            || !params.portalVersion?.trim().isEmpty()) {
+            || !params.portalVersion?.trim().isEmpty() || !params.parentVersion?.trim().isEmpty()) {
             docker.build('update-pom', '-f build/Dockerfile.python .').inside('-v /var/tools/maven-cache:/home/build/') {
               withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
                 sshagent(credentials: ['github-axonivy']) {
@@ -41,7 +41,7 @@ pipeline {
                   changeLog = sh(returnStdout: true, script: 'git status -s').trim()
                   if (changeLog) {
                     sh """
-                      git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}, version=${params.portalVersion}"
+                      git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}, version=${params.portalVersion}, parentVersion=${params.parentVersion}"
                       git checkout -b ${params.branchToPush}
                       git push origin -u ${params.branchToPush}
                     """
@@ -180,10 +180,10 @@ try:
   if parent is not None:
     groupId = parent.find("groupId")
     artifactId = parent.find("artifactId")
-    parentVersion = parent.find("version")
-    if (groupId is not None and artifactId is not None and parentVersion is not None and
+    versionTag = parent.find("version")
+    if (groupId is not None and artifactId is not None and versionTag is not None and
         groupId.text == "com.axonivy.ivy.api" and artifactId.text == "ivy-project-parent"):
-      parentVersion.text = parentVersion
+      versionTag.text = parentVersion
 
   # Write changes back to the file
   tree.write(filePath, encoding="utf-8", xml_declaration=True)
