@@ -51,15 +51,12 @@ jobs:
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c # v46
-      # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
+        with:
+          write_output_files: 'true'
 
-      - name: List all changed files
-        env:
-          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
-        run: |
-          for file in ${ALL_CHANGED_FILES}; do
-            echo "$file was changed"
-          done
+      - name: Verify the contents of the .github/outputs/added_files.txt file
+        run: | 
+          cat .github/outputs/added_files.txt
 
   portal-selenium-test:
     runs-on: ubuntu-latest
