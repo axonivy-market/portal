@@ -28,7 +28,7 @@ env:
   TEST_PATTERN_TO_RUN: com.axonivy.portal.selenium.test.**.*Test
   
 jobs:
-  changed-files:
+  pull-request-merged:
     runs-on: ubuntu-latest
     steps:
       - name: Show PRs merged into this branch in the last 24 hours
