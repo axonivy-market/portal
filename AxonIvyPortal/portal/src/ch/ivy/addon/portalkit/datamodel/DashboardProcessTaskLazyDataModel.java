@@ -5,17 +5,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
+import org.primefaces.model.FilterMeta;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardProcessTaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivyteam.ivy.jsf.primefaces.legazy.LazyDataModel7;
+import ch.ivyteam.ivy.jsf.primefaces.sort.SortMetaConverter;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
-@SuppressWarnings("deprecation")
-public class DashboardProcessTaskLazyDataModel extends LazyDataModel7<ITask> {
+public class DashboardProcessTaskLazyDataModel extends LazyDataModel<ITask> {
 
   private static final long serialVersionUID = -6615871274830927272L;
 
@@ -33,7 +35,7 @@ public class DashboardProcessTaskLazyDataModel extends LazyDataModel7<ITask> {
   }
 
   @Override
-  public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+  public List<ITask> load(int first, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
     if (isFirstTime) {
       isFirstTime = false;
       if (future != null) {
@@ -45,8 +47,9 @@ public class DashboardProcessTaskLazyDataModel extends LazyDataModel7<ITask> {
       }
     } else {
       if (first == 0) {
-        criteria.setSortField(sortField);
-        criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
+        SortMetaConverter sort = new SortMetaConverter(sortBy);
+        criteria.setSortField(sort.toField());
+        criteria.setSortDescending(sort.toOrder() == SortOrder.DESCENDING);
       }
       tasks = DashboardTaskService.getInstance().findByTaskQuery(criteria.buildQuery(), first,
           pageSize * (first <= pageSize ? QUERY_PAGES_AT_FIRST_TIME : QUERY_PAGES));
@@ -117,4 +120,11 @@ public class DashboardProcessTaskLazyDataModel extends LazyDataModel7<ITask> {
   public void setCriteria(DashboardProcessTaskSearchCriteria criteria) {
     this.criteria = criteria;
   }
+
+  @Override
+  public int count(Map<String, FilterMeta> filterBy) {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+
 }
