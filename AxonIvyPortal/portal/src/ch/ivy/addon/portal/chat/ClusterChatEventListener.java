@@ -45,11 +45,13 @@ public class ClusterChatEventListener implements ISystemEventListener {
     ClusterChatEventListener.subscribeToSystemEvents();
   }
 
+  @SuppressWarnings("removal")
   private void subscribeToSystemEvents() {
     wf().getApplication().addSystemEventListener(EnumSet.of(SystemEventCategory.THIRD_PARTY), this);
     listeners.add(this);
   }
 
+  @SuppressWarnings("removal")
   private void unsubscribeToSystemEvents() {
     wf().getApplication().removeSystemEventListener(EnumSet.of(SystemEventCategory.THIRD_PARTY), this);
   }

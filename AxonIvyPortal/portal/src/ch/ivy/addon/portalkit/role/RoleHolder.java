@@ -36,7 +36,7 @@ public class RoleHolder implements Serializable {
 
   public RoleHolder(IRole role) {
     this.name = role.getName();
-    this.description = role.getDisplayDescription();
+    this.description = role.getDescription();
     this.displayName = role.getDisplayName();
     this.parent = role.getParent();
     this.isMember = false;
