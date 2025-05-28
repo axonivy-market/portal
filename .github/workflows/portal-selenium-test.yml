@@ -32,6 +32,8 @@ on:
         default: 'https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine-windows.zip'
         required: true
   push:
+    branches:
+      - feature/IVYPORTAL-18260-Create-Github-workflow-for-selenium-test-12
 
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine
@@ -39,6 +41,26 @@ env:
   TEST_PATTERN_TO_RUN: com.axonivy.portal.selenium.test.task.TaskPriorityChangeTest
   
 jobs:
+  changed-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c # v46
+      # NOTE: `since_last_remote_commit: true` is implied by default and falls back to the previous local commit.
+
+      - name: List all changed files
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: |
+          for file in ${ALL_CHANGED_FILES}; do
+            echo "$file was changed"
+          done
+
   portal-selenium-test:
     runs-on: ubuntu-latest
     steps:
