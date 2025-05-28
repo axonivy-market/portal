@@ -48,7 +48,11 @@ jobs:
               }
             );
 
-            console.log(prs);
+            const mergedToday = prs.filter(pr =>
+              pr.pull_requests && pr.pull_requests.length > 0
+            );
+
+            console.log(mergedToday);
 
   pull-request-merged:
     runs-on: ubuntu-latest
@@ -91,4 +95,5 @@ jobs:
               .addHeading(`🔀 PRs merged into '${branch}' in the last 24 hours`)
               .addRaw(list, true)
               .write();
+
 
