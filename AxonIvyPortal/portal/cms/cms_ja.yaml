@@ -457,6 +457,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: カテゴリー
     change: 変更
     close: 閉じる
+    closeProcessViewerMessage: You closed the process view. Task remains open.
     cockpit: コックピット
     colors: 色
     comment: コメント
@@ -1643,12 +1644,12 @@ Labels:
     TaskDetailsResult: |-
       タスクの詳細 **{0} (#{1})**：
       {2}
-  AndMore: TODO さらに{0}件...
   AllTasks: 'TODO: All Tasks'
+  AndMore: TODO さらに{0}件...
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
-  Configuration: 設定
   Collapse: TODO 折りたたむ
+  Configuration: 設定
   CreateNewDashboard: 新しいダッシュボードを作成
   Description: 説明
   EditDescription: 説明を編集
@@ -1746,10 +1747,10 @@ Labels:
     ThemeMode:
       DARK: 暗い
       LIGHT: 明るい
+  Expand: TODO 展開
   Filters: フィルター
   General: TODO General
   Icon: アイコン
-  Expand: TODO 展開
   InsertTask-Explain: タスクを挿入します。私のタスクは延期されます。
   InsertTheTask: タスクを挿入
   Login:
@@ -1757,11 +1758,11 @@ Labels:
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Name: 名前
   Permissions: 権限
+  PinnedCases: 'TODO: Pinned Cases'
+  PinnedTasks: 'TODO: Pinned Tasks'
   Preview: プレビュー
   RequiredFieldMessage: 'TODO {0}: Value is required'
   Save: 保存
-  PinnedCases: 'TODO: Pinned Cases'
-  PinnedTasks: 'TODO: Pinned Tasks'
   Share: 共有
   Task: タスク
   TaskItemDetail: タスクの詳細

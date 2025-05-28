@@ -1,0 +1,60 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "id" : "19715F8B45229579",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.components.PortalGrowlMessageData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "portalGrowlMessage()",
+      "config" : {
+        "signature" : "portalGrowlMessage"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 408, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Call customize sub process",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.predicate.CustomProcessPredicate;",
+            "import com.axonivy.portal.components.enums.CustomSignature;",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "Map params = new HashMap();",
+            "//params.put(\"businessCase\", in.businessCase);",
+            "",
+            "Map result = IvyAdapterService.startSubProcessesInSecurityContext(CustomSignature.GROWL_MESSAGE.getSignature(), params, new CustomProcessPredicate());",
+            "Map mapMessage = new HashMap();",
+            "mapMessage.put(\"PROCESS_VIEWER\", \"Custom message for process viewr\");",
+            "mapMessage.put(\"TASK_FINISHED\", \"Custom message for task finished\");",
+            "mapMessage.put(\"TASK_LEFT\", \"Custom message for task left\");",
+            "",
+            "in.mapMessages = mapMessage;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 280, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1", "color" : "default" }
+      ]
+    } ]
+}

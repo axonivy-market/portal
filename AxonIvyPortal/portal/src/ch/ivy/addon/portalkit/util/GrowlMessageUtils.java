@@ -25,6 +25,7 @@ public final class GrowlMessageUtils {
   private static final String TASK_LEFT = "/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully";
   private static final String TASK_FINISHED = "/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully";
   private static final String CASE_DETAILS = "/ch.ivy.addon.portalkit.ui.jsf/common/linkToCaseDetails";
+  private static final String PROCESS_VIEWER_MESSAGE = "/ch.ivy.addon.portalkit.ui.jsf/common/closeProcessViewerMessage";
 
   private GrowlMessageUtils() {}
 
@@ -37,6 +38,18 @@ public final class GrowlMessageUtils {
       Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
       if (!flash.containsKey(OVERRIDE_PORTAL_GROWL)) {
         addMessageToFacesContext(iCase, BooleanUtils.toBoolean(isTaskFinished));
+      }
+      flash.setRedirect(true);
+      flash.setKeepMessages(true);
+    }
+  }
+  
+  public static void addFeedbackMessageProcessViewer() {
+    if (!Ivy.session().isSessionUserUnknown()) {
+      Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+      if (!flash.containsKey(OVERRIDE_PORTAL_GROWL)) {
+        FacesMessage message = FacesMessageUtils.sanitizedMessage(Ivy.cms().co(PROCESS_VIEWER_MESSAGE), "");
+        FacesContext.getCurrentInstance().addMessage(PORTAL_GLOBAL_GROWL_MESSAGE, message);
       }
       flash.setRedirect(true);
       flash.setKeepMessages(true);

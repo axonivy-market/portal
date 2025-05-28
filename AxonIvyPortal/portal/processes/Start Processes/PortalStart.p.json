@@ -960,9 +960,11 @@
             "  in.caseSelected = task.getCase();",
             "} else {",
             "  Boolean isTaskFinished = SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString()).toBoolean();",
+            "  ivy.log.warn(\"Boolean isTaskFinished? {0}\", isTaskFinished);",
+            "  ivy.log.warn(\"#isTaskFinished is initialized? {0}\", #isTaskFinished is initialized);",
             "  in.isTaskFinished = #isTaskFinished is initialized ? isTaskFinished : true;",
             "}",
-            "",
+            "ivy.log.warn(\"Task finish or not? {0}\", in.isTaskFinished);",
             "SecurityServiceUtils.removeSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString());",
             "ivy.session.setAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString(), in.isTaskStartedInDetails);"
           ]
@@ -1468,10 +1470,7 @@
       ],
       "visual" : {
         "at" : { "x" : 240, "y" : 1759 },
-        "size" : { "width" : 314, "height" : 63 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 314, "height" : 63 }
       }
     }, {
       "id" : "f86",
@@ -2399,6 +2398,9 @@
                 "param.isTaskFinished" : "in.isTaskFinished",
                 "param.caze" : "in.caseSelected"
               }
+            },
+            "output" : {
+              "code" : "ivy.log.warn(\"is process viewer::  {0}\", out.isProcessViewer);"
             }
           },
           "visual" : {
@@ -2894,7 +2896,7 @@
       "id" : "f224",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 304, "y" : 3160 }
+        "at" : { "x" : 568, "y" : 3160 }
       }
     }, {
       "id" : "f225",
@@ -2908,6 +2910,12 @@
             "param.caseId" : "in.caseId",
             "param.processId" : "in.processId"
           }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.isProcessViewer" : "true"
+          }
         }
       },
       "visual" : {
@@ -2915,7 +2923,7 @@
         "size" : { "width" : 116 }
       },
       "connect" : [
-        { "id" : "f228", "to" : "f224" }
+        { "id" : "f228", "to" : "f295" }
       ]
     }, {
       "id" : "f226",
@@ -4357,6 +4365,27 @@
       },
       "connect" : [
         { "id" : "f179", "to" : "f53" }
+      ]
+    }, {
+      "id" : "f295",
+      "type" : "Script",
+      "name" : "Set session attribute for process view",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.GrowlMessageType;",
+            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
+            "SecurityServiceUtils.setSessionAttribute(SessionAttribute.GROWL_MESSAGE_TYPE.toString(), GrowlMessageType.PROCESS_VIEWER);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 416, "y" : 3161 },
+        "size" : { "width" : 128, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f296", "to" : "f224", "color" : "default" }
       ]
     } ]
 }

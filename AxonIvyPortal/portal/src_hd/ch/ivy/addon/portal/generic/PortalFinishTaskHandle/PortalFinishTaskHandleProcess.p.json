@@ -46,9 +46,20 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.enums.GrowlMessageType;",
+            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
             "import ch.ivy.addon.portalkit.util.GrowlMessageUtils;",
             "",
-            "GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.caze);"
+            "String growlMessageType = SecurityServiceUtils.getSessionAttribute(SessionAttribute.GROWL_MESSAGE_TYPE.toString()).toString();",
+            "if (#growlMessageType is initialized) {",
+            "  if (GrowlMessageType.PROCESS_VIEWER.name() == growlMessageType) {",
+            "    GrowlMessageUtils.addFeedbackMessageProcessViewer();",
+            "  }",
+            "  SecurityServiceUtils.removeSessionAttribute(SessionAttribute.GROWL_MESSAGE_TYPE.toString());",
+            "} else {",
+            "  GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.caze);",
+            "}"
           ]
         }
       },
@@ -89,10 +100,7 @@
       ],
       "visual" : {
         "at" : { "x" : 264, "y" : 224 },
-        "size" : { "width" : 160, "height" : 44 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 160, "height" : 44 }
       },
       "connect" : [
         { "id" : "f9", "to" : "f8" }
