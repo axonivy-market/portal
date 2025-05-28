@@ -29,6 +29,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -301,10 +303,11 @@ public abstract class TemplatePage extends AbstractPage {
     waitForElementClickableThenClick($(By.cssSelector("div[id$='" + index + "\\:task-item\\:task-info']")));
     return new TaskDetailsPage();
   }
-
   public TaskDetailsPage openDashboardTaskDetails(String taskName) {
-    $("div[id$=':task-component:dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr td span")
-        .filter(text(taskName)).first().click();
+    ElementsCollection taskSpans = $("div[id$=':task-component:dashboard-tasks']").shouldBe(appear, DEFAULT_TIMEOUT).$$("table tbody tr td span")
+        .filter(text(taskName));
+    taskSpans.shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+    taskSpans.first().click();
     return new TaskDetailsPage();
   }
 
