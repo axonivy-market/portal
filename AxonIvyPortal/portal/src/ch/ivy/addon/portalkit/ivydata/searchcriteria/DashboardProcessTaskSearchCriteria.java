@@ -73,7 +73,6 @@ public class DashboardProcessTaskSearchCriteria {
     public TaskSortingQueryAppender appendSorting(DashboardProcessTaskSearchCriteria criteria) {
       appendSortByPriorityIfSet(criteria);
       appendSortByNameIfSet(criteria);
-      appendSortByActivatorIfSet(criteria);
       appendSortByIdIfSet(criteria);
       appendSortByCreationDateIfSet(criteria);
       appendSortByCompletionionDateIfSet(criteria);
@@ -94,12 +93,6 @@ public class DashboardProcessTaskSearchCriteria {
     private void appendSortByNameIfSet(DashboardProcessTaskSearchCriteria criteria) {
       if (DashboardStandardTaskColumn.NAME.getField().equalsIgnoreCase(criteria.getSortField())) {
         order = query.orderBy().name();
-      }
-    }
-
-    private void appendSortByActivatorIfSet(DashboardProcessTaskSearchCriteria criteria) {
-      if (DashboardStandardTaskColumn.RESPONSIBLE.getField().equalsIgnoreCase(criteria.getSortField())) {
-        order = query.orderBy().activatorDisplayName();
       }
     }
 
