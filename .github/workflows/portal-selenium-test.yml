@@ -54,11 +54,10 @@ jobs:
             const prs = await github.paginate(
               github.rest.pulls.list,
               {
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                base: branch,
+                owner: 'axonivy-market',
+                repo: 'portal',
+                base: 'master',
                 state: 'closed',
-                per_page: 1
               }
             );
             console.log(prs);
