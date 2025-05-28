@@ -48,7 +48,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const branch = github.context.ref.replace('refs/heads/', '');
+            const branch = context.repo;
             const ONE_DAY_MS = 24 * 60 * 60 * 1000;
             const cutoffTime = new Date(Date.now() - ONE_DAY_MS);
             console.log(branch);
