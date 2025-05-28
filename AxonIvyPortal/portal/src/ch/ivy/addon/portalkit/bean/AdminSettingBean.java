@@ -1,26 +1,38 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.ReorderEvent;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.event.TabChangeEvent;
+import org.primefaces.event.UnselectEvent;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.FacesMessageUtils;
+import com.axonivy.portal.components.util.RoleUtils;
 
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -37,6 +49,7 @@ public class AdminSettingBean implements Serializable {
   private boolean isShowRoleManagementTab;
   private boolean isTabChangeEventTriggered;
   private boolean isShowPasswordValidationTab;
+  private List<String> selectedApplicationPermissions;
 
   public void initAdminTabViewConfig() {
     if (isTabChangeEventTriggered) {
@@ -144,4 +157,81 @@ public class AdminSettingBean implements Serializable {
   public void setShowPasswordValidationTab(boolean isShowPasswordValidationTab) {
 	    this.isShowPasswordValidationTab = isShowPasswordValidationTab;
 	  }
+
+  public void initApplicationPermissions(Application application) {
+    if (application == null) {
+      this.selectedApplicationPermissions = new ArrayList<>();
+      return;
+    }
+    
+    application.setPermissionDTOs(Optional.ofNullable(application)
+        .map(Application::getPermissions).orElse(new ArrayList<>()).stream()
+        .filter(Objects::nonNull).distinct()
+        .map(permission -> findSecurityMemberDtoByName(permission))
+        .collect(Collectors.toList()));
+
+    this.selectedApplicationPermissions = Optional.ofNullable(application)
+        .map(Application::getPermissionDTOs).orElse(new ArrayList<>()).stream()
+        .map(SecurityMemberDTO::getName).collect(Collectors.toList());
+  }
+
+  private SecurityMemberDTO findSecurityMemberDtoByName(String permission) {
+    return permission.startsWith("#")
+        ? new SecurityMemberDTO(UserUtils.findUserByUsername(permission))
+        : new SecurityMemberDTO(RoleUtils.findRole(permission));
+  }
+  public List<SecurityMemberDTO> completeApplicationPermissions(String query) {
+    if (this.selectedApplicationPermissions == null) {
+      this.selectedApplicationPermissions = new ArrayList<>();
+    }
+    return RoleUtils.findRoles(null, selectedApplicationPermissions, query).stream()
+        .map(SecurityMemberDTOMapper::mapFromRoleDTO).collect(Collectors.toList());
+  }
+  public void onSelectPermissionForApplication(SelectEvent<Object> event) {
+    SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
+    if (this.selectedApplicationPermissions == null) {
+      this.selectedApplicationPermissions = new ArrayList<>();
+    }
+    this.selectedApplicationPermissions.add(selectedItem.getName());
+  }
+
+  public void onUnSelectPermissionForApplication(UnselectEvent<Object> event) {
+    SecurityMemberDTO selectedItem = (SecurityMemberDTO) event.getObject();
+    if (this.selectedApplicationPermissions == null) {
+      this.selectedApplicationPermissions = new ArrayList<>();
+    }
+    this.selectedApplicationPermissions.remove(selectedItem.getName());
+  }
+  public void updateApplicationPermissions(Application application) {
+    if (application == null) {
+      return;
+    }
+    
+    List<SecurityMemberDTO> responsibles = application.getPermissionDTOs();
+    List<String> permissions = new ArrayList<>();
+    String displayedPermission = "";
+    
+    if (CollectionUtils.isNotEmpty(responsibles)) {
+      Collection<SecurityMemberDTO> distinctPermissionDTOs = responsibles.stream()
+          .collect(Collectors
+              .toMap(SecurityMemberDTO::getMemberName, responsible -> responsible, (responsible1, responsible2) -> responsible1)).values();
+      responsibles.clear();
+      responsibles.addAll(distinctPermissionDTOs);
+      displayedPermission = responsibles.stream().map(SecurityMemberDTO::getDisplayName).collect(Collectors.joining(", "));
+      permissions = responsibles.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
+    }
+    application.setDisplayedPermission(displayedPermission);
+    application.setPermissions(permissions);
+    
+    // Sync the selected permissions list with the application's permissions
+    this.selectedApplicationPermissions = new ArrayList<>(permissions);
+  }
+
+  public List<String> getSelectedApplicationPermissions() {
+    return selectedApplicationPermissions;
+  }
+
+  public void setSelectedApplicationPermissions(List<String> selectedApplicationPermissions) {
+    this.selectedApplicationPermissions = selectedApplicationPermissions;
+  }
 }
