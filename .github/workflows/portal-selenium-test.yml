@@ -48,10 +48,9 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const branch = context;
+            const branch = context.ref;
             const ONE_DAY_MS = 24 * 60 * 60 * 1000;
             const cutoffTime = new Date(Date.now() - ONE_DAY_MS);
-            console.log(branch);
             const prs = await github.paginate(
               github.rest.pulls.list,
               {
@@ -59,10 +58,10 @@ jobs:
                 repo: context.repo.repo,
                 base: branch,
                 state: 'closed',
-                per_page: 100
+                per_page: 30
               }
             );
-
+            console.log(prs);
             const mergedToday = prs.filter(pr =>
               pr.merged_at && new Date(pr.merged_at) > cutoffTime
             );
