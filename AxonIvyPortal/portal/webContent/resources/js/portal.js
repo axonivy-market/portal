@@ -505,6 +505,7 @@ const taskItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__
 const caseItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__default-case-list-dashboard-main-dashboard"]';
 const searchInputId = '[id="global-search-component:global-search-data"]:visible'
 const useSettingMenuId = 'a#user-settings-menu:visible';
+const pinButton = 'span.pin';
 
 $(document).ready(function () {
 
@@ -514,7 +515,8 @@ $(document).ready(function () {
     'Digit3': taskItemId,
     'Digit4': caseItemId,
     'Digit5': [searchInputId],
-    'Digit6': useSettingMenuId
+    'Digit6': useSettingMenuId,
+    'Digit7': pinButton
   };
 
   $(searchInputId).attr('role', 'combobox');
@@ -524,6 +526,9 @@ $(document).ready(function () {
       return $(shortcuts[key].find(h => $(h).length));
     } else if (key === 'Digit6') {
       return $(shortcuts[key]);
+    } else if (key === 'Digit7') {
+      $('.pin').trigger('click');
+      return;
     }
     return $(shortcuts[key]).find('a').first();
   }
