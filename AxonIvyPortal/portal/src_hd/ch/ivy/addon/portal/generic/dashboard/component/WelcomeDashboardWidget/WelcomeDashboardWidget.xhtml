@@ -53,14 +53,17 @@
       <h:outputText escape="false" value="#{dashboardWelcomeWidgetBean.sanitizeHTML(widget.welcomeText)}" id="welcome-text-dark-mode" styleClass="default-welcome-image-dark welcome-text #{widget.welcomeTextStyleClass}"/>
 
       <p:graphicImage id="default-image" cache="true" styleClass="welcome-image default-welcome-image js-welcome-image #{widget.imageStyleClass}"
+        alt="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/WelcomeDashboardWidget/WelcomeToAxon')}"
         library="ivy-cms" rendered="#{empty widget.imageLocation}" name="#{dashboardWelcomeWidgetBean.defaultImageLink}" />
 
       <p:graphicImage id="default-image-dark" cache="true" styleClass="welcome-image default-welcome-image-dark js-welcome-image #{widget.imageStyleClass}"
+        alt="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/WelcomeDashboardWidget/WelcomeToAxon')}"
         library="ivy-cms" rendered="#{empty widget.imageLocationDarkMode}" name="#{dashboardWelcomeWidgetBean.defaultImageDarkLink}" />
 
       <h:panelGroup rendered="#{not empty widget.imageLocation}">
         <p:graphicImage id="welcome-image" styleClass="default-welcome-image welcome-image js-welcome-image #{widget.imageStyleClass}"
           library="ivy-cms"
+          alt="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/WelcomeDashboardWidget/WelcomeToAxon')}"
           rendered="#{widget.imageContentObject.exists()}"
           name="#{widget.imageContentObject.uri()}"/>
         <h:panelGroup id="not-found-welcome-image" styleClass="empty-message-container w-full" layout="block"
@@ -74,6 +77,7 @@
       <h:panelGroup rendered="#{not empty widget.imageLocationDarkMode}">
         <p:graphicImage id="welcome-image-dark-mode" styleClass="default-welcome-image-dark welcome-image js-welcome-image #{widget.imageStyleClass}"
           library="ivy-cms"
+          alt="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/WelcomeDashboardWidget/WelcomeToAxon')}"
           rendered="#{widget.imageContentObjectDarkMode.exists()}"
           name="#{widget.imageContentObjectDarkMode.uri()}"/>
       </h:panelGroup>

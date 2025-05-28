@@ -1,6 +1,7 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_DASHBOARD_ID;
+
 import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_SUB_DASHBOARD_ID;
 
 import java.io.IOException;
@@ -39,10 +40,12 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
 import ch.ivy.addon.portalkit.enums.BehaviourWhenClickingOnLineInTaskList;
 import ch.ivy.addon.portalkit.enums.CaseEmptyMessage;
+import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskEmptyMessage;
 import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
@@ -82,14 +85,15 @@ public class DashboardBean implements Serializable {
   protected String warningText;
   protected String dashboardUrl;
   protected List<Dashboard> importedDashboards;
-  private String clientStatisticApiUri;
+  private String statisticApiUri;
   private String selectedDashboardName;
   private String searchScope;
+  private boolean isShowPinnedItem;
 
   @PostConstruct
   public void init() {
     currentDashboardIndex = 0;
-
+    
     if (isReadOnlyMode) {
       DashboardUtils.updateDashboardCache();
     }
@@ -97,11 +101,11 @@ public class DashboardBean implements Serializable {
     dashboards = collectDashboards();
 
     if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())
-        || isRequestPathForMainOrDetailModification()) {
+        || isRequestPathForMainOrDetailModification() || isNavigateToDashboard()) {
       updateSelectedDashboardIdFromSessionAttribute();
       updateSelectedDashboard();
       storeAndHighlightDashboardIfRequired();
-  }
+    }
     buildWidgetModels(selectedDashboard);
     isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
         .findGlobalSettingValue(GlobalVariable.DEFAULT_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST)
@@ -113,11 +117,16 @@ public class DashboardBean implements Serializable {
       selectedDashboard.setIsResponsive(true);
     }
 
-    buildClientStatisticApiUri();
+    buildStatisticApiUri();
   }
+  
+  private boolean isNavigateToDashboard() {
+    Object attr = Ivy.session().getAttribute(SessionAttribute.NAVIGATE_TO_DASHBOARD.name());
+    return attr != null && (boolean) attr;
+}
 
-  private void buildClientStatisticApiUri() {
-    this.clientStatisticApiUri = FacesContext.getCurrentInstance()
+  private void buildStatisticApiUri() {
+    this.statisticApiUri = FacesContext.getCurrentInstance()
         .getExternalContext().getRequestContextPath() + "/api/statistics/data";
   }
 
@@ -197,7 +206,7 @@ public class DashboardBean implements Serializable {
 
   public void handleStartTask(ITask task) throws IOException {
     selectedTask = task;
-    if (selectedDashboard.getIsTopMenu()) {
+    if (DashboardDisplayType.TOP_MENU.equals(selectedDashboard.getDashboardDisplayType())) {
       TaskUtils.handleStartTask(task, PortalPage.HOME_PAGE, PortalConstants.RESET_TASK_CONFIRMATION_DIALOG,
           selectedDashboardId);
     } else {
@@ -406,11 +415,11 @@ public class DashboardBean implements Serializable {
 
     if (StringUtils.isNotBlank(selectedDashboardId)) {
       return dashboards.stream().filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst()
-          .map(dashboards::indexOf).orElse(dashboards.stream().filter(dashboard -> !dashboard.getIsTopMenu())
+          .map(dashboards::indexOf).orElse(dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType()))
               .findFirst().map(dashboards::indexOf).orElse(0));
     }
 
-    return dashboards.stream().filter(dashboard -> !dashboard.getIsTopMenu()).findFirst().map(dashboards::indexOf)
+    return dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())).findFirst().map(dashboards::indexOf)
         .orElse(0);
   }
 
@@ -476,8 +485,8 @@ public class DashboardBean implements Serializable {
     this.importedDashboards = importedDashboards;
   }
 
-  public String getClientStatisticApiUri() {
-    return this.clientStatisticApiUri;
+  public String getStatisticApiUri() {
+    return this.statisticApiUri;
   }
 
   public boolean canEnableQuickSearch(DashboardWidget widget) {
@@ -562,6 +571,55 @@ public class DashboardBean implements Serializable {
 
   public String getSearchScope() {
     return this.searchScope;
+  }
+  
+  public String getDashboardUrlByDashboard(String id) {
+    return UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(id);
+  }
+  
+  public List<String> getDashboardDisplayTypeList() {
+    return DashboardDisplayType.getTypeList();
+  }
+  
+  public String getDashboardDisplayTypeLabel(DashboardDisplayType type) {
+    return DashboardDisplayType.getDisplayLabel(type);
+  }
+  
+  public List<Dashboard> getPublicDashboards() {
+    return DashboardUtils.getPublicDashboards();
+  }
+  public boolean canShowPinnedItemToggle(DashboardWidget widget) {
+    if (widget instanceof TaskDashboardWidget) {
+      return GlobalSettingService.getInstance().isEnablePinTask()
+          && ((TaskDashboardWidget) widget).isShowPinnedToggle();
+    }
+
+    if (widget instanceof CaseDashboardWidget) {
+      return GlobalSettingService.getInstance().isEnablePinCase()
+          && ((CaseDashboardWidget) widget).isShowPinnedToggle();
+    }
+
+    return false;
+  }
+
+  public boolean getShowPinnedItem() {
+    return this.isShowPinnedItem;
+  }
+
+  public void setShowPinnedItem(boolean isShowPinnedItem) {
+    this.isShowPinnedItem = isShowPinnedItem;
+  }
+
+  public void togglePinned(DashboardWidget widget) {
+    widget.setShowPinnedItem(isShowPinnedItem);
+    widget.toggleShowPinned();
+  }
+
+  public String showPinnedItemToggleLable(DashboardWidget widget) {
+    if (DashboardWidgetType.TASK.equals(widget.getType())) {
+      return Ivy.cms().co("/Labels/PinnedTasks");
+    }
+    return Ivy.cms().co("/Labels/PinnedCases");
   }
 
 }

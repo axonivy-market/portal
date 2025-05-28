@@ -1,6 +1,6 @@
 [
   {
-    "version": "12.0.0",
+    "version": "13.1.0",
     "id": "default-portal-dashboard-template",
     "titles": [
       {
@@ -21,7 +21,7 @@
       },
       {
         "locale": "ja",
-        "value": "初期設テンプレート"
+        "value": "標準テンプレート"
       }
     ],
     "descriptions": [
@@ -376,7 +376,7 @@
     }
   },
   {
-    "version": "12.0.0",
+    "version": "13.1.0",
     "id": "two-task-widget-dashboard-template",
     "titles": [
       {
@@ -595,7 +595,7 @@
     }
   },
   {
-    "version": "12.0.0",
+    "version": "13.1.0",
     "id": "accessibility-dashboard-template",
     "titles": [
       {

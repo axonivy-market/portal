@@ -7,7 +7,7 @@ public class DefaultDashboardUtils {
   private static String DEFAULT_TASK_LIST_DASHBOARD_JSON = """
       {
         "id": "default-task-list-dashboard",
-        "version": "12.0.0",
+        "version": "13.1.0",
         "templateId": "create-from-scratch",
         "titles": [
           {
@@ -72,6 +72,10 @@ public class DefaultDashboardUtils {
                 "width": "75"
               },
               {
+                "field": "pin",
+                "width": "70"
+              },
+              {
                 "field": "priority",
                 "width": "70"
               },
@@ -92,7 +96,7 @@ public class DefaultDashboardUtils {
               },
               {
                 "field": "activator",
-                "width": "120"
+                "width": "145"
               },
               {
                 "field": "state",
@@ -100,6 +104,10 @@ public class DefaultDashboardUtils {
               },
               {
                 "field": "startTimestamp",
+                "width": "95"
+              },
+              {
+                "field": "endTimestamp",
                 "width": "95"
               },
               {
@@ -123,14 +131,14 @@ public class DefaultDashboardUtils {
         "permissions": [
           "Everybody"
         ],
-        "isTopMenu": true
+        "dashboardDisplayType": "top_menu"
       }
       """;
 
   private static String DEFAULT_CASE_LIST_DASHBOARD_JSON = """
       {
         "id": "default-case-list-dashboard",
-        "version": "12.0.0",
+        "version": "13.1.0",
         "templateId": "create-from-scratch",
         "titles": [
           {
@@ -198,6 +206,10 @@ public class DefaultDashboardUtils {
                 "width": "80"
               },
               {
+                "field": "pin",
+                "width": "70"
+              },
+              {
                 "field": "name",
                 "quickSearch": true,
                 "width": "300"
@@ -237,7 +249,7 @@ public class DefaultDashboardUtils {
         "permissions": [
           "Everybody"
         ],
-        "isTopMenu": true
+        "dashboardDisplayType": "top_menu"
       }
       """;
 

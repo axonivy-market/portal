@@ -1,12 +1,12 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CLIENT_STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CUSTOM;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NEWS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NOTIFICATION;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.PROCESS_VIEWER;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.TASK;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 import static ch.ivy.addon.portalkit.util.DashboardUtils.DEFAULT_CASE_LIST_DASHBOARD;
@@ -42,15 +42,16 @@ import org.apache.logging.log4j.util.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.ColumnResizeEvent;
 
-import com.axonivy.portal.bo.ClientStatistic;
+import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.dto.News;
+import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.service.ClientStatisticService;
 import com.axonivy.portal.service.DeepLTranslationService;
+import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.util.DashboardCloneUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 import com.google.common.base.Predicate;
@@ -61,7 +62,6 @@ import ch.ivy.addon.portalkit.constant.DashboardConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.ClientStatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CombinedProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
@@ -74,6 +74,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.ImageProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessViewerDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.SingleProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetSample;
@@ -87,11 +88,13 @@ import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.DashboardService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.Dates;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
@@ -108,7 +111,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private static final String DEFAULT_WIDGET_TITLE_ID = "widget-configuration-form:new-widget-configuration-component:widget-title-group";
   private static final String PROCESS_ICON_CUSTOM_FIELD = "cssIcon";
   private static final String DEFAULT_PROCESS_ICON = "si si-hierarchy-6 si-rotate-270";
-
+  
   private List<WidgetSample> samples;
   private String newWidgetHeader;
   private boolean isEditWidget;
@@ -121,12 +124,13 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   private String restoreDashboardMessage;
   private Optional<DashboardTemplate> foundTemplate;
   private List<DashboardProcess> customWidgets;
-  private List<ClientStatistic> statisticWidgets;
+  private List<Statistic> statisticWidgets;
 
   // Clone widget function
   private Dashboard cloneFromDashboard;
   private DashboardWidget cloneFromWidget;
   private List<Dashboard> cloneableDashboards;
+  private Statistic selectedStatistic;
 
   @PostConstruct
   public void initConfigration() {
@@ -144,7 +148,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void initSampleWidgets() {
     if (CollectionUtils.isEmpty(samples)) {
       samples = List.of(taskSample(), caseSample(), processSample(), externalPageSample(),
-          processViewerSample(), welcomeWidgetSample(), newsSample(), notificationSample());
+          processViewerSample(), welcomeWidgetSample(), newsSample(), notificationSample(), navigationDashboardWidget());
       samples = samples.stream().sorted(Comparator.comparing(WidgetSample::getName)).collect(Collectors.toList());
     }
     initCustomWidgets();
@@ -153,7 +157,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   protected void initStatisticWidgets() {
     setStatisticWidgets(new ArrayList<>());
-    getStatisticWidgets().addAll(ClientStatisticService.getInstance().findAllCharts());
+    getStatisticWidgets().addAll(StatisticService.getInstance().findAllCharts());
   }
 
   private void initCustomWidgets() {
@@ -233,6 +237,10 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NOTIFICATION"),
         NOTIFICATION, "si si-alarm-bell", translate("/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidgetConfiguration/NotificationWidgetDescription"), true);
   }
+  
+  private WidgetSample navigationDashboardWidget() {
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/Enums/DashboardWidgetType/NAVIGATION_DASHBOARD"), DashboardWidgetType.NAVIGATION_DASHBOARD, "si si-navigation-right-circle", translate("/Dialogs/com/axonivy/portal/dashboard/component/NavigationDashboardWidgetConfiguration/NavigationDashboardWidgetDescription"), true);
+  }
 
   public void restore() {
     removeWelcomeWidgetImagesOfDashboard(getSelectedDashboard());
@@ -299,14 +307,18 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
         newWidgetHeader = translate("/Dialogs/com/axonivy/portal/dashboard/component/NotificationWidgetConfiguration/NotificationWidgetConfiguration");
         widget = getDefaultNotificationWidget();
       }
+      case NAVIGATION_DASHBOARD -> {
+        newWidgetHeader = translate("/Dialogs/com/axonivy/portal/dashboard/component/NavigationDashboardWidgetConfiguration/NavigationDashboardWidgetConfiguration");
+        widget = getDefaultNavigationDashboardWidget();
+      }
       default -> {}
     }
   }
 
-  public void createClientStatisticWidget(ClientStatistic clientStatistic) {
+  public void createStatisticWidget(Statistic statistic) {
     newWidgetHeader = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/newWidgetHeader",
         Arrays.asList(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticChartWidget")));
-    widget = getDefaultClientStatisticDashboardWidget(clientStatistic.getName(), clientStatistic.getId());
+    widget = getDefaultStatisticDashboardWidget(statistic.getName(), statistic.getId());
   }
 
   public void createCustomDashboardWidget(DashboardProcess process) {
@@ -387,12 +399,13 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return (ProcessDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName, PROCESS);
   }
 
-  private ClientStatisticDashboardWidget getDefaultClientStatisticDashboardWidget(String widgetName, String chartId) {
-    String widgetId = DashboardWidgetUtils.generateNewWidgetId(CLIENT_STATISTIC);
-    ClientStatisticDashboardWidget widget = null;
-    widget = (ClientStatisticDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName,
-        CLIENT_STATISTIC);
-    widget.setChartId(chartId);
+  private StatisticDashboardWidget getDefaultStatisticDashboardWidget(String widgetName, String chartId) {
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(STATISTIC);
+    StatisticDashboardWidget widget =
+        (StatisticDashboardWidget) DashboardWidgetUtils.buildDefaultWidget(widgetId, widgetName, STATISTIC);
+    if (Optional.ofNullable(widget).isPresent()) {
+      widget.setChartId(chartId);
+    }
     return widget;
   }
 
@@ -419,14 +432,20 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     return NewsDashboardWidget.buildDefaultWidget(widgetId, widgetName);
   }
 
-  public void saveClientStatisticWidget(ClientStatistic clientStatistic) {
-    createClientStatisticWidget(clientStatistic);
+  public void saveStatisticWidget(Statistic statistic) {
+    createStatisticWidget(statistic);
     saveWidget();
   }
   private NotificationDashboardWidget getDefaultNotificationWidget() {
     String widgetId = DashboardWidgetUtils.generateNewWidgetId(NOTIFICATION);
     String widgetName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourNotifications");
     return NotificationDashboardWidget.buildDefaultWidget(widgetId, widgetName);
+  }
+  
+  private NavigationDashboardWidget getDefaultNavigationDashboardWidget() {
+    String widgetId = DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.NAVIGATION_DASHBOARD);
+    String buttonName = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/navigate");
+    return NavigationDashboardWidget.buildDefaultWidget(widgetId, buttonName);
   }
 
   public void saveWidget() {
@@ -484,12 +503,13 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
       case CASE -> {
         updateCaseWidget(widget);
       }
+
       default -> {}
     }
     updateWidgetPosition(widget);
     resetUserFilter();
 
-    if (widget.getType() != DashboardWidgetType.CLIENT_STATISTIC) {
+    if (widget.getType() != DashboardWidgetType.STATISTIC) {
       initMultipleLanguagesForWidgetName(this.widget.getName());
     }
 
@@ -1081,11 +1101,11 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
     this.customWidgets = customWidgets;
   }
 
-  public List<ClientStatistic> getStatisticWidgets() {
+  public List<Statistic> getStatisticWidgets() {
     return statisticWidgets;
   }
 
-  public void setStatisticWidgets(List<ClientStatistic> statisticWidgets) {
+  public void setStatisticWidgets(List<Statistic> statisticWidgets) {
     this.statisticWidgets = statisticWidgets;
   }
   
@@ -1103,6 +1123,18 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public boolean displayFullscreenModeOption() {
     return Optional.ofNullable(this.widget).map(DashboardWidget::getType)
         .map(DashboardWidgetType::canShowFullscreenModeOption).orElse(false);
+  }
+
+  public boolean displayPinnedItemToggleOption(DashboardWidget widget) {
+    if (widget instanceof TaskDashboardWidget) {
+      return GlobalSettingService.getInstance().isEnablePinTask();
+    }
+
+    if (widget instanceof CaseDashboardWidget) {
+      return GlobalSettingService.getInstance().isEnablePinCase();
+    }
+
+    return false;
   }
 
   public void onResizeColumn(ColumnResizeEvent event) {
@@ -1168,7 +1200,7 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
   public void cloneWidget() {
     widget = DashboardCloneUtils.cloneWidget(cloneFromWidget);
 
-    if (widget.getType() == CLIENT_STATISTIC) {
+    if (widget.getType() == STATISTIC) {
       saveWidget();
     }
 
@@ -1195,12 +1227,12 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
 
   public String generateCloneWidgetName(DashboardWidget widget) {
     String widgetName = widget.getName();
-    if (widget.getType() == CLIENT_STATISTIC) {
-      ClientStatisticDashboardWidget statisticWidget = (ClientStatisticDashboardWidget) widget;
+    if (widget.getType() == STATISTIC) {
+      StatisticDashboardWidget statisticWidget = (StatisticDashboardWidget) widget;
       widgetName = getStatisticWidgets().stream()
           .filter(statistic -> statistic.getId()
               .contentEquals(statisticWidget.getChartId()))
-          .findFirst().map(ClientStatistic::getName).orElse("");
+          .findFirst().map(Statistic::getName).orElseGet(() -> StringUtils.EMPTY);
     }
 
     // For custom widget, need to build before get name
@@ -1214,5 +1246,36 @@ public class DashboardDetailModificationBean extends DashboardBean implements Se
           .map(IWebStartable::getDisplayName).orElse("");
     }
     return String.format(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/StringFormat/TextWithRoundBracket"), widgetName, widget.getType().getLabel());
+  }
+  
+  public Statistic getSelectedStatistic() {
+    return selectedStatistic;
+  }
+
+  public void onSelectedDeleteStatistic(Statistic selectedStatistic) {
+    this.selectedStatistic = selectedStatistic;
+  }
+
+  public void navigateToCustomStatisticWidgetPage(String id) throws IOException {
+    Map<String, String> param = new HashMap<>();
+    if (StringUtils.isNotEmpty(id)) {
+      param.put("id", id);
+    }
+    if (StringUtils.isNotEmpty(selectedDashboardId)) {
+      param.put("callbackDashboardId", selectedDashboardId);
+    }
+    FacesContext.getCurrentInstance().getExternalContext().redirect(PortalNavigator.buildCustomStatisticUrl(param));
+  }
+  
+  public void deleteCustomStatistic() {
+    boolean isRemoveSuccess = statisticWidgets.removeIf(c -> c.getId().equals(selectedStatistic.getId()));
+    if (isRemoveSuccess) {
+      List<Statistic> customStatisticsToSave = statisticWidgets.stream().filter(c -> c.getIsCustom()).collect(Collectors.toList());
+      StatisticService.getInstance().saveJsonToVariable(customStatisticsToSave);
+    }
+  }
+
+  public boolean canEditStatistic() {
+    return PermissionUtils.hasStatisticWritePublicPermission() && isPublicDashboard;
   }
 }

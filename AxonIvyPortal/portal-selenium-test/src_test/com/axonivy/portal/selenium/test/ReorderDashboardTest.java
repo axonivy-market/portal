@@ -27,6 +27,8 @@ public class ReorderDashboardTest extends BaseTest {
   public void testReorderMyDashboard() {
     redirectToNewDashBoard();
     redirectToRelativeLink(createSampleDashboardUrl);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitPageLoaded();
     LinkNavigator.redirectToPortalDashboardConfiguration();
     DashboardConfigurationPage configurationpage = new DashboardConfigurationPage();
     configurationpage.reorderPrivateDashboard("private 2", "private 1");
@@ -42,6 +44,8 @@ public class ReorderDashboardTest extends BaseTest {
   public void testReorderPublicDashboard() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createSampleDashboardUrl);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitPageLoaded();
     LinkNavigator.redirectToPortalDashboardConfiguration();
     DashboardConfigurationPage configurationpage = new DashboardConfigurationPage();
     configurationpage.selectPublicDashboardType();

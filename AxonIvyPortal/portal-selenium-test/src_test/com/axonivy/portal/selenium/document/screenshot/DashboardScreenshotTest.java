@@ -1,10 +1,12 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
+
 import static com.codeborne.selenide.Selenide.$;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,6 +33,7 @@ import com.axonivy.portal.selenium.page.DashboardNewsWidgetPage;
 import com.axonivy.portal.selenium.page.DashboardNotificationWidgetConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardNotificationWidgetPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
+import com.axonivy.portal.selenium.page.NavigationDashboardWidgetConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessEditWidgetNewDashBoardPage;
@@ -43,6 +46,7 @@ import com.axonivy.portal.selenium.util.ConfigurationJsonUtils;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
+import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
 @IvyWebTest
@@ -334,9 +338,39 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetProcessViewerWidget(0),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "process-viewer-widget");
   }
+  
+  @Test
+  public void screenshotNavigationDashboardWidget() throws IOException {
+    // Take screenshot of Add new widget dialog
+    redirectToDashboardConfiguration();
+    DashboardConfigurationPage configPage = new DashboardConfigurationPage();
+    configPage.selectPublicDashboardType();
+    String name = "New public dashboard";
+    String icon = "fa-coffee";
+    String description = "New public dashboard description";
+    List<String> permissions = Arrays.asList("Everybody");
+    configPage.openCreatePublicDashboardMenu();
+    configPage.createPublicDashboardFromScratch(name, icon, description, permissions, DashboardDisplayType.SUB_MENU);
+    NewDashboardDetailsEditPage detailsEditPage = new NewDashboardDetailsEditPage();
+
+    detailsEditPage.addWidget();
+    NavigationDashboardWidgetConfigurationPage navigationDashboardWidget =
+        detailsEditPage.addNavigationDashboardWidgetConfigurationPage();
+    navigationDashboardWidget.waitForSelectionIcon();
+    navigationDashboardWidget.setWidgetTitle("Navigate to Tasks");
+    navigationDashboardWidget.setWidgetDescription("Navigate to Tasks description");
+    navigationDashboardWidget.selectTargetDashboard("Tasks");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(navigationDashboardWidget.getDialog(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "navigation-dashboard-widget-configuration", new ScreenshotMargin(20));
+    navigationDashboardWidget.save();
+    redirectToNewDashBoard();
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(newDashboardPage.getNavigationDashboardWidgetDialog(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "navigation-dashboard-widget", new ScreenshotMargin(20));
+  }
 
   @Test
-  public void screenshotAddClientStatisticWidget() throws IOException {
+  public void screenshotAddStatisticWidget() throws IOException {
     // Take screenshot of Add new widget dialog
     redirectToDashboardConfiguration();
     DashboardConfigurationPage configPage = new DashboardConfigurationPage();
@@ -348,7 +382,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     detailsEditPage.collapseStandardWidgets();
     ScreenshotUtils.resizeBrowser(new Dimension(1920, 1080));
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(newWidgetDialog,
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "add-client-statistic-widget", new ScreenshotMargin(20));
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "add-statistic-widget", new ScreenshotMargin(20));
   }
 
   @Test

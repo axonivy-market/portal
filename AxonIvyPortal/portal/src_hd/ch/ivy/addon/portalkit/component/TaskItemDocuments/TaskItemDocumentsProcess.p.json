@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "1549452C001D8A69",
   "kind" : "HTML_DIALOG",
   "config" : {
@@ -152,7 +152,11 @@
           ],
           "map" : {
             "out.document" : "param.document"
-          }
+          },
+          "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
+            "out.isImage = param.document!= null && StringUtils.startsWithIgnoreCase(param.document.getContentType(), \"image/\");"
+          ]
         },
         "result" : {
           "params" : [
@@ -165,8 +169,7 @@
         "guid" : "16827286AC6AA280"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 448 },
-        "labelOffset" : { "y" : 35 }
+        "at" : { "x" : 96, "y" : 448 }
       },
       "connect" : [
         { "id" : "f11", "to" : "f7" }

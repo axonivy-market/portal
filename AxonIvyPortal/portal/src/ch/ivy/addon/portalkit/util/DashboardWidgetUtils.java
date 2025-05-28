@@ -30,7 +30,7 @@ import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.dashboard.AbstractColumn;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.ClientStatisticDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
@@ -111,6 +111,8 @@ public class DashboardWidgetUtils {
       Class<? extends TaskColumnModel> taskColumnModelClass = null;
       if (equals(DashboardStandardTaskColumn.START, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StartColumnModel.class;
+      } else if (equals(DashboardStandardTaskColumn.PIN, field)) {
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.PinColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.PRIORITY, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.PriorityColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.ID, field)) {
@@ -125,6 +127,8 @@ public class DashboardWidgetUtils {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.StateColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.CREATED, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CreatedDateColumnModel.class;
+      } else if (equals(DashboardStandardTaskColumn.COMPLETED, field)) {
+        taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.CompletedDateColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.EXPIRY, field)) {
         taskColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.ExpiryDateColumnModel.class;
       } else if (equals(DashboardStandardTaskColumn.CATEGORY, field)) {
@@ -197,8 +201,11 @@ public class DashboardWidgetUtils {
       CaseColumnModel column = columns.get(i);
       Class<? extends CaseColumnModel> caseColumnModelClass = null;
       String field = column.getField();
+
       if (equals(DashboardStandardCaseColumn.ID, field)) {
         caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.IdColumnModel.class;
+      } else if (equals(DashboardStandardCaseColumn.PIN, field)) {
+        caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.PinColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.NAME, field)) {
         caseColumnModelClass = ch.ivy.addon.portalkit.dto.dashboard.casecolumn.NameColumnModel.class;
       } else if (equals(DashboardStandardCaseColumn.DESCRIPTION, field)) {
@@ -222,11 +229,9 @@ public class DashboardWidgetUtils {
       } else {
         column.setType(DashboardColumnType.CUSTOM);
       }
-
       if (caseColumnModelClass != null) {
         column = BusinessEntityConverter.convertValue(column, caseColumnModelClass);
       }
-
       column.initDefaultValue();
       if (column.getType() == DashboardColumnType.CUSTOM) {
         buildCustomColumn(ICustomFieldMeta.cases(), column, field);
@@ -391,7 +396,7 @@ public class DashboardWidgetUtils {
       case TASK -> buildDefaultTaskWidget(id, name);
       case CASE -> buildDefaultCaseWidget(id, name);
       case PROCESS -> buildDefaultProcessWidget(id, name);
-      case CLIENT_STATISTIC -> buildDefaultStatisticWidget(id, name, type);
+      case STATISTIC -> buildDefaultStatisticWidget(id, name, type);
       default -> null;
     };
   }
@@ -399,7 +404,7 @@ public class DashboardWidgetUtils {
 
   private static DashboardWidget buildDefaultStatisticWidget(String id, @SuppressWarnings("unused") String name, @SuppressWarnings("unused") DashboardWidgetType widgetType) {
     DashboardWidget widget = null;
-    widget = new ClientStatisticDashboardWidget();
+    widget = new StatisticDashboardWidget();
     widget.setId(id);
     var layout = new WidgetLayout();
     layout.setWidth(5);

@@ -1,11 +1,14 @@
 package ch.ivy.addon.portalkit.exporter;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
@@ -43,6 +46,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
       case PRIORITY -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY";
       case RESPONSIBLE -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR";
       case CREATED -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME";
+      case COMPLETED -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/COMPLETED";
       case EXPIRY -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME";
       case STATE -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE";
       case CATEGORY -> "/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY";
@@ -76,11 +80,15 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
       case NAME -> StringUtils.isEmpty(taskItem.names().current())
           ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable")
           : taskItem.names().current();
-      case RESPONSIBLE -> taskItem.getActivator() == null
+      case RESPONSIBLE -> CollectionUtils.isEmpty(taskItem.responsibles().all())
           ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable")
-          : taskItem.getActivator().getDisplayName();
+          : taskItem.responsibles().all()
+            .stream()
+            .map(item -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(item.get(), item.displayName()))
+            .collect(Collectors.joining(", "));
       case ID -> String.valueOf(taskItem.getId());
       case CREATED -> taskItem.getStartTimestamp();
+      case COMPLETED -> taskItem.getEndTimestamp();
       case EXPIRY -> taskItem.getExpiryTimestamp();
       case STATE -> getTaskBusinessState(taskItem.getBusinessState());
       case CATEGORY -> taskItem.getCategory().getPath();

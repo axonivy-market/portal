@@ -245,7 +245,7 @@ public class TaskService {
       return expiryStatistic;
     }
 
-    private TaskQuery extendQueryWithUserHasPermissionToSee(
+  private TaskQuery extendQueryWithUserHasPermissionToSee(
         TaskSearchCriteria criteria) {
     TaskQuery cloneQuery = criteria.createQuery();
 

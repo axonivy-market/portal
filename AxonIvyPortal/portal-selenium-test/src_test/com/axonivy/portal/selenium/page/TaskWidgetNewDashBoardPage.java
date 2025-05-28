@@ -69,7 +69,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     return 0;
   }
 
-  private SelenideElement getColumnOfCaseHasActionIndex(int index, String columnName) {
+  private SelenideElement getColumnOfTaskHasActionIndex(int index, String columnName) {
     int startIndex = getIndexWidgetByColumnScrollable(columnName);
     return getColumnOfTableWidget(index).get(startIndex).$("span a");
   }
@@ -289,7 +289,8 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void clickOnTaskActionLink(int taskIndex) {
-    getColumnOfCaseHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    getColumnOfTaskHasActionIndex(taskIndex, "Actions").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("div[id$=':side-steps-panel'] div.task-additional-actions-panel").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public boolean isTaskAdditionActionDisplay(String taskName) {
@@ -600,12 +601,12 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
   
   public void removeFilter(int index) {
-  int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
-  if (currentIndex > 0) {
-    String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
-    $(removeBtn).shouldBe(getClickableCondition()).click();
-    countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
-  }
+    int currentIndex = $$("div[id$=':filter-component:filter-selection-panel']").size();
+    if (currentIndex > 0) {
+      String removeBtn = String.format("button[id$=':%s:filter-component:remove-filter']", index);
+      $(removeBtn).shouldBe(getClickableCondition()).click();
+      countFilterSelect().shouldBe(CollectionCondition.size(currentIndex - 1), DEFAULT_TIMEOUT);
+    }
   }
 
   public ElementsCollection countFilterSelect() {

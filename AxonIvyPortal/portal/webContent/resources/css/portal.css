@@ -582,6 +582,7 @@ body .ui-datepicker .ui-timepicker-div dl dd {
 .case-detail-body .name-column .case-name-value,
 .case-detail-body .case-details-related-task-table .related-task-name-column .task-name-value {
   font-weight: var(--case-item-name-font-weight);
+  text-overflow: ellipsis;
 }
 
 .case-detail-body .name-column .case-description-value,
@@ -1755,6 +1756,12 @@ i.dashboard-icon-drag-drop {
 	margin: -15px 0;
 }
 
+.ui-disable {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 .focusable {
   padding: 10px;
   border: 1px solid black;
@@ -1792,3 +1799,163 @@ body.dark .focused {
   font-weight: 600;
 }
 /* ====END OF==== DIALOG FOOTER - CONFIRMATION DIALOG ============================  **/
+
+/* ======================= STATISTIC CHART ================================  **/
+
+.card-widget__content {
+  container-type: size;
+}
+
+.chart-number-container {
+  color: var(--chart-container-number-color);
+  background-color: var(--chart-container-background-color);
+  border-radius: 10px;
+  width: fit-content;
+  margin: auto;
+  padding: 5px 5px;
+}
+
+.chart-number-container > span {
+  padding: 0.2em;
+}
+.chart-border {
+  border: 1px solid var(--ivy-primary-color-grey-light);
+  height: 75%;
+}
+
+.chart-number-animation {
+  -webkit-transition: font-size .3s ease;
+  -moz-transition: font-size .3s ease;
+  transition: font-size .3s ease;
+}
+
+.chart-number-font-size {
+  font-weight: bolder;
+}
+
+.chart-content-card .chart-label-container {
+  word-break: break-word;
+  height: 2em;
+  padding-top: 10px;
+}
+
+.chart-content-card .chart-icon-font-size {
+  font-size: max(1rem, 1.5rem + 5cqh);
+}
+
+.chart-content-card .chart-name-font-size {
+  font-size: max(1.5rem, 1rem + 4cqh);
+}
+
+.chart-content-card .chart-number-font-size {
+    font-size: max(4rem, 1.5rem + 10cqh);
+}
+
+@container (max-width: 200px) {
+  .chart-content-card .chart-icon-font-size {
+    font-size: max(2rem, 1.5rem + 1cqh);
+  }
+
+  .chart-content-card .chart-name-font-size {
+    font-size: max(1.5rem, 1rem + 5cqw);
+  }
+
+  .chart-content-card .chart-number-font-size {
+    font-size: max(2rem, 1.5rem + 15cqh);
+  }
+}
+
+@container (max-height: 200px) {
+  .chart-content-card .chart-icon-font-size {
+    font-size: max(1rem, 1.5rem + 1cqh);
+  }
+
+  .chart-content-card .chart-name-font-size {
+    font-size: max(0.5rem, 1rem + 1cqw);
+  }
+
+  .chart-content-card .chart-number-font-size {
+    font-size: max(3rem, 1.5rem + 10cqh);
+  }
+}
+
+.chart-content-card {
+  position: relative;
+  width: 100%;
+}
+
+.statistic-chart-widget__chart {
+  height: 100%;
+  width: 100%;
+}
+
+.statistic-chart-widget__chart.client-number-chart {
+  overflow: hidden;
+}
+
+.statistic-chart-widget__canvas {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+  gap: 30px;
+  cursor: default;
+}
+
+@container (max-width: 200px) {
+  .statistic-chart-widget__canvas {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    cursor: default;
+    padding: 14px 14px;
+  }
+    
+  .statistic-chart-widget__canvas > .chart-border {
+    display: none;
+  }
+}
+
+.preview-statistic-chart .empty-message-container {
+  text-align: center;
+  margin: auto;
+}
+
+.preview-statistic-chart .empty-message-container {
+  text-align: center;
+  position: absolute;
+  align-content: center;
+  display: grid;
+}
+
+.preview-statistic-chart .empty-message-container .empty-message-icon {
+  font-size: var(--dashboard-table-empty-message-icon-font-size);
+  margin-bottom: 10px;
+  font-size: 3.2em;
+}
+
+/* ======================= PREVIEW STATISTIC CHART ==========================  **/
+
+.preview-chart-box {
+  height: 600px;
+  position: inherit;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+.statistic-configuration__preview {
+  max-height: fit-content;
+}
+
+canvas#preview-statistic-chart {
+  height: calc(100% - 20px) !important;
+}

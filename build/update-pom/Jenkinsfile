@@ -8,7 +8,8 @@ pipeline {
   }
 
   parameters {
-    string(name: 'buildPluginVersion', defaultValue: '', description: 'Axon Ivy build plugin version of all pom will be updated to. If empty value, no changes. If buildPluginVersion, ivyEngineVersion, portalVersion params all are empty, this build just updates cached engines, no GIT commits are created.')
+    string(name: 'buildPluginVersion', defaultValue: '', description: 'Axon Ivy build plugin version of all pom will be updated to. If empty value, no changes. If buildPluginVersion, ivyEngineVersion, portalVersion, parentVersion params all are empty, this build just updates cached engines, no GIT commits are created.')
+    string(name: 'parentVersion', defaultValue: '', description: 'Parent (ivy-project-parent) version of all pom will be updated to. If empty value, no changes. If buildPluginVersion, ivyEngineVersion, portalVersion, parentVersion params all are empty, this build just updates cached engines, no GIT commits are created.')
     string(name: 'ivyEngineVersion', defaultValue: '', description: 'Axon Ivy engine version of all pom will be updated to. If empty value, no changes.')
     string(name: 'portalVersion', defaultValue: '', description: 'Portal version of all pom will be updated to. If empty value, no changes.')
     string(name: 'branchToPush', defaultValue: 'portal-update-pom/master', description: 'Branch name to push changes. It must not be protected branches. After this build, create a pull request to merge to master')
@@ -24,7 +25,7 @@ pipeline {
         script {
           currentBuild.description = "On ${env.NODE_NAME}"
           if (!params.buildPluginVersion?.trim().isEmpty() || !params.ivyEngineVersion?.trim().isEmpty()
-            || !params.portalVersion?.trim().isEmpty()) {
+            || !params.portalVersion?.trim().isEmpty() || !params.parentVersion?.trim().isEmpty()) {
             docker.build('update-pom', '-f build/Dockerfile.python .').inside('-v /var/tools/maven-cache:/home/build/') {
               withEnv(['GIT_SSH_COMMAND=ssh -o StrictHostKeyChecking=no']) {
                 sshagent(credentials: ['github-axonivy']) {
@@ -40,7 +41,7 @@ pipeline {
                   changeLog = sh(returnStdout: true, script: 'git status -s').trim()
                   if (changeLog) {
                     sh """
-                      git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}, version=${params.portalVersion}"
+                      git commit -a -m "Updated all pom build.plugin.version=${params.buildPluginVersion}, ivy.engine.version=${params.ivyEngineVersion}, version=${params.portalVersion}, parentVersion=${params.parentVersion}"
                       git checkout -b ${params.branchToPush}
                       git push origin -u ${params.branchToPush}
                     """
@@ -72,19 +73,25 @@ def removeCacheEngine() {
 }
 
 def updateVersion() {
+
+  // Update buildPluginVersion for the portal-components project
+  def portalComponent = ['AxonIvyPortal/portal-components/pom.xml']
+  if (!params.buildPluginVersion?.trim().isEmpty()) {
+    maven cmd: "-f ${portalComponent} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
+  }
+
+  // Update ivyEngineVersion for all portal projects
   def pomFiles = ['AxonIvyPortal/portal-components/pom.xml', 'AxonIvyPortal/portal/pom.xml', 'AxonIvyPortal/portal-migration/pom.xml',
-    'AxonIvyPortal/portal-selenium-test/pom.xml', 'AxonIvyPortal/portal-selenium-test/customized_pom.xml', 'AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml',
-    'AxonIvyPortal/PortalKitTestHelper/pom.xml', 'Showcase/portal-user-examples/pom.xml',
-    'Showcase/portal-developer-examples/pom.xml', 'Showcase/InternalSupport/pom.xml', 'Showcase/portal-components-examples/pom.xml']
+  'AxonIvyPortal/portal-selenium-test/pom.xml', 'AxonIvyPortal/portal-selenium-test/customized_pom.xml', 'AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml',
+  'AxonIvyPortal/PortalKitTestHelper/pom.xml', 'Showcase/portal-user-examples/pom.xml',
+  'Showcase/portal-developer-examples/pom.xml', 'Showcase/InternalSupport/pom.xml', 'Showcase/portal-components-examples/pom.xml']
   for (pomFile in pomFiles) {
     if (!params.ivyEngineVersion?.trim().isEmpty()) {
       maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=ivy.engine.version -DnewVersion=${params.ivyEngineVersion}"
     }
-    if (!params.buildPluginVersion?.trim().isEmpty()) {
-      maven cmd: "-f ${pomFile} versions:set-property versions:commit -Dproperty=build.plugin.version -DnewVersion=${params.buildPluginVersion}"
-    } 
   }
 
+  // Update portalVersion for all portal projects
   if (!params.portalVersion?.trim().isEmpty()) {
     sh '''#!/bin/bash
       updatePortalVersion() {
@@ -136,6 +143,61 @@ EOF
       for pattern in "${filePatterns[@]}"; do
         for file in $pattern; do
           updatePortalVersion "$file"
+        done
+      done
+    '''
+  }
+
+  // Update parentVersion for all project 
+  if (!params.parentVersion?.trim().isEmpty()) {
+    sh '''#!/bin/bash
+      updatePortalParentVersion() {
+        python3 - <<EOF
+import xml.etree.ElementTree as ET
+from pathlib import Path
+import sys
+
+def stripNamespace(element):
+    # Iterate over all the elements and remove the namespace from the tag
+    for elem in element.iter():
+        # If the tag contains a namespace (indicated by '}')
+        if '}' in elem.tag:
+            elem.tag = elem.tag.split('}', 1)[1]  # Keep only the part after '}'
+    return element
+
+parentVersion = "$parentVersion"
+filePath = "$1"
+
+try:
+  tree = ET.parse(filePath)
+  root = tree.getroot()
+  root = stripNamespace(root) # By default, tags like <project> are changed to tag <ns0:project>, need removing namespace
+  version = root.find("version")
+  if version is not None:
+    version.text = parentVersion
+
+  parent = root.find("parent")
+  if parent is not None:
+    groupId = parent.find("groupId")
+    artifactId = parent.find("artifactId")
+    versionTag = parent.find("version")
+    if (groupId is not None and artifactId is not None and versionTag is not None and
+        groupId.text == "com.axonivy.ivy.api" and artifactId.text == "ivy-project-parent"):
+      versionTag.text = parentVersion
+
+  # Write changes back to the file
+  tree.write(filePath, encoding="utf-8", xml_declaration=True)
+except Exception as e:
+  print(f"Failed to process {filePath}: {e}", file=sys.stderr)
+EOF
+      }
+
+      filePatterns=("AxonIvyPortal/*/pom.xml" "Showcase/*/pom.xml" "AxonIvyPortal/portal-selenium-test/customized_pom.xml"
+          "AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml" "Documentation/public-api/pom.xml")
+
+      for pattern in "${filePatterns[@]}"; do
+        for file in $pattern; do
+          updatePortalParentVersion "$file"
         done
       done
     '''

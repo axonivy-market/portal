@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldApplication;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldCategory;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldCreatedDate;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldDescription;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldExpiryDate;
+import com.axonivy.portal.util.filter.field.task.TaskFilterFieldFinishedDate;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldId;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldName;
 import com.axonivy.portal.util.filter.field.task.TaskFilterFieldPriority;
@@ -40,6 +42,7 @@ public class TaskFilterFieldFactory {
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.NAME.getField(), new TaskFilterFieldName());
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.DESCRIPTION.getField(), new TaskFilterFieldDescription());
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.CREATED.getField(), new TaskFilterFieldCreatedDate());
+    STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.COMPLETED.getField(), new TaskFilterFieldFinishedDate());
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.EXPIRY.getField(), new TaskFilterFieldExpiryDate());
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.RESPONSIBLE.getField(), new TaskFilterFieldResponsible());
     STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.CATEGORY.getField(), new TaskFilterFieldCategory());
@@ -70,7 +73,7 @@ public class TaskFilterFieldFactory {
     else if (CUSTOM_CASE_FILTER_FIELD.containsKey(field)) {
       return CUSTOM_CASE_FILTER_FIELD.get(field);
     }
-    return FilterFieldFactory.DEFAULT_FILTER_FIELD.contentEquals(field)
+    return BaseFilter.DEFAULT.contentEquals(field)
         ? new FilterFieldDefault()
         : null;
     

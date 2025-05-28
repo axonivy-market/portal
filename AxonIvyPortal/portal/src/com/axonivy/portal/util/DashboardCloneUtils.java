@@ -1,7 +1,7 @@
 package com.axonivy.portal.util;
 
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CASE;
-import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CLIENT_STATISTIC;
+import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.STATISTIC;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.CUSTOM;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NEWS;
 import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.NOTIFICATION;
@@ -12,11 +12,12 @@ import static ch.ivy.addon.portalkit.enums.DashboardWidgetType.WELCOME;
 
 import java.io.IOException;
 
+import com.axonivy.portal.dto.dashboard.NavigationDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NewsDashboardWidget;
 import com.axonivy.portal.dto.dashboard.NotificationDashboardWidget;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
-import ch.ivy.addon.portalkit.dto.dashboard.ClientStatisticDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CombinedProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.CustomDashboardWidget;
@@ -26,6 +27,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.ImageProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessViewerDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
+import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -89,18 +91,24 @@ public class DashboardCloneUtils {
         widget = newsWidget;
         widget.setId(DashboardWidgetUtils.generateNewWidgetId(NEWS));
       }
-      case ClientStatisticDashboardWidget statisticWidget -> {
+      case StatisticDashboardWidget statisticWidget -> {
         widget = statisticWidget;
-        widget.setId(DashboardWidgetUtils.generateNewWidgetId(CLIENT_STATISTIC));
+        widget.setId(DashboardWidgetUtils.generateNewWidgetId(STATISTIC));
       }
       case NotificationDashboardWidget notificationWidget -> {
         widget = notificationWidget;
         widget.setId(DashboardWidgetUtils.generateNewWidgetId(NOTIFICATION));
       }
+      case NavigationDashboardWidget navigationDashboardWidget -> {
+        widget = navigationDashboardWidget;
+        widget.setId(DashboardWidgetUtils.generateNewWidgetId(DashboardWidgetType.NAVIGATION_DASHBOARD));
+      }
       default -> {}
     }
 
-    widget.setAutoPosition(true);
+    if (widget != null) {
+      widget.setAutoPosition(true);
+    }
     return widget;
   }
 }

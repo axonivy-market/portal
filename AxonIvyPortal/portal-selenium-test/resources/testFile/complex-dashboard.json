@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "version": "12.0.0",
+    "version": "13.1.0",
     "templateId": "default-portal-dashboard-template",
     "titles": [
       {
@@ -331,7 +331,7 @@
   },
   {
     "id": "default-task-list-dashboard",
-    "version": "12.0.0",
+    "version": "13.1.0",
     "templateId": "create-from-scratch",
     "titles": [
       {
@@ -439,11 +439,11 @@
     "permissions": [
       "Everybody"
     ],
-    "isTopMenu": true
+    "dashboardDisplayType": "top_menu"
   },
   {
     "id": "default-case-list-dashboard",
-    "version": "12.0.0",
+    "version": "13.1.0",
     "templateId": "create-from-scratch",
     "titles": [
       {
@@ -542,11 +542,11 @@
     "permissions": [
       "Everybody"
     ],
-    "isTopMenu": true
+    "dashboardDisplayType": "top_menu"
   },
   {
     "id": "main-dashboard-1",
-    "version": "12.0.0",
+    "version": "13.1.0",
     "templateId": "create-from-scratch",
     "titles": [
       {
@@ -642,11 +642,11 @@
     "permissions": [
       "Everybody"
     ],
-    "isTopMenu": true
+    "dashboardDisplayType": "top_menu"
   },
   {
     "id": "main-dashboard-2",
-    "version": "12.0.0",
+    "version": "13.1.0",
     "templateId": "create-from-scratch",
     "titles": [
       {
@@ -733,11 +733,11 @@
     "permissions": [
       "Everybody"
     ],
-    "isTopMenu": true
+    "dashboardDisplayType": "top_menu"
   },
   {
     "id": "sub-dashboard-1",
-    "version": "12.0.0",
+    "version": "13.1.0",
     "templateId": "create-from-scratch",
     "titles": [
       {
@@ -836,7 +836,7 @@
   },
   {
     "id": "sub-dashboard_2",
-    "version": "12.0.0",
+    "version": "13.1.0",
     "templateId": "create-from-scratch",
     "titles": [
       {

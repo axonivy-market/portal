@@ -20,7 +20,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     absences: Abwesenheiten
     addAbsence: Abwesenheit erfassen
     deputies: Stellvertreter
-    description: 'Während meiner Abwesenheit werden Workflow Aufgaben automatisch den definierten Stellvertretern zugeteilt. '
+    description: Während meiner Abwesenheit werden Workflow Aufgaben automatisch den definierten Stellvertretern zugeteilt.
     editAbsence: Abwesenheiten bearbeiten
     from: Von
     noDeputy: Kein Stellvertreter
@@ -77,8 +77,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PROCESS: Axon Ivy Prozess
     DashboardWidgetType:
       CASE: Vorgangs-Widget
-      CLIENT_STATISTIC: Statistik-Widget
       CUSTOM: Benutzerdefiniertes Widget
+      NAVIGATION_DASHBOARD: Navigation dashboard widget
       NEW: Neues Widget
       NEWS: Nachrichten
       NOTIFICATION: Benachrichtigungen
@@ -146,12 +146,14 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rubrik 3
       NORMAL_TEXT: Normaler Text
   MyProfile:
+    CaseList: Vorfall-Liste
     DateFormat: Datum Format
     FormattingLanguage: Sprache der Formatierung
     General: Allgemeine
     Homepage: Homepage
     Language: Sprache
     ProcessList: Prozess-Liste
+    TaskList: Aufgabenliste
     byDefault: '  standardmäßig'
     defaultOption: Standard ({0})
     defaultViewMode: Standardanzeige
@@ -160,6 +162,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: Benachrichtigungskanäle
     notificationChannelsReset: Benachrichtigungskanäle zurücksetzen
     subscribed: abonniert
+    unpinAllPinnedCases: Alle angehefteten Fälle wurden für den Benutzer {0} entfernt.
+    unpinAllPinnedTasks: Alle angehängten Aufgaben wurden für den Benutzer {0} entfernt.
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
@@ -173,9 +177,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     addNewApplication: Neue Drittanwendung hinzufügen
     announcement:
       announcement: Ankündigungen
-      announcementsDisabled: Ankündigungen sind deaktiviert
-      announcementsEnabled: Ankündigungen sind aktiviert
-      defaultLanguageRequiredMessage: Ein Ankündigungstext in der standard Applikationssprache ist notwendig
+      announcementsDisabled: Ankündigungen sind deaktiviert.
+      announcementsEnabled: Ankündigungen sind aktiviert.
+      defaultLanguageRequiredMessage: Ein Ankündigungstext in der standard Applikationssprache ist notwendig.
       disabled: Deaktiviert
       enable: Ansage einschalten
       information: Sie können eine allgemeine Ankündigung in diesem Bereich machen (z.B. Wartungsankündigung). Diese Nachricht kann von allen Benutzern gesehen werden.
@@ -184,7 +188,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     appDisplayName: Anzeigename
     appDisplayNameRequiredMsg: Geben Sie einen Anzeigename an.
     appNameCharactersLimit: 'Nur die folgende Charakter sind für Applikationsname akzeptabel: [\p{Alnum}_-]+'
-    appNameRequiredMsg: Bitte, geben Sie den Anwendungsnamen an
+    appNameRequiredMsg: Bitte, geben Sie den Anwendungsnamen an.
     applicationHint: Die Reihenfolge kann mit Drag & Drop geändert werden.
     applicationLinkRequiredMsg: Geben Sie den Portal Link an.
     applicationList:
@@ -195,20 +199,19 @@ ch.ivy.addon.portalkit.ui.jsf:
     applicationtype:
       thirdPartyApplication: 3rd Party Anwendung
     currentValue: Aktueller Wert
-    defaultApplicationName: Axon Ivy
     defaultValue: Standard Wert
     deleteAppConfirmation: Sind Sie sicher, dass Sie diese Anwendung entfernen möchten?
     dialogclosinginformation:
       dialogHeader: Einstellungen abgeschlossen
       informMessage: Änderungen an den Portaleinstellungen erfordern eine Aktualisierung der aktuellen Seite, damit die neue Konfiguration wirksam wird.
-    duplicatePortalAppMsg: 'Diese Anwendung existiert bereits. Bitte wählen Sie eine andere Anwendung. '
+    duplicatePortalAppMsg: Diese Anwendung existiert bereits. Bitte wählen Sie eine andere Anwendung.
     editApplication: Anwendungseinstellungen ändern
     editSetting: Einstellungen ändern
     embedInFrame: Prozess/Task in Iframes Modus starten
     emptySupportedLanguages: Es werden keine weiteren Sprachen unterstützt
     globalVariableNote:
       AppleStoreURL: Legen Sie die URL für den Download der Axon Ivy Mobile App im Apple Store fest.
-      ApplicationName: Der Standard-Anwendungsname, der im Seitentitel angezeigt wird.
+      ApplicationName: Der Name der Anwendung, der auf dem Seitentitel angezeigt werden soll.
       BaseQRCodeUrl: Legen Sie die Basis-URL für den anzuzeigenden QR-Code fest.
       DefaultThemeMode: Der Standardthemenmodus der Anwendung
       EnableSwitchThemeModeButton: Setzen Sie diesen Wert auf true, um die Schaltfläche "Thema wechseln" zu aktivieren.
@@ -218,6 +221,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       RoleParentLimit: 'Die eingestellte Zahl steuert die Anzahl der übergeordneten Rollen, die beim Filtern von Rollen auf der Registerkarte Rollenverwaltung angezeigt werden. Gültige Zahl: 5, 10, 20'
       SearchScopeCaseFields: Festlegung der Felder, die bei der globalen Suche verwendet werden sollen, um neben der Fallnummer übereinstimmende Vorgänge zu finden (dies kann die Leistung der Suche beeinflussen)
       SearchScopeTaskFields: Festlegung der Felder, die die globale Suche neben der Aufgabenkennung verwendet, um passende Aufgaben zu finden (dies kann die Leistung der Suche beeinflussen)
+      SessionCacheTimeout: Sitzungs-Cache-Timeout für das Portal. Legt die Ablaufzeit des Sitzungs-Caches (in Sekunden) für das Portal fest. Dieser Wert kann zwischen 300 (5 Minuten) und 86.400 (24 Stunden) eingestellt werden.
       ShowLoginPageFooter: Zum Ein-/Ausschalten der Anzeige der Fußzeile auf der Anmeldeseite.
       ShowQRCode: Zum Ein- und Ausschalten der Anzeige des QR-Codes.
       behaviourWhenClickingOnLineInCaseList: Umschalten zwischen dem Zugriff auf Falldaten oder Geschäftsdaten beim Klicken auf einen Fall im Fall-Widget des Dashboards, in der globalen Suche, in verwandten Fällen und im Prozess-Widget im kombinierten Modus.
@@ -245,9 +249,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableDeepLTranslation: Setzen Sie diese Eigenschaft auf true, um die DeepL Übersetzungsunterstützung zu aktivieren.
       enableDocumentPreview: 'Auf "true" setzen, um die Vorschau von Dokumenten für bestimmte Dateitypen zu aktivieren. Unterstützte Dateitypen sind: pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
+      enablePinCase: Setzen Sie diese Eigenschaft auf „true“, um das Anheften von Fällen zu ermöglichen.
+      enablePinTask: Setzen Sie diese Eigenschaft auf „true“, um das Anheften von Aufgaben zu ermöglichen.
       enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten Chat zu aktivieren
       enableProcessViewer: Setzen Sie diese Einstellung auf true, um die Prozess-Viewer-Option in Aufgaben-/Vorgang-Aktionen zu aktivieren
-      enableScriptCheckingForUploadedDocumentNote: 'Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt. '
+      enableScriptCheckingForUploadedDocumentNote: Auf "true" setzen, um die Skriptüberprüfung zu aktivieren. Es werden die Formate PDF, Excel und Word unterstützt.
       enableVirusScannerForUploadedDocumentNote: Auf true setzen, um den Virenscanner für das hochgeladene Dokument zu aktivieren. Derzeit verwendet diese Funktion die API VIRUSTOTAL.
       hideCaseCreator: |
         Auf true setzen, um den Fallersteller in der Fallliste, dem Fall-Widget und den Falldetails auszublenden.
@@ -275,6 +281,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showProcessInformation: Auf "false" setzen, um die Verknüpfung zu Informationen des Prozesses auf der Seite Prozesse (Gittermodus) und Falldetails anzeigen zu deaktivieren.
       showQuickGlobalSearch: Zum Ein-/Ausschalten der Anzeige der globalen Schnellsuche.
       showTaskDurationTime: Zum Ein-/Ausschalten der Anzeige der Bearbeitungszeit auf der Aufgabendetailseite.
+      showTooltipTechnicalName: Ermöglicht die Anzeige des technischen Namens der Benutzer in den Tooltips.
       uploadDocumentWhiteListExtensionNote: 'Leer lassen, falls Sie alle Formate erlauben. Falls Sie nur eine geringe Anzahl an Formate erlauben möchten (White list), können Sie diese hier, mit Komma getrennt, aufführen. Z.B.: pdf, txt, doc, docx.'
     key: Schlüssel
     link: Link
@@ -359,9 +366,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       ID: Vorgangs Id
       NAME: Name / Beschreibung
       OWNER: Prozessverantwortlichen
+      PIN: Anheften
       STATE: Status
     deletionNoteContent: Der Vorgang wurde durch {0} gelöscht.
-    destroyCaseMessage: Diese Operation kann nicht rückgängig gemacht werden. Sind Sie sicher, dass dieser komplette Vorgang gelöscht werden soll?
+    destroyCaseMessage: 'Diese Operation kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie den Fall <b>{0} (ID: {1})</b> und alle seine Aufgaben löschen möchten?'
     destroyfail: Beim Löschen des Vorgangs ist ein Fehler aufgetreten.
     destroysucceed: Vorgang wurde erfolgreich gelöscht.
     downloadZipFileExplanation: Die Anzahl der zu exportierenden Vorgänge überschreitet die Grenze der Excel-Zeilen. Daher werden die Daten in mehrere Excel-Dateien aufgeteilt und dann in einer ZIP-Datei zum Herunterladen komprimiert.
@@ -374,6 +382,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     relatedCaseHeader: 'Vorgang #{0} {1}'
     relatedCases: Verwandte Vorgänge
     title: Titel
+    unknownCase: Unbekannter Fall
+    unknownId: Unbekannter Id
   caseState:
     CREATED: Erstellt
     CREATED_UPPERCASE: ERSTELLT
@@ -544,6 +554,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     numberOfSelectedFilter: Ausgewählte Filter
     ok: OK
     'on': am
+    pin: Anheften
     pleaseAddDocument: Verwenden Sie bitte den Link oben, um Dokumente hochzuladen
     pleaseAddNote: Verwenden Sie bitte den Link oben, um Notizen hochzuladen
     previousStage: Vorherige Stufe
@@ -599,11 +610,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     theProcess: Der Prozess
     timeInformation: Zeitangaben
     timestamp: Zeitstempel
-    topMenuItem: Oberster Menüpunkt
     type: Typ
     typeAdmin: Alle Administratoren
     typeAllUsers: Alle Benutzer
     typeOnlyMe: Nur für mich
+    unpin: Anheftung aufheben
     uploadHere: Hier hochladen
     uploadOneHere: Auswählen
     user: '{0} Benutzer'
@@ -752,9 +763,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     SavedFilterHeader: Gespeicherte Filter
     SearchForFilter: Nach Filter suchen
     ShareThisDashboard: Teilen Sie dieses Dashboard
+    ShowPinnedToggle: '''Angeheftete Elemente'' umschalten anzeigen'
     StandardWidgets: Standard-Widgets
     StatisticWidget:
       EmptyChartDataMessage: Wir haben nicht genug Daten, um ein schönes Diagramm zu erstellen!
+      failToRenderChartMessage: Fehler beim Rendern des Diagramms. Bitte versuchen Sie es mit anderen Einstellungen erneut.
+      firstConfigChartMessage: Noch kein Diagramm verfügbar. Bitte konfigurieren Sie Ihre Einstellungen, um ein Diagramm zu generieren.
     WelcomeWidgetIntroduction: Dieses Widget zeigt einen Willkommenstext und ein Bild auf dem Dashboard an.
     WelcomeWidgetNotFoundMessage: Wir können das Bild des Widgets nicht finden, bitte konfigurieren Sie Ihr Bild neu!
     WidgetFilterName: Name des Widget-Filters
@@ -856,6 +870,7 @@ ch.ivy.addon.portalkit.ui.jsf:
         EMPTY_MESSAGE: Aktuell sind keine weiteren Aufgaben vorhanden.
         noTasksFoundWhenFilter: Derzeit gibt es keine Aufgaben nach dem angewandten Filter.
     loading: Laden...
+    navigate: Navigieren Sie
     noCategory: Es gibt keine Kategorien
     noDashboard: Keine Dashboards vorhanden. Fügen Sie mindestens ein Dashboard und anschließend Widgets hinzu.
     noPermission: Sie haben keine Berechtigung, Dashboards zu sehen.
@@ -897,13 +912,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     taskListIntroduction: Dieses Widget zeigt relevante Aufgabeninformationen gemäß der definierten Einstellungen an
     taskStart: Aufgabe starten
     taskWidgetConfiguration: Aufgaben-Widget-Konfiguration
-    topMenuItemInfo: Wenn die Checkbox „Oberster Menüpunkt“ aktiviert ist, erscheint das Dashboard als oberstes Element in der Navigationsleiste, sortiert nach Listenposition. Wenn sie deaktiviert ist, wird es als Unterpunkt unter „Dashboards“ angezeigt, ebenfalls nach Listenposition sortiert.
     widgetInfo: Widget-Informationen
     widgetInfoIcon: Widget-Informations-Symbol
     widgetTitle: Widget-Titel
     widgetType: Widget-Typ
     yourCases: Ihre Vorgänge
     yourCustomWidget: Ihr benutzerdefiniertes Widget
+    yourNavigationDashboardWidget: Ihr Navigations-Dashboard-Widget
     yourNotifications: Ihre Benachrichtigungen
     yourProcessViewer: Ihr Prozessbetrachter
     yourProcesses: Ihre Prozesse
@@ -1155,7 +1170,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noDescription: Keine Beschreibung vorhanden
     noNotes: Keine Notizen
     processingTime: Bearbeitungszeit
-    setDelayTimestamp: '{0} ({1}) hat die Verzügerungszeit des Tasks #{2} auf {3} gesetzt.'
+    setDelayTimestamp: '{0} ({1}) hat die Verzögerungszeit des Tasks #{2} auf {3} gesetzt.'
     setExpiryActivatorAndTimeNotes: '{0} und weisen Sie {1} als Aktivator für die Aufgabeneskalation zu'
     supportFileTypes: 'Unterstützte Dateitypen für Uploads: {0}'
     taskCategory: Aufgabenkategorie
@@ -1198,18 +1213,20 @@ ch.ivy.addon.portalkit.ui.jsf:
       ACTIVATOR: Verantwortlich
       APPLICATION: Anwendung
       CATEGORY: Kategorie
+      COMPLETED: Erledigt am
       COMPLETED_ON: Erledigt am
       CREATION_TIME: Erstellt
       EXPIRY_TIME: Ablaufdatum
       ID: Aufgaben Id
       NAME: Name / Beschreibung
+      PIN: Anheften
       PRIORITY: Priorität
       STATE: Status
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Fehlender Aktivator
       abbreviation:
         PRIORITY: Prio
     defaultFilter: Standard-Filter
-    destroyTaskMessage: Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie diese Aufgabe zerstören wollen?
+    destroyTaskMessage: 'Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie diese Aufgabe zerstören wollen <b>{0} (ID: {1})</b>?'
     headerTitle:
       relatedStatisticHeader: 'Aufgaben von Diagramm:'
       relatedTasksHeader: Zugehörige Aufgaben
@@ -1233,6 +1250,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       PRIORITY_DESC: Priorität (niedrig nach hoch)
     triggerEscalationNote: 'Die Eskalation wurde ausgelöst durch {0} ({1}) der Aufgabe #{2}'
     type: Typ
+    unknownId: Unbekannte ID
+    unknownTask: Unbekannte Aufgabe
   taskPriority:
     EXCEPTION: AUSNAHME
     EXCEPTION_LOWERCASE: Ausnahme
@@ -1338,6 +1357,10 @@ Dialogs:
             dashboard:
               PortalDashboardConfiguration:
                 NewDashboard: Neues Dashboard hinzufügen
+              PortalDashboardDetailModification:
+                CreateCustomStatistic: Benutzerdefiniertes Statistik-Widget erstellen
+                DeleteConfirm: Sind Sie sicher, dass Sie löschen möchten?
+                RemoveThisStatistic: Diese benutzerdefinierte Statistik entfernen
               component:
                 CustomDashboardWidget:
                   CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
@@ -1347,6 +1370,12 @@ Dialogs:
                 ProcessWidgetConfiguration:
                   DragAndDropToChangeOrder: ziehen und ablegen zum ändern der Reihenfolge.
                   DragAndDropTooltip: Klicken Sie auf die Vorschau und ändern Sie die Reihenfolge durch Ziehen und Ableg
+                WelcomeDashboardWidget:
+                  WelcomeToAxon: Willkommen bei Axon Ivy Portal
+          setting:
+            UserProfile:
+              unpinAllPinnedCases: Alle angehefteten Fälle lösen
+              unpinAllPinnedTasks: Alle angehefteten Aufgaben lösen
         portalkit:
           component:
             CaseItemDetails:
@@ -1375,6 +1404,8 @@ Dialogs:
               ShareTaskDetails: Teilen Sie Aufgabendetails
               TaskCompletedByOtherInfo: Die Aufgabe wurde bereits von Benutzer <strong>{0}</strong> an {1} durchgeführt.
               TaskCompletedByYouInfo: Sie haben die Aufgabe auf {0} bereits erledigt.
+            TaskItemGeneralInfo:
+              Expiry: Verfallsverantwortlicher
   com:
     axonivy:
       portal:
@@ -1384,6 +1415,8 @@ Dialogs:
             Tools: Werkzeuge
             WelcomeHeaderText: Willkommen auf dem Axon Ivy Portal!
             WelcomeText: Wir freuen uns, Sie an Bord zu haben. Das Axon Ivy Portal ist Ihr Tor zu einer nahtlosen und effizienten Erfahrung. Egal, ob Sie ein neuer Benutzer sind, der die Funktionen erkundet, oder ein wiederkehrender Besucher, wir sind hier, um Sie bei jedem Schritt zu unterstützen.
+          Responsibles:
+            Multiple: Mehrere
           ShareLinkDialog:
             CopyLink: Link kopieren
             Link: Link
@@ -1415,12 +1448,17 @@ Dialogs:
             CloneWidgetFromDashboardDialog:
               header: Widget klonen von
             DashboardImportDetails:
+              DashboardImportTitle: Dashboard {0}
               FileInfomation: Dateiinformationen
               ImportPrivate: Privates Dashboard importieren
               ImportPublic: Öffentliches Dashboard importieren
               chooseAJsonFile: Wählen Sie eine JSON-Datei
             DashboardSharing:
               ShareDashboard: Dashboard teilen
+            NavigationDashboardWidgetConfiguration:
+              ButtonName: Schaltfläche Name
+              NavigationDashboardWidgetConfiguration: Konfiguration des Navigations-Dashboard-Widgets
+              NavigationDashboardWidgetDescription: Dieses Widget ermöglicht es den Benutzern, durch einen Klick auf eine Schaltfläche direkt zu einem verknüpften Dashboard zu springen.
             NewsWidget:
               NewsContentPlaceHolder: Nachrichteninhalt eingeben
               NewsContentValidateMessage: Nachrichteninhalt in {0} ist erforderlich
@@ -1447,6 +1485,9 @@ Dialogs:
               WidgetFilter: Widget-Filter
             PortalDashboardDetailModification:
               CloneWidget: Widget klonen
+            StatisticWidget:
+              IdNotFound: Diagramm mit ID {0} nicht gefunden
+              NoPermissionChartMessage: Sie haben nicht die erforderliche Berechtigung, um diese Karte zu sehen.
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen
@@ -1455,6 +1496,28 @@ Dialogs:
             CaseDetailsIFrameTitle: Falldetails Rahmen
           IFrameTaskTemplate:
             TaskIFrameTitle: Aufgabenrahmen
+        page:
+          StatisticConfiguration:
+            AddFilter: Filter hinzufügen
+            Advanced: Fortgeschrittene
+            ChartType: Diagrammtyp
+            Color: Farbe {0}
+            Create: Erstellen
+            EditStatistic: Statistisches Widget bearbeiten
+            For: Für
+            GeneratePreview: Vorschau generieren
+            GroupBy: Gruppe nach
+            HideLabel: Etikett ausblenden
+            Interval: Intervall
+            NewStatistic: Neues Statistik-Widget
+            OutdatedChartMessage: Die angewendete Group-by- oder Filter-Einstellung stimmt nicht mit der aktuellen UI-Konfiguration überein. Bitte konfigurieren Sie sie neu.
+            RefreshInterval: Automatisches Auffrischen aktiviert
+            RefreshIntervalInSeconds: Intervall für die automatische Aktualisierung (Sekunden)
+            RefreshIntervalInSecondsValidationMessage: 'Intervall für die automatische Aktualisierung (Sekunden): Das angegebene Attribut liegt nicht zwischen den erwarteten Werten von {0} und {1}'
+            RefreshIntervalInfo: Die Statistik kann nach einer bestimmten Zeit automatisch aktualisiert werden. Wenn sie aktiviert ist, kann dies die Leistung beeinträchtigen. Das Intervall für die automatische Aktualisierung (Sekunden) muss mindestens {0} betragen.
+            StatisticConfiguration: Konfiguration der Statistik
+            XAxisTitle: Titel der X-Achse
+            YAxisTitle: Titel der Y-Achse
   components:
     CaseDocument:
       FileDate: Änderungsdatum
@@ -1467,6 +1530,64 @@ Dialogs:
       invalidFileMessage: Dateityp nicht gültig!
       invalidSizeMessage: Datei zu groß!
       maximumFileUploadElement: Es gibt bereits ein Datei-Upload-Element
+Enums:
+  com:
+    axonivy:
+      portal:
+        enums:
+          statistic:
+            AggregationField:
+              ACTIVATOR_NAME:
+                name: Name des Aktivators
+              BUSINESS_RUNTIME:
+                name: Business-Laufzeit
+              CATEGORY:
+                name: Kategorie
+              CREATOR_NAME:
+                name: Name des Erstellers
+              CUSTOM_FIELD:
+                name: Benutzerdefiniertes Feld
+              END_TIMESTAMP:
+                name: Datum der Fertigstellung
+              EXPIRY_TIMESTAMP:
+                name: Verfallsdatum
+              IS_EXPIRED:
+                name: Ist abgelaufen
+              PRIORITY:
+                name: Priorität
+              RESPONSIBLES_NAME:
+                name: Verantwortliche
+              START_TIMESTAMP:
+                name: Erstellungsdatum
+              STATE:
+                name: Zustand
+              WORKER_NAME:
+                name: Name des Arbeiters
+              WORKING_TIME:
+                name: Arbeitszeiten
+            AggregationInterval:
+              DAY:
+                name: Tag
+              MONTH:
+                name: Monat
+              WEEK:
+                name: Woche
+              YEAR:
+                name: Jahr
+            ChartTarget:
+              CASE:
+                name: Vorgang
+              TASK:
+                name: Aufgabe
+            ChartType:
+              BAR:
+                name: Balkendiagramm
+              LINE:
+                name: Liniendiagramm
+              NUMBER:
+                name: Kennzahl / Metrik
+              PIE:
+                name: Kreisdiagramm
 Labels:
   AI:
     Error:
@@ -1490,9 +1611,14 @@ Labels:
     ProcessParameterInfo: ''
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
+  AndMore: 'und {0} weitere...  '
+  AllTasks: Alle Aufgaben
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
+  Configuration: Konfiguration
+  Collapse: Einklappen
   CreateNewDashboard: Neues Dashboard erstellen
+  Description: Beschreibung
   EditDescription: Beschreibung bearbeiten
   Enums:
     ChatbotCandidateQuestion:
@@ -1516,16 +1642,19 @@ Labels:
       ID: Id
       NAME: Name
       OWNER: Prozessverantwortlichen
+      PIN: Anheften
       STATE: Status
     DashboardStandardTaskColumn:
       ACTIONS: Aktionen
       APPLICATION: Anmeldung
       CATEGORY: Kategorie
+      COMPLETED: Abgeschlossenes Datum
       CREATED: Erstellt am
       DESCRIPTION: Beschreibung
       EXPIRY: Ablaufdatum
       ID: Id
       NAME: Name
+      PIN: Anheften
       PRIORITY: Priorität
       RESPONSIBLE: Verantwortlich
       START: Start
@@ -1585,12 +1714,22 @@ Labels:
     ThemeMode:
       DARK: Dunkel
       LIGHT: Hell
+  Filters: Filter
+  General: Allgemein
+  Icon: Symbol
+  Expand: Erweitern
   InsertTask-Explain: Aufgabe einfügen. Meine Aufgabe wird aufgeschoben.
   InsertTheTask: Aufgabe einfügen
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  Name: Titel
   Permissions: Berechtigungen
+  Preview: Vorschau
+  RequiredFieldMessage: '{0}: Wert ist erforderlich'
+  Save: Speichern
+  PinnedCases: Angeheftete Fälle
+  PinnedTasks: Angehängte Aufgaben
   Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails

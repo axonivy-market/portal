@@ -52,6 +52,10 @@ public class NewDashboardPage extends TemplatePage {
   public void waitForAbsencesGrowlMessageDisplay() {
     $("div[id='portal-global-growl_container']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
+  
+  public Boolean isTaskListDisplayed() {
+    return $("div[id*='task-default_task_list_dashboard_task_1']").isDisplayed();
+  }
 
   public void waitForTaskListDisplay() {
     $("div[id='task-task_1:widget-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-growl-message")
@@ -130,8 +134,9 @@ public class NewDashboardPage extends TemplatePage {
     return new MainMenuPage();
   }
 
-  public SelenideElement waitAndGetClientStatisticChart(int index) {
-    var widget = $$("[id^='client-statistic-client_statistic']").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
+  public SelenideElement waitAndGetStatisticChart(int index) {
+    var widget =
+        $$("[id^='statistic-client_statistic']").shouldBe(CollectionCondition.sizeGreaterThan(index), DEFAULT_TIMEOUT)
         .get(index)
         .shouldBe(appear, DEFAULT_TIMEOUT);
     widget.$("[id$='loading']").shouldBe(disappear, DEFAULT_TIMEOUT);
@@ -1052,8 +1057,8 @@ public class NewDashboardPage extends TemplatePage {
     $("ul[id='user-setting-container']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
   }
   
-  public ClientStatisticWidgetNewDashboardPage selectClientStatisticChartWidget(String chartName) {
-    return new ClientStatisticWidgetNewDashboardPage(chartName);
+  public StatisticWidgetNewDashboardPage selectStatisticChartWidget(String chartName) {
+    return new StatisticWidgetNewDashboardPage(chartName);
   }
 
   public SelenideElement getGlobalQuickSearchPanel() {
@@ -1110,5 +1115,24 @@ public class NewDashboardPage extends TemplatePage {
     return $$("span.widget__header-title").asFixedIterable().stream()
         .filter(widgetTitle -> widgetTitle.is(Condition.text(name))).findFirst()
         .isPresent();
+  }
+  
+  public SelenideElement getNavigationDashboardWidgetDialog() {
+    return $("div[class*='navigation-dashboard-widget-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public Boolean isBackButtonAppear() {
+    return getBackButton().isDisplayed();
+  }
+  
+  public void clickOnBackButton() {
+    getBackButton().click();
+    waitForPageLoad();
+  }
+
+  private SelenideElement getBackButton() {
+    return $("span#breadcrumb-container").shouldBe(Condition.appear, DEFAULT_TIMEOUT).
+    $("form#navigation-dashboard-back-button").shouldBe(Condition.appear, DEFAULT_TIMEOUT).
+    $("a[id$=':back-to-previous-dashboard-page']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
 }

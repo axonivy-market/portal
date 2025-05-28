@@ -31,6 +31,7 @@ public final class ChatReferencesContainer {
     return worflowContext;
   }
 
+  @SuppressWarnings("removal")
   public static IApplication getApplication() {
     return wf().getApplication();
   }

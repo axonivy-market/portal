@@ -1122,7 +1122,7 @@
               </elementProp>
               <elementProp name="javax.faces.source" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:10:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command</stringProp>
+                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:12:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.source</stringProp>
@@ -1134,12 +1134,12 @@
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
               </elementProp>
-              <elementProp name="task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:10:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command" elementType="HTTPArgument">
+              <elementProp name="task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:12:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:10:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command</stringProp>
+                <stringProp name="Argument.value">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:12:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:10:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command</stringProp>
+                <stringProp name="Argument.name">task-default_task_list_dashboard_task_1:task-component:dashboard-tasks:0:dashboard-tasks-columns:12:dashboard-actions-task-default_task_list_dashboard_task_1:task-open-detail-command</stringProp>
               </elementProp>
               <elementProp name="portal-breadcrumb:breadcrumb-form_SUBMIT" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -1713,7 +1713,7 @@
               </elementProp>
               <elementProp name="javax.faces.source" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-default_case_list_dashboard_case_1:case-component:dashboard-cases:0:dashboard-cases-columns:8:dashboard-actions-case-default_case_list_dashboard_case_1:case-item-open-detail-link</stringProp>
+                <stringProp name="Argument.value">case-default_case_list_dashboard_case_1:case-component:dashboard-cases:0:dashboard-cases-columns:9:dashboard-actions-case-default_case_list_dashboard_case_1:case-item-open-detail-link</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.source</stringProp>
@@ -1725,12 +1725,12 @@
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
               </elementProp>
-              <elementProp name="case-default_case_list_dashboard_case_1:case-component:dashboard-cases:0:dashboard-cases-columns:8:dashboard-actions-case-default_case_list_dashboard_case_1:case-item-open-detail-link" elementType="HTTPArgument">
+              <elementProp name="case-default_case_list_dashboard_case_1:case-component:dashboard-cases:0:dashboard-cases-columns:9:dashboard-actions-case-default_case_list_dashboard_case_1:case-item-open-detail-link" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-default_case_list_dashboard_case_1:case-component:dashboard-cases:0:dashboard-cases-columns:8:dashboard-actions-case-default_case_list_dashboard_case_1:case-item-open-detail-link</stringProp>
+                <stringProp name="Argument.value">case-default_case_list_dashboard_case_1:case-component:dashboard-cases:0:dashboard-cases-columns:9:dashboard-actions-case-default_case_list_dashboard_case_1:case-item-open-detail-link</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">case-default_case_list_dashboard_case_1:case-component:dashboard-cases:0:dashboard-cases-columns:8:dashboard-actions-case-default_case_list_dashboard_case_1:case-item-open-detail-link</stringProp>
+                <stringProp name="Argument.name">case-default_case_list_dashboard_case_1:case-component:dashboard-cases:0:dashboard-cases-columns:9:dashboard-actions-case-default_case_list_dashboard_case_1:case-item-open-detail-link</stringProp>
               </elementProp>
               <elementProp name="portal-breadcrumb:breadcrumb-form_SUBMIT" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>

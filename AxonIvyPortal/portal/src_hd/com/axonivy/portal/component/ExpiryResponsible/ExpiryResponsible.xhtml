@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:p="http://primefaces.org/ui"
+  xmlns:pc="http://xmlns.jcp.org/jsf/composite/components" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<cc:interface>
+  <cc:attribute name="expiryResponsibles" type="ch.ivyteam.ivy.workflow.task.expiry.responsible.ExpiryResponsibles" required="true" />
+  <cc:attribute name="popupLink" type="java.lang.Boolean" default="false"/>
+  <cc:attribute name="onClick" />
+  <cc:attribute name="isShowTechnicalDisplayNameOnTooltip" default="#{portalComponentAvatarBean.getPortalShowTechnicalTooltipOrDefault(false)}" />
+  <cc:attribute name="isShowAvatar" default="#{portalComponentAvatarBean.getPortalShowAvatarSettingOrDefault(true)}" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="responsibleSize" value="#{expiryRepsonsibleBean.getResponsiblesSize(cc.attrs.expiryResponsibles)}" />
+  <c:set var="expiryResponsibles" value="#{cc.attrs.expiryResponsibles}" />
+  
+  <pc:securityMemberNameAndAvatar 
+  	displayName="#{responsibleSize gt 1 ? ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple') : expiryRepsonsibleBean.getFirstDisplayName(expiryResponsibles)}" 
+  	securityMember="#{responsibleSize gt 1 ? null : expiryRepsonsibleBean.getFirstResponsible(expiryResponsibles)}" 
+  	representName="#{responsibleSize gt 1 ? ivy.cms.co('/Dialogs/com/axonivy/portal/component/Responsibles/Multiple') : null}" 
+    isShowTechnicalDisplayNameOnTooltip="#{responsibleSize gt 1 ? false : null}" > 
+    <f:facet name="afterName">
+      <h:panelGroup rendered="#{responsibleSize != null and responsibleSize gt 1}">
+        <h:panelGroup id="all-expiry-responsibles" styleClass="ml-1" >
+          <p:commandLink onclick="#{cc.attrs.onClick}" rendered="#{cc.attrs.popupLink}">
+            (<i class="mr-1 si si-multiple-neutral-1" /><h:outputText value="#{responsibleSize}" />)
+          </p:commandLink>
+          <h:panelGroup rendered="#{!cc.attrs.popupLink}">
+            (<i class="mr-1 si si-multiple-neutral-1" /><h:outputText value="#{responsibleSize}" />)
+          </h:panelGroup>
+        </h:panelGroup>
+        <p:tooltip for="all-expiry-responsibles" position="top" autoHide="false">
+          <div class="py-1">
+            <ui:repeat id="task-responsibles" value="#{expiryRepsonsibleBean.getResponsibleLimit10(expiryResponsibles)}" var="responsible">
+              <div class="py-1">
+                <div class="#{cc.attrs.isShowAvatar ? 'has-avatar' : ''}">
+                  <pc:avatar securityMember="#{responsible.get()}"
+                    rendered="#{responsible.get() != null}"
+                    renderedAvatar="#{cc.attrs.isShowAvatar}" />
+                  <cc:renderFacet name="alternativeAvatar" />
+                  <h:outputText id="username"
+                    value="#{cc.attrs.isShowTechnicalDisplayNameOnTooltip ? portalComponentAvatarBean.tooltipTechnicalDisplayName(responsible.get()) : expiryRepsonsibleBean.getDisplayName(responsible.get())}"
+                    rendered="#{!userMenuBean.isMobileDevice()}"
+                    styleClass="#{cc.attrs.isShowAvatar ? 'name-after-avatar' : ''} #{responsible.get() == null ? 'u-no-padding-left' : ''}">
+                  </h:outputText>
+                </div>
+              </div>
+            </ui:repeat>
+          </div>
+          <h:panelGroup styleClass="repsonsible-more-text" rendered="#{responsibleSize gt 10}" layout="block">
+            <h:outputText value="#{expiryRepsonsibleBean.getMoretext(expiryResponsibles)}" />
+          </h:panelGroup>
+        </p:tooltip>
+      </h:panelGroup>
+     </f:facet>
+  </pc:securityMemberNameAndAvatar>
+  <cc:renderFacet name="after" />
+</cc:implementation>
+</html>

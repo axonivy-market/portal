@@ -26,7 +26,7 @@ The following default widgets are available:
 
 #. **Process viewer widget**: This widget provides a visual representation of the process flow.
 
-#. **Client Statistic chart widget**: This widget provides graphical display of client statistical data.
+#. **Statistic chart widget**: This widget provides graphical display of statistical data.
 
 #. **Welcome widget**: This widget greets the user based on the local time and enables a friendlier approach.
 
@@ -35,6 +35,8 @@ The following default widgets are available:
 #. **External page widget**: This widget displays an external webpage on your dashboard.
 
 #. **Notifications widget**: This widget displays all Notifications based on your notification settings.
+
+#. **Navigation dashboard widget**: This widget allows users to jump directly to a linked dashboard by clicking a button.
 
 In addition, a developer can provide custom widgets to add relevant project information to your dashboard.
 
@@ -380,6 +382,22 @@ You can define a Notifications widget to display all Notifications based on your
 
 |notification-widget|
 
+Navigation dashboard widget
+===========================
+
+You can configure a navigation dashboard widget that lets users quickly access a target dashboard with a click.
+
+|navigation-dashboard-widget-configuration|
+
+- This is the sample output of the widget configured above:
+
+|navigation-dashboard-widget|
+
+.. important::
+
+   - If the user does not have the permission to access the dashboard, the button is disabled.
+
+
 Clone a widget
 --------------
 
@@ -471,8 +489,8 @@ After selecting the :guilabel:`Clone` option, the :guilabel:`Clone widget` dialo
    :alt: Dashboard news feed widget's Manage news dialog
 .. |external-page-widget-configuration| image:: ../../screenshots/dashboard/external-page-widget-configuration.png
    :alt: Dashboard external page widget's configuration dialog
-.. |add-statistic-widget| image:: ../../screenshots/new-dashboard/add-client-statistic-widget.png
-   :alt: Add new dashboard client statistic widget
+.. |add-statistic-widget| image:: ../../screenshots/new-dashboard/add-statistic-widget.png
+   :alt: Add new dashboard statistic widget
 .. |notification-widget-configuration| image:: ../../screenshots/new-dashboard/notification-widget-configuration.png
    :alt: Dashboard notification widget's configuration dialog
 .. |notification-widget| image:: ../../screenshots/new-dashboard/notification-widget.png
@@ -495,3 +513,6 @@ After selecting the :guilabel:`Clone` option, the :guilabel:`Clone widget` dialo
    :alt: "Clone widget from" button placed inside the "Add new widget" dialog. The "Clone widget from" dialog will appear after clicking this button.
 .. |clone-widget-from-dialog| image:: ../../screenshots/dashboard-configuration/clone-widget-from-dialog.png
    :alt: "Clone widget from" dialog.
+.. |navigation-dashboard-widget-configuration| image:: ../../screenshots/new-dashboard/navigation-dashboard-widget-configuration.png
+   :alt: Navigation dashboard widget configuration
+.. |navigation-dashboard-widget| image:: ../../screenshots/new-dashboard/navigation-dashboard-widget.png

@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
   "id" : "18B031C59C3C7814",
   "config" : {
     "data" : "portalKit_test.Data"
@@ -97,7 +97,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -189,7 +191,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -242,7 +246,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -319,7 +325,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -365,7 +373,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -478,7 +488,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -587,7 +599,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -694,7 +708,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -792,7 +808,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -1216,7 +1234,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -1332,7 +1352,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -1407,7 +1429,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -1462,7 +1486,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -1489,7 +1515,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -1542,7 +1570,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -1707,7 +1737,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -1814,7 +1846,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {
@@ -1841,7 +1875,9 @@
             "triggerable" : true,
             "task" : {
               "responsible" : {
-                "activator" : "SYSTEM"
+                "roles" : [
+                  "SYSTEM"
+                ]
               }
             },
             "case" : {

@@ -7,6 +7,7 @@ import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.operator.caze.creator.CreatorCurrentUserOperatorHandler;
 import com.axonivy.portal.util.filter.operator.caze.creator.CreatorInOperatorHandler;
+import com.axonivy.portal.util.statisticfilter.operator.text.TextInOperatorHandler;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
@@ -53,5 +54,13 @@ public class CaseFilterFieldCreator extends FilterField {
   public TaskQuery generateFilterTaskQuery(DashboardFilter filter) {
     return null;
   }
-
+  
+  @Override
+  public String generateCaseFilter(DashboardFilter filter) {
+    return switch (filter.getOperator()) {
+      case IN -> TextInOperatorHandler.getInstance().buildFilter(filter);
+      default -> null;
+    };
+  }
 }
+

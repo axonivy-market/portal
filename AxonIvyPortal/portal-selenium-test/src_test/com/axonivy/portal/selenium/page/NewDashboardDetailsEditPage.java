@@ -1,6 +1,7 @@
 package com.axonivy.portal.selenium.page;
 
 import static com.codeborne.selenide.Condition.appear;
+
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -212,13 +213,18 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     addWidgetByName(NOTIFICATION_WIDGET);
     return new DashboardNotificationWidgetConfigurationPage();
   }
+  
+  public NavigationDashboardWidgetConfigurationPage addNavigationDashboardWidgetConfigurationPage() {
+    addWidgetByName("Navigation dashboard widget");
+    return new NavigationDashboardWidgetConfigurationPage();
+  }
 
   public void waitForCaseWidgetLoaded() {
     $("div[id$='dashboard-cases-container']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='dashboard-cases']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT);
   }
   
-  public void clickToAddClientStatisticWidget() {
+  public void clickToAddStatisticWidget() {
     $("button[id$='new-statistic-widget-dialog-content:0:add-widget']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     
   }
@@ -227,9 +233,10 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
     return $("div[id='dashboard-body']").$$(".statistic-chart-widget__chart");
   }
 
-  public SelenideElement getStatisticWidgetConfigurationDialog() {
+  public SelenideElement getStatisticConfigurationDialog() {
     $("[id$=':case-component:dashboard-cases']").shouldBe(appear, DEFAULT_TIMEOUT);
-    SelenideElement statisticElement = $("div[id^='client-statistic-client_statistic']").shouldBe(appear, DEFAULT_TIMEOUT).scrollTo();
+    SelenideElement statisticElement =
+        $("div[id^='statistic-client_statistic']").shouldBe(appear, DEFAULT_TIMEOUT).scrollTo();
     $("canvas").shouldBe(appear, DEFAULT_TIMEOUT);
     return statisticElement;
   }
@@ -399,5 +406,8 @@ public class NewDashboardDetailsEditPage extends TemplatePage {
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("[id$='clone-widget-component:clone-to-dashboard-dialog']")
         .shouldBe(disappear, DEFAULT_TIMEOUT);
+  }
+  public void clickOnCreateCustomStatisiticWidget() {
+    $("button[id$=':create-custom-statistic']").shouldBe(getClickableCondition()).click();
   }
 }

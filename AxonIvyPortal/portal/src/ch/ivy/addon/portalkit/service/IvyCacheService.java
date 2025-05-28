@@ -62,7 +62,10 @@ public class IvyCacheService {
    */
   public void setSessionCache(String groupIdentifier, String identifier, Object value) {
     verifyIdentifier(groupIdentifier, identifier);
-    sessionCache().setEntry(groupIdentifier, identifier, value);
+    sessionCache().setEntry(groupIdentifier, identifier,
+        com.axonivy.portal.components.service.IvyCacheService.getInstance()
+            .getSessionCacheTimeout(),
+        value);
   }
 
   /**
@@ -99,7 +102,9 @@ public class IvyCacheService {
    * @param value
    */
   public void setApplicationCache(String groupName, String entryName, Object value) {
-    applicationCache().setEntry(groupName, entryName, value);
+    applicationCache().setEntry(groupName, entryName,
+        com.axonivy.portal.components.service.IvyCacheService.MAX_TIMEOUT,
+        value);
   }
 
   /**
@@ -177,5 +182,14 @@ public class IvyCacheService {
 
   private boolean isActive(IApplication ivyApplication) {
     return ivyApplication.getActivityState() == ActivityState.ACTIVE;
+  }
+
+  /**
+   * Invalidate all session cache entries of Portal
+   * 
+   */
+  public void invalidatePortalSessionCacheEntries() {
+    IvyCacheIdentifier.getAllPortalCacheIdentifiers()
+        .forEach(entry -> invalidateSessionGroup(entry));
   }
 }
