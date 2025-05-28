@@ -377,6 +377,7 @@ public class ChatService {
     }
   }
 
+  @SuppressWarnings("removal")
   private List<GroupChat> findAllChatGroups() {
     ObjectMapper mapper = new ObjectMapper();
     CaseQuery caseQuery = buildCaseQuery();
