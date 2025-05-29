@@ -39,7 +39,7 @@ jobs:
             const { data: prs } = await github.rest.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              base: 'release/12.0',
+              base: branch,
               state: 'closed',
               sort: 'updated',
               direction: 'desc',
@@ -53,8 +53,9 @@ jobs:
                 .write();
               return;
             }
-            
+
             await core.summary
+              .addHeading(`🔀 PRs merged into '${branch}' (maximum: 10)`)
               .addTable([
                 [
                   { data: 'PR Number', header: true },
