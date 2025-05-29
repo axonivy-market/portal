@@ -413,4 +413,7 @@ public class BaseTest {
     assertTrue(!Objects.equals(a, b));
   }
 
+  public void resizeBrowserToFullHDResolution() {
+    ScreenshotUtils.resizeBrowser(new Dimension(1900, 1080));
+  }
 }
