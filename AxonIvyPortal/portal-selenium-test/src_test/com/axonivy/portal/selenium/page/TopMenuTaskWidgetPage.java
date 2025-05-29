@@ -87,12 +87,13 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(
         webDriver -> "complete".equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
   }
-
   @Override
   public ElementsCollection getActiveTaskActions(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
-    return $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex))
-        .filter(appear).first()
+    ElementsCollection taskPanels = $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex))
+        .filter(appear);
+    taskPanels.shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+    return taskPanels.first()
         .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']")
         .filter(Condition.not(Condition.cssClass("ui-state-disabled")));
   }
@@ -125,17 +126,18 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     clickOnTaskActionLink(taskIndex);
     clickTaskAction(taskIndex, "Reserve");
   }
-
   private void clickTaskAction(int taskIndex, String actionName) {
-    SelenideElement taskPanel =
-        $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex))
-            .filter(appear).first().shouldBe(appear, DEFAULT_TIMEOUT);
+    ElementsCollection taskPanels = $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex))
+            .filter(appear);
+    taskPanels.shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+    SelenideElement taskPanel = taskPanels.first().shouldBe(appear, DEFAULT_TIMEOUT);
 
     SelenideElement overlay = taskPanel.$("div.ui-overlaypanel-content").shouldBe(appear, DEFAULT_TIMEOUT);
 
     ElementsCollection actionItems = overlay.$$("a.option-item")
         .filter(Condition.not(Condition.cssClass("ui-state-disabled"))).filter(text(actionName));
 
+    actionItems.shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
     actionItems.first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
@@ -308,11 +310,14 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   public boolean isDelegateListSelectionAvailable() {
     return $("div[id$='select-delegate-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).exists();
   }
-
   @Override
   public void triggerEscalationTask(int taskIndex) {
-    getActiveTaskActions(taskIndex).filter(text("Trigger Escalation")).first().shouldBe(getClickableCondition())
-        .click();
+    ElementsCollection actions = getActiveTaskActions(taskIndex);
+    ElementsCollection escalationActions = actions.filter(text("Trigger Escalation"));
+    
+    escalationActions.shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+    escalationActions.first().shouldBe(getClickableCondition()).click();
+    
     $("div[id='escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id='confirm-escalation-dashboard-tasks']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
