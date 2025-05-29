@@ -151,6 +151,10 @@ Processes:
       #概要
       申請者は申請の概要を受け取ります
       結果を確認します
+  GrowlMessage:
+    PROCESS_VIEWER: プロセス・ビューア用のカスタム・メッセージを開発
+    TASK_FINISHED: タスク終了時のカスタムメッセージ
+    TASK_LEFT: タスクを残したときのカスタムメッセージ
   MoreInformation:
     customProcessInfo: これはカスタムプロセス情報です
     description: カスタマイズされたプロセス情報ページを表示するには、詳細情報　をクリックしてください。

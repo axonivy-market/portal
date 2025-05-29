@@ -163,6 +163,10 @@ Processes:
       #Summary
       Requester will get a summary of the request
       Acknoledge the result
+  GrowlMessage:
+    PROCESS_VIEWER: Dev custom message for process viewer
+    TASK_FINISHED: Dev custom message for task finished
+    TASK_LEFT: Dev custom message for task left
   MoreInformation:
     customProcessInfo: |-
       <h3><span class="mw-headline" id="Hello_world_example">Hello world example</span></h3>

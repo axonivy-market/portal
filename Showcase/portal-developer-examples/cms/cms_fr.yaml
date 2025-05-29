@@ -163,6 +163,10 @@ Processes:
       #Résumé
       Le demandeur recevra un résumé de la demande
       Connaître le résultat
+  GrowlMessage:
+    PROCESS_VIEWER: Message personnalisé de Dev pour le visualiseur de processus
+    TASK_FINISHED: Message personnalisé de Dev pour les tâches terminées
+    TASK_LEFT: Message personnalisé de Dev pour la tâche laissée
   MoreInformation:
     description: Cliquez sur Plus d'informations pour afficher la page d'information personnalisée sur le processus.
   Payment:

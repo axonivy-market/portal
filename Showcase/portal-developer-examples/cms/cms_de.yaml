@@ -163,6 +163,10 @@ Processes:
       #Zusammenfassung
       Antragssteller bekommt eine Zusammenfassung
       Ergebnis zur Kenntnis nehmen
+  GrowlMessage:
+    PROCESS_VIEWER: Benutzerdefinierte Meldung für Prozessbetrachter entwickeln
+    TASK_FINISHED: Benutzerdefinierte Nachricht für beendete Aufgabe
+    TASK_LEFT: Benutzerdefinierte Nachricht für verbleibende Aufgabe
   MoreInformation:
     description: Klicken Sie auf Weitere Informationen, um die benutzerdefinierte Prozessinformationsseite anzuzeigen.
   Payment:

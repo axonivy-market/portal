@@ -46,19 +46,24 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivy.addon.portalkit.service.GrowlMessageService;",
+            "import com.axonivy.portal.components.predicate.CustomProcessPredicate;",
+            "import java.util.Map;",
+            "import java.util.HashMap;",
             "import ch.ivy.addon.portalkit.enums.GrowlMessageType;",
             "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
             "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
-            "import ch.ivy.addon.portalkit.util.GrowlMessageUtils;",
             "",
             "String growlMessageType = SecurityServiceUtils.getSessionAttribute(SessionAttribute.GROWL_MESSAGE_TYPE.toString()).toString();",
             "if (#growlMessageType is initialized) {",
             "  if (GrowlMessageType.PROCESS_VIEWER.name() == growlMessageType) {",
-            "    GrowlMessageUtils.addFeedbackMessageProcessViewer();",
+            "    GrowlMessageService.getInstance().addFeedbackMessageProcessViewer();",
+            "  } else {",
+            "    GrowlMessageService.getInstance().addFeedbackMessage(in.isTaskFinished, in.caze);",
             "  }",
             "  SecurityServiceUtils.removeSessionAttribute(SessionAttribute.GROWL_MESSAGE_TYPE.toString());",
             "} else {",
-            "  GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.caze);",
+            "  GrowlMessageService.getInstance().addFeedbackMessage(in.isTaskFinished, in.caze);",
             "}"
           ]
         }

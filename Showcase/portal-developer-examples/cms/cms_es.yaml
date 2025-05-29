@@ -163,6 +163,10 @@ Processes:
       #Resumen
       Solicitante obtendrá un resumen
       Tomar nota del resultado
+  GrowlMessage:
+    PROCESS_VIEWER: Mensaje personalizado para el visor de procesos
+    TASK_FINISHED: Mensaje personalizado para la tarea finalizada
+    TASK_LEFT: Mensaje personalizado para la tarea dejada
   MoreInformation:
     description: Haga clic en Más información para ver la página de información personalizada del proceso.
   Payment:
