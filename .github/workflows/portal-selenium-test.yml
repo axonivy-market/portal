@@ -43,7 +43,7 @@ jobs:
                 repo: context.repo.repo,
                 base: 'release/12.0',
                 state: 'closed',
-                pages: 1,
+                page: 1,
                 per_page: 10,
               }
             );
