@@ -23,7 +23,7 @@
     </snapshotRepository>
   </distributionManagement>
   <properties>
-    <ivy.engine.version>13.2.0</ivy.engine.version>
+    <ivy.engine.version>13.1.0</ivy.engine.version>
   </properties>
   <dependencies>
     <dependency>
