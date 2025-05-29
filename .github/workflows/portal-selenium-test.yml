@@ -36,7 +36,7 @@ jobs:
         with:
           script: |
             const branch = context.ref;
-            const prs = await github.rest.pulls.list,
+            const prs = github.rest.pulls.list,
                               {
                                 owner: context.repo.owner,
                                 repo: context.repo.repo,
