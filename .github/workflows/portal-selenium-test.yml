@@ -25,7 +25,7 @@ on:
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine
   ENGINE_URL: https://developer.axonivy.com/permalink/nightly-12/axonivy-engine.zip
-  TEST_PATTERN_TO_RUN: com.axonivy.portal.selenium.test.dashboard.DashboardCaseWidgetFilterTest,com.axonivy.portal.selenium.test.dashboard.DashboardNotificationWidgetTest
+  TEST_PATTERN_TO_RUN: com.axonivy.portal.selenium.test.**.*Test
   
 jobs:
   pull-request-merged:
@@ -171,7 +171,6 @@ jobs:
             retention-days: 5
             path: |
               AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
-              AxonIvyPortal/portal-selenium-test/target/*
         
         - name: Report
           uses: dorny/test-reporter@v2.0.0
