@@ -171,6 +171,7 @@ jobs:
             retention-days: 5
             path: |
               AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
+              AxonIvyPortal/portal-selenium-test/target/*
         
         - name: Report
           uses: dorny/test-reporter@v2.0.0
