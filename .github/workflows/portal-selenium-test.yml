@@ -36,17 +36,16 @@ jobs:
         with:
           script: |
             const branch = context.ref;
-            const prs = await github.paginate(
-              github.rest.pulls.list,
-              {
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                base: 'release/12.0',
-                state: 'closed',
-                page: 1,
-                per_page: 10,
-              }
-            );
+            const prs = await github.rest.pulls.list,
+                              {
+                                owner: context.repo.owner,
+                                repo: context.repo.repo,
+                                base: 'release/12.0',
+                                state: 'closed',
+                                page: 1,
+                                per_page: 10,
+                              }
+                            ;
 
             if (prs.length === 0) {
               await core.summary
