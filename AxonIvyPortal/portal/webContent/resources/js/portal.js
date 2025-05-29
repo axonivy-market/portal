@@ -505,7 +505,7 @@ const taskItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__
 const caseItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__default-case-list-dashboard-main-dashboard"]';
 const searchInputId = '[id="global-search-component:global-search-data"]:visible'
 const useSettingMenuId = 'a#user-settings-menu:visible';
-const pinButton = 'span.pin';
+const pinButton = 'a[id="user-menu-required-login:toggle-menu"]';
 
 $(document).ready(function () {
 
@@ -515,8 +515,7 @@ $(document).ready(function () {
     'Digit3': taskItemId,
     'Digit4': caseItemId,
     'Digit5': [searchInputId],
-    'Digit6': useSettingMenuId,
-    'Digit7': pinButton
+    'Digit6': useSettingMenuId
   };
 
   $(searchInputId).attr('role', 'combobox');
@@ -526,9 +525,6 @@ $(document).ready(function () {
       return $(shortcuts[key].find(h => $(h).length));
     } else if (key === 'Digit6') {
       return $(shortcuts[key]);
-    } else if (key === 'Digit7') {
-      $('.pin').trigger('click');
-      return;
     }
     return $(shortcuts[key]).find('a').first();
   }
@@ -545,6 +541,14 @@ $(document).ready(function () {
       element.addClass('focused');
       element.focus();
     }
+  }
+
+  function toggleLeftMenu(key) {
+    if (key === 'Digit7') {
+      $(pinButton).trigger('click');
+      return true;
+    }
+    return false;
   }
 
   function removeFocusedElements() {
@@ -579,6 +583,9 @@ $(document).ready(function () {
       const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
       iframeDocument.addEventListener('keydown', function (event) {
         if (onlyAltPressed(event)) {
+          if(toggleLeftMenu(event.code)) {
+            return;
+          }
           handleFocusOnMainElement(event);
         }
       });
@@ -641,6 +648,9 @@ $(document).ready(function () {
 
     if (onlyAltPressed(event)) {
       var keyCode = event.code;
+      if(toggleLeftMenu(keyCode)) {
+        return;
+      }
       if (shortcuts[keyCode]) {
         event.preventDefault();
         removeFocusedElements();
