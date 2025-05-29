@@ -1,56 +1,100 @@
 .. _deployment:
 
 Deployment
-************
+**********
 
 This section provides a step-by-step guide for deploying the Portal for the first time.
-It is written with beginners in mind and includes prerequisites, a quick start guide, and detailed instructions.
+It includes examples and best practices. For more comprehensive deployment information, refer to the
+:dev-url:`|ivy| deployment guidelines </doc/|version|/engine-guide/deployment/index.html>`
+
+The following is an overview of a sample deployment setup:
+
+- The Portal application includes the portal-components and portal projects.
+- The Business application includes the shared portal-components and customer-specific projects (e.g., accounting).
+
+.. code-block:: text
+
+  +----------------------------------------------------+
+  |                   Security system                  |
+  |                                                    |
+  |  +---------------------+  +---------------------+  |
+  |  | Portal              |  | Accounting          |  |
+  |  |                     |  |                     |  |
+  |  |   portal-components |  |   portal-components |  |
+  |  |   portal            |  |   accounting        |  |
+  |  +---------------------+  +---------------------+  |
+  |                                                    |
+  +----------------------------------------------------+
 
 Prerequisites
 =============
+
 Before you begin, ensure you have:
 
-- Java 21 and Maven 3.9.8 installed.
-- A properly configured database (e.g., PostgreSQL) ready for connection.
-- An available Axon Ivy Engine package (IAR or ZIP) for deployment.
-
-Project Modules
-===============
-The application consists of essential process modules required for deployment. These include:
-
-- **portal-components** - components of the Portal.
-- **portal** - The main Portal application.
-- **your-application** - The specific application module you are deploying.
-
-Ensure that these modules are prepared and ready for deployment.
+- Properly configured databases (e.g., PostgreSQL) ready for connection.
+- The Axon Ivy Engine is installed and operational.
 
 Installation
 ============
 
 Preparation
 -----------
-Before deployment, ensure the following:
 
-- The Axon Ivy project is available as an ivy-archive (IAR) or a packed zip-archive (ZIP).
-- The application zip contains all required dependencies to ensure a smooth deployment process.
-- A properly configured database, such as PostgreSQL, is available and ready to be connected.
+- Axon Ivy projects are packaged as either .iar (Ivy Archive) files or .zip files for deployment.
+- We recommend using .zip files, as they can include:
+  :dev-url:`branding </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>`, 
+  variables, databases, REST clients :dev-url:`configuration </doc/|version|/engine-guide/deployment/prepare/application-configuration/index.html>`.
+
+Recommended Deployment Setup (Sample)
+-------------------------------------
+
+Prepare two zip files for deployment:
+
+- Portal Application Zip File, containing:
+
+  - portal-components
+  - portal
+  - Branding, variables configuration
+- Business Application Zip File (e.g., Accounting), containing:
+
+  - portal-components
+  - accounting
+  - Branding, variables, database, REST clients configuration
 
 Deployment
 ----------
-- Place the prepared archive in the designated deployment directory of the engine.
-- Apply the necessary configurations, including database connection settings and user access controls.
-- Start the engine and verify the deployment status.
+
+- Create a security system, or use the default one provided by |ivy|. This security system will be shared across applications.
+- Create applications:
+
+  - One for the Portal, e.g., named Portal
+  - One or more for business projects, e.g., named Accounting
+- Deploy the application packages:
+
+  - Deploy the Portal application zip file (or .iar files) to the Portal application.
+  - Deploy the business application zip file (or .iar files) to the corresponding business application (e.g., Accounting).
 
 Configuration
 =============
 
+Configuration can be done either through 
+:dev-url:`deployment </doc/|version|/engine-guide/deployment/prepare/application-configuration/index.html>` 
+or via the :dev-url:`Engine Cockpit UI </doc/|version|/engine-guide/reference/engine-cockpit>`.
+This section highlights the most important configuration settings.
+
 Dashboard Configuration
 -----------------------
-There are three ways to configure the Portal Dashboard: manually, using the Engine Cockpit UI, or through the Portal’s built-in import feature.
 
-**Manual Configuration**
-^^^^^^^^^^^^^^^^^^^^^^^^
-To configure the Portal Dashboard manually, include the configuration file in the deployment package:
+There are three ways to configure the Portal Dashboard:
+
+- Deployment - using pre-configured .zip files
+- Engine Cockpit UI - via the Axon Ivy Engine's administrative interface
+- Portal Import Feature - using the built-in import functionality within the Portal
+
+**Deployment Configuration**
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To configure the Portal Dashboard via deployment, include the configuration file in the deployment package:
 
 - Place the `Portal.Dashboard.json` file within the `config/variables/` directory inside the application zip.
   
@@ -64,53 +108,40 @@ To configure the Portal Dashboard manually, include the configuration file in th
      ├── portal.iar
      ├── portal-components.iar
 
-- Alternatively, copy the configuration file directly into the engine’s application folder:
+- Alternatively, copy the configuration file directly into the engine's application folder:
   ``<engine>/configuration/applications/<application>/variables.Portal.Dashboard.json``
 
 **Using Engine Cockpit UI**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 To configure the Portal Dashboard via the Engine Cockpit UI:
 
-1. Log in to the Engine Cockpit UI.
-2. Navigate to the **Configuration** section.
-3. Select **Variables** and locate the `Portal.Dashboard.json` entry.
-4. Upload or edit the configuration file directly in the UI.
-5. Save changes and restart the application if necessary.
-
-.. hint::
-   For more details, refer to the Cockpit Guide: :dev-url:`Cockpit Guide </doc/|version|/engine-guide/reference/engine-cockpit>`.
+- Log in to the Engine Cockpit UI.
+- Navigate to the **Configuration** section.
+- Select **Variables** and locate the `Portal.Dashboard` entry.
+- Edit the configuration in the UI.
 
 **Using Portal Import Dashboard Feature**
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 To import dashboards using the Portal interface:
 
-1. Open the Portal application.
-2. Select the **Add new Dashboard** button.
-3. Click on the **Import** icon.
-4. In the **Import Dashboard** dialog, drag and drop or upload the JSON file containing the dashboard configuration.
-5. Edit the mandatory title and optional description for the dashboard.
-6. Click **Create Dashboard** to finalize the import.
-7. Configure the dashboard as needed and ensure it appears in the dashboard list.
+- Open the Portal application.
+- Select the **Add new Dashboard** button.
+- Click on the **Import** icon.
+- In the **Import Dashboard** dialog, drag and drop or upload the JSON file containing the dashboard configuration.
+- Edit the mandatory title and optional description for the dashboard.
+- Click **Create Dashboard** to finalize the import.
+- Configure the dashboard as needed and ensure it appears in the dashboard list.
 
 .. hint::
    For more details, refer to the Dashboard configuration: :ref:`Dashboard Configuration <dashboard-configuration>`.
 
-Database Configuration
-----------------------
-- Set the database connection details in the configuration files.
-- Ensure the database schema is up to date before starting the application.
+Other Configurations
+--------------------
+
+- Configure the variables, databases, REST clients either through deployment or via the Cockpit UI.
 - Configure necessary user roles and permissions.
-
-Multi-Application Setup
------------------------
-
-.. important::
-
-   This setup enables common task lists across multiple applications while maintaining a shared security context.
-
-- Deploy the Portal (portal, portal-components) to a main application.
-- Deploy additional projects separately, ensuring all applications share the same security context.
-- Only one instance of the Portal is required per security context.
 
 Final Steps
 ===========
