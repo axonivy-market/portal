@@ -53,10 +53,13 @@ jobs:
                 .write();
               return;
             }
-
-            const list = prs.map(pr =>
-              `- [#${pr.number}](${pr.html_url}) ${pr.title} by @${pr.user.login}`
-            ).join('\n');
+            const list = [
+              '| PR Number | Title | Author |',
+              '|-----------|-------|--------|',
+              ...prs.map(pr =>
+                `| [#${pr.number}](${pr.html_url}) | ${pr.title.replace(/\|/g, '\\|')} | @${pr.user.login} |`
+              )
+            ].join('\n');
 
             await core.summary
               .addHeading(`🔀 PRs merged into '${branch}' (maximum: 10)`)
