@@ -53,18 +53,22 @@ jobs:
                 .write();
               return;
             }
-            const list = [
-              '| PR Number | Title | Author |',
-              '|-----------|-------|--------|',
-              ...prs.map(pr =>
-                `| [#${pr.number}](${pr.html_url}) | ${pr.title.replace(/\|/g, '\\|')} | @${pr.user.login} |`
-              )
-            ].join('\n');
-
+            
             await core.summary
-              .addHeading(`🔀 PRs merged into '${branch}' (maximum: 10)`)
-              .addRaw(list, true)
+              .addTable([
+                [
+                  { data: 'PR Number', header: true },
+                  { data: 'Title', header: true },
+                  { data: 'Author', header: true }
+                ],
+                ...prs.map(pr => [
+                  `[${pr.number}](${pr.html_url})`,
+                  pr.title.replace(/\|/g, '\\|'),
+                  `@${pr.user.login}`
+                ])
+              ])
               .write();
+
 
   portal-selenium-test:
       runs-on: ubuntu-latest
