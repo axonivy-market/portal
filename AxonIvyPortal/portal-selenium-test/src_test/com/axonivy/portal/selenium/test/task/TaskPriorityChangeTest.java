@@ -25,6 +25,7 @@ public class TaskPriorityChangeTest extends BaseTest {
   @Test
   public void testChangeTaskPriority() {
     login(TestAccount.ADMIN_USER);
+    resizeBrowserToFullHDResolution();
     int firstTask = 0;
     int priorityIntValue = 2;
     String priorityStringValue = "NORMAL";
