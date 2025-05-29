@@ -101,8 +101,21 @@ public class PortalMenuNavigator {
 
   public static List<Application> getThirdPartyApps() {
     List<Application> applications = RegisteredApplicationService.getInstance().getPublicConfig();
+    applications.removeIf(application -> {
+      List<String> permisisons = application.getPermissions();
+      if (permisisons == null) {
+        return false;
+      }
+      return permisisons.stream().noneMatch(PortalMenuNavigator::isSessionUserHasPermisson);
+    });
     Collections.sort(applications, new ApplicationIndexAscendingComparator());
     return applications;
+  }
+
+  private static boolean isSessionUserHasPermisson(String permission) {
+    return StringUtils.startsWith(permission, "#")
+        ? StringUtils.equals(Ivy.session().getSessionUser().getMemberName(), permission)
+        : PermissionUtils.doesSessionUserHaveRole(permission);
   }
 
   public static List<SubMenuItem> callSubMenuItemsProcess() {

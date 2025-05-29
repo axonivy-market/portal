@@ -2,7 +2,7 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
 	xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-	xmlns:pe="http://primefaces.org/ui/extensions">
+	xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <cc:interface componentType="IvyComponent">
 </cc:interface>
@@ -216,7 +216,7 @@
   <!-- APPLICATION DIALOG-->
   <p:dialog header="#{data.dialogTitle}" id="appDialog" onShow="$('body').css({overflow:'hidden'})"
     styleClass="app-dialog" onHide="PF('cancelButton').jq.click(); $('body').css({overflow:'inherit'})" widgetVar="appDialog" dynamic="true"
-    modal="true" resizable="false" appendTo="@(body)" closeOnEscape="true" width="500px" height="35vh"
+    modal="true" resizable="false" appendTo="@(body)" closeOnEscape="true" width="500px" height="auto"
     responsive="true" fitViewport="true" position="center center" positionType="absolute">
     <h:form prependId="false" id="appDialogForm">
       <p:messages id="messages" closable="true" />
@@ -266,10 +266,51 @@
                   <p:inputText value="#{data.selectedApp.link}" id="portalLink3rd" required="true" styleClass="admin-settings-form-input" />
                 </div>
               </h:panelGroup>
+              
+              <!-- Application Permissions -->
+              <h:panelGroup id="applicationPermissions" styleClass="field" layout="block">
+                <p:outputLabel styleClass="w-full admin-settings-permission-label"
+                  value="#{ivy.cms.co('/Labels/Permissions')}" for="application-permission" />
+                <div class="w-full">                  <p:autoComplete id="application-permission"
+                    scrollHeight="210" dropdown="true"
+                    completeMethod="#{adminSettingBean.completeApplicationPermissions}"
+                    styleClass="admin-settings-form-input"
+                    value="#{data.selectedApp.permissionDTOs}"
+                    var="responsible" itemValue="#{responsible}"
+                    itemLabel="#{responsible.briefDisplayNameWithState}"
+                    converter="pojoConverter" cache="true"
+                    maxResults="100" multiple="true" dynamic="true"
+                    forceSelection="true">
+                    <p:ajax event="itemSelect"
+                      listener="#{adminSettingBean.onSelectPermissionForApplication}"
+                      update="application-permission" global="false"
+                      process="@this" />
+                    <p:ajax event="itemUnselect"
+                      listener="#{adminSettingBean.onUnSelectPermissionForApplication}"
+                      update="application-permission" global="false"
+                      process="@this" immediate="true" />
+                    <f:param name="skipValidator" value="true" />
+                    <p:column>
+                      <pc:securityMemberNameAndAvatar
+                        displayName="#{responsible.briefDisplayNameWithState}"
+                        securityMember="#{responsible}" isStandAlone="false">
+                        <f:facet name="alternativeAvatar">
+                          <h:outputText
+                            rendered="#{not avatarBean.isShowAvatar()}"
+                            styleClass="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                        </f:facet>
+                      </pc:securityMemberNameAndAvatar>
+                    </p:column>
+                  </p:autoComplete>
+                </div>
+              </h:panelGroup>
+              
             </p:column>
           </p:row>
         </p:panelGrid>
+        <div class="w-full">
         <p:commandLink widgetVar="cancelButton" id="cancelButton" onclick="PF('appDialog').hide()" style="display:none" />
+        </div>
       </p:outputPanel>
     </h:form>
     <f:facet name="footer">
