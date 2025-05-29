@@ -1418,14 +1418,51 @@ Dialogs:
         dashboard:
           component:
             AccessibilityShortcuts:
-              content: "<div class=\"ui-g\">\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 1</span>Enfocar en la pestaña del Panel de Control\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 4</span>Enfocar en la\
-                \ pestaña de Casos\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + A</span>Enfocar en el primer proceso\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Tab</span>Tabbing secuencial a través de\
-                \ elementos\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 2</span>Enfocar en la pestaña de Procesos\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 5</span>Enfocar en la búsqueda\n   </div>\n\
-                \   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + W</span>Enfocar en la primera tarea\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Esc</span>Cerrar widgets expandidos/Cerrar menús contextuales\n   </div>\n\
-                \   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 3</span>Enfocar en la pestaña de Tareas\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 6</span>Enfocar en la pestaña del Panel de Control\n   </div>\n\
-                \   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + Q</span>Enfocar en el primer caso\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Enter</span>Confirmar selección\n   </div>\n   \n</div>"
+              content: |-
+                <div class="ui-g">
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 1</span>Enfocar en la pestaña del Panel de Control
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 5</span>Enfocar en la búsqueda
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + A</span>Enfocar en el primer proceso
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Tab</span>Tabbing secuencial a través de elementos
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 2</span>Enfocar en la pestaña de Procesos
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 6</span>Enfocar en la pestaña del Panel de Control
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + W</span>Enfocar en la primera tarea
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Esc</span>Cerrar widgets expandidos/Cerrar menús contextuales
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 3</span>Enfocar en la pestaña de Tareas
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 7</span>Alterna la visibilidad del menú principal
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + Q</span>Enfocar en el primer caso
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Enter</span>Confirmar selección
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 4</span>Enfocar en la pestaña de Casos
+                    </div>
+                </div>
               title: 'Atajos de accesibilidad. Alt + 1: Enfocar en la pestaña del Panel de Control. Alt + 2: Enfocar en la pestaña de Procesos. Alt + 3: Enfocar en la pestaña de Tareas. Alt + 4: Enfocar en la pestaña de Casos. Alt + 5: Enfocar en la búsqueda. Alt + 6: Enfocar en la pestaña del Panel de
-                Control. Alt + A: Enfocar en el primer proceso. Alt + W: Enfocar en la primera tarea. Alt + Q: Enfocar en el primer caso. Tab: Tabbing secuencial a través de elementos. Esc: Cerrar widgets expandidos/Cerrar menús contextuales. Enter: Confirmar selección'
+                Control. Alt + 7: Alterna la visibilidad del menú principal. Alt + A: Enfocar en el primer proceso. Alt + W: Enfocar en la primera tarea. Alt + Q: Enfocar en el primer caso. Tab: Tabbing secuencial a través de elementos. Esc: Cerrar widgets expandidos/Cerrar menús contextuales. Enter:
+                Confirmar selección'
             CaseWidgetConfiguration:
               AddFilter: Añadir filtro
             CloneWidgetDialog:
@@ -1601,12 +1638,12 @@ Labels:
     ProcessParameterInfo: ''
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
-  AndMore: 'y {0} más...  '
   AllTasks: Todas las tareas
+  AndMore: 'y {0} más...  '
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
-  Configuration: Configuración
   Collapse: Contraer
+  Configuration: Configuración
   CreateNewDashboard: Crear un nuevo cuadro de mandos
   Description: Descripción
   EditDescription: Editar descripción
@@ -1694,10 +1731,10 @@ Labels:
     ThemeMode:
       DARK: Oscuro
       LIGHT: Luz
+  Expand: Expandir
   Filters: Filtros
   General: General
   Icon: Icono
-  Expand: Expandir
   InsertTask-Explain: Insertar la tarea. Mi tarea será pospuesta.
   InsertTheTask: Insertar la tarea.
   Login:
@@ -1705,11 +1742,11 @@ Labels:
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Name: Nombre
   Permissions: Permiso
+  PinnedCases: Casos fijados
+  PinnedTasks: Tareas fijadas
   Preview: Vista previa
   RequiredFieldMessage: '{0}: Valor requerido'
   Save: Guardar
-  PinnedCases: Casos fijados
-  PinnedTasks: Tareas fijadas
   Share: Compartir
   Task: Tarea
   TaskItemDetail: Detalles de la tarea

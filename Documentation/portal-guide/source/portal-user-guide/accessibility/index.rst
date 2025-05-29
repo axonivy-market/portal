@@ -50,9 +50,9 @@ We have introduced basic keyboard shortcuts to streamline the user experience in
 - **Alt + 2**: Jump to the Process section.
 - **Alt + 3**: Jump to the Task section.
 - **Alt + 4**: Jump to the Case section.
-- **Alt + 5**: Jump to the Statistics section.
-- **Alt + 6**: Jump to the Search section.
-- **Alt + 7**: Jump to User Settings.
+- **Alt + 5**: Jump to the Search section.
+- **Alt + 6**: Jump to User Settings.
+- **Alt + 7**: Toggles the visibility of the main menu.
 
 Widget Navigation
 ^^^^^^^^^^^^^^^^^

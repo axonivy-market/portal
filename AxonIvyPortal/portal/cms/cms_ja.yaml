@@ -1423,44 +1423,47 @@ Dialogs:
             AccessibilityShortcuts:
               content: |-
                 <div class="ui-g">
-                <div class="ui-g-3 shortcut-content ">
-                <span class="shortcut-key">Alt + 1</span>ダッシュボード タブにフォーカス
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 1</span>ダッシュボード タブにフォーカス
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 5</span>検索にフォーカス
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + A</span>最初のプロセスにフォーカス
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Tab</span>要素の順にタブ移動
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 2</span>プロセスタブにフォーカス
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 6</span>ユーザー設定にフォーカス
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + W</span>最初のタスクにフォーカス
+                    </div>
+                    <div class="ui-g-3 shortcut-content">
+                        <span class="shortcut-key">Esc</span>展開されたウィジェットを閉じる
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 3</span>タスクタブにフォーカス
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 7</span>メインメニューの表示／非表示を切り替えます
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + Q</span>最初のケースにフォーカス
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Enter</span>選択を確定
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 4</span>ケース タブにフォーカス
+                    </div>
                 </div>
-                <div class="ui-g-3 shortcut-content ">
-                <span class="shortcut-key">Alt + 4</span>ケース タブにフォーカス
-                </div>
-                <div class="ui-g-3 shortcut-content ">
-                <span class="shortcut-key">Alt + A</span>最初のプロセスにフォーカス
-                </div>
-                <div class="ui-g-3 shortcut-content ">
-                <span class="shortcut-key">Tab</span>要素の順にタブ移動
-                </div>
-                <div class="ui-g-3 shortcut-content ">
-                <span class="shortcut-key">Alt + 2</span>プロセスタブにフォーカス
-                </div>
-                <div class="ui-g-3 shortcut-content ">
-                <span class="shortcut-key">Alt + 5</span>検索にフォーカス
-                </div>
-                <div class="ui-g-3 shortcut-content ">
-                <span class="shortcut-key">Alt + W</span>最初のタスクにフォーカス
-                </div>
-                <div class="ui-g-3 shortcut-content">
-                <span class="shortcut-key">Esc</span>展開されたウィジェットを閉じる
-                </div>
-                <div class="ui-g-3 shortcut-content ">
-                <span class="shortcut-key">Alt + 3</span>タスクタブにフォーカス
-                </div>
-                <div class="ui-g-3 shortcut-content ">
-                <span class="shortcut-key">Alt + 6</span>ユーザー設定にフォーカス
-                </div>
-                <div class="ui-g-3 shortcut-content ">
-                <span class="shortcut-key">Alt + Q</span>最初のケースにフォーカス
-                </div>
-                <div class="ui-g-3 shortcut-content ">
-                <span class="shortcut-key">Enter</span>選択を確定
-                </div>
-                </div>
-              title: アクセシビリティ ショートカット。Alt + 1：ダッシュボードタブにフォーカスする。Alt + 2：プロセスタブにフォーカスする。Alt + 3：タスクタブにフォーカスする。Alt + 4：ケースタブにフォーカスする。Alt + 5：検索にフォーカスする。Alt + 6：ユーザー設定にフォーカスする。Alt + A：最初のプロセスにフォーカスする。Alt + W：最初のタスクにフォーカスする。Alt + Q：最初のケースにフォーカスする。Tab：要素の順にタブ移動する。Esc：展開されたウィジェットを閉じる。Enter：選択を確定する。
+              title: アクセシビリティ ショートカット。Alt + 1：ダッシュボードタブにフォーカスする。Alt + 2：プロセスタブにフォーカスする。Alt + 3：タスクタブにフォーカスする。Alt + 4：ケースタブにフォーカスする。Alt + 5：検索にフォーカスする。Alt + 6：ユーザー設定にフォーカスする。Alt + 7：メインメニューの表示／非表示を切り替えます。Alt + A：最初のプロセスにフォーカスする。Alt + W：最初のタスクにフォーカスする。Alt + Q：最初のケースにフォーカスする。Tab：要素の順にタブ移動する。Esc：展開されたウィジェットを閉じる。Enter：選択を確定する。
             CaseWidgetConfiguration:
               AddFilter: フィルターを追加
             ClientStatisticWidget:
@@ -1643,12 +1646,12 @@ Labels:
     TaskDetailsResult: |-
       タスクの詳細 **{0} (#{1})**：
       {2}
-  AndMore: TODO さらに{0}件...
   AllTasks: 'TODO: All Tasks'
+  AndMore: TODO さらに{0}件...
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
-  Configuration: 設定
   Collapse: TODO 折りたたむ
+  Configuration: 設定
   CreateNewDashboard: 新しいダッシュボードを作成
   Description: 説明
   EditDescription: 説明を編集
@@ -1746,10 +1749,10 @@ Labels:
     ThemeMode:
       DARK: 暗い
       LIGHT: 明るい
+  Expand: TODO 展開
   Filters: フィルター
   General: TODO General
   Icon: アイコン
-  Expand: TODO 展開
   InsertTask-Explain: タスクを挿入します。私のタスクは延期されます。
   InsertTheTask: タスクを挿入
   Login:
@@ -1757,11 +1760,11 @@ Labels:
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Name: 名前
   Permissions: 権限
+  PinnedCases: 'TODO: Pinned Cases'
+  PinnedTasks: 'TODO: Pinned Tasks'
   Preview: プレビュー
   RequiredFieldMessage: 'TODO {0}: Value is required'
   Save: 保存
-  PinnedCases: 'TODO: Pinned Cases'
-  PinnedTasks: 'TODO: Pinned Tasks'
   Share: 共有
   Task: タスク
   TaskItemDetail: タスクの詳細
