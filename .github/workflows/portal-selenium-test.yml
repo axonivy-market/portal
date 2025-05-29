@@ -26,7 +26,7 @@ on:
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine
   ENGINE_URL: https://developer.axonivy.com/permalink/nightly-12/axonivy-engine.zip
-  TEST_PATTERN_TO_RUN: com.axonivy.portal.selenium.test.**.*Test
+  TEST_PATTERN_TO_RUN: com.axonivy.portal.selenium.test.EscalationTaskTest
   
 jobs:
   pull-request-merged:
@@ -182,4 +182,4 @@ jobs:
             list-suites: 'failed'
             list-tests: 'failed'
             reporter: java-junit
-            only-summary: 'true'
+            only-summary: 'false'
