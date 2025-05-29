@@ -60,12 +60,14 @@ jobs:
                 [
                   { data: 'PR Number', header: true },
                   { data: 'Title', header: true },
-                  { data: 'Author', header: true }
+                  { data: 'Author', header: true },
+                  { data: 'Merged At', header: true }
                 ],
                 ...prs.map(pr => [
                   `[${pr.number}](${pr.html_url})`,
                   pr.title.replace(/\|/g, '\\|'),
-                  `@${pr.user.login}`
+                  `@${pr.user.login}`,
+                  new Date(pr.merged_at).toLocaleString()
                 ])
               ])
               .write();
