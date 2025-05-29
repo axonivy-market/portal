@@ -179,7 +179,5 @@ jobs:
             artifact: selenium-test-reports
             name: Selenium tests
             path: '*.xml'
-            list-suites: 'failed'
-            list-tests: 'failed'
             reporter: java-junit
             only-summary: 'false'
