@@ -25,7 +25,7 @@ on:
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine
   ENGINE_URL: https://developer.axonivy.com/permalink/nightly-12/axonivy-engine.zip
-  TEST_PATTERN_TO_RUN: com.axonivy.portal.selenium.test.dashboard.DashboardFilterWidgetTest,com.axonivy.portal.selenium.test.dashboard.DashboardNotificationWidgetTest
+  TEST_PATTERN_TO_RUN: com.axonivy.portal.selenium.test.dashboard.DashboardCaseWidgetFilterTest,com.axonivy.portal.selenium.test.dashboard.DashboardNotificationWidgetTest
   
 jobs:
   pull-request-merged:
