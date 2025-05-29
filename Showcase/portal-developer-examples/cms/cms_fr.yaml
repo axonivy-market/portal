@@ -164,9 +164,9 @@ Processes:
       Le demandeur recevra un résumé de la demande
       Connaître le résultat
   GrowlMessage:
-    PROCESS_VIEWER: Message personnalisé de Dev pour le visualiseur de processus
-    TASK_FINISHED: Message personnalisé de Dev pour les tâches terminées
-    TASK_LEFT: Message personnalisé de Dev pour la tâche laissée
+    PROCESS_VIEWER: Personnalisé. Vous avez fermé la vue du processus. La tâche reste ouverte.
+    TASK_FINISHED: Sur mesure. Vous avez terminé la tâche avec succès
+    TASK_LEFT: Personnalisé dans l'ordre. Vous avez annulé et quitté la tâche avec succès. Vous pouvez retrouver la tâche dans le tableau de bord ou dans votre liste de tâches.
   MoreInformation:
     description: Cliquez sur Plus d'informations pour afficher la page d'information personnalisée sur le processus.
   Payment:

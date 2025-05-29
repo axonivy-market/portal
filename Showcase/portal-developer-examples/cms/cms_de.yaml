@@ -164,9 +164,9 @@ Processes:
       Antragssteller bekommt eine Zusammenfassung
       Ergebnis zur Kenntnis nehmen
   GrowlMessage:
-    PROCESS_VIEWER: Benutzerdefinierte Meldung für Prozessbetrachter entwickeln
-    TASK_FINISHED: Benutzerdefinierte Nachricht für beendete Aufgabe
-    TASK_LEFT: Benutzerdefinierte Nachricht für verbleibende Aufgabe
+    PROCESS_VIEWER: Angepasst. Sie haben die Prozessansicht geschlossen. Die Aufgabe bleibt geöffnet.
+    TASK_FINISHED: Personnalisé dans l'ordre. Vous avez terminé la tâche.
+    TASK_LEFT: Angepasst. Sie haben die Aufgabe erfolgreich abgebrochen und verlassen. Sie können die Aufgabe im Dashboard oder in Ihrer Aufgabenliste finden.
   MoreInformation:
     description: Klicken Sie auf Weitere Informationen, um die benutzerdefinierte Prozessinformationsseite anzuzeigen.
   Payment:
