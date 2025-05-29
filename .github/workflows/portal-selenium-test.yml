@@ -36,8 +36,6 @@ jobs:
         with:
           script: |
             const branch = context.ref;
-            const ONE_DAY_MS = 24 * 60 * 60 * 1000;
-            const cutoffTime = new Date(Date.now() - ONE_DAY_MS);
             const prs = await github.paginate(
               github.rest.pulls.list,
               {
@@ -50,23 +48,19 @@ jobs:
               }
             );
 
-            const mergedToday = prs.filter(pr =>
-              pr.merged_at && new Date(pr.merged_at) > cutoffTime
-            );
-
-            if (mergedToday.length === 0) {
+            if (prs.length === 0) {
               await core.summary
                 .addHeading(`🔀 No PRs merged into '${branch}' in the last 24 hours`)
                 .write();
               return;
             }
 
-            const list = mergedToday.map(pr =>
+            const list = prs.map(pr =>
               `- [#${pr.number}](${pr.html_url}) ${pr.title} by @${pr.user.login}`
             ).join('\n');
 
             await core.summary
-              .addHeading(`🔀 PRs merged into '${branch}' in the last 24 hours`)
+              .addHeading(`🔀 PRs merged into '${branch}' (maximum: 10)`)
               .addRaw(list, true)
               .write();
 
