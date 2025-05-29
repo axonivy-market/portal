@@ -67,7 +67,10 @@ jobs:
                   `[${pr.number}](${pr.html_url})`,
                   pr.title.replace(/\|/g, '\\|'),
                   `@${pr.user.login}`,
-                  new Date(pr.merged_at).toLocaleString()
+                  new Date(pr.merged_at).toLocaleString('vi-VN', {
+                    timeZone: 'Asia/Bangkok',
+                    hour12: false
+                  })
                 ])
               ])
               .write();
