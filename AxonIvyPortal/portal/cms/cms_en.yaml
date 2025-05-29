@@ -1431,45 +1431,48 @@ Dialogs:
             AccessibilityShortcuts:
               content: |-
                 <div class="ui-g">
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 1</span>Focus on to the Dashboard Tab
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 4</span>Focus on to the Case Tab
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + A</span>Focus on to the first Process
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Tab</span>Sequential tabbing through elements
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 2</span>Focus on to the Process Tab
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 5</span>Focus on to the Search
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + W</span>Focus on to the first Task
-                   </div>
-                   <div class="ui-g-3 shortcut-content">
-                      <span class="shortcut-key">Esc</span>Close expanded Widgets
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 3</span>Focus on to the Tasks Tab
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 6</span>Focus on to the User Settings
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + Q</span>Focus on to the first Case
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Enter</span>Confirm selection
-                   </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 1</span>Focus on to the Dashboard Tab
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 5</span>Focus on to the Search
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + A</span>Focus on to the first Process
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Tab</span>Sequential tabbing through elements
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 2</span>Focus on to the Process Tab
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 6</span>Focus on to the User Settings
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + W</span>Focus on to the first Task
+                    </div>
+                    <div class="ui-g-3 shortcut-content">
+                        <span class="shortcut-key">Esc</span>Close expanded Widgets
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 3</span>Focus on to the Tasks Tab
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 7</span>Toggles the visibility of the main menu
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + Q</span>Focus on to the first Case
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Enter</span>Confirm selection
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 4</span>Focus on to the Case Tab
+                    </div>
                 </div>
-              title: 'Accessibility Shortcuts. Alt + 1: Focus on to the Dashboard tab. Alt + 2: Focus on to the Process tab. Alt + 3: Focus on to the Tasks tab. Alt + 4: Focus on to the Case tab. Alt + 5: Focus on to the search. Alt + 6: Focus on to the User settings. Alt + A: Focus on to the first Process.
-                Alt + W: Focus on to the first task. Alt + Q: Focus on to the first case. Tab: Sequential tabbing through elements. Esc: Close expanded widgets. Enter: Confirm selection.'
+              title: 'Accessibility Shortcuts. Alt + 1: Focus on to the Dashboard tab. Alt + 2: Focus on to the Process tab. Alt + 3: Focus on to the Tasks tab. Alt + 4: Focus on to the Case tab. Alt + 5: Focus on to the search. Alt + 6: Focus on to the User settings. Alt + 7: Toggles the visibility of
+                the main menu. Alt + A: Focus on to the first Process. Alt + W: Focus on to the first task. Alt + Q: Focus on to the first case. Tab: Sequential tabbing through elements. Esc: Close expanded widgets. Enter: Confirm selection.'
             CaseWidgetConfiguration:
               AddFilter: Add filter
             CloneWidgetDialog:
@@ -1656,12 +1659,12 @@ Labels:
     TaskDetailsResult: |-
       Details of task **{0} (#{1})**:
       {2}
-  AndMore: and {0} more...
   AllTasks: All Tasks
+  AndMore: and {0} more...
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
-  Configuration: Configuration
   Collapse: Collapse
+  Configuration: Configuration
   CreateNewDashboard: Create new dashboard
   Description: Description
   EditDescription: Edit description
@@ -1759,10 +1762,10 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Light
+  Expand: Expand
   Filters: Filters
   General: General
   Icon: Icon
-  Expand: Expand
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Login:
@@ -1770,11 +1773,11 @@ Labels:
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Name: Name
   Permissions: Permissions
+  PinnedCases: Pinned Cases
+  PinnedTasks: Pinned Tasks
   Preview: Preview
   RequiredFieldMessage: '{0}: Value is required'
   Save: Save
-  PinnedCases: Pinned Cases
-  PinnedTasks: Pinned Tasks
   Share: Share
   Task: Task
   TaskItemDetail: Task Details
