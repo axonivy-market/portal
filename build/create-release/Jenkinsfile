@@ -126,7 +126,8 @@ def updateVersion(def releaseVersion) {
   pomFiles.each { pomFile ->
   sh """
      xmlstarlet ed --inplace \
-     -u "/project/version" -v "${releaseVersion}" ${pomFile}
+     -N n="http://maven.apache.org/POM/4.0.0" \
+     -u "/n:project/n:version" -v "${releaseVersion}" ${pomFile}
      """
   for (groupId in DEPENDENCY_GROUP_IDS) {
   sh """
