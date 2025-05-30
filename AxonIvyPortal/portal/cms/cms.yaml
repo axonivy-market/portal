@@ -1157,8 +1157,8 @@ Labels:
   AndMore: and more...
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
-  Configuration: Configuration
   Collapse: Collapse
+  Configuration: Configuration
   CreateNewDashboard: Create new dashboard
   Description: Description
   Enums:
@@ -1166,9 +1166,9 @@ Labels:
       EXPIRY: Expiry
       PRIORITY: Priority
       RESPONSIBLE: Responsible
+  Expand: Expand
   Filters: Filters
   Icon: Icon
-  Expand: Expand
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Name: Name

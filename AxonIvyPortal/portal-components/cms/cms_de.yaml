@@ -49,6 +49,10 @@ Dialogs:
               EMAIL: Email
               INFORMATION: Information
               OTHERS: Andere Dateiformate
+          GrowlMessage:
+            PROCESS_VIEWER: Sie haben die Prozessansicht geschlossen.
+            TASK_FINISHED: Sie haben die Aufgabe erfolgreich abgeschlossen
+            TASK_LEFT: Sie haben die Aufgabe abgebrochen. Sie finden die Aufgabe im Dashboard oder in Ihrer Aufgabenliste.
           ProcessChain:
             currentStepIsNotDefined: Aktueller Schritt ({0}) der Prozesskette ist nicht definiert
           ProcessHistory:

@@ -49,6 +49,10 @@ Dialogs:
               EMAIL: メール
               INFORMATION: 情報
               OTHERS: その他
+          GrowlMessage:
+            PROCESS_VIEWER: TODO You closed the process view.
+            TASK_FINISHED: タスクを正常に完了しました
+            TASK_LEFT: タスクをキャンセルして正常に終了しました。タスクはダッシュボードまたはタスクリストで見つけることができます。
           ProcessChain:
             currentStepIsNotDefined: プロセスチェーンの現在のステップ ({0}) が定義されていません
           ProcessHistory:

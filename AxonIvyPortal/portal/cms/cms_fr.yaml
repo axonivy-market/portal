@@ -281,6 +281,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
       showTooltipTechnicalName: Activer l'affichage du nom technique des utilisateurs dans les infobulles.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
+      useCustomGrowlMessage: Si cette variable a la valeur "true", Portal utilisera le message de grognement personnalisé au lieu du message de grognement par défaut.
     key: Clé
     link: Lien
     loading: CHARGEMENT
@@ -1639,12 +1640,12 @@ Labels:
     ProcessParameterInfo: ''
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
-  AndMore: 'et {0} de plus...  '
   AllTasks: Toutes les tâches
+  AndMore: 'et {0} de plus...  '
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
-  Configuration: Configuration
   Collapse: Réduire
+  Configuration: Configuration
   CreateNewDashboard: Créer un nouveau tableau de bord
   Description: Description
   EditDescription: Editer la description
@@ -1734,10 +1735,10 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
+  Expand: Développer
   Filters: Filtres
   General: Général
   Icon: Icône
-  Expand: Développer
   InsertTask-Explain: Insérer la tâche. Ma tâche sera reportée.
   InsertTheTask: Insérer la tâche.
   Login:
@@ -1745,11 +1746,11 @@ Labels:
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Name: Nom
   Permissions: Permissions
+  PinnedCases: Cas épinglés
+  PinnedTasks: Tâches épinglées
   Preview: Aperçu
   RequiredFieldMessage: '{0} : La valeur est obligatoire'
   Save: Enregistrer
-  PinnedCases: Cas épinglés
-  PinnedTasks: Tâches épinglées
   Share: Partager
   Task: Tâche
   TaskItemDetail: Détails de la tâche
