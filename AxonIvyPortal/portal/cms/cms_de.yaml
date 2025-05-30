@@ -461,7 +461,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     categories: Kategorien
     change: Ändern
     close: Schließen
-    closeProcessViewerMessage: You closed the process view. Task remains open.
     cockpit: Cockpit
     colors: Farben
     comment: Kommentar
@@ -518,10 +517,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     generalInformation: Allgemeine Informationen
     globalSearch: Suche ...
     goToDetail: Zu den Details
-    growlMessage:
-      PROCESS_VIEWER: Sie haben die Prozessansicht geschlossen. Die Aufgabe bleibt geöffnet.
-      TASK_FINISHED: Sie haben die Aufgabe erfolgreich abgeschlossen
-      TASK_LEFT: Sie haben die Aufgabe abgebrochen. Sie finden die Aufgabe im Dashboard oder in Ihrer Aufgabenliste.
     hasPrecondition: Dieser Prozess hat eine Vorbedingung
     height: Höhe
     hide: Verbergen

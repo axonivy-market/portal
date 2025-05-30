@@ -49,6 +49,10 @@ Dialogs:
               EMAIL: Email
               INFORMATION: Información
               OTHERS: Otros
+          GrowlMessage:
+            PROCESS_VIEWER: Ha cerrado la vista del proceso.
+            TASK_FINISHED: Ha finalizado la tarea con éxito.
+            TASK_LEFT: Ha cancelado y cerrado la tarea. Encontrará la tarea en su tablero o en su lista de tareas.
           ProcessChain:
             currentStepIsNotDefined: El paso ({0}) de la cadena de proceso no está definido
           ProcessHistory:

@@ -960,11 +960,8 @@
             "  in.caseSelected = task.getCase();",
             "} else {",
             "  Boolean isTaskFinished = SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString()).toBoolean();",
-            "  ivy.log.warn(\"Boolean isTaskFinished? {0}\", isTaskFinished);",
-            "  ivy.log.warn(\"#isTaskFinished is initialized? {0}\", #isTaskFinished is initialized);",
             "  in.isTaskFinished = #isTaskFinished is initialized ? isTaskFinished : true;",
             "}",
-            "ivy.log.warn(\"Task finish or not? {0}\", in.isTaskFinished);",
             "SecurityServiceUtils.removeSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString());",
             "ivy.session.setAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString(), in.isTaskStartedInDetails);"
           ]
@@ -2400,7 +2397,6 @@
               }
             },
             "output" : {
-              "code" : "ivy.log.warn(\"is process viewer::  {0}\", out.isProcessViewer);"
             }
           },
           "visual" : {
@@ -4373,7 +4369,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.enums.GrowlMessageType;",
+            "import com.axonivy.portal.components.enums.GrowlMessageType;",
             "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
             "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
             "SecurityServiceUtils.setSessionAttribute(SessionAttribute.GROWL_MESSAGE_TYPE.toString(), GrowlMessageType.PROCESS_VIEWER);"

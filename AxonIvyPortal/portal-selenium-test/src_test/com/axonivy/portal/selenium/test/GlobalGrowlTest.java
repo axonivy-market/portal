@@ -34,8 +34,8 @@ public class GlobalGrowlTest extends BaseTest {
       "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.\nClick here for details.";
   private static final String CUSTOM_CANCEL_MESSAGE_WITH_DETAILS =
       "Customized. You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.\nClick here for details.";
-  private static final String CLOSE_PROCESS_VIEWER_MESSAGE = "You closed the process view. Task remains open.";
-  private static final String CUSTOM_CLOSE_PROCESS_VIEWER_MESSAGE = "Customized. You closed the process view. Task remains open.";
+  private static final String CLOSE_PROCESS_VIEWER_MESSAGE = "You closed the process view.";
+  private static final String CUSTOM_CLOSE_PROCESS_VIEWER_MESSAGE = "Customized. You closed the process view.";
   private static final String GROWL_STANDARD_MESSAGE_URL =
       "portal-developer-examples/16A7BB2ADC9580A8/frameStandardMessage.ivp";
 
