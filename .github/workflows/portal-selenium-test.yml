@@ -37,9 +37,10 @@ jobs:
               state: 'closed',
               sort: 'updated',
               direction: 'desc',
-              per_page: 30,
+              per_page: 10,
               page: 1
             });
+            console.log(prs);
 
             if (!prs || prs.length === 0) {
               await core.summary
@@ -47,6 +48,11 @@ jobs:
                 .write();
               return;
             }
+
+            const mergedPRs = prs
+              .filter(pr => pr.merged_at) 
+              .sort((a, b) => new Date(b.merged_at) - new Date(a.merged_at))
+              .slice(0, maxPRs);
 
             await core.summary
               .addHeading(`🔗 PRs merged into '${branch}' (maximum: 10)`)
@@ -57,12 +63,12 @@ jobs:
                   { data: 'Author', header: true },
                   { data: 'Merged At', header: true }
                 ],
-                ...prs.map(pr => [
+                ...mergedPRs.map(pr => [
                   `[${pr.number}](${pr.html_url})`,
                   pr.title.replace(/\|/g, '\\|'),
                   `@${pr.user.login}`,
                   new Date(pr.merged_at).toLocaleString('vi-VN', {
-                    timeZone: 'Asia/Bangkok',
+                    timeZone: 'Asia/Ho_Chi_Minh',
                     hour12: false
                   })
                 ])
