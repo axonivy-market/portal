@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-  xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
   lang="#{masterDataBean.userLanguage}"
   >
 <h:head>
@@ -86,7 +86,7 @@
       <div class="#{isPortalInTeams ? '' : 'layout-wrapper layout-sidebar'} layout-topbar-#{ivyFreyaTheme.mode} layout-menu-#{ivyFreyaTheme.mode}
         js-layout-wrapper #{isPortalInTeams ? 'ms-teams-layout' : ''}">
 
-        <h:panelGroup layout="block" rendered="#{!isPortalInTeams}" styleClass="layout-topbar js-layout-topbar">
+        <h:panelGroup layout="block" rendered="#{!isPortalInTeams}" styleClass="layout-topbar js-layout-topbar" pt:role="banner">
           <h:panelGroup layout="block" id="layout-topbar-menu-wrapper" styleClass="layout-topbar-wrapper">
             <ui:decorate template="/layouts/includes/topbar.xhtml">
               <ui:param name="task" value="#{not empty currentTask ? currentTask : task}" />
@@ -102,7 +102,7 @@
 
             <h:panelGroup layout="block" rendered="#{!isPortalInTeams}"
               styleClass="menu-wrapper left-sidebar-color js-left-sidebar"
-              id="left-menu">
+              id="left-menu" pt:role="navigation">
               <c:choose>
                 <c:when test="#{isNotRequiredLogin}">
                   <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin"
@@ -131,7 +131,7 @@
         <div class="layout-main js-layout-main #{isPortalInTeams ? 'margin-left-0' : ''} #{showMainArea eq true ? '' : 'u-invisibility'}" >
           <!-- If showMainArea indicator is true, the layout content will be rendered by the schedule loading of JS file-->
           <!-- Otherwise, the layout content will be rendered by once DOM is pasted already -->
-          <div class="layout-content js-layout-content portal-layout-container #{layoutContentStyleClass}" id="main-area-panel">
+          <div class="layout-content js-layout-content portal-layout-container #{layoutContentStyleClass}" id="main-area-panel" role="main">
             <h:panelGroup id="announcement-container" layout="block" styleClass="#{announcementContainerStyleClass}">
               <h:panelGroup id="announcement" layout="block" styleClass="announcement-message js-announcement-message announcement-message-customizable #{announcementStyleClass}" 
                 rendered="#{userMenuBean.isAnnouncementActivated() and not announcementInvisible}">
