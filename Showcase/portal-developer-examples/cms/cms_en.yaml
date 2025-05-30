@@ -165,7 +165,7 @@ Processes:
       Acknoledge the result
   GrowlMessage:
     PROCESS_VIEWER: Customized. You closed the process view.
-    TASK_FINISHED: Customized. You have finished the task successfully.
+    TASK_FINISHED: Customized. You have finished the task successfully
     TASK_LEFT: Customized. You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.
   MoreInformation:
     customProcessInfo: |-
