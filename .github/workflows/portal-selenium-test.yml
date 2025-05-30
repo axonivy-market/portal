@@ -11,19 +11,15 @@ on:
         required: true
       engineDownloadURL:
         description: |
-          url to download engine
-          Where to download engine? e.g.
-            -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-12/axonivy-engine-windows.zip for nightly 12
-            -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
-            -Divy.engine.list.url=https://jenkins.ivyteam.io/job/core_product/job/release%252F9.4/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build 9.4
+          url to download engine, default is the nightly-12 build.
         type: string
-        default: 'https://developer.axonivy.com/permalink/nightly-12.0/axonivy-engine-windows.zip'
+        default: 'https://developer.axonivy.com/permalink/nightly-12/axonivy-engine.zip'
         required: true
 
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine
   ENGINE_URL: https://developer.axonivy.com/permalink/nightly-12/axonivy-engine.zip
-  
+
 jobs:
   pull-request-merged:
     runs-on: ubuntu-latest
@@ -38,11 +34,14 @@ jobs:
               repo: context.repo.repo,
               base: branch,
               state: 'closed',
-              sort: 'updated',
-              direction: 'desc',
-              per_page: 10,
+              per_page: 50,
               page: 1
             });
+
+            const mergedPrs = prs
+              .filter(pr => pr.merged_at !== null)
+              .sort((a, b) => new Date(b.merged_at) - new Date(a.merged_at))
+              .slice(0, 10);
 
             if (!prs || prs.length === 0) {
               await core.summary
@@ -60,12 +59,12 @@ jobs:
                   { data: 'Author', header: true },
                   { data: 'Merged At', header: true }
                 ],
-                ...prs.map(pr => [
+                ...mergedPrs.map(pr => [
                   `[${pr.number}](${pr.html_url})`,
                   pr.title.replace(/\|/g, '\\|'),
                   `@${pr.user.login}`,
                   new Date(pr.merged_at).toLocaleString('vi-VN', {
-                    timeZone: 'Asia/Bangkok',
+                    timeZone: 'Asia/Ho_Chi_Minh',
                     hour12: false
                   })
                 ])
