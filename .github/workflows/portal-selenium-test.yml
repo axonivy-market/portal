@@ -1,5 +1,5 @@
 name: Portal Selenium Test
-run-name: 🖼️ Portal Selenium Test
+run-name: 🛠️ Portal Selenium Test
 permissions: read-all
 on:
   workflow_dispatch:
