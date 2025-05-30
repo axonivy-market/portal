@@ -1,5 +1,5 @@
 name: Portal Selenium Test
-run-name: 🛠️ Portal Selenium Test
+run-name: 🔆 Portal Selenium Test
 permissions: read-all
 on:
   workflow_dispatch:
@@ -46,13 +46,13 @@ jobs:
 
             if (!prs || prs.length === 0) {
               await core.summary
-                .addHeading(`🔀 No PRs merged into '${branch}' in the last 24 hours`)
+                .addHeading(`🔗 No PRs merged into '${branch}' in the last 24 hours`)
                 .write();
               return;
             }
 
             await core.summary
-              .addHeading(`🔀 PRs merged into '${branch}' (maximum: 10)`)
+              .addHeading(`🔗 PRs merged into '${branch}' (maximum: 10)`)
               .addTable([
                 [
                   { data: 'PR Number', header: true },
