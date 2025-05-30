@@ -35,10 +35,12 @@ jobs:
               repo: context.repo.repo,
               base: 'master',
               direction: 'desc',
+              state: 'closed',
               per_page: 10,
               page: 1
             });
             console.log(prs);
+            const mergedPrs = prs.filter(pr => pr.merged_at ==! null);
 
             if (!prs || prs.length === 0) {
               await core.summary
@@ -46,11 +48,6 @@ jobs:
                 .write();
               return;
             }
-
-            const mergedPRs = prs
-              .filter(pr => pr.merged_at) 
-              .sort((a, b) => new Date(b.merged_at) - new Date(a.merged_at))
-              .slice(0, prs);
 
             await core.summary
               .addHeading(`🔗 PRs merged into '${branch}' (maximum: 10)`)
@@ -61,7 +58,7 @@ jobs:
                   { data: 'Author', header: true },
                   { data: 'Merged At', header: true }
                 ],
-                ...mergedPRs.map(pr => [
+                ...prs.map(pr => [
                   `[${pr.number}](${pr.html_url})`,
                   pr.title.replace(/\|/g, '\\|'),
                   `@${pr.user.login}`,
