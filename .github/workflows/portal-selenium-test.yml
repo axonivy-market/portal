@@ -170,7 +170,7 @@ jobs:
               AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
         
         - name: Report
-          uses: dorny/test-reporter@v2.0.0
+          uses: dorny/test-reporter@v2.1.0
           with:
             artifact: selenium-test-reports
             name: Selenium tests
