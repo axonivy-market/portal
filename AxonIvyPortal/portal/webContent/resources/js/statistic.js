@@ -383,7 +383,7 @@ class ClientCanvasChart extends ClientChart {
 
   // Method to init the dashboard statistic widget title
   initWidgetTitle() {
-    $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title > h1')
+    $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title')
       .text(getFormatedTitle(this.data.chartConfig.names));
   }
 
@@ -711,8 +711,7 @@ class ClientNumberChart extends ClientChart {
   initWidgetHeaderName(chart, widgetName) {
     let widgetHeader = $(chart).parents(".card-widget-panel")
       .find(".widget__header")
-	  .find(".widget__header-title")
-      .find("h1").get(0);
+      .find(".widget__header-title").get(0);
     if (widgetHeader) {
       widgetHeader.textContent = widgetName;
     }

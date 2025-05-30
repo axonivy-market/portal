@@ -65,12 +65,9 @@
               <i class="#{iconSelectionBean.generateIconWithFontFamily(widget.icon)} text-7xl"/>
           </div>
           <h:panelGroup styleClass="mt-3 w-full" layout="block">
-            <h:panelGroup id="widget__header" class="mt-2 navigation-widget-title">
-              <h1 class="navigation-widget-title font-bold">
-                #{widget.name}
-              </h1>
-            </h:panelGroup>
-            <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" />
+            <div class="mt-2 navigation-widget-title">
+                <h:outputText styleClass="font-bold" value="#{widget.name}" />
+            </div>
             <div class="mt-2">
                 <h:outputText id="navigation-widget-description" styleClass="flex justify-content-center" value="#{widget.description}" />
                 <p:tooltip for="navigation-widget-description" value="#{widget.description}" trackMouse="true" />

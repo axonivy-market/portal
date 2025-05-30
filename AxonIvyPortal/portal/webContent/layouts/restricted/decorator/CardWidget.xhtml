@@ -27,11 +27,7 @@
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
 
   <div class="widget__header">
-    <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">
-      <h1 class="widget__header-title text-ellipsis my-auto">
-        #{widget.name}
-      </h1>
-    </h:panelGroup>
+    <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{widget.name}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
 
     <h:panelGroup id="widget-header-actions" styleClass="widget__header-actions" layout="block">
