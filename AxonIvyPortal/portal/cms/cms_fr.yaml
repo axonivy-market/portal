@@ -168,8 +168,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     notificationChannels: Canaux de notification
     notificationChannelsReset: Réinitialisation des canaux de notification
     subscribed: abonnée
-    unpinAllPinnedCases: 'Tous les cas épinglés ont été supprimés pour l''utilisateur : {0}.'
-    unpinAllPinnedTasks: Toutes les tâches épinglées ont été supprimées pour l’utilisateur {0}.
+    unpinAllPinnedCases: 'Tous les cas épinglés ont été supprimés pour l''utilisateur
+      : {0}.'
+    unpinAllPinnedTasks: Toutes les tâches épinglées ont été supprimées pour l’utilisateur
+      {0}.
   PortalManagement:
     AdminSetting: Administration
   ProcessViewer:
@@ -283,22 +285,36 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayAllUsersOfTaskActivator: Ce paramètre est utilisé pour le composant SecurityMemberDisplayName.
         Si le SecurityMember est un rôle, définissez ce paramètre sur true pour afficher
         la liste de tous les utilisateurs de ce rôle. Si ce paramètre a la valeur
-        true, des informations sur l'icône sont affichées à côté du nom du rôle.
+        true, des informations sur l'icône sont affichées à côté du nom du rôle
       displayMessageAfterFinishOrLeaveTask: Un message de retour d'information sera
         affiché lorsque l'utilisateur aura terminé ou quitté une tâche.
       documentUploadSizeLimit: Définissez la limite de taille pour le téléchargement
         de documents en mégaoctets (Mo). La valeur par défaut est de 20 Mo.
       embedInFrame: Régler sur true pour démarrer un processus/tâche en mode IFrame
-      enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
-      enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer la prise en charge de la traduction de DeepL.
-      enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents pour certains types de fichiers. Les types de fichiers pris en charge sont : pdf, png, jpeg, jpg, txt, log.'
-      enableGroupChat: Définissez cette propriété sur true pour activer la fonction de chat de groupe
-      enablePinCase: Définissez cette propriété sur true pour activer la possibilité d’épingler des cas.
-      enablePinTask: Définissez cette propriété sur true pour activer la possibilité d’épingler des tâches.
-      enablePrivateChat: Définissez cette propriété à true pour activer la fonction de chat privé
-      enableProcessViewer: Définissez cette propriété à true pour activer l'option de visualisation de processus dans les actions de Task/Case.
-      enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la vérification de PDF, Excel, Word.
-      enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
+      enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de
+        cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes
+        de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
+      enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer
+        la prise en charge de la traduction de DeepL.
+      enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents
+        pour certains types de fichiers. Les types de fichiers pris en charge sont
+        : pdf, png, jpeg, jpg, txt, log.'
+      enableGroupChat: Définissez cette propriété sur true pour activer la fonction
+        de chat de groupe
+      enablePinCase: Définissez cette propriété sur true pour activer la possibilité
+        d’épingler des cas.
+      enablePinTask: Définissez cette propriété sur true pour activer la possibilité
+        d’épingler des tâches.
+      enablePrivateChat: Définissez cette propriété à true pour activer la fonction
+        de chat privé
+      enableProcessViewer: Définissez cette propriété à true pour activer l'option
+        de visualisation de processus dans les actions de Task/Case.
+      enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la
+        vérification de script pour le document téléchargé. Actuellement, cette fonction
+        prend en charge la vérification de PDF, Excel, Word.
+      enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le
+        scanner de virus pour le document téléchargé. Actuellement, cette fonction
+        utilise l'API VIRUSTOTAL.
       hideCaseCreator: |-
         La valeur "true" permet de masquer le créateur du dossier dans la liste des dossiers, le widget du dossier et les détails du dossier.
         Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
@@ -875,11 +891,16 @@ ch.ivy.addon.portalkit.ui.jsf:
     ShowPinnedToggle: Afficher le bouton de bascule 'Éléments épinglés'
     StandardWidgets: Widgets standard
     StatisticWidget:
-      EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau graphique !
-      failToRenderChartMessage: Erreur lors du rendu du graphique. Veuillez réessayer avec des paramètres différents.
-      firstConfigChartMessage: Aucun graphique disponible pour le moment. Veuillez configurer vos paramètres pour générer un graphique.
-    WelcomeWidgetIntroduction: Ce widget affiche un texte et une image de bienvenue sur le tableau de bord.
-    WelcomeWidgetNotFoundMessage: Nous ne pouvons pas trouver l'image du widget, veuillez reconfigurer votre image !
+      EmptyChartDataMessage: Nous n'avons pas assez de données pour créer un beau
+        graphique !
+      failToRenderChartMessage: Erreur lors du rendu du graphique. Veuillez réessayer
+        avec des paramètres différents.
+      firstConfigChartMessage: Aucun graphique disponible pour le moment. Veuillez
+        configurer vos paramètres pour générer un graphique.
+    WelcomeWidgetIntroduction: Ce widget affiche un texte et une image de bienvenue
+      sur le tableau de bord.
+    WelcomeWidgetNotFoundMessage: Nous ne pouvons pas trouver l'image du widget, veuillez
+      reconfigurer votre image !
     WidgetFilterName: Nom du filtre du widget
     WidgetFilters: Filtres widgets
     YourWelcomeWidget: Votre widget de bienvenue
@@ -1726,7 +1747,8 @@ Dialogs:
               CloneWidget: Cloner le widget
             StatisticWidget:
               IdNotFound: ' Diagramme avec ID {0} non trouvé'
-              NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour consulter ce graphique.
+              NoPermissionChartMessage: Vous n'avez pas l'autorisation requise pour
+                consulter ce graphique.
             TaskWidgetConfiguration:
               AddFilter: Ajouter un filtre
               ResetFilter: Réinitialiser le filtre
@@ -1749,11 +1771,17 @@ Dialogs:
             HideLabel: Cacher l'étiquette
             Interval: Intervalle
             NewStatistic: Nouveau widget statistique
-            OutdatedChartMessage: Le groupement ou le filtre appliqué ne correspond pas à la configuration actuelle de l'interface. Veuillez le reconfigurer.
+            OutdatedChartMessage: Le groupement ou le filtre appliqué ne correspond
+              pas à la configuration actuelle de l'interface. Veuillez le reconfigurer.
             RefreshInterval: Actualisation automatique activée
             RefreshIntervalInSeconds: Intervalle de rafraîchissement automatique (secondes)
-            RefreshIntervalInSecondsValidationMessage: 'Intervalle de rafraîchissement automatique (secondes) : L''attribut spécifié n''est pas compris entre les valeurs attendues de {0} et {1}'
-            RefreshIntervalInfo: La statistique peut être actualisée automatiquement après une certaine période. Si cette option est activée, elle peut avoir un impact sur les performances. L'intervalle de rafraîchissement automatique (secondes) doit être au moins {0}.
+            RefreshIntervalInSecondsValidationMessage: 'Intervalle de rafraîchissement
+              automatique (secondes) : L''attribut spécifié n''est pas compris entre
+              les valeurs attendues de {0} et {1}'
+            RefreshIntervalInfo: La statistique peut être actualisée automatiquement
+              après une certaine période. Si cette option est activée, elle peut avoir
+              un impact sur les performances. L'intervalle de rafraîchissement automatique
+              (secondes) doit être au moins {0}.
             StatisticConfiguration: Configuration des statistiques
             XAxisTitle: Titre de l'axe X
             YAxisTitle: Titre de l'axe des Y
