@@ -14,7 +14,8 @@ Labels:
       approval: Approval
       approvalResult: Approval Result
       creation: Create leave request
-    approvalResultTaskIntro: Below is summary of your leave request and feedback from approver.
+    approvalResultTaskIntro: Below is summary of your leave request and feedback from
+      approver.
     approvalTaskIntro: 'There is leave request need your approval, detail is below:'
     approver: Approver
     approverComment: Approver comment
@@ -35,7 +36,8 @@ Processes:
     Task:
       Request:
         name: Investment request
-    description: Investment Request for Customized Business Details Page With Public API example
+    description: Investment Request for Customized Business Details Page With Public
+      API example
     name: Create Investment With Public API
   LeaveRequest:
     approvalTask: Your leave request is approved
