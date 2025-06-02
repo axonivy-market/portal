@@ -125,14 +125,20 @@ Dialogs:
                   Representation: Representation
                   To: To
 Labels:
-  changePasswordWSError: An error occurred while changing your password. Please contact your administrator if this problem persists.
-  forgotPasswordError: An error occurred while processing your request. Please try again later.
-  passwordResetEmailCantSend: Exception while sending email to you. Please try again later.
-  passwordResetEmailContent: '<html>Dear {0},<br/><br/>Please click to this link to reset your password: <a href="{1}">Reset Password</a><br/><br/>Best regards</html>'
-  passwordResetEmailSent: If this e-mail address is registered then we have sent a password recovery link to it.
+  changePasswordWSError: An error occurred while changing your password. Please contact
+    your administrator if this problem persists.
+  forgotPasswordError: An error occurred while processing your request. Please try
+    again later.
+  passwordResetEmailCantSend: Exception while sending email to you. Please try again
+    later.
+  passwordResetEmailContent: '<html>Dear {0},<br/><br/>Please click to this link to
+    reset your password: <a href="{1}">Reset Password</a><br/><br/>Best regards</html>'
+  passwordResetEmailSent: If this e-mail address is registered then we have sent a
+    password recovery link to it.
   passwordResetEmailSubject: Email to reset your password
   updatePasswordSuccessfully: Password updated successfully.
-  userNotFound: If this e-mail address is registered then we have sent a password recovery link to it.
+  userNotFound: If this e-mail address is registered then we have sent a password
+    recovery link to it.
   usersHaveSameEmail: There are many users using this email. Please contact your administrator.
   wrongPassword: Authentication failed, your password seems to be wrong!
 Processes:
@@ -150,7 +156,8 @@ Processes:
       SickLeave:
         description: Sick Leave Request Description
         name: Sick Leave Request
-    description: This is a short description what you can expect behind this “Leave Request” example.
+    description: This is a short description what you can expect behind this “Leave
+      Request” example.
     name: Categoried Leave Request
     processStep: |-
       #Creation
@@ -258,7 +265,8 @@ Processes:
       <li id="cite_note-30"><span class="mw-cite-backlink"><b><a href="#cite_ref-30" aria-label="Jump up" title="Jump up">^</a></b></span> <span class="reference-text"><link rel="mw-deduplicated-inline-style" href="mw-data:TemplateStyles:r1133582631"><cite class="citation web cs1"><a rel="nofollow" class="external text" href="https://www.zdnet.com/news/what-is-ecma-and-why-microsoft-cares/298821">"What is ECMA—and why Microsoft cares"</a>. <i><a href="/wiki/ZDNet" class="mw-redirect" title="ZDNet">ZDNet</a></i>. <a rel="nofollow" class="external text" href="https://web.archive.org/web/20140506215226/http://www.zdnet.com/news/what-is-ecma-and-why-microsoft-cares/298821">Archived</a> from the original on May 6, 2014<span class="reference-accessdate">. Retrieved <span class="nowrap">May 6,</span> 2014</span>.</cite><span title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=unknown&amp;rft.jtitle=ZDNet&amp;rft.atitle=What+is+ECMA%E2%80%94and+why+Microsoft+cares&amp;rft_id=http%3A%2F%2Fwww.zdnet.com%2Fnews%2Fwhat-is-ecma-and-why-microsoft-cares%2F298821&amp;rfr_id=info%3Asid%2Fen.wikipedia.org%3AJava+%28programming+language%29" class="Z3988"></span></span>
       </li>
       </ol></div>
-    description: Click on More Information to see the customized process information page.
+    description: Click on More Information to see the customized process information
+      page.
   Payment:
     Tasks:
       Pay:
@@ -269,7 +277,8 @@ Processes:
   TasksForTaskListCustomization:
     Cases:
       Party:
-        description: A social gathering of invited guests, typically involving eating, drinking, and entertainment.
+        description: A social gathering of invited guests, typically involving eating,
+          drinking, and entertainment.
         name: Prepare a party
     Tasks:
       BeerOrder:
