@@ -125,15 +125,24 @@ Dialogs:
                   Representation: Représentation
                   To: À l'adresse suivante
 Labels:
-  changePasswordWSError: Une error s'est produite lors du changement de mot de passe. Veuillez contacter votre administrateur si le problème persiste après plusieurs essais.
-  forgotPasswordError: Une erreur s'est produite lors du traitement de votre demande. Veuillez réessayer plus tard.
-  passwordResetEmailCantSend: Exception lors de l'envoi d'un courrier électronique. Veuillez réessayer plus tard.
-  passwordResetEmailContent: '<html>Cher/e {0},<br/><br/>Veuillez cliquer sur ce lien pour réinitialiser votre mot de passe : <a href="{1}">Réinitialisation du mot de passe</a><br/><br/>Bonnes salutations</html>.'
-  passwordResetEmailSent: Si cette adresse e-mail est enregistrée, nous lui avons envoyé un lien de récupération du mot de passe.
+  changePasswordWSError: Une error s'est produite lors du changement de mot de passe.
+    Veuillez contacter votre administrateur si le problème persiste après plusieurs
+    essais.
+  forgotPasswordError: Une erreur s'est produite lors du traitement de votre demande.
+    Veuillez réessayer plus tard.
+  passwordResetEmailCantSend: Exception lors de l'envoi d'un courrier électronique.
+    Veuillez réessayer plus tard.
+  passwordResetEmailContent: '<html>Cher/e {0},<br/><br/>Veuillez cliquer sur ce lien
+    pour réinitialiser votre mot de passe : <a href="{1}">Réinitialisation du mot
+    de passe</a><br/><br/>Bonnes salutations</html>.'
+  passwordResetEmailSent: Si cette adresse e-mail est enregistrée, nous lui avons
+    envoyé un lien de récupération du mot de passe.
   passwordResetEmailSubject: Courriel de réinitialisation du mot de passe
   updatePasswordSuccessfully: Le mot de passe a été modifié avec succès.
-  userNotFound: Si cette adresse e-mail est enregistrée, nous lui avons envoyé un lien de récupération du mot de passe.
-  usersHaveSameEmail: De nombreux utilisateurs utilisent ce courrier électronique. Veuillez contacter votre administrateur.
+  userNotFound: Si cette adresse e-mail est enregistrée, nous lui avons envoyé un
+    lien de récupération du mot de passe.
+  usersHaveSameEmail: De nombreux utilisateurs utilisent ce courrier électronique.
+    Veuillez contacter votre administrateur.
   wrongPassword: Le mot de passe est erroné !
 Processes:
   CategoriedLeaveRequest:
@@ -150,7 +159,8 @@ Processes:
       SickLeave:
         description: Demande de congé de maladie Description
         name: Demande de congé de maladie
-    description: Voici une brève description de ce à quoi vous pouvez vous attendre derrière cet exemple de "demande de congé".
+    description: Voici une brève description de ce à quoi vous pouvez vous attendre
+      derrière cet exemple de "demande de congé".
     name: Demande de congé catégorisé
     processStep: |-
       #Création
@@ -164,7 +174,8 @@ Processes:
       Le demandeur recevra un résumé de la demande
       Connaître le résultat
   MoreInformation:
-    description: Cliquez sur Plus d'informations pour afficher la page d'information personnalisée sur le processus.
+    description: Cliquez sur Plus d'informations pour afficher la page d'information
+      personnalisée sur le processus.
   Payment:
     Tasks:
       Pay:
@@ -175,7 +186,8 @@ Processes:
   TasksForTaskListCustomization:
     Cases:
       Party:
-        description: Un rassemblement social d'invités, impliquant généralement de manger, boire et se divertir.
+        description: Un rassemblement social d'invités, impliquant généralement de
+          manger, boire et se divertir.
         name: Prepare a party
     Tasks:
       BeerOrder:
