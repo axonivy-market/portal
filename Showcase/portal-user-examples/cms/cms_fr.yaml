@@ -57,8 +57,10 @@ Labels:
       approval: Approbation
       approvalResult: Résultat de l'approbation
       creation: Créer une demande de congé
-    approvalResultTaskIntro: Vous trouverez ci-dessous un résumé de votre demande de congé et les commentaires de l'approbateur.
-    approvalTaskIntro: 'Toute demande de congé doit être approuvée par vous, dont les détails figurent ci-dessous :'
+    approvalResultTaskIntro: Vous trouverez ci-dessous un résumé de votre demande
+      de congé et les commentaires de l'approbateur.
+    approvalTaskIntro: 'Toute demande de congé doit être approuvée par vous, dont
+      les détails figurent ci-dessous :'
     approver: Approbateur
     approverComment: Commentaire d'approbation
     from: Du
@@ -69,7 +71,8 @@ Labels:
     to: Au
   Loading: Chargement
   Login: Connexion
-  LoginErrorMessage: Vous n'êtes pas connecté ou votre nom d'utilisateur n'est pas connu par cette application. Veuillez consulter votre administrateur système.
+  LoginErrorMessage: Vous n'êtes pas connecté ou votre nom d'utilisateur n'est pas
+    connu par cette application. Veuillez consulter votre administrateur système.
   LoginFailed: Erreur de connexion
   LoginLogo: Logo login
   LoginWith: Connectez-vous avec
@@ -98,7 +101,8 @@ Processes:
       description1: Le processus simule un contrôle externe du registre des sociétés
       description2: Le processus se poursuit avec l'étape suivante
     CollectPersonDataDescription:
-      description1: Le processus simule une connexion à une base de données et charge les données de "John Doe".
+      description1: Le processus simule une connexion à une base de données et charge
+        les données de "John Doe".
       description2: Vous pouvez vérifier et modifier ces données
       description3: Les champs obligatoires sont validés
     ContractCreation:
@@ -107,22 +111,29 @@ Processes:
     ExternalSolvencyServiceDescription:
       description1: Simule une tâche du service externe de solvabilité
     InternalSolvencyCheckDescription:
-      description1: Obtenir les données du processus pour réaliser un contrôle de solvabilité (en dehors du système)
-      description2: "<P>\nVous pouvez démarrer l'étape secondaire Service externe de solvabilité en cliquant sur cette icône : \n<i class=\"fa fa-align-justify\" ></i>\n</P>"
+      description1: Obtenir les données du processus pour réaliser un contrôle de
+        solvabilité (en dehors du système)
+      description2: "<P>\nVous pouvez démarrer l'étape secondaire Service externe
+        de solvabilité en cliquant sur cette icône : \n<i class=\"fa fa-align-justify\"\
+        \ ></i>\n</P>"
     Stage:
       approval: Approbation
       creditRating: Cote de crédit
       identification: Identification
     VerifyPersonalDataDescription:
-      description1: Vous pouvez facilement vérifier les données à partir de l'étape 1
+      description1: Vous pouvez facilement vérifier les données à partir de l'étape
+        1
       description2: Ajouter un commentaire à la suite de la vérification
     approveLevel1: Approuver le niveau 1
     approveLevel2: Approuver le niveau 2
-    availableSideStep: "<P>\n<B>Side Steps sont : </B>\n</P>\n<P>\n- Facultatif \n</P>\n<P>\n- Seulement une partie du processus global, si nécessaire \n</P>"
+    availableSideStep: "<P>\n<B>Side Steps sont : </B>\n</P>\n<P>\n- Facultatif \n\
+      </P>\n<P>\n- Seulement une partie du processus global, si nécessaire \n</P>"
     checkCompanyRegister: Vérifier le registre des sociétés
     collectPersonalData: Collecte de données personnelles
     createContract: Créer un contrat
-    description: Voici une brève description de ce à quoi vous pouvez vous attendre derrière cet exemple de "prêt", mis en œuvre avec une carte de cas. Veuillez cliquer sur le bouton ci-dessous pour plus d'informations.
+    description: Voici une brève description de ce à quoi vous pouvez vous attendre
+      derrière cet exemple de "prêt", mis en œuvre avec une carte de cas. Veuillez
+      cliquer sur le bouton ci-dessous pour plus d'informations.
     externalSolvencyCheck: Contrôle externe de la solvabilité
     internalSolvencyCheck: 'Contrôle interne de la solvabilité '
     name: Prêts (Carte des cas)
@@ -133,11 +144,13 @@ Processes:
     name: Négociation de contrats
   DashboardCustomWidget:
     category: Investissement
-    name: Liste des investissements (exemple de widget personnalisé sur le tableau de bord)
+    name: Liste des investissements (exemple de widget personnalisé sur le tableau
+      de bord)
   LeaveRequest:
     Approval:
       description1: Ajouter un commentaire à la demande
-      description2: "<P>\nPrenez une décision :\n</P>\n<P>\n&nbsp;- l'approuver \n</P>\n<P>\n- Refuser\n</P>"
+      description2: "<P>\nPrenez une décision :\n</P>\n<P>\n&nbsp;- l'approuver \n\
+        </P>\n<P>\n- Refuser\n</P>"
       name: Approbation
     Creation:
       description1: Choisissez différents types de congés
@@ -150,8 +163,11 @@ Processes:
       name: Résumé
     approvalTaskName: Approbation de la demande de congé de {0}
     createLeaveRequest: 'Créer une demande de congé pour : {0}'
-    createNewLeaveRequest: 'Tâche du système : Commencer à créer une nouvelle demande de congé'
-    description: Voici une brève description de ce à quoi vous pouvez vous attendre derrière cet exemple de "demande de congé". Veuillez cliquer sur le bouton ci-dessous pour plus d'informations.
+    createNewLeaveRequest: 'Tâche du système : Commencer à créer une nouvelle demande
+      de congé'
+    description: Voici une brève description de ce à quoi vous pouvez vous attendre
+      derrière cet exemple de "demande de congé". Veuillez cliquer sur le bouton ci-dessous
+      pour plus d'informations.
     leaveRequest: Processus d'absence
     name: Processus d'absence
     rejectedTask: Votre demande de congé est rejetée
@@ -161,5 +177,8 @@ Processes:
     name: Approvisionnement
   UserExampleGuide:
     comingSoon: A venir…
-    description: 'Bienvenue ! Dans ce guide d''exemple d''utilisateur, vous trouverez quelques processus de démonstration disponibles dans le Axon Ivy Portal. Il vous suffit de cliquer sur le lien correspondant ci-dessous pour obtenir plus d''informations. '
+    description: 'Bienvenue ! Dans ce guide d''exemple d''utilisateur, vous trouverez
+      quelques processus de démonstration disponibles dans le Axon Ivy Portal. Il
+      vous suffit de cliquer sur le lien correspondant ci-dessous pour obtenir plus
+      d''informations. '
     name: Guide d'utilisation
