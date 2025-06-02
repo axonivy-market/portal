@@ -257,8 +257,10 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。
       enableDeepLTranslation: DeepL翻訳サポートを有効にするには、このプロパティーを true に設定してください。
       enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
-      enablePinCase: 'TODO: Set this property to true to enable the ability to pin cases.'
-      enablePinTask: 'TODO: Set this property to true to enable the ability to pin tasks.'
+      enablePinCase: 'TODO: Set this property to true to enable the ability to pin
+        cases.'
+      enablePinTask: 'TODO: Set this property to true to enable the ability to pin
+        tasks.'
       enablePrivateChat: 個人用チャット機能を有効にするには、このプロパティーを true に設定してください。
       enableProcessViewer: タスク／ケースアクションでプロセスビューアーオプションを有効にするには、このプロパティをtrueに設定してください。
       enableScriptCheckingForUploadedDocumentNote: アップロードされたドキュメントのスクリプトチェックを有効にするには、true
@@ -782,8 +784,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     StandardWidgets: 標準ウィジェット
     StatisticWidget:
       EmptyChartDataMessage: 適切なチャートを作成するにはデータが足りません！
-      failToRenderChartMessage: TODO Error while rendering chart. Please retry with different settings.
-      firstConfigChartMessage: TODO No chart available yet. Please configure your settings to generate a chart.
+      failToRenderChartMessage: TODO Error while rendering chart. Please retry with
+        different settings.
+      firstConfigChartMessage: TODO No chart available yet. Please configure your
+        settings to generate a chart.
     WelcomeWidgetIntroduction: このウィジェットは、ダッシュボードにウェルカムテキストと画像を表示します。
     WelcomeWidgetNotFoundMessage: ウィジェットの画像が見つかりません。画像を再設定してください。
     WidgetFilterName: ウィジェットフィルター名
@@ -1562,11 +1566,16 @@ Dialogs:
             GroupBy: TODO Group by
             HideLabel: TODO Hide label
             NewStatistic: TODO New Statistic Widget
-            OutdatedChartMessage: TODO The applied group-by or filter does not align with the current UI configuration. Please reconfigure it.
+            OutdatedChartMessage: TODO The applied group-by or filter does not align
+              with the current UI configuration. Please reconfigure it.
             RefreshInterval: TODO Auto-refresh enabled
             RefreshIntervalInSeconds: TODO Auto-refresh interval (seconds)
-            RefreshIntervalInSecondsValidationMessage: 'TODO Auto-refresh interval (seconds): Specified attribute is not between the expected values of {0} and {1}'
-            RefreshIntervalInfo: TODO The statistic can be auto-refreshed after a certain period. If enabled, this may impact performance. Auto-refresh interval (seconds) must be at least {0}.
+            RefreshIntervalInSecondsValidationMessage: 'TODO Auto-refresh interval
+              (seconds): Specified attribute is not between the expected values of
+              {0} and {1}'
+            RefreshIntervalInfo: TODO The statistic can be auto-refreshed after a
+              certain period. If enabled, this may impact performance. Auto-refresh
+              interval (seconds) must be at least {0}.
             StatisticConfiguration: TODO Statistic configuration
             XAxisTitle: TODO X axis title
             YAxisTitle: TODO Y axis title
