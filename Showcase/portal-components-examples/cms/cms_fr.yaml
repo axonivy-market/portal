@@ -14,8 +14,10 @@ Labels:
       approval: Approbation
       approvalResult: Résultat de l'approbation
       creation: Créer une demande de congé
-    approvalResultTaskIntro: Vous trouverez ci-dessous un résumé de votre demande de congé et les commentaires de l'approbateur.
-    approvalTaskIntro: 'Toute demande de congé doit être approuvée par vous, dont les détails figurent ci-dessous :'
+    approvalResultTaskIntro: Vous trouverez ci-dessous un résumé de votre demande
+      de congé et les commentaires de l'approbateur.
+    approvalTaskIntro: 'Toute demande de congé doit être approuvée par vous, dont
+      les détails figurent ci-dessous :'
     approver: Approbateur
     approverComment: Commentaire d'approbation
     from: Du
@@ -29,18 +31,21 @@ Processes:
     Tasks:
       Request:
         name: Demande d'investissement
-    description: Exemple de demande d'investissement pour une page de détails commerciaux personnalisés
+    description: Exemple de demande d'investissement pour une page de détails commerciaux
+      personnalisés
     name: Réaliser un investissement
   CreateInvestmentWithPublicAPI:
     Task:
       Request:
         name: Demande d'investissement
-    description: Demande d'investissement pour une page de détails d'entreprise personnalisée avec un exemple d'API publique
+    description: Demande d'investissement pour une page de détails d'entreprise personnalisée
+      avec un exemple d'API publique
     name: Créer un investissement avec l'API publique
   LeaveRequest:
     approvalTask: Votre demande de congé est approuvée
     approvalTaskName: Approbation de la demande de congé de {0}
     createLeaveRequest: 'Créer une demande de congé pour : {0}'
-    createNewLeaveRequest: 'Tâche du système : Commencer à créer une nouvelle demande de congé'
+    createNewLeaveRequest: 'Tâche du système : Commencer à créer une nouvelle demande
+      de congé'
     leaveRequest: Processus d'absence
     rejectedTask: Votre demande de congé est rejetée
