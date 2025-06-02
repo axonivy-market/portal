@@ -14,8 +14,10 @@ Labels:
       approval: Genehmigung
       approvalResult: Genehmigungsergebnis
       creation: Urlaubsantrag erstellen
-    approvalResultTaskIntro: Unten finden Sie eine Zusammenfassung Ihres Urlaubsantrags und des Feedbacks des Genehmigers.
-    approvalTaskIntro: 'Es gibt einen Urlaubsantrag, der Ihre Genehmigung erfordert, Einzelheiten dazu finden Sie unten:'
+    approvalResultTaskIntro: Unten finden Sie eine Zusammenfassung Ihres Urlaubsantrags
+      und des Feedbacks des Genehmigers.
+    approvalTaskIntro: 'Es gibt einen Urlaubsantrag, der Ihre Genehmigung erfordert,
+      Einzelheiten dazu finden Sie unten:'
     approver: Genehmigender
     approverComment: Kommentar des Befürworters
     from: Von
@@ -29,13 +31,15 @@ Processes:
     Tasks:
       Request:
         name: Investitionsantrag
-    description: Beispiel für eine Investitionsanfrage für eine benutzerdefinierte Geschäftsdetailseite
+    description: Beispiel für eine Investitionsanfrage für eine benutzerdefinierte
+      Geschäftsdetailseite
     name: Investition anlegen
   CreateInvestmentWithPublicAPI:
     Task:
       Request:
         name: Investitionsantrag
-    description: Beispiel für eine Investitionsanfrage für eine benutzerdefinierte Geschäftsdetailseite mit öffentlicher API
+    description: Beispiel für eine Investitionsanfrage für eine benutzerdefinierte
+      Geschäftsdetailseite mit öffentlicher API
     name: Schaffen Sie Investitionen mit öffentlicher API
   LeaveRequest:
     approvalTask: Ihr Urlaubsantrag wird genehmigt
