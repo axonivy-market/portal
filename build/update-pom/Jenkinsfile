@@ -77,7 +77,7 @@ def updateVersion() {
   }
 
   // Update ivyEngineVersion for all portal projects
-  def pomFiles = ['AxonIvyPortal/portal-components/pom.xml', 'AxonIvyPortal/portal/pom.xml', 'AxonIvyPortal/portal-migration/pom.xml',
+  def pomFiles = ['AxonIvyPortal/portal-components/pom.xml', 'AxonIvyPortal/portal/pom.xml', 
   'AxonIvyPortal/portal-selenium-test/pom.xml', 'AxonIvyPortal/portal-selenium-test/customized_pom.xml', 'AxonIvyPortal/portal-selenium-test/document_screenshot_pom.xml',
   'AxonIvyPortal/PortalKitTestHelper/pom.xml', 'Showcase/portal-user-examples/pom.xml',
   'Showcase/portal-developer-examples/pom.xml', 'Showcase/InternalSupport/pom.xml', 'Showcase/portal-components-examples/pom.xml']
