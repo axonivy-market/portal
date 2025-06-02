@@ -1,6 +1,6 @@
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
-    noCaseFound: Vorgang nicht gefunden oder Sie haben keine Berechtigung, diesen Vorgang zu sehen.
+    noCaseFound: Vorgang nicht gefunden oder Sie haben keine Berechtigung, diesen Vorgang zu sehen
     requestTabTitle: Anfrage
     statusTabTitle: Vorgangsinformationen
   OpenTaskTemplate:
@@ -239,8 +239,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       delegationAppendOption: Diese Einstellung bestimmt, welche zusätzlichen Informationen beim Formatieren von Rollennamen enthalten sind.
       disableCaseCount: Auf "true" setzen, um das zählen der Vorgänge in der Vorgangsliste zu deaktivieren
       disableTaskCount: Auf "true" setzen, um das zählen der Aufgaben in der Aufgabenliste zu deaktivieren
-      displayAllUsersOfTaskActivator: Diese Einstellung wird für die Komponente SecurityMemberDisplayName verwendet. Wenn der SecurityMember eine Rolle ist, setzen Sie diese Einstellung auf true, um alle Benutzer dieser Rolle aufzulisten. Wenn diese Einstellung auf true gesetzt ist, wird neben dem Rollennamen
-        eine Symbolinfo angezeigt.
+      displayAllUsersOfTaskActivator: Diese Einstellung wird für die Komponente SecurityMemberDisplayName verwendet. Wenn der SecurityMember eine Rolle ist, setzen Sie diese Einstellung auf true, um alle Benutzer dieser Rolle aufzulisten. Wenn diese Einstellung auf true gesetzt ist, wird neben dem Rollennamen eine Symbolinfo angezeigt.
       displayMessageAfterFinishOrLeaveTask: Eine Feedback-Nachricht wird angezeigt, nachdem der Benutzer eine Aufgabe beendet oder verlassen hat.
       documentUploadSizeLimit: Legen Sie das Größenlimit für das Hochladen von Dokumenten in Megabyte (MB) fest. Der Standardwert beträgt 20 MB.
       embedInFrame: Auf true gesetzt, um einen Prozess/Task im IFrame-Modus zu starten
@@ -1304,10 +1303,8 @@ ch.ivy.addon.portalkit.ui.jsf:
   taskWarning:
     createdTaskLeave: '<div>Sie verlassen die aktuelle Seite.<br/>  Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     createdTaskLogout: '<div>Sie verlassen die aktuelle Seite.<br/> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLeave: '<div>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>Abbrechen:
-      Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLogout: '<div>Sie verlassen die aktuelle Aufgabe.</br> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben. Dann abmelden.<LI>Abbrechen:
-      Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLeave: '<div>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLogout: '<div>Sie verlassen die aktuelle Aufgabe.</br> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben. Dann abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     taskNotFound: Die Aufgabe existiert nicht oder Sie haben ungenügende Rechte, um diese Aufgabe zu sehen.
   userProfile:
     myProfileTitle: Mein Profil
@@ -1417,15 +1414,8 @@ Dialogs:
         dashboard:
           component:
             AccessibilityShortcuts:
-              content: "<div class=\"ui-g\">\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 1</span>Fokus auf die Dashboards\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 4</span>Fokus auf die Fälle\n   </div>\n\
-                \   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + A</span>Fokus auf den ersten Prozess\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Tab</span>Sequentielles Durchlaufen von Elementen\n   </div>\n   <div\
-                \ class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 2</span>Fokus auf die Prozesse\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 5</span>Fokus auf die Suche\n   </div>\n   <div class=\"ui-g-3 shortcut-content\
-                \ \">\n      <span class=\"shortcut-key\">Alt + W</span>Fokus auf die erste Aufgabe\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Esc</span>Erweiterte Widgets schließen/Kontext Menüs schließen\n   </div>\n   <div class=\"ui-g-3 shortcut-content\
-                \ \">\n      <span class=\"shortcut-key\">Alt + 3</span>Fokus auf die Aufgaben\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 6</span>Fokus auf die User Einstellungen\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span\
-                \ class=\"shortcut-key\">Alt + Q</span>Fokus auf den ersten Fall\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Enter</span>Auswahl bestätigen   \n   </div>\n</div>"
-              title: 'Barrierefreiheitskürzel. Alt + 1: Se focaliser sur l’onglet du Dashboard. Alt + 2: Se focaliser sur l’onglet des processus. Alt + 3: Se focaliser sur l’onglet des tâches. Alt + 4: Se focaliser sur l’onglet des cas. Alt + 5: Se focaliser sur la recherche. Alt + 6: Se focaliser sur
-                les paramètres utilisateur. Alt + A: Se focaliser sur le premier processus. Alt + W: Se focaliser sur la première tâche. Alt + Q: Se focaliser sur le premier cas. Tab: Navigation séquentielle entre les éléments. Esc: Fermer les widgets agrandis/Fermer les menus contextuels. Enter: Confirmer
-                la sélection'
+              content: "<div class=\"ui-g\">\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 1</span>Fokus auf die Dashboards\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 4</span>Fokus auf die Fälle\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + A</span>Fokus auf den ersten Prozess\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Tab</span>Sequentielles Durchlaufen von Elementen\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 2</span>Fokus auf die Prozesse\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 5</span>Fokus auf die Suche\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + W</span>Fokus auf die erste Aufgabe\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Esc</span>Erweiterte Widgets schließen/Kontext Menüs schließen\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 3</span>Fokus auf die Aufgaben\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 6</span>Fokus auf die User Einstellungen\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + Q</span>Fokus auf den ersten Fall\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Enter</span>Auswahl bestätigen   \n   </div>\n</div>"
+              title: 'Barrierefreiheitskürzel. Alt + 1: Se focaliser sur l’onglet du Dashboard. Alt + 2: Se focaliser sur l’onglet des processus. Alt + 3: Se focaliser sur l’onglet des tâches. Alt + 4: Se focaliser sur l’onglet des cas. Alt + 5: Se focaliser sur la recherche. Alt + 6: Se focaliser sur les paramètres utilisateur. Alt + A: Se focaliser sur le premier processus. Alt + W: Se focaliser sur la première tâche. Alt + Q: Se focaliser sur le premier cas. Tab: Navigation séquentielle entre les éléments. Esc: Fermer les widgets agrandis/Fermer les menus contextuels. Enter: Confirmer la sélection'
             CaseWidgetConfiguration:
               AddFilter: Filter hinzufügen
             ClientStatisticWidget:
