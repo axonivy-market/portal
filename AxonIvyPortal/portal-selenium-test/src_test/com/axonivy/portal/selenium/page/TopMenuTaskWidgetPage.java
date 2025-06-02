@@ -87,15 +87,16 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until(
         webDriver -> "complete".equals(((JavascriptExecutor) webDriver).executeScript("return document.readyState")));
   }
+
   @Override
   public ElementsCollection getActiveTaskActions(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
-    ElementsCollection taskPanels = $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex))
-        .filter(appear);
+    ElementsCollection taskPanels =
+        $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex))
+            .filter(appear);
     taskPanels.shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
-    return taskPanels.first()
-        .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']")
-        .filter(Condition.not(Condition.cssClass("ui-state-disabled")));
+    return taskPanels.first().shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content")
+        .$$("a[class*='option-item']").filter(Condition.not(Condition.cssClass("ui-state-disabled")));
   }
 
   public ElementsCollection getAllTaskActions(int taskIndex) {
@@ -109,8 +110,8 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     clickOnTaskActionLink(index);
     ElementsCollection actions =
         $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", index)).filter(appear)
-        .first().shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']")
-        .filter(Condition.not(Condition.cssClass("ui-state-disabled")));
+            .first().shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']")
+            .filter(Condition.not(Condition.cssClass("ui-state-disabled")));
     return actions.asFixedIterable().stream().map(WebElement::getText).collect(Collectors.toList());
   }
 
@@ -126,8 +127,10 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     clickOnTaskActionLink(taskIndex);
     clickTaskAction(taskIndex, "Reserve");
   }
+
   private void clickTaskAction(int taskIndex, String actionName) {
-    ElementsCollection taskPanels = $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex))
+    ElementsCollection taskPanels =
+        $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex))
             .filter(appear);
     taskPanels.shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
     SelenideElement taskPanel = taskPanels.first().shouldBe(appear, DEFAULT_TIMEOUT);
