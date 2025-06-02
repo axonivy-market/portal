@@ -27,7 +27,8 @@ Dialogs:
             Download: Herunterladen
             EmptyFileMessage: Die Datei darf nicht leer sein
             ErrorFileUploadSize: Die Dateigrösse muss kleiner als {0} sein.
-            FileContainScript: Diese Datei darf aufgrund von Skript-Inhalten nicht hochgeladen werden!
+            FileContainScript: Diese Datei darf aufgrund von Skript-Inhalten nicht
+              hochgeladen werden!
             FileContainVirus: Upload fehlgeschlagen, Virus/Infektion entdeckt!
             FileFunction: Funktionen
             FileLimitMessage: Limit an hochgeladenen Dateien erreicht!
@@ -39,7 +40,8 @@ Dialogs:
             Type: Typ
             Upload: Neue Datei hochladen
             UploadDocumentNote: '{0} hat {1} hochgeladen.'
-            UploadFailed: Während des Hochladens ist ein Fehler aufgetreten. Bitte fragen Sie Ihren Administrator.
+            UploadFailed: Während des Hochladens ist ein Fehler aufgetreten. Bitte
+              fragen Sie Ihren Administrator.
             UploadFileExists: Datei {0} ist bereits vorhanden
             UploadSucceed: Die Datei wurde erfolgreich hochgeladen
           Enums:
@@ -50,7 +52,8 @@ Dialogs:
               INFORMATION: Information
               OTHERS: Andere Dateiformate
           ProcessChain:
-            currentStepIsNotDefined: Aktueller Schritt ({0}) der Prozesskette ist nicht definiert
+            currentStepIsNotDefined: Aktueller Schritt ({0}) der Prozesskette ist
+              nicht definiert
           ProcessHistory:
             CaseColumn:
               CreationTime: Erstellt
@@ -72,13 +75,16 @@ Dialogs:
             NoName: kein Name
             NotAvailable: NV
           ProcessViewer:
-            CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden werden!
-            NoPermissionToView: Sie besitzen nicht die erforderlichen Rechte um diesen Prozess zu sehen.
+            CouldNotFindLinkedProcess: Der verlinkte Prozess konnte nicht gefunden
+              werden!
+            NoPermissionToView: Sie besitzen nicht die erforderlichen Rechte um diesen
+              Prozess zu sehen.
             ProcessCanNotBeLoaded: Prozess kann nicht geladen werden.
             ProcessDetails: Prozess-Details
             ProcessId: Prozess-ID
             ProcessInfo: Prozess-Informationen
-            ProcessInfoIconTooltip: Klicken Sie hier, um Details zum Prozessstart anzuzeigen
+            ProcessInfoIconTooltip: Klicken Sie hier, um Details zum Prozessstart
+              anzuzeigen
             ProcessIsHidden: Der aktueller Prozess ist ausgeblendet!
             ProcessNotFound: Der definierte Process kann nicht gefunden werden.
             ProcessType:
@@ -89,9 +95,12 @@ Dialogs:
 Labels:
   AI:
     Error:
-      CanceledFlow: You have canceled the flow. If you have any requests, please let me know.
-      ErrorWhenProceedRequest: An error has occurred while trying to process your request. Please try again later.
-      SomethingWentWrong: Something went wrong when proceed your request. Please try again later.
+      CanceledFlow: You have canceled the flow. If you have any requests, please let
+        me know.
+      ErrorWhenProceedRequest: An error has occurred while trying to process your
+        request. Please try again later.
+      SomethingWentWrong: Something went wrong when proceed your request. Please try
+        again later.
   DisabledUserPrefix: (inaktiv)
   NoName: kein Name
   NoResults: Keine Ergebnisse
