@@ -27,10 +27,12 @@ Dialogs:
             Download: Télécharger
             EmptyFileMessage: La taille du fichier ne doit pas être vide
             ErrorFileUploadSize: La taille du fichier doit être inférieure à {0}.
-            FileContainScript: Ce fichier n'est pas autorisé à être téléchargé en raison du contenu du script!
+            FileContainScript: Ce fichier n'est pas autorisé à être téléchargé en
+              raison du contenu du script!
             FileContainVirus: Échec du téléchargement, virus/infection détecté !
             FileFunction: Fonctions
-            FileLimitMessage: Le nombre maximum de fichiers à télécharger est atteint !
+            FileLimitMessage: Le nombre maximum de fichiers à télécharger est atteint
+              !
             InvalidFileMessage: Ce type de fichier n'est pas accepté!
             Name: Nom du fichier
             NoFile: Aucun fichier trouvé !
@@ -39,7 +41,8 @@ Dialogs:
             Type: Type
             Upload: Ajouter un nouveau fichier
             UploadDocumentNote: '{0} a téléchargé(e) {1}'
-            UploadFailed: Une erreur est survenue lors de l’envoi du fichier. Veuillez contacter votre administrateur.
+            UploadFailed: Une erreur est survenue lors de l’envoi du fichier. Veuillez
+              contacter votre administrateur.
             UploadFileExists: Le fichier {0} existe déjà
             UploadSucceed: Le fichier a été téléchargé avec succès
           Enums:
@@ -50,7 +53,8 @@ Dialogs:
               INFORMATION: nformation
               OTHERS: Autres
           ProcessChain:
-            currentStepIsNotDefined: L'étape actuelle ({0}) de la chaîne de processus n'est pas définie
+            currentStepIsNotDefined: L'étape actuelle ({0}) de la chaîne de processus
+              n'est pas définie
           ProcessHistory:
             CaseColumn:
               CreationTime: Créé
@@ -74,12 +78,14 @@ Dialogs:
             NotAvailable: '-'
           ProcessViewer:
             CouldNotFindLinkedProcess: Impossible de trouver le processus lié !
-            NoPermissionToView: Vous n'avez pas l'autorisation requise pour visualiser ce processus.
+            NoPermissionToView: Vous n'avez pas l'autorisation requise pour visualiser
+              ce processus.
             ProcessCanNotBeLoaded: Le processus ne peut pas être chargé.
             ProcessDetails: Détails du processus
             ProcessId: Id du processus
             ProcessInfo: Informations sur le processus
-            ProcessInfoIconTooltip: Cliquez pour voir les détails du démarrage du processus
+            ProcessInfoIconTooltip: Cliquez pour voir les détails du démarrage du
+              processus
             ProcessIsHidden: Le processus en cours est masqué !
             ProcessNotFound: Le processus défini est introuvable.
             ProcessType:
@@ -90,9 +96,12 @@ Dialogs:
 Labels:
   AI:
     Error:
-      CanceledFlow: You have canceled the flow. If you have any requests, please let me know.
-      ErrorWhenProceedRequest: An error has occurred while trying to process your request. Please try again later.
-      SomethingWentWrong: Something went wrong when proceed your request. Please try again later.
+      CanceledFlow: You have canceled the flow. If you have any requests, please let
+        me know.
+      ErrorWhenProceedRequest: An error has occurred while trying to process your
+        request. Please try again later.
+      SomethingWentWrong: Something went wrong when proceed your request. Please try
+        again later.
   DisabledUserPrefix: (désactivé)
   NoName: Aucun nom
   NoResults: Aucun résultat
