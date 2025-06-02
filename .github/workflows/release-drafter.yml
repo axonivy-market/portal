@@ -25,4 +25,4 @@ on:
 jobs:
   release_drafter:
     if: ${{ github.event_name == 'pull_request' || github.ref_name == 'master' || startsWith(github.ref_name, 'release/') }}
-    uses: axonivy-market/github-workflows/.github/workflows/release-drafter.yml@v6
+    uses: axonivy-market/github-workflows/.github/workflows/release-drafter.yml@v4
