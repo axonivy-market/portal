@@ -69,7 +69,8 @@ Labels:
     to: Hasta
   Loading: Cargando
   Login: Iniciar sesión
-  LoginErrorMessage: No está conectado o su usuario no existe en el sistema. Por favor, contacte con el administrador del sistema
+  LoginErrorMessage: No está conectado o su usuario no existe en el sistema. Por favor,
+    contacte con el administrador del sistema
   LoginFailed: error de inicio de sesion
   LoginLogo: Logo de inicio de sesión
   LoginWith: Inicie sesión con
@@ -92,13 +93,15 @@ Processes:
   CaseMap:
     ApprovalLevel12:
       description1: Aprobar la solicitud de préstamo
-      description2: "<P>\nTome una decisión:\n</P>\n<P>\n- Aprobar \n</P>\n<P>\n- Rechazar\n</P>\n"
+      description2: "<P>\nTome una decisión:\n</P>\n<P>\n- Aprobar \n</P>\n<P>\n-
+        Rechazar\n</P>\n"
       description3: 'En este ejemplo se necesitan 2 niveles de aprobado. '
     CheckCompanyRegisterDescription:
       description1: El proceso simula un control automatizado del registro de la empresa
       description2: El proceso continuará con el siguiente paso.
     CollectPersonDataDescription:
-      description1: El proceso simula una conexión a una base de datos y carga los datos de "John Doe"
+      description1: El proceso simula una conexión a una base de datos y carga los
+        datos de "John Doe"
       description2: Puede comprobar y editar estos datos
       description3: Los campos obligatorios serán validados
     ContractCreation:
@@ -107,8 +110,10 @@ Processes:
     ExternalSolvencyServiceDescription:
       description1: Simula una prueba de solvencia externa
     InternalSolvencyCheckDescription:
-      description1: Obtener los datos del proceso para realizar un control de solvencia (fuera del sistema)
-      description2: "<P>\nPuede iniciar una verificación de crédito externa haciendo clic en este icono: \n<i class=\"fa fa-align-justify\" ></i>\n</P>\n\n"
+      description1: Obtener los datos del proceso para realizar un control de solvencia
+        (fuera del sistema)
+      description2: "<P>\nPuede iniciar una verificación de crédito externa haciendo
+        clic en este icono: \n<i class=\"fa fa-align-justify\" ></i>\n</P>\n\n"
     Stage:
       approval: Aprobación
       creditRating: Calificación crediticia
@@ -119,11 +124,14 @@ Processes:
     abortRequest: Cancelar solicitud
     approveLevel1: 'Aprovado nivel 1 '
     approveLevel2: Aprovado nivel 2
-    availableSideStep: "<P>\n<Los pasos laterales son: </B>\n</P>\n<P>\n- Pasos opcionales \n</P>\n<P>\n- Sólo una parte del proceso principal si es necesario \n</P>"
+    availableSideStep: "<P>\n<Los pasos laterales son: </B>\n</P>\n<P>\n- Pasos opcionales\
+      \ \n</P>\n<P>\n- Sólo una parte del proceso principal si es necesario \n</P>"
     checkCompanyRegister: Verifique el registro de la empresa
     collectPersonalData: Coleccionar datos personales
     createContract: Crear contrato
-    description: Esta es una breve descripción de lo que se puede esperar de este ejemplo de "Préstamo", implementado con un Mapa de Caso. Por favor, haga clic en el botón de abajo para más información.
+    description: Esta es una breve descripción de lo que se puede esperar de este
+      ejemplo de "Préstamo", implementado con un Mapa de Caso. Por favor, haga clic
+      en el botón de abajo para más información.
     externalSolvencyCheck: Comprovación de solvencia externa
     internalSolvencyCheck: Comprovación de solvencia interna
     name: Solicitud de préstamo (Mapa de caso)
@@ -162,7 +170,9 @@ Processes:
     approvalTaskName: Aprovar solicitud para ausencia del {0}
     createLeaveRequest: 'Crear ausencia para: {0}'
     createNewLeaveRequest: 'Tarea de sistema: Crear nueva solicitud para ausencia'
-    description: Esta es una breve descripción de lo que puede esperar detrás de este ejemplo de "Solicitud de ausencia". Por favor, haga clic en el botón de abajo para obtener más información.
+    description: Esta es una breve descripción de lo que puede esperar detrás de este
+      ejemplo de "Solicitud de ausencia". Por favor, haga clic en el botón de abajo
+      para obtener más información.
     leaveRequest: Solicitud para ausencia
     name: Solicitud para ausencia
     rejectedTask: Su solicitud para ausencia ha sido denegada
@@ -172,5 +182,7 @@ Processes:
     name: Adquisición
   UserExampleGuide:
     comingSoon: Próximamente…
-    description: '¡Bienvenido! En esta guía de ejemplo de usuario encontrará algunos procesos de demostración disponibles en el portal Axon Ivy. Simplemente haga clic en el enlace correspondiente abajo para obtener más información. '
+    description: '¡Bienvenido! En esta guía de ejemplo de usuario encontrará algunos
+      procesos de demostración disponibles en el portal Axon Ivy. Simplemente haga
+      clic en el enlace correspondiente abajo para obtener más información. '
     name: Guía de ejemplos para el usuario
