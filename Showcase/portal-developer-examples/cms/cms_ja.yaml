@@ -116,7 +116,8 @@ Labels:
   changePasswordWSError: パスワードの変更中にエラーが発生しました。問題が解決しない場合は、管理者に連絡してください。
   forgotPasswordError: リクエストの処理中にエラーが発生しました。しばらくしてから、もう一度お試しください。
   passwordResetEmailCantSend: メールを送信中に例外エラーが発生しました。しばらくしてからもう一度お試しください。
-  passwordResetEmailContent: '<html>{0} 様、<br/><br/>パスワードをリセットするには、このリンクをクリックしてください: <a href="{1}">パスワードをリセット</a><br/><br/>よろしくお願いいたします</html>'
+  passwordResetEmailContent: '<html>{0} 様、<br/><br/>パスワードをリセットするには、このリンクをクリックしてください:
+    <a href="{1}">パスワードをリセット</a><br/><br/>よろしくお願いいたします</html>'
   passwordResetEmailSent: このメールアドレスが登録されている場合、そのアドレス宛にパスワード回復リンクを送信されます。
   passwordResetEmailSubject: パスワードをリセットするためのメール
   updatePasswordSuccessfully: パスワードの更新に成功しました。
