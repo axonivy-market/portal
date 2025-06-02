@@ -27,7 +27,8 @@ Dialogs:
             Download: Descargar
             EmptyFileMessage: El archivo no puede estar vacío
             ErrorFileUploadSize: El tamaño deberá ser inferior a {0}
-            FileContainScript: ¡Este archivo no puede cargarse porque contiene algunos scripts!
+            FileContainScript: ¡Este archivo no puede cargarse porque contiene algunos
+              scripts!
             FileContainVirus: 'Carga fallida, ¡se ha detectado un virus/infección! '
             FileFunction: Funciones
             FileLimitMessage: ¡El máximo numero de archivos ha sido subido!
@@ -39,7 +40,8 @@ Dialogs:
             Type: Tipo
             Upload: Cargar archivo nuevo
             UploadDocumentNote: '{0} ha subido {1}'
-            UploadFailed: Se produjo un error al cargar este archivo. Por favor, pregunte a su administrador por este problema.
+            UploadFailed: Se produjo un error al cargar este archivo. Por favor, pregunte
+              a su administrador por este problema.
             UploadFileExists: El archivo {0} ya existe
             UploadSucceed: El archivo ha sido añadido con éxito
           Enums:
@@ -50,7 +52,8 @@ Dialogs:
               INFORMATION: Información
               OTHERS: Otros
           ProcessChain:
-            currentStepIsNotDefined: El paso ({0}) de la cadena de proceso no está definido
+            currentStepIsNotDefined: El paso ({0}) de la cadena de proceso no está
+              definido
           ProcessHistory:
             CaseColumn:
               CreationTime: Creado
@@ -79,7 +82,8 @@ Dialogs:
             ProcessDetails: Detalles del proceso
             ProcessId: ID del proceso
             ProcessInfo: Información del proceso
-            ProcessInfoIconTooltip: Haga clic para ver los detalles del inicio del proceso
+            ProcessInfoIconTooltip: Haga clic para ver los detalles del inicio del
+              proceso
             ProcessIsHidden: El proceso actual está oculto!
             ProcessNotFound: No se encuentra el proceso definido.
             ProcessType:
@@ -90,9 +94,12 @@ Dialogs:
 Labels:
   AI:
     Error:
-      CanceledFlow: You have canceled the flow. If you have any requests, please let me know.
-      ErrorWhenProceedRequest: An error has occurred while trying to process your request. Please try again later.
-      SomethingWentWrong: Something went wrong when proceed your request. Please try again later.
+      CanceledFlow: You have canceled the flow. If you have any requests, please let
+        me know.
+      ErrorWhenProceedRequest: An error has occurred while trying to process your
+        request. Please try again later.
+      SomethingWentWrong: Something went wrong when proceed your request. Please try
+        again later.
   DisabledUserPrefix: (inactivo)
   NoName: Sin nombre
   NoResults: Sin resultados
