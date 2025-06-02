@@ -1,6 +1,6 @@
 ch.ivy.addon.portal.generic:
   CaseDetailsTemplate:
-    noCaseFound: Caso no encontrado o no tienes permiso para ver este caso.
+    noCaseFound: Caso no encontrado o no
     requestTabTitle: Solicitud
     statusTabTitle: Información del caso
   OpenTaskTemplate:
@@ -226,8 +226,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       behaviourWhenClickingOnLineInCaseList: Alternar entre acceder a los detalles del caso o los detalles del negocio al hacer clic en un caso en el widget de casos del panel de control, en la búsqueda global, en los casos relacionados y en el widget de procesos en modo combinado.
       behaviourWhenClickingOnLineInTaskList: Para cambiar los comportamientos (ejecutar la tarea o acceder a los detalles de la tarea) al hacer clic en una línea de la lista de tareas, el widget de tareas del tablero y las tareas relacionadas en la página de detalles del caso.
       chatMaxConnection: 'El número establecido controla la cantidad de pestañas permitidas con el chat activo. Si se abren más pestañas, el chat se desactivará en las pestañas inactivas. Valores permitidos entre 1-5 '
-      chatResponseTimeout: Tiempo de respuesta del chat en segundos, el valor por defecto es 0 y significa que no hay tiempo de espera. Si los mensajes de chat pasan por el proxy inverso Nginx, el tiempo de espera de la respuesta del chat debe ser menor que el tiempo de espera de Nginx, por ejemplo, menos
-        de 60 segundos.
+      chatResponseTimeout: Tiempo de respuesta del chat en segundos, el valor por defecto es 0 y significa que no hay tiempo de espera. Si los mensajes de chat pasan por el proxy inverso Nginx, el tiempo de espera de la respuesta del chat debe ser menor que el tiempo de espera de Nginx, por ejemplo, menos de 60 segundos.
       dateFilterWithTime: Cambiar a "True" para activar filtros de fecha con tiempo. Esta configuración afectará la lista de tareas, de casos y estadísticas.
       deepLAuthKey: DeepL Clave de autenticación (debe terminar en :fx)
       defaultHomepage: Para establecer la página de inicio estándar a la que se redirigirá al hacer clic en el icono de inicio o en el logotipo. Esta configuración también se aplica a la página final después de terminar una tarea.
@@ -240,8 +239,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       delegationAppendOption: Esta configuración determina qué información adicional se incluye al formatear los nombres de los roles.
       disableCaseCount: Cambiar a "true" para desactivar la función contar casos en la lista de casos
       disableTaskCount: Cambiar a "true" para desactivar la función contar tareas en la lista de tareas
-      displayAllUsersOfTaskActivator: Esta configuración se utiliza para la componente SecurityMemberDisplayName. Si el SecurityMember es un rol, cambie esta configuración a "true" para ver todos los usuarios de este rol. Si se configura "true", se muestra la información del icono junto al nombre del
-        rol.
+      displayAllUsersOfTaskActivator: Esta configuración se utiliza para la componente SecurityMemberDisplayName. Si el SecurityMember es un rol, cambie esta configuración a "true" para ver todos los usuarios de este rol. Si se configura "true", se muestra la información del icono junto al nombre del rol.
       displayMessageAfterFinishOrLeaveTask: Se mostrará un mensaje después de finalizar una tarea
       documentUploadSizeLimit: Establece el límite de tamaño para la carga de documentos en megabytes (MB). El valor predeterminado es 20 MB.
       embedInFrame: Cambiar a "true" para abrir un proceso o tarea en modo iFrame
@@ -1303,10 +1301,8 @@ ch.ivy.addon.portalkit.ui.jsf:
   taskWarning:
     createdTaskLeave: '<div>Va a salir de esta página. Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
     createdTaskLogout: '<div>Va a salir de esta página.<br/> Por favor selecione una de las siguientes opciones:</div><UL><LI> Cerrar sesión: No guardará sus cambios y se cerrará la sesión.<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
-    resetParkTaskBeforeLeave: '<div>Va a salir de esta página.<br/>Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Reservar: No guardará sus cambios y esta tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando
-      en esta tarea.</UL>'
-    resetParkTaskBeforeLogout: '<div>Va a salir de esta página.</br> Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: no guardará sus cambios y volverá a la página anterior.<LI>Reservar: No guardará sus cambios, volverá a la página anterior pero la tarea quedara reservada para usted.<LI>Cancelar:
-      Continue trabajando en esta tarea.</UL>'
+    resetParkTaskBeforeLeave: '<div>Va a salir de esta página.<br/>Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Reservar: No guardará sus cambios y esta tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
+    resetParkTaskBeforeLogout: '<div>Va a salir de esta página.</br> Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: no guardará sus cambios y volverá a la página anterior.<LI>Reservar: No guardará sus cambios, volverá a la página anterior pero la tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
     taskNotFound: La tarea no existe o no los tiene derechos suficientes para ver esta tarea.
   userProfile:
     myProfileTitle: Mi perfil
@@ -1407,14 +1403,8 @@ Dialogs:
         dashboard:
           component:
             AccessibilityShortcuts:
-              content: "<div class=\"ui-g\">\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 1</span>Enfocar en la pestaña del Panel de Control\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 4</span>Enfocar en la\
-                \ pestaña de Casos\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + A</span>Enfocar en el primer proceso\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Tab</span>Tabbing secuencial a través de\
-                \ elementos\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 2</span>Enfocar en la pestaña de Procesos\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 5</span>Enfocar en la búsqueda\n   </div>\n\
-                \   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + W</span>Enfocar en la primera tarea\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Esc</span>Cerrar widgets expandidos/Cerrar menús contextuales\n   </div>\n\
-                \   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 3</span>Enfocar en la pestaña de Tareas\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 6</span>Enfocar en la pestaña del Panel de Control\n   </div>\n\
-                \   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + Q</span>Enfocar en el primer caso\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Enter</span>Confirmar selección\n   </div>\n   \n</div>"
-              title: 'Atajos de accesibilidad. Alt + 1: Enfocar en la pestaña del Panel de Control. Alt + 2: Enfocar en la pestaña de Procesos. Alt + 3: Enfocar en la pestaña de Tareas. Alt + 4: Enfocar en la pestaña de Casos. Alt + 5: Enfocar en la búsqueda. Alt + 6: Enfocar en la pestaña del Panel de
-                Control. Alt + A: Enfocar en el primer proceso. Alt + W: Enfocar en la primera tarea. Alt + Q: Enfocar en el primer caso. Tab: Tabbing secuencial a través de elementos. Esc: Cerrar widgets expandidos/Cerrar menús contextuales. Enter: Confirmar selección'
+              content: "<div class=\"ui-g\">\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 1</span>Enfocar en la pestaña del Panel de Control\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 4</span>Enfocar en la pestaña de Casos\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + A</span>Enfocar en el primer proceso\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Tab</span>Tabbing secuencial a través de elementos\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 2</span>Enfocar en la pestaña de Procesos\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 5</span>Enfocar en la búsqueda\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + W</span>Enfocar en la primera tarea\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Esc</span>Cerrar widgets expandidos/Cerrar menús contextuales\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 3</span>Enfocar en la pestaña de Tareas\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + 6</span>Enfocar en la pestaña del Panel de Control\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Alt + Q</span>Enfocar en el primer caso\n   </div>\n   <div class=\"ui-g-3 shortcut-content \">\n      <span class=\"shortcut-key\">Enter</span>Confirmar selección\n   </div>\n   \n</div>"
+              title: 'Atajos de accesibilidad. Alt + 1: Enfocar en la pestaña del Panel de Control. Alt + 2: Enfocar en la pestaña de Procesos. Alt + 3: Enfocar en la pestaña de Tareas. Alt + 4: Enfocar en la pestaña de Casos. Alt + 5: Enfocar en la búsqueda. Alt + 6: Enfocar en la pestaña del Panel de Control. Alt + A: Enfocar en el primer proceso. Alt + W: Enfocar en la primera tarea. Alt + Q: Enfocar en el primer caso. Tab: Tabbing secuencial a través de elementos. Esc: Cerrar widgets expandidos/Cerrar menús contextuales. Enter: Confirmar selección'
             CaseWidgetConfiguration:
               AddFilter: Añadir filtro
             ClientStatisticWidget:
@@ -1660,3 +1650,4 @@ Texts:
 
     </P>
 
+...
