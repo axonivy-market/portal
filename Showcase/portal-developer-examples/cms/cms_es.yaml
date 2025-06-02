@@ -125,15 +125,22 @@ Dialogs:
                   Representation: Representante
                   To: Hasta
 Labels:
-  changePasswordWSError: Se produjo un error al cambiar su contraseña. Póngase en contacto con su administrador si este problema persiste.
-  forgotPasswordError: Ha habido un error mientras se procesaba su solicitud. Por favor inténtelo más tarde.
-  passwordResetEmailCantSend: 'Ha habido un problema para enviarle un E-Mail. Por favor inténtelo más tarde. '
-  passwordResetEmailContent: <html>Hola {0},<br/><br/>por favor haga click en este link para restablecer su contraseña <a href="{1}">Restablecer contraseña</a><br/><br/>Saludos</html>
-  passwordResetEmailSent: Si esta dirección de correo electrónico está registrada, le hemos enviado un enlace para recuperar la contraseña.
+  changePasswordWSError: Se produjo un error al cambiar su contraseña. Póngase en
+    contacto con su administrador si este problema persiste.
+  forgotPasswordError: Ha habido un error mientras se procesaba su solicitud. Por
+    favor inténtelo más tarde.
+  passwordResetEmailCantSend: 'Ha habido un problema para enviarle un E-Mail. Por
+    favor inténtelo más tarde. '
+  passwordResetEmailContent: <html>Hola {0},<br/><br/>por favor haga click en este
+    link para restablecer su contraseña <a href="{1}">Restablecer contraseña</a><br/><br/>Saludos</html>
+  passwordResetEmailSent: Si esta dirección de correo electrónico está registrada,
+    le hemos enviado un enlace para recuperar la contraseña.
   passwordResetEmailSubject: E-Mail para restablecer su contraseña
   updatePasswordSuccessfully: Contraseña actualizada exitosamente.
-  userNotFound: Si esta dirección de correo electrónico está registrada, le hemos enviado un enlace para recuperar la contraseña.
-  usersHaveSameEmail: Hay varios usuarios usando el mismo E-Mail. Por favor contacte con su administrador.
+  userNotFound: Si esta dirección de correo electrónico está registrada, le hemos
+    enviado un enlace para recuperar la contraseña.
+  usersHaveSameEmail: Hay varios usuarios usando el mismo E-Mail. Por favor contacte
+    con su administrador.
   wrongPassword: Error de autenticación, ¡su contraseña parece no ser la correcta!
 Processes:
   CategoriedLeaveRequest:
@@ -150,7 +157,8 @@ Processes:
       SickLeave:
         description: Descripción de la solicitud de baja por enfermedad
         name: Solicitud de baja por enfermedad
-    description: Esta es una breve descripción de lo que puede esperar detrás de este ejemplo de "Solicitud de licencia".
+    description: Esta es una breve descripción de lo que puede esperar detrás de este
+      ejemplo de "Solicitud de licencia".
     name: Solicitud de licencia por categorías
     processStep: |-
       #Creación
@@ -164,7 +172,8 @@ Processes:
       Solicitante obtendrá un resumen
       Tomar nota del resultado
   MoreInformation:
-    description: Haga clic en Más información para ver la página de información personalizada del proceso.
+    description: Haga clic en Más información para ver la página de información personalizada
+      del proceso.
   Payment:
     Tasks:
       Pay:
@@ -175,7 +184,8 @@ Processes:
   TasksForTaskListCustomization:
     Cases:
       Party:
-        description: Una reunión social de invitados, que suele incluir comida, bebida y entretenimiento.
+        description: Una reunión social de invitados, que suele incluir comida, bebida
+          y entretenimiento.
         name: Prepare a party
     Tasks:
       BeerOrder:
