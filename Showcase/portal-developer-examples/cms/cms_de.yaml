@@ -125,15 +125,24 @@ Dialogs:
                   Representation: Vertretung
                   To: Bis
 Labels:
-  changePasswordWSError: Ein Fehler ist während der Passwortänderung aufgetreten. Bitte, kontaktieren Sie Ihren Administrator falls das Problem nach mehreren Versuchen besteht.
-  forgotPasswordError: Bei der Bearbeitung Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.
-  passwordResetEmailCantSend: Fehler Senden der E-Mail an Sie ist fehlgeschlagen. Bitte versuchen Sie es später erneut.
-  passwordResetEmailContent: '<html>Hallo {0},<br/><br/>Bitte klicken Sie auf diesen Link, um Ihr Passwort zurückzusetzen: <a href="{1}">Passwort zurücksetzen</a><br/><br/>Mit freundlichen Grüßen</html>'
-  passwordResetEmailSent: Wenn diese E-Mail-Adresse registriert ist, haben wir einen Link zur Wiederherstellung des Passworts an diese Adresse geschickt.
+  changePasswordWSError: Ein Fehler ist während der Passwortänderung aufgetreten.
+    Bitte, kontaktieren Sie Ihren Administrator falls das Problem nach mehreren Versuchen
+    besteht.
+  forgotPasswordError: Bei der Bearbeitung Ihrer Anfrage ist ein Fehler aufgetreten.
+    Bitte versuchen Sie es später erneut.
+  passwordResetEmailCantSend: Fehler Senden der E-Mail an Sie ist fehlgeschlagen.
+    Bitte versuchen Sie es später erneut.
+  passwordResetEmailContent: '<html>Hallo {0},<br/><br/>Bitte klicken Sie auf diesen
+    Link, um Ihr Passwort zurückzusetzen: <a href="{1}">Passwort zurücksetzen</a><br/><br/>Mit
+    freundlichen Grüßen</html>'
+  passwordResetEmailSent: Wenn diese E-Mail-Adresse registriert ist, haben wir einen
+    Link zur Wiederherstellung des Passworts an diese Adresse geschickt.
   passwordResetEmailSubject: E-Mail zum Zurücksetzen des Passworts
   updatePasswordSuccessfully: Das Passwort wurde erfolgreich geändert.
-  userNotFound: Wenn diese E-Mail-Adresse registriert ist, haben wir einen Link zur Wiederherstellung des Passworts an diese Adresse geschickt.
-  usersHaveSameEmail: Es gibt viele Benutzer, die diese E-Mail verwenden. Bitte wenden Sie sich an Ihren Administrator.
+  userNotFound: Wenn diese E-Mail-Adresse registriert ist, haben wir einen Link zur
+    Wiederherstellung des Passworts an diese Adresse geschickt.
+  usersHaveSameEmail: Es gibt viele Benutzer, die diese E-Mail verwenden. Bitte wenden
+    Sie sich an Ihren Administrator.
   wrongPassword: Das angegebene Passwort wurde abgelehnt!
 Processes:
   CategoriedLeaveRequest:
@@ -150,7 +159,8 @@ Processes:
       SickLeave:
         description: Antrag auf Krankheitsurlaub Beschreibung
         name: Antrag auf Krankheitsurlaub
-    description: Dies ist eine kurze Beschreibung dessen, was Sie hinter diesem Beispiel "Urlaubsantrag" erwarten können.
+    description: Dies ist eine kurze Beschreibung dessen, was Sie hinter diesem Beispiel
+      "Urlaubsantrag" erwarten können.
     name: Antrag auf kategorisierten Urlaub
     processStep: |-
       #Erstellung
@@ -164,7 +174,8 @@ Processes:
       Antragssteller bekommt eine Zusammenfassung
       Ergebnis zur Kenntnis nehmen
   MoreInformation:
-    description: Klicken Sie auf Weitere Informationen, um die benutzerdefinierte Prozessinformationsseite anzuzeigen.
+    description: Klicken Sie auf Weitere Informationen, um die benutzerdefinierte
+      Prozessinformationsseite anzuzeigen.
   Payment:
     Tasks:
       Pay:
@@ -175,7 +186,8 @@ Processes:
   TasksForTaskListCustomization:
     Cases:
       Party:
-        description: Ein geselliges Beisammensein mit geladenen Gästen, bei dem in der Regel gegessen, getrunken und unterhalten wird.
+        description: Ein geselliges Beisammensein mit geladenen Gästen, bei dem in
+          der Regel gegessen, getrunken und unterhalten wird.
         name: Prepare a party
     Tasks:
       BeerOrder:
