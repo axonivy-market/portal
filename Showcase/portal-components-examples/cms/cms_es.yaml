@@ -29,13 +29,15 @@ Processes:
     Tasks:
       Request:
         name: Solicitud de inversión
-    description: Solicitud de inversión para ejemplo de página de detalles comerciales personalizados
+    description: Solicitud de inversión para ejemplo de página de detalles comerciales
+      personalizados
     name: Crear investición
   CreateInvestmentWithPublicAPI:
     Task:
       Request:
         name: Solicitud de inversión
-    description: Solicitud de inversión para la página de detalles comerciales personalizados con ejemplo de API pública
+    description: Solicitud de inversión para la página de detalles comerciales personalizados
+      con ejemplo de API pública
     name: Crear inversión con API pública
   LeaveRequest:
     approvalTask: Su ausencia ha sido aprovada
