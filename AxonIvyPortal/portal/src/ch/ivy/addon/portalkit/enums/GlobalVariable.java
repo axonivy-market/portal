@@ -45,7 +45,6 @@ public enum GlobalVariable {
   SHOW_CASE_DURATION_TIME("Portal.CaseDetails.ShowDurationTime", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showCaseDurationTime"),
   HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE("Portal.CaseDetails.HideUploadDocumentForDoneCase", GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideUploadDocumentForDoneCaseNote"),
   DISPLAY_MESSAGE_AFTER_FINISH_TASK("Portal.DisplayMessageAfterFinishTask", GlobalVariableType.SELECTION, Option.TRUE.toString(), "displayMessageAfterFinishOrLeaveTask"),
-  USE_CUSTOM_GROWL_MESSAGE("Portal.UseCustomGrowlMessage", GlobalVariableType.SELECTION, Option.FALSE.toString(), "useCustomGrowlMessage"),
   EMBED_IN_FRAME("Portal.EmbedInFrame", GlobalVariableType.SELECTION, Option.TRUE.toString(), "embedInFrame"),
   SHOW_GLOBAL_SEARCH("Portal.ShowGlobalSearch", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showGlobalSearch"),
   SHOW_QUICK_GLOBAL_SEARCH("Portal.ShowQuickGlobalSearch", GlobalVariableType.SELECTION, Option.TRUE.toString(), "showQuickGlobalSearch"),

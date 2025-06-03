@@ -19,7 +19,6 @@ import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.enums.PortalCustomSignature;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -78,17 +77,13 @@ public class GrowlMessageService {
 
   @SuppressWarnings("unchecked")
   private void setCustomGrowlMessages() {
-    if (isUseCustomGrowlMessage()) {
-      Map<String, Object> result = IvyAdapterService
-          .startSubProcessInSecurityContext(PortalCustomSignature.GROWL_MESSAGE.getSignature(), null);
-      if (!result.isEmpty()) {
-        Map<String, String> mapMessage = (Map<String, String>) result.get("mapMessages");
-        if (!mapMessage.isEmpty()) {
-          mapMessages.putAll(mapMessage);
-        }
+    Map<String, Object> result = IvyAdapterService
+        .startSubProcessInSecurityContext(PortalCustomSignature.GROWL_MESSAGE.getSignature(), null);
+    if (!result.isEmpty()) {
+      Map<String, String> mapMessage = (Map<String, String>) result.get("mapMessages");
+      if (!mapMessage.isEmpty()) {
+        mapMessages.putAll(mapMessage);
       }
-    } else {
-      mapMessages.clear();
     }
 
   }
@@ -128,12 +123,6 @@ public class GrowlMessageService {
   private boolean isMessageDisplayedAfterFinishTaskEnable() {
     String variable = GlobalSettingService.getInstance().findGlobalSettingValue(DISPLAY_MESSAGE_AFTER_FINISH_TASK);
     return StringUtils.isNotBlank(variable) ? Boolean.parseBoolean(variable) : true;
-  }
-
-  private static boolean isUseCustomGrowlMessage() {
-    String variable = GlobalSettingService.getInstance()
-        .findGlobalSettingValue(GlobalVariable.USE_CUSTOM_GROWL_MESSAGE);
-    return StringUtils.isNotBlank(variable) ? Boolean.parseBoolean(variable) : false;
   }
 
 }

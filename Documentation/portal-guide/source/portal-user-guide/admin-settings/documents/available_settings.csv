@@ -17,7 +17,6 @@ Portal.DateTimeFormat.DateFilterWithTime,FALSE,Set to true to enable date filter
 Portal.DateTimeFormat.HideTime,FALSE,Set to true to hide hours and minutes next to date.
 Portal.DateTimeFormat.HideYear,FALSE,"Set to true, year will be hidden, otherwise it will be shown."
 Portal.DisplayMessageAfterFinishTask,TRUE,A feedback message will be displayed after user finishes or leaves a task.
-Portal.UseCustomGrowlMessage,false,If "true", Portal will use custom growl message instead of Portal default growl message.
 Portal.DisplayUsersOfRole,FALSE,"| Controls the SecurityMemberDisplayName component.| If true and the SecurityMember is a role, lists all users of this role under the info icon besides the role name."
 Portal.Document.EnableScriptChecking,TRUE,"If true, enables checking uploaded documents for scripting. Supports PDF, Excel, Word."
 Portal.Document.EnableVirusScanner,FALSE,Set to true to enable virus scanner for uploaded document. Currently this function uses the VIRUSTOTAL API.

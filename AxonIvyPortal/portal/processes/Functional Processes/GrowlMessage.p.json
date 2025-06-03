@@ -40,9 +40,9 @@
             "import com.axonivy.portal.components.service.IvyAdapterService;",
             "",
             "Map mapMessage = new HashMap();",
-            "mapMessage.put(GrowlMessageType.PROCESS_VIEWER.name(), ivy.cms.co(\"/Processes/GrowlMessage/PROCESS_VIEWER\"));",
-            "mapMessage.put(GrowlMessageType.TASK_FINISHED.name(), ivy.cms.co(\"/Processes/GrowlMessage/TASK_FINISHED\"));",
-            "mapMessage.put(GrowlMessageType.TASK_LEFT.name(), ivy.cms.co(\"/Processes/GrowlMessage/TASK_LEFT\"));",
+            "mapMessage.put(GrowlMessageType.PROCESS_VIEWER.name(), ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/common/growlMessage/PROCESS_VIEWER\"));",
+            "mapMessage.put(GrowlMessageType.TASK_FINISHED.name(), ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/common/growlMessage/TASK_FINISHED\"));",
+            "mapMessage.put(GrowlMessageType.TASK_LEFT.name(), ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/common/growlMessage/TASK_LEFT\"));",
             "",
             "in.mapMessages = mapMessage;"
           ]
