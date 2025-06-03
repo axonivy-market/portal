@@ -61,8 +61,8 @@ public class WidgetDateFilterBean implements Serializable {
   }
 
   private String getTaskMessagePrefix(String field, int index) {
-    return String.format(MESSAGE_PREFIX_PATTERN,
-        TaskFilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
+    return Optional.ofNullable(TaskFilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")))
+        .map(c -> String.format(MESSAGE_PREFIX_PATTERN, c.getLabel(), index + 1)).orElse("");
   }
 
   private String getMessagePrefix(String field, int index, String widgetType) {
