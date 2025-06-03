@@ -8,7 +8,7 @@
     async="true" process="@this" partialSubmit="true" immediate="true" global="false"
     actionListener="#{widget.buildCaseByStateStatistic()}"
     update="case-states-statistic-#{widget.id}"
-    oncomplete="loadWidgetFirstTime('js-loading-case-states-#{widget.id}', 'js-statistic-case-states-#{widget.id}');"/>
+    oncomplete="loadWidgetFirstTime('js-loading-case-states-#{widget.id}', 'js-statistic-case-states-#{widget.id}'); focusOnCaseWidgetInformationOverlayPanel();"/>
   <f:facet name="title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseWidgetInfo/casesByState')}" />
   </f:facet>
@@ -32,6 +32,13 @@
       </p:tooltip>
     </ui:repeat>
   </h:panelGroup>
+
+  <script type="text/javascript">
+    function focusOnCaseWidgetInformationOverlayPanel() {
+      const infoOverlayPanel = $('div[id^="case-#{widget.id}:info-overlay-panel"]');
+      infoOverlayPanel.find('div[id$=":state-tab_header"]').focus();
+    }
+  </script>
 </p:tab>
 
 <p:tab id="category-tab">

@@ -7,7 +7,7 @@
     async="true" actionListener="#{widget.buildProcessByTypeStatistic()}"
     update="process-type-statistic-#{widget.id}"
     process="@this" partialSubmit="true" immediate="true" global="false"
-    oncomplete="loadWidgetFirstTime('js-loading-process-type-#{widget.id}', 'js-statistic-process-type-#{widget.id}')"/>
+    oncomplete="loadWidgetFirstTime('js-loading-process-type-#{widget.id}', 'js-statistic-process-type-#{widget.id}'); focusOnProcessWidgetInformationOverlayPanel();"/>
   <f:facet name="title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processWidgetInfo/numberOfProcessesByType')}" />
   </f:facet>
@@ -39,6 +39,13 @@
       <h:outputText styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/processWidgetInfo/noProcess')}" />
     </div>
   </h:panelGroup>
+  
+  <script type="text/javascript">
+    function focusOnProcessWidgetInformationOverlayPanel() {
+      const infoOverlayPanel = $('div[id^="process-#{widget.id}:info-overlay-panel"]');
+      infoOverlayPanel.find('div[id$=":type-tab_header"]').focus();
+    }
+  </script>
 </p:tab>
 
 </html>

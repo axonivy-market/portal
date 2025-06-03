@@ -8,7 +8,7 @@
     async="true" process="@this" partialSubmit="true" immediate="true" global="false"
     actionListener="#{widget.buildTaskExpiryStatistic()}"
     update="task-expiry-statistic-#{widget.id}"
-    oncomplete="loadWidgetFirstTime('js-loading-expiry-task-#{widget.id}', 'js-statistic-expiry-task-#{widget.id}')"/>
+    oncomplete="loadWidgetFirstTime('js-loading-expiry-task-#{widget.id}', 'js-statistic-expiry-task-#{widget.id}'); focusOnTaskWidgetInformationOverlayPanel();"/>
   <f:facet name="title">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/expiry')}" />
   </f:facet>
@@ -43,6 +43,14 @@
       <h:outputText value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/numberOfTasks')}"/>
     </p:tooltip>
   </h:panelGroup>
+
+  <script type="text/javascript">
+    function focusOnTaskWidgetInformationOverlayPanel() {
+      const infoOverlayPanel = $('div[id^="task-#{widget.id}:info-overlay-panel"]');
+      infoOverlayPanel.find('div[id$=":expiry-tab_header"]').focus();
+    }
+  </script>
+  
 </p:tab>
 
 <p:tab id="state-tab">
