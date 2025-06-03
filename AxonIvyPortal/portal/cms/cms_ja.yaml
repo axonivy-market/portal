@@ -280,7 +280,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: タスク詳細ページでの所要時間の表示のオン／オフを切り替えます。
       showTooltipTechnicalName: TODO Enable to show users' technical name on tooltips.
       uploadDocumentWhiteListExtensionNote: すべての拡張子を許可する場合は、空欄にしてください。一部の拡張子のみを許可する場合は、対象の拡張子をカンマで区切って入力してください。（例：pdf, txt, doc, docx）
-      useCustomGrowlMessage: TODO If this variable set to "true", Portal will use custom growl message instead of Portal default growl message
     key: キー
     link: リンク
     loading: 読み込み中
@@ -515,7 +514,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     globalSearch: 検索...
     goToDetail: 詳細へ移動
     growlMessage:
-      PROCESS_VIEWER: TODO You closed the process view.
+      PROCESS_VIEWER: TODO You closed the process viewer.
       TASK_FINISHED: タスクを正常に完了しました
       TASK_LEFT: タスクをキャンセルして正常に終了しました。タスクはダッシュボードまたはタスクリストで見つけることができます。
     hasPrecondition: このプロセスには前提条件があります

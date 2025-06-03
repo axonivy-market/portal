@@ -29,7 +29,7 @@ public class GlobalGrowlTest extends BaseTest {
       "You have finished the task successfully.\nClick here for details.";
   private static final String CANCEL_MESSAGE_WITH_DETAILS =
       "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.\nClick here for details.";
-  private static final String CLOSE_PROCESS_VIEWER_MESSAGE = "You closed the process view.";
+  private static final String CLOSE_PROCESS_VIEWER_MESSAGE = "You closed the process viewer.";
   private static final String GROWL_STANDARD_MESSAGE_URL =
       "portal-developer-examples/16A7BB2ADC9580A8/frameStandardMessage.ivp";
 

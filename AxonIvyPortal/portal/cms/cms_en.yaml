@@ -282,7 +282,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: For switch on/off the display of the duration time in task details page.
       showTooltipTechnicalName: Enable to show users' technical name on tooltips.
       uploadDocumentWhiteListExtensionNote: 'Leave value empty if you allow all extensions. If just allow some extensions, list out extensions here, separated by comma. Example: pdf, txt, doc, docx.'
-      useCustomGrowlMessage: If this variable set to "true", Portal will use custom growl message instead of Portal default growl message.
     key: Key
     link: Link
     loading: LOADING
@@ -517,7 +516,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     globalSearch: Search ...
     goToDetail: Go to detail
     growlMessage:
-      PROCESS_VIEWER: You closed the process view.
+      PROCESS_VIEWER: You closed the process viewer.
       TASK_FINISHED: You have finished the task successfully
       TASK_LEFT: You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.
     hasPrecondition: This process has precondition

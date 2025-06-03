@@ -284,7 +284,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: Activar o desactivar la visibilidad de la duración de la tarea en detalles de tarea.
       showTooltipTechnicalName: Habilitar para mostrar el nombre técnico de los usuarios en los tooltips.
       uploadDocumentWhiteListExtensionNote: 'Dejar libre, sie quiere permitir todos los anexos. Si quiere reducir los formatos permitidos, cree una lista separada por coma. Por ejemplo: pdf, txt, doc, docx.'
-      useCustomGrowlMessage: Si esta variable se establece en "true" Portal utilizará el mensaje de gruñido personalizado en lugar del mensaje de gruñido predeterminado.
     key: Llave
     link: Enlazar
     loading: CARGANDO
@@ -519,7 +518,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     globalSearch: Buscar ...
     goToDetail: Ir a detalles
     growlMessage:
-      PROCESS_VIEWER: Ha cerrado la vista del proceso.
+      PROCESS_VIEWER: Has cerrado el visor de procesos.
       TASK_FINISHED: Ha finalizado la tarea con éxito.
       TASK_LEFT: Ha cancelado y cerrado la tarea. Encontrará la tarea en su tablero o en su lista de tareas.
     hasPrecondition: Este proceso tiene una precondición
