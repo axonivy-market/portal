@@ -43,7 +43,7 @@
   <script type="text/javascript">
     function focusOnProcessWidgetInformationOverlayPanel() {
       const infoOverlayPanel = $('div[id^="process-#{widget.id}:info-overlay-panel"]');
-      infoOverlayPanel.find('div[id$=":type-tab_header"]').focus();
+      infoOverlayPanel.find('.statistic-filter-accordion-panel').children().first().focus();
     }
   </script>
 </p:tab>

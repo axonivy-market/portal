@@ -47,7 +47,7 @@
   <script type="text/javascript">
     function focusOnTaskWidgetInformationOverlayPanel() {
       const infoOverlayPanel = $('div[id^="task-#{widget.id}:info-overlay-panel"]');
-      infoOverlayPanel.find('div[id$=":expiry-tab_header"]').focus();
+      infoOverlayPanel.find('.statistic-filter-accordion-panel').children().first().focus();
     }
   </script>
   

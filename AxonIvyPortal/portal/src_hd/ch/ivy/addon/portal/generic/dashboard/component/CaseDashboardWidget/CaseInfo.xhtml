@@ -36,7 +36,7 @@
   <script type="text/javascript">
     function focusOnCaseWidgetInformationOverlayPanel() {
       const infoOverlayPanel = $('div[id^="case-#{widget.id}:info-overlay-panel"]');
-      infoOverlayPanel.find('div[id$=":state-tab_header"]').focus();
+      infoOverlayPanel.find('.statistic-filter-accordion-panel').children().first().focus();
     }
   </script>
 </p:tab>
