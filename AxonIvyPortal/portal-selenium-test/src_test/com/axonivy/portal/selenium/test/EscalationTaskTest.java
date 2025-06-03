@@ -66,6 +66,7 @@ public class EscalationTaskTest extends BaseTest {
   @Test
   public void testTriggerEscalationTaskOnTaskList() {
     login(TestAccount.ADMIN_USER);
+    resizeBrowserToFullHDResolution();
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();

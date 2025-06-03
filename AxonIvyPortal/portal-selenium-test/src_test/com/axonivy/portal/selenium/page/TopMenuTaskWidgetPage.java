@@ -91,10 +91,12 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   @Override
   public ElementsCollection getActiveTaskActions(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
-    return $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex))
-        .filter(appear).first()
-        .shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']")
-        .filter(Condition.not(Condition.cssClass("ui-state-disabled")));
+    ElementsCollection taskPanels =
+        $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex))
+            .filter(appear);
+    taskPanels.shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+    return taskPanels.first().shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content")
+        .$$("a[class*='option-item']").filter(Condition.not(Condition.cssClass("ui-state-disabled")));
   }
 
   public ElementsCollection getAllTaskActions(int taskIndex) {
@@ -108,8 +110,8 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     clickOnTaskActionLink(index);
     ElementsCollection actions =
         $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", index)).filter(appear)
-        .first().shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']")
-        .filter(Condition.not(Condition.cssClass("ui-state-disabled")));
+            .first().shouldBe(appear, DEFAULT_TIMEOUT).$("div.ui-overlaypanel-content").$$("a[class*='option-item']")
+            .filter(Condition.not(Condition.cssClass("ui-state-disabled")));
     return actions.asFixedIterable().stream().map(WebElement::getText).collect(Collectors.toList());
   }
 
@@ -127,15 +129,18 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   }
 
   private void clickTaskAction(int taskIndex, String actionName) {
-    SelenideElement taskPanel =
+    ElementsCollection taskPanels =
         $$(String.format("div.js-task-side-steps-panel-default_task_list_dashboard_task_1-%d", taskIndex))
-            .filter(appear).first().shouldBe(appear, DEFAULT_TIMEOUT);
+            .filter(appear);
+    taskPanels.shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+    SelenideElement taskPanel = taskPanels.first().shouldBe(appear, DEFAULT_TIMEOUT);
 
     SelenideElement overlay = taskPanel.$("div.ui-overlaypanel-content").shouldBe(appear, DEFAULT_TIMEOUT);
 
     ElementsCollection actionItems = overlay.$$("a.option-item")
         .filter(Condition.not(Condition.cssClass("ui-state-disabled"))).filter(text(actionName));
 
+    actionItems.shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
     actionItems.first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
@@ -308,11 +313,14 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   public boolean isDelegateListSelectionAvailable() {
     return $("div[id$='select-delegate-panel']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).exists();
   }
-
   @Override
   public void triggerEscalationTask(int taskIndex) {
-    getActiveTaskActions(taskIndex).filter(text("Trigger Escalation")).first().shouldBe(getClickableCondition())
-        .click();
+    ElementsCollection actions = getActiveTaskActions(taskIndex);
+    ElementsCollection escalationActions = actions.filter(text("Trigger Escalation"));
+    
+    escalationActions.shouldHave(CollectionCondition.sizeGreaterThan(0), DEFAULT_TIMEOUT);
+    escalationActions.first().shouldBe(getClickableCondition()).click();
+    
     $("div[id='escalation-task-confirmation-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $("button[id='confirm-escalation-dashboard-tasks']").shouldBe(Condition.appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
