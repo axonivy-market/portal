@@ -21,7 +21,7 @@
     * panelStyleClass: styleClass for the main panel.
     -->
 
-<h:panelGroup id="#{panelId}" styleClass="card-widget-panel #{panelStyleClass}" layout="block">
+<h:panelGroup id="#{panelId}" styleClass="card-widget-panel #{panelStyleClass}" layout="block" pt:role="region" pt:aria-label="#{widget.name}">
   <c:set var="renderInfo" value="#{isReadOnlyMode and (empty isRenderInfo ? 'true': isRenderInfo)}"/>
   <c:set var="renderEdit" value="#{not isReadOnlyMode and (empty isRenderEdit ? 'true': isRenderEdit)}"/>
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
