@@ -176,10 +176,10 @@ public class AdminSettingBean implements Serializable {
   }
 
   private SecurityMemberDTO findSecurityMemberDtoByName(String permission) {
-    return permission.startsWith("#")
-        ? new SecurityMemberDTO(UserUtils.findUserByUsername(permission))
+    return permission.startsWith("#") ? new SecurityMemberDTO(UserUtils.findUserByUsername(permission))
         : new SecurityMemberDTO(RoleUtils.findRole(permission));
   }
+
   public List<SecurityMemberDTO> completeApplicationPermissions(String query) {
     if (this.selectedApplicationPermissions == null) {
       this.selectedApplicationPermissions = new ArrayList<>();

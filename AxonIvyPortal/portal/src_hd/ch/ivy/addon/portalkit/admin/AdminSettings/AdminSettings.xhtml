@@ -271,7 +271,9 @@
               <h:panelGroup id="applicationPermissions" styleClass="field" layout="block">
                 <p:outputLabel styleClass="w-full admin-settings-permission-label"
                   value="#{ivy.cms.co('/Labels/Permissions')}" for="application-permission" />
-                <div class="w-full">                  <p:autoComplete id="application-permission"
+                <div class="w-full">
+                  <p:autoComplete id="application-permission" required="true" 
+                    emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                     scrollHeight="210" dropdown="true"
                     completeMethod="#{adminSettingBean.completeApplicationPermissions}"
                     styleClass="admin-settings-form-input"

@@ -102,11 +102,11 @@ public class PortalMenuNavigator {
   public static List<Application> getThirdPartyApps() {
     List<Application> applications = RegisteredApplicationService.getInstance().getPublicConfig();
     applications.removeIf(application -> {
-      List<String> permisisons = application.getPermissions();
-      if (permisisons == null) {
+      List<String> permissions = application.getPermissions();
+      if (CollectionUtils.isEmpty(applications)) {
         return false;
       }
-      return permisisons.stream().noneMatch(PortalMenuNavigator::isSessionUserHasPermisson);
+      return permissions.stream().noneMatch(PortalMenuNavigator::isSessionUserHasPermisson);
     });
     Collections.sort(applications, new ApplicationIndexAscendingComparator());
     return applications;
