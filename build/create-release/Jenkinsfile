@@ -133,7 +133,7 @@ def updateVersion(def releaseVersion) {
   sh """
      xmlstarlet ed --inplace \
      -N n="http://maven.apache.org/POM/4.0.0" \
-     -u "//dependencies/dependency[groupId='${groupId}']/version" \
+     -u "//n:dependencies/n:dependency[n:groupId='${groupId}']/n:version" \
      -v "${releaseVersion}" ${pomFile}
      """
     }
