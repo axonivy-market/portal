@@ -49,10 +49,6 @@ Dialogs:
               EMAIL: Courriel electronique
               INFORMATION: nformation
               OTHERS: Autres
-          GrowlMessage:
-            PROCESS_VIEWER: Vous avez fermé la vue du processus.
-            TASK_FINISHED: Vous avez terminé la tâche avec succès
-            TASK_LEFT: Vous avez annulé et quitté la tâche avec succès. Vous pouvez trouver la tâche dans le tableau de bord ou dans votre liste de tâches.
           ProcessChain:
             currentStepIsNotDefined: L'étape actuelle ({0}) de la chaîne de processus n'est pas définie
           ProcessHistory:

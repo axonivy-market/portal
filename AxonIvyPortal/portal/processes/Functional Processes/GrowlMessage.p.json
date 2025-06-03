@@ -1,12 +1,12 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
-  "id" : "1971AE0EE8119D47",
+  "id" : "19733FDF38F1E6E4",
   "kind" : "CALLABLE_SUB",
   "config" : {
-    "data" : "com.axonivy.portal.developerexamples.CustomGrowlMessageData"
+    "data" : "portalkit.GrowlMessageData"
   },
   "elements" : [ {
-      "id" : "f0",
+      "id" : "f3",
       "type" : "CallSubStart",
       "name" : "portalGrowlMessage()",
       "config" : {
@@ -21,25 +21,19 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 64 }
+        "at" : { "x" : 144, "y" : 136 }
       },
       "connect" : [
-        { "id" : "f2", "to" : "f3" }
+        { "id" : "f4", "to" : "f5" }
       ]
     }, {
-      "id" : "f1",
-      "type" : "CallSubEnd",
-      "visual" : {
-        "at" : { "x" : 376, "y" : 64 }
-      }
-    }, {
-      "id" : "f3",
+      "id" : "f5",
       "type" : "Script",
       "name" : "Custom growl messages",
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.enums.GrowlMessageType;",
+            "import ch.ivy.addon.portalkit.enums.GrowlMessageType;",
             "import com.axonivy.portal.components.predicate.CustomProcessPredicate;",
             "import java.util.HashMap;",
             "import java.util.Map;",
@@ -55,10 +49,16 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 248, "y" : 64 }
+        "at" : { "x" : 296, "y" : 136 }
       },
       "connect" : [
-        { "id" : "f4", "to" : "f1", "color" : "default" }
+        { "id" : "f6", "to" : "f7", "color" : "default" }
       ]
+    }, {
+      "id" : "f7",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 424, "y" : 136 }
+      }
     } ]
 }

@@ -163,10 +163,6 @@ Processes:
       #Zusammenfassung
       Antragssteller bekommt eine Zusammenfassung
       Ergebnis zur Kenntnis nehmen
-  GrowlMessage:
-    PROCESS_VIEWER: Angepasst. Sie haben die Prozessansicht geschlossen.
-    TASK_FINISHED: Personnalisé dans l'ordre. Vous avez terminé la tâche.
-    TASK_LEFT: Angepasst. Sie haben die Aufgabe erfolgreich abgebrochen und verlassen. Sie können die Aufgabe im Dashboard oder in Ihrer Aufgabenliste finden.
   MoreInformation:
     description: Klicken Sie auf Weitere Informationen, um die benutzerdefinierte Prozessinformationsseite anzuzeigen.
   Payment:

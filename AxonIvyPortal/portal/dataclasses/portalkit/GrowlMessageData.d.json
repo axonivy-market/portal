@@ -1,7 +1,7 @@
 {
   "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
-  "simpleName" : "CustomGrowlMessageData",
-  "namespace" : "com.axonivy.portal.developerexamples",
+  "simpleName" : "GrowlMessageData",
+  "namespace" : "portalkit",
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "mapMessages",

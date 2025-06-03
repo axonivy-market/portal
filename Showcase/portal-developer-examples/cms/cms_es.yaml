@@ -163,10 +163,6 @@ Processes:
       #Resumen
       Solicitante obtendrá un resumen
       Tomar nota del resultado
-  GrowlMessage:
-    PROCESS_VIEWER: Personalizado. Ha cerrado la vista del proceso.
-    TASK_FINISHED: A medida. Ha finalizado la tarea correctamente
-    TASK_LEFT: Personalizado. Ha cancelado y abandonado la tarea correctamente. Puede encontrar la tarea en el panel de control o en su lista de tareas.
   MoreInformation:
     description: Haga clic en Más información para ver la página de información personalizada del proceso.
   Payment:

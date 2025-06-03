@@ -1,4 +1,4 @@
-package com.axonivy.portal.components.enums;
+package ch.ivy.addon.portalkit.enums;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -10,7 +10,7 @@ public enum GrowlMessageType {
   PROCESS_VIEWER;
   
   public String message() {
-    String label = Ivy.cms().co("/Dialogs/com/axonivy/portal/components/GrowlMessage/" + name());
+    String label = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/growlMessage/" + name());
     return StringUtils.isBlank(label) ? name() : label;
   }
 }

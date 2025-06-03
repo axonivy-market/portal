@@ -13,7 +13,7 @@ import javax.faces.context.Flash;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.enums.GrowlMessageType;
+import ch.ivy.addon.portalkit.enums.GrowlMessageType;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.enums.PortalCustomSignature;

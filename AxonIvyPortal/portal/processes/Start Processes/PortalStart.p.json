@@ -4369,7 +4369,7 @@
       "config" : {
         "output" : {
           "code" : [
-            "import com.axonivy.portal.components.enums.GrowlMessageType;",
+            "import ch.ivy.addon.portalkit.enums.GrowlMessageType;",
             "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
             "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
             "SecurityServiceUtils.setSessionAttribute(SessionAttribute.GROWL_MESSAGE_TYPE.toString(), GrowlMessageType.PROCESS_VIEWER);"
