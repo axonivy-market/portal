@@ -29,7 +29,7 @@
     * panelStyleClass: styleClass for the main panel.
     -->
 
-<h:panelGroup id="#{panelId}" styleClass="table-widget-panel #{panelStyleClass}" layout="block">
+<h:panelGroup id="#{panelId}" styleClass="table-widget-panel #{panelStyleClass}" layout="block" pt:role="region" pt:aria-label="#{widget.name}">
   <c:set var="renderFilter" value="#{isReadOnlyMode and (empty isRenderFilter ? 'true': isRenderFilter)}"/>
   <c:set var="renderInfo" value="#{isReadOnlyMode and (empty isRenderInfo ? 'true': isRenderInfo)}"/>
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
