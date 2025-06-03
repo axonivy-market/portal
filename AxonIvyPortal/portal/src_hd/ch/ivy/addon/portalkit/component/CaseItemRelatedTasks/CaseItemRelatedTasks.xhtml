@@ -20,7 +20,7 @@
   <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
     <div class="case-detail-section-title case-details-related-task-header-section ui-g-12">
-      <div class="ui-g-6 u-truncate-text u-padding-0 task-details-panel-title">
+      <div class="ui-g-6 u-truncate-text u-padding-0 task-details-panel-title" role="heading" aria-level="1">
         <i class="si si-task-list-edit" />
         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')}
       </div>
