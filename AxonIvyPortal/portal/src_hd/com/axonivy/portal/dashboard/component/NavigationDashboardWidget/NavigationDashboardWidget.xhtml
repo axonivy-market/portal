@@ -6,7 +6,8 @@
   xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="index" required="true" />
   <cc:attribute name="widget" required="true" />
@@ -20,7 +21,7 @@
   <c:set var="panelId" value="navigation-widget-#{widget.id}-panel"/>
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
 
-  <h:panelGroup id="#{panelId}" styleClass="card-widget-panel navigation-dashboard-widget-panel" layout="block">
+  <h:panelGroup id="#{panelId}" styleClass="card-widget-panel navigation-dashboard-widget-panel" layout="block" pt:role="region" pt:aria-label="#{widget.name}">
      <div>
        <h:panelGroup id="widget-header-actions" styleClass="js-navigation-dashboard-widget flex justify-content-end align-items-center navigation-dashboard-widget-panel pt-3 pr-2" layout="block">
          <p:commandButton id="edit-widget-#{index}"
