@@ -168,6 +168,16 @@ jobs:
             path: |
               AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
         
+        - name: Archive rerun tests report
+          uses: actions/upload-artifact@v4
+          with:
+            name: rerun-test-reports
+            retention-days: 5
+            path: |
+              AxonIvyPortal/portal-selenium-test/target/surefire-reports/*.rerun
+
+
+        
         - name: Report
           uses: dorny/test-reporter@v2.0.0
           with:
