@@ -149,6 +149,11 @@ public class TaskWidgetPage extends TemplatePage {
         .shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public void openTaskProcessViewer(int taskIndex) {
+    clickOnTaskActionLink(taskIndex);
+    $("[id$='dashboard-actions-task-task_1:show-process-viewer-link']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+  }
+  
   public TaskTemplatePage clickOnSideStepAction(int taskIndex, int sideStepIndex) {
     String sideStepsId = String.format(
         "task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-additional-actions",
