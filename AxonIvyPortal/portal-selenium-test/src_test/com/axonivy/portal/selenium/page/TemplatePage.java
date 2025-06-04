@@ -382,6 +382,9 @@ public abstract class TemplatePage extends AbstractPage {
     switchBackToParent();
     openMainMenu();
     waitForElementClickableThenClick($("a[id*='user-menu-required-login:logo']"));
+  }
+  
+  public void waitForTaskLosingConfirmationDialogAppear() {
     waitForElementDisplayed($("[id='task-leave-warning-component:logo-task-losing-confirmation-dialog']"), true);
   }
 

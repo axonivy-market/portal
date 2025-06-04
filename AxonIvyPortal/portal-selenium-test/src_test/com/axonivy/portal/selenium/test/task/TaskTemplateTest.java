@@ -88,6 +88,7 @@ public class TaskTemplateTest extends BaseTest {
     home.waitPageLoaded();
     TaskIFrameTemplatePage taskTemplatePage = startATask();
     taskTemplatePage.clickOnLogo();
+    taskTemplatePage.waitForTaskLosingConfirmationDialogAppear();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.reserveTask();
     NavigationHelper.navigateToTaskList();
