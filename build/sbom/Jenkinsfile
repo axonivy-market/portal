@@ -1,5 +1,5 @@
 pipeline {
-  agent { label 'linux' }
+  agent { label 'lndanh-pc' }
 
   options {
     buildDiscarder(logRotator(numToKeepStr: '50', artifactNumToKeepStr: '5'))
