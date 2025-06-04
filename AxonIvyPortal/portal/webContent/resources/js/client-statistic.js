@@ -303,6 +303,9 @@ class ClientCanvasChart extends ClientChart {
   initWidgetTitle() {
     $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title')
       .text(this.data.chartConfig.name);
+
+	// Add aria-label
+	$(this.chart).parents('.card-widget-panel').get(0).ariaLabel = this.data.chartConfig.name;
   }
 
   updateClientChart() {
@@ -617,6 +620,12 @@ class ClientNumberChart extends ClientChart {
     if (widgetHeader) {
       widgetHeader.textContent = widgetName;
     }
+	
+	// Add aria-label
+	let widgetPanel = $(chart).parents(".card-widget-panel").get(0);
+	if (widgetPanel) {
+	  widgetPanel.ariaLabel = widgetName;
+	}
   }
 
   renderMultipleNumberChartInHTML(result, suffixSymbold) {
