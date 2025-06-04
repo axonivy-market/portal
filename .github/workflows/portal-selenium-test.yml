@@ -45,7 +45,7 @@ jobs:
 
             if (!prs || prs.length === 0) {
               await core.summary
-                .addHeading(`🔗 No PRs merged into '${branch}' in the last 24 hours`)
+                .addHeading(`🔗 No PRs merged into '${branch}'`)
                 .write();
               return;
             }
