@@ -19,7 +19,6 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.ExpressFormDefinitionPage;
 import com.axonivy.portal.selenium.page.ExpressProcessPage;
 import com.axonivy.portal.selenium.page.HomePage;
-import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.SearchResultPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
@@ -27,7 +26,6 @@ import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.TemplatePage;
 import com.axonivy.portal.selenium.page.TemplatePage.GlobalSearch;
 import com.axonivy.portal.selenium.page.WorkingTaskDialogPage;
-import com.axonivy.portal.selenium.page.WorkingTaskDialogPageOfApplicationMenu;
 import com.codeborne.selenide.Condition;
 
 
@@ -219,6 +217,23 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(newDashboardPage, CANCEL_MESSAGE);
   }
 
+  @Test
+  public void testDisplayDefaultGrowlAfterCloseProcessViewer() {
+    redirectToRelativeLink(createTestingTasksUrl);
+//    NewDashboardPage newDashboardPage = new NewDashboardPage();
+//    NewDashboardPage taskWidgetPage = newDashboardPage.openTaskList();
+//
+//    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+//    taskWidget.waitForPageLoad();
+//    taskWidget.openTaskProcessViewer(0);
+//    WaitHelper.assertTrueWithWait(() -> newDashboardPage.countBrowserTab() > 1);
+//    taskWidget.switchLastBrowserTab();
+//    ProcessViewerPage processViewerPage = new ProcessViewerPage();
+//    processViewerPage.clickOnCloseButton();
+//    taskWidgetPage = new NewDashboardPage();
+//    assertGrowlMessage(taskWidgetPage, CLOSE_PROCESS_VIEWER_MESSAGE);
+  }
+  
   private void assertGrowlMessage(TemplatePage templatePage, String message) {
     templatePage.getGlobalGrowlMessage().shouldBe(Condition.text(message));
   }

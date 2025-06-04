@@ -75,9 +75,9 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.util.GrowlMessageUtils;",
+            "import ch.ivy.addon.portalkit.service.GrowlMessageService;",
             "",
-            "GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.iCase);"
+            "GrowlMessageService.getInstance().addFeedbackMessage(in.isTaskFinished, in.iCase);"
           ]
         }
       },
