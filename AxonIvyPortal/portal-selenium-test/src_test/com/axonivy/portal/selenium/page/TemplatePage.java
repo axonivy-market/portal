@@ -381,7 +381,8 @@ public abstract class TemplatePage extends AbstractPage {
   public void clickOnLogo() {
     switchBackToParent();
     openMainMenu();
-    waitForElementClickableThenClick($("a[id$='logo']"));
+    waitForElementClickableThenClick($("a[id*='user-menu-required-login:logo']"));
+    waitForElementDisplayed($("[id='task-leave-warning-component:logo-task-losing-confirmation-dialog']"), true);
   }
 
   protected void refreshAndWaitElement(String cssSelector) {
