@@ -524,6 +524,7 @@ const statisticItemId = '[id^="user-menu-required-login:main-navigator:main-menu
 const searchIconId = 'a#global-search-item:visible';
 const searchInputId = '[id="global-search-component:global-search-data"]:visible';
 const useSettingMenuId = 'a#user-settings-menu:visible';
+const pinButton = 'a[id="user-menu-required-login:toggle-menu"]';
 
 $(document).ready(function () {
 
@@ -544,6 +545,16 @@ $(document).ready(function () {
       return $(shortcuts[key]);
     }
     return $(shortcuts[key]).find('a').first();
+  }
+
+  function toggleLeftMenu(key) {
+    if (key === 'Digit8') {
+      addFocusClass($(pinButton));
+      $(pinButton).trigger('click');
+      return true;
+    }
+    removeFocusClass($(pinButton));
+    return false;
   }
 
   function removeFocusClass(element) {
@@ -601,6 +612,9 @@ $(document).ready(function () {
       const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
       iframeDocument.addEventListener('keydown', function (event) {
         if (onlyAltPressed(event)) {
+          if(toggleLeftMenu(event.code)) {
+            return;
+          }
           handleFocusOnMainElement(event);
         }
         registerSearchIconClick();
@@ -665,6 +679,9 @@ $(document).ready(function () {
 
     if (onlyAltPressed(event)) {
       var keyCode = event.code;
+      if(toggleLeftMenu(keyCode)) {
+        return;
+      }
       if (shortcuts[keyCode]) {
         event.preventDefault();
         removeFocusedElements();

@@ -1623,48 +1623,51 @@ Dialogs:
             AccessibilityShortcuts:
               content: |-
                 <div class="ui-g">
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 1</span>Se focaliser sur l’onglet du Dashboard
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 5</span>Se focaliser sur l’onglet des statistiques
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + A</span>Se focaliser sur le premier processus
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Tab</span>Navigation séquentielle entre les éléments
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 2</span>Se focaliser sur l’onglet des processus
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 6</span>Se focaliser sur la recherche
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + W</span>Se focaliser sur la première tâche
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Esc</span>Fermer les widgets agrandis/Fermer les menus contextuels
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 3</span>Se focaliser sur l’onglet des tâches
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 7</span>Se focaliser sur les paramètres utilisateur
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + Q</span>Se focaliser sur le premier cas
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Enter</span>Confirmer la sélection
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 4</span>Se focaliser sur l’onglet des cas
-                   </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 1</span>Se focaliser sur l’onglet du Dashboard
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 5</span>Se focaliser sur l’onglet des statistiques
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + A</span>Se focaliser sur le premier processus
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Tab</span>Navigation séquentielle entre les éléments
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 2</span>Se focaliser sur l’onglet des processus
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 6</span>Se focaliser sur la recherche
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + W</span>Se focaliser sur la première tâche
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Esc</span>Fermer les widgets agrandis/Fermer les menus contextuels
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 3</span>Se focaliser sur l’onglet des tâches
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 7</span>Se focaliser sur les paramètres utilisateur
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + Q</span>Se focaliser sur le premier cas
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Enter</span>Confirmer la sélection
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 4</span>Se focaliser sur l’onglet des cas
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 8</span>Permet d’afficher ou de masquer le menu principal
+                    </div>
                 </div>
-              title: 'Raccourcis d’accessibilité. Alt + 1: Fokus auf die Dashboards. Alt + 2: Fokus auf die Prozesse. Alt + 3: Fokus auf die Aufgaben. Alt + 4: Fokus auf die Fälle. Alt + 5: Fokus auf die Statistik. Alt + 6: Fokus auf die Suche. Alt + 7: Fokus auf die User Einstellungen. Alt + A: Fokus
-                auf den ersten Prozess. Alt + W: Fokus auf die erste Aufgabe. Alt + Q: Fokus auf den ersten Fall. Tab: Sequentielles Durchlaufen von Elementen. Esc: Erweiterte Widgets schließen/Kontext Menüs schließen. Enter: Auswahl bestätigen'
+              title: 'Raccourcis d’accessibilité. Alt + 1: Fokus auf die Dashboards. Alt + 2: Fokus auf die Prozesse. Alt + 3: Fokus auf die Aufgaben. Alt + 4: Fokus auf die Fälle. Alt + 5: Fokus auf die Statistik. Alt + 6: Fokus auf die Suche. Alt + 7: Fokus auf die User Einstellungen. Alt + 8: Permet
+                d’afficher ou de masquer le menu principal. Alt + A: Fokus auf den ersten Prozess. Alt + W: Fokus auf die erste Aufgabe. Alt + Q: Fokus auf den ersten Fall. Tab: Sequentielles Durchlaufen von Elementen. Esc: Erweiterte Widgets schließen/Kontext Menüs schließen. Enter: Auswahl bestätigen'
             DashboardImportDetails:
               FileInfomation: Informations sur le fichier
               ImportPrivate: Importer un tableau de bord privé
