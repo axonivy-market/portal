@@ -172,7 +172,7 @@ jobs:
           if: always()
           run: |
             echo "Files in target/surefire-reports:"
-            ls -al target/surefire-reports || echo "Folder not found"
+            ls -al AxonIvyPortal/portal-selenium-test/target/surefire-reports || echo "Folder not found"
         
         - name: Report
           uses: dorny/test-reporter@v2.0.0
