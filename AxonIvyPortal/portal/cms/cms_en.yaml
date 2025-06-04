@@ -1461,7 +1461,7 @@ Dialogs:
                     </div>
                 </div>
               title: 'Accessibility Shortcuts. Alt + 1: Focus on to the Dashboard tab. Alt + 2: Focus on to the Process tab. Alt + 3: Focus on to the Tasks tab. Alt + 4: Focus on to the Case tab. Alt + 5: Focus on to the search. Alt + 6: Focus on to the User settings. Alt + 7: Toggle the visibility of
-                the main menu. Alt + A: Focus on to the first Process. Alt + A: Focus on to the first Process. Alt + W: Focus on to the first task. Alt + Q: Focus on to the first case. Tab: Sequential tabbing through elements. Esc: Close expanded widgets. Enter: Confirm selection.'
+                the main menu. Alt + A: Focus on to the first Process. Alt + W: Focus on to the first task. Alt + Q: Focus on to the first case. Tab: Sequential tabbing through elements. Esc: Close expanded widgets. Enter: Confirm selection.'
             CaseWidgetConfiguration:
               AddFilter: Add filter
             ClientStatisticWidget:
