@@ -52,7 +52,7 @@ We have introduced basic keyboard shortcuts to streamline the user experience in
 - **Alt + 4**: Jump to the Case section.
 - **Alt + 5**: Jump to the Search section.
 - **Alt + 6**: Jump to User Settings.
-- **Alt + 7**: Toggles the visibility of the main menu.
+- **Alt + 7**: Toggle the visibility of the main menu.
 
 Widget Navigation
 ^^^^^^^^^^^^^^^^^

@@ -545,9 +545,11 @@ $(document).ready(function () {
 
   function toggleLeftMenu(key) {
     if (key === 'Digit7') {
+      addFocusClass($(pinButton));
       $(pinButton).trigger('click');
       return true;
     }
+    removeFocusClass($(pinButton));
     return false;
   }
 
