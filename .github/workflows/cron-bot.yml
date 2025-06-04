@@ -37,6 +37,10 @@ on:
     - cron: '10 17 * * *'
     # schedule for Lighthouse Audit for release/10
     - cron: '25 17 * * *'
+    # schedule for Selenium Test in master
+    - cron: '30 17 * * *'
+    # schedule for Selenium Test in release/12.0
+    - cron: '30 19 * * *'
 
 jobs:
   trigger-portal-document-screenshot:
@@ -162,6 +166,35 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 workflow_id: 'lighthouse-report.yml',
+                ref: 'release/12.0'
+              })
+              
+  trigger-portal-selenium-test:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/github-script@v7
+          name: Trigger build Portal Selenium Test for master
+          if: github.event.schedule == '30 17 * * *'
+          with:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            script: |
+              await github.rest.actions.createWorkflowDispatch({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'portal-selenium-test.yml',
+                ref: 'master'
+              })
+  
+        - uses: actions/github-script@v7
+          name: Trigger build Portal Selenium Test for release/12.0
+          if: github.event.schedule == '30 19 * * *'
+          with:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            script: |
+              await github.rest.actions.createWorkflowDispatch({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'portal-selenium-test.yml',
                 ref: 'release/12.0'
               })
     

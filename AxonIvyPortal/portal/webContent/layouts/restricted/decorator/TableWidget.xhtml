@@ -35,7 +35,7 @@
   <c:set var="renderExpandCollapse" value="#{isReadOnlyMode and (empty isRenderExpandCollapse ? 'true': isRenderExpandCollapse)}"/>
   <f:event listener="#{dashboardBean.setSearchScope(widget)}" type="preRenderComponent" />
   <h:panelGroup layout="block" class="widget__header" rendered="#{not isHeaderHidden}">
-    <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis">#{widget.name}</h:panelGroup>
+    <h:panelGroup id="widget__header" class="widget__header-title text-ellipsis" pt:role="heading" pt:aria-level="1">#{widget.name}</h:panelGroup>
     <p:tooltip for="widget__header" value="#{widget.name}" trackMouse="true" hideEvent="mouseleave click"/>
     
 <h:panelGroup id="show-pin-#{index}" layout="block"
