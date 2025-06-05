@@ -10,6 +10,11 @@ See the [Axon Ivy Portal on the Axon Ivy Market](https://market.axonivy.com/port
 
 See the [LICENSE](LICENSE) file for license rights and limitations (Apache License 2.0).
 
+## Translation
+
+[![translation-status](https://hosted.weblate.org/widget/axonivy-portal/svg-badge.svg)](https://hosted.weblate.org/engage/axonivy-portal/)
+
+Axon Ivy Portal is incorporating Weblate into its localization workflow to facilitate more efficient and collaborative translation management. If you are interested in contributing to our translation efforts, please see the  [Axon Ivy Portal project on Weblate](https://hosted.weblate.org/projects/axonivy-portal/#information).
 
 ## Supported Versions
 
