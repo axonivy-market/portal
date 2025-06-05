@@ -514,6 +514,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     generalInformation: Informations générales
     globalSearch: Recherche ...
     goToDetail: Aller au détail
+    growlMessage:
+      PROCESS_VIEWER: Vous avez fermé le visualiseur de processus.
+      TASK_FINISHED: Vous avez terminé la tâche avec succès
+      TASK_LEFT: Vous avez annulé et quitté la tâche avec succès. Vous pouvez trouver la tâche dans le tableau de bord ou dans votre liste de tâches.
     hasPrecondition: Ce processus est soumis à une condition préalable
     height: Hauteur
     hide: Cacher
@@ -1639,12 +1643,12 @@ Labels:
     ProcessParameterInfo: ''
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
-  AndMore: 'et {0} de plus...  '
   AllTasks: Toutes les tâches
+  AndMore: 'et {0} de plus...  '
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
-  Configuration: Configuration
   Collapse: Réduire
+  Configuration: Configuration
   CreateNewDashboard: Créer un nouveau tableau de bord
   Description: Description
   EditDescription: Editer la description
@@ -1734,10 +1738,10 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
+  Expand: Développer
   Filters: Filtres
   General: Général
   Icon: Icône
-  Expand: Développer
   InsertTask-Explain: Insérer la tâche. Ma tâche sera reportée.
   InsertTheTask: Insérer la tâche.
   Login:
@@ -1745,11 +1749,11 @@ Labels:
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Name: Nom
   Permissions: Permissions
+  PinnedCases: Cas épinglés
+  PinnedTasks: Tâches épinglées
   Preview: Aperçu
   RequiredFieldMessage: '{0} : La valeur est obligatoire'
   Save: Enregistrer
-  PinnedCases: Cas épinglés
-  PinnedTasks: Tâches épinglées
   Share: Partager
   Task: Tâche
   TaskItemDetail: Détails de la tâche

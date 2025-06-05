@@ -146,14 +146,14 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivy.addon.portalkit.util.GrowlMessageUtils;",
+            "import ch.ivy.addon.portalkit.service.GrowlMessageService;",
             "",
             "try {",
-            "  GrowlMessageUtils.addFeedbackMessage(false, (in.#workingTask != null ? in.workingTask : ivy.task).getCase());",
+            "  GrowlMessageService.getInstance().addFeedbackMessage(false, (in.#workingTask != null ? in.workingTask : ivy.task).getCase());",
             "} catch (Exception e) {",
             "  // Could be Error calling method getCase() on an object of class ch.ivyteam.ivy.workflow.internal.Task.",
             "  // Due to PersistentObjectDeletedException of ch.ivyteam.ivy.workflow.internal.data.TaskData",
-            "  GrowlMessageUtils.addFeedbackMessage(false);",
+            "  GrowlMessageService.getInstance().addFeedbackMessage(false);",
             "}"
           ]
         }
