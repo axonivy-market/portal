@@ -13,6 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Show inputs in summary
+        run: |
+          echo "### 📝 Input Parameters" >> $GITHUB_STEP_SUMMARY
+          echo "- **ivyVersion**: ${{ github.event.inputs.ivyVersion }}" >> $GITHUB_STEP_SUMMARY
+
       - name: Set up Java
         uses: actions/setup-java@v4
         with:
