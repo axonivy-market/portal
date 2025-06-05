@@ -151,7 +151,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void openTaskProcessViewer(int taskIndex) {
     clickOnTaskActionLink(taskIndex);
-    $("[id$='dashboard-actions-task-task_1:show-process-viewer-link']").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    $("[id$='additional-options:show-process-viewer-link']").shouldBe(appear, DEFAULT_TIMEOUT).click();
   }
   
   public TaskTemplatePage clickOnSideStepAction(int taskIndex, int sideStepIndex) {

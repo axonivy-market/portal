@@ -16,7 +16,6 @@ import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
-import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.ExpressFormDefinitionPage;
 import com.axonivy.portal.selenium.page.ExpressProcessPage;
 import com.axonivy.portal.selenium.page.HomePage;
@@ -29,8 +28,6 @@ import com.axonivy.portal.selenium.page.TemplatePage;
 import com.axonivy.portal.selenium.page.TemplatePage.GlobalSearch;
 import com.axonivy.portal.selenium.page.WorkingTaskDialogPage;
 import com.codeborne.selenide.Condition;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 
 @IvyWebTest
@@ -54,8 +51,6 @@ public class GlobalGrowlTest extends BaseTest {
   @Override
   @BeforeEach
   public void setup() {
-    WebDriverManager.firefoxdriver().setup();
-
     super.setup();
     login(TestAccount.ADMIN_USER);
   }
