@@ -123,8 +123,5 @@
   }, {
     "name" : "isMainDashboard",
     "type" : "Boolean"
-  }, {
-    "name" : "isProcessViewer",
-    "type" : "Boolean"
   } ]
 }

@@ -2395,8 +2395,6 @@
                 "param.isTaskFinished" : "in.isTaskFinished",
                 "param.caze" : "in.caseSelected"
               }
-            },
-            "output" : {
             }
           },
           "visual" : {
@@ -2905,12 +2903,6 @@
             "param.taskId" : "in.taskId",
             "param.caseId" : "in.caseId",
             "param.processId" : "in.processId"
-          }
-        },
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.isProcessViewer" : "true"
           }
         }
       },
