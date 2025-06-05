@@ -470,7 +470,7 @@ public abstract class AbstractColumn implements Serializable {
   @JsonIgnore
   protected String initDefaultWidth() {
     if (resolveColumnWidth() == 0) {
-      return "";
+      return "width: auto;";
     }
     return "width: " + resolveColumnWidth() + "px";
   }
