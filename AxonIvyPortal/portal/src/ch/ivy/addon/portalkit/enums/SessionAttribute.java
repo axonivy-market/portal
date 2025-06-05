@@ -4,6 +4,7 @@ public enum SessionAttribute {
   SESSION_IDENTIFIER,
   TASK_END_INFO,
   IS_TASK_FINISHED,
+  GROWL_MESSAGE_TYPE,
   PORTAL_START_PMV_ID,
   IS_TASK_STARTED_IN_DETAILS, // task status (for navigating back feature)
   NAVIGATE_FROM_RELATED_CASE, // use for navigate back after destroy case

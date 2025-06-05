@@ -1,0 +1,10 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
+  "simpleName" : "GrowlMessageData",
+  "namespace" : "portalkit",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "mapMessages",
+    "type" : "java.util.Map<String,String>"
+  } ]
+}

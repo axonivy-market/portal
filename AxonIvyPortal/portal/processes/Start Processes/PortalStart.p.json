@@ -962,7 +962,6 @@
             "  Boolean isTaskFinished = SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString()).toBoolean();",
             "  in.isTaskFinished = #isTaskFinished is initialized ? isTaskFinished : true;",
             "}",
-            "",
             "SecurityServiceUtils.removeSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString());",
             "ivy.session.setAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString(), in.isTaskStartedInDetails);"
           ]
@@ -1468,10 +1467,7 @@
       ],
       "visual" : {
         "at" : { "x" : 240, "y" : 1759 },
-        "size" : { "width" : 314, "height" : 63 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 314, "height" : 63 }
       }
     }, {
       "id" : "f86",
@@ -2894,7 +2890,7 @@
       "id" : "f224",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 304, "y" : 3160 }
+        "at" : { "x" : 568, "y" : 3160 }
       }
     }, {
       "id" : "f225",
@@ -2915,7 +2911,7 @@
         "size" : { "width" : 116 }
       },
       "connect" : [
-        { "id" : "f228", "to" : "f224" }
+        { "id" : "f228", "to" : "f295" }
       ]
     }, {
       "id" : "f226",
@@ -4357,6 +4353,27 @@
       },
       "connect" : [
         { "id" : "f179", "to" : "f53" }
+      ]
+    }, {
+      "id" : "f295",
+      "type" : "Script",
+      "name" : "Set session attribute for process view",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.GrowlMessageType;",
+            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
+            "SecurityServiceUtils.setSessionAttribute(SessionAttribute.GROWL_MESSAGE_TYPE.toString(), GrowlMessageType.PROCESS_VIEWER);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 416, "y" : 3161 },
+        "size" : { "width" : 128, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f296", "to" : "f224", "color" : "default" }
       ]
     } ]
 }

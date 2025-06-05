@@ -516,6 +516,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     generalInformation: Allgemeine Informationen
     globalSearch: Suche ...
     goToDetail: Zu den Details
+    growlMessage:
+      PROCESS_VIEWER: Sie haben den Prozess-Viewer geschlossen.
+      TASK_FINISHED: Sie haben die Aufgabe erfolgreich abgeschlossen
+      TASK_LEFT: Sie haben die Aufgabe abgebrochen. Sie finden die Aufgabe im Dashboard oder in Ihrer Aufgabenliste.
     hasPrecondition: Dieser Prozess hat eine Vorbedingung
     height: Höhe
     hide: Verbergen
@@ -1611,12 +1615,12 @@ Labels:
     ProcessParameterInfo: ''
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
-  AndMore: 'und {0} weitere...  '
   AllTasks: Alle Aufgaben
+  AndMore: 'und {0} weitere...  '
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
-  Configuration: Konfiguration
   Collapse: Einklappen
+  Configuration: Konfiguration
   CreateNewDashboard: Neues Dashboard erstellen
   Description: Beschreibung
   EditDescription: Beschreibung bearbeiten
@@ -1714,10 +1718,10 @@ Labels:
     ThemeMode:
       DARK: Dunkel
       LIGHT: Hell
+  Expand: Erweitern
   Filters: Filter
   General: Allgemein
   Icon: Symbol
-  Expand: Erweitern
   InsertTask-Explain: Aufgabe einfügen. Meine Aufgabe wird aufgeschoben.
   InsertTheTask: Aufgabe einfügen
   Login:
@@ -1725,11 +1729,11 @@ Labels:
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Name: Titel
   Permissions: Berechtigungen
+  PinnedCases: Angeheftete Fälle
+  PinnedTasks: Angehängte Aufgaben
   Preview: Vorschau
   RequiredFieldMessage: '{0}: Wert ist erforderlich'
   Save: Speichern
-  PinnedCases: Angeheftete Fälle
-  PinnedTasks: Angehängte Aufgaben
   Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
