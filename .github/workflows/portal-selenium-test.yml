@@ -167,16 +167,6 @@ jobs:
             retention-days: 5
             path: |
               AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
-
-        - name: Run flaky test extraction script
-          run: bash AxonIvyPortal/portal-selenium-test/resources/extractFlakyTests.sh
-
-        
-        - name: List files in surefire-reports
-          if: always()
-          run: |
-            echo "Files in target/surefire-reports:"
-            ls -al AxonIvyPortal/portal-selenium-test/target || echo "Folder not found"
         
         - name: Report
           uses: dorny/test-reporter@v2.0.0
