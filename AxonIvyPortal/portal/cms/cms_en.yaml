@@ -1624,48 +1624,51 @@ Dialogs:
             AccessibilityShortcuts:
               content: |-
                 <div class="ui-g">
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 1</span>Focus on to the Dashboard Tab
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 5</span>Focus on to the Statistics Tab
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + A</span>Focus on to the first Process
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Tab</span>Sequential tabbing through elements
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 2</span>Focus on to the Process Tab
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 6</span>Focus on to the Search
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + W</span>Focus on to the first Task
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Esc</span>Close expanded Widgets
-                   </div>
-                   <div class="ui-g-3 shortcut-content">
-                      <span class="shortcut-key">Alt + 3</span>Focus on to the Tasks Tab
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 7</span>Focus on to the User Settings
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + Q</span>Focus on to the first Case
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Enter</span>Confirm selection
-                   </div>
-                   <div class="ui-g-3 shortcut-content ">
-                      <span class="shortcut-key">Alt + 4</span>Focus on to the Case Tab
-                   </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 1</span>Focus on to the Dashboard Tab
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 5</span>Focus on to the Statistics Tab
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + A</span>Focus on to the first Process
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Tab</span>Sequential tabbing through elements
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 2</span>Focus on to the Process Tab
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 6</span>Focus on to the Search
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + W</span>Focus on to the first Task
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Esc</span>Close expanded Widgets
+                    </div>
+                    <div class="ui-g-3 shortcut-content">
+                        <span class="shortcut-key">Alt + 3</span>Focus on to the Tasks Tab
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 7</span>Focus on to the User Settings
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + Q</span>Focus on to the first Case
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Enter</span>Confirm selection
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 4</span>Focus on to the Case Tab
+                    </div>
+                    <div class="ui-g-3 shortcut-content ">
+                        <span class="shortcut-key">Alt + 8</span>Toggle the visibility of the main menu
+                    </div>
                 </div>
               title: 'Accessibility Shortcuts. Alt + 1: Focus on to the Dashboard tab. Alt + 2: Focus on to the Process tab. Alt + 3: Focus on to the Tasks tab. Alt + 4: Focus on to the Case tab. Alt + 5: Focus on to the Statistics tab. Alt + 6: Focus on to the search. Alt + 7: Focus on to the User settings.
-                Alt + A: Focus on to the first Process. Alt + W: Focus on to the first task. Alt + Q: Focus on to the first case. Tab: Sequential tabbing through elements. Esc: Close expanded widgets. Enter: Confirm selection.'
+                Alt + 8: Toggle the visibility of the main menu. Alt + A: Focus on to the first Process. Alt + W: Focus on to the first task. Alt + Q: Focus on to the first case. Tab: Sequential tabbing through elements. Esc: Close expanded widgets. Enter: Confirm selection.'
             DashboardImportDetails:
               FileInfomation: File Infomation
               ImportPrivate: Import Private Dashboard

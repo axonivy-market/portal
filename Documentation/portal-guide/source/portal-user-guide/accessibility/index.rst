@@ -53,6 +53,7 @@ We have introduced basic keyboard shortcuts to streamline the user experience in
 - **Alt + 5**: Jump to the Statistics section.
 - **Alt + 6**: Jump to the Search section.
 - **Alt + 7**: Jump to User Settings.
+- **Alt + 8**: Toggle the visibility of the main menu.
 
 Widget Navigation
 ^^^^^^^^^^^^^^^^^
