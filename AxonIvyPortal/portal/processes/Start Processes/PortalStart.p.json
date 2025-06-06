@@ -2891,7 +2891,7 @@
       "id" : "f224",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 304, "y" : 3160 }
+        "at" : { "x" : 512, "y" : 3160 }
       }
     }, {
       "id" : "f225",
@@ -2912,7 +2912,7 @@
         "size" : { "width" : 116 }
       },
       "connect" : [
-        { "id" : "f228", "to" : "f224" }
+        { "id" : "f228", "to" : "f3" }
       ]
     }, {
       "id" : "f226",
@@ -4220,6 +4220,27 @@
       },
       "connect" : [
         { "id" : "f124", "to" : "f21" }
+      ]
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Set session attribute for process view",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.GrowlMessageType;",
+            "import ch.ivy.addon.portalkit.enums.SessionAttribute;",
+            "import ch.ivy.addon.portalkit.util.SecurityServiceUtils;",
+            "",
+            "SecurityServiceUtils.setSessionAttribute(SessionAttribute.GROWL_MESSAGE_TYPE.toString(), GrowlMessageType.PROCESS_VIEWER);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 368, "y" : 3160 }
+      },
+      "connect" : [
+        { "id" : "f53", "to" : "f224", "color" : "default" }
       ]
     } ]
 }

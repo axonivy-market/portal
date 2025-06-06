@@ -149,6 +149,11 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
     clickOnTaskActionLink(taskIndex);
     clickTaskAction(taskIndex, "Delegate");
   }
+  
+  public void openTaskProcessViewer(int taskIndex) {
+    clickOnTaskActionLink(taskIndex);
+    clickTaskAction(taskIndex, "Process Viewer");
+  }
 
   @Override
   public void startTask(int taskIndex) {
