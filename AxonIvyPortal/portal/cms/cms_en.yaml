@@ -515,6 +515,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     generalInformation: General information
     globalSearch: Search ...
     goToDetail: Go to detail
+    growlMessage:
+      PROCESS_VIEWER: You closed the process viewer.
+      TASK_FINISHED: You have finished the task successfully
+      TASK_LEFT: You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.
     hasPrecondition: This process has precondition
     height: Height
     hide: Hide
@@ -1656,12 +1660,12 @@ Labels:
     TaskDetailsResult: |-
       Details of task **{0} (#{1})**:
       {2}
-  AndMore: and {0} more...
   AllTasks: All Tasks
+  AndMore: and {0} more...
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
-  Configuration: Configuration
   Collapse: Collapse
+  Configuration: Configuration
   CreateNewDashboard: Create new dashboard
   Description: Description
   EditDescription: Edit description
@@ -1759,10 +1763,10 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Light
+  Expand: Expand
   Filters: Filters
   General: General
   Icon: Icon
-  Expand: Expand
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Login:
@@ -1770,11 +1774,11 @@ Labels:
     Copyright: Copyright Ⓒ Axon Ivy Portal
   Name: Name
   Permissions: Permissions
+  PinnedCases: Pinned Cases
+  PinnedTasks: Pinned Tasks
   Preview: Preview
   RequiredFieldMessage: '{0}: Value is required'
   Save: Save
-  PinnedCases: Pinned Cases
-  PinnedTasks: Pinned Tasks
   Share: Share
   Task: Task
   TaskItemDetail: Task Details

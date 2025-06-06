@@ -385,6 +385,9 @@ class ClientCanvasChart extends ClientChart {
   initWidgetTitle() {
     $(this.chart).parents('.dashboard__widget').find('.widget__header > .widget__header-title')
       .text(getFormatedTitle(this.data.chartConfig.names));
+
+    // Add aria-label
+    $(this.chart).parents('.card-widget-panel').get(0).ariaLabel = getFormatedTitle(this.data.chartConfig.names)
   }
 
   updateClientChart() {
@@ -714,6 +717,12 @@ class ClientNumberChart extends ClientChart {
       .find(".widget__header-title").get(0);
     if (widgetHeader) {
       widgetHeader.textContent = widgetName;
+    }
+
+    // Add aria-label
+    let widgetPanel = $(chart).parents(".card-widget-panel").get(0);
+    if (widgetPanel) {
+      widgetPanel.ariaLabel = widgetName;
     }
   }
 

@@ -62,11 +62,13 @@ public final class ChatMessageManager {
     encryptAndSaveMessageToFile(message, filepath);
   }
 
+  @SuppressWarnings("removal")
   private static void replaceSenderAndRecipientNamesByIds(ChatMessage message) {
     message.setSender(Long.toString(ChatGroupUtils.findUserByUsername(message.getSender()).getId()));
     message.setRecipients(replaceUsernameByUserId(message.getRecipients()));
   }
 
+  @SuppressWarnings("removal")
   private static List<String> replaceUsernameByUserId(List<String> participants) {
     List<String> updatedParticipants = new ArrayList<>();
     for (String participant : participants) {
@@ -146,6 +148,7 @@ public final class ChatMessageManager {
     return messages;
   }
 
+  @SuppressWarnings("removal")
   private static void saveGroupMessageToFile(ChatMessage message, String filepath) {
     String senderName = message.getSender();
     message.setSender("#".concat(Long.toString(ChatGroupUtils.findUserByUsername(message.getSender()).getId())));
@@ -238,6 +241,7 @@ public final class ChatMessageManager {
     }
   }
 
+  @SuppressWarnings("removal")
   private static String getSenderId(String sender) {
     if (StringUtils.isNotBlank(sender) && !isGroupChat(sender)) {
       return Long.toString(findUser(sender).getId());
@@ -252,6 +256,7 @@ public final class ChatMessageManager {
     return senderId;
   }
 
+  @SuppressWarnings("removal")
   private static IUser findUserById(String senderId) {
     return wf().getSecurityContext().users().find(Long.valueOf(senderId));
   }
