@@ -67,6 +67,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Approve Investment");
     taskWidget.applyFilter();
     TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
+    taskTemplatePage2.waitForPageLoad();
     taskTemplatePage2.clickOnLogo();
     new NewDashboardPage();
   }
