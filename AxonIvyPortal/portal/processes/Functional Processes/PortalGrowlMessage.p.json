@@ -1,0 +1,60 @@
+{
+  "format" : "10.0.0",
+  "id" : "197351FA669DD908",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "portalkit.portalGrowlMessageData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "portalGrowlMessage()",
+      "config" : {
+        "callSignature" : "portalGrowlMessage",
+        "result" : {
+          "params" : [
+            { "name" : "mapMessages", "type" : "java.util.Map" }
+          ],
+          "map" : {
+            "result.mapMessages" : "in.mapMessages"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : { "id" : "f4", "to" : "f3" }
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 368, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Custom growl messages",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.enums.GrowlMessageType;",
+            "import com.axonivy.portal.components.predicate.CustomProcessPredicate;",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "Map mapMessage = new HashMap();",
+            "mapMessage.put(GrowlMessageType.PROCESS_VIEWER.name(), ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/common/growlMessage/PROCESS_VIEWER\"));",
+            "mapMessage.put(GrowlMessageType.TASK_FINISHED.name(), ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/common/growlMessage/TASK_FINISHED\"));",
+            "mapMessage.put(GrowlMessageType.TASK_LEFT.name(), ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/common/growlMessage/TASK_LEFT\"));",
+            "",
+            "in.mapMessages = mapMessage;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
+    } ]
+}

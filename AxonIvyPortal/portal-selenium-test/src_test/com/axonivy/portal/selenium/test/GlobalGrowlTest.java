@@ -19,15 +19,14 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.ExpressFormDefinitionPage;
 import com.axonivy.portal.selenium.page.ExpressProcessPage;
 import com.axonivy.portal.selenium.page.HomePage;
-import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.ProcessViewerPage;
 import com.axonivy.portal.selenium.page.SearchResultPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TaskWidgetPage;
 import com.axonivy.portal.selenium.page.TemplatePage;
 import com.axonivy.portal.selenium.page.TemplatePage.GlobalSearch;
 import com.axonivy.portal.selenium.page.WorkingTaskDialogPage;
-import com.axonivy.portal.selenium.page.WorkingTaskDialogPageOfApplicationMenu;
 import com.codeborne.selenide.Condition;
 
 
@@ -43,7 +42,7 @@ public class GlobalGrowlTest extends BaseTest {
   private static final String CANCEL_MESSAGE_WITH_DETAILS =
       "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.\nClick here for details.";
   private static final String CUSTOM_CANCEL_MESSAGE = "You have cancelled and left the task successfully\nClick here for details.";
-  
+  private static final String CLOSE_PROCESS_VIEWER_MESSAGE = "You closed the process viewer.";
   private static final String CUSTOM_FINISH_MESSAGE = "Task is done successfully\nClick here for details.";
   private static final String CUSTOM_GROWL_URL = "portal-developer-examples/16A7BB2ADC9580A8/start.ivp";
   private static final String SKIP_TASK_LIST_URL = "portal-developer-examples/16FA8B451814E32A/start.ivp";
@@ -55,7 +54,7 @@ public class GlobalGrowlTest extends BaseTest {
     super.setup();
     login(TestAccount.ADMIN_USER);
   }
-
+  
   @Test
   public void testDisplayCustomGrowlAfterFinishTask() {
     updateGlobalVariable(Variable.SHOW_LEGACY_UI.getKey(), "true");
@@ -219,6 +218,18 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(newDashboardPage, CANCEL_MESSAGE);
   }
 
+  @Test
+  public void testDisplayDefaultGrowlAfterCloseProcessViewer() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    TaskWidgetPage taskWidgetPage = newDashboardPage.openTaskList();
+    taskWidgetPage.openTaskProcessViewer(0);
+    newDashboardPage.switchLastBrowserTab();
+    ProcessViewerPage processViewerPage = new ProcessViewerPage();
+    processViewerPage.clickOnCloseButton();
+    assertGrowlMessage(taskWidgetPage, CLOSE_PROCESS_VIEWER_MESSAGE);
+  }
+  
   private void assertGrowlMessage(TemplatePage templatePage, String message) {
     templatePage.getGlobalGrowlMessage().shouldBe(Condition.text(message));
   }
