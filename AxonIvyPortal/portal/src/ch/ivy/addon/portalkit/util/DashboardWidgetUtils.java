@@ -273,6 +273,7 @@ public class DashboardWidgetUtils {
       List<TaskColumnModel> columns = ((TaskDashboardWidget) widget).getColumns();
       columns.forEach(column -> {
         simplifyColumnData(column, taskCustomFieldMetas, deprecatedFields);
+        simplifyColumnData(column, caseCustomFieldMetas, deprecatedFields);
       });
       deprecatedFields.forEach(field -> {
         columns.removeIf(column -> column.getField().equals(field));
@@ -308,7 +309,7 @@ public class DashboardWidgetUtils {
       if (StringUtils.equals(column.getDefaultStyleClass(), column.getStyleClass())) {
         column.setStyleClass(null);
       }
-      if (StringUtils.equals(column.initDefaultStyle  (), column.getStyle())) {
+      if (StringUtils.equals(column.initDefaultStyle(), column.getStyle())) {
         column.setStyle(null);
       }
       if (column.getDefaultFormat() == column.getFormat()) {
