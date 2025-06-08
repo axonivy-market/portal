@@ -134,6 +134,7 @@ public class CustomWidgetUtils {
     CustomWidgetParam foundKey = EnumUtils.getEnum(CustomWidgetParam.class, key.toUpperCase());
     return switch (foundKey) {
       case ID -> String.valueOf(caze.getId());
+      case UUID -> String.valueOf(caze.uuid());
       case CATEGORY -> caze.getCategory().getPath();
       default -> StringUtils.EMPTY;
     };
