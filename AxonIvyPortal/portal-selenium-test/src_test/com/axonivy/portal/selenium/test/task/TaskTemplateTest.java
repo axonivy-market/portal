@@ -71,6 +71,7 @@ public class TaskTemplateTest extends BaseTest {
   public void testLeaveWorkingTaskByClickingOnLogo() {
     createTestData();
     TaskIFrameTemplatePage taskTemplatePage = startATask();
+    taskTemplatePage.inputValue("Test", "05/05/2025", "05/05/2025", "Test");
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.leaveTask();
@@ -87,8 +88,9 @@ public class TaskTemplateTest extends BaseTest {
     NewDashboardPage home = new NewDashboardPage();
     home.waitPageLoaded();
     TaskIFrameTemplatePage taskTemplatePage = startATask();
+    taskTemplatePage.waitForPageLoad();
+    taskTemplatePage.addInputValueTaskPayment("Test", "05/05/2025");
     taskTemplatePage.clickOnLogo();
-    taskTemplatePage.waitForTaskLosingConfirmationDialogAppear();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.reserveTask();
     NavigationHelper.navigateToTaskList();

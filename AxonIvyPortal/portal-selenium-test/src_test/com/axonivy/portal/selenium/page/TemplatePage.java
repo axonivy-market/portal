@@ -383,10 +383,6 @@ public abstract class TemplatePage extends AbstractPage {
     openMainMenu();
     waitForElementClickableThenClick($("a[id*='user-menu-required-login:logo']"));
   }
-  
-  public void waitForTaskLosingConfirmationDialogAppear() {
-    waitForElementDisplayed($("[id='task-leave-warning-component:logo-task-losing-confirmation-dialog']"), true);
-  }
 
   protected void refreshAndWaitElement(String cssSelector) {
     new WebDriverWait(WebDriverRunner.getWebDriver(), DEFAULT_TIMEOUT).until((webDriver) -> {

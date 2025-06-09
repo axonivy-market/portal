@@ -230,6 +230,16 @@ public class TaskIFrameTemplatePage extends TemplatePage {
     toElement.click();
     toElement.sendKeys(to);
   }
+  
+  public void addInputValueTaskPayment(String employee, String date) {
+    SelenideElement fullNameElement =
+        $(By.id("payment-request:fullname")).shouldBe(Condition.appear).shouldBe(Condition.editable);
+    fullNameElement.click();
+    fullNameElement.sendKeys(employee);
+    SelenideElement fromElement = $(By.id("payment-request:from_input"));
+    fromElement.click();
+    fromElement.sendKeys(date);
+  }
 
   public NewDashboardPage clickSubmitButton() {
     clickOnSubmitButton();
