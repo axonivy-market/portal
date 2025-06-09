@@ -24,7 +24,7 @@ import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
-import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
+import ch.ivy.addon.portalkit.service.GrowlMessageService;
 import ch.ivyteam.ivy.dialog.execution.api.DialogInstance;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;
@@ -95,20 +95,20 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private void keepOverridePortalGrowl() {
     if (task != null) {
       long taskId = task.getId();
-      Boolean overridePortalGrowl = (Boolean) overridePortalGrowlMap.get(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL + taskId);
+      Boolean overridePortalGrowl = (Boolean) overridePortalGrowlMap.get(GrowlMessageService.OVERRIDE_PORTAL_GROWL + taskId);
       if (overridePortalGrowl != null && overridePortalGrowl) {
         String portalGlobalGrowlMessage = String.valueOf(overridePortalGrowlMap.get(IFrameTaskTemplateBean.PORTAL_GROWL_MESSGE_PARAM + taskId));
         FacesMessage message = FacesMessageUtils.sanitizedMessage(portalGlobalGrowlMessage, "");
-        FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, message);
+        FacesContext.getCurrentInstance().addMessage(GrowlMessageService.PORTAL_GLOBAL_GROWL_MESSAGE, message);
 
         Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-        flash.put(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL, overridePortalGrowl);
+        flash.put(GrowlMessageService.OVERRIDE_PORTAL_GROWL, overridePortalGrowl);
         flash.setRedirect(true);
         flash.setKeepMessages(true);
 
         addFeedbackMessageForTask(taskId);
 
-        overridePortalGrowlMap.remove(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL + taskId);
+        overridePortalGrowlMap.remove(GrowlMessageService.OVERRIDE_PORTAL_GROWL + taskId);
         overridePortalGrowlMap.remove(IFrameTaskTemplateBean.PORTAL_GROWL_MESSGE_PARAM + taskId);
       }
     }
@@ -117,11 +117,11 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   public void displayPortalGrowlMessage() {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String taskId = requestParamMap.get(IFrameTaskTemplateBean.TASK_ID_PARAM);
-    Boolean overridePortalGrowl = Boolean.valueOf(requestParamMap.get(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL));
+    Boolean overridePortalGrowl = Boolean.valueOf(requestParamMap.get(GrowlMessageService.OVERRIDE_PORTAL_GROWL));
     if (overridePortalGrowl) {
       String portalGlobalGrowlMessage = requestParamMap.get(IFrameTaskTemplateBean.PORTAL_GROWL_MESSGE_PARAM);
       overridePortalGrowlMap.put(IFrameTaskTemplateBean.PORTAL_GROWL_MESSGE_PARAM + taskId, portalGlobalGrowlMessage);
-      overridePortalGrowlMap.put(GrowlMessageUtils.OVERRIDE_PORTAL_GROWL + taskId, overridePortalGrowl);
+      overridePortalGrowlMap.put(GrowlMessageService.OVERRIDE_PORTAL_GROWL + taskId, overridePortalGrowl);
     }
   }
 
@@ -129,7 +129,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     ITask finishedTask = Ivy.wf().findTask(taskId);
     if (finishedTask != null) {
       boolean isTaskFinished = finishedTask.getEndTimestamp() != null;
-      GrowlMessageUtils.addFeedbackMessage(isTaskFinished, finishedTask.getCase());
+      GrowlMessageService.getInstance().addFeedbackMessage(isTaskFinished, finishedTask.getCase());
     }
   }
 

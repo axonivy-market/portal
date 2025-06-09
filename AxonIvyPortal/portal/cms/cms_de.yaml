@@ -528,6 +528,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     generalInformation: Allgemeine Informationen
     globalSearch: Suche ...
     goToDetail: Zu den Details
+    growlMessage:
+      PROCESS_VIEWER: Sie haben den Prozess-Viewer geschlossen.
+      TASK_FINISHED: Sie haben die Aufgabe erfolgreich abgeschlossen
+      TASK_LEFT: Sie haben die Aufgabe abgebrochen. Sie finden die Aufgabe im Dashboard oder in Ihrer Aufgabenliste.
     hasPrecondition: Dieser Prozess hat eine Vorbedingung
     height: Höhe
     hide: Verbergen
