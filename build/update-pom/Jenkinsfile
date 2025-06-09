@@ -88,8 +88,7 @@ def updateVersion() {
   if (!params.portalVersion?.trim().isEmpty()) {
     sh '''#!/bin/bash
       updatePortalVersion() {
-        echo "=== Updating portal version for file: $1 ==="
-        python3 -u - <<EOF
+        python3 - <<EOF
 import xml.etree.ElementTree as ET
 from pathlib import Path
 import sys
@@ -106,25 +105,11 @@ portalVersion = "$portalVersion"
 filePath = "$1"
 
 try:
-  print(f"Processing file: {filePath}", flush=True)
   tree = ET.parse(filePath)
   root = tree.getroot()
-  
-  print(f"Original root tag: {root.tag}", flush=True)
-  print(f"Original root attributes: {dict(root.attrib)}", flush=True)
-  
-  # Store original <project> tag attributes
-  original_project_attribs = dict(root.attrib)
-  print(f"Stored original attributes: {original_project_attribs}", flush=True)
-  
   root = stripNamespace(root) # By default, tags like <project> are changed to tag <ns0:project>, need removing namespace
-  
-  print(f"After stripNamespace - root tag: {root.tag}", flush=True)
-  print(f"After stripNamespace - root attributes: {dict(root.attrib)}", flush=True)
-  
   version = root.find("version")
   if version is not None:
-    print(f"Updating version from {version.text} to {portalVersion}", flush=True)
     version.text = portalVersion
 
   dependencies = root.find("dependencies")
@@ -136,18 +121,10 @@ try:
       ]:
         versionTag = dependency.find("version")
         if versionTag is not None:
-          print(f"Updating dependency {groupId.text} version from {versionTag.text} to {portalVersion}", flush=True)
           versionTag.text = portalVersion
-
-  # Restore original <project> tag attributes
-  print(f"Before restore - root attributes: {dict(root.attrib)}", flush=True)
-  root.attrib.clear()
-  root.attrib.update(original_project_attribs)
-  print(f"After restore - root attributes: {dict(root.attrib)}", flush=True)
 
   # Write changes back to the file
   tree.write(filePath, encoding="utf-8", xml_declaration=True)
-  print(f"Successfully updated {filePath}", flush=True)
 except Exception as e:
   print(f"Failed to process {filePath}: {e}", file=sys.stderr)
 EOF
@@ -168,8 +145,7 @@ EOF
   if (!params.parentVersion?.trim().isEmpty()) {
     sh '''#!/bin/bash
       updatePortalParentVersion() {
-        echo "=== Updating portal parent version for file: $1 ==="
-        python3 -u - <<EOF
+        python3 - <<EOF
 import xml.etree.ElementTree as ET
 from pathlib import Path
 import sys
@@ -186,25 +162,11 @@ parentVersion = "$parentVersion"
 filePath = "$1"
 
 try:
-  print(f"Processing file: {filePath}", flush=True)
   tree = ET.parse(filePath)
   root = tree.getroot()
-  
-  print(f"Original root tag: {root.tag}", flush=True)
-  print(f"Original root attributes: {dict(root.attrib)}", flush=True)
-  
-  # Store original <project> tag attributes before stripping namespace
-  original_project_attribs = dict(root.attrib)
-  print(f"Stored original attributes: {original_project_attribs}", flush=True)
-  
   root = stripNamespace(root) # By default, tags like <project> are changed to tag <ns0:project>, need removing namespace
-  
-  print(f"After stripNamespace - root tag: {root.tag}", flush=True)
-  print(f"After stripNamespace - root attributes: {dict(root.attrib)}", flush=True)
-  
   version = root.find("version")
   if version is not None:
-    print(f"Updating version from {version.text} to {parentVersion}", flush=True)
     version.text = parentVersion
 
   parent = root.find("parent")
@@ -214,18 +176,10 @@ try:
     versionTag = parent.find("version")
     if (groupId is not None and artifactId is not None and versionTag is not None and
         groupId.text == "com.axonivy.ivy.api" and artifactId.text == "ivy-project-parent"):
-      print(f"Updating parent version from {versionTag.text} to {parentVersion}", flush=True)
       versionTag.text = parentVersion
-
-  # Restore original <project> tag attributes to keep xmlns declarations
-  print(f"Before restore - root attributes: {dict(root.attrib)}", flush=True)
-  root.attrib.clear()
-  root.attrib.update(original_project_attribs)
-  print(f"After restore - root attributes: {dict(root.attrib)}", flush=True)
 
   # Write changes back to the file
   tree.write(filePath, encoding="utf-8", xml_declaration=True)
-  print(f"Successfully updated {filePath}", flush=True)
 except Exception as e:
   print(f"Failed to process {filePath}: {e}", file=sys.stderr)
 EOF
