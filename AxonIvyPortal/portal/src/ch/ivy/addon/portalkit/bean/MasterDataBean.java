@@ -24,7 +24,7 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
-import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
+import ch.ivy.addon.portalkit.service.GrowlMessageService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -32,8 +32,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 @SessionScoped
 public class MasterDataBean implements Serializable {
 
-  private static final String DEFAULT_APPLICATION_NAME =
-      Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/defaultApplicationName");
   private static final String PORTAL_NAME = Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalName/PortalName");
   private static final long serialVersionUID = 1L;
   private static final String APPLICATION_NAME = GlobalVariable.APPLICATION_NAME.getKey();
@@ -110,8 +108,8 @@ public class MasterDataBean implements Serializable {
   
   public void showLinkCopiedMessage() {
     String message = Ivy.cms().co("/Dialogs/com/axonivy/portal/component/ShareLinkDialog/LinkCopied");
-    FacesContext.getCurrentInstance().addMessage(GrowlMessageUtils.PORTAL_GLOBAL_GROWL_MESSAGE, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, message, null));
-    PrimeFaces.current().ajax().update(GrowlMessageUtils.PORTAL_GLOBAL_GROWL);
+    FacesContext.getCurrentInstance().addMessage(GrowlMessageService.PORTAL_GLOBAL_GROWL_MESSAGE, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, message, null));
+    PrimeFaces.current().ajax().update(GrowlMessageService.PORTAL_GLOBAL_GROWL);
   }
 
   public String getPortalApplicationName() {
