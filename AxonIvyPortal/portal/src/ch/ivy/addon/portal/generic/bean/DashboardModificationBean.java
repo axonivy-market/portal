@@ -44,6 +44,7 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
+import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -355,6 +356,15 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     });
 
     List<Dashboard> dashboardList = new ArrayList<>();
+    // CLEAN STYLECLASS BEFORE EXPORTING
+    // STILL NEED TO INVESTIGATE WHY
+    // STRATEGY:
+    // COMPARE WITH RELEASE 10.0
+    // CHECK WHEN LOADING PRIVATE AND PUBLIC DASHBOARDS
+    for (var widget : dashboard.getWidgets()) {
+      DashboardWidgetUtils.simplifyWidgetColumnData(widget);
+    }
+
     dashboardList.add(dashboard);
 
     var inputStream = new ByteArrayInputStream(

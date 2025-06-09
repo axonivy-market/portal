@@ -170,9 +170,7 @@ public class DashboardBean implements Serializable {
   }
 
   protected void buildWidgetModels(Dashboard dashboard) {
-    Ivy.log().info("buildWidgetModels");
     if (dashboard == null || CollectionUtils.isEmpty(dashboard.getWidgets())) {
-      Ivy.log().info("true");
       return;
     }
     for (var widget : dashboard.getWidgets()) {
@@ -180,9 +178,7 @@ public class DashboardBean implements Serializable {
       if (!(widget instanceof SingleProcessDashboardWidget)) {
         WidgetFilterService.getInstance().applyUserFilterFromSession(widget);
       }
-      Ivy.log().info("false");
       DashboardWidgetUtils.removeStyleNewWidget(widget);
-      DashboardWidgetUtils.simplifyWidgetColumnData(widget);
     }
   }
 
