@@ -92,6 +92,7 @@ def updateVersion() {
 import xml.etree.ElementTree as ET
 from pathlib import Path
 import sys
+import re
 
 def stripNamespace(element):
     # Iterate over all the elements and remove the namespace from the tag
@@ -105,13 +106,22 @@ portalVersion = "$portalVersion"
 filePath = "$1"
 
 try:
+  # Read original content to preserve formatting
+  with open(filePath, 'r', encoding='utf-8') as f:
+    content = f.read()
+  
+  # Parse XML to find what to update
   tree = ET.parse(filePath)
   root = tree.getroot()
   root = stripNamespace(root) # By default, tags like <project> are changed to tag <ns0:project>, need removing namespace
+  
+  # Update project version (first <version> tag)
   version = root.find("version")
   if version is not None:
-    version.text = portalVersion
+    pattern = r'(<version>)[^<]+(</version>)'
+    content = re.sub(pattern, r'\g<1>' + portalVersion + r'\g<2>', content, count=1)
 
+  # Update Portal versions
   dependencies = root.find("dependencies")
   if dependencies is not None:
     for dependency in dependencies.findall("dependency"):
@@ -121,10 +131,18 @@ try:
       ]:
         versionTag = dependency.find("version")
         if versionTag is not None:
-          versionTag.text = portalVersion
+          groupId_pattern = f'<groupId>{re.escape(groupId.text)}</groupId>'
+          dependency_blocks = re.findall(r'<dependency>.*?</dependency>', content, re.DOTALL)
+          for block in dependency_blocks:
+            if groupId_pattern in block:
+              old_block = block
+              new_block = re.sub(r'(<version>)[^<]+(</version>)', r'\g<1>' + portalVersion + r'\g<2>', block)
+              content = content.replace(old_block, new_block)
+              break
 
-  # Write changes back to the file
-  tree.write(filePath, encoding="utf-8", xml_declaration=True)
+  # Write back preserving original formatting
+  with open(filePath, 'w', encoding='utf-8') as f:
+    f.write(content)
 except Exception as e:
   print(f"Failed to process {filePath}: {e}", file=sys.stderr)
 EOF
@@ -149,6 +167,7 @@ EOF
 import xml.etree.ElementTree as ET
 from pathlib import Path
 import sys
+import re
 
 def stripNamespace(element):
     # Iterate over all the elements and remove the namespace from the tag
@@ -162,13 +181,22 @@ parentVersion = "$parentVersion"
 filePath = "$1"
 
 try:
+  # Read original content to preserve formatting
+  with open(filePath, 'r', encoding='utf-8') as f:
+    content = f.read()
+  
+  # Parse XML to find what to update
   tree = ET.parse(filePath)
   root = tree.getroot()
   root = stripNamespace(root) # By default, tags like <project> are changed to tag <ns0:project>, need removing namespace
+  
+  # Update project version (first <version> tag)
   version = root.find("version")
   if version is not None:
-    version.text = parentVersion
+    pattern = r'(<version>)[^<]+(</version>)'
+    content = re.sub(pattern, r'\g<1>' + parentVersion + r'\g<2>', content, count=1)
 
+  # Update parent version
   parent = root.find("parent")
   if parent is not None:
     groupId = parent.find("groupId")
@@ -176,10 +204,19 @@ try:
     versionTag = parent.find("version")
     if (groupId is not None and artifactId is not None and versionTag is not None and
         groupId.text == "com.axonivy.ivy.api" and artifactId.text == "ivy-project-parent"):
-      versionTag.text = parentVersion
+      # Find the parent block and update its version
+      parent_block_pattern = r'<parent>.*?</parent>'
+      parent_blocks = re.findall(parent_block_pattern, content, re.DOTALL)
+      for block in parent_blocks:
+        if 'com.axonivy.ivy.api' in block and 'ivy-project-parent' in block:
+          old_block = block
+          new_block = re.sub(r'(<version>)[^<]+(</version>)', r'\g<1>' + parentVersion + r'\g<2>', block)
+          content = content.replace(old_block, new_block)
+          break
 
-  # Write changes back to the file
-  tree.write(filePath, encoding="utf-8", xml_declaration=True)
+  # Write back preserving original formatting
+  with open(filePath, 'w', encoding='utf-8') as f:
+    f.write(content)
 except Exception as e:
   print(f"Failed to process {filePath}: {e}", file=sys.stderr)
 EOF
