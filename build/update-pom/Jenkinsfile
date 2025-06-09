@@ -107,7 +107,12 @@ filePath = "$1"
 try:
   tree = ET.parse(filePath)
   root = tree.getroot()
+  
+  # Store original <project> tag attributes
+  original_project_attribs = dict(root.attrib)
+  
   root = stripNamespace(root) # By default, tags like <project> are changed to tag <ns0:project>, need removing namespace
+  
   version = root.find("version")
   if version is not None:
     version.text = portalVersion
@@ -122,6 +127,10 @@ try:
         versionTag = dependency.find("version")
         if versionTag is not None:
           versionTag.text = portalVersion
+
+  # Restore original <project> tag attributes
+  root.attrib.clear()
+  root.attrib.update(original_project_attribs)
 
   # Write changes back to the file
   tree.write(filePath, encoding="utf-8", xml_declaration=True)
@@ -164,7 +173,12 @@ filePath = "$1"
 try:
   tree = ET.parse(filePath)
   root = tree.getroot()
+  
+  # Store original <project> tag attributes before stripping namespace
+  original_project_attribs = dict(root.attrib)
+  
   root = stripNamespace(root) # By default, tags like <project> are changed to tag <ns0:project>, need removing namespace
+  
   version = root.find("version")
   if version is not None:
     version.text = parentVersion
@@ -177,6 +191,10 @@ try:
     if (groupId is not None and artifactId is not None and versionTag is not None and
         groupId.text == "com.axonivy.ivy.api" and artifactId.text == "ivy-project-parent"):
       versionTag.text = parentVersion
+
+  # Restore original <project> tag attributes to keep xmlns declarations
+  root.attrib.clear()
+  root.attrib.update(original_project_attribs)
 
   # Write changes back to the file
   tree.write(filePath, encoding="utf-8", xml_declaration=True)
