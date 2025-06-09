@@ -273,7 +273,6 @@ public class DashboardWidgetUtils {
       List<TaskColumnModel> columns = ((TaskDashboardWidget) widget).getColumns();
       columns.forEach(column -> {
         simplifyColumnData(column, taskCustomFieldMetas, deprecatedFields);
-        // simplifyColumnData(column, caseCustomFieldMetas, deprecatedFields);
       });
       deprecatedFields.forEach(field -> {
         columns.removeIf(column -> column.getField().equals(field));
