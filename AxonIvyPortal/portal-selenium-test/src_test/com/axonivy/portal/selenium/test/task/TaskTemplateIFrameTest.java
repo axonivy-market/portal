@@ -69,7 +69,6 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
     taskTemplatePage2.waitForPageLoad();
     taskTemplatePage2.clickOnLogo();
-    new NewDashboardPage();
   }
 
   @Test
