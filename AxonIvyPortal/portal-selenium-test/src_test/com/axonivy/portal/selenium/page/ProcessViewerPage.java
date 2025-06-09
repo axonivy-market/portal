@@ -3,6 +3,7 @@ package com.axonivy.portal.selenium.page;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 
 public class ProcessViewerPage extends TemplatePage {
 
@@ -24,6 +25,11 @@ public class ProcessViewerPage extends TemplatePage {
     switchToIframeWithId("process-viewer");
     $("[id='sprotty']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
     $(".sprotty-graph").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void clickOnCloseButton() {
+    SelenideElement closeButton = $("[id='close-process']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    waitForElementClickableThenClick(closeButton);
   }
 
 }
