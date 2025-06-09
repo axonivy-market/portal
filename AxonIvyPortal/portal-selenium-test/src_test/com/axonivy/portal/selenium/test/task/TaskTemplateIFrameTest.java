@@ -86,7 +86,6 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidget.applyFilter();
     TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
     taskTemplatePage2.backToHomeInIFrameApprovalTask();
-    new NewDashboardPage();
   }
 
   @Test

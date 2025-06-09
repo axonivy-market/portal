@@ -10,6 +10,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseDetailsPage;
@@ -99,6 +100,7 @@ public class EscalationTaskTest extends BaseTest {
     caseDetailsPage.triggerEscalationTask(0);
     refreshPage();
     caseDetailsPage = new CaseDetailsPage();
+    ScreenshotUtils.maximizeBrowser();
     caseDetailsPage.getNameOfRelatedTask(2).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
     caseDetailsPage.getStateOfRelatedTask(2).shouldHave(Condition.text("Destroyed"));
     caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST_ESCALATED));
