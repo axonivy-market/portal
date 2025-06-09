@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    label 'lndanh-pc'
+    label 'linux'
   }
 
   options {
