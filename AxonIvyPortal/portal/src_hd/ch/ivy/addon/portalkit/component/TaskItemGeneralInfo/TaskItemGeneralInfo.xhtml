@@ -17,8 +17,6 @@
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
   <c:set var="state" value="#{cc.attrs.task.state}" />
-  <c:set var="isShowTechnicalDisplayNameOnTooltip" value="#{portalComponentAvatarBean.getPortalShowTechnicalTooltipOrDefault(false)}" />
-  
   <!-- PANEL GENERAL INFORMATION -->
 
   <h:panelGroup styleClass="ui-g-12 u-padding-0">
@@ -361,16 +359,7 @@
         <div class="ui-g-12">
           <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName 
               securityMember="#{responsible.get()}" securityMemberName="#{responsible.displayName()}"
-              styleClass="text-ellipsis">
-            <f:facet name="afterName">
-             <h:outputText id="username"
-                value="&#160;#{isShowTechnicalDisplayNameOnTooltip ? portalComponentAvatarBean.tooltipTechnicalDisplayName(responsible.get()) : responsibleBean.getDisplayName(responsible.get())}"
-                rendered="#{!userMenuBean.isMobileDevice()}"
-                styleClass="#{cc.attrs.isShowAvatar ? 'name-after-avatar' : ''} #{responsible.get() == null ? 'u-no-padding-left' : ''}">
-              </h:outputText>
-            </f:facet>
-          </ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName>
-            
+              styleClass="text-ellipsis" />
         </div>
       </ui:repeat>
     </div>
