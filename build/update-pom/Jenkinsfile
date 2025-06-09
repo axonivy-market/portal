@@ -119,7 +119,7 @@ try:
   version = root.find("version")
   if version is not None:
     pattern = r'(<version>)[^<]+(</version>)'
-    content = re.sub(pattern, r'\g<1>' + portalVersion + r'\g<2>', content, count=1)
+    content = re.sub(pattern, r'\\g<1>' + portalVersion + r'\\g<2>', content, count=1)
 
   # Update Portal versions
   dependencies = root.find("dependencies")
@@ -136,7 +136,7 @@ try:
           for block in dependency_blocks:
             if groupId_pattern in block:
               old_block = block
-              new_block = re.sub(r'(<version>)[^<]+(</version>)', r'\g<1>' + portalVersion + r'\g<2>', block)
+              new_block = re.sub(r'(<version>)[^<]+(</version>)', r'\\g<1>' + portalVersion + r'\\g<2>', block)
               content = content.replace(old_block, new_block)
               break
 
@@ -194,7 +194,7 @@ try:
   version = root.find("version")
   if version is not None:
     pattern = r'(<version>)[^<]+(</version>)'
-    content = re.sub(pattern, r'\g<1>' + parentVersion + r'\g<2>', content, count=1)
+    content = re.sub(pattern, r'\\g<1>' + parentVersion + r'\\g<2>', content, count=1)
 
   # Update parent version
   parent = root.find("parent")
@@ -210,7 +210,7 @@ try:
       for block in parent_blocks:
         if 'com.axonivy.ivy.api' in block and 'ivy-project-parent' in block:
           old_block = block
-          new_block = re.sub(r'(<version>)[^<]+(</version>)', r'\g<1>' + parentVersion + r'\g<2>', block)
+          new_block = re.sub(r'(<version>)[^<]+(</version>)', r'\\g<1>' + parentVersion + r'\\g<2>', block)
           content = content.replace(old_block, new_block)
           break
 
