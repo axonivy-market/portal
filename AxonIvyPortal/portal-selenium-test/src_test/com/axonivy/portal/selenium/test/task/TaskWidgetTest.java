@@ -125,6 +125,7 @@ public class TaskWidgetTest extends BaseTest {
 
   @Test
   public void testTogglePinnedTask() {
+    resizeBrowserToFullHDResolution();
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     for (int i = 2; i > 0; i--) {
