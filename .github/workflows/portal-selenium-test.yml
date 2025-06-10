@@ -167,7 +167,13 @@ jobs:
             retention-days: 5
             path: |
               AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
-        
+
+        - name: Show inputs
+          run: |
+            echo "## Show inputs" >> $GITHUB_STEP_SUMMARY
+            echo "- Test pattern: ${{inputs.testPatternToRun}}" >> $GITHUB_STEP_SUMMARY
+            echo "- Engine download url: ${{inputs.engineDownloadURL}}" >> $GITHUB_STEP_SUMMARY
+          
         - name: Report
           uses: dorny/test-reporter@v2.0.0
           with:
