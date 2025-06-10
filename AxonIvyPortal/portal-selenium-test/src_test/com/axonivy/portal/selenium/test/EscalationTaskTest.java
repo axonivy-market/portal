@@ -4,6 +4,7 @@ import static com.codeborne.selenide.CollectionCondition.size;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Dimension;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
@@ -93,7 +94,7 @@ public class EscalationTaskTest extends BaseTest {
     updateGlobalVariable(Variable.TASK_BEHAVIOUR_WHEN_CLICKING_ON_LINE_IN_TASK_LIST.getKey(), ACCESS_TASK_DETAILS);
     login(TestAccount.ADMIN_USER);
     redirectToNewDashBoard();
-    ScreenshotUtils.maximizeBrowser();
+    ScreenshotUtils.resizeBrowser(new Dimension(1980, 1080));
     CaseWidgetNewDashBoardPage caseWidgetPage = NavigationHelper.navigateToCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openDetailsCase(TRIGGER_ESCALATION_CASE);
     caseDetailsPage.getNameOfRelatedTask(0).shouldHave(Condition.text(SICK_LEAVE_REQUEST));
