@@ -356,11 +356,6 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     });
 
     List<Dashboard> dashboardList = new ArrayList<>();
-    // CLEAN STYLECLASS BEFORE EXPORTING
-    // STILL NEED TO INVESTIGATE WHY
-    // STRATEGY:
-    // COMPARE WITH RELEASE 10.0
-    // CHECK WHEN LOADING PRIVATE AND PUBLIC DASHBOARDS
     for (var widget : dashboard.getWidgets()) {
       DashboardWidgetUtils.simplifyWidgetColumnData(widget);
     }
