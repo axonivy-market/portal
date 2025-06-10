@@ -108,6 +108,7 @@ public class TaskDetailsTest extends BaseTest {
   public void testShowTaskStatusBannerOnTaskDetails() {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
+    resizeBrowserToFullHDResolution();
     grantSpecificPortalPermission(PortalPermission.SYSTEM_TASK_READ_ALL);
     redirectToNewDashBoard();
     NavigationHelper.navigateToTaskList();

@@ -505,6 +505,7 @@ const taskItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__
 const caseItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__default-case-list-dashboard-main-dashboard"]';
 const searchInputId = '[id="global-search-component:global-search-data"]:visible'
 const useSettingMenuId = 'a#user-settings-menu:visible';
+const pinButton = 'a[id="user-menu-required-login:toggle-menu"]';
 
 $(document).ready(function () {
 
@@ -542,6 +543,16 @@ $(document).ready(function () {
     }
   }
 
+  function toggleLeftMenu(key) {
+    if (key === 'Digit7') {
+      addFocusClass($(pinButton));
+      $(pinButton).trigger('click');
+      return true;
+    }
+    removeFocusClass($(pinButton));
+    return false;
+  }
+
   function removeFocusedElements() {
     Object.keys(shortcuts).forEach(function (key) {
       removeFocusClass(findTargetElementByKey(key));
@@ -574,6 +585,9 @@ $(document).ready(function () {
       const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
       iframeDocument.addEventListener('keydown', function (event) {
         if (onlyAltPressed(event)) {
+          if(toggleLeftMenu(event.code)) {
+            return;
+          }
           handleFocusOnMainElement(event);
         }
       });
@@ -636,6 +650,9 @@ $(document).ready(function () {
 
     if (onlyAltPressed(event)) {
       var keyCode = event.code;
+      if(toggleLeftMenu(keyCode)) {
+        return;
+      }
       if (shortcuts[keyCode]) {
         event.preventDefault();
         removeFocusedElements();
