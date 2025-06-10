@@ -170,7 +170,7 @@ jobs:
 
         - name: Show inputs
           run: |
-            echo "## Show inputs" >> $GITHUB_STEP_SUMMARY
+            echo "## Inputs" >> $GITHUB_STEP_SUMMARY
             echo "- Test pattern: ${{inputs.testPatternToRun}}" >> $GITHUB_STEP_SUMMARY
             echo "- Engine download url: ${{inputs.engineDownloadURL}}" >> $GITHUB_STEP_SUMMARY
           
