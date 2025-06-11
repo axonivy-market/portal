@@ -13,7 +13,6 @@ import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
-import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.GlobalGrowlIframeTemplatePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
@@ -106,7 +105,6 @@ public class GlobalGrowlTest extends BaseTest {
 
   @Test
   public void testDisplayDefaultGrowlAfterCloseProcessViewer() {
-    updatePortalSetting(Variable.ENABLE_PROCESS_VIEWER.getKey(), "true");
     redirectToRelativeLink(createTestingTasksUrl);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     NewDashboardPage taskWidgetPage = newDashboardPage.openTaskList();

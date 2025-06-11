@@ -387,11 +387,7 @@ class ClientCanvasChart extends ClientChart {
       .text(getFormatedTitle(this.data.chartConfig.names));
 
     // Add aria-label
-    let cardPanel = $(this.chart).parents('.card-widget-panel');
-    if (cardPanel.length > 0) {
-      cardPanel.get(0).ariaLabel = getFormatedTitle(this.data.chartConfig.names)
-    }
-
+    $(this.chart).parents('.card-widget-panel').get(0).ariaLabel = getFormatedTitle(this.data.chartConfig.names)
   }
 
   updateClientChart() {
