@@ -110,6 +110,49 @@ public class AdminSettingBean implements Serializable {
     isTabChangeEventTriggered = true;
   }
 
+  public void synchronizeAllApplicationNames() {
+    try {
+      RegisteredApplicationService applicationService = RegisteredApplicationService.getInstance();
+      List<Application> allApplications = applicationService.findAll();
+
+      if (allApplications != null && !allApplications.isEmpty()) {
+        boolean hasChanges = false;
+
+        for (Application app : allApplications) {
+          String originalName = app.getName();
+          try {
+            String localeDisplayName = ApplicationMultiLanguage.getDisplayNameInCurrentLocale(app);
+
+            if (localeDisplayName != null && !localeDisplayName.trim().isEmpty()) {
+              String newName = localeDisplayName.trim();
+              if (!newName.equals(originalName)) {
+                app.setName(newName);
+                applicationService.save(app);
+                hasChanges = true;
+              }
+            }
+          } catch (Exception e) {
+          }
+        }
+        if (hasChanges) {
+          loadApplications();
+
+          FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO,
+              "Application names have been synchronized with display names.", null);
+          FacesContext.getCurrentInstance().addMessage(null, message);
+        } else {
+          FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO,
+              "All application names are already synchronized.", null);
+          FacesContext.getCurrentInstance().addMessage(null, message);
+        }
+      }
+    } catch (Exception e) {
+      FacesMessage errorMessage = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
+          "Error synchronizing application names: " + e.getMessage(), null);
+      FacesContext.getCurrentInstance().addMessage(null, errorMessage);
+    }
+  }
+
   private void initApplicationTab() {
     invokeAdminSettingsComponentLogic("#{logic.initApplicationSettings}", new Object[] {});
   }
@@ -246,7 +289,6 @@ public class AdminSettingBean implements Serializable {
     }
     application.setDisplayedPermission(displayedPermission);
     application.setPermissions(permissions);
-
     this.selectedApplicationPermissions = new ArrayList<>(permissions);
   }
 
@@ -298,22 +340,16 @@ public class AdminSettingBean implements Serializable {
 
     initApplicationPermissions(this.selectedApp);
   }
-
   public void saveApplication() {
     if (this.selectedApp == null) {
       return;
     }
 
     try {
-      if (this.displayNameInCurrentLanguage != null && !this.displayNameInCurrentLanguage.trim().isEmpty()) {
-        this.selectedApp.setName(this.displayNameInCurrentLanguage.trim());
-      } else if (this.selectedApp.getDisplayName() != null) {
-        this.selectedApp.setName(this.selectedApp.getDisplayName());
-      }
-
       updateApplicationPermissions(this.selectedApp);
-
       prepareDisplayNameForSave();
+
+      syncApplicationNameWithCurrentLocaleDisplayName();
 
       if (isDuplicateApplication()) {
         FacesMessage errorMessage = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
@@ -402,31 +438,32 @@ public class AdminSettingBean implements Serializable {
       FacesContext.getCurrentInstance().addMessage(null, errorMessage);
     }
   }
-
   public void loadApplications() {
     RegisteredApplicationService applicationService = RegisteredApplicationService.getInstance();
     this.applicationList = applicationService.findAll();
-
     if (this.applicationList != null) {
       for (Application app : this.applicationList) {
-        if (app.getName() == null || app.getName().trim().isEmpty()) {
-          try {
-            // Try to get the display name in the current locale
-            String displayName = ApplicationMultiLanguage.getDisplayNameInCurrentLocale(app);
-            if (displayName != null && !displayName.trim().isEmpty()) {
-              app.setName(displayName.trim());
-            } else if (app.getDisplayName() != null) {
+        try {
+          String displayName = ApplicationMultiLanguage.getDisplayNameInCurrentLocale(app);
+          if (displayName != null && !displayName.trim().isEmpty()) {
+            app.setName(displayName.trim());
+          } else if (app.getName() == null || app.getName().trim().isEmpty()) {
+            if (app.getDisplayName() != null) {
               app.setName(app.getDisplayName());
             }
-          } catch (Exception e) {
+          }
+        } catch (Exception e) {
+          if (app.getName() == null || app.getName().trim().isEmpty()) {
             if (app.getDisplayName() != null) {
               app.setName(app.getDisplayName());
             }
           }
         }
+        // Initialize permissions for each application
+        initApplicationPermissions(app);
+        updateApplicationPermissions(app);
       }
     }
-
     Collections.sort(this.applicationList, new ApplicationIndexAscendingComparator());
   }
 
@@ -438,7 +475,6 @@ public class AdminSettingBean implements Serializable {
     this.selectedApplicationPermissions = selectedApplicationPermissions;
   }
 
-  // Getters and setters
   public List<Application> getApplicationList() {
     if (applicationList == null) {
       loadApplications();
@@ -491,7 +527,7 @@ public class AdminSettingBean implements Serializable {
       for (String language : languages) {
         DisplayName displayName = new DisplayName();
         displayName.setLocale(Locale.forLanguageTag(language));
-        displayName.setValue(""); // Will be set when editing
+        displayName.setValue("");
         supportedLanguages.add(displayName);
       }
     }
@@ -504,19 +540,23 @@ public class AdminSettingBean implements Serializable {
 
   public void setDisplayNameInCurrentLanguage(String displayNameInCurrentLanguage) {
     this.displayNameInCurrentLanguage = displayNameInCurrentLanguage;
-
     if (this.selectedApp != null && displayNameInCurrentLanguage != null
         && !displayNameInCurrentLanguage.trim().isEmpty()) {
       this.selectedApp.setName(displayNameInCurrentLanguage.trim());
 
-      try {
-        Locale currentLocale = new Locales().getCurrentLocale();
-        DisplayNameAdaptor displayNameAdaptor =
-            new DisplayNameAdaptor(this.selectedApp.getDisplayName(), currentLocale);
-        displayNameAdaptor.add(currentLocale, displayNameInCurrentLanguage.trim());
-        this.selectedApp.setDisplayName(displayNameAdaptor.toJson());
-      } catch (Exception e) {
-        this.selectedApp.setDisplayName(displayNameInCurrentLanguage);
+      if (this.supportedLanguages != null) {
+        try {
+          Locale currentLocale = new Locales().getCurrentLocale();
+          String currentLanguage = currentLocale.getLanguage();
+
+          for (DisplayName displayName : this.supportedLanguages) {
+            if (displayName.getLocale().getLanguage().equals(currentLanguage)) {
+              displayName.setValue(displayNameInCurrentLanguage.trim());
+              break;
+            }
+          }
+        } catch (Exception e) {
+        }
       }
     }
   }
@@ -539,10 +579,8 @@ public class AdminSettingBean implements Serializable {
         ApplicationMultiLanguageNameLoader loader =
             new ApplicationMultiLanguageNameLoader().currentDisplayName(displayNameAdaptor.getDisplayNameAsString())
                 .currentDisplayNames(displayNames).supportedLanguages(getLanguageList());
-
         this.supportedLanguages = loader.load();
       } catch (Exception e) {
-        // Fallback to empty list
         this.supportedLanguages = new ArrayList<>();
       }
     }
@@ -702,11 +740,9 @@ public class AdminSettingBean implements Serializable {
                 .currentDisplayNames(displayNames).supportedLanguages(getLanguageList()).load();
       }
     } catch (Exception e) {
-      // Fallback to empty list
       this.supportedLanguages = new ArrayList<>();
     }
   }
-
   public void prepareDisplayNameForSave() {
     if (this.selectedApp == null) {
       return;
@@ -714,33 +750,73 @@ public class AdminSettingBean implements Serializable {
 
     try {
       DisplayNameConvertor convertor = new DisplayNameConvertor();
+      Locale currentLocale = new Locales().getCurrentLocale();
+      String currentLanguage = currentLocale.getLanguage();
+      convertor.add(currentLocale, this.displayNameInCurrentLanguage != null ? this.displayNameInCurrentLanguage : "");
 
-      if (this.supportedLanguages == null || this.supportedLanguages.isEmpty()) {
-        if (this.languages != null && !this.languages.isEmpty()) {
-          for (String language : this.languages) {
-            convertor.add(Locale.forLanguageTag(language), this.displayNameInCurrentLanguage);
+      if (this.supportedLanguages != null && !this.supportedLanguages.isEmpty()) {
+        for (DisplayName displayName : this.supportedLanguages) {
+          if (!displayName.getLocale().getLanguage().equals(currentLanguage)) {
+            String value = displayName.getValue();
+            if (value == null || value.isEmpty()) {
+              value = this.displayNameInCurrentLanguage != null ? this.displayNameInCurrentLanguage : "";
+            }
+            convertor.add(displayName.getLocale(), value);
           }
-        } else {
-          convertor.add(new Locales().getCurrentLocale(), this.displayNameInCurrentLanguage);
         }
       } else {
-        for (DisplayName displayName : this.supportedLanguages) {
-          if (displayName.getValue() == null || displayName.getValue().isEmpty()) {
-            displayName.setValue(this.displayNameInCurrentLanguage);
+        try {
+          DisplayNameAdaptor existing = new DisplayNameAdaptor(this.selectedApp.getDisplayName(), currentLocale);
+          Map<String, String> existingNames = existing.getDisplayNameAsMap();
+
+          for (Map.Entry<String, String> entry : existingNames.entrySet()) {
+            if (!entry.getKey().equals(currentLanguage)) {
+              convertor.add(Locale.forLanguageTag(entry.getKey()), entry.getValue());
+            }
           }
-          convertor.add(displayName.getLocale(), displayName.getValue());
+        } catch (Exception e) {
+          if (this.languages != null && !this.languages.isEmpty()) {
+            for (String language : this.languages) {
+              if (!language.equals(currentLanguage)) {
+                convertor.add(Locale.forLanguageTag(language),
+                    this.displayNameInCurrentLanguage != null ? this.displayNameInCurrentLanguage : "");
+              }
+            }
+          }
         }
       }
 
-      this.selectedApp.setDisplayName(convertor.toJson());
-
+      String newJson = convertor.toJson();
+      this.selectedApp.setDisplayName(newJson);
     } catch (Exception e) {
-      // Fallback to simple display name
-      this.selectedApp.setDisplayName(this.displayNameInCurrentLanguage);
+      this.selectedApp
+          .setDisplayName(this.displayNameInCurrentLanguage != null ? this.displayNameInCurrentLanguage : "");
     }
   }
 
-  // Required methods for MultiLanguageConfiguration component
+  private void syncApplicationNameWithCurrentLocaleDisplayName() {
+    if (this.selectedApp == null) {
+      return;
+    }
+    try {
+      String localeDisplayName = ApplicationMultiLanguage.getDisplayNameInCurrentLocale(this.selectedApp);
+
+      if (localeDisplayName != null && !localeDisplayName.trim().isEmpty()) {
+        this.selectedApp.setName(localeDisplayName.trim());
+      } else if (this.displayNameInCurrentLanguage != null && !this.displayNameInCurrentLanguage.trim().isEmpty()) {
+        this.selectedApp.setName(this.displayNameInCurrentLanguage.trim());
+      } else if (this.selectedApp.getDisplayName() != null) {
+        this.selectedApp.setName(this.selectedApp.getDisplayName());
+      }
+    } catch (Exception e) {
+      if (this.displayNameInCurrentLanguage != null && !this.displayNameInCurrentLanguage.trim().isEmpty()) {
+        this.selectedApp.setName(this.displayNameInCurrentLanguage.trim());
+      } else if (this.selectedApp.getDisplayName() != null) {
+        this.selectedApp.setName(this.selectedApp.getDisplayName());
+      }
+    }
+  }
+
   private String translatedText = "";
   private String warningText = "";
 

@@ -41,10 +41,16 @@
 
     <!-- APPLICATION TAB -->
     <p:tab id="application-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applications')}">
-      <h:form prependId="false" id="applicationForm">        <h:panelGroup layout="block" styleClass="application-tab-action-buttons">
+      <h:form prependId="false" id="applicationForm">
+        <h:panelGroup layout="block" styleClass="application-tab-action-buttons">
           <p:commandButton id="add-application-btn" actionListener="#{adminSettingBean.addNewApplication}" oncomplete="PF('appDialog').show()" resetValues="true" global="false"
             styleClass="new-app-btn primary-color-light-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/addNewApplication')}"
             update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}" />
+          <p:commandButton id="sync-application-names-btn" actionListener="#{adminSettingBean.synchronizeAllApplicationNames}" global="false"
+            styleClass="sync-app-names-btn ui-button-flat" icon="si si-refresh"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/syncApplicationNames')}"
+            update="applicationPanel" process="@this"
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/syncApplicationNamesHint')}" />
         </h:panelGroup>
         <!-- Applications Table -->
         <h:panelGroup id="applicationPanel" layout="block">
@@ -56,8 +62,16 @@
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/type')}"
               styleClass="application-table-type-column">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationtype/thirdPartyApplication')}" />
-            </p:column>            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}">
+            </p:column>
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}">
               <h:outputText value="#{adminSettingBean.getAppNameInCurrentLocale(app)}" />
+            </p:column>
+            
+            <p:column headerText="#{ivy.cms.co('/Labels/Permissions')}">
+              <h:panelGroup id="application-permissions-group" styleClass="u-truncate-text" layout="block">
+                <h:outputText value="#{app.displayedPermission}" />
+                <p:tooltip for="application-permissions-group" value="#{app.displayedPermission}" trackMouse="true" hideEvent="mouseleave click" styleClass="dashboard-configuration-tooltip"/>
+              </h:panelGroup>
             </p:column>
 
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
@@ -67,14 +81,16 @@
               <p:menu id="applications-action-menu" overlay="true"
                 trigger="applications-action-button"
                 my="right top" at="right bottom"
-                styleClass="applications-action-menu">                <p:menuitem id="edit-application"
+                styleClass="applications-action-menu">
+                <p:menuitem id="edit-application"
                   global="false"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
                   icon="si si-graphic-tablet-drawing-pen"
                   oncomplete="PF('appDialog').show()"
                   actionListener="#{adminSettingBean.editApplication(app)}"
                   update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}"
-                  process="@this" />                <p:menuitem id="delete-application"
+                  process="@this" />
+                <p:menuitem id="delete-application"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                   icon="si si-bin-1" styleClass="color-destroy"
                   oncomplete="PF('deleteConfirmation').show()"
@@ -227,7 +243,8 @@
                 </div>
               </div>
 
-              <!-- 3rd application view -->              <h:panelGroup id="applicationDisplayName3rd" styleClass="field" layout="block">
+              <!-- 3rd application view -->
+              <h:panelGroup id="applicationDisplayName3rd" styleClass="field" layout="block">
                 <p:outputLabel styleClass="w-full admin-settings-display-name-3rd-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appDisplayName')}" for="appDisplayName3rd" />
                 <div class="w-full">
