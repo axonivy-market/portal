@@ -5,11 +5,11 @@
     <groupId>com.axonivy.ivy.api</groupId>
     <artifactId>ivy-project-parent</artifactId>
     <version>13.1.0</version>
-    <relativePath></relativePath>
+    <relativePath />
   </parent>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>public-api</artifactId>
-  <version>13.1.0</version>
+  <version>13.1.1-SNAPSHOT</version>
   <properties>
     <ivy.engine.version>13.1.0</ivy.engine.version>
   </properties>
