@@ -182,3 +182,4 @@ jobs:
             path: '*.xml'
             reporter: java-junit
             only-summary: 'false'
+            fail-on-error: 'true'
