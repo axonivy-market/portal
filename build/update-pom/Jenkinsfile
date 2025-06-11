@@ -8,12 +8,12 @@ pipeline {
   }
 
   parameters {
-    string(name: 'buildPluginVersion', defaultValue: '', description: 'Axon Ivy build plugin version of all pom will be updated to. If empty value, no changes. If buildPluginVersion, ivyEngineVersion, portalVersion, parentVersion params all are empty, this build just updates cached engines, no GIT commits are created.')
-    string(name: 'parentVersion', defaultValue: '', description: 'Parent (ivy-project-parent) version of all pom will be updated to. If empty value, no changes. If buildPluginVersion, ivyEngineVersion, portalVersion, parentVersion params all are empty, this build just updates cached engines, no GIT commits are created.')
+    string(name: 'buildPluginVersion', defaultValue: '', description: 'Axon Ivy build plugin version of all pom will be updated to. If empty value, no changes. If buildPluginVersion, parentVersion, ivyEngineVersion, portalVersion params all are empty, this build just updates cached engines, no GIT commits are created.')
+    string(name: 'parentVersion', defaultValue: '', description: 'Parent (ivy-project-parent) version of all pom will be updated to. If empty value, no changes.')
     string(name: 'ivyEngineVersion', defaultValue: '', description: 'Axon Ivy engine version of all pom will be updated to. If empty value, no changes.')
     string(name: 'portalVersion', defaultValue: '', description: 'Portal version of all pom will be updated to. If empty value, no changes.')
-    string(name: 'branchToPush', defaultValue: 'portal-update-pom/master', description: 'Branch name to push changes. It must not be protected branches. After this build, create a pull request to merge to master')
-    string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip', description: '''Where to download engine? e.g.
+    string(name: 'branchToPush', defaultValue: 'portal-update-pom/13.1', description: 'Branch name to push changes. It must not be protected branches. After this build, create a pull request to merge to master')
+    string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-13/axonivy-engine.zip', description: '''Where to download engine? e.g.
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine.zip for nightly master
       -Divy.engine.download.url=https://developer.axonivy.com/permalink/dev/axonivy-engine.zip for dev master
     ''')
