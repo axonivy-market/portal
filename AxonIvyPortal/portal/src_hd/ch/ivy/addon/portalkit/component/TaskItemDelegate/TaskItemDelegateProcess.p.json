@@ -155,7 +155,7 @@
             "  in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(in.selectedRole);",
             "}",
             "",
-            "String oldResponsibleName = in.task.responsibles().displayName();",
+            "String oldResponsibleName = TaskUtils.toDisplayNameResponsible(in.task.responsibles());",
             "",
             "in.delegateComment = StringUtils.isBlank(in.#taskDelegationComment) ?",
             "  ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment\", [in.task.getId(), oldResponsibleName, newResponsibleName])",
