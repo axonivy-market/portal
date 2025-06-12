@@ -178,7 +178,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   margin-right: 5px;
   border-radius: 5px;
   padding: 0.5rem;
-  outline: 0 none;
+  /*outline: 0 none;*/
   transition: all .2s;
   border: solid 1px transparent;
 }
@@ -201,7 +201,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   align-items: center;
   flex-wrap: nowrap;
   padding: 0.5rem;
-  outline: 0 none;
+  /*outline: 0 none;*/
   transition: all .2s;
 }
 
@@ -227,7 +227,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   white-space: nowrap;
   max-width: 400px;
   border: none;
-  box-shadow: none !important;
+  /*box-shadow: none !important;*/
 }
 
 .task-widget .filter-selection-container, .case-widget-container .filter-selection-container {
@@ -4492,7 +4492,7 @@ _:-ms-fullscreen, :root .content-link-history {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  outline: none;
+  /*outline: none;*/
   border-radius: 5px;
 }
 

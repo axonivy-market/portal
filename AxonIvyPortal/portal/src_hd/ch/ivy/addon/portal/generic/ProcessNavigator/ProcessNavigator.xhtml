@@ -9,7 +9,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <p:commandLink id="#{cc.attrs.id}" actionListener="#{logic.openProcess}" styleClass="ui-sm-hidden">
+  <p:commandLink id="#{cc.attrs.id}" actionListener="#{logic.openProcess}" styleClass="ui-sm-hidden" ariaLabel="#{cc.attrs.label}">
     <h:outputText id="process-link-label" value="#{cc.attrs.label}" />
   </p:commandLink>
 </cc:implementation>

@@ -44,7 +44,7 @@
           <h:outputText rendered="#{empty cc.facets.title}" 
             value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" styleClass="ui-sm-hidden" />
           <p:commandLink id="toggle-tasks-link" rendered="#{empty cc.facets.title or data.dataModel.compactMode}" styleClass="compact-toggle-tasks-link ui-lg-hidden ui-xl-hidden ui-md-hidden"
-            global="false" oncomplete="toggleShowTaskList();">
+            global="false" oncomplete="toggleShowTaskList();" ariaLabel="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}">
             <i class="si si-subtract-small u-mar-right-5"/>
             <h:outputText value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" />
           </p:commandLink>
@@ -66,7 +66,7 @@
             <span class="filter-selection-label">#{ivy.cms.co(data.dataModel.isSelectedDefaultFilter() or data.dataModel.selectedTaskFilterData == null ? '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter' : '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} </span>
             <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container">
               <h:panelGroup id="filter-selection-panel" layout="block">
-                <p:commandLink id="filter-name" styleClass="filter-name" global="false">
+                <p:commandLink id="filter-name" styleClass="filter-name" global="false" ariaLabel="#{data.dataModel.isSelectedDefaultFilter() ? data.dataModel.defaultTaskFilterData.filterName : data.dataModel.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedTaskFilterData.filterName}">
                   <span>#{data.dataModel.isSelectedDefaultFilter() ? data.dataModel.defaultTaskFilterData.filterName : data.dataModel.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedTaskFilterData.filterName}</span>
                 </p:commandLink>
                 <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
@@ -78,6 +78,7 @@
                     <ui:repeat var="taskFilterData" value="#{data.taskPublicFilters}">
                       <h:panelGroup layout="block" styleClass="user-defined-filter-container">
                         <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
+                          ariaLabel="#{taskFilterData.filterName}"
                           value="#{taskFilterData.filterName}"
                           actionListener="#{logic.applyFilter(taskFilterData)}"
                           update="#{cc.clientId}:filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container #{cc.clientId}:hidden-task-count"
@@ -148,10 +149,12 @@
             <cc:renderFacet name="taskFilter" />
   
             <!-- Add more filters link -->
-            <p:commandLink id="filter-add-action" styleClass="filter-add-button filter-add-container display-inline-flex-center js-filter-add-action u-hidden-md-down" global="false">
-              <i class="si si-add u-mar-right-5" />
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}" />
-            </p:commandLink>
+            <div id="filter-links">
+              <p:commandLink id="filter-add-action" ariaLabel="More options" styleClass="filter-add-button filter-add-container display-inline-flex-center js-filter-add-action u-hidden-md-down" global="false">
+                <i class="si si-add u-mar-right-5" />
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}" />
+              </p:commandLink>
+            </div>
 
             <p:overlayPanel id="filter-add-panel" widgetVar="filter-add-panel" styleClass="filter-add-panel" for="filter-add-action" my="left top"
               at="left bottom" dismissable="false">

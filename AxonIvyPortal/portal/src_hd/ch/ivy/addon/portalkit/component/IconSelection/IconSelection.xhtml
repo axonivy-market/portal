@@ -21,12 +21,14 @@
       <h:outputText id="awesome-icon-display" styleClass="#{iconSelectionBean.iconPattern} #{cc.attrs.value} u-vertical-align-center" />
       <p:spacer width="7px" />
       <p:commandLink id="change-icon-link" styleClass="select-awesome-icon-button" tabindex="#{tabindex}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/change')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/change')}" process="@this"
         onclick="PF('#{cc.clientId}-select-icon-dialog').show();" oncomplete="loadStreamlineIcon('#{cc.clientId}');"
         rendered="#{!readOnly}" />
     </h:panelGroup>
     <h:panelGroup rendered="#{hideChangeIconLink}">
       <p:commandLink id="icon-link" tabindex="#{tabindex}"
+        ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/IconSelection/IconLinkTooltip')}"
         styleClass="select-icon-link"
         process="@this" disabled="#{readOnly}"
         onclick="PF('#{cc.clientId}-select-icon-dialog').show();"

@@ -32,7 +32,7 @@
             <h:panelGroup id="create-express-link"
               rendered="#{!cc.attrs.hideExpressCreation and processWidgetBean.canCreateExpessWorkflow()}"
               styleClass="create-express-link u-mar-right-10">
-              <p:commandLink id="create-express-workflow"
+              <p:commandLink id="create-express-workflow" ariaLabel="#{ivy.cms.co('/Categories/CreateExpressWorkflow/name')}"
                 actionListener="#{processWidgetBean.startExpressWorkflowCreationLink()}">
                 <i class="si si-startup-launch" />
                 <span class="process-widget-header-link">#{processWidgetBean.createExpressWorkflowProcessStart.name}</span>
