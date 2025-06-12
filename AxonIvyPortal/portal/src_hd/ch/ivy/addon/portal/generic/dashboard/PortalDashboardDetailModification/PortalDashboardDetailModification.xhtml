@@ -12,7 +12,7 @@
     <ui:define name="headerTitle">
       <c:forEach var="dashboard" items="#{dashboardDetailModificationBean.dashboards}" varStatus="dashboardStatus">
         <c:set value="#{dashboardDetailModificationBean.currentDashboardIndex == dashboardStatus.index}" var="isSelectedItem"/>
-        <p:commandLink id="dashboard-title-#{dashboardStatus.index}"
+        <p:commandLink id="dashboard-title-#{dashboardStatus.index}" ariaLabel="#{dashboard.title}"
           actionListener="#{dashboardDetailModificationBean.onDashboardChange(dashboardStatus.index)}"
           update="grid-stack dashboard-title-container" process="@this"
           oncomplete="loadGrid();dashboardToolKit.responsive();"

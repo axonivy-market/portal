@@ -38,7 +38,8 @@
             <span class="filter-selection-label">#{ivy.cms.co(data.dataModel.isSelectedDefaultFilter() or data.dataModel.selectedFilterData == null ? '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter' : '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} </span>
             <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container">
               <h:panelGroup id="filter-selection-panel" layout="block">
-                <p:commandLink id="filter-name" styleClass="filter-name" global="false">
+                <p:commandLink id="filter-name" styleClass="filter-name" global="false"
+                  ariaLabel="#{data.dataModel.isSelectedDefaultFilter() ? data.dataModel.defaultCaseFilterData.filterName : data.dataModel.selectedFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedFilterData.filterName}">
                   <span>#{data.dataModel.isSelectedDefaultFilter() ? data.dataModel.defaultCaseFilterData.filterName : data.dataModel.selectedFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedFilterData.filterName}</span>
                 </p:commandLink>
                 <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
@@ -49,7 +50,7 @@
                     </div>
                     <ui:repeat var="filterData" value="#{data.publicFilters}">
                       <div class="user-defined-filter-container">
-                        <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
+                        <p:commandLink id="user-defined-filter" styleClass="user-defined-filter" ariaLabel="#{filterData.filterName}"
                           value="#{filterData.filterName}"
                           actionListener="#{logic.applyFilter(filterData)}"
                           update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list #{cc.clientId}:filter-add-form #{cc.clientId}:hidden-case-count"

@@ -299,6 +299,8 @@ function loadCaseAndTaskWidgetFirstTime(loadingClass, widgetClass) {
     }
     $('.js-resizing').find('table[role="grid"]').addClass('w-min');
   }, 50);
+  
+  setAltForAvatar();
 }
 
 function hideAllDashboardOverlayPanels() {
