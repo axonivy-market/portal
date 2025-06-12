@@ -93,6 +93,7 @@ public class TaskFilterFieldFactory {
   }
 
   private static void initCustomFields() {
+    CUSTOM_FILTER_FIELD.clear();
     for (ICustomFieldMeta customField : ICustomFieldMeta.tasks()) {
       switch (customField.type()) {
       case STRING -> CUSTOM_FILTER_FIELD.put(customField.name(), new TaskFilterFieldCustomString(customField));
@@ -103,6 +104,7 @@ public class TaskFilterFieldFactory {
       }
     }
 
+    CUSTOM_CASE_FILTER_FIELD.clear();
     for (ICustomFieldMeta customCaseField : ICustomFieldMeta.cases()) {
       switch (customCaseField.type()) {
       case STRING ->
