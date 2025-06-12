@@ -182,7 +182,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       defaultLanguageRequiredMessage: L'annonce de la langue par défaut de l'application est requise.
       disabled: Désactivé
       enable: Activer l'annonce
-      information: Vous pouvez annoncer une information générale (par exemple, temps d'arrêt, modifications, etc.) dans cette zone. Ce message peut être vu par tous les utilisateurs du portail.
+      information: Vous pouvez annoncer une information générale (par exemple, temps d'arrêt, modifications, etc.) dans cette zone. Ce message peut être vu par tous les utilisateurs
+        du portail.
       saveChanges: Enregistrer les modifications
       tabTitle: Annonces
     appDisplayName: Nom d'affichage
@@ -219,16 +220,22 @@ ch.ivy.addon.portalkit.ui.jsf:
       GooglePlayURL: Définir l'URL pour télécharger l'application mobile Axon Ivy sur Google Play.
       RoleDirectChildrenLimit: 'Le nombre défini contrôle la quantité de rôles d''enfants directs qui est affichée dans l''onglet Gestion des rôles. Nombre valide : 10, 50, 100'
       RoleParentLimit: 'Le nombre défini contrôle la quantité de rôles parents qui est affichée lors du filtrage des rôles dans l''onglet Gestion des rôles. Nombre valide : 5, 10, 20'
-      SessionCacheTimeout: Délai d'expiration du cache de session pour le portail. Définit la durée d'expiration du cache de session (en secondes) pour le portail. Cette valeur peut être définie entre 300 (5 minutes) et 86 400 (24 heures).
+      SessionCacheTimeout: Délai d'expiration du cache de session pour le portail. Définit la durée d'expiration du cache de session (en secondes) pour le portail. Cette valeur peut
+        être définie entre 300 (5 minutes) et 86 400 (24 heures).
       ShowLoginPageFooter: Pour activer/désactiver l'affichage du pied de page sur la page de connexion.
       ShowQRCode: Pour activer/désactiver l'affichage du code QR.
-      behaviourWhenClickingOnLineInCaseList: Pour alterner entre les comportements (accéder aux détails du dossier ou aux détails de l’entreprise) lors du clic sur un dossier dans le widget de dossier du dashboard, la recherche globale, les dossiers associés et le widget de processus en mode combiné.
-      behaviourWhenClickingOnLineInTaskList: Pour changer de comportement (exécuter la tâche ou accéder aux détails de la tâche) en cliquant sur une ligne dans la liste des tâches, le widget des tâches du tableau de bord et les tâches liées dans la page des détails du cas.
-      chatMaxConnection: Si le nombre de tabs du browser est supérieur à ce nombre maximum, le chat sera désactivé sur les tabs inactifs du browser. Les valeurs valides sont 1, 2, 3, 4, 5.
-      chatResponseTimeout: Délai de réponse au chat en secondes, la valeur par défaut est 0 et signifie aucun délai. Si les messages de chat passent par le proxy inverse Nginx, le délai de réponse du chat doit être inférieur au délai de Nginx, par exemple moins de 60 secondes.
+      behaviourWhenClickingOnLineInCaseList: Pour alterner entre les comportements (accéder aux détails du dossier ou aux détails de l’entreprise) lors du clic sur un dossier dans le
+        widget de dossier du dashboard, la recherche globale, les dossiers associés et le widget de processus en mode combiné.
+      behaviourWhenClickingOnLineInTaskList: Pour changer de comportement (exécuter la tâche ou accéder aux détails de la tâche) en cliquant sur une ligne dans la liste des tâches, le
+        widget des tâches du tableau de bord et les tâches liées dans la page des détails du cas.
+      chatMaxConnection: Si le nombre de tabs du browser est supérieur à ce nombre maximum, le chat sera désactivé sur les tabs inactifs du browser. Les valeurs valides sont 1, 2, 3,
+        4, 5.
+      chatResponseTimeout: Délai de réponse au chat en secondes, la valeur par défaut est 0 et signifie aucun délai. Si les messages de chat passent par le proxy inverse Nginx, le délai
+        de réponse du chat doit être inférieur au délai de Nginx, par exemple moins de 60 secondes.
       dateFilterWithTime: Défini à true pour activer le filtrage de la date avec l'heure. Ce paramètre s'applique à la liste des tâches, à la liste des cas et aux statistiques.
       deepLAuthKey: DeepL Clé d'authentification (doit se terminer par :fx)
-      defaultHomepage: Pour définir la page d'accueil standard vers laquelle sera redirigée la personne qui clique sur l'icône d'accueil ou le logo. Ce paramètre s'applique également à la page de fin après avoir terminé une tâche.
+      defaultHomepage: Pour définir la page d'accueil standard vers laquelle sera redirigée la personne qui clique sur l'icône d'accueil ou le logo. Ce paramètre s'applique également
+        à la page de fin après avoir terminé une tâche.
       defaultProcessImage: Le paramètre standard de l'image par défaut qui sera affichée dans la liste de traitement des images.
       defaultProcessMode: Le paramètre standard du mode d'affichage dans la liste des processus.
       defaultSortDirectionOfCaseList: Sens de tri par défaut de la liste des affaires
@@ -238,26 +245,30 @@ ch.ivy.addon.portalkit.ui.jsf:
       delegationAppendOption: Ce paramètre détermine quelles informations supplémentaires sont incluses lors du formatage des noms de rôle.
       disableCaseCount: Mettre à true pour désactiver le cas de comptage dans la liste des cas
       disableTaskCount: Mettre à true pour désactiver la tâche de comptage dans la liste des tâches
-      displayAllUsersOfTaskActivator: Ce paramètre est utilisé pour le composant SecurityMemberDisplayName. Si le SecurityMember est un rôle, définissez ce paramètre sur true pour afficher la liste de tous les utilisateurs de ce rôle. Si ce paramètre a la valeur true, des informations sur l'icône sont
-        affichées à côté du nom du rôle.
+      displayAllUsersOfTaskActivator: Ce paramètre est utilisé pour le composant SecurityMemberDisplayName. Si le SecurityMember est un rôle, définissez ce paramètre sur true pour afficher
+        la liste de tous les utilisateurs de ce rôle. Si ce paramètre a la valeur true, des informations sur l'icône sont affichées à côté du nom du rôle.
       displayMessageAfterFinishOrLeaveTask: Un message de retour d'information sera affiché lorsque l'utilisateur aura terminé ou quitté une tâche.
       documentUploadSizeLimit: Définissez la limite de taille pour le téléchargement de documents en mégaoctets (Mo). La valeur par défaut est de 20 Mo.
       embedInFrame: Régler sur true pour démarrer un processus/tâche en mode IFrame
-      enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
+      enableCaseOwner: Réglé sur true pour activer le filtrage du propriétaire de cas lorsque les cas sont interrogés. Ce paramètre affecte toutes les requêtes de cas, par exemple pour
+        la liste des cas, la recherche globale, les statistiques.
       enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer la prise en charge de la traduction de DeepL.
-      enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents pour certains types de fichiers. Les types de fichiers pris en charge sont : pdf, png, jpeg, jpg, txt, log.'
+      enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents pour certains types de fichiers. Les types de fichiers pris en charge sont : pdf, png, jpeg, jpg,
+        txt, log.'
       enableGroupChat: Définissez cette propriété sur true pour activer la fonction de chat de groupe
       enablePinCase: Définissez cette propriété sur true pour activer la possibilité d’épingler des cas.
       enablePinTask: Définissez cette propriété sur true pour activer la possibilité d’épingler des tâches.
       enablePrivateChat: Définissez cette propriété à true pour activer la fonction de chat privé
       enableProcessViewer: Définissez cette propriété à true pour activer l'option de visualisation de processus dans les actions de Task/Case.
-      enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la vérification de PDF, Excel, Word.
+      enableScriptCheckingForUploadedDocumentNote: Défini sur true pour activer la vérification de script pour le document téléchargé. Actuellement, cette fonction prend en charge la
+        vérification de PDF, Excel, Word.
       enableVirusScannerForUploadedDocumentNote: Définie sur true pour activer le scanner de virus pour le document téléchargé. Actuellement, cette fonction utilise l'API VIRUSTOTAL.
       hideCaseCreator: |-
         La valeur "true" permet de masquer le créateur du dossier dans la liste des dossiers, le widget du dossier et les détails du dossier.
         Ce paramètre affecte toutes les requêtes de cas, par exemple pour la liste des cas, la recherche globale, les statistiques.
       hideCaseDocument: Si vous choisissez "true", la section du document dans la page de détail du cas sera invisible, sinon elle sera visible.
-      hideChangePasswordButtonNote: Attribuez la valeur true à cette variable pour masquer l'option "Changer de mot de passe" dans le menu supérieur et l'option "Mot de passe oublié" sur la page de connexion. Si elle vaut false, ces options seront affichées.
+      hideChangePasswordButtonNote: Attribuez la valeur true à cette variable pour masquer l'option "Changer de mot de passe" dans le menu supérieur et l'option "Mot de passe oublié"
+        sur la page de connexion. Si elle vaut false, ces options seront affichées.
       hideLogoutButtonNote: Si true, le bouton de déconnexion du menu supérieur sera masqué, sinon il sera affiché.
       hideRelatedCaseInfoFromHistory: Si la valeur est vraie, l'historique des cas n'affiche pas les informations relatives aux cas dans le tableau de l'historique.
       hideSystemNotesFromHistory: Si vrai, la remarque sur le cas/la tâche n'affiche aucune note de système pour les utilisateurs non administrateurs.
@@ -276,11 +287,17 @@ ch.ivy.addon.portalkit.ui.jsf:
       showCaseDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de l'affaire.
       showErrorLogToConsole: Défini à true pour activer l'écriture du journal des erreurs dans la console du navigateur.
       showGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale.
-      showProcessInformation: Définissez la valeur false pour désactiver le lien vers l'option Afficher les informations du processus sur la page processus (mode grille) et détails du cas.
+      showProcessInformation: Définissez la valeur false pour désactiver le lien vers l'option Afficher les informations du processus sur la page processus (mode grille) et détails du
+        cas.
       showQuickGlobalSearch: Pour activer/désactiver l'affichage de la recherche globale rapide.
       showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
       showTooltipTechnicalName: Activer l'affichage du nom technique des utilisateurs dans les infobulles.
-      uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
+      uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées
+        par des virgules. Exemple: pdf, txt, doc, docx.'
+      SearchScopeTaskFields: Définir les champs que la recherche globale utilisera pour trouver les tâches correspondantes à côté de l'Id de la tâche (cela peut influencer les performances
+        de la recherche).
+      SearchScopeCaseFields: Définir les champs que la recherche globale utilisera pour trouver les cas correspondants en dehors de l'identifiant du cas (cela peut influencer les performances
+        de la recherche).
     key: Clé
     link: Lien
     loading: CHARGEMENT
@@ -370,7 +387,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     destroyCaseMessage: 'Cette opération ne peut pas être annulée. Êtes-vous sûr de vouloir supprimer dossier <b>{0} (ID: {1})</b> et toutes les tâches associées ?'
     destroyfail: Une erreur est survenue lors de la suppression du dossier.
     destroysucceed: Le dossier a été supprimé avec succès
-    downloadZipFileExplanation: Le nombre de cas à exporter dépasse la limite des lignes Excel. Par conséquent, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
+    downloadZipFileExplanation: Le nombre de cas à exporter dépasse la limite des lignes Excel. Par conséquent, les données seront divisées en plusieurs fichiers Excel, puis compressées
+      dans un fichier ZIP à télécharger.
     error: Erreur
     exportedCasesFileName: AXONIVY_Dataset_Cases_{0}.{1}
     headerTitle:
@@ -680,6 +698,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       noUser: Il n'y a pas d'utilisateurs.
       tooltipHelper: Cliquez pour afficher tous les utilisateurs qui possèdent ce rôle directement ou indirectement
       userOfRoleTitle: Utilisateur du groupe {0}
+      roleMembersTooltipFormat: "<p class=\"tooltip-header\">{0}</p> <p>\n<ul style=\"margin : auto ; {1}\">{2}</ul>"
+      roleMemberItemFormat: <li class="tooltip-body-item">{0}</li>
+      roleMemberLineFormat: <p class="tooltip-body-item">{0}</p> <p class="tooltip-body-item">{0}<p>.
     passwordValidation:
       criteria: Critères
       enablePasswordValidation: Activer la validation du mot de passe
@@ -756,9 +777,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     NoSavedFilterMessage: Aucun filtre enregistré n'a été trouvé. Essayez d'en créer un nouveau en cliquant sur le bouton Enregistrer le filtre.
     NoWidgetAvailable: Il n'y a pas de widgets.
     QuickSearch: Recherche rapide
-    QuickSearchInfo: Vous pouvez personnaliser la portée de la recherche rapide dans la gestion des colonnes des widgets. La recherche se fait sur la base du critère "contient", mais soyez attentif à la performance lorsque vous ajoutez de nombreuses colonnes.
+    QuickSearchInfo: Vous pouvez personnaliser la portée de la recherche rapide dans la gestion des colonnes des widgets. La recherche se fait sur la base du critère "contient", mais
+      soyez attentif à la performance lorsque vous ajoutez de nombreuses colonnes.
     QuickSearchScope: 'Étendue de la recherche: {0}'
-    RestoreDefaultDashboardMessage: Si vous procédez ainsi, vous perdrez tous les widgets que vous avez créés. Les paramètres standard de <span class="dashboard-template-name-message">{0}</span> seront appliqués.
+    RestoreDefaultDashboardMessage: Si vous procédez ainsi, vous perdrez tous les widgets que vous avez créés. Les paramètres standard de <span class="dashboard-template-name-message">{0}</span>
+      seront appliqués.
     SaveNewWidgetFilterHeader: Enregistrer un nouveau filtre de widget
     SavedFilterHeader: Filtres enregistrés
     SearchForFilter: Rechercher un filtre
@@ -792,13 +815,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       CUSTOM_CASE: Champ d'affaire personnalisé
       STANDARD: Colonne standard
     configuration:
-      CustomWidgetExternalLinkWarning: Certains web sites ne sont pas compatibles avec les iframe pour des raisons de sécurité. Veuillez contacter votre administrateur si le web site externe ne fonctionne pas correctement.
+      CustomWidgetExternalLinkWarning: Certains web sites ne sont pas compatibles avec les iframe pour des raisons de sécurité. Veuillez contacter votre administrateur si le web site
+        externe ne fonctionne pas correctement.
       CustomWidgetTitlePlaceholder: Laissez-le vide pour masquer l'en-tête du widget
       Parameters: Paramètres
-      RestoreDefaultDashboardTemplateTooltip: Nous ne trouvons pas le modèle de votre tableau de bord, nous ne pouvons donc pas le réinitialiser à la configuration standard. Veuillez vérifier auprès de votre administrateur pour plus de détails!
+      RestoreDefaultDashboardTemplateTooltip: Nous ne trouvons pas le modèle de votre tableau de bord, nous ne pouvons donc pas le réinitialiser à la configuration standard. Veuillez
+        vérifier auprès de votre administrateur pour plus de détails!
       SelectTheTemplate: Sélectionnez le modèle
       SelectYourTemplate: Sélectionnez votre template
-      WelcomeConfigurationDescription: ''
+      WelcomeConfigurationDescription: 'Vous pouvez configurer votre widget dans cette zone de configuration. Veuillez définir le texte de bienvenue et l''image à utiliser.'
       WelcomeWidget:
         AdvancedSettings: Paramètres avancés
         ChooseAFit: Choisissez un ajustement
@@ -814,7 +839,8 @@ ch.ivy.addon.portalkit.ui.jsf:
         ImageStyleClass: Classe de style d'image
         PreviewDarkMode: Aperçu pour le mode sombre
         PreviewLightMode: Aperçu pour le mode clair
-        PreviewTooltip: Cet aperçu ne peut pas rendre tous les paramètres mais devrait donner une idée de ce à quoi ressemblera le widget final. La taille de l'image, l'orientation et certains paramètres CSS ne seront pas affichés ici.
+        PreviewTooltip: Cet aperçu ne peut pas rendre tous les paramètres mais devrait donner une idée de ce à quoi ressemblera le widget final. La taille de l'image, l'orientation et
+          certains paramètres CSS ne seront pas affichés ici.
         ShowGreeting: Afficher les salutations
         TextColorDarkMode: Couleur pour le mode sombre
         TextColorLightMode: Couleur pour le mode clair
@@ -850,7 +876,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       manageDashboard: Gérer le tableau de bord
       removeDashboardHeader: Supprimez le tableau de bord "{0}".
     deleteWidget: Supprimer le widget
-    downloadZipFileExplanation: Si le nombre d'éléments à exporter dépasse la limite des lignes Excel, les données seront divisées en plusieurs fichiers Excel, puis compressées dans un fichier ZIP à télécharger.
+    downloadZipFileExplanation: Si le nombre d'éléments à exporter dépasse la limite des lignes Excel, les données seront divisées en plusieurs fichiers Excel, puis compressées dans
+      un fichier ZIP à télécharger.
     editWidget: Modifier le widget
     existingField: Le champ {0} a déjà été créé
     expiryFrom: Expiration du
@@ -977,7 +1004,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     passwordConfirmation: Confirmation du mot de passe
     passwordReset: Réinitialisation du mot de passe
     passwordResetEmailCantSend: Exception lors de l'envoi d'un courrier électronique. Veuillez réessayer plus tard.
-    passwordResetEmailContent: '<html>Cher/e {0},<br/><br/>Veuillez cliquer sur ce lien pour réinitialiser votre mot de passe : <a href="{1}">Réinitialisation du mot de passe</a><br/><br/>Bonnes salutations</html>.'
+    passwordResetEmailContent: '<html>Cher/e {0},<br/><br/>Veuillez cliquer sur ce lien pour réinitialiser votre mot de passe : <a href="{1}">Réinitialisation du mot de passe</a><br/><br/>Bonnes
+      salutations</html>.'
     passwordResetEmailSent: Si cette adresse e-mail est enregistrée, nous lui avons envoyé un lien de récupération du mot de passe.
     passwordResetEmailSubject: Courriel de réinitialisation du mot de passe
     passwordResetSuccess: Votre mot de passe a été modifié avec succès
@@ -1304,12 +1332,16 @@ ch.ivy.addon.portalkit.ui.jsf:
     showFullTaskList: Voir la liste complète des tâches
     sort: Trier
   taskWarning:
-    createdTaskLeave: '<div>Vous êtes sur le point de quitter cette page.<br/>  Choisissez l&apos;&apos;une des options suivantes :</div> <UL><LI>Quitter : abandonnez vos modifications et allez à la page choisie. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
-    createdTaskLogout: '<div>Vous êtes sur le point de quitter cette page.<br/> Choisissez l&apos;&apos;une des options suivantes :</div> <UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
-    resetParkTaskBeforeLeave: '<div>Vous êtes sur le point de laisser une tâche en cours.<br/>Choisissez l&apos;&apos;une des options suivantes :</div><UL> <LI> Quitter : abandonnez vos modifications et allez à la page choisie. <LI> Enregistrer : abandonnez vos modifications et conservez la tâche dans
-      votre liste de tâches personnelles. Ensuite déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
-    resetParkTaskBeforeLogout: '<div>Vous êtes sur le point de laisser une tâche en cours.</br> Choisissez l&apos;&apos;une des options suivantes : </div><UL> <LI>Déconnecter : abandonnez vos modifications et déconnectez-vous. <LI>Enregistrer : annulez vos modifications et conservez la tâche dans votre
-      liste de tâches personnelles. Ensuite, déconnectez-vous. <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
+    createdTaskLeave: '<div>Vous êtes sur le point de quitter cette page.<br/>  Choisissez l&apos;&apos;une des options suivantes :</div> <UL><LI>Quitter : abandonnez vos modifications
+      et allez à la page choisie. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
+    createdTaskLogout: '<div>Vous êtes sur le point de quitter cette page.<br/> Choisissez l&apos;&apos;une des options suivantes :</div> <UL> <LI>Déconnecter : abandonnez vos modifications
+      et déconnectez-vous. <LI>Annuler : continuez à travailler sur cette tâche. </UL>'
+    resetParkTaskBeforeLeave: '<div>Vous êtes sur le point de laisser une tâche en cours.<br/>Choisissez l&apos;&apos;une des options suivantes :</div><UL> <LI> Quitter : abandonnez
+      vos modifications et allez à la page choisie. <LI> Enregistrer : abandonnez vos modifications et conservez la tâche dans votre liste de tâches personnelles. Ensuite déconnectez-vous.
+      <LI> Annuler : continuez à travailler sur cette tâche. </UL>'
+    resetParkTaskBeforeLogout: '<div>Vous êtes sur le point de laisser une tâche en cours.</br> Choisissez l&apos;&apos;une des options suivantes : </div><UL> <LI>Déconnecter : abandonnez
+      vos modifications et déconnectez-vous. <LI>Enregistrer : annulez vos modifications et conservez la tâche dans votre liste de tâches personnelles. Ensuite, déconnectez-vous. <LI>
+      Annuler : continuez à travailler sur cette tâche. </UL>'
     taskNotFound: cette tâche n'existe pas ou vous n'avez pas l'autorisation de la voir.
   userProfile:
     myProfileTitle: Mon profil
@@ -1399,7 +1431,8 @@ Dialogs:
               CannotWorkOnDestroyedTaskWarning: Vous ne pouvez pas travailler sur la tâche parce qu'elle a été détruite.
               CannotWorkOnTaskWarning: Vous ne pouvez pas travailler sur cette tâche car l'utilisateur <strong>{0}</strong> y travaille déjà.
               InvalidStateInfo: État non valide.
-              ResetTaskWarning: Vous travaillez actuellement sur la tâche dans une autre session. Vous pouvez réinitialiser la tâche et la recommencer si vous avez fermé votre navigateur. <a href="{0}">Réinitialiser</a>
+              ResetTaskWarning: Vous travaillez actuellement sur la tâche dans une autre session. Vous pouvez réinitialiser la tâche et la recommencer si vous avez fermé votre navigateur.
+                <a href="{0}">Réinitialiser</a>
               ShareTaskDetails: Partager les détails de la tâche
               TaskCompletedByOtherInfo: La tâche a déjà été effectuée par l'utilisateur <strong>{0}</strong> sur {1}.
               TaskCompletedByYouInfo: Vous avez déjà accompli la tâche sur {0}.
@@ -1413,7 +1446,8 @@ Dialogs:
             AddTool: Ajouter un outil
             Tools: Outils
             WelcomeHeaderText: Bienvenue sur le portail Axon Ivy !
-            WelcomeText: Nous sommes ravis de vous compter parmi nous. Le portail Axon Ivy est votre porte d'entrée pour une expérience transparente et efficace. Que vous soyez un nouvel utilisateur qui explore les fonctionnalités ou un visiteur habituel, nous sommes là pour vous aider à chaque étape.
+            WelcomeText: Nous sommes ravis de vous compter parmi nous. Le portail Axon Ivy est votre porte d'entrée pour une expérience transparente et efficace. Que vous soyez un nouvel
+              utilisateur qui explore les fonctionnalités ou un visiteur habituel, nous sommes là pour vous aider à chaque étape.
           Responsibles:
             Multiple: Multiple
           ShareLinkDialog:
@@ -1469,8 +1503,10 @@ Dialogs:
                         <span class="shortcut-key">Alt + 4</span>Se focaliser sur l’onglet des cas
                     </div>
                 </div>
-              title: 'Raccourcis d’accessibilité. Alt + 1: Fokus auf die Dashboards. Alt + 2: Fokus auf die Prozesse. Alt + 3: Fokus auf die Aufgaben. Alt + 4: Fokus auf die Fälle. Alt + 5: Fokus auf die Suche. Alt + 6: Fokus auf die User Einstellungen. Alt + 7 : Permet d’afficher ou de masquer le menu
-                principal. Alt + A: Fokus auf den ersten Prozess. Alt + W: Fokus auf die erste Aufgabe. Alt + Q: Fokus auf den ersten Fall. Tab: Sequentielles Durchlaufen von Elementen. Esc: Erweiterte Widgets schließen/Kontext Menüs schließen. Enter: Auswahl bestätigen'
+              title: 'Raccourcis d’accessibilité. Alt + 1: Fokus auf die Dashboards. Alt + 2: Fokus auf die Prozesse. Alt + 3: Fokus auf die Aufgaben. Alt + 4: Fokus auf die Fälle. Alt
+                + 5: Fokus auf die Suche. Alt + 6: Fokus auf die User Einstellungen. Alt + 7 : Permet d’afficher ou de masquer le menu principal. Alt + A: Fokus auf den ersten Prozess.
+                Alt + W: Fokus auf die erste Aufgabe. Alt + Q: Fokus auf den ersten Fall. Tab: Sequentielles Durchlaufen von Elementen. Esc: Erweiterte Widgets schließen/Kontext Menüs
+                schließen. Enter: Auswahl bestätigen'
             CaseWidgetConfiguration:
               AddFilter: Ajouter un filtre
             CloneWidgetDialog:
@@ -1548,8 +1584,10 @@ Dialogs:
             OutdatedChartMessage: Le groupement ou le filtre appliqué ne correspond pas à la configuration actuelle de l'interface. Veuillez le reconfigurer.
             RefreshInterval: Actualisation automatique activée
             RefreshIntervalInSeconds: Intervalle de rafraîchissement automatique (secondes)
-            RefreshIntervalInSecondsValidationMessage: 'Intervalle de rafraîchissement automatique (secondes) : L''attribut spécifié n''est pas compris entre les valeurs attendues de {0} et {1}'
-            RefreshIntervalInfo: La statistique peut être actualisée automatiquement après une certaine période. Si cette option est activée, elle peut avoir un impact sur les performances. L'intervalle de rafraîchissement automatique (secondes) doit être au moins {0}.
+            RefreshIntervalInSecondsValidationMessage: 'Intervalle de rafraîchissement automatique (secondes) : L''attribut spécifié n''est pas compris entre les valeurs attendues de
+              {0} et {1}'
+            RefreshIntervalInfo: La statistique peut être actualisée automatiquement après une certaine période. Si cette option est activée, elle peut avoir un impact sur les performances.
+              L'intervalle de rafraîchissement automatique (secondes) doit être au moins {0}.
             StatisticConfiguration: Configuration des statistiques
             XAxisTitle: Titre de l'axe X
             YAxisTitle: Titre de l'axe des Y
@@ -1565,6 +1603,9 @@ Dialogs:
       invalidFileMessage: Ce type de fichier n'est pas accepté!
       invalidSizeMessage: Le fichier est trop volumineux !
       maximumFileUploadElement: Il existe déjà un élément de téléchargement de fichiers
+  general:
+    maxOptionsLength: '20'
+    MaxLabelLenght: '35'
 Enums:
   com:
     axonivy:
@@ -1626,26 +1667,34 @@ Enums:
 Labels:
   AI:
     Error:
-      CannotFindUser: ''
-      CannotStartTask: ''
-      InvalidTaskPriority: ''
-      InvalidTaskState: ''
-      NoMatchingCase: ''
-      NoMatchingProcesses: ''
-      NoMatchingTask: ''
-    FindCaseAIResult: ''
-    FindProcessAIResult: ''
-    FindTaskAIResult: ''
-    FindUserAIResult: ''
-    FoundCaseHeader: ''
-    FoundProcessesHeader: ''
-    FoundTaskHeader: ''
-    FoundUsersHeader: ''
-    ProcessInfoHeader: ''
-    ProcessInfoHeaderWithParameters: ''
-    ProcessParameterInfo: ''
-    ProcessParameterInfoWithValue: ''
-    TaskDetailsResult: ''
+      CannotFindUser: 'Désolé, aucun utilisateur ne correspond à votre demande. Veuillez réessayer.'
+      CannotStartTask: 'Impossible de démarrer la tâche a ID {0}'
+      InvalidTaskPriority: 'Priorité de tâche non valide. Les priorités de tâches valides sont : faible, normale, élevée ou exception.'
+      InvalidTaskState: 'État de la tâche non valide. Les états de tâche valides sont : ouvert, terminé, en cours ou erreur.'
+      NoMatchingCase: 'Aucune tâche ne correspond à votre demande'
+      NoMatchingProcesses: 'Pas de processus de correspondance.'
+      NoMatchingTask: 'Aucune tâche ne correspond à votre demande'
+    FindCaseAIResult: 'ID : {0}, Name : {1}, Description : {2}, État : {3}'
+    FindProcessAIResult: '   - ID : {0}, Nom : {1}, Description : {2}'
+    FindTaskAIResult: 'ID : {0}, Name : {1}, Description : {2}, État : {3}, Priorité {4}'
+    FindUserAIResult: 'Nom d''utilisateur : {0}, Nom : {1}, Email : {2}, État : {3}'
+    FoundCaseHeader: 'Les cas trouvés :'
+    FoundProcessesHeader: 'Procédés trouvés :'
+    FoundTaskHeader: 'Tâches trouvées :'
+    FoundUsersHeader: 'Utilisateurs trouvés :'
+    ProcessInfoHeader: '**Nom du processus:** {0}
+
+      **Description du processus:** {1}'
+    ProcessInfoHeaderWithParameters: '- **Nom du processus:** {0}
+
+      - **Description du processus:** {1}
+
+      - **Nombre de paramètres:** {2}'
+    ProcessParameterInfo: "\t+ {0} ({1})"
+    ProcessParameterInfoWithValue: "- Nom : {0}\n  Description : {1} {1}\n  Valeur : {2}"
+    TaskDetailsResult: 'Détails de la tâche **{0} (#{1})** :
+
+      {2}'
   AllTasks: Toutes les tâches
   AndMore: 'et {0} de plus...  '
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
@@ -1724,6 +1773,7 @@ Labels:
       START_WITH: Commence par
       TODAY: Aujourd'hui
       YESTERDAY: Hier
+      GREATER: Plus grand
     FilterPeriodType:
       DAY: Jour
       MONTH: Mois
@@ -1741,6 +1791,13 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
+    SearchScopeTaskField:
+      NAME: Nom du texte
+      DESCRIPTION: Description du texte
+    SearchScopeCaseField:
+      DESCRIPTION: Description du texte
+      CUSTOM: Champs de chaînes personnalisées
+      NAME: Nom du texte
   Expand: Développer
   Filters: Filtres
   General: Général
