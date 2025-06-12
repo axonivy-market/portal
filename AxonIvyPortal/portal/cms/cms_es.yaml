@@ -800,7 +800,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       RestoreDefaultDashboardTemplateTooltip: No podemos encontrar la plantilla de su panel de control, por lo que no podemos restablecer la configuración estándar. Por favor, consulte con su administrador para obtener más detalles.
       SelectTheTemplate: Seleccione la plantilla
       SelectYourTemplate: Seleccione su plantilla
-      WelcomeConfigurationDescription: 'Puede configurar su widget en esta área de configuración. Defina el texto y la imagen de bienvenida que se utilizarán.'
+      WelcomeConfigurationDescription: 'Puede configurar su widget en esta área de configuración. Defina el texto de bienvenida y la imagen que se utilizarán.'
       WelcomeWidget:
         AdvancedSettings: Configuración avanzada
         ChooseAFit: Elija un ajuste
@@ -1408,14 +1408,14 @@ Dialogs:
             Link: Enlace
             LinkCopied: ¡Enlace copiado
           ChatDashboard:
-            AddTool: Añadir herramienta
+            AddTool: Añada herramientas
             WelcomeHeaderText: Bienvenido al portal Axon Ivy
-            WelcomeText: Estamos encantados de contar con usted. El Portal Axon Ivy es su puerta de entrada a una experiencia fluida y eficiente. Tanto si es un nuevo usuario que explora las funciones como si vuelve a visitarnos, estamos aquí para ayudarle en todo momento.
+            WelcomeText: Estamos encantados de contar con usted. El Portal Axon Ivy es su puerta de entrada a una experiencia fluida y eficaz. Tanto si es un nuevo usuario que explora las funciones como si es un visitante recurrente, estamos aquí para ayudarle en cada paso del camino.
             Tools: Herramientas
           ToolList:
             Attributes: Atributos
             Collection: Colección
-            NoAvailableTools: No existen herramientas
+            NoAvailableTools: No hay herramientas disponibles
         dashboard:
           component:
             AccessibilityShortcuts:
@@ -1532,17 +1532,17 @@ Dialogs:
 Labels:
   AI:
     Error:
-      CannotFindUser: 'Lo sentimos, no se ha encontrado ningún usuario que coincida con su solicitud. Inténtelo de nuevo.'
+      CannotFindUser: 'Lo sentimos, no se ha encontrado ningún usuario que coincida con su solicitud. Por favor, inténtelo de nuevo.'
       CannotStartTask: 'No se puede iniciar la tarea tiene ID {0}'
       InvalidTaskPriority: 'Prioridad de tarea no válida. Las prioridades de tarea válidas son: baja, normal, alta o excepción.'
       InvalidTaskState: 'Estado de tarea no válido. Los estados de tarea válidos son: abierta, realizada, en curso o error.'
-      NoMatchingCase: 'No se ha encontrado ninguna tarea que se ajuste a su solicitud'
-      NoMatchingProcesses: 'Sin procesos de concordancia.'
-      NoMatchingTask: 'No se ha encontrado ninguna tarea que se ajuste a su solicitud'
+      NoMatchingCase: 'No se encuentra ninguna tarea que se ajuste a su solicitud'
+      NoMatchingProcesses: 'No utilice procesos de concordancia.'
+      NoMatchingTask: 'No se encuentra ninguna tarea que se ajuste a su solicitud'
     FindCaseAIResult: 'ID: {0}, Nombre: {1}, Descripción: {2}, Estado: {3}'
     FindProcessAIResult: '   - ID: {0}, Nombre: {1}, Descripción: {2}'
     FindTaskAIResult: 'ID: {0}, Nombre: {1}, Descripción: {2}, Estado: {3}, Prioridad {4}'
-    FindUserAIResult: 'Nombre de usuario: {0}, Nombre: {1}, Email: {2}, Estado: {3}'
+    FindUserAIResult: 'Nombre de usuario: {0}, Nombre: {1}, Correo electrónico: {2}, Estado: {3}'
     FoundCaseHeader: 'Casos encontrados:'
     FoundProcessesHeader: 'Procesos encontrados:'
     FoundTaskHeader: 'Tareas encontradas:'
@@ -1550,11 +1550,11 @@ Labels:
     ProcessInfoHeader: '**Nombre del proceso:** {0}
 
       **Descripción del proceso:** {1}'
-    ProcessInfoHeaderWithParameters: '- Nombre del proceso:** {0}
+    ProcessInfoHeaderWithParameters: '- **Nombre del proceso:** {0}
 
-      - Descripción del proceso:** {1}
+      - **Descripción del proceso:** {1}
 
-      - Número de parámetros:** {2}'
+      - **Número de parámetros:** {2}'
     ProcessParameterInfo: "\t+ {0} ({1})"
     ProcessParameterInfoWithValue: "- Nombre: {0}\n  Descripción: {1}\n  Valor:"
     TaskDetailsResult: 'Detalles de la tarea **{0} (#{1})**:
@@ -1655,11 +1655,11 @@ Labels:
         header: Explore
         question: ¿Cuáles son las principales características del portal Axon Ivy?
       INTERACT:
-        question: Enuméreme todas las tareas que debe realizar en la semana en curso
-        header: Interactúe en
+        question: Enuméreme todas las tareas que deben completarse en la semana en curso
+        header: Interactúe
       TUTORIAL:
         header: Tutorial
-        question: ¿Dónde puedo encontrar la documentación o los tutoriales de Axon Ivy Portal?
+        question: ¿Dónde puedo encontrar la documentación o los tutoriales del portal Axon Ivy?
   Expand: Expandir
   InsertTask-Explain: Insertar la tarea. Mi tarea será pospuesta.
   InsertTheTask: Insertar la tarea.
