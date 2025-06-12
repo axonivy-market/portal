@@ -92,7 +92,7 @@ public class TaskExporter extends Exporter {
         return task.responsibles().all()
             .stream()
             .map(item -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(item.get(), item.displayName()))
-            .collect(Collectors.joining(", "));
+            .collect(Collectors.joining(Ivy.cms().co("/Labels/Comma")));
       case PRIORITY:
         return TaskUtils.convertToUserFriendlyTaskPriority(task.getPriority());
       case STATE:

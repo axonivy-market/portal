@@ -1667,6 +1667,7 @@ Labels:
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
   Collapse: Einklappen
+  Comma: ', '
   Configuration: Konfiguration
   CreateNewDashboard: Neues Dashboard erstellen
   Description: Beschreibung
