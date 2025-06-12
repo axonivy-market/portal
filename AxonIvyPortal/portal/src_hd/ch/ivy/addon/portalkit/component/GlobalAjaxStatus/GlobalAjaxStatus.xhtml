@@ -11,7 +11,7 @@
   <cc:attribute name="startLoadingText" shortDescription="The text is showing when start ajax loading indicator"/>
 </cc:interface>
 <cc:implementation>
-  <c:set var="renderDetail" value="#{portalExceptionBean.errorDetailToEndUser}" />
+  <c:set var="renderDetail" value="#{errorPage.showDetails}}" />
   <c:set var="isPortalInTeams" value="#{masterDataBean.portalInTeams}" />
   <c:set var="isShowErrorLog" value="#{portalExceptionBean.isShowErrorLogToConsole}" />
 
