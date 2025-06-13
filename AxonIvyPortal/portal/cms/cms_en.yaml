@@ -1671,6 +1671,7 @@ Labels:
   AppendTheTask: Append the task
   Chat: Chat
   Collapse: Collapse
+  Comma: ', '
   Configuration: Configuration
   CreateNewDashboard: Create new dashboard
   Description: Description

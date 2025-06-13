@@ -1658,6 +1658,7 @@ Labels:
   AppendTheTask: タスクを追加
   Chat: TODO Chat
   Collapse: TODO 折りたたむ
+  Comma: 'TODO: , '
   Configuration: 設定
   CreateNewDashboard: 新しいダッシュボードを作成
   Description: 説明
