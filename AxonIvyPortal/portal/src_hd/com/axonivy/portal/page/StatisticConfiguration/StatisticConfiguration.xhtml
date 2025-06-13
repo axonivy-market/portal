@@ -281,25 +281,62 @@
                     </div>
                   </h:panelGroup>
                 </h:panelGroup>
-
-                <h:panelGroup id="background-colors-container" layout="block" styleClass="col-12 p-0 grid m-0">
-                  <h:panelGroup rendered="#{statisticConfigurationBean.statistic.chartType.name() ne 'NUMBER'}">
-                    <ui:repeat id="background-colors" value="#{statisticConfigurationBean.backgroundColors}" var="color"
-                      varStatus="status">
-                      <div class="col-6 xl:col-3">
-                        <div>
-                          <p:outputLabel for="@next"
-                            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Color', [status.index + 1])}" />
+                
+                <div class="field col-6">
+                  <p:outputLabel for="condition-based-coloring-enabled"
+                    value="Enable Condition Based Coloring" />
+                  <div>
+                    <p:toggleSwitch id="condition-based-coloring-enabled" label="#{statisticConfigurationBean.conditionBasedColoringEnabled}"
+                      value="#{statisticConfigurationBean.conditionBasedColoringEnabled}" styleClass="col-1">
+                      <p:ajax update="chart-background-colors" process="@this"
+                        listener="#{statisticConfigurationBean.onToggleConditionBasedColoring}"/>
+                    </p:toggleSwitch>
+                  </div>
+                </div>
+                <h:panelGroup id="chart-background-colors">
+                 <h:panelGroup id="background-colors-container" layout="block" styleClass="col-12 p-0 grid m-0" rendered="#{!statisticConfigurationBean.conditionBasedColoringEnabled}">
+                   <h:panelGroup rendered="#{statisticConfigurationBean.statistic.chartType.name() ne 'NUMBER'}">
+                     <ui:repeat id="background-colors" value="#{statisticConfigurationBean.backgroundColors}" var="color"
+                       varStatus="status">
+                       <div class="col-6 xl:col-3">
+                         <div>
+                           <p:outputLabel for="@next"
+                             value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Color', [status.index + 1])}" />
+                         </div>
+                         <div class="mt-2 mb-3">
+                           <p:colorPicker value="#{statisticConfigurationBean.backgroundColors[status.index]}"
+                             clearButton="true" closeButton="true" size="10" />
+                         </div>
+                       </div>
+                     </ui:repeat>
+                   </h:panelGroup>
+                 </h:panelGroup>
+                 
+                 <h:panelGroup styleClass="field col-12" layout="block" id="condition-background-colors" rendered="#{statisticConfigurationBean.conditionBasedColoringEnabled}">
+                   <h4>Condition Base Coloring</h4>
+                   <div>
+                     <h:panelGroup id="condition-background-color" layout="block" styleClass="ui-g dashboard-widget-filter__main-panel">
+                       <div class="flex">
+                         <p:outputLabel styleClass="mr-3" value="Default color"/>
+                         <p:colorPicker value="#{statisticConfigurationBean.statistic.defaultBackgroundColor}" />
+                       </div>
+                       <ui:repeat id="condition-background-color-list" var="condtion" value="#{statisticConfigurationBean.statistic.thresholds}"
+                         varStatus="status">
+                         <ic:com.axonivy.portal.page.component.Threshold id="threshold-component"
+                           managedBean="#{statisticConfigurationBean}"
+                           filterIndex="#{status.index}" readOnly="true" />
+                       </ui:repeat>
+                       <div class="ui-g-12 u-padding-0 MarTop10">
+                         <p:commandButton id="add-threshold" icon="#{visibilityBean.generateButtonIcon('si si-add-circle')}"
+                           styleClass="u-mar-right-5 ui-button-flat" actionListener="#{statisticConfigurationBean.addNewThreshold()}"
+                           value="Add condition" immediate="true" partialSubmit="true" update="condition-background-colors">
+                           <f:param name="skipValidator" value="true" />
+                         </p:commandButton>
                         </div>
-                        <div class="mt-2 mb-3">
-                          <p:colorPicker value="#{statisticConfigurationBean.backgroundColors[status.index]}"
-                            clearButton="true" closeButton="true" size="10" />
-                        </div>
-                      </div>
-                    </ui:repeat>
-                  </h:panelGroup>
+                     </h:panelGroup>
+                   </div>
+                 </h:panelGroup>
                 </h:panelGroup>
-
               </h:panelGroup>
               <p:divider layout="vertical" styleClass="m-0" />
               <div class="col-6 grid pl-6 m-0 statistic-configuration__preview">
@@ -370,6 +407,7 @@
           function handlePreviewChart(xhr, status, args) {
             if (args.jsonResponse) {
               const data = JSON.parse(args.jsonResponse);
+              console.log(data);
               previewChart(data, "#{localeBean.locale}", "#{dateTimePatternBean.datePattern}", "#{ivy.session.contentLocale}");
             }
           }

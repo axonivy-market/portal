@@ -34,6 +34,7 @@ import com.axonivy.portal.bo.NumberChartConfig;
 import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
+import com.axonivy.portal.bo.Threshold;
 import com.axonivy.portal.bo.jsonversion.StatisticJsonVersion;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
@@ -46,6 +47,7 @@ import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.AggregationInterval;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
+import com.axonivy.portal.enums.statistic.OperatorField;
 import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.service.multilanguage.StatisticDescriptionMultilanguageService;
@@ -103,6 +105,7 @@ public class StatisticConfigurationBean implements Serializable {
   private String currentCustomFieldDescription;
   private boolean isDateTimeSelected;
   private AggregationInterval aggregationInterval;
+  private boolean conditionBasedColoringEnabled;
 
   private StatisticNameMultilanguageService nameMultilanguageService;
   private StatisticDescriptionMultilanguageService descriptionMultilanguageService;
@@ -126,6 +129,7 @@ public class StatisticConfigurationBean implements Serializable {
     initMultilanguageServices();
     initFilterFields();
     initFilters();
+    initThresholds();
   }
 
   private void initMultilanguageServices() {
@@ -137,6 +141,7 @@ public class StatisticConfigurationBean implements Serializable {
 
   private void initExistedStatistic() {
     isEditMode = true;
+    conditionBasedColoringEnabled = false;
     if (statistic.getNames() == null) {
       statistic.setNames(new ArrayList<>());
     }
@@ -216,6 +221,7 @@ public class StatisticConfigurationBean implements Serializable {
     yTitles = new ArrayList<>();
     backgroundColors = new ArrayList<>(DEFAULT_COLORS);
     refreshIntervalEnabled = false;
+    conditionBasedColoringEnabled = false;
   }
   
   private void initFilterFields() {
@@ -251,6 +257,12 @@ public class StatisticConfigurationBean implements Serializable {
             filterField.initFilter(filter);
           }
       }
+    }
+  }
+  
+  private void initThresholds() {
+    if (CollectionUtils.isEmpty(statistic.getThresholds())) {
+      return;
     }
   }
   
@@ -555,6 +567,15 @@ public class StatisticConfigurationBean implements Serializable {
     }
     statistic.setRefreshInterval(refreshIntervalInSeconds);
   }
+  
+  public void onToggleConditionBasedColoring() {
+    Ivy.log().info(conditionBasedColoringEnabled);
+    if (conditionBasedColoringEnabled) {
+      setConditionBasedColoringEnabled(false);
+    } else {
+      setConditionBasedColoringEnabled(true);
+    }
+  }
 
   private void initPermissions() {
     statistic.setPermissionDTOs(Optional.ofNullable(statistic).map(Statistic::getPermissions).orElse(new ArrayList<>())
@@ -610,6 +631,10 @@ public class StatisticConfigurationBean implements Serializable {
     List<AggregationField> aggregations = filterAggregatesForChartTarget(statistic.getChartTarget());
 
     return aggregations;
+  }
+  
+  public List<OperatorField> getAllOperatorField() {
+    return OperatorField.OPERATORS.stream().toList();
   }
   
   private List<AggregationField> filterAggregatesForChartTarget(ChartTarget currentChartTarget) {
@@ -813,6 +838,15 @@ public class StatisticConfigurationBean implements Serializable {
     statistic.getFilters().add(newFilter);
   }
   
+  public void addNewThreshold() {
+    if (statistic.getThresholds() == null) {
+      statistic.setThresholds(new ArrayList<>());
+    }
+    
+    Threshold newThreshold = new Threshold();
+    statistic.getThresholds().add(newThreshold);
+  }
+  
   public void removeFilter(DashboardFilter filter) {
     statistic.getFilters().remove(filter);
   }
@@ -841,5 +875,13 @@ public class StatisticConfigurationBean implements Serializable {
   public void setCurrentField(String currentField) {
     this.currentField = currentField;
   }
-
+  
+  public boolean getConditionBasedColoringEnabled() {
+    return this.conditionBasedColoringEnabled;
+  }
+  
+  public void setConditionBasedColoringEnabled(boolean conditionBasedColoringEnabled) {
+    this.conditionBasedColoringEnabled = conditionBasedColoringEnabled;
+  }
+  
 }
