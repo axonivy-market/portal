@@ -155,6 +155,7 @@
                   <p:spacer width="15" />
                   <p:commandButton id="update-filter-selected-command"
                     icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
                     update="@(.filter-container) @(.filter-selection-form) @(.case-list) #{cc.clientId}:hidden-case-count"
                     oncomplete="caseWidget.showCaseFilter(); caseWidget.setUpScrollbar(); caseWidget.updateCaseCountToBreadcrumb();" process="@(filter-add-form)"
@@ -178,7 +179,7 @@
             </h:panelGroup>
 
             <!-- Save filter button -->
-            <p:commandButton id="filter-save-action"
+            <p:commandButton id="filter-save-action" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" styleClass="filter-add-button u-hidden-md-down js-filter-save-action"
               icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" update="save-filter-set-dialog" resetValues="true"
               oncomplete="PF('save-filter-set-dialog').show();" rendered="#{!cc.attrs.isTechnicalCaseView}"
@@ -257,7 +258,7 @@
           onclick="PF('reset-filter-set-dialog').hide();" styleClass="u-mar-right-15" />
        <p:commandButton id="filter-reset-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
-        partialSubmit="true" immediate="true"
+        partialSubmit="true" immediate="true" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         actionListener="#{logic.restoreDefaultFilterSet}" update="@(.filter-container) @(.filter-add-action) @(.filter-selection-form) @(.case-list) #{cc.clientId}:hidden-case-count"
         oncomplete="PF('reset-filter-set-dialog').hide(); caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();" />
     </ui:define>

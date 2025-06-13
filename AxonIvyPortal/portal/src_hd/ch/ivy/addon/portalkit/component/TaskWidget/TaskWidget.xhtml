@@ -182,6 +182,7 @@
                     actionListener="#{data.dataModel.restoreFiltersSelection()}" />
                   <p:spacer width="15" />
                   <p:commandButton id="update-filter-selected-command"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
                     icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
                     update="@(.filter-container) @(.filter-selection-form) @(.task-view-container) #{cc.clientId}:hidden-task-count"
@@ -206,7 +207,7 @@
             </h:panelGroup>
 
             <!-- Save filter button -->
-              <p:commandButton id="filter-save-action"
+              <p:commandButton id="filter-save-action" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" styleClass="filter-add-button filter-save-action js-filter-save-action u-hidden-md-down"
                 icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" resetValues="true"
                 update="save-filter-set-dialog task-widget:filter-save-form:save-filter-type-radio"

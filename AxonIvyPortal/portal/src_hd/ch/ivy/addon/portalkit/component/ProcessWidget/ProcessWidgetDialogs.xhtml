@@ -77,7 +77,8 @@
               <p:inputText id="external-link-name" value="#{processWidgetBean.editedExternalLink.name}" required="true"
                 maxlength="85" 
                 requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
-              <p:commandButton id="edit-name-language-button" icon="si si-chat-translate" 
+              <p:commandButton id="edit-name-language-button" icon="si si-chat-translate"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                 actionListener="#{processWidgetBean.updateNameByLocale()}"
                 process="#{cc.clientId}:edit-process-form:external-link-name"
                 update="#{cc.clientId}:edit-name-language-config:multiple-languages-dialog"
@@ -111,7 +112,8 @@
             <div class="ui-fluid ui-inputgroup">
             <p:inputTextarea id="external-description" value="#{processWidgetBean.editedExternalLink.description}"
               maxlength="200" rows="3" />
-            <p:commandButton id="edit-description-language-button" icon="si si-chat-translate" 
+            <p:commandButton id="edit-description-language-button" icon="si si-chat-translate"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
               actionListener="#{processWidgetBean.updateDescriptionByLocale()}"
               process="#{cc.clientId}:edit-process-form:external-description"
               update="#{cc.clientId}:text-area-edit-multiple-languages-dialog"
@@ -189,6 +191,7 @@
               rendered="#{not empty processWidgetBean.editedExternalLink.imageLocation}">
               <p:commandButton
                 id="editing-external-link-delete-image-button"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/remove')}"
                 actionListener="#{processWidgetBean.removeTempExternalLinkImage}"
                 update="file-upload-panel"
                 rendered="#{not empty processWidgetBean.editedExternalLink.imageLocation}"
