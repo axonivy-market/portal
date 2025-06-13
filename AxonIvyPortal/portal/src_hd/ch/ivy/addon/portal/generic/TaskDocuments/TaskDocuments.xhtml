@@ -83,6 +83,7 @@
 
           <div class="ui-g-12 text-right">
             <p:commandButton actionListener="#{logic.close}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               icon="#{visibilityBean.generateButtonIcon('si si-remove')}"/>
           </div>
@@ -99,6 +100,7 @@
 
         <ui:define name="dialogFooter">
           <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
             process="@this"
             update="task-document-global-messages task-doc-form"
             actionListener="#{logic.deleteDocument}" styleClass="w-full portal-remove-button"
