@@ -421,6 +421,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     All: Alles
     And: und
+    AutoTranslation: Automatische Übersetzung
     BusinessCaseInformation: Business Case Informationen
     Clone: Klonen
     CollapseAll: Alles zuklappen
@@ -1651,10 +1652,12 @@ Labels:
     ProcessParameterInfo: ''
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
+  AIAssistant: AI-Assistent
   AllTasks: Alle Aufgaben
   AndMore: 'und {0} weitere...  '
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
+  Chat: Chat
   Collapse: Einklappen
   Configuration: Konfiguration
   CreateNewDashboard: Neues Dashboard erstellen

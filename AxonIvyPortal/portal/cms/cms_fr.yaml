@@ -419,6 +419,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     All: Toutes
     And: et
+    AutoTranslation: Traduction automatique
     BusinessCaseInformation: Informations sur les cas d'affaires
     Clone: Cloner
     CollapseAll: Réduire tout
@@ -1646,10 +1647,12 @@ Labels:
     ProcessParameterInfo: ''
     ProcessParameterInfoWithValue: ''
     TaskDetailsResult: ''
+  AIAssistant: Assistant AI
   AllTasks: Toutes les tâches
   AndMore: 'et {0} de plus...  '
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
+  Chat: Chat
   Collapse: Réduire
   Configuration: Configuration
   CreateNewDashboard: Créer un nouveau tableau de bord
