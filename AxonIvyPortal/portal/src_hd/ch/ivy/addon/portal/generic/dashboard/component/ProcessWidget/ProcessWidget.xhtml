@@ -125,12 +125,14 @@
         rendered="#{(displayMode eq 'COMBINED_MODE' or displayMode eq 'FULL_MODE' or displayMode eq 'IMAGE_MODE') and widget.process eq null}">
         <h:panelGroup id="empty-process-actions" rendered="#{!isReadOnlyMode}" styleClass="process-grid-item__action--combined">
           <p:commandButton id="empty-process-edit-widget" styleClass="rounded-button ui-button-outlined u-mar-right-5" global="false" icon="si si-pencil"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
             actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}" process="@this"
             partialSubmit="true" update="new-widget-configuration-dialog"
             oncomplete="PF('new-widget-configuration-dialog').show()" />
           <p:tooltip for="empty-process-edit-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
             trackMouse="true" hideEvent="mouseleave click" />
           <p:commandButton id="empty-process-delete-widget" styleClass="rounded-button ui-button-outlined ui-button-danger" global="false" icon="si si-bin-1"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
             actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}" process="@this" partialSubmit="true"
             update="remove-widget-dialog" oncomplete="PF('remove-widget-dialog').show()" />
           <p:tooltip for="empty-process-delete-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"

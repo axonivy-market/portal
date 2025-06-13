@@ -46,6 +46,7 @@
     <div class="ui-g-12 chat-add-assignee-button-grid">
       <p:commandButton id="chat-add-assignee-button"
         icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
         disabled="#{chatAssigneeBean.selectedUser == null and chatAssigneeBean.selectedRole == null}" actionListener="#{chatAssigneeBean.addAssignee}"
         global="false" update="error-message chat-selected-assignee-fieldset" ignoreAutoUpdate="true" />
@@ -75,6 +76,7 @@
 
     <div class="ui-g-12 chat-action-container">
       <p:commandButton id="chat-group-create-button" actionListener="#{chatBean[createGroupChat]}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" icon="#{visibilityBean.generateButtonIcon('si si-check-1')}">
       </p:commandButton>
     </div>

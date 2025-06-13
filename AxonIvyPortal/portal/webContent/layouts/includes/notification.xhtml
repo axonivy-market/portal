@@ -47,6 +47,7 @@
                     <p:commandButton id="notification-mark-all-as-read" styleClass="notifications-icon ui-button-outlined"
                       disabled="#{!notificationBean.hasUnreadNotifications()}"
                       update="#{unreadNotificationsId}, #{notificationScrollerId} notification-mark-all-as-read"
+                      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}" oncomplete="Portal.updateLayoutContent()"
                       actionListener="#{notificationBean.readAll()}" icon="si si-check-double-1">
                     </p:commandButton>

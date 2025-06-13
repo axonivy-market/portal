@@ -154,10 +154,12 @@
       #{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/ConfirmForDelete')}
       <f:facet name="footer">
         <p:commandButton id="document-deletion-yes"
+          ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Yes')}"
           value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Yes')}" process="@this"
           update="document-table document-messages #{cc.attrs.updatedComponentAfterDeleted}"
           actionListener="#{logic.delete}" oncomplete="PF('document-delete-dialog').hide();" />
         <p:commandButton id="document-deletion-no" styleClass="portal-cancel-button"
+          ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/No')}"
           value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/No')}" type="button"
           onclick="PF('document-delete-dialog').hide()" />
       </f:facet>

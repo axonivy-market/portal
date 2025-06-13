@@ -84,6 +84,7 @@
       <div class="text-right ui-g-12">
         <p:commandButton process="@form" id="save-absence" disabled="#{data.validationError}"
           styleClass="w-full"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           oncomplete="if (args &amp;&amp; !args.validationFailed)PF('absence-dialog').hide();"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.saveAbsence}"
           update="@(.absence-table) absence-messages @(.substitute-table) @(.substitution-table)" />
