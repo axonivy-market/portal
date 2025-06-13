@@ -1668,6 +1668,7 @@ Labels:
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
   Collapse: Collapse
+  Comma: ', '
   Configuration: Configuration
   CreateNewDashboard: Create new dashboard
   Description: Description

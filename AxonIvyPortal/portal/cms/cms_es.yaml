@@ -227,8 +227,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       behaviourWhenClickingOnLineInCaseList: Alternar entre acceder a los detalles del caso o los detalles del negocio al hacer clic en un caso en el widget de casos del panel de control, en la búsqueda global, en los casos relacionados y en el widget de procesos en modo combinado.
       behaviourWhenClickingOnLineInTaskList: Para cambiar los comportamientos (ejecutar la tarea o acceder a los detalles de la tarea) al hacer clic en una línea de la lista de tareas, el widget de tareas del tablero y las tareas relacionadas en la página de detalles del caso.
       chatMaxConnection: 'El número establecido controla la cantidad de pestañas permitidas con el chat activo. Si se abren más pestañas, el chat se desactivará en las pestañas inactivas. Valores permitidos entre 1-5 '
-      chatResponseTimeout: Tiempo de respuesta del chat en segundos, el valor por defecto es 0 y significa que no hay tiempo de espera. Si los mensajes de chat pasan por el proxy inverso Nginx, el tiempo de espera de la respuesta del chat debe ser menor que el tiempo de espera de Nginx, por ejemplo, menos
-        de 60 segundos.
+      chatResponseTimeout: Tiempo de respuesta del chat en segundos, el valor por defecto es 0 y significa que no hay tiempo de espera. Si los mensajes de chat pasan por el proxy inverso Nginx, el tiempo de espera de la respuesta del chat debe ser menor que el tiempo de espera de Nginx, por ejemplo, menos de 60 segundos.
       dateFilterWithTime: Cambiar a "True" para activar filtros de fecha con tiempo. Esta configuración afectará la lista de tareas, de casos y estadísticas.
       deepLAuthKey: DeepL Clave de autenticación (debe terminar en :fx)
       defaultHomepage: Para establecer la página de inicio estándar a la que se redirigirá al hacer clic en el icono de inicio o en el logotipo. Esta configuración también se aplica a la página final después de terminar una tarea.
@@ -241,8 +240,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       delegationAppendOption: Esta configuración determina qué información adicional se incluye al formatear los nombres de los roles.
       disableCaseCount: Cambiar a "true" para desactivar la función contar casos en la lista de casos
       disableTaskCount: Cambiar a "true" para desactivar la función contar tareas en la lista de tareas
-      displayAllUsersOfTaskActivator: Esta configuración se utiliza para la componente SecurityMemberDisplayName. Si el SecurityMember es un rol, cambie esta configuración a "true" para ver todos los usuarios de este rol. Si se configura "true", se muestra la información del icono junto al nombre del
-        rol.
+      displayAllUsersOfTaskActivator: Esta configuración se utiliza para la componente SecurityMemberDisplayName. Si el SecurityMember es un rol, cambie esta configuración a "true" para ver todos los usuarios de este rol. Si se configura "true", se muestra la información del icono junto al nombre del rol.
       displayMessageAfterFinishOrLeaveTask: Se mostrará un mensaje después de finalizar una tarea
       documentUploadSizeLimit: Establece el límite de tamaño para la carga de documentos en megabytes (MB). El valor predeterminado es 20 MB.
       embedInFrame: Cambiar a "true" para abrir un proceso o tarea en modo iFrame
@@ -683,6 +681,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       noUser: No hay usuarios
       tooltipHelper: Click para ver todos los usuarios que tienen este rol de forma directa o indirecta
       userOfRoleTitle: 'Usuarios del rol {0} '
+      roleMemberItemFormat: <li class="tooltip-body-item">{0}</li>
+      roleMembersTooltipFormat: "<p class=\"tooltip-header\">{0}</p>\n<ul style=\"margin: auto; {1}\">{2}</ul>"
+      roleMemberLineFormat: <p class="tooltip-body-item">{0}</p>
     passwordValidation:
       criteria: Criterios
       enablePasswordValidation: Activar la validación de contraseñas
@@ -801,7 +802,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       RestoreDefaultDashboardTemplateTooltip: No podemos encontrar la plantilla de su panel de control, por lo que no podemos restablecer la configuración estándar. Por favor, consulte con su administrador para obtener más detalles.
       SelectTheTemplate: Seleccione la plantilla
       SelectYourTemplate: Seleccione su plantilla
-      WelcomeConfigurationDescription: ''
+      WelcomeConfigurationDescription: 'Puede configurar su widget en esta área de configuración. Defina el texto de bienvenida y la imagen que se utilizarán.'
       WelcomeWidget:
         AdvancedSettings: Configuración avanzada
         ChooseAFit: Elija un ajuste
@@ -1310,10 +1311,8 @@ ch.ivy.addon.portalkit.ui.jsf:
   taskWarning:
     createdTaskLeave: '<div>Va a salir de esta página. Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
     createdTaskLogout: '<div>Va a salir de esta página.<br/> Por favor selecione una de las siguientes opciones:</div><UL><LI> Cerrar sesión: No guardará sus cambios y se cerrará la sesión.<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
-    resetParkTaskBeforeLeave: '<div>Va a salir de esta página.<br/>Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Reservar: No guardará sus cambios y esta tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando
-      en esta tarea.</UL>'
-    resetParkTaskBeforeLogout: '<div>Va a salir de esta página.</br> Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: no guardará sus cambios y volverá a la página anterior.<LI>Reservar: No guardará sus cambios, volverá a la página anterior pero la tarea quedara reservada para usted.<LI>Cancelar:
-      Continue trabajando en esta tarea.</UL>'
+    resetParkTaskBeforeLeave: '<div>Va a salir de esta página.<br/>Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: No guardará sus cambios y navegará a la página seleccionada<LI>Reservar: No guardará sus cambios y esta tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
+    resetParkTaskBeforeLogout: '<div>Va a salir de esta página.</br> Por favor selecione una de las siguientes opciones:</div><UL><LI>Salir: no guardará sus cambios y volverá a la página anterior.<LI>Reservar: No guardará sus cambios, volverá a la página anterior pero la tarea quedara reservada para usted.<LI>Cancelar: Continue trabajando en esta tarea.</UL>'
     taskNotFound: La tarea no existe o no los tiene derechos suficientes para ver esta tarea.
   userProfile:
     myProfileTitle: Mi perfil
@@ -1419,6 +1418,15 @@ Dialogs:
             CopyLink: Copiar enlace
             Link: Enlace
             LinkCopied: ¡Enlace copiado
+          ToolList:
+            NoAvailableTools: No hay herramientas disponibles
+            Attributes: Atributos
+            Collection: Colección
+          ChatDashboard:
+            AddTool: Añada herramientas
+            WelcomeHeaderText: Bienvenido al portal Axon Ivy
+            WelcomeText: Estamos encantados de contar con usted. El Portal Axon Ivy es su puerta de entrada a una experiencia fluida y eficaz. Tanto si es un nuevo usuario que explora las funciones como si es un visitante recurrente, estamos aquí para ayudarle en cada paso del camino.
+            Tools: Herramientas
         dashboard:
           component:
             AccessibilityShortcuts:
@@ -1464,9 +1472,7 @@ Dialogs:
                         <span class="shortcut-key">Alt + 4</span>Enfocar en la pestaña de Casos
                     </div>
                 </div>
-              title: 'Atajos de accesibilidad. Alt + 1: Enfocar en la pestaña del Panel de Control. Alt + 2: Enfocar en la pestaña de Procesos. Alt + 3: Enfocar en la pestaña de Tareas. Alt + 4: Enfocar en la pestaña de Casos. Alt + 5: Enfocar en la búsqueda. Alt + 6: Enfocar en la pestaña del Panel de
-                Control. Alt + 7: Alterna la visibilidad del menú principal. Alt + A: Enfocar en el primer proceso. Alt + W: Enfocar en la primera tarea. Alt + Q: Enfocar en el primer caso. Tab: Tabbing secuencial a través de elementos. Esc: Cerrar widgets expandidos/Cerrar menús contextuales. Enter:
-                Confirmar selección'
+              title: 'Atajos de accesibilidad. Alt + 1: Enfocar en la pestaña del Panel de Control. Alt + 2: Enfocar en la pestaña de Procesos. Alt + 3: Enfocar en la pestaña de Tareas. Alt + 4: Enfocar en la pestaña de Casos. Alt + 5: Enfocar en la búsqueda. Alt + 6: Enfocar en la pestaña del Panel de Control. Alt + 7: Alterna la visibilidad del menú principal. Alt + A: Enfocar en el primer proceso. Alt + W: Enfocar en la primera tarea. Alt + Q: Enfocar en el primer caso. Tab: Tabbing secuencial a través de elementos. Esc: Cerrar widgets expandidos/Cerrar menús contextuales. Enter: Confirmar selección'
             CaseWidgetConfiguration:
               AddFilter: Añadir filtro
             CloneWidgetDialog:
@@ -1561,6 +1567,9 @@ Dialogs:
       invalidFileMessage: Tipo de archivo no permitido
       invalidSizeMessage: ¡El archivo es muy grande!
       maximumFileUploadElement: Ya existe un elemento de subir documentos
+  general:
+    MaxLabelLenght: '35'
+    maxOptionsLength: '20'
 Enums:
   com:
     axonivy:
@@ -1622,31 +1631,40 @@ Enums:
 Labels:
   AI:
     Error:
-      CannotFindUser: ''
-      CannotStartTask: ''
-      InvalidTaskPriority: ''
-      InvalidTaskState: ''
-      NoMatchingCase: ''
-      NoMatchingProcesses: ''
-      NoMatchingTask: ''
-    FindCaseAIResult: ''
-    FindProcessAIResult: ''
-    FindTaskAIResult: ''
-    FindUserAIResult: ''
-    FoundCaseHeader: ''
-    FoundProcessesHeader: ''
-    FoundTaskHeader: ''
-    FoundUsersHeader: ''
-    ProcessInfoHeader: ''
-    ProcessInfoHeaderWithParameters: ''
-    ProcessParameterInfo: ''
-    ProcessParameterInfoWithValue: ''
-    TaskDetailsResult: ''
+      CannotFindUser: 'Lo sentimos, no se ha encontrado ningún usuario que coincida con su solicitud. Por favor, inténtelo de nuevo.'
+      CannotStartTask: 'No se puede iniciar la tarea tiene ID {0}'
+      InvalidTaskPriority: 'Prioridad de tarea no válida. Las prioridades de tarea válidas son: baja, normal, alta o excepción.'
+      InvalidTaskState: 'Estado de tarea no válido. Los estados de tarea válidos son: abierta, realizada, en curso o error.'
+      NoMatchingCase: 'No se encuentra ninguna tarea que se ajuste a su solicitud'
+      NoMatchingProcesses: 'No utilice procesos de concordancia.'
+      NoMatchingTask: 'No se encuentra ninguna tarea que se ajuste a su solicitud'
+    FindCaseAIResult: 'ID: {0}, Nombre: {1}, Descripción: {2}, Estado: {3}'
+    FindProcessAIResult: '   - ID: {0}, Nombre: {1}, Descripción: {2}'
+    FindTaskAIResult: 'ID: {0}, Nombre: {1}, Descripción: {2}, Estado: {3}, Prioridad {4}'
+    FindUserAIResult: 'Nombre de usuario: {0}, Nombre: {1}, Correo electrónico: {2}, Estado: {3}'
+    FoundCaseHeader: 'Casos encontrados:'
+    FoundProcessesHeader: 'Procesos encontrados:'
+    FoundTaskHeader: 'Tareas encontradas:'
+    FoundUsersHeader: 'Usuarios encontrados:'
+    ProcessInfoHeader: '**Nombre del proceso:** {0}
+
+      **Descripción del proceso:** {1}'
+    ProcessInfoHeaderWithParameters: '- **Nombre del proceso:** {0}
+
+      - **Descripción del proceso:** {1}
+
+      - **Número de parámetros:** {2}'
+    ProcessParameterInfo: "\t+ {0} ({1})"
+    ProcessParameterInfoWithValue: "- Nombre: {0}\n  Descripción: {1}\n  Valor:"
+    TaskDetailsResult: 'Detalles de la tarea **{0} (#{1})**:
+
+      {2}'
   AllTasks: Todas las tareas
   AndMore: 'y {0} más...  '
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
   Collapse: Contraer
+  Comma: ', '
   Configuration: Configuración
   CreateNewDashboard: Crear un nuevo cuadro de mandos
   Description: Descripción
@@ -1735,6 +1753,16 @@ Labels:
     ThemeMode:
       DARK: Oscuro
       LIGHT: Luz
+    ChatbotCandidateQuestion:
+      INTERACT:
+        question: Enuméreme todas las tareas que deben completarse en la semana en curso
+        header: Interactúe
+      EXPLORE:
+        question: ¿Cuáles son las principales características del portal Axon Ivy?
+        header: Explore
+      TUTORIAL:
+        header: Tutorial
+        question: ¿Dónde puedo encontrar la documentación o los tutoriales del portal Axon Ivy?
   Expand: Expandir
   Filters: Filtros
   General: General
@@ -1810,3 +1838,4 @@ Texts:
 
     </P>
 
+...
