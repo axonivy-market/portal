@@ -1638,3 +1638,15 @@ body.dark .focused {
     border: 0;
 }
 
+.breadcrumb-prev-item .ui-menuitem-text{
+  color: var(--primary-color) !important;
+}
+
+.breadcrumb-current-item {
+  pointer-events: none;
+  cursor: default;
+}
+
+.breadcrumb-current-item .js-count.has-count {
+  color: #69707A
+}
