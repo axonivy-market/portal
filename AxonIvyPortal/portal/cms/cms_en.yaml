@@ -420,6 +420,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     All: All
     And: and
+    AutoTranslation: Auto translation
     BusinessCaseInformation: Business Case Information
     Clone: Clone
     CollapseAll: Collapse all
@@ -1663,10 +1664,12 @@ Labels:
     TaskDetailsResult: |-
       Details of task **{0} (#{1})**:
       {2}
+  AIAssistant: AI Assistant
   AllTasks: All Tasks
   AndMore: and {0} more...
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  Chat: Chat
   Collapse: Collapse
   Comma: ', '
   Configuration: Configuration

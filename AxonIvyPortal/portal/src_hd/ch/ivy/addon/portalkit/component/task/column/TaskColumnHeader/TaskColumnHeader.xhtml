@@ -20,7 +20,8 @@
   <p:commandLink id="#{cc.attrs.componentId}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} #{isSelected ? 'is-selected' : ''}"
     update="#{cc.attrs.componentToBeUpdated} #{p:resolveFirstComponentWithId('task-view-container', view).clientId} #{p:resolveFirstComponentWithId('task-widget-sort-menu', view).clientId}" 
     oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" 
-    rendered="#{cc.attrs.sortable and data.dataModel.isSelectedColumn(sortField)}" >
+    rendered="#{cc.attrs.sortable and data.dataModel.isSelectedColumn(sortField)}"
+    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/sort')} #{cc.attrs.value}">
     <f:actionListener
       binding="#{logic.sort(sortField, isSelected and !data.dataModel.sortDescending)}" />
     <f:actionListener binding="#{taskWidgetBean.setExpandedTaskId(0, false)}" />

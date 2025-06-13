@@ -22,7 +22,7 @@
 	<c:set var="value" value="#{cc.attrs.value}" />
 
 	<f:event listener="#{data.setDataModel(dataModel)}" type="preRenderComponent" />
-	<p:commandLink id="#{id}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} #{dataModel.sortField eq sortedField ? 'is-selected' : ''}" 
+	<p:commandLink id="#{id}" ariaLabel="#{value}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} #{dataModel.sortField eq sortedField ? 'is-selected' : ''}"
 		update="#{componentToBeUpdated} #{p:resolveFirstComponentWithId('widget-column-header', view).clientId} #{p:resolveFirstComponentWithId('case-list', view).clientId} #{p:resolveFirstComponentWithId('case-list-scroller', view).clientId} @(.hidden-case-count)"
 		rendered="#{sortable and dataModel.isSelectedColumn(sortedField)}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();">
 		<f:actionListener binding="#{logic.sort(sortedField, dataModel.sortField eq sortedField and !dataModel.isSortDescending())}" />

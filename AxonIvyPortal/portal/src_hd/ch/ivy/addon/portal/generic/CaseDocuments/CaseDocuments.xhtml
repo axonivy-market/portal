@@ -105,7 +105,8 @@
             actionListener="#{logic.deleteDocument}" styleClass="w-full portal-remove-button"
             oncomplete="PF('document-deletion-dialog').hide();" />
           <p:commandLink id="document-deletion-cancellation-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-             process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="pt-3 flex justify-content-center"/>
+                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                         process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="pt-3 flex justify-content-center"/>
         </ui:define>
       </ui:decorate>
     </ui:define>

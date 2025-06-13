@@ -162,6 +162,7 @@
                           <c:set var="deputiesDisplayNames"
                             value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(deputyRole.deputies)}" />
                           <p:commandLink id="selected-deputies-link" immediate="true"
+                            ariaLabel="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
                             styleClass="task-responsible-link"
                             value="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
                             actionListener="#{logic.initSelectedDeputies(deputyRole)}"
@@ -232,7 +233,7 @@
 
               <!-- FOOTER BUTTONS -->
               <div class="user-profile-footer ui-g-12 relative">
-                <p:commandLink id="cancel-subsitute"
+                <p:commandLink id="cancel-subsitute" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   rendered="#{absenceManagementBean.substitutionCapable}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   actionListener="#{logic.backToHome()}"
@@ -267,7 +268,7 @@
               actionListener="#{logic.deleteAbsence}" styleClass="w-full portal-remove-button"
               oncomplete="PF('deleteAbsenceConfirmation').hide();"
               update="@(.absence-table) @(.substitute-table) @(.substitution-table)" />
-            <p:commandLink id="cancel-confirmation-action"
+            <p:commandLink id="cancel-confirmation-action" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               onclick="PF('deleteAbsenceConfirmation').hide()"
               styleClass="pt-3 flex justify-content-center" />
