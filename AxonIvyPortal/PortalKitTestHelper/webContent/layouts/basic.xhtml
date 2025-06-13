@@ -56,7 +56,7 @@
 		<pe:layoutPane position="center">
 			<c:choose>
 				<c:when
-					test="#{ivy.wf.securityContext.currentSession.sessionUserUnknown}">
+					test="#{ivy.session.sessionUserUnknown}">
 
 					<h:form id="main-form">
 						<h:outputText value="Please login to enable full functionalities"></h:outputText>
