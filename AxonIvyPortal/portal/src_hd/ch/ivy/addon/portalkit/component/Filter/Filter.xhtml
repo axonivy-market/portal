@@ -30,7 +30,9 @@
       </p:inputText>
       <p:inputText id="non-ajax-keyword-filter" styleClass="filter-widget-input #{cc.attrs.styleClass}" rendered="#{not cc.attrs.ajax}" onkeyup="#{cc.attrs.listener}" placeholder="#{cc.attrs.placeholder}" />
       <h:panelGroup styleClass="MarLeft10 mobile-filter-icon" rendered="#{cc.attrs.isFilterToggleRenderedOnMobile}">
-        <p:commandButton id="mobile-filter-icon" styleClass="mobile-filter-icon rounded-button ui-button-outlined" icon="si si-filter-1" onclick="#{cc.attrs.onClickIconFilter}" global="false" type="button" />
+        <p:commandButton id="mobile-filter-icon" styleClass="mobile-filter-icon rounded-button ui-button-outlined"
+                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
+                         icon="si si-filter-1" onclick="#{cc.attrs.onClickIconFilter}" global="false" type="button" />
       </h:panelGroup>
     </div>
   </cc:implementation>

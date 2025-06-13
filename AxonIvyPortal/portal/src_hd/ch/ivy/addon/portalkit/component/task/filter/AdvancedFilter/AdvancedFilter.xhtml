@@ -45,6 +45,7 @@
       <h:form id="filter-open-form">
         <h:panelGroup id="advanced-filter-item-container" styleClass="advanced-filter #{cc.attrs.containerStyleClass}">
           <p:commandButton id="advanced-filter-command" type="button"
+            ariaLabel="#{cc.attrs.taskFilter.label()}: #{cc.attrs.taskFilter.value()}"
             value="#{cc.attrs.taskFilter.label()}: #{cc.attrs.taskFilter.value()}"
             styleClass="advanced-filter-command #{cc.attrs.buttonStyleClass} #{facesContext.validationFailed ? 'error-filter' : ''} #{cc.attrs.buttonStyleClass}" />
           <p:commandLink id="advanced-filter-remove-command"
@@ -83,6 +84,7 @@
               oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? taskFilter.resetValues() : ''};" />
             <p:spacer width="15" />
             <p:commandButton id="update-command"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
               icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
               actionListener="#{taskFilter.validate()}"

@@ -71,11 +71,13 @@
           <p:commandButton id="empty-process-edit-widget" styleClass="rounded-button ui-button-outlined u-mar-right-5" global="false" icon="si si-pencil"
             actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}" process="@this"
             partialSubmit="true" update="new-widget-configuration-dialog"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
             oncomplete="PF('new-widget-configuration-dialog').show()" />
           <p:tooltip for="empty-process-edit-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
             trackMouse="true" hideEvent="mouseleave click" />
           <p:commandButton id="empty-process-delete-widget" styleClass="rounded-button ui-button-outlined ui-button-danger" global="false" icon="si si-bin-1"
             actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}" process="@this" partialSubmit="true"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
             update="remove-widget-dialog" oncomplete="PF('remove-widget-dialog').show()" />
           <p:tooltip for="empty-process-delete-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
             trackMouse="true" hideEvent="mouseleave click" />

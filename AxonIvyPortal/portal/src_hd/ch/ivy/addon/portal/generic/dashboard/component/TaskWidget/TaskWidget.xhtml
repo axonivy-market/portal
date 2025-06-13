@@ -159,6 +159,7 @@
         <p:commandLink onclick="PF('reset-task-confirmation-dialog').hide()"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
         <p:commandButton actionListener="#{dashboardBean.resetAndOpenTask}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}"
           onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>

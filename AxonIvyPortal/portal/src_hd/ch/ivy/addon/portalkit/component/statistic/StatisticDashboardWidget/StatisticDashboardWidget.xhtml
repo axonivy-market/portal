@@ -175,6 +175,7 @@
       <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{data.selectedStatisticChart}" />
       <div class="u-text-align-right ui-g-12 u-no-padding-bottom">
         <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
           icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('chart-details-dialog').hide();">
         </p:commandButton>
       </div>
@@ -194,6 +195,7 @@
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
        onclick="PF('delete-confirmation-dialog').hide();" styleClass="u-mar-right-15"/>
       <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" actionListener="#{logic.deleteChart()}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
         oncomplete="PF('delete-confirmation-dialog').hide();" update="@([id$='statistic-container']) @([id$='statistic-widget-empty-state']) " />
     </ui:define>

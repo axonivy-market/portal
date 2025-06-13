@@ -25,10 +25,12 @@
           process="@this" partialSubmit="true" immediate="true" global="false"/>
 
         <p:commandButton actionListener="#{cc.attrs.listenerOnBackAction}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
           update="#{cc.attrs.componentToUpdateOnBackAction}" process="@this" styleClass="ui-button-flat u-mar-right-15"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="si si-arrow-left-1" />
 
         <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
           actionListener="#{dashboardReorderBean.save()}" update="errors-message"
           oncomplete="backToPublicConfigurationCmd()" />

@@ -189,6 +189,7 @@
               styleClass="u-mar-right-15" actionListener="#{logic.backToHome}" />
 
             <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
               icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" actionListener="#{logic.save}"
               update="errors-message" />
           </div>

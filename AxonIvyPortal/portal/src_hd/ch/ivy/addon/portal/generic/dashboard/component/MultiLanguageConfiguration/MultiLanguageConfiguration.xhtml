@@ -50,6 +50,7 @@
         <p:spacer width="15px" rendered="#{!titles.isEmpty()}" />
         <p:commandButton
           id="multi-language-ok-button"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           update="#{cc.attrs.componentToUpdateOnCreate},#{cc.attrs.componentToUpdateOnModify}" process="@form"
           oncomplete="PF('multiple-languages-dialog').hide();"

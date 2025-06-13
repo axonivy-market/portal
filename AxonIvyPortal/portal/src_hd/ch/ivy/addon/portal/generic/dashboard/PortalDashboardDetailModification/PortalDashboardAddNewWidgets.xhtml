@@ -27,6 +27,7 @@
           <p:commandButton id="add-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
             actionListener="#{dashboardDetailModificationBean.create(sample)}" update="new-widget-configuration-dialog widget-configuration-form"
             oncomplete="PF('new-widget-configuration-dialog').show(); PF('new-configuration-widget-dialog').hide();"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
             icon="si si-add" onstart="getPortalGridsCurrentRow();"/>
         </p:panelGrid>
       </div>
@@ -112,6 +113,7 @@
     </p:commandLink>
 
     <p:commandButton id="widget-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
       actionListener="#{dashboardDetailModificationBean.saveWidget()}" icon="si si-floppy-disk"
       oncomplete="if (args &amp;&amp; !args.validationFailed){PF('new-widget-configuration-dialog').hide();loadGridAfterAddedNewWidget();}"
       process="#{dashboardDetailModificationBean.componentToProcessOnSave}"

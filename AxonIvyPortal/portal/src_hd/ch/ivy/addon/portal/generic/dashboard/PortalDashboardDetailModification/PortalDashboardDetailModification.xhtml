@@ -25,6 +25,7 @@
 
     <ui:define name="headerAction">
       <p:commandButton id="back-to-configuration" styleClass="dashboard__switch-mode u-mar-right-5 ui-button-flat"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
         actionListener="#{dashboardDetailModificationBean.navigatetoDashboardConfigurationPage}"
         update="grid-stack @this" process="@this"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
@@ -33,6 +34,7 @@
       <c:set var="showRestoreButton" value="#{dashboardDetailModificationBean.foundTemplate.isPresent()}"/>
       <h:panelGroup id="restore-button-group" styleClass="restore-button-group u-mar-right-15">
         <p:commandButton id="restore-button" styleClass="dashboard__restore-button"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
           type="button" icon="si si-button-refresh-arrows"
           onclick="PF('restore-confirm-dialog').show()"
@@ -46,6 +48,7 @@
       </h:panelGroup>
 
       <p:commandButton id="add-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
         icon="si si-add"
         actionListener="#{dashboardDetailModificationBean.initSampleWidgets()}"
         update="new-widget-dialog"
@@ -82,6 +85,7 @@
           <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('restore-confirm-dialog').hide();"
             styleClass="u-mar-right-15 cancel-reset-dashboard-link" />
           <p:commandButton id="reset-dashboard-button" widgetVar="reset-dashboard-button"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
             actionListener="#{dashboardDetailModificationBean.restore()}"
             update="grid-stack dashboard-title-container dashboard-header-action"
@@ -103,6 +107,7 @@
           <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('remove-widget-dialog').hide();"
             styleClass="u-mar-right-15" />
           <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
             actionListener="#{dashboardDetailModificationBean.removeWidget()}"
             icon="#{visibilityBean.generateButtonIcon('si si-remove-circle')}"
             oncomplete="PF('remove-widget-dialog').hide(); updateDashboardWidget(); return false;"/>

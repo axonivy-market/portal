@@ -6,6 +6,7 @@
 <!-- Action -->
 <h:panelGroup id="process-action" rendered="#{!isReadOnlyMode}" styleClass="process-grid-item__action--combined">
   <p:commandButton id="edit-widget" styleClass="rounded-button ui-button-outlined u-mar-right-5" global="false" icon="si si-pencil"
+    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
     actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
     process="@this" partialSubmit="true"
     update="new-widget-configuration-dialog"
@@ -14,6 +15,7 @@
     hideEvent="mouseleave click" />
 
   <p:commandButton id="delete-widget" styleClass="rounded-button ui-button-outlined ui-button-danger" global="false" icon="si si-bin-1"
+    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
     actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
     process="@this" partialSubmit="true"
     update="remove-widget-dialog" oncomplete="PF('remove-widget-dialog').show()" />
@@ -58,6 +60,7 @@
         <!-- Start process -->
         <div class="ui-g-12 MarTop10 u-no-padding-left u-no-padding-right" id="start-button-container">
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" id="start-button"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
             actionListener="#{dashboardProcessBean.startProcess(widget.process)}" icon="si si-arrow-right-1"
             disabled="#{!isReadOnlyMode or isInConfiguration}" process="process-item" partialSubmit="true" />
         </div>

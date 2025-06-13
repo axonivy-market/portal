@@ -19,6 +19,7 @@
     <div class="ui-g-12">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/filter')}" styleClass="chart-filter-header-text"/>
       <p:commandButton id="apply-filter-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}"
         icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
         styleClass="apply-filters-btn" process="statistic-filter-accordion-panel" actionListener="#{cc.attrs.updateListener}"
         oncomplete="clearChartModels(); updateChartModels();" global="true"/>

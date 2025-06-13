@@ -37,7 +37,8 @@
           placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/CustomWidgetTitlePlaceholder')}" />
         <!-- Add language button -->
         <p:commandButton styleClass="app-setting-button"
-          icon="si si-chat-translate" id="add-language-button">
+                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
+                         icon="si si-chat-translate" id="add-language-button">
           <p:ajax event="click"
             listener="#{managedBean.updateWidgetNameByLocale()}"
             process="widget-title"
@@ -144,7 +145,7 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/customWidgetParamChangedMessage')}" />
           </div>
           <div class="ui-g-12">
-            <p:commandButton
+            <p:commandButton ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Update')}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Update')}">
               <p:ajax event="click"
                 listener="#{dashboardDetailModificationBean.reloadParamtersFromProcessForCustomWidget(widget)}"
