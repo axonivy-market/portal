@@ -737,5 +737,149 @@
       "connect" : [
         { "id" : "f51", "to" : "f11" }
       ]
+    }, {
+      "id" : "f93",
+      "type" : "CallSubStart",
+      "name" : "portalUploadDocument(ICase,UploadedFile,Boolean,Boolean,String)",
+      "config" : {
+        "signature" : "portalUploadDocument",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "uploadedFile", "type" : "org.primefaces.model.file.UploadedFile", "desc" : "" },
+            { "name" : "enableScriptCheckingForUploadedDocument", "type" : "Boolean", "desc" : "" },
+            { "name" : "enableVirusScannerForUploadedDocument", "type" : "Boolean", "desc" : "" },
+            { "name" : "allowedUploadFileTypes", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.allowedUploadFileTypes" : "param.allowedUploadFileTypes",
+            "out.businessCase" : "param.businessCase",
+            "out.enableScriptCheckingForUploadedDocument" : "param.enableScriptCheckingForUploadedDocument",
+            "out.enableVirusScannerForUploadedDocument" : "param.enableVirusScannerForUploadedDocument",
+            "out.uploadedFile" : "param.uploadedFile"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "uploadedDocument", "type" : "ch.ivyteam.ivy.workflow.document.IDocument", "desc" : "" },
+            { "name" : "message", "type" : "String", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.uploadedDocument" : "in.uploadedDocument",
+            "result.message" : "in.message",
+            "result.status" : "in.status"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 128, "y" : 248 },
+        "labelOffset" : { "x" : -52, "y" : -26 }
+      },
+      "connect" : [
+        { "id" : "f94", "to" : "f23", "via" : [ { "x" : 256, "y" : 248 } ] }
+      ]
+    }, {
+      "id" : "f95",
+      "type" : "CallSubStart",
+      "name" : "portalDeleteDocument(ICase,IvyDocument)",
+      "config" : {
+        "signature" : "portalDeleteDocument",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase",
+            "out.document" : "param.document"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "message", "type" : "String", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.message" : "in.message",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 136, "y" : 464 },
+        "labelOffset" : { "x" : -7, "y" : 46 }
+      },
+      "connect" : [
+        { "id" : "f96", "to" : "f32", "via" : [ { "x" : 264, "y" : 464 } ] }
+      ]
+    }, {
+      "id" : "f97",
+      "type" : "CallSubStart",
+      "name" : "portalDownloadDocument(ICase,IvyDocument)",
+      "config" : {
+        "signature" : "portalDownloadDocument",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase",
+            "out.document" : "param.document"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.streamedContent" : "in.streamedContent",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 136, "y" : 632 },
+        "labelOffset" : { "x" : 1, "y" : 41 }
+      },
+      "connect" : [
+        { "id" : "f98", "to" : "f34", "via" : [ { "x" : 264, "y" : 632 } ] }
+      ]
+    }, {
+      "id" : "f99",
+      "type" : "CallSubStart",
+      "name" : "portalGetDocumentList(ICase)",
+      "config" : {
+        "signature" : "portalGetDocumentList",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase", "desc" : "" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "documents", "type" : "java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>", "desc" : "" },
+            { "name" : "message", "type" : "String", "desc" : "" },
+            { "name" : "status", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.documents" : "in.documents",
+            "result.message" : "in.message",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 144, "y" : 784 },
+        "labelOffset" : { "x" : 6, "y" : 44 }
+      },
+      "connect" : [
+        { "id" : "f100", "to" : "f37", "via" : [ { "x" : 272, "y" : 784 } ] }
+      ]
     } ]
 }
