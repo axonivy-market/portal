@@ -1,0 +1,54 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "id" : "19777AAC617D1549",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.userexamples.TraningDashboardData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "portalGetTraningDashboard()",
+      "config" : {
+        "signature" : "portalGetTraningDashboard",
+        "result" : {
+          "params" : [
+            { "name" : "traningDashboard", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "result.traningDashboard" : "in.tranningDashboard"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Get Traning Dashboard",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.userexamples.utils.TraningDashboardUtils;",
+            "in.tranningDashboard = TraningDashboardUtils.traningDashboard;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1", "color" : "default" }
+      ]
+    } ]
+}

@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.io.IOException;
-
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -398,8 +397,8 @@ public class DashboardUtils {
     portalPrivateDashboardWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
     return dashboards;
   }
-
   public static List<Dashboard> collectDashboards() {
+    
     String sessionUserId = getSessionUserId();
     IvyCacheService cacheService = IvyCacheService.getInstance();
     PortalDashboardItemWrapper portalDashboardItemWrapper = null;

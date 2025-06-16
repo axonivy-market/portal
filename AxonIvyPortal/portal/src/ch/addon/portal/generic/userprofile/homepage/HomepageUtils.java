@@ -23,6 +23,7 @@ import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.util.TrainingDashboardUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class HomepageUtils {
@@ -94,8 +95,12 @@ public class HomepageUtils {
     }
     return originHomepage;
   }
-
   public static Homepage findHomepage() {
+    // Check if training dashboard should be shown for first-time users
+    if (shouldShowTrainingDashboard()) {
+      return createTrainingDashboardHomepage();
+    }
+    
     List<Homepage> homepages = loadHomepages();
     Boolean isPortalInTeams =
         (Boolean) SecurityServiceUtils.getSessionAttribute(SessionAttribute.PORTAL_IN_TEAMS.toString());
@@ -156,9 +161,36 @@ public class HomepageUtils {
     }
     return result;
   }
-
   public static boolean isShowDashboard(Homepage homepage, boolean isClickOnDashboard) {
     return homepage == null || homepage.getType() == HomepageType.DASHBOARD || isClickOnDashboard;
+  }
+
+  /**
+   * Check if training dashboard should be shown for the current user
+   * @return true if training dashboard should be displayed
+   */
+  private static boolean shouldShowTrainingDashboard() {
+    return TrainingDashboardUtils.shouldShowTrainingDashboard();
+  }
+  /**
+   * Create a homepage object for the training dashboard
+   * @return Homepage object configured for training dashboard
+   */
+  private static Homepage createTrainingDashboardHomepage() {
+    Homepage trainingHomepage = new Homepage();
+    trainingHomepage.setName("TRAINING_DASHBOARD");
+    trainingHomepage.setLabel(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/training/dashboard"));
+    // Use direct dialog URL instead of process start
+    trainingHomepage.setLink("/ch/ivy/addon/portal/generic/training/TrainingDashboard/TrainingDashboard.xhtml");
+    trainingHomepage.setType(HomepageType.PROCESS);
+    return trainingHomepage;
+  }
+  /**
+   * Build the URL for the training dashboard
+   * @return URL string for training dashboard
+   */
+  private static String buildTrainingDashboardUrl() {
+    return PortalNavigator.buildTrainingDashboardUrl();
   }
 
 }

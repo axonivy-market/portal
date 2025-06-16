@@ -52,11 +52,11 @@ public final class PortalNavigator extends BaseNavigator{
   public static final String DASHBOARD_ID = "dashboardId";
   private static final String UUID = "uuid";
   private static final String ID = "id";
-  private static final String PORTAL_DASHBOARD_PAGE = "Start Processes/PortalStart/DashboardPage.ivp";
-  private static final String PORTAL_DASHBOARD_CONFIGURATION_EDIT_PAGE = "Start Processes/PortalStart/PortalDashboardConfigurationEditPage.ivp";
+  private static final String PORTAL_DASHBOARD_PAGE = "Start Processes/PortalStart/DashboardPage.ivp";  private static final String PORTAL_DASHBOARD_CONFIGURATION_EDIT_PAGE = "Start Processes/PortalStart/PortalDashboardConfigurationEditPage.ivp";
   private static final String PORTAL_NOTIFICATION_FULLPAGE =  "Start Processes/PortalStart/NotificationFullPage.ivp";
   private static final String PORTAL_NOTIFICATION_FULLPAGE_START =  "/NotificationFullPage.ivp";
   private static final String PORTAL_CUSTOM_STATISTIC = "Start Processes/PortalStart/StatisticConfiguration.ivp";
+  private static final String PORTAL_TRAINING_DASHBOARD = "Start Processes/PortalStart/TrainingDashboard.ivp";
   
   private final static String DASHBOARD_PARAM = "isShowDashboard";
   
@@ -271,8 +271,22 @@ public final class PortalNavigator extends BaseNavigator{
     return Optional.ofNullable(process).map(IProcessStart::getLinkEmbedded)
         .map(WebLink::getRelative).orElse("");
   }
-  
-  public static String buildCustomStatisticUrl(Map<String, String> param) {
+    public static String buildCustomStatisticUrl(Map<String, String> param) {
     return buildUrlByKeyword(PORTAL_CUSTOM_STATISTIC, PORTAL_CUSTOM_STATISTIC, param);
+  }
+
+  /**
+   * Navigate to training dashboard for first-time users
+   */
+  public static void navigateToTrainingDashboard() {
+    navigateByKeyword("TrainingDashboard.ivp", PORTAL_TRAINING_DASHBOARD, new HashMap<>());
+  }
+
+  /**
+   * Build URL for training dashboard
+   * @return URL string for training dashboard
+   */
+  public static String buildTrainingDashboardUrl() {
+    return buildUrlByKeyword("TrainingDashboard.ivp", PORTAL_TRAINING_DASHBOARD, new HashMap<>());
   }
 }
