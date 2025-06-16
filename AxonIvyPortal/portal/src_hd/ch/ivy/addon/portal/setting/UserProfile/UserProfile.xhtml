@@ -87,7 +87,6 @@
                     <div id="format-language-selection-label" class="language-selection-label user-profile-setting-title mt-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/FormattingLanguage')}</div>
                     <div class="ui-fluid">
                       <p:autoComplete id="format-language-selection" scrollHeight="210" dropdown="true" size="35"
-                        alt="123123" label="asdasd"
                         completeMethod="#{logic.completeFormattingLanguage}" value="#{data.language.itemFormattingLanguage}" var="language"
                         itemValue="#{language}" itemLabel="#{language.label}" converter="pojoConverter" cache="true" maxResults="100"
                         moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/MoreItemsAvailable')}" dynamic="true"
@@ -126,7 +125,7 @@
                         <c:set var="subscription" value="#{channel.getSubscription(event)}" />
                         <div class="flex align-content-center gap-3">
                           <i class="flex align-items-center si table-icon si-#{subscription.icon} subscription-icon " title="#{subscription.title}" />
-                          <p:triStateCheckbox stateOneTitle="test" stateThreeTitle="test" stateTwoTitle="test" id="subscriptionCheckbox" value="#{subscription.stateAsString}" styleClass="flex align-items-center">
+                          <p:triStateCheckbox id="subscriptionCheckbox" value="#{subscription.stateAsString}" styleClass="flex align-items-center">
                             <p:ajax event="change" global="false"
                               update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
                               listener="#{channel.setSubscriptionIconAndTitle(event.event)}" />
