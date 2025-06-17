@@ -39,15 +39,6 @@ public class FilterFieldFactory {
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.CATEGORY.getField(), new CaseFilterFieldCategory());
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.STATE.getField(), new CaseFilterFieldState());
     STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.APPLICATION.getField(), new CaseFilterFieldApplication());
-    for (ICustomFieldMeta customField : ICustomFieldMeta.cases()) {
-      switch (customField.type()) {
-        case STRING -> CUSTOM_FILTER_FIELD.put(customField.name(), new CaseFilterFieldCustomString(customField));
-        case TEXT -> CUSTOM_FILTER_FIELD.put(customField.name(), new CaseFilterFieldCustomText(customField));
-        case TIMESTAMP -> CUSTOM_FILTER_FIELD.put(customField.name(), new CaseFilterFieldCustomTimestamp(customField));
-        case NUMBER -> CUSTOM_FILTER_FIELD.put(customField.name(), new CaseFilterFieldCustomNumber(customField));
-        default -> throw new IllegalArgumentException("Unexpected value: " + customField.type());
-      }
-    }
   }
 
   public static FilterField findBy(String field) {
@@ -59,7 +50,8 @@ public class FilterFieldFactory {
   }
 
   public static CustomFilterField findCustomFieldBy(String field) {
-    return CUSTOM_FILTER_FIELD.entrySet().stream().map(Entry<String,CustomFilterField>::getValue)
+    initCustomFields();
+    return CUSTOM_FILTER_FIELD.entrySet().stream().map(Entry<String, CustomFilterField>::getValue)
       .filter(customField -> customField.getName().contentEquals(field))
       .findFirst().orElse(null);
   }
@@ -70,6 +62,19 @@ public class FilterFieldFactory {
 
   public static List<FilterField> getCustomFilterableFields() {
     return new ArrayList<FilterField>(CUSTOM_FILTER_FIELD.values());
+  }
+
+  private static void initCustomFields() {
+    CUSTOM_FILTER_FIELD.clear();
+    for (ICustomFieldMeta customField : ICustomFieldMeta.cases()) {
+      switch (customField.type()) {
+      case STRING -> CUSTOM_FILTER_FIELD.put(customField.name(), new CaseFilterFieldCustomString(customField));
+      case TEXT -> CUSTOM_FILTER_FIELD.put(customField.name(), new CaseFilterFieldCustomText(customField));
+      case TIMESTAMP -> CUSTOM_FILTER_FIELD.put(customField.name(), new CaseFilterFieldCustomTimestamp(customField));
+      case NUMBER -> CUSTOM_FILTER_FIELD.put(customField.name(), new CaseFilterFieldCustomNumber(customField));
+      default -> throw new IllegalArgumentException("Unexpected value: " + customField.type());
+      }
+    }
   }
 
   public static FilterField getDefaultFilterField() {

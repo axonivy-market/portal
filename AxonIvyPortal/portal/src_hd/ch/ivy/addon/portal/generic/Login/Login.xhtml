@@ -37,7 +37,7 @@
 </h:head>
 
 <h:body styleClass="login-body">
-  <c:when test="#{ivy.wf.securityContext.currentSession.sessionUserUnknown and !isNotRequiredLogin}">
+  <c:when test="#{ivy.session.sessionUserUnknown and !isNotRequiredLogin}">
     <c:choose>
       <c:when test="#{loginBean.isLoginPageRendered()}">
         <ui:insert name="login">

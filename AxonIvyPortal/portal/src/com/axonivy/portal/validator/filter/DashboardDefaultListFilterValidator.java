@@ -14,7 +14,6 @@ import javax.faces.validator.ValidatorException;
 import org.apache.commons.collections4.CollectionUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
-import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
 
 import ch.ivyteam.ivy.environment.Ivy;
@@ -50,8 +49,8 @@ public class DashboardDefaultListFilterValidator implements Validator {
   }
 
   private String getMessagePrefix(String field, int index) {
-    String label = Optional.ofNullable(FilterFieldFactory.findBy(field)).map(FilterField::getLabel).orElse("");
-    return String.format(MESSAGE_PREFIX_PATTERN, label, index + 1);
+    return Optional.ofNullable(FilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")))
+        .map(c -> String.format(MESSAGE_PREFIX_PATTERN, c.getLabel(), index + 1)).orElse("");
   }
 
   public String getRequiredMessage(String field, int index) {
