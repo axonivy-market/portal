@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
@@ -19,7 +18,6 @@ import org.primefaces.event.UnselectEvent;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
-import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
@@ -43,7 +41,6 @@ public class AdminSettingBean implements Serializable {
   private boolean isShowRoleManagementTab;
   private boolean isTabChangeEventTriggered;
   private boolean isShowPasswordValidationTab;
-    @ManagedProperty("#{thirdPartyApplicationBean}")
   private ThirdPartyApplicationBean thirdPartyApplicationBean;
 
   public void initAdminTabViewConfig() {
@@ -78,7 +75,9 @@ public class AdminSettingBean implements Serializable {
       }
     }
     isTabChangeEventTriggered = true;
-  }  public void synchronizeAllApplicationNames() {
+  }
+
+  public void synchronizeAllApplicationNames() {
     getThirdPartyApplicationBean().synchronizeAllApplicationNames();
   }
 
@@ -218,8 +217,13 @@ public class AdminSettingBean implements Serializable {
     return getThirdPartyApplicationBean().isFocus(title);
   }
 
+  public void onApplicationReorderDelegate(List<Application> applications, Application selectedApp) {
+    getThirdPartyApplicationBean().onApplicationReorder(applications, selectedApp);
+  }
+
   private void initApplicationTab() {
-    invokeAdminSettingsComponentLogic("#{logic.initApplicationSettings}", new Object[] {});
+
+    getThirdPartyApplicationBean().loadApplications();
   }
 
   private void initAnnouncementTab() {
@@ -233,16 +237,19 @@ public class AdminSettingBean implements Serializable {
   public void onApplicationReorder(ReorderEvent reorderEvent) {
     int fromIndex = reorderEvent.getFromIndex();
     int toIndex = reorderEvent.getToIndex();
-    List<Application> applicationList = Attrs.currentContext().getAttribute("#{data.applicationList}", List.class);
+    
+    List<Application> applicationList = getThirdPartyApplicationBean().getApplicationList();
+    
+    if (applicationList != null && !applicationList.isEmpty()) {
+      Application selectedApp = applicationList.remove(fromIndex);
+      applicationList.add(toIndex, selectedApp);
 
-    Application selectedApp = applicationList.remove(fromIndex);
-    applicationList.add(toIndex, selectedApp);
+      for (int i = 0; i < applicationList.size(); i++) {
+        applicationList.get(i).setMenuOrdinal(i);
+      }
 
-    for (int i = 0; i < applicationList.size(); i++) {
-      applicationList.get(i).setMenuOrdinal(i);
+      getThirdPartyApplicationBean().onApplicationReorder(applicationList, selectedApp);
     }
-
-    invokeAdminSettingsComponentLogic("#{logic.onApplicationReorder}", new Object[] {applicationList, selectedApp});
   }
 
   private void invokeAdminSettingsComponentLogic(String methodName, Object[] param) {
@@ -288,6 +295,7 @@ public class AdminSettingBean implements Serializable {
   public void setShowPasswordValidationTab(boolean isShowPasswordValidationTab) {
     this.isShowPasswordValidationTab = isShowPasswordValidationTab;
   }
+
   public List<SecurityMemberDTO> completeApplicationPermissions(String query) {
     return getThirdPartyApplicationBean().completeApplicationPermissions(query);
   }
@@ -299,12 +307,6 @@ public class AdminSettingBean implements Serializable {
   public void onUnSelectPermissionForApplication(UnselectEvent<Object> event) {
     getThirdPartyApplicationBean().onUnSelectPermissionForApplication(event);
   }
-
-
-
-
-
-
 
 
 

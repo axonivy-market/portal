@@ -484,6 +484,7 @@ public class ThirdPartyApplicationBean implements Serializable {
       }
     }
   }
+
   public void applyTranslatedText(DisplayName displayName) {
     if (StringUtils.isNotBlank(translatedText)) {
       displayName.setValue(translatedText);
@@ -515,7 +516,33 @@ public class ThirdPartyApplicationBean implements Serializable {
     this.selectedApplicationPermissions.remove(selectedItem.getName());
   }
 
-  // Helper methods
+  public void onApplicationReorder(List<Application> reorderedApplications, Application selectedApp) {
+    if (reorderedApplications == null || reorderedApplications.isEmpty()) {
+      return;
+    }
+
+    try {
+      RegisteredApplicationService applicationService = RegisteredApplicationService.getInstance();
+
+      for (int i = 0; i < reorderedApplications.size(); i++) {
+        reorderedApplications.get(i).setMenuOrdinal(i);
+        applicationService.save(reorderedApplications.get(i));
+      }
+
+      // Update the local application list
+      this.applicationList = reorderedApplications;
+
+      FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO,
+          "Application order has been updated successfully.", null);
+      FacesContext.getCurrentInstance().addMessage(null, message);
+
+    } catch (Exception e) {
+      FacesMessage errorMessage = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
+          "Error updating application order: " + e.getMessage(), null);
+      FacesContext.getCurrentInstance().addMessage(null, errorMessage);
+    }
+  }
+
   public boolean isRequiredField(DisplayName displayName) {
     String currentLanguage = UserUtils.getUserLanguage();
     String displayLanguage = displayName.getLocale().getLanguage();
@@ -557,7 +584,6 @@ public class ThirdPartyApplicationBean implements Serializable {
     return this.supportedLanguages;
   }
 
-  // Getters and Setters
   public List<String> getSelectedApplicationPermissions() {
     return selectedApplicationPermissions;
   }
@@ -623,7 +649,6 @@ public class ThirdPartyApplicationBean implements Serializable {
             }
           }
         } catch (Exception e) {
-          // Handle exception silently
         }
       }
     }
