@@ -13,17 +13,16 @@ public class JsonThirdPartyApplicationConverterFactory extends AbstractJsonConve
 
   public static List<IJsonConverter> getConverters(AbstractJsonVersion version) {
     return selectConverters(CONVERTERS, version);
-  }
-  private static final List<IJsonConverter> LE120 =
-      List.of(new com.axonivy.portal.migration.thirdpartyapplication.converter.v120.ApplicationPermissionConverter()
+  }  private static final List<IJsonConverter> LE120 =
+      List.of(new com.axonivy.portal.migration.thirdpartyapplication.converter.v120.ThirdPartyApplicationConverter()
     );
 
-  private static final List<IJsonConverter> LE131 =
-      List.of(new com.axonivy.portal.migration.thirdpartyapplication.converter.v131.ThirdPartyApplicationConverter()
+  private static final List<IJsonConverter> LE132 =
+      List.of(new com.axonivy.portal.migration.thirdpartyapplication.converter.v132.ThirdPartyApplicationConverter()
     );
 
   static {
     CONVERTERS.addAll(LE120);
-    CONVERTERS.addAll(LE131);
+    CONVERTERS.addAll(LE132);
   }
 }

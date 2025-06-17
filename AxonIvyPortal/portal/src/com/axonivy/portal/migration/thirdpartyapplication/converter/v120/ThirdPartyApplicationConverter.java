@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-public class ApplicationPermissionConverter implements IJsonConverter {
+public class ThirdPartyApplicationConverter implements IJsonConverter {
 
   @Override
   public AbstractJsonVersion version() {
