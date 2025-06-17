@@ -107,10 +107,11 @@ public class GlobalGrowlTest extends BaseTest {
   public void testDisplayDefaultGrowlAfterCloseProcessViewer() {
     redirectToRelativeLink(createTestingTasksUrl);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForCaseWidgetLoaded();
     NewDashboardPage taskWidgetPage = newDashboardPage.openTaskList();
-    
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.waitForPageLoad();
+    taskWidget.clickOnButtonExpandTaskWidget();
     taskWidget.openTaskProcessViewer(0);
     WaitHelper.assertTrueWithWait(() -> newDashboardPage.countBrowserTab() > 1);
     taskWidget.switchLastBrowserTab();
