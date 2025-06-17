@@ -35,6 +35,8 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.TrainingDashboardService;
+import ch.ivy.addon.portalkit.util.TrainingDashboardUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -135,6 +137,13 @@ public class PortalMenuNavigator {
         continue;
       }
       subMenuItems.add(convertDashboardToSubMenuItem(dashboard, currentLanguage));
+
+    }
+    if (TrainingDashboardUtils.shouldShowTrainingDashboard()) {
+      subMenuItems
+          .add(convertDashboardToSubMenuItem(TrainingDashboardService.loadTrainingDashboard(), currentLanguage));
+      Ivy.log().error(TrainingDashboardService.loadTrainingDashboard().toString());
+      TrainingDashboardUtils.completeTraining();
     }
 
     subMenuItems.addAll(CustomSubMenuItemService.findAll());

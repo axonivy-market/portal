@@ -122,7 +122,9 @@ public class DashboardUtils {
   }
 
   private static IUser currentUser() {
-    return Ivy.session().getSessionUser();
+    IUser currentUser = Ivy.session().getSessionUser();
+    TrainingDashboardUtils.initializeFirstLoginFlag(currentUser);
+    return currentUser;
   }
 
   public static List<Dashboard> getAllVisibleDashboardsOfSessionUser() {
@@ -437,7 +439,6 @@ public class DashboardUtils {
     }
     List<Dashboard> dashboards = new ArrayList<>();
     portalDashboardItemWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
-    
     return getVisibleDashboards(dashboards);
   }
 
