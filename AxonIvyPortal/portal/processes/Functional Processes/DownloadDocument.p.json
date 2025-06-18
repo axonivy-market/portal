@@ -83,6 +83,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import org.apache.commons.lang3.StringUtils;",
             "import org.primefaces.model.StreamedContent;",
             "import java.util.HashMap;",
@@ -98,6 +99,7 @@
             "in.hasCustomProcess = result != null;",
             "if (in.hasCustomProcess) {",
             "  in.streamedContent = result.get(\"streamedContent\") as StreamedContent;",
+            "  in.status = UploadDocumentCheckStatus.toEnum(result.get(\"status\").toString());",
             "}"
           ]
         }
@@ -118,7 +120,7 @@
         { "id" : "f14", "to" : "f11", "via" : [ { "x" : 568, "y" : 224 }, { "x" : 912, "y" : 224 } ], "label" : {
             "name" : "Yes",
             "segment" : 0.5
-          }, "condition" : "in.hasCustomProcess" },
+          }, "condition" : "in.hasCustomProcess && in.status != com.axonivy.portal.components.enums.UploadDocumentCheckStatus.SKIP" },
         { "id" : "f13", "to" : "f3", "label" : {
             "name" : "No"
           } }

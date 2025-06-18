@@ -4,3 +4,4 @@ businessCase ch.ivyteam.ivy.workflow.ICase #field
 message String #field
 documents java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument> #field
 hasCustomProcess Boolean #field
+status com.axonivy.portal.components.enums.UploadDocumentCheckStatus #field
