@@ -119,6 +119,7 @@
                       var="aggregate" itemValue="#{aggregate.name}" itemLabel="#{aggregate.getCmsName()}" />
                     <p:ajax listener="#{statisticConfigurationBean.onSelectAggregationField()}"
                       update="chart-aggregation" />
+                    <p:ajax event="itemSelect" listener="#{statisticConfigurationBean.renderCategoryData}" update="chart-background-colors" global="false"/>
                   </p:selectOneMenu>
 
                   <!-- CUSTOM FIELD SELECTION -->
@@ -282,14 +283,13 @@
                   </h:panelGroup>
                 </h:panelGroup>
                 
-                <div class="field col-6">
+                <div class="field col-12">
                   <p:outputLabel for="condition-based-coloring-enabled"
-                    value="Enable Condition Based Coloring" />
+                    value="Condition based coloring enabled" />
                   <div>
                     <p:toggleSwitch id="condition-based-coloring-enabled" label="#{statisticConfigurationBean.conditionBasedColoringEnabled}"
-                      value="#{statisticConfigurationBean.conditionBasedColoringEnabled}" styleClass="col-1">
-                      <p:ajax update="chart-background-colors" process="@this"
-                        listener="#{statisticConfigurationBean.onToggleConditionBasedColoring}"/>
+                      value="#{statisticConfigurationBean.conditionBasedColoringEnabled}" styleClass="col-1" onchange="">
+                      <p:ajax update="chart-background-colors" process="@this" listener="#{statisticConfigurationBean.renderCategoryData}"/>
                     </p:toggleSwitch>
                   </div>
                 </div>
@@ -312,32 +312,30 @@
                    </h:panelGroup>
                  </h:panelGroup>
                  
-                 <h:panelGroup styleClass="field col-12" layout="block" id="condition-background-colors" rendered="#{statisticConfigurationBean.conditionBasedColoringEnabled}">
-                   <h4>Condition Base Coloring</h4>
-                   <div>
-                     <h:panelGroup id="condition-background-color" layout="block" styleClass="ui-g dashboard-widget-filter__main-panel">
-                       <div class="flex">
+                 <h:panelGroup styleClass="col-12 p-0 grid m-0" layout="block" id="condition-background-colors-container" rendered="#{statisticConfigurationBean.conditionBasedColoringEnabled}">
+                     <h:panelGroup id="user-threshold">
+                       <h:panelGroup class="flex align-items-center">
                          <p:outputLabel styleClass="mr-3" value="Default color"/>
-                         <p:colorPicker value="#{statisticConfigurationBean.statistic.defaultBackgroundColor}" />
-                       </div>
-                       <ui:repeat id="condition-background-color-list" var="condtion" value="#{statisticConfigurationBean.statistic.thresholds}"
+                         <p:colorPicker required="true" label="Default color" value="#{statisticConfigurationBean.defaultBackgroundColor}" size="10" clearButton="true" closeButton="true"/>
+                       </h:panelGroup>
+                       <ui:repeat id="condition-background-color-list" var="threshold" value="#{statisticConfigurationBean.thresholds}"
                          varStatus="status">
                          <ic:com.axonivy.portal.page.component.Threshold id="threshold-component"
-                           managedBean="#{statisticConfigurationBean}"
-                           filterIndex="#{status.index}" readOnly="true" />
+                           managedBean="#{statisticConfigurationBean}" threshold="#{threshold}" componentToUpdate="#{p:resolveFirstComponentWithId('user-threshold', view).clientId}"
+                           thresholdIndex="#{status.index}" readOnly="true" />
                        </ui:repeat>
                        <div class="ui-g-12 u-padding-0 MarTop10">
                          <p:commandButton id="add-threshold" icon="#{visibilityBean.generateButtonIcon('si si-add-circle')}"
-                           styleClass="u-mar-right-5 ui-button-flat" actionListener="#{statisticConfigurationBean.addNewThreshold()}"
-                           value="Add condition" immediate="true" partialSubmit="true" update="condition-background-colors">
+                           styleClass="u-mar-right-5 ui-button-flat" actionListener="#{statisticConfigurationBean.addNewThreshold()}" process="condition-background-colors-container"
+                           value="Add condition" immediate="true" partialSubmit="true" update="condition-background-colors-container">
                            <f:param name="skipValidator" value="true" />
                          </p:commandButton>
                         </div>
                      </h:panelGroup>
-                   </div>
                  </h:panelGroup>
                 </h:panelGroup>
               </h:panelGroup>
+
               <p:divider layout="vertical" styleClass="m-0" />
               <div class="col-6 grid pl-6 m-0 statistic-configuration__preview">
                 <div class="col-12 flex grid-nogutter p-0">

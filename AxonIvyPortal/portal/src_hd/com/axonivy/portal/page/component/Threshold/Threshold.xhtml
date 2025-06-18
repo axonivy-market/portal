@@ -5,36 +5,74 @@
   <cc:attribute name="threshold" type="com.axonivy.portal.bo.Threshold" />
   <cc:attribute name="managedBean" required="true" />
   <cc:attribute name="readOnly" default="false" />
+  <cc:attribute name="componentToUpdate" />
+  <cc:attribute name="onCompleteRemoveThreshold" />
+  <cc:attribute name="thresholdIndex" />
   <cc:attribute name="messageId" />
+  <cc:attribute name="componentToUpdateWhenRemoveThreshold" />
+  <cc:attribute name="categoryData" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
   <c:set var="threshold" value="#{cc.attrs.threshold}" />
+  <c:set var="thresholdIndex" value="#{cc.attrs.thresholdIndex}" />
+  <c:set var="categoryData" value="#{cc.attrs.categoryData}" />
 
   <div class="ui-g-12 pl-0">
-    <h:panelGroup id="threshold-panel" layout="block" styleClass="flex dashboard-widget-filter__filter-panel filter-selection-panel">
+    <h:panelGroup id="threshold-panel" layout="block" styleClass="flex">
          <h:panelGroup class=" mt-3 mr-3">
-             <p:outputLabel value="Condition" styleClass="mr-3"/>
-             <p:selectOneMenu id="operators" required="true" styleClass="w-max"
-               value="#{statisticConfigurationBean.statistic.statisticAggregation.field}">
-               <f:selectItems value="#{statisticConfigurationBean.getAllOperatorField()}"
-                 var="operator" itemValue="#{operator.name}" itemLabel="#{operator.getCmsName()}" />
+             <p:selectOneMenu id="category-data" required="true" styleClass="w-max"
+               value="#{threshold.categoryValue}">
+               <f:selectItems value="#{statisticConfigurationBean.categoryData}"
+                 var="value" itemValue="#{value}" itemLabel="#{statisticConfigurationBean.displayThresholdCategoryValue(value)}"/>
+                <p:ajax event="itemSelect" partialSubmit="true" global="false"/>
+                <f:param name="skipValidator" value="true" />
+                <f:attribute name="threshold" value="#{threshold}" />
+                <f:attribute name="thresholdIndex" value="#{thresholdIndex}" />
+             </p:selectOneMenu>
+         </h:panelGroup>
 
+         <h:panelGroup class=" mt-3 mr-3">
+             <p:selectOneMenu id="operators" required="true" styleClass="w-max"
+               value="#{threshold.operator}">
+               <f:selectItems value="#{statisticConfigurationBean.getAllOperatorField()}"
+                 var="operator" itemValue="#{operator}" itemLabel="#{operator.getName()}" />
+                <p:ajax event="change" partialSubmit="true" global="false"/>
+                <f:param name="skipValidator" value="true" />
+                <f:attribute name="threshold" value="#{threshold}" />
+                <f:attribute name="thresholdIndex" value="#{thresholdIndex}" />
              </p:selectOneMenu>
          </h:panelGroup>
          
          <h:panelGroup class=" mt-3 mr-3">
-             <p:outputLabel value="Value" styleClass="mr-3"/>
-             <p:inputText value="#{threshold.value}" />
+          <p:inputText value="#{threshold.value}" size="10">
+            <p:ajax event="change" partialSubmit="true" global="false"/>
+            <f:param name="skipValidator" value="true" />
+            <f:attribute name="threshold" value="#{threshold}" />
+            <f:attribute name="thresholdIndex" value="#{thresholdIndex}" />
+          </p:inputText>
          </h:panelGroup>
          
-         <h:panelGroup class=" mt-3 mr-3 w-8" layout="block">
-             <p:outputLabel value="Color" styleClass="mr-3 mt-3"/>
-            <div>
-                <p:colorPicker value="#{threshold.backgroundColor}" />
-            </div>
+         <h:panelGroup class=" mt-3 mr-3" layout="block">
+          <div>
+           <p:colorPicker value="#{threshold.backgroundColor}" required="true" clearButton="true" closeButton="true" size="10">
+            <f:param name="skipValidator" value="true" />
+            <p:ajax event="change" partialSubmit="true" global="false"/>
+            <f:attribute name="threshold" value="#{threshold}" />
+            <f:attribute name="thresholdIndex" value="#{thresholdIndex}" />
+           </p:colorPicker>
+          </div>
          </h:panelGroup>
+         <div class="remove-threshold-panel align-items-center flex">
+          <p:commandButton id="remove-threshold" icon="si si-subtract"
+            styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger dashboard-widget-filter__remove-filter"
+            actionListener="#{managedBean.removeThreshold(threshold)}"
+            update="#{cc.attrs.componentToUpdateWhenRemoveThreshold} #{cc.attrs.componentToUpdate}" global="false"
+            immediate="true" partialSubmit="true">
+            <f:param name="skipValidator" value="true" />
+          </p:commandButton>
+         </div>
     </h:panelGroup>
   </div>
 

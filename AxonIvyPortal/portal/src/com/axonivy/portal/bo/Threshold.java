@@ -12,6 +12,7 @@ public class Threshold implements Serializable {
   private OperatorField operator;
   private String value;
   private String backgroundColor;
+  private String categoryValue;
 
   public OperatorField getOperator() {
     return operator;
@@ -35,6 +36,14 @@ public class Threshold implements Serializable {
 
   public void setBackgroundColor(String backgroundColor) {
     this.backgroundColor = backgroundColor;
+  }
+
+  public String getCategoryValue() {
+    return categoryValue;
+  }
+
+  public void setCategoryValue(String categoryValue) {
+    this.categoryValue = categoryValue;
   }
 }
 

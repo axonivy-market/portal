@@ -6,9 +6,14 @@ import static com.axonivy.portal.enums.statistic.ChartType.NUMBER;
 import static com.axonivy.portal.enums.statistic.ChartType.PIE;
 
 import java.io.Serializable;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -19,13 +24,17 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
+import org.primefaces.shaded.json.JSONArray;
+import org.primefaces.shaded.json.JSONObject;
 
 import com.axonivy.portal.bo.BarChartConfig;
 import com.axonivy.portal.bo.ColumnChartConfig;
@@ -38,6 +47,7 @@ import com.axonivy.portal.bo.Threshold;
 import com.axonivy.portal.bo.jsonversion.StatisticJsonVersion;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
+import com.axonivy.portal.components.jsf.ManagedBeans;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.RoleUtils;
@@ -54,25 +64,31 @@ import com.axonivy.portal.service.multilanguage.StatisticDescriptionMultilanguag
 import com.axonivy.portal.service.multilanguage.StatisticNameMultilanguageService;
 import com.axonivy.portal.service.multilanguage.StatisticXTitleMultilanguageService;
 import com.axonivy.portal.service.multilanguage.StatisticYTitleMultilanguageService;
+import com.axonivy.portal.util.PortalDateUtils;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.bean.DateTimePatternBean;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
+import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.searchengine.client.agg.Aggregation;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
+import ch.ivyteam.ivy.searchengine.client.agg.Buckets;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
@@ -106,6 +122,9 @@ public class StatisticConfigurationBean implements Serializable {
   private boolean isDateTimeSelected;
   private AggregationInterval aggregationInterval;
   private boolean conditionBasedColoringEnabled;
+  private List<Threshold> thresholds;
+  private String defaultBackgroundColor;
+  private List<String> categoryData;
 
   private StatisticNameMultilanguageService nameMultilanguageService;
   private StatisticDescriptionMultilanguageService descriptionMultilanguageService;
@@ -261,7 +280,7 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   private void initThresholds() {
-    if (CollectionUtils.isEmpty(statistic.getThresholds())) {
+    if (CollectionUtils.isEmpty(thresholds)) {
       return;
     }
   }
@@ -370,13 +389,22 @@ public class StatisticConfigurationBean implements Serializable {
       statistic.getBarChartConfig().setxTitles(xTitles);
       statistic.getBarChartConfig().setyTitles(yTitles);
       statistic.getBarChartConfig().setBackgroundColors(backgroundColors);
+      statistic.getBarChartConfig().setThresholds(thresholds);
+      statistic.getBarChartConfig().setDefaultBackgroundColor(defaultBackgroundColor);
+      statistic.getBarChartConfig().setConditionBasedColoringEnabled(conditionBasedColoringEnabled);
     } else if (LINE == statistic.getChartType()) {
       statistic.setLineChartConfig(new LineChartConfig());
       statistic.getLineChartConfig().setxTitles(xTitles);
       statistic.getLineChartConfig().setyTitles(yTitles);
       statistic.getLineChartConfig().setBackgroundColors(backgroundColors);
+      statistic.getLineChartConfig().setThresholds(thresholds);
+      statistic.getLineChartConfig().setDefaultBackgroundColor(defaultBackgroundColor);
+      statistic.getLineChartConfig().setConditionBasedColoringEnabled(conditionBasedColoringEnabled);
     } else if (PIE == statistic.getChartType()) {
       statistic.getPieChartConfig().setBackgroundColors(backgroundColors);
+      statistic.getPieChartConfig().setThresholds(thresholds);
+      statistic.getPieChartConfig().setDefaultBackgroundColor(defaultBackgroundColor);
+      statistic.getPieChartConfig().setConditionBasedColoringEnabled(conditionBasedColoringEnabled);
     }
     backgroundColors = new ArrayList<>(backgroundColors);
   }
@@ -448,6 +476,41 @@ public class StatisticConfigurationBean implements Serializable {
     PrimeFaces.current().ajax().addCallbackParam("jsonResponse",
         BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic)));
     populateBackgroundColorsIfMissing();
+  }
+  
+  public void renderCategoryData() {
+    handleCustomFieldAggregation();
+    handleAggregateWithDateTimeInterval();
+    syncUIConfigWithChartConfig();
+    cleanUpFilter();
+    StatisticService statisticService = StatisticService.getInstance();
+    statistic.setAdditionalConfigs(new ArrayList<>());
+    statistic.getAdditionalConfigs().addAll(statisticService.getAdditionalConfig());
+    statistic.getAdditionalConfigs().add(statisticService.getManipulateValueBy(statistic));
+    AggregationResult result = statisticService.getChartData(statistic);
+    String data = BusinessEntityConverter.entityToJsonValue(new StatisticResponse(result, statistic));
+    JSONObject jsonObject = new JSONObject(data);
+    JSONArray buckets = jsonObject
+        .getJSONObject("result")
+        .getJSONArray("aggs")
+        .getJSONObject(0)
+        .getJSONArray("buckets");
+    if (isDateTimeSelected) {
+      List<Long> keys = new ArrayList<>();
+      for (int i = 0; i < buckets.length(); i++) {
+        keys.add(buckets.getJSONObject(i).getLong("key"));
+      }
+      List<String> stringList = keys.stream()
+          .map(String::valueOf)
+          .collect(Collectors.toList());
+      setCategoryData(stringList);
+      return;
+    }
+    List<String> keys = new ArrayList<>();
+    for (int i = 0; i < buckets.length(); i++) {
+        keys.add(buckets.getJSONObject(i).getString("key"));
+    }
+    setCategoryData(keys);
   }
 
   public void updateNameForCurrentLanguage() {
@@ -566,15 +629,6 @@ public class StatisticConfigurationBean implements Serializable {
       refreshIntervalInSeconds = DEFAULT_REFRESH_INTERVAL_IN_SECONDS;
     }
     statistic.setRefreshInterval(refreshIntervalInSeconds);
-  }
-  
-  public void onToggleConditionBasedColoring() {
-    Ivy.log().info(conditionBasedColoringEnabled);
-    if (conditionBasedColoringEnabled) {
-      setConditionBasedColoringEnabled(false);
-    } else {
-      setConditionBasedColoringEnabled(true);
-    }
   }
 
   private void initPermissions() {
@@ -776,7 +830,6 @@ public class StatisticConfigurationBean implements Serializable {
     }
   }
 
-
   public void onSelectChartTarget(ChartTarget newChartTarget) {
     if (statistic.getChartTarget() != null && statistic.getChartTarget() == newChartTarget) {
       resetAggregateValues();
@@ -800,6 +853,19 @@ public class StatisticConfigurationBean implements Serializable {
     if (statistic.getFilters() != null) {
       statistic.getFilters().clear();
     }
+  }
+  
+  public String displayThresholdCategoryValue(String value) {
+    if (isDateTimeSelected) {
+      DateTimeGlobalSettingService service = DateTimeGlobalSettingService.getInstance();
+      DateTimeFormatter formatter = DateTimeFormatter.ofPattern(service.getDatePattern());
+      Date date = new Date(Long.parseLong(value));
+      Instant instant = date.toInstant();
+      return instant
+          .atZone(ZoneId.systemDefault())
+          .format(formatter);
+    }
+    return value;
   }
 
   public List<FilterField> getFilterFields() {
@@ -839,16 +905,23 @@ public class StatisticConfigurationBean implements Serializable {
   }
   
   public void addNewThreshold() {
-    if (statistic.getThresholds() == null) {
-      statistic.setThresholds(new ArrayList<>());
+    if (thresholds == null) {
+      setThresholds(new ArrayList<>());
     }
     
     Threshold newThreshold = new Threshold();
-    statistic.getThresholds().add(newThreshold);
+    thresholds.add(newThreshold);
   }
   
   public void removeFilter(DashboardFilter filter) {
     statistic.getFilters().remove(filter);
+  }
+  
+  public void removeThreshold(Threshold threshod) {
+    if (thresholds == null) {
+      return;
+    }
+    thresholds.remove(threshod);
   }
   
   public List<SecurityMemberDTO> completeOwners(String query) {
@@ -882,6 +955,30 @@ public class StatisticConfigurationBean implements Serializable {
   
   public void setConditionBasedColoringEnabled(boolean conditionBasedColoringEnabled) {
     this.conditionBasedColoringEnabled = conditionBasedColoringEnabled;
+  }
+  
+  public List<Threshold> getThresholds() {
+    return thresholds;
+  }
+
+  public void setThresholds(List<Threshold> thresholds) {
+    this.thresholds = thresholds;
+  }
+
+  public String getDefaultBackgroundColor() {
+    return defaultBackgroundColor;
+  }
+
+  public void setDefaultBackgroundColor(String defaultBackgroundColor) {
+    this.defaultBackgroundColor = defaultBackgroundColor;
+  }
+  
+  public void setCategoryData(List<String> data) {
+    this.categoryData = data;
+  }
+  
+  public List<String> getCategoryData() {
+    return this.categoryData;
   }
   
 }

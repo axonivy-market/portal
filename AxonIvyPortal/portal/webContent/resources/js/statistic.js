@@ -329,6 +329,51 @@ class ClientChart {
     this.updateClientChart();
   }
 
+  getThresholdBasedColors(chartConfig, data) {
+    if (chartConfig.conditionBasedColoringEnabled) {
+      if (chartConfig.thresholds == null) {
+        return chartConfig.defaultBackgroundColor;
+      }
+      const defaultBackgroundColor = chartConfig.defaultBackgroundColor;
+      const thresholds = chartConfig.thresholds;
+      return data.map((val) => {
+        for (const rule of thresholds) {
+          const { operator, value, backgroundColor, categoryValue } = rule;
+          if (this.compareValue(val.key, categoryValue)) {
+            switch (operator) {
+              case "greater":
+                if (val.count > value) return backgroundColor;
+                break;
+              case "greaterOrEqual":
+                if (val.count >= value) return backgroundColor;
+                break;
+              case "less":
+                if (val.count < value) return backgroundColor;
+                break;
+              case "lessOrEqual":
+                if (val.count <= value) return backgroundColor;
+                break;
+              case "equal":
+                if (val.count == value) return backgroundColor;
+                break;
+              }
+          }
+        }
+        return defaultBackgroundColor;
+      });
+    }
+
+    return chartConfig.backgroundColors;
+  }
+
+  compareValue(value, categoryValue) {
+    if (isNumeric(categoryValue)) {
+      const num = Number(categoryValue);
+      return value == num;
+    }
+    return value === categoryValue;
+  }
+
   updateClientChart() { }
 
   // Method to render empty chart
@@ -437,6 +482,7 @@ class ClientPieChart extends ClientCanvasChart {
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
       $(chart).html(html);
       let canvasObject = $(chart).find('canvas');
+      let backgroundColors = this.getThresholdBasedColors(config.pieChartConfig, result);
       this.clientChartConfig = new Chart(canvasObject, {
         type: config.chartType,
         label: config.name,
@@ -445,7 +491,7 @@ class ClientPieChart extends ClientCanvasChart {
           datasets: [{
             label: config.name,
             data: result.map(bucket => bucket.count),
-            backgroundColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors
+            backgroundColor: backgroundColors
           }],
           hoverOffset: 4
         },
@@ -489,7 +535,6 @@ class ClientCartesianChart extends ClientCanvasChart {
       //If the target type for the Y axis is 'time', get average time from sub aggregate of the result.
       const chartTypeConfig = this.getChartTypeConfig();
       let data = chartTypeConfig?.yValue ? this.processYValue(result, chartTypeConfig?.yValue) : result;
-
       // Because processYValue removes bucket which has empty key, if the returned result is empty, render empty chart
       if (data.length == 0) {
         return this.renderEmptyChart(chart, config.additionalConfigs);
@@ -497,7 +542,7 @@ class ClientCartesianChart extends ClientCanvasChart {
 
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : 2;
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
-
+      let backgroundColors = this.getThresholdBasedColors(config.barChartConfig, data);
       $(chart).html(html);
       let canvasObject = $(chart).find('canvas');
       this.clientChartConfig = new Chart(canvasObject, {
@@ -507,8 +552,8 @@ class ClientCartesianChart extends ClientCanvasChart {
           datasets: [{
             label: config.name,
             data: data.map(bucket => bucket.count),
-            backgroundColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors,
-            pointBorderColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors,
+            backgroundColor: backgroundColors,
+            pointBorderColor: backgroundColors,
             pointRadius: 4,
             borderColor: getCssVariable("--ivy-primary-color-grey-medium"),
             borderWidth: 1
@@ -519,7 +564,10 @@ class ClientCartesianChart extends ClientCanvasChart {
           maintainAspectRatio: false,
           plugins: {
             legend: {
-              display: false
+              display: false,
+              labels: {
+                color: backgroundColors
+              } 
             }
           },
           scales: {
@@ -555,6 +603,10 @@ class ClientCartesianChart extends ClientCanvasChart {
         }
       });
     }
+  }
+
+  setColorBaseOnThreshold(threshold) {
+
   }
 
   // abstract methods
