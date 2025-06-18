@@ -481,9 +481,14 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   padding: 0;
 }
 
+
 .filter-overlay-panel.ui-widget-content>.ui-overlaypanel-content {
   max-width: max-content;
   padding: 0;
+}
+
+.complex-filter-overlay-panel.filter-overlay-panel.ui-widget-content>.ui-overlaypanel-content {
+  max-width: 100%;
 }
 
 .ui-widget-content.info-overlay-panel>.ui-overlaypanel-content {
