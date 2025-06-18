@@ -15,5 +15,9 @@
   }, {
     "name" : "hasCustomProcess",
     "type" : "Boolean"
+  }, {
+    "name" : "status",
+    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

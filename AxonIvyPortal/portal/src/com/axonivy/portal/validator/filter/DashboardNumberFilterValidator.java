@@ -83,8 +83,8 @@ public class DashboardNumberFilterValidator implements Validator {
   }
 
   private String getMessagePrefix(String field, int index) {
-    return String.format(MESSAGE_PREFIX_PATTERN,
-        FilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
+    return Optional.ofNullable(FilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")))
+        .map(c -> String.format(MESSAGE_PREFIX_PATTERN, c.getLabel(), index + 1)).orElse("");
   }
 
   public String getWrongFormatMessage(String field, int index) {
