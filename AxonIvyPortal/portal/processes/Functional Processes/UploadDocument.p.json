@@ -373,7 +373,7 @@
       "name" : "has custom sub process?",
       "config" : {
         "conditions" : {
-          "f11" : "in.hasCustomProcess",
+          "f11" : "in.hasCustomProcess && in.status != com.axonivy.portal.components.enums.UploadDocumentCheckStatus.SKIP",
           "f10" : ""
         }
       },
@@ -385,7 +385,7 @@
         { "id" : "f10", "to" : "S10", "label" : {
             "name" : "No"
           } },
-        { "id" : "f11", "to" : "f2", "via" : [ { "x" : 808, "y" : 328 }, { "x" : 1144, "y" : 328 } ], "label" : {
+        { "id" : "f11", "to" : "f2", "via" : [ { "x" : 808, "y" : 352 }, { "x" : 1144, "y" : 352 } ], "label" : {
             "name" : "Yes"
           } }
       ]
