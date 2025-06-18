@@ -51,10 +51,12 @@ public class DashboardSelectableListFilterValidator implements Validator {
   }
 
   private String getMessagePrefix(String field, int index) {
-    if(PRIORITY.equals(field)) {
-      return String.format(MESSAGE_PREFIX_PATTERN, DashboardStandardTaskColumn.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
+    if (PRIORITY.equals(field)) {
+      return Optional.ofNullable(DashboardStandardTaskColumn.findBy(Optional.ofNullable(field).orElse("")))
+          .map(c -> String.format(MESSAGE_PREFIX_PATTERN, c.getLabel(), index + 1)).orElse("");
     }
-    return String.format(MESSAGE_PREFIX_PATTERN, DashboardStandardCaseColumn.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
+    return Optional.ofNullable(DashboardStandardCaseColumn.findBy(Optional.ofNullable(field).orElse("")))
+        .map(c -> String.format(MESSAGE_PREFIX_PATTERN, c.getLabel(), index + 1)).orElse("");
   }
 
   public String getRequiredMessage(String field, int index) {
