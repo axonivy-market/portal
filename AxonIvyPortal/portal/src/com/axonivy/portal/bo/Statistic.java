@@ -39,8 +39,6 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private LineChartConfig lineChartConfig;
   private PieChartConfig pieChartConfig;
   private NumberChartConfig numberChartConfig;
-  private List<Threshold> thresholds;
-  private String defaultBackgroundColor;
   @JsonProperty(access = Access.READ_ONLY)
   private List<Entry<String, String>> additionalConfigs;
   private String manipulateValueBy;
@@ -236,21 +234,5 @@ public class Statistic extends AbstractConfiguration implements Serializable {
 
   public void setStatisticAggregation(StatisticAggregation statisticAggregation) {
     this.statisticAggregation = statisticAggregation;
-  }
-  
-  public List<Threshold> getThresholds() {
-    return thresholds;
-  }
-
-  public void setThresholds(List<Threshold> thresholds) {
-    this.thresholds = thresholds;
-  }
-
-  public String getDefaultBackgroundColor() {
-    return defaultBackgroundColor;
-  }
-
-  public void setDefaultBackgroundColor(String defaultBackgroundColor) {
-    this.defaultBackgroundColor = defaultBackgroundColor;
   }
 }
