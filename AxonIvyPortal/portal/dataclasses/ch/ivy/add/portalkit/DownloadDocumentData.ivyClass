@@ -4,3 +4,4 @@ streamedContent org.primefaces.model.StreamedContent #field
 businessCase ch.ivyteam.ivy.workflow.ICase #field
 document com.axonivy.portal.components.ivydata.bo.IvyDocument #field
 hasCustomProcess Boolean #field
+status com.axonivy.portal.components.enums.UploadDocumentCheckStatus #field

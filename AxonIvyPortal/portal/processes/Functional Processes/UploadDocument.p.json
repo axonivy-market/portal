@@ -323,7 +323,7 @@
         { "id" : "f14", "to" : "f1", "via" : [ { "x" : 688, "y" : 144 }, { "x" : 992, "y" : 144 } ], "label" : {
             "name" : "Yes",
             "segment" : 0.5
-          }, "condition" : "in.hasCustomProcess" },
+          }, "condition" : "in.hasCustomProcess && in.status != com.axonivy.portal.components.enums.UploadDocumentCheckStatus.SKIP" },
         { "id" : "f9", "to" : "S10", "label" : {
             "name" : "No"
           } }

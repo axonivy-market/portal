@@ -86,6 +86,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import org.apache.commons.lang3.StringUtils;",
             "import java.util.HashMap;",
             "import java.util.Map;",
@@ -100,6 +101,7 @@
             "in.hasCustomProcess = result != null;",
             "if (in.hasCustomProcess) {",
             "  in.message = result.get(\"message\").toString();",
+            "  in.status = UploadDocumentCheckStatus.toEnum(result.get(\"status\").toString());",
             "}"
           ]
         }
@@ -120,7 +122,7 @@
         { "id" : "f14", "to" : "f11", "via" : [ { "x" : 568, "y" : 80 }, { "x" : 864, "y" : 80 } ], "label" : {
             "name" : "Yes",
             "segment" : 0.5
-          }, "condition" : "in.hasCustomProcess" },
+          }, "condition" : "in.hasCustomProcess && in.status != com.axonivy.portal.components.enums.UploadDocumentCheckStatus.SKIP" },
         { "id" : "f13", "to" : "f3", "label" : {
             "name" : "No"
           } }
