@@ -12,17 +12,18 @@ function loadIframe(recheckIndicator) {
       processIFrameData(iframe);
       clearTimeout(recheckFrameTimer);
 
-      // Perform rendering once the src is found
-      if ($(iframe).attr('src') != 'about:blank') {
-        const doc = iframe.contentDocument || iframe.contentWindow.document;
+      // Perform render Iframe content once src URL is found
+      if ($(iframe).attr('src') !== 'about:blank') {
+        const checkInterval = setInterval(function () {
+          const doc = iframe.contentDocument || iframe.contentWindow.document;
 
-        // If the document inside Iframe is ready, render it
-        if (doc && doc.readyState === 'complete' && doc.body) {
+          // Every 50ms check if state of the inside document ready
+          // If the document is ready, show it
+          if (doc && doc.readyState === 'complete' && doc.body) {
             iframe.style.visibility = 'visible';
-        } else {
-        // Otherwise, set timeout to wait till document is ready
-            setTimeout(function() { iframe.style.visibility = 'visible';}, 300);
-        }
+            clearInterval(checkInterval); // Stop checking once ready
+          }
+        }, 50);
       }
 
       return;
