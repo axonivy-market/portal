@@ -67,7 +67,7 @@
           id="process-search-results">
          </div>
          <div class="global-search-all-results" >
-           <p:commandLink onclick="viewAllResults(0);" />
+           <p:commandLink onclick="viewAllResults(0);" ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/ViewAllResults')}" />
          </div>
          <h:outputText styleClass="global-search-no-results" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/noResultsText')}" />
         </p:tab>
@@ -76,7 +76,7 @@
           <div id="task-search-results">
           </div>
           <div class="global-search-all-results" >
-           <p:commandLink onclick="viewAllResults(1);" />
+           <p:commandLink onclick="viewAllResults(1);" ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/ViewAllResults')}" />
           </div>
           <h:outputText styleClass="global-search-no-results" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/noResultsText')}" />
         </p:tab>
@@ -85,7 +85,7 @@
           <div id="case-search-results" class="js-case-default-widget-container case-default-widget-container js-for-search-result">
           </div>
           <div class="global-search-all-results" >
-           <p:commandLink onclick="viewAllResults(2);" />
+           <p:commandLink onclick="viewAllResults(2);" ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/ViewAllResults')}" />
           </div>
           <h:outputText styleClass="global-search-no-results" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/GlobalSearch/noResultsText')}" />
         </p:tab>

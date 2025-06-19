@@ -1,7 +1,7 @@
 package com.axonivy.portal.components.enums;
 
 public enum UploadDocumentCheckStatus {
-  OK, FAIL;
+  OK, FAIL, SKIP;
   
   public static UploadDocumentCheckStatus toEnum(String value) {
     for(UploadDocumentCheckStatus status : values()) {

@@ -310,8 +310,8 @@
             </p:column>
           </p:row>
         </p:panelGrid>
-        <div class="w-full">
-        <p:commandLink widgetVar="cancelButton" id="cancelButton" onclick="PF('appDialog').hide()" style="display:none" />
+        <p:commandLink widgetVar="cancelButton" id="cancelButton" onclick="PF('appDialog').hide()" style="display:none"
+                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
         </div>
       </p:outputPanel>
     </h:form>
@@ -347,8 +347,10 @@
             <c:if test="#{data.settingInputType.toString() == 'TEXT'}">
               <p:inputText value="#{data.selectedSetting.value}" id="valueSetting" />
             </c:if>
-              <c:if test="#{data.settingInputType.toString() == 'NUMBER'}">
-              <p:inputText value="#{data.selectedSetting.value}" id="valueSetting" />
+            
+            <c:if test="#{data.settingInputType.toString() == 'NUMBER'}">
+              <p:inputText value="#{data.selectedSetting.value}" id="valueSetting"
+                onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" />
             </c:if>
             
             <c:if test="#{data.settingInputType.toString() == 'SELECTION'}">
