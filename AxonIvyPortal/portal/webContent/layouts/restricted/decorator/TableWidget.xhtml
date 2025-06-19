@@ -155,6 +155,7 @@
         onclick="collapseFullscreen(#{index}, '#{htmlSanitizerBean.escapeForJS(widget.id)}')" />
 
       <p:commandButton id="edit-widget-#{index}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
         icon="si si-pencil"
         styleClass="rounded-button ui-button-outlined u-hidden-sm-down u-mar-right-5"
         oncomplete="PF('new-widget-configuration-dialog').show()"
@@ -252,6 +253,7 @@
               <div class="ui-g-12 filter-overlay-panel__header pt-3 flex ">
                 <strong class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterOptionHeader')}</strong>
                 <p:commandButton icon="si si-remove" id="widget-filter-cancel-button"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/Filter/FilterOptionHeader')}"
                     styleClass="ui-overlaypanel-footer__cancel flex align-items-center ui-button-flat rounded-button text-2xl"
                     oncomplete="PF('filter-overlay-panel-#{index}').hide();"
                     actionListener="#{widget.onCancelUserFilters()}"
