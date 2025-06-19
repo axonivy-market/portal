@@ -34,6 +34,7 @@
 
         <p:commandButton id="login-command" actionListener="#{logic.login}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
           icon="#{visibilityBean.generateButtonIcon('si si-login-3')}"
           oncomplete="if (#{empty data.callbackUrl} === 'true' &amp;&amp; args &amp;&amp; !args.validationFailed) {location.reload()};Portal.changeLogoByThemeMode('#{themeBean.themeMode}');"
           process="login-form" update="login-form" />

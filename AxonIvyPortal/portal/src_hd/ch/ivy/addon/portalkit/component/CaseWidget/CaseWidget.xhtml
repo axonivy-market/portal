@@ -319,6 +319,7 @@
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('delete-filter-confirmation-dialog').hide();" styleClass="u-mar-right-15" />
        <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
           icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
           actionListener="#{logic.deleteFilter}"
           oncomplete="PF('delete-filter-confirmation-dialog').hide(); caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();"
@@ -340,6 +341,7 @@
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('destroy-case-dialog').hide();" styleClass="u-mar-right-15"/>
        <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
           icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
           actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
           oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb(); PF('destroy-case-dialog').hide()"

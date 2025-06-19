@@ -60,11 +60,13 @@
             
             <h:panelGroup id="vertical-task-template-tasks-command" class="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection eq 'VERTICAL'}">
               <p:commandButton id="vertical-case-info" type="button" styleClass="rounded-button ui-button-outlined"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="si si-folder-search"
                 onclick="openCaseInfo();" rendered="#{!isHideCaseInfo}"
                 global="false" />
               <p:spacer width="10" />
               <p:commandButton id="vertical-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="rounded-button ui-button-outlined"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="si si-navigation-menu" />
             </h:panelGroup>
             
@@ -118,12 +120,14 @@
   
           <h:panelGroup id="horizontal-task-template-tasks-command" styleClass="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection ne 'VERTICAL'}">
             <p:commandButton id="horizontal-case-info" type="button" styleClass="rounded-button ui-button-outlined"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="si si-folder-search"
               onclick="openCaseInfo()" rendered="#{!isHideCaseInfo}"
               global="false" />
             <p:spacer width="10" />
             <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="rounded-button ui-button-outlined"
-              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="si si-navigation-menu" />
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="si si-navigation-menu" />
           
             <h:form id="horizontal-task-action-form">
               <p:menu id="horizontal-task-action-menu" overlay="true" trigger="horizontal-task-actions" my="right top" at="right bottom"
@@ -222,6 +226,7 @@
               <p:commandButton id="chat-group-join-button" actionListener="#{chatAssigneeBean.joinGroupChat()}"
                 icon="#{visibilityBean.generateButtonIcon('si si-messages-bubble-square-sync')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/joinProcessChat')}" process="@this"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/joinProcessChat')}"
                 update="@none" />
             </h:form>
           </f:facet>
@@ -280,6 +285,7 @@
                   onclick="PF('sideStepStartOkButton').disable()"
                   actionListener="#{abstractTaskTemplateBean.startSideStep(currentTask)}" process="@this" update="@none"
                   icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
               </h:panelGroup>
             </h:form>
@@ -319,6 +325,7 @@
             <h:form prependId="false">
               <h:panelGroup styleClass="ui-dialog-buttonpane">
                 <p:commandButton onclick="PF('adhoc-task-history-dialog').hide()" id="close-adhoc-dialog-button"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
                   icon="#{visibilityBean.generateButtonIcon('si si-remove')}" />
               </h:panelGroup>

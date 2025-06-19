@@ -382,6 +382,7 @@
         <h:panelGroup class="external-link-preview-image-overlay-panel"
           rendered="#{not empty externalLinkBean.externalLink.imageLocation}">
           <p:commandButton id="external-link-delete-image-button"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
             actionListener="#{externalLinkBean.removeImage()}"
             process="external-link-delete-image-button"
             partialSubmit="true" update="file-upload-panel"
@@ -399,6 +400,7 @@
         oncomplete="PF('add-external-link-dialog').hide()"
         styleClass="u-mar-right-15" />
       <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
         icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" process="#{cc.clientId}:add-external-link-form"
         form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink()}"
         update="#{cc.clientId}:add-external-link-form"
@@ -447,6 +449,7 @@
         <p:commandButton
           id="description-multi-language-ok-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           update="#{cc.clientId}:add-external-link-form:external-description" process="@form"
           oncomplete="PF('text-area-add-multiple-languages-dialog').hide();"
           rendered="#{!descriptions.isEmpty()}" />
@@ -482,6 +485,7 @@
         <p:commandButton
           id="description-edit-multi-language-ok-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           update="#{cc.clientId}:edit-process-form:external-description" process="@form"
           oncomplete="PF('text-area-edit-multiple-languages-dialog').hide();"
           rendered="#{!descriptions.isEmpty()}" />

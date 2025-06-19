@@ -78,7 +78,8 @@
        <div class="ui-g-10 ui-fluid ui-inputgroup">
         <p:inputText id="import-dashboard-title" value="#{dashboard.title}" styleClass="manage-dashboard__input" required="true">
         </p:inputText>
-        <p:commandButton id="add-language-button" icon="si si-chat-translate">
+        <p:commandButton id="add-language-button" icon="si si-chat-translate" 
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}">
          <p:ajax event="click" listener="#{managedBean.updateDashboardTitleByLocale()}" process="import-dashboard-title" update="#{cc.clientId}:title-language-config:multiple-languages-dialog" oncomplete="PF('multiple-languages-dialog').show();" />
         </p:commandButton>
        </div>
@@ -145,6 +146,7 @@
         <p:commandButton id="dashboard-detail-save-button"
           disabled="#{!managedBean.loaded}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/CreateDashboard')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/CreateDashboard')}"
           actionListener="#{managedBean.createDashboard()}"
           process="import-dashboard-form" partialSubmit="true"
           icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"

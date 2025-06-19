@@ -57,7 +57,9 @@
               </ui:include>
               <f:facet name="loader">
                 <h:panelGroup layout="block" styleClass="u-text-align-center" rendered="#{isReadOnlyMode}">
-                  <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." icon="si si-button-refresh-arrows"
+                  <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
+                    icon="si si-button-refresh-arrows"
                     styleClass="rounded-button ui-button-outlined"
                     onclick="setupNewsWidgetContent('#{widget.id}', true)" />
                 </h:panelGroup>

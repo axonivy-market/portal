@@ -191,6 +191,7 @@
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         onclick="PF('destroy-case-dialog').hide();" styleClass="u-mar-right-15" />
       <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
         actionListener="#{caseWidgetBean.destroyCase(case)}"
         oncomplete="backToPrevPage(#{caseWidgetBean.willNavigateBack()});" />
@@ -211,6 +212,7 @@
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('reset-to-default-case-dialog').hide();" styleClass="u-mar-right-15" type="button" ajax="false" />
         <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
           actionListener="#{caseDetailsBean.reset()}" update="case-item-details case-item-details:case-details-container:case-details-actions"
           oncomplete="PF('reset-to-default-case-dialog').hide(); loadCaseDetailsGrid()" />

@@ -421,6 +421,7 @@
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('applicationName').hide();"/>
         <p:spacer width="15px" rendered="#{!data.supportedLanguages.isEmpty()}" />
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
           process="@form" update="#{cc.clientId}:appDisplayName3rd"
           oncomplete="PF('applicationName').hide();" actionListener="#{logic.processLanguage}"

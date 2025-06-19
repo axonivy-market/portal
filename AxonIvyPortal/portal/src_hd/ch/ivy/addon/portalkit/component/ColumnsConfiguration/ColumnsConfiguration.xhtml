@@ -49,6 +49,7 @@
           <p:spacer width="15" />
           <p:commandButton id="update-command" global="true"
             icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             actionListener="#{dataModel.saveColumnsConfiguration()}"
             update="#{cc.clientId}:config-columns-container @form #{cc.attrs.updatedComponent}"
