@@ -13,9 +13,11 @@ import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.GlobalGrowlIframeTemplatePage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.ProcessViewerPage;
 import com.axonivy.portal.selenium.page.TaskIFrameTemplatePage;
 import com.axonivy.portal.selenium.page.TemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
@@ -28,6 +30,7 @@ public class GlobalGrowlTest extends BaseTest {
       "You have finished the task successfully.\nClick here for details.";
   private static final String CANCEL_MESSAGE_WITH_DETAILS =
       "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.\nClick here for details.";
+  private static final String CLOSE_PROCESS_VIEWER_MESSAGE = "You closed the process viewer.";
   private static final String GROWL_STANDARD_MESSAGE_URL =
       "portal-developer-examples/16A7BB2ADC9580A8/frameStandardMessage.ivp";
 
@@ -38,6 +41,7 @@ public class GlobalGrowlTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
   }
 
+  
   @Test
   public void testDisplayDefaultGrowlAfterFinishTaskWithoutIFrame() {
     redirectToRelativeLink(createTestingTasksUrl);
@@ -52,6 +56,7 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(taskWidgetPage, FINISH_MESSAGE_WITH_DETAILS);
   }
 
+  
   @Test
   public void testDisplayDefaultGrowlAfterFinishTaskWithIFrame() {
     redirectToRelativeLink(GROWL_STANDARD_MESSAGE_URL);
@@ -67,11 +72,13 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(taskWidgetPage, FINISH_MESSAGE_WITH_DETAILS);
   }
 
+
   @Test
   public void testDisplayDefaultGrowlAfterCancelTaskWithoutIFrame() {
     redirectToRelativeLink(createTestingTasksUrl);
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     NewDashboardPage taskWidgetPage = newDashboardPage.openTaskList();
+    
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.waitForPageLoad();
     TaskIFrameTemplatePage taskTemplatePage = taskWidget.startTaskIFrameByIndex(0);
@@ -97,6 +104,25 @@ public class GlobalGrowlTest extends BaseTest {
     assertGrowlMessage(taskWidgetPage, CANCEL_MESSAGE_WITH_DETAILS);
   }
 
+  @Test
+  public void testDisplayDefaultGrowlAfterCloseProcessViewer() {
+    updatePortalSetting(Variable.ENABLE_PROCESS_VIEWER.getKey(), "true");
+    redirectToRelativeLink(createTestingTasksUrl);
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.waitForCaseWidgetLoaded();
+    NewDashboardPage taskWidgetPage = newDashboardPage.openTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.waitForPageLoad();
+    taskWidget.clickOnButtonExpandTaskWidget();
+    taskWidget.openTaskProcessViewer(0);
+    WaitHelper.assertTrueWithWait(() -> newDashboardPage.countBrowserTab() > 1);
+    taskWidget.switchLastBrowserTab();
+    ProcessViewerPage processViewerPage = new ProcessViewerPage();
+    processViewerPage.clickOnCloseButton();
+    taskWidgetPage = new NewDashboardPage();
+    assertGrowlMessage(taskWidgetPage, CLOSE_PROCESS_VIEWER_MESSAGE);
+  }
+  
   public void waitForTemplateRender() {
     WaitHelper.waitForPresenceOfElementLocatedInFrame("[class$='task-template-container']");
   }

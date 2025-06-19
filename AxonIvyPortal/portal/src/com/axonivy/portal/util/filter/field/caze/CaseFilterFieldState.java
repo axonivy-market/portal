@@ -52,6 +52,7 @@ public class CaseFilterFieldState extends FilterField {
     return null;
   }
   
+  @Override
   public String generateCaseFilter(DashboardFilter filter) {
     return switch (filter.getOperator()) {
       case IN -> TextInOperatorHandler.getInstance().buildFilter(filter);

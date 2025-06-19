@@ -117,6 +117,7 @@ public class ChatAssigneeBean implements Serializable {
     return doesGroupChatExist;
   }
 
+  @SuppressWarnings("removal")
   public void joinGroupChat() {
     if (existedGroupChat != null) {
       Set<String> assigneeNames = existedGroupChat.getAssigneeNames();

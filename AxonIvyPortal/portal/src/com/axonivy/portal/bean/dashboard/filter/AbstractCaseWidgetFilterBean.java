@@ -3,6 +3,7 @@ package com.axonivy.portal.bean.dashboard.filter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -50,7 +51,9 @@ public abstract class AbstractCaseWidgetFilterBean implements Serializable {
 
     // Add custom fields which are selected by user.
     this.widget.getFilterableColumns().stream().filter(col -> col.getType() == DashboardColumnType.CUSTOM)
-        .forEach(customColumn -> this.filterFields.add(FilterFieldFactory.findCustomFieldBy(customColumn.getField())));
+        .map(col -> FilterFieldFactory.findCustomFieldBy(col.getField())).filter(Objects::nonNull)
+        .forEach(this.filterFields::add);
+
   }
 
   private void initFilters() {

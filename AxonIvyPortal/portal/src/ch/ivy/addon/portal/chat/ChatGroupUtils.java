@@ -80,6 +80,7 @@ public class ChatGroupUtils {
     return userNames;
   }
 
+  @SuppressWarnings("removal")
   public static Set<String> getAllUsersFromUserIdsAndRoleNames(Set<String> assigneeNames) {
     Set<String> userNames = new HashSet<>();
     List<String> userNamesOnly = assigneeNames.stream().filter(name -> name.startsWith(USER_IDENTIFIER))
@@ -93,6 +94,7 @@ public class ChatGroupUtils {
     return userNames;
   }
 
+  @SuppressWarnings("removal")
   public static IUser findUserByUserId(Long userId) {
     return wf().getSecurityContext().users().find(userId);
   }

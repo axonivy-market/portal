@@ -39,7 +39,8 @@
         <h:panelGroup id="case-list-actions" styleClass="case-list-actions u-hidden-md-down">
           <h:form id="case-export-to-excel-form" styleClass="case-export-to-excel-form u-mar-right-20">
             <p:commandLink ajax="false" id="case-export-to-excel"
-              onclick="PrimeFaces.monitorDownload(start, stop);">
+                           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
+                           onclick="PrimeFaces.monitorDownload(start, stop);">
               <i class="si si-office-file-xls-1 u-mar-right-5" />
               <span class="link-text">
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
@@ -55,7 +56,8 @@
         </h:panelGroup>
       <h:panelGroup rendered="#{cc.attrs.inFrame}" layout="block" styleClass="back-link-container">
         <p:commandLink id="back-link" actionListener="#{logic.backToCaseDetails()}" styleClass="list-back-link js-back-link"
-          process="@this" immediate="true" update="@none">
+                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
+                       process="@this" immediate="true" update="@none">
           <i class="si si-arrow-left-1 u-mar-right-5" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
         </p:commandLink>
@@ -105,7 +107,8 @@
           actionListener="#{caseWidgetBean.destroyCase(case)}"
           oncomplete="backToPrevPage(#{caseWidgetBean.willNavigateBack()});" />
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('destroy-case-dialog').hide();" styleClass="pt-3 flex justify-content-center" />
+                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                       onclick="PF('destroy-case-dialog').hide();" styleClass="pt-3 flex justify-content-center" />
         </h:panelGroup>
     </ui:define>
   </ui:decorate>
