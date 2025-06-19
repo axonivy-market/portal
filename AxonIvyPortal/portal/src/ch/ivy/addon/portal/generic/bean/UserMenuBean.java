@@ -35,6 +35,7 @@ import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.TrainingDashboardUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.EngineUriResolver;
 import ch.ivyteam.ivy.security.ISecurityContext;
@@ -64,10 +65,12 @@ public class UserMenuBean implements Serializable {
   public String getLoggedInUser() {
     return loggedInUser;
   }
-  
-  @PostConstruct
-  public void init() {
-    if (!Ivy.session().isSessionUserUnknown()) {
+    @PostConstruct
+  public void init() {    if (!Ivy.session().isSessionUserUnknown()) {
+      Ivy.log().info("UserMenuBean.init() - Initializing for user: {0}", Ivy.session().getSessionUserName());
+      // Initialize first login flag for new users
+      TrainingDashboardUtils.initializeFirstLoginFlag(Ivy.session().getSessionUser());
+      
       String format = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.LOGGED_IN_USER_FORMAT);
       baseUrlVariable = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.BASE_QR_CODE_URL);
       appleStoreUrlVariable = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.APPLE_STORE_URL);
@@ -134,10 +137,20 @@ public class UserMenuBean implements Serializable {
     String logoutPage = StringUtils.isNotBlank(customizedlogoutPage) ? customizedlogoutPage : getHomePageURL();
     cacheService.cacheLogoutPage(logoutPage);
     return logoutPage;
-  }
-
-  public String getHomePageURL() {
-    return PortalNavigator.getPortalStartUrl();
+  }  public String getHomePageURL() {
+    Ivy.log().info("UserMenuBean.getHomePageURL() called");
+    // Check if training dashboard should be shown for first-time users
+    if (TrainingDashboardUtils.shouldShowTrainingDashboard()) {
+      Ivy.log().info("Training dashboard should be shown, returning training dashboard URL");
+      // DON'T mark as completed here - wait until dashboard is actually shown
+      String trainingUrl = PortalNavigator.buildTrainingDashboardUrl();
+      Ivy.log().info("Training dashboard URL: {0}", trainingUrl);
+      return trainingUrl;
+    }
+    Ivy.log().info("Training dashboard not needed, returning normal portal start URL");
+    String normalUrl = PortalNavigator.getPortalStartUrl();
+    Ivy.log().info("Normal homepage URL: {0}", normalUrl);
+    return normalUrl;
   }
 
   public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
@@ -247,10 +260,12 @@ public class UserMenuBean implements Serializable {
 
   public boolean isAnnouncementActivated() {
     return AnnouncementService.getInstance().isAnnouncementActivated();
-  }
-  
-  public void navigateToHomePage() throws IOException {
-    getExternalContext().redirect(getHomePageURL());
+  }  public void navigateToHomePage() throws IOException {
+    Ivy.log().info("UserMenuBean.navigateToHomePage() called");
+    // Always use getHomePageURL() which contains the training dashboard logic
+    String homepageUrl = getHomePageURL();
+    Ivy.log().info("Redirecting to homepage URL: {0}", homepageUrl);
+    getExternalContext().redirect(homepageUrl);
   }
   
   public void navigateToUserProfile() throws IOException {

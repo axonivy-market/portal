@@ -16,7 +16,7 @@
             { "name" : "traningDashboard", "type" : "String", "desc" : "" }
           ],
           "map" : {
-            "result.traningDashboard" : "in.tranningDashboard"
+            "result.traningDashboard" : "in.traningDashboard"
           }
         }
       },
@@ -40,9 +40,10 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.userexamples.utils.TraningDashboardUtils;",
-            "in.tranningDashboard = TraningDashboardUtils.traningDashboard;"
+            "in.traningDashboard = TraningDashboardUtils.traningDashboard;"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 224, "y" : 64 }

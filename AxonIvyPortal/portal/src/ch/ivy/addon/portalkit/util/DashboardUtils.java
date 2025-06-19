@@ -182,10 +182,33 @@ public class DashboardUtils {
     }
     return currentUser().getProperty(PortalVariable.DASHBOARD.key);
   }
-
   public static List<Dashboard> collectMainDashboards() {
-    List<Dashboard> collectedDashboards =
-        new ArrayList<>(getPublicDashboards().stream().filter(dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getDashboardDisplayType())).toList());
+    List<Dashboard> collectedDashboards = new ArrayList<>(getPublicDashboards().stream()
+        .filter(dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getDashboardDisplayType())).toList());
+    
+    // Add training dashboard if applicable (since it's not in public dashboards)
+    if (TrainingDashboardUtils.shouldShowTrainingDashboard()) {
+      Dashboard trainingDashboard = TrainingDashboardService.loadTrainingDashboard();
+      if (trainingDashboard != null) {
+        trainingDashboard.setId("training-dashboard");
+        trainingDashboard.setDashboardDisplayType(DashboardDisplayType.TOP_MENU);
+        
+        // Set default icon if missing
+        if (StringUtils.isBlank(trainingDashboard.getIcon())) {
+          trainingDashboard.setIcon("si-graduation-cap");
+        }
+        
+        // Ensure titles are set
+        if (CollectionUtils.isEmpty(trainingDashboard.getTitles())) {
+          trainingDashboard.setTitle("Training Dashboard");
+        }
+        
+        // Add training dashboard to the beginning of the list
+        collectedDashboards.add(0, trainingDashboard);
+        Ivy.log().info("Training dashboard added to main dashboards for menu with ID: {0}", trainingDashboard.getId());
+      }
+    }
+    
     return collectedDashboards;
   }
 
@@ -209,7 +232,7 @@ public class DashboardUtils {
       DashboardUtils.storeDashboardInSession(dashboardId);
     }
   }
-  
+
   public static void updateDashboardInSession(SessionAttribute attr, String value) {
     if (value != null) {
       Ivy.session().setAttribute(attr.toString(), value);
@@ -275,7 +298,16 @@ public class DashboardUtils {
   }
 
   public static List<Dashboard> getDashboardsWithoutMenuItem() {
-    return collectDashboards().stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())).toList();
+    List<Dashboard> subMenuDashboards = collectDashboards().stream()
+        .filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())).toList();
+
+    // DEBUG: Log submenu dashboards
+    Ivy.log().info("getDashboardsWithoutMenuItem found {0} dashboards", subMenuDashboards.size());
+    for (Dashboard dashboard : subMenuDashboards) {
+      Ivy.log().info("SubMenu Dashboard ID: {0}, Title: {1}", dashboard.getId(), dashboard.getTitle());
+    }
+
+    return subMenuDashboards;
   }
 
   public static String getSelectedMainDashboardIdFromSession() {
@@ -287,27 +319,24 @@ public class DashboardUtils {
     return (PortalDashboardItemWrapper) IvyCacheService.getInstance()
         .getSessionCacheValue(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId).orElse(null);
   }
-  
+
   public static boolean isMainDashboard(String dashboardId, boolean defaultValue) {
     if (StringUtils.isEmpty(dashboardId)) {
       return false;
     }
-    boolean isMainDashboard = Optional.ofNullable(getPortalDashboardItemWrapper())
-        .map(wrapper -> wrapper.dashboards())
-        .orElse(new ArrayList<>())
-        .stream()
-        .filter(dashboard -> dashboardId.equals(dashboard.getId()))
-        .map(dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getDashboardDisplayType()))
-        .findFirst()
+    boolean isMainDashboard = Optional.ofNullable(getPortalDashboardItemWrapper()).map(wrapper -> wrapper.dashboards())
+        .orElse(new ArrayList<>()).stream().filter(dashboard -> dashboardId.equals(dashboard.getId()))
+        .map(dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getDashboardDisplayType())).findFirst()
         .orElse(defaultValue);
-    
+
     return isMainDashboard;
   }
 
 
   /**
    * Uses this method before saving a dashboard to simplify generated json from the dashboard
-   * @param dashboards 
+   * 
+   * @param dashboards
    */
   public static void updatePropertiesToNullIfCurrentValueIsDefaultValue(List<Dashboard> dashboards) {
     if (CollectionUtils.isEmpty(dashboards)) {
@@ -360,7 +389,7 @@ public class DashboardUtils {
     portalPublicDashboardWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
     return dashboards;
   }
-  
+
   public static Boolean isHiddenDashboard(String dashboardId) {
     return getPublicDashboards().stream().anyMatch(dashboard -> dashboard.getId().equals(dashboardId)
         && dashboard.getDashboardDisplayType() == DashboardDisplayType.HIDDEN);
@@ -399,8 +428,9 @@ public class DashboardUtils {
     portalPrivateDashboardWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
     return dashboards;
   }
+
   public static List<Dashboard> collectDashboards() {
-    
+
     String sessionUserId = getSessionUserId();
     IvyCacheService cacheService = IvyCacheService.getInstance();
     PortalDashboardItemWrapper portalDashboardItemWrapper = null;
@@ -411,7 +441,15 @@ public class DashboardUtils {
       cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId);
     }
 
+    // Check if first-time user needs training dashboard - invalidate cache if needed
+    if (portalDashboardItemWrapper != null && TrainingDashboardUtils.shouldShowTrainingDashboard()) {
+      Ivy.log().info("First-time user detected - invalidating dashboard cache to ensure fresh training dashboard");
+      cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId);
+      portalDashboardItemWrapper = null; // Force fresh collection
+    }
+
     if (portalDashboardItemWrapper == null) {
+      Ivy.log().info("No dashboard cache found, building fresh dashboard list");
       synchronized (sessionUserId.intern()) {
         List<Dashboard> collectedDashboards = new ArrayList<>();
         try {
@@ -428,18 +466,41 @@ public class DashboardUtils {
             }
           }
           collectedDashboards.addAll(idToDashboard.values());
+
+          // Log dashboards before adding training dashboard
+          Ivy.log().info("Before adding training dashboard - collected {0} dashboards", collectedDashboards.size());
+
           addDefaultTaskCaseListDashboardsIfMissing(collectedDashboards);
+          addTrainingDashboardIfApplicable(collectedDashboards);
+
+          // Log dashboards after adding training dashboard
+          Ivy.log().info("After adding training dashboard - collected {0} dashboards", collectedDashboards.size());
+          for (Dashboard dash : collectedDashboards) {
+            Ivy.log().info("Dashboard after training: ID={0}, Title={1}, DisplayType={2}", dash.getId(),
+                dash.getTitle(), dash.getDashboardDisplayType());
+          }
         } catch (Exception e) {
           Ivy.log().error("Cannot collect Dashboards {0}", e.getMessage());
         }
         portalDashboardItemWrapper = new PortalDashboardItemWrapper(collectedDashboards);
-        cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId,
-            portalDashboardItemWrapper);
+        cacheService.setSessionCache(IvyCacheIdentifier.PORTAL_DASHBOARDS, sessionUserId, portalDashboardItemWrapper);
       }
+    } else {
+      Ivy.log().info("Using cached dashboard list with {0} dashboards", portalDashboardItemWrapper.dashboards().size());
     }
+
     List<Dashboard> dashboards = new ArrayList<>();
     portalDashboardItemWrapper.dashboards().stream().forEach(dashboard -> dashboards.add(new Dashboard(dashboard)));
-    return getVisibleDashboards(dashboards);
+    List<Dashboard> visibleDashboards = getVisibleDashboards(dashboards);
+
+    // DEBUG: Log all collected dashboard IDs
+    Ivy.log().info("Collected dashboards count: {0}", visibleDashboards.size());
+    for (Dashboard dashboard : visibleDashboards) {
+      Ivy.log().info("Dashboard ID: {0}, Title: {1}, DisplayType: {2}", dashboard.getId(), dashboard.getTitle(),
+          dashboard.getDashboardDisplayType());
+    }
+
+    return visibleDashboards;
   }
 
   public static void updateDashboardCache() {
@@ -449,11 +510,9 @@ public class DashboardUtils {
     cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PUBLIC_DASHBOARDS, sessionUserId);
     cacheService.invalidateSessionEntry(IvyCacheIdentifier.PORTAL_PRIVATE_DASHBOARDS, sessionUserId);
   }
-  
+
   public static Set<String> collectDashboardIds() {
-    return collectDashboards().stream()
-        .map(Dashboard::getId)
-        .collect(Collectors.toSet());
+    return collectDashboards().stream().map(Dashboard::getId).collect(Collectors.toSet());
   }
 
   private static String getSessionUserId() {
@@ -473,6 +532,38 @@ public class DashboardUtils {
   private record PortalPublicDashboardWrapper(List<Dashboard> dashboards) {
   }
   public record PortalDashboardItemWrapper(List<Dashboard> dashboards) {
+  }
+
+  public static void addTrainingDashboardIfApplicable(List<Dashboard> dashboards) {
+    // Check if we should add the training dashboard for first-time users
+    if (TrainingDashboardUtils.shouldShowTrainingDashboard()) {
+      Ivy.log().info("Adding training dashboard to collected dashboards for first-time user");
+      Dashboard trainingDashboard = TrainingDashboardService.loadTrainingDashboard();
+      if (trainingDashboard != null) {
+        // Ensure the training dashboard has the correct ID and display type
+        trainingDashboard.setId("training-dashboard");
+        trainingDashboard.setDashboardDisplayType(DashboardDisplayType.TOP_MENU); // Make it a main menu item
+
+        // Set default icon if missing
+        if (StringUtils.isBlank(trainingDashboard.getIcon())) {
+          trainingDashboard.setIcon("si-graduation-cap");
+        }
+
+        // Ensure titles are set
+        if (CollectionUtils.isEmpty(trainingDashboard.getTitles())) {
+          trainingDashboard.setTitle("Training Dashboard");
+        }
+
+        // Add the training dashboard to the beginning of the list so it's prioritized
+        dashboards.add(0, trainingDashboard);
+        Ivy.log().info("Training dashboard added to collected dashboards with ID: {0}, DisplayType: {1}",
+            trainingDashboard.getId(), trainingDashboard.getDashboardDisplayType());
+      } else {
+        Ivy.log().warn("Training dashboard could not be loaded, may not be available");
+      }
+    } else {
+      Ivy.log().info("Training dashboard not added - conditions not met");
+    }
   }
 
 }

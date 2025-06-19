@@ -27,59 +27,64 @@ import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 
-public final class PortalNavigator extends BaseNavigator{
+public final class PortalNavigator extends BaseNavigator {
   private static final String PORTAL_DASHBOARD = "Start Processes/PortalStart/DefaultDashboardPage.ivp";
   private static final String PORTAL_PROCESS = "Start Processes/PortalStart/DefaultProcessStartListPage.ivp";
   private static final String PORTAL_CASE_DETAILS = "Start Processes/PortalStart/DefaultCaseDetailPage.ivp";
   private static final String PORTAL_TASK_DETAILS = "Start Processes/PortalStart/DefaultTaskDetailPage.ivp";
   private static final String PORTAL_TASK_DETAILS_IN_FRAME = "Start Processes/PortalStart/TaskDetailsPageInFrame.ivp";
   private static final String PORTAL_GLOBAL_SEARCH = "Start Processes/PortalStart/GlobalSearchPage.ivp";
-  private static final String PORTAL_USER_PROFILE =  "Start Processes/PortalStart/UserProfile.ivp";
-  private static final String PORTAL_MANAGEMENT =  "Start Processes/PortalStart/PortalManagement.ivp";
-  private static final String PORTAL_ABSENCE_MANAGEMENT =  "Start Processes/PortalStart/AbsenceManagement.ivp";
+  private static final String PORTAL_USER_PROFILE = "Start Processes/PortalStart/UserProfile.ivp";
+  private static final String PORTAL_MANAGEMENT = "Start Processes/PortalStart/PortalManagement.ivp";
+  private static final String PORTAL_ABSENCE_MANAGEMENT = "Start Processes/PortalStart/AbsenceManagement.ivp";
   private static final String PORTAL_FORGOT_PASSWORD = "Start Processes/PortalStart/ForgotPasswordPage.ivp";
   private static final String PORTAL_PASSWORD_RESET = "Start Processes/PortalStart/PasswordResetPage.ivp";
   private static final String PORTAL_CASE_DETAILS_IN_FRAME = "Start Processes/PortalStart/CaseDetailsInIFrame.ivp";
-  private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION = "Start Processes/PortalStart/PortalDashboardConfiguration.ivp";
+  private static final String PORTAL_NEW_DASHBOARD_CONFIGURATION =
+      "Start Processes/PortalStart/PortalDashboardConfiguration.ivp";
   private static final String PORTAL_PROCESS_INFO = "Start Processes/PortalStart/ProcessInformation.ivp";
   private static final String PORTAL_DASHBOARD_DETAILS = "Start Processes/PortalStart/DashboardDetails.ivp";
 
   public static final String PORTAL_DASHBOARD_START = "/DefaultDashboardPage.ivp";
   public static final String PORTAL_PROCESS_START = "/DefaultProcessStartListPage.ivp";
-  public static final String PORTAL_USER_PROFILE_START =  "/UserProfile.ivp";
+  public static final String PORTAL_USER_PROFILE_START = "/UserProfile.ivp";
   public static final String PORTAL_CASE_DETAILS_IN_IFRAME_START = "/CaseDetailsInIFrame.ivp";
   public static final String PORTAL_DASHBOARD_PAGE_START = "/DashboardPage.ivp";
   public static final String DASHBOARD_ID = "dashboardId";
   private static final String UUID = "uuid";
   private static final String ID = "id";
-  private static final String PORTAL_DASHBOARD_PAGE = "Start Processes/PortalStart/DashboardPage.ivp";  private static final String PORTAL_DASHBOARD_CONFIGURATION_EDIT_PAGE = "Start Processes/PortalStart/PortalDashboardConfigurationEditPage.ivp";
-  private static final String PORTAL_NOTIFICATION_FULLPAGE =  "Start Processes/PortalStart/NotificationFullPage.ivp";
-  private static final String PORTAL_NOTIFICATION_FULLPAGE_START =  "/NotificationFullPage.ivp";
+  private static final String PORTAL_DASHBOARD_PAGE = "Start Processes/PortalStart/DashboardPage.ivp";
+  private static final String PORTAL_DASHBOARD_CONFIGURATION_EDIT_PAGE =
+      "Start Processes/PortalStart/PortalDashboardConfigurationEditPage.ivp";
+  private static final String PORTAL_NOTIFICATION_FULLPAGE = "Start Processes/PortalStart/NotificationFullPage.ivp";
+  private static final String PORTAL_NOTIFICATION_FULLPAGE_START = "/NotificationFullPage.ivp";
   private static final String PORTAL_CUSTOM_STATISTIC = "Start Processes/PortalStart/StatisticConfiguration.ivp";
   private static final String PORTAL_TRAINING_DASHBOARD = "Start Processes/PortalStart/TrainingDashboard.ivp";
-  
+
   private final static String DASHBOARD_PARAM = "isShowDashboard";
-  
+
   public static String getPortalStartUrl() {
     return getRelativeLink(StandardProcessType.DefaultApplicationHomePage);
   }
 
   public static String getPortalDashboardPageUrl(Map<String, String> params) {
-    String customizePortalFriendlyRequestPath = ProcessStartUtils.findFriendlyRequestPathContainsKeyword(PORTAL_DASHBOARD_START);
+    String customizePortalFriendlyRequestPath =
+        ProcessStartUtils.findFriendlyRequestPathContainsKeyword(PORTAL_DASHBOARD_START);
     return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, PORTAL_DASHBOARD), params);
   }
 
   public static void navigateToPortalLoginPage() {
     IHttpRequest request = (IHttpRequest) Ivy.request();
     String loginPage = getRelativeLink(StandardProcessType.DefaultLoginPage);
-    String originalUrl = URLEncoder.encode(RequestUtils.getFullURL(request.getHttpServletRequest()), StandardCharsets.ISO_8859_1);
+    String originalUrl =
+        URLEncoder.encode(RequestUtils.getFullURL(request.getHttpServletRequest()), StandardCharsets.ISO_8859_1);
     redirect(String.format("%s?originalUrl=%s", loginPage, originalUrl));
   }
-  
+
   public static String getForgotPasswordUrl() {
     return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(PORTAL_FORGOT_PASSWORD);
   }
-  
+
   public static String getPasswordResetUrl(String token, String username) {
     Map<String, String> params = new HashMap<>();
     params.put("token", token);
@@ -147,7 +152,7 @@ public final class PortalNavigator extends BaseNavigator{
     params.put(UUID, uuid);
     navigateByKeyword("TaskDetailsPageInFrame.ivp", PORTAL_TASK_DETAILS_IN_FRAME, params);
   }
-  
+
   public static void navigateToPortalCaseDetailsInFrame(String uuid, boolean isBusinessCase) {
     Map<String, String> params = new HashMap<>();
     params.put(UUID, uuid);
@@ -157,11 +162,12 @@ public final class PortalNavigator extends BaseNavigator{
 
   public static void navigateToPortalGlobalSearch(String keyword) throws UnsupportedEncodingException {
     Map<String, String> params = new HashMap<>();
-    params.put("keyword",  URLEncoder.encode(keyword, "UTF-8"));
+    params.put("keyword", URLEncoder.encode(keyword, "UTF-8"));
     navigateByKeyword("GlobalSearchPage.ivp", PORTAL_GLOBAL_SEARCH, params);
   }
-  
-  public static void navigateToPortalGlobalSearch(String keyword, String activeTabIndex) throws UnsupportedEncodingException {
+
+  public static void navigateToPortalGlobalSearch(String keyword, String activeTabIndex)
+      throws UnsupportedEncodingException {
     Map<String, String> params = new HashMap<>();
     params.put("keyword", URLEncoder.encode(keyword, "UTF-8"));
     params.put("activeTabIndex", activeTabIndex);
@@ -223,7 +229,7 @@ public final class PortalNavigator extends BaseNavigator{
     params.put(UUID, uuid);
     return buildUrlByKeyword(PORTAL_CASE_DETAILS_IN_IFRAME_START, PORTAL_CASE_DETAILS_IN_FRAME, params);
   }
-  
+
   /**
    * Generate URL for process information page of selected process
    * 
@@ -235,10 +241,11 @@ public final class PortalNavigator extends BaseNavigator{
     params.put("processKey", processId);
     return buildUrlByKeyword("ProcessInformation.ivp", PORTAL_PROCESS_INFO, params);
   }
-  
+
   public static String buildUrlByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
     Object portalStartPmvId = Ivy.session().getAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
-    String customizePortalFriendlyRequestPath = ProcessStartUtils.findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId); 
+    String customizePortalFriendlyRequestPath =
+        ProcessStartUtils.findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
     return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
   }
 
@@ -256,22 +263,21 @@ public final class PortalNavigator extends BaseNavigator{
   public static String buildPortalManagementUrl() {
     return buildUrlByKeyword("PortalManagement.ivp", PORTAL_MANAGEMENT, new HashMap<>());
   }
-  
+
   public static void navigateToNotificationFullPage() {
     navigateByKeyword(PORTAL_NOTIFICATION_FULLPAGE_START, PORTAL_NOTIFICATION_FULLPAGE, new HashMap<>());
   }
-  
+
   public static String buildNotificationFullPageUrl() {
     return buildUrlByKeyword(PORTAL_NOTIFICATION_FULLPAGE_START, PORTAL_NOTIFICATION_FULLPAGE, new HashMap<>());
   }
 
   public static String buildAssistantDashboardUrl() {
-    IProcessStart process = AiProcessService.getInstance()
-        .findAssistantDashboardProcess();
-    return Optional.ofNullable(process).map(IProcessStart::getLinkEmbedded)
-        .map(WebLink::getRelative).orElse("");
+    IProcessStart process = AiProcessService.getInstance().findAssistantDashboardProcess();
+    return Optional.ofNullable(process).map(IProcessStart::getLinkEmbedded).map(WebLink::getRelative).orElse("");
   }
-    public static String buildCustomStatisticUrl(Map<String, String> param) {
+
+  public static String buildCustomStatisticUrl(Map<String, String> param) {
     return buildUrlByKeyword(PORTAL_CUSTOM_STATISTIC, PORTAL_CUSTOM_STATISTIC, param);
   }
 
@@ -279,14 +285,18 @@ public final class PortalNavigator extends BaseNavigator{
    * Navigate to training dashboard for first-time users
    */
   public static void navigateToTrainingDashboard() {
-    navigateByKeyword("TrainingDashboard.ivp", PORTAL_TRAINING_DASHBOARD, new HashMap<>());
+    // Navigate to the main dashboard page with training dashboard ID
+    String trainingDashboardUrl = getDashboardPageUrl("training-dashboard");
+    navigate(trainingDashboardUrl, null);
   }
 
   /**
    * Build URL for training dashboard
+   * 
    * @return URL string for training dashboard
    */
   public static String buildTrainingDashboardUrl() {
-    return buildUrlByKeyword("TrainingDashboard.ivp", PORTAL_TRAINING_DASHBOARD, new HashMap<>());
+    // Return the main dashboard URL with training dashboard ID
+    return getDashboardPageUrl("training-dashboard");
   }
 }

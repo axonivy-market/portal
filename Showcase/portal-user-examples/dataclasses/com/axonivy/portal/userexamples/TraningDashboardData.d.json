@@ -4,7 +4,7 @@
   "namespace" : "com.axonivy.portal.userexamples",
   "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "tranningDashboard",
+    "name" : "traningDashboard",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   } ]

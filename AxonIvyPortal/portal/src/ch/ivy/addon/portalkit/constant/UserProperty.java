@@ -13,5 +13,5 @@ public class UserProperty {
   public static final String DEFAULT_PROCESS_IMAGE = "DEFAULT_PROCESS_IMAGE";
   public static final String PORTAL_PINNED_TASKS = "PORTAL_PINNED_TASKS";
   public static final String PORTAL_PINNED_CASES = "PORTAL_PINNED_CASES";
-  public static final String IS_FIRST_LOGIN = "IS_FIRST_LOGIN";
+  public static final String PORTAL_IS_FIRST_LOGIN = "PORTAL_IS_FIRST_LOGIN";
 }

@@ -1,7 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_DASHBOARD_ID;
-
 import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_SUB_DASHBOARD_ID;
 
 import java.io.IOException;
@@ -56,6 +55,8 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.TrainingDashboardService;
+import ch.ivy.addon.portalkit.util.TrainingDashboardUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -93,18 +94,21 @@ public class DashboardBean implements Serializable {
   @PostConstruct
   public void init() {
     currentDashboardIndex = 0;
-    
+
     if (isReadOnlyMode) {
       DashboardUtils.updateDashboardCache();
     }
 
     dashboards = collectDashboards();
-
     if (CollectionUtils.isNotEmpty(DashboardUtils.getDashboardsWithoutMenuItem())
         || isRequestPathForMainOrDetailModification() || isNavigateToDashboard()) {
       updateSelectedDashboardIdFromSessionAttribute();
       updateSelectedDashboard();
-      storeAndHighlightDashboardIfRequired();
+      storeAndHighlightDashboardIfRequired();      // Check if training dashboard is being displayed
+      if (selectedDashboard != null && "training-dashboard".equals(selectedDashboard.getId())) {
+        Ivy.log().info("Training dashboard is being displayed");
+        // NOTE: Don't complete training immediately - let user interact with it first
+      }
     }
     buildWidgetModels(selectedDashboard);
     isRunningTaskWhenClickingOnTaskInList = GlobalSettingService.getInstance()
@@ -119,15 +123,15 @@ public class DashboardBean implements Serializable {
 
     buildStatisticApiUri();
   }
-  
+
   private boolean isNavigateToDashboard() {
     Object attr = Ivy.session().getAttribute(SessionAttribute.NAVIGATE_TO_DASHBOARD.name());
     return attr != null && (boolean) attr;
-}
+  }
 
   private void buildStatisticApiUri() {
-    this.statisticApiUri = FacesContext.getCurrentInstance()
-        .getExternalContext().getRequestContextPath() + "/api/statistics/data";
+    this.statisticApiUri =
+        FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath() + "/api/statistics/data";
   }
 
   private boolean isRequestPathForMainOrDetailModification() {
@@ -307,8 +311,7 @@ public class DashboardBean implements Serializable {
     // Update latest widget name
     widgetFilters.forEach(filter -> {
       var selectedWidget = selectedDashboard.getWidgets().stream()
-          .filter(widget -> widget.getId().equals(filter.getWidgetId()))
-          .findFirst().orElse(null);
+          .filter(widget -> widget.getId().equals(filter.getWidgetId())).findFirst().orElse(null);
       if (selectedWidget != null) {
         filter.setWidgetName(selectedWidget.getName());
       }
@@ -333,10 +336,8 @@ public class DashboardBean implements Serializable {
         caseWidget.setUserFilters(new ArrayList<>());
       }
 
-      List<DashboardFilter> savedFilters = caseWidget.getUserFilterCollection()
-          .getSelectedWidgetFilters().stream()
-          .map(WidgetFilterModel::getUserFilters)
-          .filter(list -> CollectionUtils.isNotEmpty(list))
+      List<DashboardFilter> savedFilters = caseWidget.getUserFilterCollection().getSelectedWidgetFilters().stream()
+          .map(WidgetFilterModel::getUserFilters).filter(list -> CollectionUtils.isNotEmpty(list))
           .collect(ArrayList::new, List::addAll, List::addAll);
       caseWidget.setUserFilters(savedFilters);
       return;
@@ -349,10 +350,8 @@ public class DashboardBean implements Serializable {
         taskWidget.setUserFilters(new ArrayList<>());
       }
 
-      List<DashboardFilter> savedFilters = taskWidget.getUserFilterCollection()
-          .getSelectedWidgetFilters().stream()
-          .map(WidgetFilterModel::getUserFilters)
-          .filter(list -> CollectionUtils.isNotEmpty(list))
+      List<DashboardFilter> savedFilters = taskWidget.getUserFilterCollection().getSelectedWidgetFilters().stream()
+          .map(WidgetFilterModel::getUserFilters).filter(list -> CollectionUtils.isNotEmpty(list))
           .collect(ArrayList::new, List::addAll, List::addAll);
       taskWidget.setUserFilters(savedFilters);
       return;
@@ -411,16 +410,42 @@ public class DashboardBean implements Serializable {
   }
 
   private int findIndexOfDashboardById(String selectedDashboardId) {
+    // Special handling for training dashboard
+    if ("training-dashboard".equals(selectedDashboardId) && TrainingDashboardUtils.shouldShowTrainingDashboard()) {
+      Dashboard trainingDashboard = TrainingDashboardService.loadTrainingDashboard();
+      if (trainingDashboard != null) {
+        trainingDashboard.setId("training-dashboard");
+        trainingDashboard.setDashboardDisplayType(DashboardDisplayType.TOP_MENU); // Make it a main menu item
 
+        // Set default icon if missing
+        if (StringUtils.isBlank(trainingDashboard.getIcon())) {
+          trainingDashboard.setIcon("si-graduation-cap");
+        }
+
+        // Ensure titles are set
+        if (CollectionUtils.isEmpty(trainingDashboard.getTitles())) {
+          trainingDashboard.setTitle("Training Dashboard");
+        }
+
+        // Add training dashboard to the beginning of the list
+        dashboards.add(0, trainingDashboard);
+        Ivy.log().info("Training dashboard added to dashboard list for navigation with ID: {}",
+            trainingDashboard.getId());
+        return 0; // Return the index of the newly added training dashboard
+      }
+    }
 
     if (StringUtils.isNotBlank(selectedDashboardId)) {
       return dashboards.stream().filter(dashboard -> dashboard.getId().contentEquals(selectedDashboardId)).findFirst()
-          .map(dashboards::indexOf).orElse(dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType()))
+          .map(dashboards::indexOf)
+          .orElse(dashboards.stream()
+              .filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType()))
               .findFirst().map(dashboards::indexOf).orElse(0));
     }
 
-    return dashboards.stream().filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())).findFirst().map(dashboards::indexOf)
-        .orElse(0);
+    return dashboards.stream()
+        .filter(dashboard -> DashboardDisplayType.SUB_MENU.equals(dashboard.getDashboardDisplayType())).findFirst()
+        .map(dashboards::indexOf).orElse(0);
   }
 
 
@@ -474,7 +499,8 @@ public class DashboardBean implements Serializable {
   }
 
   public boolean isShowShareButtonOnDashboard() {
-    return PermissionUtils.hasShareDashboardPermission() && selectedDashboard != null && !getIsEditMode() && selectedDashboard.getIsPublic();
+    return PermissionUtils.hasShareDashboardPermission() && selectedDashboard != null && !getIsEditMode()
+        && selectedDashboard.getIsPublic();
   }
 
   public List<Dashboard> getImportedDashboards() {
@@ -517,11 +543,10 @@ public class DashboardBean implements Serializable {
   }
 
   public String getScreenReaderNotificationContent() {
-    String templateId = Optional.ofNullable(this.selectedDashboard)
-        .map(Dashboard::getTemplateId).orElse(StringUtils.EMPTY);
+    String templateId =
+        Optional.ofNullable(this.selectedDashboard).map(Dashboard::getTemplateId).orElse(StringUtils.EMPTY);
 
-    if (StringUtils.isNotBlank(templateId)
-        && ACCESSIBILITY_DASHBOARD_TEMPLATE_ID.equals(templateId)) {
+    if (StringUtils.isNotBlank(templateId) && ACCESSIBILITY_DASHBOARD_TEMPLATE_ID.equals(templateId)) {
       return Ivy.cms().co("/Dialogs/com/axonivy/portal/dashboard/component/AccessibilityShortcuts/title");
     }
     return StringUtils.EMPTY;
@@ -539,16 +564,16 @@ public class DashboardBean implements Serializable {
       selectedDashboardId = (String) Ivy.session().getAttribute(SELECTED_SUB_DASHBOARD_ID.name());
     }
   }
-  
+
   public void setSearchScope(DashboardWidget widget) {
     if (widget instanceof TaskDashboardWidget taskWidget) {
       this.searchScope = getSearchScopeFromWidget(taskWidget.getFilterableColumns());
     }
-    
+
     if (widget instanceof CaseDashboardWidget caseWidget) {
       this.searchScope = getSearchScopeFromWidget(caseWidget.getFilterableColumns());
     }
-    
+
     if (widget instanceof ProcessDashboardWidget processWidget) {
       this.searchScope = getSearchScopeFromWidget(processWidget.getFilterableColumns());
     }
@@ -567,27 +592,28 @@ public class DashboardBean implements Serializable {
 
   private StringBuilder appendFieldNameList(List<String> fieldList) {
     return new StringBuilder(String.join(", ", fieldList));
-}
+  }
 
   public String getSearchScope() {
     return this.searchScope;
   }
-  
+
   public String getDashboardUrlByDashboard(String id) {
     return UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(id);
   }
-  
+
   public List<String> getDashboardDisplayTypeList() {
     return DashboardDisplayType.getTypeList();
   }
-  
+
   public String getDashboardDisplayTypeLabel(DashboardDisplayType type) {
     return DashboardDisplayType.getDisplayLabel(type);
   }
-  
+
   public List<Dashboard> getPublicDashboards() {
     return DashboardUtils.getPublicDashboards();
   }
+
   public boolean canShowPinnedItemToggle(DashboardWidget widget) {
     if (widget instanceof TaskDashboardWidget) {
       return GlobalSettingService.getInstance().isEnablePinTask()
