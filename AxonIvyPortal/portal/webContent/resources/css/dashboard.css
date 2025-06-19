@@ -1102,10 +1102,6 @@ span.new-widget-dialog__icon.si {
   font-weight: bold;
 }
 
-.saved-filter--not-found {
-  color: var(--widget-advanced-filter-overlay-panel-footer);
-}
-
 .saved-filter__manage-filter {
   font-size: var(--small-font-size);
 }
