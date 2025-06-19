@@ -46,7 +46,7 @@
         <h:panelGroup layout="block" styleClass="flex align-items-center justify-content-between gap-2">
             <h:outputText value="#{dashboardBean.showPinnedItemToggleLable(widget)}"
                 styleClass="text-base font-semibold text-left"/>
-            <p:toggleSwitch value="#{dashboardBean.showPinnedItem}" id="show-pin-toggle">
+            <p:toggleSwitch value="#{dashboardBean.showPinnedItem}" id="show-pin-toggle" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pin')}">
                 <p:ajax listener="#{dashboardBean.togglePinned(widget)}"
                     update="#{componentToUpdateOnResetFilter} @form" />
             </p:toggleSwitch>
@@ -217,6 +217,7 @@
           <div class="ui-g-12">
             <ui:insert name="statisticPanelOtherAction" />
             <p:commandLink styleClass="Fright info-overlay-panel__close-link"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               onclick="PF('info-overlay-panel-#{index}').hide();"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               partialSubmit="true" immediate="true" global="false" process="@this"/>
@@ -264,7 +265,7 @@
   
           <div class="ui-g filter-overlay-panel__footer ">
             <div id="manage-filter" class="ui-g-3 flex justify-content-center ui-sm-hidden">
-               <p:commandLink
+               <p:commandLink ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ManageFilter')}"
                     styleClass="ui-sm-hidden saved-filter__manage-filter absolute bottom-0 mb-5 ui-button-flat" global="false"
                     onclick="hideAllDashboardOverlayPanels(); PF('manage-filter-dialog').show();">
                   <i class="pr-1 pt-1 si si-pencil" />
@@ -302,6 +303,7 @@
               <div class="ui-g-12 flex justify-content-center ui-sm-12 ">
                 <i class="pr-2 pt-1 si si-button-refresh-arrows ui-link u-hover-no-underline"/>
                 <p:commandLink id="reset-button"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetFilters')}"
                   styleClass="u-mar-right-5 flex reset-button" partialSubmit="true"
                   process="filter-form-#{index}"
                   update="#{componentToUpdateOnResetFilter} #{cc.clientId}:widget-header-actions"
