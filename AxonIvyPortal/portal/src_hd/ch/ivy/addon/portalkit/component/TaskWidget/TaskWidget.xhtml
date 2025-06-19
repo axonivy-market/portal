@@ -43,8 +43,10 @@
           <cc:renderFacet name="title" />
           <h:outputText rendered="#{empty cc.facets.title}" 
             value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" styleClass="ui-sm-hidden" />
-          <p:commandLink id="toggle-tasks-link" rendered="#{empty cc.facets.title}" styleClass="compact-toggle-tasks-link ui-lg-hidden ui-xl-hidden ui-md-hidden"
-            global="false" oncomplete="toggleShowTaskList();">
+          <p:commandLink id="toggle-tasks-link" rendered="#{empty cc.facets.title}"
+                         ariaLabel="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}"
+                         styleClass="compact-toggle-tasks-link ui-lg-hidden ui-xl-hidden ui-md-hidden"
+                         global="false" oncomplete="toggleShowTaskList();">
             <i class="si si-subtract-small u-mar-right-5"/>
             <h:outputText value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" />
           </p:commandLink>
@@ -76,7 +78,8 @@
           <h:form id="task-export-to-excel-form"
             styleClass="task-export-to-excel-form u-mar-right-20">
             <p:commandLink ajax="false" id="task-export-to-excel"
-              onclick="PrimeFaces.monitorDownload(start, stop);">
+                           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
+                           onclick="PrimeFaces.monitorDownload(start, stop);">
               <i class="si si-office-file-xls-1 u-mar-right-5" />
               <span class="link-text">
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
@@ -97,8 +100,9 @@
 
       <h:panelGroup rendered="#{cc.attrs.inFrame}" layout="block" styleClass="back-link-container">
         <p:commandLink id="back-link" styleClass="list-back-link js-back-link"
-          actionListener="#{logic.backToCaseDetails()}"
-          process="@this" immediate="true" update="@none">
+                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
+                       actionListener="#{logic.backToCaseDetails()}"
+                       process="@this" immediate="true" update="@none">
           <i class="si si-arrow-left-1 u-mar-right-5" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
         </p:commandLink>

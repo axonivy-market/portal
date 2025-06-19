@@ -10,7 +10,7 @@
     <c:set var="selectedDashboardTypeStyleClass" value="#{isPublicDashboard ? 'js-public-dashboard':'js-private-dashboard'}" scope="request"/>
 
     <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12">
-      <p:commandLink id="create-dashboard-action"
+      <p:commandLink id="create-dashboard-action" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
         styleClass="dashboard-action-container #{selectedDashboardTypeStyleClass}"
         actionListener="#{dashboardConfigurationBean.addNewDashboard(isPublicDashboard)}"
         update="dashboard-configuration-content">
@@ -25,7 +25,7 @@
       </p:commandLink>
     </div>
     <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12">
-      <p:commandLink id="edit-dashboard-action"
+      <p:commandLink id="edit-dashboard-action" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
         styleClass="dashboard-action-container #{selectedDashboardTypeStyleClass}"
         actionListener="#{dashboardConfigurationBean.accessToEditDashboard(isPublicDashboard)}"
         update="dashboard-configuration-content">
@@ -40,7 +40,7 @@
       </p:commandLink>
     </div>
     <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12">
-      <p:commandLink id="reorder-dashboard-action"
+      <p:commandLink id="reorder-dashboard-action" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}"
         styleClass="dashboard-action-container #{selectedDashboardTypeStyleClass}"
         actionListener="#{dashboardConfigurationBean.accessToReorderDashboard(isPublicDashboard)}"
         update="dashboard-configuration-content">

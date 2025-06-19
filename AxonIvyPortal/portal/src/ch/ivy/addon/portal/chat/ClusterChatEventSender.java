@@ -54,6 +54,7 @@ public class ClusterChatEventSender {
     broadcastClusterChat(PORTAL_CHAT_READ_GROUP_MESSAGE, param);
   }
 
+  @SuppressWarnings("removal")
   private static void broadcastClusterChat(ClusterChatAction action, ClusterChatEventParameter param) {
     wf().getApplication().sendSystemEvent(new SystemEvent<>(THIRD_PARTY, action.name(), param));
   }

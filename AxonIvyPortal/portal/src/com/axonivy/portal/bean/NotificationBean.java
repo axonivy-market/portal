@@ -15,7 +15,7 @@ import com.axonivy.portal.dto.NotificationDto;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelDTO;
-import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
+import ch.ivy.addon.portalkit.service.GrowlMessageService;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.notification.channel.NotificationChannel;
@@ -201,7 +201,7 @@ public class NotificationBean implements Serializable {
     }
 
     if (task.getState() != TaskState.DONE) {
-      GrowlMessageUtils.addFeedbackMessage(task.getState() == TaskState.DONE, task.getCase());
+      GrowlMessageService.getInstance().addFeedbackMessage(task.getState() == TaskState.DONE, task.getCase());
     }
   }
 

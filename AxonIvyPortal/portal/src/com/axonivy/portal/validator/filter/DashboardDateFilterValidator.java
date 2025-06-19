@@ -79,11 +79,13 @@ public class DashboardDateFilterValidator implements Validator {
   }
 
   private String getMessagePrefix(String field, int index) {
-    if(EXPIRY_TIMESTAMP.equals(field)) {
-      return String.format(MESSAGE_PREFIX_PATTERN, DashboardStandardTaskColumn.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
+    if (EXPIRY_TIMESTAMP.equals(field)) {
+      return Optional.ofNullable(DashboardStandardTaskColumn.findBy(Optional.ofNullable(field).orElse("")))
+          .map(c -> String.format(MESSAGE_PREFIX_PATTERN, c.getLabel(), index + 1)).orElse("");
     }
-    return String.format(MESSAGE_PREFIX_PATTERN,
-        FilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
+
+    return Optional.ofNullable(FilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")))
+        .map(c -> String.format(MESSAGE_PREFIX_PATTERN, c.getLabel(), index + 1)).orElse("");
   }
 
   public String getWrongFormatMessage(String field, int index) {

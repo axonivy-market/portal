@@ -11,7 +11,6 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.dto.dashboard.filter.BaseFilter;
-import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.enums.dashboard.filter.FilterPeriodType;
 import com.axonivy.portal.util.filter.field.FilterFieldFactory;
@@ -35,7 +34,7 @@ public class WidgetDateFilterBean implements Serializable {
   private static List<FilterPeriodType> currentFilterPeriodTypes = FilterPeriodType.PERIOD_TYPES_FOR_CURRENT_OPERATOR
       .stream().toList();
 
-  private static SimpleDateFormat formatter = new SimpleDateFormat(DashboardFilter.DATE_FORMAT);
+  private static SimpleDateFormat formatter = new SimpleDateFormat(BaseFilter.DATE_FORMAT);
   
   private static List<FilterOperator> statisticOperators = FilterOperator.STATISTIC_DATE_OPERATORS.stream().toList();
 
@@ -62,8 +61,8 @@ public class WidgetDateFilterBean implements Serializable {
   }
 
   private String getTaskMessagePrefix(String field, int index) {
-    return String.format(MESSAGE_PREFIX_PATTERN,
-        TaskFilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")).getLabel(), index + 1);
+    return Optional.ofNullable(TaskFilterFieldFactory.findBy(Optional.ofNullable(field).orElse("")))
+        .map(c -> String.format(MESSAGE_PREFIX_PATTERN, c.getLabel(), index + 1)).orElse("");
   }
 
   private String getMessagePrefix(String field, int index, String widgetType) {

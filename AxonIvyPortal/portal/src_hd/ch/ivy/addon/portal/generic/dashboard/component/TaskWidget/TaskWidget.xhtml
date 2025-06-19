@@ -44,8 +44,10 @@
     <h:panelGroup id="dashboard-tasks-container" layout="block"
       styleClass="ui-g-12 u-padding-0 js-dashboard-tasks-container-#{taskWidget.id} hidden dashboard-tasks-container">
       <h:panelGroup id="columns-configuration" layout="block" rendered="#{cc.attrs.renderColumnConfiguration}" styleClass="dashboard-tasks-container__columns-configuration">
-        <p:commandLink id="column-toggler" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" 
-          update="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" oncomplete="PF('column-management-dialog').show()" process="@this" global="false">
+        <p:commandLink id="column-toggler" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
+                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
+                       update="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}"
+                       oncomplete="PF('column-management-dialog').show()" process="@this" global="false">
           <p:resetInput target="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" />
         </p:commandLink>
       </h:panelGroup>
@@ -176,7 +178,8 @@
     <ui:define name="dialogFooter">
       <h:form id="reset-task-confirmation-form" rendered="#{!isPreviewMode}">
         <p:commandLink onclick="PF('reset-task-confirmation-dialog').hide()"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
+                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
         <p:commandButton actionListener="#{dashboardTaskWidgetBean.resetAndOpenTask}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}"

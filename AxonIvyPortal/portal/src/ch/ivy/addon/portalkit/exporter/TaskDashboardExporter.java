@@ -85,7 +85,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
           : taskItem.responsibles().all()
             .stream()
             .map(item -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(item.get(), item.displayName()))
-            .collect(Collectors.joining(", "));
+            .collect(Collectors.joining(Ivy.cms().co("/Labels/Comma")));
       case ID -> String.valueOf(taskItem.getId());
       case CREATED -> taskItem.getStartTimestamp();
       case COMPLETED -> taskItem.getEndTimestamp();

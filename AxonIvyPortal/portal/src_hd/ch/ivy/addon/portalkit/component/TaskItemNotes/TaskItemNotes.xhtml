@@ -15,7 +15,7 @@
   <f:event listener="#{logic.initData(task)}" type="preRenderComponent" />
   <h:panelGroup class="task-details-item-note ui-g" id="task-details-item-note" layout="block">
     <div class="task-detail-section-title ui-g-12">
-      <div class="ui-g-3 u-truncate-text u-padding-0 task-details-panel-title">
+      <div class="ui-g-3 u-truncate-text u-padding-0 task-details-panel-title" role="heading" aria-level="1">
         <i class="si si-synchronize-arrow-clock" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/histories')}
 
       </div>
@@ -28,7 +28,8 @@
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
           <p:commandLink id="add-note-command" styleClass="task-details-document-add-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}" global="false"
-            oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()" actionListener="#{data.setTask(task)}">
+                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
+                         oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()" actionListener="#{data.setTask(task)}">
             <span class="si si-notes-add" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>

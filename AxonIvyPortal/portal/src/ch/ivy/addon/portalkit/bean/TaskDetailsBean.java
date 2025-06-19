@@ -245,6 +245,6 @@ public class TaskDetailsBean extends AbstractConfigurableContentBean<TaskDetails
         .responsibles()
         .all()
         .stream()
-        .anyMatch(item -> item.get().isMember(ISession.current(), true));
+        .anyMatch(item -> item.get().isMember(ISession.current()));
   }
 }

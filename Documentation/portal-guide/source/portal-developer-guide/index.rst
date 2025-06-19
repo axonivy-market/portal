@@ -10,6 +10,7 @@ Developer Guide
    introduction/index
    architecture/index
    installation/index
+   deployment/index
    settings/index
    dashboard/index
    usermenu/index

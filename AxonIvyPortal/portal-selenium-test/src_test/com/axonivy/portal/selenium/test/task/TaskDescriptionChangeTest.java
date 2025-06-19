@@ -28,6 +28,7 @@ public class TaskDescriptionChangeTest extends BaseTest {
   @Test
   public void testChangeTaskDescription() {
     login(TestAccount.ADMIN_USER);
+    resizeBrowserToFullHDResolution();
     int firstTask = 0;
     NavigationHelper.navigateToTaskList();
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();

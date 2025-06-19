@@ -3,6 +3,7 @@ package com.axonivy.portal.bean.dashboard.filter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -47,8 +48,8 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
 
     // Add custom fields which are selected by user.
     this.widget.getFilterableColumns().stream().filter(column -> column.getType() != DashboardColumnType.STANDARD)
-        .forEach(
-            column -> this.filterFields.add(TaskFilterFieldFactory.findBy(column.getField(), column.getType())));
+        .map(column -> TaskFilterFieldFactory.findBy(column.getField(), column.getType())).filter(Objects::nonNull)
+        .forEach(this.filterFields::add);
   }
 
   private void initFilters() {

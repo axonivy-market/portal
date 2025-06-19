@@ -19,7 +19,7 @@
   <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
     <div class="ui-g-12 case-details-related-case-header-section">
-      <div class="ui-g-7 u-truncate-text task-details-panel-title case-detail-section-title">
+      <div class="ui-g-7 u-truncate-text task-details-panel-title case-detail-section-title" role="heading" aria-level="1">
         <i class="si si-layout-bullets"/> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/relatedCases')}
       </div>
       <h:panelGroup layout="block" styleClass="ui-g-5 related-case-section-header-actions" id="related-case-actions">

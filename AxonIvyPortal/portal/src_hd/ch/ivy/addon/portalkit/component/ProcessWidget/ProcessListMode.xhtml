@@ -12,7 +12,8 @@
           <h:panelGroup id="grid-process-category-content" styleClass="grid-process-category-content u-truncate-text" layout="block">#{processWidgetBean.getDisplayProcessCategory(process)}</h:panelGroup>
         </h:panelGroup>
       <p:commandLink id="process-item" actionListener="#{processWidgetBean.startProcess(process)}" styleClass="process-item"
-        target="#{processWidgetBean.targetToStartProcess(process)}" ajax="#{!isExternalLink}">
+                     ariaLabel="#{process.name}"
+                     target="#{processWidgetBean.targetToStartProcess(process)}" ajax="#{!isExternalLink}">
 
         <div class="process-start-list-item-name #{isExternalLink ? 'is-external-link' : ''}">
           <h:outputText id="process-name" value="#{process.name}"
