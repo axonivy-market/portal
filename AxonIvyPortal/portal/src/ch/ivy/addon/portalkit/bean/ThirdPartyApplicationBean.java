@@ -61,50 +61,6 @@ public class ThirdPartyApplicationBean implements Serializable {
   private String translatedText = "";
   private String warningText = "";
 
-  public void synchronizeAllApplicationNames() {
-    try {
-      RegisteredApplicationService applicationService = RegisteredApplicationService.getInstance();
-      List<Application> allApplications = applicationService.findAll();
-
-      if (allApplications != null && !allApplications.isEmpty()) {
-        boolean hasChanges = false;
-
-        for (Application app : allApplications) {
-          String originalName = app.getName();
-          try {
-            String localeDisplayName = ApplicationMultiLanguage.getDisplayNameInCurrentLocale(app);
-
-            if (localeDisplayName != null && !localeDisplayName.trim().isEmpty()) {
-              String newName = localeDisplayName.trim();
-              if (!newName.equals(originalName)) {
-                app.setName(newName);
-                applicationService.save(app);
-                hasChanges = true;
-              }
-            }
-          } catch (Exception e) {
-            // Log error but continue processing
-          }
-        }
-        if (hasChanges) {
-          loadApplications();
-
-          FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO,
-              "Application names have been synchronized with display names.", null);
-          FacesContext.getCurrentInstance().addMessage(null, message);
-        } else {
-          FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO,
-              "All application names are already synchronized.", null);
-          FacesContext.getCurrentInstance().addMessage(null, message);
-        }
-      }
-    } catch (Exception e) {
-      FacesMessage errorMessage = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR,
-          "Error synchronizing application names: " + e.getMessage(), null);
-      FacesContext.getCurrentInstance().addMessage(null, errorMessage);
-    }
-  }
-
   public void initApplicationPermissions(Application application) {
     if (application == null) {
       this.selectedApplicationPermissions = new ArrayList<>();

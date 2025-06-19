@@ -77,10 +77,6 @@ public class AdminSettingBean implements Serializable {
     isTabChangeEventTriggered = true;
   }
 
-  public void synchronizeAllApplicationNames() {
-    getThirdPartyApplicationBean().synchronizeAllApplicationNames();
-  }
-
   private ThirdPartyApplicationBean getThirdPartyApplicationBean() {
     if (thirdPartyApplicationBean == null) {
       thirdPartyApplicationBean = new ThirdPartyApplicationBean();
