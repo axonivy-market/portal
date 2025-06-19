@@ -66,6 +66,7 @@
               <f:facet name="loader">
                 <h:panelGroup layout="block" styleClass="text-center" rendered="#{isReadOnlyMode}">
                   <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." icon="si si-button-refresh-arrows"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
                     styleClass="rounded-button ui-button-outlined"
                     onclick="setupNewsWidgetContent('#{htmlSanitizerBean.escapeForJS(widget.id)}', true)" />
                 </h:panelGroup>
