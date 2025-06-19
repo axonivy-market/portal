@@ -95,13 +95,15 @@
           </a>
           <ul id="user-setting-container">
              <li class="ui-menu-items" ><p:commandLink id="user-profile" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}"
-               process="@this"
+               process="@this" 
+               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}"
                actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />
              </li>
 
             <li class="ui-menu-items" jsf:rendered="#{userMenuBean.showDashboardConfigurationMenu}">
               <p:commandLink id="dashboard-configuration"
-                process="@this"
+                process="@this" 
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}"
                 actionListener="#{userMenuBean.navigateToDashboardConfigurationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"/>
             </li>
@@ -112,13 +114,17 @@
                 actionListener="#{userMenuBean.navigateToPortalManagementDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />
             </li>
 
-            <li class="ui-menu-items" jsf:rendered="#{absenceManagementBean.ownAbsencesReadable}"><p:commandLink id="absence-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
+            <li class="ui-menu-items" jsf:rendered="#{absenceManagementBean.ownAbsencesReadable}">
+              <p:commandLink id="absence-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
                   process="@this"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
                   actionListener="#{userMenuBean.navigateToAbsencesOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"/>
             </li>
 
-            <li class="ui-menu-items" jsf:rendered="#{not userMenuBean.hiddenChangePassword}"><p:commandLink id="change-password-menu-item"
+            <li class="ui-menu-items" jsf:rendered="#{not userMenuBean.hiddenChangePassword}">
+              <p:commandLink id="change-password-menu-item"
                 process="@this"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}"
                 oncomplete="PF('changePasswordDialog').show(); $('#user-setting-container').click()"
                 resetValues="true" update="change-password-form">
