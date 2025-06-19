@@ -83,6 +83,7 @@
             <f:attribute name="existingFields" value="#{columnManagementBean.existingFields}" />
             <f:selectItems value="#{columnManagementBean.fields}" var="field" itemValue="#{field}" itemLabel="#{field}" />
             <f:selectItem noSelectionOption="true" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"/>
+            <p:ajax listener="#{columnManagementBean.onSelectStandardField()}" process="@this" update="field-add-fieldset"/>
           </p:selectOneMenu>
         </ui:fragment>
   
@@ -154,7 +155,7 @@
            requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
            readonly="#{selectedCustomField or selectedCustomCaseField or selectedCustomBusinessCaseField}"/>
     
-        <p:commandButton id="name-add-language-button" icon="si si-chat-translate"
+        <p:commandButton id="name-add-language-button" icon="si si-chat-translate" rendered="#{selectedStandardField}"
                          actionListener="#{columnManagementBean.updateNameByLocale()}" process="field-display-name"
                          update="name-language-config:multiple-languages-dialog"
                          oncomplete="PF('multiple-languages-dialog').show();" />
@@ -166,9 +167,10 @@
       </div>
 
       <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+              rendered="#{selectedStandardField}"
               id="name-language-config" titles="#{columnManagementBean.getFieldDisplayNames()}"
               managedBean="#{columnManagementBean}" dynamic="true"
-              updateCurrentLanguage="#{columnManagementBean.updateNameByLocale()}"
+              updateCurrentLanguage="#{columnManagementBean.updateCurrentLanguage()}"
               componentToUpdateOnModify="#{p:resolveFirstComponentWithId('field-display-name', view).clientId}" 
               componentToUpdateOnCreate="#{p:resolveFirstComponentWithId('field-display-name', view).clientId}"
               titleRequired="false" />
