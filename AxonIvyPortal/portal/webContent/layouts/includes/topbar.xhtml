@@ -35,6 +35,7 @@
         <li class="topbar-item">
           <h:panelGroup rendered="#{isInDashboard}">
             <p:commandLink id="back-to-previous-dashboard-page" action="#{navigationDashboardWidgetBean.backToPreviousDashboard()}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
               styleClass="inline-flex align-items-center hover:underline" rendered="#{navigationDashboardWidgetBean.isNavigateToTargetDashboard}" process="@this">
               <i class="si si-arrow-left-1" />
               <p:spacer width="3px" />
@@ -72,6 +73,7 @@
         </li>
         <li class="topbar-item">
           <p:commandLink id="ai-assistant-link" rendered="#{chatRendererBean.isAssistantDashboardRendered}" styleClass="ai-assistant-link"
+               ariaLabel="#{ivy.cms.co('/Labels/AIAssisstant')}"
                actionListener="#{userMenuBean.navigateToChatBotOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}">
            <p:graphicImage styleClass="topbar-item-image topbar-icon"
              name="/images/AIAssistant/DefaultLogo"
@@ -80,7 +82,9 @@
           </p:commandLink>
         </li>
         <li jsf:rendered="#{chatRendererBean.isChatRendered}" class="topbar-item chat-item">
-          <p:commandLink id="toggle-chat-panel-command" global="false" styleClass="notification-badge mod-chat-menu">
+          <p:commandLink id="toggle-chat-panel-command" global="false" 
+            ariaLabel="#{ivy.cms.co('/Labels/Chat')}"
+            styleClass="notification-badge mod-chat-menu">
             <i class="topbar-icon si si-messages-bubble" />
           </p:commandLink>
         </li>

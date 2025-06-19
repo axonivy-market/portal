@@ -799,6 +799,40 @@ $(document).ready(function () {
   handleExpandButtonInFilePreview();
 
   // END OF HANDLE EXPAND BUTTON IN FILE PREVIEW
+
+  // START: FIX ACCESSIBILITY ISSUES
+  let parentMenu = $("[id$='user-menu-required-login:main-navigator:main-menu']");
+  if (parentMenu) {
+    if (parentMenu.attr('role') === undefined) {
+      parentMenu.attr('role', 'menu');
+    }
+    parentMenu.find('li').each((index, item) => {
+      let linkItem = $(item).find('a');
+      if (linkItem && linkItem.attr('aria-label') === undefined) {
+        linkItem.attr('aria-label', 'Aria label');
+      }
+    })
+  }
+
+  setTimeout(function () {
+    let combobox = $("span[role='combobox']");
+    combobox.each((index, item) => {
+      if ($(item).attr('aria-label') === undefined) {
+        $(item).attr('aria-label', $(item).text());
+      }
+    });
+  }, 200);
+
+  setAltForAvatar();
 });
 // End of accessibility for shortcuts navigation
 
+function setAltForAvatar() {
+  $("div.has-avatar").each((index, item) => {
+    let imgTag = $(item).find('img');
+    if ($(imgTag).attr('alt') === undefined) {
+      let alt = $(item).find('.name-after-avatar').text() || 'Avatar';
+      $(imgTag).attr('alt', alt)
+    }
+  })
+}

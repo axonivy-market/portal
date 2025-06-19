@@ -29,7 +29,7 @@
           </div>
           <div class="ui-sm-hidden ui-md-hidden ui-lg-4 ui-xl-4 process-widget-creation-actions">
             <h:panelGroup styleClass="add-external-link-command">
-              <p:commandLink id="add-external-link-command"
+              <p:commandLink id="add-external-link-command" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addExternalLink')}"
                 actionListener="#{externalLinkBean.addNewExternalLink(cc.clientId)}"
                 update="#{cc.clientId}:add-external-link-dialog" oncomplete="PF('add-external-link-dialog').show()">
                 <i class="si si-hyperlink-3" aria-hidden="true" />
