@@ -11,11 +11,20 @@ function loadIframe(recheckIndicator) {
       }
       processIFrameData(iframe);
       clearTimeout(recheckFrameTimer);
-      setTimeout(function() {
-        if ($(iframe).attr('src') != 'about:blank') {
-          iframe.style.visibility = 'visible';
-          }
-        }, 500);
+
+      // Perform rendering once the src is found
+      if ($(iframe).attr('src') != 'about:blank') {
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+
+        // If the document inside Iframe is ready, render it
+        if (doc && doc.readyState === 'complete' && doc.body) {
+            iframe.style.visibility = 'visible';
+        } else {
+        // Otherwise, set timeout to wait till document is ready
+            setTimeout(function() { iframe.style.visibility = 'visible';}, 300);
+        }
+      }
+
       return;
     });
   }
