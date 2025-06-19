@@ -18,6 +18,7 @@
 
       <p:remoteCommand name="preview" action="#{statisticConfigurationBean.getPreviewData}"
         oncomplete="handlePreviewChart(xhr, status, args)" autoRun="#{statisticConfigurationBean.editMode}" />
+      <p:remoteCommand name="updateThresholdToggle" action="#{statisticConfigurationBean.resetConditionBasedColoring}" global="false"/>
       <h:form id="config-form">
         <div>
           <p:messages id="errors-message" closable="true" />
@@ -63,6 +64,37 @@
                       actionListener="#{statisticConfigurationBean.updateDescriptionByLocale()}" process="description"
                       update="description-language-config:multiple-languages-dialog"
                       oncomplete="PF('multiple-languages-dialog').show();" />
+                  </div>
+                </div>
+                
+                <div class="field col-12">
+                  <p:outputLabel for="@next" value="#{ivy.cms.co('/Labels/Permissions')}" />
+                  <div class="w-full ui-fluid">
+                    <p:autoComplete id="permissions" scrollHeight="210" dropdown="true"
+                      completeMethod="#{statisticConfigurationBean.completePermissions}"
+                      styleClass="manage-dashboard__input" inputStyleClass="manage-dashboard__autocomplete-input"
+                      emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+                      value="#{statisticConfigurationBean.statistic.permissionDTOs}" var="responsible"
+                      itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}"
+                      converter="pojoConverter" cache="true" maxResults="100" multiple="true"
+                      moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
+                      forceSelection="true" required="true"
+                      requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Labels/Permissions')])}">
+                      <p:ajax event="itemSelect" listener="#{statisticConfigurationBean.onSelectPermissionForDashboard}"
+                        update="permissions errors-message" global="false" process="@this" immediate="true" />
+                      <p:ajax event="itemUnselect"
+                        listener="#{statisticConfigurationBean.onUnSelectPermissionForDashboard}" global="false"
+                        process="@this" immediate="true" />
+                      <p:column>
+                        <pc:securityMemberNameAndAvatar displayName="#{dashboardTaskFilterBean.formatName(responsible)}"
+                          securityMember="#{responsible}">
+                          <f:facet name="alternativeAvatar">
+                            <h:outputText rendered="#{not avatarBean.isShowAvatar()}"
+                              styleClass="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                          </f:facet>
+                        </pc:securityMemberNameAndAvatar>
+                      </p:column>
+                    </p:autoComplete>
                   </div>
                 </div>
 
@@ -119,7 +151,8 @@
                       var="aggregate" itemValue="#{aggregate.name}" itemLabel="#{aggregate.getCmsName()}" />
                     <p:ajax listener="#{statisticConfigurationBean.onSelectAggregationField()}"
                       update="chart-aggregation" />
-                    <p:ajax event="itemSelect" listener="#{statisticConfigurationBean.renderCategoryData}" update="chart-background-colors" global="false"/>
+                    <p:ajax event="itemSelect" listener="#{statisticConfigurationBean.resetConditionBasedColoring}" resetValues="true"
+                    update="chart-background-colors condition-based-coloring-enabled-toggle" global="false"/>
                   </p:selectOneMenu>
 
                   <!-- CUSTOM FIELD SELECTION -->
@@ -213,37 +246,6 @@
                   </h:panelGroup>
                 </h:panelGroup>
 
-                <div class="field col-12">
-                  <p:outputLabel for="@next" value="#{ivy.cms.co('/Labels/Permissions')}" />
-                  <div class="w-full ui-fluid">
-                    <p:autoComplete id="permissions" scrollHeight="210" dropdown="true"
-                      completeMethod="#{statisticConfigurationBean.completePermissions}"
-                      styleClass="manage-dashboard__input" inputStyleClass="manage-dashboard__autocomplete-input"
-                      emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-                      value="#{statisticConfigurationBean.statistic.permissionDTOs}" var="responsible"
-                      itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}"
-                      converter="pojoConverter" cache="true" maxResults="100" multiple="true"
-                      moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
-                      forceSelection="true" required="true"
-                      requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage',[ivy.cms.co('/Labels/Permissions')])}">
-                      <p:ajax event="itemSelect" listener="#{statisticConfigurationBean.onSelectPermissionForDashboard}"
-                        update="permissions errors-message" global="false" process="@this" immediate="true" />
-                      <p:ajax event="itemUnselect"
-                        listener="#{statisticConfigurationBean.onUnSelectPermissionForDashboard}" global="false"
-                        process="@this" immediate="true" />
-                      <p:column>
-                        <pc:securityMemberNameAndAvatar displayName="#{dashboardTaskFilterBean.formatName(responsible)}"
-                          securityMember="#{responsible}">
-                          <f:facet name="alternativeAvatar">
-                            <h:outputText rendered="#{not avatarBean.isShowAvatar()}"
-                              styleClass="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-                          </f:facet>
-                        </pc:securityMemberNameAndAvatar>
-                      </p:column>
-                    </p:autoComplete>
-                  </div>
-                </div>
-
                 <div class="field col-6">
                   <p:outputLabel for="refresh-interval-enabled"
                     value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/RefreshInterval')}" />
@@ -284,15 +286,16 @@
                 </h:panelGroup>
                 
                 <div class="field col-12">
-                  <p:outputLabel for="condition-based-coloring-enabled"
+                  <p:outputLabel for="condition-based-coloring-enabled-toggle"
                     value="Condition based coloring enabled" />
                   <div>
-                    <p:toggleSwitch id="condition-based-coloring-enabled" label="#{statisticConfigurationBean.conditionBasedColoringEnabled}"
-                      value="#{statisticConfigurationBean.conditionBasedColoringEnabled}" styleClass="col-1" onchange="">
-                      <p:ajax update="chart-background-colors" process="@this" listener="#{statisticConfigurationBean.renderCategoryData}"/>
+                    <p:toggleSwitch id="condition-based-coloring-enabled-toggle" label="#{statisticConfigurationBean.conditionBasedColoringEnabled}"
+                      value="#{statisticConfigurationBean.conditionBasedColoringEnabled}" styleClass="col-1">
+                      <p:ajax update="chart-background-colors" process="@this" listener="#{statisticConfigurationBean.renderCategoryData}" resetValues="true"/>
                     </p:toggleSwitch>
                   </div>
                 </div>
+
                 <h:panelGroup id="chart-background-colors">
                  <h:panelGroup id="background-colors-container" layout="block" styleClass="col-12 p-0 grid m-0" rendered="#{!statisticConfigurationBean.conditionBasedColoringEnabled}">
                    <h:panelGroup rendered="#{statisticConfigurationBean.statistic.chartType.name() ne 'NUMBER'}">
@@ -315,7 +318,7 @@
                  <h:panelGroup styleClass="col-12 p-0 grid m-0" layout="block" id="condition-background-colors-container" rendered="#{statisticConfigurationBean.conditionBasedColoringEnabled}">
                      <h:panelGroup id="user-threshold">
                        <h:panelGroup class="flex align-items-center">
-                         <p:outputLabel styleClass="mr-3" value="Default color"/>
+                         <p:outputLabel styleClass="mr-3 ml-2" value="Default color"/>
                          <p:colorPicker required="true" label="Default color" value="#{statisticConfigurationBean.defaultBackgroundColor}" size="10" clearButton="true" closeButton="true"/>
                        </h:panelGroup>
                        <ui:repeat id="condition-background-color-list" var="threshold" value="#{statisticConfigurationBean.thresholds}"

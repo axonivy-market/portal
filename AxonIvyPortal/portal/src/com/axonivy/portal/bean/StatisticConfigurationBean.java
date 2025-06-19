@@ -512,6 +512,14 @@ public class StatisticConfigurationBean implements Serializable {
     }
     setCategoryData(keys);
   }
+  
+  public void resetConditionBasedColoring() {
+    if (conditionBasedColoringEnabled) {
+      setThresholds(new ArrayList<>());
+      setDefaultBackgroundColor("");
+      setConditionBasedColoringEnabled(false);
+    }
+  }
 
   public void updateNameForCurrentLanguage() {
     nameMultilanguageService.updateNameForCurrentLanguage();
