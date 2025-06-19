@@ -294,6 +294,7 @@
           onclick="PF('save-filter-set-dialog').hide();" />
         <p:spacer width="15px" />
         <p:commandButton id="filter-save-command"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="@form"
           icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide(); updateFilterContainer();}"

@@ -21,6 +21,7 @@
         update="@(.manage-role-details-form) #{cc.clientId}:role-details-dialog"
         process="@this"
         resetValues="true"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/CreateRole')}"
         title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/CreateRole')}"
         rendered="#{roleManagementBean.canCreateRole}"/>
     </div>
