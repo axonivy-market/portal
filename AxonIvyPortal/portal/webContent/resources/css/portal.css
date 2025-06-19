@@ -1644,5 +1644,5 @@ body.dark .focused {
 }
 
 .breadcrumb-current-item .js-count.has-count {
-  color: #69707A
+  color: var(--text-color)
 }
