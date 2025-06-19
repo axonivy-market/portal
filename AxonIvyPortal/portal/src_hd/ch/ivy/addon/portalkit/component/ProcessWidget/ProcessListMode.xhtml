@@ -29,6 +29,7 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/externalLink')}" position="top" trackMouse="true"
               hideEvent="mouseleave click" styleClass="process-tooltip"/>
             <p:commandLink id="delete-external-link" styleClass="si si-bin-1 process-item"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExternalLinkTooltip')}"
               actionListener="#{processWidgetBean.setDeletedProcess(process)}" oncomplete="PF('remove-process-workflow-dialog').show();"
               update="#{cc.clientId}:remove-process-workflow-dialog" rendered="#{process.getProcess().ableToEdit}" />
             <p:tooltip id="delete-external-link-tooltip" for="delete-external-link" position="top" trackMouse="true" hideEvent="mouseleave click"

@@ -57,7 +57,7 @@
           styleClass="history-note"
           sortBy="#{note.content()}">
           <span class="task-note truncate-note">
-            <p:commandLink id="note-message" value="#{note.content()}" oncomplete="PF('#{cc.clientId}:view-note-dialog').show()"
+            <p:commandLink id="note-message" value="#{note.content()}" oncomplete="PF('#{cc.clientId}:view-note-dialog').show()" ariaLabel="#{note.content()}"
               actionListener="#{data.setFullNote(note.content())}" update="@widgetVar(#{cc.clientId}:view-note-dialog)" styleClass="content-link-history u-truncate-text"/>
           </span>
         </p:column>
@@ -110,6 +110,7 @@
       <h:panelGroup layout="block" styleClass="text-right MarTop10">
         <p:commandLink id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}" global="false"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onsuccess="PF('#{cc.clientId}:addNewNoteDialog').hide()" update="task-detail-note-content task-detail-create-note-msg" />
         <p:spacer width="15px" />
         <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"

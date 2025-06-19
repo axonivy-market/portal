@@ -32,6 +32,7 @@
         </h:panelGroup>
         <p:commandLink id="back-to-previous-page"
           actionListener="#{taskActionBean.backToPrevPage(cc.attrs.task, cc.attrs.isFromTaskList, cc.attrs.isTaskStartedInDetails)}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
           styleClass="task-details-back-btn" process="@this">
           <i class="si si-arrow-left-1" />
           <p:spacer width="3px" />
@@ -96,12 +97,14 @@
               <h:panelGroup id="task-detail-action-group" class="task-details-action-container action-container ui-g-5" layout="block">
                 <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task) or cc.attrs.readOnly}"
                   styleClass="task-action-item start-task-action task-action-item-position" rendered="#{task.state != 'RESUMED'}"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
                   actionListener="#{logic.openTask()}" oncomplete="resetPortalLeftMenuState()">
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
                   <i class="si si-arrow-right-1 icon-compact-mode" />
                 </p:commandLink>
 
                 <p:commandLink id="resume-task-detail-start-command" disabled="#{!taskActionBean.canResume(task) or cc.attrs.readOnly}"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
                   styleClass="task-action-item start-task-action task-action-item-position" rendered="#{task.state == 'RESUMED'}">
                   <p:ajax event="click" listener="#{logic.validate(task)}" onstart="event.stopPropagation();"
                     oncomplete="if (args &amp;&amp; !args.validationFailed) PF('reset-task-dialog').show()" />
@@ -184,6 +187,7 @@
     <ui:define name="dialogFooter">
       <h:form id="reset-task-form">
         <p:commandLink onclick="PF('reset-task-dialog').hide()" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           styleClass="u-mar-right-15" />
         <p:commandButton actionListener="#{logic.resetAndOpenTask}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}" onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
@@ -206,6 +210,7 @@
           actionListener="#{logic.destroyTask(task)}" styleClass="w-full portal-remove-button"
           oncomplete="PF('destroy-task-dialog').hide()" update="#{informationWidgetComponent}" process="@this" />
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('destroy-task-dialog').hide();"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           styleClass="pt-3 flex justify-content-center" />
       </h:panelGroup>
     </ui:define>
@@ -222,6 +227,7 @@
 
     <ui:define name="dialogFooter">
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" onclick="PF('escalation-task-dialog').hide();"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
         styleClass="u-mar-right-15" />
       <p:commandButton id="confirm-escalation" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
         icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" actionListener="#{logic.expiryTask(task)}"
@@ -241,6 +247,7 @@
     <ui:define name="dialogFooter">
       <h:form id="reset-to-default-task-form">
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('reset-to-default-task-dialog').hide();" styleClass="u-mar-right-15" ajax="false" type="button" />
         <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
