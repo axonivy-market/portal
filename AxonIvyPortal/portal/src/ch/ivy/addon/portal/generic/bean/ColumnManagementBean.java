@@ -196,6 +196,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     if (widget.getType() == DashboardWidgetType.CASE) {
       columnModel = CaseColumnModel.constructColumn(this.selectedFieldType, this.selectedField);
     }
+    updateNameByLocale();
     columnModel.initDefaultValue();
     columnModel.setHeaders(this.fieldDisplayNames);
     columnModel.setField(this.selectedField);
@@ -419,9 +420,6 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   }
   
   public List<DisplayName> getFieldDisplayNames() {
-//    if (CollectionUtils.isEmpty(fieldDisplayNames) && selectedField != null) {
-//      IvyLanguage ivyLanguage = LanguageService.getInstance().getIvyLanguageOfUser();
-//      fieldDisplayNames = initDisplayName(ivyLanguage);
 //    }
     return fieldDisplayNames;
   }
@@ -432,7 +430,8 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
         DashboardStandardTaskColumn.findBy(selectedField)), LanguageService.getInstance().getDefaultLanguage());
   }
 
-  private List<DisplayName> initDisplayName(IvyLanguage ivyLanguage){
+  private void updateFieldDisplayNames(){
+    IvyLanguage ivyLanguage = LanguageService.getInstance().getIvyLanguageOfUser();
     List<DisplayName> result = new ArrayList<>();
     for (String language : ivyLanguage.getSupportedLanguages()) {
       DisplayName newItem = new DisplayName();
@@ -441,7 +440,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
           DashboardStandardTaskColumn.findBy(selectedField)), newItem.getLocale()));
       result.add(newItem);
     }
-    return result;
+    this.fieldDisplayNames = result;
   }
 
   public void setFieldDisplayNames(List<DisplayName> fieldDisplayNames) {
@@ -450,7 +449,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
 
 
   public void updateNameByLocale() {
-    this.fieldDisplayNames = initDisplayName(LanguageService.getInstance().getIvyLanguageOfUser());
+    updateFieldDisplayNames();
     DisplayNameConvertor.setValue(fieldDisplayName, fieldDisplayNames);
   }
   
