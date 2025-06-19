@@ -24,7 +24,7 @@
     <f:facet name="afterName">
       <h:panelGroup rendered="#{responsibles != null and responsibleSize gt 1}"> 
         <h:panelGroup id="all-responsibles" styleClass="ml-1" >
-          <p:commandLink onclick="#{cc.attrs.onClick}" rendered="#{cc.attrs.popupLink}">
+          <p:commandLink onclick="#{cc.attrs.onClick}" rendered="#{cc.attrs.popupLink}" ariaLabel="#{responsibleSize}">
             (<i class="mr-1 si si-multiple-neutral-1" /><h:outputText value="#{responsibleSize}" />)
           </p:commandLink>
           <h:panelGroup rendered="#{!cc.attrs.popupLink}">

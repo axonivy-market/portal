@@ -92,7 +92,7 @@
       <f:event listener="#{sideStepBean.getSideSteps(cc.attrs.taskId, case.id)}" type="preRenderComponent" />
       <h:outputText rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" styleClass="action-step-item" />
       <ui:repeat var="sideStep" value="#{sideStepBean.currentSideSteps}">
-        <p:commandLink id="side-step-item" styleClass="action-step-item" value="#{sideStep.name}" global="false"
+        <p:commandLink id="side-step-item" styleClass="action-step-item" value="#{sideStep.name}" global="false" ariaLabel="#{sideStep.name}"
           actionListener="#{sideStepBean.startSideStep(sideStep)}" process="@this"/>
       </ui:repeat>
     </h:panelGroup>
