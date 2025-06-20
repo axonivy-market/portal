@@ -24,11 +24,9 @@ import com.google.gson.Gson;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
-import ch.ivy.addon.portalkit.bean.PortalExceptionBean;
 import ch.ivy.addon.portalkit.dto.UserMenu;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
@@ -241,16 +239,6 @@ public class UserMenuBean implements Serializable {
 
   public boolean isMobileDevice() {
     return RequestUtils.isMobileDevice();
-  }
-
-  public boolean getErrorDetailToEndUser() {
-    try {
-      PortalExceptionBean portalExceptionBean = (PortalExceptionBean) ManagedBeans.find("portalExceptionBean").get();
-      return portalExceptionBean.getErrorDetailToEndUser();
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
-    return true;
   }
 
   public String getAnnouncement() {

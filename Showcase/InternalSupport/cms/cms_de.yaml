@@ -2,6 +2,12 @@ Categories:
   Resource:
     Austria:
       name: Österreich
+  PersonalRequest:
+    RaiseSalary:
+      name: Gehaltserhöhung
+    name: Persönliche Anfrage
+    Vacation:
+      name: Urlaub
 ProcessPages:
   ProcessLeaves:
     ProcessLeave:
@@ -15,8 +21,18 @@ ProcessPages:
       representation: Vertretung
       to: Bis
       type: Art
+      cancelReason: Abbrechen Grund
+      from: Von
   TestTask:
     isRequired: Pflichtfeld
 Stages:
   request_leave:
     name: Anfrage hinterlassen Anfrage hinterlassen Anfrage hinterlassen Anfrage hinterlassen Anfrage hinterlassen
+DefaultColumns:
+  CustomerType: Kundentyp
+Processes:
+  ProcessWithProcessSteps:
+    processStep: "#Kreation\nWählen Sie verschiedene Urlaubsarten\nVerwenden Sie eine Datumsauswahl, um Abwesenheitsdaten
+      auszuwählen\nWählen Sie einen Genehmiger für Ihren Urlaubsantrag\n#Genehmigung\nFügen Sie einen Kommentar zu Ihrem Antrag
+      hinzu\nTreffen Sie eine Entscheidung: Genehmigen / Ablehnen\n#Zusammenfassung\nDer Antragsteller erhält eine Zusammenfassung
+      des Antrags\nBestätigen Sie das Ergebnis"
