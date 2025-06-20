@@ -115,7 +115,9 @@
     <ui:define name="dialogFooter">
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('restore-confirmation-dialog').hide();" styleClass="u-mar-right-15" />
-       <p:commandButton id="confirm-restore" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/restoreDefaultFilterHeader')}" update="widget-container"
+       <p:commandButton id="confirm-restore" 
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/restoreDefaultFilterHeader')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/restoreDefaultFilterHeader')}" update="widget-container"
           icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
           oncomplete="PF('restore-confirmation-dialog').hide();" actionListener="#{logic.restoreDefault}" />
     </ui:define>

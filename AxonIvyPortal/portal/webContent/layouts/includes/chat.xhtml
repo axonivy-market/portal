@@ -55,7 +55,7 @@
           </div>
           <div class="close-chat">
             <p:commandButton id="close-chat-button" icon="si si-arrow-right-1" onclick="view.closeChatPanel();" process="@(this)" partialSubmit="true" immediate="true" global="false"
-              styleClass="rounded-button ui-button-outlined"/>
+              styleClass="rounded-button ui-button-outlined" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"/>
           </div>
         </div>
         <div class="message-list js-chat-message-container">
@@ -76,6 +76,7 @@
                 class="message-list-content-send-input js-input-message ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all message-list-content-send-input js-input-message ui-inputtextarea-resizable">
               </textarea>
               <p:commandButton icon="si si-send-email" onclick="chat.sendMessage()"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/send')}"
                 styleClass="message-list-content-send-button js-send-chat-message" global="false" type="button" />
             </h:panelGroup>
           </div>
@@ -122,7 +123,9 @@
       
       <f:facet name="footer">
         <h:panelGroup layout="block">
-          <p:commandButton onclick="PF('participants-list-dialog').hide()" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+          <p:commandButton onclick="PF('participants-list-dialog').hide()" 
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
             type="button" icon="#{visibilityBean.generateButtonIcon('si si-remove')}" />
         </h:panelGroup>
       </f:facet>

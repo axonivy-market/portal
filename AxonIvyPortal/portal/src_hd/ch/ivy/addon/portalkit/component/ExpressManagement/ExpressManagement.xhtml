@@ -18,10 +18,12 @@
 
       <h:panelGroup styleClass="ui-g-12 u-text-align-right express-workflow-summary-actions-container u-padding-0" layout="block">
         <p:commandButton id="import-express-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/importExpress')}" partialSubmit="true"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/importExpress')}"
           oncomplete="PF('import-express-dialog').show()" update="#{p:resolveFirstComponentWithId('import-express-dialog', view).clientId}" icon="#{visibilityBean.generateButtonIcon('si si-download-bottom')}" />
         <p:spacer width="10px" />
         <p:commandButton id="export-express-btn" widgetVar="export-express-btn"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/exportExpress')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/exportExpress')}"
           process="express-workflow-summary-table" partialSubmit="true" oncomplete="PF('export-express-dialog').show()"
           icon="#{visibilityBean.generateButtonIcon('si si-upload-bottom')}"
           update="#{p:resolveFirstComponentWithId('export-express-dialog', view).clientId} #{p:resolveFirstComponentWithId('express-export-group', view).clientId}"
@@ -90,6 +92,7 @@
           <p:spacer width="15px" />
           <p:commandButton id="export-express-dowload" rendered="#{not empty expressManagementBean.selectedExpressProcesses}"
             icon="#{visibilityBean.generateButtonIcon('si si-download-bottom')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}" ajax="false"
             onclick="PrimeFaces.monitorDownload(showLoadingIndicator, hideLoadingAndCloseExportDialog); PF('export-express-dialog').initPosition();">
             <p:fileDownload value="#{expressManagementBean.exportExpress()}" />
@@ -150,6 +153,7 @@
     <f:facet name="footer">
       <p:commandButton id="close-import-express" widgetVar="close-import-express"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
         onclick="PF('express-workflow-summary-table').unselectAllRows();PF('export-express-btn').disable();PF('import-express-dialog').hide()"
         update="@(.express-workflow-summary-table)" process="@this"/>

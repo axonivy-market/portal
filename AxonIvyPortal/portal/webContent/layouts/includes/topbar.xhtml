@@ -129,7 +129,9 @@
         appendTo="@(body)" dynamic="true" responsive="true" fitViewport="true">
         <ic:ch.ivy.addon.portalkit.component.ProjectVersion id="project-version" />
         <div class="u-dialog-footer-actions-group">
-          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="project-version-close-button" type="button"
+          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+            id="project-version-close-button" type="button"
             icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('project-info-dialog').hide();" />
         </div>
       </p:dialog>

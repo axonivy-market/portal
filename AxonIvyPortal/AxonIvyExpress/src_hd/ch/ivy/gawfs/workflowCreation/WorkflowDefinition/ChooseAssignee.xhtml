@@ -38,6 +38,7 @@
         </ic:com.axonivy.portal.components.RoleSelection>
           
         <p:commandButton id="add-assignee-button" styleClass="add-assignee-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
           disabled="#{data.selectedUser == null and data.selectedRole == null}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" actionListener="#{logic.addAssignee}" global="false"
           update="error-message selected-assignee-fieldset" ignoreAutoUpdate="true" />
       </h:panelGroup>
@@ -60,6 +61,7 @@
 
       <p:outputPanel styleClass="u-text-align-right">
         <p:commandButton id="save-assignee-button" styleClass="save-assignee-button"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.updateResponsibles}"
           icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
           oncomplete="PF('choose-responsible-dialog').hide();" update="#{data.selectedResponsibleFieldId}">

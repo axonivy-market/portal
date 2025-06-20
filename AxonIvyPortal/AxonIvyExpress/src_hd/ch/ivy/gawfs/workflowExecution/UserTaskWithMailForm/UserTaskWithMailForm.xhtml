@@ -94,6 +94,7 @@
             actionListener="#{logic.cancel}" />
           <p:spacer width="15" />
           <p:commandButton id="ok-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
             icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" update="@form" actionListener="#{logic.close}" />
         </p:outputPanel>
       </h:form>

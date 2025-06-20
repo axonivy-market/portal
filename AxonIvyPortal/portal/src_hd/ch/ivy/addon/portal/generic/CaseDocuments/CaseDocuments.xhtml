@@ -82,7 +82,7 @@
           </p:dataTable>
 
           <div class="ui-g-12 u-text-align-right">
-            <p:commandButton actionListener="#{logic.close}"
+            <p:commandButton actionListener="#{logic.close}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               icon="#{visibilityBean.generateButtonIcon('si si-remove')}"/>
           </div>
@@ -101,6 +101,7 @@
           <p:commandLink id="document-deletion-cancellation-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
              process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="u-mar-right-15"/>
           <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
             process="@this" icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
             update="case-document-global-messages case-doc-form"
             actionListener="#{logic.deleteDocument}"

@@ -77,7 +77,8 @@
               <p:inputText id="external-link-name" value="#{processWidgetBean.editedExternalLink.name}" required="true"
                 maxlength="85" 
                 requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
-              <p:commandButton id="edit-name-language-button" icon="si si-chat-translate" 
+              <p:commandButton id="edit-name-language-button" icon="si si-chat-translate"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                 actionListener="#{processWidgetBean.updateNameByLocale()}"
                 process="#{cc.clientId}:edit-process-form:external-link-name"
                 update="#{cc.clientId}:edit-name-language-config:multiple-languages-dialog"
@@ -111,7 +112,8 @@
             <div class="ui-fluid ui-inputgroup">
             <p:inputTextarea id="external-description" value="#{processWidgetBean.editedExternalLink.description}"
               maxlength="200" rows="3" />
-            <p:commandButton id="edit-description-language-button" icon="si si-chat-translate" 
+            <p:commandButton id="edit-description-language-button" icon="si si-chat-translate"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
               actionListener="#{processWidgetBean.updateDescriptionByLocale()}"
               process="#{cc.clientId}:edit-process-form:external-description"
               update="#{cc.clientId}:text-area-edit-multiple-languages-dialog"
@@ -189,6 +191,7 @@
               rendered="#{not empty processWidgetBean.editedExternalLink.imageLocation}">
               <p:commandButton
                 id="editing-external-link-delete-image-button"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/remove')}"
                 actionListener="#{processWidgetBean.removeTempExternalLinkImage}"
                 update="file-upload-panel"
                 rendered="#{not empty processWidgetBean.editedExternalLink.imageLocation}"
@@ -209,7 +212,8 @@
         styleClass="u-mar-right-10" />
       <p:commandButton id="save-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
         process="#{cc.clientId}:edit-process-form" actionListener="#{processWidgetBean.updateProcessData()}" update="#{cc.clientId}:edit-process-form"
-        oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); updateProcessListOnSaveSuccessful();}" form="#{cc.clientId}:edit-process-form"/>
+        oncomplete="if(!args.validationFailed){PF('edit-process-dialog').hide(); updateProcessListOnSaveSuccessful();}" form="#{cc.clientId}:edit-process-form"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"/>
     </f:facet>
   </p:dialog>
   <!-- End Edit Process -->
@@ -238,7 +242,7 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           href="#" />
         <p:commandButton id="remove-process-command" global="false" process="@this" update="#{cc.clientId}:process-list"
-          icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           actionListener="#{processWidgetBean.deleteProcessWorkflow()}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           oncomplete="PF('remove-process-workflow-dialog').hide(); updateProcessListOnSaveSuccessful();" />
       </h:form>
@@ -264,7 +268,8 @@
         <p:inputText id="external-link-name" value="#{externalLinkBean.externalLink.name}" required="true"
           maxlength="85" 
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
-        <p:commandButton id="add-name-language-button" icon="si si-chat-translate" 
+        <p:commandButton id="add-name-language-button" icon="si si-chat-translate"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
           actionListener="#{externalLinkBean.updateNameByLocale()}"
           process="#{cc.clientId}:add-external-link-form:external-link-name"
           update="#{cc.clientId}:name-language-config:multiple-languages-dialog"
@@ -289,7 +294,8 @@
       <div class="ui-g-12 ui-fluid ui-inputgroup">
         <p:inputTextarea id="external-description" value="#{externalLinkBean.externalLink.description}"
           maxlength="200" rows="3" />
-        <p:commandButton id="add-description-language-button" icon="si si-chat-translate" 
+        <p:commandButton id="add-description-language-button" icon="si si-chat-translate"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
           actionListener="#{externalLinkBean.updateDescriptionByLocale()}"
           process="#{cc.clientId}:add-external-link-form:external-description"
           update="#{cc.clientId}:text-area-add-multiple-languages-dialog"
@@ -376,6 +382,7 @@
         <h:panelGroup class="external-link-preview-image-overlay-panel"
           rendered="#{not empty externalLinkBean.externalLink.imageLocation}">
           <p:commandButton id="external-link-delete-image-button"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
             actionListener="#{externalLinkBean.removeImage()}"
             process="external-link-delete-image-button"
             partialSubmit="true" update="file-upload-panel"
@@ -393,6 +400,7 @@
         oncomplete="PF('add-external-link-dialog').hide()"
         styleClass="u-mar-right-15" />
       <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
         icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" process="#{cc.clientId}:add-external-link-form"
         form="#{cc.clientId}:add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink()}"
         update="#{cc.clientId}:add-external-link-form"
@@ -441,6 +449,7 @@
         <p:commandButton
           id="description-multi-language-ok-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           update="#{cc.clientId}:add-external-link-form:external-description" process="@form"
           oncomplete="PF('text-area-add-multiple-languages-dialog').hide();"
           rendered="#{!descriptions.isEmpty()}" />
@@ -476,6 +485,7 @@
         <p:commandButton
           id="description-edit-multi-language-ok-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           update="#{cc.clientId}:edit-process-form:external-description" process="@form"
           oncomplete="PF('text-area-edit-multiple-languages-dialog').hide();"
           rendered="#{!descriptions.isEmpty()}" />

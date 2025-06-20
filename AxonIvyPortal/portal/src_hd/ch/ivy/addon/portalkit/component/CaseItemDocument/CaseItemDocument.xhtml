@@ -132,6 +132,7 @@
       <p:commandButton id="document-upload-close-command" type="button"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
         onclick="PF('document-upload-dialog').hide();" />
     </f:facet>
     <p:ajax event="close" global="false" listener="#{logic.resetDataUploadDialog()}"
@@ -146,7 +147,9 @@
     </div>
     <f:facet name="footer">
     <div class="u-dialog-footer-actions-group">
-      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="preview-document-close-button" type="button"
+      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        id="preview-document-close-button" type="button"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('preview-document-dialog').hide();" />
     </div>
     </f:facet>
@@ -164,6 +167,7 @@
       <p:commandLink id="document-deletion-cancellation-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
          process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="u-mar-right-15"/>
       <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
         process="@this" icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
         update="#{cc.attrs.componentToUpdate} #{cc.clientId}:case-document-global-messages #{cc.clientId}:case-document-form"
         actionListener="#{logic.deleteDocument}"

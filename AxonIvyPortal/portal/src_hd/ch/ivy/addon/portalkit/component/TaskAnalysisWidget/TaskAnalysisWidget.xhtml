@@ -145,6 +145,7 @@
                   <p:spacer width="15" />
                   <p:commandButton id="update-task-filter-selected-command"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
                     icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
                     update="@(.filter-selection-form) @(.filter-buttons-container) #{cc.clientId}:task-filters-container"
                     process="@(task-filter-add-form)"
@@ -210,6 +211,7 @@
                   <p:spacer width="15" />
                   <p:commandButton id="update-task-filter-selected-command"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
                     icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
                     update="@(.filter-selection-form) @(.filter-buttons-container) #{cc.clientId}:case-filters-container"
                     process="@(case-filter-add-form)"
@@ -226,13 +228,16 @@
     <!-- FILTER BUTTONS -->
     <h:panelGroup id="filter-buttons-container" styleClass="MarTop20 filter-buttons-container" layout="block">
       <p:commandButton id="apply-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}"
-       icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
-       process="@(.statistic-result-list)" update="@(.statistic-result-list) status-dialog" />
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}"
+        icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+        process="@(.statistic-result-list)" update="@(.statistic-result-list) status-dialog" />
       <p:commandButton id="filter-reset-action"
         rendered="#{data.dataModel.selectedTaskAnalysisFilterData == null and !data.dataModel.isSelectedDefaultFilter()}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" styleClass="filter-add-button u-mar-right-10"
         icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" onclick="PF('reset-filter-set-dialog').show();" global="false"/>
       <p:commandButton id="filter-save-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
         icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" update="save-filter-set-dialog #{cc.clientId}:filter-selection-container" resetValues="true"
         oncomplete="PF('save-filter-set-dialog').show();" />
     </h:panelGroup>
@@ -253,6 +258,7 @@
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('reset-filter-set-dialog').hide();" styleClass="u-mar-right-15" />
        <p:commandButton id="filter-reset-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
           partialSubmit="true" immediate="true" actionListener="#{logic.restoreDefaultFilterSet}"
           update="@(.advanced-filter-container) @(.filter-selection-form) @(.statistic-result-list) @(.filter-buttons-container)"
@@ -288,6 +294,7 @@
           actionListener="#{logic.clearSaveFilterDialog}" onclick="PF('save-filter-set-dialog').hide();" />
         <p:spacer width="15px" />
         <p:commandButton id="filter-save-command"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="@form"
           icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide();}"
@@ -311,6 +318,7 @@
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('delete-filter-confirmation-dialog').hide();" styleClass="u-mar-right-15" />
         <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
           icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
           actionListener="#{logic.deleteFilter()}"
           oncomplete="PF('delete-filter-confirmation-dialog').hide();"

@@ -91,6 +91,7 @@
           oncomplete="PF('absence-dialog').hide();" styleClass="u-mar-right-15" />
 
         <p:commandButton process="@form" id="save-absence" disabled="#{data.validationError}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           oncomplete="if (args &amp;&amp; !args.validationFailed)PF('absence-dialog').hide();"
           icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.saveAbsence}"

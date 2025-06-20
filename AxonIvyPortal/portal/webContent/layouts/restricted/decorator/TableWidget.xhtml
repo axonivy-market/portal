@@ -68,7 +68,8 @@
 
     <h:panelGroup layout="block" styleClass="quick-search-icon" rendered="#{dashboardBean.canEnableQuickSearch(widget) and widget.isEnableQuickSearch() and widget.type eq 'PROCESS'}">
      <p:commandButton id="quick-search-icon-#{index}" icon="si si-search" styleClass="rounded-button ui-button-outlined u-mar-right-5"
-      onclick="showQuickSearchInput(#{index});" global="false" disabled="#{!isReadOnlyMode}" >
+      onclick="showQuickSearchInput(#{index});" global="false" disabled="#{!isReadOnlyMode}"
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}" >
      </p:commandButton>
     </h:panelGroup>
 
@@ -143,6 +144,7 @@
         styleClass="rounded-button ui-button-outlined u-hidden-sm-down u-mar-right-5"
         oncomplete="PF('new-widget-configuration-dialog').show()"
         global="false"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
         actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
         update="new-widget-configuration-dialog"
         rendered="#{!isReadOnlyMode}"
@@ -156,6 +158,7 @@
         styleClass="rounded-button ui-button-outlined ui-button-danger"
         oncomplete="PF('remove-widget-dialog').show()"
         global="false"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
         actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
         update="remove-widget-dialog"
         rendered="#{!isReadOnlyMode}"
@@ -238,6 +241,7 @@
                 global="false"/>
   
               <p:commandButton id="reset-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
                 styleClass="secondary-btn u-mar-right-5" partialSubmit="true"
                 update="#{cc.clientId}:widget-header-actions #{componentToUpdateOnResetFilter}"
                 oncomplete="PF('filter-overlay-panel-#{index}').hide(); resizeTableBody();"
@@ -245,6 +249,7 @@
                 icon="si si-button-refresh-arrows" resetValues="true"/>
   
               <p:commandButton id="apply-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
                 partialSubmit="true"
                 update="filter-form-#{index}"
                 process="filter-form-#{index}"
@@ -259,6 +264,7 @@
                 styleClass="u-mar-right-5" />
   
               <p:commandButton id="save-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
                 icon="si si-floppy-disk" partialSubmit="true"
                 oncomplete="if (!args.validationFailed) { PF('save-widget-filter-dialog').show(); }"
                 actionListener="#{widget.onClickSaveUserFilters()}"

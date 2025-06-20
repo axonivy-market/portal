@@ -29,6 +29,7 @@
           <p:inputText id="widget-title" styleClass="widget-configuration__input-text" value="#{widget.name}" />
            <!-- Add language button -->
           <p:commandButton styleClass="app-setting-button"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
             icon="si si-chat-translate" id="add-language-button">
             <p:ajax event="click"
               listener="#{managedBean.updateWidgetNameByLocale()}"
