@@ -30,6 +30,7 @@
               styleClass="defined-task-button-container">
               <p:commandButton id="defined-task-button-#{status.index}" partialSubmit="true"
                 value="#{definedTask.taskType == 'EMAIL' ? definedTask.taskType.label : definedTask.subject.concat('&#10;(').concat(definedTask.taskType.label).concat(')')}"
+                ariaLabel="#{definedTask.taskType == 'EMAIL' ? definedTask.taskType.label : definedTask.subject.concat('&#10;(').concat(definedTask.taskType.label).concat(')')}"
                 styleClass="defined-task-button #{status.index == data.activeTaskIndex ? 'active' : ''}"
                 disabled="#{(status.index == data.activeTaskIndex) || (definedTask.taskType == 'APPROVAL')}"
                 actionListener="#{logic.moveToTask(status.index)}"

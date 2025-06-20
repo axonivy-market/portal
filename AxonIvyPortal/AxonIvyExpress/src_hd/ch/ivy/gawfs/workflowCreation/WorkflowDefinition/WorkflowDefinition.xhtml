@@ -315,6 +315,7 @@
                   <p:row>
                     <p:column styleClass="dynamic-task-left-action">
                       <p:commandButton id="add-step-button" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" immediate="true"
+                        ariaLabel="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AddProcessStep')}"
                         value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AddProcessStep')}" actionListener="#{logic.addProcessStep}"
                         process="form" update="#{p:resolveFirstComponentWithId('defined-tasks-list-container', view).clientId} #{p:resolveFirstComponentWithId('error-messages', view).clientId}">
                       </p:commandButton>
