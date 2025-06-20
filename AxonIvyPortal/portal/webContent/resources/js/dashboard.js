@@ -591,3 +591,38 @@ function updateDashboardWhenResizeWindow(isResponsiveDashboard) {
     }, 1000); // Delay execution by 1 sec to avoid send multiple requests
   });
 }
+
+/**
+ * Override PrimeFaces.widgetNotAvailable to suppress errors for widgets that were already removed
+ *
+ * Background:
+ * - When a component is deleted on the server and the DOM is updated, PrimeFaces may still try
+ *   to access its widgetVar via PF('...') or destroyDetachedWidgets().
+ * - If the widget was already removed (no longer in detachedWidgets), throwing an error is unnecessary.
+ *
+ * This override:
+ * - Checks if the widgetVar is still tracked in PrimeFaces.detachedWidgets (i.e., recently detached).
+ * - If it is: allow the original error to be thrown (widget should still exist but is missing).
+ * - If it's not: suppress the error (widget was removed cleanly, no issue).
+ */
+(function () {
+  if (window.PrimeFaces && PrimeFaces.widgetNotAvailable && PrimeFaces.detachedWidgets) {
+    const originalWidgetNotAvailable = PrimeFaces.widgetNotAvailable;
+
+    PrimeFaces.widgetNotAvailable = function(widgetVar) {
+      const detached = PrimeFaces.detachedWidgets;
+      // Only show error if the widgetVar is still tracked in detachedWidgets
+      const isStillDetached = Object.values(detached).some(function (el) {
+        return el && el.id && widgetVar.includes(el.id);
+      });
+
+      if (isStillDetached) {
+        // Let PrimeFaces show the original error
+        originalWidgetNotAvailable.call(this, widgetVar);
+      } else {
+        // Silently skip or log a softer message
+        console.debug("Suppressed widgetNotAvailable for:", widgetVar);
+      }
+    };
+  }
+})();
