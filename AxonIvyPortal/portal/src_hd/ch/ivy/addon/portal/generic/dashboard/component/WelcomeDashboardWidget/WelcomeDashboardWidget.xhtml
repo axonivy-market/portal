@@ -19,6 +19,7 @@
       <h:form id="welcome-widget-action-group-form" styleClass="welcome-widget-action-group-form" rendered="#{!cc.attrs.isReadOnlyMode}">
         <h:panelGroup layout="block" rendered="#{!hideActionButton}">
           <p:commandButton id="welcome-widget-action-button" icon="si si-navigation-menu-horizontal"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
             styleClass="rounded-button ui-button-outlined icon-more-menu-button" type="button"/>
 
           <p:menu id="welcome-widget-action-menu" overlay="true"

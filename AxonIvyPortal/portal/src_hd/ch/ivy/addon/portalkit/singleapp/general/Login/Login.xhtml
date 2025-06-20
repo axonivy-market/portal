@@ -34,6 +34,7 @@
 
         <p:commandButton id="login-command" actionListener="#{logic.login}" ajax="false"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
           icon="#{visibilityBean.generateButtonIcon('si si-login-3')}"/>
 
         <h:panelGroup styleClass="forgot-link" rendered="#{forgotPasswordBean.isForgotPasswordRendered()}" layout="block">
