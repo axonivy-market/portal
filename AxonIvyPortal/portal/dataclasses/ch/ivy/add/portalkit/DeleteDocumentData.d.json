@@ -1,5 +1,5 @@
 {
-  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
   "simpleName" : "DeleteDocumentData",
   "namespace" : "ch.ivy.add.portalkit",
   "isBusinessCaseData" : false,
@@ -15,5 +15,8 @@
   }, {
     "name" : "hasCustomProcess",
     "type" : "Boolean"
+  }, {
+    "name" : "status",
+    "type" : "com.axonivy.portal.components.enums.UploadDocumentCheckStatus"
   } ]
 }

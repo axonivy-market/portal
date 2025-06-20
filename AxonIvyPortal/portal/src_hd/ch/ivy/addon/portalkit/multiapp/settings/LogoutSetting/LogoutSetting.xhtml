@@ -21,6 +21,7 @@
     value="#{not empty cc.attrs.task ? cc.attrs.task : ivy.task}" />
 
   <p:commandLink id="logout-menu-item"
+    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
     styleClass=""
     rendered="#{!userMenuBean.hiddenLogout}"

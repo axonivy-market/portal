@@ -169,7 +169,7 @@
   </div>
 
   <f:facet name="footer">
-    <p:commandLink id="new-widget-close-button"
+    <p:commandLink id="new-widget-close-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       styleClass="new-widget-dialog__close-button"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       onclick="PF('new-widget-dialog').hide()"
@@ -253,7 +253,7 @@
   <f:facet name="footer">
   <div class="widget-configuration-footer-panel">
     <p:commandLink id="task-configuration-cancel-link-welcome-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-      styleClass="u-mar-right-10"
+      styleClass="u-mar-right-10" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       rendered="#{widgetType eq 'WELCOME'}"
       global="false"
       oncomplete="PF('new-widget-configuration-dialog').hide()"
@@ -262,7 +262,7 @@
     </p:commandLink>
 
     <p:commandLink id="task-configuration-cancel-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-      styleClass="u-mar-right-10"
+      styleClass="u-mar-right-10" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       rendered="#{widgetType ne 'WELCOME'}"
       onclick="PF('new-widget-configuration-dialog').hide(); return false;">
       <p:resetInput target="widget-configuration-form" />

@@ -91,6 +91,7 @@
         styleClass="widget-configuration__category-panel-footer">
         <p:commandLink id="cancel-command" styleClass="portal-cancel-button u-mar-right-10"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           global="false" process="@this" update="category-list-panel #{cc.attrs.componentToUpdate}"
           oncomplete="PF('widget-filter-category-panel-#{cc.clientId}').hide();">
           <f:param name="skipValidator" value="true" />
