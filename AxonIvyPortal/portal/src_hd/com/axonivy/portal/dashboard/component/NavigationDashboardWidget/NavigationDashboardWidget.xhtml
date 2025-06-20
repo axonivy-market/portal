@@ -82,7 +82,7 @@
          <p:commandButton id="navigate-dashboard-button" styleClass="ui-button w-full ui-button-text-only navigate-dashboard-button-truncate"
            disabled="#{navigationDashboardWidgetBean.isNotClickable(widget, isReadOnlyMode)}"
            action="#{navigationDashboardWidgetBean.redirectToDashboard(widget, dashboardBean.selectedDashboard)}"
-           value="#{widget.buttonName}" />
+           value="#{widget.buttonName}" ariaLabel="#{widget.buttonName}" />
        </h:panelGroup>
        <p:tooltip rendered="#{navigationDashboardWidgetBean.isNotClickable(widget, isReadOnlyMode)}"
            for="navigation-dashboard-widget-footer" trackMouse="true"
