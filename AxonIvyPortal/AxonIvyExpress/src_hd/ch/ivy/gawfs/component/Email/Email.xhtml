@@ -68,7 +68,8 @@
         <div class="ui-g-12 u-padding-0">
           <p:outputLabel for="attachment-table" styleClass="ui-g-4 ui-sm-6"
             value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/Attachment')}: ">
-            <p:commandLink id="attachment-note" global="false">
+            <p:commandLink id="attachment-note" global="false"
+              ariaLabel="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/Attachment')}">
               <i class="si si-question-circle" />
             </p:commandLink>
             <p:tooltip for="attachment-note" value="#{masterDataBean.getFileUploadInvalidSizeMessage()}" trackMouse="true" hideEvent="mouseleave click"/>
@@ -102,11 +103,13 @@
             <p:column styleClass="u-text-align-center express-action-button-icon-only" headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileFunctions')}">
               <p:commandLink id="download" styleClass="si si-download-bottom u-mar-right-10 email-attachment" immediate="true" ajax="false"
                 process="attachmentTableVar" actionListener="#{emailBean.downloadAttachment(attachment)}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
                 <p:fileDownload value="#{emailBean.file}" />
               </p:commandLink>
               <p:commandLink id="document-delete" styleClass="si si-bin-1 email-attachment"
                 actionListener="#{emailBean.deleteAttachment(attachment)}" immediate="true" update="attachment-table"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" oncomplete="PF('attachmentTableVar').filter();">
               </p:commandLink>
             </p:column>
