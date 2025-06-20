@@ -75,6 +75,7 @@
                       <div class="user-defined-filter-container">
                         <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                           value="#{filterData.filterName}"
+                          ariaLabel="#{filterData.filterName}"
                           actionListener="#{logic.applyFilter(filterData)}"
                           update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list #{cc.clientId}:filter-add-form #{cc.clientId}:hidden-case-count"
                           oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader();caseWidget.updateCaseCountToBreadcrumb();" />
@@ -123,6 +124,7 @@
 
             <!-- Add more filters button -->
             <p:commandLink id="filter-add-action" rendered="#{!cc.attrs.isTechnicalCaseView}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}"
               styleClass="filter-add-container display-inline-flex-center u-hidden-md-down js-filter-add-action" global="false">
               <i class="si si-add u-mar-right-5" />
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}" />
@@ -150,6 +152,7 @@
                 <h:panelGroup id="add-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer">
                   <p:commandLink id="cancel-add-filter-command"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                     onclick="PF('filter-add-panel').hide();" global="false" partialSubmit="true" immediate="true"
                     resetValues="true" process="@this" update="filter-add-form"
                     actionListener="#{data.dataModel.restoreFiltersSelection()}" />
@@ -172,6 +175,7 @@
               <p:commandLink id="filter-reset-action"
                 rendered="#{data.dataModel.selectedFilterData == null and !data.dataModel.isSelectedDefaultFilter() and !cc.attrs.isTechnicalCaseView}"
                 onclick="PF('reset-filter-set-dialog').show();"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
                 global="false" styleClass="display-inline-flex-center">
                 <span class="si si-button-refresh-arrows u-mar-right-5" />
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" />
@@ -196,6 +200,7 @@
         <h:panelGroup id="case-list-actions" styleClass="case-list-actions u-hidden-md-down  #{!cc.attrs.hideWidgetHeader ? '' : 'no-widget-header'}">
           <h:form id="case-export-to-excel-form" styleClass="case-export-to-excel-form u-mar-right-20">
             <p:commandLink ajax="false" id="case-export-to-excel"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
               onclick="PrimeFaces.monitorDownload(start, stop);">
               <i class="si si-office-file-xls-1 u-mar-right-5" />
               <span class="link-text">
@@ -213,6 +218,7 @@
       </h:panelGroup>
       <h:panelGroup rendered="#{cc.attrs.inFrame}" layout="block" styleClass="back-link-container">
         <p:commandLink id="back-link" actionListener="#{logic.backToCaseDetails()}" styleClass="list-back-link js-back-link"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
           process="@this" immediate="true" update="@none">
           <i class="si si-arrow-left-1 u-mar-right-5" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
@@ -255,6 +261,7 @@
     
     <ui:define name="dialogFooter">
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('reset-filter-set-dialog').hide();" styleClass="u-mar-right-15" />
        <p:commandButton id="filter-reset-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
@@ -291,6 +298,7 @@
       </h:panelGrid>
       <div class="u-text-align-right">
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('save-filter-set-dialog').hide();" />
         <p:spacer width="15px" />
         <p:commandButton id="filter-save-command"
@@ -316,6 +324,7 @@
     
     <ui:define name="dialogFooter">
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('delete-filter-confirmation-dialog').hide();" styleClass="u-mar-right-15" />
        <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
           icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
@@ -337,6 +346,7 @@
     
     <ui:define name="dialogFooter">
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('destroy-case-dialog').hide();" styleClass="u-mar-right-15"/>
        <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
           icon="#{visibilityBean.generateButtonIcon('si si-remove')}"

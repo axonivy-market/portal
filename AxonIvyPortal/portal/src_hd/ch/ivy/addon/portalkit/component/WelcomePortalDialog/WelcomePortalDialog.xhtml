@@ -32,6 +32,7 @@
       <div class="guide-panel__footer">
         <h:panelGroup id="guide-panel-buttons" layout="block" styleClass="guide-panel__buttons">
           <p:commandLink id="welcome-guide-cancel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             process="@this" update="#{cc.attrs.updatedComponentAfterGuide}"
             actionListener="#{guideBean.updateToLoadRealData()}" global="false"
             oncomplete="PF('welcome-portal-guide').hide();" styleClass="guide-panel__cancel u-hidden-1024-down"

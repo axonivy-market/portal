@@ -50,6 +50,7 @@
     <ui:define name="dialogFooter">
       <h:form prependId="false">
         <p:commandLink onclick="PF('#{cc.attrs.widgetVar}').hide();#{cc.attrs.cancelOnClick}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           actionListener="#{cc.attrs.cancelActionListener}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
         <p:spacer width="15px" />

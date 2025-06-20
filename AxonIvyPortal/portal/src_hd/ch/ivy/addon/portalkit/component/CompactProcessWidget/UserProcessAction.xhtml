@@ -13,6 +13,7 @@
       <h:panelGroup layout="block" rendered="#{not compactProcessWidgetBean.editMode}">
         <p:commandLink id="show-adding-dialog-commmand" rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewProcess')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewProcess')}"
           actionListener="#{compactProcessWidgetBean.addNewUserProcess()}" styleClass="ui-sm-hidden ui-md-hidden show-adding-dialog-commmand"
           update="#{cc.clientId}:add-new-process-dialog" oncomplete="PF('add-new-process-dialog').show()">
             <p:resetInput target="#{cc.clientId}:add-new-process-dialog" />
@@ -20,6 +21,7 @@
         <p:spacer width="10" styleClass="ui-sm-hidden ui-md-hidden" />
         <p:commandLink id="editing-switch-command" styleClass="ui-sm-hidden ui-md-hidden editing-switch-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editProcesses')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editProcesses')}"
           actionListener="#{compactProcessWidgetBean.switchEditMode}"
           rendered="#{not empty compactProcessWidgetBean.userProcesses}"
           update="@form #{cc.clientId}:process-list #{cc.clientId}:header"
@@ -27,16 +29,19 @@
         <p:spacer width="10" styleClass="ui-sm-hidden ui-md-hidden" />
         <p:commandLink id="name-sort-command" styleClass="name-sort-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/sortByName')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/sortByName')}"
           actionListener="#{compactProcessWidgetBean.sortUserProcessList(compactProcessWidgetBean.userProcesses)}"
           rendered="#{not empty compactProcessWidgetBean.userProcesses}" update="#{cc.clientId}:process-list" oncomplete="FavouritesProcess.setUpScrollBarForCompactProcessLists(false)" />
       </h:panelGroup>
 
       <h:panelGroup layout="block" rendered="#{compactProcessWidgetBean.editMode}">
         <p:commandLink id="save-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" styleClass="save-process-command"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           onclick="$('button[id$=\'save-process-button\']').click();" onstart="FavouritesProcess.setUpScrollBarForCompactProcessLists(true)" global="false"/>
         <p:spacer width="10" />
         <p:commandLink id="cancel-editing-process-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           actionListener="#{compactProcessWidgetBean.cancelEditingProcess}"
           update="@form #{cc.clientId}:process-list #{cc.clientId}:header"
           oncomplete="FavouritesProcess.setUpScrollBarForCompactProcessLists(false)"

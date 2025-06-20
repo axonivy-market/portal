@@ -82,7 +82,8 @@
         headerText="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/FileFunction')}">
         <div class="ui-g-12"></div>
         <div class="ui-g-4">
-        <p:commandLink id="document-preview" ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" 
+        <p:commandLink id="document-preview" 
+          ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" 
           title="#{cc.attrs.previewTitle}"
           styleClass="#{cc.attrs.previewStyleClass}"
           actionListener="#{logic.download(document)}"
