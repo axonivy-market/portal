@@ -42,6 +42,7 @@
           <p:commandButton id="add-language-button" icon="si si-chat-translate"
             actionListener="#{managedBean.updateDashboardTitleByLocale()}"
             process="dashboard-title"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
             update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
             oncomplete="PF('multiple-languages-dialog').show();">
             <f:param name="skipValidator" value="true" />
@@ -103,6 +104,7 @@
       <h:panelGroup layout="block" styleClass="text-right">
         <p:commandButton id="dashboard-detail-save-button" styleClass="w-full"
           rendered="#{!cc.attrs.isDashboardCreation}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           actionListener="#{managedBean.saveDashboardDetail()}"
           process="dashboard-detail-form" partialSubmit="true"
@@ -110,6 +112,7 @@
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.attrs.detailDialogId}').hide();}" />
         <p:commandButton id="dashboard-create-button" styleClass="w-full"
           rendered="#{cc.attrs.isDashboardCreation}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/CreateDashboard')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/CreateDashboard')}"
           actionListener="#{managedBean.createDashboard()}"
           process="dashboard-detail-form"

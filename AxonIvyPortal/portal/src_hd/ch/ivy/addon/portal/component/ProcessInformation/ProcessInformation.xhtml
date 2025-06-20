@@ -36,6 +36,7 @@
       <p:spacer width="20px" />
       <h:panelGroup id="start-process-button-container" layout="block">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{data.selectedProcess.processName}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{data.selectedProcess.processName}"
         id="start-process-button"
         disabled="#{!compactProcessWidgetBean.canStartProcess(data.selectedProcess)}"
         actionListener="#{compactProcessWidgetBean.startProcess(data.selectedProcess)}" />
