@@ -2,7 +2,7 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
 	xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-	xmlns:pe="http://primefaces.org/ui/extensions">
+	xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pc="http://xmlns.jcp.org/jsf/composite/components">
 
 <cc:interface componentType="IvyComponent">
 </cc:interface>
@@ -43,13 +43,13 @@
     <p:tab id="application-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applications')}">
       <h:form prependId="false" id="applicationForm">
         <h:panelGroup layout="block" styleClass="application-tab-action-buttons">
-          <p:commandButton id="add-application-btn" actionListener="#{logic.addNewApp}" oncomplete="PF('appDialog').show()" resetValues="true" global="false"
+          <p:commandButton id="add-application-btn" actionListener="#{thirdPartyApplicationBean.addNewApplication}" oncomplete="PF('appDialog').show()" resetValues="true" global="false"
             styleClass="new-app-btn primary-color-light-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/addNewApplication')}"
             update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}" />
         </h:panelGroup>
         <!-- Applications Table -->
         <h:panelGroup id="applicationPanel" layout="block">
-          <p:dataTable value="#{data.applicationList}" var="app" id="applicationTable" draggableRows="true" rowDragSelector="i.si-navigation-menu"
+          <p:dataTable value="#{thirdPartyApplicationBean.applicationList}" var="app" id="applicationTable" draggableRows="true" rowDragSelector="i.si-navigation-menu"
             reflow="true" styleClass="admin-table application-table" widgetVar="applicationTable"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" lazy="false">
             <p:ajax event="rowReorder" listener="#{adminSettingBean.onApplicationReorder}" update="applicationTable" />
@@ -58,9 +58,15 @@
               styleClass="application-table-type-column">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationtype/thirdPartyApplication')}" />
             </p:column>
-
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}">
-              <h:outputText value="#{logic.getAppNameInCurrentLocale(app)}" />
+              <h:outputText value="#{thirdPartyApplicationBean.getAppNameInCurrentLocale(app)}" />
+            </p:column>
+            
+            <p:column headerText="#{ivy.cms.co('/Labels/Permissions')}">
+              <h:panelGroup id="application-permissions-group" styleClass="u-truncate-text" layout="block">
+                <h:outputText value="#{app.displayedPermission}" />
+                <p:tooltip for="application-permissions-group" value="#{app.displayedPermission}" trackMouse="true" hideEvent="mouseleave click" styleClass="dashboard-configuration-tooltip"/>
+              </h:panelGroup>
             </p:column>
 
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
@@ -76,14 +82,14 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
                   icon="si si-graphic-tablet-drawing-pen"
                   oncomplete="PF('appDialog').show()"
-                  actionListener="#{logic.editApplication(app)}"
+                  actionListener="#{thirdPartyApplicationBean.editApplication(app)}"
                   update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}"
                   process="@this" />
                 <p:menuitem id="delete-application"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                   icon="si si-bin-1" styleClass="color-destroy"
                   oncomplete="PF('deleteConfirmation').show()"
-                  actionListener="#{logic.submitDeleteApp(app)}"
+                  actionListener="#{thirdPartyApplicationBean.setSelectedApp(app)}"
                   update=":#{p:resolveFirstComponentWithId('deleteConfirmationDialog', view).clientId}"
                   process="@this"/>
               </p:menu>
@@ -211,12 +217,11 @@
       title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/passwordValidation/titlePage')}">
       <ic:ch.ivy.addon.portalkit.component.PasswordValidation id="password-validation-component"/>
     </p:tab>
-  </p:tabView>
-
-  <!-- APPLICATION DIALOG-->
-  <p:dialog header="#{data.dialogTitle}" id="appDialog" onShow="$('body').css({overflow:'hidden'})"
+    </p:tabView>
+  <!-- APPLICATION DIALOG-->  
+  <p:dialog header="#{thirdPartyApplicationBean.dialogTitle}" id="appDialog" onShow="$('body').css({overflow:'hidden'})"
     styleClass="app-dialog" onHide="PF('cancelButton').jq.click(); $('body').css({overflow:'inherit'})" widgetVar="appDialog" dynamic="true"
-    modal="true" resizable="false" appendTo="@(body)" closeOnEscape="true" width="500px" height="35vh"
+    modal="true" resizable="false" appendTo="@(body)" closeOnEscape="true" width="500px" height="auto"
     responsive="true" fitViewport="true" position="center center" positionType="absolute">
     <h:form prependId="false" id="appDialogForm">
       <p:messages id="messages" closable="true" />
@@ -230,7 +235,7 @@
                 <p:outputLabel styleClass="app-icon w-full admin-settings-application-icon"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/menuIcon')}" />
                 <div class="w-full">
-                  <ic:ch.ivy.addon.portalkit.component.IconSelection value="#{data.selectedApp.menuIcon}" isImmediate="false"/>
+                  <ic:ch.ivy.addon.portalkit.component.IconSelection value="#{thirdPartyApplicationBean.selectedApp.menuIcon}" isImmediate="false"/>
                 </div>
               </div>
 
@@ -240,20 +245,15 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appDisplayName')}" for="appDisplayName3rd" />
                 <div class="w-full">
                   <div class="flex gap-3">
-                    <div class="flex flex-1">
-                      <p:inputText value="#{data.displayNameInCurrentLanguage}" id="appDisplayName3rd"
-                        styleClass="admin-settings-form-input w-full" required="true">
-                        <f:converter converterId="applicationDisplayNameConverter" />
-                        <f:validator validatorId="applicationDisplayNameValidator" />
-                      </p:inputText>
-                    </div>
-                    <div class="flex flex-none">
-                      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}" process="appDisplayName3rd"
-                        styleClass="app-setting-button" global="false"
-                        update=":#{p:resolveFirstComponentWithId('appDisplayName3rd', view).clientId} :#{p:resolveFirstComponentWithId('applicationName', view).clientId} messages"
-                        actionListener="#{logic.getLanguageList}" oncomplete="if (!args.validationFailed)PF('applicationName').show();">
-                        <f:param name="skipDisplayNameInputValidation" value="true" />
-                      </p:commandButton>
+                    <div class="flex flex-1 ui-inputgroup">
+                    <p:inputText value="#{thirdPartyApplicationBean.displayNameInCurrentLanguage}" id="appDisplayName3rd"
+                        styleClass="admin-settings-form-input w-full" required="true" />
+                      <p:commandButton styleClass="app-setting-button"
+                        icon="si si-chat-translate" id="app-display-name-language-button"
+                        actionListener="#{thirdPartyApplicationBean.updateDisplayNameByLocale()}"
+                        process="appDisplayName3rd"
+                        update="#{cc.clientId}:application-display-name-language-config:multiple-languages-dialog"
+                        oncomplete="PF('multiple-languages-dialog').show();" />
                     </div>
                   </div>
                 </div>
@@ -263,20 +263,62 @@
                 <p:outputLabel styleClass="w-full admin-settings-portal-link-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/link')}" for="portalLink3rd" />
                 <div class="w-full">
-                  <p:inputText value="#{data.selectedApp.link}" id="portalLink3rd" required="true" styleClass="admin-settings-form-input" />
+                  <p:inputText value="#{thirdPartyApplicationBean.selectedApp.link}" id="portalLink3rd" required="true" styleClass="admin-settings-form-input" />
                 </div>
               </h:panelGroup>
+              
+              <!-- Application Permissions -->
+              <h:panelGroup id="applicationPermissions" styleClass="field" layout="block">
+                <p:outputLabel styleClass="w-full admin-settings-permission-label"
+                  value="#{ivy.cms.co('/Labels/Permissions')}" for="application-permission" />
+                <div class="w-full">
+                <p:autoComplete id="application-permission" required="true" 
+                    emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+                    scrollHeight="210" dropdown="true"
+                    completeMethod="#{thirdPartyApplicationBean.completeApplicationPermissions}"
+                    styleClass="admin-settings-form-input"
+                    value="#{thirdPartyApplicationBean.selectedApp.permissionDTOs}"
+                    var="responsible" itemValue="#{responsible}"
+                    itemLabel="#{responsible.briefDisplayNameWithState}"
+                    converter="pojoConverter" cache="false"
+                    maxResults="100" multiple="true" dynamic="true"
+                    forceSelection="true" widgetVar="applicationPermissionWidget">
+                    <p:ajax event="itemSelect"
+                      listener="#{thirdPartyApplicationBean.onSelectPermissionForApplication}"
+                      update="application-permission" global="false"
+                      process="@this" />
+                    <p:ajax event="itemUnselect"
+                      listener="#{thirdPartyApplicationBean.onUnSelectPermissionForApplication}"
+                      update="application-permission" global="false"
+                      process="@this" immediate="true" />
+                    <f:param name="skipValidator" value="true" />
+                    <p:column>
+                      <pc:securityMemberNameAndAvatar
+                        displayName="#{responsible.briefDisplayNameWithState}"
+                        securityMember="#{responsible}" isStandAlone="false">
+                        <f:facet name="alternativeAvatar">
+                          <h:outputText
+                            rendered="#{not avatarBean.isShowAvatar()}"
+                            styleClass="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                        </f:facet>
+                      </pc:securityMemberNameAndAvatar>
+                    </p:column>
+                  </p:autoComplete>
+                </div>
+              </h:panelGroup>
+              
             </p:column>
           </p:row>
         </p:panelGrid>
         <p:commandLink widgetVar="cancelButton" id="cancelButton" onclick="PF('appDialog').hide()" style="display:none"
                        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
+        </div>
       </p:outputPanel>
     </h:form>
     <f:facet name="footer">
       <h:panelGroup id="dialogFooter">
-        <p:commandButton form="appDialogForm" styleClass="w-full" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-          actionListener="#{logic.saveApplication}" oncomplete="if (!args.validationFailed){ PF('appDialog').hide()}"
+      <p:commandButton form="appDialogForm" styleClass="w-full" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          actionListener="#{thirdPartyApplicationBean.saveApplication}" oncomplete="if (!args.validationFailed){ PF('appDialog').hide()}"
           update="#{p:resolveFirstComponentWithId('applicationTable', view).clientId} appDialogForm" process="appDialogForm" />
       </h:panelGroup>
     </f:facet>
@@ -361,13 +403,13 @@
     <ui:param name="iconClass" value="si si-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteSettingHeaderText')}" />
-    <ui:param name="dialogContent" value="#{data.confirmMsg}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/deleteAppConfirmation')}" />
     
     <ui:define name="dialogFooter">
       <h:panelGroup styleClass="flex flex-column">
-       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
           styleClass="w-full portal-remove-button"
-          actionListener="#{logic.delete}" oncomplete="PF('deleteConfirmation').hide();"
+          actionListener="#{thirdPartyApplicationBean.deleteApplication(thirdPartyApplicationBean.selectedApp)}" oncomplete="PF('deleteConfirmation').hide();"
           update=":#{p:resolveFirstComponentWithId('applicationForm', view).clientId}" />
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
@@ -404,35 +446,13 @@
         onclick="PF('resetConfirmation').hide()" styleClass="text-center block pt-3 w-full"/>
     </ui:define>
   </ui:decorate>
-
-
-  <p:dialog appendTo="@(body)" styleClass="application-name-language" width="500px" height="30vh"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingApplicationName')}" resizable="false"
-    id="applicationName" widgetVar="applicationName" dynamic="true" modal="true" responsive="true">
-    <h:form prependId="false" id="applicationNameDialogForm">
-      <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/emptySupportedLanguages')}"
-        rendered="#{data.supportedLanguages.isEmpty()}" />
-      <h:dataTable value="#{data.supportedLanguages}" rendered="#{data.supportedLanguages.isEmpty() eq 'false'}" width="100%"
-        var="supportedLanguage">
-        <h:column>
-          <h:outputText styleClass="ui-g-12 font-medium" value="#{supportedLanguage.locale.getDisplayName()}" />
-          <div class="ui-g-12 ui-fluid">
-            <p:inputText value="#{supportedLanguage.value}" />
-          </div>
-        </h:column>
-      </h:dataTable>
-    </h:form>
-    <f:facet name="footer">
-      <h:panelGroup id="applicationNameDialogFooter">
-        <p:commandButton form="applicationNameDialogForm" styleClass="w-full" 
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-          process="applicationNameDialogForm" 
-          update="#{p:resolveFirstComponentWithId('appDisplayName3rd', view).clientId}"
-          oncomplete="PF('applicationName').hide();" 
-          actionListener="#{logic.processLanguage}"
-          rendered="#{!data.supportedLanguages.isEmpty()}" />
-      </h:panelGroup>
-    </f:facet>
-  </p:dialog>
+  <!-- Multi-language configuration for application display names -->
+  <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+    id="application-display-name-language-config"
+    titles="#{thirdPartyApplicationBean.supportedLanguages}"
+    managedBean="#{thirdPartyApplicationBean}"
+    updateCurrentLanguage="#{thirdPartyApplicationBean.updateCurrentLanguage()}"
+    componentToUpdateOnCreate="#{p:resolveFirstComponentWithId('appDisplayName3rd', view).clientId}"
+    componentToUpdateOnModify="#{p:resolveFirstComponentWithId('appDisplayName3rd', view).clientId}" />
 </cc:implementation>
 </html>
