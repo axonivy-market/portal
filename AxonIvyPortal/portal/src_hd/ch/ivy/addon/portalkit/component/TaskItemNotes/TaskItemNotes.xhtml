@@ -92,7 +92,10 @@
       <h:outputText value="#{data.fullNote}" />
     </h:panelGroup>
     <f:facet name="footer">
-      <p:commandButton icon="#{visibilityBean.generateButtonIcon('si si-remove')}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button" onclick="PF('#{cc.clientId}:view-note-dialog').hide()" />
+      <p:commandButton icon="#{visibilityBean.generateButtonIcon('si si-remove')}" 
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        type="button" onclick="PF('#{cc.clientId}:view-note-dialog').hide()" />
     </f:facet>
   </p:dialog>
 
@@ -115,6 +118,7 @@
         <p:spacer width="15px" />
         <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" partialSubmit="true"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           process="task-detail-note-content #{p:resolveFirstComponentWithId('show-system-notes-checkbox', view).clientId}"
           update="task-detail-note-content task-detail-create-note-msg #{cc.clientId}:task-history-content-container"
           actionListener="#{logic.createNote()}" oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.clientId}:addNewNoteDialog').hide();handleTaskDetailsTables()}" />

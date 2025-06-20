@@ -196,6 +196,7 @@
               <h:panelGroup styleClass="flex flex-column">
               <p:commandButton id="confirm-destruction-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
                styleClass="w-full portal-remove-button"
+               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
                actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
                oncomplete="PF('destroy-task-dialog').hide();loadGrid(#{managedBean.selectedDashboard.isResponsive}); initStatistics();"
                update="grid-stack dashboard-title-container" />
@@ -222,9 +223,10 @@
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
                 onclick="PF('escalation-task-dialog').hide();" styleClass="u-mar-right-15" />
               <p:commandButton id="confirm-escalation-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-               icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
-               actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
-               oncomplete="PF('escalation-task-dialog').hide();loadGrid(#{managedBean.selectedDashboard.isResponsive});initStatistics();" update="grid-stack dashboard-title-container" />
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+                icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+                actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
+                oncomplete="PF('escalation-task-dialog').hide();loadGrid(#{managedBean.selectedDashboard.isResponsive});initStatistics();" update="grid-stack dashboard-title-container" />
             </ui:define>
            </ui:decorate>
            
@@ -249,6 +251,7 @@
            <ui:define name="dialogFooter">
             <h:panelGroup>
               <p:commandButton id="confirm-destruction-dashboard-cases" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
                 styleClass="w-full portal-remove-button"
                 actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
                 oncomplete="PF('destroy-case-dialog').hide();loadGrid();initStatistics();"
@@ -282,6 +285,7 @@
                   global="false"/>
                 <p:commandButton id="save-widget-filter-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
                   actionListener="#{widgetFilterHelperBean.saveNewWidgetFilter()}"
                   icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
                   oncomplete="if (!args.validationFailed) { #{widgetFilterHelperBean.loadWidgetFilters}; PF('save-widget-filter-dialog').hide();}"
@@ -324,6 +328,7 @@
               </div>
               <h:panelGroup id="manage-filter-action" layout="block" styleClass="ui-g-12 text-right">
                 <p:commandButton id="delete-widget-filter-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/removeSelection')}"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/removeSelection')}"
                   process="delete-saved-filter-form" update="delete-saved-filter-form:quick-filter-table" global="false"
                   actionListener="#{dashboardBean.deleteSavedFilter()}"
                   oncomplete="PF('quick-filter-table').clearFilters()" />
