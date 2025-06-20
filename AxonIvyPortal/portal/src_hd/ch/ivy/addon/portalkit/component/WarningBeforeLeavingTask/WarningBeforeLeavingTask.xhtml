@@ -38,12 +38,14 @@
           <p:commandButton id="leave-button"
             actionListener="#{cc.attrs.leaveActionListener}" process="@this" update="@none"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leave')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leave')}"
             styleClass="mx-0 ui-leave-button #{cc.attrs.taskState == 'CREATED' ? 'w-full' : 'w-6'}" oncomplete="#{cc.attrs.leaveOnComplete}" />
           <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{cc.attrs.taskState != 'CREATED'}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
           <p:commandButton id="reserve-task-button" actionListener="#{cc.attrs.reserveActionListener}"
             process="@this" update="@none" rendered="#{cc.attrs.taskState != 'CREATED'}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
             styleClass="w-6 mx-0 ui-reserve-task-button" oncomplete="#{cc.attrs.reserveOnComplete}" />
         </div>
         <div class="w-full flex justify-content-center mt-2">
