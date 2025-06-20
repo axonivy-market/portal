@@ -416,6 +416,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     All: すべて
     And: と
+    AutoTranslation: TODO Auto translation
     BusinessCaseInformation: ビジネスケース情報
     Clone: 複製
     CollapseAll: すべて折りたたむ
@@ -1555,9 +1556,11 @@ Labels:
     TaskDetailsResult: |-
       タスクの詳細 **{0} (#{1})**：
       {2}
+  AIAssistant: TODO AI Assistant
   AllTasks: 'TODO: All Tasks'
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
+  Chat: TODO Chat
   Collapse: TODO 折りたたむ
   CreateNewDashboard: 新しいダッシュボードを作成
   EditDescription: 説明を編集

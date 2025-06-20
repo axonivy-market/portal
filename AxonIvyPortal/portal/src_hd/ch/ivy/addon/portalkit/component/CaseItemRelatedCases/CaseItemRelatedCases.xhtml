@@ -24,7 +24,9 @@
       </div>
       <h:panelGroup layout="block" styleClass="ui-g-5 related-case-section-header-actions" id="related-case-actions">
         <h:form id="related-cases-form" styleClass="related-case-export-to-excel ui-sm-hidden">
-          <p:commandLink ajax="false" id="related-case-export-to-excel" onclick="PrimeFaces.monitorDownload(startRelatedCaseExportToExcel, stopRelatedCaseExportToExcel);" >
+          <p:commandLink ajax="false" id="related-case-export-to-excel"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
+            onclick="PrimeFaces.monitorDownload(startRelatedCaseExportToExcel, stopRelatedCaseExportToExcel);" >
             <i class="si si-office-file-xls-1 u-mar-right-5" />
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
             <p:fileDownload value="#{logic.getExportedFile(caseDetailsBean.getColumns(data.caseLazyDataModel))}" />
@@ -137,6 +139,7 @@
   
     <ui:define name="dialogFooter">
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         onclick="PF('destroy-related-case-dialog').hide();" styleClass="u-mar-right-15" />
       <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}"

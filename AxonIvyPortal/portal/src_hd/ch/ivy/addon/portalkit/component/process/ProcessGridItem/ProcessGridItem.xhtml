@@ -55,7 +55,7 @@
           isInConfiguration="#{cc.attrs.isInConfiguration}"
           />
 
-        <p:commandLink id="start-process-link" styleClass="process-grid__header"
+        <p:commandLink id="start-process-link" styleClass="process-grid__header" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')} #{process.name}"
           actionListener="#{managedBean.startProcess(process)}"
           ajax="#{!isExternalLink}"
           target="#{processTarget}"

@@ -46,6 +46,7 @@
               <p:commandLink id="expand-all"
                 actionListener="#{roleManagementBean.roleTreeModel.expandAllNodes}"
                 update="role-tree-table"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ExpandAll')}"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ExpandAll')}"
                 styleClass="action-column-icon-button expand-all"
                 process="@this">
@@ -54,6 +55,7 @@
               <p:commandLink id="collapse-all"
                 actionListener="#{roleManagementBean.roleTreeModel.collapseAllNodes}"
                 update="role-tree-table"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/CollapseAll')}"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/CollapseAll')}"
                 styleClass="action-column-icon-button"
                 process="@this">
@@ -94,6 +96,7 @@
             <h:panelGroup id="edit-role-action">
               <p:commandLink id="edit-role-link"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/EditButtonTitle')}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/EditButtonTitle')}"
                 actionListener="#{roleManagementBean.setDataForEditRole(role)}"
                 oncomplete="PF('role-details-dialog').show()"
                 update="@(.manage-role-details-form) @(.role-details-dialog)"
@@ -111,6 +114,7 @@
             <h:panelGroup id="assign-users-to-role-action">
               <p:commandLink id="assign-users-to-role-link" global="false"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/AssignUsersToRole')}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/AssignUsersToRole')}"
                 actionListener="#{roleManagementBean.setDataForAssignUserToRole(role)}"
                 styleClass="action-column-icon-button"
                 oncomplete="PF('role-details-dialog').show()"
@@ -123,6 +127,7 @@
             <h:panelGroup id="delete-role-action">
               <p:commandLink id="delete-role-link"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/DeleteButtonTitle')}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/DeleteButtonTitle')}"
                 actionListener="#{roleManagementBean.setSelectedRole(role)}"
                 styleClass="action-column-icon-button"
                 oncomplete="PF('delete-role-dialog').show()"
@@ -284,6 +289,7 @@
               styleClass="action-group text-center" width="100px">
               <h:panelGroup id="user-of-role-action-group">
                 <p:commandLink id="delete-user-link" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
                   styleClass="action-column-icon-button"
                   update="users-of-role-table #{cc.clientId}:manage-role-details-form:user-assignment-group"
                   process="@this" partialSubmit="true"
@@ -306,6 +312,7 @@
       <h:panelGroup rendered="#{creationMode or roleManagementBean.canModifyRoleInformation}">
         <p:commandLink id="cancel-link"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           process="@this"
           update="@this"
           styleClass="u-mar-right-15"
@@ -347,6 +354,7 @@
 
     <ui:define name="dialogFooter">
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         onclick="PF('delete-role-dialog').hide();"
         styleClass="u-mar-right-15" />
       <p:commandButton id="yes-button"

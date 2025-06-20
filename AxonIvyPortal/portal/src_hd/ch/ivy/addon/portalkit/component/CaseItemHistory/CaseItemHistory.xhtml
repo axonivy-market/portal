@@ -29,10 +29,11 @@
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
           <p:commandLink id="add-note-command" styleClass="case-details-document-add-link"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
             rendered="#{caseTaskNoteHistoryBean.showAddNote}" onclick="PF('add-note-dialog-#{case.id}').show()"
             actionListener="#{data.setCaze(case)}">
             <span class="si si-notes-add" />
-            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')} </span>
+            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
           <p:selectBooleanCheckbox id="system-note-checkbox" value="#{data.showSystemNotes}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}" rendered="#{data.showSystemNotesChkbox}"
@@ -84,6 +85,7 @@
           styleClass="u-truncate-text history-related-case js-column-priority-1"
           rendered="#{case.isBusinessCase() and data.showRelatedCaseInfo}">
           <p:commandLink id="related-case-link" value="#{history.displayCaseName}"
+            ariaLabel="#{history.displayCaseName}"
             rendered="#{not empty history.displayCaseName}"
             actionListener="#{caseDetailsBean.navigateToCaseDetails(history.uuid)}"
             disabled="#{history.disabledCaseName}"/>
@@ -153,6 +155,7 @@
       <h:panelGroup layout="block" styleClass="MarTop10 text-right">
         <p:commandLink id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onsuccess="PF('add-note-dialog-#{case.id}').hide()"
           update="note-content create-note-msg" />
         <p:spacer width="15px" />

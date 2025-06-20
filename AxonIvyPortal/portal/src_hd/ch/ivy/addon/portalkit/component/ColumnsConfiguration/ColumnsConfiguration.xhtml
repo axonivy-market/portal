@@ -15,7 +15,9 @@
 <cc:implementation>
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
   <h:panelGroup id="config-columns-container" layout="block" styleClass="config-columns-button u-hidden-md-down">
-    <p:commandLink id="#{cc.attrs.configButtonId}" styleClass="config-columns" global="false">
+    <p:commandLink id="#{cc.attrs.configButtonId}"
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
+      styleClass="config-columns" global="false">
       <i class="si si-layers-grid-settings u-mar-right-5" />
       <span class="link-text">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" />
@@ -42,6 +44,7 @@
 
         <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer">
           <p:commandLink id="cancel-command" process="@this" global="false"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             update="#{cc.clientId}:config-columns-container #{cc.clientId}:#{cc.attrs.overlayPanelId}" resetValues="true"
             oncomplete="PF('#{cc.attrs.overlayPanelId}').hide()"

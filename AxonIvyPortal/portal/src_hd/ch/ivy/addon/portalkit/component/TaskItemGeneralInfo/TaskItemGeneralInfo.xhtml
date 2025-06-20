@@ -100,6 +100,7 @@
         </div>
         <div class="ui-g-12 no-padding-column text-content last-line text-ellipsis">
           <p:commandLink id="workflow-event-link" onstart="event.stopPropagation();"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/seeDetail')}"
             disabled="#{!taskActionBean.canReadWorkflowEventTask()}" rendered="#{taskActionBean.showReadWorkflowEvent}"
             oncomplete="#{cc.attrs.onWorkflowEventComplete}" global="false">
             <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/seeDetail')}</span>
@@ -323,7 +324,7 @@
         </div>
         <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-8 ui-g-10 u-no-padding-left u-truncate-text">
           <p:commandLink id="related-case" styleClass="task-business-case" disabled="#{cc.attrs.readOnly}"
-            value="#{taskBean.displayCaseName(task)}"
+            value="#{taskBean.displayCaseName(task)}" ariaLabel="#{taskBean.displayCaseName(task)}"
             actionListener="#{logic.navigateToRelatedCase(task.getCase().getBusinessCase())}">
           </p:commandLink>
         </div>
@@ -337,6 +338,7 @@
         </div>
         <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-8 ui-g-10 u-no-padding-left u-truncate-text">
           <p:commandLink id="related-technical-case" value="#{taskBean.getTechnicalCaseDisplayName(task)}"
+            ariaLabel="#{taskBean.getTechnicalCaseDisplayName(task)}"
             actionListener="#{logic.navigateToRelatedCase(task.getCase())}"
             rendered="#{task.getCase().getId() != task.getCase().getBusinessCase().getId()}"
             disabled="#{cc.attrs.readOnly}">

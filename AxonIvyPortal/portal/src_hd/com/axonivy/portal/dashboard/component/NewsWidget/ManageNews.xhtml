@@ -46,10 +46,11 @@
                   styleClass="filter-name-overlay-panel #{requiredLanguage ? 'hidden' : ''}"
                   dynamic="false" dismissable="true" showCloseIcon="true">
                   <p:commandLink id="tranlate-link" update="@form" process="@this" partialSubmit="true"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/AutoTranslation')}"
                     actionListener="#{newsWidgetBean.resetTranslation()}"
                     disabled="#{not empty newsWidgetBean.warningText}">
                     <span class="fa fa-language language-icon-padding-right" />
-                    <h:outputText value="Auto. translation" />
+                    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/AutoTranslation')}" />
                   </p:commandLink>
                   <h:panelGroup id="translated-text-panel" layout="block">
                     <i id="translating-title"
@@ -97,6 +98,7 @@
   
   <f:facet name="footer">
     <p:commandLink id="cancel-news-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       onclick="PF('manage-news-dialog').hide()" immediate="true" global="false" process="@none" update="@none"
       styleClass="u-mar-right-10" />
     <p:commandButton id="publish-news-button"

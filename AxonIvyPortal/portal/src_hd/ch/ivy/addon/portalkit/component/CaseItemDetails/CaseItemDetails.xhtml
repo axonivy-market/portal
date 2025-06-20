@@ -187,6 +187,7 @@
           actionListener="#{caseWidgetBean.destroyCase(case)}"
           oncomplete="backToPrevPage(#{caseWidgetBean.willNavigateBack()});" />
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('destroy-case-dialog').hide();" styleClass="pt-3 flex justify-content-center" />
         </h:panelGroup>
     </ui:define>
@@ -204,6 +205,7 @@
     <ui:define name="dialogFooter">
       <h:form id="reset-to-default-case-form">
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('reset-to-default-case-dialog').hide();" styleClass="u-mar-right-15" type="button" ajax="false" />
         <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"

@@ -28,7 +28,7 @@
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
-          <p:commandLink id="add-document-command"
+          <p:commandLink id="add-document-command" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
             styleClass="case-details-document-add-link u-mar-right-10"
             rendered="#{caseTaskDocumentBean.canWriteDocument(case)}"
             onclick="PF('document-upload-dialog').show()">
@@ -192,7 +192,8 @@
         actionListener="#{logic.deleteDocument}" styleClass="w-full portal-remove-button"
         oncomplete="PF('document-deletion-dialog').hide();handleCaseDetailsTable();" />
       <p:commandLink id="document-deletion-cancellation-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-         process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="pt-3 flex justify-content-center"/>
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="pt-3 flex justify-content-center"/>
     </ui:define>
   </ui:decorate>
   <script type="text/javascript">

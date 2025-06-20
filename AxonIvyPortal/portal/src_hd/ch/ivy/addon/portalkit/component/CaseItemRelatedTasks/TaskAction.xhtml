@@ -10,6 +10,7 @@
   <div id="action-cell-#{rowIndex}" class="task-header-action-cell">
     <div class="action-container">
       <p:commandLink id="task-action-component" actionListener="#{logic.openTask(task,dataModel)}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
         disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task) or cc.attrs.inFrame}" rendered="#{task.state != 'RESUMED' and !cc.attrs.readOnly}" onstart="event.stopPropagation();"
         styleClass="task-action-item start-task-action" oncomplete="resetPortalLeftMenuState()">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label ui-sm-hidden" />
@@ -17,6 +18,7 @@
       </p:commandLink>
 
       <p:commandLink id="resume-task-action-component" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task) or cc.attrs.inFrame}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
         rendered="#{task.state == 'RESUMED' and !cc.attrs.readOnly}" styleClass="task-action-item start-task-action">
         <f:setPropertyActionListener value="#{task.id}" target="#{taskWidgetBean.selectedTaskItemId}"/>
         <p:ajax event="click" listener="#{logic.validate(task, dataModel)}" onstart="event.stopPropagation();"
