@@ -13,7 +13,7 @@
           <h:panelGroup id="grid-process-category-content" styleClass="grid-process-category-content u-truncate-text" layout="block">#{processWidgetBean.getDisplayProcessCategory(process)}</h:panelGroup>
         </h:panelGroup>
       <p:commandLink id="process-item" actionListener="#{processWidgetBean.startProcess(process)}" styleClass="process-item"
-        target="#{processWidgetBean.targetToStartProcess(process)}" ajax="#{!isExternalLink}">
+        target="#{processWidgetBean.targetToStartProcess(process)}" ajax="#{!isExternalLink}" ariaLabel="#{process.name}">
 
         <div class="process-start-list-item-name #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}">
           <h:outputText id="process-name" value="#{process.name}"
@@ -29,12 +29,14 @@
               hideEvent="mouseleave click" />
             <ui:fragment rendered="#{process.getProcess().ableToEdit}">
               <p:commandLink id="delete-express-workflow" styleClass="si si-bin-1 express-workflow process-item"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowTooltip')}"
                 actionListener="#{processWidgetBean.setDeletedProcess(process)}" oncomplete="PF('remove-process-workflow-dialog').show();"
                 update="#{cc.clientId}:remove-process-workflow-dialog" />
               <p:tooltip id="delete-express-workflow-tooltip" for="delete-express-workflow" trackMouse="true" hideEvent="mouseleave click"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowTooltip')}" position="top" />
 
               <p:commandLink id="edit-express-workflow" styleClass="si si-graphic-tablet-drawing-pen express-workflow process-item"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editExpressWorkflowTooltip')}"
                 actionListener="#{processWidgetBean.editExpressWorkflow(process.getProcess())}" target="_self" />
               <p:tooltip id="edit-express-workflow-tooltip" for="edit-express-workflow" trackMouse="true" hideEvent="mouseleave click"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editExpressWorkflowTooltip')}" position="top" />
@@ -48,6 +50,7 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/externalLink')}" position="top" trackMouse="true"
               hideEvent="mouseleave click" styleClass="process-tooltip"/>
             <p:commandLink id="delete-external-link" styleClass="si si-bin-1 process-item"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editExpressWorkflowTooltip')}"
               actionListener="#{processWidgetBean.setDeletedProcess(process)}" oncomplete="PF('remove-process-workflow-dialog').show();"
               update="#{cc.clientId}:remove-process-workflow-dialog" rendered="#{process.getProcess().ableToEdit}" />
             <p:tooltip id="delete-external-link-tooltip" for="delete-external-link" position="top" trackMouse="true" hideEvent="mouseleave click"

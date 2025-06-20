@@ -20,6 +20,7 @@
           <h:panelGroup layout="block">
             <p:commandLink id="default-process-name-sort-command" styleClass="name-sort-command"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/sortByName')}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               actionListener="#{compactProcessWidgetBean.sortUserProcessList(compactProcessWidgetBean.defaultUserProcesses)}"
               update="#{cc.clientId}:user-default-process-list"
               oncomplete="FavouritesProcess.setUpScrollBarForCompactProcessLists(false)" />

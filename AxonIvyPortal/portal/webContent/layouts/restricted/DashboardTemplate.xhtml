@@ -161,7 +161,8 @@
              
             <ui:define name="dialogFooter">
               <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-               onclick="PF('destroy-task-dialog').hide();" styleClass="u-mar-right-15" />
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                onclick="PF('destroy-task-dialog').hide();" styleClass="u-mar-right-15" />
               <p:commandButton id="confirm-destruction-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
                icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
                actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
@@ -183,7 +184,8 @@
              
             <ui:define name="dialogFooter">
               <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
-               onclick="PF('escalation-task-dialog').hide();" styleClass="u-mar-right-15" />
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+                onclick="PF('escalation-task-dialog').hide();" styleClass="u-mar-right-15" />
               <p:commandButton id="confirm-escalation-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
                icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
                actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
@@ -211,6 +213,7 @@
             
            <ui:define name="dialogFooter">
             <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               onclick="PF('destroy-case-dialog').hide();" styleClass="u-mar-right-15"/>
             <p:commandButton id="confirm-destruction-dashboard-cases" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
               icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
@@ -235,6 +238,7 @@
               </div>
               <div class="ui-g-12 u-text-align-right">
                 <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   oncomplete="PF('save-widget-filter-dialog').hide();" styleClass="u-mar-right-10"
                   process="@this" update="save-filter-form" resetValues="true"
                   partialSubmit="true" immediate="true"/>
@@ -282,6 +286,7 @@
               </div>
               <h:panelGroup id="manage-filter-action" layout="block" styleClass="ui-g-12 u-text-align-right">
                 <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
                   onclick="PF('manage-filter-dialog').hide();"
                   styleClass="u-mar-right-15" global="false"/>
                 <p:commandButton id="delete-widget-filter-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"

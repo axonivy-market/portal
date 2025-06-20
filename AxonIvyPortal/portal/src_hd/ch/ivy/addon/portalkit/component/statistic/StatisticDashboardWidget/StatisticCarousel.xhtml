@@ -14,7 +14,7 @@
       <h:panelGroup id="chart-name-container" styleClass="chart-name-container" layout="block">
         <h:outputText id="chart-name" styleClass="chart-name" value="#{chart.name}" />
         <p:commandLink styleClass="si si-information-circle chart-info portal-icon" actionListener="#{logic.selectChart(chart)}" update="#{p:resolveFirstComponentWithId('chart-details-dialog', view).clientId}"
-          oncomplete="PF('chart-details-dialog').show();" rendered="#{data.hasStatistic}" />
+          oncomplete="PF('chart-details-dialog').show();" rendered="#{data.hasStatistic}" ariaLabel="#{chart.name}" />
       </h:panelGroup>
       <h:outputText id="number-of-chart" value="#{data.statisticChartList.size()}" />
     </h:panelGroup>

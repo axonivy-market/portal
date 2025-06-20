@@ -17,6 +17,7 @@
           <span class="process-start-list-item"> <p:commandLink
               actionListener="#{compactDashboardProcessBean.startProcessWithCompactMode(process)}"
               target="#{dashboardProcessBean.targetToStartProcess(process)}"
+              ariaLabel="#{process.name}"
               ajax="#{!dashboardProcessBean.isExternalLink(process)}" styleClass="process-item">
               <h:panelGroup layout="block" class="process-start-list-item-icon">
                 <span class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())}" />
@@ -52,7 +53,7 @@
     <h:panelGroup layout="block" rendered="#{!isReadOnlyMode or isInConfiguration}">
       <!-- render list with no form, to avoid can not save in custom order mode -->
       <ui:repeat varStatus="status" var="process" value="#{processes}">
-        <span class="process-start-list-item"> <p:commandLink
+        <span class="process-start-list-item"> <p:commandLink ariaLabel="#{process.name}"
             actionListener="#{compactDashboardProcessBean.startProcessWithCompactMode(process)}" disabled="true"
             target="#{dashboardProcessBean.targetToStartProcess(process)}"
             ajax="#{!dashboardProcessBean.isExternalLink(process)}" styleClass="process-item">

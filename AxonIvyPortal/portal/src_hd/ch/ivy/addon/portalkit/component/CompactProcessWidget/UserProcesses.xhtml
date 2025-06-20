@@ -54,6 +54,7 @@
               <div class="process-start-list-item-action">
                 <p:commandLink
                   title="#{compactProcessWidgetBean.isProcessMarkedAsDeleting(process.id) ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/remove')}"
+                  ariaLabel="#{compactProcessWidgetBean.isProcessMarkedAsDeleting(process.id) ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/remove')}"
                   actionListener="#{compactProcessWidgetBean.selectDeletingProcess}" process="@form"
                   update="#{p:resolveFirstComponentWithId('order-list-items', view).clientId}" id="process-delete-link">
                   <i class="si #{compactProcessWidgetBean.isProcessMarkedAsDeleting(process.id) ? 'si-undo' : 'si-bin-1'} action-icon" />

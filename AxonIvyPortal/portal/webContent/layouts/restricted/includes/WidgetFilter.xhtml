@@ -15,6 +15,7 @@
 <div class="ui-g-12 filter-overlay-panel__header">
   <strong class="ui-g-12 u-no-padding-left">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/SavedFilterHeader')}</strong>
   <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ManageFilter')}"
+    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ManageFilter')}"
     styleClass="ui-sm-hidden saved-filter__manage-filter" global="false"
     onclick="hideAllDashboardOverlayPanels(); PF('manage-filter-dialog').show();" />
 </div>

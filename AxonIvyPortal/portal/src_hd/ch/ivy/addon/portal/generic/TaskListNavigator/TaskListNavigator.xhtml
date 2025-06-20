@@ -9,7 +9,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <p:commandLink id="#{cc.attrs.id}" actionListener="#{logic.openTask}" styleClass="u-hidden-sm-down">
+  <p:commandLink id="#{cc.attrs.id}" actionListener="#{logic.openTask}" styleClass="u-hidden-sm-down" ariaLabel="#{cc.attrs.label}">
     <h:outputText id="#{cc.attrs.id}-label" value="#{cc.attrs.label}" />
   </p:commandLink>
 </cc:implementation>

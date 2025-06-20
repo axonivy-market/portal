@@ -48,9 +48,10 @@
           componentToUpdateOnDeleteProcess="#{cc.attrs.componentToUpdateOnRemoveProcess}"
           hideActionButton="#{cc.attrs.isInConfiguration}"/>
 
-        <p:commandLink id="start-process-link" styleClass="process-grid__header"
+        <p:commandLink id="start-process-link" styleClass="process-grid__header" ariaLabel="#{process.name}"
           actionListener="#{managedBean.startProcess(process)}"
           ajax="#{!isExternalLink}"
+          ariaLabel="#{process.name}"
           target="#{processTarget}"
           disabled="#{cc.attrs.readOnlyMode}"
           global="#{!isExternalLink}" partialSubmit="true" process="@this">

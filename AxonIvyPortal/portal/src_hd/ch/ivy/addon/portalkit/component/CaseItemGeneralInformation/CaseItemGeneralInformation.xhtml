@@ -104,6 +104,7 @@
         <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 u-no-padding-left u-truncate-text">
           <p:commandLink id="related-business-case" styleClass="case-detail-business-case" disabled="#{cc.attrs.readOnly}"
             value="##{case.getBusinessCase().id} #{case.getBusinessCase().names().current()}"
+            ariaLabel="##{case.getBusinessCase().id} #{case.getBusinessCase().names().current()}"
             actionListener="#{caseDetailsBean.navigateToCaseDetails(case.getBusinessCase().id)}"
             rendered="#{not empty case.getBusinessCase().id}">
           </p:commandLink>
