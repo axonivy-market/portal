@@ -375,6 +375,8 @@ public class MenuView implements Serializable {
   private MenuItem buildPortalHomeMenuItem() {
     return DefaultMenuItem.builder()
       .icon("si si-house-chimney-2 portal-icon")
+      .ariaLabel(Ivy.cm().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage"))
+      .title(Ivy.cm().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage"))
       .onclick("navigateToPortalHome();")
       .build();
   }

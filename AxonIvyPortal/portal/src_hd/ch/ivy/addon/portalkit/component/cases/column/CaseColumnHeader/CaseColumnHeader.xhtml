@@ -1,37 +1,41 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-	xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-	<cc:attribute name="dataModel" type="ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel" />
-	<cc:attribute name="id" />
-	<cc:attribute name="styleClass" />
-	<cc:attribute name="componentToBeUpdated" />
-	<cc:attribute name="sortedField" />
-	<cc:attribute name="sortable" default="true"/>
-	<cc:attribute name="value" />
-    <cc:attribute name="responsiveStyleClass" />
+  <cc:attribute name="dataModel" type="ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel" />
+  <cc:attribute name="id" />
+  <cc:attribute name="styleClass" />
+  <cc:attribute name="componentToBeUpdated" />
+  <cc:attribute name="sortedField" />
+  <cc:attribute name="sortable" default="true" />
+  <cc:attribute name="value" />
+  <cc:attribute name="responsiveStyleClass" />
 </cc:interface>
 
 <cc:implementation>
-	<c:set var="dataModel" value="#{cc.attrs.dataModel}" />
-	<c:set var="id" value="#{cc.attrs.id}" />
-	<c:set var="componentToBeUpdated" value="#{cc.attrs.componentToBeUpdated}" />
-	<c:set var="sortedField" value="#{cc.attrs.sortedField}" />
-	<c:set var="sortable" value="#{cc.attrs.sortable}" />
-	<c:set var="value" value="#{cc.attrs.value}" />
+  <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
+  <c:set var="id" value="#{cc.attrs.id}" />
+  <c:set var="componentToBeUpdated" value="#{cc.attrs.componentToBeUpdated}" />
+  <c:set var="sortedField" value="#{cc.attrs.sortedField}" />
+  <c:set var="sortable" value="#{cc.attrs.sortable}" />
+  <c:set var="value" value="#{cc.attrs.value}" />
 
-	<f:event listener="#{data.setDataModel(dataModel)}" type="preRenderComponent" />
-	<p:commandLink id="#{id}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} #{dataModel.sortField eq sortedField ? 'is-selected' : ''}" 
-		update="#{componentToBeUpdated} #{p:resolveFirstComponentWithId('widget-column-header', view).clientId} #{p:resolveFirstComponentWithId('case-list', view).clientId} #{p:resolveFirstComponentWithId('case-list-scroller', view).clientId} @(.hidden-case-count)"
-		rendered="#{sortable and dataModel.isSelectedColumn(sortedField)}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();">
-		<f:actionListener binding="#{logic.sort(sortedField, dataModel.sortField eq sortedField and !dataModel.isSortDescending())}" />
-		<h:outputText value="#{value}" />
-		<i class="sort-icon fa fa-angle-down" jsf:rendered="#{dataModel.sortField eq sortedField and dataModel.isSortDescending()}" />
-		<i class="sort-icon fa fa-angle-up" jsf:rendered="#{dataModel.sortField eq sortedField and !dataModel.isSortDescending()}" />
-	</p:commandLink>
-	<h:panelGroup id="unsortable-#{id}" rendered="#{!sortable and dataModel.isSelectedColumn(sortedField)}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} case-list-unsortable-header-cell js-unsortable-header-cell">
-		<h:outputText value="#{value}" />
-	</h:panelGroup>
+  <f:event listener="#{data.setDataModel(dataModel)}" type="preRenderComponent" />
+  <p:commandLink id="#{id}" ariaLabel="#{value}"
+    styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} #{dataModel.sortField eq sortedField ? 'is-selected' : ''}"
+    update="#{componentToBeUpdated} #{p:resolveFirstComponentWithId('widget-column-header', view).clientId} #{p:resolveFirstComponentWithId('case-list', view).clientId} #{p:resolveFirstComponentWithId('case-list-scroller', view).clientId} @(.hidden-case-count)"
+    rendered="#{sortable and dataModel.isSelectedColumn(sortedField)}"
+    oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();">
+    <f:actionListener binding="#{logic.sort(sortedField, dataModel.sortField eq sortedField and !dataModel.isSortDescending())}" />
+    <h:outputText value="#{value}" />
+    <i class="sort-icon fa fa-angle-down" jsf:rendered="#{dataModel.sortField eq sortedField and dataModel.isSortDescending()}" />
+    <i class="sort-icon fa fa-angle-up" jsf:rendered="#{dataModel.sortField eq sortedField and !dataModel.isSortDescending()}" />
+  </p:commandLink>
+  <h:panelGroup id="unsortable-#{id}" rendered="#{!sortable and dataModel.isSelectedColumn(sortedField)}"
+    styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} case-list-unsortable-header-cell js-unsortable-header-cell">
+    <h:outputText value="#{value}" />
+  </h:panelGroup>
 </cc:implementation>
 </html>
