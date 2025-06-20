@@ -567,7 +567,7 @@
   --ivy-primary-color-command-link-hover: var(--ivy-primary-color-white);
   
     /* Restore button of dashboard */
-  --dashboard-restore-button-background-color: rgba(99, 118, 126, 1);
+  --dashboard-light-dark-button-background-color: rgba(99, 118, 126, 1);
   
   --accessibility-shortcut-bg-color: var(--ivy-primary-color-grey-dark);
   --accessibility-bg-color: var(--task-state-system-color);

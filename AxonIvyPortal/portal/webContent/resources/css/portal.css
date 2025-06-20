@@ -1638,3 +1638,11 @@ body.dark .focused {
     border: 0;
 }
 
+.breadcrumb-current-item {
+  pointer-events: none;
+  cursor: default;
+}
+
+.breadcrumb-current-item .js-count.has-count {
+  color: var(--text-color)
+}

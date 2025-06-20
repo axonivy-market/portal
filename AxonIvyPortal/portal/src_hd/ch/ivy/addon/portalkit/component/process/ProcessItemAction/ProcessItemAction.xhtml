@@ -19,7 +19,7 @@
   <c:set var="canModify" value="#{cc.attrs.canModify}" />
   <c:set var="showProcessViewer" value="#{processItemActionBean.isShowProcessViewer(process)}"/>
   <c:set var="hideActionButton" value="#{cc.attrs.hideActionButton or (!canModify and !showProcessViewer)}"/>
-  <c:set var="buttonStyle" value="#{cc.attrs.outlinedButtonStyle ? 'ui-button-outlined':'ui-button-raised ui-button-secondary'}"/>
+  <c:set var="buttonStyle" value="#{cc.attrs.outlinedButtonStyle ? 'ui-button-outlined':'ui-button-raised process-category-badge'}"/>
 
   <div id="process-action-group" class="process-action-group">
     <p:commandButton id="process-category" rendered="#{processItemActionBean.isRenderedCategory(process.category)}"
