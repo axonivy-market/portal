@@ -249,8 +249,8 @@ body .ui-dialog .ui-dialog-footer .ui-button.dashboard__edit-global-dashboard {
 
 
 body .ui-button.dashboard__restore-button {
-  background: var(--dashboard-restore-button-background-color);
-  border-color: var(--dashboard-restore-button-background-color);
+  background: var(--dashboard-light-dark-button-background-color);
+  border-color: var(--dashboard-light-dark-button-background-color);
 }
 
 @media screen and (max-width: 991px) {
@@ -1100,10 +1100,6 @@ span.new-widget-dialog__icon.si {
 
 .saved-filter-node.selected .saved-filter-node__text {
   font-weight: bold;
-}
-
-.saved-filter--not-found {
-  color: var(--widget-advanced-filter-overlay-panel-footer);
 }
 
 .saved-filter__manage-filter {
