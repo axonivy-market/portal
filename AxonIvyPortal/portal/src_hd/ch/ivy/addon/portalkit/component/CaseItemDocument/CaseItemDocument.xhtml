@@ -159,6 +159,7 @@
       <div class="ui-g-12">
         <p:commandButton id="document-upload-close-command" type="button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
           onclick="PF('document-upload-dialog').hide();" styleClass="w-full" />
       </div>
       <p:ajax event="close" global="false"
@@ -187,7 +188,8 @@
     
     <ui:define name="dialogFooter">
       <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
-        process="@this"
+        process="@this" 
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
         update="#{cc.attrs.componentToUpdate} #{cc.clientId}:case-document-global-messages #{cc.clientId}:case-document-form"
         actionListener="#{logic.deleteDocument}" styleClass="w-full portal-remove-button"
         oncomplete="PF('document-deletion-dialog').hide();handleCaseDetailsTable();" />
