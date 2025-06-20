@@ -58,6 +58,7 @@
               <p:divider styleClass="separator ui-g-12 u-padding-0" />
               <p:commandButton id="create-task-by-priority-link" styleClass="add-button" global="false"
                 icon="si si-add-small u-mar-right-5"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}" >
                 <p:ajax event="click" update="#{p:resolveFirstComponentWithId('add-chart-dialog', view).clientId}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddTaskByPriority}" oncomplete="PF('add-chart-dialog').show();" />
@@ -80,6 +81,7 @@
               <p:divider styleClass="separator ui-g-12 u-padding-0" />
               <p:commandButton id="create-case-by-state-link" styleClass="add-button" global="false"
                 icon="si si-add-small u-mar-right-5"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
                 <p:ajax event="click" update="#{p:resolveFirstComponentWithId('add-chart-dialog', view).clientId}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddCaseByState}" oncomplete="PF('add-chart-dialog').show();" />
@@ -102,6 +104,7 @@
               <p:divider styleClass="separator ui-g-12 u-padding-0" />
               <p:commandButton id="create-task-by-expiry-link" styleClass="add-button" global="false"
                 icon="si si-add-small u-mar-right-5"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
                 <p:ajax event="click" update="#{p:resolveFirstComponentWithId('add-chart-dialog', view).clientId}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddTaskByExpiry}" oncomplete="PF('add-chart-dialog').show();" />
@@ -124,6 +127,7 @@
               <p:divider styleClass="separator ui-g-12 u-padding-0" />
               <p:commandButton id="create-elapsed-time-link" styleClass="add-button" global="false"
                 icon="si si-add-small u-mar-right-5"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
                 <p:ajax event="click" update="#{p:resolveFirstComponentWithId('add-chart-dialog', view).clientId}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddElapsedTime}" oncomplete="PF('add-chart-dialog').show();" />
@@ -146,6 +150,7 @@
               <p:divider styleClass="separator ui-g-12 u-padding-0" />
               <p:commandButton id="create-case-by-finished-task-link" styleClass="add-button" global="false"
                 icon="si si-add-small u-mar-right-5"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
                 <p:ajax event="click" update="#{p:resolveFirstComponentWithId('add-chart-dialog', view).clientId}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddCaseByFinishedTask}" oncomplete="PF('add-chart-dialog').show();" />
@@ -168,6 +173,7 @@
               <p:divider styleClass="separator ui-g-12 u-padding-0" />
               <p:commandButton id="create-case-by-finished-time-link" styleClass="add-button" global="false"
                 icon="si si-add-small u-mar-right-5"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
                 <p:ajax event="click" update="#{p:resolveFirstComponentWithId('add-chart-dialog', view).clientId}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddCaseByFinishedTime}" oncomplete="PF('add-chart-dialog').show();" />
@@ -190,6 +196,7 @@
               <p:divider styleClass="separator ui-g-12 u-padding-0" />
               <p:commandButton id="create-cases-by-category-link" styleClass="add-button" global="false"
                 icon="si si-add-small u-mar-right-5"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
                 <p:ajax event="click" update="#{p:resolveFirstComponentWithId('add-chart-dialog', view).clientId}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddCasesByCategory}" oncomplete="PF('add-chart-dialog').show();" />
@@ -231,6 +238,7 @@
           <p:spacer width="15px" />
           <p:commandButton id="chart-save-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="add-statistic-form"
             icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+            ariaLabel="{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
             update="chart-name-input-container add-statistic-form" actionListener="#{logic.createStatisticChart(cc.attrs.statisticChartList)}"
             oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('add-chart-dialog').hide();}" />
         </h:panelGroup>
@@ -240,6 +248,7 @@
       <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/notAllowedToCreateChart')}" />
       <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
         <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
           onclick="PF('add-chart-dialog').hide();" />
       </h:panelGroup>

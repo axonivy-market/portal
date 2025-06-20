@@ -31,6 +31,7 @@
 
                 <div class="available-elements-action-btn">
                   <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
                     actionListener="#{data.dragAndDropController.deleteFormelement(formelement)}" process="form:available-form-elements"
                     update="form:available-form-elements">
                   </p:commandButton>
@@ -52,6 +53,7 @@
       <f:facet name="actions">
         <p:commandButton id="show-preview-button"
           value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Preview')}"
+          ariaLabel="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Preview')}"
           styleClass="Fright show-preview-button" icon="#{visibilityBean.generateButtonIcon('si si-search')}"
           oncomplete="PF('preview-dialog').show();"
           actionListener="#{data.dragAndDropController.updateForm}"
@@ -90,6 +92,7 @@
   
                           <div class="available-elements-action-btn">
                             <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
+                              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
                               actionListener="#{data.dragAndDropController.resetFormelementHeader(formelement)}"
                               process="form:selected-formelements-header" update="form">
                             </p:commandButton>
@@ -146,6 +149,7 @@
 
                           <div class="available-elements-action-btn">
                             <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
+                              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
                               actionListener="#{data.dragAndDropController.resetFormelementLeftPanel(formelement)}"
                               process="form:selected-formelements-left-panel" update="form">
                             </p:commandButton>
@@ -199,6 +203,7 @@
 
                           <div class="available-elements-action-btn">
                             <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
+                              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
                               actionListener="#{data.dragAndDropController.resetFormelementRightPanel(formelement)}"
                               process="form:selected-formelements-right-panel" update="form">
                             </p:commandButton>
@@ -256,6 +261,7 @@
 
                           <div class="available-elements-action-btn">
                             <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
+                              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
                               actionListener="#{data.dragAndDropController.resetFormelementFooter(formelement)}"
                               process="form:selected-formelements-footer" update="form">
                             </p:commandButton>
@@ -291,7 +297,8 @@
     <ui:include src="PreviewFieldset.xhtml" />
     <h:panelGroup layout="block" class="u-text-align-right">
       <p:commandButton type="button" icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" onclick="PF('preview-dialog').hide();" />
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" onclick="PF('preview-dialog').hide();" />
     </h:panelGroup>
   </p:dialog>
 

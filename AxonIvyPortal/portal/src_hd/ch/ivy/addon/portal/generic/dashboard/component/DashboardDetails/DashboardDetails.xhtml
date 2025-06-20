@@ -43,7 +43,7 @@
           <p:inputText id="dashboard-title" value="#{managedBean.selectedDashboard.title}"
                        required="true"  styleClass="manage-dashboard__input">
           </p:inputText>
-        <p:commandButton id="add-language-button"
+        <p:commandButton id="add-language-button" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
           icon="si si-chat-translate">
           <p:ajax event="click"
             listener="#{managedBean.updateDashboardTitleByLocale()}"
@@ -102,6 +102,7 @@
         <p:spacer width="15" />
         <p:commandButton id="dashboard-detail-save-button"
           rendered="#{!cc.attrs.isDashboardCreation}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           actionListener="#{managedBean.saveDashboardDetail()}"
           process="dashboard-detail-form" partialSubmit="true"
@@ -110,6 +111,7 @@
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.attrs.detailDialogId}').hide();}" />
         <p:commandButton id="dashboard-create-button"
           rendered="#{cc.attrs.isDashboardCreation}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/CreateDashboard')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/CreateDashboard')}"
           icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
           actionListener="#{managedBean.createDashboard()}"

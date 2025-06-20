@@ -21,6 +21,7 @@
         update="@(.manage-role-details-form) #{cc.clientId}:role-details-dialog"
         process="@this"
         resetValues="true"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/CreateRole')}"
         title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/RoleManagement/CreateRole')}"
         rendered="#{roleManagementBean.canCreateRole}"/>
     </div>
@@ -233,6 +234,7 @@
             <p:commandButton id="add-new-user"
               widgetVar="add-new-user-button"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
               icon="si si-add"
               actionListener="#{roleManagementBean.assignUserToRole()}"
               update="users-of-role-table user-assignment-group"
@@ -307,6 +309,7 @@
         <p:commandButton id="save-role-configuration"
           icon="si si-floppy-disk"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           process="manage-role-details-form"
           update="manage-role-details-form #{cc.clientId}:role-management-form:role-tree-table"
           actionListener="#{roleManagementBean.createOrUpdateRole()}"
@@ -317,6 +320,7 @@
       <h:panelGroup rendered="#{!creationMode and canModifyUserAssignment}">
         <p:commandButton id="cancel-update-users"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
           icon="si si-close"
           process="@this"
           update="#{cc.clientId}:role-management-form:role-tree-table"
@@ -343,6 +347,7 @@
         styleClass="u-mar-right-15" />
       <p:commandButton id="yes-button"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
         icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
         oncomplete="PF('role-tree-table').clearFilters(); PF('delete-role-dialog').hide()"
         global="false"

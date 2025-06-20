@@ -162,7 +162,9 @@
             <ui:define name="dialogFooter">
               <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                onclick="PF('destroy-task-dialog').hide();" styleClass="u-mar-right-15" />
-              <p:commandButton id="confirm-destruction-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+              <p:commandButton id="confirm-destruction-dashboard-tasks" 
+               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
                icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
                actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
                oncomplete="PF('destroy-task-dialog').hide();loadGrid();"
@@ -184,7 +186,9 @@
             <ui:define name="dialogFooter">
               <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
                onclick="PF('escalation-task-dialog').hide();" styleClass="u-mar-right-15" />
-              <p:commandButton id="confirm-escalation-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+              <p:commandButton id="confirm-escalation-dashboard-tasks" 
+               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
                icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
                actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
                oncomplete="PF('escalation-task-dialog').hide();loadGrid();" update="grid-stack dashboard-title-container" />
@@ -212,7 +216,9 @@
            <ui:define name="dialogFooter">
             <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               onclick="PF('destroy-case-dialog').hide();" styleClass="u-mar-right-15"/>
-            <p:commandButton id="confirm-destruction-dashboard-cases" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+            <p:commandButton id="confirm-destruction-dashboard-cases" 
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
               icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
               actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
               oncomplete="PF('destroy-case-dialog').hide();loadGrid();"
@@ -240,6 +246,7 @@
                   partialSubmit="true" immediate="true"/>
                 <p:commandButton id="save-widget-filter-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
                   actionListener="#{widgetFilterHelperBean.saveNewWidgetFilter()}"
                   icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
                   oncomplete="if (!args.validationFailed) { #{widgetFilterHelperBean.loadWidgetFilters}; PF('save-widget-filter-dialog').hide();}"
@@ -284,7 +291,9 @@
                 <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
                   onclick="PF('manage-filter-dialog').hide();"
                   styleClass="u-mar-right-15" global="false"/>
-                <p:commandButton id="delete-widget-filter-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+                <p:commandButton id="delete-widget-filter-btn" 
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
                   process="delete-saved-filter-form" update="delete-saved-filter-form:quick-filter-table"
                   actionListener="#{dashboardBean.deleteSavedFilter()}"
                   oncomplete="PF('quick-filter-table').clearFilters()"

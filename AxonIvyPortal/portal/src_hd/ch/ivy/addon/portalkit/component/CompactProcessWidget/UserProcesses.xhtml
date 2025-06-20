@@ -65,6 +65,7 @@
         </p:orderList>
         <p:commandButton id="save-process-button" actionListener="#{compactProcessWidgetBean.saveProcesses}"
           process="@form"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           update="@form #{cc.clientId}:process-list #{cc.clientId}:header #{cc.clientId}:process-widget-action"
           styleClass="u-display-none" />
       </h:form>
@@ -124,6 +125,7 @@
             <h:panelGroup id="add-languages-panel" styleClass="ui-g-4">
               <p:commandButton id="add-languages"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                 update="#{cc.clientId}:favorite-process-name add-new-process-form" process="add-new-process-form"
                 actionListener="#{logic.generateProcessDisplayName()}"
                 styleClass="process-add-languages"
@@ -144,6 +146,7 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('add-new-process-dialog').hide()" styleClass="u-mar-right-15"/>
         <p:commandButton id="add-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
           icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
           process="add-new-process-form" actionListener="#{compactProcessWidgetBean.saveNewUserProcess}"
           update="add-new-process-form #{p:resolveFirstComponentWithId('process-list', view).clientId} #{p:resolveFirstComponentWithId('process-widget-action', view).clientId}"
@@ -179,6 +182,7 @@
 
         <p:commandButton id="add-supported-language-command"
           styleClass="portal-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
           process="favorite-process-name-form" update="favorite-process-name-form #{cc.clientId}:add-new-process-form"
           oncomplete="if(!args.validationFailed){PF('favorite-process-name').hide();}" actionListener="#{logic.processDisplayNames()}"

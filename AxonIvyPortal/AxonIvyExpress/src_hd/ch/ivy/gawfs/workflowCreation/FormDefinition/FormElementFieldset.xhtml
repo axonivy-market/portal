@@ -14,6 +14,7 @@
       <f:facet name="actions">
         <span class="form-creation-actions-container">
           <p:commandButton id="add-input-text-btn"
+            ariaLabel="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
             value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
             actionListener="#{logic.createInputField()}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
             update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-input-field-tab" />
@@ -70,6 +71,7 @@
       <f:facet name="actions">
         <span class="form-creation-actions-container">
           <p:commandButton id="add-text-area-btn"
+            ariaLabel="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
             value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
             actionListener="#{logic.createInputTextArea}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
             update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-input-area-tab" />
@@ -121,6 +123,7 @@
       <f:facet name="actions">
         <span class="form-creation-actions-container">
           <p:commandButton id="add-checkbox-btn"
+            ariaLabel="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
             value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
             actionListener="#{logic.createManyCheckbox}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
             update="form:create-tabs:many-checkbox-options form:available-form-elements form:create-tabs"
@@ -173,6 +176,7 @@
                       value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CheckboxFields')}" />
                   </div>
                   <p:commandButton id="add-checkbox-option-btn" icon="#{visibilityBean.generateButtonIcon('si si-add')}"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
                     actionListener="#{data.createManyCheckboxTab.addOption()}"
                     update="form:create-tabs:many-checkbox-options" process="form:create-tabs:many-checkbox-options" />
                 </div>
@@ -186,6 +190,7 @@
                   maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}" id="input-checkbox-name" />
                 <div class="available-elements-action-btn">
                   <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
                     actionListener="#{data.createManyCheckboxTab.deleteOption(option)}"
                     process="form:create-tabs:many-checkbox-options" update="form:create-tabs:many-checkbox-options"
                     immediate="true" />
@@ -207,6 +212,7 @@
       <f:facet name="actions">
         <span class="form-creation-actions-container">
           <p:commandButton id="add-radio-btn"
+            ariaLabel="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
             value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
             actionListener="#{logic.createOneRadio}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
             update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-one-radio-tab" />
@@ -240,6 +246,7 @@
                     value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/OptionboxFields')}" />
                 </div>
                 <p:commandButton id="add-radio-option-btn" icon="#{visibilityBean.generateButtonIcon('si si-add')}"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
                   actionListener="#{data.createOneRadioTab.addOption()}" update="form:create-tabs:one-radio-options"
                   process="form:create-tabs:one-radio-options" />
               </div>
@@ -254,6 +261,7 @@
 
               <div class="available-elements-action-btn">
                 <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
                   actionListener="#{data.createOneRadioTab.deleteOption(option)}"
                   process="form:create-tabs:one-radio-options" update="form:create-tabs:one-radio-options"
                   immediate="true" />
@@ -274,6 +282,7 @@
       <f:facet name="actions">
         <span class="form-creation-actions-container">
           <p:commandButton id="add-upload-file-btn"
+            ariaLabel="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
             value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
             actionListener="#{logic.createFileUpload}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
             update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-file-upload-tab" />

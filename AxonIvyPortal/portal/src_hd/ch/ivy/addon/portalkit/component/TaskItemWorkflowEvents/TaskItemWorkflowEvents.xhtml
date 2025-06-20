@@ -70,7 +70,8 @@
     </p:dataTable>
 
     <f:facet name="footer">
-      <p:commandButton value="Close" oncomplete="PF('workflow-events-dialog').hide()" global="false" />
+      <p:commandButton value="Close" oncomplete="PF('workflow-events-dialog').hide()" global="false"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" />
     </f:facet>
   </p:dialog>
 

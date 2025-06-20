@@ -126,7 +126,9 @@
         oncomplete="handleTaskDetailsTables()" />
     </h:form>
     <f:facet name="footer">
-      <p:commandButton id="document-upload-close-command" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+      <p:commandButton id="document-upload-close-command" type="button" 
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('document-upload-dialog').hide();" />
     </f:facet>
     <p:ajax event="close" global="false" listener="#{logic.resetMessageUploadDocument}" update="#{p:resolveFirstComponentWithId('upload-messages', view).clientId}" />
@@ -140,7 +142,9 @@
     </div>
     <f:facet name="footer">
     <div class="u-dialog-footer-actions-group">
-      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="preview-document-close-button" type="button"
+      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        id="preview-document-close-button" type="button"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('preview-document-dialog').hide();" />
     </div>
     </f:facet>
@@ -158,10 +162,13 @@
     <ui:define name="dialogFooter">
       <p:commandLink id="document-deletion-cancellation-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="u-mar-right-15"/>
-      <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" process="@this"
+      <p:commandButton id="document-deletion-command" 
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" process="@this"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
         update="#{p:resolveFirstComponentWithId('task-document-form', view).clientId} #{cc.attrs.componentToUpdate} #{p:resolveFirstComponentWithId('task-document-global-messages', view).clientId}"
-        actionListener="#{logic.deleteDocument}" oncomplete="PF('document-deletion-dialog').hide();handleTaskDetailsTables();" />
+        actionListener="#{logic.deleteDocument}" 
+        oncomplete="PF('document-deletion-dialog').hide();handleTaskDetailsTables();" />
     </ui:define>
   </ui:decorate>
 </cc:implementation>

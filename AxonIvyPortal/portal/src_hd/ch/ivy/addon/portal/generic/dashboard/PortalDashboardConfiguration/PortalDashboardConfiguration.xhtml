@@ -87,6 +87,7 @@
 
         <div id="actions-group" class="u-text-align-right ui-g-12">
           <p:commandButton id="back-to-home-button" actionListener="#{logic.backToHome()}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
             update="@this"
             icon="#{visibilityBean.generateButtonIcon('si si-house-chimney-2')}"
