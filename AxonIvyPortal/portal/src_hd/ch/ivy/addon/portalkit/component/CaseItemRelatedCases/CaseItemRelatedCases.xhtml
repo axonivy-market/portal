@@ -142,6 +142,7 @@
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         onclick="PF('destroy-related-case-dialog').hide();" styleClass="u-mar-right-15" />
       <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
         actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
         update="@([id$='related-cases']) @([id$='history-container']) @([id$='related-tasks'])"

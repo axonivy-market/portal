@@ -41,6 +41,7 @@
         <p:commandButton id="share-page-button-mobile" rendered="#{taskDetailsBean.isShowShareButton}"
 		  onclick="PF('share-task-details-dialog').show()" type="button"
 	      icon="#{visibilityBean.generateButtonIcon('si si-share')}" 
+          ariaLabel="#{ivy.cms.co('/Labels/Share')}"
 	      title="#{ivy.cms.co('/Labels/Share')}" styleClass="ui-sm-hidden-op ui-button-flat"/>
       </h:form>
     </h:panelGroup>
@@ -50,17 +51,21 @@
       <p:commandButton id="share-page-button" rendered="#{taskDetailsBean.isShowShareButton}"
      	onclick="PF('share-task-details-dialog').show()" type="button"
         icon="#{visibilityBean.generateButtonIcon('si si-share')}" 
+        ariaLabel="#{ivy.cms.co('/Labels/Share')}"
         title="#{ivy.cms.co('/Labels/Share')}" styleClass="u-mar-right-5 ui-button-flat"/>
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{taskDetailsBean.readOnlyMode}"
+        ariaLabel="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{taskDetailsBean.switchToEditMode()}"
         icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" update="task-item-body task-details-actions"
         oncomplete="loadTaskDetailsGrid(); disableAllIFrameWhenEditLayout(); PortalLayout.hideHorizontalScrollOnLayoutContent();"
         styleClass="u-mar-right-5" />
       <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
         rendered="#{taskDetailsBean.configuration.changed and not taskDetailsBean.readOnlyMode}" ajax="false" type="button"
         icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button u-mar-right-5"
         immediate="true" onclick="PF('reset-to-default-task-dialog').show()" />
       <p:commandButton id="switch-to-view-mode-button" rendered="#{not taskDetailsBean.readOnlyMode}"
+        ariaLabel="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}" onclick="saveTaskDetailsGrid()"
         icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" update="task-item-body task-details-actions" oncomplete="loadTaskDetailsGrid(); enableAllIFrameWhenEditLayout();"/>
     </h:panelGroup>
@@ -190,6 +195,7 @@
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           styleClass="u-mar-right-15" />
         <p:commandButton actionListener="#{logic.resetAndOpenTask}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}" onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
       </h:form>
     </ui:define>
@@ -207,6 +213,7 @@
     <ui:define name="dialogFooter">
       <h:panelGroup styleClass="flex flex-column">
         <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
           actionListener="#{logic.destroyTask(task)}" styleClass="w-full portal-remove-button"
           oncomplete="PF('destroy-task-dialog').hide()" update="#{informationWidgetComponent}" process="@this" />
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('destroy-task-dialog').hide();"
@@ -230,6 +237,7 @@
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
         styleClass="u-mar-right-15" />
       <p:commandButton id="confirm-escalation" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
         icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" actionListener="#{logic.expiryTask(task)}"
         oncomplete="PF('escalation-task-dialog').hide()" update="#{informationWidgetComponent} #{historyWidgetComponent}" process="@this" />
     </ui:define>
@@ -250,6 +258,7 @@
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('reset-to-default-task-dialog').hide();" styleClass="u-mar-right-15" ajax="false" type="button" />
         <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
           actionListener="#{taskDetailsBean.reset()}" update="task-detail-template:task-details-actions task-detail-template:task-item-body"
           oncomplete="PF('reset-to-default-task-dialog').hide(); loadTaskDetailsGrid(); disableAllIFrameWhenEditLayout();" />

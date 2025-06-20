@@ -45,6 +45,7 @@
         <h:panelGroup layout="block" styleClass="application-tab-action-buttons">
           <p:commandButton id="add-application-btn" actionListener="#{thirdPartyApplicationBean.addNewApplication}" oncomplete="PF('appDialog').show()" resetValues="true" global="false"
             styleClass="new-app-btn primary-color-light-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/addNewApplication')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/addNewApplication')}"
             update=":#{p:resolveFirstComponentWithId('appDialog', view).clientId}" />
         </h:panelGroup>
         <!-- Applications Table -->
@@ -61,7 +62,7 @@
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}">
               <h:outputText value="#{thirdPartyApplicationBean.getAppNameInCurrentLocale(app)}" />
             </p:column>
-            
+
             <p:column headerText="#{ivy.cms.co('/Labels/Permissions')}">
               <h:panelGroup id="application-permissions-group" styleClass="u-truncate-text" layout="block">
                 <h:outputText value="#{app.displayedPermission}" />
@@ -72,6 +73,7 @@
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
               styleClass="text-center settings-table-action-buttons">
               <p:commandButton id="applications-action-button" icon="fa fa-ellipsis-h"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
                 styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page" type="button"/>
               <p:menu id="applications-action-menu" overlay="true"
                 trigger="applications-action-button"
@@ -111,6 +113,7 @@
           <p:commandButton id="restore-all-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-undo')}"
             styleClass="ui-button-flat font-medium"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreAllToDefault')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreAllToDefault')}"
             actionListener="#{logic.submitResetAllSettings}" oncomplete="PF('resetConfirmation').show()"
             update=":#{p:resolveFirstComponentWithId('resetConfirmationDialog', view).clientId}" />
         </h:panelGroup>
@@ -139,6 +142,7 @@
             headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
             styleClass="text-center settings-table-action-buttons">
             <p:commandButton id="settings-action-button" icon="fa fa-ellipsis-h"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
               styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page" type="button"/>
             <p:menu id="settings-action-menu" overlay="true"
               trigger="settings-action-button"
@@ -199,7 +203,8 @@
             <p:toggleSwitch id="announcement-toggle-switch" value="#{data.isAnnouncementActivated}" styleClass="flex align-items-center justify-content-center" widgetVar="announcementToggleSwitch" />
           </div>
           <p:commandButton id="save-changes-announcement" process="announcement-form" actionListener="#{logic.saveChangesAnnouncement()}"
-            update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group" 
+            update="#{cc.clientId}:adminTabView:announcement-validation-messages action-group"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}">
           </p:commandButton>
         </div>
@@ -218,7 +223,7 @@
       <ic:ch.ivy.addon.portalkit.component.PasswordValidation id="password-validation-component"/>
     </p:tab>
     </p:tabView>
-  <!-- APPLICATION DIALOG-->  
+  <!-- APPLICATION DIALOG-->
   <p:dialog header="#{thirdPartyApplicationBean.dialogTitle}" id="appDialog" onShow="$('body').css({overflow:'hidden'})"
     styleClass="app-dialog" onHide="PF('cancelButton').jq.click(); $('body').css({overflow:'inherit'})" widgetVar="appDialog" dynamic="true"
     modal="true" resizable="false" appendTo="@(body)" closeOnEscape="true" width="500px" height="auto"
@@ -249,6 +254,7 @@
                     <p:inputText value="#{thirdPartyApplicationBean.displayNameInCurrentLanguage}" id="appDisplayName3rd"
                         styleClass="admin-settings-form-input w-full" required="true" />
                       <p:commandButton styleClass="app-setting-button"
+                        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                         icon="si si-chat-translate" id="app-display-name-language-button"
                         actionListener="#{thirdPartyApplicationBean.updateDisplayNameByLocale()}"
                         process="appDisplayName3rd"
@@ -266,13 +272,13 @@
                   <p:inputText value="#{thirdPartyApplicationBean.selectedApp.link}" id="portalLink3rd" required="true" styleClass="admin-settings-form-input" />
                 </div>
               </h:panelGroup>
-              
+
               <!-- Application Permissions -->
               <h:panelGroup id="applicationPermissions" styleClass="field" layout="block">
                 <p:outputLabel styleClass="w-full admin-settings-permission-label"
                   value="#{ivy.cms.co('/Labels/Permissions')}" for="application-permission" />
                 <div class="w-full">
-                <p:autoComplete id="application-permission" required="true" 
+                <p:autoComplete id="application-permission" required="true"
                     emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
                     scrollHeight="210" dropdown="true"
                     completeMethod="#{thirdPartyApplicationBean.completeApplicationPermissions}"
@@ -306,7 +312,7 @@
                   </p:autoComplete>
                 </div>
               </h:panelGroup>
-              
+
             </p:column>
           </p:row>
         </p:panelGrid>
@@ -316,6 +322,7 @@
     <f:facet name="footer">
       <h:panelGroup id="dialogFooter">
       <p:commandButton form="appDialogForm" styleClass="w-full" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           actionListener="#{thirdPartyApplicationBean.saveApplication}" oncomplete="if (!args.validationFailed){ PF('appDialog').hide()}"
           update="#{p:resolveFirstComponentWithId('applicationTable', view).clientId} appDialogForm" process="appDialogForm" />
       </h:panelGroup>
@@ -384,6 +391,7 @@
         <!-- Two buttons OK, Cancel -->
         <h:panelGroup layout="block" styleClass="w-full">
           <p:commandButton id="save-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             actionListener="#{logic.saveSetting}" styleClass="confirm-save-setting-button w-full mt-2"
             oncomplete="if (!args.validationFailed){ PF('settingDialog').hide();}"
             update=":#{p:resolveFirstComponentWithId('settingForm', view).clientId} @form" process="@form" widgetVar="saveSettingButton"
@@ -407,6 +415,7 @@
       <h:panelGroup styleClass="flex flex-column">
       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
           styleClass="w-full portal-remove-button"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
           actionListener="#{thirdPartyApplicationBean.deleteApplication(thirdPartyApplicationBean.selectedApp)}" oncomplete="PF('deleteConfirmation').hide();"
           update=":#{p:resolveFirstComponentWithId('applicationForm', view).clientId}" />
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
@@ -429,18 +438,20 @@
     <ui:define name="dialogFooter">
       <c:if test="#{data.resetAllSettings}">
         <p:commandButton id="reset-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
           actionListener="#{logic.resetValues}" styleClass="w-full"
           oncomplete="PF('resetConfirmation').hide(); PF('settingTable').clearFilters();"
           update="@(.admin-table.global-setting-table)" />
       </c:if>
       <c:if test="#{!data.resetAllSettings}">
         <p:commandButton id="reset-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
           actionListener="#{logic.resetValue}" styleClass="w-full"
           oncomplete="PF('resetConfirmation').hide();"
           update="@(.admin-table.global-setting-table)" />
       </c:if>
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         onclick="PF('resetConfirmation').hide()" styleClass="text-center block pt-3 w-full"/>
     </ui:define>
   </ui:decorate>
