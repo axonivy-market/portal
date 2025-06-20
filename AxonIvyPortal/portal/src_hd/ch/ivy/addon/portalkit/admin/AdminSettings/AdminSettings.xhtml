@@ -312,6 +312,7 @@
         </p:panelGrid>
         <p:commandLink widgetVar="cancelButton" id="cancelButton" onclick="PF('appDialog').hide()" style="display:none"
                        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
+        </div>
       </p:outputPanel>
     </h:form>
     <f:facet name="footer">
@@ -411,6 +412,7 @@
           actionListener="#{thirdPartyApplicationBean.deleteApplication(thirdPartyApplicationBean.selectedApp)}" oncomplete="PF('deleteConfirmation').hide();"
           update=":#{p:resolveFirstComponentWithId('applicationForm', view).clientId}" />
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('deleteConfirmation').hide()" styleClass="pt-3 flex justify-content-center"/>
       </h:panelGroup>
     </ui:define>
@@ -439,7 +441,8 @@
           oncomplete="PF('resetConfirmation').hide();"
           update="@(.admin-table.global-setting-table)" />
       </c:if>
-      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
+      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
         onclick="PF('resetConfirmation').hide()" styleClass="text-center block pt-3 w-full"/>
     </ui:define>
   </ui:decorate>
