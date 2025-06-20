@@ -68,6 +68,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   private String fieldDisplayName;
   private String fieldDescription;
   private List<DisplayName> fieldDisplayNames;
+  private boolean isConfiguredLanguage;
 
   public void init() {
     this.fieldTypes = Arrays.asList(DashboardColumnType.STANDARD, DashboardColumnType.CUSTOM);
@@ -99,6 +100,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     this.fieldDisplayName = null;
     this.fieldDescription = null;
     this.numberFieldPattern = null;
+    this.isConfiguredLanguage = false;
   }
 
   public List<String> completeCategoriesSelection(String query) {
@@ -196,7 +198,9 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     if (widget.getType() == DashboardWidgetType.CASE) {
       columnModel = CaseColumnModel.constructColumn(this.selectedFieldType, this.selectedField);
     }
-    updateNameByLocale();
+    if (!isConfiguredLanguage) {
+      updateNameByLocale();
+    }
     columnModel.initDefaultValue();
     columnModel.setHeaders(this.fieldDisplayNames);
     columnModel.setField(this.selectedField);
@@ -441,6 +445,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
       result.add(newItem);
     }
     this.fieldDisplayNames = result;
+    this.isConfiguredLanguage = true;
   }
 
   public void setFieldDisplayNames(List<DisplayName> fieldDisplayNames) {
@@ -455,6 +460,14 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   
   public void updateCurrentLanguage() {
     this.fieldDisplayName = DisplayNameConvertor.updateCurrentValue(fieldDisplayName, fieldDisplayNames);
+  }
+
+  public boolean isConfiguredLanguage() {
+    return isConfiguredLanguage;
+  }
+
+  public void setConfiguredLanguage(boolean isConfiguredLanguage) {
+    this.isConfiguredLanguage = isConfiguredLanguage;
   }
 
   public class FetchingField {
