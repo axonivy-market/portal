@@ -23,6 +23,7 @@
         </ic:com.axonivy.portal.components.UserSelection>
 
         <p:commandButton id="add-deputy-button" styleClass="add-deputy-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
           disabled="#{data.selectedDeputy == null}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}" actionListener="#{logic.addDeputy()}" global="false"
           update="error-message selected-deputy-fieldset" ignoreAutoUpdate="true" />
       </h:panelGroup>
@@ -50,6 +51,7 @@
 
       <p:outputPanel styleClass="u-text-align-right">
         <p:commandButton id="save-deputy-button" styleClass="save-deputy-button"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.updateSelectedDeputies()}"
           icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
           oncomplete="PF('choose-deputy-dialog').hide();" update="#{data.selectedDeputyRoleId}">

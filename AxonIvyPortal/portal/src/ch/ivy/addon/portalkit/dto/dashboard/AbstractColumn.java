@@ -459,7 +459,7 @@ public abstract class AbstractColumn implements Serializable {
 
   @JsonIgnore
   public int getDefaultColumnWidth() {
-    return 0;
+    return SMALL_WIDTH;
   }
 
   @JsonIgnore

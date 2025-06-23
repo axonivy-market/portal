@@ -27,6 +27,7 @@
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             actionListener="#{logic.cancel}" styleClass="u-mar-right-10"/>
           <p:commandButton id="acknowledged" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinalReviewForm/noticed')}" update="form"
+            ariaLabel="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinalReviewForm/noticed')}"
             icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" actionListener="#{logic.close}" styleClass="MarLeft10"/>
         </div>
       </h:form>

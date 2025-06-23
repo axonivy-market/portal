@@ -6170,3 +6170,9 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
     max-width: 95%;
   }
 }
+
+.image-view-action-group-form #process-action-group .process-category-badge, 
+.image-view-form #process-action-group .process-category-badge {
+  background: var(--dashboard-light-dark-button-background-color);
+  border-color: var(--dashboard-light-dark-button-background-color);
+}

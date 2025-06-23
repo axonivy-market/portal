@@ -60,6 +60,7 @@
         <p:commandButton id="copy-error-detail-button"
           icon="#{visibilityBean.generateButtonIcon(data.isCopied ? 'si si-check-1' : 'si si-copy-paste')}"
           value="#{ivy.cms.co(data.isCopied ? '/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/copied' : '/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/copyError')}"
+          ariaLabel="#{ivy.cms.co(data.isCopied ? '/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/copied' : '/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/copyError')}"
           type="button"/>
 
         <pe:clipboard id="clipboard-copy-error" trigger="copy-error-detail-button"

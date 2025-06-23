@@ -358,15 +358,16 @@ public class MenuView implements Serializable {
   private void buildBreadCrumbForTaskList() {
     setPortalHomeMenuToBreadcrumbModel();
     DefaultMenuItem taskListSubmenuItem = buildTaskListMenuItem();
-    taskListSubmenuItem.setDisabled(true);
+    taskListSubmenuItem.setUrl("#");
+    taskListSubmenuItem.setStyleClass("breadcrumb-current-item");
     breadcrumbModel.getElements().add(taskListSubmenuItem);
   }
 
   private void buildBreadCrumbForCaseList() {
     setPortalHomeMenuToBreadcrumbModel();
-
     DefaultMenuItem caseListSubmenuItem = buildCaseListMenuItem();
-    caseListSubmenuItem.setDisabled(true);
+    caseListSubmenuItem.setUrl("#");
+    caseListSubmenuItem.setStyleClass("breadcrumb-current-item");
     breadcrumbModel.getElements().add(caseListSubmenuItem);
   }
 
@@ -384,7 +385,8 @@ public class MenuView implements Serializable {
     DefaultMenuItem taskListSubmenuItem = buildTaskListMenuItem();
     String title = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader").concat(" #").concat(Long.toString(userCase.getId()));
     taskListSubmenuItem.setValue(title);
-    taskListSubmenuItem.setDisabled(true);
+    taskListSubmenuItem.setUrl("#");
+    taskListSubmenuItem.setStyleClass("breadcrumb-current-item");
     breadcrumbModel.getElements().add(taskListSubmenuItem);
   }
 
@@ -392,7 +394,8 @@ public class MenuView implements Serializable {
     setPortalHomeMenuToBreadcrumbModel();
 
     DefaultMenuItem processListSubmenuItem = buildProcessListMenuItem();
-    processListSubmenuItem.setDisabled(true);
+    processListSubmenuItem.setUrl("#");
+    processListSubmenuItem.setStyleClass("breadcrumb-current-item");
     breadcrumbModel.getElements().add(processListSubmenuItem);
   }
 
@@ -400,7 +403,8 @@ public class MenuView implements Serializable {
     setPortalHomeMenuToBreadcrumbModel();
 
     DefaultMenuItem statisticListSubmenuItem = buildStatisticListMenuItem();
-    statisticListSubmenuItem.setDisabled(true);
+    statisticListSubmenuItem.setUrl("#");
+    statisticListSubmenuItem.setStyleClass("breadcrumb-current-item");
     breadcrumbModel.getElements().add(statisticListSubmenuItem);
   }
 
@@ -457,6 +461,7 @@ public class MenuView implements Serializable {
     TaskSubMenuItem taskSubMenuItem = new TaskSubMenuItem();
     DefaultMenuItem taskMenu = buildMenuItemFromPortalSubMenuItem(taskSubMenuItem);
     taskMenu.setOnclick("navigateToTaskList();");
+    taskMenu.setStyleClass("breadcrumb-prev-item");
     return taskMenu;
   }
 
@@ -464,6 +469,7 @@ public class MenuView implements Serializable {
     CaseSubMenuItem caseSubMenuItem = new CaseSubMenuItem();
     DefaultMenuItem caseMenuItem = buildMenuItemFromPortalSubMenuItem(caseSubMenuItem);
     caseMenuItem.setOnclick("navigateToCaseList();");
+    caseMenuItem.setStyleClass("breadcrumb-prev-item");
     return caseMenuItem;
   }
 
@@ -482,7 +488,7 @@ public class MenuView implements Serializable {
     String taskName = StringUtils.isEmpty(userTask.getName()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : userTask.names().current();
     menuItem.setValue(String.join(": ", Ivy.cms().co("/Labels/Task"), taskName));
     menuItem.setUrl("#");
-    menuItem.setDisabled(true);
+    menuItem.setStyleClass("breadcrumb-current-item");
     return menuItem;
   }
 
@@ -490,7 +496,7 @@ public class MenuView implements Serializable {
     DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
     menuItem.setValue(String.join(": ", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case"), userCase.names().current()));
     menuItem.setUrl("#");
-    menuItem.setDisabled(true);
+    menuItem.setStyleClass("breadcrumb-current-item");
     return menuItem;
   }
 
@@ -498,7 +504,7 @@ public class MenuView implements Serializable {
     DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
     menuItem.setValue(Ivy.cms().co("/Dialogs/ch/ivy/addon/express/generic/expressWorkflowName", Arrays.asList(caseId)));
     menuItem.setUrl("#");
-    menuItem.setDisabled(true);
+    menuItem.setStyleClass("breadcrumb-current-item");
     return menuItem;
   }
 
@@ -506,7 +512,7 @@ public class MenuView implements Serializable {
     DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
     menuItem.setValue(Ivy.cms().co(cms));
     menuItem.setUrl("#");
-    menuItem.setDisabled(true);
+    menuItem.setStyleClass("breadcrumb-current-item");
     return menuItem;
   }
 

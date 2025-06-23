@@ -20,6 +20,7 @@
 
       <p:commandButton actionListener="#{cc.attrs.listenerOnBackAction}"
         update="#{cc.attrs.componentToUpdateOnBackAction}" process="@this" styleClass="ui-button-flat"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" icon="si si-arrow-left-1" />
     </h:panelGroup>
 
@@ -54,11 +55,13 @@
           actionListener="#{dashboardModificationBean.openDashboardDetailDialog(dashboard)}"
           update="#{cc.clientId}:configuration-dashboard-detail-component:dashboard-detail-form"
           oncomplete="PF('configuration-dashboard-detail-dialog').show()"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
           resetValues="true"/>
 
         <p:commandButton id="configure-dashboard" styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5" icon="si si-cog"
           actionListener="#{dashboardModificationBean.navigateToDashboardDetailsPage(dashboard.id)}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}"
           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/configuration')}"
           process="@this" update="@this"/>
 
@@ -67,6 +70,7 @@
           <p:commandButton id="export-dashboard"
             styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5 export-dashboard"
             icon="si si-download-bottom"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
             title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
             process="@this" update="@this" immediate="true" ajax="false">
             <p:fileDownload
@@ -78,6 +82,7 @@
           styleClass="rounded-button ui-button-outlined action-column-icon-button u-mar-right-5"
           actionListener="#{dashboardModificationBean.initShareDashboardLink(dashboard)}"
           oncomplete="PF('share-dashboard-dialog').show()"
+          ariaLabel="#{ivy.cms.co('/Labels/Share')}"
           icon="si si-share" update="#{cc.clientId}:share-dashboard-component:share-dashboard-dialog"
           title="#{ivy.cms.co('/Labels/Share')}" global="false"/>
 
@@ -86,6 +91,7 @@
           actionListener="#{dashboardModificationBean.onSelectedDeleteDashboard(dashboard)}"
           update="dashboard-modification-component:remove-dashboard-dialog"
           oncomplete="PF('remove-dashboard-dialog').show()"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
           title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"/>
       </p:column>
     </p:dataTable>
@@ -118,6 +124,7 @@
       <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         onclick="PF('remove-dashboard-dialog').hide();" styleClass="u-mar-right-15" />
       <p:commandButton id="remove-dashboard-button"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
         actionListener="#{dashboardModificationBean.removeDashboard()}"
         icon="#{visibilityBean.generateButtonIcon('si si-remove-circle')}" update="dashboard-modification-container"

@@ -36,6 +36,7 @@
     <h:outputText styleClass="ui-confirm-dialog-message" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/brokenLinkProcess')}" />
     <h:panelGroup layout="block" styleClass="ui-dialog-footer u-no-padding-right">
       <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('broken-link-process-warning-dialog-widget').hide();">
       </p:commandButton>
     </h:panelGroup>
