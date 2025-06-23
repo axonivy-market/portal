@@ -32,7 +32,7 @@
             <h:panelGroup id="create-express-link"
               rendered="#{!cc.attrs.hideExpressCreation and processWidgetBean.canCreateExpessWorkflow()}"
               styleClass="create-express-link u-mar-right-10">
-              <p:commandLink id="create-express-workflow"
+              <p:commandLink id="create-express-workflow" ariaLabel="#{ivy.cms.co('/Categories/CreateExpressWorkflow/name')}"
                 actionListener="#{processWidgetBean.startExpressWorkflowCreationLink()}">
                 <i class="si si-startup-launch" />
                 <span class="process-widget-header-link">#{processWidgetBean.createExpressWorkflowProcessStart.name}</span>
@@ -41,6 +41,7 @@
             <h:panelGroup styleClass="add-external-link-command">
               <p:commandLink id="add-external-link-command"
                 actionListener="#{externalLinkBean.addNewExternalLink(cc.clientId)}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addExternalLink')}"
                 update="#{cc.clientId}:add-external-link-dialog" oncomplete="PF('add-external-link-dialog').show()">
                 <i class="si si-hyperlink-3" aria-hidden="true" />
                 <span class="process-widget-header-link">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addExternalLink')}</span>
@@ -139,16 +140,20 @@
       <h:panelGroup id="process-nav" layout="block" styleClass="process-nav js-process-nav u-invisibility" rendered="#{!cc.attrs.hideProcessNavigation}">
         <div class="js-character-container character-container">
           <p:commandLink styleClass="process-nav-item js-process-nav-item js-process-starts-with-reset" value="All"
+            ariaLabel="All"
             onclick="resetGridViewProcesses(event)" global="false" rendered="#{processWidgetBean.viewMode ne 'COMPACT'}" />
           <p:commandLink id="expand-all-btn" rendered="#{processWidgetBean.compactMode}" onclick="expandOrCollapseAllCategories(true); return false;"
             styleClass="si si-add expand-collapse-btn process-nav-item"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ExpandAll')}"
             title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ExpandAll')}" />
           <p:commandLink id="collapse-all-btn" rendered="#{processWidgetBean.compactMode}" onclick="expandOrCollapseAllCategories(false); return false;"
             styleClass="si si-subtract expand-collapse-btn process-nav-item"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/CollapseAll')}""
             title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/CollapseAll')}" />
 
           <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character">
-            <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-nav-item js-process-starts-with-#{character.key}"
+            <p:commandLink value="#{character.value}" ariaLabel="#{character.value}"
+              styleClass="process-nav-item js-process-nav-item js-process-starts-with-#{character.key}"
               onclick="jumpToProcessGroupByCharacter(event, #{processWidgetBean.compactMode})" global="false" />
           </ui:repeat>
         </div>

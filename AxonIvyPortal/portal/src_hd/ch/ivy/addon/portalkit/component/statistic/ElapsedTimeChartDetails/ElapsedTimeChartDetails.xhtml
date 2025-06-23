@@ -23,10 +23,8 @@
         <p:dataExporter type="xlsx" target="case-table" fileName="#{elapsedTimeDetailsBean.getExcelFileName()}" />
       </p:commandButton>
       
-      <p:commandLink id="elapsed-time-detail-toggle-column"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/ExpandOrCollapseColumn')}"
-        onclick="elapsedTimeChartDetail.toggleColumn()"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/ExpandOrCollapseColumn')}"
+      <p:commandLink id="elapsed-time-detail-toggle-column" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/ExpandOrCollapseColumn')}"
+        onclick="elapsedTimeChartDetail.toggleColumn()" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/ExpandOrCollapseColumn')}"
         styleClass="elapsed-time-detail-toggle-column js-elapsed-time-detail-toggle-column"/>
       <p:dataTable id="case-table" widgetVar="case-table" var="elapsedTimeDetail" value="#{data.dataModel}" sortBy="#{elapsedTimeDetailsBean.sortById}"
         rowKey="#{elapsedTimeDetail.getId()}" sortMode="single" lazy="true" scrollable="true" liveScroll="true" rows="20" scrollRows="20"

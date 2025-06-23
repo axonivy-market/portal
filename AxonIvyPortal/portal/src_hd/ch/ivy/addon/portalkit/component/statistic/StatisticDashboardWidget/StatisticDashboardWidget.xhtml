@@ -81,10 +81,12 @@
                         onShow="updateDrillDownPanelPosition(this);">
                         <p:commandLink id="expiry-chart-drill-down" styleClass="js-expiry-chart-drill-down option-item"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuDrilldown')}"
+                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuDrilldown')}"
                           action="#{cc.attrs.drillDownExpiryChartListener}" actionListener="#{statisticDashboardBean.drilldownTaskByExpiry}"
                           update="@([id$='create-chart-header']) #{p:resolveFirstComponentWithId('widget-container', view).clientId}"/>
                         <p:commandLink id="expiry-chart-task-list" styleClass="js-expiry-chart-task-list option-item"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuToTaskList')}"
+                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuToTaskList')}"
                           actionListener="#{statisticDashboardBean.goToExpiriedTaskList}" />
                       </p:overlayPanel>
 
@@ -125,10 +127,12 @@
                         onShow="updateDrillDownPanelPosition(this);">
                         <p:commandLink id="cases-by-category-chart-drill-down" styleClass="js-cases-by-category-chart-drill-down option-item"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuDrilldown')}"
+                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuDrilldown')}"
                           action="#{cc.attrs.drillDownCasesByCategoryListener}" actionListener="#{statisticDashboardBean.drilldownCasesByCategory}"
                           update="@([id$='create-chart-header']) #{p:resolveFirstComponentWithId('widget-container', view).clientId}"/>
                         <p:commandLink id="cases-by-category-chart-case-list" styleClass="js-cases-by-category-chart-drill-down option-item"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuToCaseList')}"
+                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuToCaseList')}"
                           actionListener="#{statisticDashboardBean.goToCasesByCategoryList}" />
                       </p:overlayPanel>
                     </div>
@@ -193,7 +197,8 @@
     
     <ui:define name="dialogFooter">
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-       onclick="PF('delete-confirmation-dialog').hide();" styleClass="u-mar-right-15"/>
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        onclick="PF('delete-confirmation-dialog').hide();" styleClass="u-mar-right-15"/>
       <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" actionListener="#{logic.deleteChart()}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}"

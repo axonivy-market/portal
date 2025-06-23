@@ -75,6 +75,7 @@
           <h:panelGroup id="news-widget__add-news-actions" rendered="#{newsWidgetBean.canManageNews and isReadOnlyMode}"
             layout="block" styleClass="news-widget__add-news-actions ui-sm-hidden u-text-align-right">
             <p:commandLink id="add-news-button"
+              ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/AddNews')}"
               value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/AddNews')}"
               actionListener="#{newsWidgetBean.preAddingNews()}" oncomplete="PF('manage-news-dialog').show();"
               update="#{cc.clientId}:management-news-group #{cc.clientId}:manage-news-dialog" />

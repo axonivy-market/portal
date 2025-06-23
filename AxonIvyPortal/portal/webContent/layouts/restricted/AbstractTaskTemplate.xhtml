@@ -220,6 +220,7 @@
           <f:facet name="footer">
             <h:form id="chat-group-join-form" rendered="#{chatAssigneeBean.doesGroupChatExist()}">
               <p:commandLink id="chat-group-cancel-button"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 onclick="PF('chat-assignee-dialog').hide()" />
               <p:spacer width="15px" />
@@ -256,6 +257,7 @@
             <h:form prependId="false">
               <h:panelGroup styleClass="ui-dialog-buttonpane">
                 <p:commandLink onclick="PF('adhoc-task-reset-confirmation-dialog').hide()"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   id="start-adhoc-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
                 <p:spacer width="15px" />
                 <p:commandButton actionListener="#{abstractTaskTemplateBean.startAdhoc(currentTask.id)}" process="@this" update="@none"
@@ -279,7 +281,8 @@
             <h:form prependId="false">
               <h:panelGroup styleClass="ui-dialog-buttonpane">
                 <p:commandLink id="side-step-start-cancel" onclick="PF('sidestep-task-reset-confirmation-dialog').hide()"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"/>
                 <p:spacer width="15px" />
                 <p:commandButton widgetVar="sideStepStartOkButton" id="side-step-start-ok"
                   onclick="PF('sideStepStartOkButton').disable()"

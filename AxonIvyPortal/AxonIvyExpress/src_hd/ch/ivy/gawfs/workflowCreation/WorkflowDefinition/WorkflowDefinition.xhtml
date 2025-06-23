@@ -89,7 +89,8 @@
                           </p:inputSwitch>
                           <label class="#{data.data.isUseDefaultUI ? 'switch-active':''}">
                             #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UseDefault')}
-                            <p:commandLink onclick="PF('default-template-dialog').show();">
+                            <p:commandLink onclick="PF('default-template-dialog').show();" 
+                              ariaLabel="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UseDefault')}">
                               <i class="show-default-ui-icon si si-information-circle" />
                             </p:commandLink>
                           </label>
@@ -113,6 +114,7 @@
                             <h:inputHidden id="process-owner-responsible" value="#{data.data.processCoOwnersDisplayName}" required="true"
                               requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcessOwner')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                             <p:commandLink id="process-owner-link" immediate="true" styleClass="task-responsible-link"
+                              ariaLabel="#{not empty data.data.processCoOwnersDisplayName ? data.data.processCoOwnersDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                               value="#{not empty data.data.processCoOwnersDisplayName ? data.data.processCoOwnersDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                               actionListener="#{logic.initProcessStartResponsibles}" oncomplete="PF('choose-responsible-dialog').show();"
                               process="@this" update="assignee-selection-form:assignee-selection-panel" global="false">
@@ -212,6 +214,7 @@
                               <h:inputHidden id="task-responsible" value="#{gtask.responsibleDisplayName}" required="true"
                                 requiredMessage="#{data.data.processType == 'REPEAT' and gtask.position eq 1 ? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                               <p:commandLink id="task-responsible-link" immediate="true" styleClass="task-responsible-link"
+                                ariaLabel="#{not empty gtask.responsibleDisplayName ? gtask.responsibleDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                                 value="#{not empty gtask.responsibleDisplayName ? gtask.responsibleDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                                 actionListener="#{logic.initAssginement(gtask)}" oncomplete="PF('choose-responsible-dialog').show();"
                                 update="assignee-selection-form:assignee-selection-panel" global="false">
@@ -275,6 +278,7 @@
                             <h:inputHidden id="default-task-responsible" value="#{gtask.responsibleDisplayName}" required="true"
                               requiredMessage="#{data.data.processType == 'REPEAT' and gtask.position eq 1 ? ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AbleToStart'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                             <p:commandLink id="default-task-responsible-link" immediate="true" styleClass="task-responsible-link"
+                              ariaLabel="#{not empty gtask.responsibleDisplayName ? gtask.responsibleDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                               value="#{not empty gtask.responsibleDisplayName ? gtask.responsibleDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                               actionListener="#{logic.initAssginement(gtask)}" oncomplete="PF('choose-responsible-dialog').show();"
                               update="assignee-selection-form:assignee-selection-panel" global="false">
@@ -337,6 +341,7 @@
 
         <h:panelGroup id="express-button-container" layout="block" styleClass="express-button-container">
           <p:commandLink id="cancel-workflow-button" actionListener="#{logic.cancel}" immediate="true"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
           <p:spacer width="15" />
           <p:commandButton id="save" actionListener="#{logic.close}" update="form form:error-messages"
@@ -379,6 +384,7 @@
         
         <ui:define name="dialogFooter">
            <p:commandLink id="delete-all-defined-tasks-warning-cancel"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" actionListener="#{logic.changeUISetting(false)}"
               oncomplete="PF('delete-all-defined-tasks-warning').hide()" update="form" global="false" styleClass="u-mar-right-15" />
            <p:commandButton id="delete-all-defined-tasks-warning-ok" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"

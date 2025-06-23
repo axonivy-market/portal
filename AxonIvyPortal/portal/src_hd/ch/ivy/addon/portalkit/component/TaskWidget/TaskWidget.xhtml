@@ -44,7 +44,7 @@
           <h:outputText rendered="#{empty cc.facets.title}" 
             value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" styleClass="ui-sm-hidden" />
           <p:commandLink id="toggle-tasks-link" rendered="#{empty cc.facets.title or data.dataModel.compactMode}" styleClass="compact-toggle-tasks-link ui-lg-hidden ui-xl-hidden ui-md-hidden"
-            global="false" oncomplete="toggleShowTaskList();">
+            global="false" oncomplete="toggleShowTaskList();" ariaLabel="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}">
             <i class="si si-subtract-small u-mar-right-5"/>
             <h:outputText value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" />
           </p:commandLink>
@@ -66,7 +66,7 @@
             <span class="filter-selection-label">#{ivy.cms.co(data.dataModel.isSelectedDefaultFilter() or data.dataModel.selectedTaskFilterData == null ? '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter' : '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} </span>
             <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container">
               <h:panelGroup id="filter-selection-panel" layout="block">
-                <p:commandLink id="filter-name" styleClass="filter-name" global="false">
+                <p:commandLink id="filter-name" styleClass="filter-name" global="false" ariaLabel="#{data.dataModel.isSelectedDefaultFilter() ? data.dataModel.defaultTaskFilterData.filterName : data.dataModel.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedTaskFilterData.filterName}">
                   <span>#{data.dataModel.isSelectedDefaultFilter() ? data.dataModel.defaultTaskFilterData.filterName : data.dataModel.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedTaskFilterData.filterName}</span>
                 </p:commandLink>
                 <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
@@ -78,6 +78,7 @@
                     <ui:repeat var="taskFilterData" value="#{data.taskPublicFilters}">
                       <h:panelGroup layout="block" styleClass="user-defined-filter-container">
                         <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
+                          ariaLabel="#{taskFilterData.filterName}"
                           value="#{taskFilterData.filterName}"
                           actionListener="#{logic.applyFilter(taskFilterData)}"
                           update="#{cc.clientId}:filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container #{cc.clientId}:hidden-task-count"
@@ -102,6 +103,7 @@
                       <div class="user-defined-filter-container">
                         <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                           value="#{taskFilterData.filterName}"
+                          ariaLabel="#{taskFilterData.filterName}"
                           actionListener="#{logic.applyFilter(taskFilterData)}"
                           update="#{cc.clientId}:filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container #{cc.clientId}:hidden-task-count"
                           oncomplete="taskWidget.setupScrollbar(); taskWidget.updateTaskCountToBreadcrumb();" />
@@ -148,10 +150,12 @@
             <cc:renderFacet name="taskFilter" />
   
             <!-- Add more filters link -->
-            <p:commandLink id="filter-add-action" styleClass="filter-add-button filter-add-container display-inline-flex-center js-filter-add-action u-hidden-md-down" global="false">
-              <i class="si si-add u-mar-right-5" />
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}" />
-            </p:commandLink>
+            <div id="filter-links">
+              <p:commandLink id="filter-add-action" ariaLabel="More options" styleClass="filter-add-button filter-add-container display-inline-flex-center js-filter-add-action u-hidden-md-down" global="false">
+                <i class="si si-add u-mar-right-5" />
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}" />
+              </p:commandLink>
+            </div>
 
             <p:overlayPanel id="filter-add-panel" widgetVar="filter-add-panel" styleClass="filter-add-panel" for="filter-add-action" my="left top"
               at="left bottom" dismissable="false">
@@ -177,6 +181,7 @@
                 <h:panelGroup id="add-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer">
                   <p:commandLink id="cancel-add-filter-command"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                     onclick="PF('filter-add-panel').hide();" global="false" partialSubmit="true" immediate="true"
                     resetValues="true" process="@this" update="filter-add-form"
                     actionListener="#{data.dataModel.restoreFiltersSelection()}" />
@@ -200,6 +205,7 @@
               <p:commandLink id="filter-reset-action"
                 rendered="#{data.dataModel.selectedTaskFilterData == null and !data.dataModel.isSelectedDefaultFilter()}"
                 onclick="PF('reset-filter-set-dialog').show();"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
                 global="false" styleClass="display-inline-flex-center">
                 <i class="si si-button-refresh-arrows u-mar-right-5" />
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" />
@@ -229,6 +235,7 @@
           <h:form id="task-export-to-excel-form"
             styleClass="task-export-to-excel-form u-mar-right-20">
             <p:commandLink ajax="false" id="task-export-to-excel"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
               onclick="PrimeFaces.monitorDownload(start, stop);">
               <i class="si si-office-file-xls-1 u-mar-right-5" />
               <span class="link-text">
@@ -251,6 +258,7 @@
       <h:panelGroup rendered="#{cc.attrs.inFrame}" layout="block" styleClass="back-link-container">
         <p:commandLink id="back-link" styleClass="list-back-link js-back-link"
           actionListener="#{logic.backToCaseDetails()}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
           process="@this" immediate="true" update="@none">
           <i class="si si-arrow-left-1 u-mar-right-5" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
@@ -359,7 +367,9 @@
         </p:selectOneRadio>
       </h:panelGrid>
       <h:panelGroup layout="block" class="u-text-align-right">
-        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('save-filter-set-dialog').hide();" />
+        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          onclick="PF('save-filter-set-dialog').hide();" />
         <p:spacer width="15px" />
         <p:commandButton id="filter-save-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           process="@form" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
@@ -384,6 +394,7 @@
     
     <ui:define name="dialogFooter">
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('reset-filter-set-dialog').hide();" styleClass="u-mar-right-15" />
        <p:commandButton id="filter-reset-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
@@ -408,6 +419,7 @@
     
     <ui:define name="dialogFooter">
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('delete-filter-confirmation-dialog').hide();" styleClass="u-mar-right-15" />
        <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
@@ -431,6 +443,7 @@
     <ui:define name="dialogFooter">
       <h:form id="reset-task-form">
         <p:commandLink onclick="PF('reset-task-dialog').hide()"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
         <p:commandButton id="reset-task-button" 
           actionListener="#{logic.resetAndOpenTask(cc.attrs.currentPortalPage, taskWidgetBean.selectedTaskItemId)}" 
@@ -454,6 +467,7 @@
     
     <ui:define name="dialogFooter">
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         onclick="PF('destroy-task-dialog').hide();" styleClass="u-mar-right-15"/>
        <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
@@ -476,6 +490,7 @@
     
     <ui:define name="dialogFooter">
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
         onclick="PF('escalation-task-dialog').hide();" styleClass="u-mar-right-15"/>
        <p:commandButton id="confirm-escalation" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"

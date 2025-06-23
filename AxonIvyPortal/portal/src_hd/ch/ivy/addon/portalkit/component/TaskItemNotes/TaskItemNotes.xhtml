@@ -28,6 +28,7 @@
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
           <p:commandLink id="add-note-command" styleClass="task-details-document-add-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
             oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()" actionListener="#{data.setTask(task)}">
             <span class="si si-notes-add" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
@@ -57,7 +58,8 @@
           sortBy="#{note.message}">
           <span class="task-note truncate-note">
             <p:commandLink id="note-message" value="#{note.message}" oncomplete="PF('#{cc.clientId}:view-note-dialog').show()"
-              actionListener="#{data.setFullNote(note.message)}" update="@widgetVar(#{cc.clientId}:view-note-dialog)" styleClass="content-link-history u-truncate-text"/>
+              ariaLabel="#{note.message}" actionListener="#{data.setFullNote(note.message)}" 
+              update="@widgetVar(#{cc.clientId}:view-note-dialog)" styleClass="content-link-history u-truncate-text"/>
           </span>
         </p:column>
 
@@ -112,6 +114,7 @@
       <h:panelGroup layout="block" styleClass="u-text-align-right MarTop10">
         <p:commandLink id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}" global="false"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onsuccess="PF('#{cc.clientId}:addNewNoteDialog').hide()" update="task-detail-note-content task-detail-create-note-msg" />
         <p:spacer width="15px" />
         <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"

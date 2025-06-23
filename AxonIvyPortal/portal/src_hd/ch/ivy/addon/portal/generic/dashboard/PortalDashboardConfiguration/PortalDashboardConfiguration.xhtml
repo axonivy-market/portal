@@ -30,6 +30,7 @@
                     <i class="si si-single-neutral-shield u-mar-right-5"/>
                     <p:commandLink id="private-dashboard-type"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PrivateDashboard')}"
+                      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PrivateDashboard')}"
                       actionListener="#{dashboardConfigurationBean.switchDashboardType(false)}"
                       update="dashboard-configuration-type dashboard-configuration-content" process="@this"
                       partialSubmit="true"/>
@@ -38,6 +39,7 @@
                     <i class="si si-network-share u-mar-right-5"/>
                     <p:commandLink id="public-dashboard-type"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PublicDashboard')}"
+                      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PublicDashboard')}"
                       actionListener="#{dashboardConfigurationBean.switchDashboardType(true)}"
                       update="dashboard-configuration-type dashboard-configuration-content" process="@this"
                       partialSubmit="true"/>

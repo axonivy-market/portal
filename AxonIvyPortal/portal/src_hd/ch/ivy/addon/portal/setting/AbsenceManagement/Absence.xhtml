@@ -83,11 +83,13 @@
 
       <div class="u-text-align-right ui-g-12">
         <p:commandLink id="close-add-absence-dialog" rendered="#{data.isCreateMode}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('absence-dialog').hide();"
           styleClass="u-mar-right-15" />
 
         <p:commandLink id="close-edit-absence-dialog" actionListener="#{logic.cancel}" rendered="#{!data.isCreateMode}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           oncomplete="PF('absence-dialog').hide();" styleClass="u-mar-right-15" />
 
         <p:commandButton process="@form" id="save-absence" disabled="#{data.validationError}"

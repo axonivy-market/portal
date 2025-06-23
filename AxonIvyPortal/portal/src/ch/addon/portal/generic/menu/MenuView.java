@@ -446,6 +446,7 @@ public class MenuView implements Serializable {
     DefaultMenuItem menuItem = DefaultMenuItem.builder().build();
     menuItem.setIcon("si si-house-chimney-2 portal-icon");
     menuItem.setOnclick("navigateToPortalHome();");
+    menuItem.setTitle(Ivy.cm().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage"));
     return menuItem;
   }
 

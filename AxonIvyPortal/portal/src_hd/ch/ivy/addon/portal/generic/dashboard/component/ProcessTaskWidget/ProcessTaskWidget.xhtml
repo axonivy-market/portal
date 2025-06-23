@@ -57,7 +57,8 @@
           <div id="action-cell-#{rowIndex}" class="task-header-action-cell">
             <div class="action-container">
               <p:commandLink id="task-action-component" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task) or isPreviewMode or !isReadOnlyMode}"
-                onstart="event.stopPropagation();" styleClass="task-action-item start-task-action"  actionListener="#{dashboardBean.handleStartTask(task)}">
+                onstart="event.stopPropagation();" styleClass="task-action-item start-task-action" actionListener="#{dashboardBean.handleStartTask(task)}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}">
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label u-hidden-lg-down" />
                 <i class="si si-arrow-right-1 icon-compact-mode" />
               </p:commandLink>

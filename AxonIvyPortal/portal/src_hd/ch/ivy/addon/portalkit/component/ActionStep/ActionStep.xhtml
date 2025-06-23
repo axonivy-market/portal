@@ -43,7 +43,8 @@
     appendTo="@(body)" styleClass="action-steps-panel #{cc.attrs.stepsPanelStyleClass}" dynamic="true">
 
     <p:commandLink id="case-item-open-detail-link" styleClass="case-command action-step-item"
-      actionListener="#{logic.openDetails(case, inFrame)}" rendered="#{showOpenCaseDetail}">
+                   ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}"
+                   actionListener="#{logic.openDetails(case, inFrame)}" rendered="#{showOpenCaseDetail}">
       <span class="action-icon si si-information-circle" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" />
     </p:commandLink>
@@ -62,6 +63,7 @@
     </p:link>
 
     <p:commandLink id="destroy-case" rendered="#{renderDestroyAction}" update="#{cc.attrs.update} #{cc.attrs.destroyCaseDialogComponent}"
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
       actionListener="#{caseWidgetBean.setSelectedCase(case)}"
       styleClass="case-command action-step-item" process="@this" oncomplete="#{cc.attrs.onDestroyComplete}">
       <span class="action-icon si si-remove" />
@@ -82,10 +84,10 @@
       <f:event listener="#{sideStepBean.getSideSteps(cc.attrs.taskId, case.id, cc.attrs.isAdhocExcluded)}" type="preRenderComponent" />
       <h:outputText rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" styleClass="action-step-item" />
       <ui:repeat var="sideStep" value="#{sideStepBean.currentSideSteps}">
-        <p:commandLink id="adhoc-side-step-item" styleClass="action-step-item" value="#{sideStep.name}" global="false" rendered="#{sideStep.isAdhoc()}"
+        <p:commandLink id="adhoc-side-step-item" styleClass="action-step-item" value="#{sideStep.name}" ariaLabel="#{sideStep.name}" global="false" rendered="#{sideStep.isAdhoc()}"
           actionListener="#{sideStepBean.startAdhoc(sideStep, cc.attrs.taskId)}" process="@this"/>
   
-        <p:commandLink id="side-step-item" styleClass="action-step-item" value="#{sideStep.name}" global="false" rendered="#{not sideStep.isAdhoc()}"
+        <p:commandLink id="side-step-item" styleClass="action-step-item" value="#{sideStep.name}" ariaLabel="#{sideStep.name}" global="false" rendered="#{not sideStep.isAdhoc()}"
           actionListener="#{sideStepBean.startSideStep(sideStep)}" process="@this"/>
       </ui:repeat>
     </h:panelGroup>

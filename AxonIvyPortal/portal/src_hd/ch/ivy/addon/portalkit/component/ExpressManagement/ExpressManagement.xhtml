@@ -88,6 +88,7 @@
     <f:facet name="footer">
       <h:form id="export-express-dowload-form">
           <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             onclick="PF('export-express-dialog').hide()" global="false" />
           <p:spacer width="15px" />
           <p:commandButton id="export-express-dowload" rendered="#{not empty expressManagementBean.selectedExpressProcesses}"

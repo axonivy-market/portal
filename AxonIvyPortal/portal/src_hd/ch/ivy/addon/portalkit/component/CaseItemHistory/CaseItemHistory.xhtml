@@ -30,9 +30,10 @@
           </p:link>
           <p:commandLink id="add-note-command" styleClass="case-details-document-add-link"
             rendered="#{caseTaskNoteHistoryBean.showAddNote}" onclick="PF('add-note-dialog-#{case.id}').show()"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
             actionListener="#{data.setICase(case)}">
             <span class="si si-notes-add" />
-            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')} </span>
+            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
           <p:selectBooleanCheckbox id="system-note-checkbox" value="#{data.showSystemNotes}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}" rendered="#{data.showSystemNotesChkbox}"
@@ -73,6 +74,7 @@
               rendered="#{history.type eq 'TASK'}" styleClass="task-note-link u-truncate-text" />
             <h:panelGroup layout="block" rendered="#{history.type eq 'NOTE'}">
               <p:commandLink value="#{history.content}" rendered="#{history.type eq 'NOTE'}" id="note-link"
+                ariaLabel="#{history.content}"
                 oncomplete="PF('view-note-dialog').show()" actionListener="#{data.setFullNote(history.content)}"
                 update="@widgetVar(view-note-dialog)" styleClass="u-truncate-text content-link-history" />
             </h:panelGroup>
@@ -85,6 +87,7 @@
           rendered="#{case.isBusinessCase() and data.showRelatedCaseInfo}">
           <p:commandLink id="related-case-link" value="#{history.displayCaseName}"
             rendered="#{not empty history.displayCaseName}"
+            ariaLabel="#{history.displayCaseName}"
             actionListener="#{caseDetailsBean.navigateToCaseDetails(history.caseId)}"
             disabled="#{history.disabledCaseName}"/>
         </p:column>
@@ -156,6 +159,7 @@
       <h:panelGroup layout="block" styleClass="MarTop10 u-text-align-right">
         <p:commandLink id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onsuccess="PF('add-note-dialog-#{case.id}').hide()"
           update="note-content create-note-msg" />
         <p:spacer width="15px" />

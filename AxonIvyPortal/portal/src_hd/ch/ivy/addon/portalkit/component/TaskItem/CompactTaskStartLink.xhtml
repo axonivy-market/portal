@@ -7,6 +7,7 @@
 
 <ui:composition>
   <p:commandLink id="compact-task-start-link" rendered="#{task.state != 'RESUMED' and taskActionBean.canResume(task)}" actionListener="#{logic.openTask(task, dataModel)}"
+    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/startTask')}"
     styleClass="compact-task-start-link" oncomplete="resetPortalLeftMenuState()">
     <f:subview id="task-start-item-view">
       <ui:include src="CompactTaskStartItem.xhtml" >
@@ -16,6 +17,7 @@
   </p:commandLink>
 
   <p:commandLink id="compact-resumed-task-start-link" rendered="#{task.state == 'RESUMED' and taskActionBean.canResume(task)}" styleClass="compact-task-start-link"
+    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/resetTaskTooltip')}"
     oncomplete="PF('reset-task-dialog').show();" actionListener="#{logic.setSelectedTaskAndDataModel(task, dataModel)}" >
     <f:subview id="task-start-and-reset-item-view">
       <ui:include src="CompactTaskStartItem.xhtml" >
