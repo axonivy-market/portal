@@ -371,8 +371,7 @@ class ClientCanvasChart extends ClientChart {
 
   // Method to format chart label
   formatChartLabel(label) {
-    let type = typeof label;
-    if (type === 'number') {
+    if (typeof label === 'number') {
       return formatDateFollowLocale(new Date(label));
     }
     return label;
