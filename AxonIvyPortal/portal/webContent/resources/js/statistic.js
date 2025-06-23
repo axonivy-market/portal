@@ -32,10 +32,6 @@ const getCssVariable = variableName => {
   return getComputedStyle(document.body).getPropertyValue(variableName);
 }
 
-const isNumeric = number => {
-  return !isNaN(parseFloat(number)) && isFinite(number);
-}
-
 async function postFetchApi(uri, content) {
   const response = await fetch(uri, {
     method: 'POST',
@@ -375,7 +371,8 @@ class ClientCanvasChart extends ClientChart {
 
   // Method to format chart label
   formatChartLabel(label) {
-    if (isNumeric((new Date(label)).getTime())) {
+    let type = typeof label;
+    if (type === 'number') {
       return formatDateFollowLocale(new Date(label));
     }
     return label;
@@ -759,20 +756,6 @@ class ClientNumberChart extends ClientChart {
       '</div>';
     return index > 0 ? border + html : html;
   };
-
-  // Method to format chart label.
-  formatChartLabel(label) {
-    // Format date
-    if (isNumeric((new Date(label)).getTime())) {
-      return formatDateFollowLocale(new Date(label));
-    }
-
-    // Format enum. Example: IN_PROGRESS -> In Progess
-    return label.toLowerCase()
-      .split('_')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
-  }
 
   getItemFromFilters() {
     const aggregateFilter = this.data.chartConfig.aggregates + ':';
