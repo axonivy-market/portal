@@ -1620,6 +1620,17 @@ Enums:
                 name: TODO Number
               PIE:
                 name: TODO Pie
+            OperatorField:
+              EQUAL:
+                name: Equal
+              GREATER:
+                name: Greater
+              GREATEROREQUAL:
+                name: Greater than or equal to
+              LESS:
+                name: Less than
+              LESSOREQUAL:
+                name: Less or equal
 Labels:
   AI:
     Error:

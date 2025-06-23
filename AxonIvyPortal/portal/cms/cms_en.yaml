@@ -1630,6 +1630,17 @@ Enums:
                 name: Number
               PIE:
                 name: Pie
+            OperatorField:
+              EQUAL:
+                name: Equal
+              GREATER:
+                name: Greater
+              GREATEROREQUAL:
+                name: Greater or equal
+              LESS:
+                name: Less
+              LESSOREQUAL:
+                name: Less or equal
 Labels:
   AI:
     Error:
