@@ -374,7 +374,17 @@ class ClientCanvasChart extends ClientChart {
     if (typeof label === 'number') {
       return formatDateFollowLocale(new Date(label));
     }
-    return label;
+
+    const aggregationField = this.data.chartConfig.statisticAggregation?.field;
+    
+    if (aggregationField !== 'state') {
+      return label;
+    }
+
+    return label.toLowerCase()
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   }
 
   // Method to init the dashboard statistic widget title
@@ -755,6 +765,20 @@ class ClientNumberChart extends ClientChart {
       '</div>';
     return index > 0 ? border + html : html;
   };
+
+  // Method to format chart label.
+  formatChartLabel(label) {
+    // Format date
+    if (typeof label === 'number') {
+      return formatDateFollowLocale(new Date(label));
+    }
+
+    // Format enum. Example: IN_PROGRESS -> In Progess
+    return label.toLowerCase()
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
 
   getItemFromFilters() {
     const aggregateFilter = this.data.chartConfig.aggregates + ':';
