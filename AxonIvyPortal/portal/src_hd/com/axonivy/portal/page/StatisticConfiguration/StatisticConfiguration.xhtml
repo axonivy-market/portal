@@ -367,7 +367,7 @@
 
         <script type="text/javascript">
           $(document).ready(function() {
-            if ($('.ui-autocomplete-input-token').hasAttribute("role")) {
+            if ($('.ui-autocomplete-input-token').attr("role") === undefined) {
               $('.ui-autocomplete-input-token').attr("role","option");
             }
             $('.ui-autocomplete-multiple-container').attr("aria-labelledby","config-form:permissionLabel");
