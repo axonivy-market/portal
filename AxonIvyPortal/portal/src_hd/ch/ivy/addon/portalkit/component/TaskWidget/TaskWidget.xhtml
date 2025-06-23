@@ -174,6 +174,7 @@
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
         <p:commandButton id="reset-task-button" actionListener="#{logic.resetAndOpenTask(cc.attrs.currentPortalPage, taskWidgetBean.selectedTaskItemId)}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}" onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
       </h:form>
     </ui:define>
@@ -193,6 +194,7 @@
       <h:panelGroup styleClass="flex flex-column">
         <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
          styleClass="w-full portal-remove-button"
+         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
          actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
          oncomplete="taskWidget.setupScrollbar();PF('destroy-task-dialog').hide()"
          update="#{cc.clientId}:task-view" />
@@ -218,6 +220,7 @@
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
         onclick="PF('escalation-task-dialog').hide();" styleClass="u-mar-right-15"/>
        <p:commandButton id="confirm-escalation" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
         icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
         actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
         oncomplete="taskWidget.setupScrollbar();PF('escalation-task-dialog').hide()"

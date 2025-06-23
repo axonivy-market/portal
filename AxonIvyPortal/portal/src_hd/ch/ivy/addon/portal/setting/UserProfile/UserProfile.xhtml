@@ -52,6 +52,7 @@
                     <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/TaskList')}</h5>
                   </div>
                     <p:commandButton value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedTasks')}"
+                      ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedTasks')}"
                       actionListener="#{userProfileBean.unpinAllPinnedTasks}"
                       icon="pi pi-trash" />
                 </h:panelGroup>
@@ -62,6 +63,7 @@
                     <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/CaseList')}</h5>
                   </div>
                     <p:commandButton value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedCases')}"
+                      ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedCases')}"
                       actionListener="#{userProfileBean.unpinAllPinnedCases}"
                       icon="pi pi-trash" />
                 </h:panelGroup>
@@ -151,6 +153,7 @@
                   <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15"
                     actionListener="#{logic.backToHome}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
                   <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
                     actionListener="#{userProfileBean.saveAllChannel}"
                     action="#{logic.save}" update="errors-message" />
                 </div>
