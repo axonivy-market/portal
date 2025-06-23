@@ -191,7 +191,8 @@
                oncomplete="PF('destroy-task-dialog').hide();loadGrid(#{managedBean.selectedDashboard.isResponsive}); initStatistics();"
                update="grid-stack dashboard-title-container" />
               <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-               onclick="PF('destroy-task-dialog').hide();" styleClass="pt-3 flex justify-content-center" />
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                onclick="PF('destroy-task-dialog').hide();" styleClass="pt-3 flex justify-content-center" />
                </h:panelGroup>
             </ui:define>
            </ui:decorate>
@@ -209,7 +210,8 @@
              
             <ui:define name="dialogFooter">
               <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
-               onclick="PF('escalation-task-dialog').hide();" styleClass="u-mar-right-15" />
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+                onclick="PF('escalation-task-dialog').hide();" styleClass="u-mar-right-15" />
               <p:commandButton id="confirm-escalation-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
                 icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
@@ -245,6 +247,7 @@
                 oncomplete="PF('destroy-case-dialog').hide();loadGrid();initStatistics();"
                 update="grid-stack dashboard-title-container" />
               <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 onclick="PF('destroy-case-dialog').hide();" styleClass="pt-3 flex justify-content-center"/>
             </h:panelGroup>
            </ui:define>
@@ -265,6 +268,7 @@
               </div>
               <div class="ui-g-12 text-right">
                 <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   oncomplete="PF('save-widget-filter-dialog').hide();" styleClass="u-mar-right-10"
                   process="@this" update="save-filter-form" resetValues="true"
                   partialSubmit="true" immediate="true"

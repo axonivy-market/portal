@@ -62,6 +62,7 @@
                       process="@this" partialSubmit="true"
                       global="false"
                       onclick="markAsRead('#{widget.id}__#{notification.id}')"
+                      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}"
                       oncomplete="Portal.updateLayoutContent();"
                       update="#{unreadNotificationsId}">
                       <i class="notifications-indicator-icon fa #{notification.read ? '': 'fa-circle'}" id="#{widget.id}__#{notification.id}" />
@@ -73,6 +74,7 @@
                     <h:panelGroup rendered="#{notification.infoAction != null}">
                       <p:commandLink id="notification-message"
                         styleClass="notification-message"
+                        ariaLabel="#{htmlSanitizerBean.sanitize(notification.message)}"
                         actionListener="#{notificationBean.goToNotificationDetail(notification, isWorkingOnATask, task)}">
                         <h:outputText value="#{htmlSanitizerBean.sanitize(notification.message)}" />
                       </p:commandLink>
@@ -85,6 +87,7 @@
                   </div>
                   <p:outputPanel rendered="#{notificationBean.isActionAvailible(notification)}" styleClass="flex notification-action-block">
                     <p:commandLink disabled="#{!isReadOnlyMode}" id="notification-start-task" styleClass="notification-start-task"
+                      ariaLabel="#{notification.runAction.title}"
                       actionListener="#{widget.startTaskFromNoti(notification)}" rendered="#{notification.runAction != null}" >
                       <i class="fa fa-play notification-start-task-icon" />
                     </p:commandLink>

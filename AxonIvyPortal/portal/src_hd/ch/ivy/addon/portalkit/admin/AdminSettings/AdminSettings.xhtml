@@ -275,7 +275,8 @@
             </p:column>
           </p:row>
         </p:panelGrid>
-        <p:commandLink widgetVar="cancelButton" id="cancelButton" onclick="PF('appDialog').hide()" style="display:none" />
+        <p:commandLink widgetVar="cancelButton" id="cancelButton" onclick="PF('appDialog').hide()" style="display:none"
+                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
       </p:outputPanel>
     </h:form>
     <f:facet name="footer">
@@ -377,6 +378,7 @@
           actionListener="#{logic.delete}" oncomplete="PF('deleteConfirmation').hide();"
           update=":#{p:resolveFirstComponentWithId('applicationForm', view).clientId}" />
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('deleteConfirmation').hide()" styleClass="pt-3 flex justify-content-center"/>
       </h:panelGroup>
     </ui:define>
