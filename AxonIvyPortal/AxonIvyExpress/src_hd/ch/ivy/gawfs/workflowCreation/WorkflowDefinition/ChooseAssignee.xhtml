@@ -53,6 +53,7 @@
             </p:column>
             <p:column>
               <p:commandLink id="delete-assignee" styleClass="si si-bin-1 delete-assignee" actionListener="#{logic.removeSelectedAssignee(assignee)}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
                 update="assignee-selection-form" />
             </p:column>
           </p:panelGrid>

@@ -231,7 +231,8 @@
         </h:panelGrid>
 
         <h:panelGroup layout="block" class="u-text-align-right">
-          <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
+          <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
             <p:ajax event="click" global="false" update="chart-name-input-container" listener="#{logic.clearChartInput}"
               oncomplete="PF('add-chart-dialog').hide();" />
           </p:commandLink>

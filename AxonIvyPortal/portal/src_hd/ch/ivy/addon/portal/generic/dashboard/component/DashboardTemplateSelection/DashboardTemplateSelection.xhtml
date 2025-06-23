@@ -27,6 +27,7 @@
       <div class="ui-g ui-g-12 u-padding-0">
         <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12">
           <p:commandLink id="create-from-scratch" styleClass="dashboard-action-container"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/CreateFromScratch')}"
             oncomplete="PF('dashboard-creation-details-dialog').show()"
             actionListener="#{dashboardTemplateSelectionBean.createDashboardFromScratch(isPublicDashboard)}"
             update="#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog"
@@ -45,6 +46,7 @@
         </div>
         <h:panelGroup styleClass="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12" rendered="#{dashboardModificationBean.hasImportDashboardPermission(isPublicDashboard)}"> 
           <p:commandLink id="import-dashboard" styleClass="dashboard-action-container"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/import')}"
             oncomplete="PF('dashboard-import-dialog').show()" 
             actionListener="#{dashboardImportBean.importDashboard(isPublicDashboard)}"
             update="#{cc.clientId}:dashboard-import-component:dashboard-import-dialog"
@@ -64,6 +66,7 @@
         <ui:repeat var="template" value="#{dashboardTemplateSelectionBean.dashboardTemplates}" varStatus="status">
           <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12">
             <p:commandLink id="template" styleClass="dashboard-action-container"
+              ariaLabel="#{template.title}"
               actionListener="#{dashboardTemplateSelectionBean.onSelectTemplate(template, isPublicDashboard)}"
               oncomplete="PF('dashboard-creation-details-dialog').show()"
               update="#{cc.clientId}:dashboard-creation-component:dashboard-creation-details-dialog"

@@ -76,7 +76,7 @@
 
         <h:panelGroup id="advanced-filter-panel-footer" layout="block"
           rendered="#{cc.attrs.displayFooterButtons}" styleClass="ui-overlaypanel-footer #{cc.attrs.dynamicUpdate? 'u-hidden js-filter-content' : ''}">
-          <p:commandLink id="cancel-command" process="@this" global="false"
+          <p:commandLink id="cancel-command" process="@this" global="false" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="#{cc.clientId}:filter-open-form @form" resetValues="true"
             oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? caseFilter.resetValues() : ''};" />
           <p:spacer width="15" />

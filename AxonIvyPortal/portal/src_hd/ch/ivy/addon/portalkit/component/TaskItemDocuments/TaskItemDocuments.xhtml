@@ -32,6 +32,7 @@
           </p:link>
           <p:commandLink id="add-document-command"
             rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
             styleClass="task-details-document-add-link u-mar-right-10"
             oncomplete="PF('document-upload-dialog').show()">
             <span class="si si-common-file-add" />
@@ -161,6 +162,7 @@
     
     <ui:define name="dialogFooter">
       <p:commandLink id="document-deletion-cancellation-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="u-mar-right-15"/>
       <p:commandButton id="document-deletion-command" 
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"

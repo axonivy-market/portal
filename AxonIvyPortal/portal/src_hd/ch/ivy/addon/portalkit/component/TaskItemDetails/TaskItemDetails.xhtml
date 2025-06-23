@@ -31,6 +31,7 @@
         </h:panelGroup>
 
         <p:commandLink id="back-to-previous-page"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"
           actionListener="#{taskActionBean.backToPrevPage(cc.attrs.task, cc.attrs.isFromTaskList, cc.attrs.isTaskStartedInDetails)}"
           styleClass="task-details-back-btn" process="@this">
           <i class="si si-arrow-left-1" />
@@ -50,7 +51,7 @@
       <p:commandButton id="share-page-button" rendered="#{taskDetailsBean.isShowShareButton}"
         onclick="PF('share-task-details-dialog').show()" type="button"
         ariaLabel="#{ivy.cms.co('/Labels/Share')}"
-        icon="#{visibilityBean.generateButtonIcon('si si-share')}" 
+        icon="#{visibilityBean.generateButtonIcon('si si-share')}"
         title="#{ivy.cms.co('/Labels/Share')}" styleClass="u-mar-right-5 ui-button-flat" />
       <p:commandButton id="switch-to-edit-mode-button" rendered="#{taskDetailsBean.readOnlyMode}"
         ariaLabel="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}"
@@ -96,6 +97,7 @@
               </div>
               <h:panelGroup id="task-detail-action-group" class="task-details-action-container action-container ui-g-5" layout="block">
                 <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task) or cc.attrs.readOnly}"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
                   styleClass="task-action-item start-task-action task-action-item-position" rendered="#{task.state != 'RESUMED'}"
                   actionListener="#{logic.openTask()}" oncomplete="resetPortalLeftMenuState()">
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
@@ -103,6 +105,7 @@
                 </p:commandLink>
 
                 <p:commandLink id="resume-task-detail-start-command" disabled="#{!taskActionBean.canResume(task) or cc.attrs.readOnly}"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
                   styleClass="task-action-item start-task-action task-action-item-position" rendered="#{task.state == 'RESUMED'}">
                   <p:ajax event="click" listener="#{logic.validate(task)}" onstart="event.stopPropagation();"
                     oncomplete="if (args &amp;&amp; !args.validationFailed) PF('reset-task-dialog').show()" />
@@ -184,7 +187,7 @@
 
     <ui:define name="dialogFooter">
       <h:form id="reset-task-form">
-        <p:commandLink onclick="PF('reset-task-dialog').hide()" 
+        <p:commandLink onclick="PF('reset-task-dialog').hide()"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           styleClass="u-mar-right-15" />
@@ -206,6 +209,7 @@
 
     <ui:define name="dialogFooter">
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('destroy-task-dialog').hide();"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         styleClass="u-mar-right-15" />
       <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
@@ -225,6 +229,7 @@
 
     <ui:define name="dialogFooter">
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" onclick="PF('escalation-task-dialog').hide();"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
         styleClass="u-mar-right-15" />
       <p:commandButton id="confirm-escalation" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
@@ -245,6 +250,7 @@
     <ui:define name="dialogFooter">
       <h:form id="reset-to-default-task-form">
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('reset-to-default-task-dialog').hide();" styleClass="u-mar-right-15" ajax="false" type="button" />
         <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"

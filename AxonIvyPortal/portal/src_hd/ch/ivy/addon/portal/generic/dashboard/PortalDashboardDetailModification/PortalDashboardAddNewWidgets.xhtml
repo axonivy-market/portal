@@ -38,6 +38,7 @@
     <p:commandLink id="new-widget-close-button"
       styleClass="MarTop10"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       onclick="PF('new-configuration-widget-dialog').hide()"
       process="@this"
       update="@this"
@@ -55,7 +56,7 @@
   <h:form id="widget-configuration-form" styleClass="ui-g" onkeypress="if (event.keyCode == 13) { return false; }">
     <c:if test="#{widget.type eq 'TASK'}">
       <ic:ch.ivy.addon.portal.generic.dashboard.component.TaskWidgetConfiguration id="new-widget-configuration-component" taskWidget="#{widget}"
-      	managedBean="#{dashboardDetailModificationBean}"
+        managedBean="#{dashboardDetailModificationBean}"
         componentToUpdate="widget-configuration-form" />
     </c:if>
 
@@ -105,6 +106,7 @@
 
   <f:facet name="footer">
     <p:commandLink id="task-configuration-cancel-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       styleClass="u-mar-right-10"
       global="false"
       oncomplete="PF('new-widget-configuration-dialog').hide()"

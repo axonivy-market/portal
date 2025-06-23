@@ -9,6 +9,7 @@
   <h:panelGroup id="header" styleClass="widget-header ui-g-12 u-no-padding-bottom js-process-widget-header" layout="block">
     <h:panelGroup class="widget-header-main">
       <p:commandLink id="toggle-processes-link" styleClass="toggle-processes-link ui-lg-hidden ui-xl-hidden ui-md-hidden"
+             ariaLabel="#{cc.attrs.title}"
              global="false" onclick="toggleShowProcessList();"
              oncomplete="FavouritesProcess.setUpScrollBarForCompactProcessLists(false);">
           <i class="si si-add-small u-mar-right-5"/>

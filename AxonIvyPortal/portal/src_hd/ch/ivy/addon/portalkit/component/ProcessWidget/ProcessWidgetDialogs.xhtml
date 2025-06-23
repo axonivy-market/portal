@@ -38,6 +38,7 @@
         <p class="edit-process-header-sub-title">
           <span class="u-mar-right-5">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogEditInfoTitle', [process.getType().getLabel()])}</span>
           <p:commandLink id="edit-express-workflow" rendered="#{processWidgetBean.isExpressProcess(process)}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogEditInfoTitle', [process.getType().getLabel()])}"
             actionListener="#{processWidgetBean.editExpressWorkflow(process.getProcess())}" target="_self"
             process="@this" immediate="true" partialSubmit="true"
             oncomplete="PF('edit-process-dialog').hide();"
@@ -207,6 +208,7 @@
     <f:facet name="footer">
       <p:commandLink id="cancel-edit-process-command"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         actionListener="#{processWidgetBean.removeTempExternalLinkImage}"
         oncomplete="PF('edit-process-dialog').hide()"
         styleClass="u-mar-right-10" />
@@ -396,6 +398,7 @@
     <f:facet name="footer">
       <p:commandLink id="cancel-adding-external-link-command"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         actionListener="#{externalLinkBean.removeImage()}"
         oncomplete="PF('add-external-link-dialog').hide()"
         styleClass="u-mar-right-15" />
@@ -444,6 +447,7 @@
         <p:commandLink
           id="description-multi-language-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('text-area-add-multiple-languages-dialog').hide();" />
         <p:spacer width="15px" rendered="#{!descriptions.isEmpty()}" />
         <p:commandButton
@@ -480,6 +484,7 @@
         <p:commandLink
           id="description-edit-multi-language-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('text-area-edit-multiple-languages-dialog').hide();" />
         <p:spacer width="15px" rendered="#{!descriptions.isEmpty()}" />
         <p:commandButton

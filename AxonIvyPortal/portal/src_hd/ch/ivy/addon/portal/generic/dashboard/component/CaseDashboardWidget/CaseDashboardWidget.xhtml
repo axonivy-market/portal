@@ -45,7 +45,7 @@
 
     <ui:define name="statisticPanelOtherAction">
       <h:form id="export-to-excel-form-#{index}" styleClass="dashboard-excel-export-form">
-        <p:commandLink ajax="false" id="export-to-excel-#{index}"
+        <p:commandLink ajax="false" id="export-to-excel-#{index}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
           onclick="PrimeFaces.monitorDownload(startDownload, stopDownload);">
           <i class="si si-office-file-xls-1 u-mar-right-5" />
           <span class="link-text">

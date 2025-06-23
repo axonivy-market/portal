@@ -86,6 +86,7 @@
           process="form:selected-formelements-field" actionListener="#{logic.back}" />
 
         <p:commandLink id="cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onstart="PF('cancel-dialog').show();" styleClass="u-mar-right-15 MarLeft10" />
         
         <p:commandButton id="save-button" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')}"
@@ -129,6 +130,7 @@
         
         <ui:define name="dialogFooter">
            <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               onclick="PF('cancel-dialog').hide();" styleClass="u-mar-right-15" />
            <p:commandButton id="yes-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" actionListener="#{logic.cancel}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"

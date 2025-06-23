@@ -195,6 +195,7 @@
             <ui:insert name="statisticPanelOtherAction" />
             <p:commandLink styleClass="Fright info-overlay-panel__close-link"
               onclick="PF('info-overlay-panel-#{index}').hide();"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               partialSubmit="true" immediate="true" global="false" process="@this"/>
           </div>
@@ -236,6 +237,7 @@
           <div class="ui-g-12 filter-overlay-panel__footer">
             <div class="ui-g-12 u-text-align-right">
               <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 styleClass="u-mar-right-15 ui-overlaypanel-footer__cancel"
                 onclick="PF('filter-overlay-panel-#{index}').hide(); return false;"
                 global="false"/>

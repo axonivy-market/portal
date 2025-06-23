@@ -38,82 +38,83 @@
   <c:set var="widgetVarPanel" value="#{fn:replace(cc.clientId, ':', '-')}-panel" />
   <c:set var="taskContainerId" value="#{p:resolveFirstComponentWithId('task-view-container', view).clientId}" />
   <c:set var="renderedFilter" value="#{(not empty dataModel and selectedFilters.contains(taskFilter)) or cc.attrs.forceRendered}" />
-
-  <h:panelGroup id="advanced-filter-component" styleClass="advanced-filter-component js-advanced-filter-component u-hidden-md-down"
-    style="order: #{not empty cc.attrs.position ? cc.attrs.position : selectedFilters.indexOf(taskFilter)}">
-    <h:panelGroup rendered="#{renderedFilter}">
-      <h:form id="filter-open-form">
-        <h:panelGroup id="advanced-filter-item-container" styleClass="advanced-filter #{cc.attrs.containerStyleClass}">
-          <p:commandButton id="advanced-filter-command" type="button"
-            ariaLabel="#{cc.attrs.taskFilter.label()}: #{cc.attrs.taskFilter.value()}"
-            value="#{cc.attrs.taskFilter.label()}: #{cc.attrs.taskFilter.value()}"
-            styleClass="advanced-filter-command #{cc.attrs.buttonStyleClass} #{facesContext.validationFailed ? 'error-filter' : ''} #{cc.attrs.buttonStyleClass}" />
-          <p:commandLink id="advanced-filter-remove-command"
-            ariaLabel="#{ivy.cms.co('/Labels/delete')}"
-            styleClass="si si-delete-2 advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
-            actionListener="#{dataModel.removeFilter(taskFilter)}" global="false"
-            update="@(.filter-container) @(.advanced-filter-container) @(.filter-add-container) @(.filter-selection-form) @(.task-view-container) @(.filter-buttons-container) @(.hidden-task-count)"
-            oncomplete="#{empty cc.attrs.resultContainerUpdated ? 'taskWidget.showTaskFilter(); taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();' : ''}">
-            <f:actionListener binding="#{cc.attrs.removeListener}" />
-          </p:commandLink>
-        </h:panelGroup>
-      </h:form>
-  
-      <h:form id="filter-input-form">
-        <p:overlayPanel id="advanced-filter-panel" widgetVar="#{widgetVarPanel}"
-          dismissable="#{cc.attrs.dismissableOverlayPanel}" styleClass="advanced-filter-panel #{widgetVarPanel}"
-          for="#{cc.clientId}:filter-open-form:advanced-filter-command" my="left top" at="left bottom"
-          onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click(); #{cc.attrs.dynamicUpdate? 'hideFilterContent();' : ''}">
-          <p:ajax disabled="#{!cc.attrs.dynamicUpdate}" event="show" listener="#{taskFilter.update()}" global="false" update="advanced-filter-panel-content"
-            onstart="hideFilterContent();" oncomplete="showFilterContent();" />
-
-          <h:panelGroup layout="block" rendered="#{cc.attrs.dynamicUpdate}" styleClass="js-loading-panel loading-panel">
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
+  <div id="component-filter-item-${cc.clientId}">
+    <h:panelGroup id="advanced-filter-component" styleClass="advanced-filter-component js-advanced-filter-component u-hidden-md-down"
+      style="order: #{not empty cc.attrs.position ? cc.attrs.position : selectedFilters.indexOf(taskFilter)}">
+      <h:panelGroup rendered="#{renderedFilter}">
+        <h:form id="filter-open-form">
+          <h:panelGroup id="advanced-filter-item-container" styleClass="advanced-filter #{cc.attrs.containerStyleClass}">
+            <p:commandButton id="advanced-filter-command" type="button"
+              ariaLabel="#{cc.attrs.taskFilter.label()}: #{cc.attrs.taskFilter.value()}"
+              value="#{cc.attrs.taskFilter.label()}: #{cc.attrs.taskFilter.value()}"
+              styleClass="advanced-filter-command #{cc.attrs.buttonStyleClass} #{facesContext.validationFailed ? 'error-filter' : ''} #{cc.attrs.buttonStyleClass}" />
+            <p:commandLink id="advanced-filter-remove-command"
+              ariaLabel="#{ivy.cms.co('/Labels/delete')}"
+              styleClass="si si-delete-2 advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
+              actionListener="#{dataModel.removeFilter(taskFilter)}" global="false"
+              update="@(.filter-container) @(.advanced-filter-container) @(.filter-add-container) @(.filter-selection-form) @(.task-view-container) @(.filter-buttons-container) @(.hidden-task-count)"
+              oncomplete="#{empty cc.attrs.resultContainerUpdated ? 'taskWidget.showTaskFilter(); taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();' : ''}">
+              <f:actionListener binding="#{cc.attrs.removeListener}" />
+            </p:commandLink>
           </h:panelGroup>
+        </h:form>
 
-          <h:panelGroup id="advanced-filter-panel-content" layout="block"
-            styleClass="ui-overlaypanel-filter-content #{cc.attrs.contentStyleClass} #{cc.attrs.dynamicUpdate? 'u-hidden js-filter-content' : ''}">
-            <p:messages for="advanced-filter-error-messages" showIcon="false"/>
-            <cc:insertChildren />
+        <h:form id="filter-input-form">
+          <p:overlayPanel id="advanced-filter-panel" widgetVar="#{widgetVarPanel}"
+            dismissable="#{cc.attrs.dismissableOverlayPanel}" styleClass="advanced-filter-panel #{widgetVarPanel}"
+            for="#{cc.clientId}:filter-open-form:advanced-filter-command" my="left top" at="left bottom"
+            onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click(); #{cc.attrs.dynamicUpdate? 'hideFilterContent();' : ''}">
+            <p:ajax disabled="#{!cc.attrs.dynamicUpdate}" event="show" listener="#{taskFilter.update()}" global="false" update="advanced-filter-panel-content"
+              onstart="hideFilterContent();" oncomplete="showFilterContent();" />
+
+            <h:panelGroup layout="block" rendered="#{cc.attrs.dynamicUpdate}" styleClass="js-loading-panel loading-panel">
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />
+            </h:panelGroup>
+
+            <h:panelGroup id="advanced-filter-panel-content" layout="block"
+              styleClass="ui-overlaypanel-filter-content #{cc.attrs.contentStyleClass} #{cc.attrs.dynamicUpdate? 'u-hidden js-filter-content' : ''}">
+              <p:messages for="advanced-filter-error-messages" showIcon="false"/>
+              <cc:insertChildren />
+            </h:panelGroup>
+
+            <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer #{cc.attrs.dynamicUpdate? 'u-hidden js-filter-content' : ''}"
+              rendered="#{cc.attrs.displayFooterButtons}">
+              <p:commandLink id="cancel-command" process="@this" global="false" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="#{cc.clientId}:filter-open-form @form" resetValues="true"
+                oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? taskFilter.resetValues() : ''};" />
+              <p:spacer width="15" />
+              <p:commandButton id="update-command"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+                icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
+                actionListener="#{taskFilter.validate()}"
+                update="#{cc.clientId}:filter-open-form @form @(.reset-filter-button-container) @(.filter-selection-form) @(.filter-buttons-container) @(.hidden-task-count)"
+                oncomplete="if (args &amp;&amp; args.validationFailed) PF('#{widgetVarPanel}').show(); #{empty cc.attrs.resultContainerUpdated ? 'taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();' : ''}">
+                <f:actionListener binding="#{empty cc.attrs.resultContainerUpdated ? logic.updateTasksByFilter(taskContainerId) : ''}" />
+                <f:actionListener binding="#{cc.attrs.updateListener}" />
+                <f:actionListener binding="#{args.validationFailed ? '':dataModel.onFilterApply()}" />
+              </p:commandButton>
+            </h:panelGroup>
+          </p:overlayPanel>
+
+          <h:panelGroup rendered="#{cc.attrs.dynamicUpdate}">
+            <script>
+              function showFilterContent() {
+                var panel = document.getElementById('#{cc.clientId}:filter-input-form:advanced-filter-panel');
+                $(panel).find('.js-loading-panel').addClass('u-hidden');
+                $(panel).find('.js-filter-content').removeClass('u-hidden');
+              }
+
+              function hideFilterContent() {
+                var panel = document.getElementById('#{cc.clientId}:filter-input-form:advanced-filter-panel');
+                $(panel).find('.js-loading-panel').removeClass('u-hidden');
+                $(panel).find('.js-filter-content').addClass('u-hidden');
+              }
+            </script>
           </h:panelGroup>
-  
-          <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer #{cc.attrs.dynamicUpdate? 'u-hidden js-filter-content' : ''}"
-            rendered="#{cc.attrs.displayFooterButtons}">
-            <p:commandLink id="cancel-command" process="@this" global="false"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="#{cc.clientId}:filter-open-form @form" resetValues="true"
-              oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? taskFilter.resetValues() : ''};" />
-            <p:spacer width="15" />
-            <p:commandButton id="update-command"
-              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-              icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
-              actionListener="#{taskFilter.validate()}"
-              update="#{cc.clientId}:filter-open-form @form @(.reset-filter-button-container) @(.filter-selection-form) @(.filter-buttons-container) @(.hidden-task-count)"
-              oncomplete="if (args &amp;&amp; args.validationFailed) PF('#{widgetVarPanel}').show(); #{empty cc.attrs.resultContainerUpdated ? 'taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();' : ''}">
-              <f:actionListener binding="#{empty cc.attrs.resultContainerUpdated ? logic.updateTasksByFilter(taskContainerId) : ''}" />
-              <f:actionListener binding="#{cc.attrs.updateListener}" />
-              <f:actionListener binding="#{args.validationFailed ? '':dataModel.onFilterApply()}" />
-            </p:commandButton>
-          </h:panelGroup>
-        </p:overlayPanel>
-
-        <h:panelGroup rendered="#{cc.attrs.dynamicUpdate}">
-          <script>
-            function showFilterContent() {
-              var panel = document.getElementById('#{cc.clientId}:filter-input-form:advanced-filter-panel');
-              $(panel).find('.js-loading-panel').addClass('u-hidden');
-              $(panel).find('.js-filter-content').removeClass('u-hidden');
-            }
-
-            function hideFilterContent() {
-              var panel = document.getElementById('#{cc.clientId}:filter-input-form:advanced-filter-panel');
-              $(panel).find('.js-loading-panel').removeClass('u-hidden');
-              $(panel).find('.js-filter-content').addClass('u-hidden');
-            }
-          </script>
-        </h:panelGroup>
-      </h:form>
+        </h:form>
+      </h:panelGroup>
     </h:panelGroup>
-  </h:panelGroup>
+  </div>
 </cc:implementation>
 </html>
