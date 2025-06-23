@@ -367,10 +367,13 @@
 
         <script type="text/javascript">
           $(document).ready(function() {
-            if ($('.ui-autocomplete-input-token').attr("role") === undefined) {
+            if($('.ui-autocomplete-input-token').attr("role") === undefined) {
               $('.ui-autocomplete-input-token').attr("role","option");
             }
-            $('.ui-autocomplete-multiple-container').attr("aria-labelledby","config-form:permissionLabel");
+
+            if($('.ui-autocomplete-multiple-container').attr("aria-labelledby") === undefined) {
+              $('.ui-autocomplete-multiple-container').attr("aria-labelledby","config-form:permissionLabel");
+            }
           });
 
           function handlePreviewChart(xhr, status, args) {
