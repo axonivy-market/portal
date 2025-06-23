@@ -293,7 +293,7 @@ class ClientCanvasChart extends ClientChart {
 
   // Method to format chart label
   formatChartLabel(label) {
-    if (isNumeric((new Date(label)).getTime())) {
+    if (typeof label === 'number') {
       return formatDateFollowLocale(new Date(label));
     }
     return label;
@@ -660,10 +660,6 @@ class ClientNumberChart extends ClientChart {
 
   // Method to format chart label.
   formatChartLabel(label) {
-    // Format date
-    if (isNumeric((new Date(label)).getTime())) {
-      return formatDateFollowLocale(new Date(label));
-    }
 
     // Format enum. Example: IN_PROGRESS -> In Progess
     return label.toLowerCase()
