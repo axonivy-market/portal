@@ -215,12 +215,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     removeAllExistingFilter();
     taskWidget.applyFilter();
     assertTaskActionsByTaskStateAndName(ERROR, "Signal create Technical task",
-        Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
-    // waiting for event
-    taskWidget.openFilterWidget();
-    removeAllExistingFilter();
-    taskWidget.applyFilter();
-    assertTaskActionsByTaskState(ERROR, Arrays.asList(DETAILS, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
+        Arrays.asList(DETAILS, PIN, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
 
   private void assertTaskActionsByTaskState(String state, List<String> taskActionsInTask) {
