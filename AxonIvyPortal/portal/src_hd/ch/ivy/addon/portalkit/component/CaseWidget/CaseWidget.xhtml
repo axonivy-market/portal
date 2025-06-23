@@ -343,6 +343,7 @@
                       onclick="PF('destroy-case-dialog').hide();" styleClass="u-mar-right-15"/>
        <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
           icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
           actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
           oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb(); PF('destroy-case-dialog').hide()"
           update="#{p:resolveFirstComponentWithId('case-list', view).clientId} #{p:resolveFirstComponentWithId('case-list-scroller', view).clientId} #{cc.clientId}:hidden-case-count" />

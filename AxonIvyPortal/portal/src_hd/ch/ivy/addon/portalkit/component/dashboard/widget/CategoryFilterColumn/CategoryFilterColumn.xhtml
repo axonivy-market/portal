@@ -63,6 +63,7 @@
                              process="@this" global="false" update="widget-filter-category-container"/>
   
               <p:commandButton id="update-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
                 process="widget-filter-category-panel" partialSubmit="true" update="widget-filter-category-container #{cc.attrs.updateComponent}"
                 icon="si si-check-1" styleClass="update-command"
                 actionListener="#{cc.attrs.field.updateCategoriesPath(cc.attrs.configurationMode)}"/>
