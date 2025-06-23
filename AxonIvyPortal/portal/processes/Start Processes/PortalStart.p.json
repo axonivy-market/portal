@@ -4242,5 +4242,151 @@
       "connect" : [
         { "id" : "f53", "to" : "f224", "color" : "default" }
       ]
+    }, {
+      "id" : "f56",
+      "type" : "RequestStart",
+      "name" : "showAdditionalCaseDetailsInIFrame",
+      "config" : {
+        "signature" : "showAdditionalCaseDetailsInIFrame",
+        "input" : {
+          "params" : [
+            { "name" : "uuid", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.uuid" : "param.uuid"
+          }
+        },
+        "request" : {
+          "name" : "Show Additional Case Details In IFrame",
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 2112 },
+        "labelOffset" : { "x" : 1, "y" : 49 }
+      },
+      "connect" : [
+        { "id" : "f163", "to" : "f94" }
+      ]
+    }, {
+      "id" : "f59",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 736, "y" : 2112 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f60",
+      "type" : "DialogCall",
+      "name" : "Additional case details in Iframe",
+      "config" : {
+        "dialog" : "ch.ivy.addon.portal.component.iframe.AdditionalCaseDetailsInIFrame:start(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.iCase" : "in.caseSelected"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 560, "y" : 2112 },
+        "size" : { "width" : 256, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f166", "to" : "f59" }
+      ]
+    }, {
+      "id" : "f94",
+      "type" : "Script",
+      "name" : "Find case",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.CaseService;",
+            "out.caseSelected = CaseService.newInstance().findCaseByUUID(in.uuid);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 200, "y" : 2112 }
+      },
+      "connect" : [
+        { "id" : "f212", "to" : "S43" }
+      ]
+    }, {
+      "id" : "S43",
+      "type" : "EmbeddedProcess",
+      "name" : "Authorize",
+      "elements" : [ {
+          "id" : "S43-f169",
+          "type" : "Script",
+          "name" : "Init isAuthorized",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.enums.PortalPermission;",
+                "import ch.ivy.addon.portalkit.util.PermissionUtils;",
+                "in.isAuthorized = PermissionUtils.hasPortalPermission(PortalPermission.SHOW_CASE_DETAILS)",
+                "  && in.#caseSelected is initialized;"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 160 }
+          },
+          "connect" : [
+            { "id" : "S43-f171", "to" : "S43-f176", "color" : "default" }
+          ]
+        }, {
+          "id" : "S43-f176",
+          "type" : "Alternative",
+          "name" : "authorized?",
+          "config" : {
+            "conditions" : {
+              "S43-f1" : "in.isAuthorized"
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 320, "y" : 160 },
+            "labelOffset" : { "x" : 24, "y" : -24 }
+          },
+          "connect" : [
+            { "id" : "S43-f1", "to" : "S43-g1", "color" : "default" },
+            { "id" : "S43-f194", "to" : "S43-f181" }
+          ]
+        }, {
+          "id" : "S43-f181",
+          "type" : "TaskEnd",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 224 },
+            "labelOffset" : { "x" : 13, "y" : 33 }
+          }
+        }, {
+          "id" : "S43-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f212",
+          "connect" : [
+            { "id" : "S43-f0", "to" : "S43-f169" }
+          ]
+        }, {
+          "id" : "S43-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 416, "y" : 160 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f282"
+        } ],
+      "visual" : {
+        "at" : { "x" : 344, "y" : 2112 }
+      },
+      "connect" : [
+        { "id" : "f282", "to" : "f60" }
+      ]
     } ]
 }
