@@ -98,12 +98,11 @@ public class PortalMenuNavigator {
     MenuItem menuItem = ((MenuActionEvent) event).getMenuItem();
     return menuItem.getParams();
   }
-
   public static List<Application> getThirdPartyApps() {
     List<Application> applications = RegisteredApplicationService.getInstance().getPublicConfig();
     applications.removeIf(application -> {
       List<String> permissions = application.getPermissions();
-      if (CollectionUtils.isEmpty(applications)) {
+      if (CollectionUtils.isEmpty(permissions)) {
         return false;
       }
       return permissions.stream().noneMatch(PortalMenuNavigator::isSessionUserHasPermisson);
