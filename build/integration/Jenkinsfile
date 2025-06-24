@@ -108,11 +108,10 @@ def downloadPortalRelease() {
 }
 
 def installPortalToLocalRepo() {
-  def iarFile = findFiles(glob: env.releaseDir + '/AxonIvyPortal/portal/target/*.iar')[0].path
-  def pomFile = env.releaseDir + '/AxonIvyPortal/portal/pom.xml'
-  def pom = readMavenPom(file: pomFile)
-  def groupId = pom.groupId
-  def artifactId = pom.artifactId
-  def version = pom.version
-  bat "mvn install:install-file -Dfile=${iarFile} -DgroupId=${groupId} -DartifactId=${artifactId} -Dversion=${version} -Dpackaging=iar"
+  def modules = ['AxonIvyPortal/portal', 'AxonIvyPortal/portal-components', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples']
+  for (module in modules) {
+    def iarFile = findFiles(glob: "${env.releaseDir}/${module}/target/*.iar")[0].path
+    def pomFile = "${env.releaseDir}/${module}/pom.xml"
+    bat "mvn install:install-file -Dfile=${iarFile} -DpomFile=${pomFile}"
+  }
 }
