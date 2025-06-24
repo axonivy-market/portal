@@ -39,6 +39,8 @@ HowTo: Add a Third Party Application
 
 #. Enter its URL in :guilabel:`Link`, e.g. http://www.google.com.
 
+#. Select :guilabel:`Permissions` to specify the permissions required for the application to be visible.
+
 #. Click on :guilabel:`Save`.
 
 .. _update-portal-settings:

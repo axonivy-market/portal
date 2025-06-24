@@ -17,10 +17,6 @@ public class JsonThirdPartyApplicationConverterFactory extends AbstractJsonConve
       List.of(new com.axonivy.portal.migration.thirdpartyapplication.converter.v120.ThirdPartyApplicationConverter()
     );
 
-  private static final List<IJsonConverter> LE132 =
-      List.of(new com.axonivy.portal.migration.thirdpartyapplication.converter.v132.ThirdPartyApplicationConverter()
-    );
-
   static {
     CONVERTERS.addAll(LE120);
   }
