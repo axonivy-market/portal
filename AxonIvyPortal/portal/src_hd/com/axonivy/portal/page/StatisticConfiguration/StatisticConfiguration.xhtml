@@ -205,10 +205,8 @@
                   </div>
                 </h:panelGroup>
 
-                <div class="field col-12">
-                  <h4 class="mb-0 mt-3">#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Advanced')}</h4>
-                </div>
-
+                <!-- Advanced settings -->
+                <p:fieldset legend="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Advanced')}" toggleable="true" toggleSpeed="500" styleClass="w-full">
                 <!--  X TITLE -->
                 <h:panelGroup id="x-axis-title-container" layout="block" styleClass="col-6 p-0">
                   <h:panelGroup layout="block" styleClass="field col-12"
@@ -337,6 +335,9 @@
                      </h:panelGroup>
                  </h:panelGroup>
                 </h:panelGroup>
+                </p:fieldset>
+              <!-- Advanced settings end-->
+
               </h:panelGroup>
 
               <p:divider layout="vertical" styleClass="m-0" />
