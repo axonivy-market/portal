@@ -318,6 +318,14 @@ class ClientChart {
   // Abstract method to format chart label
   formatChartLabel() { }
 
+  // Check DateTime field
+  isTimestampField(field) {
+    if (field === undefined) {
+      return false;
+    }
+    return field.toLowerCase().includes("timestamp");
+  }
+
   // Update new data to an existing chart
   update(newData) {
     this.data = newData;
@@ -371,12 +379,12 @@ class ClientCanvasChart extends ClientChart {
 
   // Method to format chart label
   formatChartLabel(label) {
-    if (typeof label === 'number') {
+    let aggregationField = this.data.chartConfig.statisticAggregation?.field;
+
+    if (typeof label === 'number' || this.isTimestampField(aggregationField)) {
       return formatDateFollowLocale(new Date(label));
     }
 
-    const aggregationField = this.data.chartConfig.statisticAggregation?.field;
-    
     if (aggregationField !== 'state') {
       return label;
     }
@@ -755,8 +763,9 @@ class ClientNumberChart extends ClientChart {
 
   // Method to format chart label.
   formatChartLabel(label) {
+    let field = this.data.chartConfig.aggregates || this.data.chartConfig.statisticAggregation.field;
     // Format date
-    if (typeof label === 'number') {
+    if (typeof label === 'number' || this.isTimestampField(field)) {
       return formatDateFollowLocale(new Date(label));
     }
 
