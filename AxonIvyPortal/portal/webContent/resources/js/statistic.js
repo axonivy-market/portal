@@ -753,10 +753,17 @@ class ClientNumberChart extends ClientChart {
     return index > 0 ? border + html : html;
   };
 
+  isTimestampField(field) {
+    if (field === undefined) {
+      return false;
+    }
+    return field.toLowerCase().includes("timestamp");
+  }
+
   // Method to format chart label.
   formatChartLabel(label) {
     // Format date
-    if (typeof label === 'number') {
+    if (typeof label === 'number' || this.isTimestampField(this.data.chartConfig.aggregates)) {
       return formatDateFollowLocale(new Date(label));
     }
 
