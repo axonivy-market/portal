@@ -1,5 +1,7 @@
 package com.axonivy.portal.selenium.test;
 
+import java.nio.file.Paths;
+
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
@@ -83,6 +85,6 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
   }
 
   private String getAbsolutePathToTestFile(String fileName) {
-    return System.getProperty("user.dir") + "\\resources\\testFile\\" + fileName;
+    return Paths.get(System.getProperty("user.dir"), "resources", "testFile", fileName).toString();
   }
 }
