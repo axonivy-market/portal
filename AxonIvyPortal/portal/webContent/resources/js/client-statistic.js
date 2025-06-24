@@ -247,6 +247,10 @@ class ClientChart {
     this.updateClientChart();
   }
 
+  isTimestampField(field) {
+    return field.toLowerCase().includes("timestamp");
+  }
+
   updateClientChart() { }
 
   // Method to render empty chart
@@ -293,7 +297,9 @@ class ClientCanvasChart extends ClientChart {
 
   // Method to format chart label
   formatChartLabel(label) {
-    if (typeof label === 'number') {
+    let aggregateField = this.data.chartConfig.aggregates;
+
+    if (this.isTimestampField(aggregateField)) {
       return formatDateFollowLocale(new Date(label));
     }
     return label;
@@ -660,6 +666,10 @@ class ClientNumberChart extends ClientChart {
 
   // Method to format chart label.
   formatChartLabel(label) {
+    let aggregateField = this.data.chartConfig.aggregates;
+    if (this.isTimestampField(aggregateField)) {
+      return formatDateFollowLocale(new Date(label));
+    }
 
     // Format enum. Example: IN_PROGRESS -> In Progess
     return label.toLowerCase()
