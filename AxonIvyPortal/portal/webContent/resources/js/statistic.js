@@ -32,10 +32,6 @@ const getCssVariable = variableName => {
   return getComputedStyle(document.body).getPropertyValue(variableName);
 }
 
-const isNumeric = number => {
-  return !isNaN(parseFloat(number)) && isFinite(number);
-}
-
 async function postFetchApi(uri, content) {
   const response = await fetch(uri, {
     method: 'POST',
@@ -375,10 +371,20 @@ class ClientCanvasChart extends ClientChart {
 
   // Method to format chart label
   formatChartLabel(label) {
-    if (isNumeric((new Date(label)).getTime())) {
+    if (typeof label === 'number') {
       return formatDateFollowLocale(new Date(label));
     }
-    return label;
+
+    const aggregationField = this.data.chartConfig.statisticAggregation?.field;
+    
+    if (aggregationField !== 'state') {
+      return label;
+    }
+
+    return label.toLowerCase()
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   }
 
   // Method to init the dashboard statistic widget title
@@ -750,7 +756,7 @@ class ClientNumberChart extends ClientChart {
   // Method to format chart label.
   formatChartLabel(label) {
     // Format date
-    if (isNumeric((new Date(label)).getTime())) {
+    if (typeof label === 'number') {
       return formatDateFollowLocale(new Date(label));
     }
 
