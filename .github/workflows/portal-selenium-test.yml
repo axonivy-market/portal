@@ -168,6 +168,14 @@ jobs:
             path: |
               AxonIvyPortal/portal-selenium-test/target/surefire-reports/*
 
+        - name: Archive log
+          uses: actions/upload-artifact@v4
+          with:
+            name: log-file
+            retention-days: 5
+            path: |
+              AxonIvyPortal/portal-selenium-test/target/testEngineOut.log
+
         - name: Show inputs
           run: |
             echo "## Inputs" >> $GITHUB_STEP_SUMMARY
