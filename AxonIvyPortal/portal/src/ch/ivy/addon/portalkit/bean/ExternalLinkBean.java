@@ -21,6 +21,7 @@ import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.util.ExternalLinkUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 
+import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
 import ch.ivy.addon.portalkit.dto.DisplayName;
@@ -36,7 +37,7 @@ import ch.ivyteam.util.Pair;
 
 @ManagedBean
 @ViewScoped
-public class ExternalLinkBean implements Serializable {
+public class ExternalLinkBean implements Serializable, IMultiLanguage {
 
   private static final long serialVersionUID = 4772777911430826945L;
   private ExternalLink externalLink;
@@ -126,25 +127,6 @@ public class ExternalLinkBean implements Serializable {
   public void updateDescriptionByLocale() {
     String currentDescription = LanguageUtils.getLocalizedName(externalLink.getDescriptions(), externalLink.getDescription());
     initAndSetValue(currentDescription, externalLink.getDescriptions());
-  }
-  
-  private void initAndSetValue(String value, List<DisplayName> values) {
-    DisplayNameConvertor.initMultipleLanguages(value, values);
-    DisplayNameConvertor.setValue(value, values);
-  }  
-  
-  public boolean isRequiredField(DisplayName displayName) {
-    String currentLanguage = UserUtils.getUserLanguage();
-    String displayLanguage = displayName.getLocale().getLanguage();
-    return currentLanguage.equals(displayLanguage);
-  }
-  
-  public boolean isShowTranslation(DisplayName title) {
-    return DeepLTranslationService.getInstance().isShowTranslation(title.getLocale());
-  }
-
-  public boolean isFocus(DisplayName title) {
-    return !isShowTranslation(title) && title.getLocale().getLanguage().equals(UserUtils.getUserLanguage());
   }
 
   public String getWarningText() {
