@@ -505,6 +505,7 @@ const taskItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__
 const caseItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__default-case-list-dashboard-main-dashboard"]';
 const searchInputId = '[id="global-search-component:global-search-data"]:visible'
 const useSettingMenuId = 'a#user-settings-menu:visible';
+const pinButton = 'a[id="user-menu-required-login:toggle-menu"]';
 
 $(document).ready(function () {
 
@@ -542,6 +543,16 @@ $(document).ready(function () {
     }
   }
 
+  function toggleLeftMenu(key) {
+    if (key === 'Digit7') {
+      addFocusClass($(pinButton));
+      $(pinButton).trigger('click');
+      return true;
+    }
+    removeFocusClass($(pinButton));
+    return false;
+  }
+
   function removeFocusedElements() {
     Object.keys(shortcuts).forEach(function (key) {
       removeFocusClass(findTargetElementByKey(key));
@@ -574,6 +585,9 @@ $(document).ready(function () {
       const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
       iframeDocument.addEventListener('keydown', function (event) {
         if (onlyAltPressed(event)) {
+          if(toggleLeftMenu(event.code)) {
+            return;
+          }
           handleFocusOnMainElement(event);
         }
       });
@@ -636,6 +650,9 @@ $(document).ready(function () {
 
     if (onlyAltPressed(event)) {
       var keyCode = event.code;
+      if(toggleLeftMenu(keyCode)) {
+        return;
+      }
       if (shortcuts[keyCode]) {
         event.preventDefault();
         removeFocusedElements();
@@ -782,6 +799,40 @@ $(document).ready(function () {
   handleExpandButtonInFilePreview();
 
   // END OF HANDLE EXPAND BUTTON IN FILE PREVIEW
+
+  // START: FIX ACCESSIBILITY ISSUES
+  let parentMenu = $("[id$='user-menu-required-login:main-navigator:main-menu']");
+  if (parentMenu) {
+    if (parentMenu.attr('role') === undefined) {
+      parentMenu.attr('role', 'menu');
+    }
+    parentMenu.find('li').each((index, item) => {
+      let linkItem = $(item).find('a');
+      if (linkItem && linkItem.attr('aria-label') === undefined) {
+        linkItem.attr('aria-label', 'Aria label');
+      }
+    })
+  }
+
+  setTimeout(function () {
+    let combobox = $("span[role='combobox']");
+    combobox.each((index, item) => {
+      if ($(item).attr('aria-label') === undefined) {
+        $(item).attr('aria-label', $(item).text());
+      }
+    });
+  }, 200);
+
+  setAltForAvatar();
 });
 // End of accessibility for shortcuts navigation
 
+function setAltForAvatar() {
+  $("div.has-avatar").each((index, item) => {
+    let imgTag = $(item).find('img');
+    if ($(imgTag).attr('alt') === undefined) {
+      let alt = $(item).find('.name-after-avatar').text() || 'Avatar';
+      $(imgTag).attr('alt', alt)
+    }
+  })
+}

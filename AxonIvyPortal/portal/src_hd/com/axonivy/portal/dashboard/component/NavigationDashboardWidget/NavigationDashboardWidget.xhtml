@@ -6,7 +6,8 @@
   xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="index" required="true" />
   <cc:attribute name="widget" required="true" />
@@ -20,13 +21,14 @@
   <c:set var="panelId" value="navigation-widget-#{widget.id}-panel"/>
   <c:set var="isReadOnlyMode" value="#{cc.attrs.isReadOnlyMode}" />
 
-  <h:panelGroup id="#{panelId}" styleClass="card-widget-panel navigation-dashboard-widget-panel" layout="block">
+  <h:panelGroup id="#{panelId}" styleClass="card-widget-panel navigation-dashboard-widget-panel" layout="block" pt:role="region" pt:aria-label="#{widget.name}">
      <div>
        <h:panelGroup id="widget-header-actions" styleClass="js-navigation-dashboard-widget flex justify-content-end align-items-center navigation-dashboard-widget-panel pt-3 pr-2" layout="block">
          <p:commandButton id="edit-widget-#{index}"
            icon="si si-pencil"
            styleClass="rounded-button ui-button-outlined u-hidden-sm-down u-mar-right-5"
            oncomplete="PF('new-widget-configuration-dialog').show()"
+           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}"
            global="false"
            actionListener="#{dashboardDetailModificationBean.prepareEditWidget(widget)}"
            update="new-widget-configuration-dialog"
@@ -36,6 +38,7 @@
          <p:tooltip for="edit-widget-#{index}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/editWidget')}" trackMouse="true"
            hideEvent="mouseleave click" rendered="#{!isReadOnlyMode}"/>
          <p:commandButton id="clone-widget-#{index}" type="button" icon="si si-copy-paste"
+           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CloneWidget')}"
            styleClass="rounded-button ui-button-outlined u-mar-right-5"
            rendered="#{!isReadOnlyMode}">
            <p:ajax event="click" listener="#{cloneWidgetBean.setCloneWidget(widget)}"
@@ -49,6 +52,7 @@
            icon="si si-bin-1"
            styleClass="rounded-button ui-button-outlined ui-button-danger"
            oncomplete="PF('remove-widget-dialog').show()"
+           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/deleteWidget')}"
            global="false"
            actionListener="#{dashboardDetailModificationBean.setDeleteWidget(widget)}"
            update="remove-widget-dialog"
@@ -66,8 +70,7 @@
           </div>
           <h:panelGroup styleClass="mt-3 w-full" layout="block">
             <div class="mt-2 navigation-widget-title">
-                <h:outputText id="navigation-widget-title-text" styleClass="font-bold" value="#{widget.name}" />
-                <p:tooltip for="navigation-widget-title-text" value="#{widget.name}" trackMouse="true" />
+                <h:outputText styleClass="font-bold" value="#{widget.name}" />
             </div>
             <div class="mt-2">
                 <h:outputText id="navigation-widget-description" styleClass="flex justify-content-center" value="#{widget.description}" />
@@ -79,7 +82,7 @@
          <p:commandButton id="navigate-dashboard-button" styleClass="ui-button w-full ui-button-text-only navigate-dashboard-button-truncate"
            disabled="#{navigationDashboardWidgetBean.isNotClickable(widget, isReadOnlyMode)}"
            action="#{navigationDashboardWidgetBean.redirectToDashboard(widget, dashboardBean.selectedDashboard)}"
-           value="#{widget.buttonName}" />
+           value="#{widget.buttonName}" ariaLabel="#{widget.buttonName}" />
        </h:panelGroup>
        <p:tooltip rendered="#{navigationDashboardWidgetBean.isNotClickable(widget, isReadOnlyMode)}"
            for="navigation-dashboard-widget-footer" trackMouse="true"

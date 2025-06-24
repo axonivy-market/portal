@@ -381,7 +381,7 @@ public abstract class TemplatePage extends AbstractPage {
   public void clickOnLogo() {
     switchBackToParent();
     openMainMenu();
-    waitForElementClickableThenClick($("a[id$='logo']"));
+    waitForElementClickableThenClick($("a[id*='user-menu-required-login:logo']"));
   }
 
   protected void refreshAndWaitElement(String cssSelector) {
