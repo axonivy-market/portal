@@ -247,6 +247,10 @@ class ClientChart {
     this.updateClientChart();
   }
 
+  isTimestampField(field) {
+    return field.toLowerCase().includes("timestamp");
+  }
+
   updateClientChart() { }
 
   // Method to render empty chart
@@ -293,7 +297,9 @@ class ClientCanvasChart extends ClientChart {
 
   // Method to format chart label
   formatChartLabel(label) {
-    if (isNumeric((new Date(label)).getTime())) {
+    let aggregateField = this.data.chartConfig.aggregates;
+
+    if (this.isTimestampField(aggregateField)) {
       return formatDateFollowLocale(new Date(label));
     }
     return label;
@@ -660,8 +666,8 @@ class ClientNumberChart extends ClientChart {
 
   // Method to format chart label.
   formatChartLabel(label) {
-    // Format date
-    if (isNumeric((new Date(label)).getTime())) {
+    let aggregateField = this.data.chartConfig.aggregates;
+    if (this.isTimestampField(aggregateField)) {
       return formatDateFollowLocale(new Date(label));
     }
 
