@@ -9,7 +9,7 @@
   </parent>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-document-screenshots-selenide</artifactId>
-  <version>13.1.1-SNAPSHOT</version>
+  <version>13.1.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <properties>
     <ivy.engine.version>13.1.1</ivy.engine.version>
@@ -29,7 +29,7 @@
     <dependency>
       <groupId>com.axonivy.portal</groupId>
       <artifactId>portal</artifactId>
-      <version>13.1.1-SNAPSHOT</version>
+      <version>13.1.2-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
     <dependency>
