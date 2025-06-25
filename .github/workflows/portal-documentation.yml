@@ -58,7 +58,7 @@ jobs:
         with:
           workflow: portal-document-screenshot-test.yml
           name: screenshots
-          branch: master
+          branch: release/13.1
           path: Documentation/portal-guide/source/screenshots
             
       - name: install zip
