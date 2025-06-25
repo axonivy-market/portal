@@ -667,7 +667,9 @@ class ClientNumberChart extends ClientChart {
   // Method to format chart label.
   formatChartLabel(label) {
     let aggregateField = this.data.chartConfig.aggregates;
-    if (this.isTimestampField(aggregateField)) {
+    // Format date
+    if (typeof label === 'number' || (this.isTimestampField(aggregateField) &&
+        isNumeric(new Date(label).getTime())) {
       return formatDateFollowLocale(new Date(label));
     }
 
