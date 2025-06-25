@@ -9,7 +9,7 @@
   </parent>
   <groupId>com.axonivy.portal</groupId>
   <artifactId>public-api</artifactId>
-  <version>13.1.1-SNAPSHOT</version>
+  <version>13.1.2-SNAPSHOT</version>
   <properties>
     <ivy.engine.version>13.1.0</ivy.engine.version>
   </properties>
