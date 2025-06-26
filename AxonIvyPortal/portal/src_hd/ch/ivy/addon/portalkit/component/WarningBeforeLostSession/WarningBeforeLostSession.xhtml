@@ -23,6 +23,7 @@
 
     <ui:define name="dialogFooter">
       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/refreshSession')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/refreshSession')}"
         styleClass="w-full" onclick="PortalSessionWarning.keepPortalAlive(); return false;" />
     </ui:define>
   </ui:decorate>
@@ -39,6 +40,7 @@
 
     <ui:define name="dialogFooter">
       <p:commandButton rendered="#{!isPortalInTeams}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="redirectDefaultPage();"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
         icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" type="button" />
     </ui:define>
   </ui:decorate>

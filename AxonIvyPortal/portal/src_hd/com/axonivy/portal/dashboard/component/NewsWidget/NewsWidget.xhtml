@@ -66,6 +66,7 @@
               <f:facet name="loader">
                 <h:panelGroup layout="block" styleClass="text-center" rendered="#{isReadOnlyMode}">
                   <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." icon="si si-button-refresh-arrows"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
                     styleClass="rounded-button ui-button-outlined"
                     onclick="setupNewsWidgetContent('#{widget.id}', true)" />
                 </h:panelGroup>
@@ -82,6 +83,7 @@
             layout="block" styleClass="news-widget__add-news-actions ui-sm-hidden text-right">
             <p:commandLink id="add-news-button"
               value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/AddNews')}"
+              ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidgetConfiguration/AddNews')}"
               actionListener="#{newsWidgetBean.preAddingNews()}" oncomplete="PF('manage-news-dialog').show();"
               update="#{cc.clientId}:management-news-group #{cc.clientId}:manage-news-dialog" />
           </h:panelGroup>

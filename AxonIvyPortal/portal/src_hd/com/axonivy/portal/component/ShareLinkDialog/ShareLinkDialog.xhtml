@@ -33,6 +33,7 @@
       <h:panelGroup layout="block" styleClass="text-right p-1">
         <p:spacer width="15" />
         <p:commandButton id="share-link-copy-button" 
+          ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ShareLinkDialog/CopyLink')}"
           value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/component/ShareLinkDialog/CopyLink')}"
           onclick="copyToClipboard(`#{htmlSanitizerBean.escapeForJS(cc.attrs.url)}`)" 
           actionListener="#{masterDataBean.showLinkCopiedMessage()}" global="false" styleClass="w-full"/>
