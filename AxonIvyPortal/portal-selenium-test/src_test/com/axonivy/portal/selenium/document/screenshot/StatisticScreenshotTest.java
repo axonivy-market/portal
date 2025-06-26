@@ -52,7 +52,7 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(createCasesForCaseListCustomization);
     createJSonFile("dashboard-statistic-widget-demo.json", PortalVariable.DASHBOARD.key);
     redirectToNewDashBoard();
-    ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
+    ScreenshotUtils.resizeBrowser(new Dimension(1920, 1500));
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitStatisticChartLoaded();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "dashboard-statistic-widget-demo");

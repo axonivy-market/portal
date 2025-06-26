@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.axonivy.portal.selenium.common.LinkNavigator;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -1039,6 +1040,8 @@ public class NewDashboardPage extends TemplatePage {
     $("ul[id='user-setting-container']").shouldBe(appear, DEFAULT_TIMEOUT).$("a[id='user-profile']").shouldHave(Condition.text("My profile"), DEFAULT_TIMEOUT);
     $("a[id$='user-settings-menu']").shouldBe(appear).click();
     $("ul[id='user-setting-container']").shouldBe(Condition.disappear, DEFAULT_TIMEOUT);
+    // Wait for canvas completely loaded. 
+    Sleeper.sleep(2000);
   }
   
   public ClientStatisticWidgetNewDashboardPage selectClientStatisticChartWidget(String chartName) {
