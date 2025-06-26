@@ -222,7 +222,6 @@ public class DashboardTaskSearchCriteria {
 
     public TaskSortingQueryAppender appendSorting(DashboardTaskSearchCriteria criteria) {
       appendSortByNameIfSet(criteria);
-      appendSortByResponsibleIfSet(criteria);
       appendSortByIdIfSet(criteria);
       appendSortByCreatedDateIfSet(criteria);
       appendSortByCompletedDateIfSet(criteria);
@@ -239,13 +238,6 @@ public class DashboardTaskSearchCriteria {
     private void appendSortByNameIfSet(DashboardTaskSearchCriteria criteria) {
       if (DashboardStandardTaskColumn.NAME.getField().equalsIgnoreCase(criteria.getSortField())) {
         order = query.orderBy().name();
-        sortStandardColumn = true;
-      }
-    }
-    
-    private void appendSortByResponsibleIfSet(DashboardTaskSearchCriteria criteria) {
-      if (DashboardStandardTaskColumn.RESPONSIBLE.getField().equalsIgnoreCase(criteria.getSortField())) {
-        order = query.orderBy().activatorDisplayName();
         sortStandardColumn = true;
       }
     }
