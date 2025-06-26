@@ -11,6 +11,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.ClientStatisticWidgetNewDashboardPage;
@@ -52,9 +53,11 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(createCasesForCaseListCustomization);
     createJSonFile("dashboard-statistic-widget-demo.json", PortalVariable.DASHBOARD.key);
     redirectToNewDashBoard();
-    ScreenshotUtils.resizeBrowser(new Dimension(2048, 1500));
+    ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.waitStatisticChartLoaded();
+    // Wait for canvas completely loaded. 
+    Sleeper.sleep(3000);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "dashboard-statistic-widget-demo");
     ClientStatisticWidgetNewDashboardPage tasksByPriorWidget = newDashboardPage.selectClientStatisticChartWidget("Tasks By Priority");
     ClientStatisticWidgetNewDashboardPage topPriorWidget = newDashboardPage.selectClientStatisticChartWidget("Top Priority: 3 Days");
