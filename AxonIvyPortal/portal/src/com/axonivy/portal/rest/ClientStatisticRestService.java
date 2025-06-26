@@ -18,11 +18,13 @@ import com.axonivy.portal.service.ClientStatisticService;
 import ch.ivy.addon.portalkit.statistics.ClientStatisticResponse;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
 import ch.ivyteam.ivy.security.ISecurityConstants;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
+@Hidden
 @Path(value = "statistics")
 @RolesAllowed(value = { ISecurityConstants.TOP_LEVEL_ROLE_NAME })
 public class ClientStatisticRestService {
