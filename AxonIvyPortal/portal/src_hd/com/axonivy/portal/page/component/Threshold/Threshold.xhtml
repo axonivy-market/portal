@@ -46,7 +46,7 @@
          </h:panelGroup>
          
          <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
-          <p:inputText label="Threshold value" styleClass="threshold-input-value" required="true" value="#{threshold.value}">
+          <p:inputText label="Threshold value" styleClass="threshold-input-value" required="true" value="#{threshold.value}" placeholder="Enter your value">
             <p:ajax event="change" partialSubmit="true" global="false"/>
             <f:param name="skipValidator" value="true" />
             <f:attribute name="threshold" value="#{threshold}" />

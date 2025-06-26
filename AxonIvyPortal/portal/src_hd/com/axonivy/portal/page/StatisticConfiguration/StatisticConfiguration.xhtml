@@ -23,9 +23,8 @@
         <div>
           <p:messages id="errors-message" closable="true" />
         </div>
-        <div>
-          <div class="card p-4">
-            <div class="formgrid grid ">
+              <div class="flex" style="height: calc(100vh - 114px);">
+              <p:card style="width: 50%; height: 100%;">
               <h:panelGroup id="config-panel" layout="block" class="col-6 grid pr-6 m-0">
                 <div class="field col-12">
                   <h3 class="mb-0 text-4xl">#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/StatisticConfiguration')}</h3>
@@ -339,8 +338,9 @@
               <!-- Advanced settings end-->
 
               </h:panelGroup>
-
+</p:card>
               <p:divider layout="vertical" styleClass="m-0" />
+              <p:card style="width: 50%;">
               <div class="col-6 grid pl-6 m-0 statistic-configuration__preview">
                 <div class="col-12 flex grid-nogutter p-0">
                   <div class="col-6">
@@ -394,16 +394,16 @@
                   componentToUpdateOnModify="config-form:y-title" componentToUpdateOnCreate="config-form:y-title"
                   titleRequired="false" />
               </div>
-            </div>
-            <div class="col-12 text-right mt-3 p-0">
+                          <div class="col-12 text-right mt-3 p-0">
               <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 styleClass="u-mar-right-15" actionListener="#{statisticConfigurationBean.cancel}" immediate="true" />
               <p:commandButton id="create-statistic-chart"
                 value="#{ivy.cms.co(statisticConfigurationBean.editMode ? '/Labels/Save' : '/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
                 action="#{statisticConfigurationBean.save}" update="config-panel errors-message" />
             </div>
-          </div>
-        </div>
+                            </p:card>
+
+</div>
 
         <script type="text/javascript">
           function handlePreviewChart(xhr, status, args) {

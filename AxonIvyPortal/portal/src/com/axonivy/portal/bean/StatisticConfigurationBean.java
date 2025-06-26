@@ -149,6 +149,7 @@ public class StatisticConfigurationBean implements Serializable {
     initFilterFields();
     initFilters();
     initThresholds();
+    setDefaultBackgroundColor("#8dc261");
   }
 
   private void initMultilanguageServices() {
@@ -918,6 +919,7 @@ public class StatisticConfigurationBean implements Serializable {
     }
     
     Threshold newThreshold = new Threshold();
+    newThreshold.setBackgroundColor("#6299f7");
     thresholds.add(newThreshold);
   }
   
