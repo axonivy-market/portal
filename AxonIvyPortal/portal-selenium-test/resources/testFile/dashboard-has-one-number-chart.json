@@ -66,7 +66,7 @@
                 "type": "client-statistic",
                 "id": "client_statistic_3d9d80486efe4567acdcfe72c535a06d",
                 "layout": {
-                    "w": 3,
+                    "w": 6,
                     "h": 4,
                     "x": 0,
                     "y": 0
@@ -77,7 +77,7 @@
                 "type": "client-statistic",
                 "id": "client_statistic_c403f4ce676948bc98fca90d191c7157",
                 "layout": {
-                    "w": 6,
+                    "w": 3,
                     "h": 5,
                     "x": 6,
                     "y": 8
