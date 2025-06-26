@@ -1306,6 +1306,10 @@ body .ui-widget.new-widget-dialog__introduction {
   width: 450px;
   margin: auto;
 }
+.statistic-configuration-panel {
+  height: calc(100vh - 115px);
+  overflow: hidden;
+}
 
 .has-avatar .case-info-avatar {
   float: unset;

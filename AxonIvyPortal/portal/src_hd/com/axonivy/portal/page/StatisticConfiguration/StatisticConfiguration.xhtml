@@ -20,17 +20,17 @@
         oncomplete="handlePreviewChart(xhr, status, args)" autoRun="#{statisticConfigurationBean.editMode}" />
       <p:remoteCommand name="updateThresholdToggle" action="#{statisticConfigurationBean.resetConditionBasedColoring}" global="false"/>
       <h:form id="config-form">
-        <div>
-          <p:messages id="errors-message" closable="true" />
-        </div>
-              <div class="flex" style="height: calc(100vh - 114px);">
-              <p:card style="width: 50%; height: 100%;">
-              <h:panelGroup id="config-panel" layout="block" class="col-6 grid pr-6 m-0">
-                <div class="field col-12">
+            <div class="flex statistic-configuration-panel">
+            <p:card styleClass="w-6 h-full mr-2 border-round-lg overflow-y-scroll">
+            <div>
+              <p:messages id="errors-message" closable="true" />
+            </div>
+              <h:panelGroup id="config-panel" layout="block" class="col-6 grid pr-6 m-0 w-full">
+                <div class="col-12">
                   <h3 class="mb-0 text-4xl">#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/StatisticConfiguration')}</h3>
                 </div>
                 
-                <h:panelGroup id="task-status-banner" layout="block" styleClass="field col-12">
+                <h:panelGroup id="task-status-banner" layout="block">
                   <p:staticMessage detail="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/OutdatedChartMessage')}"
                     rendered="#{statisticConfigurationBean.isOutdatedChart(statisticConfigurationBean.statistic)}" 
                     severity="warn"
@@ -205,7 +205,7 @@
                 </h:panelGroup>
 
                 <!-- Advanced settings -->
-                <p:fieldset legend="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Advanced')}" toggleable="true" toggleSpeed="500" styleClass="w-full">
+                <p:fieldset legend="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Advanced')}" collapsed="true" toggleable="true" toggleSpeed="500" styleClass="w-full">
                 <!--  X TITLE -->
                 <h:panelGroup id="x-axis-title-container" layout="block" styleClass="col-6 p-0">
                   <h:panelGroup layout="block" styleClass="field col-12"
@@ -338,10 +338,10 @@
               <!-- Advanced settings end-->
 
               </h:panelGroup>
-</p:card>
-              <p:divider layout="vertical" styleClass="m-0" />
-              <p:card style="width: 50%;">
-              <div class="col-6 grid pl-6 m-0 statistic-configuration__preview">
+             </p:card>
+
+             <p:card styleClass="w-6 ml-2 border-round-lg">
+              <div class="col-6 grid pl-6 m-0 statistic-configuration__preview w-full">
                 <div class="col-12 flex grid-nogutter p-0">
                   <div class="col-6">
                     <h4 class="mb-0">#{ivy.cms.co('/Labels/Preview')}</h4>
@@ -359,8 +359,7 @@
                   <h:panelGroup id="stat-chart-widget__content" layout="block"
                     styleClass="statistic-chart-widget__content widget__content widget__content">
                     <h:panelGroup styleClass="statistic-chart-widget__chart" layout="block">
-                      <div
-                        class="ui-chart js-statistic-chart statistic-chart-widget__canvas preview-chart-box preview-statistic-chart"
+                      <div class="ui-chart js-statistic-chart statistic-chart-widget__canvas preview-chart-box preview-statistic-chart"
                         data-chart-id="preview-statistic-chart">
                         <div class="empty-message-container w-35rem">
                           <i class="si si-analytics-pie-2 empty-message-icon" />
@@ -394,16 +393,15 @@
                   componentToUpdateOnModify="config-form:y-title" componentToUpdateOnCreate="config-form:y-title"
                   titleRequired="false" />
               </div>
-                          <div class="col-12 text-right mt-3 p-0">
-              <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                styleClass="u-mar-right-15" actionListener="#{statisticConfigurationBean.cancel}" immediate="true" />
-              <p:commandButton id="create-statistic-chart"
-                value="#{ivy.cms.co(statisticConfigurationBean.editMode ? '/Labels/Save' : '/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
-                action="#{statisticConfigurationBean.save}" update="config-panel errors-message" />
-            </div>
-                            </p:card>
-
-</div>
+              <div class="col-12 text-right mt-3 p-0">
+                <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                  styleClass="u-mar-right-15" actionListener="#{statisticConfigurationBean.cancel}" immediate="true" />
+                <p:commandButton id="create-statistic-chart"
+                  value="#{ivy.cms.co(statisticConfigurationBean.editMode ? '/Labels/Save' : '/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
+                  action="#{statisticConfigurationBean.save}" update="config-panel errors-message" />
+              </div>
+           </p:card>
+          </div>
 
         <script type="text/javascript">
           function handlePreviewChart(xhr, status, args) {

@@ -1953,7 +1953,7 @@ body.dark .focused {
 /* ======================= PREVIEW STATISTIC CHART ==========================  **/
 
 .preview-chart-box {
-  height: 600px;
+  height: calc(100vh - 300px);
   position: inherit;
   margin-top: 20px;
   margin-left: auto;
