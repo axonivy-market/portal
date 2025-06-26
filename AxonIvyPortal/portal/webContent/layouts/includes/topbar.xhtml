@@ -56,6 +56,7 @@
         </li>
         <li class="topbar-item">
           <p:commandLink id="ai-assistant-link" rendered="#{chatRendererBean.isAssistantDashboardRendered}" styleClass="ai-assistant-link"
+               ariaLabel="#{ivy.cms.co('/Labels/AIAssisstant')}"
                actionListener="#{userMenuBean.navigateToChatBotOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}">
            <p:graphicImage styleClass="topbar-item-image topbar-icon"
              name="/images/AIAssistant/DefaultLogo"
@@ -64,7 +65,9 @@
           </p:commandLink>
         </li>
         <li jsf:rendered="#{chatRendererBean.isChatRendered}" class="topbar-item chat-item">
-          <p:commandLink id="toggle-chat-panel-command" global="false" styleClass="notification-badge mod-chat-menu">
+          <p:commandLink id="toggle-chat-panel-command" global="false"
+            ariaLabel="#{ivy.cms.co('/Labels/Chat')}"
+            styleClass="notification-badge mod-chat-menu">
             <i class="topbar-icon si si-messages-bubble" />
           </p:commandLink>
         </li>
@@ -75,13 +78,15 @@
           </a>
           <ul id="user-setting-container">
              <li class="ui-menu-items" ><p:commandLink id="user-profile" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}"
-               process="@this"
+               process="@this" 
+               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}"
                actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />
              </li>
 
             <li class="ui-menu-items" jsf:rendered="#{userMenuBean.showDashboardConfigurationMenu}">
               <p:commandLink id="dashboard-configuration"
-                process="@this"
+                process="@this" 
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/Title')}"
                 actionListener="#{userMenuBean.navigateToDashboardConfigurationOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"/>
             </li>
@@ -92,13 +97,17 @@
                 actionListener="#{userMenuBean.navigateToPortalManagementDisplayWorkingTaskWarning(isWorkingOnATask, task)}" />
             </li>
 
-            <li class="ui-menu-items" jsf:rendered="#{absenceManagementBean.ownAbsencesReadable}"><p:commandLink id="absence-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
+            <li class="ui-menu-items" jsf:rendered="#{absenceManagementBean.ownAbsencesReadable}">
+              <p:commandLink id="absence-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
                   process="@this"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
                   actionListener="#{userMenuBean.navigateToAbsencesOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"/>
             </li>
 
-            <li class="ui-menu-items" jsf:rendered="#{not userMenuBean.hiddenChangePassword}"><p:commandLink id="change-password-menu-item"
+            <li class="ui-menu-items" jsf:rendered="#{not userMenuBean.hiddenChangePassword}">
+              <p:commandLink id="change-password-menu-item"
                 process="@this"
+                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}"
                 oncomplete="PF('changePasswordDialog').show(); $('#user-setting-container').click()"
                 resetValues="true" update="change-password-form">
@@ -218,6 +227,7 @@
 
         <div class="u-dialog-footer-actions-group">
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="mobile-app-close-button" type="button"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
             icon="#{visibilityBean.generateButtonIcon('si si-remove')}" onclick="PF('mobile-app-dialog').hide();" />
         </div>
       </p:dialog>

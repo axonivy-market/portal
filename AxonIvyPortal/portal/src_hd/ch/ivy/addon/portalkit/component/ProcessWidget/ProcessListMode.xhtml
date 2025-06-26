@@ -12,7 +12,8 @@
           <h:panelGroup id="grid-process-category-content" styleClass="grid-process-category-content u-truncate-text" layout="block">#{processWidgetBean.getDisplayProcessCategory(process)}</h:panelGroup>
         </h:panelGroup>
       <p:commandLink id="process-item" actionListener="#{processWidgetBean.startProcess(process)}" styleClass="process-item"
-        target="#{processWidgetBean.targetToStartProcess(process)}" ajax="#{!isExternalLink}">
+                     ariaLabel="#{process.name}"
+                     target="#{processWidgetBean.targetToStartProcess(process)}" ajax="#{!isExternalLink}">
 
         <div class="process-start-list-item-name #{isExternalLink ? 'is-external-link' : ''}">
           <h:outputText id="process-name" value="#{process.name}"
@@ -28,6 +29,7 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/externalLink')}" position="top" trackMouse="true"
               hideEvent="mouseleave click" styleClass="process-tooltip"/>
             <p:commandLink id="delete-external-link" styleClass="si si-bin-1 process-item"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExternalLinkTooltip')}"
               actionListener="#{processWidgetBean.setDeletedProcess(process)}" oncomplete="PF('remove-process-workflow-dialog').show();"
               update="#{cc.clientId}:remove-process-workflow-dialog" rendered="#{process.getProcess().ableToEdit}" />
             <p:tooltip id="delete-external-link-tooltip" for="delete-external-link" position="top" trackMouse="true" hideEvent="mouseleave click"
