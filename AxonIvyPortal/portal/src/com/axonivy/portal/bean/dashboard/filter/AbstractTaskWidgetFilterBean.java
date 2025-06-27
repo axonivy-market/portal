@@ -3,8 +3,10 @@ package com.axonivy.portal.bean.dashboard.filter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -22,6 +24,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
@@ -32,10 +35,12 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
 
   protected TaskDashboardWidget widget;
   protected List<FilterField> filterFields;
+  protected Map<String, TaskColumnModel> mapHeaders;
 
   public void preRender(TaskDashboardWidget widget) {
     this.widget = widget;
     this.widget.setInConfiguration(true);
+    this.mapHeaders = widget.getColumns().stream().collect(Collectors.toMap(TaskColumnModel::getField, Function.identity()));
     initFilterFields();
     initFilters();
   }
@@ -44,12 +49,22 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
     this.filterFields = new ArrayList<>();
     this.filterFields.add(TaskFilterFieldFactory.getDefaultFilterField());
     this.filterFields
-        .addAll(TaskFilterFieldFactory.getStandardFilterableFields());
+        .addAll(TaskFilterFieldFactory.getStandardFilterableFields(this.widget.getId()));
 
+    updateFilterLabels();
     // Add custom fields which are selected by user.
     this.widget.getFilterableColumns().stream().filter(column -> column.getType() != DashboardColumnType.STANDARD)
-        .map(column -> TaskFilterFieldFactory.findBy(column.getField(), column.getType())).filter(Objects::nonNull)
+        .map(column -> TaskFilterFieldFactory.findBy(this.widget.getId(), column.getField(), column.getType())).filter(Objects::nonNull)
         .forEach(this.filterFields::add);
+  }
+  
+  private void updateFilterLabels() {
+    for (FilterField filter : filterFields) {
+      TaskColumnModel taskColumnModel = this.mapHeaders.get(filter.getName());
+      if (taskColumnModel != null) {
+        filter.setLabel(taskColumnModel.getHeaderText());
+      }
+    }
   }
 
   private void initFilters() {
@@ -59,11 +74,15 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
 
     // If the filter available in the filter list, initialize it
     for (DashboardFilter filter : this.widget.getFilters()) {
-      if (isFilterAvaliable(filter)) {
+      if (isFilterAvailable(filter)) {
         FilterField filterField = TaskFilterFieldFactory
-            .findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""),
+            .findBy(this.widget.getId(), Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""),
                 Optional.ofNullable(filter).map(DashboardFilter::getFilterType).orElse(null));
         if (filterField != null) {
+          TaskColumnModel taskColumnModel = this.mapHeaders.get(filterField.getName());
+          if (taskColumnModel != null) {
+            filter.setLabel(taskColumnModel.getHeaderText());
+          }
           filterField.initFilter(filter);
         }
       }
@@ -75,7 +94,7 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
    * 
    * @param filter
    */
-  private boolean isFilterAvaliable(DashboardFilter filter) {
+  private boolean isFilterAvailable(DashboardFilter filter) {
     return Optional.ofNullable(filter).map(DashboardFilter::getField).isPresent() && filterFields.stream()
         .filter(field -> filter.getField().contentEquals(filter.getField())).findFirst().isPresent();
   }
@@ -88,14 +107,15 @@ public abstract class AbstractTaskWidgetFilterBean implements Serializable {
     String field = Optional.ofNullable(filter).map(DashboardFilter::getFilterField).map(FilterField::getName)
         .orElse(StringUtils.EMPTY);
 
-    FilterField filterField = TaskFilterFieldFactory.findBy(field);
+    FilterField filterField = TaskFilterFieldFactory.findBy(this.widget.getId(), field);
 
     if (filterField.getName()
         .contentEquals(FilterFieldFactory.DEFAULT_FILTER_FIELD)) {
       filterField.addNewFilter(filter);
       return;
     }
-
+    
+    filter.setLabel(filterField.getLabel());
     filter.getFilterField().addNewFilter(filter);
     initCustomFieldNumberPattern(filter, field, filter.getFilterField());
   }

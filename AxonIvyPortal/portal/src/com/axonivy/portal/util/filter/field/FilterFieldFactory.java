@@ -27,20 +27,36 @@ public class FilterFieldFactory {
 
   private static final Map<String, FilterField> STANDARD_FILTER_FIELD = new HashMap<>();
   private static final Map<String, CustomFilterField> CUSTOM_FILTER_FIELD = new HashMap<>();
+  private static final Map<String, Map<String, FilterField>> WIDGET_FILTER_FIELD = new HashMap<>();
   public static final String DEFAULT_FILTER_FIELD = "default";
 
   static {
-    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.ID.getField(), new CaseFilterFieldId());
-    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.NAME.getField(), new CaseFilterFieldName());
-    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.DESCRIPTION.getField(), new CaseFilterFieldDescription());
-    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.CREATED.getField(), new CaseFilterFieldCreatedDate());
-    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.FINISHED.getField(), new CaseFilterFieldFinishedDate());
-    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.CREATOR.getField(), new CaseFilterFieldCreator());
-    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.CATEGORY.getField(), new CaseFilterFieldCategory());
-    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.STATE.getField(), new CaseFilterFieldState());
-    STANDARD_FILTER_FIELD.put(DashboardStandardCaseColumn.APPLICATION.getField(), new CaseFilterFieldApplication());
+    STANDARD_FILTER_FIELD.putAll(initMapFilterField());
   }
 
+  public static Map<String, FilterField> initMapFilterField() {
+    Map<String, FilterField> standarFieldMap = new HashMap<>();
+    standarFieldMap.put(DashboardStandardCaseColumn.ID.getField(), new CaseFilterFieldId());
+    standarFieldMap.put(DashboardStandardCaseColumn.NAME.getField(), new CaseFilterFieldName());
+    standarFieldMap.put(DashboardStandardCaseColumn.DESCRIPTION.getField(), new CaseFilterFieldDescription());
+    standarFieldMap.put(DashboardStandardCaseColumn.CREATED.getField(), new CaseFilterFieldCreatedDate());
+    standarFieldMap.put(DashboardStandardCaseColumn.FINISHED.getField(), new CaseFilterFieldFinishedDate());
+    standarFieldMap.put(DashboardStandardCaseColumn.CREATOR.getField(), new CaseFilterFieldCreator());
+    standarFieldMap.put(DashboardStandardCaseColumn.CATEGORY.getField(), new CaseFilterFieldCategory());
+    standarFieldMap.put(DashboardStandardCaseColumn.STATE.getField(), new CaseFilterFieldState());
+    standarFieldMap.put(DashboardStandardCaseColumn.APPLICATION.getField(), new CaseFilterFieldApplication());
+    return standarFieldMap;
+  }
+
+  public static FilterField findBy(String widgetId,String field) {
+    FilterField result = getStandardFilterField(widgetId).get(field);
+    if (result == null) {
+      result = findCustomFieldBy(field);
+    }
+    return DEFAULT_FILTER_FIELD.contentEquals(field) ? new FilterFieldDefault() : result;
+  }
+  
+  @Deprecated
   public static FilterField findBy(String field) {
     FilterField result = STANDARD_FILTER_FIELD.get(field);
     if (result == null) {
@@ -57,8 +73,18 @@ public class FilterFieldFactory {
       .findFirst().orElse(null);
   }
 
-  public static List<FilterField> getStandardFilterableFields() {
-    return new ArrayList<FilterField>(STANDARD_FILTER_FIELD.values());
+  public static List<FilterField> getStandardFilterableFields(String widgetId) {
+    var filterFields = getStandardFilterField(widgetId);
+    return new ArrayList<FilterField>(filterFields.values());
+  }
+
+  public static Map<String, FilterField> getStandardFilterField(String widgetId) {
+    var filterFields = WIDGET_FILTER_FIELD.get(widgetId);
+    if (filterFields == null) {
+      filterFields = initMapFilterField();
+      WIDGET_FILTER_FIELD.put(widgetId, filterFields);
+    }
+    return filterFields;    
   }
 
   public static List<FilterField> getCustomFilterableFields() {

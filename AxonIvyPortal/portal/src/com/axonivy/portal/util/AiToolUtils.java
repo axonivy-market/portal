@@ -103,7 +103,7 @@ public class AiToolUtils {
       filter.setFilterType(DashboardColumnType.STANDARD);
 
       FilterField field = TaskFilterFieldFactory
-          .findBy(DashboardStandardTaskColumn.RESPONSIBLE.getField());
+           .findBy(result.getId(), DashboardStandardTaskColumn.RESPONSIBLE.getField());
       filter.setFilterField(field);
       field.addNewFilter(filter);
       filter.setValues(Arrays.asList(Ivy.session().getSessionUserName()));
@@ -121,7 +121,7 @@ public class AiToolUtils {
     filter.setFilterType(DashboardColumnType.STANDARD);
 
     FilterField field = TaskFilterFieldFactory
-        .findBy(DashboardStandardTaskColumn.NAME.getField());
+        .findBy(DEFAULT_AI_WIDGET_ID, DashboardStandardTaskColumn.NAME.getField());
     filter.setFilterField(field);
     field.addNewFilter(filter);
     filter.setValues(Arrays.asList(name));
@@ -134,7 +134,7 @@ public class AiToolUtils {
     filter.setFilterType(DashboardColumnType.STANDARD);
 
     FilterField field = TaskFilterFieldFactory
-        .findBy(DashboardStandardTaskColumn.DESCRIPTION.getField());
+        .findBy(DEFAULT_AI_WIDGET_ID, DashboardStandardTaskColumn.DESCRIPTION.getField());
     filter.setFilterField(field);
     field.addNewFilter(filter);
     filter.setValues(Arrays.asList(description));
@@ -154,7 +154,7 @@ public class AiToolUtils {
     filter.setFilterType(DashboardColumnType.STANDARD);
 
     FilterField field = TaskFilterFieldFactory
-        .findBy(DashboardStandardTaskColumn.PRIORITY.getField());
+        .findBy(DEFAULT_AI_WIDGET_ID, DashboardStandardTaskColumn.PRIORITY.getField());
     filter.setFilterField(field);
     field.addNewFilter(filter);
     filter.setValues(new ArrayList<>());
@@ -182,7 +182,7 @@ public class AiToolUtils {
     filter.setFilterType(DashboardColumnType.STANDARD);
 
     FilterField field = TaskFilterFieldFactory
-        .findBy(DashboardStandardTaskColumn.STATE.getField());
+        .findBy(DEFAULT_AI_WIDGET_ID, DashboardStandardTaskColumn.STATE.getField());
     filter.setFilterField(field);
     field.addNewFilter(filter);
     filter.setValues(new ArrayList<>());
@@ -215,7 +215,7 @@ public class AiToolUtils {
     filter.setFilterType(DashboardColumnType.STANDARD);
 
     FilterField field = TaskFilterFieldFactory
-        .findBy(DashboardStandardTaskColumn.EXPIRY.getField());
+        .findBy(DEFAULT_AI_WIDGET_ID, DashboardStandardTaskColumn.EXPIRY.getField());
     filter.setFilterField(field);
     field.addNewFilter(filter);
 
@@ -306,7 +306,7 @@ public class AiToolUtils {
     filter.setFilterType(DashboardColumnType.STANDARD);
 
     FilterField field = FilterFieldFactory
-        .findBy(DashboardStandardCaseColumn.NAME.getField());
+        .findBy(DEFAULT_AI_WIDGET_ID, DashboardStandardCaseColumn.NAME.getField());
     filter.setFilterField(field);
     field.addNewFilter(filter);
     filter.setValues(Arrays.asList(name));
@@ -319,7 +319,7 @@ public class AiToolUtils {
     filter.setFilterType(DashboardColumnType.STANDARD);
 
     FilterField field = FilterFieldFactory
-        .findBy(DashboardStandardCaseColumn.DESCRIPTION.getField());
+        .findBy(DEFAULT_AI_WIDGET_ID, DashboardStandardCaseColumn.DESCRIPTION.getField());
     filter.setFilterField(field);
     field.addNewFilter(filter);
     filter.setValues(Arrays.asList(description));
@@ -339,7 +339,7 @@ public class AiToolUtils {
     filter.setFilterType(DashboardColumnType.STANDARD);
 
     FilterField field = FilterFieldFactory
-        .findBy(DashboardStandardCaseColumn.STATE.getField());
+        .findBy(DEFAULT_AI_WIDGET_ID, DashboardStandardCaseColumn.STATE.getField());
     filter.setFilterField(field);
     field.addNewFilter(filter);
     filter.setValues(new ArrayList<>());

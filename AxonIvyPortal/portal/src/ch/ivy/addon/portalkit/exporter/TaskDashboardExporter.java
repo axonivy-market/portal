@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -25,8 +27,8 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
    * @param widgetName
    *
    */
-  public TaskDashboardExporter(List<String> visibleColumns, String widgetName) {
-    super(visibleColumns, widgetName, "/ch.ivy.addon.portalkit.ui.jsf/dashboard/export/exportedTasksFileName");
+  public TaskDashboardExporter(List<String> visibleColumns, List<ColumnModel> columnModels, String widgetName) {
+    super(visibleColumns, columnModels, widgetName, "/ch.ivy.addon.portalkit.ui.jsf/dashboard/export/exportedTasksFileName");
   }
 
   @Override
@@ -36,6 +38,11 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
       return getCustomColumnName(column);
     }
 
+    TaskColumnModel taskColumnModel = (TaskColumnModel) getMapHeaders().get(column);
+    if (taskColumnModel != null) {
+      return taskColumnModel.getHeaderText();
+    }
+    
     String url = switch (columnField) {
       case NAME -> "/ch.ivy.addon.portalkit.ui.jsf/common/taskName";
       case DESCRIPTION -> "/ch.ivy.addon.portalkit.ui.jsf/common/description";
