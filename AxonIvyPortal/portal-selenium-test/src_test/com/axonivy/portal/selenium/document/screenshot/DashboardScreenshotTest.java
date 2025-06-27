@@ -19,6 +19,7 @@ import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
@@ -352,6 +353,8 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     NewDashboardDetailsEditPage newDashboard = new NewDashboardDetailsEditPage();
     newDashboard.waitPageLoaded();
 
+    // Wait for canvas completely loaded. 
+    Sleeper.sleep(3000);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-statistic-widget");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-widget-configuration");
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
