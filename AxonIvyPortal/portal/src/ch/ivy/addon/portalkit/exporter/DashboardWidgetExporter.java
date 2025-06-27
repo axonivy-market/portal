@@ -25,12 +25,6 @@ public abstract class DashboardWidgetExporter extends Exporter {
   private Map<String, ColumnModel> mapHeaders;
 
   public DashboardWidgetExporter() {}
-
-  public DashboardWidgetExporter(List<String> columnsVisibility, String widgetName, String fileNameCms) {
-    this.setColumnsVisibility(columnsVisibility);
-    this.setWidgetName(widgetName);
-    this.setFileNameCms(fileNameCms);
-  }
   
   public DashboardWidgetExporter(List<String> columnsVisibility, List<ColumnModel> columnModels, String widgetName, String fileNameCms) {
     this.setColumnsVisibility(columnsVisibility);

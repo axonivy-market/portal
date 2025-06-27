@@ -68,7 +68,4 @@ public class TaskFilterFieldState extends FilterField {
     };
   }
 
-  public void setLabel(String label) {
-    this.label = label;
-  }
 }
