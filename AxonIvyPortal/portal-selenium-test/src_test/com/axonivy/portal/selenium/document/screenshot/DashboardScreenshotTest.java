@@ -354,13 +354,13 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     newDashboard.waitPageLoaded();
 
     // Wait for canvas completely loaded. 
-    Sleeper.sleep(3000);
+    Sleeper.sleep(5000);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-statistic-widget");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-widget-configuration");
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     homePage = new NewDashboardPage();
-    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetClientStatisticChart(0),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-chart-widget");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.waitAndGetClientStatisticChart(0),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-chart-widget", new ScreenshotMargin(5));
   }
 
   @Test
