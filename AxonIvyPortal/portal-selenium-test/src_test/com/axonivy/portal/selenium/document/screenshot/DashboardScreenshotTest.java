@@ -24,6 +24,7 @@ import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.ClientStatisticWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.page.CustomWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
@@ -359,7 +360,8 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-widget-configuration");
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     homePage = new NewDashboardPage();
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(homePage.waitAndGetClientStatisticChart(0),
+    ClientStatisticWidgetNewDashboardPage tasksByPriorityWidget = homePage.selectClientStatisticChartWidget("Tasks By Priority");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorityWidget.getWidget(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-chart-widget", new ScreenshotMargin(10));
   }
 
