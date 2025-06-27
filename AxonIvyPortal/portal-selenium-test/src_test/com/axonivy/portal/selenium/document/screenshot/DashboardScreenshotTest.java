@@ -347,7 +347,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotTaskByPriorityClientStatisticChartWidget() throws IOException {
-    ScreenshotUtils.maximizeBrowser();
+	ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
 
     addPublicStatisticWidget(NewDashboardDetailsEditPage.TASK_BY_PRIORITY);
     NewDashboardDetailsEditPage newDashboard = new NewDashboardDetailsEditPage();
