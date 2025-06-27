@@ -361,8 +361,8 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     homePage = new NewDashboardPage();
     ClientStatisticWidgetNewDashboardPage tasksByPriorityWidget = homePage.selectClientStatisticChartWidget("Tasks By Priority");
-    ScreenshotUtils.captureElementWithMarginOptionScreenshot(tasksByPriorityWidget.getWidget(),
-        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-chart-widget", new ScreenshotMargin(10));
+    ScreenshotUtils.captureElementScreenshot(tasksByPriorityWidget.getWidget(),
+        ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-chart-widget");
   }
 
   @Test
