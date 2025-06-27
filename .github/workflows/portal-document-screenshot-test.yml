@@ -29,7 +29,7 @@ on:
 
 env:
   ENGINE_DIR: $GITHUB_WORKSPACE/ivy/engine/nightly
-  ENGINE_URL: https://developer.axonivy.com/permalink/nightly-13.1/axonivy-engine.zip
+  ENGINE_URL: ${{ inputs.engineDownloadURL }}
   
 jobs:
   portal-document-screenshot:
