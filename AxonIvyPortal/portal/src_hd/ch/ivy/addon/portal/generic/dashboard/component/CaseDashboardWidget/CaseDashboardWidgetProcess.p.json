@@ -169,7 +169,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.exporter.CaseDashboardExporter;",
             "",
-            "CaseDashboardExporter exporter = new CaseDashboardExporter(in.columnsVisibility, in.widget.name);",
+            "CaseDashboardExporter exporter = new CaseDashboardExporter(in.columnsVisibility, in.widget.columns, in.widget.name);",
             "in.exportedFile = exporter.getStreamedContent(in.collectedCasesForExporting);"
           ]
         }

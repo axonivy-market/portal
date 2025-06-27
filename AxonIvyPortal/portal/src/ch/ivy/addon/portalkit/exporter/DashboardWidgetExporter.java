@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivyteam.ivy.environment.Ivy;
 
 /**
@@ -18,15 +22,16 @@ public abstract class DashboardWidgetExporter extends Exporter {
 
   private String widgetName;
   private String fileNameCms;
+  private Map<String, ColumnModel> mapHeaders;
 
   public DashboardWidgetExporter() {}
 
-  public DashboardWidgetExporter(List<String> columnsVisibility, String widgetName, String fileNameCms) {
+  public DashboardWidgetExporter(List<String> columnsVisibility, List<ColumnModel> columnModels, String widgetName, String fileNameCms) {
     this.setColumnsVisibility(columnsVisibility);
     this.setWidgetName(widgetName);
     this.setFileNameCms(fileNameCms);
+    this.setMapHeaders(columnModels.stream().collect(Collectors.toMap(ColumnModel::getField, Function.identity())));
   }
-
   /**
    * Gets column value.
    * @param <T>
@@ -80,6 +85,14 @@ public abstract class DashboardWidgetExporter extends Exporter {
 
   protected void setFileNameCms(String fileNameCms) {
     this.fileNameCms = fileNameCms;
+  }
+
+  public Map<String, ColumnModel> getMapHeaders() {
+    return mapHeaders;
+  }
+
+  public void setMapHeaders(Map<String, ColumnModel> mapHeaders) {
+    this.mapHeaders = mapHeaders;
   }
 
 }
