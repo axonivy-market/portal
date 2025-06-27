@@ -891,7 +891,7 @@ public class NewDashboardPage extends TemplatePage {
   public void startTask(int index) {
     String cssSelector =
         String.format("a[id$=':task-component:dashboard-tasks:%d:dashboard-tasks-columns:0:start-task']", index);
-    $(cssSelector).shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $(cssSelector).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
   }
 
   public void waitForTaskStartButtonDisplay(int index) {
