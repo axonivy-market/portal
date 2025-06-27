@@ -513,6 +513,8 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     caseWidget.openFilterWidget();
     homePage.clickOnManageFilterLink();
     homePage.waitForPageLoad();
+    // Wait for canvas completely loaded. 
+    Sleeper.sleep(2000);
     ScreenshotUtils.captureElementScreenshot(homePage.getManageFilterDialog(),
     ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-filter-management"); //#delete-saved-filter-form\:quick-filter-table > div.ui-datatable-scrollable-body
   }
