@@ -2,6 +2,8 @@ package com.axonivy.portal.util.filter.field.caze;
 
 import java.util.ArrayList;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.dashboard.filter.FilterOperator;
 import com.axonivy.portal.util.filter.field.FilterField;
@@ -22,7 +24,10 @@ public class CaseFilterFieldCreator extends FilterField {
 
   @Override
   public String getLabel() {
-    return DashboardStandardCaseColumn.CREATOR.getLabel();
+    if (StringUtils.isBlank(this.label)) {
+      return DashboardStandardCaseColumn.CREATOR.getLabel();
+    }
+    return this.label;
   }
 
   @Override
@@ -30,7 +35,9 @@ public class CaseFilterFieldCreator extends FilterField {
     filter.setFilterField(this);
     filter.setFilterType(DashboardColumnType.STANDARD);
     filter.setField(getName());
-
+    if (this.label == null) {
+      setLabel(filter.getLabel());
+    }
   }
 
   @Override

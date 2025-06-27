@@ -10,6 +10,15 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 public abstract class FilterField {
 
   protected String name;
+  protected String label;
+  
+  public String getLabel() {
+    return label;
+  }
+
+  public void setLabel(String label) {
+    this.label = label;
+  }
 
   public FilterField() {
     super();
@@ -22,8 +31,6 @@ public abstract class FilterField {
   public String getName() {
     return name;
   }
-
-  public abstract String getLabel();
 
   public abstract void initFilter(DashboardFilter filter);
 
