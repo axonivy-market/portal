@@ -93,6 +93,7 @@
           <p:commandButton id="assign-task-command"
             disabled="#{data.isDisabledAssignButton}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskActivator/assign')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskActivator/assign')}"
             icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-right')}"
             actionListener="#{logic.assignTask}"
             process="task-escalation-activator-form"

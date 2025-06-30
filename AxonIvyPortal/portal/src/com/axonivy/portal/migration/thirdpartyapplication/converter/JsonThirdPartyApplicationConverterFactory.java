@@ -1,0 +1,28 @@
+package com.axonivy.portal.migration.thirdpartyapplication.converter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.axonivy.portal.bo.jsonversion.AbstractJsonVersion;
+import com.axonivy.portal.migration.common.AbstractJsonConverterFactory;
+import com.axonivy.portal.migration.common.IJsonConverter;
+
+public class JsonThirdPartyApplicationConverterFactory extends AbstractJsonConverterFactory {
+
+  private static final List<IJsonConverter> CONVERTERS = new ArrayList<>();
+
+  public static List<IJsonConverter> getConverters(AbstractJsonVersion version) {
+    return selectConverters(CONVERTERS, version);
+  }  private static final List<IJsonConverter> LE120 =
+      List.of(new com.axonivy.portal.migration.thirdpartyapplication.converter.v120.ThirdPartyApplicationConverter()
+    );
+
+  private static final List<IJsonConverter> LE132 =
+      List.of(new com.axonivy.portal.migration.thirdpartyapplication.converter.v132.ThirdPartyApplicationConverter()
+    );
+
+  static {
+    CONVERTERS.addAll(LE120);
+    CONVERTERS.addAll(LE132);
+  }
+}

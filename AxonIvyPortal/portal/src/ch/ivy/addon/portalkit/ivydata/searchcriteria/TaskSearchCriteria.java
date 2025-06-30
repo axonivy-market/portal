@@ -190,7 +190,6 @@ public class TaskSearchCriteria {
     public TaskSortingQueryAppender appendSorting(TaskSearchCriteria criteria) {
       appendSortByPriorityIfSet(criteria);
       appendSortByNameIfSet(criteria);
-      appendSortByActivatorIfSet(criteria);
       appendSortByIdIfSet(criteria);
       appendSortByCreationDateIfSet(criteria);
       appendSortByExpiryDateIfSet(criteria);
@@ -216,16 +215,6 @@ public class TaskSearchCriteria {
           query.orderBy().name().descending();
         } else {
           query.orderBy().name();
-        }
-      }
-    }
-
-    private void appendSortByActivatorIfSet(TaskSearchCriteria criteria) {
-      if (TaskSortField.ACTIVATOR.toString().equalsIgnoreCase(criteria.getSortField())) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().activatorDisplayName().descending();
-        } else {
-          query.orderBy().activatorDisplayName();
         }
       }
     }
