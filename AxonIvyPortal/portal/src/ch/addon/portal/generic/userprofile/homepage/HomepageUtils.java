@@ -22,12 +22,14 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.ApplicationUitls;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class HomepageUtils {
 
   public static final String HOMEPAGE_ID_PATTERN = "%s_%s";
+  private static final String USER_GUIDE_HOMEPAGE_NAME = "MAIN_DASHBOARD_default-user-guide-dashboard";
 
   public static List<Homepage> loadHomepages() {
     List<Homepage> homepages = new ArrayList<>();
@@ -129,7 +131,11 @@ public class HomepageUtils {
   public static String getHomepageName() {
     String homepageName = getHomepageId();
     if (StringUtils.isBlank(homepageName)) {
-      homepageName = findHomepageSetting();
+      if (!ApplicationUitls.doesPortalUserExampleExist()) {
+        homepageName = findHomepageSetting();
+      } else {
+        homepageName = USER_GUIDE_HOMEPAGE_NAME;
+      }
     }
     return homepageName;
   }

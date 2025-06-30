@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.io.IOException;
-
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -185,6 +184,9 @@ public class DashboardUtils {
   public static List<Dashboard> collectMainDashboards() {
     List<Dashboard> collectedDashboards =
         new ArrayList<>(getPublicDashboards().stream().filter(dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getDashboardDisplayType())).toList());
+    if (ApplicationUitls.doesPortalUserExampleExist()) {
+      collectedDashboards.add(DefaultDashboardUtils.getDefaultUserExampleDashboard());
+    }
     return collectedDashboards;
   }
 

@@ -1,7 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_DASHBOARD_ID;
-
 import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_SUB_DASHBOARD_ID;
 
 import java.io.IOException;
@@ -54,6 +53,7 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.DefaultDashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -158,7 +158,9 @@ public class DashboardBean implements Serializable {
   }
 
   protected List<Dashboard> collectDashboards() {
-    return DashboardUtils.collectDashboards();
+    List<Dashboard> dashboards = DashboardUtils.collectDashboards();
+    dashboards.add(DefaultDashboardUtils.getDefaultUserExampleDashboard());
+    return dashboards;
   }
 
   public void loadDashboardTemplate() {
