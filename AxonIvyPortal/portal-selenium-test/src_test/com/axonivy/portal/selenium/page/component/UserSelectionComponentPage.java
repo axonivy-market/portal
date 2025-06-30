@@ -3,7 +3,6 @@ package com.axonivy.portal.selenium.page.component;
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Selenide.$;
 
-import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.page.TemplatePage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -25,7 +24,6 @@ public class UserSelectionComponentPage extends TemplatePage {
   }
 
   public SelenideElement getAjaxEventUserSelectionComponent() {
-    Sleeper.sleep(2000);
     return $("[id='item-select-with-ajax-event-component']");
   }
 
