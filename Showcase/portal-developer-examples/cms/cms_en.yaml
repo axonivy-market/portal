@@ -124,7 +124,57 @@ Dialogs:
                   IsRequired: This field is mandatory
                   Representation: Representation
                   To: To
+  com:
+    axonivy:
+      portal:
+        developerexamples:
+          customization:
+            sidestep:
+              LeaveRequestApproval:
+                Approve: Approve
+                EmployeeNote: Employee Note
+                Reject: Reject
+              LeaveRequestBusinessDetailsPage:
+                LeaveRequest: Leave Request Business Details
+                SideStepComment: Side step comment 1
+                SideStepComment1: Side step comment 2
+                SideStepComment2: Side step comment 3
+              LeaveRequestSummary:
+                Finish: Finish
+              SideStepExample3:
+                SideStepExample: Side Step Example
+              SideStepResultExample:
+                Answer: Answer
+                Assignee: Assignee
+                Comment: Comment
+                Question: Question
+Enums:
+  LeaveType:
+    ANNUAL_LEAVE: Annual Leave
+    MATERNITY_LEAVE: Maternity Leave
+    SICK_LEAVE: Sick Leave
 Labels:
+  Close: Close
+  LeaveRequest:
+    LeaveSteps:
+      RequesterSideStepComment: Requester side step comment
+      SideStepComment: Side step comment
+      approval: Approval
+      approvalResult: Approval Result
+      creation: Create leave request
+    approvalResultTaskIntro: Below is summary of your leave request and feedback from approver.
+    approvalTaskIntro: 'There is leave request need your approval, detail is below:'
+    approver: Approver
+    approverComment: Approver comment
+    from: From
+    leaveType: Leave type
+    requester: Requester
+    requesterComment: Requester comment
+    stepTypeParallelTitle: This is customized parallel title
+    stepTypeSwitchTitle: This is customized switch title
+    submitLeaveRequest: Submit leave request
+    to: To
+  OK: OK
   changePasswordWSError: An error occurred while changing your password. Please contact your administrator if this problem persists.
   forgotPasswordError: An error occurred while processing your request. Please try again later.
   passwordResetEmailCantSend: Exception while sending email to you. Please try again later.
@@ -163,6 +213,14 @@ Processes:
       #Summary
       Requester will get a summary of the request
       Acknoledge the result
+  LeaveRequest:
+    LeaveRequest: Leave Request
+    LeaveRequestWithSideSteps: Leave request with side step processes
+    approvalTask: Your leave request is approved
+    approvalTaskName: Approval for leave request of {0}
+    createLeaveRequest: 'Create leave request for: {0}'
+    createNewLeaveRequest: 'System task: Start create new leave request'
+    rejectedTask: Your leave request is rejected
   MoreInformation:
     customProcessInfo: |-
       <h3><span class="mw-headline" id="Hello_world_example">Hello world example</span></h3>

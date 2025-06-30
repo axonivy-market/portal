@@ -1,0 +1,627 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "182E92730FF57036",
+  "config" : {
+    "data" : "com.axonivy.portal.developerexamples.LeaveRequestWithSideStepData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "RequestStart",
+      "name" : "Leave request with side step processes",
+      "config" : {
+        "signature" : "start",
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/LeaveRequestWithSideSteps\")%>",
+          "description" : [
+            "This process allow employee to submit their leave request with additional manager notes feature.",
+            "After approver reviews the request, they can add additional information through a side step before final approval."
+          ],
+          "customFields" : [
+            { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" }
+          ]
+        },
+        "permission" : {
+          "anonymous" : false,
+          "error" : ">> Ignore Exception"
+        },
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createNewLeaveRequest\")%>"
+        },
+        "case" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/LeaveRequest\")%>",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 24, "y" : 192 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f75" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "UserTask",
+      "name" : "LeaveRequestCreation",
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.customization.sidestep.LeaveRequestCreation:start()",
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createLeaveRequest\", [ivy.session.getSessionUser().getDisplayName()])%>",
+          "skipTasklist" : true,
+          "code" : [
+            "import com.axonivy.portal.developerexamples.enums.CustomSignature;",
+            "import java.util.Collections;",
+            "import com.axonivy.portal.components.ivydata.dto.IvySecurityResultDTO;",
+            "import com.axonivy.portal.components.ivydata.service.impl.SecurityService;",
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
+            "import java.util.Map;",
+            "import java.util.HashMap;",
+            "import com.axonivy.portal.components.dto.SideStepDTO;",
+            "import com.axonivy.portal.components.dto.SideStepProcessDTO;",
+            "import com.axonivy.portal.components.constant.CustomFields;",
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import com.axonivy.portal.components.dto.UserDTO;",
+            "import com.axonivy.portal.developerexamples.LeaveRequest;",
+            "",
+            "ICase caze = ivy.case;",
+            "",
+            "Map params1 = new HashMap();",
+            "params1.put(\"caseUuid\", caze.uuid());",
+            "params1.put(\"stepId\", \"1\");",
+            "params1.put(\"taskUuid\", task.uuid());",
+            "",
+            "SideStepProcessDTO dto1 = SideStepProcessDTO.builder()",
+            "  .taskUuid(task.uuid())",
+            "  .processName(\"Side step 1: Add comment (custom users)\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep1:created\")",
+            "  .securityMembersCallable(CustomSignature.GET_SECURITY_MEMBERS_SIDE_STEPS.getSignature())",
+            "  .params(params1)",
+            "  .build();",
+            "",
+            "",
+            "Map params2 = new HashMap();",
+            "params2.put(\"stepId\", \"2\");",
+            "params2.put(\"taskUuid\", task.uuid());",
+            "params2.put(\"caseUuid\", caze.uuid());",
+            "",
+            "SideStepProcessDTO dto2 = SideStepProcessDTO.builder()",
+            "  .taskUuid(task.uuid())",
+            "  .processName(\"Side step 2: Add comment\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep2:created\")",
+            "  .params(params2)",
+            "  .build();",
+            "",
+            "Map params3 = new HashMap();",
+            "params3.put(\"caseUuid\", caze.uuid());",
+            "params3.put(\"stepId\", \"3\");",
+            "params3.put(\"taskUuid\", task.uuid());",
+            "",
+            "SideStepProcessDTO dto3 = SideStepProcessDTO.builder()",
+            "  .taskUuid(task.uuid())",
+            "  .processName(\"Side step 3: Add comment\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep3:created\")",
+            "  .params(params3)",
+            "  .build();",
+            "",
+            "// define side step dto",
+            "List processes = new List();",
+            "processes.add(dto1);",
+            "processes.add(dto2);",
+            "processes.add(dto3);",
+            "",
+            "SideStepDTO sideStepDto = SideStepDTO.builder()",
+            ".processes(processes)",
+            ".parallel(true)",
+            ".build();",
+            "",
+            "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
+            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);",
+            "ivy.log.error(\"==========\" + valueString);"
+          ]
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.approver" : "result.approverName",
+            "out.requester" : "result.requesterName"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 456, "y" : 191 },
+        "size" : { "width" : 188, "height" : 63 }
+      },
+      "connect" : [
+        { "id" : "f74", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f3",
+      "type" : "UserTask",
+      "name" : "LeaveRequestApproval",
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.customization.sidestep.LeaveRequestApproval:start()",
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/approvalTaskName\", [ivy.security.users().find(in.requester).getDisplayName()])%>",
+          "responsible" : {
+            "type" : "USER_FROM_ATTRIBUTE",
+            "activator" : "in.approver"
+          },
+          "code" : [
+            "import java.util.Collections;",
+            "import com.axonivy.portal.components.ivydata.dto.IvySecurityResultDTO;",
+            "import com.axonivy.portal.components.ivydata.service.impl.SecurityService;",
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
+            "import java.util.Map;",
+            "import java.util.HashMap;",
+            "import com.axonivy.portal.components.dto.SideStepDTO;",
+            "import com.axonivy.portal.components.dto.SideStepProcessDTO;",
+            "import com.axonivy.portal.components.constant.CustomFields;",
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import com.axonivy.portal.components.dto.UserDTO;",
+            "import com.axonivy.portal.developerexamples.LeaveRequest;",
+            "",
+            "ICase caze = ivy.case;",
+            "",
+            "Map params1 = new HashMap();",
+            "params1.put(\"caseUuid\", caze.uuid());",
+            "params1.put(\"stepId\", \"1\");",
+            "params1.put(\"taskUuid\", task.uuid());",
+            "",
+            "SideStepProcessDTO dto1 = SideStepProcessDTO.builder()",
+            "  .taskUuid(task.uuid())",
+            "  .processName(\"Side step 1: Add comment\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep1:created\")",
+            "  .params(params1)",
+            "  .build();",
+            "",
+            "",
+            "Map params2 = new HashMap();",
+            "params2.put(\"stepId\", \"2\");",
+            "params2.put(\"taskId\", task.uuid());",
+            "params2.put(\"caseId\", caze.getId());",
+            "",
+            "SideStepProcessDTO dto2 = SideStepProcessDTO.builder()",
+            "  .taskUuid(task.uuid())",
+            "  .processName(\"Side step 2: Add comment\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep2:created\")",
+            "  .params(params2)",
+            "  .build();",
+            "",
+            "Map params3 = new HashMap();",
+            "params3.put(\"caseUuid\", caze.uuid());",
+            "params3.put(\"stepId\", \"3\");",
+            "params3.put(\"taskUuid\", task.uuid());",
+            "",
+            "SideStepProcessDTO dto3 = SideStepProcessDTO.builder()",
+            "  .taskUuid(task.uuid())",
+            "  .processName(\"Side step 3: Add comment\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep3:created\")",
+            "  .params(params3)",
+            "  .build();",
+            "",
+            "// define side step dto",
+            "List processes = new List();",
+            "processes.add(dto1);",
+            "processes.add(dto2);",
+            "processes.add(dto3);",
+            "",
+            "SideStepDTO sideStepDto = SideStepDTO.builder()",
+            ".processes(processes)",
+            ".build();",
+            "",
+            "",
+            "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
+            "",
+            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);",
+            "ivy.log.error(\"-------\" + valueString);"
+          ]
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.isApproved" : "result.isApproved"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 668, "y" : 192 },
+        "size" : { "width" : 184, "height" : 63 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f11",
+      "type" : "UserTask",
+      "name" : "LeaveRequestSummary",
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.customization.sidestep.LeaveRequestSummary:start()",
+        "task" : {
+          "name" : "<%=in.isApproved? ivy.cms.co(\"/Processes/LeaveRequest/approvalTask\") : ivy.cms.co(\"/Processes/LeaveRequest/rejectedTask\")%>",
+          "responsible" : {
+            "type" : "USER_FROM_ATTRIBUTE",
+            "activator" : "in.requester"
+          },
+          "code" : [
+            "import java.util.Collections;",
+            "import com.axonivy.portal.components.ivydata.dto.IvySecurityResultDTO;",
+            "import com.axonivy.portal.components.ivydata.service.impl.SecurityService;",
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
+            "import java.util.Map;",
+            "import java.util.HashMap;",
+            "import com.axonivy.portal.components.dto.SideStepDTO;",
+            "import com.axonivy.portal.components.dto.SideStepProcessDTO;",
+            "import com.axonivy.portal.components.constant.CustomFields;",
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import com.axonivy.portal.components.dto.UserDTO;",
+            "import com.axonivy.portal.developerexamples.LeaveRequest;",
+            "",
+            "ICase caze = ivy.case;",
+            "",
+            "",
+            "Map params2 = new HashMap();",
+            "params2.put(\"stepId\", \"2\");",
+            "params2.put(\"taskUuid\", task.uuid());",
+            "params2.put(\"caseUuid\", caze.uuid());",
+            "",
+            "SideStepProcessDTO dto2 = SideStepProcessDTO.builder()",
+            "  .taskUuid(task.uuid())",
+            "  .processName(\"Side step 2: Add comment\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep2:created\")",
+            "  .params(params2)",
+            "  .build();",
+            "",
+            "Map params3 = new HashMap();",
+            "params3.put(\"caseUuid\", caze.uuid());",
+            "params3.put(\"stepId\", \"3\");",
+            "params3.put(\"taskUuid\", task.uuid());",
+            "",
+            "SideStepProcessDTO dto3 = SideStepProcessDTO.builder()",
+            "  .taskUuid(task.uuid())",
+            "  .processName(\"Side step 3: Add comment\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep3:created\")",
+            "  .params(params3)",
+            "  .build();",
+            "",
+            "// define side step dto",
+            "List processes = new List();",
+            "",
+            "processes.add(dto2);",
+            "processes.add(dto3);",
+            "",
+            "SideStepDTO sideStepDto = SideStepDTO.builder()",
+            ".processes(processes)",
+            ".parallel(false)",
+            ".build();",
+            "",
+            "",
+            "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
+            "",
+            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 914, "y" : 192 },
+        "size" : { "width" : 188, "height" : 63 }
+      },
+      "connect" : [
+        { "id" : "f14", "to" : "f13" }
+      ]
+    }, {
+      "id" : "f13",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1080, "y" : 192 }
+      }
+    }, {
+      "id" : "f75",
+      "type" : "SubProcessCall",
+      "name" : "SetBusinessDetailsPage",
+      "config" : {
+        "processCall" : "Functional Processes/SetBusinessDetailsPage:call(String)",
+        "call" : {
+          "map" : {
+            "param.linkToBusinessDetailsPage" : "\"Start Processes/LeaveRequestWithSideStep/showLeaveRequestBusinessDetails.ivp\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 192 },
+        "size" : { "width" : 176 }
+      },
+      "connect" : [
+        { "id" : "f76", "to" : "f1", "color" : "default" }
+      ]
+    }, {
+      "id" : "f81",
+      "type" : "DialogCall",
+      "name" : [
+        "Customization",
+        "Business Details Page"
+      ],
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.customization.sidestep.LeaveRequestBusinessDetailsPage:start(ch.ivyteam.ivy.workflow.ICase)",
+        "call" : {
+          "map" : {
+            "param.caze" : "in.caze"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 408, "y" : 376 },
+        "size" : { "width" : 192 }
+      },
+      "connect" : [
+        { "id" : "f82", "to" : "f83" }
+      ]
+    }, {
+      "id" : "f83",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 632, "y" : 376 }
+      }
+    }, {
+      "id" : "f84",
+      "type" : "RequestStart",
+      "name" : "showLeaveRequestBusinessDetails.ivp",
+      "config" : {
+        "signature" : "showLeaveRequestBusinessDetails",
+        "input" : {
+          "params" : [
+            { "name" : "uuid", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.uuid" : "param.uuid"
+          }
+        },
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 24, "y" : 376 }
+      },
+      "connect" : [
+        { "id" : "f85", "to" : "f91" }
+      ]
+    }, {
+      "id" : "f91",
+      "type" : "Script",
+      "name" : "Find case by id",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.CaseUtils;",
+            "out.caze = CaseUtils.findCase(in.uuid);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 376 }
+      },
+      "connect" : [
+        { "id" : "f92", "to" : "f81", "color" : "default" }
+      ]
+    }, {
+      "id" : "f93",
+      "type" : "RequestStart",
+      "name" : "Leave request with side step processes (Process level)",
+      "config" : {
+        "signature" : "start2",
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/LeaveRequestWithSideSteps\")%> (Process level)",
+          "description" : [
+            "This process allow employee to submit their leave request with additional manager notes feature.",
+            "After approver reviews the request, they can add additional information through a side step before final approval."
+          ],
+          "customFields" : [
+            { "name" : "cssIcon", "value" : "si si-advertising-megaphone-2" }
+          ]
+        },
+        "permission" : {
+          "anonymous" : false,
+          "error" : ">> Ignore Exception"
+        },
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createNewLeaveRequest\")%>"
+        },
+        "case" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/LeaveRequest\")%>",
+          "customFields" : [
+            { "name" : "embedInFrame", "type" : "STRING", "value" : "\"true\"" }
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 16, "y" : 584 }
+      },
+      "connect" : [
+        { "id" : "f94", "to" : "f95" }
+      ]
+    }, {
+      "id" : "f95",
+      "type" : "SubProcessCall",
+      "name" : "SetBusinessDetailsPage",
+      "config" : {
+        "processCall" : "Functional Processes/SetBusinessDetailsPage:call(String)",
+        "call" : {
+          "map" : {
+            "param.linkToBusinessDetailsPage" : "\"Start Processes/LeaveRequestWithSideStep/showLeaveRequestBusinessDetails.ivp\""
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 256, "y" : 584 },
+        "size" : { "width" : 176 }
+      },
+      "connect" : [
+        { "id" : "f96", "to" : "f104", "color" : "default" }
+      ]
+    }, {
+      "id" : "f97",
+      "type" : "UserTask",
+      "name" : "LeaveRequestCreation",
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.customization.sidestep.LeaveRequestCreation:start()",
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createLeaveRequest\", [ivy.session.getSessionUser().getDisplayName()])%>",
+          "responsible" : {
+            "activator" : "SELF"
+          },
+          "skipTasklist" : true
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.approver" : "result.approverName",
+            "out.requester" : "result.requesterName"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 640, "y" : 583 },
+        "size" : { "width" : 180, "height" : 63 }
+      },
+      "connect" : [
+        { "id" : "f98", "to" : "f99" }
+      ]
+    }, {
+      "id" : "f99",
+      "type" : "UserTask",
+      "name" : "LeaveRequestApproval",
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.customization.sidestep.LeaveRequestApproval:start()",
+        "task" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/approvalTaskName\", [ivy.security.users().find(in.requester).getDisplayName()])%>",
+          "responsible" : {
+            "type" : "USER_FROM_ATTRIBUTE",
+            "activator" : "in.approver"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.isApproved" : "result.isApproved"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 860, "y" : 584 },
+        "size" : { "width" : 184, "height" : 63 }
+      },
+      "connect" : [
+        { "id" : "f100", "to" : "f101" }
+      ]
+    }, {
+      "id" : "f101",
+      "type" : "UserTask",
+      "name" : "LeaveRequestSummary",
+      "config" : {
+        "dialog" : "com.axonivy.portal.developerexamples.customization.sidestep.LeaveRequestSummary:start()",
+        "task" : {
+          "name" : "<%=in.isApproved? ivy.cms.co(\"/Processes/LeaveRequest/approvalTask\") : ivy.cms.co(\"/Processes/LeaveRequest/rejectedTask\")%>",
+          "responsible" : {
+            "type" : "USER_FROM_ATTRIBUTE",
+            "activator" : "in.requester"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1080, "y" : 584 },
+        "size" : { "width" : 168, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f102", "to" : "f103" }
+      ]
+    }, {
+      "id" : "f103",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 1216, "y" : 584 }
+      }
+    }, {
+      "id" : "f104",
+      "type" : "Script",
+      "name" : "Config side step in process level",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivyteam.ivy.workflow.ICase;",
+            "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
+            "import java.util.Map;",
+            "import java.util.HashMap;",
+            "import com.axonivy.portal.components.dto.SideStepDTO;",
+            "import com.axonivy.portal.components.dto.SideStepProcessDTO;",
+            "import com.axonivy.portal.components.constant.CustomFields;",
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import com.axonivy.portal.components.dto.UserDTO;",
+            "import com.axonivy.portal.developerexamples.LeaveRequest;",
+            "",
+            "ICase caze = ivy.case;",
+            "",
+            "Map params1 = new HashMap();",
+            "params1.put(\"caseUuid\", caze.uuid());",
+            "params1.put(\"stepId\", \"1\");",
+            "",
+            "SideStepProcessDTO dto1 = SideStepProcessDTO.builder()",
+            "  .caseUuid(caze.uuid())",
+            "  .processName(\"Side step 1: Add comment\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep1:created\")",
+            "  .params(params1)",
+            "  .build();",
+            "",
+            "",
+            "Map params2 = new HashMap();",
+            "params2.put(\"stepId\", \"2\");",
+            "params2.put(\"caseUuid\", caze.uuid());",
+            "",
+            "SideStepProcessDTO dto2 = SideStepProcessDTO.builder()",
+            "  .caseUuid(caze.uuid())",
+            "  .processName(\"Side step 2: Add comment\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep2:created\")",
+            "  .params(params2)",
+            "  .build();",
+            "",
+            "Map params3 = new HashMap();",
+            "params3.put(\"caseUuid\", caze.uuid());",
+            "params3.put(\"stepId\", \"3\");",
+            "",
+            "SideStepProcessDTO dto3 = SideStepProcessDTO.builder()",
+            "  .caseUuid(caze.uuid())",
+            "  .processName(\"Side step 3: Add comment\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep3:created\")",
+            "  .params(params3)",
+            "  .build();",
+            "",
+            "// define side step dto",
+            "List processes = new List();",
+            "processes.add(dto1);",
+            "processes.add(dto2);",
+            "processes.add(dto3);",
+            "",
+            "SideStepDTO sideStepDto = SideStepDTO.builder()",
+            ".processes(processes)",
+            ".stepTypeParallelTitle(ivy.cms.co(\"/Labels/LeaveRequest/stepTypeParallelTitle\"))",
+            ".stepTypeSwitchTitle(ivy.cms.co(\"/Labels/LeaveRequest/stepTypeSwitchTitle\"))",
+            ".build();",
+            "",
+            "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
+            "",
+            "caze.customFields().textField(CustomFields.SIDE_STEPS_PROCESS).set(valueString);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 440, "y" : 584 },
+        "size" : { "width" : 120, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f105", "to" : "f97", "color" : "default" }
+      ]
+    } ]
+}

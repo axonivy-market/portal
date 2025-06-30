@@ -87,6 +87,9 @@ Dialogs:
               EXTERNAL_LINK: External Link
               IVY_PROCESS: Geschäftsprozess
             ProcessViewerIFrameTitle: Prozessbetrachterrahmen
+          SideStepType:
+            PARALLEL: Erstellen Sie eine neue Aufgabe und arbeiten Sie an der aktuellen Aufgabe weiter
+            SWITCH: Die aktuelle Aufgabe parken und mit der Arbeit an einer neuen Aufgabe beginnen
 Labels:
   AI:
     Error:

@@ -124,7 +124,57 @@ Dialogs:
                   IsRequired: Ce champ est obligatoire
                   Representation: Représentation
                   To: À l'adresse suivante
+  com:
+    axonivy:
+      portal:
+        developerexamples:
+          customization:
+            sidestep:
+              LeaveRequestApproval:
+                Approve: Approve
+                EmployeeNote: Employee Note
+                Reject: Reject
+              LeaveRequestBusinessDetailsPage:
+                LeaveRequest: Leave Request Business Details
+                SideStepComment: Side step comment 1
+                SideStepComment1: Side step comment 2
+                SideStepComment2: Side step comment 3
+              LeaveRequestSummary:
+                Finish: Finish
+              SideStepExample3:
+                SideStepExample: Side Step Example
+              SideStepResultExample:
+                Answer: Answer
+                Assignee: Assignee
+                Comment: Comment
+                Question: Question
+Enums:
+  LeaveType:
+    ANNUAL_LEAVE: Congé annuel
+    MATERNITY_LEAVE: Congé de maternité
+    SICK_LEAVE: Congés de maladie
 Labels:
+  Close: Close
+  LeaveRequest:
+    LeaveSteps:
+      RequesterSideStepComment: Requester side step comment
+      SideStepComment: Side step comment
+      approval: Approbation
+      approvalResult: Résultat de l'approbation
+      creation: Créer une demande de congé
+    approvalResultTaskIntro: Vous trouverez ci-dessous un résumé de votre demande de congé et les commentaires de l'approbateur.
+    approvalTaskIntro: 'Toute demande de congé doit être approuvée par vous, dont les détails figurent ci-dessous :'
+    approver: Approbateur
+    approverComment: Commentaire d'approbation
+    from: Du
+    leaveType: Type de congé
+    requester: Demandeur
+    requesterComment: Commentaire du demandeur
+    stepTypeParallelTitle: This is customized parallel title
+    stepTypeSwitchTitle: This is customized switch title
+    submitLeaveRequest: Soumettre une demande de congé
+    to: Au
+  OK: OK
   changePasswordWSError: Une error s'est produite lors du changement de mot de passe. Veuillez contacter votre administrateur si le problème persiste après plusieurs essais.
   forgotPasswordError: Une erreur s'est produite lors du traitement de votre demande. Veuillez réessayer plus tard.
   passwordResetEmailCantSend: Exception lors de l'envoi d'un courrier électronique. Veuillez réessayer plus tard.
@@ -163,6 +213,14 @@ Processes:
       #Résumé
       Le demandeur recevra un résumé de la demande
       Connaître le résultat
+  LeaveRequest:
+    LeaveRequest: Leave Request
+    LeaveRequestWithSideSteps: TODO Leave request with side step processes
+    approvalTask: Votre demande de congé est approuvée
+    approvalTaskName: Approbation de la demande de congé de {0}
+    createLeaveRequest: 'Créer une demande de congé pour : {0}'
+    createNewLeaveRequest: 'Tâche du système : Commencer à créer une nouvelle demande de congé'
+    rejectedTask: Votre demande de congé est rejetée
   MoreInformation:
     description: Cliquez sur Plus d'informations pour afficher la page d'information personnalisée sur le processus.
   Payment:

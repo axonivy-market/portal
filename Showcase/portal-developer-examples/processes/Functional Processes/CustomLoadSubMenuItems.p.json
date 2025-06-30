@@ -53,6 +53,7 @@
             "  userExampleGuide.setLink(userExampleGuideLink + \"?embedInFrame\");",
             "  userExampleGuide.setIndex(0);",
             "  in.subMenuItems.add(userExampleGuide);",
+            "  ivy.log.error(\"link is \" + userExampleGuide.getLink());",
             "}",
             "",
             "CustomSubMenuItem google = new CustomSubMenuItem();",

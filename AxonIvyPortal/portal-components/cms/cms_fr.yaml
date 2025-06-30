@@ -87,6 +87,9 @@ Dialogs:
               EXTERNAL_LINK: Lien externe
               IVY_PROCESS: Processus d'entreprise
             ProcessViewerIFrameTitle: Cadre de visualisation du processus
+          SideStepType:
+            PARALLEL: Créer une nouvelle tâche et continuer à travailler sur la tâche en cours
+            SWITCH: Mettre de côté la tâche en cours et commencer à travailler sur une nouvelle tâche
 Labels:
   AI:
     Error:
