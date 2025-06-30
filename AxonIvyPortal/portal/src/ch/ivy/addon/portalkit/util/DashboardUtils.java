@@ -184,7 +184,7 @@ public class DashboardUtils {
   public static List<Dashboard> collectMainDashboards() {
     List<Dashboard> collectedDashboards =
         new ArrayList<>(getPublicDashboards().stream().filter(dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getDashboardDisplayType())).toList());
-    if (ApplicationUitls.doesPortalUserExampleExist()) {
+    if (/* ApplicationUitls.doesPortalUserExampleExist() */ true) {
       collectedDashboards.add(DefaultDashboardUtils.getDefaultUserExampleDashboard());
     }
     return collectedDashboards;

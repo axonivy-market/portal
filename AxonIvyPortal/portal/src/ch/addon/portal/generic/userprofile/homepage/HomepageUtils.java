@@ -129,16 +129,23 @@ public class HomepageUtils {
   }
 
   public static String getHomepageName() {
+    String showUserGuideProp = Ivy.session().getSessionUser().getProperty(UserProperty.PORTAL_SHOW_USER_GUIDE);
+    boolean shouldShowUserGuide = StringUtils.isEmpty(showUserGuideProp);
+
     String homepageName = getHomepageId();
-    if (StringUtils.isBlank(homepageName)) {
-      if (!ApplicationUitls.doesPortalUserExampleExist()) {
-        homepageName = findHomepageSetting();
-      } else {
-        homepageName = USER_GUIDE_HOMEPAGE_NAME;
-      }
+    if (StringUtils.isNotBlank(homepageName)) {
+      return homepageName;
     }
-    return homepageName;
+
+    boolean hasPortalUserExample = ApplicationUitls.doesPortalUserExampleExist();
+    if (/* !hasPortalUserExample */ true && !shouldShowUserGuide) {
+      return findHomepageSetting();
+    }
+
+    Ivy.session().getSessionUser().setProperty(UserProperty.PORTAL_SHOW_USER_GUIDE, "false");
+    return USER_GUIDE_HOMEPAGE_NAME;
   }
+
 
   public static Homepage findDefaultHomepage() {
     List<Homepage> homepages = loadHomepages();
