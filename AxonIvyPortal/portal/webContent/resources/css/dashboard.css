@@ -1307,7 +1307,7 @@ body .ui-widget.new-widget-dialog__introduction {
   margin: auto;
 }
 .statistic-configuration-panel {
-  height: calc(100vh - 115px);
+  height: calc(100vh - 95px);
   overflow: hidden;
 }
 
