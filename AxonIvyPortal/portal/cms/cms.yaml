@@ -1130,6 +1130,8 @@ Labels:
   AIAssistant: AI Assistant
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  AssignToRole: Assign to role
+  AssignToUser: Assign to user
   Chat: Chat
   Collapse: Collapse
   CreateNewDashboard: Create new dashboard
@@ -1141,11 +1143,13 @@ Labels:
   Expand: Expand
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
+  StepType: Step type
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users
   ViewAllResults: View all results
   disabledUserPrefix: (disabled)
+nullStepType: Step type
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm
