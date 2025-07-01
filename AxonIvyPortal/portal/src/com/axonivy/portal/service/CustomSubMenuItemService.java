@@ -77,7 +77,7 @@ public class CustomSubMenuItemService {
       SubMenuItem result = new SubMenuItem();
       String link = customMenu.getLink();
       if (customMenu.getMenuKind() == MenuKind.STATIC_PAGE) {
-        link = StaticPageUtils.buildUrl(link, true);
+        link = StaticPageUtils.buildUrl(link);
       }
       result.setLink(link);
       result.setLabel(customMenu.getLabel());

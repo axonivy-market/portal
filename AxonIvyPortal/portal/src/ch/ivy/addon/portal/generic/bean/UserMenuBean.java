@@ -312,7 +312,7 @@ public class UserMenuBean implements Serializable {
     String menuUrl = menu.getUrl();
     if (StringUtils.isNotBlank(menuUrl)) {
       if (menu.getMenuKind() == MenuKind.STATIC_PAGE) {
-        return StaticPageUtils.buildUrl(menuUrl, true);
+        return StaticPageUtils.buildUrl(menuUrl);
       }
 
       if (menuUrl.contains(".ivp")) {
