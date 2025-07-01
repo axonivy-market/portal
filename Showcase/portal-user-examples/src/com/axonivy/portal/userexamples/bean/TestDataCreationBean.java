@@ -31,7 +31,7 @@ public class TestDataCreationBean extends AbstractProcessStartEventBean {
   private void initTestData() throws IOException {
 
     IWebStartable start1 = Ivy.wf().findStartable(IApplication.current().getName()
-        + "/portal-developer-examples/Start Processes/CreateTestData/CreateCasesByCategory.ivp").orElse(null);
+        + "/portal-user-examples/Start Processes/LeaveRequest/start.ivp").orElse(null);
 
 
     if (start1 != null) {
@@ -43,7 +43,7 @@ public class TestDataCreationBean extends AbstractProcessStartEventBean {
     }
 
     IWebStartable start2 = Ivy.wf().findStartable(IApplication.current().getName()
-        + "/portal-developer-examples/Start Processes/CreateTestData/CategoriedLeaveRequest.ivp").orElse(null);
+        + "/portal-user-examples/Start Processes/LeaveRequest/start.ivp").orElse(null);
 
 
     if (start2 != null) {

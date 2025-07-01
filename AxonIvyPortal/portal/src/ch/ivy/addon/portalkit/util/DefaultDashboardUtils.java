@@ -767,7 +767,7 @@ public class DefaultDashboardUtils {
     },
     "showFullscreenMode" : true,
     "showWidgetInfo" : true,
-    "processPath" : "designer/portal-components-examples/Start Processes/LeaveRequest/start.ivp",
+    "processPath" : "portal-user-examples/Start Processes/LeaveRequest/start.ivp",
     "rowsPerPage" : 5
   }, {
     "type" : "custom",

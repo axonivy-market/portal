@@ -138,6 +138,7 @@ public class HomepageUtils {
     }
 
     boolean hasPortalUserExample = ApplicationUitls.doesPortalUserExampleExist();
+    // for designer test
     if (/* !hasPortalUserExample */ true && !shouldShowUserGuide) {
       return findHomepageSetting();
     }
