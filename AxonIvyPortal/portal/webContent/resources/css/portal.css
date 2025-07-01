@@ -160,6 +160,11 @@ body .portal-breadcrumb.ui-breadcrumb ul li .ui-menuitem-link.ui-state-disabled 
   color: var(--breadcrumb-home-icon-color) !important;
 }
 
+.breadcrumb-current-item {
+  pointer-events: none;
+  cursor: default;
+}
+
 /*Style For Item Widget in List -----------------------------------------------------------------------------------*/
 .process-start-list-item,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item,
