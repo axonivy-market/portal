@@ -30,7 +30,9 @@ public class TaskFilterFieldCategory extends FilterField {
     filter.setFilterField(this);
     filter.setFilterType(DashboardColumnType.STANDARD);
     filter.setField(getName());
-
+    if (this.label == null) {
+      setLabel(filter.getLabel());
+    }
   }
 
   @Override

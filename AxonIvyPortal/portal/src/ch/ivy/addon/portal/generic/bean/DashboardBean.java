@@ -357,6 +357,7 @@ public class DashboardBean implements Serializable {
           .map(WidgetFilterModel::getUserFilters)
           .filter(list -> CollectionUtils.isNotEmpty(list))
           .collect(ArrayList::new, List::addAll, List::addAll);
+      savedFilters.stream().forEach(item -> item.setTemp(true));
       caseWidget.setUserFilters(savedFilters);
       return;
     }
@@ -373,6 +374,7 @@ public class DashboardBean implements Serializable {
           .map(WidgetFilterModel::getUserFilters)
           .filter(list -> CollectionUtils.isNotEmpty(list))
           .collect(ArrayList::new, List::addAll, List::addAll);
+      savedFilters.stream().forEach(item -> item.setTemp(true));
       taskWidget.setUserFilters(savedFilters);
       return;
     }
