@@ -30,6 +30,8 @@ public class AdminSettingsPage extends TemplatePage {
   public void openSettingTab() {
     waitForElementClickableThenClick("a[href$='#admin-setting-component:adminTabView:setting-tab']");
     waitForElementDisplayed(By.cssSelector("[id$=':adminTabView:settingForm']"), true);
+    // wait ajax loading
+    Sleeper.sleep(2000);
   }
 
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
