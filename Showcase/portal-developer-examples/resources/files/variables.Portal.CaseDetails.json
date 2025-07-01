@@ -115,5 +115,26 @@
         }
       }
     ]
+  },
+  {
+    "id": "show-additional-case-detail-in-case-detail",
+    "filters": {
+      "states": ["RUNNING"]
+    },
+    "widgets": [
+      {
+        "type": "custom",
+        "id": "customWidget",
+        "layout": {
+          "w": 16, "h": 8, "x": 0, "y": 0
+        },
+		"data": {
+            "processPath": "Start Processes/PortalStart/showAdditionalCaseDetailsInIFrame.ivp",
+            "params": {
+               "uuid": "case.uuid"
+            }
+         }
+      }
+    ]
   }
 ]
