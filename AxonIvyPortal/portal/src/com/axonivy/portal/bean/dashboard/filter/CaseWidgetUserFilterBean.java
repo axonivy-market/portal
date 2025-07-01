@@ -39,7 +39,7 @@ public class CaseWidgetUserFilterBean extends AbstractCaseWidgetFilterBean imple
     }
 
     for (DashboardFilter filter : this.widget.getUserFilters()) {
-      FilterField filterField = FilterFieldFactory.findBy(Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));
+      FilterField filterField = FilterFieldFactory.findBy(this.widget.getId(), Optional.ofNullable(filter).map(DashboardFilter::getField).orElse(""));
       if (filterField != null) {
         filterField.initFilter(filter);
       }

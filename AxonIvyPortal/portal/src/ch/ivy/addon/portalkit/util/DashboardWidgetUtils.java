@@ -308,7 +308,7 @@ public class DashboardWidgetUtils {
       if (StringUtils.equals(column.getDefaultStyleClass(), column.getStyleClass())) {
         column.setStyleClass(null);
       }
-      if (StringUtils.equals(column.initDefaultStyle  (), column.getStyle())) {
+      if (StringUtils.equals(column.initDefaultStyle(), column.getStyle())) {
         column.setStyle(null);
       }
       if (column.getDefaultFormat() == column.getFormat()) {

@@ -45,6 +45,7 @@
       <h:panelGroup id="columns-configuration" layout="block" rendered="#{cc.attrs.renderColumnConfiguration}"
         styleClass="dashboard-cases-container__columns-configuration">
         <p:commandLink id="column-toggler" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
           update="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" oncomplete="PF('column-management-dialog').show()" process="@this" global="false">
           <p:resetInput target="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" />
         </p:commandLink>

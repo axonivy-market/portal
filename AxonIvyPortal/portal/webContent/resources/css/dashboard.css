@@ -1172,10 +1172,6 @@ body .ui-widget.new-widget-dialog__introduction {
   font-weight: bold;
 }
 
-.saved-filter--not-found {
-  color: var(--widget-advanced-filter-overlay-panel-footer);
-}
-
 .saved-filter__manage-filter {
   font-size: var(--small-font-size);
 }

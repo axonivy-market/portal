@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
@@ -25,11 +27,12 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
    * Constructor
    * 
    * @param visibleColumns list of columns to export
+   * @param columnModels list of column models to export
    * @param widgetName
    *
    */
-  public TaskDashboardExporter(List<String> visibleColumns, String widgetName) {
-    super(visibleColumns, widgetName, "/ch.ivy.addon.portalkit.ui.jsf/dashboard/export/exportedTasksFileName");
+  public TaskDashboardExporter(List<String> visibleColumns, List<ColumnModel> columnModels, String widgetName) {
+    super(visibleColumns, columnModels, widgetName, "/ch.ivy.addon.portalkit.ui.jsf/dashboard/export/exportedTasksFileName");
   }
 
   @Override
@@ -38,7 +41,12 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
     if(null == columnField) {
       return getCustomColumnName(column);
     }
-
+    
+    TaskColumnModel taskColumnModel = (TaskColumnModel) getMapHeaders().get(column);
+    if (taskColumnModel != null) {
+      return taskColumnModel.getHeaderText();
+    }
+    
     String url = switch (columnField) {
       case NAME -> "/ch.ivy.addon.portalkit.ui.jsf/common/taskName";
       case DESCRIPTION -> "/ch.ivy.addon.portalkit.ui.jsf/common/description";
@@ -85,7 +93,7 @@ public class TaskDashboardExporter extends DashboardWidgetExporter{
           : taskItem.responsibles().all()
             .stream()
             .map(item -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(item.get(), item.displayName()))
-            .collect(Collectors.joining(", "));
+            .collect(Collectors.joining(Ivy.cms().co("/Labels/Comma")));
       case ID -> String.valueOf(taskItem.getId());
       case CREATED -> taskItem.getStartTimestamp();
       case COMPLETED -> taskItem.getEndTimestamp();

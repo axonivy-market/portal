@@ -283,6 +283,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: Pour activer/désactiver l'affichage de la durée dans la page des détails de la tâche.
       showTooltipTechnicalName: Activer l'affichage du nom technique des utilisateurs dans les infobulles.
       uploadDocumentWhiteListExtensionNote: 'Laissez la valeur vide si vous autorisez toutes les extensions. Si juste autoriser quelques extensions, listez les extensions ici, séparées par des virgules. Exemple: pdf, txt, doc, docx.'
+      SearchScopeTaskFields: Définir les champs que la recherche globale utilisera pour trouver les tâches correspondantes à côté de l'Id de la tâche (cela peut influencer les performances de la recherche).
+      SearchScopeCaseFields: Définir les champs que la recherche globale utilisera pour trouver les cas correspondants en dehors de l'identifiant du cas (cela peut influencer les performances de la recherche).
     key: Clé
     link: Lien
     loading: CHARGEMENT
@@ -421,6 +423,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     All: Toutes
     And: et
+    AutoTranslation: Traduction automatique
     BusinessCaseInformation: Informations sur les cas d'affaires
     Clone: Cloner
     CollapseAll: Réduire tout
@@ -680,13 +683,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       filterToSee: Filtrer pour en savoir plus
       loadMore: En savoir plus
       noUser: Il n'y a pas d'utilisateurs.
-      roleMemberItemFormat: <li class="tooltip-body-item">{0}</li>
-      roleMemberLineFormat: <p class="tooltip-body-item">{0}</p>
-      roleMembersTooltipFormat: |-
-        <p class="tooltip-header">{0}</p>
-        <ul style="margin: auto; {1}">{2}</ul>
       tooltipHelper: Cliquez pour afficher tous les utilisateurs qui possèdent ce rôle directement ou indirectement
       userOfRoleTitle: Utilisateur du groupe {0}
+      roleMembersTooltipFormat: "<p class=\"tooltip-header\">{0}</p> <p>\n<ul style=\"margin : auto ; {1}\">{2}</ul>"
+      roleMemberItemFormat: <li class="tooltip-body-item">{0}</li>
+      roleMemberLineFormat: <p class="tooltip-body-item">{0}</p> <p class="tooltip-body-item">{0}<p>.
     passwordValidation:
       criteria: Critères
       enablePasswordValidation: Activer la validation du mot de passe
@@ -805,7 +806,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       RestoreDefaultDashboardTemplateTooltip: Nous ne trouvons pas le modèle de votre tableau de bord, nous ne pouvons donc pas le réinitialiser à la configuration standard. Veuillez vérifier auprès de votre administrateur pour plus de détails!
       SelectTheTemplate: Sélectionnez le modèle
       SelectYourTemplate: Sélectionnez votre template
-      WelcomeConfigurationDescription: Vous pouvez configurer votre widget dans cette zone de configuration. Veuillez définir le texte et l'image de bienvenue à utiliser.
+      WelcomeConfigurationDescription: 'Vous pouvez configurer votre widget dans cette zone de configuration. Veuillez définir le texte de bienvenue et l''image à utiliser.'
       WelcomeWidget:
         AdvancedSettings: Paramètres avancés
         ChooseAFit: Choisissez un ajustement
@@ -1647,9 +1648,9 @@ Enums:
 Labels:
   AI:
     Error:
-      CannotFindUser: Désolé, aucun utilisateur ne correspond à votre demande. Veuillez réessayer.
-      CannotStartTask: Impossible de démarrer la tâche a ID {0}
-      InvalidTaskPriority: 'Priorité de tâche non valide. Les priorités de tâches valides sont : faible, normale, élevée ou exceptionnelle.'
+      CannotFindUser: 'Désolé, aucun utilisateur ne correspond à votre demande. Veuillez réessayer.'
+      CannotStartTask: 'Impossible de démarrer la tâche a ID {0}'
+      InvalidTaskPriority: 'Priorité de tâche non valide. Les priorités de tâches valides sont : faible, normale, élevée ou exception.'
       InvalidTaskState: 'État de la tâche non valide. Les états de tâche valides sont : ouvert, terminé, en cours ou erreur.'
       NoMatchingCase: Aucune tâche ne correspond à votre demande
       NoMatchingProcesses: Pas de processus de correspondance.
@@ -1658,7 +1659,7 @@ Labels:
     FindProcessAIResult: '   - ID : {0}, Nom : {1}, Description : {2}'
     FindTaskAIResult: 'ID : {0}, Name : {1}, Description : {2}, État : {3}, Priorité {4}'
     FindUserAIResult: 'Nom d''utilisateur : {0}, Nom : {1}, Email : {2}, État : {3}'
-    FoundCaseHeader: 'Cas rencontrés :'
+    FoundCaseHeader: 'Les cas trouvés :'
     FoundProcessesHeader: 'Procédés trouvés :'
     FoundTaskHeader: 'Tâches trouvées :'
     FoundUsersHeader: 'Utilisateurs trouvés :'
@@ -1670,18 +1671,18 @@ Labels:
       - **Description du processus:** {1}
       - **Nombre de paramètres:** {2}
     ProcessParameterInfo: "\t+ {0} ({1})"
-    ProcessParameterInfoWithValue: |-
-      - Nom : {0}
-        Description : {1}
-        Valeur : {2}
-    TaskDetailsResult: |-
-      Détails de la tâche **{0} (#{1})** :
-      {2}
+    ProcessParameterInfoWithValue: "- Nom : {0}\n  Description : {1} {1}\n  Valeur : {2}"
+    TaskDetailsResult: 'Détails de la tâche **{0} (#{1})** :
+
+      {2}'
   AllTasks: Toutes les tâches
   AndMore: 'et {0} de plus...  '
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
+  Chat: Chat
+  AIAssistant: Assistant AI
   Collapse: Réduire
+  Comma: ', '
   Configuration: Configuration
   CreateNewDashboard: Créer un nouveau tableau de bord
   Description: Description
@@ -1756,6 +1757,7 @@ Labels:
       START_WITH: Commence par
       TODAY: Aujourd'hui
       YESTERDAY: Hier
+      GREATER: Plus grand
     FilterPeriodType:
       DAY: Jour
       MONTH: Mois
@@ -1780,6 +1782,13 @@ Labels:
     ThemeMode:
       DARK: Dark
       LIGHT: Lumière
+    SearchScopeTaskField:
+      NAME: Nom du texte
+      DESCRIPTION: Description du texte
+    SearchScopeCaseField:
+      DESCRIPTION: Description du texte
+      CUSTOM: Champs de chaînes personnalisées
+      NAME: Nom du texte
   Expand: Développer
   Filters: Filtres
   General: Général

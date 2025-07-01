@@ -87,6 +87,7 @@
                       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
                         styleClass="absences-table-action-column">
                         <p:commandButton id="absence-action-button" icon="fa fa-ellipsis-h"
+                          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
                           styleClass="rounded-button icon-more-menu-button ui-no-rounded-button-process-page"
                           type="button" />
                         <p:menu class="absence-column-value" overlay="true" trigger="absence-action-button"
@@ -111,6 +112,7 @@
                   <div class="ui-fluid u-padding-0">
                     <p:commandButton id="add-absence"
                       styleClass="Fright ui-sm-hidden primary-color-light-button"
+                      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence')}"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence')}"
                       process="@this" global="false"
                       oncomplete="PF('absence-dialog').show()"
@@ -122,6 +124,7 @@
                     <p:commandButton id="add-absence-icon-only"
                       styleClass="Fright ui-md-hidden ui-lg-hidden ui-xl-hidden"
                       process="@this"
+                      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence')}"
                       oncomplete="PF('absence-dialog').show()"
                       actionListener="#{logic.add}"
                       icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
@@ -162,6 +165,7 @@
                           <c:set var="deputiesDisplayNames"
                             value="#{securityMemberDisplayNameFormatBean.joinSecurityMemberNames(deputyRole.deputies)}" />
                           <p:commandLink id="selected-deputies-link" immediate="true"
+                            ariaLabel="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
                             styleClass="task-responsible-link"
                             value="#{not empty deputiesDisplayNames ? deputiesDisplayNames : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
                             actionListener="#{logic.initSelectedDeputies(deputyRole)}"
@@ -232,13 +236,14 @@
 
               <!-- FOOTER BUTTONS -->
               <div class="user-profile-footer ui-g-12 relative">
-                <p:commandLink id="cancel-subsitute"
+                <p:commandLink id="cancel-subsitute" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   rendered="#{absenceManagementBean.substitutionCapable}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                   actionListener="#{logic.backToHome()}"
                   styleClass="u-mar-right-15" />
 
                 <p:commandButton id="save-substitute"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
                   rendered="#{absenceManagementBean.substitutionCapable}"
                   actionListener="#{logic.saveSubstitutes}"
@@ -264,10 +269,11 @@
           <h:panelGroup styleClass="flex flex-column">
             <p:commandButton id="confirm-action" process="@this"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
               actionListener="#{logic.deleteAbsence}" styleClass="w-full portal-remove-button"
               oncomplete="PF('deleteAbsenceConfirmation').hide();"
               update="@(.absence-table) @(.substitute-table) @(.substitution-table)" />
-            <p:commandLink id="cancel-confirmation-action"
+            <p:commandLink id="cancel-confirmation-action" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               onclick="PF('deleteAbsenceConfirmation').hide()"
               styleClass="pt-3 flex justify-content-center" />
