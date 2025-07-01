@@ -28,7 +28,8 @@
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
           <p:commandLink id="add-note-command" styleClass="task-details-document-add-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}" global="false"
-            oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()" actionListener="#{data.setTask(task)}">
+                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}"
+                         oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()" actionListener="#{data.setTask(task)}">
             <span class="si si-notes-add" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
@@ -56,7 +57,7 @@
           styleClass="history-note"
           sortBy="#{note.content()}">
           <span class="task-note truncate-note">
-            <p:commandLink id="note-message" value="#{note.content()}" oncomplete="PF('#{cc.clientId}:view-note-dialog').show()"
+            <p:commandLink id="note-message" value="#{note.content()}" oncomplete="PF('#{cc.clientId}:view-note-dialog').show()" ariaLabel="#{note.content()}"
               actionListener="#{data.setFullNote(note.content())}" update="@widgetVar(#{cc.clientId}:view-note-dialog)" styleClass="content-link-history u-truncate-text"/>
           </span>
         </p:column>
@@ -91,7 +92,10 @@
       <h:outputText value="#{data.fullNote}" />
     </h:panelGroup>
     <f:facet name="footer">
-      <p:commandButton icon="#{visibilityBean.generateButtonIcon('si si-remove')}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button" onclick="PF('#{cc.clientId}:view-note-dialog').hide()" />
+      <p:commandButton icon="#{visibilityBean.generateButtonIcon('si si-remove')}" 
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        type="button" onclick="PF('#{cc.clientId}:view-note-dialog').hide()" />
     </f:facet>
   </p:dialog>
 
@@ -109,10 +113,12 @@
       <h:panelGroup layout="block" styleClass="text-right MarTop10">
         <p:commandLink id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}" global="false"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onsuccess="PF('#{cc.clientId}:addNewNoteDialog').hide()" update="task-detail-note-content task-detail-create-note-msg" />
         <p:spacer width="15px" />
         <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" partialSubmit="true"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           process="task-detail-note-content #{p:resolveFirstComponentWithId('show-system-notes-checkbox', view).clientId}"
           update="task-detail-note-content task-detail-create-note-msg #{cc.clientId}:task-history-content-container"
           actionListener="#{logic.createNote()}" oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.clientId}:addNewNoteDialog').hide();handleTaskDetailsTables()}" />

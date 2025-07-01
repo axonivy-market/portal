@@ -28,7 +28,7 @@
                 <ul id="dashboard-type-list" class="dashboard-type-list">
                   <li class="#{isPublicDashboard ? '' : 'active'}" jsf:rendered="#{dashboardConfigurationBean.canEditPrivateDashboard}">
                     <i class="si si-single-neutral-shield u-mar-right-5"/>
-                    <p:commandLink id="private-dashboard-type"
+                    <p:commandLink id="private-dashboard-type" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PrivateDashboard')}"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PrivateDashboard')}"
                       actionListener="#{dashboardConfigurationBean.accessToEditDashboard(false)}"
                       update="dashboard-configuration-type dashboard-configuration-content" process="@this"
@@ -36,7 +36,7 @@
                   </li>
                   <li class="#{isPublicDashboard ? 'active' : ''}" jsf:rendered="#{dashboardConfigurationBean.canEditPublicDashboard}">
                     <i class="si si-network-share u-mar-right-5"/>
-                    <p:commandLink id="public-dashboard-type"
+                    <p:commandLink id="public-dashboard-type" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PublicDashboard')}"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/PublicDashboard')}"
                       actionListener="#{dashboardConfigurationBean.accessToEditDashboard(true)}"
                       update="dashboard-configuration-type dashboard-configuration-content" process="@this"
@@ -52,6 +52,7 @@
                 <div class="text-right ui-g-12">
                   <p:commandButton id="create-dashboard-action" actionListener="#{dashboardConfigurationBean.addNewDashboard(isPublicDashboard)}"
                     value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard')}" 
+                    ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/PortalDashboardConfiguration/NewDashboard')}"
                     styleClass="dashboard-action-container-icon #{selectedDashboardTypeStyleClass} w-full primary-color-light-button"
                     partialSubmit="true" global="false"
                     oncomplete="PF('create-new-dashboard-dialog').show(); resetPortalLeftMenuState()"

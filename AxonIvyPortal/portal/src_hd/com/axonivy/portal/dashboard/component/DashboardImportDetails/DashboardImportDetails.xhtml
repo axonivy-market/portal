@@ -94,6 +94,7 @@
                     styleClass="manage-dashboard__input" required="true" />
                   <p:commandButton id="add-language-button"
                     icon="si si-chat-translate"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                     actionListener="#{managedBean.updateDashboardTitleByLocale()}"
                     process="import-dashboard-title"
                     update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
@@ -179,6 +180,7 @@
         <p:commandButton id="dashboard-detail-save-button"
           disabled="#{!managedBean.loaded}" styleClass="w-full"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/CreateDashboard')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/dashboardManagement/CreateDashboard')}"
           actionListener="#{managedBean.createDashboard()}"
           process="import-dashboard-form" partialSubmit="true"
           update="import-dashboard-form #{cc.attrs.componentToUpdate}"

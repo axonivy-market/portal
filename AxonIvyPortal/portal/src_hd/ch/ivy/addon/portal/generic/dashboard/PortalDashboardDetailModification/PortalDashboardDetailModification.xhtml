@@ -12,7 +12,7 @@
     <ui:define name="headerTitle">
       <c:forEach var="dashboard" items="#{dashboardDetailModificationBean.dashboards}" varStatus="dashboardStatus">
         <c:set value="#{dashboardDetailModificationBean.currentDashboardIndex == dashboardStatus.index}" var="isSelectedItem"/>
-        <p:commandLink id="dashboard-title-#{dashboardStatus.index}"
+        <p:commandLink id="dashboard-title-#{dashboardStatus.index}" ariaLabel="#{dashboard.title}"
           actionListener="#{dashboardDetailModificationBean.onDashboardChange(dashboardStatus.index)}"
           update="grid-stack dashboard-title-container" process="@this"
           oncomplete="loadGrid();dashboardToolKit.responsive();initStatistics();"
@@ -26,7 +26,7 @@
     <ui:define name="headerAction">
       <p:commandLink id="back-to-configuration" styleClass="dashboard__switch-mode u-mar-right-5 pr-2"
         actionListener="#{dashboardDetailModificationBean.navigatetoDashboardConfigurationPage}"
-        update="grid-stack @this" process="@this">
+        update="grid-stack @this" process="@this" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}">
           <i class="relative si si-arrow-left-1" style="top: 2px;"/>
           <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}</span>
       </p:commandLink>
@@ -35,6 +35,7 @@
       <h:panelGroup id="restore-button-group" styleClass="restore-button-group u-mar-right-15">
         <p:commandButton id="restore-button" styleClass="ui-button-secondary dashboard__restore-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
           type="button" icon="si si-button-refresh-arrows"
           onclick="PF('restore-confirm-dialog').show()"
           disabled="#{!showRestoreButton}" />
@@ -47,7 +48,8 @@
       </h:panelGroup>
 
       <p:commandButton id="add-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
-        icon="si si-add"
+        icon="si si-add" 
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}"
         actionListener="#{dashboardDetailModificationBean.initSampleWidgets()}"
         update="new-widget-dialog"
         process="@this" global="false"
@@ -84,6 +86,7 @@
             styleClass="u-mar-right-15 cancel-reset-dashboard-link" />
           <p:commandButton id="reset-dashboard-button" widgetVar="reset-dashboard-button"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
             actionListener="#{dashboardDetailModificationBean.restore()}"
             process="@this"
             update="grid-stack dashboard-title-container dashboard-header-action"
@@ -105,6 +108,7 @@
         <ui:define name="dialogFooter">
           <h:panelGroup styleClass="flex flex-column">
             <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
               actionListener="#{dashboardDetailModificationBean.removeWidget()}"
               process="@this" styleClass="w-full portal-remove-button"
               oncomplete="PF('remove-widget-dialog').hide(); updateDashboardWidget(); return false;"/>

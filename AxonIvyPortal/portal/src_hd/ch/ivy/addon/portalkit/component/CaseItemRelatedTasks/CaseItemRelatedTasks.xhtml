@@ -35,7 +35,9 @@
         </p:selectBooleanCheckbox>
         </div>
         <h:form id="task-export-to-excel-form" styleClass="related-task-export-to-excel ui-sm-hidden">
-          <p:commandLink ajax="false" id="related-task-export-to-excel" onclick="PrimeFaces.monitorDownload(startRelatedTaskExportToExcel, stopRelatedTaskExportToExcel);">
+          <p:commandLink ajax="false" id="related-task-export-to-excel" 
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
+            onclick="PrimeFaces.monitorDownload(startRelatedTaskExportToExcel, stopRelatedTaskExportToExcel);">
             <i class="si si-office-file-xls-1 u-mar-right-5" />
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
             <p:fileDownload value="#{logic.getExportedFile(caseWidgetBean.getRelatedTaskColumns(data.dataModel))}" />
@@ -163,9 +165,11 @@
     <ui:define name="dialogFooter">
       <h:form id="reset-task-form">
         <p:commandLink onclick="PF('reset-task-dialog').hide()"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
         <p:commandButton actionListener="#{logic.resetAndOpenTask(data.currentPortalPage, taskWidgetBean.selectedTaskItemId)}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}"
           onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
       </h:form>
@@ -184,9 +188,11 @@
     <ui:define name="dialogFooter">
       <h:form id="reset-task-confirmation-form">
         <p:commandLink onclick="PF('reset-task-confirmation-dialog').hide()"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
         <p:commandButton actionListener="#{logic.resetAndOpenTask(data.currentPortalPage, caseDetailsBean.selectedTask.id)}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}"
           onstart="#{cc.attrs.onTaskStartCallback}" oncomplete="resetPortalLeftMenuState()"/>
       </h:form>
@@ -206,9 +212,11 @@
       <h:panelGroup styleClass="flex flex-column">
       <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
         styleClass="portal-remove-button w-full"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
         actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
         oncomplete="PF('destroy-task-dialog').hide()" update="#{cc.clientId}:related-tasks" process="@this" />
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         onclick="PF('destroy-task-dialog').hide();" styleClass="pt-3 flex justify-content-center" />
       </h:panelGroup>
     </ui:define>
@@ -226,8 +234,10 @@
 
     <ui:define name="dialogFooter">
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
         onclick="PF('escalation-task-dialog').hide();" styleClass="u-mar-right-15" />
       <p:commandButton id="confirm-escalation" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
         icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
         actionListener="#{taskWidgetBean.expiryTask(taskWidgetBean.selectedTaskItemId)}"
         oncomplete="PF('escalation-task-dialog').hide()" update="#{cc.clientId}:related-tasks #{cc.attrs.componentToUpdateTrigger}" process="@this" />

@@ -52,6 +52,7 @@
                     <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/TaskList')}</h5>
                   </div>
                     <p:commandButton value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedTasks')}"
+                      ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedTasks')}"
                       actionListener="#{userProfileBean.unpinAllPinnedTasks}"
                       icon="pi pi-trash" />
                 </h:panelGroup>
@@ -62,6 +63,7 @@
                     <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/CaseList')}</h5>
                   </div>
                     <p:commandButton value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedCases')}"
+                      ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedCases')}"
                       actionListener="#{userProfileBean.unpinAllPinnedCases}"
                       icon="pi pi-trash" />
                 </h:panelGroup>
@@ -83,7 +85,7 @@
                     </div>
                   </div>
                   <!-- Format language Setting -->
-                  <div class="language-selection w-full">
+                  <label class="language-selection w-full">
                     <div id="format-language-selection-label" class="language-selection-label user-profile-setting-title mt-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/FormattingLanguage')}</div>
                     <div class="ui-fluid">
                       <p:autoComplete id="format-language-selection" scrollHeight="210" dropdown="true" size="35"
@@ -92,7 +94,7 @@
                         moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/MoreItemsAvailable')}" dynamic="true"
                         appendTo="@(.portal-layout-container)" />
                     </div>
-                  </div>
+                  </label>
                 </h:panelGroup>
 
                 <!-- Notification Setting -->
@@ -135,8 +137,9 @@
                     </p:dataTable>
                   </div>
                   <div class="text-right mt-3 restore-to-default-button">
-                    <p:commandLink id="restore-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-undo')}" 
+                    <p:commandLink id="restore-to-default-button" icon="#{visibilityBean.generateButtonIcon('si si-undo')}"
                       global="false"
+                      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}"
                       actionListener="#{userProfileBean.resetAllChannel}"
                       update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
                       styleClass="ui-button-flat setting-tab-action-buttons font-medium" >
@@ -149,8 +152,10 @@
 
                 <div class="user-profile-footer w-full">
                   <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15"
-                    actionListener="#{logic.backToHome}" />
+                    actionListener="#{logic.backToHome}"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
                   <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
                     actionListener="#{userProfileBean.saveAllChannel}"
                     action="#{logic.save}" update="errors-message" />
                 </div>
