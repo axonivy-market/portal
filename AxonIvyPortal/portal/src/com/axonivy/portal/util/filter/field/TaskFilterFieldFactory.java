@@ -36,21 +36,58 @@ public class TaskFilterFieldFactory {
   private static final Map<String, FilterField> STANDARD_FILTER_FIELD = new HashMap<>();
   private static final Map<String, CustomFilterField> CUSTOM_FILTER_FIELD = new HashMap<>();
   private static final Map<String, CustomFilterField> CUSTOM_CASE_FILTER_FIELD = new HashMap<>();
-
+  private static final Map<String, Map<String, FilterField>> WIDGET_FILTER_FIELD = new HashMap<>();
+  
   static {
-    STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.ID.getField(), new TaskFilterFieldId());
-    STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.NAME.getField(), new TaskFilterFieldName());
-    STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.DESCRIPTION.getField(), new TaskFilterFieldDescription());
-    STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.CREATED.getField(), new TaskFilterFieldCreatedDate());
-    STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.COMPLETED.getField(), new TaskFilterFieldFinishedDate());
-    STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.EXPIRY.getField(), new TaskFilterFieldExpiryDate());
-    STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.RESPONSIBLE.getField(), new TaskFilterFieldResponsible());
-    STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.CATEGORY.getField(), new TaskFilterFieldCategory());
-    STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.PRIORITY.getField(), new TaskFilterFieldPriority());
-    STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.STATE.getField(), new TaskFilterFieldState());
-    STANDARD_FILTER_FIELD.put(DashboardStandardTaskColumn.APPLICATION.getField(), new TaskFilterFieldApplication());
+    STANDARD_FILTER_FIELD.putAll(initMapFilterField());
+  }
+  
+  public static Map<String, FilterField> initMapFilterField() {
+    Map<String, FilterField> standarFieldMap = new HashMap<>();
+    standarFieldMap.put(DashboardStandardTaskColumn.ID.getField(), new TaskFilterFieldId());
+    standarFieldMap.put(DashboardStandardTaskColumn.NAME.getField(), new TaskFilterFieldName());
+    standarFieldMap.put(DashboardStandardTaskColumn.DESCRIPTION.getField(), new TaskFilterFieldDescription());
+    standarFieldMap.put(DashboardStandardTaskColumn.CREATED.getField(), new TaskFilterFieldCreatedDate());
+    standarFieldMap.put(DashboardStandardTaskColumn.COMPLETED.getField(), new TaskFilterFieldFinishedDate());
+    standarFieldMap.put(DashboardStandardTaskColumn.EXPIRY.getField(), new TaskFilterFieldExpiryDate());
+    standarFieldMap.put(DashboardStandardTaskColumn.RESPONSIBLE.getField(), new TaskFilterFieldResponsible());
+    standarFieldMap.put(DashboardStandardTaskColumn.CATEGORY.getField(), new TaskFilterFieldCategory());
+    standarFieldMap.put(DashboardStandardTaskColumn.PRIORITY.getField(), new TaskFilterFieldPriority());
+    standarFieldMap.put(DashboardStandardTaskColumn.STATE.getField(), new TaskFilterFieldState());
+    standarFieldMap.put(DashboardStandardTaskColumn.APPLICATION.getField(), new TaskFilterFieldApplication());
+    return standarFieldMap;
   }
 
+  public static FilterField findBy(String widgetId, String field, DashboardColumnType type) {
+    initCustomFields();
+
+    return switch (type) {
+    case STANDARD -> getStandardFilterField(widgetId).get(field);
+    case CUSTOM -> CUSTOM_FILTER_FIELD.get(field);
+    case CUSTOM_CASE -> CUSTOM_CASE_FILTER_FIELD.get(field);
+    case CUSTOM_BUSINESS_CASE -> CUSTOM_CASE_FILTER_FIELD.get(field);
+    default -> throw new IllegalArgumentException("Unexpected value: " + type.name());
+    };
+  }
+  
+  public static FilterField findBy(String widgetId, String field) {
+    if (getStandardFilterField(widgetId).containsKey(field)) {
+      return getStandardFilterField(widgetId).get(field);
+    }
+    else if (CUSTOM_FILTER_FIELD.containsKey(field)) {
+      return CUSTOM_FILTER_FIELD.get(field);
+    }
+    else if (CUSTOM_CASE_FILTER_FIELD.containsKey(field)) {
+      return CUSTOM_CASE_FILTER_FIELD.get(field);
+    }
+    return BaseFilter.DEFAULT.contentEquals(field)
+        ? new FilterFieldDefault()
+        : null;
+    
+  }
+  
+  
+  @Deprecated
   public static FilterField findBy(String field, DashboardColumnType type) {
     initCustomFields();
 
@@ -63,6 +100,8 @@ public class TaskFilterFieldFactory {
     };
   }
   
+ 
+  @Deprecated
   public static FilterField findBy(String field) {
     if (STANDARD_FILTER_FIELD.containsKey(field)) {
       return STANDARD_FILTER_FIELD.get(field);
@@ -78,17 +117,27 @@ public class TaskFilterFieldFactory {
         : null;
     
   }
-
+  
   public static CustomFilterField findCustomFieldBy(String field) {
     return CUSTOM_FILTER_FIELD.entrySet().stream().map(Entry<String,CustomFilterField>::getValue)
       .filter(customField -> customField.getName().contentEquals(field))
       .findFirst().orElse(null);
   }
 
-  public static List<FilterField> getStandardFilterableFields() {
-    return new ArrayList<FilterField>(STANDARD_FILTER_FIELD.values());
+  public static List<FilterField> getStandardFilterableFields(String widgetId) {
+    var filterFields = getStandardFilterField(widgetId);
+    return new ArrayList<FilterField>(filterFields.values());
   }
-
+  
+  public static Map<String, FilterField> getStandardFilterField(String widgetId) {
+    var filterFields = WIDGET_FILTER_FIELD.get(widgetId);
+    if (filterFields == null) {
+      filterFields = initMapFilterField();
+      WIDGET_FILTER_FIELD.put(widgetId, filterFields);
+    }
+    return filterFields;    
+  }
+  
   public static List<FilterField> getCustomFilterableFields() {
     return new ArrayList<FilterField>(CUSTOM_FILTER_FIELD.values());
   }
@@ -120,8 +169,9 @@ public class TaskFilterFieldFactory {
       }
     }
   }
-
+  
   public static FilterField getDefaultFilterField() {
     return new FilterFieldDefault();
   }
+  
 }
