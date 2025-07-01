@@ -51,7 +51,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
     
     taskWidget.openFilterWidget();
-    taskWidget.addFilter("Created Date", FilterOperator.TODAY);
+    taskWidget.addFilter("Created", FilterOperator.TODAY);
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
   }
@@ -68,7 +68,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     removeSavedFilterItemsIfExist(taskWidget);
     
     taskWidget.openFilterWidget();
-    taskWidget.addFilter("Created Date", FilterOperator.YESTERDAY);
+    taskWidget.addFilter("Created", FilterOperator.YESTERDAY);
     taskWidget.saveFilter("TaskOpenYesterday");
     
     ElementsCollection actions = taskWidget.getSavedFilterItems();
@@ -131,7 +131,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     
     // Add 2 filter items
     taskWidget.openFilterWidget();
-    taskWidget.addFilter("Created Date", FilterOperator.TODAY);
+    taskWidget.addFilter("Created", FilterOperator.TODAY);
     taskWidget.addFilter("Description", FilterOperator.EMPTY);
     taskWidget.applyFilter();
     
@@ -163,7 +163,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     ScreenshotUtils.maximizeBrowser();
     
     taskWidget.openFilterWidget();
-    taskWidget.addFilter("Created Date", FilterOperator.AFTER);
+    taskWidget.addFilter("Created", FilterOperator.AFTER);
     taskWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(14));
