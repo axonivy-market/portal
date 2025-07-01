@@ -32,6 +32,7 @@
           value="#{widget.name}" />
         <!-- Add language button -->
         <p:commandButton styleClass="app-setting-button"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
           icon="si si-chat-translate" id="add-language-button"
           actionListener="#{managedBean.updateWidgetNameByLocale()}"
           process="widget-title"
@@ -44,11 +45,13 @@
     </div>
     <div class="ui-g-4">
       <p:commandButton id="show-filter" styleClass="Fright" icon="si si-filter-1" 
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
         type="button" onclick="openFilterPanel(event);"/>
       <p:commandButton id="manage-column"
         icon="si si-layers-grid-settings" 
         styleClass="Fright u-mar-right-15"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
         update="#{p:resolveFirstComponentWithId('column-management-dialog', view).clientId}" 
         oncomplete="PF('column-management-dialog').show()" 
@@ -142,6 +145,7 @@
             oncomplete="registerClickOnPanelEvent();" />
           <p:commandButton id="preview-button"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             actionListener="#{taskWidgetConfigurationFilterBean.updateWidgetFilterBeforeApply(widget)}"
             styleClass="Fright preview-button u-hidden-sm-down" icon="si si-check-1"
             update="predefined-filter configuration-filter-messages-panel"
@@ -149,11 +153,13 @@
           <p:commandButton id="reset-filter" icon="si si-button-refresh-arrows"
             update="predefined-filter configuration-filter-messages-panel" process="predefined-filter" styleClass="Fright ui-button-secondary preview-button u-hidden-sm-down u-mar-right-5"
             actionListener="#{taskWidgetConfigurationFilterBean.resetFilter(widget)}"
+            ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}"
             value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}"
             title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/TaskWidgetConfiguration/ResetFilter')}">
               <f:param name="skipValidator" value="true" />
           </p:commandButton>
           <p:commandLink id="cancel-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             styleClass="Fright u-mar-right-5 ui-overlaypanel-footer__cancel"
             onclick="closeFilterPanel();return false;"
             update="predefined-filter"

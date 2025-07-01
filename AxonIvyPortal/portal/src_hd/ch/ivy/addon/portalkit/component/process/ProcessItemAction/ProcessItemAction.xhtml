@@ -35,6 +35,7 @@
   <div id="process-action-group" class="process-action-group">
     <h:panelGroup layout="block" rendered="#{!hideActionButton}">
       <p:commandButton id="process-action-button" icon="fa fa-ellipsis-h"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
         styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page" type="button"/>
 
       <p:menu id="process-action-menu" overlay="true"
@@ -79,8 +80,12 @@
       </p:menu>
     </h:panelGroup>
     <div class="start-process" id="start-button-wrap-#{cc.attrs.status.index}" >
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')}" id="start-button" actionListener="#{processWidgetBean.startProcess(process)}" styleClass="ui-no-rounded-button-process-page"
-            icon="si si-arrow-right-1" iconPos="right" ajax="#{!isExternalLink}" rendered="#{!cc.attrs.isProcessGridMode and !cc.attrs.isDashboardProcessWidget}" />
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')}" id="start-button" 
+          actionListener="#{processWidgetBean.startProcess(process)}" 
+          styleClass="ui-no-rounded-button-process-page"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')}"
+          icon="si si-arrow-right-1" iconPos="right" ajax="#{!isExternalLink}" 
+          rendered="#{!cc.attrs.isProcessGridMode and !cc.attrs.isDashboardProcessWidget}" />
     </div>
   </div>
 </cc:implementation>

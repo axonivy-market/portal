@@ -21,6 +21,7 @@
     value="#{not empty cc.attrs.task ? cc.attrs.task : ivy.task}" />
 
   <p:commandLink id="logout-menu-item"
+    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
     styleClass=""
     rendered="#{!userMenuBean.hiddenLogout}"
@@ -46,17 +47,20 @@
       <h:panelGroup>
         <div class="w-full flex gap-2">
           <p:commandButton actionListener="#{logic.logoutInDialog(task)}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
             process="@this" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
             styleClass="mx-0 ui-leave-button #{task.state == 'CREATED' ? 'w-full' : 'w-6'}"
             oncomplete="returnHomePage()" />
           <p:commandButton id="reserve-task-button" actionListener="#{logic.reserveTask(task)}" process="@this"
             rendered="#{task.state != 'CREATED'}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
             styleClass="w-6 mx-0 ui-reserve-task-button" oncomplete="returnHomePage()" />
           <p:tooltip for="reserve-task-button" trackMouse="true"
             rendered="#{task.state != 'CREATED'}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
         </div>
         <div class="w-full flex justify-content-center mt-2">
           <p:commandButton onclick="PF('logoutConfirmation').hide()"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             styleClass="ui-confirmdialog-yes w-full mx-0 ui-cancel-button ui-button-flat transparent"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
         </div>

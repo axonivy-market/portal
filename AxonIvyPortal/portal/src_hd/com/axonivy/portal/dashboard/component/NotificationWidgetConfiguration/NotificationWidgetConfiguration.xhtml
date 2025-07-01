@@ -40,6 +40,7 @@
           <!-- Add language button -->
           <p:commandButton styleClass="app-setting-button"
             icon="si si-chat-translate" id="add-language-button"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
             actionListener="#{managedBean.updateWidgetNameByLocale()}"
             process="widget-title"
             update="#{cc.clientId}:title-language-config:multiple-languages-dialog"

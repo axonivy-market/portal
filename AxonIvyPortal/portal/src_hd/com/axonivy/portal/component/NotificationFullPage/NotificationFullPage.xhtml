@@ -53,6 +53,7 @@
                        <div class="flex notification-message-block flex-column">
                          <h:panelGroup rendered="#{notification.infoAction != null}">
                            <p:commandLink id="notification-message" styleClass="notification-message"
+                              ariaLabel="#{htmlSanitizerBean.sanitize(notification.message)}"
                               actionListener="#{notificationBean.goToNotificationDetail(notification, isWorkingOnATask, task)}">
                               <h:outputText value="#{htmlSanitizerBean.sanitize(notification.message)}" />
                            </p:commandLink>
@@ -65,6 +66,7 @@
                        </div>
                        <p:outputPanel rendered="#{notificationBean.isActionAvailible(notification)}" styleClass="flex notification-action-block">
                         <p:commandLink id="notification-start-task" styleClass="notification-start-task"
+                          ariaLabel="#{notification.runAction.title}"
                           actionListener="#{notificationBean.startTask(notification)}" rendered="#{notification.runAction != null}">
                           <i class="fa fa-play notification-start-task-icon" />
                         </p:commandLink>
@@ -80,11 +82,13 @@
           <p:commandButton id="back-to-home-button" 
             actionListener="#{userMenuBean.navigateToHomePage()}"
             styleClass="u-mar-right-5 ui-button-secondary"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}" 
             icon="#{visibilityBean.generateButtonIcon('si si-house-chimney-2')}"
             title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}" />
           <p:commandButton id="link-notification-setting"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToNotificationSettings')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/linkToNotificationSettings')}"
             icon="#{visibilityBean.generateButtonIcon('si si-cog')}"
             actionListener="#{userMenuBean.navigateToUserProfile()}"/>
         </div>

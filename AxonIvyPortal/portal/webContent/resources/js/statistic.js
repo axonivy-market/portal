@@ -32,10 +32,6 @@ const getCssVariable = variableName => {
   return getComputedStyle(document.body).getPropertyValue(variableName);
 }
 
-const isNumeric = number => {
-  return !isNaN(parseFloat(number)) && isFinite(number);
-}
-
 async function postFetchApi(uri, content) {
   const response = await fetch(uri, {
     method: 'POST',
@@ -322,6 +318,14 @@ class ClientChart {
   // Abstract method to format chart label
   formatChartLabel() { }
 
+  // Check DateTime field
+  isTimestampField(field) {
+    if (field === undefined) {
+      return false;
+    }
+    return field.toLowerCase().includes("timestamp");
+  }
+
   // Update new data to an existing chart
   update(newData) {
     this.data = newData;
@@ -420,10 +424,20 @@ class ClientCanvasChart extends ClientChart {
 
   // Method to format chart label
   formatChartLabel(label) {
-    if (isNumeric((new Date(label)).getTime())) {
+    let aggregationField = this.data.chartConfig.statisticAggregation?.field;
+
+    if (typeof label === 'number' || this.isTimestampField(aggregationField)) {
       return formatDateFollowLocale(new Date(label));
     }
-    return label;
+    
+    if (aggregationField !== 'state') {
+      return label;
+    }
+
+    return label.toLowerCase()
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   }
 
   // Method to init the dashboard statistic widget title
@@ -814,8 +828,10 @@ class ClientNumberChart extends ClientChart {
 
   // Method to format chart label.
   formatChartLabel(label) {
+    let field = this.data.chartConfig.aggregates || this.data.chartConfig.statisticAggregation.field;
+    
     // Format date
-    if (isNumeric((new Date(label)).getTime())) {
+    if (typeof label === 'number' || this.isTimestampField(field)) {
       return formatDateFollowLocale(new Date(label));
     }
 

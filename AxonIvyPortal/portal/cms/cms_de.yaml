@@ -421,6 +421,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     All: Alles
     And: und
+    AutoTranslation: Automatische Übersetzung
     BusinessCaseInformation: Business Case Informationen
     Clone: Klonen
     CollapseAll: Alles zuklappen
@@ -524,7 +525,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     height: Höhe
     hide: Verbergen
     homeLogo: Home Logo
-    hour: Sunde
+    hour: Stunde
     hours: Stunden
     inactive: Deaktiviert
     information: Information
@@ -807,7 +808,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       RestoreDefaultDashboardTemplateTooltip: Wir können die Vorlage für Ihr Dashboard nicht finden und es daher nicht auf die Standardkonfiguration zurücksetzen. Bitte erkundigen Sie sich bei Ihrem Administrator nach weiteren Details!
       SelectTheTemplate: Wählen Sie die Vorlage
       SelectYourTemplate: Wählen Sie Ihre Vorlage
-      WelcomeConfigurationDescription: Sie können Ihr Widget in diesem Konfigurationsbereich konfigurieren. Bitte legen Sie den Begrüßungstext und das Bild fest, die verwendet werden sollen.
+      WelcomeConfigurationDescription: 'Sie können Ihr Widget in diesem Konfigurationsbereich konfigurieren. Legen Sie den Begrüßungstext und das zu verwendende Bild fest.'
       WelcomeWidget:
         AdvancedSettings: Erweiterte Einstellungen
         ChooseAFit: Wählen Sie eine Passform
@@ -1536,6 +1537,8 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen
+            NavigationDashboardWidget:
+              PermissionsDenied: Sie haben keine Berechtigung zum Zugriff auf dieses Dashboard
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: Falldetails Rahmen
@@ -1650,17 +1653,17 @@ Enums:
 Labels:
   AI:
     Error:
-      CannotFindUser: Leider kann kein Benutzer gefunden werden, der Ihrer Anfrage entspricht. Bitte versuchen Sie es erneut.
-      CannotStartTask: Aufgabe kann nicht gestartet werden hat ID {0}
+      CannotFindUser: 'Wir können leider keinen Benutzer finden, der Ihrer Anfrage entspricht. Bitte versuchen Sie es erneut.'
+      CannotStartTask: 'Aufgabe kann nicht gestartet werden hat ID {0}'
       InvalidTaskPriority: 'Ungültige Aufgabenpriorität. Gültige Aufgabenprioritäten sind: niedrig, normal, hoch oder Ausnahme.'
       InvalidTaskState: 'Ungültiger Aufgabenstatus. Gültige Aufgabenstatus sind: offen, erledigt, in Bearbeitung oder Fehler.'
-      NoMatchingCase: Sie haben keine Aufgabe gefunden, die Ihrer Anfrage entspricht
-      NoMatchingProcesses: Keine Matching-Prozesse.
-      NoMatchingTask: Sie haben keine Aufgabe gefunden, die Ihrer Anfrage entspricht
-    FindCaseAIResult: 'ID: {0}, Name: {1}, Beschreibung: {2}, Zustand: {3}'
+      NoMatchingCase: 'Sie haben keine Aufgabe gefunden, die Ihrer Anfrage entspricht'
+      NoMatchingProcesses: 'Keine Anpassungsprozesse.'
+      NoMatchingTask: 'Sie haben keine Aufgabe gefunden, die Ihrer Anfrage entspricht'
+    FindCaseAIResult: 'ID: {0}, Name: {1}, Beschreibung: {2}, Bundesland: {3}'
     FindProcessAIResult: '   - ID: {0}, Name: {1}, Beschreibung: {2}'
     FindTaskAIResult: 'ID: {0}, Name: {1}, Beschreibung: {2}, Zustand: {3}, Priorität {4}'
-    FindUserAIResult: 'Benutzername: {0}, Name: {1}, E-Mail: {2}, Staat: {3}'
+    FindUserAIResult: 'Benutzername: {0}, Name: {1}, E-Mail: {2}, Bundesland: {3}'
     FoundCaseHeader: 'Gefundene Fälle:'
     FoundProcessesHeader: 'Gefundene Prozesse:'
     FoundTaskHeader: 'Gefundene Aufgaben:'
@@ -1681,10 +1684,13 @@ Labels:
       Details zur Aufgabe **{0} (#{1})**:
       {2}
   AllTasks: Alle Aufgaben
+  AIAssistant: AI-Assistent
   AndMore: 'und {0} weitere...  '
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
+  Chat: Chat
   Collapse: Einklappen
+  Comma: ', '
   Configuration: Konfiguration
   CreateNewDashboard: Neues Dashboard erstellen
   Description: Beschreibung

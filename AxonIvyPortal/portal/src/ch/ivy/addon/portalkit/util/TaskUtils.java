@@ -45,6 +45,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 import ch.ivyteam.ivy.workflow.task.expiry.responsible.ExpiryResponsibles;
 import ch.ivyteam.ivy.workflow.task.responsible.Responsible;
+import ch.ivyteam.ivy.workflow.task.responsible.Responsibles;
 
 public final class TaskUtils {
   private static final String PORTAL_GLOBAL_GROWL = "portal-global-growl";
@@ -420,7 +421,16 @@ public final class TaskUtils {
     }
     return expiryResponsibles.all().stream()
         .map(item -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(item.get(), item.displayName()))
-        .collect(Collectors.joining(", "));
+        .collect(Collectors.joining(Ivy.cms().co("/Labels/Comma")));
+  }
+  
+  public static String toDisplayNameResponsible(Responsibles responsibles) {
+    if (CollectionUtils.isEmpty(responsibles.all())) {
+      return "";
+    }
+    return responsibles.all().stream()
+        .map(item -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(item.get(), item.displayName()))
+        .collect(Collectors.joining(Ivy.cms().co("/Labels/Comma")));
   }
 
   public static void markTaskAsPinned(ITask task) {

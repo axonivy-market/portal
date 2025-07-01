@@ -67,10 +67,7 @@
       ],
       "visual" : {
         "at" : { "x" : 432, "y" : 112 },
-        "size" : { "width" : 632, "height" : 124 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 632, "height" : 124 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f0" }
@@ -376,7 +373,7 @@
       "name" : "has custom sub process?",
       "config" : {
         "conditions" : {
-          "f11" : "in.hasCustomProcess",
+          "f11" : "in.hasCustomProcess && in.status != com.axonivy.portal.components.enums.UploadDocumentCheckStatus.SKIP",
           "f10" : ""
         }
       },

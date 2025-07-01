@@ -16,7 +16,7 @@
   <c:set var="isWorkingOnATask" value="#{cc.attrs.isWorkingOnATask}" />
   <c:set var="hasAttribute" value="#{not empty menu.attributes}" />
 
-  <p:commandLink id="menu-configuration-#{index}" value="#{menu.title}"
+  <p:commandLink id="menu-configuration-#{index}" value="#{menu.title}" ariaLabel="#{menu.title}"
     actionListener="#{userMenuBean.navigateToURLOrDisplayWorkingTaskWarning(menu,isWorkingOnATask, task)}" />
 
 </cc:implementation>

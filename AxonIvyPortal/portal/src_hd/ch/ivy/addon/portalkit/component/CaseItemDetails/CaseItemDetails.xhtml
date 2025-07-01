@@ -38,24 +38,29 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
     </p:link>
     <p:commandButton id="share-page-button-mobile" rendered="#{caseDetailsBean.isShowShareButton}"
-	  onclick="PF('share-case-details-dialog').show(); return false;"
+      onclick="PF('share-case-details-dialog').show(); return false;"
       icon="#{visibilityBean.generateButtonIcon('si si-share')}" 
+      ariaLabel="#{ivy.cms.co('/Labels/Share')}"
       title="#{ivy.cms.co('/Labels/Share')}" styleClass="ui-sm-hidden-op ui-button-flat"/>
   </h:panelGroup>
   <h:panelGroup id="case-details-actions" rendered="#{not isWorkingOnTask and not inFrame}"
     styleClass="switch-and-reset-buttons-area ui-g-12 ui-sm-hidden u-no-padding-bottom">
     <p:commandButton id="share-page-button" rendered="#{caseDetailsBean.isShowShareButton}"
-     	onclick="PF('share-case-details-dialog').show(); return false;"
+        onclick="PF('share-case-details-dialog').show(); return false;"
         icon="#{visibilityBean.generateButtonIcon('si si-share')}" 
+        ariaLabel="#{ivy.cms.co('/Labels/Share')}"
         title="#{ivy.cms.co('/Labels/Share')}" styleClass="u-mar-right-5 ui-button-flat"/>
     <p:commandButton id="switch-to-edit-mode-button" rendered="#{caseDetailsBean.readOnlyMode}"
+      ariaLabel="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}"
       value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToEditMode')}" actionListener="#{caseDetailsBean.switchToEditMode()}"
       icon="#{visibilityBean.generateButtonIcon('si si-pencil')}" styleClass="u-mar-right-5"
       update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid();PortalLayout.hideHorizontalScrollOnLayoutContent()" />
     <p:commandButton id="reset-details-settings-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
       rendered="#{caseDetailsBean.configuration.changed and not caseDetailsBean.readOnlyMode}" onclick="PF('reset-to-default-case-dialog').show()"
       icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}" styleClass="reset-details-settings-button u-mar-right-5" immediate="true" ajax="false" type="button" />
     <p:commandButton id="switch-to-view-mode-button" rendered="#{not caseDetailsBean.readOnlyMode}"
+      ariaLabel="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}"
       value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}" actionListener="#{caseDetailsBean.save()}"
       icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}" onclick="saveCaseDetailsGrid()"
       update="case-detail-body case-details-actions" oncomplete="loadCaseDetailsGrid()" />
@@ -183,10 +188,12 @@
     <ui:define name="dialogFooter">
       <h:panelGroup styleClass="flex flex-column">
         <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
           styleClass="w-full portal-remove-button"
           actionListener="#{caseWidgetBean.destroyCase(case)}"
           oncomplete="backToPrevPage(#{caseWidgetBean.willNavigateBack()});" />
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('destroy-case-dialog').hide();" styleClass="pt-3 flex justify-content-center" />
         </h:panelGroup>
     </ui:define>
@@ -204,8 +211,10 @@
     <ui:define name="dialogFooter">
       <h:form id="reset-to-default-case-form">
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('reset-to-default-case-dialog').hide();" styleClass="u-mar-right-15" type="button" ajax="false" />
         <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
           actionListener="#{caseDetailsBean.reset()}" update="case-item-details case-item-details:case-details-container:case-details-actions"
           oncomplete="PF('reset-to-default-case-dialog').hide(); loadCaseDetailsGrid()" />

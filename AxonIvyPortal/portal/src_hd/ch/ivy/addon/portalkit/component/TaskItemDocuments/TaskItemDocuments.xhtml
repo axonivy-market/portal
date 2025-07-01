@@ -31,9 +31,10 @@
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
           <p:commandLink id="add-document-command" global="false"
-            rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
-            styleClass="task-details-document-add-link u-mar-right-10"
-            oncomplete="PF('document-upload-dialog').show()">
+                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
+                         rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
+                         styleClass="task-details-document-add-link u-mar-right-10"
+                         oncomplete="PF('document-upload-dialog').show()">
             <span class="si si-common-file-add" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
@@ -55,7 +56,8 @@
             sortBy="#{document.name}"
             styleClass="">
             <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="task-document-name">
-              <p:commandLink ajax="false" id="download" styleClass="task-document-name-text u-truncate-text" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
+              <p:commandLink ajax="false" id="download" styleClass="task-document-name-text u-truncate-text"
+                             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
                 <p:fileDownload value="#{logic.downloadDocument(document)}" />
                 <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}" fileSize="#{masterDataBean.getReadableFileSize(document.size)}"
                   symbolStyleClass="task-details-document-download-icon"
@@ -157,6 +159,7 @@
       <div class="ui-g-12">
         <p:commandButton id="document-upload-close-command" type="button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
           onclick="PF('document-upload-dialog').hide(); " styleClass="w-full" />
       </div>
       <p:ajax event="close" global="false"
@@ -186,10 +189,13 @@
     <ui:define name="dialogFooter">
       <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" process="@this"
         styleClass="w-full portal-remove-button"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
         update="#{p:resolveFirstComponentWithId('task-document-form', view).clientId} #{cc.attrs.componentToUpdate} #{p:resolveFirstComponentWithId('task-document-global-messages', view).clientId}"
         actionListener="#{logic.deleteDocument}" oncomplete="PF('document-deletion-dialog').hide();handleTaskDetailsTables();" />
       <p:commandLink id="document-deletion-cancellation-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="pt-3 flex justify-content-center"/>
+                     ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                     process="@this" onsuccess="PF('document-deletion-dialog').hide()"
+                     styleClass="pt-3 flex justify-content-center"/>
     </ui:define>
   </ui:decorate>
   <script type="text/javascript">

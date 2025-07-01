@@ -55,7 +55,7 @@
           isInConfiguration="#{cc.attrs.isInConfiguration}"
           />
 
-        <p:commandLink id="start-process-link" styleClass="process-grid__header"
+        <p:commandLink id="start-process-link" styleClass="process-grid__header" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/startProcess')} #{process.name}"
           actionListener="#{managedBean.startProcess(process)}"
           ajax="#{!isExternalLink}"
           target="#{processTarget}"
@@ -79,6 +79,7 @@
         <!-- Start process -->
         <div class="ui-g-12 start-button-wrap" id="start-button-wrap-#{status.index}">
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
+            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
             id="start-button" actionListener="#{managedBean.startProcess(process)}" icon="si si-arrow-right-1"
             ajax="#{!isExternalLink}"
             disabled="#{cc.attrs.readOnlyMode}" />

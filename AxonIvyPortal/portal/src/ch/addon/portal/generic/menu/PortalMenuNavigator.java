@@ -98,11 +98,23 @@ public class PortalMenuNavigator {
     MenuItem menuItem = ((MenuActionEvent) event).getMenuItem();
     return menuItem.getParams();
   }
-
   public static List<Application> getThirdPartyApps() {
     List<Application> applications = RegisteredApplicationService.getInstance().getPublicConfig();
+    applications.removeIf(application -> {
+      List<String> permissions = application.getPermissions();
+      if (CollectionUtils.isEmpty(permissions)) {
+        return false;
+      }
+      return permissions.stream().noneMatch(PortalMenuNavigator::isSessionUserHasPermisson);
+    });
     Collections.sort(applications, new ApplicationIndexAscendingComparator());
     return applications;
+  }
+
+  private static boolean isSessionUserHasPermisson(String permission) {
+    return StringUtils.startsWith(permission, "#")
+        ? StringUtils.equals(Ivy.session().getSessionUser().getMemberName(), permission)
+        : PermissionUtils.doesSessionUserHaveRole(permission);
   }
 
   public static List<SubMenuItem> callSubMenuItemsProcess() {

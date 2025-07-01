@@ -98,10 +98,7 @@
       ],
       "visual" : {
         "at" : { "x" : 352, "y" : 456 },
-        "size" : { "width" : 624, "height" : 132 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 624, "height" : 132 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f0" }
@@ -116,6 +113,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import org.apache.commons.lang3.StringUtils;",
             "import java.util.HashMap;",
             "import java.util.Map;",
@@ -131,6 +129,7 @@
             "if (in.hasCustomProcess) {",
             "  in.documents = result.get(\"documents\") as List;",
             "  in.message = result.get(\"message\").toString();",
+            "  in.status = UploadDocumentCheckStatus.toEnum(result.get(\"status\").toString());",
             "}"
           ]
         }
@@ -147,7 +146,7 @@
       "name" : "Has custom sub process?",
       "config" : {
         "conditions" : {
-          "f11" : "in.hasCustomProcess",
+          "f11" : "in.hasCustomProcess && in.status != com.axonivy.portal.components.enums.UploadDocumentCheckStatus.SKIP",
           "f10" : ""
         }
       },

@@ -47,6 +47,7 @@
                     <p:commandButton id="notification-mark-all-as-read" styleClass="notifications-icon ui-button-outlined"
                       disabled="#{!notificationBean.hasUnreadNotifications()}"
                       update="#{unreadNotificationsId}, #{notificationScrollerId} notification-mark-all-as-read"
+                      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAllAsRead')}" oncomplete="Portal.updateLayoutContent()"
                       actionListener="#{notificationBean.readAll()}" icon="si si-check-double-1">
                     </p:commandButton>
@@ -77,6 +78,7 @@
                           <div class="flex notifications-indicator">
                             <p:commandLink id="notification-mark-as-read" actionListener="#{notificationBean.markAsRead(notification)}"
                               process="@this" partialSubmit="true" global="false" onclick="markAsRead('#{htmlSanitizerBean.escapeForJS(notification.id)}')"
+                              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/notifications/markAsRead')}"
                               oncomplete="Portal.updateLayoutContent();" update="#{unreadNotificationsId} notification-mark-all-as-read">
                               <i class="notifications-indicator-icon fa #{notification.read ? '': 'fa-circle'}" id="#{notification.id}" />
                             </p:commandLink>
@@ -86,6 +88,7 @@
                           <div class="flex notification-message-block flex-column">
                             <h:panelGroup rendered="#{notification.infoAction != null}">
                               <p:commandLink id="notification-message" styleClass="notification-message"
+                                ariaLabel="#{notification.infoAction.title}"
                                 actionListener="#{notificationBean.goToNotificationDetail(notification, isWorkingOnATask, task)}">
                                 <h:outputText value="#{htmlSanitizerBean.sanitize(notification.message)}" />
                               </p:commandLink>
@@ -99,6 +102,7 @@
                           <p:outputPanel rendered="#{notificationBean.isActionAvailible(notification)}" styleClass="flex notification-action-block">
                             <p:commandLink id="notification-start-task"
                               styleClass="notification-start-task"
+                              ariaLabel="#{notification.runAction.title}"
                               actionListener="#{notificationBean.startTaskFromNotification(notification, isWorkingOnATask, task)}">
                               <i class="fa fa-play notification-start-task-icon" />
                             </p:commandLink>

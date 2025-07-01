@@ -46,10 +46,11 @@
                   styleClass="filter-name-overlay-panel #{requiredLanguage ? 'hidden' : ''}"
                   dynamic="false" dismissable="true" showCloseIcon="true">
                   <p:commandLink id="tranlate-link" update="@form" process="@this" partialSubmit="true"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/AutoTranslation')}"
                     actionListener="#{newsWidgetBean.resetTranslation()}"
                     disabled="#{not empty newsWidgetBean.warningText}">
                     <span class="fa fa-language language-icon-padding-right" />
-                    <h:outputText value="Auto. translation" />
+                    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/AutoTranslation')}" />
                   </p:commandLink>
                   <h:panelGroup id="translated-text-panel" layout="block">
                     <i id="translating-title"
@@ -79,6 +80,7 @@
                     <p:commandButton
                       styleClass="ui-button-flat #{requiredLanguage ? 'hidden' : ''}"
                       id="translate-language-button" icon="si si-chat-translate si-lg"
+                      ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Translate')}"
                       title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Translate')}">
                       <p:ajax event="click"
                         listener="#{newsWidgetBean.translateDescription(news.locale)}"
@@ -97,10 +99,12 @@
   
   <f:facet name="footer">
     <p:commandLink id="cancel-news-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       onclick="PF('manage-news-dialog').hide()" immediate="true" global="false" process="@none" update="@none"
       styleClass="u-mar-right-10" />
     <p:commandButton id="publish-news-button"
       value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Publish')}"
+      ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/NewsWidget/Publish')}"
       oncomplete="if (args &amp;&amp; !args.validationFailed){PF('manage-news-dialog').hide();rcUpdateNewsWidget#{widget.id}();}PF('manage-news-dialog').initPosition()"
       actionListener="#{newsWidgetBean.publishNews()}" process="management-news-group" update="management-news-group"
       partialSubmit="true" />
@@ -126,6 +130,7 @@
     <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       onclick="PF('delete-news-dialog').hide();" styleClass="u-mar-right-15" />
     <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
+      ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
       actionListener="#{newsWidgetBean.deleteNews()}" icon="#{visibilityBean.generateButtonIcon('si si-remove-circle')}"
       oncomplete="PF('delete-news-dialog').hide();" update="#{cc.clientId}:widget-content" />
   </ui:define>

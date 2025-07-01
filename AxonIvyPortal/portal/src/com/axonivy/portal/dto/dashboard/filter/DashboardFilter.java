@@ -35,6 +35,19 @@ public class DashboardFilter extends BaseFilter implements Serializable {
 
   @JsonIgnore
   private String numberPattern;
+  
+  @JsonIgnore
+  private String label;
+
+  @JsonIgnore
+  public String getLabel() {
+    return label;
+  }
+
+  @JsonIgnore
+  public void setLabel(String label) {
+    this.label = label;
+  }
 
   @JsonIgnore
   public boolean isCustomDateField() {

@@ -141,7 +141,7 @@
           <p:outputLabel for="custom-field-description" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}"/>
         </div>
         <div class="ui-g-9 ui-fluid">
-          <p:inputText id="custom-field-description" readonly="true" value="#{columnManagementBean.fieldDescription}"/>
+          <p:inputText id="custom-field-description" readonly="true" disabled="true" value="#{columnManagementBean.fieldDescription}"/>
         </div>
       </h:panelGroup>
 
@@ -151,11 +151,14 @@
       <div class="ui-g-9 ui-fluid">
         <p:inputText id="field-display-name" value="#{columnManagementBean.fieldDisplayName}" styleClass="field-add-fieldset__input"
            required="#{!selectedCustomField and !selectedCustomCaseField and !selectedCustomBusinessCaseField}" requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
-           readonly="#{selectedCustomField or selectedCustomCaseField or selectedCustomBusinessCaseField}"/>
+           readonly="#{selectedCustomField or selectedCustomCaseField or selectedCustomBusinessCaseField}"
+           disabled="#{selectedCustomField or selectedCustomCaseField or selectedCustomBusinessCaseField}"/>
       </div>
 
       <div class="ui-g-12 text-right">
-        <p:commandButton id="field-add-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addField')}" actionListener="#{columnManagementBean.add}" update="field-add-fieldset column-management-datatable"
+        <p:commandButton id="field-add-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addField')}" 
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addField')}"
+          actionListener="#{columnManagementBean.add}" update="field-add-fieldset column-management-datatable"
           oncomplete="PF('column-management-dialog').initPosition();" icon="si si-add" process="column-management-form"/>
       </div>
     </div>

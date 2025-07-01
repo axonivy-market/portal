@@ -11,11 +11,15 @@ import javax.faces.context.FacesContext;
 import org.primefaces.PrimeFaces;
 import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.ReorderEvent;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.event.TabChangeEvent;
+import org.primefaces.event.UnselectEvent;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portalkit.configuration.Application;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable.Option;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.jsf.Attrs;
@@ -37,6 +41,7 @@ public class AdminSettingBean implements Serializable {
   private boolean isShowRoleManagementTab;
   private boolean isTabChangeEventTriggered;
   private boolean isShowPasswordValidationTab;
+  private ThirdPartyApplicationBean thirdPartyApplicationBean;
 
   public void initAdminTabViewConfig() {
     if (isTabChangeEventTriggered) {
@@ -64,7 +69,7 @@ public class AdminSettingBean implements Serializable {
         case ROLE_MANAGEMENT_TAB_ID:
           break;
         case PASSWORD_VALIDATION_TAB_ID:
-            break;
+          break;
         default:
           break;
       }
@@ -72,8 +77,149 @@ public class AdminSettingBean implements Serializable {
     isTabChangeEventTriggered = true;
   }
 
+  private ThirdPartyApplicationBean getThirdPartyApplicationBean() {
+    if (thirdPartyApplicationBean == null) {
+      thirdPartyApplicationBean = new ThirdPartyApplicationBean();
+    }
+    return thirdPartyApplicationBean;
+  }
+
+  public void setThirdPartyApplicationBean(ThirdPartyApplicationBean thirdPartyApplicationBean) {
+    this.thirdPartyApplicationBean = thirdPartyApplicationBean;
+  }
+
+  // Delegation methods for third-party application management
+  public void addNewApplication() {
+    getThirdPartyApplicationBean().addNewApplication();
+  }
+
+  public void editApplication(Application application) {
+    getThirdPartyApplicationBean().editApplication(application);
+  }
+
+  public void saveApplication() {
+    getThirdPartyApplicationBean().saveApplication();
+  }
+
+  public void deleteApplication(Application application) {
+    getThirdPartyApplicationBean().deleteApplication(application);
+  }
+
+  public List<Application> getApplicationList() {
+    return getThirdPartyApplicationBean().getApplicationList();
+  }
+
+  public void setApplicationList(List<Application> applicationList) {
+    getThirdPartyApplicationBean().setApplicationList(applicationList);
+  }
+
+  public Application getSelectedApp() {
+    return getThirdPartyApplicationBean().getSelectedApp();
+  }
+
+  public void setSelectedApp(Application selectedApp) {
+    getThirdPartyApplicationBean().setSelectedApp(selectedApp);
+  }
+
+  public String getDialogTitle() {
+    return getThirdPartyApplicationBean().getDialogTitle();
+  }
+
+  public void setDialogTitle(String dialogTitle) {
+    getThirdPartyApplicationBean().setDialogTitle(dialogTitle);
+  }
+
+  public boolean isAddMode() {
+    return getThirdPartyApplicationBean().isAddMode();
+  }
+
+  public void setAddMode(boolean isAddMode) {
+    getThirdPartyApplicationBean().setAddMode(isAddMode);
+  }
+
+  public String getAppNameInCurrentLocale(Application application) {
+    return getThirdPartyApplicationBean().getAppNameInCurrentLocale(application);
+  }
+
+  public List<String> getSelectedApplicationPermissions() {
+    return getThirdPartyApplicationBean().getSelectedApplicationPermissions();
+  }
+
+  public void setSelectedApplicationPermissions(List<String> selectedApplicationPermissions) {
+    getThirdPartyApplicationBean().setSelectedApplicationPermissions(selectedApplicationPermissions);
+  }
+
+  public String getDisplayNameInCurrentLanguage() {
+    return getThirdPartyApplicationBean().getDisplayNameInCurrentLanguage();
+  }
+
+  public void setDisplayNameInCurrentLanguage(String displayNameInCurrentLanguage) {
+    getThirdPartyApplicationBean().setDisplayNameInCurrentLanguage(displayNameInCurrentLanguage);
+  }
+
+  public List<DisplayName> getSupportedLanguages() {
+    return getThirdPartyApplicationBean().getSupportedLanguages();
+  }
+
+  public List<String> getLanguages() {
+    return getThirdPartyApplicationBean().getLanguages();
+  }
+
+  public void updateDisplayNameByLocale() {
+    getThirdPartyApplicationBean().updateDisplayNameByLocale();
+  }
+
+  public List<DisplayName> getTitles() {
+    return getThirdPartyApplicationBean().getTitles();
+  }
+
+  public void updateCurrentLanguage() {
+    getThirdPartyApplicationBean().updateCurrentLanguage();
+  }
+
+  public String getTranslatedText() {
+    return getThirdPartyApplicationBean().getTranslatedText();
+  }
+
+  public void setTranslatedText(String translatedText) {
+    getThirdPartyApplicationBean().setTranslatedText(translatedText);
+  }
+
+  public String getWarningText() {
+    return getThirdPartyApplicationBean().getWarningText();
+  }
+
+  public void setWarningText(String warningText) {
+    getThirdPartyApplicationBean().setWarningText(warningText);
+  }
+
+  public void translate(DisplayName title) {
+    getThirdPartyApplicationBean().translate(title);
+  }
+
+  public void applyTranslatedText(DisplayName displayName) {
+    getThirdPartyApplicationBean().applyTranslatedText(displayName);
+  }
+
+  public boolean isRequiredField(DisplayName displayName) {
+    return getThirdPartyApplicationBean().isRequiredField(displayName);
+  }
+
+  public boolean isShowTranslation(DisplayName title) {
+    return getThirdPartyApplicationBean().isShowTranslation(title);
+  }
+
+  public boolean isFocus(DisplayName title) {
+    return getThirdPartyApplicationBean().isFocus(title);
+  }
+
+  public void onApplicationReorderDelegate(List<Application> applications, Application selectedApp) {
+    getThirdPartyApplicationBean().onApplicationReorder(applications, selectedApp);
+  }
+
   private void initApplicationTab() {
-    invokeAdminSettingsComponentLogic("#{logic.initApplicationSettings}", new Object[] {});
+
+    getThirdPartyApplicationBean().loadApplications();
   }
 
   private void initAnnouncementTab() {
@@ -84,20 +230,22 @@ public class AdminSettingBean implements Serializable {
     PrimeFacesUtils.executeScript("PF('settingTable').filter()");
     invokeAdminSettingsComponentLogic("#{logic.initAdminSettings}", new Object[] {});
   }
-
   public void onApplicationReorder(ReorderEvent reorderEvent) {
     int fromIndex = reorderEvent.getFromIndex();
     int toIndex = reorderEvent.getToIndex();
-    List<Application> applicationList = Attrs.currentContext().getAttribute("#{data.applicationList}", List.class);
+    
+    List<Application> applicationList = getThirdPartyApplicationBean().getApplicationList();
+    
+    if (applicationList != null && !applicationList.isEmpty()) {
+      Application selectedApp = applicationList.remove(fromIndex);
+      applicationList.add(toIndex, selectedApp);
 
-    Application selectedApp = applicationList.remove(fromIndex);
-    applicationList.add(toIndex, selectedApp);
+      for (int i = 0; i < applicationList.size(); i++) {
+        applicationList.get(i).setMenuOrdinal(i);
+      }
 
-    for (int i = 0; i < applicationList.size(); i++) {
-      applicationList.get(i).setMenuOrdinal(i);
+      getThirdPartyApplicationBean().onApplicationReorder(applicationList, selectedApp);
     }
-
-    invokeAdminSettingsComponentLogic("#{logic.onApplicationReorder}", new Object[] {applicationList, selectedApp});
   }
 
   private void invokeAdminSettingsComponentLogic(String methodName, Object[] param) {
@@ -108,8 +256,7 @@ public class AdminSettingBean implements Serializable {
 
   public static void updatePortalManagementMessages() {
     FacesMessage message = FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_WARN,
-        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/informMessage"),
-        null);
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/informMessage"), null);
     FacesContext.getCurrentInstance().addMessage(PORTAL_MESSAGE_INFO, message);
     PrimeFaces.current().ajax().update("portal-management-messages");
   }
@@ -117,7 +264,7 @@ public class AdminSettingBean implements Serializable {
   private boolean canSeeRoleManagement() {
     return PermissionUtils.hasPortalPermission(PortalPermission.ROLE_MANAGEMENT);
   }
-  
+
   private boolean canSeePasswordValidation() {
     return PermissionUtils.hasPortalPermission(PortalPermission.PASSWORD_VALIDATION);
   }
@@ -136,12 +283,27 @@ public class AdminSettingBean implements Serializable {
   public void setShowRoleManagementTab(boolean isShowRoleManagementTab) {
     this.isShowRoleManagementTab = isShowRoleManagementTab;
   }
-  
+
   public boolean isShowPasswordValidationTab() {
-	return isShowPasswordValidationTab;
+    return isShowPasswordValidationTab;
   }
-  
+
   public void setShowPasswordValidationTab(boolean isShowPasswordValidationTab) {
-	    this.isShowPasswordValidationTab = isShowPasswordValidationTab;
-	  }
+    this.isShowPasswordValidationTab = isShowPasswordValidationTab;
+  }
+
+  public List<SecurityMemberDTO> completeApplicationPermissions(String query) {
+    return getThirdPartyApplicationBean().completeApplicationPermissions(query);
+  }
+
+  public void onSelectPermissionForApplication(SelectEvent<Object> event) {
+    getThirdPartyApplicationBean().onSelectPermissionForApplication(event);
+  }
+
+  public void onUnSelectPermissionForApplication(UnselectEvent<Object> event) {
+    getThirdPartyApplicationBean().onUnSelectPermissionForApplication(event);
+  }
+
+
+
 }

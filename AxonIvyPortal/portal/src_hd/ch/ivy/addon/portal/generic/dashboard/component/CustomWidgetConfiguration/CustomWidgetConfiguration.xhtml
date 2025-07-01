@@ -40,6 +40,7 @@
           icon="si si-chat-translate" id="add-language-button"
           actionListener="#{managedBean.updateWidgetNameByLocale()}"
           process="widget-title"
+          ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
           update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
           oncomplete="PF('multiple-languages-dialog').show();">
           <f:param name="skipValidator" value="true" />
@@ -95,7 +96,7 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/customWidgetParamChangedMessage')}" />
           </div>
           <div class="ui-g-12">
-            <p:commandButton
+            <p:commandButton ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Update')}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/Update')}">
               <p:ajax event="click"
                 listener="#{dashboardDetailModificationBean.reloadParamtersFromProcessForCustomWidget(widget)}"
