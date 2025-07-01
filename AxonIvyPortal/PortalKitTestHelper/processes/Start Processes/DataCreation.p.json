@@ -1372,6 +1372,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import java.util.ArrayList;",
             "import com.axonivy.portal.components.util.Locales;",
             "import ch.ivy.addon.portalkit.util.DisplayNameConvertor;",
             "import ch.ivy.addon.portalkit.configuration.Application;",
@@ -1386,6 +1387,7 @@
             "app.menuIcon = \"fa fa-play\";",
             "app.menuOrdinal = 99;",
             "app.name = convertor.toJson();",
+            "app.permissions = new ArrayList<String>();",
             "",
             "RegisteredApplicationService applicationService = RegisteredApplicationService.getInstance();",
             "app = applicationService.save(app) as Application;"
