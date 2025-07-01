@@ -188,7 +188,7 @@ public class DashboardEditCaseWidgetTest extends BaseTest {
     caseWidget.addFilter("Creator", FilterOperator.IN);
     caseWidget.inputValueOnLatestFilter(FilterValueType.CREATOR_TYPE, "admin");
 
-    caseWidget.addFilter("Created Date", FilterOperator.TODAY);
+    caseWidget.addFilter("Created", FilterOperator.TODAY);
 
     caseWidget.addFilter("Account Number", FilterOperator.BETWEEN);
     caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER_BETWEEN, 5, 700);
