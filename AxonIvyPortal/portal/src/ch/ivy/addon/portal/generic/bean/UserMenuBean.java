@@ -17,6 +17,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.bo.QRCodeData;
+import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.enums.PortalCustomSignature;
 import com.axonivy.portal.service.GlobalSearchService;
@@ -34,6 +35,7 @@ import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.PortalProcessViewerUtils;
 import ch.ivy.addon.portalkit.util.RequestUtils;
+import ch.ivy.addon.portalkit.util.StaticPageUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.EngineUriResolver;
@@ -309,9 +311,14 @@ public class UserMenuBean implements Serializable {
   private String getURLFromUserMenu(UserMenu menu) {
     String menuUrl = menu.getUrl();
     if (StringUtils.isNotBlank(menuUrl)) {
+      if (menu.getMenuKind() == MenuKind.STATIC_PAGE) {
+        return StaticPageUtils.buildUrl(menuUrl, true);
+      }
+
       if (menuUrl.contains(".ivp")) {
         return PortalNavigator.buildUrlByKeyword(menuUrl, menuUrl, menu.getParams());
       }
+
       if (menuUrl.contains("http")) {
         return menuUrl;
       }
