@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.casecolumn.CaseColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -23,8 +25,8 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
    * @param columnsVisibility list of columns to export
    * @param widgetName 
    */
-  public CaseDashboardExporter(List<String> columnsVisibility, String widgetName) {
-    super(columnsVisibility, widgetName, "/ch.ivy.addon.portalkit.ui.jsf/dashboard/export/exportedCasesFileName");
+  public CaseDashboardExporter(List<String> columnsVisibility, List<ColumnModel> columnModels,String widgetName) {
+    super(columnsVisibility, columnModels, widgetName, "/ch.ivy.addon.portalkit.ui.jsf/dashboard/export/exportedCasesFileName");
   }
 
   /**
@@ -40,6 +42,11 @@ public class CaseDashboardExporter extends DashboardWidgetExporter{
     DashboardStandardCaseColumn columnField = DashboardStandardCaseColumn.findBy(column);
     if (columnField == null) {
       return getCustomColumnName(column);
+    }
+    
+    CaseColumnModel caseColumnModel = (CaseColumnModel) getMapHeaders().get(column);
+    if (caseColumnModel != null) {
+      return caseColumnModel.getHeaderText();
     }
 
     String url = switch (columnField) {

@@ -1154,9 +1154,11 @@ Dialogs:
     MaxLabelLenght: '35'
     maxOptionsLength: '20'
 Labels:
+  AIAssistant: AI Assistant
   AndMore: and more...
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  Chat: Chat
   Collapse: Collapse
   Configuration: Configuration
   CreateNewDashboard: Create new dashboard

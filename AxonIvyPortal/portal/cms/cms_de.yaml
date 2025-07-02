@@ -420,6 +420,7 @@ ch.ivy.addon.portalkit.ui.jsf:
   common:
     All: Alles
     And: und
+    AutoTranslation: Automatische Übersetzung
     BusinessCaseInformation: Business Case Informationen
     Clone: Klonen
     CollapseAll: Alles zuklappen
@@ -523,7 +524,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     height: Höhe
     hide: Verbergen
     homeLogo: Home Logo
-    hour: Sunde
+    hour: Stunde
     hours: Stunden
     inactive: Deaktiviert
     information: Information
@@ -1663,9 +1664,11 @@ Labels:
 
       {2}'
   AllTasks: Alle Aufgaben
+  AIAssistant: AI-Assistent
   AndMore: 'und {0} weitere...  '
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
+  Chat: Chat
   Collapse: Einklappen
   Comma: ', '
   Configuration: Konfiguration

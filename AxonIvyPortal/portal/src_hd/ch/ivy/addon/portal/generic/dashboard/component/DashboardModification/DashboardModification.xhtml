@@ -52,6 +52,7 @@
         <div id="dashboard-configuration-action-group" class="dashboard-configuration-action-group">
           <h:panelGroup layout="block">
             <p:commandButton id="dashboard-configuration-action-button" icon="fa fa-ellipsis-h"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
               styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page" type="button" />
             <p:menu id="dashboard-configuration-action-menu" styleClass="w-auto" overlay="true" trigger="dashboard-configuration-action-button"
               my="right top" at="right bottom">
@@ -88,6 +89,7 @@
           <h:form style="display:none"
             rendered="#{dashboardModificationBean.hasExportDashboardPermission()}">
             <p:commandButton id="export-dashboard"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/DashboardConfiguration/ExportDashboard')}"
               widgetVar="exportDashboardBtn-#{dashboard.id}"
               style="display:none"
               update="@this" immediate="true" ajax="false">
@@ -129,6 +131,7 @@
     <ui:define name="dialogFooter">
       <div class="flex flex-column">
       <p:commandButton id="remove-dashboard-button" styleClass="w-full portal-remove-button"
+        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
         actionListener="#{dashboardModificationBean.removeDashboard()}"
         update="dashboard-modification-container"
