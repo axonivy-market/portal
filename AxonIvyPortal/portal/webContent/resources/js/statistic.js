@@ -32,6 +32,10 @@ const getCssVariable = variableName => {
   return getComputedStyle(document.body).getPropertyValue(variableName);
 }
 
+const isNumeric = number => {
+  return !isNaN(parseFloat(number)) && isFinite(number);
+}
+
 async function postFetchApi(uri, content) {
   const response = await fetch(uri, {
     method: 'POST',
@@ -779,7 +783,7 @@ class ClientNumberChart extends ClientChart {
     let field = this.data.chartConfig.aggregates || this.data.chartConfig.statisticAggregation.field;
     
     // Format date
-    if (typeof label === 'number' || this.isTimestampField(field)) {
+    if (typeof label === 'number' || (this.isTimestampField(field) && isNumeric(new Date(label).getTime()))) {
       return formatDateFollowLocale(new Date(label));
     }
 
