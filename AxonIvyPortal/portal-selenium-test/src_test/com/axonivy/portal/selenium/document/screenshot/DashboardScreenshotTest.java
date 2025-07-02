@@ -471,7 +471,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     caseWidget.addFilter("Account Number", FilterOperator.EQUAL);
     caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER, 40);
 
-    caseWidget.addFilter("Created Date", FilterOperator.WITHIN_LAST);
+    caseWidget.addFilter("Created", FilterOperator.WITHIN_LAST);
     caseWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "2", "Year(s)");
     
     caseWidget.addFilter("Description", FilterOperator.CONTAINS);
@@ -546,7 +546,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     caseWidget.addFilter("State", null);
     caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
     
-    caseWidget.addFilter("Created Date", FilterOperator.TODAY);
+    caseWidget.addFilter("Created", FilterOperator.TODAY);
     
     caseWidget.removeFocusFilterDialog();
     ScreenshotUtils.captureElementScreenshot(caseWidget.getConfigurationFilter(),
