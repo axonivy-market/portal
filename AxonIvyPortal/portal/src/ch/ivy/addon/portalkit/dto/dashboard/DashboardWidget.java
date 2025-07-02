@@ -147,6 +147,12 @@ public abstract class DashboardWidget implements Serializable {
     var latestUserFilterOptions = getUserFilterCollection().getLatestFilterOption();
     WidgetFilterService.getInstance().updateFilterOptionsData(this, latestUserFilterOptions);
   }
+  
+  @JsonIgnore
+  public void onCancelFilters() {
+    var latestUserFilterOptions = getUserFilterCollection().getLatestFilterOption();
+    WidgetFilterService.getInstance().updateFilterOptionsData(this, latestUserFilterOptions);
+  }
 
   @JsonIgnore
   public void updateSavedFiltersSelection() {

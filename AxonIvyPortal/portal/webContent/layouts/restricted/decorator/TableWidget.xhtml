@@ -239,7 +239,8 @@
               <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 styleClass="u-mar-right-15 ui-overlaypanel-footer__cancel"
-                onclick="PF('filter-overlay-panel-#{index}').hide(); return false;"
+                actionListener="#{widget.onCancelFilters()}"
+                oncomplete="PF('filter-overlay-panel-#{index}').hide(); return false;"
                 global="false"/>
   
               <p:commandButton id="reset-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
