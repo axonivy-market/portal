@@ -87,6 +87,9 @@ Dialogs:
               EXTERNAL_LINK: Link externo
               IVY_PROCESS: Proceso de negocio
             ProcessViewerIFrameTitle: Marco del visor de procesos
+          SideStepType:
+            PARALLEL: Crear una nueva tarea y seguir trabajando en la tarea actual
+            SWITCH: Aparcar la tarea actual y empezar a trabajar en una nueva tarea
 Labels:
   AI:
     Error:
