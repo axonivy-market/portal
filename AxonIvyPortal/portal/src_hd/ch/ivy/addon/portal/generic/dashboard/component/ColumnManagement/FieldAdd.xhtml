@@ -15,6 +15,8 @@
         <p:selectOneMenu id="field-type-selection" value="#{columnManagementBean.selectedFieldType}" styleClass="field-add-fieldset__input">
           <f:selectItems value="#{columnManagementBean.fieldTypes}" var="type" itemLabel="#{type.label}"/>
           <p:ajax listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
+          <p:ajax event="change" listener="#{columnManagementBean.onSelectType}" update="field-add-fieldset" />
+          
         </p:selectOneMenu>
       </div>
 
@@ -156,7 +158,8 @@
            readonly="#{selectedCustomField or selectedCustomCaseField or selectedCustomBusinessCaseField}"
            disabled="#{selectedCustomField or selectedCustomCaseField or selectedCustomBusinessCaseField}"/>
 
-        <p:commandButton id="name-add-language-button" icon="si si-chat-translate" rendered="#{selectedStandardField}"
+        <p:commandButton id="name-add-language-button" icon="si si-chat-translate"
+                         rendered="#{columnManagementBean.isDisplayMultiLanguage()}"
                          actionListener="#{columnManagementBean.updateNameByLocale()}" process="field-display-name"
                          update="name-language-config:multiple-languages-dialog"
                          oncomplete="PF('multiple-languages-dialog').show();" />
@@ -170,7 +173,7 @@
       </div>
 
       <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
-              rendered="#{selectedStandardField}"
+              rendered="#{columnManagementBean.isDisplayMultiLanguage()}"
               id="name-language-config" titles="#{columnManagementBean.getFieldDisplayNames()}"
               managedBean="#{columnManagementBean}" dynamic="true"
               updateCurrentLanguage="#{columnManagementBean.updateCurrentLanguage()}"

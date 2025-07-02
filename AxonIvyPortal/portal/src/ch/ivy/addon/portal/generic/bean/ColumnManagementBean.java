@@ -5,6 +5,7 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -101,6 +102,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     this.fieldDescription = null;
     this.numberFieldPattern = null;
     this.isConfiguredLanguage = false;
+    this.fieldDisplayNames = Collections.emptyList();
   }
 
   public List<String> completeCategoriesSelection(String query) {
@@ -233,6 +235,14 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     }
 
     this.fields = this.fields.stream().filter(isNotUsedIn(getExistingFieldNames())).collect(Collectors.toList());
+  }
+  
+  public void onSelectType() {
+      resetValues();
+  }
+  
+  public boolean isDisplayMultiLanguage() {
+    return selectedFieldType == DashboardColumnType.STANDARD && selectedField != null;
   }
 
   private Predicate<? super String> isNotUsedIn(List<String> existingFields) {
@@ -424,12 +434,10 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   }
   
   public List<DisplayName> getFieldDisplayNames() {
-//    }
     return fieldDisplayNames;
   }
   
   public void onSelectStandardField() {
-    getFieldDisplayNames();
     this.fieldDisplayName = Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardTaskColumn/%s", 
         DashboardStandardTaskColumn.findBy(selectedField)), LanguageService.getInstance().getDefaultLanguage());
   }
