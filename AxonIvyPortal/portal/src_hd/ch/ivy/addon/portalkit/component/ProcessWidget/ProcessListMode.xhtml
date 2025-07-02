@@ -28,6 +28,15 @@
             <p:tooltip id="external-link-icon-tooltip" for="external-link-icon"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/externalLink')}" position="top" trackMouse="true"
               hideEvent="mouseleave click" styleClass="process-tooltip"/>
+            
+            <p:commandLink id="edit-external-link" styleClass="si si-graphic-tablet-drawing-pen process-item"
+              ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+              actionListener="#{processWidgetBean.setEditedProcess(process)}" oncomplete="PF('edit-process-dialog').show();"
+              update="#{cc.clientId}:edit-process-dialog" rendered="#{process.getProcess().ableToEdit}" />
+            <p:tooltip id="edit-external-link-tooltip" for="edit-external-link" position="top" trackMouse="true" hideEvent="mouseleave click"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+              rendered="#{process.getProcess().ableToEdit}" />
+            
             <p:commandLink id="delete-external-link" styleClass="si si-bin-1 process-item"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExternalLinkTooltip')}"
               actionListener="#{processWidgetBean.setDeletedProcess(process)}" oncomplete="PF('remove-process-workflow-dialog').show();"
