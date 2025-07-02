@@ -204,6 +204,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
       updateNameByLocale();
     }
     columnModel.initDefaultValue();
+    columnModel.setHeader(this.fieldDisplayName);
     columnModel.setHeaders(this.fieldDisplayNames);
     columnModel.setField(this.selectedField);
     columnModel.setQuickSearch(false);
