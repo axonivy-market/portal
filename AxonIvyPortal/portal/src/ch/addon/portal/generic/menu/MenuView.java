@@ -371,7 +371,8 @@ public class MenuView implements Serializable {
     DefaultMenuItem caseListSubmenuItem = buildCaseListMenuItem();
     String title = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCasesOfBusinessCaseTitle", Arrays.asList(Long.toString(userCase.getId()), userCase.names().current()));
     caseListSubmenuItem.setValue(title);
-    caseListSubmenuItem.setDisabled(true);
+    caseListSubmenuItem.setUrl("#");
+    caseListSubmenuItem.setStyleClass("breadcrumb-current-item");
     breadcrumbModel.getElements().add(caseListSubmenuItem);
   }
 
@@ -380,7 +381,8 @@ public class MenuView implements Serializable {
     DefaultMenuItem taskListSubmenuItem = buildTaskListMenuItem();
     String title = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader").concat(" #").concat(Long.toString(userCase.getId()));
     taskListSubmenuItem.setValue(title);
-    taskListSubmenuItem.setDisabled(true);
+    taskListSubmenuItem.setUrl("#");
+    taskListSubmenuItem.setStyleClass("breadcrumb-current-item");
     breadcrumbModel.getElements().add(taskListSubmenuItem);
   }
 
@@ -388,7 +390,8 @@ public class MenuView implements Serializable {
     setPortalHomeMenuToBreadcrumbModel();
 
     DefaultMenuItem processListSubmenuItem = buildProcessListMenuItem();
-    processListSubmenuItem.setDisabled(true);
+    processListSubmenuItem.setUrl("#");
+    processListSubmenuItem.setStyleClass("breadcrumb-current-item");
     breadcrumbModel.getElements().add(processListSubmenuItem);
   }
 
@@ -419,6 +422,8 @@ public class MenuView implements Serializable {
   private MenuItem buildPortalHomeMenuItem() {
     return DefaultMenuItem.builder()
       .icon("si si-house-chimney-2 portal-icon")
+      .ariaLabel(Ivy.cm().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage"))
+      .title(Ivy.cm().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage"))
       .onclick("navigateToPortalHome();")
       .build();
   }
@@ -449,7 +454,7 @@ public class MenuView implements Serializable {
     return DefaultMenuItem.builder()
       .value(String.join(": ", Ivy.cms().co("/Labels/Task"), taskName))
       .url("#")
-      .disabled(true)
+      .styleClass("breadcrumb-current-item")
       .build();
   }
 
@@ -457,7 +462,7 @@ public class MenuView implements Serializable {
     return DefaultMenuItem.builder()
       .value(String.join(": ", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case"), userCase.names().current()))
       .url("#")
-      .disabled(true)
+      .styleClass("breadcrumb-current-item")
       .build();
   }
 
@@ -465,7 +470,7 @@ public class MenuView implements Serializable {
     return DefaultMenuItem.builder()
       .value(Ivy.cms().co(cms))
       .url("#")
-      .disabled(true)
+      .styleClass("breadcrumb-current-item")
       .build();
   }
 
