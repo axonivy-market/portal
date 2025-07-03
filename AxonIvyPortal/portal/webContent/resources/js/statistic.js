@@ -32,6 +32,10 @@ const getCssVariable = variableName => {
   return getComputedStyle(document.body).getPropertyValue(variableName);
 }
 
+const isNumeric = number => {
+  return !isNaN(parseFloat(number)) && isFinite(number);
+}
+
 async function postFetchApi(uri, content) {
   const response = await fetch(uri, {
     method: 'POST',
