@@ -1293,7 +1293,7 @@ body .ui-widget.new-widget-dialog__introduction {
 .statistic-chart-widget__content {
   overflow: hidden;
   width: 100%;
-  height: calc(100% - 5px);
+  height: calc(100vh - 280px);
   position: relative;
   padding: 0;
 }

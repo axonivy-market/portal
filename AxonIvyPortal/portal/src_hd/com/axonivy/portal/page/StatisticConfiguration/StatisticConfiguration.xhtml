@@ -109,7 +109,7 @@
                         itemLabel="#{chartType.getCmsName()}" itemValue="#{chartType}" />
                       <p:ajax event="itemSelect"
                         listener="#{statisticConfigurationBean.onSelectChartType(statisticConfigurationBean.statistic.chartType)}"
-                        update="x-axis-title-container y-axis-title-container hide-label-container background-colors-container errors-message chart-aggregation" />
+                        update="x-axis-title-container y-axis-title-container hide-label-container chart-background-colors condition-based-coloring-enabled-toggle errors-message chart-aggregation" />
                     </p:selectOneMenu>
                   </div>
                 </div>
@@ -210,7 +210,7 @@
                 <!-- Advanced settings -->
                 <p:fieldset legend="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Advanced')}" collapsed="true" toggleable="true" toggleSpeed="500" styleClass="w-full">
                 <!--  X TITLE -->
-                <div class="flex">
+                <div>
                 <h:panelGroup id="x-axis-title-container" layout="block" styleClass="col-6 p-0">
                   <h:panelGroup layout="block" styleClass="field col-12"
                     rendered="#{statisticConfigurationBean.statistic.chartType.name() eq 'BAR' or statisticConfigurationBean.statistic.chartType.name() eq 'LINE'}">
@@ -248,7 +248,6 @@
                     </div>
                   </h:panelGroup>
                 </h:panelGroup>
-                </div>
 
                 <div class="field col-12">
                   <p:outputLabel for="refresh-interval-enabled"
@@ -289,16 +288,16 @@
                   </h:panelGroup>
                 </h:panelGroup>
                 
-                <div class="field col-12">
+                <h:panelGroup id="condition-based-coloring-toggle" class="field col-12" layout="block">
                   <p:outputLabel for="condition-based-coloring-enabled-toggle"
                     value="Condition based coloring enabled" />
                   <div>
-                    <p:toggleSwitch id="condition-based-coloring-enabled-toggle" label="#{statisticConfigurationBean.conditionBasedColoringEnabled}"
+                    <p:toggleSwitch id="condition-based-coloring-enabled-toggle" label="#{statisticConfigurationBean.conditionBasedColoringEnabled}" disabled="#{statisticConfigurationBean.statistic.chartType.name() eq 'NUMBER'}"
                       value="#{statisticConfigurationBean.conditionBasedColoringEnabled}" styleClass="col-1">
                       <p:ajax update="chart-background-colors" process="@this" listener="#{statisticConfigurationBean.renderCategoryData}" resetValues="true"/>
                     </p:toggleSwitch>
                   </div>
-                </div>
+                </h:panelGroup>
 
                 <h:panelGroup id="chart-background-colors">
                  <h:panelGroup id="background-colors-container" layout="block" styleClass="col-12 p-0 grid m-0" rendered="#{!statisticConfigurationBean.conditionBasedColoringEnabled}">
@@ -341,13 +340,14 @@
                      </h:panelGroup>
                  </h:panelGroup>
                 </h:panelGroup>
+                </div>
                 </p:fieldset>
               <!-- Advanced settings end-->
 
               </h:panelGroup>
              </p:card>
 
-             <p:card styleClass="w-6 ml-2 pl-3 pr-3 border-transparent shadow-none">
+             <p:card styleClass="w-6 ml-2 pl-3 pr-3 border-transparent shadow-none h-full">
               <div class="col-6 grid statistic-configuration__preview w-full">
                 <div class="col-12 flex grid-nogutter p-0">
                   <div class="col-6">
@@ -365,8 +365,8 @@
                 </div>
                 <div class="col-12">
                   <h:panelGroup id="stat-chart-widget__content" layout="block"
-                    styleClass="statistic-chart-widget__content widget__content widget__content">
-                    <h:panelGroup styleClass="statistic-chart-widget__chart" layout="block">
+                    styleClass="statistic-chart-widget__content widget__content widget__content mt-10">
+                    <h:panelGroup styleClass="statistic-chart-widget__chart flex align-items-center" layout="block">
                       <div class="ui-chart js-statistic-chart statistic-chart-widget__canvas preview-chart-box preview-statistic-chart"
                         data-chart-id="preview-statistic-chart">
                         <div class="empty-message-container w-35rem">
@@ -377,6 +377,7 @@
                     </h:panelGroup>
                   </h:panelGroup>
                 </div>
+               </div>
 
                 <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration id="name-language-config"
                   titles="#{statisticConfigurationBean.getNames()}" managedBean="#{statisticConfigurationBean}"
@@ -400,19 +401,17 @@
                   updateCurrentLanguage="#{statisticConfigurationBean.updateYTitleForCurrentLanguage()}"
                   componentToUpdateOnModify="config-form:y-title" componentToUpdateOnCreate="config-form:y-title"
                   titleRequired="false" />
-              </div>
-            </p:card>
-            </div>
-            <div class="col-12 text-right mt-3 p-0">
-              <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                styleClass="u-mar-right-15" actionListener="#{statisticConfigurationBean.cancel}" immediate="true" />
-              <p:commandButton id="create-statistic-chart"
-                value="#{ivy.cms.co(statisticConfigurationBean.editMode ? '/Labels/Save' : '/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
-                ariaLabel="#{ivy.cms.co(statisticConfigurationBean.editMode ? '/Labels/Save' : '/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
-                action="#{statisticConfigurationBean.save}" update="config-panel errors-message" />
-            </div>
 
+                <div class="col-12 text-right mt-6 p-0 ">
+                  <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                    styleClass="u-mar-right-15" actionListener="#{statisticConfigurationBean.cancel}" immediate="true" />
+                  <p:commandButton id="create-statistic-chart"
+                    value="#{ivy.cms.co(statisticConfigurationBean.editMode ? '/Labels/Save' : '/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
+                    ariaLabel="#{ivy.cms.co(statisticConfigurationBean.editMode ? '/Labels/Save' : '/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Create')}"
+                    action="#{statisticConfigurationBean.save}" update="config-panel errors-message" />
+                </div>
+              </p:card>
         <script type="text/javascript">
           $(document).ready(function() {
             if($('.ui-autocomplete-input-token').attr("role") === undefined) {
@@ -432,6 +431,7 @@
             }
           }
         </script>
+        </div>
       </h:form>
     </ui:define>
   </ui:composition>
