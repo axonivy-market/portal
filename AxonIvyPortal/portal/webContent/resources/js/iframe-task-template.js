@@ -6,9 +6,7 @@ function loadIframe(recheckIndicator) {
 
   if (!recheckIndicator) {
     $(iframe).on('load', function () {
-      if (!document.documentURI.endsWith('?taskUrl=blank')) {
-        iframe.style.visibility = 'hidden';
-      }
+      iframe.style.visibility = 'hidden';
       processIFrameData(iframe);
       clearTimeout(recheckFrameTimer);
 
@@ -32,7 +30,7 @@ function loadIframe(recheckIndicator) {
   else {
     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
     iframeDoc.onbeforeunload = function() {
-      $(iframe).addClass('hidden');
+      iframe.style.visibility = 'hidden';
     }
     if (iframeDoc.readyState == 'complete') {
       processIFrameData(iframe);
