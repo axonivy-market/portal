@@ -22,12 +22,14 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.ApplicationUitls;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class HomepageUtils {
 
   public static final String HOMEPAGE_ID_PATTERN = "%s_%s";
+  private static final String USER_GUIDE_HOMEPAGE_NAME = "MAIN_DASHBOARD_default-user-guide-dashboard";
 
   public static List<Homepage> loadHomepages() {
     List<Homepage> homepages = new ArrayList<>();
@@ -127,12 +129,24 @@ public class HomepageUtils {
   }
 
   public static String getHomepageName() {
+    String showUserGuideProp = Ivy.session().getSessionUser().getProperty(UserProperty.PORTAL_SHOW_USER_GUIDE);
+    boolean shouldShowUserGuide = StringUtils.isEmpty(showUserGuideProp);
+
     String homepageName = getHomepageId();
-    if (StringUtils.isBlank(homepageName)) {
-      homepageName = findHomepageSetting();
+    if (StringUtils.isNotBlank(homepageName)) {
+      return homepageName;
     }
-    return homepageName;
+
+    boolean hasPortalUserExample = ApplicationUitls.doesPortalUserExampleExist();
+    // for designer test
+    if (/* !hasPortalUserExample */ true && !shouldShowUserGuide) {
+      return findHomepageSetting();
+    }
+
+    Ivy.session().getSessionUser().setProperty(UserProperty.PORTAL_SHOW_USER_GUIDE, "false");
+    return USER_GUIDE_HOMEPAGE_NAME;
   }
+
 
   public static Homepage findDefaultHomepage() {
     List<Homepage> homepages = loadHomepages();

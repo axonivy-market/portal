@@ -45,16 +45,6 @@
             "import com.axonivy.portal.components.publicapi.ProcessStartAPI;",
             "import org.apache.commons.lang3.StringUtils;",
             "",
-            "String userExampleGuideLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(\"Start Processes/UserExampleGuide/userExampleGuide.ivp\");",
-            "if (!StringUtils.isEmpty(userExampleGuideLink)){  ",
-            "  CustomSubMenuItem userExampleGuide = new CustomSubMenuItem();",
-            "  userExampleGuide.setIcon(\"si si-bulb\");",
-            "  userExampleGuide.setLabel(ivy.cms.co(\"/Processes/UserExampleGuide\"));",
-            "  userExampleGuide.setLink(userExampleGuideLink + \"?embedInFrame\");",
-            "  userExampleGuide.setIndex(0);",
-            "  in.subMenuItems.add(userExampleGuide);",
-            "}",
-            "",
             "CustomSubMenuItem google = new CustomSubMenuItem();",
             "google.setIcon(\"si si-information-circle\");",
             "google.setLabel(ApplicationMultiLanguageAPI.getCmsValueByUserLocale(\"/Processes/google\"));",
@@ -83,10 +73,7 @@
       ],
       "visual" : {
         "at" : { "x" : 512, "y" : 244 },
-        "size" : { "width" : 528, "height" : 84 },
-        "description" : "",
-        "color" : "",
-        "icon" : ""
+        "size" : { "width" : 528, "height" : 84 }
       },
       "connect" : [
         { "id" : "f6", "to" : "f3" }
