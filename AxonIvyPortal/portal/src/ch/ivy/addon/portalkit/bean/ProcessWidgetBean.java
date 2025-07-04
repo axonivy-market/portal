@@ -35,6 +35,7 @@ import com.axonivy.portal.service.GlobalSearchService;
 import com.axonivy.portal.util.ExternalLinkUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 
+import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
 import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.IvyProcess;
 import ch.ivy.addon.portalkit.bo.Process;
@@ -60,7 +61,7 @@ import ch.ivyteam.util.Pair;
 
 @ManagedBean
 @ViewScoped
-public class ProcessWidgetBean extends AbstractProcessBean implements Serializable {
+public class ProcessWidgetBean extends AbstractProcessBean implements Serializable, IMultiLanguage {
 
   private static final long serialVersionUID = -5889375917550618261L;
   private static final String SPECIAL_CHARACTER_KEY = "SPECIAL_CHARACTER";
@@ -539,25 +540,6 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
   public void updateDescriptionByLocale() {
     String currentDescription = LanguageUtils.getLocalizedName(editedExternalLink.getDescriptions(), editedExternalLink.getDescription());
     initAndSetValue(currentDescription, editedExternalLink.getDescriptions());
-  }
-  
-  private void initAndSetValue(String value, List<DisplayName> values) {
-    DisplayNameConvertor.initMultipleLanguages(value, values);
-    DisplayNameConvertor.setValue(value, values);
-  }
-  
-  public boolean isRequiredField(DisplayName displayName) {
-    String currentLanguage = UserUtils.getUserLanguage();
-    String displayLanguage = displayName.getLocale().getLanguage();
-    return currentLanguage.equals(displayLanguage);
-  }
-  
-  public boolean isShowTranslation(DisplayName title) {
-    return DeepLTranslationService.getInstance().isShowTranslation(title.getLocale());
-  }
-
-  public boolean isFocus(DisplayName title) {
-    return !isShowTranslation(title) && title.getLocale().getLanguage().equals(UserUtils.getUserLanguage());
   }
 
   public String getWarningText() {
