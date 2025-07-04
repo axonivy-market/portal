@@ -36,7 +36,7 @@ function createRedThickOutlineWithOffset($element) {
 /***IMPLEMENTATION TO DECORATE PAGES - WHICH ARE CALLED IN SELENIUM****/
 function highlightTopBar() {
   var topMenu = $("#top-menu");
-  var searchIcon = topMenu.find("li.topbar-item.search-item");
+  var searchIcon = topMenu.find("li.topbar-item.custom-search-item");
   $(searchIcon).addClass("red-topbottomleft-medium-border");
   var themeSwitchIcon = topMenu.find("li.topbar-item.themeswitch-item");
   $(themeSwitchIcon).addClass("red-topbottom-medium-border");
