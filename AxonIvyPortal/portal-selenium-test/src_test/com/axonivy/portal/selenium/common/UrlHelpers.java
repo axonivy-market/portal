@@ -4,10 +4,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Optional;
 
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.lang3.text.WordUtils;
 
 public class UrlHelpers {
 
+  @SuppressWarnings("deprecation")
   public static String generateAbsoluteProcessStartLink(String relativeProcessStartLink) {
     // because we renamed PortalExamples project to portal-developer-examples, so no need to capitalize first character
     // of this project

@@ -6,7 +6,6 @@ import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 
-import ch.ivyteam.di.restricted.DiCore;
 import ch.ivyteam.ivy.application.loader.ClassLoaderService;
 import ch.ivyteam.ivy.persistence.IPersistentTransaction;
 import ch.ivyteam.ivy.persistence.PersistencyException;
@@ -33,11 +32,11 @@ public final class PortalSessionExtension implements ISessionExtension {
   }
 
   public static void install() {
-    DiCore.getGlobalInjector().getInstance(ISecurityManager.class).addSessionExtension(getInstance());
+    ISecurityManager.instance().addSessionExtension(getInstance());
   }
 
   public static void uninstall() {
-    DiCore.getGlobalInjector().getInstance(ISecurityManager.class).removeSessionExtension(getInstance());
+    ISecurityManager.instance().removeSessionExtension(getInstance());
   }
 
   @Override
