@@ -21,7 +21,7 @@ public abstract class ColumnChartConfig {
   @JsonInclude(value = Include.NON_NULL)
   private String yValue;
   private List<String> backgroundColors;
-  private List<Threshold> thresholds;
+  private List<ThresholdStatisticChart> thresholds;
   private String defaultBackgroundColor;
   private boolean conditionBasedColoringEnabled;
 
@@ -81,11 +81,11 @@ public abstract class ColumnChartConfig {
     this.backgroundColors = backgroundColors;
   }
   
-  public List<Threshold> getThresholds() {
+  public List<ThresholdStatisticChart> getThresholds() {
     return thresholds;
   }
 
-  public void setThresholds(List<Threshold> thresholds) {
+  public void setThresholds(List<ThresholdStatisticChart> thresholds) {
     this.thresholds = thresholds;
   }
 
