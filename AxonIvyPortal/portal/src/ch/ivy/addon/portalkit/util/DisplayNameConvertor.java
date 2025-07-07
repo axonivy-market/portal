@@ -57,6 +57,16 @@ public class DisplayNameConvertor {
     }
   }
   
+  public static String updateCurrentValue(String currentValue, List<DisplayName> values) {
+    String currentLanguage = UserUtils.getUserLanguage();
+    Optional<DisplayName> optional = values.stream()
+        .filter(lang -> currentLanguage.equals(lang.getLocale().getLanguage())).findFirst();
+    if (optional.isPresent()) {
+      return optional.get().getValue();
+    }
+    return currentValue;
+  }
+  
   public static void initMultipleLanguages(String currentValue, List<DisplayName> values) {
     Map<String, DisplayName> mapLanguage = values
                                             .stream()

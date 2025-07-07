@@ -69,6 +69,7 @@ import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 
+import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.DateTimePatternBean;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -96,7 +97,7 @@ import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 
 @ViewScoped
 @ManagedBean
-public class StatisticConfigurationBean implements Serializable {
+public class StatisticConfigurationBean implements Serializable, IMultiLanguage {
 
   private static final long serialVersionUID = 1L;
   private static final int MIN_REFRESH_INTERVAL_IN_SECONDS = 60;
@@ -616,20 +617,6 @@ public class StatisticConfigurationBean implements Serializable {
 
   public void setRefreshIntervalEnabled(boolean refreshIntervalEnabled) {
     this.refreshIntervalEnabled = refreshIntervalEnabled;
-  }
-
-  public boolean isRequiredField(DisplayName displayName) {
-    String currentLanguage = UserUtils.getUserLanguage();
-    String displayLanguage = displayName.getLocale().getLanguage();
-    return currentLanguage.equals(displayLanguage);
-  }
-
-  public boolean isFocus(DisplayName title) {
-    return !isShowTranslation(title) && title.getLocale().getLanguage().equals(UserUtils.getUserLanguage());
-  }
-
-  public boolean isShowTranslation(DisplayName title) {
-    return DeepLTranslationService.getInstance().isShowTranslation(title.getLocale());
   }
 
   public void onToggleRefreshInterval() {

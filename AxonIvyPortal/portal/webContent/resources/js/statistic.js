@@ -835,7 +835,7 @@ class ClientNumberChart extends ClientChart {
     let field = this.data.chartConfig.aggregates || this.data.chartConfig.statisticAggregation.field;
     
     // Format date
-    if (typeof label === 'number' || this.isTimestampField(field)) {
+    if (typeof label === 'number' || (this.isTimestampField(field) && isNumeric(new Date(label).getTime()))) {
       return formatDateFollowLocale(new Date(label));
     }
 
