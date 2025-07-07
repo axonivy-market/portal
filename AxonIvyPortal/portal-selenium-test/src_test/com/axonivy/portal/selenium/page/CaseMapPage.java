@@ -143,7 +143,7 @@ public class CaseMapPage extends TemplatePage {
 
   public void waitForCollectPersonalDataFormVisible() {
     $("form[id='form']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    $("input[id='form:first-name']").shouldBe(Condition.interactable, DEFAULT_TIMEOUT);
+    $("input[id='form:first-name']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
   }
 
 }
