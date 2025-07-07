@@ -380,27 +380,21 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     }
     backgroundColors.removeIf(Objects::isNull);
     statistic.setStatisticConditionalColoringScope(statisticConditionalColoringScope);
+    statistic.setThresholds(thresholds);
+    statistic.setDefaultBackgroundColor(defaultBackgroundColor);
+    statistic.setConditionBasedColoringEnabled(conditionBasedColoringEnabled);
     if (BAR == statistic.getChartType()) {
       statistic.setBarChartConfig(new BarChartConfig());
       statistic.getBarChartConfig().setxTitles(xTitles);
       statistic.getBarChartConfig().setyTitles(yTitles);
       statistic.getBarChartConfig().setBackgroundColors(backgroundColors);
-      statistic.getBarChartConfig().setThresholds(thresholds);
-      statistic.getBarChartConfig().setDefaultBackgroundColor(defaultBackgroundColor);
-      statistic.getBarChartConfig().setConditionBasedColoringEnabled(conditionBasedColoringEnabled);
     } else if (LINE == statistic.getChartType()) {
       statistic.setLineChartConfig(new LineChartConfig());
       statistic.getLineChartConfig().setxTitles(xTitles);
       statistic.getLineChartConfig().setyTitles(yTitles);
       statistic.getLineChartConfig().setBackgroundColors(backgroundColors);
-      statistic.getLineChartConfig().setThresholds(thresholds);
-      statistic.getLineChartConfig().setDefaultBackgroundColor(defaultBackgroundColor);
-      statistic.getLineChartConfig().setConditionBasedColoringEnabled(conditionBasedColoringEnabled);
     } else if (PIE == statistic.getChartType()) {
       statistic.getPieChartConfig().setBackgroundColors(backgroundColors);
-      statistic.getPieChartConfig().setThresholds(thresholds);
-      statistic.getPieChartConfig().setDefaultBackgroundColor(defaultBackgroundColor);
-      statistic.getPieChartConfig().setConditionBasedColoringEnabled(conditionBasedColoringEnabled);
     }
     backgroundColors = new ArrayList<>(backgroundColors);
   }

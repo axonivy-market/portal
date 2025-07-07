@@ -337,41 +337,78 @@ class ClientChart {
     this.updateClientChart();
   }
 
-  getThresholdBasedColors(chartConfig, data) {
+  calculateConditionalColors(chartConfig, data, backgroundColors) {
     if (chartConfig.conditionBasedColoringEnabled) {
       if (chartConfig.thresholds == null) {
         return chartConfig.defaultBackgroundColor;
       }
-      const defaultBackgroundColor = chartConfig.defaultBackgroundColor;
-      const thresholds = chartConfig.thresholds;
-      return data.map((val) => {
-        for (const rule of thresholds) {
-          const { operator, value, backgroundColor, categoryValue } = rule;
-          if (this.compareValue(val.key, categoryValue)) {
-            switch (operator) {
-              case "greater":
-                if (val.count > value) return backgroundColor;
-                break;
-              case "greaterOrEqual":
-                if (val.count >= value) return backgroundColor;
-                break;
-              case "less":
-                if (val.count < value) return backgroundColor;
-                break;
-              case "lessOrEqual":
-                if (val.count <= value) return backgroundColor;
-                break;
-              case "equal":
-                if (val.count == value) return backgroundColor;
-                break;
-              }
-          }
-        }
-        return defaultBackgroundColor;
-      });
+
+      if (this.data.chartConfig.statisticConditionalColoringScope === 'all') {
+        return this.getBackgroundColorsWithAllScope(chartConfig, data);
+      } else if (this.data.chartConfig.statisticConditionalColoringScope === 'specific') {
+        return this.getBackgroundColorsWithSpecificScope(chartConfig, data);
+      }
     }
 
-    return chartConfig.backgroundColors;
+    return backgroundColors;
+  }
+
+  getBackgroundColorsWithSpecificScope(chartConfig, data) {
+    const defaultBackgroundColor = chartConfig.defaultBackgroundColor;
+    const thresholds = chartConfig.thresholds;
+    return data.map((val) => {
+      for (const rule of thresholds) {
+        const { operator, value, backgroundColor, categoryValue } = rule;
+        if (this.compareValue(val.key, categoryValue)) {
+          switch (operator) {
+            case "greater":
+              if (val.count > value) return backgroundColor;
+              break;
+            case "greaterOrEqual":
+              if (val.count >= value) return backgroundColor;
+              break;
+            case "less":
+              if (val.count < value) return backgroundColor;
+              break;
+            case "lessOrEqual":
+              if (val.count <= value) return backgroundColor;
+              break;
+            case "equal":
+              if (val.count == value) return backgroundColor;
+              break;
+          }
+        }
+      }
+      return defaultBackgroundColor;
+    });
+  }
+
+  getBackgroundColorsWithAllScope(chartConfig, data) {
+    const defaultBackgroundColor = chartConfig.defaultBackgroundColor;
+    const thresholds = chartConfig.thresholds;
+    return data.map((val) => {
+      for (const rule of thresholds) {
+        const { operator, value, backgroundColor, categoryValue } = rule;
+        switch (operator) {
+          case "greater":
+            if (val.count > value) return backgroundColor;
+            break;
+          case "greaterOrEqual":
+            if (val.count >= value) return backgroundColor;
+            break;
+          case "less":
+            if (val.count < value) return backgroundColor;
+            break;
+          case "lessOrEqual":
+            if (val.count <= value) return backgroundColor;
+            break;
+          case "equal":
+            if (val.count == value) return backgroundColor;
+            break;
+          }
+      }
+      return defaultBackgroundColor;
+    });
   }
 
   compareValue(value, categoryValue) {
@@ -500,7 +537,7 @@ class ClientPieChart extends ClientCanvasChart {
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
       $(chart).html(html);
       let canvasObject = $(chart).find('canvas');
-      let backgroundColors = this.getThresholdBasedColors(config.pieChartConfig, result);
+      let backgroundColors = this.calculateConditionalColors(config, result, config.pieChartConfig.backgroundColors);
       this.clientChartConfig = new Chart(canvasObject, {
         type: config.chartType,
         label: config.name,
@@ -560,7 +597,7 @@ class ClientCartesianChart extends ClientCanvasChart {
 
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : 2;
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
-      let backgroundColors = this.getThresholdBasedColors(config.barChartConfig, data);
+      let backgroundColors = this.calculateConditionalColors(config, data, config.barChartConfig.backgroundColors);
       $(chart).html(html);
       let canvasObject = $(chart).find('canvas');
       this.clientChartConfig = new Chart(canvasObject, {

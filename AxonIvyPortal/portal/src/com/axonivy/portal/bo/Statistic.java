@@ -51,6 +51,9 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   @JsonIgnore
   private List<SecurityMemberDTO> permissionDTOs;
   private String statisticConditionalColoringScope;
+  private List<ThresholdStatisticChart> thresholds;
+  private String defaultBackgroundColor;
+  private boolean conditionBasedColoringEnabled;
 
   public Statistic() {
     icon = DEFAULT_ICON;
@@ -243,5 +246,29 @@ public class Statistic extends AbstractConfiguration implements Serializable {
 
   public void setStatisticConditionalColoringScope(String statisticConditionalColoringScope) {
     this.statisticConditionalColoringScope = statisticConditionalColoringScope;
+  }
+  
+  public List<ThresholdStatisticChart> getThresholds() {
+    return thresholds;
+  }
+
+  public void setThresholds(List<ThresholdStatisticChart> thresholds) {
+    this.thresholds = thresholds;
+  }
+
+  public String getDefaultBackgroundColor() {
+    return defaultBackgroundColor;
+  }
+
+  public void setDefaultBackgroundColor(String defaultBackgroundColor) {
+    this.defaultBackgroundColor = defaultBackgroundColor;
+  }
+
+  public boolean isConditionBasedColoringEnabled() {
+    return conditionBasedColoringEnabled;
+  }
+
+  public void setConditionBasedColoringEnabled(boolean conditionBasedColoringEnabled) {
+    this.conditionBasedColoringEnabled = conditionBasedColoringEnabled;
   }
 }
