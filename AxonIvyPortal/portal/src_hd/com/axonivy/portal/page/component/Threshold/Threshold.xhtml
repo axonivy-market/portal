@@ -19,7 +19,7 @@
   <c:set var="thresholdIndex" value="#{cc.attrs.thresholdIndex}" />
   <c:set var="categoryData" value="#{cc.attrs.categoryData}" />
 
-  <div class="ui-g-12 pl-0">
+  <div class="col-12 p-0">
     <h:panelGroup id="threshold-panel" layout="block" styleClass="flex">
          <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
              <p:selectOneMenu class="threshold-category-data" required="true" styleClass="w-full"
@@ -46,12 +46,13 @@
          </h:panelGroup>
          
          <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
-          <p:inputText label="Threshold value" styleClass="threshold-input-value" required="true" value="#{threshold.value}" placeholder="Enter your value">
+          <p:inputNumber label="Threshold value" styleClass="threshold-input-value" required="true" value="#{threshold.value}" 
+            decimalPlaces="0" minValue="0" onkeydown="return event.key !== '-'">
             <p:ajax event="change" partialSubmit="true" global="false"/>
             <f:param name="skipValidator" value="true" />
             <f:attribute name="threshold" value="#{threshold}" />
             <f:attribute name="thresholdIndex" value="#{thresholdIndex}" />
-          </p:inputText>
+          </p:inputNumber>
          </h:panelGroup>
          
          <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">

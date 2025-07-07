@@ -109,7 +109,7 @@
                         itemLabel="#{chartType.getCmsName()}" itemValue="#{chartType}" />
                       <p:ajax event="itemSelect"
                         listener="#{statisticConfigurationBean.onSelectChartType(statisticConfigurationBean.statistic.chartType)}"
-                        update="x-axis-title-container y-axis-title-container hide-label-container chart-background-colors condition-based-coloring-enabled-toggle errors-message chart-aggregation" />
+                        update="x-axis-title-container y-axis-title-container hide-label-container chart-background-colors condition-based-coloring-toggle errors-message chart-aggregation" />
                     </p:selectOneMenu>
                   </div>
                 </div>
@@ -211,68 +211,72 @@
                 <p:fieldset legend="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/Advanced')}" collapsed="true" toggleable="true" toggleSpeed="500" styleClass="w-full">
                 <!--  X TITLE -->
                 <div>
-                <h:panelGroup id="x-axis-title-container" layout="block" styleClass="col-6 p-0">
-                  <h:panelGroup layout="block" styleClass="field col-12"
-                    rendered="#{statisticConfigurationBean.statistic.chartType.name() eq 'BAR' or statisticConfigurationBean.statistic.chartType.name() eq 'LINE'}">
-
-                    <p:outputLabel
-                      value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/XAxisTitle')}"
-                      for="@next" />
-                    <div class="ui-inputgroup">
-                      <p:inputText id="x-title" value="#{statisticConfigurationBean.xTitle}" maxlength="200"
-                        styleClass="w-full" />
-                      <p:commandButton id="x-title-add-language-button" icon="si si-chat-translate"
-                        actionListener="#{statisticConfigurationBean.updateXTitleByLocale()}" process="x-title"
-                        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-                        update="x-title-language-config:multiple-languages-dialog"
-                        oncomplete="PF('multiple-languages-dialog').show();" />
-                    </div>
-                  </h:panelGroup>
+                <h:panelGroup styleClass="flex">
+                 <h:panelGroup id="x-axis-title-container" layout="block" styleClass="col-6 p-0">
+                   <h:panelGroup layout="block" styleClass="field col-12"
+                     rendered="#{statisticConfigurationBean.statistic.chartType.name() eq 'BAR' or statisticConfigurationBean.statistic.chartType.name() eq 'LINE'}">
+                     <p:outputLabel
+                       value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/XAxisTitle')}"
+                       for="@next" />
+                     <div class="ui-inputgroup">
+                       <p:inputText id="x-title" value="#{statisticConfigurationBean.xTitle}" maxlength="200"
+                         styleClass="w-full" />
+                       <p:commandButton id="x-title-add-language-button" icon="si si-chat-translate"
+                         actionListener="#{statisticConfigurationBean.updateXTitleByLocale()}" process="x-title"
+                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
+                         update="x-title-language-config:multiple-languages-dialog"
+                         oncomplete="PF('multiple-languages-dialog').show();" />
+                     </div>
+                   </h:panelGroup>
+                 </h:panelGroup>
+ 
+                 <!--  Y TITLE -->
+                 <h:panelGroup id="y-axis-title-container" layout="block" styleClass="col-6 p-0">
+                   <h:panelGroup layout="block" styleClass="field col-12"
+                     rendered="#{statisticConfigurationBean.statistic.chartType.name() eq 'BAR' or statisticConfigurationBean.statistic.chartType.name() eq 'LINE'}">
+                     <p:outputLabel
+                       value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/YAxisTitle')}"
+                       for="@next" />
+                     <div class="ui-inputgroup">
+                       <p:inputText id="y-title" value="#{statisticConfigurationBean.yTitle}" maxlength="200"
+                         styleClass="w-full" />
+                       <p:commandButton id="y-title-add-language-button" icon="si si-chat-translate"
+                         actionListener="#{statisticConfigurationBean.updateYTitleByLocale()}" process="y-title"
+                         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
+                         update="y-title-language-config:multiple-languages-dialog"
+                         oncomplete="PF('multiple-languages-dialog').show();" />
+                     </div>
+                   </h:panelGroup>
+                 </h:panelGroup>
                 </h:panelGroup>
-
-                <!--  Y TITLE -->
-                <h:panelGroup id="y-axis-title-container" layout="block" styleClass="col-6 p-0">
-                  <h:panelGroup layout="block" styleClass="field col-12"
-                    rendered="#{statisticConfigurationBean.statistic.chartType.name() eq 'BAR' or statisticConfigurationBean.statistic.chartType.name() eq 'LINE'}">
-                    <p:outputLabel
-                      value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/YAxisTitle')}"
-                      for="@next" />
-                    <div class="ui-inputgroup">
-                      <p:inputText id="y-title" value="#{statisticConfigurationBean.yTitle}" maxlength="200"
-                        styleClass="w-full" />
-                      <p:commandButton id="y-title-add-language-button" icon="si si-chat-translate"
-                        actionListener="#{statisticConfigurationBean.updateYTitleByLocale()}" process="y-title"
-                        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
-                        update="y-title-language-config:multiple-languages-dialog"
-                        oncomplete="PF('multiple-languages-dialog').show();" />
-                    </div>
+                <h:panelGroup class="field flex col-12 h-5rem">
+                  <div class="col-6 p-0">
+                   <p:outputLabel for="refresh-interval-enabled"
+                     value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/RefreshInterval')}" />
+                   <h:outputText id="refresh-interval-info" styleClass="si si-information-circle ml-2" />
+                   <p:tooltip for="refresh-interval-info"
+                     value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/RefreshIntervalInfo', [statisticConfigurationBean.getMinRefreshIntervalInSeconds()])}" />
+                   <div class="mt-2">
+                     <p:toggleSwitch id="refresh-interval-enabled"
+                       value="#{statisticConfigurationBean.refreshIntervalEnabled}" styleClass="col-1">
+                       <p:ajax update="refresh-interval-value-container" process="@this"
+                         listener="#{statisticConfigurationBean.onToggleRefreshInterval}" resetValues="true" />
+                     </p:toggleSwitch>
+                   </div>
+                  </div>
+                  <h:panelGroup id="refresh-interval-value-container" layout="block" styleClass="field col-6 pb-0 pt-0">
+                    <h:panelGroup rendered="#{statisticConfigurationBean.refreshIntervalEnabled}">
+                     <p:outputLabel for="@next"
+                       value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/RefreshIntervalInSeconds')}" />
+                     <div>
+                       <p:inputNumber id="refresh-interval-value"
+                         value="#{statisticConfigurationBean.statistic.refreshInterval}" decimalPlaces="0"
+                         maxValue="#{statisticConfigurationBean.getMaxRefreshIntervalInSeconds()}"
+                         onkeydown="return event.key !== '-'"
+                         inputStyleClass="w-full" />
+                     </div>
+                    </h:panelGroup>
                   </h:panelGroup>
-                </h:panelGroup>
-
-                <div class="field col-12">
-                  <p:outputLabel for="refresh-interval-enabled"
-                    value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/RefreshInterval')}" />
-                  <h:outputText id="refresh-interval-info" styleClass="si si-information-circle ml-2" />
-                  <p:tooltip for="refresh-interval-info"
-                    value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/RefreshIntervalInfo', [statisticConfigurationBean.getMinRefreshIntervalInSeconds()])}" />
-                  <div>
-                    <p:toggleSwitch id="refresh-interval-enabled"
-                      value="#{statisticConfigurationBean.refreshIntervalEnabled}" styleClass="col-1">
-                      <p:ajax update="refresh-interval-value-container" process="@this"
-                        listener="#{statisticConfigurationBean.onToggleRefreshInterval}" resetValues="true" />
-                    </p:toggleSwitch>
-                  </div>
-                </div>
-                <h:panelGroup id="refresh-interval-value-container" layout="block" styleClass="field col-6">
-                  <p:outputLabel for="@next"
-                    value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/RefreshIntervalInSeconds')}" />
-                  <div>
-                    <p:inputNumber id="refresh-interval-value"
-                      value="#{statisticConfigurationBean.statistic.refreshInterval}" decimalPlaces="0"
-                      maxValue="#{statisticConfigurationBean.getMaxRefreshIntervalInSeconds()}"
-                      onkeydown="return event.key !== '-'"
-                      disabled="#{not statisticConfigurationBean.refreshIntervalEnabled}" inputStyleClass="w-full" />
-                  </div>
                 </h:panelGroup>
 
                 <h:panelGroup id="hide-label-container" layout="block" styleClass="col-12 p-0">
@@ -289,14 +293,16 @@
                 </h:panelGroup>
                 
                 <h:panelGroup id="condition-based-coloring-toggle" class="field col-12" layout="block">
-                  <p:outputLabel for="condition-based-coloring-enabled-toggle"
-                    value="Condition based coloring enabled" />
-                  <div>
-                    <p:toggleSwitch id="condition-based-coloring-enabled-toggle" label="#{statisticConfigurationBean.conditionBasedColoringEnabled}" disabled="#{statisticConfigurationBean.statistic.chartType.name() eq 'NUMBER'}"
-                      value="#{statisticConfigurationBean.conditionBasedColoringEnabled}" styleClass="col-1">
-                      <p:ajax update="chart-background-colors" process="@this" listener="#{statisticConfigurationBean.renderCategoryData}" resetValues="true"/>
-                    </p:toggleSwitch>
-                  </div>
+                 <h:panelGroup rendered="#{statisticConfigurationBean.statistic.chartType.name() ne 'NUMBER'}">
+                   <p:outputLabel for="condition-based-coloring-enabled-toggle"
+                     value="Condition based coloring enabled" />
+                   <div>
+                     <p:toggleSwitch id="condition-based-coloring-enabled-toggle" label="#{statisticConfigurationBean.conditionBasedColoringEnabled}"
+                       value="#{statisticConfigurationBean.conditionBasedColoringEnabled}" styleClass="col-1">
+                       <p:ajax update="chart-background-colors" process="@this" listener="#{statisticConfigurationBean.renderCategoryData}" resetValues="true"/>
+                     </p:toggleSwitch>
+                   </div>
+                   </h:panelGroup>
                 </h:panelGroup>
 
                 <h:panelGroup id="chart-background-colors">
