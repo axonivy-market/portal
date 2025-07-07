@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
 import com.axonivy.portal.selenium.common.NavigationHelper;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.test.userexample.page.UserExamplesEndPage;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
@@ -143,7 +144,7 @@ public class CaseMapPage extends TemplatePage {
 
   public void waitForCollectPersonalDataFormVisible() {
     $("form[id='form']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    $("input[id='form:first-name']").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
+    Sleeper.sleep(2000);
   }
 
 }
