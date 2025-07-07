@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(value = Include.NON_EMPTY)
 public class PieChartConfig {
   private List<String> backgroundColors;
-  private List<Threshold> thresholds;
+  private List<ThresholdStatisticChart> thresholds;
   private String defaultBackgroundColor;
   private boolean conditionBasedColoringEnabled;
 
@@ -20,11 +20,11 @@ public class PieChartConfig {
     this.backgroundColors = backgroundColors;
   }
 
-  public List<Threshold> getThresholds() {
+  public List<ThresholdStatisticChart> getThresholds() {
     return thresholds;
   }
 
-  public void setThresholds(List<Threshold> thresholds) {
+  public void setThresholds(List<ThresholdStatisticChart> thresholds) {
     this.thresholds = thresholds;
   }
 

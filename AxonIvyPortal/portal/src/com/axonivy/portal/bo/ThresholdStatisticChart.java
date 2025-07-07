@@ -6,7 +6,7 @@ import com.axonivy.portal.enums.statistic.OperatorField;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.CUSTOM)
-public class Threshold implements Serializable {
+public class ThresholdStatisticChart implements Serializable {
   private static final long serialVersionUID = -2098346832426240167L;
 
   private OperatorField operator;

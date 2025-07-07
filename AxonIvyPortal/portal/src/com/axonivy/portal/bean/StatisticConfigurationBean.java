@@ -1,13 +1,13 @@
 package com.axonivy.portal.bean;
 
 import static com.axonivy.portal.enums.statistic.ChartType.BAR;
+
 import static com.axonivy.portal.enums.statistic.ChartType.LINE;
 import static com.axonivy.portal.enums.statistic.ChartType.NUMBER;
 import static com.axonivy.portal.enums.statistic.ChartType.PIE;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -24,9 +24,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.event.AjaxBehaviorEvent;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -43,11 +41,10 @@ import com.axonivy.portal.bo.NumberChartConfig;
 import com.axonivy.portal.bo.PieChartConfig;
 import com.axonivy.portal.bo.Statistic;
 import com.axonivy.portal.bo.StatisticAggregation;
-import com.axonivy.portal.bo.Threshold;
+import com.axonivy.portal.bo.ThresholdStatisticChart;
 import com.axonivy.portal.bo.jsonversion.StatisticJsonVersion;
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
-import com.axonivy.portal.components.jsf.ManagedBeans;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.RoleUtils;
@@ -58,20 +55,17 @@ import com.axonivy.portal.enums.statistic.AggregationInterval;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
 import com.axonivy.portal.enums.statistic.OperatorField;
-import com.axonivy.portal.service.DeepLTranslationService;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.service.multilanguage.StatisticDescriptionMultilanguageService;
 import com.axonivy.portal.service.multilanguage.StatisticNameMultilanguageService;
 import com.axonivy.portal.service.multilanguage.StatisticXTitleMultilanguageService;
 import com.axonivy.portal.service.multilanguage.StatisticYTitleMultilanguageService;
-import com.axonivy.portal.util.PortalDateUtils;
 import com.axonivy.portal.util.filter.field.FilterField;
 import com.axonivy.portal.util.statisticfilter.field.CaseFilterFieldFactory;
 import com.axonivy.portal.util.statisticfilter.field.TaskFilterFieldFactory;
 
 import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivy.addon.portalkit.bean.DateTimePatternBean;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
@@ -81,15 +75,12 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.statistics.StatisticResponse;
-import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.searchengine.client.agg.Aggregation;
 import ch.ivyteam.ivy.searchengine.client.agg.AggregationResult;
-import ch.ivyteam.ivy.searchengine.client.agg.Buckets;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
@@ -123,9 +114,10 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   private boolean isDateTimeSelected;
   private AggregationInterval aggregationInterval;
   private boolean conditionBasedColoringEnabled;
-  private List<Threshold> thresholds;
+  private List<ThresholdStatisticChart> thresholds;
   private String defaultBackgroundColor;
   private List<String> categoryData;
+  private String statisticConditionalColoringScope;
 
   private StatisticNameMultilanguageService nameMultilanguageService;
   private StatisticDescriptionMultilanguageService descriptionMultilanguageService;
@@ -151,6 +143,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     initFilters();
     initThresholds();
     setDefaultBackgroundColor("#8dc261");
+    setStatisticConditionalColoringScope("all");
   }
 
   private void initMultilanguageServices() {
@@ -386,6 +379,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
       statistic.setPermissions(permissions);
     }
     backgroundColors.removeIf(Objects::isNull);
+    statistic.setStatisticConditionalColoringScope(statisticConditionalColoringScope);
     if (BAR == statistic.getChartType()) {
       statistic.setBarChartConfig(new BarChartConfig());
       statistic.getBarChartConfig().setxTitles(xTitles);
@@ -518,7 +512,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   public void resetConditionBasedColoring() {
     if (conditionBasedColoringEnabled) {
       setThresholds(new ArrayList<>());
-      setDefaultBackgroundColor("");
+      setDefaultBackgroundColor("#8dc261");
       setConditionBasedColoringEnabled(false);
     }
   }
@@ -824,6 +818,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
       resetCustomFieldAndDateTimeInterval();
       this.setDateTimeSelected(false);
     }
+    resetConditionBasedColoring();
   }
 
   public void onSelectChartTarget(ChartTarget newChartTarget) {
@@ -835,10 +830,15 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
           statistic.getStatisticAggregation().getField().toLowerCase().contains(TIMESTAMP));
       initFilterFields();
       this.statistic.setFilters(new ArrayList<>());
+      resetConditionBasedColoring();
     }
     statistic.setChartTarget(newChartTarget);
   }
   
+  public void onSelectColoringOption() {
+    setThresholds(new ArrayList<>());
+  }
+    
   public void resetAggregateValues() {
     statistic.getStatisticAggregation().setField(AggregationField.PRIORITY.getName());
     this.currentCustomFieldDescription = null;
@@ -905,7 +905,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
       setThresholds(new ArrayList<>());
     }
     
-    Threshold newThreshold = new Threshold();
+    ThresholdStatisticChart newThreshold = new ThresholdStatisticChart();
     newThreshold.setBackgroundColor("#6299f7");
     thresholds.add(newThreshold);
   }
@@ -914,7 +914,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     statistic.getFilters().remove(filter);
   }
   
-  public void removeThreshold(Threshold threshod) {
+  public void removeThreshold(ThresholdStatisticChart threshod) {
     if (thresholds == null) {
       return;
     }
@@ -954,11 +954,11 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     this.conditionBasedColoringEnabled = conditionBasedColoringEnabled;
   }
   
-  public List<Threshold> getThresholds() {
+  public List<ThresholdStatisticChart> getThresholds() {
     return thresholds;
   }
 
-  public void setThresholds(List<Threshold> thresholds) {
+  public void setThresholds(List<ThresholdStatisticChart> thresholds) {
     this.thresholds = thresholds;
   }
 
@@ -977,5 +977,13 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   public List<String> getCategoryData() {
     return this.categoryData;
   }
-  
+
+  public String getStatisticConditionalColoringScope() {
+    return statisticConditionalColoringScope;
+  }
+
+  public void setStatisticConditionalColoringScope(String statisticConditionalColoringScope) {
+    this.statisticConditionalColoringScope = statisticConditionalColoringScope;
+  }
+
 }

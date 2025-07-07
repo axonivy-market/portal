@@ -50,6 +50,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private Boolean isCustom;
   @JsonIgnore
   private List<SecurityMemberDTO> permissionDTOs;
+  private String statisticConditionalColoringScope;
 
   public Statistic() {
     icon = DEFAULT_ICON;
@@ -234,5 +235,13 @@ public class Statistic extends AbstractConfiguration implements Serializable {
 
   public void setStatisticAggregation(StatisticAggregation statisticAggregation) {
     this.statisticAggregation = statisticAggregation;
+  }
+  
+  public String getStatisticConditionalColoringScope() {
+    return statisticConditionalColoringScope;
+  }
+
+  public void setStatisticConditionalColoringScope(String statisticConditionalColoringScope) {
+    this.statisticConditionalColoringScope = statisticConditionalColoringScope;
   }
 }

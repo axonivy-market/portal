@@ -3,7 +3,7 @@
   "id" : "197675D25FAC49D8",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "com.axonivy.portal.page.component.Threshold.ThresholdData"
+    "data" : "com.axonivy.portal.page.component.ThresholdStatisticChart.ThresholdStatisticChartData"
   },
   "elements" : [ {
       "id" : "f0",
