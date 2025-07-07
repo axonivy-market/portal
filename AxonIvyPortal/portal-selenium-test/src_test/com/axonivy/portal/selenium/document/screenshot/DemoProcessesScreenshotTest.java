@@ -45,8 +45,7 @@ public class DemoProcessesScreenshotTest extends ScreenshotBaseTest {
     mainMenuPage = new MainMenuPage();
     mainMenuPage.expandMainMenu();
     ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 600));
-//    Disable to test github action
-//    ScreenshotUtils.executeDecorateJs("highlightUserExampleNavigation()");
+    ScreenshotUtils.executeDecorateJs("highlightUserExampleNavigation()");
     ScreenshotUtils.captureHalfLeftPageScreenShot(ScreenshotUtils.DEMO_FOLDER + "user-example-guide-link");
   }
 
