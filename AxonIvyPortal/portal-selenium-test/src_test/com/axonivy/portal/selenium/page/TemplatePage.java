@@ -44,7 +44,7 @@ public abstract class TemplatePage extends AbstractPage {
   public static final String ID_PROPERTY = "id";
   public static final String CLASS_PROPERTY = "class";
   public static final String CURRENT_BREADCRUMB_SELECTOR =
-      ".portal-breadcrumb li:last-child .ui-menuitem-link.ui-state-disabled";
+      ".portal-breadcrumb li:last-child .ui-menuitem-link.breadcrumb-current-item";
   private static final String HOME_BREADCRUMB_SELECTOR = ".portal-breadcrumb .ui-menuitem-link:first-child";
   public static final String PORTAL_GLOBAL_GROWL_ID = "portal-global-growl_container";
   protected static final String COMPONENT_PAGE_LOCATOR = "//*[contains(@id,'theme-selection')]";
