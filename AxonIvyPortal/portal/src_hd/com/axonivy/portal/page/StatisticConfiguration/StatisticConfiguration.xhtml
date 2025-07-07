@@ -109,7 +109,7 @@
                         itemLabel="#{chartType.getCmsName()}" itemValue="#{chartType}" />
                       <p:ajax event="itemSelect"
                         listener="#{statisticConfigurationBean.onSelectChartType(statisticConfigurationBean.statistic.chartType)}"
-                        update="x-axis-title-container y-axis-title-container hide-label-container chart-background-colors conditional-based-coloring-toggle errors-message chart-aggregation" />
+                        update="x-axis-title-container y-axis-title-container hide-label-container chart-background-colors conditional-based-coloring-toggle conditional-based-coloring-options errors-message chart-aggregation" />
                     </p:selectOneMenu>
                   </div>
                 </div>
@@ -124,7 +124,7 @@
                         itemLabel="#{chartTarget.getCmsName()}" itemValue="#{chartTarget}" />
                       <p:ajax event="itemSelect" 
                         listener="#{statisticConfigurationBean.onSelectChartTarget(statisticConfigurationBean.statistic.chartTarget)}"
-                        update="config-form:aggregates config-form:user-filter chart-background-colors conditional-based-coloring-toggle"/>
+                        update="config-form:aggregates config-form:user-filter chart-background-colors conditional-based-coloring-toggle conditional-based-coloring-options"/>
                     </p:selectOneMenu>
                   </div>
                 </div>

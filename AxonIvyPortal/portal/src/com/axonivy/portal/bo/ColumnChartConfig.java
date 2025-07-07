@@ -21,9 +21,6 @@ public abstract class ColumnChartConfig {
   @JsonInclude(value = Include.NON_NULL)
   private String yValue;
   private List<String> backgroundColors;
-  private List<ThresholdStatisticChart> thresholds;
-  private String defaultBackgroundColor;
-  private boolean conditionBasedColoringEnabled;
 
   public List<DisplayName> getxTitles() {
     return xTitles;
@@ -79,29 +76,5 @@ public abstract class ColumnChartConfig {
 
   public void setBackgroundColors(List<String> backgroundColors) {
     this.backgroundColors = backgroundColors;
-  }
-  
-  public List<ThresholdStatisticChart> getThresholds() {
-    return thresholds;
-  }
-
-  public void setThresholds(List<ThresholdStatisticChart> thresholds) {
-    this.thresholds = thresholds;
-  }
-
-  public String getDefaultBackgroundColor() {
-    return defaultBackgroundColor;
-  }
-
-  public void setDefaultBackgroundColor(String defaultBackgroundColor) {
-    this.defaultBackgroundColor = defaultBackgroundColor;
-  }
-
-  public boolean isConditionBasedColoringEnabled() {
-    return conditionBasedColoringEnabled;
-  }
-
-  public void setConditionBasedColoringEnabled(boolean conditionBasedColoringEnabled) {
-    this.conditionBasedColoringEnabled = conditionBasedColoringEnabled;
   }
 }
