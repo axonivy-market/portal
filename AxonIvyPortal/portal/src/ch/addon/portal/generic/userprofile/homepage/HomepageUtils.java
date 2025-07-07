@@ -22,8 +22,8 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.util.ApplicationUitls;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.util.UserExampleUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class HomepageUtils {
@@ -136,10 +136,7 @@ public class HomepageUtils {
     if (StringUtils.isNotBlank(homepageName)) {
       return homepageName;
     }
-
-    boolean hasPortalUserExample = ApplicationUitls.doesPortalUserExampleExist();
-    // for designer test
-    if (/* !hasPortalUserExample */ true && !shouldShowUserGuide) {
+    if (UserExampleUtils.isUserExampleAvailable() && !shouldShowUserGuide) {
       return findHomepageSetting();
     }
 
