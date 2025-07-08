@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.util;
+package com.axonivy.portal.util;
 
 import org.apache.commons.lang3.StringUtils;
 
