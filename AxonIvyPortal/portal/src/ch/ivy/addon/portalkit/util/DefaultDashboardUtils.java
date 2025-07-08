@@ -377,7 +377,7 @@ public class DefaultDashboardUtils {
       "y" : 3
     },
     "data" : {
-      "processPath" : "portal-user-examples/Start Processes/UserExampleGuide/widgetNote.ivp",
+      "processPath" : "Start Processes/UserExampleGuide/widgetNote.ivp",
       "params" : [ {
         "name" : "noteDE",
         "type" : "STRING",
@@ -490,7 +490,7 @@ public class DefaultDashboardUtils {
       "y" : 10
     },
     "data" : {
-      "processPath" : "portal-user-examples/Start Processes/UserExampleGuide/widgetNote.ivp",
+      "processPath" : "Start Processes/UserExampleGuide/widgetNote.ivp",
       "params" : [ {
         "name" : "noteDE",
         "type" : "STRING",
@@ -604,7 +604,7 @@ public class DefaultDashboardUtils {
       "y" : 16
     },
     "data" : {
-      "processPath" : "portal-user-examples/Start Processes/UserExampleGuide/widgetNote.ivp",
+      "processPath" : "Start Processes/UserExampleGuide/widgetNote.ivp",
       "params" : [ {
         "name" : "noteDE",
         "type" : "STRING",
@@ -654,7 +654,7 @@ public class DefaultDashboardUtils {
       "y" : 24
     },
     "data" : {
-      "processPath" : "portal-user-examples/Start Processes/UserExampleGuide/widgetNote.ivp",
+      "processPath" : "Start Processes/UserExampleGuide/widgetNote.ivp",
       "params" : [ {
         "name" : "noteDE",
         "type" : "STRING",
@@ -795,7 +795,7 @@ public class DefaultDashboardUtils {
       "y" : 31
     },
     "data" : {
-      "processPath" : "portal-user-examples/Start Processes/UserExampleGuide/widgetNote.ivp",
+      "processPath" : "Start Processes/UserExampleGuide/widgetNote.ivp",
       "params" : [ {
         "name" : "noteDE",
         "type" : "STRING",
