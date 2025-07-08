@@ -1,0 +1,31 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
+  "simpleName" : "CustomWidgetNoteData",
+  "namespace" : "com.axonivy.portal.userexamples.CustomWidgetNote",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "note",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "noteEN",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "noteDE",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "noteES",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "noteFR",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "noteJP",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}
