@@ -100,6 +100,7 @@ public class ColumnManagementBean implements Serializable {
     this.fieldDisplayName = null;
     this.fieldDescription = null;
     this.numberFieldPattern = null;
+    this.selectedCustomFieldType = CustomFieldType.STRING;
     this.fieldDisplayNames = Collections.emptyList();
   }
 
@@ -302,7 +303,7 @@ public class ColumnManagementBean implements Serializable {
       return Ivy.cms()
           .coLocale(
               String.format("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/%s",
-                  DashboardStandardTaskColumn.findBy(selectedField)),
+                  DashboardStandardCaseColumn.findBy(selectedField)),
               LanguageService.newInstance().getDefaultLanguage());
     }
     return "";
