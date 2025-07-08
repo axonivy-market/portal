@@ -264,7 +264,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
     this.defaultBackgroundColor = defaultBackgroundColor;
   }
 
-  public boolean isConditionBasedColoringEnabled() {
+  public boolean getConditionBasedColoringEnabled() {
     return conditionBasedColoringEnabled;
   }
 

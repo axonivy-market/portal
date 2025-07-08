@@ -22,17 +22,17 @@
   <div class="col-12">
     <h:panelGroup id="threshold-panel" layout="block" styleClass="flex">
          <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
-             <p:selectOneMenu class="threshold-category-data" required="true" styleClass="w-full" rendered="#{managedBean.statisticConditionalColoringScope eq 'specific'}"
+             <p:selectOneMenu class="threshold-category-data" required="true" styleClass="w-full" rendered="#{managedBean.statistic.statisticConditionalColoringScope eq 'specific'}"
                value="#{threshold.categoryValue}">
                <f:selectItems value="#{managedBean.categoryData}" 
                  var="value" itemValue="#{value}" itemLabel="#{managedBean.displayThresholdCategoryValue(value)}"
-                 rendered="#{managedBean.statisticConditionalColoringScope eq 'specific'}"/>
+                 rendered="#{managedBean.statistic.statisticConditionalColoringScope eq 'specific'}"/>
                 <p:ajax event="itemSelect" partialSubmit="true" global="false"/>
                 <f:param name="skipValidator" value="true" />
                 <f:attribute name="threshold" value="#{threshold}" />
                 <f:attribute name="thresholdIndex" value="#{thresholdIndex}" />
              </p:selectOneMenu>
-             <p:selectOneMenu class="threshold-category-data" disabled="true" required="true" styleClass="w-full" rendered="#{managedBean.statisticConditionalColoringScope eq 'all'}"
+             <p:selectOneMenu class="threshold-category-data" disabled="true" required="true" styleClass="w-full" rendered="#{managedBean.statistic.statisticConditionalColoringScope eq 'all'}"
                value="#{threshold.categoryValue}">
                <f:selectItem itemValue="All" itemLabel="All"/>
              </p:selectOneMenu>
