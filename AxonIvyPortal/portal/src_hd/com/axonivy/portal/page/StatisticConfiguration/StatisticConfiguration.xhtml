@@ -153,7 +153,7 @@
                     <p:ajax listener="#{statisticConfigurationBean.onSelectAggregationField()}"
                       update="chart-aggregation" />
                     <p:ajax event="itemSelect" listener="#{statisticConfigurationBean.resetConditionBasedColoring}" resetValues="true"
-                    update="chart-background-colors condition-based-coloring-enabled-toggle" global="false"/>
+                    update="chart-background-colors condition-based-coloring-enabled-toggle conditional-based-coloring-options" global="false"/>
                   </p:selectOneMenu>
 
                   <!-- CUSTOM FIELD SELECTION -->
@@ -298,7 +298,7 @@
                                    value="Conditional based coloring enabled" />
                     <div>
                         <p:toggleSwitch id="condition-based-coloring-enabled-toggle" 
-                                       value="#{statisticConfigurationBean.conditionBasedColoringEnabled}"
+                                       value="#{statisticConfigurationBean.statistic.conditionBasedColoringEnabled}"
                                        styleClass="col-1">
                             <p:ajax update="chart-background-colors conditional-based-coloring-options" 
                                    process="@this" 
@@ -310,11 +310,11 @@
 
                 <!-- Conditional Coloring Options -->
                 <h:panelGroup id="conditional-based-coloring-options" class="field col-6" layout="block">
-                    <h:panelGroup rendered="#{statisticConfigurationBean.conditionBasedColoringEnabled and statisticConfigurationBean.statistic.chartType.name() ne 'NUMBER'}">
+                    <h:panelGroup rendered="#{statisticConfigurationBean.statistic.conditionBasedColoringEnabled and statisticConfigurationBean.statistic.chartType.name() ne 'NUMBER'}">
                     <p:outputLabel for="@next" value="Scope" />
                     <div>
                         <p:selectOneMenu id="coloring-option" styleClass="w-full"
-                                        value="#{statisticConfigurationBean.statisticConditionalColoringScope}">
+                                        value="#{statisticConfigurationBean.statistic.statisticConditionalColoringScope}">
                             <f:selectItem itemValue="all" itemLabel="All values" />
                             <f:selectItem itemValue="specific" itemLabel="Specific value"/>
                             <p:ajax update="chart-background-colors condition-background-colors-container" 
@@ -326,7 +326,7 @@
                 </h:panelGroup>
 
                  <h:panelGroup id="chart-background-colors">
-                  <h:panelGroup id="background-colors-container" layout="block" styleClass="col-12 p-0 grid m-0" rendered="#{!statisticConfigurationBean.conditionBasedColoringEnabled}">
+                  <h:panelGroup id="background-colors-container" layout="block" styleClass="col-12 p-0 grid m-0" rendered="#{!statisticConfigurationBean.statistic.conditionBasedColoringEnabled}">
                     <h:panelGroup rendered="#{statisticConfigurationBean.statistic.chartType.name() ne 'NUMBER'}">
                       <ui:repeat id="background-colors" value="#{statisticConfigurationBean.backgroundColors}" var="color"
                         varStatus="status">
@@ -344,13 +344,13 @@
                     </h:panelGroup>
                   </h:panelGroup>
                  
-                  <h:panelGroup id="condition-background-colors-container" styleClass="col-12 p-0 grid m-0" layout="block" rendered="#{statisticConfigurationBean.conditionBasedColoringEnabled}">
+                  <h:panelGroup id="condition-background-colors-container" styleClass="col-12 p-0 grid m-0" layout="block" rendered="#{statisticConfigurationBean.statistic.conditionBasedColoringEnabled}">
                       <h:panelGroup id="user-threshold">
                         <h:panelGroup class="flex align-items-center">
                           <p:outputLabel for="@next" styleClass="mr-3 ml-2" value="Default color"/>
-                          <p:colorPicker required="true" label="Default color" value="#{statisticConfigurationBean.defaultBackgroundColor}" size="10" clearButton="true" closeButton="true"/>
+                          <p:colorPicker required="true" label="Default color" value="#{statisticConfigurationBean.statistic.defaultBackgroundColor}" size="10" clearButton="true" closeButton="true"/>
                         </h:panelGroup>
-                        <ui:repeat id="condition-background-color-list" var="threshold" value="#{statisticConfigurationBean.thresholds}"
+                        <ui:repeat id="condition-background-color-list" var="threshold" value="#{statisticConfigurationBean.statistic.thresholds}"
                           varStatus="status">
                           <ic:com.axonivy.portal.page.component.ThresholdStatisticChart id="threshold-component"
                             managedBean="#{statisticConfigurationBean}" threshold="#{threshold}" componentToUpdate="#{p:resolveFirstComponentWithId('user-threshold', view).clientId}"

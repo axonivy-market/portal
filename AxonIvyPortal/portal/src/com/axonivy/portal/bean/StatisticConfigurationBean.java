@@ -113,11 +113,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   private String currentCustomFieldDescription;
   private boolean isDateTimeSelected;
   private AggregationInterval aggregationInterval;
-  private boolean conditionBasedColoringEnabled;
-  private List<ThresholdStatisticChart> thresholds;
-  private String defaultBackgroundColor;
   private List<String> categoryData;
-  private String statisticConditionalColoringScope;
 
   private StatisticNameMultilanguageService nameMultilanguageService;
   private StatisticDescriptionMultilanguageService descriptionMultilanguageService;
@@ -142,8 +138,8 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     initFilterFields();
     initFilters();
     initThresholds();
-    setDefaultBackgroundColor("#8dc261");
-    setStatisticConditionalColoringScope("all");
+    statistic.setDefaultBackgroundColor("#8dc261");
+    statistic.setStatisticConditionalColoringScope("all");
   }
 
   private void initMultilanguageServices() {
@@ -155,7 +151,6 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
 
   private void initExistedStatistic() {
     isEditMode = true;
-    conditionBasedColoringEnabled = false;
     if (statistic.getNames() == null) {
       statistic.setNames(new ArrayList<>());
     }
@@ -235,7 +230,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     yTitles = new ArrayList<>();
     backgroundColors = new ArrayList<>(DEFAULT_COLORS);
     refreshIntervalEnabled = false;
-    conditionBasedColoringEnabled = false;
+    statistic.setConditionBasedColoringEnabled(false);
   }
   
   private void initFilterFields() {
@@ -275,7 +270,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   }
   
   private void initThresholds() {
-    if (CollectionUtils.isEmpty(thresholds)) {
+    if (CollectionUtils.isEmpty(statistic.getThresholds())) {
       return;
     }
   }
@@ -379,10 +374,6 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
       statistic.setPermissions(permissions);
     }
     backgroundColors.removeIf(Objects::isNull);
-    statistic.setStatisticConditionalColoringScope(statisticConditionalColoringScope);
-    statistic.setThresholds(thresholds);
-    statistic.setDefaultBackgroundColor(defaultBackgroundColor);
-    statistic.setConditionBasedColoringEnabled(conditionBasedColoringEnabled);
     if (BAR == statistic.getChartType()) {
       statistic.setBarChartConfig(new BarChartConfig());
       statistic.getBarChartConfig().setxTitles(xTitles);
@@ -504,10 +495,10 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   }
   
   public void resetConditionBasedColoring() {
-    if (conditionBasedColoringEnabled) {
-      setThresholds(new ArrayList<>());
-      setDefaultBackgroundColor("#8dc261");
-      setConditionBasedColoringEnabled(false);
+    if (statistic.getConditionBasedColoringEnabled()) {
+      statistic.setDefaultBackgroundColor("#8dc261");
+      statistic.setConditionBasedColoringEnabled(false);
+      statistic.setThresholds(new ArrayList<>());
     }
   }
 
@@ -830,7 +821,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   }
   
   public void onSelectColoringOption() {
-    setThresholds(new ArrayList<>());
+    statistic.setThresholds(new ArrayList<>());
   }
     
   public void resetAggregateValues() {
@@ -895,24 +886,24 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   }
   
   public void addNewThreshold() {
-    if (thresholds == null) {
-      setThresholds(new ArrayList<>());
+    if (CollectionUtils.isEmpty(statistic.getThresholds())) {
+      statistic.setThresholds(new ArrayList<>());
     }
     
     ThresholdStatisticChart newThreshold = new ThresholdStatisticChart();
     newThreshold.setBackgroundColor("#6299f7");
-    thresholds.add(newThreshold);
-  }
+    statistic.getThresholds().add(newThreshold);
+    }
   
   public void removeFilter(DashboardFilter filter) {
     statistic.getFilters().remove(filter);
   }
   
   public void removeThreshold(ThresholdStatisticChart threshod) {
-    if (thresholds == null) {
+    if (CollectionUtils.isEmpty(statistic.getThresholds())) {
       return;
     }
-    thresholds.remove(threshod);
+    statistic.getThresholds().remove(threshod);
   }
   
   public List<SecurityMemberDTO> completeOwners(String query) {
@@ -940,44 +931,12 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     this.currentField = currentField;
   }
   
-  public boolean getConditionBasedColoringEnabled() {
-    return this.conditionBasedColoringEnabled;
-  }
-  
-  public void setConditionBasedColoringEnabled(boolean conditionBasedColoringEnabled) {
-    this.conditionBasedColoringEnabled = conditionBasedColoringEnabled;
-  }
-  
-  public List<ThresholdStatisticChart> getThresholds() {
-    return thresholds;
-  }
-
-  public void setThresholds(List<ThresholdStatisticChart> thresholds) {
-    this.thresholds = thresholds;
-  }
-
-  public String getDefaultBackgroundColor() {
-    return defaultBackgroundColor;
-  }
-
-  public void setDefaultBackgroundColor(String defaultBackgroundColor) {
-    this.defaultBackgroundColor = defaultBackgroundColor;
-  }
-  
   public void setCategoryData(List<String> data) {
     this.categoryData = data;
   }
   
   public List<String> getCategoryData() {
     return this.categoryData;
-  }
-
-  public String getStatisticConditionalColoringScope() {
-    return statisticConditionalColoringScope;
-  }
-
-  public void setStatisticConditionalColoringScope(String statisticConditionalColoringScope) {
-    this.statisticConditionalColoringScope = statisticConditionalColoringScope;
   }
 
 }
