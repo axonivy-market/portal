@@ -52,6 +52,7 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.DefaultDashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -156,7 +157,9 @@ public class DashboardBean implements Serializable, IMultiLanguage {
   }
 
   protected List<Dashboard> collectDashboards() {
-    return DashboardUtils.collectDashboards();
+    List<Dashboard> dashboards = DashboardUtils.collectDashboards();
+    dashboards.add(DefaultDashboardUtils.getDefaultUserExampleDashboard());
+    return dashboards;
   }
 
   public void loadDashboardTemplate() {
