@@ -153,10 +153,32 @@
               <div class="ui-fluid ui-g-9 ui-md-8 welcome-styles-panel u-no-padding-left">
                 <p:inputText id="text-style-class" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeTextStyleClass}" styleClass="js-text-style-class" onchange="WelcomeWidgetConfiguration.updateStyleClasses();" />
               </div>
+
+              <div class="ui-g-3 ui-md-4">
+                <p:outputLabel for="text-alt-class" styleClass="welcome-text-label" value="Alt text" />
+              </div>
+              <div class="ui-fluid ui-g-9 ui-md-8 welcome-styles-panel u-no-padding-left">
+                <p:inputText id="text-alt-class" value="#{dashboardWelcomeWidgetConfigurationBean.widget.altText}" styleClass="js-text-style-class" onchange="WelcomeWidgetConfiguration.updateStyleClasses();" />
+                <!-- Add language button -->
+                <p:commandButton styleClass="app-setting-button"
+                  ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
+                  icon="si si-chat-translate" id="add-language-button">
+                  <p:ajax event="click"
+                    listener="#{dashboardWelcomeWidgetConfigurationBean.updateAltTextByLocale()}"
+                    process="text-alt-class"
+                    update="#{cc.clientId}:title-language-config:multiple-languages-dialog"
+                    oncomplete="PF('multiple-languages-dialog').show();" />
+                </p:commandButton>
+              </div>
+
             </div>
           </p:fieldset>
         </div>
        </div>
+       <!-- Multi language dialog-->
+       <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+         id="title-language-config" titles="#{dashboardWelcomeWidgetConfigurationBean.widget.altTexts}" />
+       
        <p:remoteCommand name="initGreetingTexts" update="welcome-text-input-container"
          actionListener="#{dashboardWelcomeWidgetConfigurationBean.initClientTime()}"
          oncomplete="WelcomeWidgetConfiguration.updatePreviewText('#{widget.greeting}');" />
