@@ -1544,7 +1544,11 @@ Dialogs:
             Color: Color {0}
             ConditionBasedColoring:
               AddCondition: Add condition
+              AllValue: All values
+              CategoryValue: Value
+              Color: Color
               ConditionBasedColoringEnabled: Condition-based coloring enabled
+              ConditionValue: Condition value
               DefaultColor: Default color
               Information: |-
                 The condition-based coloring feature allows you to define colors for each chart based on specific conditions.
@@ -1553,7 +1557,9 @@ Dialogs:
                 - When multiple conditions are satisfied, the first condition defined wins
                 - Keep it simple.
               NoDataAvailable: No data available to define color conditions.
+              Operator: Operator
               Scope: Scope
+              SpecificValue: Specific value
             Create: Create
             EditStatistic: Edit Statistic Widget
             For: For

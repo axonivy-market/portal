@@ -1550,11 +1550,17 @@ Dialogs:
             Color: Color {0}
             ConditionBasedColoring:
               AddCondition: Add condition
+              AllValue: Todos los valores
+              CategoryValue: Value
+              Color: Color
               ConditionBasedColoringEnabled: Coloreado condicional activado
+              ConditionValue: Valor de condición
               DefaultColor: Color predeterminado
               Information: Information
               NoDataAvailable: No hay datos disponibles para definir condiciones de color.
+              Operator: Operador
               Scope: Alcance
+              SpecificValue: Valor específico
             Create: Cree
             EditStatistic: Editar widget de estadísticas
             For: Para

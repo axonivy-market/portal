@@ -1535,11 +1535,17 @@ Dialogs:
             Color: 色{0}
             ConditionBasedColoring:
               AddCondition: Add condition
+              AllValue: 'TODO: All values'
+              CategoryValue: Value
+              Color: Color
               ConditionBasedColoringEnabled: 'TODO: Conditional based coloring enabled'
+              ConditionValue: 'TODO: Condition value'
               DefaultColor: 'TODO: Default color'
               Information: Information
               NoDataAvailable: 'TODO: No data available to define color conditions'
+              Operator: 'TODO: Operator'
               Scope: 'TODO: Scope'
+              SpecificValue: 'TODO: Specific value'
             Create: TODO Create
             EditStatistic: TODO Edit Statistic Widget
             For: TODO For

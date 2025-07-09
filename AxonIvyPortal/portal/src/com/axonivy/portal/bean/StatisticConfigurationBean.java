@@ -482,6 +482,9 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   }
   
   public void fetchCategoryData() {
+    handleCustomFieldAggregation();
+    handleAggregateWithDateTimeInterval();
+    cleanUpFilter();
     StatisticService statisticService = StatisticService.getInstance();
     statistic.setAdditionalConfigs(new ArrayList<>());
     statistic.getAdditionalConfigs().addAll(statisticService.getAdditionalConfig());

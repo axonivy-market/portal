@@ -1552,11 +1552,17 @@ Dialogs:
             Color: Farbe {0}
             ConditionBasedColoring:
               AddCondition: Add condition
+              AllValue: Alle Werte
+              CategoryValue: Value
+              Color: Farbe
               ConditionBasedColoringEnabled: Bedingungsabhängige Farbgebung aktiviert
+              ConditionValue: Bedingungswert
               DefaultColor: Standardfarbe
               Information: Information
               NoDataAvailable: Keine Daten verfügbar, um Farbbedingungen zu definieren.
+              Operator: Operator
               Scope: Geltungsbereich
+              SpecificValue: Spezifischer Wert
             Create: Erstellen
             EditStatistic: Statistisches Widget bearbeiten
             For: Für
