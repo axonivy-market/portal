@@ -1533,6 +1533,13 @@ Dialogs:
             Advanced: TODO Advanced
             ChartType: TODO Chart type
             Color: 色{0}
+            ConditionBasedColoring:
+              AddCondition: Add condition
+              ConditionBasedColoringEnabled: 'TODO: Conditional based coloring enabled'
+              DefaultColor: 'TODO: Default color'
+              Information: Information
+              NoDataAvailable: 'TODO: No data available to define color conditions'
+              Scope: 'TODO: Scope'
             Create: TODO Create
             EditStatistic: TODO Edit Statistic Widget
             For: TODO For

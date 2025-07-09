@@ -1542,6 +1542,18 @@ Dialogs:
             Advanced: Advanced
             ChartType: Chart type
             Color: Color {0}
+            ConditionBasedColoring:
+              AddCondition: Add condition
+              ConditionBasedColoringEnabled: Condition-based coloring enabled
+              DefaultColor: Default color
+              Information: |-
+                The condition-based coloring feature allows you to define colors for each chart based on specific conditions.
+                Rules:
+                - Define clear conditions.
+                - When multiple conditions are satisfied, the first condition defined wins
+                - Keep it simple.
+              NoDataAvailable: No data available to define color conditions.
+              Scope: Scope
             Create: Create
             EditStatistic: Edit Statistic Widget
             For: For
