@@ -323,8 +323,8 @@
                     <div>
                         <p:selectOneMenu id="coloring-option" styleClass="w-full"
                                         value="#{statisticConfigurationBean.statistic.isApplyColoringToAll}">
-                            <f:selectItem itemValue="true" itemLabel="All values"/>
-                            <f:selectItem itemValue="false" itemLabel="Specific value"/>
+                            <f:selectItem itemValue="true" itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/AllValue')}"/>
+                            <f:selectItem itemValue="false" itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/SpecificValue')}"/>
                             <p:ajax update="chart-background-colors condition-background-colors-container" 
                                    process="@this"
                                    listener="#{statisticConfigurationBean.onSelectColoringOption}"/>
@@ -372,7 +372,7 @@
                           </p:commandButton>
                          </div>
                          <h:panelGroup rendered="#{!statisticConfigurationBean.isCategoryDataAvailable and !statisticConfigurationBean.statistic.isApplyColoringToAll}">
-                           <div>#{ivy.cms.co("/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/NoDataAvailable")}</div>
+                           <div class="col-12">#{ivy.cms.co("/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/NoDataAvailable")}</div>
                          </h:panelGroup>
                       </h:panelGroup>
                   </h:panelGroup>

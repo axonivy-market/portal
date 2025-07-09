@@ -23,6 +23,7 @@
     <h:panelGroup id="threshold-panel" layout="block" styleClass="flex">
          <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
              <p:selectOneMenu class="threshold-category-data" required="true" styleClass="w-full" rendered="#{!managedBean.statistic.isApplyColoringToAll}"
+               label="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/CategoryValue')}"
                disabled="#{!managedBean.isCategoryDataAvailable}"
                value="#{threshold.categoryValue}">
                <f:selectItems value="#{managedBean.categoryData}" 
@@ -35,11 +36,11 @@
              </p:selectOneMenu>
              <p:selectOneMenu class="threshold-category-data" disabled="true" required="true" styleClass="w-full" rendered="#{managedBean.statistic.isApplyColoringToAll}"
                value="#{threshold.categoryValue}">
-               <f:selectItem itemValue="All" itemLabel="All"/>
+               <f:selectItem itemValue="All" itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/AllValue')}"/>
              </p:selectOneMenu>
          </h:panelGroup>
          <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
-             <p:selectOneMenu label="Operator" required="true" styleClass="threshold-operator-value" disabled="#{!managedBean.isCategoryDataAvailable and !managedBean.statistic.isApplyColoringToAll}"
+             <p:selectOneMenu label="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/Operator')}" required="true" styleClass="threshold-operator-value" disabled="#{!managedBean.isCategoryDataAvailable and !managedBean.statistic.isApplyColoringToAll}"
                value="#{threshold.operator}">
                <f:selectItems value="#{managedBean.getAllOperatorField()}"
                  var="operator" itemValue="#{operator}" itemLabel="#{operator.getCmsName()}" />
@@ -51,7 +52,7 @@
          </h:panelGroup>
          
          <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
-          <p:inputNumber label="Threshold value" styleClass="threshold-input-value" required="true" value="#{threshold.value}" disabled="#{!managedBean.isCategoryDataAvailable and !managedBean.statistic.isApplyColoringToAll}"
+          <p:inputNumber label="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/ConditionValue')}" styleClass="threshold-input-value" required="true" value="#{threshold.value}" disabled="#{!managedBean.isCategoryDataAvailable and !managedBean.statistic.isApplyColoringToAll}"
             decimalPlaces="0" minValue="0" onkeydown="return event.key !== '-'">
             <p:ajax event="change" partialSubmit="true" global="false"/>
             <f:param name="skipValidator" value="true" />
@@ -61,7 +62,9 @@
          </h:panelGroup>
 
          <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
-           <p:colorPicker styleClass="threshold-color-value" value="#{threshold.backgroundColor}" required="true" disabled="#{!managedBean.isCategoryDataAvailable and !managedBean.statistic.isApplyColoringToAll}" clearButton="true" closeButton="true" size="10">
+           <p:colorPicker styleClass="threshold-color-value" value="#{threshold.backgroundColor}"
+            required="true" disabled="#{!managedBean.isCategoryDataAvailable and !managedBean.statistic.isApplyColoringToAll}" label="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/Color')}"
+            clearButton="true" closeButton="true" size="10">
             <f:param name="skipValidator" value="true" />
             <p:ajax event="change" partialSubmit="true" global="false"/>
             <f:attribute name="threshold" value="#{threshold}" />
@@ -70,7 +73,7 @@
          </h:panelGroup>
 
          <div class="remove-threshold-panel align-items-center flex mt-3">
-          <p:commandButton id="remove-threshold" icon="si si-subtract"
+          <p:commandButton id="remove-threshold" icon="si si-subtract"  disabled="#{!managedBean.isCategoryDataAvailable and !managedBean.statistic.isApplyColoringToAll}"
             styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger dashboard-widget-filter__remove-filter"
             actionListener="#{managedBean.removeThreshold(threshold)}"
             update="#{cc.attrs.componentToUpdateWhenRemoveThreshold} #{cc.attrs.componentToUpdate}" global="false"
