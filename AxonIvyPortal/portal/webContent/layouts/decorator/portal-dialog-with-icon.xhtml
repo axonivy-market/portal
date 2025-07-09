@@ -14,7 +14,13 @@
   rendered="#{not empty rendered ? rendered : 'true'}"
   dynamic="#{not empty dynamic ? dynamic : 'false'}"
   resizable="false"
-  appendTo="#{not empty appendTo ? appendTo : ''}">
+  appendTo="#{not empty appendTo ? appendTo : ''}"
+  onShow="
+     var panel = PF('#{widgetVar}').jq;
+     var first = panel.find('.ui-button:visible').first();
+     if(first.length){ first.focus(); }
+    "
+  >
   
   <div class="u-text-align-center">
     <i class="#{not empty iconClass ? iconClass : 'si si-information-circle'} #{not empty iconStyleClass? iconStyleClass : 'portal-dialog-info-icon'} portal-dialog-icon" />

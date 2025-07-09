@@ -41,7 +41,13 @@
 
   <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" appendTo="@(body)"
     styleClass="options-panel #{cc.attrs.sideStepsPanelStyleClass}" dynamic="true" rendered="#{!cc.attrs.isDisabled}"
-    my="right top" at="right bottom" showCloseIcon="true" dismissable="true">
+    my="right top" at="right bottom" showCloseIcon="true" dismissable="true"
+    onShow="
+      var panel = PF('#{cc.attrs.panelWidgetVar}').jq;
+      var first = panel.find('a:visible').first();
+      if(first.length){ first.focus(); }
+    "
+  >
 
     <p:commandLink id="task-open-detail-command" styleClass="option-item" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}"
       actionListener="#{logic.openDetails(task, dataModel, cc.attrs.inFrame)}" rendered="#{cc.attrs.showDetailOption}">
