@@ -50,7 +50,7 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private Boolean isCustom;
   @JsonIgnore
   private List<SecurityMemberDTO> permissionDTOs;
-  private String statisticConditionalColoringScope;
+  private boolean isApplyColoringToAll;
   private List<ThresholdStatisticChart> thresholds;
   private String defaultBackgroundColor;
   private boolean conditionBasedColoringEnabled;
@@ -240,14 +240,6 @@ public class Statistic extends AbstractConfiguration implements Serializable {
     this.statisticAggregation = statisticAggregation;
   }
   
-  public String getStatisticConditionalColoringScope() {
-    return statisticConditionalColoringScope;
-  }
-
-  public void setStatisticConditionalColoringScope(String statisticConditionalColoringScope) {
-    this.statisticConditionalColoringScope = statisticConditionalColoringScope;
-  }
-  
   public List<ThresholdStatisticChart> getThresholds() {
     return thresholds;
   }
@@ -270,5 +262,13 @@ public class Statistic extends AbstractConfiguration implements Serializable {
 
   public void setConditionBasedColoringEnabled(boolean conditionBasedColoringEnabled) {
     this.conditionBasedColoringEnabled = conditionBasedColoringEnabled;
+  }
+
+  public boolean getIsApplyColoringToAll() {
+    return isApplyColoringToAll;
+  }
+
+  public void setIsApplyColoringToAll(boolean isApplyColoringToAll) {
+    this.isApplyColoringToAll = isApplyColoringToAll;
   }
 }
