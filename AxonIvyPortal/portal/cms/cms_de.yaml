@@ -1646,7 +1646,7 @@ Enums:
                 name: Kennzahl / Metrik
               PIE:
                 name: Kreisdiagramm
-            OperatorField:
+            OperatorFieldStatistic:
               EQUAL:
                 name: Equal
               GREATER:

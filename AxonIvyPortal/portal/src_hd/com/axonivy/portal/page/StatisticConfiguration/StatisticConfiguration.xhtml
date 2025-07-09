@@ -190,7 +190,7 @@
                       <ui:repeat id="filter-list" var="filter" value="#{statisticConfigurationBean.statistic.filters}"
                         varStatus="status">
                         <ic:com.axonivy.portal.page.component.StatisticFilter id="filter-component" filter="#{filter}"
-                          managedBean="#{statisticConfigurationBean}"
+                          managedBean="#{statisticConfigurationBean}" conditionBasedColoringComponent=":config-form:chart-background-colors :config-form:conditional-based-coloring-toggle :config-form:condition-based-coloring-options"
                           componentToUpdate="#{p:resolveFirstComponentWithId('user-filter', view).clientId}"
                           filterIndex="#{status.index}" readOnly="true" />
                       </ui:repeat>
@@ -307,8 +307,7 @@
                                        styleClass="col-1">
                             <p:ajax update="chart-background-colors condition-based-coloring-options" 
                                    process="@this" 
-                                   listener="#{statisticConfigurationBean.renderCategoryData}" 
-                                   resetValues="true"/>
+                                   listener="#{statisticConfigurationBean.renderCategoryData}"/>
                         </p:toggleSwitch> 
                     </div>
                 </h:panelGroup>
