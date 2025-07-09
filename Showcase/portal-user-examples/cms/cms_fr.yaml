@@ -167,6 +167,8 @@ Processes:
   Procurement:
     name: Approvisionnement
   UserExampleGuide:
+    DashboardCustomNoteWidget:
+      name: Widget personnalisé du dashboard
     comingSoon: A venir…
     description: 'Bienvenue ! Dans ce guide d''exemple d''utilisateur, vous trouverez quelques processus de démonstration
       disponibles dans le Axon Ivy Portal. Il vous suffit de cliquer sur le lien correspondant ci-dessous pour obtenir plus

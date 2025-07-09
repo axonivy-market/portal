@@ -1,7 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_DASHBOARD_ID;
-
 import static ch.ivy.addon.portalkit.enums.SessionAttribute.SELECTED_SUB_DASHBOARD_ID;
 
 import java.io.IOException;
@@ -23,7 +22,6 @@ import org.primefaces.event.SelectEvent;
 
 import com.axonivy.portal.components.util.HtmlUtils;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
-import com.axonivy.portal.service.DeepLTranslationService;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -54,6 +52,7 @@ import ch.ivy.addon.portalkit.service.WidgetFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.DefaultDashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UrlUtils;
@@ -65,7 +64,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 
 @ViewScoped
 @ManagedBean
-public class DashboardBean implements Serializable {
+public class DashboardBean implements Serializable, IMultiLanguage {
 
   private static final long serialVersionUID = -4224901891867040688L;
   private static final String ACCESSIBILITY_DASHBOARD_TEMPLATE_ID = "accessibility-dashboard-template";
@@ -158,7 +157,9 @@ public class DashboardBean implements Serializable {
   }
 
   protected List<Dashboard> collectDashboards() {
-    return DashboardUtils.collectDashboards();
+    List<Dashboard> dashboards = DashboardUtils.collectDashboards();
+    dashboards.add(DefaultDashboardUtils.getDefaultUserExampleDashboard());
+    return dashboards;
   }
 
   public void loadDashboardTemplate() {
@@ -338,6 +339,7 @@ public class DashboardBean implements Serializable {
           .map(WidgetFilterModel::getUserFilters)
           .filter(list -> CollectionUtils.isNotEmpty(list))
           .collect(ArrayList::new, List::addAll, List::addAll);
+      savedFilters.stream().forEach(item -> item.setTemp(true));
       caseWidget.setUserFilters(savedFilters);
       return;
     }
@@ -354,6 +356,7 @@ public class DashboardBean implements Serializable {
           .map(WidgetFilterModel::getUserFilters)
           .filter(list -> CollectionUtils.isNotEmpty(list))
           .collect(ArrayList::new, List::addAll, List::addAll);
+      savedFilters.stream().forEach(item -> item.setTemp(true));
       taskWidget.setUserFilters(savedFilters);
       return;
     }
@@ -430,14 +433,6 @@ public class DashboardBean implements Serializable {
 
   protected List<String> getSupportedLanguages() {
     return LanguageService.getInstance().getIvyLanguageOfUser().getSupportedLanguages();
-  }
-
-  public boolean isShowTranslation(DisplayName title) {
-    return DeepLTranslationService.getInstance().isShowTranslation(title.getLocale());
-  }
-
-  public boolean isFocus(DisplayName title) {
-    return !isShowTranslation(title) && title.getLocale().getLanguage().equals(UserUtils.getUserLanguage());
   }
 
   public String getTranslatedText() {
