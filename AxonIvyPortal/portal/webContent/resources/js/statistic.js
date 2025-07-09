@@ -343,9 +343,9 @@ class ClientChart {
         return chartConfig.defaultBackgroundColor;
       }
 
-      if (this.data.chartConfig.statisticConditionalColoringScope === 'all') {
+      if (this.data.chartConfig.isApplyColoringToAll) {
         return this.getBackgroundColorsWithAllScope(chartConfig, data);
-      } else if (this.data.chartConfig.statisticConditionalColoringScope === 'specific') {
+      } else if (!this.data.chartConfig.isApplyColoringToAll) {
         return this.getBackgroundColorsWithSpecificScope(chartConfig, data);
       }
     }

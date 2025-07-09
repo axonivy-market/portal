@@ -198,10 +198,6 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
       statistic.setDefaultBackgroundColor("#8dc261");
     }
 
-    if (statistic.getStatisticConditionalColoringScope() == null) {
-      statistic.setStatisticConditionalColoringScope("all");
-    }
-
     if (statistic.getThresholds() == null) {
       statistic.setThresholds(new ArrayList<>());
     }
@@ -225,7 +221,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
       statistic.setStatisticAggregation(statisticAggregation);
     }
     if (statistic.getConditionBasedColoringEnabled()) {
-      renderCategoryData();
+      fetchCategoryData();
       if (CollectionUtils.isEmpty(categoryData)) {
         updateIsCategoryDataAvailable();
         List<String> categoryValuesFromThresholds = statistic.getThresholds().stream().map(ThresholdStatisticChart::getCategoryValue).filter(Objects::nonNull).collect(Collectors.toList());
@@ -255,7 +251,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     refreshIntervalEnabled = false;
     statistic.setConditionBasedColoringEnabled(false);
     statistic.setDefaultBackgroundColor("#8dc261");
-    statistic.setStatisticConditionalColoringScope("all");
+    statistic.setIsApplyColoringToAll(true);
     statistic.setThresholds(new ArrayList<>());
   }
   
@@ -485,7 +481,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     populateBackgroundColorsIfMissing();
   }
   
-  public void renderCategoryData() {
+  public void fetchCategoryData() {
     StatisticService statisticService = StatisticService.getInstance();
     statistic.setAdditionalConfigs(new ArrayList<>());
     statistic.getAdditionalConfigs().addAll(statisticService.getAdditionalConfig());
@@ -530,7 +526,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
       statistic.setDefaultBackgroundColor("#8dc261");
       statistic.setConditionBasedColoringEnabled(false);
       statistic.setThresholds(new ArrayList<>());
-      statistic.setStatisticConditionalColoringScope("all");
+      statistic.setIsApplyColoringToAll(true);
     }
   }
 
@@ -854,6 +850,9 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   
   public void onSelectColoringOption() {
     statistic.setThresholds(new ArrayList<>());
+    if (Boolean.FALSE.equals(statistic.getIsApplyColoringToAll())) {
+      fetchCategoryData();
+    }
   }
     
   public void resetAggregateValues() {

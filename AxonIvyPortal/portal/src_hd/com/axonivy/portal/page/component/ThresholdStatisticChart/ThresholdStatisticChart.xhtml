@@ -22,24 +22,24 @@
   <div class="col-12">
     <h:panelGroup id="threshold-panel" layout="block" styleClass="flex">
          <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
-             <p:selectOneMenu class="threshold-category-data" required="true" styleClass="w-full" rendered="#{managedBean.statistic.statisticConditionalColoringScope eq 'specific'}"
+             <p:selectOneMenu class="threshold-category-data" required="true" styleClass="w-full" rendered="#{!managedBean.statistic.isApplyColoringToAll}"
                disabled="#{!managedBean.isCategoryDataAvailable}"
                value="#{threshold.categoryValue}">
                <f:selectItems value="#{managedBean.categoryData}" 
                  var="value" itemValue="#{value}" itemLabel="#{managedBean.displayThresholdCategoryValue(value)}"
-                 rendered="#{managedBean.statistic.statisticConditionalColoringScope eq 'specific'}"/>
+                 rendered="#{!managedBean.statistic.isApplyColoringToAll}"/>
                 <p:ajax event="itemSelect" partialSubmit="true" global="false"/>
                 <f:param name="skipValidator" value="true" />
                 <f:attribute name="threshold" value="#{threshold}" />
                 <f:attribute name="thresholdIndex" value="#{thresholdIndex}" />
              </p:selectOneMenu>
-             <p:selectOneMenu class="threshold-category-data" disabled="true" required="true" styleClass="w-full" rendered="#{managedBean.statistic.statisticConditionalColoringScope eq 'all'}"
+             <p:selectOneMenu class="threshold-category-data" disabled="true" required="true" styleClass="w-full" rendered="#{managedBean.statistic.isApplyColoringToAll}"
                value="#{threshold.categoryValue}">
                <f:selectItem itemValue="All" itemLabel="All"/>
              </p:selectOneMenu>
          </h:panelGroup>
          <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
-             <p:selectOneMenu label="Operator" required="true" styleClass="threshold-operator-value" disabled="#{!managedBean.isCategoryDataAvailable and statisticConfigurationBean.statistic.statisticConditionalColoringScope eq 'specific'}"
+             <p:selectOneMenu label="Operator" required="true" styleClass="threshold-operator-value" disabled="#{!managedBean.isCategoryDataAvailable and !managedBean.statistic.isApplyColoringToAll}"
                value="#{threshold.operator}">
                <f:selectItems value="#{managedBean.getAllOperatorField()}"
                  var="operator" itemValue="#{operator}" itemLabel="#{operator.getCmsName()}" />
@@ -51,7 +51,7 @@
          </h:panelGroup>
          
          <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
-          <p:inputNumber label="Threshold value" styleClass="threshold-input-value" required="true" value="#{threshold.value}" disabled="#{!managedBean.isCategoryDataAvailable and statisticConfigurationBean.statistic.statisticConditionalColoringScope eq 'specific'}"
+          <p:inputNumber label="Threshold value" styleClass="threshold-input-value" required="true" value="#{threshold.value}" disabled="#{!managedBean.isCategoryDataAvailable and !managedBean.statistic.isApplyColoringToAll}"
             decimalPlaces="0" minValue="0" onkeydown="return event.key !== '-'">
             <p:ajax event="change" partialSubmit="true" global="false"/>
             <f:param name="skipValidator" value="true" />
@@ -61,7 +61,7 @@
          </h:panelGroup>
 
          <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
-           <p:colorPicker styleClass="threshold-color-value" value="#{threshold.backgroundColor}" required="true" disabled="#{!managedBean.isCategoryDataAvailable and statisticConfigurationBean.statistic.statisticConditionalColoringScope eq 'specific'}" clearButton="true" closeButton="true" size="10">
+           <p:colorPicker styleClass="threshold-color-value" value="#{threshold.backgroundColor}" required="true" disabled="#{!managedBean.isCategoryDataAvailable and !managedBean.statistic.isApplyColoringToAll}" clearButton="true" closeButton="true" size="10">
             <f:param name="skipValidator" value="true" />
             <p:ajax event="change" partialSubmit="true" global="false"/>
             <f:attribute name="threshold" value="#{threshold}" />

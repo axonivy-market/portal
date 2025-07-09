@@ -9,7 +9,6 @@
   <cc:attribute name="filterIndex" />
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="messageId" />
-  <cc:attribute name="conditionBasedColoringComponent"/>
 </cc:interface>
 
 <cc:implementation>
@@ -97,7 +96,7 @@
           styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger dashboard-widget-filter__remove-filter"
           actionListener="#{managedBean.removeFilter(filter)}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
-          update="#{cc.attrs.componentToUpdateWhenRemoveFilter} #{cc.attrs.componentToUpdate}" global="false"
+          update="#{cc.attrs.componentToUpdateWhenRemoveFilter} #{cc.attrs.componentToUpdate} #{cc.attrs.conditionBasedColoringComponent}" global="false"
           oncomplete="#{cc.attrs.onCompleteRemoveFilter}" immediate="true" partialSubmit="true">
           <f:param name="skipValidator" value="true" />
         </p:commandButton>
