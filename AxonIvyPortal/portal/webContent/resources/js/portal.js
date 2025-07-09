@@ -840,7 +840,7 @@ $(document).ready(function () {
     parentMenu.find('li').each((index, item) => {
       let linkItem = $(item).find('a');
       if (linkItem && linkItem.attr('aria-label') === undefined) {
-        linkItem.attr('aria-label', 'Aria label');
+        linkItem.attr('aria-label', linkItem.text());
       }
     })
   }
