@@ -597,7 +597,7 @@ class ClientCartesianChart extends ClientCanvasChart {
 
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : 2;
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
-      let backgroundColors = this.calculateConditionalColors(config, data, config.barChartConfig.backgroundColors);
+      let backgroundColors = this.calculateConditionalColors(config, data, config.chartType == 'bar' ? config.barChartConfig.backgroundColors : config.lineChartConfig.backgroundColors);
       $(chart).html(html);
       let canvasObject = $(chart).find('canvas');
       this.clientChartConfig = new Chart(canvasObject, {

@@ -808,7 +808,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       RestoreDefaultDashboardTemplateTooltip: Wir können die Vorlage für Ihr Dashboard nicht finden und es daher nicht auf die Standardkonfiguration zurücksetzen. Bitte erkundigen Sie sich bei Ihrem Administrator nach weiteren Details!
       SelectTheTemplate: Wählen Sie die Vorlage
       SelectYourTemplate: Wählen Sie Ihre Vorlage
-      WelcomeConfigurationDescription: 'Sie können Ihr Widget in diesem Konfigurationsbereich konfigurieren. Legen Sie den Begrüßungstext und das zu verwendende Bild fest.'
+      WelcomeConfigurationDescription: Sie können Ihr Widget in diesem Konfigurationsbereich konfigurieren. Legen Sie den Begrüßungstext und das zu verwendende Bild fest.
       WelcomeWidget:
         AdvancedSettings: Erweiterte Einstellungen
         ChooseAFit: Wählen Sie eine Passform
@@ -1501,6 +1501,8 @@ Dialogs:
               chooseAJsonFile: Wählen Sie eine JSON-Datei
             DashboardSharing:
               ShareDashboard: Dashboard teilen
+            NavigationDashboardWidget:
+              PermissionsDenied: Sie haben keine Berechtigung zum Zugriff auf dieses Dashboard
             NavigationDashboardWidgetConfiguration:
               ButtonName: Schaltfläche Name
               NavigationDashboardWidgetConfiguration: Konfiguration des Navigations-Dashboard-Widgets
@@ -1537,8 +1539,6 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen
-            NavigationDashboardWidget:
-              PermissionsDenied: Sie haben keine Berechtigung zum Zugriff auf dieses Dashboard
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: Falldetails Rahmen
@@ -1550,6 +1550,13 @@ Dialogs:
             Advanced: Fortgeschrittene
             ChartType: Diagrammtyp
             Color: Farbe {0}
+            ConditionBasedColoring:
+              AddCondition: Add condition
+              ConditionBasedColoringEnabled: Bedingungsabhängige Farbgebung aktiviert
+              DefaultColor: Standardfarbe
+              Information: Information
+              NoDataAvailable: Keine Daten verfügbar, um Farbbedingungen zu definieren.
+              Scope: Geltungsbereich
             Create: Erstellen
             EditStatistic: Statistisches Widget bearbeiten
             For: Für
@@ -1653,13 +1660,13 @@ Enums:
 Labels:
   AI:
     Error:
-      CannotFindUser: 'Wir können leider keinen Benutzer finden, der Ihrer Anfrage entspricht. Bitte versuchen Sie es erneut.'
-      CannotStartTask: 'Aufgabe kann nicht gestartet werden hat ID {0}'
+      CannotFindUser: Wir können leider keinen Benutzer finden, der Ihrer Anfrage entspricht. Bitte versuchen Sie es erneut.
+      CannotStartTask: Aufgabe kann nicht gestartet werden hat ID {0}
       InvalidTaskPriority: 'Ungültige Aufgabenpriorität. Gültige Aufgabenprioritäten sind: niedrig, normal, hoch oder Ausnahme.'
       InvalidTaskState: 'Ungültiger Aufgabenstatus. Gültige Aufgabenstatus sind: offen, erledigt, in Bearbeitung oder Fehler.'
-      NoMatchingCase: 'Sie haben keine Aufgabe gefunden, die Ihrer Anfrage entspricht'
-      NoMatchingProcesses: 'Keine Anpassungsprozesse.'
-      NoMatchingTask: 'Sie haben keine Aufgabe gefunden, die Ihrer Anfrage entspricht'
+      NoMatchingCase: Sie haben keine Aufgabe gefunden, die Ihrer Anfrage entspricht
+      NoMatchingProcesses: Keine Anpassungsprozesse.
+      NoMatchingTask: Sie haben keine Aufgabe gefunden, die Ihrer Anfrage entspricht
     FindCaseAIResult: 'ID: {0}, Name: {1}, Beschreibung: {2}, Bundesland: {3}'
     FindProcessAIResult: '   - ID: {0}, Name: {1}, Beschreibung: {2}'
     FindTaskAIResult: 'ID: {0}, Name: {1}, Beschreibung: {2}, Zustand: {3}, Priorität {4}'
@@ -1683,8 +1690,8 @@ Labels:
     TaskDetailsResult: |-
       Details zur Aufgabe **{0} (#{1})**:
       {2}
-  AllTasks: Alle Aufgaben
   AIAssistant: AI-Assistent
+  AllTasks: Alle Aufgaben
   AndMore: 'und {0} weitere...  '
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen

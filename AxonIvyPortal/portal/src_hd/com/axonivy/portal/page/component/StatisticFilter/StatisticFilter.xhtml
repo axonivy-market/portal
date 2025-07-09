@@ -22,7 +22,8 @@
         <p:selectOneMenu id="field-selection" value="#{filter.filterField}" converter="pojoConverter">
           <f:selectItems value="#{managedBean.filterFields}" var="field" itemValue="#{field}" itemLabel="#{field.label}" />
           <f:param name="skipValidator" value="true" />
-          <p:ajax event="itemSelect" listener="#{managedBean.onSelectFilter(filter)}" update="filter-selection-panel"
+          <p:ajax event="itemSelect" listener="#{managedBean.onSelectFilter(filter)}" update="filter-selection-panel :config-form:chart-background-colors :config-form:conditional-based-coloring-toggle
+  :config-form:condition-based-coloring-options"
             global="false" />
         </p:selectOneMenu>
       </div>
