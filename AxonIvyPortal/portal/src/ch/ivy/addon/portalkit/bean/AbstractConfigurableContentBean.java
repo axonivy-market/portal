@@ -18,8 +18,7 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.service.impl.ProcessService;
-import com.axonivy.portal.components.util.ProcessStartUtils;
+import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -32,6 +31,7 @@ import ch.ivy.addon.portalkit.dto.AbstractConfigurableContent;
 import ch.ivy.addon.portalkit.dto.AbstractWidgetFilter;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.widget.AbstractWidget;
+import ch.ivy.addon.portalkit.dto.widget.BusinessDetailsWidget;
 import ch.ivy.addon.portalkit.dto.widget.CustomWidget;
 import ch.ivy.addon.portalkit.dto.widget.DocumentWidget;
 import ch.ivy.addon.portalkit.dto.widget.HistoryWidget;
@@ -42,10 +42,7 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CustomWidgetUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.model.value.WebLink;
 import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.ivy.workflow.IProcessStart;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public abstract class AbstractConfigurableContentBean<T extends AbstractConfigurableContent> implements Serializable {
 
@@ -159,28 +156,13 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
       if (widget instanceof CustomWidget) {
         CustomWidget customWidget = (CustomWidget) widget;
         if (StringUtils.isNotBlank(customWidget.getData().getProcessPath())) {
-          String url = findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getProcessPath());
+          String url = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(customWidget.getData().getProcessPath());
           customWidget.getData().setUrl(url);
         }
       }
     }
   }
   
-  private String findStartableLinkByUserFriendlyRequestPath(String processPath) {
-    if (StringUtils.isBlank(processPath)) {
-      return "";
-    }
-
-    IProcessStart processStart = ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(processPath);
-    if (processStart == null || processStart.getLink() == null) {
-      return "";
-    }
-
-    String targetRelativeLink = processStart.getLink().getRelative();
-    return ProcessService.getInstance().findAllProcesses().stream().map(IWebStartable::getLink).filter(Objects::nonNull)
-        .map(WebLink::getRelative).filter(targetRelativeLink::equals).findFirst().orElse("");
-  }
-
   private String readConfigurationOfUser() {
     if (Ivy.session().isSessionUserUnknown()) {
       return EMPTY;
@@ -242,6 +224,9 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
       }
       else if (widget instanceof TechnicalCaseWidget) {
         widget.setType(WidgetType.TECHINCAL_CASE);
+      }
+      else if (widget instanceof BusinessDetailsWidget) {
+        widget.setType(WidgetType.BUSINESS_DETAILS);
       }
       else {
         widget.setType(WidgetType.CUSTOM);

@@ -111,6 +111,13 @@
             rendered="#{widget.type eq 'document' and !caseDetailsBean.hideCaseDocument}">
             <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" componentToUpdate="#{historyWidgetComponent}"/>
           </h:panelGroup>
+          
+          <!-- Business details -->
+          <h:panelGroup id="case-details-business-details-card" layout="block"
+            styleClass="card grid-stack-item-content"
+            rendered="#{widget.type eq 'businessDetails'}">
+            <ic:ch.ivy.addon.portalkit.component.CaseItemBusinessDetails id="business-details-widget" case="#{case}"/>
+          </h:panelGroup>
   
           <!-- Related cases box -->
           <h:panelGroup id="case-details-technical-case-card"
