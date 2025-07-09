@@ -54,8 +54,7 @@ import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.AggregationInterval;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
-import com.axonivy.portal.enums.statistic.OperatorField;
-import com.axonivy.portal.page.component.ThresholdStatisticChart.ThresholdStatisticChartData;
+import com.axonivy.portal.enums.statistic.OperatorFieldStatistic;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.service.multilanguage.StatisticDescriptionMultilanguageService;
 import com.axonivy.portal.service.multilanguage.StatisticNameMultilanguageService;
@@ -533,8 +532,6 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
       statistic.setThresholds(new ArrayList<>());
       statistic.setStatisticConditionalColoringScope("all");
     }
-    renderCategoryData();
-    updateIsCategoryDataAvailable();
   }
 
   public void updateNameForCurrentLanguage() {
@@ -697,8 +694,8 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     return aggregations;
   }
   
-  public List<OperatorField> getAllOperatorField() {
-    return OperatorField.OPERATORS.stream().toList();
+  public List<OperatorFieldStatistic> getAllOperatorField() {
+    return OperatorFieldStatistic.OPERATORS.stream().toList();
   }
   
   private List<AggregationField> filterAggregatesForChartTarget(ChartTarget currentChartTarget) {

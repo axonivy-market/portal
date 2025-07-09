@@ -1628,7 +1628,7 @@ Enums:
                 name: TODO Number
               PIE:
                 name: TODO Pie
-            OperatorField:
+            OperatorFieldStatistic:
               EQUAL:
                 name: Equal
               GREATER:

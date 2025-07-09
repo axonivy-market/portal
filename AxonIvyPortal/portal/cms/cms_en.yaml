@@ -1643,7 +1643,7 @@ Enums:
                 name: Number
               PIE:
                 name: Pie
-            OperatorField:
+            OperatorFieldStatistic:
               EQUAL:
                 name: Equal
               GREATER:

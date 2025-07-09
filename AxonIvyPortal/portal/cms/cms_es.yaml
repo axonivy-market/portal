@@ -1644,7 +1644,7 @@ Enums:
                 name: Gráfico numérico
               PIE:
                 name: Gráfico circular
-            OperatorField:
+            OperatorFieldStatistic:
               EQUAL:
                 name: Equal
               GREATER:

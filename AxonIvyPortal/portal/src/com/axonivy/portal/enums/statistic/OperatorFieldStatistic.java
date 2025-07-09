@@ -8,19 +8,19 @@ import java.util.Set;
 import com.axonivy.portal.enums.HasCmsName;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum OperatorField implements HasCmsName {
+public enum OperatorFieldStatistic implements HasCmsName {
   GREATER("greater"),
   LESS("less"),
   GREATEROREQUAL("greaterOrEqual"),
   LESSOREQUAL("lessOrEqual"),
   EQUAL("equal");
 
-  public static final Set<OperatorField> OPERATORS = Collections.unmodifiableSet(
+  public static final Set<OperatorFieldStatistic> OPERATORS = Collections.unmodifiableSet(
       EnumSet.of(GREATER, LESS, GREATEROREQUAL, LESSOREQUAL, EQUAL));
   
   private String name;
 
-  private OperatorField(String name) {
+  private OperatorFieldStatistic(String name) {
     this.name = name;
   }
 

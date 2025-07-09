@@ -2,23 +2,23 @@ package com.axonivy.portal.bo;
 
 import java.io.Serializable;
 
-import com.axonivy.portal.enums.statistic.OperatorField;
+import com.axonivy.portal.enums.statistic.OperatorFieldStatistic;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.CUSTOM)
 public class ThresholdStatisticChart implements Serializable {
   private static final long serialVersionUID = -2098346832426240167L;
 
-  private OperatorField operator;
+  private OperatorFieldStatistic operator;
   private String value;
   private String backgroundColor;
   private String categoryValue;
 
-  public OperatorField getOperator() {
+  public OperatorFieldStatistic getOperator() {
     return operator;
   }
 
-  public void setOperator(OperatorField operator) {
+  public void setOperator(OperatorFieldStatistic operator) {
     this.operator = operator;
   }
 
