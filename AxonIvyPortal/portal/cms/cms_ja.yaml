@@ -1534,14 +1534,20 @@ Dialogs:
             ChartType: TODO Chart type
             Color: 色{0}
             ConditionBasedColoring:
-              AddCondition: Add condition
+              AddCondition: 'TODO: Add condition'
               AllValue: 'TODO: All values'
-              CategoryValue: Value
+              CategoryValue: 'TODO: Value'
               Color: Color
               ConditionBasedColoringEnabled: 'TODO: Conditional based coloring enabled'
+              ConditionBasedColoringScopeInformation: 'TODO: Choose the scope that the condition will affect: All values: Apply conditions to all data in the chart.  Specific value: Apply color conditions only to selected value.'
               ConditionValue: 'TODO: Condition value'
               DefaultColor: 'TODO: Default color'
-              Information: Information
+              Information: |-
+                TODO:The condition-based coloring feature allows you to define colors for each chart based on specific conditions.
+                Rules:
+                - Define clear conditions.
+                - When multiple conditions are satisfied, the first condition defined wins
+                - Keep it simple.
               NoDataAvailable: 'TODO: No data available to define color conditions'
               Operator: 'TODO: Operator'
               Scope: 'TODO: Scope'
@@ -1636,13 +1642,13 @@ Enums:
                 name: TODO Pie
             OperatorFieldStatistic:
               EQUAL:
-                name: Equal
+                name: 'TODO: Equal to'
               GREATER:
-                name: Greater
+                name: 'TODO: Greater than'
               GREATEROREQUAL:
-                name: Greater than or equal to
+                name: 'TODO: Greater than or equal to'
               LESS:
-                name: Less than
+                name: 'TODO: Less than'
               LESSOREQUAL:
                 name: Less or equal
 Labels:
