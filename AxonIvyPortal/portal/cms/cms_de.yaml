@@ -381,10 +381,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     cases: Vorgänge
     confirmDeleteMessage: Diese Aktion kann nicht rückgängig gemacht werden. Sind Sie sicher, dass Sie dieses Businessobjekt löschen wollen?
     defaultColumns:
+      ACTIONS: Aktionen
       APPLICATION: Anwendung
       CATEGORY: Kategorie
+      CREATED: Erstellt
       CREATION_TIME: Erstellt
       CREATOR: Ersteller
+      DESCRIPTION: Beschreibung
+      FINISHED: Erledigt
       FINISHED_TIME: Erledigt
       ID: Vorgangs Id
       NAME: Name / Beschreibung
@@ -1385,16 +1389,22 @@ ch.ivy.addon.portalkit.ui.jsf:
     deadline: Frist
     default: Standard
     defaultColumns:
+      ACTIONS: Aktionen
       ACTIVATOR: Verantwortlich
       APPLICATION: Anwendung
       CATEGORY: Kategorie
       COMPLETED: Abgeschlossen
       COMPLETED_ON: Erledigt am
+      CREATED: Erstellt
       CREATION_TIME: Erstellt
+      DESCRIPTION: Beschreibung
+      EXPIRY: Ablaufdatum
       EXPIRY_TIME: Ablaufdatum
       ID: Aufgaben Id
       NAME: Name / Beschreibung
       PRIORITY: Priorität
+      RESPONSIBLE: Verantwortlich
+      START: Start
       STATE: Status
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Fehlender Aktivator
       abbreviation:

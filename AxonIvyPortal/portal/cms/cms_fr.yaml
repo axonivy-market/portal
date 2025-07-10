@@ -381,10 +381,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     cases: Dossiers
     confirmDeleteMessage: Cette action ne peut pas être annulée. Voulez-vous vraiment supprimer ?
     defaultColumns:
+      ACTIONS: Actions
       APPLICATION: Application
       CATEGORY: Catégorie
+      CREATED: Créé
       CREATION_TIME: Créé
       CREATOR: Créateur
+      DESCRIPTION: Description
+      FINISHED: Terminé
       FINISHED_TIME: Terminé
       ID: Id du dossier
       NAME: Nom / Description
@@ -1386,16 +1390,22 @@ ch.ivy.addon.portalkit.ui.jsf:
     deadline: Date limite
     default: Défaut
     defaultColumns:
+      ACTIONS: Actions
       ACTIVATOR: Responsable
       APPLICATION: Application
       CATEGORY: 'Catégorie '
       COMPLETED: Terminé
       COMPLETED_ON: Fini le
+      CREATED: Créée
       CREATION_TIME: Créé
+      DESCRIPTION: Description
+      EXPIRY: Délai
       EXPIRY_TIME: Délai
       ID: Id de tâche
       NAME: Nom / Description
       PRIORITY: Priorité
+      RESPONSIBLE: ' Responsable'
+      START: Démarrage
       STATE: Etat
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Activateur manquant
       abbreviation:

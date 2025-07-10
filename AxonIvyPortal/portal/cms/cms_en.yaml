@@ -380,10 +380,13 @@ ch.ivy.addon.portalkit.ui.jsf:
     cases: Cases
     confirmDeleteMessage: This action can not be undone. Do you really want to delete this business object?
     defaultColumns:
+      ACTIONS: Actions
       APPLICATION: Application
       CATEGORY: Category
       CREATION_TIME: Created
       CREATOR: Creator
+      DESCRIPTION: Description
+      FINISHED: Finished
       FINISHED_TIME: Finished
       ID: Case Id
       NAME: Name / Description
@@ -1389,15 +1392,21 @@ ch.ivy.addon.portalkit.ui.jsf:
     deadline: Deadline
     default: Default
     defaultColumns:
+      ACTIONS: Actions
       ACTIVATOR: Responsible
       APPLICATION: Application
       CATEGORY: Category
       COMPLETED_ON: Completed on
+      CREATED: Created
       CREATION_TIME: Created
+      DESCRIPTION: Description
+      EXPIRY: Expiry
       EXPIRY_TIME: Expiry
       ID: Task Id
       NAME: Name / Description
       PRIORITY: Priority
+      RESPONSIBLE: Responsible
+      START: Start
       STATE: State
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Missing activator
       abbreviation:
