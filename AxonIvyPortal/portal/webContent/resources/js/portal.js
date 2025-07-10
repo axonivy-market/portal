@@ -864,3 +864,16 @@ function setAltForAvatar() {
     }
   })
 }
+
+/**
+ * Focuses the first visible element matching the selector in a PrimeFaces overlay panel.
+ * @param {string} widgetVar - The widgetVar of the PrimeFaces overlay panel.
+ * @param {string} selector - The jQuery selector for the element(s) to focus.
+ */
+function focusFirstVisibleElementInPanel(widgetVar, selector) {
+  var panel = PF(widgetVar).jq;
+  var first = panel.find(selector + ':visible').first();
+  if (first.length) {
+    first.focus();
+  }
+}

@@ -196,12 +196,7 @@
           onHide="PF('caseInfoPoll').stop();"
           widgetVar="case-info-dialog" 
           onShow="PF('caseInfoPoll').start();
-            var panel = PF('case-info-dialog').jq;
-            var first = panel.find('[id$=i-frame-case-details]:visible').first();
-            if (first.length) { 
-              first.focus(); 
-            }
-          "
+            focusFirstVisibleElementInPanel('case-info-dialog', '[id$=i-frame-case-details]')"
           appendTo="@(body)" modal="true" styleClass="case-info-dialog">
           <f:facet name="header">
             <h:panelGroup styleClass="case-infor-title u-truncate-text">

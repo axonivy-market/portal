@@ -15,11 +15,7 @@
   dynamic="#{not empty dynamic ? dynamic : 'false'}"
   resizable="false"
   appendTo="#{not empty appendTo ? appendTo : ''}"
-  onShow="
-     var panel = PF('#{widgetVar}').jq;
-     var first = panel.find('.ui-button:visible').first();
-     if(first.length){ first.focus(); }
-    "
+  onShow="focusFirstVisibleElementInPanel('#{widgetVar}', '.ui-button')"
   >
   
   <div class="u-text-align-center">

@@ -41,11 +41,7 @@
   <p:overlayPanel id="action-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}"
     for="#{cc.attrs.actionLinkId}" my="right top" at="right bottom" showCloseIcon="true" dismissable="true"
     appendTo="@(body)" styleClass="action-steps-panel #{cc.attrs.stepsPanelStyleClass}" dynamic="true"
-    onShow="
-      var panel = PF('#{cc.attrs.panelWidgetVar}').jq;
-      var first = panel.find('a:visible').first();
-      if(first.length){ first.focus(); }
-    "  
+    onShow="focusFirstVisibleElementInPanel('#{cc.attrs.panelWidgetVar}', 'a')"  
   >
 
     <p:commandLink id="case-item-open-detail-link" styleClass="case-command action-step-item"
