@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
+import com.axonivy.portal.util.UserExampleUtils;
 
 import ch.addon.portal.generic.menu.PortalMenuNavigator;
 import ch.addon.portal.generic.menu.SubMenuItem;
@@ -28,6 +29,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class HomepageUtils {
 
   public static final String HOMEPAGE_ID_PATTERN = "%s_%s";
+  private static final String USER_GUIDE_HOMEPAGE_NAME = "MAIN_DASHBOARD_default-user-guide-dashboard";
 
   public static List<Homepage> loadHomepages() {
     List<Homepage> homepages = new ArrayList<>();
@@ -127,12 +129,21 @@ public class HomepageUtils {
   }
 
   public static String getHomepageName() {
+    String showUserGuideProp = Ivy.session().getSessionUser().getProperty(UserProperty.PORTAL_SHOW_USER_GUIDE);
+    boolean shouldShowUserGuide = StringUtils.isEmpty(showUserGuideProp);
+
     String homepageName = getHomepageId();
-    if (StringUtils.isBlank(homepageName)) {
-      homepageName = findHomepageSetting();
+    if (StringUtils.isNotBlank(homepageName)) {
+      return homepageName;
     }
-    return homepageName;
+    if (UserExampleUtils.isUserExampleAvailable() && !shouldShowUserGuide) {
+      return findHomepageSetting();
+    }
+
+    Ivy.session().getSessionUser().setProperty(UserProperty.PORTAL_SHOW_USER_GUIDE, "false");
+    return USER_GUIDE_HOMEPAGE_NAME;
   }
+
 
   public static Homepage findDefaultHomepage() {
     List<Homepage> homepages = loadHomepages();

@@ -114,7 +114,7 @@
                 value="#{parameter.name}" />
             </h:panelGroup>
             <h:panelGroup layout="block" styleClass="ui-g-8">
-              <p:inputText id="param-string-#{status.index}"
+              <p:inputTextarea id="param-string-#{status.index}"
                 value="#{parameter.value}"
                 rendered="#{parameter.type == 'STRING'}" />
               <p:datePicker id="param-calendar-#{status.index}"

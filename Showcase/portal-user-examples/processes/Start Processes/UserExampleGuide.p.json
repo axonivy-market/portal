@@ -418,12 +418,80 @@
       "connect" : [
         { "id" : "f10", "to" : "f0" }
       ]
+    }, {
+      "id" : "f32",
+      "type" : "RequestStart",
+      "name" : "widgetNote",
+      "config" : {
+        "signature" : "widgetNote",
+        "input" : {
+          "params" : [
+            { "name" : "string__noteEN", "type" : "String", "desc" : "" },
+            { "name" : "string__noteDE", "type" : "String", "desc" : "" },
+            { "name" : "string__noteES", "type" : "String", "desc" : "" },
+            { "name" : "string__noteFR", "type" : "String", "desc" : "" },
+            { "name" : "string__noteJP", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.noteDE" : "param.string__noteDE",
+            "out.noteEN" : "param.string__noteEN",
+            "out.noteES" : "param.string__noteES",
+            "out.noteFR" : "param.string__noteFR",
+            "out.noteJP" : "param.string__noteJP"
+          }
+        },
+        "request" : {
+          "name" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/DashboardCustomNoteWidget/name\")%>",
+          "customFields" : [
+            { "name" : "isDashboardProcess", "value" : "true" }
+          ],
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 648 }
+      },
+      "connect" : [
+        { "id" : "f34", "to" : "f33" }
+      ]
+    }, {
+      "id" : "f33",
+      "type" : "DialogCall",
+      "name" : "Widget Note",
+      "config" : {
+        "dialog" : "com.axonivy.portal.userexamples.CustomWidgetNote:start(String,String,String,String,String)",
+        "call" : {
+          "map" : {
+            "param.note_en" : "in.noteEN",
+            "param.note_de" : "in.noteDE",
+            "param.note_fr" : "in.noteFR",
+            "param.note_es" : "in.noteES",
+            "param.note_jp" : "in.noteJP"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 648 }
+      },
+      "connect" : [
+        { "id" : "f36", "to" : "f35" }
+      ]
+    }, {
+      "id" : "f35",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 576, "y" : 648 }
+      }
     } ],
   "layout" : {
     "lanes" : [ {
         "name" : "<%=ivy.cms.co(\"/Processes/UserExampleGuide/name\")%>",
         "offset" : 32,
         "size" : 544,
+        "lanes" : [ ]
+      }, {
+        "name" : "UserExampleGuide",
+        "size" : 192,
         "lanes" : [ ]
       } ]
   }

@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.io.IOException;
-
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -21,6 +20,7 @@ import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
 import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemplateMigrator;
+import com.axonivy.portal.util.UserExampleUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -185,6 +185,9 @@ public class DashboardUtils {
   public static List<Dashboard> collectMainDashboards() {
     List<Dashboard> collectedDashboards =
         new ArrayList<>(getPublicDashboards().stream().filter(dashboard -> DashboardDisplayType.TOP_MENU.equals(dashboard.getDashboardDisplayType())).toList());
+    if (UserExampleUtils.isUserExampleAvailable()) {
+      collectedDashboards.add(DefaultDashboardUtils.getDefaultUserExampleDashboard());
+    }
     return collectedDashboards;
   }
 
