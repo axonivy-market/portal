@@ -102,6 +102,7 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
     this.fieldDescription = null;
     this.numberFieldPattern = null;
     this.isConfiguredLanguage = false;
+    this.selectedCustomFieldType = CustomFieldType.STRING;
     this.fieldDisplayNames = Collections.emptyList();
   }
 
@@ -439,18 +440,27 @@ public class ColumnManagementBean implements Serializable, IMultiLanguage {
   }
   
   public void onSelectStandardField() {
-    this.fieldDisplayName = Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardTaskColumn/%s", 
-        DashboardStandardTaskColumn.findBy(selectedField)), LanguageService.getInstance().getDefaultLanguage());
+    this.fieldDisplayName = getCurrentDisplayName();
   }
 
+  private String getCurrentDisplayName() {
+    if (widget.getType() == DashboardWidgetType.TASK) {
+      return Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardTaskColumn/%s", 
+          DashboardStandardTaskColumn.findBy(selectedField)), LanguageService.getInstance().getDefaultLanguage());
+    } else if (widget.getType() == DashboardWidgetType.CASE) {
+      Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardCaseColumn/%s", 
+          DashboardStandardCaseColumn.findBy(selectedField)), LanguageService.getInstance().getDefaultLanguage());
+    }
+    return "";
+  }
+  
   private void updateFieldDisplayNames(){
     IvyLanguage ivyLanguage = LanguageService.getInstance().getIvyLanguageOfUser();
     List<DisplayName> result = new ArrayList<>();
     for (String language : ivyLanguage.getSupportedLanguages()) {
       DisplayName newItem = new DisplayName();
       newItem.setLocale(Locale.forLanguageTag(language));
-      newItem.setValue(Ivy.cms().coLocale(String.format("/Labels/Enums/DashboardStandardTaskColumn/%s", 
-          DashboardStandardTaskColumn.findBy(selectedField)), newItem.getLocale()));
+      newItem.setValue(StringUtils.defaultIfBlank(getCurrentDisplayName(), this.fieldDisplayName));
       result.add(newItem);
     }
     this.fieldDisplayNames = result;
