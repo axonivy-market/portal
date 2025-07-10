@@ -1650,7 +1650,7 @@ Enums:
               LESS:
                 name: 'TODO: Less than'
               LESSOREQUAL:
-                name: Less or equal
+                name: 'TODO: Less or equal'
 Labels:
   AI:
     Error:
