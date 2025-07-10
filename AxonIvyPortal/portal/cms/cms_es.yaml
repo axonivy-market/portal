@@ -1549,14 +1549,26 @@ Dialogs:
             ChartType: Tipo de gráfico
             Color: Color {0}
             ConditionBasedColoring:
-              AddCondition: Add condition
+              AddCondition: Agregar condición
               AllValue: Todos los valores
               CategoryValue: Value
               Color: Color
               ConditionBasedColoringEnabled: Coloreado condicional activado
+              ConditionBasedColoringScopeInformation: |-
+                Elija el alcance que afectará la condición:
+                Todos los valores: Aplica condiciones a todos los datos del gráfico.
+                Valor específico: Aplica condiciones de color solo al valor seleccionado.
               ConditionValue: Valor de condición
               DefaultColor: Color predeterminado
-              Information: Information
+              Information: |-
+                La función de coloración basada en condiciones permite definir colores para cada gráfico según condiciones específicas.
+                Reglas:
+
+                Defina condiciones claras.
+
+                Si se cumplen varias condiciones, prevalece la primera definida.
+
+                Manténgalo simple.
               NoDataAvailable: No hay datos disponibles para definir condiciones de color.
               Operator: Operador
               Scope: Alcance
@@ -1652,15 +1664,21 @@ Enums:
                 name: Gráfico circular
             OperatorFieldStatistic:
               EQUAL:
-                name: Equal
+                name: |+
+                  Igual a
+
               GREATER:
-                name: Greater
+                name: Mayor que
               GREATEROREQUAL:
-                name: Greater than or equal to
+                name: Mayor o igual que
               LESS:
-                name: Less than
+                name: |+
+                  Menor que
+
               LESSOREQUAL:
-                name: Less or equal
+                name: |+
+                  Menor o igual que
+
 Labels:
   AI:
     Error:

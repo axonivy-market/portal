@@ -227,6 +227,8 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
         List<String> categoryValuesFromThresholds = statistic.getThresholds().stream().map(ThresholdStatisticChart::getCategoryValue).filter(Objects::nonNull).collect(Collectors.toList());
         if (CollectionUtils.isNotEmpty(categoryValuesFromThresholds)) {
           setCategoryData(categoryValuesFromThresholds);
+        } else {
+          setCategoryData(new ArrayList<String>());
         }
       }
     }
@@ -512,7 +514,8 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     for (int i = 0; i < buckets.length(); i++) {
         keys.add(buckets.getJSONObject(i).getString("key"));
     }
-    setCategoryData(keys);
+    List<String> categoryValues = keys.stream().filter(item -> !StringUtils.isBlank(item)).collect(Collectors.toList());
+    setCategoryData(categoryValues);
     updateIsCategoryDataAvailable();
   }
   
@@ -851,7 +854,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     statistic.setChartTarget(newChartTarget);
   }
   
-  public void onSelectColoringOption() {
+  public void onSelectColoringScope() {
     statistic.setThresholds(new ArrayList<>());
     if (Boolean.FALSE.equals(statistic.getIsApplyColoringToAll())) {
       fetchCategoryData();

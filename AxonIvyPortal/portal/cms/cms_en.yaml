@@ -1548,6 +1548,7 @@ Dialogs:
               CategoryValue: Value
               Color: Color
               ConditionBasedColoringEnabled: Condition-based coloring enabled
+              ConditionBasedColoringScopeInformation: 'Choose the scope that the condition will affect: All values: Apply conditions to all data in the chart.  Specific value: Apply color conditions only to selected value.'
               ConditionValue: Condition value
               DefaultColor: Default color
               Information: |-
@@ -1651,15 +1652,15 @@ Enums:
                 name: Pie
             OperatorFieldStatistic:
               EQUAL:
-                name: Equal
+                name: Equal to
               GREATER:
-                name: Greater
+                name: Greater than
               GREATEROREQUAL:
-                name: Greater or equal
+                name: Greater than or equal to
               LESS:
                 name: Less
               LESSOREQUAL:
-                name: Less or equal
+                name: Less than or equal to
 Labels:
   AI:
     Error:

@@ -1551,14 +1551,26 @@ Dialogs:
             ChartType: Diagrammtyp
             Color: Farbe {0}
             ConditionBasedColoring:
-              AddCondition: Add condition
+              AddCondition: Bedingung hinzufügen
               AllValue: Alle Werte
               CategoryValue: Value
               Color: Farbe
               ConditionBasedColoringEnabled: Bedingungsabhängige Farbgebung aktiviert
+              ConditionBasedColoringScopeInformation: |-
+                Wählen Sie den Geltungsbereich, auf den die Bedingung angewendet wird:
+                Alle Werte: Wendet Bedingungen auf alle Daten im Diagramm an.
+                Spezifischer Wert: Wendet Farbbedingungen nur auf den ausgewählten Wert an.
               ConditionValue: Bedingungswert
               DefaultColor: Standardfarbe
-              Information: Information
+              Information: |-
+                Die bedingungsbasierte Farbgebung ermöglicht es Ihnen, für jedes Diagramm Farben basierend auf bestimmten Bedingungen festzulegen.
+                Regeln:
+
+                Definieren Sie klare Bedingungen.
+
+                Wenn mehrere Bedingungen zutreffen, gilt die zuerst definierte.
+
+                Halten Sie es einfach.
               NoDataAvailable: Keine Daten verfügbar, um Farbbedingungen zu definieren.
               Operator: Operator
               Scope: Geltungsbereich
@@ -1654,15 +1666,19 @@ Enums:
                 name: Kreisdiagramm
             OperatorFieldStatistic:
               EQUAL:
-                name: Equal
+                name: Gleich
               GREATER:
-                name: Greater
+                name: Größer als
               GREATEROREQUAL:
-                name: Greater than or equal to
+                name: Größer oder gleich
               LESS:
-                name: Less than
+                name: |+
+                  Kleiner als
+
               LESSOREQUAL:
-                name: Less or equal
+                name: |+
+                  Kleiner oder gleich
+
 Labels:
   AI:
     Error:
