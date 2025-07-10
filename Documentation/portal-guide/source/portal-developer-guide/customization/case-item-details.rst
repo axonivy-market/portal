@@ -10,10 +10,11 @@ information, the Portal supports customizing the CaseItemDetails.
 Each CaseItemDetails contains
 
 - **CaseItemGeneralInformation** ``1``
-- **CaseItemDetailsDocuments** ``2``
-- **CaseItemDetailsRelatedCases** ``3``
-- **CaseItemDetailsRelatedTasks** ``4``
-- **CaseItemDetailsHistories** ``5``
+- **CaseItemDocument** ``2``
+- **CaseItemRelatedCases** ``3``
+- **CaseItemRelatedTasks** ``4``
+- **CaseItemHistories** ``5``
+- **CaseItemBusinessDetails**
 -  Case Details custom panel: ``caseItemDetailCustomTop``,
    ``caseItemDetailCustomMiddle``, ``caseItemDetailCustomBottom``
 
@@ -113,10 +114,11 @@ How to Configure Widgets in Case Details
 
       ``id``: ID of widget.
 
-      ``type``: type of widget, there are 6 types: 
+      ``type``: type of widget, there are 7 types: 
       -  ``information``
       -  ``document``
       -  ``technicalCase``
+      -  ``businessDetails``
       -  ``relatedTask``
       -  ``history``
       -  ``custom``.
@@ -144,6 +146,7 @@ How to Configure Widgets in Case Details
       - ``x``, ``y``, ``w`` and ``h`` have to be **integers**.
       - ``x + w`` must **not be larger** than **12**.
       - We support all case business states in filter type ``states``.
+      - The built-in widget type ``businessDetails`` is not part of the default configuration and will only be displayed if the ``ShowCaseDetails`` permission is granted.
 
 
 .. _customization-case-item-details-how-to-override-ui-custom-body:

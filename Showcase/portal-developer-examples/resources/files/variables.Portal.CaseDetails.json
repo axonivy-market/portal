@@ -19,22 +19,16 @@
           "x": 0, "y": 8, "w": 12, "h": 6
         }
       }, {
-        "type": "businessDetails",
-        "id": "businessDetails",
-        "layout": {
-          "x": 0, "y": 14, "w": 12, "h": 6
-        }
-      }, {
         "type": "relatedTask",
         "id": "relatedTask",
         "layout": {
-          "x": 0, "y": 20, "w": 12, "h": 6
+          "x": 0, "y": 14, "w": 12, "h": 6
         }
       }, {
         "type": "history",
         "id": "history",
         "layout": {
-          "x": 0, "y": 26, "w": 12, "h": 6
+          "x": 0, "y": 20, "w": 12, "h": 6
         }
       }
     ]
@@ -72,6 +66,12 @@
         },
         "data": {
           "url": "https://www.example.com"
+        }
+      }, {
+        "type": "businessDetails",
+        "id": "businessDetails",
+        "layout": {
+          "x": 0, "y": 19, "w": 12, "h": 6
         }
       }
     ]

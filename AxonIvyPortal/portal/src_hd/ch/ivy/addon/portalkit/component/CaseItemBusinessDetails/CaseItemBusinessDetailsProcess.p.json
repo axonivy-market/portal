@@ -53,6 +53,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
             "import ch.ivy.addon.portalkit.enums.PortalPermission;",
             "import ch.ivy.addon.portalkit.util.PermissionUtils;",
             "import ch.ivy.addon.portalkit.util.UrlUtils;",
@@ -60,9 +61,8 @@
             "",
             "in.hasPermission = PermissionUtils.hasPortalPermission(PortalPermission.SHOW_CASE_DETAILS);",
             "if(in.hasPermission) {",
-            "  String caseDetailsUrl = BusinessDetailsUtils.getAdditionalCaseDetailsPageUri(in.caze);",
-            "  ivy.log.warn(caseDetailsUrl);",
-            "  if(!caseDetailsUrl.contains(\"showAdditionalCaseDetails.ivp\")) {",
+            "  String caseDetailsUrl = BusinessDetailsUtils.getCustomBusinessDetailUri(in.caze);",
+            "  if(StringUtils.isNotBlank(caseDetailsUrl)) {",
             "    in.url = UrlUtils.formatLinkWithoutEmbedInFrameParam(caseDetailsUrl);",
             "  }",
             "}"
