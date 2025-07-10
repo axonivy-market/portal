@@ -26,6 +26,16 @@
         function setupHeightForIFrame() {
           var dialogHeight = $('.js-iframe-container').closest('.ui-dialog-content').outerHeight(true) || 0;
           $('.js-iframe-container').height(dialogHeight);
+
+          const caseDetailsIframe = document.getElementById('i-frame-case-details');
+          if (caseDetailsIframe) {
+            const caseDetailsIframeDocument = caseDetailsIframe.contentDocument || caseDetailsIframe.contentWindow.document;
+            caseDetailsIframeDocument.addEventListener('keydown', (event) => {
+              if (event.key === 'Escape') {
+                PF('case-info-dialog').hide();
+              }
+            })
+          }
         };
 
         function reloadIFrame() {
@@ -179,7 +189,7 @@
            actionListener="#{taskTemplateBean.generateCaseDetailInFrame(case)}"
            process="@this"
            partialSubmit="true"
-           update="case-info-dialog"
+           update="case-info-dialog"  
            oncomplete="PF('case-info-dialog').show()" />
         <p:dialog id="case-info-dialog" resizable="false" fitViewport="true" width="95vw" height="80vh"
           closeOnEscape="true" draggable="false" responsive="true"
@@ -188,7 +198,9 @@
           onShow="PF('caseInfoPoll').start();
             var panel = PF('case-info-dialog').jq;
             var first = panel.find('[id$=i-frame-case-details]:visible').first();
-            if(first.length){ first.focus(); }
+            if (first.length) { 
+              first.focus(); 
+            }
           "
           appendTo="@(body)" modal="true" styleClass="case-info-dialog">
           <f:facet name="header">
