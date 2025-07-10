@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="data" />
+</cc:interface>
+
+<cc:implementation>
+
+  <p:dialog visible="#{cc.attrs.data.completed}" id="side-step-result-dialog" resizable="false" closeOnEscape="true"
+    header="Side step result" width="20vw" height="20vh" rendered="true" widgetVar="side-step-result-dialog" appendTo="@(body)" modal="true"
+    dynamic="true" responsive="true">
+    <h:form id="side-step-result-form" styleClass="ui-fluid">
+      <div class="grid">
+
+        <div class="col-12">
+          <div class="field mb-3">
+            <span class="p-float-label"> <p:outputLabel for="assignee" value="Assignee" /> <p:inputText id="assignee"
+                value="#{cc.attrs.data.assignee}" disabled="true" styleClass="w-full" />
+            </span>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="field mb-3">
+            <span class="p-float-label"> <p:outputLabel for="question" value="Question" /> <p:inputText id="question"
+                value="#{cc.attrs.data.question}" disabled="true" styleClass="w-full" />
+            </span>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="field mb-3">
+            <span class="p-float-label"> <p:outputLabel for="answer" value="Answer" /> <p:inputTextarea id="answer" disabled="true"
+                value="#{cc.attrs.data.answer}" rows="5" styleClass="w-full" autoResize="false" />
+            </span>
+          </div>
+        </div>
+
+        <div class="col-12" hidden="#{empty cc.attrs.data.comment1}">
+          <div class="field mb-3">
+            <span class="p-float-label"> <p:outputLabel for="comment1" value="Comment" /> <p:inputTextarea id="comment1"
+                disabled="true" value="#{cc.attrs.data.comment1}" rows="5" styleClass="w-full" autoResize="false" />
+            </span>
+          </div>
+        </div>
+
+        <div class="col-12" hidden="#{empty cc.attrs.data.comment2}">
+          <div class="field mb-3">
+            <span class="p-float-label"> <p:outputLabel for="comment2" value="Comment" /> <p:inputTextarea id="comment2"
+                disabled="true" value="#{cc.attrs.data.comment2}" rows="5" styleClass="w-full" autoResize="false" />
+            </span>
+          </div>
+        </div>
+
+        <div class="col-12" hidden="#{empty cc.attrs.data.comment3}">
+          <div class="field mb-3">
+            <span class="p-float-label"> <p:outputLabel for="comment3" value="Comment" /> <p:inputTextarea id="comment3"
+                disabled="true" value="#{cc.attrs.data.comment3}" rows="5" styleClass="w-full" autoResize="false" />
+            </span>
+          </div>
+        </div>
+      </div>
+    </h:form>
+    <f:facet name="footer">
+      <div class="flex justify-content-end gap-2">
+        <p:commandButton id="side-step-result-ok-button" value="OK" icon="pi pi-check" styleClass="p-button-primary"
+          onclick="PF('side-step-result-dialog').hide()" form="side-step-result-form" />
+      </div>
+    </f:facet>
+  </p:dialog>
+
+
+</cc:implementation>
+
+</html>
