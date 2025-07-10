@@ -56,7 +56,7 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
         .captureHalfLeftPageScreenShot(ScreenshotUtils.CASE_WIDGET_FOLDER + "navigate-to-full-cases-list-page");
 
     refreshPage();
-    ScreenshotUtils.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 600));
+    ScreenshotUtils.resizeBrowser(new Dimension(1600, 600));
     mainMenuPage.closeMainMenu();
     caseWidgetPage.clickOnCaseActionLink(0);
     Sleeper.sleep(500); // use Sleeper to wait actions memu display clearly

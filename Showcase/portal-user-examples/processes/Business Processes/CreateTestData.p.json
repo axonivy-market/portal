@@ -1,0 +1,28 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "1961946AA26A8E43",
+  "config" : {
+    "data" : "com.axonivy.portal.userexamples.CreateTestDataData"
+  },
+  "elements" : [ {
+      "id" : "f1",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 64 }
+      }
+    }, {
+      "id" : "f2",
+      "type" : "ProgramStart",
+      "name" : "Create Test Data",
+      "config" : {
+        "javaClass" : "com.axonivy.portal.userexamples.bean.TestDataCreationBean",
+        "link" : "eventLink.ivp"
+      },
+      "visual" : {
+        "at" : { "x" : 136, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f3", "to" : "f1" }
+      ]
+    } ]
+}
