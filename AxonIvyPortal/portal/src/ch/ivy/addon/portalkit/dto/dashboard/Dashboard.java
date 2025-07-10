@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 import java.io.Serializable;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;

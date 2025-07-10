@@ -1,6 +1,6 @@
 package com.axonivy.portal.components.service;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.enums.GlobalVariable;
 

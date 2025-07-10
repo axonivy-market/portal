@@ -59,7 +59,6 @@ public final class ChatReferencesContainer {
     if (!isIvyExtentionRegistered) {
       isIvyExtentionRegistered = true;
       PortalSessionExtension.install();
-      PortalServerListener.install();
     }
   }
 
