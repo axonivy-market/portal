@@ -2,7 +2,6 @@ const DATA_CHART_ID = 'data-chart-id';
 const WIDGET_HEADER_TITLE = '.widget__header-title';
 const AVERAGE_BUSINESS_RUNTIME = "avg-businessRuntime";
 
-
 // Additional configs
 const EMPTY_CHART_MESSAGE =  'emptyChartDataMessage';
 const MANIPULATE_BY = 'manipulateValueBy';
@@ -10,6 +9,18 @@ const CHART_TEXT_COLOR = '#808080';
 const CHART_GRID_COLOR = 'rgba(192, 192, 192, 0.5)';
 const MIN_REFRESH_INTERVAL = 60;
 const SUCCESS_STATUS_CODE = 200;
+
+// Operator enums for type safety - matches backend OperatorFieldStatistic enum
+const OPERATOR_FIELD_STATISTIC = Object.freeze({
+  GREATER: "greater",
+  LESS: "less", 
+  GREATEROREQUAL: "greaterOrEqual",
+  LESSOREQUAL: "lessOrEqual",
+  EQUAL: "equal"
+});
+
+// Color calculation cache for performance optimization
+const COLOR_CALCULATION_CACHE = new Map();
 
 let locale;
 let contentLocale;
@@ -354,62 +365,72 @@ class ClientChart {
   }
 
   getBackgroundColorsWithSpecificScope(chartConfig, data) {
-    const defaultBackgroundColor = chartConfig.defaultBackgroundColor;
-    const thresholds = chartConfig.thresholds;
-    return data.map((val) => {
-      for (const rule of thresholds) {
-        const { operator, value, backgroundColor, categoryValue } = rule;
-        if (this.compareValue(val.key, categoryValue)) {
-          switch (operator) {
-            case "greater":
-              if (val.count > value) return backgroundColor;
-              break;
-            case "greaterOrEqual":
-              if (val.count >= value) return backgroundColor;
-              break;
-            case "less":
-              if (val.count < value) return backgroundColor;
-              break;
-            case "lessOrEqual":
-              if (val.count <= value) return backgroundColor;
-              break;
-            case "equal":
-              if (val.count == value) return backgroundColor;
-              break;
-          }
-        }
+    const { defaultBackgroundColor, thresholds } = chartConfig;
+
+    const generatedCompareFunctions = thresholds.map(rule => {
+      const { operator, value, backgroundColor, categoryValue } = rule;
+      
+      switch (operator) {
+        case OPERATOR_FIELD_STATISTIC.GREATER:
+          return (count, key) => this.compareValue(key, categoryValue) && count > value ? backgroundColor : null;
+        case OPERATOR_FIELD_STATISTIC.GREATEROREQUAL:
+          return (count, key) => this.compareValue(key, categoryValue) && count >= value ? backgroundColor : null;
+        case OPERATOR_FIELD_STATISTIC.LESS:
+          return (count, key) => this.compareValue(key, categoryValue) && count < value ? backgroundColor : null;
+        case OPERATOR_FIELD_STATISTIC.LESSOREQUAL:
+          return (count, key) => this.compareValue(key, categoryValue) && count <= value ? backgroundColor : null;
+        case OPERATOR_FIELD_STATISTIC.EQUAL:
+          return (count, key) => this.compareValue(key, categoryValue) && count === value ? backgroundColor : null;
+        default:
+          return () => null;
       }
+    });
+
+    return data.map((val) => {
+      if (!val || typeof val.count !== 'number') return defaultBackgroundColor;
+      
+      for (const func of generatedCompareFunctions) {
+        const result = func(val.count, val.key);
+        if (result) return result;
+      }
+      
       return defaultBackgroundColor;
     });
   }
 
-  getBackgroundColorsWithAllScope(chartConfig, data) {
-    const defaultBackgroundColor = chartConfig.defaultBackgroundColor;
-    const thresholds = chartConfig.thresholds;
-    return data.map((val) => {
-      for (const rule of thresholds) {
-        const { operator, value, backgroundColor, categoryValue } = rule;
-        switch (operator) {
-          case "greater":
-            if (val.count > value) return backgroundColor;
-            break;
-          case "greaterOrEqual":
-            if (val.count >= value) return backgroundColor;
-            break;
-          case "less":
-            if (val.count < value) return backgroundColor;
-            break;
-          case "lessOrEqual":
-            if (val.count <= value) return backgroundColor;
-            break;
-          case "equal":
-            if (val.count == value) return backgroundColor;
-            break;
-          }
-      }
-      return defaultBackgroundColor;
-    });
-  }
+getBackgroundColorsWithAllScope(chartConfig, data) {
+  const { defaultBackgroundColor, thresholds } = chartConfig;
+
+  const generatedCompareFunctionss = thresholds.map(rule => {
+    const { operator, value, backgroundColor } = rule;
+    
+    switch (operator) {
+      case OPERATOR_FIELD_STATISTIC.GREATER:
+        return (count) => count > value ? backgroundColor : null;
+      case OPERATOR_FIELD_STATISTIC.GREATEROREQUAL:
+        return (count) => count >= value ? backgroundColor : null;
+      case OPERATOR_FIELD_STATISTIC.LESS:
+        return (count) => count < value ? backgroundColor : null;
+      case OPERATOR_FIELD_STATISTIC.LESSOREQUAL:
+        return (count) => count <= value ? backgroundColor : null;
+      case OPERATOR_FIELD_STATISTIC.EQUAL:
+        return (count) => count === value ? backgroundColor : null;
+      default:
+        return () => null;
+    }
+  });
+
+  return data.map((val) => {
+    if (!val || typeof val.count !== 'number') return defaultBackgroundColor;
+    
+    for (const func of generatedCompareFunctionss) {
+      const result = func(val.count);
+      if (result) return result;
+    }
+    
+    return defaultBackgroundColor;
+  });
+} 
 
   compareValue(value, categoryValue) {
     if (isNumeric(categoryValue)) {

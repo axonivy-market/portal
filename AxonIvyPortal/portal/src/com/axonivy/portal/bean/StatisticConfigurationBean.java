@@ -90,6 +90,7 @@ import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 @ManagedBean
 public class StatisticConfigurationBean implements Serializable, IMultiLanguage {
 
+  private static final String DEFAULT_BACKGROUND_COLOR = "#8dc261";
   private static final long serialVersionUID = 1L;
   private static final int MIN_REFRESH_INTERVAL_IN_SECONDS = 60;
   private static final int MAX_REFRESH_INTERVAL_IN_SECONDS = 1000000;
@@ -195,7 +196,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     // Initialize condition-based coloring properties from existing statistic
 
     if (statistic.getDefaultBackgroundColor() == null) {
-      statistic.setDefaultBackgroundColor("#8dc261");
+      statistic.setDefaultBackgroundColor(DEFAULT_BACKGROUND_COLOR);
     }
 
     if (statistic.getThresholds() == null) {
@@ -252,7 +253,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     backgroundColors = new ArrayList<>(DEFAULT_COLORS);
     refreshIntervalEnabled = false;
     statistic.setConditionBasedColoringEnabled(false);
-    statistic.setDefaultBackgroundColor("#8dc261");
+    statistic.setDefaultBackgroundColor(DEFAULT_BACKGROUND_COLOR);
     statistic.setIsApplyColoringToAll(true);
     statistic.setThresholds(new ArrayList<>());
   }
@@ -529,7 +530,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   
   public void resetConditionBasedColoring() {
     if (statistic.getConditionBasedColoringEnabled()) {
-      statistic.setDefaultBackgroundColor("#8dc261");
+      statistic.setDefaultBackgroundColor(DEFAULT_BACKGROUND_COLOR);
       statistic.setConditionBasedColoringEnabled(false);
       statistic.setThresholds(new ArrayList<>());
       statistic.setIsApplyColoringToAll(true);
@@ -858,6 +859,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     statistic.setThresholds(new ArrayList<>());
     if (Boolean.FALSE.equals(statistic.getIsApplyColoringToAll())) {
       fetchCategoryData();
+      updateIsCategoryDataAvailable();
     }
   }
     
