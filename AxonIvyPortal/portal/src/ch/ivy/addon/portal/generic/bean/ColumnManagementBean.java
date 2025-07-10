@@ -5,7 +5,9 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -22,6 +24,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
@@ -34,8 +37,11 @@ import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardCaseColumn;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
@@ -61,6 +67,8 @@ public class ColumnManagementBean implements Serializable {
   private String numberFieldPattern;
   private String fieldDisplayName;
   private String fieldDescription;
+  private List<DisplayName> fieldDisplayNames;
+  private boolean isConfiguredLanguage;
 
   public void init() {
     this.fieldTypes = Arrays.asList(DashboardColumnType.STANDARD, DashboardColumnType.CUSTOM);
@@ -92,6 +100,8 @@ public class ColumnManagementBean implements Serializable {
     this.fieldDisplayName = null;
     this.fieldDescription = null;
     this.numberFieldPattern = null;
+    this.selectedCustomFieldType = CustomFieldType.STRING;
+    this.fieldDisplayNames = Collections.emptyList();
   }
 
   public List<String> completeCategoriesSelection(String query) {
@@ -147,8 +157,12 @@ public class ColumnManagementBean implements Serializable {
     if (widget.getType() == DashboardWidgetType.CASE) {
       columnModel = CaseColumnModel.constructColumn(this.selectedFieldType, this.selectedField);
     }
+    if (!isConfiguredLanguage) {
+      updateNameByLocale();
+    }
     columnModel.initDefaultValue();
     columnModel.setHeader(this.fieldDisplayName);
+    columnModel.setHeaders(this.fieldDisplayNames);
     columnModel.setField(this.selectedField);
     columnModel.setQuickSearch(false);
     if (this.selectedFieldType == DashboardColumnType.CUSTOM
@@ -260,6 +274,57 @@ public class ColumnManagementBean implements Serializable {
     }
     return metaData;
   }
+  
+  public void onSelectStandardField() {
+    this.fieldDisplayName = getCurrentDisplayName();
+  }
+
+  private void updateFieldDisplayNames(){
+    IvyLanguage ivyLanguage = LanguageService.newInstance().getIvyLanguageOfUser();
+    List<DisplayName> result = new ArrayList<>();
+    for (String language : ivyLanguage.getSupportedLanguages()) {
+      DisplayName newItem = new DisplayName();
+      newItem.setLocale(Locale.forLanguageTag(language));
+      newItem.setValue(StringUtils.defaultIfBlank(getCurrentDisplayName(), this.fieldDisplayName));
+      result.add(newItem);
+    }
+    this.fieldDisplayNames = result;
+    this.isConfiguredLanguage = true;
+  }
+  
+  private String getCurrentDisplayName() {
+    if (widget.getType() == DashboardWidgetType.TASK) {
+      return Ivy.cms()
+          .coLocale(
+              String.format("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/%s",
+                  DashboardStandardTaskColumn.findBy(selectedField)),
+              LanguageService.newInstance().getDefaultLanguage());
+    } else if (widget.getType() == DashboardWidgetType.CASE) {
+      return Ivy.cms()
+          .coLocale(
+              String.format("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/%s",
+                  DashboardStandardCaseColumn.findBy(selectedField)),
+              LanguageService.newInstance().getDefaultLanguage());
+    }
+    return "";
+  }
+
+  public void updateNameByLocale() {
+    updateFieldDisplayNames();
+    DisplayNameConvertor.setValue(fieldDisplayName, fieldDisplayNames);
+  }
+
+  public void updateCurrentLanguage() {
+    this.fieldDisplayName = DisplayNameConvertor.updateCurrentValue(fieldDisplayName, fieldDisplayNames);
+  }
+  
+  public void onSelectType() {
+    resetValues();
+  }
+  
+  public boolean isDisplayMultiLanguage() {
+    return selectedFieldType == DashboardColumnType.STANDARD && selectedField != null;
+  }
 
   public String getFieldDescription() {
     return fieldDescription;
@@ -369,6 +434,22 @@ public class ColumnManagementBean implements Serializable {
     return false;
   }
   
+  public List<DisplayName> getFieldDisplayNames() {
+    return fieldDisplayNames;
+  }
+
+  public void setFieldDisplayNames(List<DisplayName> fieldDisplayNames) {
+    this.fieldDisplayNames = fieldDisplayNames;
+  }
+
+  public boolean isConfiguredLanguage() {
+    return isConfiguredLanguage;
+  }
+
+  public void setConfiguredLanguage(boolean isConfiguredLanguage) {
+    this.isConfiguredLanguage = isConfiguredLanguage;
+  }
+
   public class FetchingField {
     private DashboardColumnType type;
     private String field;

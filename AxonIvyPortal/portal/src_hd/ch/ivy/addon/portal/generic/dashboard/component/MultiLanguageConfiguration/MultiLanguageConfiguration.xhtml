@@ -11,6 +11,7 @@
   xmlns:fn="http://java.sun.com/jsp/jstl/functions"
   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <cc:interface componentType="IvyComponent">
+  <cc:attribute name="rendered" default="true"/>
   <cc:attribute name="titles" required="true" />
   <cc:attribute name="componentToUpdateOnCreate" />
   <cc:attribute name="componentToUpdateOnModify" />
@@ -19,7 +20,7 @@
 
 <cc:implementation>
   <c:set var="titles" value="#{cc.attrs.titles}" />
-  <p:dialog appendTo="@(body)" styleClass="setting-multiple-languages"
+  <p:dialog rendered="#{cc.attrs.rendered}" appendTo="@(body)" styleClass="setting-multiple-languages"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/settingMultipleLanguages')}"
     resizable="false" id="multiple-languages-dialog"
     widgetVar="multiple-languages-dialog" dynamic="true" modal="true"

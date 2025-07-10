@@ -40,7 +40,7 @@ public class LanguageService implements ILanguageService {
     });
   }
 
-  private IvyLanguage getIvyLanguageOfUser() {
+  public IvyLanguage getIvyLanguageOfUser() {
     IvyLanguage ivyLanguage = new IvyLanguage();
     List<Locale> contentLocales = getContentLocales();
     List<Locale> formatLocales = getFormattingLocales();
