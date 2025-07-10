@@ -2,7 +2,7 @@ package ch.ivy.addon.portalkit.util;
 
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.service.CmsDateTimeUnitService;
 

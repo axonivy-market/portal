@@ -4,7 +4,7 @@ import static com.axonivy.portal.components.constant.CustomFields.BUSINESS_DETAI
 
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.dto.BusinessDetailsDTO;
 import com.axonivy.portal.components.service.exception.PortalException;
