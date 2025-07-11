@@ -311,6 +311,15 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
 
 .statistic-filter-accordion-panel .ui-accordion-content {
   border: solid 1px var(--statistic-filter-accordion-panel-border); }
+  
+.threshold-item > .threshold-category-data, .threshold-item > .threshold-operator-value {
+  max-width: 16vw;
+  width: 8vw;
+}
+
+.threshold-item > .threshold-category-data > span {
+  text-overflow: ellipsis;
+}
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
 body .portal-cancel-button.ui-widget.ui-button,
@@ -1949,12 +1958,12 @@ body.dark .focused {
 /* ======================= PREVIEW STATISTIC CHART ==========================  **/
 
 .preview-chart-box {
-  height: 600px;
+  height: 60%;
   position: inherit;
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  width: 80%;
+  width: 60%;
 }
 
 .statistic-configuration__preview {
