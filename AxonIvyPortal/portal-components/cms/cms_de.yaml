@@ -16,6 +16,7 @@ Dialogs:
             Process:
               ProcessName: Prozessname
             RequiredFieldMessage: Dies ist ein Pflichtfeld
+            SideStepPrefix: 'Side step task for: '
             Task:
               Activator: Verantwortlich
             Type: Typ
@@ -64,10 +65,10 @@ Dialogs:
               CREATED: Erstellt
               DESTROYED: Gelöscht
               DONE: Erledigt
+              FAILED: Gescheitert
               OPEN: Offen
               RUNNING: in Bearbeitung
               ZOMBIE: Zombie
-              FAILED: Gescheitert
             DefaultEmptyMessage: Keine Vorgänge verfügbar
             NoDescription: Keine Beschreibung vorhanden
             NoName: kein Name
@@ -87,6 +88,9 @@ Dialogs:
               EXTERNAL_LINK: External Link
               IVY_PROCESS: Geschäftsprozess
             ProcessViewerIFrameTitle: Prozessbetrachterrahmen
+          SideStepType:
+            PARALLEL: Erstellen Sie eine neue Aufgabe und arbeiten Sie an der aktuellen Aufgabe weiter
+            SWITCH: Die aktuelle Aufgabe parken und mit der Arbeit an einer neuen Aufgabe beginnen
 Labels:
   AI:
     Error:

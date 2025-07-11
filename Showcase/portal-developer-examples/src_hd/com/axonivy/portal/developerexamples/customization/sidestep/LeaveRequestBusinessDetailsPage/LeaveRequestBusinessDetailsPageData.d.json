@@ -1,0 +1,27 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "LeaveRequestBusinessDetailsPageData",
+  "namespace" : "com.axonivy.portal.developerexamples.customization.sidestep.LeaveRequestBusinessDetailsPage",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "leaveRequestData",
+    "type" : "com.axonivy.portal.developerexamples.LeaveRequest",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "approver",
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "requester",
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "caseId",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "caze",
+    "type" : "ch.ivyteam.ivy.workflow.ICase",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

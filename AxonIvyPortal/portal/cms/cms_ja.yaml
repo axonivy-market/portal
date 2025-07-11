@@ -168,6 +168,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: '{0} プロセスのプロセスビューアー'
     ProcessViewerText: プロセスビューアー
     Title: プロセスビューアー
+  SideStep:
+    AddNew: 'TODO: Add a new side step process'
+    SideStepProcess: 'TODO: Select a side step process'
   TaskDocuments:
     TaskDocumentsPageTitle: タスクドキュメント
   adminSettings:
@@ -330,7 +333,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRunningCase: 実行中のケースはありません
     noRunningTask: 実行中のタスクはありません
     noRunningTasksAndCasesPermission: さらにタスクが実行中です。このケースに関連するタスクを表示する権限がありません。
-    noSideSteps: サイドステップが見つかりません
+    noSideSteps: ケースマップサイドステップが見つかりません
     noTaskName: ＜タスク名なし＞
     noTasks: タスクなし
     relatedTasks: 関連するタスク
@@ -1560,6 +1563,8 @@ Labels:
   AllTasks: 'TODO: All Tasks'
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
+  AssignToRole: Assign to role
+  AssignToUser: Assign to user
   Chat: TODO Chat
   Collapse: TODO 折りたたむ
   CreateNewDashboard: 新しいダッシュボードを作成
@@ -1667,13 +1672,16 @@ Labels:
   Permissions: 権限
   PinnedCases: 'TODO: Pinned Cases'
   PinnedTasks: 'TODO: Pinned Tasks'
+  SelectProcess: 'TODO: Select a process'
   Share: 共有
+  StepType: Step type
   Task: タスク
   TaskItemDetail: タスクの詳細
   TaskUser-Explain: カンマ区切りのユーザーリスト
   ToggleMenu: メニューを切り替える
   ViewAllResults: すべての結果を表示
   disabledUserPrefix: （無効）
+nullStepType: Step type
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm

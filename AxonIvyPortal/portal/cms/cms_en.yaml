@@ -169,6 +169,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: Process Viewer of {0} process
     ProcessViewerText: Process Viewer
     Title: Process Viewer
+  SideStep:
+    AddNew: Add a new side step process
+    SideStepProcess: Select a side step process
   TaskDocuments:
     TaskDocumentsPageTitle: Task Documents
   adminSettings:
@@ -333,7 +336,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRunningCase: No case is running
     noRunningTask: No task is running
     noRunningTasksAndCasesPermission: Further tasks are running. You do not have permission to see the related tasks to this case.
-    noSideSteps: No Sidestep available
+    noSideSteps: No Case Map Sidestep available
     noTaskName: <No task name>
     noTasks: No tasks
     relatedTasks: Related tasks
@@ -1571,6 +1574,8 @@ Labels:
   AllTasks: All Tasks
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
+  AssignToRole: Assign to role
+  AssignToUser: Assign to user
   Chat: Chat
   Collapse: Collapse
   CreateNewDashboard: Create new dashboard
@@ -1678,13 +1683,16 @@ Labels:
   Permissions: Permissions
   PinnedCases: Pinned Cases
   PinnedTasks: Pinned Tasks
+  SelectProcess: Select a process
   Share: Share
+  StepType: Step type
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users
   ToggleMenu: Toggle menu
   ViewAllResults: View all results
   disabledUserPrefix: (disabled)
+nullStepType: Step type
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm

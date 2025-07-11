@@ -16,6 +16,7 @@ Dialogs:
             Process:
               ProcessName: プロセス名
             RequiredFieldMessage: このフィールドは必須です
+            SideStepPrefix: 'Side step task for: '
             Task:
               Activator: 責任者
             Type: タイプ
@@ -87,6 +88,9 @@ Dialogs:
               EXTERNAL_LINK: 外部リンク
               IVY_PROCESS: ビジネスプロセス
             ProcessViewerIFrameTitle: プロセスビューアーフレーム
+          SideStepType:
+            PARALLEL: TODO Create a new task and continue working on the current task
+            SWITCH: TODO Park the current task and start working on a new task
 Labels:
   AI:
     Error:
