@@ -18,6 +18,7 @@ import ch.ivy.addon.portalkit.dto.WidgetLayout;
     @Type(value = DocumentWidget.class, name = WidgetType.DOCUMENT),
     @Type(value = RelatedTaskWidget.class, name = WidgetType.RELATED_TASK),
     @Type(value = TechnicalCaseWidget.class, name = WidgetType.TECHINCAL_CASE),
+    @Type(value = BusinessDetailsWidget.class, name = WidgetType.BUSINESS_DETAILS),
     @Type(value = CustomWidget.class, name = WidgetType.CUSTOM)
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)

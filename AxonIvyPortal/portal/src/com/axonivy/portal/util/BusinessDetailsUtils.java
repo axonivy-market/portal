@@ -31,6 +31,26 @@ public class BusinessDetailsUtils {
   }
 
   /**
+   * Attempt to find custom businessDetails url which is using in case detail only
+   **/
+  public static String getCustomBusinessDetailUri(ICase iCase) {
+    String customFieldValue = iCase.customFields().stringField(BUSINESS_DETAILS).getOrNull();
+    if (StringUtils.isEmpty(customFieldValue)) {
+      customFieldValue = iCase.customFields().textField(CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.name()).getOrNull();
+      if (StringUtils.isEmpty(customFieldValue)) {
+        return "";
+      }
+    }
+    if (isExternalLink(customFieldValue)) {
+      return customFieldValue;
+    }
+    if (customFieldValue.startsWith("/")) {
+      migrateCustomFieldForBusinessDetailsPage(iCase, customFieldValue);
+    }
+    return getBusinessDetailsUrl(iCase);
+  }
+
+  /**
    * Attempt to fetch the custom field businessDetails, if not found, try
    * CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.
    * <p/>

@@ -163,6 +163,18 @@ Processes:
       #Zusammenfassung
       Antragssteller bekommt eine Zusammenfassung
       Ergebnis zur Kenntnis nehmen
+  LeaveRequestWithBusinessDetails:
+    Cases:
+      LeaveRequest:
+        description: |+
+          Urlaubsantrag mit individuell angepasster Geschäftedetailseite. Dieser Fall enthält nur einige benutzerdefinierte Felder zu Demonstrationszwecken.
+
+        name: Urlaubsantrag mit individuell angepasster Geschäftedetailseite
+    Tasks:
+      LeaveRequest:
+        name: Abschluss des Urlaubsantrags mit individuell angepassten Falldetails
+    description: Dieses Beispiel zeigt, wie man eine individuell angepasste Detailseite für Geschäftsfälle verwendet.
+    name: Urlaubsantrag mit individuell angepasster Unternehmensdetailseite
   MoreInformation:
     description: Klicken Sie auf Weitere Informationen, um die benutzerdefinierte Prozessinformationsseite anzuzeigen.
   Payment:
