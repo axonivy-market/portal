@@ -192,7 +192,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.exporter.TaskDashboardExporter;",
             "",
-            "TaskDashboardExporter exporter = new TaskDashboardExporter(in.columnsVisibility, in.widget.name);",
+            "TaskDashboardExporter exporter = new TaskDashboardExporter(in.columnsVisibility, in.widget.columns, in.widget.name);",
             "in.exportedFile = exporter.getStreamedContent(in.collectedTasksForExporting);"
           ]
         }

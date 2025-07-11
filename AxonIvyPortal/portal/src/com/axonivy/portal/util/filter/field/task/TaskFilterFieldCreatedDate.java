@@ -26,7 +26,10 @@ public class TaskFilterFieldCreatedDate extends FilterField {
 
   @Override
   public String getLabel() {
-    return DashboardStandardTaskColumn.CREATED.getLabel();
+    if (org.apache.commons.lang3.StringUtils.isBlank(this.label)) {
+      return DashboardStandardTaskColumn.CREATED.getLabel();
+    }
+    return this.label;
   }
 
   @Override
@@ -35,6 +38,9 @@ public class TaskFilterFieldCreatedDate extends FilterField {
     filter.setFilterType(DashboardColumnType.STANDARD);
     filter.setFilterFormat(FilterFormat.DATE);
     filter.setField(getName());
+    if (this.label == null) {
+      setLabel(filter.getLabel());
+    }
   }
 
   @Override
