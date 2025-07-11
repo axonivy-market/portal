@@ -8,7 +8,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.page.component.UserSelectionComponentPage;
 import com.codeborne.selenide.Condition;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class UserSelectionComponentTest extends BaseTest {
 
   @Override

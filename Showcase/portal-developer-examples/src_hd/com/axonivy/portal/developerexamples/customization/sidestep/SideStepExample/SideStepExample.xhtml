@@ -4,7 +4,7 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/frame-10.xhtml">
-    <ui:define name="title">Side Step Example</ui:define>
+    <ui:define name="title">#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/SideStepExample/SideStepExample')}</ui:define>
     <ui:define name="content">
       <h:outputStylesheet library="css" name="leave-request-examples.css" />
 
@@ -16,21 +16,21 @@
               <p:messages id="messages" showDetail="true" closable="true" styleClass="mb-3" />
             </div>
 
-            <div class="field col-12 lg:col-6">
+            <div class="field col-12">
               <p:outputLabel for="requester" value="#{ivy.cms.co('/Labels/LeaveRequest/requester')}" />
               <p:inputText id="requester" disabled="true" value="#{data.requester.displayName}" styleClass="w-full"/>
             </div>
-            <div class="field col-12 lg:col-6">
+            <div class="field col-12">
               <p:outputLabel for="leave-type" value="#{ivy.cms.co('/Labels/LeaveRequest/leaveType')}" />
               <p:inputText id="leave-type" value="#{data.leaveRequestData.leaveType.getLabel()}" disabled="true" styleClass="w-full" />
             </div>
 
-            <div class="field col-12 lg:col-6">
+            <div class="field col-12">
               <p:outputLabel for="from" value="#{ivy.cms.co('/Labels/LeaveRequest/from')}" /> 
               <p:datePicker id="from" value="#{data.leaveRequestData.from}" styleClass="w-full" pattern="dd/MM/yyyy" disabled="true" />
             </div>
 
-            <div class="field col-12 lg:col-6">
+            <div class="field col-12">
               <p:outputLabel for="to" value="#{ivy.cms.co('/Labels/LeaveRequest/to')}" /> 
               <p:datePicker id="to" value="#{data.leaveRequestData.to}" styleClass="w-full" pattern="dd/MM/yyyy" disabled="true" />
             </div>

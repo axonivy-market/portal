@@ -35,7 +35,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 24, "y" : 192 }
+        "at" : { "x" : 32, "y" : 232 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f75" }
@@ -117,8 +117,7 @@
             ".build();",
             "",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
-            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);",
-            "ivy.log.error(\"==========\" + valueString);"
+            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
           ]
         },
         "output" : {
@@ -130,7 +129,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 456, "y" : 191 },
+        "at" : { "x" : 464, "y" : 231 },
         "size" : { "width" : 188, "height" : 63 }
       },
       "connect" : [
@@ -215,8 +214,7 @@
             "",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
             "",
-            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);",
-            "ivy.log.error(\"-------\" + valueString);"
+            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
           ]
         },
         "output" : {
@@ -227,7 +225,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 668, "y" : 192 },
+        "at" : { "x" : 676, "y" : 232 },
         "size" : { "width" : 184, "height" : 63 }
       },
       "connect" : [
@@ -306,7 +304,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 914, "y" : 192 },
+        "at" : { "x" : 922, "y" : 232 },
         "size" : { "width" : 188, "height" : 63 }
       },
       "connect" : [
@@ -316,7 +314,7 @@
       "id" : "f13",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1080, "y" : 192 }
+        "at" : { "x" : 1168, "y" : 232 }
       }
     }, {
       "id" : "f75",
@@ -331,7 +329,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 192 },
+        "at" : { "x" : 248, "y" : 232 },
         "size" : { "width" : 176 }
       },
       "connect" : [
@@ -353,7 +351,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 408, "y" : 376 },
+        "at" : { "x" : 408, "y" : 464 },
         "size" : { "width" : 192 }
       },
       "connect" : [
@@ -363,7 +361,7 @@
       "id" : "f83",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 632, "y" : 376 }
+        "at" : { "x" : 632, "y" : 464 }
       }
     }, {
       "id" : "f84",
@@ -384,7 +382,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 24, "y" : 376 }
+        "at" : { "x" : 24, "y" : 464 }
       },
       "connect" : [
         { "id" : "f85", "to" : "f91" }
@@ -402,7 +400,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 192, "y" : 376 }
+        "at" : { "x" : 192, "y" : 464 }
       },
       "connect" : [
         { "id" : "f92", "to" : "f81", "color" : "default" }
@@ -414,7 +412,7 @@
       "config" : {
         "signature" : "start2",
         "request" : {
-          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/LeaveRequestWithSideSteps\")%> (Process level)",
+          "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/LeaveRequestWithSideStepsProcessLevel\")%>",
           "description" : [
             "This process allow employee to submit their leave request with additional manager notes feature.",
             "After approver reviews the request, they can add additional information through a side step before final approval."
@@ -438,7 +436,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 16, "y" : 584 }
+        "at" : { "x" : 24, "y" : 776 }
       },
       "connect" : [
         { "id" : "f94", "to" : "f95" }
@@ -456,7 +454,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 584 },
+        "at" : { "x" : 264, "y" : 776 },
         "size" : { "width" : 176 }
       },
       "connect" : [
@@ -484,7 +482,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 640, "y" : 583 },
+        "at" : { "x" : 648, "y" : 775 },
         "size" : { "width" : 180, "height" : 63 }
       },
       "connect" : [
@@ -511,7 +509,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 860, "y" : 584 },
+        "at" : { "x" : 868, "y" : 776 },
         "size" : { "width" : 184, "height" : 63 }
       },
       "connect" : [
@@ -532,7 +530,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1080, "y" : 584 },
+        "at" : { "x" : 1088, "y" : 776 },
         "size" : { "width" : 168, "height" : 62 }
       },
       "connect" : [
@@ -542,7 +540,7 @@
       "id" : "f103",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1216, "y" : 584 }
+        "at" : { "x" : 1224, "y" : 776 }
       }
     }, {
       "id" : "f104",
@@ -612,16 +610,49 @@
             "",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
             "",
-            "caze.customFields().textField(CustomFields.SIDE_STEPS_PROCESS).set(valueString);"
+            "caze.customFields().textField(CustomFields.SIDE_STEPS_PROCESS).set(valueString);",
+            "ivy.log.error(valueString);"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 440, "y" : 584 },
+        "at" : { "x" : 448, "y" : 776 },
         "size" : { "width" : 120, "height" : 62 }
       },
       "connect" : [
         { "id" : "f105", "to" : "f97", "color" : "default" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "ProcessAnnotation",
+      "name" : [
+        "This is sample for side step task level",
+        "(view description for details)"
+      ],
+      "visual" : {
+        "at" : { "x" : 278, "y" : 40 },
+        "size" : { "width" : 244, "height" : 64 },
+        "description" : [
+          "1 - Set custom business detail",
+          "",
+          "2 - First task, build side step config with 3 options.",
+          "- Create list of 3 SideStepProcessDTO objects, each will trigger a signal process",
+          "- Parse to Json and save to task custom text field",
+          "- Side step for first task will have 3 options ",
+          "",
+          "3 - Second task, build side step config with 3 options.",
+          "- Create list of 3 SideStepProcessDTO objects, each will trigger a signal process",
+          "- Parse to Json and save to task custom text field",
+          "- Side step for first task will have 3 options ",
+          "",
+          "4 - Third task, build side step config with 2 options.",
+          "- Create list of 2 SideStepProcessDTO objects, each will trigger a signal process",
+          "- Parse to Json and save to task custom text field",
+          "- Side step for first task will have 2 options "
+        ]
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f0" }
       ]
     } ]
 }

@@ -13,11 +13,11 @@
         "signature" : "getSecurityMembers",
         "result" : {
           "params" : [
-            { "name" : "usersToDelegate", "type" : "java.util.List", "desc" : "" },
+            { "name" : "userRolesToDelegate", "type" : "java.util.List", "desc" : "" },
             { "name" : "rolesToDelegate", "type" : "java.util.List", "desc" : "" }
           ],
           "map" : {
-            "result.usersToDelegate" : "in.usersToDelegate",
+            "result.userRolesToDelegate" : "in.userRolesToDelegate",
             "result.rolesToDelegate" : "in.rolesToDelegate"
           }
         }
@@ -26,40 +26,14 @@
         "at" : { "x" : 96, "y" : 64 }
       },
       "connect" : [
-        { "id" : "f2", "to" : "f3" }
+        { "id" : "f2", "to" : "f6" }
       ]
     }, {
       "id" : "f1",
       "type" : "CallSubEnd",
       "visual" : {
-        "at" : { "x" : 632, "y" : 64 }
+        "at" : { "x" : 440, "y" : 64 }
       }
-    }, {
-      "id" : "f3",
-      "type" : "SubProcessCall",
-      "name" : "Find users for side steps",
-      "config" : {
-        "processCall" : "Ivy Data Processes/PortalComponentSecurityService:findUsers(String,Integer,Integer,java.util.List<String>,java.util.List<String>)",
-        "call" : {
-          "map" : {
-            "param.query" : "\"\"",
-            "param.startIndex" : "0",
-            "param.count" : "10"
-          }
-        },
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.usersToDelegate" : "result.users"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 264, "y" : 64 }
-      },
-      "connect" : [
-        { "id" : "f4", "to" : "f19", "color" : "default" }
-      ]
     }, {
       "id" : "f5",
       "type" : "CallSubStart",
@@ -68,10 +42,10 @@
         "signature" : "getSecurityMembers2",
         "result" : {
           "params" : [
-            { "name" : "usersToDelegate", "type" : "java.util.List", "desc" : "" }
+            { "name" : "rolesToDelegate", "type" : "java.util.List", "desc" : "" }
           ],
           "map" : {
-            "result.usersToDelegate" : "in.usersToDelegate"
+            "result.rolesToDelegate" : "in.rolesToDelegate"
           }
         }
       },
@@ -90,17 +64,17 @@
     }, {
       "id" : "f10",
       "type" : "Script",
-      "name" : "Get users for side steps",
+      "name" : "Get roles for side steps",
       "config" : {
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.RoleUtils;",
-            "import com.axonivy.portal.components.util.UserUtils;",
             "",
-            "out.usersToDelegate = UserUtils.findUsers(\"\", 0, -1, [], []);",
+            "out.userRolesToDelegate = RoleUtils.findRoles([], [], \"\");",
             "out.rolesToDelegate = RoleUtils.findRoles([], [], \"\");"
           ]
-        }
+        },
+        "sudo" : true
       },
       "visual" : {
         "at" : { "x" : 272, "y" : 192 }
@@ -109,23 +83,29 @@
         { "id" : "f12", "to" : "f9" }
       ]
     }, {
-      "id" : "f19",
-      "type" : "SubProcessCall",
-      "name" : "Find roles for side steps",
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "List roles to filter user",
       "config" : {
-        "processCall" : "Ivy Data Processes/PortalComponentSecurityService:findRoleDTOs()",
         "output" : {
-          "map" : {
-            "out" : "in",
-            "out.rolesToDelegate" : "result.roles"
-          }
-        }
+          "code" : [
+            "import com.axonivy.portal.components.util.RoleUtils;",
+            "import java.util.Arrays;",
+            "",
+            "",
+            "in.rolesToDelegate = RoleUtils.findRoles([], [], \"\");",
+            "if (in.rolesToDelegate.size() > 0){",
+            "  in.userRolesToDelegate.add(in.rolesToDelegate.get(0));",
+            "}"
+          ]
+        },
+        "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 496, "y" : 64 }
+        "at" : { "x" : 280, "y" : 64 }
       },
       "connect" : [
-        { "id" : "f20", "to" : "f1", "color" : "default" }
+        { "id" : "f3", "to" : "f1" }
       ]
     } ]
 }

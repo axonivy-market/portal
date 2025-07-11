@@ -8,8 +8,8 @@
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "members",
-    "type" : "java.util.List<String>",
+    "name" : "securityMember",
+    "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "caze",

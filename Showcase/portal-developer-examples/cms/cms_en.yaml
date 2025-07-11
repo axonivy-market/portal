@@ -136,11 +136,14 @@ Dialogs:
                 Reject: Reject
               LeaveRequestBusinessDetailsPage:
                 LeaveRequest: Leave Request Business Details
+                LeaveRequest1: Leave request side step business detail
                 SideStepComment: Side step comment 1
                 SideStepComment1: Side step comment 2
                 SideStepComment2: Side step comment 3
               LeaveRequestSummary:
                 Finish: Finish
+              SideStepExample:
+                SideStepExample: Side Step Example
               SideStepExample3:
                 SideStepExample: Side Step Example
               SideStepResultExample:
@@ -148,6 +151,7 @@ Dialogs:
                 Assignee: Assignee
                 Comment: Comment
                 Question: Question
+                SideStepResult: Side step result
 Enums:
   LeaveType:
     ANNUAL_LEAVE: Annual Leave
@@ -215,7 +219,8 @@ Processes:
       Acknoledge the result
   LeaveRequest:
     LeaveRequest: Leave Request
-    LeaveRequestWithSideSteps: Leave request with side step processes
+    LeaveRequestWithSideSteps: Leave request with side step processes (task level)
+    LeaveRequestWithSideStepsProcessLevel: Leave request with side step processes (process level)
     approvalTask: Your leave request is approved
     approvalTaskName: Approval for leave request of {0}
     createLeaveRequest: 'Create leave request for: {0}'
