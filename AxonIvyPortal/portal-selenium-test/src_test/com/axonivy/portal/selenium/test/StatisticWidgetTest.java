@@ -14,7 +14,7 @@ import com.axonivy.portal.selenium.page.StatisticConfigurationPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetNewDashboardPage;
 import com.codeborne.selenide.CollectionCondition;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class StatisticWidgetTest extends BaseTest {
   private NewDashboardPage newDashboardPage;
 
@@ -324,14 +324,14 @@ public class StatisticWidgetTest extends BaseTest {
     // Generate preview
     statisticConfigurationPage.clickGeneratePreviewChart();
     statisticConfigurationPage.chartCanvasVisible();
-    
+    // Test with Case
     statisticConfigurationPage.changeChartTarget("Case");
     statisticConfigurationPage.changeChartType("Bar");
     statisticConfigurationPage.changeGroupBy("State");
     // Enable condition-based coloring
     statisticConfigurationPage.toggleConditionBasedColoring();
     
-    // Test "All Values" scope first
+    // Test "All Values" scope
     statisticConfigurationPage.verifyColoringScopeVisible();
     statisticConfigurationPage.selectColoringScope("All values");
     
@@ -367,18 +367,47 @@ public class StatisticWidgetTest extends BaseTest {
     configurationPage.clickOnAddWidgetButton();
     StatisticConfigurationPage statisticConfigurationPage = configurationPage.clickOnCreateCustomStatisticWidgetButton();
     
-    // Configure chart settings that will result in no data for specific value scope
     statisticConfigurationPage.setChartName("No Data Available Test Chart");
     statisticConfigurationPage.changeChartTarget("Case");
     statisticConfigurationPage.changeChartType("Bar");
     statisticConfigurationPage.changeGroupBy("Custom field");
 
-    // Enable condition-based coloring
     statisticConfigurationPage.toggleConditionBasedColoring();
     statisticConfigurationPage.verifyColoringScopeVisible();
     statisticConfigurationPage.selectColoringScope("Specific value");
     
-    // Verify the "No data available" message appears for custom fields with specific value scope
     statisticConfigurationPage.verifyNoDataAvailableMessage();
+  }
+  
+  @Test
+  public void testConditionBasedColoringWithCustomFields() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(createCasesForCaseListCustomization);
+    redirectToNewDashBoard();
+
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ScreenshotUtils.maximizeBrowser();
+    configurationPage.clickOnAddWidgetButton();
+    StatisticConfigurationPage statisticConfigurationPage = configurationPage.clickOnCreateCustomStatisticWidgetButton();
+    
+    statisticConfigurationPage.setChartName("No Data Available Test Chart");
+    statisticConfigurationPage.changeChartTarget("Case");
+    statisticConfigurationPage.changeChartType("Bar");
+    statisticConfigurationPage.changeGroupBy("Custom field");
+    statisticConfigurationPage.selectCustomField("CustomerName");
+
+    statisticConfigurationPage.toggleConditionBasedColoring();
+    statisticConfigurationPage.verifyColoringScopeVisible();
+    statisticConfigurationPage.selectColoringScope("Specific value");
+    statisticConfigurationPage.addNewCondition();
+    statisticConfigurationPage.configureThresholdWithCategory(0, "Greater than", "5", "#f76363", "Customer name 0");
+    
+    // Generate preview
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
   }
 }
