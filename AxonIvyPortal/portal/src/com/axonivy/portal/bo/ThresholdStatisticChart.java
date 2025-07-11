@@ -10,7 +10,7 @@ public class ThresholdStatisticChart implements Serializable {
   private static final long serialVersionUID = -2098346832426240167L;
 
   private OperatorFieldStatistic operator;
-  private String value;
+  private Integer value;
   private String backgroundColor;
   private String categoryValue;
 
@@ -22,11 +22,11 @@ public class ThresholdStatisticChart implements Serializable {
     this.operator = operator;
   }
 
-  public String getValue() {
+  public Integer getValue() {
     return value;
   }
 
-  public void setValue(String value) {
+  public void setValue(Integer value) {
     this.value = value;
   }
 

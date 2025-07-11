@@ -1640,6 +1640,11 @@ Enums:
                 name: TODO Number
               PIE:
                 name: TODO Pie
+            ConditionBasedColoringScope:
+              ALL:
+                name: 'TODO: All values'
+              SPECIFIC:
+                name: 'TODO: Specific value'
             OperatorFieldStatistic:
               EQUAL:
                 name: 'TODO: Equal to'
