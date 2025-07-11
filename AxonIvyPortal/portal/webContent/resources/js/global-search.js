@@ -6,7 +6,7 @@ if (document) {
   const searchCasesURL = "/api/global-search/cases";
   const searchId = "global-search-component:global-search-data";
   const eleSearchId = "[id='global-search-component:global-search-data']";
-  const processTabIndex = 0;
+  const searchFormId = "[id='global-search-component:global-search-form']";
   const taskTabIndex = 1;
   const caseTabIndex = 2;
   const startsWithTask = 'task: ';
@@ -68,10 +68,6 @@ if (document) {
     });
   });
 
-  $(eleSearchId).on('keyup', () => {
-      $(eleSearchId).click();
-  });
-
   $(eleSearchId).click((e) => {
     if (!window.matchMedia("(max-width: 767px)").matches) {
       $(eleSearchId).addClass('global-large-search-bar').removeClass('global-small-search-bar');
@@ -131,8 +127,9 @@ if (document) {
   }
 
   let timer;
+  let lastSearchInput;
 
-  document.getElementById(searchId).addEventListener('keyup', event => {
+  document.getElementById(searchId).addEventListener('keydown', event => {
     clearTimeout(timer);
     timer = setTimeout(() => {
       doneTyping(event);
@@ -143,7 +140,14 @@ if (document) {
     if (event.key === 'Enter') {
       portalGlobalSearch([{name: 'activeTabIndex', value: getTabActiveIndex()}]);
       return false;
-    } else {
+    }
+    if ($(searchFormId).is(':hidden')
+        && !(event.altKey && event.key === '5')
+        && event.key !== 'Tab') {
+      $(eleSearchId).click();
+    }
+    if ($(searchFormId).is(':visible')
+        && lastSearchInput !== $(eleSearchId).val()) {
       searchHandler();
     }
   }
@@ -195,12 +199,15 @@ if (document) {
   }
 
   function search(keyword, tabCategory) {
-    if (PROCESS_TAB === tabCategory) {
-      searchProcess(keyword);
-    } else if (TASK_TAB === tabCategory) {
-      searchTask(keyword);
-    } else if (CASE_TAB === tabCategory) {
-      searchCase(keyword);
+    if (keyword !== lastSearchInput) {
+      lastSearchInput = keyword;
+      if (PROCESS_TAB === tabCategory) {
+        searchProcess(keyword);
+      } else if (TASK_TAB === tabCategory) {
+        searchTask(keyword);
+      } else if (CASE_TAB === tabCategory) {
+        searchCase(keyword);
+      }
     }
   }
 
