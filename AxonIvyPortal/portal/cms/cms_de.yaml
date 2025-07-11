@@ -1664,6 +1664,11 @@ Enums:
                 name: Kennzahl / Metrik
               PIE:
                 name: Kreisdiagramm
+            ConditionBasedColoringScope:
+              ALL:
+                name: Alle Werte
+              SPECIFIC:
+                name: Spezifischer Wert
             OperatorFieldStatistic:
               EQUAL:
                 name: Gleich

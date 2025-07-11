@@ -1650,6 +1650,11 @@ Enums:
                 name: Number
               PIE:
                 name: Pie
+            ConditionBasedColoringScope:
+              ALL:
+                name: All values
+              SPECIFIC:
+                name: Specific value
             OperatorFieldStatistic:
               EQUAL:
                 name: Equal to

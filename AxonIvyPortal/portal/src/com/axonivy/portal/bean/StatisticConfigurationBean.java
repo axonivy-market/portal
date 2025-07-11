@@ -54,6 +54,7 @@ import com.axonivy.portal.enums.statistic.AggregationField;
 import com.axonivy.portal.enums.statistic.AggregationInterval;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
+import com.axonivy.portal.enums.statistic.ConditionBasedColoringScope;
 import com.axonivy.portal.enums.statistic.OperatorFieldStatistic;
 import com.axonivy.portal.service.StatisticService;
 import com.axonivy.portal.service.multilanguage.StatisticDescriptionMultilanguageService;
@@ -116,6 +117,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   private AggregationInterval aggregationInterval;
   private List<String> categoryData;
   private boolean isCategoryDataAvailable;
+  private List<ConditionBasedColoringScope> conditionBasedColoringScopes;
 
   private StatisticNameMultilanguageService nameMultilanguageService;
   private StatisticDescriptionMultilanguageService descriptionMultilanguageService;
@@ -199,8 +201,8 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
       statistic.setDefaultBackgroundColor(DEFAULT_BACKGROUND_COLOR);
     }
 
-    if (statistic.getThresholds() == null) {
-      statistic.setThresholds(new ArrayList<>());
+    if (statistic.getThresholdStatisticCharts() == null) {
+      statistic.setThresholdStatisticCharts(new ArrayList<>());
     }
 
     if(statistic.getStatisticAggregation() != null) {
@@ -225,7 +227,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
       fetchCategoryData();
       if (CollectionUtils.isEmpty(categoryData)) {
         updateIsCategoryDataAvailable();
-        List<String> categoryValuesFromThresholds = statistic.getThresholds().stream().map(ThresholdStatisticChart::getCategoryValue).filter(Objects::nonNull).collect(Collectors.toList());
+        List<String> categoryValuesFromThresholds = statistic.getThresholdStatisticCharts().stream().map(ThresholdStatisticChart::getCategoryValue).filter(Objects::nonNull).collect(Collectors.toList());
         if (CollectionUtils.isNotEmpty(categoryValuesFromThresholds)) {
           setCategoryData(categoryValuesFromThresholds);
         } else {
@@ -254,8 +256,8 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     refreshIntervalEnabled = false;
     statistic.setConditionBasedColoringEnabled(false);
     statistic.setDefaultBackgroundColor(DEFAULT_BACKGROUND_COLOR);
-    statistic.setIsApplyColoringToAll(true);
-    statistic.setThresholds(new ArrayList<>());
+    statistic.setConditionBasedColoringScope(ConditionBasedColoringScope.ALL);
+    statistic.setThresholdStatisticCharts(new ArrayList<>());
   }
   
   private void initFilterFields() {
@@ -295,7 +297,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   }
   
   private void initThresholds() {
-    if (CollectionUtils.isEmpty(statistic.getThresholds())) {
+    if (CollectionUtils.isEmpty(statistic.getThresholdStatisticCharts())) {
       return;
     }
   }
@@ -532,8 +534,8 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     if (statistic.getConditionBasedColoringEnabled()) {
       statistic.setDefaultBackgroundColor(DEFAULT_BACKGROUND_COLOR);
       statistic.setConditionBasedColoringEnabled(false);
-      statistic.setThresholds(new ArrayList<>());
-      statistic.setIsApplyColoringToAll(true);
+      statistic.setThresholdStatisticCharts(new ArrayList<>());
+      statistic.setConditionBasedColoringScope(ConditionBasedColoringScope.ALL);
     }
   }
 
@@ -856,8 +858,8 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   }
   
   public void onSelectColoringScope() {
-    statistic.setThresholds(new ArrayList<>());
-    if (Boolean.FALSE.equals(statistic.getIsApplyColoringToAll())) {
+    statistic.setThresholdStatisticCharts(new ArrayList<>());
+    if (ConditionBasedColoringScope.SPECIFIC.equals(statistic.getConditionBasedColoringScope())) {
       fetchCategoryData();
       updateIsCategoryDataAvailable();
     }
@@ -926,13 +928,13 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   }
   
   public void addNewThreshold() {
-    if (CollectionUtils.isEmpty(statistic.getThresholds())) {
-      statistic.setThresholds(new ArrayList<>());
+    if (CollectionUtils.isEmpty(statistic.getThresholdStatisticCharts())) {
+      statistic.setThresholdStatisticCharts(new ArrayList<>());
     }
     
     ThresholdStatisticChart newThreshold = new ThresholdStatisticChart();
     newThreshold.setBackgroundColor("#6299f7");
-    statistic.getThresholds().add(newThreshold);
+    statistic.getThresholdStatisticCharts().add(newThreshold);
     }
   
   public void removeFilter(DashboardFilter filter) {
@@ -940,10 +942,10 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   }
   
   public void removeThreshold(ThresholdStatisticChart threshod) {
-    if (CollectionUtils.isEmpty(statistic.getThresholds())) {
+    if (CollectionUtils.isEmpty(statistic.getThresholdStatisticCharts())) {
       return;
     }
-    statistic.getThresholds().remove(threshod);
+    statistic.getThresholdStatisticCharts().remove(threshod);
   }
   
   public List<SecurityMemberDTO> completeOwners(String query) {
@@ -985,6 +987,10 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
 
   public void setIsCategoryDataAvailable(boolean isCategoryDataAvailable) {
     this.isCategoryDataAvailable = isCategoryDataAvailable;
+  }
+  
+  public List<ConditionBasedColoringScope> getConditionBasedColoringScopes() {
+    return ConditionBasedColoringScope.SCOPES.stream().collect(Collectors.toList());
   }
 
 }

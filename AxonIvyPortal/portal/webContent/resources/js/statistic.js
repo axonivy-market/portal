@@ -350,13 +350,12 @@ class ClientChart {
 
   calculateConditionalColors(chartConfig, data, backgroundColors) {
     if (chartConfig.conditionBasedColoringEnabled) {
-      if (chartConfig.thresholds == null) {
+      if (chartConfig.thresholdStatisticCharts == null) {
         return chartConfig.defaultBackgroundColor;
       }
-
-      if (this.data.chartConfig.isApplyColoringToAll) {
+      if (this.data.chartConfig.conditionBasedColoringScope === 'all') {
         return this.getBackgroundColorsWithAllScope(chartConfig, data);
-      } else if (!this.data.chartConfig.isApplyColoringToAll) {
+      } else if (!this.data.chartConfig.conditionBasedColoringScope === 'specific') {
         return this.getBackgroundColorsWithSpecificScope(chartConfig, data);
       }
     }
@@ -365,9 +364,9 @@ class ClientChart {
   }
 
   getBackgroundColorsWithSpecificScope(chartConfig, data) {
-    const { defaultBackgroundColor, thresholds } = chartConfig;
+    const { defaultBackgroundColor, thresholdStatisticCharts } = chartConfig;
 
-    const generatedCompareFunctions = thresholds.map(rule => {
+    const generatedCompareFunctions = thresholdStatisticCharts.map(rule => {
       const { operator, value, backgroundColor, categoryValue } = rule;
       
       switch (operator) {
@@ -399,9 +398,9 @@ class ClientChart {
   }
 
 getBackgroundColorsWithAllScope(chartConfig, data) {
-  const { defaultBackgroundColor, thresholds } = chartConfig;
+  const { defaultBackgroundColor, thresholdStatisticCharts } = chartConfig;
 
-  const generatedCompareFunctionss = thresholds.map(rule => {
+  const generatedCompareFunctionss = thresholdStatisticCharts.map(rule => {
     const { operator, value, backgroundColor } = rule;
     
     switch (operator) {

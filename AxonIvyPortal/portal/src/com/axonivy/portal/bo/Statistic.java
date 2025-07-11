@@ -8,6 +8,7 @@ import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.dto.dashboard.filter.DashboardFilter;
 import com.axonivy.portal.enums.statistic.ChartTarget;
 import com.axonivy.portal.enums.statistic.ChartType;
+import com.axonivy.portal.enums.statistic.ConditionBasedColoringScope;
 import com.axonivy.portal.util.DisplayNameUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -50,11 +51,11 @@ public class Statistic extends AbstractConfiguration implements Serializable {
   private Boolean isCustom;
   @JsonIgnore
   private List<SecurityMemberDTO> permissionDTOs;
-  private boolean isApplyColoringToAll;
-  private List<ThresholdStatisticChart> thresholds;
+  private List<ThresholdStatisticChart> thresholdStatisticCharts;
   private String defaultBackgroundColor;
   private boolean conditionBasedColoringEnabled;
-
+  private ConditionBasedColoringScope conditionBasedColoringScope;
+  
   public Statistic() {
     icon = DEFAULT_ICON;
     isCustom = true;
@@ -240,12 +241,12 @@ public class Statistic extends AbstractConfiguration implements Serializable {
     this.statisticAggregation = statisticAggregation;
   }
   
-  public List<ThresholdStatisticChart> getThresholds() {
-    return thresholds;
+  public List<ThresholdStatisticChart> getThresholdStatisticCharts() {
+    return thresholdStatisticCharts;
   }
 
-  public void setThresholds(List<ThresholdStatisticChart> thresholds) {
-    this.thresholds = thresholds;
+  public void setThresholdStatisticCharts(List<ThresholdStatisticChart> thresholds) {
+    this.thresholdStatisticCharts = thresholds;
   }
 
   public String getDefaultBackgroundColor() {
@@ -264,11 +265,11 @@ public class Statistic extends AbstractConfiguration implements Serializable {
     this.conditionBasedColoringEnabled = conditionBasedColoringEnabled;
   }
 
-  public boolean getIsApplyColoringToAll() {
-    return isApplyColoringToAll;
+  public ConditionBasedColoringScope getConditionBasedColoringScope() {
+    return conditionBasedColoringScope;
   }
 
-  public void setIsApplyColoringToAll(boolean isApplyColoringToAll) {
-    this.isApplyColoringToAll = isApplyColoringToAll;
+  public void setConditionBasedColoringScope(ConditionBasedColoringScope conditionBasedColoringScope) {
+    this.conditionBasedColoringScope = conditionBasedColoringScope;
   }
 }

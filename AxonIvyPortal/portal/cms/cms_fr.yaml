@@ -1659,6 +1659,11 @@ Enums:
                 name: Graphique numérique
               PIE:
                 name: Diagramme circulaire
+            ConditionBasedColoringScope:
+              ALL:
+                name: Toutes les valeurs
+              SPECIFIC:
+                name: Valeur spécifique
             OperatorFieldStatistic:
               EQUAL:
                 name: Égal à
