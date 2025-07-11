@@ -21,7 +21,13 @@
 
   <h:panelGroup id="case-item-additional-details" layout="block"
     rendered="#{data.hasPermission and empty data.url}">
-    <div class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/businessDetailsTitle')}</div>
+    <div class="case-detail-section-title ui-g-12">
+      <div class="ui-g-3 u-truncate-text u-padding-0 task-details-panel-title"
+        role="heading" aria-level="1">
+        <i class="si si-checklist-pen" />
+        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/businessDetailsTitle')}
+      </div>
+    </div>
     <div class="Separator" />
     <p:dataTable id="additional-case-detail-table"
       value="#{case.customFields().all()}" var="item"
