@@ -149,15 +149,12 @@ public class StatisticConfigurationPage extends TemplatePage {
   public void configureThreshold(int index, String operator, String value, String color) {
     String thresholdPrefix = String.format("div[id$='config-form:condition-background-color-list:%d:threshold-component:threshold-panel']", index);
     
-    // Select operator - using the exact class from XHTML
     $(thresholdPrefix).$(".threshold-operator-value div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
     $$("li").filter(text(operator)).first().shouldBe(getClickableCondition()).click();
     
-    // Input value - using the exact class from XHTML
     $(thresholdPrefix).$(".threshold-input-value input").shouldBe(appear, DEFAULT_TIMEOUT).clear();
     $(thresholdPrefix).$(".threshold-input-value input").sendKeys(value);
     
-    // Set color - directly input the color value in the color picker input field
     $(thresholdPrefix).$("input.threshold-color-value").shouldBe(appear, DEFAULT_TIMEOUT).clear();
     $(thresholdPrefix).$("input.threshold-color-value").sendKeys(color);
   }
@@ -165,19 +162,15 @@ public class StatisticConfigurationPage extends TemplatePage {
   public void configureThresholdWithCategory(int index, String operator, String value, String color, String category) {
     String thresholdPrefix = String.format("div[id$='config-form:condition-background-color-list:%d:threshold-component:threshold-panel']", index);
     
-    // Set category value - using the exact class from XHTML
     $(thresholdPrefix).$(".threshold-category-data div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
     $$("li").filter(text(category)).first().shouldBe(getClickableCondition()).click();
     
-    // Select operator - using the exact class from XHTML
     $(thresholdPrefix).$(".threshold-operator-value div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
     $$("li").filter(text(operator)).first().shouldBe(getClickableCondition()).click();
     
-    // Input value - using the exact class from XHTML
     $(thresholdPrefix).$(".threshold-input-value input").shouldBe(appear, DEFAULT_TIMEOUT).clear();
     $(thresholdPrefix).$(".threshold-input-value input").sendKeys(value);
     
-    // Set color - directly input the color value in the color picker input field
     $(thresholdPrefix).$("input.threshold-color-value").shouldBe(appear, DEFAULT_TIMEOUT).clear();
     $(thresholdPrefix).$("input.threshold-color-value").sendKeys(color);
   }
@@ -208,7 +201,7 @@ public class StatisticConfigurationPage extends TemplatePage {
   }
   
   public void verifyNoDataAvailableMessage() {
-    // The message appears in a div with class "col-12" when no category data is available for specific value scope
-    $("div.col-12:contains('No data available')").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("div[id$='config-form:condition-background-colors-container'] div.col-12")
+      .shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }
