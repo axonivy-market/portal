@@ -14,6 +14,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
@@ -345,5 +346,28 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
 
   public void clickOnPinColumn(int index) {
     getColumnOfTaskHasIndex(index, "Pin").shouldBe(getClickableCondition()).click();
+  }
+  
+  public NewDashboardPage finishApprovalForLeaveRequest() {
+//    WaitHelper.waitForIFrameAvailable(driver, "iFrame");
+    waitForElementDisplayed(By.id("leave-request:approver-comment"), true);
+    $(By.id("leave-request:approver-comment")).sendKeys("Approve");
+    waitForElementClickableThenClick($(By.id("leave-request:approved-btn")));
+    waitPageDisappear();
+    driver.switchTo().defaultContent();
+    WaitHelper.waitForPresenceOfElementLocatedInFrame("[id$='global-search-component:global-search-data']");
+    return NavigationHelper.navigateToTaskList();
+  }
+  
+  public NewDashboardPage finishSideStepForLeaveRequest() {
+//    WaitHelper.waitForIFrameAvailable(driver, "iFrame");
+    waitForElementDisplayed(By.id("side-step-example:requester-step-comment"), true);
+    $(By.id("side-step-example:requester-step-comment")).sendKeys("requester approve");
+    $(By.id("side-step-example:approver-comment")).sendKeys("side step comment");
+    waitForElementClickableThenClick($(By.id("side-step-example:approved-btn")));
+    waitPageDisappear();
+    driver.switchTo().defaultContent();
+    WaitHelper.waitForPresenceOfElementLocatedInFrame("[id$='global-search-component:global-search-data']");
+    return NavigationHelper.navigateToTaskList();
   }
 }

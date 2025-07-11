@@ -31,24 +31,28 @@
             "out.originalCaseUuid = params.get(\"caseUuid\") as String;",
             "",
             "// required fields",
-            "out.members = Arrays.asList(data.getMemberName());",
+            "out.securityMember = data.getMemberName();",
             "out.comment = data.getComment();",
             "out.stepType = data.getSelectedStepType();"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 512, "y" : 192 }
+        "at" : { "x" : 296, "y" : 192 }
       },
       "connect" : [
-        { "id" : "f1", "to" : "f2" }
+        { "id" : "f1", "to" : "f7" }
       ]
     }, {
       "id" : "f2",
       "type" : "TaskSwitchEvent",
       "config" : {
         "task" : {
-          "name" : "<%= com.axonivy.portal.components.publicapi.SideStepAPI.createSideStepTaskName(in1.originalTaskUuid); %>"
+          "name" : "<%= com.axonivy.portal.components.publicapi.SideStepAPI.createSideStepTaskName(in1.originalTaskUuid, null); %>",
+          "responsible" : {
+            "type" : "USER_FROM_ATTRIBUTE",
+            "activator" : "in1.securityMember.substring(1)"
+          }
         },
         "case" : {
           "name" : "Side step case 2"
@@ -93,5 +97,48 @@
       "visual" : {
         "at" : { "x" : 976, "y" : 192 }
       }
+    }, {
+      "id" : "f7",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f8" : "in.securityMember.startsWith(\"#\")"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 496, "y" : 192 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f8", "to" : "f2", "color" : "default" },
+        { "id" : "f10", "to" : "f9", "via" : [ { "x" : 496, "y" : 288 } ] }
+      ]
+    }, {
+      "id" : "f9",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "<%= com.axonivy.portal.components.publicapi.SideStepAPI.createSideStepTaskName(in1.originalTaskUuid, null); %>",
+          "responsible" : {
+            "type" : "ROLE_FROM_ATTRIBUTE",
+            "activator" : "in1.securityMember"
+          }
+        },
+        "case" : {
+          "name" : "Side step case 2"
+        },
+        "output" : {
+          "code" : [
+            "",
+            "ivy.case.attachToBusinessCase(ivy.wf.findCase(in1.originalCaseUuid).getId());"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 656, "y" : 288 }
+      },
+      "connect" : [
+        { "id" : "f11", "to" : "f4", "via" : [ { "x" : 824, "y" : 288 } ] }
+      ]
     } ]
 }

@@ -16,6 +16,7 @@ Dialogs:
             Process:
               ProcessName: Prozessname
             RequiredFieldMessage: Dies ist ein Pflichtfeld
+            SideStepPrefix: 'Side step task for: '
             Task:
               Activator: Verantwortlich
             Type: Typ
@@ -64,10 +65,10 @@ Dialogs:
               CREATED: Erstellt
               DESTROYED: Gelöscht
               DONE: Erledigt
+              FAILED: Gescheitert
               OPEN: Offen
               RUNNING: in Bearbeitung
               ZOMBIE: Zombie
-              FAILED: Gescheitert
             DefaultEmptyMessage: Keine Vorgänge verfügbar
             NoDescription: Keine Beschreibung vorhanden
             NoName: kein Name

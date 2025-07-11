@@ -8,7 +8,7 @@
       "id" : "f1",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 736, "y" : 200 }
+        "at" : { "x" : 784, "y" : 200 }
       }
     }, {
       "id" : "f2",
@@ -37,7 +37,7 @@
             "out.originalCaseUuid = params.get(\"caseUuid\") as String;",
             "",
             "// required fields",
-            "out.members = Arrays.asList(data.getMemberName());",
+            "out.securityMember = data.getMemberName();",
             "out.comment = data.getComment();",
             "out.stepType = data.getSelectedStepType();"
           ]
@@ -47,14 +47,18 @@
         "at" : { "x" : 272, "y" : 200 }
       },
       "connect" : [
-        { "id" : "f15", "to" : "f4" }
+        { "id" : "f15", "to" : "f0" }
       ]
     }, {
       "id" : "f4",
       "type" : "TaskSwitchEvent",
       "config" : {
         "task" : {
-          "name" : "<%= com.axonivy.portal.components.publicapi.SideStepAPI.createSideStepTaskName(in1.originalTaskUuid); %>"
+          "name" : "<%= com.axonivy.portal.components.publicapi.SideStepAPI.createSideStepTaskName(in1.originalTaskUuid, null); %>",
+          "responsible" : {
+            "type" : "USER_FROM_ATTRIBUTE",
+            "activator" : "in1.securityMember.substring(1)"
+          }
         },
         "case" : {
           "name" : "Side step case 1"
@@ -64,7 +68,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 416, "y" : 200 }
+        "at" : { "x" : 464, "y" : 200 }
       },
       "connect" : [
         { "id" : "f5", "to" : "f6", "color" : "default" }
@@ -85,10 +89,50 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 584, "y" : 200 }
+        "at" : { "x" : 632, "y" : 200 }
       },
       "connect" : [
         { "id" : "f7", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f0",
+      "type" : "Alternative",
+      "config" : {
+        "conditions" : {
+          "f3" : "in.securityMember.startsWith(\"#\")"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 368, "y" : 200 },
+        "labelOffset" : { "x" : 14, "y" : 34 }
+      },
+      "connect" : [
+        { "id" : "f3", "to" : "f4", "color" : "default" },
+        { "id" : "f9", "to" : "f8", "via" : [ { "x" : 368, "y" : 296 } ] }
+      ]
+    }, {
+      "id" : "f8",
+      "type" : "TaskSwitchEvent",
+      "config" : {
+        "task" : {
+          "name" : "<%= com.axonivy.portal.components.publicapi.SideStepAPI.createSideStepTaskName(in1.originalTaskUuid, null); %>",
+          "responsible" : {
+            "type" : "ROLE_FROM_ATTRIBUTE",
+            "activator" : "in1.securityMember"
+          }
+        },
+        "case" : {
+          "name" : "Side step case 1"
+        },
+        "output" : {
+          "code" : "ivy.case.attachToBusinessCase(ivy.wf.findCase(in1.originalCaseUuid).getId());"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 464, "y" : 296 }
+      },
+      "connect" : [
+        { "id" : "f10", "to" : "f6", "via" : [ { "x" : 632, "y" : 296 } ] }
       ]
     } ]
 }

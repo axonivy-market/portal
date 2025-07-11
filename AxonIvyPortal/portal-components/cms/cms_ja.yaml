@@ -16,6 +16,7 @@ Dialogs:
             Process:
               ProcessName: プロセス名
             RequiredFieldMessage: このフィールドは必須です
+            SideStepPrefix: 'Side step task for: '
             Task:
               Activator: 責任者
             Type: タイプ

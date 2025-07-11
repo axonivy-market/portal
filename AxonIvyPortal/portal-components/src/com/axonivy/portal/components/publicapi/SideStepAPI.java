@@ -13,7 +13,7 @@ import ch.ivyteam.ivy.workflow.ITask;
  * Public API for Side Step process functionality
  */
 public final class SideStepAPI {
-  private static final String PREFIX_TASK_NAME = "Side step task for: ";
+  private static final String DEFAULT_PREFIX_TASK_NAME_CMS = "/Dialogs/com/axonivy/portal/components/Common/SideStepPrefix";
 
   private SideStepAPI() {
   }
@@ -28,14 +28,15 @@ public final class SideStepAPI {
     }
     // update original task name
     if (originalTask != null) {
-      originalTask.setName(StringUtils.replace(originalTask.getName(), PREFIX_TASK_NAME, ""));
+      originalTask.setName(StringUtils.replace(originalTask.getName(), Ivy.cms().co(DEFAULT_PREFIX_TASK_NAME_CMS), ""));
     }
   }
 
-  public static String createSideStepTaskName(String originalTaskId) {
-    ITask originalTask = Ivy.wf().findTask(originalTaskId);
+  public static String createSideStepTaskName(String originalTaskUuid, String prefixTaskNameCmsUri) {
+    ITask originalTask = Ivy.wf().findTask(originalTaskUuid);
     if (originalTask != null) {
-      return PREFIX_TASK_NAME + originalTask.getName();
+      String prefixFromCms = Ivy.cms().co(prefixTaskNameCmsUri);
+      return (StringUtils.isNoneBlank(prefixFromCms) ? prefixFromCms : Ivy.cms().co(DEFAULT_PREFIX_TASK_NAME_CMS)) + originalTask.getName();
     }
     return null;
   }

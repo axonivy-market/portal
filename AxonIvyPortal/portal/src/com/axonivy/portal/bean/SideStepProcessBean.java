@@ -1,10 +1,11 @@
 package com.axonivy.portal.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -22,9 +23,7 @@ import com.axonivy.portal.components.enums.SideStepType;
 import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;
 import com.axonivy.portal.components.publicapi.TaskAPI;
 import com.axonivy.portal.components.service.IvyAdapterService;
-import com.axonivy.portal.components.util.RoleUtils;
 import com.axonivy.portal.components.util.TaskUtils;
-import com.axonivy.portal.components.util.UserUtils;
 
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
@@ -44,13 +43,13 @@ public class SideStepProcessBean implements Serializable {
   private List<SideStepProcessDTO> processes;
   private UserDTO assignee;
   private RoleDTO assignedRole;
-  private List<UserDTO> users;
-  private List<RoleDTO> roles;
+  private List<String> userRoles;
+  private List<String> roles;
   private SideStepType selectedStepType;
   private List<SideStepType> stepTypes;
   private String comment;
   private SideStepDTO sideStepInfo;
-  private boolean isUserDelegated;
+  private boolean isUserDelegated = true;
 
   public List<SideStepProcessDTO> getProcesses() {
     return processes;
@@ -66,6 +65,8 @@ public class SideStepProcessBean implements Serializable {
 
   @SuppressWarnings("unchecked")
   public void setSelectedProcess(SideStepProcessDTO selectedProcess) {
+    this.userRoles = new ArrayList<>();
+    this.roles = new ArrayList<>();
     this.selectedProcess = selectedProcess;
     this.isUserDelegated = true;
     if (task != null && selectedProcess != null) {
@@ -75,20 +76,16 @@ public class SideStepProcessBean implements Serializable {
 
       String securityMembersCallable = selectedProcess.getSecurityMembersCallable();
 
+      List<RoleDTO> userRolesDTO = new ArrayList<>();
+      List<RoleDTO> rolesDTO = new ArrayList<>();
       if (StringUtils.isNotBlank(securityMembersCallable)) {
         Map<String, Object> responseCallable = IvyAdapterService
             .startSubProcessInSecurityContext(securityMembersCallable, null);
-        List<UserDTO> users = (List<UserDTO>) responseCallable.get("usersToDelegate");
-        List<RoleDTO> rolesDTO = (List<RoleDTO>) responseCallable.get("rolesToDelegate");
-        this.users = users;
-        this.roles = rolesDTO;
-      }
-
-      if (StringUtils.isBlank(securityMembersCallable)) {
-        this.users = UserUtils.findUsers("", 0, -1, Collections.emptyList(), Collections.emptyList());
-        this.roles = RoleUtils.findRoles(Collections.emptyList(), Collections.emptyList(), "");
-      }
-
+        userRolesDTO = (List<RoleDTO>) responseCallable.get("userRolesToDelegate");
+        rolesDTO = (List<RoleDTO>) responseCallable.get("rolesToDelegate");
+        this.userRoles = userRolesDTO.stream().map(RoleDTO::getName).collect(Collectors.toList());
+        this.roles = rolesDTO.stream().map(RoleDTO::getName).collect(Collectors.toList());
+      } 
     }
   }
 
@@ -126,14 +123,13 @@ public class SideStepProcessBean implements Serializable {
   }
 
   public String getStepTypeTitle(SideStepType type) {
-    if (SideStepType.PARALLEL == type) {
-      return StringUtils.defaultIfBlank(sideStepInfo.getStepTypeParallelTitle(),
+    return switch (type) {
+      case SideStepType.PARALLEL -> StringUtils.defaultIfBlank(sideStepInfo.getStepTypeParallelTitle(),
           Ivy.cms().co("/Dialogs/com/axonivy/portal/components/SideStepType/" + SideStepType.PARALLEL.name()));
-    } else if (SideStepType.SWITCH == type) {
-      return StringUtils.defaultIfBlank(sideStepInfo.getStepTypeSwitchTitle(),
+      case SideStepType.SWITCH -> StringUtils.defaultIfBlank(sideStepInfo.getStepTypeSwitchTitle(),
           Ivy.cms().co("/Dialogs/com/axonivy/portal/components/SideStepType/" + SideStepType.SWITCH.name()));
-    }
-    return null;
+      default -> null;
+    };
   }
 
   public void handleSelectProcess() {
@@ -241,20 +237,12 @@ public class SideStepProcessBean implements Serializable {
     this.assignedRole = assignedRole;
   }
 
-  public List<RoleDTO> getRoles() {
+  public List<String> getRoles() {
     return roles;
   }
 
-  public void setRoles(List<RoleDTO> roles) {
+  public void setRoles(List<String> roles) {
     this.roles = roles;
-  }
-
-  public List<UserDTO> getUsers() {
-    return users;
-  }
-
-  public void setUsers(List<UserDTO> users) {
-    this.users = users;
   }
 
   public boolean isUserDelegated() {
@@ -263,6 +251,14 @@ public class SideStepProcessBean implements Serializable {
 
   public void setUserDelegated(boolean isUserDelegated) {
     this.isUserDelegated = isUserDelegated;
+  }
+
+  public List<String> getUserRoles() {
+    return userRoles;
+  }
+
+  public void setUserRoles(List<String> userRoles) {
+    this.userRoles = userRoles;
   }
 
 }

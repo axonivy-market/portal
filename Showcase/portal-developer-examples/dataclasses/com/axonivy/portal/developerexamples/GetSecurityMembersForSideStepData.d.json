@@ -4,8 +4,8 @@
   "namespace" : "com.axonivy.portal.developerexamples",
   "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "usersToDelegate",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.UserDTO>"
+    "name" : "userRolesToDelegate",
+    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"
   }, {
     "name" : "rolesToDelegate",
     "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"

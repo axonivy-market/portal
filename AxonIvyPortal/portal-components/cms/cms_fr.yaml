@@ -16,6 +16,7 @@ Dialogs:
             Process:
               ProcessName: Nom du processus
             RequiredFieldMessage: Ce champ est obligatoire
+            SideStepPrefix: 'Side step task for: '
             Task:
               Activator: Responsable
             Type: Type
