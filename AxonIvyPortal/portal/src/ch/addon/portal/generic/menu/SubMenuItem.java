@@ -1,6 +1,7 @@
 package ch.addon.portal.generic.menu;
 
-import ch.ivy.addon.portalkit.enums.MenuKind;
+import com.axonivy.portal.components.enums.MenuKind;
+
 import ch.ivy.addon.portalkit.enums.Protocol;
 
 public class SubMenuItem {

@@ -1,7 +1,7 @@
-package ch.ivy.addon.portalkit.enums;
+package com.axonivy.portal.components.enums;
 
 public enum MenuKind {
-  DASHBOARD, PROCESS, CUSTOM, EXTERNAL_LINK, THIRD_PARTY, MAIN_DASHBOARD;
+  DASHBOARD, PROCESS, CUSTOM, EXTERNAL_LINK, THIRD_PARTY, MAIN_DASHBOARD, STATIC_PAGE;
   
   @Override
   public String toString() {

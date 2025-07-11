@@ -4,7 +4,7 @@ import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
 
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivy.addon.portalkit.enums.MenuKind;
+import com.axonivy.portal.components.enums.MenuKind;
 
 public class ProcessSubMenuItem extends SubMenuItem {
   public ProcessSubMenuItem() {

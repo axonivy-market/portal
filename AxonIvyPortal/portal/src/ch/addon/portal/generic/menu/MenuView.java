@@ -29,6 +29,7 @@ import org.primefaces.model.menu.MenuElement;
 import org.primefaces.model.menu.MenuItem;
 import org.primefaces.model.menu.MenuModel;
 
+import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI;
 
 import ch.addon.portal.generic.menu.PortalMenuItem.PortalMenuBuilder;
@@ -40,7 +41,6 @@ import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.DashboardDisplayType;
-import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.service.MainMenuEntryService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
@@ -122,7 +122,7 @@ public class MenuView implements Serializable {
 
   private boolean isExternalLink(SubMenuItem subMenuItem) {
     return subMenuItem.getMenuKind() == MenuKind.EXTERNAL_LINK
-        || subMenuItem.getMenuKind() == MenuKind.THIRD_PARTY;
+        || subMenuItem.getMenuKind() == MenuKind.THIRD_PARTY || subMenuItem.getMenuKind() == MenuKind.STATIC_PAGE;
   }
 
   private DefaultMenuItem buildThirdPartyItem(Application application, int menuIndex) {
