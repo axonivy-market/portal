@@ -8,8 +8,10 @@ import static com.codeborne.selenide.Selenide.$$;
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 
 public class StatisticConfigurationPage extends TemplatePage {
 
@@ -110,5 +112,103 @@ public class StatisticConfigurationPage extends TemplatePage {
     $(typeInput).shouldBe(getClickableCondition()).$("span[id$=':operator-selection_label']").click();
 
     $$("li").filter(text(operator.getValue())).first().shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+  }
+  
+  public void toggleConditionBasedColoring() {
+    Sleeper.sleep(5000);
+    SelenideElement toggle = $("div[id$='config-form:condition-based-coloring-enabled-toggle']");
+    toggle.shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+    toggle.click();
+  }
+
+  private SelenideElement getUserThreshold() {
+    return getConditionBackgroundColorsContainer().shouldBe(appear, DEFAULT_TIMEOUT).$("span[id$='config-form:user-threshold']");
+  }
+  
+  public void addNewCondition() {
+    getUserThreshold().shouldBe(appear, DEFAULT_TIMEOUT).$("button[id$='config-form:add-threshold']").shouldBe(clickable()).click();
+  }
+  
+  private SelenideElement getChartBackgroundColor() {
+    return $("span[id$='config-form:chart-background-colors']");
+  }
+  
+  private SelenideElement getConditionBackgroundColorsContainer() {
+    return getChartBackgroundColor().shouldBe(appear, DEFAULT_TIMEOUT).shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$='config-form:condition-background-colors-container']");
+  }
+  
+  public void verifyColoringScopeVisible() {
+    $("div[id$='config-form:condition-based-coloring-scope']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void selectColoringScope(String scope) {
+    $("div[id$='config-form:coloring-option'] div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
+    $$("li[id^='config-form:coloring-option_']").filter(text(scope)).first().shouldBe(getClickableCondition()).click();
+  }
+  
+  public void configureThreshold(int index, String operator, String value, String color) {
+    String thresholdPrefix = String.format("div[id$='config-form:condition-background-color-list:%d:threshold-component:threshold-panel']", index);
+    
+    // Select operator - using the exact class from XHTML
+    $(thresholdPrefix).$(".threshold-operator-value div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
+    $$("li").filter(text(operator)).first().shouldBe(getClickableCondition()).click();
+    
+    // Input value - using the exact class from XHTML
+    $(thresholdPrefix).$(".threshold-input-value input").shouldBe(appear, DEFAULT_TIMEOUT).clear();
+    $(thresholdPrefix).$(".threshold-input-value input").sendKeys(value);
+    
+    // Set color - directly input the color value in the color picker input field
+    $(thresholdPrefix).$("input.threshold-color-value").shouldBe(appear, DEFAULT_TIMEOUT).clear();
+    $(thresholdPrefix).$("input.threshold-color-value").sendKeys(color);
+  }
+  
+  public void configureThresholdWithCategory(int index, String operator, String value, String color, String category) {
+    String thresholdPrefix = String.format("div[id$='config-form:condition-background-color-list:%d:threshold-component:threshold-panel']", index);
+    
+    // Set category value - using the exact class from XHTML
+    $(thresholdPrefix).$(".threshold-category-data div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
+    $$("li").filter(text(category)).first().shouldBe(getClickableCondition()).click();
+    
+    // Select operator - using the exact class from XHTML
+    $(thresholdPrefix).$(".threshold-operator-value div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
+    $$("li").filter(text(operator)).first().shouldBe(getClickableCondition()).click();
+    
+    // Input value - using the exact class from XHTML
+    $(thresholdPrefix).$(".threshold-input-value input").shouldBe(appear, DEFAULT_TIMEOUT).clear();
+    $(thresholdPrefix).$(".threshold-input-value input").sendKeys(value);
+    
+    // Set color - directly input the color value in the color picker input field
+    $(thresholdPrefix).$("input.threshold-color-value").shouldBe(appear, DEFAULT_TIMEOUT).clear();
+    $(thresholdPrefix).$("input.threshold-color-value").sendKeys(color);
+  }
+  
+  public void clearAllConditions() {
+    ElementsCollection deleteButtons = $$("button[id$=':remove-threshold']");
+    while (deleteButtons.size() > 0) {
+      deleteButtons.first().shouldBe(getClickableCondition()).click();
+      deleteButtons = $$("button[id$=':remove-threshold']");
+    }
+  }
+  
+  public void verifyDefaultColorPickerVisible() {
+    $("div[id$='config-form:statistic_defaultBackgroundColor']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void verifyConditionBasedColoringNotVisible() {
+    $("div[id$='config-form:condition-based-coloring-enabled-toggle']").shouldNot(appear);
+  }
+  
+  public void selectCustomField(String customFieldName) {
+    $("div[id$='config-form:aggregates-custom-fields'] div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
+    $$("li").filter(text(customFieldName)).first().shouldBe(getClickableCondition()).click();
+  }
+  
+  public void verifyCustomFieldSelectionVisible() {
+    $("div[id$='config-form:aggregates-custom-fields']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+  
+  public void verifyNoDataAvailableMessage() {
+    // The message appears in a div with class "col-12" when no category data is available for specific value scope
+    $("div.col-12:contains('No data available')").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 }
