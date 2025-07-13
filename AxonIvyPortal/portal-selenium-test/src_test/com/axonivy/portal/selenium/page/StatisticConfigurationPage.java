@@ -5,6 +5,8 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.openqa.selenium.WebElement;
+
 import com.axonivy.portal.selenium.common.ComplexFilterHelper;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
@@ -144,6 +146,11 @@ public class StatisticConfigurationPage extends TemplatePage {
   public void selectColoringScope(String scope) {
     $("div[id$='config-form:coloring-option'] div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
     $$("li[id^='config-form:coloring-option_']").filter(text(scope)).first().shouldBe(getClickableCondition()).click();
+  }
+  
+  public WebElement getColoringScope() {
+    $("div[id$='config-form:coloring-option'] div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
+    return $("div[id$='config-form:coloring-option_panel']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public void configureThreshold(int index, String operator, String value, String color) {
