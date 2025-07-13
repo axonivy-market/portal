@@ -16,10 +16,11 @@ import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.StatisticWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.page.CustomStatisticConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
+import com.axonivy.portal.selenium.page.StatisticConfigurationPage;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class StatisticScreenshotTest extends ScreenshotBaseTest {
 
   @Override
@@ -126,6 +127,15 @@ public class StatisticScreenshotTest extends ScreenshotBaseTest {
     CustomStatisticConfigurationPage customStatisticConfigurationPage = new CustomStatisticConfigurationPage();
     customStatisticConfigurationPage.waitForPageLoad();
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "custom-statistic-widget-configuration-page");
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(customStatisticConfigurationPage.getAdvancedSettings(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "advanced-settings", new ScreenshotMargin(5, 5));
+    StatisticConfigurationPage statisticConfigurationPage = new StatisticConfigurationPage();
+    statisticConfigurationPage.toggleConditionBasedColoring();
+    ScreenshotUtils.captureElementScreenshot(statisticConfigurationPage.getColoringScope(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "coloring-scope");
+    statisticConfigurationPage.addNewCondition();
+    statisticConfigurationPage.configureThreshold(0, "Greater than", "5", "#6299f7");
+    ScreenshotUtils.maximizeBrowser();
+    ScreenshotUtils.captureElementScreenshot(customStatisticConfigurationPage.getAdvancedSettings(),ScreenshotUtils.STATISTIC_WIDGET_FOLDER + "condition-based-coloring-enable");
+    
   }
 
 }
