@@ -150,6 +150,46 @@ Available values for configuring statistic chart
    - | Colors for data in the chart.
  * - Hide label
    - | Toggle to show label of number chart.
+ * - Condition-based coloring enabled
+   - | This feature allows user to define colors for each chart based on specific conditions.
+     | Click on this button to turn on/off the feature.
+
+Condition-based coloring feature
+--------------------------------
+
+When the feature is enabled, the user can define colors for each chart based on specific conditions.
+
+Scope
+~~~~~
+
+Choose the scope that the condition will affect.
+
+There are two options:
+
+- All values: apply color conditions to all data in the chart.
+
+- Specific value: apply color conditions to selected value.
+
+Default color
+~~~~~~~~~~~~~
+
+This color is applied to charts when no data is available.
+
+Condition
+~~~~~~~~~
+
+Each condition requires four values:
+
+1. **Target value:** Either ``All values`` or a specific value based on your ``Group by`` selection.
+
+2. **Operator:** Greater than, Less than, Equal to, Greater than or equal to, or Less than or equal to.
+
+3. **Comparison value:** The value to compare against.
+
+4. **Color:** The color applied when data meets the condition.
+
+
+
 
 .. |statistic-widget-list-page| image:: ../../screenshots/statistic/statistic-widget-list.png
    :alt: Statistic widget list
