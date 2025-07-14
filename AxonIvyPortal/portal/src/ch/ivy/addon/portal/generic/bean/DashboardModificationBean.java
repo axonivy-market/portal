@@ -356,10 +356,10 @@ public class DashboardModificationBean extends DashboardBean implements Serializ
     });
 
     List<Dashboard> dashboardList = new ArrayList<>();
+
     for (var widget : dashboard.getWidgets()) {
       DashboardWidgetUtils.simplifyWidgetColumnData(widget);
     }
-
     dashboardList.add(dashboard);
 
     var inputStream = new ByteArrayInputStream(
