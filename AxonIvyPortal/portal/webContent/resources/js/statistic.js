@@ -10,7 +10,6 @@ const CHART_GRID_COLOR = 'rgba(192, 192, 192, 0.5)';
 const MIN_REFRESH_INTERVAL = 60;
 const SUCCESS_STATUS_CODE = 200;
 
-// Operator enums for type safety - matches backend OperatorFieldStatistic enum
 const OPERATOR_FIELD_STATISTIC = Object.freeze({
   GREATER: "greater",
   LESS: "less", 
@@ -19,8 +18,6 @@ const OPERATOR_FIELD_STATISTIC = Object.freeze({
   EQUAL: "equal"
 });
 
-// Color calculation cache for performance optimization
-const COLOR_CALCULATION_CACHE = new Map();
 
 let locale;
 let contentLocale;
@@ -400,7 +397,7 @@ class ClientChart {
 getBackgroundColorsWithAllScope(chartConfig, data) {
   const { defaultBackgroundColor, thresholdStatisticCharts } = chartConfig;
 
-  const generatedCompareFunctionss = thresholdStatisticCharts.map(rule => {
+  const generatedCompareFunction = thresholdStatisticCharts.map(rule => {
     const { operator, value, backgroundColor } = rule;
     
     switch (operator) {
@@ -422,7 +419,7 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
   return data.map((val) => {
     if (!val || typeof val.count !== 'number') return defaultBackgroundColor;
     
-    for (const func of generatedCompareFunctionss) {
+    for (const func of generatedCompareFunction) {
       const result = func(val.count);
       if (result) return result;
     }
@@ -678,10 +675,6 @@ class ClientCartesianChart extends ClientCanvasChart {
         }
       });
     }
-  }
-
-  setColorBaseOnThreshold(threshold) {
-
   }
 
   // abstract methods
