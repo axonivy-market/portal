@@ -148,7 +148,7 @@ Below is a sample JSON definition of a statistic widget in the Portal dashboard
                 "operator": "greater",
                 "value": 5,
                 "backgroundColor": "#6299f7",
-                "targetValue": null
+                "targetValue": "All values"
             }
         ]
   }
@@ -224,7 +224,7 @@ There are fields that allow user to use condition-based coloring feature:
 
 - ``thresholdStatisticCharts``: list of defined conditions
   
-  - ``targetValue``: the target value, either ``all`` or ``specific``, it depends on the configured scope.
+  - ``targetValue``: the target value. If the scope is ``All values``, the default value is ``All values``.
 
   - ``operator``: there are five values: Greater than, Less than, Equal to, Greater than or equal to, or Less than or equal to.
 
