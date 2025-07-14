@@ -20,7 +20,7 @@ import com.axonivy.portal.selenium.page.StatisticConfigurationPage;
 
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class StatisticScreenshotTest extends ScreenshotBaseTest {
 
   @Override
