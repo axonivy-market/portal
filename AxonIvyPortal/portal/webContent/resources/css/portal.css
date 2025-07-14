@@ -313,11 +313,11 @@ body .process-widget .ui-selectbooleanbutton.ui-state-active .ui-icon {
   border: solid 1px var(--statistic-filter-accordion-panel-border); }
   
 .threshold-item > .threshold-category-data, .threshold-item > .threshold-operator-value {
-  max-width: 16vw;
-  width: 8vw;
+  max-width: 12vw;
+  width: 10vw;
 }
 
-.threshold-item > .threshold-category-data > span {
+.threshold-item > .threshold-category-data > span, .threshold-item > .threshold-operator-value > span, .threshold-item > .threshold-input-value > input {
   text-overflow: ellipsis;
 }
 

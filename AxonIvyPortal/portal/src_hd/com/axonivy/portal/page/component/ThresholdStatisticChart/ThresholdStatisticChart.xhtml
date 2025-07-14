@@ -53,7 +53,7 @@
          
          <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
           <p:inputNumber label="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/ConditionValue')}" styleClass="threshold-input-value" required="true" value="#{threshold.value}" disabled="#{!managedBean.isCategoryDataAvailable and managedBean.statistic.conditionBasedColoringScope eq 'SPECIFIC'}"
-            decimalPlaces="0" minValue="0" onkeydown="return event.key !== '-'">
+            decimalPlaces="0" minValue="0" onkeydown="return event.key !== '-'" size="7">
             <p:ajax event="change" partialSubmit="true" global="false"/>
             <f:param name="skipValidator" value="true" />
             <f:attribute name="threshold" value="#{threshold}" />
