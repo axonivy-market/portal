@@ -41,7 +41,7 @@ public enum Variable {
   APPLICATION_NAME("Portal.ApplicationName"),
   ENABLE_DOCUMENT_PREVIEW("Portal.Document.EnablePreview"),
   ENABLE_PROCESS_VIEWER("Portal.ProcessViewer"),
-  ENABLE_PINNED_TASK("Portal.Tasks.EnablePinnedTask"), ENABLE_PINNED_CASE("Portal.Cases.EnablePinnedCase");
+  ENABLE_PINNED_TASK("Portal.Tasks.EnablePinnedTask"), ENABLE_PINNED_CASE("Portal.Cases.EnablePinnedCase")
 
   private String key;
 
