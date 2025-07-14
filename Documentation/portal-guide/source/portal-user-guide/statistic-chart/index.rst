@@ -157,7 +157,9 @@ Available values for configuring statistic chart
 Condition-based coloring feature
 --------------------------------
 
-When the feature is enabled, the user can define colors for each chart based on specific conditions.
+When the feature is enabled, the user can define colors for each chart based on specific conditions. The user can use this feature on ``Bar chart``, ``Line chart`` and ``Pie chart``.
+
+    |condition-based-coloring-enabled|
 
 Scope
 ~~~~~
@@ -188,7 +190,13 @@ Each condition requires four values:
 
 4. **Color:** The color applied when data meets the condition.
 
+.. important::
 
+  - Define clear conditions.
+
+  - Keep it simple.
+
+  - When multiple conditions are satisfied, the first condition defined wins.
 
 
 .. |statistic-widget-list-page| image:: ../../screenshots/statistic/statistic-widget-list.png
@@ -221,3 +229,5 @@ Each condition requires four values:
    :alt: Create new custom statistic widget
 .. |custom-statistic-widget-configuration-page| image:: ../../screenshots/statistic/custom-statistic-widget-configuration-page.png
    :alt: Custom statistic widet configuration page
+.. |condition-based-coloring-enabled| image:: ../../screenshots/statistic/condition-based-coloring-enable.png
+   :alt: Condition-based coloring feature

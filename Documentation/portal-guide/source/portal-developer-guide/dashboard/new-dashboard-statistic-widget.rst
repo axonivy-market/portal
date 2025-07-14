@@ -139,7 +139,18 @@ Below is a sample JSON definition of a statistic widget in the Portal dashboard
         "#f8da96",
         "#f9908c"
       ]
-    }
+    },
+    "conditionBasedColoringEnabled": true,
+    "conditionBasedColoringScope": "all",
+    "defaultBackgroundColor": "#8dc261",
+    "thresholdStatisticCharts": [
+            {
+                "operator": "greater",
+                "value": 5,
+                "backgroundColor": "#6299f7",
+                "targetValue": null
+            }
+        ]
   }
 ..
 
@@ -204,3 +215,21 @@ For some specific charts such as ``Bar``, ``Pie``, ``Line`` or ``Number``, there
 - ``numberChartConfig``: additional fields for configuring the ``Number`` chart, you can add if chart type is ``number``
 
    - ``hideLabel``: toggle to show label of the number chart
+
+There are fields that allow user to use condition-based coloring feature:
+
+- ``conditionBasedColoringEnabled``: toggle to turn on/off feature Condition-based coloring.
+
+- ``conditionBasedColoringScope``: define the scope. There are two values: ``all`` and ``specific``.
+
+- ``thresholdStatisticCharts``: list of defined conditions
+  
+  - ``targetValue``: the target value, either ``all`` or ``specific``, it depends on the configured scope.
+
+  - ``operator``: there are five values: Greater than, Less than, Equal to, Greater than or equal to, or Less than or equal to.
+
+  - ``compareValue``: the value to compare against.
+
+  - ``backgroundColor``: the color applied when data meets the condition
+
+- ``defaultBackgroundColor``: the color is applied to charts when no data is available.
