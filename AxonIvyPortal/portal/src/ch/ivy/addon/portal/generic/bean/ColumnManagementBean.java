@@ -102,6 +102,7 @@ public class ColumnManagementBean implements Serializable {
     this.numberFieldPattern = null;
     this.selectedCustomFieldType = CustomFieldType.STRING;
     this.fieldDisplayNames = Collections.emptyList();
+    this.isConfiguredLanguage = false;
   }
 
   public List<String> completeCategoriesSelection(String query) {
@@ -158,7 +159,8 @@ public class ColumnManagementBean implements Serializable {
       columnModel = CaseColumnModel.constructColumn(this.selectedFieldType, this.selectedField);
     }
     if (!isConfiguredLanguage) {
-      updateNameByLocale();
+      updateFieldDisplayNames();
+      DisplayNameConvertor.setValue(fieldDisplayName, fieldDisplayNames);
     }
     columnModel.initDefaultValue();
     columnModel.setHeader(this.fieldDisplayName);
@@ -274,7 +276,7 @@ public class ColumnManagementBean implements Serializable {
     }
     return metaData;
   }
-  
+
   public void onSelectStandardField() {
     this.fieldDisplayName = getCurrentDisplayName();
   }
@@ -289,9 +291,8 @@ public class ColumnManagementBean implements Serializable {
       result.add(newItem);
     }
     this.fieldDisplayNames = result;
-    this.isConfiguredLanguage = true;
   }
-  
+
   private String getCurrentDisplayName() {
     if (widget.getType() == DashboardWidgetType.TASK) {
       return Ivy.cms()
@@ -312,16 +313,17 @@ public class ColumnManagementBean implements Serializable {
   public void updateNameByLocale() {
     updateFieldDisplayNames();
     DisplayNameConvertor.setValue(fieldDisplayName, fieldDisplayNames);
+    this.isConfiguredLanguage = true;
   }
 
   public void updateCurrentLanguage() {
     this.fieldDisplayName = DisplayNameConvertor.updateCurrentValue(fieldDisplayName, fieldDisplayNames);
   }
-  
+
   public void onSelectType() {
     resetValues();
   }
-  
+
   public boolean isDisplayMultiLanguage() {
     return selectedFieldType == DashboardColumnType.STANDARD && selectedField != null;
   }
