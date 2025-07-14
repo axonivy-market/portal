@@ -24,6 +24,7 @@
             "import java.util.Map;",
             "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
             "",
+            "ivy.log.debug(signal.getSignalData() as String);",
             "SideStepProcessParam data = BusinessEntityConverter.jsonValueToEntity(signal.getSignalData() as String, SideStepProcessParam.class) as SideStepProcessParam;",
             "// custom params",
             "Map params = data.getSideStepDto().getParams();",

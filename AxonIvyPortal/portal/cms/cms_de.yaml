@@ -1579,7 +1579,7 @@ Labels:
   AllTasks: Alle Aufgaben
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
-  AssignToRole: Assign to role
+  AssignToRole: Der Gruppe zuordnen
   AssignToUser: Assign to user
   Chat: Chat
   Collapse: Einklappen
@@ -1697,7 +1697,6 @@ Labels:
   ToggleMenu: Menü umschalten
   ViewAllResults: Alle Ergebnisse anzeigen
   disabledUserPrefix: (inaktiv)
-nullStepType: Step type
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm

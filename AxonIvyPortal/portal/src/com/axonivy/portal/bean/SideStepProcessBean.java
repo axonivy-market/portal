@@ -158,13 +158,6 @@ public class SideStepProcessBean implements Serializable {
     this.assignedRole = null;
   }
 
-  public boolean isCompletedSideStepProcess() {
-    if (selectedProcess != null) {
-
-    }
-    return false;
-  }
-
   public ITask getTask() {
     return task;
   }

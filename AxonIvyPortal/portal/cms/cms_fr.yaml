@@ -1576,7 +1576,7 @@ Labels:
   AllTasks: Toutes les tâches
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
-  AssignToRole: Assign to role
+  AssignToRole: Assigner à un groupe
   AssignToUser: Assign to user
   Chat: Chat
   Collapse: Réduire
@@ -1694,7 +1694,6 @@ Labels:
   ToggleMenu: Menu à bascule
   ViewAllResults: Voir tous les résultats
   disabledUserPrefix: (désactivé)
-nullStepType: Step type
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm

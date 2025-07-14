@@ -1149,7 +1149,6 @@ Labels:
   TaskUser-Explain: Comma separated list of users
   ViewAllResults: View all results
   disabledUserPrefix: (disabled)
-nullStepType: Step type
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm

@@ -349,7 +349,6 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   }
   
   public NewDashboardPage finishApprovalForLeaveRequest() {
-//    WaitHelper.waitForIFrameAvailable(driver, "iFrame");
     waitForElementDisplayed(By.id("leave-request:approver-comment"), true);
     $(By.id("leave-request:approver-comment")).sendKeys("Approve");
     waitForElementClickableThenClick($(By.id("leave-request:approved-btn")));
@@ -360,7 +359,6 @@ public class TopMenuTaskWidgetPage extends TaskWidgetNewDashBoardPage {
   }
   
   public NewDashboardPage finishSideStepForLeaveRequest() {
-//    WaitHelper.waitForIFrameAvailable(driver, "iFrame");
     waitForElementDisplayed(By.id("side-step-example:requester-step-comment"), true);
     $(By.id("side-step-example:requester-step-comment")).sendKeys("requester approve");
     $(By.id("side-step-example:approver-comment")).sendKeys("side step comment");

@@ -304,7 +304,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 914, "y" : 376 },
+        "at" : { "x" : 920, "y" : 375 },
         "size" : { "width" : 188, "height" : 63 }
       },
       "connect" : [
@@ -610,8 +610,7 @@
             "",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
             "",
-            "caze.customFields().textField(CustomFields.SIDE_STEPS_PROCESS).set(valueString);",
-            "ivy.log.error(valueString);"
+            "caze.customFields().textField(CustomFields.SIDE_STEPS_PROCESS).set(valueString);"
           ]
         }
       },
