@@ -21,7 +21,7 @@ WelcomeWidgetConfiguration = {
       welcomeText = previewDialog.find('.js-greeting-text.language-to-preview').get(0).innerHTML + welcomeText;
     }
     if (previewDialog.find('.js-preview-text').length) {
-      previewDialog.find('.js-preview-text').get(0).innerHTML = welcomeText;
+      previewDialog.find('.js-preview-text').get(0).textContent = welcomeText;
     }
   },
 
