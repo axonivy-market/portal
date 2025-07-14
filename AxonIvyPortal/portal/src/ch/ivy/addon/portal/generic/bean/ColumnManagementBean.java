@@ -276,7 +276,7 @@ public class ColumnManagementBean implements Serializable {
     }
     return metaData;
   }
-  
+
   public void onSelectStandardField() {
     this.fieldDisplayName = getCurrentDisplayName();
   }
@@ -292,7 +292,7 @@ public class ColumnManagementBean implements Serializable {
     }
     this.fieldDisplayNames = result;
   }
-  
+
   private String getCurrentDisplayName() {
     if (widget.getType() == DashboardWidgetType.TASK) {
       return Ivy.cms()
@@ -319,11 +319,11 @@ public class ColumnManagementBean implements Serializable {
   public void updateCurrentLanguage() {
     this.fieldDisplayName = DisplayNameConvertor.updateCurrentValue(fieldDisplayName, fieldDisplayNames);
   }
-  
+
   public void onSelectType() {
     resetValues();
   }
-  
+
   public boolean isDisplayMultiLanguage() {
     return selectedFieldType == DashboardColumnType.STANDARD && selectedField != null;
   }
