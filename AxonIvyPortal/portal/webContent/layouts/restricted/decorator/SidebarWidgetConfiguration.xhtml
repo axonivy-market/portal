@@ -21,12 +21,12 @@
     </div>
     
     <h:panelGroup id="widget-title-group"
-      styleClass="ui-g-4 u-padding-0 ui-fluid">
-      <div class="ui-g-3">
+      styleClass="ui-g-8 u-padding-0 ui-fluid flex align-items-center">
+      <div class="ui-g-3 w-14rem">
         <p:outputLabel for="widget-title"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetTitle')}" />
       </div>
-      <div class="ui-g-9 ui-inputgroup">
+      <div class="ui-g-5 ui-inputgroup">
         <p:inputText id="widget-title"
           styleClass="widget-configuration__input-text"
           value="#{widget.name}" />
@@ -41,8 +41,7 @@
           oncomplete="PF('multiple-languages-dialog').show();" />
         </div>
     </h:panelGroup>  
-    <div class="ui-g-4">
-    </div>
+    
     <div class="ui-g-4">
       <p:commandButton id="show-filter" styleClass="Fright" icon="si si-filter-1" 
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter')}"
@@ -63,8 +62,8 @@
     
     <h:panelGroup id="quick-search-group"
       rendered="#{managedBean.canEnableQuickSearch()}"
-      styleClass="ui-g-8 u-padding-0 ui-fluid">
-      <div class="ui-g-4">
+      styleClass="ui-g-12 u-padding-0 ui-fluid">
+      <div class="ui-g-2 w-14rem">
         <p:outputLabel for="quick-search" styleClass="u-mar-right-5"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/QuickSearch')}" />
         <h:outputText id="quick-search-info" styleClass="si si-information-circle" />
@@ -81,8 +80,8 @@
     
     <h:panelGroup id="widget-info-icon-group"
       rendered="#{managedBean.displayWidgetInfoOption()}"
-      styleClass="ui-g-8 u-padding-0 ui-fluid">
-      <div class="ui-g-4">
+      styleClass="ui-g-12 u-padding-0 ui-fluid">
+      <div class="ui-g-2 w-14rem">
         <p:outputLabel for="widget-info" styleClass="u-mar-right-5"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/widgetInfoIcon')}"/>
       </div>
@@ -97,8 +96,8 @@
     
     <h:panelGroup id="fullscreen-mode-group"
       rendered="#{managedBean.displayFullscreenModeOption()}"
-      styleClass="ui-g-8 u-padding-0 ui-fluid">
-      <div class="ui-g-4">
+      styleClass="ui-g-12 u-padding-0 ui-fluid">
+      <div class="ui-g-2 w-14rem">
         <p:outputLabel for="fullscreen-mode" styleClass="u-mar-right-5"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/fullscreenMode')}"/>
       </div>
@@ -113,8 +112,8 @@
     
     <h:panelGroup id="pinned-toggle-group"
       rendered="#{managedBean.displayPinnedItemToggleOption(widget)}"
-      styleClass="ui-g-8 u-padding-0 ui-fluid">
-      <div class="ui-g-4">
+      styleClass="ui-g-12 u-padding-0 ui-fluid">
+      <div class="ui-g-2 w-14rem">
         <p:outputLabel for="pinned-toggle-option" styleClass="u-mar-right-5"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/ShowPinnedToggle')}"/>
       </div>
