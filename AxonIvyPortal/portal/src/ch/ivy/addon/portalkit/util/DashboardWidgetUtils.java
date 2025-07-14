@@ -296,7 +296,7 @@ public class DashboardWidgetUtils {
 
   private static void simplifyColumnData(AbstractColumn column, Set<ICustomFieldMeta> customFieldMetas,
       List<String> deprecatedFields) {
-    if (column == null) {
+    if (column == null || column.getType() == null) {
       return;
     }
 
