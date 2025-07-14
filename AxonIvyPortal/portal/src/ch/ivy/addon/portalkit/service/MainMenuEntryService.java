@@ -5,7 +5,7 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 
 import ch.ivy.addon.portalkit.configuration.MainMenuEntry;
 import ch.ivy.addon.portalkit.dto.DisplayName;

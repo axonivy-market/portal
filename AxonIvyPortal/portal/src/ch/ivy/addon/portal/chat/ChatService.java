@@ -49,7 +49,6 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.RedeploymentUtils;
-import ch.ivyteam.di.restricted.DiCore;
 import ch.ivyteam.ivy.cluster.restricted.IClusterManager;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
@@ -110,7 +109,7 @@ public class ChatService {
       ChatReferencesContainer.registerIvyExtension();
       if (!IS_STANDARD_MODE) {
         ClusterChatEventListener.register();
-        nodeName = DiCore.getGlobalInjector().getInstance(IClusterManager.class).getLocalClusterNode().getName();
+        nodeName = IClusterManager.instance().getLocalClusterNode().getName();
       }
     }
     Queue<ResponseInfo> responses = getResponses();
