@@ -1,12 +1,12 @@
 .. _static-page:
 
 Static Pages
-===========
+************
 
 .. _static-page-introduction:
 
 Introduction
------------
+============
 
 Static pages in Axon Ivy Portal allow developers to create custom JSF pages that can be integrated into the portal's navigation system. These pages are useful for displaying static content, documentation, help pages, or any custom content that doesn't require dynamic process execution.
 
@@ -15,10 +15,10 @@ Static pages are JSF (JavaServer Faces) pages that use the portal's layout templ
 .. _static-page-creation:
 
 Creating Static Pages
---------------------
+=====================
 
 File Structure
-+++++++++++++
+--------------
 
 Static pages should be placed in the `webContent/view/` directory of your project. The recommended structure is:
 
@@ -36,7 +36,7 @@ Static pages should be placed in the `webContent/view/` directory of your projec
         └── js/
 
 Basic Static Page Template
-+++++++++++++++++++++++++
+==========================
 
 Here's a basic template for creating a static page:
 
@@ -79,7 +79,7 @@ Here's a basic template for creating a static page:
     </html>
 
 Layout Templates
-+++++++++++++++
+----------------
 
 Portal provides several layout templates you can use:
 
@@ -92,12 +92,12 @@ Choose the appropriate template based on your content needs.
 .. _static-page-integration:
 
 Integrating Static Pages into Portal
------------------------------------
+===================================
 
 There are several ways to integrate static pages into the portal navigation system.
 
 Standard Link Format
-+++++++++++++++++++
+--------------------
 
 Static pages can be accessed directly using the standard portal URL format:
 
@@ -110,12 +110,12 @@ Where:
 - `static.xhtml` is your static page file
 
 Main Menu Integration
-++++++++++++++++++++
+=====================
 
 You can add static pages to the main menu using the `Portal.CustomMenuItems` configuration.
 
 Configuration Method
-~~~~~~~~~~~~~~~~~~~
+--------------------
 
 Add the following JSON configuration to the `Portal.CustomMenuItems` variable:
 
@@ -141,7 +141,7 @@ Parameters:
 - **version**: Portal version (optional)
 
 Programmatic Method
-~~~~~~~~~~~~~~~~~~
+-------------------
 
 You can also add static pages programmatically using a callable subprocess:
 
@@ -159,7 +159,7 @@ You can also add static pages programmatically using a callable subprocess:
     in.subMenuItems.add(staticPage);
 
 User Menu Integration
-++++++++++++++++++++
+=====================
 
 Static pages can also be added to the user menu using the `Portal.UserMenu` configuration:
 
@@ -210,10 +210,10 @@ The conversion formula:
 .. _static-page-examples:
 
 Examples
---------
+========
 
 Simple Information Page
-++++++++++++++++++++++
+-----------------------
 
 Create a simple information page with custom styling:
 
@@ -280,10 +280,10 @@ Create a simple information page with custom styling:
 .. _static-page-best-practices:
 
 Best Practices
---------------
+===============
 
 File Organization
-++++++++++++++++
+-----------------
 
 - Place static pages in `webContent/view/` directory
 - Use descriptive file names (e.g., `help-documentation.xhtml`, `user-guide.xhtml`)
@@ -291,7 +291,7 @@ File Organization
 
 
 Content Guidelines
-+++++++++++++++++
+------------------
 
 - Keep content focused and relevant
 - Use consistent styling with the portal theme
@@ -299,7 +299,7 @@ Content Guidelines
 - Include proper navigation breadcrumbs when appropriate
 
 Security Considerations
-++++++++++++++++++++++
+-----------------------
 
 - Validate all user inputs if forms are included
 - Use proper access controls through menu permissions
@@ -309,9 +309,9 @@ Security Considerations
 .. _static-page-references:
 
 References
-----------
+==========
 
-- `Static JSF Pages Documentation <https://developer.axonivy.com/doc/12.0/designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_
+- `Static JSF Pages Documentation <https://developer.axonivy.com//doc/latest/designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_
 - `Portal Menu Configuration <customization-menu.html>`_
 - `User Menu Configuration <usermenu/index.html>`_
 - `PrimeFaces Documentation <https://www.primefaces.org/documentation/>`_
