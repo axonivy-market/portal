@@ -324,10 +324,9 @@ public class StatisticWidgetTest extends BaseTest {
     // Generate preview
     statisticConfigurationPage.clickGeneratePreviewChart();
     statisticConfigurationPage.chartCanvasVisible();
+
     // Test with Case
     statisticConfigurationPage.changeChartTarget("Case");
-    statisticConfigurationPage.changeChartType("Bar");
-    statisticConfigurationPage.changeGroupBy("State");
     // Enable condition-based coloring
     statisticConfigurationPage.toggleConditionBasedColoring();
     
