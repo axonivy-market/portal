@@ -14,12 +14,15 @@ WelcomeWidgetConfiguration = {
 
   updatePreviewText : function(isGreeting) {
     var previewDialog = $('#new-widget-configuration-dialog');
-    var welcomeText = previewDialog.find('.js-welcome-text-input.language-to-preview').get(0).value;
+    var welcomePreview = previewDialog.find('.js-welcome-text-input.language-to-preview').get(0);
+    let welcomeText = welcomePreview ? welcomePreview.value : '';
 
-    if (isGreeting == 'true' || (isGreeting == undefined && $('.js-greeting-text').length != 0)) {
+    if ($('.js-greeting-text.language-to-preview').length) {
       welcomeText = previewDialog.find('.js-greeting-text.language-to-preview').get(0).innerHTML + welcomeText;
     }
-    $('#new-widget-configuration-dialog').find('.js-preview-text').get(0).innerHTML = welcomeText;
+    if (previewDialog.find('.js-preview-text').length) {
+      previewDialog.find('.js-preview-text').get(0).textContent = welcomeText;
+    }
   },
 
   updatePreviewTextPosition : function() {
