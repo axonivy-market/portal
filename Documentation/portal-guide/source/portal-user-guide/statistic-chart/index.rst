@@ -172,6 +172,9 @@ There are two options:
 
 - Specific value: apply color conditions to selected value.
 
+.. note::
+  If there is no data available, the user cannot add a new condition with ``specific`` scope.
+
 Default color
 ~~~~~~~~~~~~~
 
