@@ -1663,7 +1663,7 @@ Enums:
               GREATEROREQUAL:
                 name: Greater than or equal to
               LESS:
-                name: Less
+                name: Less than
               LESSOREQUAL:
                 name: Less than or equal to
 Labels:

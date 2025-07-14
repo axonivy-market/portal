@@ -25,9 +25,9 @@
              <p:selectOneMenu class="threshold-category-data" required="true" styleClass="w-full" rendered="#{managedBean.statistic.conditionBasedColoringScope eq 'SPECIFIC'}"
                label="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/CategoryValue')}"
                disabled="#{!managedBean.isCategoryDataAvailable}"
-               value="#{threshold.categoryValue}">
+               value="#{threshold.targetValue}">
                <f:selectItems value="#{managedBean.categoryData}" 
-                 var="value" itemValue="#{value}" itemLabel="#{managedBean.displayThresholdCategoryValue(value)}"
+                 var="value" itemValue="#{value}" itemLabel="#{managedBean.displayThresholdTargetValue(value)}"
                  rendered="#{managedBean.statistic.conditionBasedColoringScope eq 'SPECIFIC'}"/>
                 <p:ajax event="itemSelect" partialSubmit="true" global="false"/>
                 <f:param name="skipValidator" value="true" />
@@ -35,7 +35,7 @@
                 <f:attribute name="thresholdIndex" value="#{thresholdIndex}" />
              </p:selectOneMenu>
              <p:selectOneMenu class="threshold-category-data" disabled="true" required="true" styleClass="w-full" rendered="#{managedBean.statistic.conditionBasedColoringScope eq 'ALL'}"
-               value="#{threshold.categoryValue}">
+               value="#{threshold.targetValue}">
                <f:selectItem itemValue="All" itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/AllValue')}"/>
              </p:selectOneMenu>
          </h:panelGroup>
