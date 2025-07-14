@@ -1,0 +1,97 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "195F9D8A2A5E73ED",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "com.axonivy.portal.userexamples.CustomWidgetNote.CustomWidgetNoteData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(String,String,String,String,String)",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "note_en", "type" : "String", "desc" : "" },
+            { "name" : "note_de", "type" : "String", "desc" : "" },
+            { "name" : "note_fr", "type" : "String", "desc" : "" },
+            { "name" : "note_es", "type" : "String", "desc" : "" },
+            { "name" : "note_jp", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.noteDE" : "param.note_de",
+            "out.noteEN" : "param.note_en",
+            "out.noteES" : "param.note_es",
+            "out.noteFR" : "param.note_fr",
+            "out.noteJP" : "param.note_jp"
+          }
+        },
+        "guid" : "195F9D8A2AEB23EF"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f6" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 368, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "195F9D8A2B9A6FAE"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "Mapping content",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.sun.org.apache.xalan.internal.xsltc.compiler.Param;",
+            "import ch.ivyteam.ivy.workflow.internal.caze.Case;",
+            "import java.util.Locale;",
+            "Locale sessionLocale = ivy.session.contentLocale;",
+            "",
+            "if (sessionLocale == Locale.ENGLISH){",
+            "  in.note = in.noteEN;",
+            "} else if (sessionLocale == Locale.GERMAN){",
+            "  in.note = in.noteDE;",
+            "} else if (sessionLocale == Locale.FRENCH){",
+            "  in.note = in.noteFR;",
+            "} else if (sessionLocale == Locale.forLanguageTag(\"es\")){",
+            "  in.note = in.noteES;",
+            "} else if (sessionLocale == Locale.forLanguageTag(\"ja\")){",
+            "  in.note = in.noteJP;",
+            "}"
+          ]
+        },
+        "sudo" : true
+      },
+      "visual" : {
+        "at" : { "x" : 240, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f7", "to" : "f1", "color" : "default" }
+      ]
+    } ]
+}
