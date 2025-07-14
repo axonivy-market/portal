@@ -1563,7 +1563,7 @@ Labels:
   AllTasks: 'TODO: All Tasks'
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
-  AssignToRole: Assign to role
+  AssignToRole: 'TODO: Assign to group'
   AssignToUser: Assign to user
   Chat: TODO Chat
   Collapse: TODO 折りたたむ
@@ -1681,7 +1681,6 @@ Labels:
   ToggleMenu: メニューを切り替える
   ViewAllResults: すべての結果を表示
   disabledUserPrefix: （無効）
-nullStepType: Step type
 patterns:
   datePattern: dd.MM.yyyy
   dateTimePattern: dd.MM.yyyy HH:mm

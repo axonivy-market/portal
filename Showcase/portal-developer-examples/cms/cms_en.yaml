@@ -136,15 +136,10 @@ Dialogs:
                 Reject: Reject
               LeaveRequestBusinessDetailsPage:
                 LeaveRequest: Leave Request Business Details
-                LeaveRequest1: Leave request side step business detail
-                SideStepComment: Side step comment 1
-                SideStepComment1: Side step comment 2
-                SideStepComment2: Side step comment 3
+                SideStepComment: Side step comment
               LeaveRequestSummary:
                 Finish: Finish
               SideStepExample:
-                SideStepExample: Side Step Example
-              SideStepExample3:
                 SideStepExample: Side Step Example
               SideStepResultExample:
                 Answer: Answer

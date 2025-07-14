@@ -3,6 +3,8 @@ package com.axonivy.portal.components.dto;
 import java.io.Serializable;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
@@ -121,10 +123,10 @@ public class SideStepProcessDTO implements Serializable {
     }
 
     private void validate() {
-      if (signal == null || signal.trim().isEmpty()) {
+      if (StringUtils.isBlank(signal)) {
         throw new IllegalArgumentException("Signal must be provided");
       }
-      if (taskUuid == null && caseUuid == null) {
+      if (StringUtils.isBlank(taskUuid) && StringUtils.isBlank(caseUuid)) {
         throw new IllegalArgumentException("Task uuid or Case uuid must be provided");
       }
     }
