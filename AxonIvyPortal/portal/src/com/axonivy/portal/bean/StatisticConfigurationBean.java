@@ -91,7 +91,9 @@ import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldMeta;
 @ManagedBean
 public class StatisticConfigurationBean implements Serializable, IMultiLanguage {
 
+  private static final String ALL_VALUES = "All values";
   private static final String DEFAULT_BACKGROUND_COLOR = "#8dc261";
+  private static final String DEFAULT_THRESHOLD_BACKGROUND_COLOR = "#6299f7";
   private static final long serialVersionUID = 1L;
   private static final int MIN_REFRESH_INTERVAL_IN_SECONDS = 60;
   private static final int MAX_REFRESH_INTERVAL_IN_SECONDS = 1000000;
@@ -117,7 +119,6 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   private AggregationInterval aggregationInterval;
   private List<String> categoryData;
   private boolean isCategoryDataAvailable;
-  private List<ConditionBasedColoringScope> conditionBasedColoringScopes;
 
   private StatisticNameMultilanguageService nameMultilanguageService;
   private StatisticDescriptionMultilanguageService descriptionMultilanguageService;
@@ -196,7 +197,6 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     }
     
     // Initialize condition-based coloring properties from existing statistic
-
     if (statistic.getDefaultBackgroundColor() == null) {
       statistic.setDefaultBackgroundColor(DEFAULT_BACKGROUND_COLOR);
     }
@@ -227,11 +227,12 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
       fetchCategoryData();
       if (CollectionUtils.isEmpty(categoryData)) {
         updateIsCategoryDataAvailable();
-        List<String> categoryValuesFromThresholds = statistic.getThresholdStatisticCharts().stream().map(ThresholdStatisticChart::getCategoryValue).filter(Objects::nonNull).collect(Collectors.toList());
-        if (CollectionUtils.isNotEmpty(categoryValuesFromThresholds)) {
-          setCategoryData(categoryValuesFromThresholds);
+        List<String> targetValuesFromThresholds = statistic.getThresholdStatisticCharts().stream().map(ThresholdStatisticChart::getTargetValue).filter(Objects::nonNull).collect(Collectors.toList());
+        if (CollectionUtils.isNotEmpty(targetValuesFromThresholds)) {
+          setCategoryData(targetValuesFromThresholds);
         } else {
           setCategoryData(new ArrayList<String>());
+          statistic.setThresholdStatisticCharts(new ArrayList<>());
         }
       }
     }
@@ -255,6 +256,9 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     backgroundColors = new ArrayList<>(DEFAULT_COLORS);
     refreshIntervalEnabled = false;
     statistic.setConditionBasedColoringEnabled(false);
+  }
+
+  private void initConditionBasedColoringData() {
     statistic.setDefaultBackgroundColor(DEFAULT_BACKGROUND_COLOR);
     statistic.setConditionBasedColoringScope(ConditionBasedColoringScope.ALL);
     statistic.setThresholdStatisticCharts(new ArrayList<>());
@@ -296,12 +300,6 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     }
   }
   
-  private void initThresholds() {
-    if (CollectionUtils.isEmpty(statistic.getThresholdStatisticCharts())) {
-      return;
-    }
-  }
-  
   private boolean isFilterAvaliable(DashboardFilter  filter) {
     return Optional.ofNullable(filter).map(DashboardFilter ::getField).isPresent() && filterFields.stream()
         .filter(field -> filter.getField().contentEquals(filter.getField())).findFirst().isPresent();
@@ -335,7 +333,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     }
     handleCustomFieldAggregation();
     handleAggregateWithDateTimeInterval();
-
+    handleConditionBasedColoring();
     if (isCustomFieldsSelected()) {
       statistic.getStatisticAggregation().setField(statistic.getStatisticAggregation().getCustomFieldValue());
     }
@@ -353,6 +351,15 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     }
     saveStatisticJson();
     backToDashboardDetailsPageIfPossible();
+  }
+  
+  private void handleConditionBasedColoring() {
+    if (statistic.getConditionBasedColoringEnabled()
+        && statistic.getConditionBasedColoringScope().equals(ConditionBasedColoringScope.ALL)) {
+      for (ThresholdStatisticChart item : statistic.getThresholdStatisticCharts()) {
+        item.setTargetValue(ALL_VALUES);
+      }
+    }
   }
 
   public boolean isOutdatedChart(Statistic chart) {
@@ -517,9 +524,15 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     for (int i = 0; i < buckets.length(); i++) {
         keys.add(buckets.getJSONObject(i).getString("key"));
     }
-    List<String> categoryValues = keys.stream().filter(item -> !StringUtils.isBlank(item)).collect(Collectors.toList());
-    setCategoryData(categoryValues);
+    List<String> targetValues = keys.stream().filter(item -> !StringUtils.isBlank(item)).collect(Collectors.toList());
+    setCategoryData(targetValues);
     updateIsCategoryDataAvailable();
+  }
+  
+  public void onToggleConditionBasedColoring() {
+    if (statistic.getConditionBasedColoringEnabled()) {
+      initConditionBasedColoringData();
+    }
   }
   
   private void updateIsCategoryDataAvailable() {
@@ -532,10 +545,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
   
   public void resetConditionBasedColoring() {
     if (statistic.getConditionBasedColoringEnabled()) {
-      statistic.setDefaultBackgroundColor(DEFAULT_BACKGROUND_COLOR);
       statistic.setConditionBasedColoringEnabled(false);
-      statistic.setThresholdStatisticCharts(new ArrayList<>());
-      statistic.setConditionBasedColoringScope(ConditionBasedColoringScope.ALL);
     }
   }
 
@@ -877,7 +887,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     }
   }
   
-  public String displayThresholdCategoryValue(String value) {
+  public String displayThresholdTargetValue(String value) {
     if (isDateTimeSelected) {
       DateTimeGlobalSettingService service = DateTimeGlobalSettingService.getInstance();
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern(service.getDatePattern());
@@ -933,7 +943,7 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     }
     
     ThresholdStatisticChart newThreshold = new ThresholdStatisticChart();
-    newThreshold.setBackgroundColor("#6299f7");
+    newThreshold.setBackgroundColor(DEFAULT_THRESHOLD_BACKGROUND_COLOR);
     statistic.getThresholdStatisticCharts().add(newThreshold);
     }
   

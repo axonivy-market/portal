@@ -12,7 +12,7 @@ public class ThresholdStatisticChart implements Serializable {
   private OperatorFieldStatistic operator;
   private Integer value;
   private String backgroundColor;
-  private String categoryValue;
+  private String targetValue;
 
   public OperatorFieldStatistic getOperator() {
     return operator;
@@ -38,12 +38,12 @@ public class ThresholdStatisticChart implements Serializable {
     this.backgroundColor = backgroundColor;
   }
 
-  public String getCategoryValue() {
-    return categoryValue;
+  public String getTargetValue() {
+    return targetValue;
   }
 
-  public void setCategoryValue(String categoryValue) {
-    this.categoryValue = categoryValue;
+  public void setTargetValue(String targetValue) {
+    this.targetValue = targetValue;
   }
 }
 

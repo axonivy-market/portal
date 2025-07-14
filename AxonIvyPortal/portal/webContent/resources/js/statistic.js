@@ -355,7 +355,7 @@ class ClientChart {
       }
       if (this.data.chartConfig.conditionBasedColoringScope === 'all') {
         return this.getBackgroundColorsWithAllScope(chartConfig, data);
-      } else if (!this.data.chartConfig.conditionBasedColoringScope === 'specific') {
+      } else if (this.data.chartConfig.conditionBasedColoringScope === 'specific') {
         return this.getBackgroundColorsWithSpecificScope(chartConfig, data);
       }
     }
@@ -367,19 +367,19 @@ class ClientChart {
     const { defaultBackgroundColor, thresholdStatisticCharts } = chartConfig;
 
     const generatedCompareFunctions = thresholdStatisticCharts.map(rule => {
-      const { operator, value, backgroundColor, categoryValue } = rule;
+      const { operator, value, backgroundColor, targetValue } = rule;
       
       switch (operator) {
         case OPERATOR_FIELD_STATISTIC.GREATER:
-          return (count, key) => this.compareValue(key, categoryValue) && count > value ? backgroundColor : null;
+          return (count, key) => this.compareValue(key, targetValue) && count > value ? backgroundColor : null;
         case OPERATOR_FIELD_STATISTIC.GREATEROREQUAL:
-          return (count, key) => this.compareValue(key, categoryValue) && count >= value ? backgroundColor : null;
+          return (count, key) => this.compareValue(key, targetValue) && count >= value ? backgroundColor : null;
         case OPERATOR_FIELD_STATISTIC.LESS:
-          return (count, key) => this.compareValue(key, categoryValue) && count < value ? backgroundColor : null;
+          return (count, key) => this.compareValue(key, targetValue) && count < value ? backgroundColor : null;
         case OPERATOR_FIELD_STATISTIC.LESSOREQUAL:
-          return (count, key) => this.compareValue(key, categoryValue) && count <= value ? backgroundColor : null;
+          return (count, key) => this.compareValue(key, targetValue) && count <= value ? backgroundColor : null;
         case OPERATOR_FIELD_STATISTIC.EQUAL:
-          return (count, key) => this.compareValue(key, categoryValue) && count === value ? backgroundColor : null;
+          return (count, key) => this.compareValue(key, targetValue) && count === value ? backgroundColor : null;
         default:
           return () => null;
       }
@@ -431,12 +431,12 @@ getBackgroundColorsWithAllScope(chartConfig, data) {
   });
 } 
 
-  compareValue(value, categoryValue) {
-    if (isNumeric(categoryValue)) {
-      const num = Number(categoryValue);
+  compareValue(value, targetValue) {
+    if (isNumeric(targetValue)) {
+      const num = Number(targetValue);
       return value == num;
     }
-    return value === categoryValue;
+    return value === targetValue;
   }
 
   updateClientChart() { }
