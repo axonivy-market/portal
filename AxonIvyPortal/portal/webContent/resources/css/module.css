@@ -6176,3 +6176,7 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
   background: var(--dashboard-light-dark-button-background-color);
   border-color: var(--dashboard-light-dark-button-background-color);
 }
+
+body .ui-datatable thead th.ui-sortable-column.ui-state-focus {
+  box-shadow: none;
+}
