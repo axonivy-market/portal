@@ -221,7 +221,7 @@
           "parentConnector" : "f211"
         } ],
       "visual" : {
-        "at" : { "x" : 200, "y" : 1440 }
+        "at" : { "x" : 200, "y" : 1360 }
       },
       "connect" : [
         { "id" : "f211", "to" : "f71" }
@@ -823,7 +823,7 @@
           "parentConnector" : "f210"
         } ],
       "visual" : {
-        "at" : { "x" : 200, "y" : 1200 }
+        "at" : { "x" : 200, "y" : 1120 }
       },
       "connect" : [
         { "id" : "f210", "to" : "f65" }
@@ -1205,7 +1205,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1200 },
+        "at" : { "x" : 96, "y" : 1120 },
         "labelOffset" : { "x" : -23, "y" : 41 }
       },
       "connect" : [
@@ -1224,7 +1224,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 418, "y" : 1199 },
+        "at" : { "x" : 418, "y" : 1119 },
         "size" : { "width" : 260, "height" : 58 }
       }
     }, {
@@ -1241,7 +1241,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 272, "y" : 1279 },
+        "at" : { "x" : 272, "y" : 1199 },
         "size" : { "width" : 260, "height" : 59 }
       }
     }, {
@@ -1265,7 +1265,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1280 },
+        "at" : { "x" : 96, "y" : 1200 },
         "labelOffset" : { "x" : -31, "y" : 41 }
       },
       "connect" : [
@@ -1279,7 +1279,7 @@
         "dialog" : "ch.ivy.addon.portal.generic.Processes:start()"
       },
       "visual" : {
-        "at" : { "x" : 342, "y" : 1440 }
+        "at" : { "x" : 342, "y" : 1360 }
       }
     }, {
       "id" : "f72",
@@ -1292,7 +1292,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1520 },
+        "at" : { "x" : 96, "y" : 1440 },
         "labelOffset" : { "x" : -15, "y" : 33 }
       },
       "connect" : [
@@ -1309,7 +1309,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1600 },
+        "at" : { "x" : 96, "y" : 1520 },
         "labelOffset" : { "x" : -15, "y" : 33 }
       },
       "connect" : [
@@ -1326,7 +1326,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1440 },
+        "at" : { "x" : 96, "y" : 1360 },
         "labelOffset" : { "x" : -55, "y" : 41 }
       },
       "connect" : [
@@ -1345,7 +1345,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 198, "y" : 1520 }
+        "at" : { "x" : 198, "y" : 1440 }
       }
     }, {
       "id" : "f75",
@@ -1360,7 +1360,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 198, "y" : 1600 }
+        "at" : { "x" : 198, "y" : 1520 }
       }
     }, {
       "id" : "f80",
@@ -1372,7 +1372,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 640, "y" : 1760 },
+        "at" : { "x" : 760, "y" : 1760 },
         "size" : { "width" : 128 }
       }
     }, {
@@ -1384,11 +1384,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 448, "y" : 1680 }
+        "at" : { "x" : 568, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f87", "to" : "f84" },
-        { "id" : "f90", "to" : "f80", "via" : [ { "x" : 448, "y" : 1760 } ] }
+        { "id" : "f90", "to" : "f80", "via" : [ { "x" : 568, "y" : 1760 } ] }
       ]
     }, {
       "id" : "f82",
@@ -1415,7 +1415,7 @@
         "labelOffset" : { "x" : -31, "y" : 33 }
       },
       "connect" : [
-        { "id" : "f89", "to" : "f83" }
+        { "id" : "f89", "to" : "f297" }
       ]
     }, {
       "id" : "f83",
@@ -1436,7 +1436,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 200, "y" : 1680 }
+        "at" : { "x" : 320, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f88", "to" : "f86" }
@@ -1455,7 +1455,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 640, "y" : 1680 },
+        "at" : { "x" : 760, "y" : 1680 },
         "size" : { "width" : 128 }
       }
     }, {
@@ -1483,7 +1483,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 344, "y" : 1680 }
+        "at" : { "x" : 464, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f91", "to" : "f81" }
@@ -2859,7 +2859,7 @@
         "signature" : "DefaultProcessStartListPageInTeams"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 1360 },
+        "at" : { "x" : 96, "y" : 1280 },
         "labelOffset" : { "x" : -79, "y" : 41 }
       },
       "connect" : [
@@ -2881,7 +2881,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 198, "y" : 1360 }
+        "at" : { "x" : 198, "y" : 1280 }
       },
       "connect" : [
         { "id" : "f197", "to" : "S12" }
@@ -4375,5 +4375,38 @@
       "connect" : [
         { "id" : "f296", "to" : "f224", "color" : "default" }
       ]
+    }, {
+      "id" : "f297",
+      "type" : "Alternative",
+      "name" : "Is static page?",
+      "config" : {
+        "conditions" : {
+          "f300" : "in.callbackUrl != null && in.callbackUrl.contains(\"faces/view\")",
+          "f298" : ""
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 192, "y" : 1680 }
+      },
+      "connect" : [
+        { "id" : "f298", "to" : "f83", "color" : "default" },
+        { "id" : "f300", "to" : "f299", "via" : [ { "x" : 192, "y" : 1600 } ] }
+      ]
+    }, {
+      "id" : "f299",
+      "type" : "DialogCall",
+      "name" : "Static Page Template IFrame",
+      "config" : {
+        "dialog" : "ch.ivy.addon.portal.generic.iframe.StaticPageTemplateIFrame:start(String)",
+        "call" : {
+          "map" : {
+            "param.url" : "in.callbackUrl"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 760, "y" : 1601 },
+        "size" : { "width" : 128, "height" : 62 }
+      }
     } ]
 }

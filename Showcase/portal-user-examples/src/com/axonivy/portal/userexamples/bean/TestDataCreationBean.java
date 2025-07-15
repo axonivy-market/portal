@@ -38,8 +38,6 @@ public class TestDataCreationBean extends AbstractProcessStartEventBean {
       URI uri = URI.create(start1.getLink().getAbsolute());
       HttpURLConnection conncection = (HttpURLConnection) uri.toURL().openConnection();
       conncection.setRequestMethod("GET");
-      int responseCode = conncection.getResponseCode();
-      Ivy.log().info(responseCode);
     }
 
     IWebStartable start2 = Ivy.wf().findStartable(IApplication.current().getName()
@@ -50,8 +48,6 @@ public class TestDataCreationBean extends AbstractProcessStartEventBean {
       URI uri = URI.create(start2.getLink().getAbsolute());
       HttpURLConnection conncection = (HttpURLConnection) uri.toURL().openConnection();
       conncection.setRequestMethod("GET");
-      int responseCode = conncection.getResponseCode();
-      Ivy.log().info(responseCode);
     }
   }
 }
