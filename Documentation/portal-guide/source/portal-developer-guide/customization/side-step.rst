@@ -103,5 +103,5 @@ How to Use and Set Up
 
 .. |signal-process| image:: images/side-step/signal-process.png
 .. |side-step-sample-process| image:: images/side-step/side-step-sample-process.png
-.. |side-step-menu| image:: images/side-step/side-step-menu.png
-.. |side-step-config| image:: images/side-step/side-step-config.png    
+.. |side-step-menu| image:: ../../screenshots/side-step/side-step-menu.png
+.. |side-step-config| image:: ../../screenshots/side-step/side-step-config.png
