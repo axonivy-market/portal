@@ -430,17 +430,17 @@ function isPressedSpecialKeys(event) {
   const shiftPressed = event.shiftKey;
 
   const ctrlKeyActions = ['z', 'y', 'x', 'c', 'v', 'a'];
-  const arrowKeys = [37, 38, 39, 40]; // Arrow Left, Arrow Up, Arrow Right, Arrow Down
+  const navigatorKeys = [37, 38, 39, 40, 9]; // Arrow Left, Arrow Up, Arrow Right, Arrow Down, Tab
 
   if (ctrlPressed && ctrlKeyActions.includes(event.key.toLowerCase())) {
       return true;
   }
 
-  if (shiftPressed && arrowKeys.includes(event.keyCode)) {
+  if (shiftPressed && navigatorKeys.includes(event.keyCode)) {
       return true;
   }
 
-  if (arrowKeys.includes(event.keyCode)) {
+  if (navigatorKeys.includes(event.keyCode)) {
     return true;
   }
 
