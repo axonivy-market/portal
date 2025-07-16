@@ -882,3 +882,11 @@ function focusElementWithId(elementId) {
     var element = document.querySelector('[id$="' + elementId + '"]');
     if (element) { element.focus(); }
 }
+
+function addMissingAttr(query, attrName, attrValue) {
+  $(query).each((index, btn) => {
+    if ($(btn).attr(attrName) === undefined) {
+      $(btn).attr(attrName, attrValue);
+    }
+  });
+}
