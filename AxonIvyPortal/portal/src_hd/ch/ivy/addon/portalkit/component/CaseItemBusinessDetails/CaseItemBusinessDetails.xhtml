@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+  xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="case" value="#{cc.attrs.case}" />
+  <f:event listener="#{logic.initData(case)}" type="preRenderComponent" />
+  <ui:fragment rendered="#{data.hasPermission and not empty data.url}">
+    <iframe name="case-item-business-details-iframe"
+      class="w-full h-full border-none block" src="#{data.url}" />
+  </ui:fragment>
+
+  <h:panelGroup id="case-item-additional-details" layout="block"
+    rendered="#{data.hasPermission and empty data.url}">
+    <div class="case-detail-section-title ui-g-12">
+      <div class="ui-g-3 u-truncate-text u-padding-0 task-details-panel-title"
+        role="heading" aria-level="1">
+        <i class="si si-checklist-pen" />
+        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/businessDetailsTitle')}
+      </div>
+    </div>
+    <div class="Separator" />
+    <p:dataTable id="additional-case-detail-table"
+      value="#{case.customFields().all()}" var="item"
+      emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+      reflow="true" lazy="false">
+      <p:column
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}">
+        <h:outputText id="name" value="#{item.name()}" />
+      </p:column>
+      <p:column
+        headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}">
+        <h:outputText id="number-value" value="#{item.getOrNull()}"
+          rendered="#{item.type() eq 'NUMBER'}">
+          <f:convertNumber type="number" integerOnly="true"
+            pattern="#,##0.00" />
+        </h:outputText>
+        <h:outputText id="timestamp-value" value="#{item.getOrNull()}"
+          rendered="#{item.type() eq 'TIMESTAMP'}">
+          <f:convertDateTime locale="#{localeBean.locale}"
+            pattern="#{dateTimePatternBean.dateTimestampPattern}" />
+        </h:outputText>
+        <h:outputText id="value" value="#{item.getOrNull()}"
+          rendered="#{item.type() ne 'TIMESTAMP' and item.type() ne 'NUMBER'}" />
+      </p:column>
+    </p:dataTable>
+  </h:panelGroup>
+</cc:implementation>
+</html>

@@ -84,7 +84,7 @@
           gs-id="#{widget.id}"
           gs-no-resize="#{caseDetailsBean.readOnlyMode}"
           gs-no-move="#{caseDetailsBean.readOnlyMode}"
-          jsf:rendered="#{not (widget.type eq 'technicalCase' and not caseDetailsBean.hasTechnicalCases(case))}">
+          jsf:rendered="#{not ((widget.type eq 'technicalCase' and not caseDetailsBean.hasTechnicalCases(case)) or (widget.type eq 'businessDetails' and not caseActionBean.showCaseDetails))}">
           <!-- General & description box -->
           <h:panelGroup id="case-detail-general-container" layout="block"
             rendered="#{widget.type eq 'information'}"
@@ -116,7 +116,14 @@
             rendered="#{widget.type eq 'document' and !caseDetailsBean.hideCaseDocument}">
             <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}" componentToUpdate="#{historyWidgetComponent}"/>
           </h:panelGroup>
-  
+          
+          <!-- Business details -->
+          <h:panelGroup id="case-details-business-details-card" layout="block"
+            styleClass="card grid-stack-item-content"
+            rendered="#{widget.type eq 'businessDetails'}">
+            <ic:ch.ivy.addon.portalkit.component.CaseItemBusinessDetails id="business-details-widget" case="#{case}"/>
+          </h:panelGroup>
+
           <!-- Related cases box -->
           <h:panelGroup id="case-details-technical-case-card"
             styleClass="card case-related-task-component grid-stack-item-content"
