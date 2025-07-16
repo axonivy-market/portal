@@ -61,12 +61,12 @@ public class UserSettingService {
     return Ivy.session().getSessionUser();
   }
   
-  public boolean getIsShortcutsEnabled() {
-    return Boolean.parseBoolean(getUserProperty(UserProperty.SHORTCUTS_ENABLE));
+  public boolean getIsShortcutEnabled() {
+    return Boolean.parseBoolean(getUserProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE));
   }
   
-  public void saveIsShortcutsEnabled(boolean value) {
+  public void saveIsShortcutEnabled(boolean value) {
     IUser user = Ivy.session().getSessionUser();
-    user.setProperty(UserProperty.SHORTCUTS_ENABLE, Boolean.toString(value));
+    user.setProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE, Boolean.toString(value));
   }
 }

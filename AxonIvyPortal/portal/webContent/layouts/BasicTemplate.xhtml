@@ -85,7 +85,7 @@
         
       <c:set var="showGlobalSearch" value="#{userMenuBean.isShowGlobalSearch}" />
       <c:set var="showQuickGlobalSearch" value="#{userMenuBean.isShowQuickGlobalSearch}" />
-      <c:set var="isShortcutsEnabled" value="#{userProfileBean.isShortcutsEnabled}" />
+      <c:set var="isShortcutEnabled" value="#{userMenuBean.isShortcutEnabled}" />
 
      <div id="portal-template-header" class="js-portal-template-header #{showMainArea eq true ? '' : 'u-invisibility'}">
         <ic:ch.ivy.addon.portalkit.component.PageHeader />
@@ -174,7 +174,7 @@
         
         // Initialize shortcuts state from server
         if (typeof initShortcutsFromServer === 'function') {
-          initShortcutsFromServer(#{isShortcutsEnabled});
+          initShortcutsFromServer(#{isShortcutEnabled});
         }
       });
     </script>
@@ -187,6 +187,7 @@
       }, 1);
       Portal.updateLayoutContent();
     });
+      initShortcutsFromServer(#{isShortcutEnabled});
   </script>
 
   <p:growl id="portal-global-growl" widgetVar="portal-global-growl" for="portal-global-growl-message" escape="false" showDetail="true" skipDetailIfEqualsSummary="true"/>

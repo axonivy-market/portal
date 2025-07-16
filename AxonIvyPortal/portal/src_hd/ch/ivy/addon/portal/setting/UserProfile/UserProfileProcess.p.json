@@ -585,7 +585,7 @@
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
             "ivy.log.info(in.isShortcutsEnabled);",
-            "UserSettingService.getInstance().saveIsShortcutsEnabled(in.isShortcutsEnabled);"
+            "UserSettingService.getInstance().saveIsShortcutEnabled(in.isShortcutsEnabled);"
           ]
         }
       },
@@ -606,7 +606,7 @@
           },
           "code" : [
             "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
-            "boolean isShortcutsEnable = UserSettingService.getInstance().getIsShortcutsEnabled();",
+            "boolean isShortcutsEnable = UserSettingService.getInstance().getIsShortcutEnabled();",
             "ivy.log.info(isShortcutsEnable);",
             "in.isShortcutsEnabled = isShortcutsEnable;"
           ]

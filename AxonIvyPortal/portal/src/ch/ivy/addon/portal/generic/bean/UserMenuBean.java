@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
+import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.dto.UserMenu;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.jsf.Attrs;
@@ -38,6 +39,7 @@ import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.EngineUriResolver;
 import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -53,6 +55,7 @@ public class UserMenuBean implements Serializable {
   private String loggedInUser;
   private boolean isShowGlobalSearch;
   private boolean isShowQuickGlobalSearch;
+  private boolean isShortcutEnabled;
   private String baseUrlVariable;
   private String appleStoreUrlVariable;
   private String googlePlayUrlVariable;
@@ -398,4 +401,19 @@ public class UserMenuBean implements Serializable {
     }
     return caseIdToProcessViewerDisplayed.get(caze.getId());
   }
+
+  public boolean getIsShortcutEnabled() {
+    IUser user = Ivy.session().getSessionUser();
+    String isEnabled = user.getProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE);
+    if (StringUtils.isBlank(isEnabled)) {
+      user.removeProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE);
+    }
+    setIsShortcutEnabled(Boolean.parseBoolean(isEnabled));
+    return isShortcutEnabled;
+  }
+
+  public void setIsShortcutEnabled(boolean isShortcutsEnabled) {
+    this.isShortcutEnabled = isShortcutsEnabled;
+  }
+
 }
