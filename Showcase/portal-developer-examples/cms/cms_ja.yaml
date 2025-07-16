@@ -151,16 +151,6 @@ Processes:
       #概要
       申請者は申請の概要を受け取ります
       結果を確認します
-  LeaveRequestWithBusinessDetails:
-    Cases:
-      LeaveRequest:
-        description: カスタマイズされた業務詳細ページ付きの休暇申請。この例ではデモ用にいくつかのカスタムフィールドのみを含んでいます。
-        name: カスタマイズされた業務詳細ページ付きの休暇申請
-    Tasks:
-      LeaveRequest:
-        name: カスタマイズされたケース詳細付きの休暇申請を完了する
-    description: この例では、カスタマイズされた業務ケース詳細ページの使い方を示します。
-    name: カスタマイズされた業務詳細ページ付き休暇申請
   MoreInformation:
     customProcessInfo: これはカスタムプロセス情報です
     description: カスタマイズされたプロセス情報ページを表示するには、詳細情報　をクリックしてください。

@@ -163,16 +163,6 @@ Processes:
       #Resumen
       Solicitante obtendrá un resumen
       Tomar nota del resultado
-  LeaveRequestWithBusinessDetails:
-    Cases:
-      LeaveRequest:
-        description: Solicitud de permiso con página de detalles comerciales personalizada. Este caso solo incluye algunos campos personalizados a modo de demostración.
-        name: Solicitud de permiso con página de detalles comerciales personalizada
-    Tasks:
-      LeaveRequest:
-        name: Finalizar la solicitud de permiso con detalles de caso personalizados
-    description: Este ejemplo muestra cómo utilizar una página de detalles de casos empresariales personalizada.
-    name: Solicitud de permiso con página de detalles comerciales personalizada
   MoreInformation:
     description: Haga clic en Más información para ver la página de información personalizada del proceso.
   Payment:

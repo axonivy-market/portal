@@ -163,16 +163,6 @@ Processes:
       #Résumé
       Le demandeur recevra un résumé de la demande
       Connaître le résultat
-  LeaveRequestWithBusinessDetails:
-    Cases:
-      LeaveRequest:
-        description: Demande de congé avec page de détails commerciaux personnalisée. Ce cas inclut seulement quelques champs personnalisés à titre de démonstration.
-        name: Demande de congé avec page de détails commerciaux personnalisée
-    Tasks:
-      LeaveRequest:
-        name: Terminer la demande de congé avec des détails de dossier personnalisés
-    description: Cet exemple montre comment utiliser une page de détails de cas d’entreprise personnalisée.
-    name: Demande de congé avec page de détails commerciaux personnalisée
   MoreInformation:
     description: Cliquez sur Plus d'informations pour afficher la page d'information personnalisée sur le processus.
   Payment:

@@ -163,16 +163,6 @@ Processes:
       #Summary
       Requester will get a summary of the request
       Acknoledge the result
-  LeaveRequestWithBusinessDetails:
-    Cases:
-      LeaveRequest:
-        description: Leave request with customized business details page. This case only includes some custom fields for demonstration.
-        name: Leave request with customized business details page
-    Tasks:
-      LeaveRequest:
-        name: Finish leave request with customized case details
-    description: This example shows how to use a customized business case detail page.
-    name: Leave request with customized business details page
   MoreInformation:
     customProcessInfo: |-
       <h3><span class="mw-headline" id="Hello_world_example">Hello world example</span></h3>
