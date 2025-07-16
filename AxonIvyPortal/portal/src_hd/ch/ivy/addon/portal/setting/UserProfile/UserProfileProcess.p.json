@@ -117,7 +117,7 @@
             "at" : { "x" : 3, "y" : 160 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
-          "parentConnector" : "f74",
+          "parentConnector" : "f78",
           "connect" : [
             { "id" : "S60-f0", "to" : "S60-f11" }
           ]
@@ -161,7 +161,7 @@
             "at" : { "x" : 584, "y" : 160 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
-          "parentConnector" : "f79"
+          "parentConnector" : "f77"
         }, {
           "id" : "S40-f4",
           "type" : "Script",
@@ -192,7 +192,7 @@
         "at" : { "x" : 416, "y" : 144 }
       },
       "connect" : [
-        { "id" : "f79", "to" : "S73" }
+        { "id" : "f77", "to" : "S72" }
       ]
     }, {
       "id" : "S30",
@@ -625,41 +625,7 @@
       "id" : "S72",
       "type" : "EmbeddedProcess",
       "elements" : [ {
-          "id" : "S72-g0",
-          "type" : "EmbeddedStart",
-          "name" : "in",
-          "visual" : {
-            "at" : { "x" : 472, "y" : 144 }
-          }
-        }, {
-          "id" : "S72-g1",
-          "type" : "EmbeddedEnd",
-          "name" : "out",
-          "visual" : {
-            "at" : { "x" : 544, "y" : 256 }
-          },
-          "parentConnector" : "f77"
-        } ],
-      "visual" : {
-        "at" : { "x" : 608, "y" : 144 }
-      },
-      "connect" : [
-        { "id" : "f77", "to" : "S60" }
-      ]
-    }, {
-      "id" : "S73",
-      "type" : "EmbeddedProcess",
-      "name" : "Init Accessibility Setting",
-      "elements" : [ {
-          "id" : "S73-g0",
-          "type" : "EmbeddedEnd",
-          "name" : "out",
-          "visual" : {
-            "at" : { "x" : 544, "y" : 256 }
-          },
-          "parentConnector" : "f78"
-        }, {
-          "id" : "S73-f1",
+          "id" : "S72-f0",
           "type" : "Script",
           "name" : "Init IsShortcutEnabled",
           "config" : {
@@ -672,25 +638,33 @@
             }
           },
           "visual" : {
-            "at" : { "x" : 328, "y" : 256 }
+            "at" : { "x" : 304, "y" : 256 }
           },
           "connect" : [
-            { "id" : "S73-f3", "to" : "S73-g0" }
+            { "id" : "S72-f3", "to" : "S72-g1" }
           ]
         }, {
-          "id" : "S73-g1",
+          "id" : "S72-g0",
           "type" : "EmbeddedStart",
           "name" : "in",
           "visual" : {
-            "at" : { "x" : 160, "y" : 256 }
+            "at" : { "x" : 64, "y" : 256 }
           },
-          "parentConnector" : "f79",
+          "parentConnector" : "f77",
           "connect" : [
-            { "id" : "S73-f2", "to" : "S73-f1" }
+            { "id" : "S72-f2", "to" : "S72-f0" }
           ]
+        }, {
+          "id" : "S72-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out",
+          "visual" : {
+            "at" : { "x" : 544, "y" : 256 }
+          },
+          "parentConnector" : "f78"
         } ],
       "visual" : {
-        "at" : { "x" : 608, "y" : 144 }
+        "at" : { "x" : 616, "y" : 144 }
       },
       "connect" : [
         { "id" : "f78", "to" : "S60" }
