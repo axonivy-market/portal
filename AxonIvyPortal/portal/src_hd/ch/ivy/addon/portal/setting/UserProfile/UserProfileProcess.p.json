@@ -59,7 +59,7 @@
         "size" : { "width" : 128 }
       },
       "connect" : [
-        { "id" : "f5", "to" : "S00" }
+        { "id" : "f5", "to" : "f71" }
       ]
     }, {
       "id" : "S60",
@@ -117,7 +117,7 @@
             "at" : { "x" : 3, "y" : 160 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
-          "parentConnector" : "f4",
+          "parentConnector" : "f74",
           "connect" : [
             { "id" : "S60-f0", "to" : "S60-f11" }
           ]
@@ -192,7 +192,7 @@
         "at" : { "x" : 416, "y" : 144 }
       },
       "connect" : [
-        { "id" : "f4", "to" : "S60" }
+        { "id" : "f4", "to" : "f73" }
       ]
     }, {
       "id" : "S30",
@@ -471,7 +471,7 @@
           "visual" : {
             "at" : { "y" : 256 }
           },
-          "parentConnector" : "f5",
+          "parentConnector" : "f72",
           "connect" : [
             { "id" : "S00-f2", "to" : "S00-f1" }
           ]
@@ -573,5 +573,50 @@
       "visual" : {
         "at" : { "x" : 496, "y" : 512 }
       }
+    }, {
+      "id" : "f71",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.isShortcutsEnabled" : "in.isShortcutsEnabled"
+          },
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+            "ivy.log.info(in.isShortcutsEnabled);",
+            "UserSettingService.getInstance().saveIsShortcutsEnabled(in.isShortcutsEnabled);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 640, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f72", "to" : "S00", "color" : "default" }
+      ]
+    }, {
+      "id" : "f73",
+      "type" : "Script",
+      "config" : {
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.isShortcutsEnabled" : "in.isShortcutsEnabled"
+          },
+          "code" : [
+            "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+            "boolean isShortcutsEnable = UserSettingService.getInstance().getIsShortcutsEnabled();",
+            "ivy.log.info(isShortcutsEnable);",
+            "in.isShortcutsEnabled = isShortcutsEnable;"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 608, "y" : 144 }
+      },
+      "connect" : [
+        { "id" : "f74", "to" : "S60", "color" : "default" }
+      ]
     } ]
 }

@@ -34,6 +34,7 @@ public class UserProfileBean implements Serializable {
 
   private ISecurityMember subscriber;
   private ISecurityContext securityContext;
+  private boolean isShortcutsEnabled;
 
   private List<IvyNotificationEventDTO> events;
   private List<IvyNotificationChannelDTO> channels;
@@ -42,6 +43,7 @@ public class UserProfileBean implements Serializable {
     subscriber = Ivy.session().getSessionUser();
     securityContext = ISecurityContext.current();
     onloadChannel();
+    initIsShortcutEnabled();
   }
 
   public void saveHomepage(String homepageName) {
@@ -51,12 +53,21 @@ public class UserProfileBean implements Serializable {
     }
     user.setProperty(UserProperty.HOMEPAGE, homepageName);
   }
-
+  
   public void onloadChannel() {
     events = IvyNotificationEventDTO.all();
     channels = IvyNotificationChannelDTO.all(subscriber, securityContext);
   }
 
+  public void initIsShortcutEnabled() {
+    IUser user = Ivy.session().getSessionUser();
+    String isEnabled = user.getProperty(UserProperty.SHORTCUTS_ENABLE);
+    if (StringUtils.isBlank(isEnabled)) {
+      user.removeProperty(UserProperty.HOMEPAGE);
+    }
+    setIsShortcutsEnabled(Boolean.parseBoolean(isEnabled));
+  }
+  
   public void resetAllChannel() {
     channels.forEach(this::resetChannel);
     onloadChannel();
@@ -112,5 +123,13 @@ public class UserProfileBean implements Serializable {
       addMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/unpinAllPinnedCases",
           Arrays.asList(currentUser.getDisplayName())));
     }
+  }
+
+  public boolean getIsShortcutsEnabled() {
+    return isShortcutsEnabled;
+  }
+
+  public void setIsShortcutsEnabled(boolean isShortcutsEnabled) {
+    this.isShortcutsEnabled = isShortcutsEnabled;
   }
 }

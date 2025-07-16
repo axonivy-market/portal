@@ -156,6 +156,7 @@ var Portal = {
   changeLogoByThemeMode: function(themeMode) {
     PrimeFaces.FreyaConfigurator.changeLogo(themeMode);
   },
+
 }
 
 function searchIconByName(element) {
@@ -506,8 +507,18 @@ const caseItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__
 const searchInputId = '[id="global-search-component:global-search-data"]:visible'
 const useSettingMenuId = 'a#user-settings-menu:visible';
 const pinButton = 'a[id="user-menu-required-login:toggle-menu"]';
+let isShortcutsEnabled;
+
+// Function to initialize shortcuts state from server
+function initShortcutsFromServer(serverValue) {
+  if (typeof serverValue === 'boolean') {
+    isShortcutsEnabled = serverValue;
+    console.log('Shortcuts initialized from server:', isShortcutsEnabled);
+  }
+}
 
 $(document).ready(function () {
+  console.log(isShortcutsEnabled);
 
   const shortcuts = {
     'Digit1': $(singleDashboardId).length ? singleDashboardId : multipleDashboardId,
@@ -584,7 +595,7 @@ $(document).ready(function () {
     iframe.onload = function () {
       const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
       iframeDocument.addEventListener('keydown', function (event) {
-        if (onlyAltPressed(event)) {
+        if (isShortcutsEnabled && onlyAltPressed(event)) {
           if(toggleLeftMenu(event.code)) {
             return;
           }
@@ -610,6 +621,10 @@ $(document).ready(function () {
   let focusedTaskSideStepEl;
 
   $(document).on('keydown', function (event) {
+    if (!isShortcutsEnabled) {
+      return;
+    }
+
     var keyCode = event.code;
     if (keyCode === 'Escape') {
       var collapseWidgetBtn = $('[id*="collapse-link"]:visible');

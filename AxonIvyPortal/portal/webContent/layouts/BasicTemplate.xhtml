@@ -85,7 +85,8 @@
         
       <c:set var="showGlobalSearch" value="#{userMenuBean.isShowGlobalSearch}" />
       <c:set var="showQuickGlobalSearch" value="#{userMenuBean.isShowQuickGlobalSearch}" />
-        
+      <c:set var="isShortcutsEnabled" value="#{userProfileBean.isShortcutsEnabled}" />
+
      <div id="portal-template-header" class="js-portal-template-header #{showMainArea eq true ? '' : 'u-invisibility'}">
         <ic:ch.ivy.addon.portalkit.component.PageHeader />
       </div>
@@ -106,6 +107,7 @@
               <ui:param name="enablesChat" value="#{enablesChat}" />
               <ui:param name="viewName" value="#{viewName}" />
               <ui:param name="case" value="#{case}" />
+              <ui:param name="isShortcutsEnabled" value="#{isShortcutsEnabled}" />
             </ui:decorate>
 
             <h:panelGroup layout="block" rendered="#{!isPortalInTeams}"
@@ -169,6 +171,11 @@
         Portal.updateLayoutContent();
         Portal.updateBreadcrumb();
         MainMenu.highlightMenuItem();
+        
+        // Initialize shortcuts state from server
+        if (typeof initShortcutsFromServer === 'function') {
+          initShortcutsFromServer(#{isShortcutsEnabled});
+        }
       });
     </script>
   </ui:insert>

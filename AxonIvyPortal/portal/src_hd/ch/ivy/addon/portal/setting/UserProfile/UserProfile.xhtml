@@ -67,6 +67,19 @@
                       actionListener="#{userProfileBean.unpinAllPinnedCases}"
                       icon="pi pi-trash" />
                 </h:panelGroup>
+                
+              <!-- Accessibility Setting -->
+                 <h:panelGroup id="accessibility-panel" layout="block" styleClass="w-full my-profile-block" >
+                  <div class="setting-header">
+                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Accessibility')}</h5>
+                  </div>
+                  <div class="flex align-items-center">
+                    <p:outputLabel for="@next" value="Shortcuts enabled" styleClass="mr-3"/>
+                    <p:toggleSwitch value="#{data.isShortcutsEnabled}"
+                      ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedCases')}">
+                      </p:toggleSwitch>
+                  </div>
+                </h:panelGroup>
               </div>
               <p:divider layout="vertical" styleClass="responsive-divider"/>
 
@@ -153,7 +166,7 @@
                   <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15"
                     actionListener="#{logic.backToHome}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
                   <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
-                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}" oncomplete="initShortcutsFromServer(#{data.isShortcutsEnabled});"
                     actionListener="#{userProfileBean.saveAllChannel}"
                     action="#{logic.save}" update="errors-message" />
                 </div>

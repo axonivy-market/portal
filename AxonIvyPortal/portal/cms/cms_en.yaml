@@ -146,6 +146,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Heading 3
       NORMAL_TEXT: Normal Text
   MyProfile:
+    Accessibility: Accessibility
     CaseList: Case List
     DateFormat: Date Format
     FormattingLanguage: Formatting language
