@@ -124,7 +124,56 @@ Dialogs:
                   IsRequired: Pflichtfeld
                   Representation: Vertretung
                   To: Bis
+  com:
+    axonivy:
+      portal:
+        developerexamples:
+          customization:
+            sidestep:
+              LeaveRequestApproval:
+                Approve: Genehmigen
+                EmployeeNote: Anmerkung für Mitarbeiter
+                Reject: Ablehnen
+              LeaveRequestBusinessDetailsPage:
+                LeaveRequest: Urlaubsantrag Business Details
+                SideStepComment: Kommentar zum Seitenschritt
+              LeaveRequestSummary:
+                Finish: Beenden
+              SideStepExample:
+                SideStepExample: Beispiel für einen Seitenschritt
+              SideStepResultExample:
+                Answer: Antwort
+                Assignee: Rechtsnachfolger
+                Comment: Kommentar
+                Question: Frage
+                SideStepResult: Seitenschritt Ergebnis
+Enums:
+  LeaveType:
+    ANNUAL_LEAVE: Jahresurlaub
+    MATERNITY_LEAVE: Mutterschaftsurlaub
+    SICK_LEAVE: Krankenstand
 Labels:
+  Close: Close
+  LeaveRequest:
+    LeaveSteps:
+      RequesterSideStepComment: Kommentar des Antragstellers zum Seitenschritt
+      SideStepComment: Kommentar zum Seitenschritt
+      approval: Genehmigung
+      approvalResult: Genehmigungsergebnis
+      creation: Urlaubsantrag erstellen
+    approvalResultTaskIntro: Unten finden Sie eine Zusammenfassung Ihres Urlaubsantrags und des Feedbacks des Genehmigers.
+    approvalTaskIntro: 'Es gibt einen Urlaubsantrag, der Ihre Genehmigung erfordert, Einzelheiten dazu finden Sie unten:'
+    approver: Genehmigender
+    approverComment: Kommentar des Befürworters
+    from: Von
+    leaveType: Urlaubsart
+    requester: Antragsteller
+    requesterComment: Kommentar des Antragstellers
+    stepTypeParallelTitle: This is customized parallel title
+    stepTypeSwitchTitle: This is customized switch title
+    submitLeaveRequest: Urlaubsantrag einreichen
+    to: Bis
+  OK: OK
   changePasswordWSError: Ein Fehler ist während der Passwortänderung aufgetreten. Bitte, kontaktieren Sie Ihren Administrator falls das Problem nach mehreren Versuchen besteht.
   forgotPasswordError: Bei der Bearbeitung Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.
   passwordResetEmailCantSend: Fehler Senden der E-Mail an Sie ist fehlgeschlagen. Bitte versuchen Sie es später erneut.
@@ -163,6 +212,15 @@ Processes:
       #Zusammenfassung
       Antragssteller bekommt eine Zusammenfassung
       Ergebnis zur Kenntnis nehmen
+  LeaveRequest:
+    LeaveRequest: Leave Request
+    LeaveRequestWithSideSteps: TODO Leave request with side step processes
+    LeaveRequestWithSideStepsProcessLevel: 'TODO: Leave request with side step processes (process level)'
+    approvalTask: Ihr Urlaubsantrag wird genehmigt
+    approvalTaskName: Genehmigung eines Urlaubsantrags von {0}
+    createLeaveRequest: 'Urlaubsantrag anlegen für: {0}'
+    createNewLeaveRequest: 'Systemaufgabe: Beginn der Erstellung eines neuen Urlaubsantrags'
+    rejectedTask: Ihr Urlaubsantrag wird abgelehnt
   MoreInformation:
     description: Klicken Sie auf Weitere Informationen, um die benutzerdefinierte Prozessinformationsseite anzuzeigen.
   Payment:

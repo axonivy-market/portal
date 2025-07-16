@@ -1,0 +1,39 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
+  "simpleName" : "SideStepExampleData",
+  "namespace" : "com.axonivy.portal.developerexamples.customization.sidestep.SideStepExample",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "originalTaskUuid",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "caseUuid",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "leaveRequestData",
+    "type" : "com.axonivy.portal.developerexamples.LeaveRequest",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "requester",
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "approver",
+    "type" : "com.axonivy.portal.components.dto.UserDTO",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isValid",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "stepType",
+    "type" : "com.axonivy.portal.components.enums.SideStepType",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "comment",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

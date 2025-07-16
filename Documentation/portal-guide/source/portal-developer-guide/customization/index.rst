@@ -25,3 +25,4 @@ arftifact, or import them into your designer under ``Ivy Projects``.
    document-processes
    process-image
    process-information
+   side-step
