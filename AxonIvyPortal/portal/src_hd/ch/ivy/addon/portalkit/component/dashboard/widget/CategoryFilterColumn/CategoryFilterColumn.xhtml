@@ -33,7 +33,8 @@
           layout="block">
           <div class="ui-fluid">
             <p:inputText id="widget-filter-category" readonly="true"
-              onclick="reloadCategories()"
+           	  onclick="reloadCategories()"
+              onkeydown="reloadCategories(); event.stopPropagation()"       
               styleClass="widget-configuration__input-text #{cc.attrs.inputCategoryStyleClass}"
               value="#{cc.attrs.displaySelectedCategories}"/>
           </div>
@@ -61,13 +62,15 @@
               <p:commandLink id="cancel-command" styleClass="portal-cancel-button u-mar-right-10"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                process="@this" global="false" update="widget-filter-category-container"/>
+                process="@this" global="false" update="widget-filter-category-container"
+                onclick="focusElementWithId('widget-filter-category')"/>
   
               <p:commandButton id="update-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
                 process="widget-filter-category-panel" partialSubmit="true" update="widget-filter-category-container #{cc.attrs.updateComponent}"
                 icon="si si-check-1" styleClass="update-command"
-                actionListener="#{cc.attrs.field.updateCategoriesPath(cc.attrs.configurationMode)}"/>
+                actionListener="#{cc.attrs.field.updateCategoriesPath(cc.attrs.configurationMode)}"
+                onclick="focusElementWithId('widget-filter-category')"/>
             </h:panelGroup>
           </p:overlayPanel>
         </h:panelGroup>

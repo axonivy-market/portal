@@ -41,8 +41,7 @@
   <p:overlayPanel id="action-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}"
     for="#{cc.attrs.actionLinkId}" my="right top" at="right bottom" showCloseIcon="true" dismissable="true"
     appendTo="@(body)" styleClass="action-steps-panel #{cc.attrs.stepsPanelStyleClass}" dynamic="true"
-    onShow="focusFirstVisibleElement('#{cc.attrs.panelWidgetVar}', 'a')" 
-  >
+    onShow="PF('#{cc.attrs.panelWidgetVar}').jq.find('a:visible').first().focus();">
 
     <p:commandLink id="case-item-open-detail-link" styleClass="case-command action-step-item"
                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}"
@@ -94,13 +93,5 @@
       </ui:repeat>
     </h:panelGroup>
   </p:overlayPanel>
-
-  <script>
-    const focusFirstVisibleElement = (widgetVar, selector) => {
-      var panel = PF(widgetVar).jq;
-      var first = panel.find(selector + ':visible').first();
-      if (first.length) { first.focus(); }
-    }
-  </script>
 </cc:implementation>
 </html>

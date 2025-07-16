@@ -877,3 +877,8 @@ function focusFirstVisibleElementInPanel(widgetVar, selector) {
     first.focus();
   }
 }
+
+function focusElementWithId(elementId) {
+    var element = document.querySelector('[id$="' + elementId + '"]');
+    if (element) { element.focus(); }
+}
