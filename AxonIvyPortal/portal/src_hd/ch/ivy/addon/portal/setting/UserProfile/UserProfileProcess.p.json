@@ -52,14 +52,14 @@
             "at" : { "x" : 384, "y" : 160 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
-          "parentConnector" : "f5"
+          "parentConnector" : "f75"
         } ],
       "visual" : {
         "at" : { "x" : 456, "y" : 280 },
         "size" : { "width" : 128 }
       },
       "connect" : [
-        { "id" : "f5", "to" : "f71" }
+        { "id" : "f75", "to" : "S71" }
       ]
     }, {
       "id" : "S60",
@@ -161,7 +161,7 @@
             "at" : { "x" : 584, "y" : 160 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
-          "parentConnector" : "f4"
+          "parentConnector" : "f79"
         }, {
           "id" : "S40-f4",
           "type" : "Script",
@@ -192,7 +192,7 @@
         "at" : { "x" : 416, "y" : 144 }
       },
       "connect" : [
-        { "id" : "f4", "to" : "f73" }
+        { "id" : "f79", "to" : "S73" }
       ]
     }, {
       "id" : "S30",
@@ -471,7 +471,7 @@
           "visual" : {
             "at" : { "y" : 256 }
           },
-          "parentConnector" : "f72",
+          "parentConnector" : "f76",
           "connect" : [
             { "id" : "S00-f2", "to" : "S00-f1" }
           ]
@@ -574,49 +574,126 @@
         "at" : { "x" : 496, "y" : 512 }
       }
     }, {
-      "id" : "f71",
-      "type" : "Script",
-      "config" : {
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.isShortcutsEnabled" : "in.isShortcutsEnabled"
+      "id" : "S71",
+      "type" : "EmbeddedProcess",
+      "name" : "Save Accessibility Setting",
+      "elements" : [ {
+          "id" : "S71-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in",
+          "visual" : {
+            "at" : { "x" : 520, "y" : 280 }
           },
-          "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
-            "ivy.log.info(in.isShortcutsEnabled);",
-            "UserSettingService.getInstance().saveIsShortcutEnabled(in.isShortcutsEnabled);"
+          "parentConnector" : "f75",
+          "connect" : [
+            { "id" : "S71-f3", "to" : "S71-f2" }
           ]
-        }
-      },
+        }, {
+          "id" : "S71-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out",
+          "visual" : {
+            "at" : { "x" : 920, "y" : 280 }
+          },
+          "parentConnector" : "f76"
+        }, {
+          "id" : "S71-f2",
+          "type" : "Script",
+          "name" : "Update IsShortcutEnabled",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "UserSettingService.getInstance().saveIsShortcutEnabled(in.isShortcutEnabled);"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 712, "y" : 280 }
+          },
+          "connect" : [
+            { "id" : "S71-f4", "to" : "S71-g1" }
+          ]
+        } ],
       "visual" : {
-        "at" : { "x" : 640, "y" : 280 }
+        "at" : { "x" : 632, "y" : 280 }
       },
       "connect" : [
-        { "id" : "f72", "to" : "S00", "color" : "default" }
+        { "id" : "f76", "to" : "S00" }
       ]
     }, {
-      "id" : "f73",
-      "type" : "Script",
-      "config" : {
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.isShortcutsEnabled" : "in.isShortcutsEnabled"
+      "id" : "S72",
+      "type" : "EmbeddedProcess",
+      "elements" : [ {
+          "id" : "S72-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in",
+          "visual" : {
+            "at" : { "x" : 472, "y" : 144 }
+          }
+        }, {
+          "id" : "S72-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out",
+          "visual" : {
+            "at" : { "x" : 544, "y" : 256 }
           },
-          "code" : [
-            "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
-            "boolean isShortcutsEnable = UserSettingService.getInstance().getIsShortcutEnabled();",
-            "ivy.log.info(isShortcutsEnable);",
-            "in.isShortcutsEnabled = isShortcutsEnable;"
-          ]
-        }
-      },
+          "parentConnector" : "f77"
+        } ],
       "visual" : {
         "at" : { "x" : 608, "y" : 144 }
       },
       "connect" : [
-        { "id" : "f74", "to" : "S60", "color" : "default" }
+        { "id" : "f77", "to" : "S60" }
+      ]
+    }, {
+      "id" : "S73",
+      "type" : "EmbeddedProcess",
+      "name" : "Init Accessibility Setting",
+      "elements" : [ {
+          "id" : "S73-g0",
+          "type" : "EmbeddedEnd",
+          "name" : "out",
+          "visual" : {
+            "at" : { "x" : 544, "y" : 256 }
+          },
+          "parentConnector" : "f78"
+        }, {
+          "id" : "S73-f1",
+          "type" : "Script",
+          "name" : "Init IsShortcutEnabled",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "boolean isShortcutEnable = UserSettingService.getInstance().getIsShortcutEnabled();",
+                "in.isShortcutEnabled = isShortcutEnable;"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 328, "y" : 256 }
+          },
+          "connect" : [
+            { "id" : "S73-f3", "to" : "S73-g0" }
+          ]
+        }, {
+          "id" : "S73-g1",
+          "type" : "EmbeddedStart",
+          "name" : "in",
+          "visual" : {
+            "at" : { "x" : 160, "y" : 256 }
+          },
+          "parentConnector" : "f79",
+          "connect" : [
+            { "id" : "S73-f2", "to" : "S73-f1" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 608, "y" : 144 }
+      },
+      "connect" : [
+        { "id" : "f78", "to" : "S60" }
       ]
     } ]
 }

@@ -248,6 +248,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。
       enableDeepLTranslation: DeepL翻訳サポートを有効にするには、このプロパティーを true に設定してください。
       enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
+      enableKeyboardShortcuts: 'TODO: Enable keyboard shortcuts for navigation.'
       enablePinCase: 'TODO: Set this property to true to enable the ability to pin cases.'
       enablePinTask: 'TODO: Set this property to true to enable the ability to pin tasks.'
       enablePrivateChat: 個人用チャット機能を有効にするには、このプロパティーを true に設定してください。

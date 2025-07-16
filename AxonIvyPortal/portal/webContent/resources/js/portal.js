@@ -509,7 +509,6 @@ const useSettingMenuId = 'a#user-settings-menu:visible';
 const pinButton = 'a[id="user-menu-required-login:toggle-menu"]';
 let isShortcutEnabled;
 
-// Function to initialize shortcuts state from server
 function initShortcutsFromServer(value) {
   if (typeof value === 'boolean') {
     isShortcutEnabled = value;
@@ -517,7 +516,6 @@ function initShortcutsFromServer(value) {
 }
 
 $(document).ready(function () {
-  console.log(isShortcutEnabled);
 
   const shortcuts = {
     'Digit1': $(singleDashboardId).length ? singleDashboardId : multipleDashboardId,

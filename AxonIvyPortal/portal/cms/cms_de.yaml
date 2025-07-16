@@ -250,6 +250,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableDeepLTranslation: Setzen Sie diese Eigenschaft auf true, um die DeepL Übersetzungsunterstützung zu aktivieren.
       enableDocumentPreview: 'Auf "true" setzen, um die Vorschau von Dokumenten für bestimmte Dateitypen zu aktivieren. Unterstützte Dateitypen sind: pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
+      enableKeyboardShortcuts: Tastenkombinationen für Navigation aktivieren.
       enablePinCase: Setzen Sie diese Eigenschaft auf „true“, um das Anheften von Fällen zu ermöglichen.
       enablePinTask: Setzen Sie diese Eigenschaft auf „true“, um das Anheften von Aufgaben zu ermöglichen.
       enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten Chat zu aktivieren

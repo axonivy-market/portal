@@ -403,17 +403,21 @@ public class UserMenuBean implements Serializable {
   }
 
   public boolean getIsShortcutEnabled() {
-    IUser user = Ivy.session().getSessionUser();
-    String isEnabled = user.getProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE);
-    if (StringUtils.isBlank(isEnabled)) {
-      user.removeProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE);
+    boolean isEnableKeyboardShortcut = GlobalSettingService.getInstance().isEnableKeyboardShortcuts();
+    if (isEnableKeyboardShortcut) {
+      IUser user = Ivy.session().getSessionUser();
+      String isEnabled = user.getProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE);
+      if (StringUtils.isBlank(isEnabled)) {
+        user.removeProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE);
+      }
+      setIsShortcutEnabled(Boolean.parseBoolean(isEnabled));
+      return isShortcutEnabled;
     }
-    setIsShortcutEnabled(Boolean.parseBoolean(isEnabled));
-    return isShortcutEnabled;
+    return false;
   }
 
-  public void setIsShortcutEnabled(boolean isShortcutsEnabled) {
-    this.isShortcutEnabled = isShortcutsEnabled;
+  public void setIsShortcutEnabled(boolean isShortcutEnabled) {
+    this.isShortcutEnabled = isShortcutEnabled;
   }
 
 }

@@ -75,7 +75,7 @@
                   </div>
                   <div class="flex align-items-center">
                     <p:outputLabel for="@next" value="Shortcuts enabled" styleClass="mr-3"/>
-                    <p:toggleSwitch value="#{data.isShortcutsEnabled}"
+                    <p:toggleSwitch value="#{data.isShortcutEnabled}" disabled="#{!userProfileBean.getIsEnableKeyboardShortcuts()}"
                       ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/unpinAllPinnedCases')}">
                       </p:toggleSwitch>
                   </div>
@@ -166,7 +166,7 @@
                   <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15"
                     actionListener="#{logic.backToHome}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
                   <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
-                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}" oncomplete="initShortcutsFromServer(#{data.isShortcutsEnabled});"
+                    ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/saveAll')}"
                     actionListener="#{userProfileBean.saveAllChannel}"
                     action="#{logic.save}" update="errors-message" />
                 </div>

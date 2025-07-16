@@ -40,7 +40,7 @@
     "type" : "java.util.List<javax.faces.model.SelectItem>",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "isShortcutsEnabled",
+    "name" : "isShortcutEnabled",
     "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
   } ]

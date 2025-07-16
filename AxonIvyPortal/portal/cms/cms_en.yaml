@@ -249,6 +249,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableDeepLTranslation: Set this property to true to enable the DeepL translation support
       enableDocumentPreview: 'Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
       enableGroupChat: Set this property to true to enable group chat function
+      enableKeyboardShortcuts: Enable keyboard shortcuts for navigation.
       enablePinCase: Set this property to true to enable the ability to pin cases.
       enablePinTask: Set this property to true to enable the ability to pin tasks.
       enablePrivateChat: Set this property to true to enable private chat function
