@@ -67,6 +67,12 @@
         "data": {
           "url": "https://www.example.com"
         }
+      }, {
+        "type": "businessDetails",
+        "id": "businessDetails",
+        "layout": {
+          "x": 0, "y": 19, "w": 12, "h": 6
+        }
       }
     ]
   }, {
