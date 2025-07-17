@@ -13,6 +13,7 @@
     <ui:define name="title">#{managedBean.getSelectedDashboardName()}</ui:define>
     <ui:param name="loadGridStack" value="true" />
     <ui:param name="isInDashboard" value="true"/>
+    <ui:param name="isEditMode" value="${managedBean.isReadOnlyMode == 'false'}"/>
 
 
     <ui:define name="pageContent">

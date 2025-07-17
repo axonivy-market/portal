@@ -811,6 +811,7 @@ $(document).ready(function () {
         $(item).attr('aria-label', $(item).text());
       }
     });
+	
   }, 200);
 
   setAltForAvatar();
