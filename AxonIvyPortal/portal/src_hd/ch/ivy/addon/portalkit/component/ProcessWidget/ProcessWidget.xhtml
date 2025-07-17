@@ -55,7 +55,7 @@
               <p:selectOneButton value="#{processWidgetBean.viewMode}" unselectable="false" id="view-mode-selection" widgetVar="view-mode-selection">
                 <f:selectItems value="#{processWidgetBean.processViewModes}"  var="mode" itemValue="#{mode}" itemLabel="#{mode.label}" />
                 <p:ajax update="process-view-mode #{cc.clientId}:process-list #{cc.clientId}:process-nav"
-                  oncomplete="processWidget.setup(); processWidget.hideLoadingText(); return false;" />
+                  oncomplete="processWidget.setup(); processWidget.hideLoadingText();addMissingAttr('.ui-selectonebutton .ui-button', 'role', 'radio'); return false;" />
               </p:selectOneButton>
             </h:form>
           </div>
@@ -66,7 +66,7 @@
         async="true" process="@this"
         update="process-list process-nav process-view-mode"
         onstart="processWidget.removeStyleOnProcessStartList();"
-        oncomplete="processWidget.setupScrollbar();processWidget.filter();processWidget.hideLoadingText();"/>
+        oncomplete="processWidget.setupScrollbar();processWidget.filter();processWidget.hideLoadingText();addMissingAttr('.ui-selectonebutton .ui-button', 'role', 'radio');"/>
       <!-- Lazy loading -->
       <div class="ui-g-12 u-no-padding-left">
         <h:outputText id="loading" styleClass="js-loading-process-list ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}" />

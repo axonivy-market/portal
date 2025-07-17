@@ -883,6 +883,14 @@ function focusElementWithId(elementId) {
     if (element) { element.focus(); }
 }
 
+function addMissingAttr(query, attrName, attrValue) {
+  $(query).each((index, btn) => {
+    if ($(btn).attr(attrName) === undefined) {
+      $(btn).attr(attrName, attrValue);
+    }
+  });
+}
+
 function addEventForCaseDetailsIframe() {
   const caseDetailsIframe = document.getElementById('i-frame-case-details');
   if (caseDetailsIframe) {
