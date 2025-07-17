@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelSubcriptionDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationEventDTO;
@@ -35,7 +36,6 @@ public class UserProfileBean implements Serializable {
 
   private ISecurityMember subscriber;
   private ISecurityContext securityContext;
-
   private List<IvyNotificationEventDTO> events;
   private List<IvyNotificationChannelDTO> channels;
 
@@ -115,7 +115,8 @@ public class UserProfileBean implements Serializable {
     }
   }
   
-  public boolean getIsEnableKeyboardShortcuts() {
-    return GlobalSettingService.getInstance().isEnableKeyboardShortcuts();
+  public boolean getIsEnableKeyboardShortcutsByAdmin() {
+    return GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ENABLE_KEYBOARD_SHORTCUTS);
   }
+
 }

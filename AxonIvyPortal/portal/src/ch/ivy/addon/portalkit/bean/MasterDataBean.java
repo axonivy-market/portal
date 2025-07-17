@@ -20,6 +20,7 @@ import com.axonivy.portal.components.enums.DocumentType;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 
+import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.enums.ApplicationType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -27,9 +28,11 @@ import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 import ch.ivy.addon.portalkit.service.CaseDocumentService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.GrowlMessageService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IUser;
 
 @ManagedBean
 @SessionScoped
@@ -38,7 +41,7 @@ public class MasterDataBean implements Serializable {
   private static final long serialVersionUID = 1L;
   private static final String APPLICATION_NAME = GlobalVariable.APPLICATION_NAME.getKey();
   private static final String PORTAL_NAME = Ivy.cms().co("/ch.ivy.addon.portal.generic/PortalName/PortalName");
-
+  
   public AwesomeIcon[] getAwesomeIcons() {
     return AwesomeIcon.values();
   }
@@ -137,4 +140,22 @@ public class MasterDataBean implements Serializable {
     } else
       return String.join(", ", extensionList);
   }
+  
+  public boolean getIsEnableKeyboardShortcuts() {
+    boolean isEnabledInAdminSettings = GlobalSettingService.getInstance().isEnableKeyboardShortcuts();
+
+    if (!isEnabledInAdminSettings) {
+      return isEnabledInAdminSettings;
+    }
+
+    IUser user = Ivy.session().getSessionUser();
+    String isEnabledByUser = user.getProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE);
+
+    if (StringUtils.isBlank(isEnabledByUser)) {
+      user.setProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE, Boolean.FALSE.toString());
+      return Boolean.FALSE;
+    }
+    return Boolean.parseBoolean(isEnabledByUser);
+  }
+
 }

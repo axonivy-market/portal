@@ -624,6 +624,7 @@
     }, {
       "id" : "S72",
       "type" : "EmbeddedProcess",
+      "name" : "Init Accessibility Setting",
       "elements" : [ {
           "id" : "S72-f0",
           "type" : "Script",
@@ -664,7 +665,7 @@
           "parentConnector" : "f78"
         } ],
       "visual" : {
-        "at" : { "x" : 616, "y" : 144 }
+        "at" : { "x" : 624, "y" : 144 }
       },
       "connect" : [
         { "id" : "f78", "to" : "S60" }

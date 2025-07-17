@@ -68,7 +68,7 @@ public class UserSettingService {
     }
     return false;
   }
-  
+
   public void saveIsShortcutEnabled(boolean value) {
     IUser user = Ivy.session().getSessionUser();
     user.setProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE, Boolean.toString(value));

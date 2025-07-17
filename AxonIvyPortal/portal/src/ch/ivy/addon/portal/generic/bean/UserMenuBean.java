@@ -24,10 +24,8 @@ import com.google.gson.Gson;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
-import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.dto.UserMenu;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -40,7 +38,6 @@ import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.EngineUriResolver;
 import ch.ivyteam.ivy.security.ISecurityContext;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -56,7 +53,6 @@ public class UserMenuBean implements Serializable {
   private String loggedInUser;
   private boolean isShowGlobalSearch;
   private boolean isShowQuickGlobalSearch;
-  private boolean isEnableKeyboardShortcuts;
   private String baseUrlVariable;
   private String appleStoreUrlVariable;
   private String googlePlayUrlVariable;
@@ -77,7 +73,6 @@ public class UserMenuBean implements Serializable {
       appleStoreUrlVariable = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.APPLE_STORE_URL);
       googlePlayUrlVariable = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.GOOGLE_PLAY_URL);
       GlobalVariable.Option option = GlobalVariable.Option.valueOf(format);
-      initIsShortcutEnabled();
       String fullName = Ivy.session().getSessionUser().getFullName();
       String userName = Ivy.session().getSessionUserName();
       String fullDisplayFormat = "%s (%s)";
@@ -402,33 +397,5 @@ public class UserMenuBean implements Serializable {
       caseIdToProcessViewerDisplayed.put(caze.getId(), PortalProcessViewerUtils.isShowProcessViewer(caze));
     }
     return caseIdToProcessViewerDisplayed.get(caze.getId());
-  }
-
-  public boolean getIsEnableKeyboardShortcuts() {
-    return isEnableKeyboardShortcuts;
-  }
-  
-  private void initIsShortcutEnabled() {
-    boolean isEnableKeyboardShortcut = GlobalSettingService.getInstance().isEnableKeyboardShortcuts();
-    if (isEnableKeyboardShortcut) {
-      IUser user = Ivy.session().getSessionUser();
-      String isEnabled = user.getProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE);
-      if (StringUtils.isBlank(isEnabled)) {
-        user.removeProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE);
-      }
-      setIsEnableKeyboardShortcuts(Boolean.parseBoolean(isEnabled));
-    } else {
-      setIsEnableKeyboardShortcuts(false);
-    }
-  }
-
-  public void setIsEnableKeyboardShortcuts(boolean isShortcutEnabled) {
-    this.isEnableKeyboardShortcuts = isShortcutEnabled;
-  }
-
-  public void onToggleKeyboardShortcutsButton() {
-    setIsEnableKeyboardShortcuts(isEnableKeyboardShortcuts);
-    UserSettingService.getInstance().saveIsShortcutEnabled(isEnableKeyboardShortcuts);
-    PrimeFaces.current().ajax().addCallbackParam("shortcutEnable", isEnableKeyboardShortcuts);
   }
 }

@@ -152,6 +152,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     FormattingLanguage: 書式設定言語
     General: 一般
     Homepage: ホームページ
+    KeyboardShorcutsNavigationInfor: 'TODO: Toggle to enable or disable keyboard navigation shortcuts.'
     KeyboardShortcutsNavigation: Keyboard shortcuts for navigation
     Language: 言語
     ProcessList: プロセスリスト
