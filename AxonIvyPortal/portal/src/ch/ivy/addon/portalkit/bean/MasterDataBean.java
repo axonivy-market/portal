@@ -145,14 +145,14 @@ public class MasterDataBean implements Serializable {
     boolean isEnabledInAdminSettings = GlobalSettingService.getInstance().isEnableKeyboardShortcuts();
 
     if (!isEnabledInAdminSettings) {
-      return isEnabledInAdminSettings;
+      return false;
     }
 
     IUser user = Ivy.session().getSessionUser();
     String isEnabledByUser = user.getProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE);
 
     if (StringUtils.isBlank(isEnabledByUser)) {
-      return Boolean.FALSE;
+      return false;
     }
     return Boolean.parseBoolean(isEnabledByUser);
   }
