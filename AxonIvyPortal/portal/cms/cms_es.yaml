@@ -152,6 +152,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     FormattingLanguage: Lenguaje de formato
     General: Generales
     Homepage: Página web
+    KeyboardShortcutsNavigation: Keyboard shortcuts for navigation
     Language: Idioma
     ProcessList: Lista de procesos
     TaskList: Lista de tareas

@@ -47,6 +47,16 @@
             </h:form>
            </h:panelGroup>
         </li>
+<li class="topbar-item mr-2">
+    <p:outputLabel value="Keyboard shortcuts" styleClass="mr-2"/>
+    <p:toggleSwitch id="toggle-switch-keyboard-shortcuts" 
+        global="false" 
+        value="#{userMenuBean.isShortcutEnabled}">
+        <f:ajax listener="#{userMenuBean.updateIsShortcutEnabled}"
+            oncomplete="initShortcutsFromServer(#{userMenuBean.isShortcutEnabled})" 
+            process="@this" />
+    </p:toggleSwitch>
+</li>
         <li class="topbar-item custom-search-item" jsf:rendered="#{showGlobalSearch or showQuickGlobalSearch}">
           <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" showQuickGlobalSearch="#{showQuickGlobalSearch}"
             isWorkingOnATask="#{isWorkingOnATask}" case="#{case}" task="#{task}" />

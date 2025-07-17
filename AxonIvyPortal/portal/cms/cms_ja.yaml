@@ -152,6 +152,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     FormattingLanguage: 書式設定言語
     General: 一般
     Homepage: ホームページ
+    KeyboardShortcutsNavigation: Keyboard shortcuts for navigation
     Language: 言語
     ProcessList: プロセスリスト
     TaskList: 'TODO: Task List'

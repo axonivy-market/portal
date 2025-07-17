@@ -27,6 +27,7 @@ import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.dto.UserMenu;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -76,6 +77,7 @@ public class UserMenuBean implements Serializable {
       appleStoreUrlVariable = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.APPLE_STORE_URL);
       googlePlayUrlVariable = GlobalSettingService.getInstance().findGlobalSettingValue(GlobalVariable.GOOGLE_PLAY_URL);
       GlobalVariable.Option option = GlobalVariable.Option.valueOf(format);
+      initIsShortcutEnabled();
       String fullName = Ivy.session().getSessionUser().getFullName();
       String userName = Ivy.session().getSessionUserName();
       String fullDisplayFormat = "%s (%s)";
@@ -403,6 +405,10 @@ public class UserMenuBean implements Serializable {
   }
 
   public boolean getIsShortcutEnabled() {
+    return isShortcutEnabled;
+  }
+  
+  private void initIsShortcutEnabled() {
     boolean isEnableKeyboardShortcut = GlobalSettingService.getInstance().isEnableKeyboardShortcuts();
     if (isEnableKeyboardShortcut) {
       IUser user = Ivy.session().getSessionUser();
@@ -411,13 +417,18 @@ public class UserMenuBean implements Serializable {
         user.removeProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE);
       }
       setIsShortcutEnabled(Boolean.parseBoolean(isEnabled));
-      return isShortcutEnabled;
+    } else {
+      setIsShortcutEnabled(false);
     }
-    return false;
   }
 
   public void setIsShortcutEnabled(boolean isShortcutEnabled) {
     this.isShortcutEnabled = isShortcutEnabled;
+  }
+
+  public void updateIsShortcutEnabled() {
+    Ivy.log().info(isShortcutEnabled);
+    UserSettingService.getInstance().saveIsShortcutEnabled(isShortcutEnabled);
   }
 
 }

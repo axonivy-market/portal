@@ -507,16 +507,16 @@ const caseItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__
 const searchInputId = '[id="global-search-component:global-search-data"]:visible'
 const useSettingMenuId = 'a#user-settings-menu:visible';
 const pinButton = 'a[id="user-menu-required-login:toggle-menu"]';
-let isShortcutEnabled;
+let isShortcutEnabled = false;
 
 function initShortcutsFromServer(value) {
   if (typeof value === 'boolean') {
     isShortcutEnabled = value;
+    console.log(isShortcutEnabled);
   }
 }
 
 $(document).ready(function () {
-
   const shortcuts = {
     'Digit1': $(singleDashboardId).length ? singleDashboardId : multipleDashboardId,
     'Digit2': processItemId,
