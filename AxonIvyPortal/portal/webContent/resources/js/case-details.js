@@ -60,6 +60,7 @@ function getCaseDetailsWidgetType(caseDetailsWidgetName) {
     case "InformationWidget": type = "information"; break;
     case "DocumentWidget": type = "document"; break;
     case "TechnicalCaseWidget": type = "technicalCase"; break;
+    case "BusinessDetailsWidget": type = "businessDetails"; break;
     case "RelatedTaskWidget": type = "relatedTask"; break;
     case "HistoryWidget": type = "history"; break;
     case "CustomWidget": type = "custom"; break;

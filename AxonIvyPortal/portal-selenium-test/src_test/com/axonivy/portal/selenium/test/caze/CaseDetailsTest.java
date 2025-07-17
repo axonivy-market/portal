@@ -448,6 +448,7 @@ public class CaseDetailsTest extends BaseTest {
     assumeTrue(detailsPage.iframeCustomWidgetIsDisplayed(), "iframe CustomWidget is displayed");
     String processLink = detailsPage.getProcessLinkInCustomIFrameWidget();
     assertTrue(processLink.contains("portal-developer-examples/17A2C6D73AB4186E/startReview.ivp"));
+    assertTrue(detailsPage.countAdditionalFieldsPage().size() > 0);
 
     setupCaseDetailsWithIFrameURL();
     String url = detailsPage.getIFrameURLOfCustomWidget();
