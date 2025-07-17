@@ -152,7 +152,6 @@ public class MasterDataBean implements Serializable {
     String isEnabledByUser = user.getProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE);
 
     if (StringUtils.isBlank(isEnabledByUser)) {
-      user.setProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE, Boolean.FALSE.toString());
       return Boolean.FALSE;
     }
     return Boolean.parseBoolean(isEnabledByUser);
