@@ -882,3 +882,15 @@ function focusElementWithId(elementId) {
     var element = document.querySelector('[id$="' + elementId + '"]');
     if (element) { element.focus(); }
 }
+
+function addEventForCaseDetailsIframe() {
+  const caseDetailsIframe = document.getElementById('i-frame-case-details');
+  if (caseDetailsIframe) {
+    const caseDetailsIframeDocument = caseDetailsIframe.contentDocument || caseDetailsIframe.contentWindow.document;
+    caseDetailsIframeDocument.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        PF('case-info-dialog').hide();
+      }
+    })
+  }
+}
