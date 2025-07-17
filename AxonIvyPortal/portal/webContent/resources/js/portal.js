@@ -430,24 +430,24 @@ function isPressedSpecialKeys(event) {
   const shiftPressed = event.shiftKey;
 
   const ctrlKeyActions = ['z', 'y', 'x', 'c', 'v', 'a'];
-  const navigatorKeys = [37, 38, 39, 40, 9]; // Arrow Left, Arrow Up, Arrow Right, Arrow Down, Tab
+  const arrowKeys = [37, 38, 39, 40]; // Arrow Left, Arrow Up, Arrow Right, Arrow Down
 
   if (ctrlPressed && ctrlKeyActions.includes(event.key.toLowerCase())) {
       return true;
   }
 
-  if (shiftPressed && navigatorKeys.includes(event.keyCode)) {
+  if (shiftPressed && arrowKeys.includes(event.keyCode)) {
       return true;
   }
 
-  if (navigatorKeys.includes(event.keyCode)) {
+  if (arrowKeys.includes(event.keyCode)) {
     return true;
   }
 
   const specialKeys = [
     'Control', 'Alt', 'Pause', 'CapsLock', 'Escape',
     'PageUp', 'PageDown', 'PrintScreen', 'Insert', 'Meta',
-    'ContextMenu', 'NumLock', 'ScrollLock', 'Home', 'End'
+    'ContextMenu', 'NumLock', 'ScrollLock', 'Home', 'End', 'Tab'
   ];
 
   return specialKeys.includes(event.key);
