@@ -812,7 +812,6 @@ $(document).ready(function () {
       }
     });
 	
-	$("th[scope='col']").attr("tabindex", "0");
   }, 200);
 
   setAltForAvatar();
