@@ -21,11 +21,13 @@
         for="from-completed-calendar" />
       <p:datePicker id="from-completed-calendar" value="#{cc.attrs.filter.fromCompletedDate}"
         showIcon="true" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+        placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongFromDateFormat', [dateTimePatternBean.dateTimestampPattern])}" />
 
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" for="to-completed-calendar" />
       <p:datePicker id="to-completed-calendar" value="#{cc.attrs.filter.toCompletedDate}"
         showIcon="true" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+        placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongToDateFormat', [dateTimePatternBean.dateTimestampPattern])}" />
     </h:panelGrid>
   </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>

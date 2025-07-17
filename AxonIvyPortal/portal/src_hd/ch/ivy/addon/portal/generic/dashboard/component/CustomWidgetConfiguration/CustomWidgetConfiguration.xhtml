@@ -171,7 +171,8 @@
                 rendered="#{parameter.type == 'DATE'}"
                 locale="#{localeBean.locale}"
                 showTime="#{!dateTimePatternBean.isTimeHidden}"
-                showIcon="true" />
+                showIcon="true"
+                placeholder="#{dateTimePatternBean.getShortDateTimePattern(false)}" />
               <ic:com.axonivy.portal.components.UserSelection
                 id="param-user-#{status.index}"
                 selectedUser="#{parameter.valueUser}"
