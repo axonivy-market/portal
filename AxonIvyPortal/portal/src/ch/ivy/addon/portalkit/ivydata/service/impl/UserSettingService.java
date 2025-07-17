@@ -63,14 +63,13 @@ public class UserSettingService {
   }
   
   public boolean getIsShortcutEnabled() {
-    if (GlobalSettingService.getInstance().isEnableKeyboardShortcuts()) {
-      return Boolean.parseBoolean(getUserProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE));
-    }
-    return false;
+    return Boolean.parseBoolean(getUserProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE));
   }
 
   public void saveIsShortcutEnabled(boolean value) {
-    IUser user = Ivy.session().getSessionUser();
-    user.setProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE, Boolean.toString(value));
+    IUser user = getSessionUser();
+    if (user != null) {
+      user.setProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE, Boolean.toString(value));
+    }
   }
 }
