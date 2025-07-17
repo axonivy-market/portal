@@ -170,11 +170,7 @@
         Portal.updateLayoutContent();
         Portal.updateBreadcrumb();
         MainMenu.highlightMenuItem();
-        
-        // Initialize shortcuts state from server
-        if (typeof initIsEnableKeyboardShortcuts === 'function') {
-          initIsEnableKeyboardShortcuts(#{isShortcutEnabled});
-        }
+
       });
     </script>
   </ui:insert>
@@ -186,7 +182,11 @@
       }, 1);
       Portal.updateLayoutContent();
     });
+        
+    // Initialize shortcuts state from server
+    if (typeof initIsEnableKeyboardShortcuts === 'function') {
       initIsEnableKeyboardShortcuts(#{isShortcutEnabled});
+    }
   </script>
 
   <p:growl id="portal-global-growl" widgetVar="portal-global-growl" for="portal-global-growl-message" escape="false" showDetail="true" skipDetailIfEqualsSummary="true"/>
