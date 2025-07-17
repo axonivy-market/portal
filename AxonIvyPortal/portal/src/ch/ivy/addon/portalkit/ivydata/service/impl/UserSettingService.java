@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -62,7 +63,10 @@ public class UserSettingService {
   }
   
   public boolean getIsShortcutEnabled() {
-    return Boolean.parseBoolean(getUserProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE));
+    if (GlobalSettingService.getInstance().isEnableKeyboardShortcuts()) {
+      return Boolean.parseBoolean(getUserProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE));
+    }
+    return false;
   }
   
   public void saveIsShortcutEnabled(boolean value) {

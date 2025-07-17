@@ -47,16 +47,17 @@
             </h:form>
            </h:panelGroup>
         </li>
-<li class="topbar-item mr-2">
-    <p:outputLabel value="Keyboard shortcuts" styleClass="mr-2"/>
-    <p:toggleSwitch id="toggle-switch-keyboard-shortcuts" 
-        global="false" 
-        value="#{userMenuBean.isShortcutEnabled}">
-        <f:ajax listener="#{userMenuBean.updateIsShortcutEnabled}"
-            oncomplete="initShortcutsFromServer(#{userMenuBean.isShortcutEnabled})" 
-            process="@this" />
-    </p:toggleSwitch>
-</li>
+         <li class="topbar-item mr-2">
+            <h:form id="toggle-switch-keyboard-shortcuts-form" styleClass="flex">
+            <div class="mt-1">
+             <p:outputLabel for="@next" value="Keyboard shortcuts" styleClass="mr-2"/>
+             </div>
+             <p:toggleSwitch id="toggle-switch-keyboard-shortcuts" disabled="#{!userProfileBean.getIsEnableKeyboardShortcuts()}"
+                 value="#{userMenuBean.isEnableKeyboardShortcuts}">
+                 <p:ajax listener="#{userMenuBean.onToggleKeyboardShortcutsButton}" global="false" process="@this" update="toggle-switch-keyboard-shortcuts-form" oncomplete="initIsEnableKeyboardShortcuts(args.shortcutEnable)"/>
+             </p:toggleSwitch>
+            </h:form>
+         </li>
         <li class="topbar-item custom-search-item" jsf:rendered="#{showGlobalSearch or showQuickGlobalSearch}">
           <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" showQuickGlobalSearch="#{showQuickGlobalSearch}"
             isWorkingOnATask="#{isWorkingOnATask}" case="#{case}" task="#{task}" />

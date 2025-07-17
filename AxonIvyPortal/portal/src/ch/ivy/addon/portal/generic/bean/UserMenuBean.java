@@ -56,7 +56,7 @@ public class UserMenuBean implements Serializable {
   private String loggedInUser;
   private boolean isShowGlobalSearch;
   private boolean isShowQuickGlobalSearch;
-  private boolean isShortcutEnabled;
+  private boolean isEnableKeyboardShortcuts;
   private String baseUrlVariable;
   private String appleStoreUrlVariable;
   private String googlePlayUrlVariable;
@@ -404,8 +404,8 @@ public class UserMenuBean implements Serializable {
     return caseIdToProcessViewerDisplayed.get(caze.getId());
   }
 
-  public boolean getIsShortcutEnabled() {
-    return isShortcutEnabled;
+  public boolean getIsEnableKeyboardShortcuts() {
+    return isEnableKeyboardShortcuts;
   }
   
   private void initIsShortcutEnabled() {
@@ -416,19 +416,19 @@ public class UserMenuBean implements Serializable {
       if (StringUtils.isBlank(isEnabled)) {
         user.removeProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE);
       }
-      setIsShortcutEnabled(Boolean.parseBoolean(isEnabled));
+      setIsEnableKeyboardShortcuts(Boolean.parseBoolean(isEnabled));
     } else {
-      setIsShortcutEnabled(false);
+      setIsEnableKeyboardShortcuts(false);
     }
   }
 
-  public void setIsShortcutEnabled(boolean isShortcutEnabled) {
-    this.isShortcutEnabled = isShortcutEnabled;
+  public void setIsEnableKeyboardShortcuts(boolean isShortcutEnabled) {
+    this.isEnableKeyboardShortcuts = isShortcutEnabled;
   }
 
-  public void updateIsShortcutEnabled() {
-    Ivy.log().info(isShortcutEnabled);
-    UserSettingService.getInstance().saveIsShortcutEnabled(isShortcutEnabled);
+  public void onToggleKeyboardShortcutsButton() {
+    setIsEnableKeyboardShortcuts(isEnableKeyboardShortcuts);
+    UserSettingService.getInstance().saveIsShortcutEnabled(isEnableKeyboardShortcuts);
+    PrimeFaces.current().ajax().addCallbackParam("shortcutEnable", isEnableKeyboardShortcuts);
   }
-
 }

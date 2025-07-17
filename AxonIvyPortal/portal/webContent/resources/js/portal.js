@@ -507,12 +507,11 @@ const caseItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__
 const searchInputId = '[id="global-search-component:global-search-data"]:visible'
 const useSettingMenuId = 'a#user-settings-menu:visible';
 const pinButton = 'a[id="user-menu-required-login:toggle-menu"]';
-let isShortcutEnabled = false;
+let isEnableKeyboardShortcuts = false;
 
-function initShortcutsFromServer(value) {
+function initIsEnableKeyboardShortcuts(value) {
   if (typeof value === 'boolean') {
-    isShortcutEnabled = value;
-    console.log(isShortcutEnabled);
+    isEnableKeyboardShortcuts = value;
   }
 }
 
@@ -592,7 +591,7 @@ $(document).ready(function () {
     iframe.onload = function () {
       const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
       iframeDocument.addEventListener('keydown', function (event) {
-        if (isShortcutEnabled && onlyAltPressed(event)) {
+        if (isEnableKeyboardShortcuts && onlyAltPressed(event)) {
           if(toggleLeftMenu(event.code)) {
             return;
           }
@@ -618,7 +617,8 @@ $(document).ready(function () {
   let focusedTaskSideStepEl;
 
   $(document).on('keydown', function (event) {
-    if (!isShortcutEnabled) {
+
+    if (!isEnableKeyboardShortcuts) {
       return;
     }
 
