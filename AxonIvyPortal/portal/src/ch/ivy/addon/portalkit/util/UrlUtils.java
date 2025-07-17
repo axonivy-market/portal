@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.util;
 
 import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -70,6 +69,9 @@ public class UrlUtils {
     try {
       URI uri = new URI(link);
       String query = uri.getQuery();
+      if (query == null) {
+        return link;
+      }
       String filteredQuery = Arrays.stream(query.split("&")).filter(param -> !param.equals(EMBED_IN_FRAME))
           .collect(Collectors.joining("&"));
 
@@ -77,8 +79,9 @@ public class UrlUtils {
           filteredQuery.isEmpty() ? null : filteredQuery, uri.getFragment());
 
       return newUri.toString();
-    } catch (URISyntaxException e) {
-      throw new PortalException(e);
+    } catch (Exception e) {
+      Ivy.log().warn("The link might be in the wrong format: {0}", link);
+      return link;
     }
   }
 

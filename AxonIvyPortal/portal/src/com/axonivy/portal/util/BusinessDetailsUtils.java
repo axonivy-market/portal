@@ -27,27 +27,14 @@ public class BusinessDetailsUtils {
   private static final String START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE = "Start Processes/PortalStart/showAdditionalCaseDetails.ivp";
 
   public static String getAdditionalCaseDetailsPageUri(ICase iCase) {
-    return getBusinessDetailUrlFromCustomField(iCase);
+    return getBusinessDetailUrlFromCustomField(iCase, true);
   }
 
   /**
    * Attempt to find custom businessDetails url which is using in case detail only
    **/
   public static String getCustomBusinessDetailUri(ICase iCase) {
-    String customFieldValue = iCase.customFields().stringField(BUSINESS_DETAILS).getOrNull();
-    if (StringUtils.isEmpty(customFieldValue)) {
-      customFieldValue = iCase.customFields().textField(CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.name()).getOrNull();
-      if (StringUtils.isEmpty(customFieldValue)) {
-        return "";
-      }
-    }
-    if (isExternalLink(customFieldValue)) {
-      return customFieldValue;
-    }
-    if (customFieldValue.startsWith("/")) {
-      migrateCustomFieldForBusinessDetailsPage(iCase, customFieldValue);
-    }
-    return getBusinessDetailsUrl(iCase);
+    return getBusinessDetailUrlFromCustomField(iCase, false);
   }
 
   /**
@@ -89,12 +76,12 @@ public class BusinessDetailsUtils {
    * append caseId, uuid if missing If migrated from custom text field, add
    * embedInFrame in query string.
    **/
-  private static String getBusinessDetailUrlFromCustomField(ICase iCase) {
+  private static String getBusinessDetailUrlFromCustomField(ICase iCase, Boolean useDefault) {
     String customFieldValue = iCase.customFields().stringField(BUSINESS_DETAILS).getOrNull();
     if (StringUtils.isEmpty(customFieldValue)) {
       customFieldValue = iCase.customFields().textField(CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.name()).getOrNull();
       if (StringUtils.isEmpty(customFieldValue)) {
-        return constructDefaultBusinessDetailsUrl(iCase);
+        return useDefault ? constructDefaultBusinessDetailsUrl(iCase) : "";
       } else {
         customFieldValue += "&embedInFrame";
       }
