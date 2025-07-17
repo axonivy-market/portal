@@ -145,7 +145,7 @@
                     valueChangeListener="#{data.dataModel.onFilterChange}">
                     <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}" itemValue="#{filter}" />
                     <p:ajax listener="#{data.dataModel.onSelectedFilter()}"
-                      update="filters-select-all" global="false" partialSubmit="true"/>
+                      update="filters-select-all @this" global="false" partialSubmit="true"/>
                   </p:selectManyCheckbox>
                 </p:scrollPanel>
 

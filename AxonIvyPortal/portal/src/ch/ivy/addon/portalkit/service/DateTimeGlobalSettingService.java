@@ -70,4 +70,32 @@ public class DateTimeGlobalSettingService {
   private String getDefaultDatePattern() {
     return ((SimpleDateFormat) getDefaultDateFormatter()).toPattern();
   }
+
+  public String getDateTimePatternForDatePicker(boolean isDateFilter) {
+    return isYearHidden() ? getDateWithoutYearPattern(getDefaultDateTimePattern(isDateFilter, DateFormat.SHORT)) :
+            getDefaultDateTimePattern(isDateFilter, DateFormat.SHORT);
+  }
+
+  public String getDatePatternForDatePicker() {
+    return isYearHidden() ? getDateWithoutYearPattern(getDefaultDatePattern(DateFormat.SHORT)) :
+            getDefaultDatePattern(DateFormat.SHORT);
+  }
+
+  private DateFormat getDefaultDateFormatter(int dateFormat) {
+    return DateFormat.getDateInstance(dateFormat, Ivy.session().getFormattingLocale());
+  }
+
+  private String getDefaultDatePattern(int dateFormat) {
+    return ((SimpleDateFormat) getDefaultDateFormatter(dateFormat)).toPattern().replaceAll("y+", "yyyy");
+  }
+
+  private String getDefaultDateTimePattern(boolean isDateFilter, int dateFormat) {
+    String pattern = ((SimpleDateFormat) getDefaultDateFormatter(dateFormat)).toPattern().replaceAll("y+", "yyyy");
+
+    if (isDateFilter) {
+      return isDateFilterWithTime() ? pattern + SPACE_CHARACTER + Ivy.cms().co("/patterns/timePattern") : pattern;
+    }
+
+    return !isTimeHidden() ? pattern + SPACE_CHARACTER + Ivy.cms().co("/patterns/timePattern") : pattern;
+  }
 }

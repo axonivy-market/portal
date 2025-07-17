@@ -20,11 +20,13 @@
         for="from-expired-calendar" />
       <p:datePicker id="from-expired-calendar" value="#{cc.attrs.filter.fromExpiredDate}"
         showIcon="true" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+        placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongFromDateFormat', [dateTimePatternBean.dateTimestampPattern])}" />
 
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" for="to-expired-calendar" />
       <p:datePicker id="to-expired-calendar" value="#{cc.attrs.filter.toExpiredDate}"
         showIcon="true" locale="#{localeBean.locale}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+        placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongToDateFormat', [dateTimePatternBean.dateTimestampPattern])}" />
     </h:panelGrid>
   </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>

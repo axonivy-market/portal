@@ -854,3 +854,41 @@ function setAltForAvatar() {
     }
   })
 }
+
+/**
+ * Focuses the first visible element matching the selector in a PrimeFaces overlay panel.
+ * @param {string} widgetVar - The widgetVar of the PrimeFaces overlay panel.
+ * @param {string} selector - The jQuery selector for the element(s) to focus.
+ */
+function focusFirstVisibleElementInPanel(widgetVar, selector) {
+  var panel = PF(widgetVar).jq;
+  var first = panel.find(selector + ':visible').first();
+  if (first.length) {
+    first.focus();
+  }
+}
+
+function focusElementWithId(elementId) {
+    var element = document.querySelector('[id$="' + elementId + '"]');
+    if (element) { element.focus(); }
+}
+
+function addMissingAttr(query, attrName, attrValue) {
+  $(query).each((index, btn) => {
+    if ($(btn).attr(attrName) === undefined) {
+      $(btn).attr(attrName, attrValue);
+    }
+  });
+}
+
+function addEventForCaseDetailsIframe() {
+  const caseDetailsIframe = document.getElementById('i-frame-case-details');
+  if (caseDetailsIframe) {
+    const caseDetailsIframeDocument = caseDetailsIframe.contentDocument || caseDetailsIframe.contentWindow.document;
+    caseDetailsIframeDocument.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        PF('case-info-dialog').hide();
+      }
+    })
+  }
+}
