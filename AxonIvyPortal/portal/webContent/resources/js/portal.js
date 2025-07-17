@@ -821,6 +821,8 @@ $(document).ready(function () {
         $(item).attr('aria-label', $(item).text());
       }
     });
+	
+	$("th[scope='col']").attr("tabindex", "0");
   }, 200);
 
   setAltForAvatar();
