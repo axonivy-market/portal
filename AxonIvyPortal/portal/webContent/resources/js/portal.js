@@ -465,7 +465,7 @@ function isPressedSpecialKeys(event) {
   const specialKeys = [
     'Control', 'Alt', 'Pause', 'CapsLock', 'Escape',
     'PageUp', 'PageDown', 'PrintScreen', 'Insert', 'Meta',
-    'ContextMenu', 'NumLock', 'ScrollLock', 'Home', 'End'
+    'ContextMenu', 'NumLock', 'ScrollLock', 'Home', 'End', 'Tab'
   ];
 
   return specialKeys.includes(event.key);
