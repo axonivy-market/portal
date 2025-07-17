@@ -20,12 +20,14 @@
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}"
         for="from-created-calendar" />
       <p:datePicker id="from-created-calendar" value="#{cc.attrs.filter.fromCreationDate}"
+      	placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
         locale="#{localeBean.locale}"
         showIcon="true" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongFromDateFormat', [dateTimePatternBean.dateTimestampPattern])}" />
 
       <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" for="to-created-calendar" />
       <p:datePicker id="to-created-calendar" value="#{cc.attrs.filter.toCreationDate}"
+      	placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
         locale="#{localeBean.locale}"
         showIcon="true" showTime="#{dateTimePatternBean.isDateFilterWithTime}" 
         converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/wrongToDateFormat', [dateTimePatternBean.dateTimestampPattern])}" />

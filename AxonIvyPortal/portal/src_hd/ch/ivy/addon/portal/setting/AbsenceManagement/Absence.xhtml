@@ -48,6 +48,7 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}:" />
           <div class="ui-g-12">
             <p:datePicker id="absence-start-date" value="#{data.selectedAbsence.from}" 
+            	placeholder="#{dateTimePatternBean.shortDatePattern}"
               locale="#{localeBean.locale}"
               showIcon="true" converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
               required="true"
@@ -63,6 +64,7 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/till')}:" />
           <div class="ui-g-12">
             <p:datePicker id="absence-end-date" value="#{data.selectedAbsence.until}" showIcon="true"
+            	placeholder="#{dateTimePatternBean.shortDatePattern}"
               locale="#{localeBean.locale}"
               required="true"
               converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
