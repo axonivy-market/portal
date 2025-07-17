@@ -109,6 +109,11 @@ Browser & Keyboard Compatibility
 
 These shortcuts are available in Chrome, Firefox, and Edge and work seamlessly with European, Asian, and American keyboard layouts.
 
+Enable & Disable Keyboard shortcuts
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can turn on or off keyboard shortcuts in your **My Profile**. Please visit :ref:`accessibility-settings` to have more information.
+
 Extended Descriptive Elements in the Task and Case List
 -------------------------------------------------------
 .. raw:: html
