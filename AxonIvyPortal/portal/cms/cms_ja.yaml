@@ -146,7 +146,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: 見出し 3
       NORMAL_TEXT: 通常のテキスト
   MyProfile:
-    Accessibility: Accessibility
+    Accessibility: 'TODO: Accessibility'
     CaseList: ケースリスト
     DateFormat: 日付の形式
     FormattingLanguage: 書式設定言語
