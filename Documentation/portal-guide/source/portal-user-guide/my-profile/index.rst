@@ -78,7 +78,7 @@ needs. These are options you can modify:
    +-----------------------------------+------------------------------------------------+
    | Option                            | Description                                    |
    +===================================+================================================+
-   | Keyboard shortcuts for navigation | Enable or disable shortcut keys for navigation |
+   | Keyboard shortcuts for navigation | Enable or disable keyboard shortcuts for navigation |
    +-----------------------------------+------------------------------------------------+
 
 .. _language-settings:

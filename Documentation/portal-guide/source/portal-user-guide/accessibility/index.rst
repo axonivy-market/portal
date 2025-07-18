@@ -112,7 +112,7 @@ These shortcuts are available in Chrome, Firefox, and Edge and work seamlessly w
 Enable & Disable Keyboard shortcuts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can turn on or off keyboard shortcuts in your **My Profile**. Please visit :ref:`accessibility-settings` to have more information.
+You can enable/disable keyboard shortcuts in your **My Profile**. Please visit :ref:`accessibility-settings` for more details.
 
 Extended Descriptive Elements in the Task and Case List
 -------------------------------------------------------
