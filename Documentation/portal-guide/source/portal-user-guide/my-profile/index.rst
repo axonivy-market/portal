@@ -81,9 +81,6 @@ needs. These are options you can modify:
    | Keyboard shortcuts for navigation | Enable or disable shortcut keys for navigation |
    +-----------------------------------+------------------------------------------------+
 
-.. important::
-   If option ``Keyboard shortcuts for navigation`` is disabled by your administrator, switching the mode of this option will no longer be possible.
-
 .. _language-settings:
 
 Language settings
