@@ -154,6 +154,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     Homepage: ホームページ
     KeyboardShorcutsNavigationInfor: 'TODO: Toggle to enable or disable keyboard navigation shortcuts.'
     KeyboardShortcutsNavigation: 'TODO: Keyboard shortcuts for navigation'
+    KeyboardShortcutsTooltip: 'TODO: This button is currently unavailable and cannot be used due to settings.'
     Language: 言語
     ProcessList: プロセスリスト
     TaskList: 'TODO: Task List'
@@ -228,6 +229,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SessionCacheTimeout: TODO Defines the session cache timeout duration (in seconds) for the Portal. This value can be set between 300 (5 minutes) and 86,400 (24 hours).
       ShowLoginPageFooter: ログインページのフッターの表示のオン／オフを切り替えます。
       ShowQRCode: QRコードの表示のオン／オフを切り替えます。
+      allowKeyboardShortcutsButton: 'TODO: Set to true to allow the user interact with the keyboard shortcuts button.'
       behaviourWhenClickingOnLineInCaseList: ダッシュボード・グローバル検索・関連ケース・または複合モードのプロセスウィジェットの各ケースウィジェットでケースをクリックしたときに、ケースの詳細またはビジネスの詳細へのアクセスを切り替えます。
       behaviourWhenClickingOnLineInTaskList: タスク リスト、ダッシュボードのタスク ウィジェット、およびケース詳細ページの関連タスクの行をクリックしたときの動作（タスクを実行するか、タスクの詳細にアクセスするか）を切り替えます。
       chatMaxConnection: 設定された数値は、アクティブなチャットで許可されるタブの数を制御します。それ以上のタブが開かれると、非アクティブなタブではチャットが無効になります。許可される値は 1 から 5 です。
@@ -250,7 +252,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。
       enableDeepLTranslation: DeepL翻訳サポートを有効にするには、このプロパティーを true に設定してください。
       enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
-      enableKeyboardShortcuts: 'TODO: Enable keyboard shortcuts for navigation.'
       enablePinCase: 'TODO: Set this property to true to enable the ability to pin cases.'
       enablePinTask: 'TODO: Set this property to true to enable the ability to pin tasks.'
       enablePrivateChat: 個人用チャット機能を有効にするには、このプロパティーを true に設定してください。

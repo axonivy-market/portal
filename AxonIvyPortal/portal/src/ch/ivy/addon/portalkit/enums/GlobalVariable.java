@@ -92,8 +92,8 @@ public enum GlobalVariable {
   SESSION_CACHE_TIMEOUT("Portal.SessionCacheTimeout", GlobalVariableType.NUMBER,"86400", "SessionCacheTimeout"),
   ENABLE_PINNED_TASK("Portal.Tasks.EnablePinnedTask",GlobalVariableType.SELECTION, Option.TRUE.toString(), "enablePinTask"),
   ENABLE_PINNED_CASE("Portal.Cases.EnablePinnedCase", GlobalVariableType.SELECTION, Option.TRUE.toString(),
-      "enablePinCase"),ENABLE_KEYBOARD_SHORTCUTS(
-          "Portal.Accessibility.EnableKeyboardShortcuts", GlobalVariableType.SELECTION, Option.TRUE.toString(), "enableKeyboardShortcuts");
+      "enablePinCase"),ALLOW_KEYBOARD_SHORTCUTS_BUTTON(
+          "Portal.Accessibility.AllowKeyboardShortcutsButton", GlobalVariableType.SELECTION, Option.TRUE.toString(), "allowKeyboardShortcutsButton");
 
   private String key;
   private GlobalVariableType type;

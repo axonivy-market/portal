@@ -78,8 +78,10 @@
                         <p:outputLabel for="@next" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShortcutsNavigation')}" styleClass="mr-3"/>
                     </div>
                     <div class="col-4 text-right p-0">
-                        <p:toggleSwitch value="#{data.isShortcutEnabled}" disabled="#{!userProfileBean.isKeyboardShortcutsEnabledByAdmin()}" 
-                            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShorcutsNavigationInfor')}"/>
+                        <p:toggleSwitch id="keyboard-shortcuts-toggle-button" value="#{data.isShortcutEnabled}" styleClass="pointer-events-auto" disabled="#{!userProfileBean.allowedConfigShortcutsByAdmin}" 
+                            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShorcutsNavigationInfor')}">
+                        </p:toggleSwitch>
+                        <p:tooltip for="keyboard-shortcuts-toggle-button" value="#{userProfileBean.renderTooltipMessageForKeyboardShortcutButton()}"/>
                     </div>
                   </div>
                 </h:panelGroup>

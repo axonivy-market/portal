@@ -306,6 +306,6 @@ public class AdminSettingBean implements Serializable {
   }
 
   public boolean getIsEnableKeyboardShortcuts() {
-    return GlobalSettingService.getInstance().isEnableKeyboardShortcuts();
+    return GlobalSettingService.getInstance().isAllowedConfigShortcutsByAdmin();
   }
 }

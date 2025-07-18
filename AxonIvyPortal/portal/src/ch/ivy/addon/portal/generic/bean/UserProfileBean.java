@@ -115,8 +115,14 @@ public class UserProfileBean implements Serializable {
     }
   }
   
-  public boolean isKeyboardShortcutsEnabledByAdmin() {
-    return GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ENABLE_KEYBOARD_SHORTCUTS);
+  public boolean isAllowedConfigShortcutsByAdmin() {
+    return GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ALLOW_KEYBOARD_SHORTCUTS_BUTTON);
   }
 
+  public String renderTooltipMessageForKeyboardShortcutButton() {
+    if (isAllowedConfigShortcutsByAdmin()) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShorcutsNavigationInfor");
+    }
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShortcutsTooltip");
+  }
 }

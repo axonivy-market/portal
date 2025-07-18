@@ -26,6 +26,7 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 import ch.ivy.addon.portalkit.service.CaseDocumentService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -141,17 +142,16 @@ public class MasterDataBean implements Serializable {
     return String.join(", ", extensionList);
   }
   
-  public boolean getIsKeyboardShortcutsEnabled() {
-    boolean isEnabledInAdminSettings = GlobalSettingService.getInstance().isEnableKeyboardShortcuts();
-
-    if (!isEnabledInAdminSettings) {
-      return false;
+  public boolean isKeyboardShortcutsEnabled() {
+    boolean isAllowedConfigShortcutsByAdmin = GlobalSettingService.getInstance().isAllowedConfigShortcutsByAdmin();
+    if (isAllowedConfigShortcutsByAdmin) {
+      IUser user = Ivy.session().getSessionUser();
+      String isEnabledByUser = user.getProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS);
+      return Boolean.parseBoolean(isEnabledByUser);
     }
-
-    IUser user = Ivy.session().getSessionUser();
-    String isEnabledByUser = user.getProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS);
-
-    return Boolean.parseBoolean(isEnabledByUser);
+    UserSettingService.getInstance().updateUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS,
+        Boolean.TRUE.toString());
+    return true;
   }
 
 }

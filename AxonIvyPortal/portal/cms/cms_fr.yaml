@@ -154,6 +154,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     Homepage: Page d'accueil
     KeyboardShorcutsNavigationInfor: Basculer pour activer ou désactiver les raccourcis clavier de navigation.
     KeyboardShortcutsNavigation: Raccourcis clavier pour la navigation.
+    KeyboardShortcutsTooltip: Ce bouton est actuellement indisponible et ne peut pas être utilisé en raison des paramètres.
     Language: Langue
     ProcessList: Liste des processus
     TaskList: Liste des tâches
@@ -227,6 +228,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SessionCacheTimeout: Délai d'expiration du cache de session pour le portail. Définit la durée d'expiration du cache de session (en secondes) pour le portail. Cette valeur peut être définie entre 300 (5 minutes) et 86 400 (24 heures).
       ShowLoginPageFooter: Pour activer/désactiver l'affichage du pied de page sur la page de connexion.
       ShowQRCode: Pour activer/désactiver l'affichage du code QR.
+      allowKeyboardShortcutsButton: Définissez sur true pour permettre à l’utilisateur d’interagir avec le bouton des raccourcis clavier.
       behaviourWhenClickingOnLineInCaseList: Pour alterner entre les comportements (accéder aux détails du dossier ou aux détails de l’entreprise) lors du clic sur un dossier dans le widget de dossier du dashboard, la recherche globale, les dossiers associés et le widget de processus en mode combiné.
       behaviourWhenClickingOnLineInTaskList: Pour changer de comportement (exécuter la tâche ou accéder aux détails de la tâche) en cliquant sur une ligne dans la liste des tâches, le widget des tâches du tableau de bord et les tâches liées dans la page des détails du cas.
       chatMaxConnection: Si le nombre de tabs du browser est supérieur à ce nombre maximum, le chat sera désactivé sur les tabs inactifs du browser. Les valeurs valides sont 1, 2, 3, 4, 5.
@@ -252,7 +254,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       enableDeepLTranslation: Attribuez la valeur true à cette propriété pour activer la prise en charge de la traduction de DeepL.
       enableDocumentPreview: 'Définir sur "true" pour activer l''aperçu des documents pour certains types de fichiers. Les types de fichiers pris en charge sont : pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Définissez cette propriété sur true pour activer la fonction de chat de groupe
-      enableKeyboardShortcuts: Activer les raccourcis clavier pour la navigation.
       enablePinCase: Définissez cette propriété sur true pour activer la possibilité d’épingler des cas.
       enablePinTask: Définissez cette propriété sur true pour activer la possibilité d’épingler des tâches.
       enablePrivateChat: Définissez cette propriété à true pour activer la fonction de chat privé
