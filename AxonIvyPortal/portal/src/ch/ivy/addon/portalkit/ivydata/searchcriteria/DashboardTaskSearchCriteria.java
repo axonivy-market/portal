@@ -443,7 +443,7 @@ public class DashboardTaskSearchCriteria {
           switch (column) {
             case PRIORITY -> order = orderBy.priority();
             case NAME -> order = orderBy.name();
-            case RESPONSIBLE -> orderBy.activatorDisplayName();
+            case RESPONSIBLE -> order = orderBy.activatorDisplayName();
             case ID -> order = orderBy.taskId();
             case CREATED -> order = orderBy.startTimestamp();
             case COMPLETED -> order = orderBy.endTimestamp();
