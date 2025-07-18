@@ -85,7 +85,7 @@
 
       <c:set var="showGlobalSearch" value="#{userMenuBean.isShowGlobalSearch}" />
       <c:set var="showQuickGlobalSearch" value="#{userMenuBean.isShowQuickGlobalSearch}" />
-      <c:set var="isShortcutEnabled" value="#{masterDataBean.isEnableKeyboardShortcuts}" />
+      <c:set var="isKeyboardShortcutsEnabled" value="#{masterDataBean.isKeyboardShortcutsEnabled}" />
 
      <div id="portal-template-header" class="js-portal-template-header #{showMainArea eq true ? '' : 'u-invisibility'}">
         <ic:ch.ivy.addon.portalkit.component.PageHeader />
@@ -184,8 +184,8 @@
     });
         
     // Initialize shortcuts state from server
-    if (typeof initIsEnableKeyboardShortcuts === 'function') {
-      initIsEnableKeyboardShortcuts(#{isShortcutEnabled});
+    if (typeof initKeyboardShortcutsEnabledValue === 'function') {
+      initKeyboardShortcutsEnabledValue(#{isKeyboardShortcutsEnabled});
     }
   </script>
 

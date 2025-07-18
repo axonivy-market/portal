@@ -137,11 +137,11 @@ public class MasterDataBean implements Serializable {
     List<String> extensionList = CaseDocumentService.getAllowedUploadFileType();
     if (CollectionUtils.isEmpty(extensionList)) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allTypes");
-    } else
-      return String.join(", ", extensionList);
+    }
+    return String.join(", ", extensionList);
   }
   
-  public boolean getIsEnableKeyboardShortcuts() {
+  public boolean getIsKeyboardShortcutsEnabled() {
     boolean isEnabledInAdminSettings = GlobalSettingService.getInstance().isEnableKeyboardShortcuts();
 
     if (!isEnabledInAdminSettings) {
@@ -149,11 +149,8 @@ public class MasterDataBean implements Serializable {
     }
 
     IUser user = Ivy.session().getSessionUser();
-    String isEnabledByUser = user.getProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE);
+    String isEnabledByUser = user.getProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS);
 
-    if (StringUtils.isBlank(isEnabledByUser)) {
-      return false;
-    }
     return Boolean.parseBoolean(isEnabledByUser);
   }
 

@@ -603,8 +603,9 @@
           "config" : {
             "output" : {
               "code" : [
+                "import ch.ivy.addon.portalkit.constant.UserProperty;",
                 "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
-                "UserSettingService.getInstance().saveIsShortcutEnabled(in.isShortcutEnabled);"
+                "UserSettingService.getInstance().updateUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS, Boolean.toString(in.isShortcutEnabled));"
               ]
             }
           },
@@ -633,7 +634,7 @@
             "output" : {
               "code" : [
                 "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
-                "boolean isShortcutEnable = UserSettingService.getInstance().getIsShortcutEnabled();",
+                "boolean isShortcutEnable = UserSettingService.getInstance().getIsKeyboardShortcutsEnabled();",
                 "in.isShortcutEnabled = isShortcutEnable;"
               ]
             }

@@ -507,11 +507,11 @@ const caseItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__
 const searchInputId = '[id="global-search-component:global-search-data"]:visible'
 const useSettingMenuId = 'a#user-settings-menu:visible';
 const pinButton = 'a[id="user-menu-required-login:toggle-menu"]';
-let isEnableKeyboardShortcuts = false;
+let isKeyboardShortcutsEnabled = false;
 
-function initIsEnableKeyboardShortcuts(value) {
+function initKeyboardShortcutsEnabledValue(value) {
   if (typeof value === 'boolean') {
-    isEnableKeyboardShortcuts = value;
+    isKeyboardShortcutsEnabled = value;
   }
 }
 
@@ -591,7 +591,7 @@ $(document).ready(function () {
     iframe.onload = function () {
       const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
       iframeDocument.addEventListener('keydown', function (event) {
-        if (isEnableKeyboardShortcuts && onlyAltPressed(event)) {
+        if (isKeyboardShortcutsEnabled && onlyAltPressed(event)) {
           if(toggleLeftMenu(event.code)) {
             return;
           }
@@ -618,9 +618,9 @@ $(document).ready(function () {
 
   $(document).on('keydown', function (event) {
 
-    if (!isEnableKeyboardShortcuts) {
-      return;
-    }
+    // if (!isKeyboardShortcutsEnabled) {
+    //   return;
+    // }
 
     var keyCode = event.code;
     if (keyCode === 'Escape') {
@@ -660,7 +660,7 @@ $(document).ready(function () {
     var taskActionStepsPanel = $('[id$=":side-steps-panel"]:visible');
     var taskActionStepsPanelVisible = taskActionStepsPanel.length > 0;
 
-    if (onlyAltPressed(event)) {
+    if (onlyAltPressed(event) && isKeyboardShortcutsEnabled) {
       var keyCode = event.code;
       if(toggleLeftMenu(keyCode)) {
         return;

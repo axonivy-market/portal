@@ -2,8 +2,8 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
 
+
 import ch.ivy.addon.portalkit.constant.UserProperty;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -57,19 +57,26 @@ public class UserSettingService {
     }
     return getSessionUser().getProperty(property);
   }
+  
+  public void updateUserProperty(String property, String value) {
+    IUser user = getSessionUser();
+    if (user != null) {
+      user.setProperty(property, value);
+    }
+  }
 
   private IUser getSessionUser() {
     return Ivy.session().getSessionUser();
   }
   
-  public boolean getIsShortcutEnabled() {
-    return Boolean.parseBoolean(getUserProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE));
+  public boolean getIsKeyboardShortcutsEnabled() {
+    return Boolean.parseBoolean(getUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS));
   }
 
-  public void saveIsShortcutEnabled(boolean value) {
+  public void setIsKeyboardShortcutsEnabled(boolean value) {
     IUser user = getSessionUser();
     if (user != null) {
-      user.setProperty(UserProperty.ACCESSIBILITY_SHORTCUT_ENABLE, Boolean.toString(value));
+      user.setProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS, Boolean.toString(value));
     }
   }
 }
