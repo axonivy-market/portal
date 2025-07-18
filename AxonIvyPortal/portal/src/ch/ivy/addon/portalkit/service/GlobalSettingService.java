@@ -119,6 +119,6 @@ public class GlobalSettingService {
   }
   
   public boolean isAllowedConfigShortcutsByAdmin() {
-    return findGlobalSettingValueAsBoolean(GlobalVariable.ALLOW_KEYBOARD_SHORTCUTS_BUTTON);
+    return findGlobalSettingValueAsBoolean(GlobalVariable.ALLOW_KEYBOARD_SHORTCUTS_CONFIGURATION);
   }
 }

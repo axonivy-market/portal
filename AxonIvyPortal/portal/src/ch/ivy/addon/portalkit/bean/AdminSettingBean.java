@@ -304,8 +304,4 @@ public class AdminSettingBean implements Serializable {
   public void onUnSelectPermissionForApplication(UnselectEvent<Object> event) {
     getThirdPartyApplicationBean().onUnSelectPermissionForApplication(event);
   }
-
-  public boolean getIsEnableKeyboardShortcuts() {
-    return GlobalSettingService.getInstance().isAllowedConfigShortcutsByAdmin();
-  }
 }
