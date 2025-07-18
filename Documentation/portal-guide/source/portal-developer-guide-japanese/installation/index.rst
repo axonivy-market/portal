@@ -38,24 +38,10 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 エンジンは自動的に、以下のデフォルトユーザーでポータルアプリケーションを展開します。
 
-
-.. table::
-
-   +-----------------------+-----------------------+-----------------------+
-   | ユーザー名              | パスワード              | 説明           |
-   +=======================+=======================+=======================+
-   | admin                 | admin                 | このユーザーはポータルの     |
-   |                       |                       | すべての権限を持ち、   |
-   |                       |                       | ポータルの管理者設定に     |
-   |                       |                       | アクセスできます。       |
-   +-----------------------+-----------------------+-----------------------+
-   | demo                  | demo                  | このユーザーは         |
-   |                       |                       | ユーザーの不在を  |
-   |                       |                       | 管理する権限を持ちます。        |
-   +-----------------------+-----------------------+-----------------------+
-   | guest                 | guest                 | ポータルのデフォルトの |
-   |                       |                       | 標準的なユーザーです。        |
-   +-----------------------+-----------------------+-----------------------+
+.. csv-table:: 
+   :file: tables/portal-default-users.csv
+   :widths: 20, 30, 50
+   :header-rows: 1
 
 
 ライセンス付きエンジン（プロダクションモード）
@@ -68,7 +54,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ダッシュボードの JSON 設定ファイルを Axon Ivy エンジンにインストールする方法として、以下のいずれかを選択できます。
 
-- 以下の構造に示すように、``<app.zip>/config/variables/Portal.Dashboard.json`` の app.zip の下に Dashboard.json ファイルを配置します。
+- 以下の構造に示すように、 ``<app.zip>/config/variables/Portal.Dashboard.json`` の app.zip の下に Dashboard.json ファイルを配置します。
 
    .. code-block:: 
 
@@ -81,10 +67,10 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
       ├── portal-components.iar    
    ..
 
-   JSON ファイルの名前は Portal.Dashboard.json とする必要があります。:dev-url:`エンジンの展開</doc/|version|/engine-guide/deployment/index.html>` を参照してください。 
+   JSON ファイルの名前は Portal.Dashboard.json とする必要があります。:dev-url:`エンジンの展開 </doc/|version|/engine-guide/deployment/index.html>` を参照してください。 
 - Dashboard.json ファイルを ``<engine>/configuration/applications/<application>`` パスの ``<application>`` フォルダーに直接コピーします。JSON ファイルの名前は ``variables.Portal.Dashboard.json`` とする必要があります。
 
-- ポータルのダッシュボードのインポート機能を使用します。:ref:`公開用ダッシュボードのインポート方法<howto-import-your-public-dashboards>` を参照してください。
+- ポータルのダッシュボードのインポート機能を使用します。:ref:`公開用ダッシュボードのインポート方法 <howto-import-your-public-dashboards>` を参照してください。
 
 ポータルのマルチアプリケーションのセットアップ
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -92,7 +78,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
    これは、各ユーザーの共通タスクリストを複数のアプリケーションで表示するのに使用します。セキュリティコンテキストにインストールされたすべてのアプリケーションのタスク／ケースリストが、このセキュリティコンテキストで実行中のポータルによって表示されます。
 
-すべてのアプリケーションは同じセキュリティコンテキストにあり、他のアプリケーションに展開されるのは **portal-components** だけです。:ref:`ポータルのマルチアプリケーション<multi-app-structure>` の概要を参照してください。
+すべてのアプリケーションは同じセキュリティコンテキストにあり、他のアプリケーションに展開されるのは **portal-components** だけです。:ref:`ポータルのマルチアプリケーション <multi-app-structure>` の概要を参照してください。
 
 -  新しいアプリケーションを作成します。このアプリケーションにポータル（portal、portal-components）を展開します。
 
@@ -116,7 +102,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
    忘れずに該当する API をプロジェクトに再実装してください。
    
 
-   ポータルを移行するには、最初に |ivy| を移行する必要があります。:dev-url:`|ivy| の移行に関する注記</doc/|version|/axonivy/migration/index.html>` を参照してください。
+   ポータルを移行するには、最初に |ivy| を移行する必要があります。:dev-url:`|ivy| の移行に関する注記 </doc/|version|/axonivy/migration/index.html>` を参照してください。
    
    顧客プロジェクトが適切に移行されていない場合、|ivy| の変更によって問題が生じることがあります。
    
@@ -125,7 +111,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 -----------
 
 #. ポータルのすべてのプロジェクトを新しいリリースのバージョンに置き換えます。
-#. 最新のポータルバージョンを使用するため、 **プロジェクトの変換** 機能を使用して、プロジェクトをアップグレードします。:dev-url:`プロジェクトの変換</doc/|version|/designer-guide/process-modeling/projects/converting.html#converting-projects>` で詳細を確認してください。
+#. 最新のポータルバージョンを使用するため、 **プロジェクトの変換** 機能を使用して、プロジェクトをアップグレードします。:dev-url:`プロジェクトの変換 </doc/|version|/designer-guide/process-modeling/projects/converting.html#converting-projects>` で詳細を確認してください。
 #. 以下の各バージョンの移行に関する注記に従います。
 #. カスタマイズ中、ポータルからコードをコピーする必要がある場合は、コピーしたコードについて、ポータルの 2 つのバージョン間で変更をマージします。
    
@@ -150,7 +136,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 - タスクウィジェットとケースウィジェットの列の幅を調整する新しい機能を実装しました。
 この変更により、以前のバージョンからのタスクウィジェットとケースウィジェットの列の幅に若干の影響が生じることがあります。
-列の幅を手動で調整する方法については、:ref:`タスクウィジェットの設定<new-dashboard-task-list-widget>` と :ref:`ケースウィジェットの設定<new-dashboard-case-list-widget>` を参照してください。
+列の幅を手動で調整する方法については、:ref:`タスクウィジェットの設定 <new-dashboard-task-list-widget>` と :ref:`ケースウィジェットの設定 <new-dashboard-case-list-widget>` を参照してください。
 
 
 11.1.0 から 11.2.0 への移行
@@ -170,7 +156,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 10.0.19 から 10.0.20 への移行
 ------------------------------------------------
 
-ポータルはこれまで、文字列または配列形式による :ref:`プロセスチェーン<components-portal-components-process-chain>` のプロセスステップの設定をサポートしてきました。 
+ポータルはこれまで、文字列または配列形式による :ref:`プロセスチェーン <components-portal-components-process-chain>` のプロセスステップの設定をサポートしてきました。 
 文字列形式は非推奨ですが、後方互換性のため、引き続きサポートします。配列形式を使用することを推奨します。以下のように変更できます。
 
 #. ``window.processSteps = "Create Investment Request,Approve Investment Request";`` を ``window.processSteps = ["Create Investment Request", "Approve Investment Request"];`` に変更します。
@@ -189,7 +175,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 #. いくつかのサブプロセスについて、プロセスのオーバーライドがサポート対象外になりました。以下のガイドラインに従って、サブプロセスのオーバーライドを移行してください。
 
-   - :ref:`パスワードを忘れた場合のカスタマイズ<customization-forgot-password>`
+   - :ref:`パスワードを忘れた場合のカスタマイズ <customization-forgot-password>`
       - プロジェクトから ``ResetPassword``、 ``SendPasswordResetEmail`` のサブプロセスのオーバーライドを削除します。
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
@@ -201,7 +187,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
          | SendPasswordResetEmail  | portalSendPasswordResetEmail  |
          +-------------------------+-------------------------------+
 
-   - :ref:`ドキュメントのプロセス<customization-document-processes>`
+   - :ref:`ドキュメントのプロセス <customization-document-processes>`
       - プロジェクトから ``GetDocumentList``、 ``UploadDocument``、 ``DeleteDocument``、 ``DownloadDocument`` のサブプロセスのオーバーライドを削除します。
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
@@ -217,7 +203,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
          | DownloadDocument     | portalDownloadDocument     |
          +----------------------+----------------------------+
 
-   - :ref:`ログアウトプロセスのカスタマイズ<customization-logout>`
+   - :ref:`ログアウトプロセスのカスタマイズ <customization-logout>`
       - プロジェクトから ``LogoutPage``、 ``Logout`` のサブプロセスのオーバーライドを削除します。
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
@@ -229,7 +215,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
          | Logout               | portalLogout               |
          +----------------------+----------------------------+
 
-   - :ref:`パスワードの変更プロセスのカスタマイズ<customization-change-password-process>`
+   - :ref:`パスワードの変更プロセスのカスタマイズ <customization-change-password-process>`
       - プロジェクトから ``ChangePassword`` のサブプロセスのオーバーライドを削除します。
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
@@ -239,7 +225,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
          | ChangePassword       | portalChangePassword       |
          +----------------------+----------------------------+
 
-   - :ref:`タスクの委任<customization-task-delegation>`
+   - :ref:`タスクの委任 <customization-task-delegation>`
       - プロジェクトから ``CalculateTaskDelegate`` のサブプロセスのオーバーライドを削除します。
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
@@ -249,7 +235,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
             | CalculateTaskDelegate   | portalCalculateTaskDelegate   |
             +-------------------------+-------------------------------+
 
-   - :ref:`メニュー項目のカスタマイズ<customization-menu-customization>`
+   - :ref:`メニュー項目のカスタマイズ <customization-menu-customization>`
       - プロジェクトから ``LoadSubMenuItems`` のサブプロセスのオーバーライドを削除します。
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
@@ -258,11 +244,11 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
          +=========================+===============================+
          | LoadSubMenuItems        | portalLoadSubMenuItems        |
          +-------------------------+-------------------------------+
-      - デフォルトのメニュー項目を非表示にするには、変数を使用します。方法については、:ref:`デフォルトのメニュー項目の非表示<customization-menu-hide-default-menu-item>` を参照してください。
+      - デフォルトのメニュー項目を非表示にするには、変数を使用します。方法については、:ref:`デフォルトのメニュー項目の非表示 <customization-menu-hide-default-menu-item>` を参照してください。
       - 各カスタムメニュー項目の ``index`` を更新します。
       - カスタムメニュー項目の作成方法の例については、 ``portal-developer-examples`` プロジェクトの ``CustomLoadSubMenuItems`` プロセスを参照してください。
 
-#. ``imageContent`` フィールドの **外部リンク** の設定を変更しました。詳細については、:ref:`ポータルプロセスの外部リンク<portal-process-external-link>` を参照してください。基本的に、エンジンでの移行は必要ありません。展開によって `Portal.Processes.ExternalLinks` 変数をオーバーライドした場合は、JSON 変数の `Portal.Processes.ExternalLinks` ファイルで `data:image/jpeg;base64` のようなプレフィックスを削除して、``imageContent`` フィールドを更新してください。
+#. ``imageContent`` フィールドの **外部リンク** の設定を変更しました。詳細については、:ref:`ポータルプロセスの外部リンク <portal-process-external-link>` を参照してください。基本的に、エンジンでの移行は必要ありません。展開によって `Portal.Processes.ExternalLinks` 変数をオーバーライドした場合は、JSON 変数の `Portal.Processes.ExternalLinks` ファイルで `data:image/jpeg;base64` のようなプレフィックスを削除して、 ``imageContent`` フィールドを更新してください。
 
 10.0 から 10.0.7 への移行
 ----------------------
@@ -279,13 +265,13 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 9.3 から 9.4 への移行
 ------------------------
 
-9.4 から ``PortalStyle``、``PortalKit``、``PortalTemplate`` が ``portal-components`` と ``portal`` に置き換えられました。:ref:`アーキテクチャ` を参照してください。
+9.4 から ``PortalStyle``、 ``PortalKit``、 ``PortalTemplate`` が ``portal-components`` と ``portal`` に置き換えられました。:ref:`アーキテクチャ` を参照してください。
 
-#. PortalStyle をカスタマイズしている場合は、:ref:`ポータルのロゴと色のカスタマイズ<customization-portal-logos-and-colors>` を参照して、ログインの背景、ファビコン、ロゴの画像をオーバーライドします。
+#. PortalStyle をカスタマイズしている場合は、:ref:`ポータルのロゴと色のカスタマイズ <customization-portal-logos-and-colors>` を参照して、ログインの背景、ファビコン、ロゴの画像をオーバーライドします。
    
    ``PortalStyle`` で CMS を変更している場合は、 ``portal`` の CMS をそれに合わせます。
 
-#. ``customization.css`` ファイルが削除されました。このファイルをプロジェクトで使用している場合は、:dev-url:`エンジンのブランディング</doc/|version|/designer-guide/user-interface/branding/branding-engine.html>`の使用に切り替えて、スタイルをカスタマイズしてください。
+#. ``customization.css`` ファイルが削除されました。このファイルをプロジェクトで使用している場合は、:dev-url:`エンジンのブランディング </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>`の使用に切り替えて、スタイルをカスタマイズしてください。
    
 
 #. ドキュメントに関連するサブプロセスが独立した ``portal-components`` プロジェクトに移動されました。
@@ -308,25 +294,25 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 #. ポータルのいくつかのクラスが独立した ``portal-components`` プロジェクトに移動されました。以下の表を参照して、正しく移行してください。
 
    .. csv-table::
-      :file: documents/class_replacement_9.4.csv
+      :file: tables/class_replacement_9.4.csv
       :header-rows: 1
       :class: longtable
       :widths: 1 1
 
 #. ポータルのいくつかのコンポーネントが独立した ``portal-components`` プロジェクトに移動されました。以下の手順に従って移行してください。
 
-   - 新しい :ref:`ユーザーの選択<components-portal-components-user-selection>` コンポーネントの :ref:`移行手順<components-portal-components-migrate-from-old-user-selection>`
+   - 新しい :ref:`ユーザーの選択 <components-portal-components-user-selection>` コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-user-selection>`
 
-   - 新しい :ref:`ロールの選択<components-portal-components-role-selection>` コンポーネントの :ref:`移行手順<components-portal-components-migrate-from-old-role-selection>`
+   - 新しい :ref:`ロールの選択 <components-portal-components-role-selection>` コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-role-selection>`
 
-   - 新しい :ref:`ドキュメントテーブル<components-portal-components-document-table>` コンポーネントの :ref:`移行手順<components-portal-components-migrate-from-old-document-table>`
+   - 新しい :ref:`ドキュメントテーブル <components-portal-components-document-table>` コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-document-table>`
 
-   - 新しい :ref:`プロセスチェーン<components-portal-components-process-chain>` コンポーネントの :ref:`移行手順<components-portal-components-migrate-from-old-process-chain>`
+   - 新しい :ref:`プロセスチェーン <components-portal-components-process-chain>` コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-process-chain>`
 
 #. ポータルダッシュボードのウィジェットは、 ``custom-fields.yaml`` ファイルで宣言された ``CustomFields`` のみサポートします。
-   ``CustomFields`` がダッシュボードのウィジェットで使用されている場合は、:dev-url:`カスタムフィールドのメタ情報</doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` に従って、データを適合させてください。
+   ``CustomFields`` がダッシュボードのウィジェットで使用されている場合は、:dev-url:`カスタムフィールドのメタ情報 </doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` に従って、データを適合させてください。
 
-#. ``DefaultChartColor.p.json`` サブプロセスが削除されました。プロジェクトで使用している場合は、このサブプロセスのオーバーライドを削除して、:dev-url:`エンジンのブランディング</doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` の使用に切り替えて、チャート、データラベル、凡例の色をカスタマイズしてください。
+#. ``DefaultChartColor.p.json`` サブプロセスが削除されました。プロジェクトで使用している場合は、このサブプロセスのオーバーライドを削除して、:dev-url:`エンジンのブランディング </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` の使用に切り替えて、チャート、データラベル、凡例の色をカスタマイズしてください。
    
 
 #. :download:`portal-migration-9.4.0.iar <documents/portal-migration-9.4-9.4.0.iar>` プロジェクトを Ivy アプリケーションに展開し、 ``your_host/your_application/pro/portal-migration/175F92F71BC45295/startMigrateConfiguration.ivp`` リンクにアクセスして実行します。
@@ -363,7 +349,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 #. 日付の形式を確認するため、TaskCreationDateFilter、CaseCreationDateFilter などのポータルの日付フィルターの ``<p:messages for="..." />`` メッセージが各カレンダーコンポーネントに追加されました。
    プロジェクトでカスタマイズされた日付フィルターを使用している場合は、それに合わせてテンプレートを交信してください。
 
-#. ``DefaultChart.p.json`` 、 ``DefaultUserProcess.p.json`` 呼び出し可能プロセスが削除されました。これらは、:dev-url:`変数</doc/|version|/designer-guide/configuration/variables.html>` の設定に置き換えられます。
+#. ``DefaultChart.p.json`` 、 ``DefaultUserProcess.p.json`` 呼び出し可能プロセスが削除されました。これらは、:dev-url:`変数 </doc/|version|/designer-guide/configuration/variables.html>` の設定に置き換えられます。
    
    
 
