@@ -156,6 +156,7 @@ var Portal = {
   changeLogoByThemeMode: function(themeMode) {
     PrimeFaces.FreyaConfigurator.changeLogo(themeMode);
   },
+
 }
 
 function searchIconByName(element) {
@@ -496,9 +497,15 @@ const caseItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__
 const searchInputId = '[id="global-search-component:global-search-data"]:visible'
 const useSettingMenuId = 'a#user-settings-menu:visible';
 const pinButton = 'a[id="user-menu-required-login:toggle-menu"]';
+let isKeyboardShortcutsEnabled = false;
+
+function initKeyboardShortcutsEnabledValue(value) {
+  if (typeof value === 'boolean') {
+    isKeyboardShortcutsEnabled = value;
+  }
+}
 
 $(document).ready(function () {
-
   const shortcuts = {
     'Digit1': $(singleDashboardId).length ? singleDashboardId : multipleDashboardId,
     'Digit2': processItemId,
@@ -574,7 +581,7 @@ $(document).ready(function () {
     iframe.onload = function () {
       const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
       iframeDocument.addEventListener('keydown', function (event) {
-        if (onlyAltPressed(event)) {
+        if (isKeyboardShortcutsEnabled && onlyAltPressed(event)) {
           if(toggleLeftMenu(event.code)) {
             return;
           }
@@ -600,6 +607,7 @@ $(document).ready(function () {
   let focusedTaskSideStepEl;
 
   $(document).on('keydown', function (event) {
+
     var keyCode = event.code;
     if (keyCode === 'Escape') {
       var collapseWidgetBtn = $('[id*="collapse-link"]:visible');
@@ -638,7 +646,7 @@ $(document).ready(function () {
     var taskActionStepsPanel = $('[id$=":side-steps-panel"]:visible');
     var taskActionStepsPanelVisible = taskActionStepsPanel.length > 0;
 
-    if (onlyAltPressed(event)) {
+    if (onlyAltPressed(event) && isKeyboardShortcutsEnabled) {
       var keyCode = event.code;
       if(toggleLeftMenu(keyCode)) {
         return;
