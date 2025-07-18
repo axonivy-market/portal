@@ -172,7 +172,7 @@ The ``AxonIvyExpress`` module is renamed to ``axonivy-express`` and becomes an i
 Migrate 10.0.19 To 10.0.20
 --------------------------
 
-So far, Portal supports configuring process steps of :ref:`Process chain <components-portal-components-process-chain>` with String or Array format. 
+So far, Portal supports configuring process steps of :ref:`Process chain <components-portal-components-process-chain-ja>` with String or Array format. 
 We deprecated the String format but still support it for backward compatibility. We recommend you use the Array format. You could change as follows:
 
 - Change ``window.processSteps = "Create Investment Request,Approve Investment Request";`` to ``window.processSteps = ["Create Investment Request", "Approve Investment Request"];``
@@ -323,7 +323,7 @@ Migrate 9.3 To 9.4
 
    - :ref:`Migration steps <components-portal-components-migrate-from-old-document-table>` for the new :ref:`Document Table <components-portal-components-document-table>` component.
 
-   - :ref:`Migration steps <components-portal-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-portal-components-process-chain>` component.
+   - :ref:`Migration steps <components-portal-components-migrate-from-old-process-chain>` for the new :ref:`Process Chain <components-portal-components-process-chain-ja>` component.
 
 #. Portal dashboard widgets only support the ``CustomFields`` declared in the ``custom-fields.yaml`` file.
    If your ``CustomFields`` are used in the dashboard widget, please follow the :dev-url:`Custom Fields Meta Information </doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` to adapt the data.
