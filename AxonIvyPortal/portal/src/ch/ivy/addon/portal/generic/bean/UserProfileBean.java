@@ -115,7 +115,7 @@ public class UserProfileBean implements Serializable {
     }
   }
   
-  public boolean getIsKeyboardShortcutsEnabledByAdmin() {
+  public boolean isKeyboardShortcutsEnabledByAdmin() {
     return GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ENABLE_KEYBOARD_SHORTCUTS);
   }
 

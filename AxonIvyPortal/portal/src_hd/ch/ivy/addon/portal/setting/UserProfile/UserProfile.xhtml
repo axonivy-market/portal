@@ -78,7 +78,7 @@
                         <p:outputLabel for="@next" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShortcutsNavigation')}" styleClass="mr-3"/>
                     </div>
                     <div class="col-4 text-right p-0">
-                        <p:toggleSwitch value="#{data.isShortcutEnabled}" disabled="#{!userProfileBean.isKeyboardShortcutsEnabledByAdmin}" 
+                        <p:toggleSwitch value="#{data.isShortcutEnabled}" disabled="#{!userProfileBean.isKeyboardShortcutsEnabledByAdmin()}" 
                             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShorcutsNavigationInfor')}"/>
                     </div>
                   </div>

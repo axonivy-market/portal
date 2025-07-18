@@ -634,7 +634,7 @@
             "output" : {
               "code" : [
                 "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
-                "boolean isShortcutEnable = UserSettingService.getInstance().getIsKeyboardShortcutsEnabled();",
+                "boolean isShortcutEnable = UserSettingService.getInstance().isKeyboardShortcutsEnabled();",
                 "in.isShortcutEnabled = isShortcutEnable;"
               ]
             }

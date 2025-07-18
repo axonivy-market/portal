@@ -69,14 +69,7 @@ public class UserSettingService {
     return Ivy.session().getSessionUser();
   }
   
-  public boolean getIsKeyboardShortcutsEnabled() {
+  public boolean isKeyboardShortcutsEnabled() {
     return Boolean.parseBoolean(getUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS));
-  }
-
-  public void setIsKeyboardShortcutsEnabled(boolean value) {
-    IUser user = getSessionUser();
-    if (user != null) {
-      user.setProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS, Boolean.toString(value));
-    }
   }
 }
