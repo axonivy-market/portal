@@ -115,11 +115,13 @@
 .table-widget-panel {
   position: relative;
   overflow: hidden;
-  flex: 1;
+  flex-direction: column;
+  display: flex;
+  height: 100%;
 }
 
 .widget__header {
-  flex: 0 0 30px;
+  flex: 0 0 44px;
   padding: 14px 20px 7px;
   display: flex;
   flex-direction: row;
@@ -155,7 +157,6 @@
   overflow: auto;
   padding: 20px;
   height: auto;
-  max-height: calc(100% - 44px);
   width:100%;
 }
 
