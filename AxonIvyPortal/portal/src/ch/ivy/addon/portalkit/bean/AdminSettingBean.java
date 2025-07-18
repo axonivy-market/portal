@@ -42,7 +42,6 @@ public class AdminSettingBean implements Serializable {
   private boolean isShowRoleManagementTab;
   private boolean isTabChangeEventTriggered;
   private boolean isShowPasswordValidationTab;
-  private boolean isEnableKeyboardShortcuts;
   private ThirdPartyApplicationBean thirdPartyApplicationBean;
 
   public void initAdminTabViewConfig() {
@@ -305,15 +304,4 @@ public class AdminSettingBean implements Serializable {
   public void onUnSelectPermissionForApplication(UnselectEvent<Object> event) {
     getThirdPartyApplicationBean().onUnSelectPermissionForApplication(event);
   }
-
-  public boolean getIsEnableKeyboardShortcuts() {
-    return GlobalSettingService.getInstance().isEnableKeyboardShortcuts();
-  }
-
-  public void setIsEnableKeyboardShortcuts(boolean isEnableKeyboardShortcuts) {
-    this.isEnableKeyboardShortcuts = isEnableKeyboardShortcuts;
-  }
-
-
-
 }

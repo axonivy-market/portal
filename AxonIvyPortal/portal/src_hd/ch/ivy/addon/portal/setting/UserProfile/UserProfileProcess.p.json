@@ -603,8 +603,9 @@
           "config" : {
             "output" : {
               "code" : [
+                "import ch.ivy.addon.portalkit.constant.UserProperty;",
                 "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
-                "UserSettingService.getInstance().saveIsShortcutEnabled(in.isShortcutEnabled);"
+                "UserSettingService.getInstance().updateUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS, Boolean.toString(in.isShortcutEnabled));"
               ]
             }
           },
@@ -624,6 +625,7 @@
     }, {
       "id" : "S72",
       "type" : "EmbeddedProcess",
+      "name" : "Init Accessibility Setting",
       "elements" : [ {
           "id" : "S72-f0",
           "type" : "Script",
@@ -632,7 +634,7 @@
             "output" : {
               "code" : [
                 "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
-                "boolean isShortcutEnable = UserSettingService.getInstance().getIsShortcutEnabled();",
+                "boolean isShortcutEnable = UserSettingService.getInstance().isKeyboardShortcutsEnabled();",
                 "in.isShortcutEnabled = isShortcutEnable;"
               ]
             }
@@ -664,7 +666,7 @@
           "parentConnector" : "f78"
         } ],
       "visual" : {
-        "at" : { "x" : 616, "y" : 144 }
+        "at" : { "x" : 624, "y" : 144 }
       },
       "connect" : [
         { "id" : "f78", "to" : "S60" }

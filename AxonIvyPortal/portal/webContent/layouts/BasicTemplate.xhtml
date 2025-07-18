@@ -82,10 +82,10 @@
 
       <f:event type="preRenderView"
         listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
-        
+
       <c:set var="showGlobalSearch" value="#{userMenuBean.isShowGlobalSearch}" />
       <c:set var="showQuickGlobalSearch" value="#{userMenuBean.isShowQuickGlobalSearch}" />
-      <c:set var="isShortcutEnabled" value="#{userMenuBean.isEnableKeyboardShortcuts}" />
+      <c:set var="isKeyboardShortcutsEnabled" value="#{masterDataBean.keyboardShortcutsEnabled}" />
 
      <div id="portal-template-header" class="js-portal-template-header #{showMainArea eq true ? '' : 'u-invisibility'}">
         <ic:ch.ivy.addon.portalkit.component.PageHeader />
@@ -170,11 +170,7 @@
         Portal.updateLayoutContent();
         Portal.updateBreadcrumb();
         MainMenu.highlightMenuItem();
-        
-        // Initialize shortcuts state from server
-        if (typeof initIsEnableKeyboardShortcuts === 'function') {
-          initIsEnableKeyboardShortcuts(#{isShortcutEnabled});
-        }
+
       });
     </script>
   </ui:insert>
@@ -186,7 +182,11 @@
       }, 1);
       Portal.updateLayoutContent();
     });
-      initIsEnableKeyboardShortcuts(#{isShortcutEnabled});
+        
+    // Initialize shortcuts state from server
+    if (typeof initKeyboardShortcutsEnabledValue === 'function') {
+      initKeyboardShortcutsEnabledValue(#{isKeyboardShortcutsEnabled});
+    }
   </script>
 
   <p:growl id="portal-global-growl" widgetVar="portal-global-growl" for="portal-global-growl-message" escape="false" showDetail="true" skipDetailIfEqualsSummary="true"/>

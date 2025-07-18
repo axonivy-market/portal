@@ -118,7 +118,7 @@ public class GlobalSettingService {
     return findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_PINNED_CASE);
   }
   
-  public boolean isEnableKeyboardShortcuts() {
-    return findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_KEYBOARD_SHORTCUTS);
+  public boolean isAllowedConfigShortcutsByAdmin() {
+    return findGlobalSettingValueAsBoolean(GlobalVariable.ALLOW_KEYBOARD_SHORTCUTS_CONFIGURATION);
   }
 }
