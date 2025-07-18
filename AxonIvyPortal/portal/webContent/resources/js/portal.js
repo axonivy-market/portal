@@ -618,10 +618,6 @@ $(document).ready(function () {
 
   $(document).on('keydown', function (event) {
 
-    // if (!isKeyboardShortcutsEnabled) {
-    //   return;
-    // }
-
     var keyCode = event.code;
     if (keyCode === 'Escape') {
       var collapseWidgetBtn = $('[id*="collapse-link"]:visible');
