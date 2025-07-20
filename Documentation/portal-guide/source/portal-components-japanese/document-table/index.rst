@@ -34,7 +34,7 @@
 
 ウイルススキャンの詳細については、:ref:`settings-virus-scanning-setting` を参照してください。
 
-.. _components-portal-components-migrate-from-old-document-table:
+.. _components-portal-components-migrate-from-old-document-table-ja:
 
 カスタマイズ
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^

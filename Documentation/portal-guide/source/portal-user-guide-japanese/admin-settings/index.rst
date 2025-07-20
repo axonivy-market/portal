@@ -41,7 +41,7 @@
 
 #. :guilabel:`保存` をクリックします。
 
-.. _update-portal-settings:
+.. _update-portal-settings-ja:
 
 ハウツー：ポータル設定を更新する
 --------------------------------------------------
@@ -62,7 +62,7 @@
    ポータル設定は |ivy| の変数として格納され、:dev-url:`|ivy| コックピット </doc/|version|/engine-guide/reference/engine-cockpit/configuration.html#engine-cockpit-variables>` で設定できます。 
    
 
-.. _portal-available-settings:
+.. _portal-available-settings-ja:
 
 .. centered:: 利用可能な設定
 
@@ -112,7 +112,7 @@
 
 .. note::
    ポータルには、 :guilabel:`ロールの管理` タブに表示されるロールの数を制御する 2 つの詳細設定も用意されています。
-   詳細については、 :ref:`設定の変数<portal-available-settings>` を参照してください。
+   詳細については、 :ref:`設定の変数 <portal-available-settings-ja>` を参照してください。
 
 ハウツー：パスワード検証を有効／無効にする
 -----------------------------------------------------------------

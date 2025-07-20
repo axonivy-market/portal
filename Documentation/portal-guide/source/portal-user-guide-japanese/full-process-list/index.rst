@@ -1,4 +1,4 @@
-.. _full-process-list:
+.. _full-process-list-ja:
 
 全プロセスリスト
 ************************************

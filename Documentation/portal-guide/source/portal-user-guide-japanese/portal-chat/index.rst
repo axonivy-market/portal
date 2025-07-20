@@ -1,4 +1,4 @@
-.. _portal-chat:
+.. _portal-chat-ja:
 
 ポータルチャット
 **********************************
@@ -13,7 +13,7 @@
 
 :guilabel:`Portal.Chat.EnableGroup` ポータル設定でプロセスチャットをオンにできます。
 
-:ref:`ポータルの設定の更新<update-portal-settings>` を参照してください。
+:ref:`ポータルの設定の更新<update-portal-settings-ja>` を参照してください。
 
 
 ハウツー：ケースに関連するプロセスチャットを作成する

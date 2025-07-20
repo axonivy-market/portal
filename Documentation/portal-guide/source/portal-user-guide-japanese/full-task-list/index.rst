@@ -1,4 +1,4 @@
-.. _full-task-list:
+.. _full-task-list-ja:
 
 全タスクリスト
 *****************************
@@ -185,7 +185,7 @@
 
    ポータルでは、画像、プレーンテキスト（txt と log）、pdf ドキュメントをプレビューできます。
 
-   この機能を有効にするには、 :ref:`ポータル設定<update-portal-settings>` の :guilabel:`Portal.Document.EnablePreview` を true に変更します。
+   この機能を有効にするには、 :ref:`ポータル設定 <update-portal-settings-ja>` の :guilabel:`Portal.Document.EnablePreview` を true に変更します。
 
 
 ハウツー：タスクにノートを追加する
