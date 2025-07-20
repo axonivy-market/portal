@@ -48,7 +48,7 @@
 
 #. 一番上の |ivy| Portal のヘッダーは常に表示され、グローバル検索フィールド、ポータルについての重要な情報、個人用ユーザーアカウントを設定するためのオプションが表示されます。
    
-   詳細については、:ref:`portal-header` を参照してください。
+   詳細については、:ref:`portal-header-ja` を参照してください。
    
 
    |axon-ivy-portal-header|
@@ -62,7 +62,7 @@
    |axon-ivy-portal-menu|
 
 #. 中央には、個人用ダッシュボードが表示され、自分のプロセス、ケース、タスク、パフォーマンス指標にアクセスできます。
-   詳細については、 :ref:`new-dashboard` を参照してください。
+   詳細については、 :ref:`new-dashboard-ja` を参照してください。
    
 
    |axon-ivy-portal|

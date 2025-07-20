@@ -45,7 +45,7 @@ How to: add private dashboard
 
 |create-private-dashboard-dialog|
 
-To set multi languages for the dashboard title, see at :ref:`portal-multi-language`:
+To set multi languages for the dashboard title, see at :ref:``:
 
 .. _private-available-dashboard-template:
 
@@ -152,7 +152,7 @@ How to: add public dashboard
 
 |create-public-dashboard-dialog|
 
-To set multi languages for the dashboard title, see at :ref:`portal-multi-language`:
+To set multi languages for the dashboard title, see at :ref:``:
 
 .. _public-available-dashboard-template:
 

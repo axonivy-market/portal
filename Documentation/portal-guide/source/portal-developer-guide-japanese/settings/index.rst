@@ -20,7 +20,7 @@
 ポータル設定の実行
 =========================
 
-ポータル設定を手動で行う方法については、:ref:`update-portal-settings` を参照してください。
+ポータル設定を手動で行う方法については、:ref:`update-portal-settings-ja` を参照してください。
 
 ポータル設定は、:dev-url:`変数 </doc/|version|/designer-guide/configuration/variables.html>` として格納されます。
 

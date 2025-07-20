@@ -1,4 +1,4 @@
-.. _portal-header:
+.. _portal-header-ja:
 
 ポータルのヘッダー
 ********************************
@@ -27,12 +27,12 @@
 管理者設定
 --------------
 
-:ref:`管理者設定<admin-settings-ja>` メニューエントリは、 ``AXONIVY_PORTAL_ADMIN`` ロールを持つユーザーのみ利用可能です。
+:ref:`管理者設定 <admin-settings-ja>` メニューエントリは、 ``AXONIVY_PORTAL_ADMIN`` ロールを持つユーザーのみ利用可能です。
 
 マイプロフィール
 --------------------------------
 
-:ref:`my-profile` メニューエントリには、一般設定、ユーザーの言語、通知チャネルのサブスクリプションの設定が含まれます。
+:ref:`my-profile-ja` メニューエントリには、一般設定、ユーザーの言語、通知チャネルのサブスクリプションの設定が含まれます。
 
 ダッシュボード設定
 -----------------------------------
@@ -168,7 +168,7 @@
    - ``Portal.GlobalSearchScopeCategories`` ：グローバル検索で一致するタイプを定義します（検索のパフォーマンスに影響する可能性があります）。
      
 
-:ref:`settings-admin-settings` を参照して、3 つの変数を設定できます。
+:ref:`settings-admin-settings-ja` を参照して、3 つの変数を設定できます。
 
 .. include:: ../includes/_common-icon.rst
 

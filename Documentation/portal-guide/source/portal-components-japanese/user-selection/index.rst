@@ -86,7 +86,7 @@
   :class: longtable
   :widths: 1 1 1 3
 
-.. _components-portal-components-migrate-from-old-user-selection:
+.. _components-portal-components-migrate-from-old-user-selection-ja:
 
 非推奨のユーザーの選択からの移行
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

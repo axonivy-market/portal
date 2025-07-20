@@ -52,7 +52,7 @@ IFrame で使用するテンプレート
    - **エンジンレベル**：
 
      **ポータル管理者** は、ポータル設定の ``Portal.EmbedInFrame`` の値を設定して、すべてのタスクが IFrame 内で開始するように設定できます。  
-     :ref:`update-portal-settings` を参照してください。
+     :ref:`update-portal-settings-ja` を参照してください。
 
 .. _iframe-configure-template:
 

@@ -1,4 +1,4 @@
-.. _statistic-chart:
+.. _statistic-chart-ja:
 
 統計チャート
 ******************************

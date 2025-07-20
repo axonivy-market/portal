@@ -94,7 +94,7 @@
   :class: longtable
   :widths: 1 1 1 3
 
-.. _components-portal-components-migrate-from-old-role-selection:
+.. _components-portal-components-migrate-from-old-role-selection-ja:
 
 非推奨のロールの選択からの移行
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

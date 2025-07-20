@@ -53,7 +53,7 @@
 スタイルをカスタマイズしたい場合は、:ref:`components-portal-components-style-customization-ja` を参照してください。
 
 
-.. _components-portal-components-migrate-from-old-process-chain:
+.. _components-portal-components-migrate-from-old-process-chain-ja:
 
 非推奨のプロセスチェーンからの移行
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

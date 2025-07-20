@@ -166,12 +166,12 @@
     - 公開用ダッシュボードを更新する権限
 
 - _`AccessFullProcessList`
-    - 全プロセスリストにアクセスする権限。:ref:`full-process-list` を参照してください。
+    - 全プロセスリストにアクセスする権限。:ref:`full-process-list-ja` を参照してください。
 
     - デフォルトでは Everybody ロールに付与
 
 - _`AccessFullTaskList`
-    - 全タスクリストにアクセスする権限。:ref:`full-task-list` を参照してください。
+    - 全タスクリストにアクセスする権限。:ref:`full-task-list-ja` を参照してください。
 
     - デフォルトでは Everybody ロールに付与
 

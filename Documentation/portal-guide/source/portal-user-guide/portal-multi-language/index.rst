@@ -1,4 +1,4 @@
-.. _portal-multi-language:
+.. _:
 
 Portal Multi Language
 *********************
