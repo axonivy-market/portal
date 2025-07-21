@@ -435,7 +435,7 @@ web XML ファイルで context-param を設定すると、ウイルススキャ
 
    - ``suffixSymbol``：数値の隣に表示されるアイコン。ポータルは、Streamline アイコンと FontAwesome アイコンをサポートします。
    
-.. _portal-process-external-link:
+.. _portal-process-external-link-ja:
 
 ポータルのプロセスの外部リンク
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
