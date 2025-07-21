@@ -119,10 +119,10 @@
              <h:panelGroup id="welcome-text-input-panel" styleClass="ui-g-9 ui-md-8 welcome-text-input-panel" layout="block">
                <h:outputText value="#{dashboardWelcomeWidgetConfigurationBean.generateGreetingText(text.locale)}"
                  rendered="#{dashboardWelcomeWidgetConfigurationBean.widget.greeting}"
-                 styleClass="js-greeting-text greeting-text #{isApplicationDefaultEmailLanguage ? 'language-to-preview' : ''}" />
+                 styleClass="js-greeting-text greeting-text language-to-preview" />
                <p:inputText id="welcome-text-input" value="#{text.value}"
-                 styleClass="#{isApplicationDefaultEmailLanguage ? 'language-to-preview' : ''} js-welcome-text-input welcome-text-input"
-                 onkeyup="#{isApplicationDefaultEmailLanguage ? 'WelcomeWidgetConfiguration.updatePreviewText();' : ''}" />
+                 styleClass="language-to-preview js-welcome-text-input welcome-text-input"
+                 onkeyup="WelcomeWidgetConfiguration.updatePreviewText();" />
              </h:panelGroup>
            </ui:repeat>
         </h:panelGroup>
