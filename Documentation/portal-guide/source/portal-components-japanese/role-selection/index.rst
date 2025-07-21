@@ -1,4 +1,4 @@
-.. _components-portal-components-role-selection:
+.. _components-portal-components-role-selection-ja:
 
 ロールの選択
 ****************************
@@ -94,11 +94,11 @@
   :class: longtable
   :widths: 1 1 1 3
 
-.. _components-portal-components-migrate-from-old-role-selection:
+.. _components-portal-components-migrate-from-old-role-selection-ja:
 
 非推奨のロールの選択からの移行
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-#. HTML ファイルのコードを置き換えます。``ic:ch.ivy.addon.portalkit.component.RoleSelection`` を ``ic:com.axonivy.portal.components.RoleSelection`` に置き換えてください。
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#. HTML ファイルのコードを置き換えます。 ``ic:ch.ivy.addon.portalkit.component.RoleSelection`` を ``ic:com.axonivy.portal.components.RoleSelection`` に置き換えてください。
 
 #. ``ch.ivy.addon.portalkit.dto.RoleDTO`` を ``com.axonivy.portal.components.dto.RoleDTO`` に置き換えます。
 

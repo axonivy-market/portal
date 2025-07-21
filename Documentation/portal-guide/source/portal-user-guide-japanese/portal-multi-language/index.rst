@@ -1,4 +1,4 @@
-.. _portal-multi-language:
+.. _portal-multi-language-ja:
 
 ポータルの複数言語
 *************************************
@@ -6,19 +6,19 @@
 ドキュメントの翻訳サービスを利用すると、簡単にピュアテキストをエンドユーザーの言語に翻訳できます。
 Axon Ivy の DeepL を利用した翻訳サービスでプロセスを自動化し、言語の障壁を取り払いましょう。
 
-.. _enable-translation:
+.. _enable-translation-ja:
 
 ハウツー：翻訳を有効にする
 -------------------------
 
 DeepL 翻訳を使用するには、
 
-- :ref:`管理者設定<admin-settings>` を開き、:guilabel:`Portal.DeepL.Enable` を true に設定します。
+- :ref:`管理者設定 <admin-settings-ja>` を開き、:guilabel:`Portal.DeepL.Enable` を true に設定します。
 
-- DeepL.com で `無料の開発者アカウント<https://www.deepl.com/pro#developer/>`__ を取得し、アカウントの API キーを :guilabel:`Portal.DeepL.AuthKey` ポータル設定にコピーします。
+- DeepL.com で `無料の開発者アカウント <https://www.deepl.com/pro#developer/>`__ を取得し、アカウントの API キーを :guilabel:`Portal.DeepL.AuthKey` ポータル設定にコピーします。
 
 ハウツー：ピュアテキストを翻訳する
--------------------------------
+---------------------------------------------
 
 .. note::
 

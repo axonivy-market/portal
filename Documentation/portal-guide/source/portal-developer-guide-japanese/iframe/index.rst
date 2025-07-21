@@ -1,4 +1,4 @@
-.. _iframe-in-portal:
+.. _iframe-in-portal-ja:
 
 ポータルの IFrame
 ************************************
@@ -27,7 +27,7 @@ IFrame で使用するテンプレート
  
 #. **HTML ダイアログの独立性**
 
-   HTML ユーザーダイアログが**ポータル**に依存していないことを確認します。デザイナーの ``frame-_x_`` テンプレートまたはカスタムテンプレートを使用できます。 
+   HTML ユーザーダイアログが **ポータル** に依存していないことを確認します。デザイナーの ``frame-_x_`` テンプレートまたはカスタムテンプレートを使用できます。 
    **ポータル** は自動的にテンプレートを IFrame 内でレンダリングします。
 
 #. **設定レベル**  
@@ -52,7 +52,7 @@ IFrame で使用するテンプレート
    - **エンジンレベル**：
 
      **ポータル管理者** は、ポータル設定の ``Portal.EmbedInFrame`` の値を設定して、すべてのタスクが IFrame 内で開始するように設定できます。  
-     :ref:`update-portal-settings` を参照してください。
+     :ref:`update-portal-settings-ja` を参照してください。
 
 .. _iframe-configure-template:
 
@@ -63,7 +63,7 @@ IFrame で使用するテンプレート
 
 #. 作業中のタスクの名前とアイコン。  
 #. プロセスチェーンの設定。  
-   （参照：:ref:`components-portal-components-process-chain`）  
+   （参照： :ref:`components-portal-components-process-chain-ja`）  
 #. ケースの詳細およびその他のアクションの表示／非表示。
 
 
@@ -81,15 +81,15 @@ IFrame で使用するテンプレート
 **ケース情報**
 
 - ``caseId``：ケース情報ダイアログに表示されるケースの ID。
-- ``isHideCaseInfo``：true に設定されている場合は、``情報の表示``ボタンを非表示にします。
+- ``isHideCaseInfo``：true に設定されている場合は、 ``情報の表示`` ボタンを非表示にします。
 
 **プロセスステップ**
 
 - ``currentProcessStep``：プロセスの現在のステップ（インデックスまたはステップ名）。
 - ``processSteps``：プロセスステップのリストまたは JSON。
 - ``isShowAllSteps``：true に設定されている場合は、すべてのステップを大画面に表示します。
-- ``processChainDirection``：プロセスチェーンの向き（``VERTICAL`` または ``HORIZONTAL``）。
-- ``processChainShape``：プロセスチェーンの形状（``LINE`` または ``CIRCLE``）。
+- ``processChainDirection``：プロセスチェーンの向き（ ``VERTICAL`` または ``HORIZONTAL``）。
+- ``processChainShape``：プロセスチェーンの形状（ ``LINE`` または ``CIRCLE``）。
 
 **タスクアクション**
 
@@ -175,8 +175,8 @@ IFrame で使用するテンプレート
 
 **パラメーター**：
    - ``taskName``：タスク名のカスタムテキスト。
-   - ``taskIcon``：Streamline または Awesome フォントの使用（`si si-arrow-right` など）
-   - ``isHideTaskName``：タスク名を非表示にするには、``true`` に設定します。初期値は ``false`` です。
+   - ``taskIcon``：Streamline または Awesome フォントの使用（ `si si-arrow-right` など）
+   - ``isHideTaskName``：タスク名を非表示にするには、 ``true`` に設定します。初期値は ``false`` です。
 
 **例：**
 
@@ -196,12 +196,12 @@ IFrame で使用するテンプレート
 
 
 ケース情報の設定
-----------------
+-----------------------------
 ケースの詳細を表示する方法、「情報の表示」ボタンを表示するかどうかをカスタマイズします。
 
 **パラメーター**：
    - ``caseId``：情報ダイアログに表示するケースの ID。
-   - ``isHideCaseInfo``：「情報の表示」ボタンを非表示にするには、``true`` に設定します。
+   - ``isHideCaseInfo``：「情報の表示」ボタンを非表示にするには、 ``true`` に設定します。
      初期値は ``false`` です。
 
 **例：**
@@ -224,7 +224,7 @@ IFrame で使用するテンプレート
 タスク関連のボタンとアクションの表示設定と動作を制御します。
 
 **パラメーター**：
-   - ``isHideTaskAction`` タスクアクションボタンを非表示にするには、``true`` に設定します。 
+   - ``isHideTaskAction`` タスクアクションボタンを非表示にするには、 ``true`` に設定します。 
      初期値は ``false`` です。
    - ``isWorkingOnATask``：タスクがアクティブかどうかを示します。 
      ページから離れる際に警告を表示するのに有用です。初期値は ``true`` です。
@@ -246,13 +246,13 @@ IFrame で使用するテンプレート
 
 
 その他のオプションの設定
-------------------------
+--------------------------------------
 追加の設定は、要素のレイアウトと表示設定に影響を及ぼすことがあります。
 
 **パラメーター**：
-   - ``announcementInvisible``：通知を非表示にするには、``true`` に設定します。 
+   - ``announcementInvisible``：通知を非表示にするには、 ``true`` に設定します。 
      初期値は ``false`` です。
-   - ``isCardFrame``：カードスタイルのコンテナ内に IFrame のコンテンツを表示するには、``true`` に設定します。 
+   - ``isCardFrame``：カードスタイルのコンテナ内に IFrame のコンテンツを表示するには、 ``true`` に設定します。 
      
    - ``viewName``：カスタムパンくずリストの表示。設定可能な値： 
      ``HOME, PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, RELATED_TASK, 
@@ -278,13 +278,13 @@ IFrame で使用するテンプレート
 表示情報の設定
 --------------
 
-``情報の表示``ボタンをクリックすると、**ポータル**のモーダルダイアログに実行中のケースの詳細が表示されます。
+``情報の表示`` ボタンをクリックすると、 **ポータル** のモーダルダイアログに実行中のケースの詳細が表示されます。
 
 
 ``情報の表示``のオプション
 
    - ``caseId``：モーダルダイアログに表示するケースのケース ID。
-   - ``isHideCaseInfo``：``情報の表示``ボタンを非表示にします。
+   - ``isHideCaseInfo``： ``情報の表示`` ボタンを非表示にします。
 
 .. csv-table::
   :file: documents/available_show_information_options.csv
@@ -309,7 +309,7 @@ IFrameTaskConfig を使用した例：
 プロセスステップの設定
 -----------------------
 
-``プロセスステップ``では、ステップのリストからレイアウト、形状まで、さまざまなオプションを設定できます。
+``プロセスステップ`` では、ステップのリストからレイアウト、形状まで、さまざまなオプションを設定できます。
 
 ``プロセスステップ``のオプション
 

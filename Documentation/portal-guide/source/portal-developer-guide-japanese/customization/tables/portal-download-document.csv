@@ -1,0 +1,6 @@
+名前,タイプ
+**パラメーター**
+businessCase,ch.ivyteam.ivy.workflow.ICase
+document,com.axonivy.portal.components.ivydata.bo.IvyDocument
+**結果**
+streamedContent,org.primefaces.model.StreamedContent

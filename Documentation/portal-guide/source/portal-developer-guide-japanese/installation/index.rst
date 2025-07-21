@@ -15,7 +15,7 @@
 プロジェクトモジュール
 ---------------------------------------
 
-アプリケーションは 3 つのプロセスモジュールで構成されます。各モジュールの詳細については、:ref:`アーキテクチャ` を参照してください。
+アプリケーションは 3 つのプロセスモジュールで構成されます。各モジュールの詳細については、:ref:`architecture-ja` を参照してください。
 
 
 -  portal-components
@@ -180,7 +180,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
          +-------------------------+-------------------------------+
-         | サブプロセス              | 新しいシグネチャ                 |
+         | サブプロセス            | 新しいシグネチャ              |
          +=========================+===============================+
          | ResetPassword           | portalResetPassword           |
          +-------------------------+-------------------------------+
@@ -192,7 +192,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
          +----------------------+----------------------------+
-         | サブプロセス           | 新しいシグネチャ              |
+         | サブプロセス         | 新しいシグネチャ           |
          +======================+============================+
          | GetDocumentList      | portalGetDocumentList      |
          +----------------------+----------------------------+
@@ -208,7 +208,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
          +----------------------+----------------------------+
-         | サブプロセス           | 新しいシグネチャ              |
+         | サブプロセス         | 新しいシグネチャ           |
          +======================+============================+
          | LogoutPage           | portalGetLogoutPage        |
          +----------------------+----------------------------+
@@ -220,7 +220,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
          +----------------------+----------------------------+
-         | サブプロセス           | 新しいシグネチャ              |
+         | サブプロセス         | 新しいシグネチャ           |
          +======================+============================+
          | ChangePassword       | portalChangePassword       |
          +----------------------+----------------------------+
@@ -230,21 +230,22 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
             +-------------------------+-------------------------------+
-            | サブプロセス              | 新しいシグネチャ                 |
+            | サブプロセス            | 新しいシグネチャ              |
             +=========================+===============================+
             | CalculateTaskDelegate   | portalCalculateTaskDelegate   |
             +-------------------------+-------------------------------+
+
 
    - :ref:`メニュー項目のカスタマイズ <customization-menu-customization>`
       - プロジェクトから ``LoadSubMenuItems`` のサブプロセスのオーバーライドを削除します。
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
          +-------------------------+-------------------------------+
-         | サブプロセス              | 新しいシグネチャ                 |
+         | サブプロセス            | 新しいシグネチャ              |
          +=========================+===============================+
          | LoadSubMenuItems        | portalLoadSubMenuItems        |
          +-------------------------+-------------------------------+
-      - デフォルトのメニュー項目を非表示にするには、変数を使用します。方法については、:ref:`デフォルトのメニュー項目の非表示 <customization-menu-hide-default-menu-item>` を参照してください。
+      - デフォルトのメニュー項目を非表示にするには、変数を使用します。方法については、:ref:`デフォルトのメニュー項目の非表示 <customization-menu-hide-default-menu-item-ja>` を参照してください。
       - 各カスタムメニュー項目の ``index`` を更新します。
       - カスタムメニュー項目の作成方法の例については、 ``portal-developer-examples`` プロジェクトの ``CustomLoadSubMenuItems`` プロセスを参照してください。
 
@@ -265,7 +266,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 9.3 から 9.4 への移行
 ------------------------
 
-9.4 から ``PortalStyle``、 ``PortalKit``、 ``PortalTemplate`` が ``portal-components`` と ``portal`` に置き換えられました。:ref:`アーキテクチャ` を参照してください。
+9.4 から ``PortalStyle``、 ``PortalKit``、 ``PortalTemplate`` が ``portal-components`` と ``portal`` に置き換えられました。:ref:`architecture-ja` を参照してください。
 
 #. PortalStyle をカスタマイズしている場合は、:ref:`ポータルのロゴと色のカスタマイズ <customization-portal-logos-and-colors>` を参照して、ログインの背景、ファビコン、ロゴの画像をオーバーライドします。
    
@@ -301,13 +302,13 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 #. ポータルのいくつかのコンポーネントが独立した ``portal-components`` プロジェクトに移動されました。以下の手順に従って移行してください。
 
-   - 新しい :ref:`ユーザーの選択 <components-portal-components-user-selection>` コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-user-selection>`
+   - 新しい :ref:`ユーザーの選択 <components-portal-components-user-selection-ja>` コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-user-selection-ja>`
 
-   - 新しい :ref:`ロールの選択 <components-portal-components-role-selection>` コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-role-selection>`
+   - 新しい :ref:`ロールの選択 <components-portal-components-role-selection-ja>` コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-role-selection-ja>`
 
-   - 新しい :ref:`ドキュメントテーブル <components-portal-components-document-table>` コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-document-table>`
+   - 新しい :ref:`ドキュメントテーブル <components-portal-components-document-table-ja>` コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-document-table-ja>`
 
-   - 新しい :ref:`プロセスチェーン <components-portal-components-process-chain>` コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-process-chain>`
+   - 新しい :ref:`プロセスチェーン <components-portal-components-process-chain-ja>` コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-process-chain>-ja`
 
 #. ポータルダッシュボードのウィジェットは、 ``custom-fields.yaml`` ファイルで宣言された ``CustomFields`` のみサポートします。
    ``CustomFields`` がダッシュボードのウィジェットで使用されている場合は、:dev-url:`カスタムフィールドのメタ情報 </doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` に従って、データを適合させてください。
@@ -384,9 +385,9 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 #. ivy-icon.css を削除し、現在のクラスを `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_ にある Streamline アイコンからの新しいクラスに置き換えました。そのため、ivy-icon.css のクラスを使用しているファイルを更新する必要があります。
 
-#. taskItemDetailCustomPanelTop、taskItemDetailCustomPanelBottom をカスタマイズしている場合は、:ref:`TaskItemDetail のオーバーライド方法<customization-task-item-details>` に従って、カスタムウィジェットを追加してください。
+#. taskItemDetailCustomPanelTop、taskItemDetailCustomPanelBottom をカスタマイズしている場合は、:ref:`TaskItemDetail のオーバーライド方法 <customization-task-item-details-ja>` に従って、カスタムウィジェットを追加してください。
 
-#. ``caseItemDetailCustomTop``、 ``caseItemDetailCustomMiddle``、 ``caseItemDetailCustomBottom`` をカスタマイズしている場合は、:ref:`CaseItemDetail のオーバーライド方法<customization-case-item-details>` に従って、これらのカスタムウィジェットを追加してください。
+#. ``caseItemDetailCustomTop``、 ``caseItemDetailCustomMiddle``、 ``caseItemDetailCustomBottom`` をカスタマイズしている場合は、:ref:`CaseItemDetail のオーバーライド方法 <customization-case-item-details-ja>` に従って、これらのカスタムウィジェットを追加してください。
 
 8.x から 9.1 への移行
 ----------------------
@@ -411,7 +412,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 #. HOMEPAGE_URL（シングルポータルアプリモード）と登録済みアプリケーションのリンク（マルチポータルアプリモード）が利用できなくなりました。
    ポータルに新しいポータルホームページの場所を認識させるため、プロジェクトでデフォルトのページを設定する必要があります。
    
-   :dev-url:`デフォルトのページ</doc/|version|/designer-guide/user-interface/default-pages/index.html>` に従って、デフォルトのページをカスタマイズしてください。
+   :dev-url:`デフォルトのページ </doc/|version|/designer-guide/user-interface/default-pages/index.html>` に従って、デフォルトのページをカスタマイズしてください。
    
 
 #. ポータルは、 SASS の代わりに |css_variable| を使用します。そのため、SASS 構文を新しい CSS 変数に変換するか、|css_variable_convert| などのオンラインツールを使用して変換する必要があります。
@@ -478,7 +479,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 #. 古い統計チャートが削除されました。代わりに新しい :ref:`statistic-chart` を使用してください。
 #. IFrame のタスクを設定する IFrameTaskConfig コンポーネントを導入しました。詳細については、:ref:`iframe-configure-template` を参照してください。
-#. ダッシュボードウィジェットのコンセプトに合わせて、:ref:`全タスクリストページ<full-task-list>` と :ref:`全ケースリスト<full-case-list>` のデザインが一新されました。ページは 1 つの全幅ウィジェットを含むダッシュボードとして機能します。他のウィジェットと同じように調整して設定できます。
+#. ダッシュボードウィジェットのコンセプトに合わせて、:ref:`全タスクリストページ<full-task-list>` と :ref:`全ケースリスト <full-case-list-ja>` のデザインが一新されました。ページは 1 つの全幅ウィジェットを含むダッシュボードとして機能します。他のウィジェットと同じように調整して設定できます。
 #. 複数ケースのオーナーをサポートします。1 つのケースのオーナーの並べ替え機能は削除されます。
 
 11.2.0 での変更内容
@@ -516,7 +517,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 #. ポータルの全タスクリストと全ケースリストに新しい ``タスク ID``、 ``タスク名``、 ``ケース ID``、 ``ケース名``フィルターを導入しました。
 
-#. ``プロセスビューアー`` ページを導入しました。ユーザーは、プロセスの開始を視覚的に表示できます。 :ref:`プロセスビューアーの表示<how-to-show-process-viewer>` で詳細をご覧ください。
+#. ``プロセスビューアー`` ページを導入しました。ユーザーは、プロセスの開始を視覚的に表示できます。 :ref:`プロセスビューアーの表示 <how-to-show-process-viewer>` で詳細をご覧ください。
 
 #. 値の形式を設定する ``書式設定言語の設定`` を導入しました。例えば、小数点は世界中の異なる地域で異なる形式で表示されます。
 
@@ -524,15 +525,15 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 #. 新しい ``portal-components`` プロジェクトに以下のコンポーネントを導入しました。
 
-   - :ref:`ユーザーの選択コンポーネント<components-portal-components-user-selection>`
+   - :ref:`ユーザーの選択コンポーネント <components-portal-components-user-selection-ja>`
 
-   - :ref:`ロールの選択コンポーネント<components-portal-components-role-selection>`
+   - :ref:`ロールの選択コンポーネント <components-portal-components-role-selection-ja>`
 
-   - :ref:`ドキュメントテーブルコンポーネント<components-portal-components-document-table>`
+   - :ref:`ドキュメントテーブルコンポーネント <components-portal-components-document-table-ja>`
 
-   - :ref:`プロセスチェーンコンポーネント<components-portal-components-process-chain>`
+   - :ref:`プロセスチェーンコンポーネント <components-portal-components-process-chain-ja>`
 
-   - :ref:`プロセスビューアーコンポーネント<components-portal-components-process-viewer>`
+   - :ref:`プロセスビューアーコンポーネント <components-portal-components-process-viewer-ja>`
 
 9.3 での変更内容
 --------------
@@ -547,13 +548,13 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 #. ポータルのケースリストとケースの状態フィルターに新しいケースの状態 ``破棄済`` を含めました。
 
-#. :ref:`ワークフローイベントテーブル<how-to-show-workflow-events>` を導入しました。:bdg-warning:`🔑WorkflowEventReadAll` 権限を持つユーザーは、すべての ``WORKFLOW_EVENTS`` を表示できます。
+#. :ref:`ワークフローイベントテーブル <how-to-show-workflow-events>` を導入しました。:bdg-warning:`🔑WorkflowEventReadAll` 権限を持つユーザーは、すべての ``WORKFLOW_EVENTS`` を表示できます。
 
 #. デフォルトのホームページを設定する ``Portal.Homepage`` ポータル設定を導入しました。各ユーザーはユーザープロファイルから変更を行うことができます。
 
-#. :ref:`ポータルのケース項目の詳細<customization-case-item-details>` をカスタマイズする新しい方法を導入しました。ケースの詳細ページとケース情報ダイアログには、同じケース情報が表示されます。
+#. :ref:`ポータルのケース項目の詳細 <customization-case-item-details>` をカスタマイズする新しい方法を導入しました。ケースの詳細ページとケース情報ダイアログには、同じケース情報が表示されます。
 
-#. :ref:`ポータルのタスク項目の詳細<customization-task-item-details>` をカスタマイズする新しい方法を導入しました。
+#. :ref:`ポータルのタスク項目の詳細 <customization-task-item-details>` をカスタマイズする新しい方法を導入しました。
 
 #. ポータルのボタンアイコンの表示設定を制御する ``Portal.ShowButtonIcon`` ポータル設定を導入しました。
 

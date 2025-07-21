@@ -1,4 +1,4 @@
-.. _customization-task-item-details:
+.. _customization-task-item-details-ja:
 
 タスク項目の詳細
 ======================================
@@ -20,15 +20,15 @@ TaskItemDetails には以下が含まれます。
 
 |task-standard|
 
-.. important:: 表示可能なウィジェットはすべて :ref:`Portal.TaskDetails<task-details-configuration-variable> 変数`で設定されます。
+.. important:: 表示可能なウィジェットはすべて :ref:`Portal.TaskDetails <task-details-configuration-variable-ja>` 変数で設定されます。
 
 
-.. _task-details-configuration-variable:
+.. _task-details-configuration-variable-ja:
 
 タスクの詳細ページのウィジェットを設定する方法
-----------------------------------------
+------------------------------------------------------------------------
 
--  タスクの詳細ページで表示可能なすべてのウィジェットの設定は、**Portal.TaskDetails 変数**に保存されます。
+-  タスクの詳細ページで表示可能なすべてのウィジェットの設定は、 **Portal.TaskDetails 変数** に保存されます。
 -  コックピットの管理者は、コックピット設定ページの **Portal.TaskDetails** 変数でウィジェットを設定できます。
    |edit-variable-portal-task-details|
 
@@ -94,11 +94,11 @@ TaskItemDetails には以下が含まれます。
 
    ``widgets``：レイアウト内のウィジェットの定義。
 
-   ``filters``：レイアウトを使用可能なタスクを決定する条件。``categories``（タスクのカテゴリー）と ``states``（タスクのビジネスの状態）の 2 つのタイプのフィルターがあります。
+   ``filters``：レイアウトを使用可能なタスクを決定する条件。 ``categories``（タスクのカテゴリー）と ``states``（タスクのビジネスの状態）の 2 つのタイプのフィルターがあります。
 
 -  **Portal.TaskDetails** 変数の各タスクの詳細のレイアウトに含まれる各ウィジェットの構造：
 
-   ``type``：``information``、``document``、``history``、``custom``の 4 つのタイプがあります。
+   ``type``： ``information``、 ``document``、 ``history``、 ``custom``の 4 つのタイプがあります。
 
    ``x``：HTML DOMスタイル ``left`` は ``x / 12 * 100%`` で計算されます。
 
@@ -114,7 +114,7 @@ TaskItemDetails には以下が含まれます。
 
    ``data``（カスタムウィジェット）：iframe を使用するカスタムウィジェットのデータ。
 
-      ``type``：IFrame を使用しないカスタムウィジェットのタイプ。``taskItemDetailCustomPanelTop`` と ``taskItemDetailCustomPanelBottom`` の 2 つのタイプがあります。
+      ``type``：IFrame を使用しないカスタムウィジェットのタイプ。 ``taskItemDetailCustomPanelTop`` と ``taskItemDetailCustomPanelBottom`` の 2 つのタイプがあります。
 
       ``url``：外部ウェブサイトの URL。
 
@@ -122,25 +122,25 @@ TaskItemDetails には以下が含まれます。
 
       ``params``：上記の Ivy プロセスのパラメーター。各パラメーターは以下のように定義できます。
 
-         上記の Ivy プロセスのパラメーター名となるキー名。注記：``taskId`` は使用しないでください。
+         上記の Ivy プロセスのパラメーター名となるキー名。注記： ``taskId`` は使用しないでください。
 
-         - ``task.`` で始まる必要があるタスクのキー値。``task.id`` と ``task.category`` の 2 つの値がサポートされます。
+         - ``task.`` で始まる必要があるタスクのキー値。 ``task.id`` と ``task.category`` の 2 つの値がサポートされます。
 
          - カスタムタスクフィールドのキー値は ``task.customFields.`` で始まり、その後にカスタムフィールド名が続く必要があります。
 
          - その他のキー値は、ハードコーディングされた値として処理されます。
 
 .. important::
-   - ウィジェットの ``type`` は**変更しないでください**。
-      ``x``、``y``、``w``、``h`` を変更して、ウィジェットのサイズと位置を更新できます。
-   - ``x``、``y``、``w``、``h`` は**整数**で指定してください。
-   - ``x + w`` は **12** **以下**でなければなりません。
-   -  カスタムウィジェットのデータについて、``processPath`` を入力する場合は ``url`` を入力しないでください。いずれか 1 つのみ使用できます。
-   - フィルタータイプ ``states`` ではすべてのタスクのビジネスの状態がサポートされます。:dev-url:`タスクのビジネスの状態</doc/|version|/public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>`を参照して、利用可能なタスクのビジネスの状態を確認してください。
+   - ウィジェットの ``type`` は **変更しないでください**。
+      ``x``、 ``y``、 ``w``、 ``h`` を変更して、ウィジェットのサイズと位置を更新できます。
+   - ``x``、 ``y``、 ``w``、 ``h`` は **整数** で指定してください。
+   - ``x + w`` は **12** **以下** でなければなりません。
+   -  カスタムウィジェットのデータについて、 ``processPath`` を入力する場合は ``url`` を入力しないでください。いずれか 1 つのみ使用できます。
+   - フィルタータイプ ``states`` ではすべてのタスクのビジネスの状態がサポートされます。:dev-url:`タスクのビジネスの状態 </doc/|version|/public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` を参照して、利用可能なタスクのビジネスの状態を確認してください。
 
 
 カスタムパネル（ウィジェット）の表示
-----------------------------
+------------------------------------------------------------------
 
 
 .. tip:: 
@@ -151,19 +151,19 @@ TaskItemDetails には以下が含まれます。
 
       - 例：AxonIvyDesigner/configuration/applications/designer
 
-   - 破棄したタスクを作成するか、``portal-developer-examples`` プロジェクトの ``Start Processes/TaskDetailsCustomWidgetExample/SalesManagement.ivp`` プロセスを開始します。
+   - 破棄したタスクを作成するか、 ``portal-developer-examples`` プロジェクトの ``Start Processes/TaskDetailsCustomWidgetExample/SalesManagement.ivp`` プロセスを開始します。
    - ``Start Processes/ExamplePortalStart/DefaultApplicationHomePage.ivp`` プロセスでサンプルホームページに移動します。
    - 最後に、タスクの詳細に移動し、新しいカスタムレイアウトを確認します。
 
-   変数の設定方法については、:dev-url:`|ivy| の変数</doc/|version|/designer-guide/configuration/variables.html>`を参照してください。
+   変数の設定方法については、:dev-url:`|ivy| の変数 </doc/|version|/designer-guide/configuration/variables.html>` を参照してください。
 
 
 以下の **2 つのステップ**で、新しいカスタムパネルを追加します。
 
-#.カスタムウィジェットを追加するには、**エンジンの管理者**がコックピットページで :ref:`Portal.TaskDetails<task-details-configuration-variable>` 変数を設定する必要があります。
+#. カスタムウィジェットを追加するには、 **エンジンの管理者** がコックピットページで :ref:`Portal.TaskDetails <task-details-configuration-variable-ja>` 変数を設定する必要があります。
    
 
-   .._task-details-custom-configuration-variable-example:
+   .. _task-details-custom-configuration-variable-example:
    
    -  レイアウト設定を含む Portal.TaskDetails の例には、4 つのカスタムウィジェットが含まれます。
    
@@ -216,13 +216,13 @@ TaskItemDetails には以下が含まれます。
 
    ..
 
-#.タスクの詳細をカスタマイズするには、IFrame を使用します。
+#. タスクの詳細をカスタマイズするには、IFrame を使用します。
 
-   -  外部 URL を使用する場合は、``url`` パラメーターを入力する必要があります。
+   -  外部 URL を使用する場合は、 ``url`` パラメーターを入力する必要があります。
 
-   -  開始プロセスを使用する場合は、``ivy`` パラメーターを入力する必要があります。
+   -  開始プロセスを使用する場合は、 ``ivy`` パラメーターを入力する必要があります。
 
-   -  開始プロセスを使用する場合は、``params`` のパラメーターを事前に定義できます。
+   -  開始プロセスを使用する場合は、 ``params`` のパラメーターを事前に定義できます。
 
       外部 URL を使用してカスタマイズしたタスクの詳細
 
@@ -255,7 +255,7 @@ TaskItemDetails には以下が含まれます。
 
       |task-customized-iframe-url|
 
-      プロセスの開始を使用してカスタマイズしたタスクの詳細については、``portal-developer-examples`` の ``TaskDetailsCustomWidgetExample`` プロセスを参照してください。
+      プロセスの開始を使用してカスタマイズしたタスクの詳細については、 ``portal-developer-examples`` の ``TaskDetailsCustomWidgetExample`` プロセスを参照してください。
 
       .. code-block:: javascript
 

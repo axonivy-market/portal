@@ -20,7 +20,7 @@
 ポータル設定の実行
 =========================
 
-ポータル設定を手動で行う方法については、:ref:`update-portal-settings` を参照してください。
+ポータル設定を手動で行う方法については、:ref:`update-portal-settings-ja` を参照してください。
 
 ポータル設定は、:dev-url:`変数 </doc/|version|/designer-guide/configuration/variables.html>` として格納されます。
 
@@ -64,7 +64,7 @@
 
 
 タスクの権限
-----------------
+-------------------
 - ノートの追加
 
    ユーザーには次の権限が必要です：:bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`
@@ -200,7 +200,7 @@
       通常ユーザーは、自分が作成したワークフローを更新、削除し、自分に割り当てられたタスクを操作できます。
       
 
-.. _settings-permission-settings-others:
+.. _settings-permission-settings-others-ja:
 
 その他の権限
 -----------------
@@ -324,7 +324,7 @@ web XML ファイルで context-param を設定すると、ウイルススキャ
 
 ポータルの統計チャート
 ^^^^^^^^^^^^^^^^^^^^^^^
-ポータルダッシュボードの :ref:`統計ウィジェット <portal-statistic-widget>` で使用できるすべての統計チャートのフィルターロジック、外観などの設定を定義できます。
+ポータルダッシュボードの :ref:`統計ウィジェット <portal-statistic-widget-ja>` で使用できるすべての統計チャートのフィルターロジック、外観などの設定を定義できます。
 
 
 ファイル名： ``variables.Portal.ClientStatistic.json``
@@ -432,10 +432,10 @@ web XML ファイルで context-param を設定すると、ウイルススキャ
 
    - ``suffixSymbol``：数値の隣に表示されるアイコン。ポータルは、Streamline アイコンと FontAwesome アイコンをサポートします。
    
-.. _portal-process-external-link:
+.. _portal-process-external-link-ja:
 
 ポータルのプロセスの外部リンク
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ポータルの標準的な外部リンクは、以下のファイルで定義されます。
 
 ファイル名： ``variables.Portal.Processes.ExternalLinks.json``

@@ -1,4 +1,4 @@
-.. _customization-case-item-details:
+.. _customization-case-item-details-ja:
 
 ケース項目の詳細
 ======================================
@@ -14,21 +14,21 @@ CaseItemDetails には以下が含まれます。
 - **CaseItemDetailsRelatedCases** ``3``
 - **CaseItemDetailsRelatedTasks** ``4``
 - **CaseItemDetailsHistories** ``5``
--  ケースの詳細のカスタムパネル：``caseItemDetailCustomTop``、``caseItemDetailCustomMiddle``、``caseItemDetailCustomBottom``
+-  ケースの詳細のカスタムパネル： ``caseItemDetailCustomTop``、 ``caseItemDetailCustomMiddle``、 ``caseItemDetailCustomBottom``
    
 
 |case-standard-1|
 
 |case-standard-2|
 
-.. important::表示可能なウィジェットはすべて :ref:`variable Portal.CaseDetails<case-details-configuration-variable>` で設定されます。
+.. important::表示可能なウィジェットはすべて :ref:`variable Portal.CaseDetails <case-details-configuration-variable>` で設定されます。
 
 .. _case-details-configuration-variable:
 
 ケースの詳細ページのウィジェットを設定する方法
 ----------------------------------------
 
--  ケースの詳細ページで表示可能なすべてのウィジェットの設定は、**Portal.CaseDetails 変数**に保存されます。
+-  ケースの詳細ページで表示可能なすべてのウィジェットの設定は、 **Portal.CaseDetails 変数** に保存されます。
 -  管理者は、エンジンコックピットで、設定ページの **Portal.CaseDetails** 変数でウィジェットを設定できます。
    |edit-variable-portal-case-details|
 
@@ -95,7 +95,7 @@ CaseItemDetails には以下が含まれます。
          ]                                                       
 
 
-   -  各ケースの詳細のレイアウトの構造は、**Portal.CaseDetails** 変数に保存されます。
+   -  各ケースの詳細のレイアウトの構造は、 **Portal.CaseDetails** 変数に保存されます。
 
       ``id``：レイアウトの ID。
 
@@ -106,10 +106,10 @@ CaseItemDetails には以下が含まれます。
       -  ``categories``（ケースのカテゴリー）
       -  ``states``（ケースのビジネスの状態）
 
-         利用可能なケースのビジネスの状態については、:dev-url:`ケースのビジネスの状態</doc/|version|/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` を参照してください。
+         利用可能なケースのビジネスの状態については、:dev-url:`ケースのビジネスの状態 </doc/|version|/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` を参照してください。
          
 
-   -  ケースの詳細のレイアウトに含まれる各ウィジェットの構造は、**Portal.CaseDetails** 変数に格納されます。
+   -  ケースの詳細のレイアウトに含まれる各ウィジェットの構造は、 **Portal.CaseDetails** 変数に格納されます。
 
       ``id``：ウィジェットの ID。
 
@@ -135,25 +135,25 @@ CaseItemDetails には以下が含まれます。
 
          ``style``（オプション）：インラインスタイルを HTML DOM に追加します。
 
-      ``data``（カスタムウィジェット）：カスタムウィジェットのデータ。:ref:`カスタムウィジェットの表示<customization-case-item-details-how-to-override-ui-custom-body>` を参照してください。
+      ``data``（カスタムウィジェット）：カスタムウィジェットのデータ。:ref:`カスタムウィジェットの表示 <customization-case-item-details-how-to-override-ui-custom-body-ja>` を参照してください。
 
    .. important::
 
-      - ウィジェットの ``type`` と ``id`` は**変更しないでください**。
-      - ``x``、``y``、``w``、``h`` を変更して、ウィジェットのサイズと位置を更新できます。
-      - ``x``、``y``、``w``、``h`` は**整数**で指定してください。
-      - ``x + w`` は **12** **以下**でなければなりません。
+      - ウィジェットの ``type`` と ``id`` は **変更しないでください**。
+      - ``x``、 ``y``、 ``w``、 ``h`` を変更して、ウィジェットのサイズと位置を更新できます。
+      - ``x``、 ``y``、 ``w``、 ``h`` は **整数** で指定してください。
+      - ``x + w`` は **12** **以下** でなければなりません。
       - フィルタータイプ ``states`` ではすべてのケースのビジネスの状態がサポートされます。
 
 
-.. _customization-case-item-details-how-to-override-ui-custom-body:
+.. _customization-case-item-details-how-to-override-ui-custom-body-ja:
 
 カスタムウィジェットの表示
 ------------------------
 
 カスタムウィジェット用に、ケースの詳細ウィジェット内に新しい ``data`` ノードを提供します。各カスタムウィジェットの ``data`` の構造は以下のとおりです。
 
-   - ``type``：カスタムウィジェットパネルのタイプ。``caseItemDetailCustomTop``、``caseItemDetailCustomMiddle``、``caseItemDetailCustomBottom`` の 3 つのタイプがあります。
+   - ``type``：カスタムウィジェットパネルのタイプ。 ``caseItemDetailCustomTop``、 ``caseItemDetailCustomMiddle``、 ``caseItemDetailCustomBottom`` の 3 つのタイプがあります。
 
    - ``url``：外部ウェブサイトの URL。
 
@@ -161,9 +161,9 @@ CaseItemDetails には以下が含まれます。
 
    - ``params``：上記の Ivy プロセスのパラメーター。各パラメーターは以下のように定義できます。
 
-      - 上記の Ivy プロセスのパラメーター名となるキー名。注記：``caseId`` は使用しないでください。
+      - 上記の Ivy プロセスのパラメーター名となるキー名。注記： ``caseId`` は使用しないでください。
 
-      - ``case.`` で始まる必要があるケースのキー値。``case.id`` と ``case.category`` の 2 つの値がサポートされます。
+      - ``case.`` で始まる必要があるケースのキー値。 ``case.id`` と ``case.category`` の 2 つの値がサポートされます。
 
       - カスタムケースフィールドのキー値は ``case.customFields.`` で始まり、その後にカスタムフィールド名が続く必要があります。
 
@@ -177,19 +177,19 @@ CaseItemDetails には以下が含まれます。
 
           - 例：AxonIvyDesigner/configuration/applications/designer
 
-      - 破棄したケースを作成するか、``portal-developer-examples`` プロジェクトの ``Start Processes/CaseDetailsCustomWidgetExample/CreateEventTest.ivp`` プロセスを開始します。
+      - 破棄したケースを作成するか、 ``portal-developer-examples`` プロジェクトの ``Start Processes/CaseDetailsCustomWidgetExample/CreateEventTest.ivp`` プロセスを開始します。
       - ホームページに移動します。
       - ケースの詳細に移動し、新しいカスタムレイアウトを確認します。
    
-      変数の設定方法については、:dev-url:`|ivy| の変数</doc/|version|/designer-guide/configuration/variables.html>` を参照してください。
+      変数の設定方法については、:dev-url:`|ivy| の変数 </doc/|version|/designer-guide/configuration/variables.html>` を参照してください。
    
 
 新規カスタムパネルの追加
-^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 新規カスタムパネルを追加するには、以下の 2 つのステップが必要です。
 
-#. カスタムウィジェットを追加するには、**エンジンの管理者**がコックピットページで :ref:`Portal.CaseDetails<case-details-configuration-variable>` 変数を設定する必要があります。
+#. カスタムウィジェットを追加するには、 **エンジンの管理者** がコックピットページで :ref:`Portal.CaseDetails <case-details-configuration-variable>` 変数を設定する必要があります。
    
 
    .. _case-details-custom-configuration-variable-example:
@@ -279,7 +279,7 @@ CaseItemDetails には以下が含まれます。
 
    -  ``url``：外部 URL を使用する場合。
 
-   -  ``processPath``：Ivy のプロセス開始を使用する場合。``params`` を ``data`` ノードに追加して、プロセスのパラメーターを事前に定義できます。
+   -  ``processPath``：Ivy のプロセス開始を使用する場合。 ``params`` を ``data`` ノードに追加して、プロセスのパラメーターを事前に定義できます。
       
       
 
@@ -328,7 +328,7 @@ CaseItemDetails には以下が含まれます。
       |case-customized-iframe-url|
 
       以下の例は、ivy のプロセスの開始を使用してカスタマイズしたケースの詳細を示しています。
-      詳細については、``portal-developer-examples`` の ``CaseDetailsCustomWidgetExample`` プロセスを参照してください。
+      詳細については、 ``portal-developer-examples`` の ``CaseDetailsCustomWidgetExample`` プロセスを参照してください。
       
 
       .. code-block:: javascript

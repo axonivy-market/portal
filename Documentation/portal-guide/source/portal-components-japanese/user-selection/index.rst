@@ -1,17 +1,17 @@
-.. _components-portal-components-user-selection:
+.. _components-portal-components-user-selection-ja:
 
 ユーザーの選択
 *******************************
 
 概要
-^^^^^
+^^^^^^^^^^^^^^^^
 
 このコンポーネントは、ロール名のリストで定義されたユーザーのリストから 1 人のユーザーを選択するのに使用します。
 ロール名のリストを定義していない場合は、すべてのユーザーがロードされます。
 コンポーネントには、ラベル、オートコンプリート、そのオートコンプリート要素に関連するメッセージを表示する 1 つのメッセージ要素が含まれます。
 
 使用方法
-^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 このコンポーネントは任意のページに挿入できます。以下の 2 つのスタイルでラベルを表示します。
 
@@ -43,11 +43,11 @@
          excludedUsernames="#{data.excludedUsernames}" floatingLabel="true" />
 
 .. tip::
-   ユーザーの選択コンポーネントのオートコンプリート要素を使用して、子イベントや Ajax イベントを挿入できます（``UserSelection.xhtml`` を参照）。
+   ユーザーの選択コンポーネントのオートコンプリート要素を使用して、子イベントや Ajax イベントを挿入できます（ ``UserSelection.xhtml`` を参照）。
    
-   UserSelection コンポーネントの任意の子は、``insertChildren`` タグの位置にあるこのオートコンプリートにリペアレントされます。
+   UserSelection コンポーネントの任意の子は、 ``insertChildren`` タグの位置にあるこのオートコンプリートにリペアレントされます。
    
-   また、Ajax イベントを入れ子にできるように、``event`` という名前のオートコンプリートのファセットを導入します。
+   また、Ajax イベントを入れ子にできるように、 ``event`` という名前のオートコンプリートのファセットを導入します。
    
 
 例：
@@ -76,7 +76,7 @@
          </f:facet>
    </ic:com.axonivy.portal.components.UserSelection>
 
-詳細については、``portal-components-examples`` プロジェクトの ``UserSelectionExample.xhtml`` を参照してください。
+詳細については、 ``portal-components-examples`` プロジェクトの ``UserSelectionExample.xhtml`` を参照してください。
 
 このコンポーネントには以下の属性が用意されています。
 
@@ -86,12 +86,12 @@
   :class: longtable
   :widths: 1 1 1 3
 
-.. _components-portal-components-migrate-from-old-user-selection:
+.. _components-portal-components-migrate-from-old-user-selection-ja:
 
 非推奨のユーザーの選択からの移行
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. HTML ファイルのコードを置き換えます。``ic:ch.ivy.addon.portalkit.component.UserSelection`` を ``ic:com.axonivy.portal.components.UserSelection`` に置き換えてください。
+#. HTML ファイルのコードを置き換えます。 ``ic:ch.ivy.addon.portalkit.component.UserSelection`` を ``ic:com.axonivy.portal.components.UserSelection`` に置き換えてください。
 
 #. ``ch.ivy.addon.portalkit.dto.UserDTO`` を ``com.axonivy.portal.components.dto.UserDTO`` に置き換えます。
 

@@ -1,4 +1,4 @@
-.. _components-portal-components-process-chain:
+.. _components-portal-components-process-chain-ja:
 
 プロセスチェーン
 *****************************
@@ -22,7 +22,7 @@
 .. _components-portal-components-process-chain-how-to-use:
 
 使用方法
-^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 以下のコードを使用して、プロセスチェーンコンポーネントをページに含めることにより、任意のウィジェットにコンポーネントを統合できます。
 
@@ -53,7 +53,7 @@
 スタイルをカスタマイズしたい場合は、:ref:`components-portal-components-style-customization` を参照してください。
 
 
-.. _components-portal-components-migrate-from-old-process-chain:
+.. _components-portal-components-migrate-from-old-process-chain-ja:
 
 非推奨のプロセスチェーンからの移行
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

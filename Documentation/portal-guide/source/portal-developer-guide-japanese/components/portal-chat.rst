@@ -15,7 +15,7 @@
 情報
 -----
 
-- ポータルチャットを使用するには、:ref:`portal-chat` を参照してください。
+- ポータルチャットを使用するには、:ref:`portal-chat-ja` を参照してください。
 
 - チャット機能は Ivy 7.4 で書き直されました。
 
@@ -25,7 +25,7 @@
   この制限を処理するため、**Portal.Chat.MaxConnection** 設定がポータルに導入されました。デフォルト値は 3 です。4 番目のタブが開かれた場合、1 つのアクティブでないタブのチャットが非アクティブ化されます。
   チャットが非アクティブ化されたタブを選択した場合、すべてのチャット情報が更新され、チャットが再びアクティブ化されます。引き続き最大数を超えるチャットタブが開かれている場合は、別のタブのチャットが非アクティブ化されます。
 
-- システムが追加の Tomcat の **値** を使用している場合は、 ``Context.xml`` ファイルに asyncSupported を追加することを推奨します。:dev-url:`参照ファイル</doc/|version|/engine-guide/configuration/files/context-xml.html>` にサンプルファイルがあります。
+- システムが追加の Tomcat の **値** を使用している場合は、 ``Context.xml`` ファイルに asyncSupported を追加することを推奨します。:dev-url:`参照ファイル </doc/|version|/engine-guide/configuration/files/context-xml.html>` にサンプルファイルがあります。
 
   .. code-block:: html
 

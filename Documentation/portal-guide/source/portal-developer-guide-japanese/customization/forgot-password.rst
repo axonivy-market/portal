@@ -1,4 +1,4 @@
-.. _customization-forgot-password:
+.. _customization-forgot-password-ja:
 
 パスワードを忘れた場合
 =================================================
@@ -14,17 +14,14 @@
 
 **シグネチャ**：portalSendPasswordResetEmail
 
-+-----------------------+-------------------+
-| 名前                  | タイプ             |
-+=======================+===================+
-| **パラメーター**                           |
-+-----------------------+-------------------+
-| email                 | java.lang.String  |
-+-----------------------+-------------------+
+.. csv-table::
+  :file: tables/send-password-reset-email.csv
+  :header-rows: 1
+  :widths: 50, 50
 
 .. tip::
 
-   トークンの生成とメールの送信プロセスのカスタマイズ方法の例については、``portal-developer-examples`` プロジェクトの ``CustomSendPasswordResetEmail`` プロセスを参照してください。
+   トークンの生成とメールの送信プロセスのカスタマイズ方法の例については、 ``portal-developer-examples`` プロジェクトの ``CustomSendPasswordResetEmail`` プロセスを参照してください。
    
 
 .. _customization-case-widget-how-to-override-password-resetting:
@@ -43,28 +40,13 @@
 
 **シグネチャ**：portalResetPassword
 
-+-----------------------+-------------------+
-| 名前                  | タイプ              |
-+=======================+===================+
-| **パラメーター**                             |
-+-----------------------+-------------------+
-| newPassword           | java.lang.String  |
-+-----------------------+-------------------+
-| passwordConfirmation  | java.lang.String  |
-+-----------------------+-------------------+
-| token                 | java.lang.String  |
-+-----------------------+-------------------+
-| username              | java.lang.String  |
-+-----------------------+-------------------+
-|**結果**                                 |
-+-----------------------+-------------------+
-| message               | java.lang.String  |
-+-----------------------+-------------------+
-| resetSuccess          | java.lang.Boolean |
-+-----------------------+-------------------+
+.. csv-table::
+  :file: tables/reset-password.csv
+  :header-rows: 1
+  :widths: 50, 50
 
 .. tip::
 
-   パスワードのリセットのカスタマイズ方法の例については、``portal-developer-examples`` プロジェクトの ``CustomResetPassword`` プロセスを参照してください。
+   パスワードのリセットのカスタマイズ方法の例については、 ``portal-developer-examples`` プロジェクトの ``CustomResetPassword`` プロセスを参照してください。
    
 
