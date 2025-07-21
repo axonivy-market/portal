@@ -150,7 +150,7 @@ public class MasterDataBean implements Serializable {
       return Boolean.parseBoolean(isEnabledByUser);
     }
     UserSettingService.getInstance().updateUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS,
-        Boolean.TRUE.toString());
-    return true;
+        Boolean.FALSE.toString());
+    return false;
   }
 }
