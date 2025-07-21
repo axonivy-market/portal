@@ -145,11 +145,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rubrik 3
       NORMAL_TEXT: Normaler Text
   MyProfile:
+    Accessibility: Erreichbarkeit
     CaseList: Vorfall-Liste
     DateFormat: Datum Format
     FormattingLanguage: Sprache der Formatierung
     General: Allgemeine
     Homepage: Homepage
+    KeyboardShortcutsNavigation: Tastenkombinationen für die Navigation.
+    KeyboardShortcutsNavigationInfor: Umschalten, um Tastenkombinationen für die Navigation zu aktivieren oder zu deaktivieren.
+    KeyboardShortcutsTooltip: Diese Schaltfläche ist derzeit nicht verfügbar und kann aufgrund der Einstellungen nicht verwendet werden.
     Language: Sprache
     ProcessList: Prozess-Liste
     TaskList: Aufgabenliste
@@ -223,6 +227,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SessionCacheTimeout: Sitzungs-Cache-Timeout für das Portal. Legt die Ablaufzeit des Sitzungs-Caches (in Sekunden) für das Portal fest. Dieser Wert kann zwischen 300 (5 Minuten) und 86.400 (24 Stunden) eingestellt werden.
       ShowLoginPageFooter: Zum Ein-/Ausschalten der Anzeige der Fußzeile auf der Anmeldeseite.
       ShowQRCode: Zum Ein- und Ausschalten der Anzeige des QR-Codes.
+      allowKeyboardShortcutsConfiguration: Auf true setzen, damit der Benutzer mit der Schaltfläche für Tastenkombinationen interagieren kann.
       behaviourWhenClickingOnLineInCaseList: Umschalten zwischen dem Zugriff auf Falldaten oder Geschäftsdaten beim Klicken auf einen Fall im Fall-Widget des Dashboards, in der globalen Suche, in verwandten Fällen und im Prozess-Widget im kombinierten Modus.
       behaviourWhenClickingOnLineInTaskList: Zum Umschalten des Verhaltens (Ausführen der Aufgabe oder Aufrufen der Aufgabendetails) beim Klicken auf eine Zeile in der Aufgabenliste, im Aufgaben-Widget des Dashboards und bei verwandten Aufgaben auf der Seite mit den Vorgangsdetails.
       chatMaxConnection: 'Die gesetzte Nummer steuert die Anzahl der erlaubten Tabs mit aktiven Chat. Falls mehr Tabs geöffnet werden, wird der Chat in inaktive Tabs deaktiviert. Erlaubte Werte zw. 1-5 '

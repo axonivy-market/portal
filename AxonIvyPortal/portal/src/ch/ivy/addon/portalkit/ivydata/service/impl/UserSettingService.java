@@ -60,4 +60,15 @@ public class UserSettingService {
   private IUser getSessionUser() {
     return Ivy.session().getSessionUser();
   }
+  
+  public void updateUserProperty(String property, String value) {
+    IUser user = getSessionUser();
+    if (user != null) {
+      user.setProperty(property, value);
+    }
+  }
+  
+  public boolean isKeyboardShortcutsEnabled() {
+    return Boolean.parseBoolean(getUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS));
+  }
 }
