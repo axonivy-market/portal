@@ -1,6 +1,7 @@
 package com.axonivy.portal.components.ivydata.service.impl;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -8,7 +9,9 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.UserDTO;
+import com.axonivy.portal.components.enums.AdditionalProperty;
 import com.axonivy.portal.components.ivydata.dto.IvySecurityResultDTO;
 
 import ch.ivyteam.ivy.environment.Ivy;
@@ -34,7 +37,31 @@ public class SecurityService{
       return result;
     });
   }
-
+  
+  public IvySecurityResultDTO findRoleDTOs() {
+    return Sudo.get(() -> {
+      IvySecurityResultDTO result = new IvySecurityResultDTO();
+      List<RoleDTO> roles = findAllRoleDTO();
+      roles.sort(getRoleDTOComparator());
+      result.setRoleDTOs(roles);
+      return result;
+    });
+  }
+  
+  public static List<RoleDTO> findAllRoleDTO() {
+    return Sudo.get(() -> {
+      return CollectionUtils.emptyIfNull(ISecurityContext.current().roles().all())
+          .stream()
+          .filter(role -> role.getProperty(AdditionalProperty.HIDE.toString()) == null)
+          .map(role -> new RoleDTO(role))
+          .collect(Collectors.toList());
+    });
+  }
+  
+  private Comparator<? super RoleDTO> getRoleDTOComparator() {
+    return (u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName());
+  }
+  
   /**
    * Query users in specific application
    * @param query

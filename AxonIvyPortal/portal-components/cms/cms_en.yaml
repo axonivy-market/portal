@@ -87,6 +87,9 @@ Dialogs:
               EXTERNAL_LINK: External Link
               IVY_PROCESS: Business Process
             ProcessViewerIFrameTitle: Process viewer frame
+          SideStepType:
+            PARALLEL: Create a new task and continue working on the current task
+            SWITCH: Park the current task and start working on a new task
 Labels:
   AI:
     Error:
