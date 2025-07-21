@@ -157,7 +157,7 @@
               <div class="ui-g-3 ui-md-4">
                 <p:outputLabel for="text-alt-class" styleClass="welcome-text-label" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/WelcomeWidgetConfiguration/AltText')}" />
               </div>
-              <div class="ui-fluid ui-g-9 ui-md-8 welcome-styles-panel u-no-padding-left">
+              <div class="ui-fluid ui-g-9 ui-md-8 welcome-styles-panel u-no-padding-left ui-inputgroup">
                 <p:inputText id="text-alt-class" value="#{dashboardWelcomeWidgetConfigurationBean.widget.altText}" styleClass="js-text-style-class" onchange="WelcomeWidgetConfiguration.updateStyleClasses();" />
                 <!-- Add language button -->
                 <p:commandButton styleClass="app-setting-button"
@@ -177,8 +177,10 @@
        </div>
        <!-- Multi language dialog-->
        <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
-         id="title-language-config" titles="#{dashboardWelcomeWidgetConfigurationBean.widget.altTexts}" />
-       
+        id="title-language-config" titles="#{dashboardWelcomeWidgetConfigurationBean.widget.altTexts}"
+        updateCurrentLanguage="#{dashboardWelcomeWidgetConfigurationBean.updateCurrentLanguage()}"
+        componentToUpdateOnModify="#{p:resolveFirstComponentWithId('text-alt-class', view).clientId}" />
+        
        <p:remoteCommand name="initGreetingTexts" update="welcome-text-input-container"
          actionListener="#{dashboardWelcomeWidgetConfigurationBean.initClientTime()}"
          oncomplete="WelcomeWidgetConfiguration.updatePreviewText('#{widget.greeting}');" />

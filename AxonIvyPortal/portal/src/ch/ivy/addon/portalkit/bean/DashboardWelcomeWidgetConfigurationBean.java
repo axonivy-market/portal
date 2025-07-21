@@ -173,5 +173,9 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   private void initAndSetValue(String value, List<DisplayName> values) {
     DisplayNameConvertor.initMultipleLanguages(value, values);
     DisplayNameConvertor.setValue(value, values);
-  }  
+  }
+  
+  public void updateCurrentLanguage() {
+    widget.setAltText(DisplayNameConvertor.updateCurrentValue(widget.getAltText(), widget.getAltTexts()));
+  }
 }
