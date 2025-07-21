@@ -40,3 +40,5 @@ queryLanguage String #field
 queryLanguage PERSISTENT #fieldModifier
 formatLanguages java.util.List<javax.faces.model.SelectItem> #field
 formatLanguages PERSISTENT #fieldModifier
+isShortcutsEnabled Boolean #field
+isShortcutsEnabled PERSISTENT #fieldModifier

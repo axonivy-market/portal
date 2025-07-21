@@ -62,6 +62,10 @@ Variables:
     # It will be shown with the page title
     ApplicationName: Axon Ivy
     
+    Accessibility:
+      # Set to true to allow the user interact with the keyboard shortcuts toggle.
+      AllowKeyboardShortcutsConfiguration: false
+
     # You can define the own user menu via this JSON file.
     # It will be shown as the your user menu in the user menu settings.
     # [file: json]
@@ -332,3 +336,4 @@ Variables:
 
   # The delay time of search function at top menu
   PortalSearchDelayInMilliseconds: 500
+  

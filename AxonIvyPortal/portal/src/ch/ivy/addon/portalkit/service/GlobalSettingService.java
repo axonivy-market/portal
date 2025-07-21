@@ -135,4 +135,8 @@ public class GlobalSettingService {
   private IUser sessionUser() {
     return Ivy.session().getSessionUser();
   }
+  
+  public boolean isAllowedConfigShortcutsByAdmin() {
+    return findGlobalSettingValueAsBoolean(GlobalVariable.ALLOW_KEYBOARD_SHORTCUTS_CONFIGURATION);
+  }
 }
