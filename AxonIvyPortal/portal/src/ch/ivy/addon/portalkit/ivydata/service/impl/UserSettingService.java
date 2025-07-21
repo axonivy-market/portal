@@ -70,6 +70,11 @@ public class UserSettingService {
   }
   
   public boolean isKeyboardShortcutsEnabled() {
-    return Boolean.parseBoolean(getUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS));
+    String isKeyboardShortcutsEnabled = getUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS);
+    if (StringUtils.isBlank(isKeyboardShortcutsEnabled)) {
+      updateUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS, Boolean.TRUE.toString());
+      return Boolean.TRUE;
+    }
+    return Boolean.parseBoolean(isKeyboardShortcutsEnabled);
   }
 }
