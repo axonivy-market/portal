@@ -75,7 +75,7 @@
    :bdg-ref-warning:`🔑TaskDisplayDestroyAction <TaskDisplayDestroyAction>` , :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>` ,
    
 
-最後に、`アクション`をクリックし、`詳細`メニュー項目をクリックして、すべてのタスクデータにアクセスできます。
+最後に、 `アクション` をクリックし、 `詳細` メニュー項目をクリックして、すべてのタスクデータにアクセスできます。
 
 
 タスクの詳細は、以下の 4 つのセクションに別れています。
@@ -195,7 +195,7 @@
 
 #. ノートセクションの下にある |add-icon| ``ノートを追加`` リンクをクリックします。
 
-#. :guilabel:`ノートを追加`ダイアログが開きます。
+#. :guilabel:`ノートを追加` ダイアログが開きます。
 
 #. ノートを入力します。
 

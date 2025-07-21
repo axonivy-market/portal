@@ -20,10 +20,10 @@ TaskItemDetails には以下が含まれます。
 
 |task-standard|
 
-.. important:: 表示可能なウィジェットはすべて :ref:`Portal.TaskDetails <task-details-configuration-variable> 変数`で設定されます。
+.. important:: 表示可能なウィジェットはすべて :ref:`Portal.TaskDetails <task-details-configuration-variable-ja> 変数` で設定されます。
 
 
-.. _task-details-configuration-variable:
+.. _task-details-configuration-variable-ja:
 
 タスクの詳細ページのウィジェットを設定する方法
 ---------------------------------------------------------------------------
@@ -94,11 +94,11 @@ TaskItemDetails には以下が含まれます。
 
    ``widgets``：レイアウト内のウィジェットの定義。
 
-   ``filters``：レイアウトを使用可能なタスクを決定する条件。 ``categories``（タスクのカテゴリー）と ``states``（タスクのビジネスの状態）の 2 つのタイプのフィルターがあります。
+   ``filters``：レイアウトを使用可能なタスクを決定する条件。 ``categories`` （タスクのカテゴリー）と ``states`` （タスクのビジネスの状態）の 2 つのタイプのフィルターがあります。
 
 -  **Portal.TaskDetails** 変数の各タスクの詳細のレイアウトに含まれる各ウィジェットの構造：
 
-   ``type``： ``information``、 ``document``、 ``history``、 ``custom``の 4 つのタイプがあります。
+   ``type``： ``information``、 ``document``、 ``history``、 ``custom`` の 4 つのタイプがあります。
 
    ``x``：HTML DOMスタイル ``left`` は ``x / 12 * 100%`` で計算されます。
 
@@ -108,11 +108,11 @@ TaskItemDetails には以下が含まれます。
 
    ``h``：HTML DOMスタイル ``height`` は ``60 * h + 20 * (h - 1)`` で計算されます。
 
-   ``styleClass``（オプション）：CSS クラスを HTML DOM に追加します。
+   ``styleClass`` （オプション）：CSS クラスを HTML DOM に追加します。
 
-   ``style``（オプション）：インラインスタイルを HTML DOM に追加します。
+   ``style`` （オプション）：インラインスタイルを HTML DOM に追加します。
 
-   ``data``（カスタムウィジェット）：iframe を使用するカスタムウィジェットのデータ。
+   ``data`` （カスタムウィジェット）：iframe を使用するカスタムウィジェットのデータ。
 
       ``type``：IFrame を使用しないカスタムウィジェットのタイプ。 ``taskItemDetailCustomPanelTop`` と ``taskItemDetailCustomPanelBottom`` の 2 つのタイプがあります。
 
@@ -160,10 +160,10 @@ TaskItemDetails には以下が含まれます。
 
 以下の **2 つのステップ** で、新しいカスタムパネルを追加します。
 
-#. カスタムウィジェットを追加するには、 **エンジンの管理者** がコックピットページで :ref:`Portal.TaskDetails <task-details-configuration-variable>` 変数を設定する必要があります。
+#. カスタムウィジェットを追加するには、 **エンジンの管理者** がコックピットページで :ref:`Portal.TaskDetails <task-details-configuration-variable-ja>` 変数を設定する必要があります。
    
 
-   .._task-details-custom-configuration-variable-example:
+   .. _task-details-custom-configuration-variable-example:
    
    -  レイアウト設定を含む Portal.TaskDetails の例には、4 つのカスタムウィジェットが含まれます。
    

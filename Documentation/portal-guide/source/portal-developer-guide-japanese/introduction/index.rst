@@ -145,7 +145,7 @@
     - 数値の最小数
     - 特殊文字の最小数
 
-.._introduction-new-and-note-worthy-9.3:
+.. _introduction-new-and-note-worthy-9.3:
 
 9.3 の新機能と注目すべき変更点
 -----------------------------------------

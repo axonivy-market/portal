@@ -15,7 +15,7 @@
 プロジェクトモジュール
 ---------------------------------
 
-アプリケーションは 3 つのプロセスモジュールで構成されます。各モジュールの詳細については、:ref:`アーキテクチャ` を参照してください。
+アプリケーションは 3 つのプロセスモジュールで構成されます。各モジュールの詳細については、:ref:`architecture-ja` を参照してください。
 
 
 -  portal-components
@@ -132,7 +132,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 #. ビジネスの詳細ページのカスタムフィールドの値は、プロセスリンクの相対パスから :dev-url:`IWebStartable ID </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` にサイレントに移行されます。 
  
-管理者が何かを行う必要はありません。これは単なる参考情報です。
+   管理者が何かを行う必要はありません。これは単なる参考情報です。
 
 #. タスクウィジェットとケースウィジェットの列の幅を調整する新しい機能を実装しました。
 この変更により、以前のバージョンからのタスクウィジェットとケースウィジェットの列の幅に若干の影響が生じることがあります。
@@ -267,7 +267,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 9.3 から 9.4 への移行
 ---------------------------------
 
-9.4 から ``PortalStyle``、 ``PortalKit``、 ``PortalTemplate`` が ``portal-components`` と ``portal`` に置き換えられました。:ref:`アーキテクチャ` を参照してください。
+9.4 から ``PortalStyle``、 ``PortalKit``、 ``PortalTemplate`` が ``portal-components`` と ``portal`` に置き換えられました。:ref:`architecture-ja` を参照してください。
 
 #. PortalStyle をカスタマイズしている場合は、:ref:`ポータルのロゴと色のカスタマイズ <customization-portal-logos-and-colors-ja>` を参照して、ログインの背景、ファビコン、ロゴの画像をオーバーライドします。
    
