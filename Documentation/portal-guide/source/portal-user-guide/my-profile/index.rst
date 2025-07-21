@@ -64,6 +64,23 @@ These are options you can modify:
    | Unpin all pinned cases    | Unpin all of your pinned cases  |
    +---------------------------+---------------------------------+
 
+
+.. _accessibility-settings:
+
+Accessibility settings
+----------------------
+
+Accessibility settings help you customize your experience to meet your specific
+needs. These are options you can modify:
+
+.. table::
+
+   +-----------------------------------+-----------------------------------------------------+
+   | Option                            | Description                                         |
+   +===================================+=====================================================+
+   | Keyboard shortcuts for navigation | Enable or disable keyboard shortcuts for navigation |
+   +-----------------------------------+-----------------------------------------------------+
+
 .. _language-settings:
 
 Language settings
