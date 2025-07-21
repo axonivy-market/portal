@@ -53,7 +53,7 @@
   <ui:insert name="head" />
 </h:head>
 
-<h:body>
+<h:body styleClass="#{isEditMode == 'true' ? 'edit-mode' : 'view-mode'}">
   <c:set var="isNotRequiredLogin" value="#{isNotRequiredLogin == null ? false : isNotRequiredLogin}" />
   <c:set var="isPortalInTeams" value="#{masterDataBean.portalInTeams}" />
   <c:choose>
