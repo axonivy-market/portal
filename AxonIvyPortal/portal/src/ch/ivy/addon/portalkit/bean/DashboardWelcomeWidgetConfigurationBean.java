@@ -29,6 +29,8 @@ import ch.ivy.addon.portalkit.enums.WelcomeImageFit;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -161,5 +163,19 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
 
   public void setImageFits(List<WelcomeImageFit> imageFits) {
     this.imageFits = imageFits;
+  }
+  
+  public void updateAltTextByLocale() {
+    String currentAlt = LanguageUtils.getLocalizedName(widget.getAltTexts(), widget.getAltText());
+    initAndSetValue(currentAlt, widget.getAltTexts());
+  }
+  
+  private void initAndSetValue(String value, List<DisplayName> values) {
+    DisplayNameConvertor.initMultipleLanguages(value, values);
+    DisplayNameConvertor.setValue(value, values);
+  }
+  
+  public void updateCurrentLanguage() {
+    widget.setAltText(DisplayNameConvertor.updateCurrentValue(widget.getAltText(), widget.getAltTexts()));
   }
 }
