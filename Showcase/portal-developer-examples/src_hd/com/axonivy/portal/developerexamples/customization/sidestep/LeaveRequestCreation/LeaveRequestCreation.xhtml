@@ -1,0 +1,82 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
+<h:body>
+  <ui:composition template="/layouts/frame-10.xhtml">
+    <ui:define name="title">#{ivy.cms.co("/Labels/LeaveRequest/LeaveSteps/creation")}</ui:define>
+
+    <ui:define name="content">
+      <h:outputStylesheet library="css" name="leave-request-examples.css" />
+      <h:form id="leave-request">
+        <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
+
+          <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3"></div>
+          <div class="card">
+            <div class="grid">
+              <p:messages id="leave-request-validation-msg" styleClass="w-full" />
+
+              <div class="field col-12">
+                <p:outputLabel for="requester" value="#{ivy.cms.co('/Labels/LeaveRequest/requester')}" />
+                <p:inputText id="requester" disabled="true" value="#{data.requester.displayName}"/>
+              </div>
+
+              <div class="field col-12">
+                <p:outputLabel for="leave-type" value="#{ivy.cms.co('/Labels/LeaveRequest/leaveType')}" />
+                <p:selectOneMenu id="leave-type" value="#{data.leaveRequestData.leaveType}" converter="pojoConverter" required="true" 
+                  requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/leaveType')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}">
+                  <f:selectItem itemLabel="" itemValue="#{null}" noSelectionOption="true" />
+                  <f:selectItems value="#{data.leaveTypes}" var="type" itemLabel="#{type.getLabel()}"
+                    itemValue="#{type}" />
+                </p:selectOneMenu>
+              </div>
+
+              <div class="field col-12">
+                <p:outputLabel for="from" value="#{ivy.cms.co('/Labels/LeaveRequest/from')}" />
+                <p:datePicker id="from" value="#{data.leaveRequestData.from}" pattern="dd/MM/yyyy" required="true"
+                  requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/from')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}" />
+              </div>
+
+              <div class="field col-12">
+                <p:outputLabel for="to" value="#{ivy.cms.co('/Labels/LeaveRequest/to')} " />
+                <p:datePicker id="to" value="#{data.leaveRequestData.to}" pattern="dd/MM/yyyy" required="true"
+                  requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/to')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}" />
+              </div>
+
+              <div class="field col-12">
+                <p:outputLabel for="approver" value="#{ivy.cms.co('/Labels/LeaveRequest/approver')}" />
+                <p:selectOneMenu id="approver" value="#{data.approver}" converter="pojoConverter" required="true"
+                  requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/approver')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}">
+                  <f:selectItem itemLabel="" itemValue="#{null}" noSelectionOption="true" />
+                  <f:selectItems value="#{data.approvers}" var="approver" itemLabel="#{approver.getDisplayName()}"
+                    itemValue="#{approver}" />
+                </p:selectOneMenu>
+              </div>
+
+              <div class="field col-12">
+                <p:outputLabel for="requester-comment"
+                  value="#{ivy.cms.co('/Labels/LeaveRequest/requesterComment')}: " />
+                <p:inputTextarea id="requester-comment" value="#{data.leaveRequestData.requesterComment}"
+                  required="true" rows="5" styleClass="MarTop10"
+                  requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/requesterComment')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}" />
+              </div>
+              
+              <div class="col-12 flex justify-content-end gap-2">
+                <p:commandButton value="#{ivy.cms.co('/Labels/LeaveRequest/submitLeaveRequest')}"  styleClass="w-auto"
+                  partialSubmit="true" id="button-submit" actionListener="#{logic.close}" process=":leave-request"
+                  update=":leave-request" />
+              </div>
+              
+
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3"></div>
+        </h:panelGroup>
+      </h:form>
+      <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="0" />
+      
+      <ic:com.axonivy.portal.developerexamples.customization.sidestep.SideStepResultExample data="#{data.leaveRequestData.sideStepComment1}" />
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

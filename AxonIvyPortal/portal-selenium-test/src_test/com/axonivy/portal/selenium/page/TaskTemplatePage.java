@@ -4,16 +4,22 @@ import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.disappear;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.stream.IntStream;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
+import com.axonivy.portal.selenium.common.DateTimePattern;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -70,6 +76,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void clickActionButton() {
+    driver.switchTo().defaultContent();
     $("[id='horizontal-task-actions']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     $("div[id$='horizontal-task-action-form:horizontal-task-action-menu']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
@@ -199,9 +206,9 @@ public class TaskTemplatePage extends TemplatePage {
   public void clickTaskActionMenu() {
     clickByJavaScript($("button[id$='horizontal-task-actions']"));
     waitForElementDisplayed(By.cssSelector("[id$=':horizontal-task-action-menu']"), true);
-  }
+  }  
 
-  public void startSideStep() {
+  public void startCaseMapSideStep() {
     String actionPanelId = "horizontal-task-action-form:horizontal-task-action-menu";
     waitForElementDisplayed(By.id(actionPanelId), true);
     clickByJavaScript($(By.className("side-step-item")));
@@ -209,7 +216,7 @@ public class TaskTemplatePage extends TemplatePage {
     clickByJavaScript(findElementById("side-step-start-ok"));
     new NewDashboardPage();
   }
-
+  
   public void inputValue(String employee, String from, String to, String representation) {
     $(By.id("leave-request:fullname")).sendKeys(employee);
     $(By.id("leave-request:substitute")).sendKeys(representation);
@@ -276,6 +283,96 @@ public class TaskTemplatePage extends TemplatePage {
     waitForElementClickableThenClick("[id$='form:go-to-case-detail']");
     waitForPageLoad();
     return new CaseDetailsPage();
+  }
+  
+  public void startSideStep() {
+    clickByJavaScript($("a[id$='horizontal-task-action-form:side-steps-process']"));
+    $("button[id='side-step-process-submit-button']").shouldBe(clickable(), DEFAULT_TIMEOUT);
+  }
+  
+  public void inputSideStepInfoTaskLevel() {
+    $("div[id='side-step-process-form:side-step-process-select']").click();
+    $("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step 2")).first().click();
+    
+    $("input[id$=':assignee_input']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+    $("input[id$=':assignee_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).clear();
+    $("input[id$=':assignee_input']").sendKeys("Portal Admin User");
+    ElementsCollection selectionItems = $("span[id$=':assignee_panel']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).findAll(".ui-autocomplete-item");
+    selectionItems.get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    $("button[id='side-step-process-submit-button']").click();
+    driver.switchTo().frame("iFrame");
+    
+    waitForElementDisplayed(By.id("leave-request:button-submit"), true);
+    clickByJavaScript($(By.id("leave-request:button-submit")));
+    
+    driver.switchTo().defaultContent();
+  }
+  
+  public void inputSideStepInfoCaseLevel(int numberOfConfig) {
+    $("div[id='side-step-process-form:side-step-process-select']").click();
+    assertEquals($("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").size(), numberOfConfig);
+    
+    $("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step 2")).first().click();
+    
+    
+    $("input[id$=':assignee_input']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+    $("input[id$=':assignee_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).clear();
+    $("input[id$=':assignee_input']").sendKeys("Portal Admin User");
+    ElementsCollection selectionItems = $("span[id$=':assignee_panel']")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).findAll(".ui-autocomplete-item");
+    selectionItems.get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    
+    $("div[id='side-step-process-form:step-type']").shouldBe(Condition.clickable, DEFAULT_TIMEOUT).click();
+    $("ul[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("This is customized parallel")).first().click();
+    
+    $("button[id='side-step-process-submit-button']").click();
+    driver.switchTo().frame("iFrame");
+    
+    waitForElementDisplayed(By.id("leave-request:button-submit"), true);
+    clickByJavaScript($(By.id("leave-request:button-submit")));
+    
+    driver.switchTo().defaultContent();
+  }
+  
+  public int getNumberOfConfigForSideStep() {
+    $("div[id='side-step-process-form:side-step-process-select']").click();
+    return $("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").size();
+  }
+  
+  public void inputLeaveRequestInfo() {
+    driver.switchTo().frame("iFrame");
+    LocalDate today = LocalDate.now();
+    LocalDate tomorrow = today.plusDays(1);
+    inputDate(today, "input[id*='leave-request:from_input']");
+    inputDate(tomorrow, "input[id*='leave-request:to_input']");
+    
+    $("div[id='leave-request:approver']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+    $("ul[id='leave-request:approver_items']").$$("li").filter(Condition.text("Portal Demo User")).first().click();
+    
+    $("div[id='leave-request:leave-type']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
+    $("ul[id='leave-request:leave-type_items']").$$("li").filter(Condition.text("Maternity Leave")).first().click();
+    
+    $("textarea[id='leave-request:requester-comment']").sendKeys("Requester comment");
+    driver.switchTo().defaultContent();
+  }
+  
+  private void inputDate(LocalDate absenceFrom, String inputCssSelector) {
+    $(inputCssSelector).shouldBe(appear, DEFAULT_TIMEOUT);
+    WebElement fromInput = $(inputCssSelector);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN);
+    fromInput.clear();
+    fromInput.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+    fromInput.sendKeys(Keys.BACK_SPACE);
+    fromInput.sendKeys(absenceFrom.format(formatter));
+  }
+
+  public WebElement getSideStepConfigDialog() {
+    return $("div[id='side-step-process-dialog']");
+  }
+  
+  public WebElement getSideStepMenu() {
+    return $("div[id='horizontal-task-action-form:horizontal-task-action-menu']");
   }
 
 }
