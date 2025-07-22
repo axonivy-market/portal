@@ -122,4 +122,20 @@ to activate or deactivate further email notifications.
 The daily checkboxes :guilabel:`Receive daily summary at` allow you to specify the weekdays 
 on which you receive a summary of all tasks assigned to you or one of your roles.
 
+.. _accessibility-settings:
+
+Accessibility settings
+----------------------
+
+Accessibility settings help you customize your experience to meet your specific
+needs. These are options you can modify:
+
+.. table::
+
+   +-----------------------------------+-----------------------------------------------------+
+   | Option                            | Description                                         |
+   +===================================+=====================================================+
+   | Keyboard shortcuts for navigation | Enable or disable keyboard shortcuts for navigation |
+   +-----------------------------------+-----------------------------------------------------+
+
 .. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png
