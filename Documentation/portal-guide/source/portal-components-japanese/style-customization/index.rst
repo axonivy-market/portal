@@ -23,7 +23,7 @@
    .. note::
       コンポーネントの下にある ``<h:outputStylesheet />`` に css ファイルを配置して、規定のスタイルをオーバーライドする必要があります。
 
-#. このファイル内で、コンポーネントのデフォルトの css 変数をオーバーライドできます。例えば、\--process-history-description-text-color の場合は以下のようになります。
+#. このファイル内で、コンポーネントのデフォルトの css 変数をオーバーライドできます。例えば、--process-history-description-text-color の場合は以下のようになります。
 
    .. code-block:: css
 
@@ -32,10 +32,10 @@
       }
 
 オーバーライドできる css 変数のリスト
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 プロセスチェーン
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
   :file: ../documents/css_variables/process_chain.csv
@@ -45,7 +45,7 @@
 
 
 プロセス履歴
-^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
   :file: ../documents/css_variables/process_history.csv
@@ -55,7 +55,7 @@
 
 
 プロセスビューアー
-^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. csv-table::
   :file: ../documents/css_variables/process_viewer.csv

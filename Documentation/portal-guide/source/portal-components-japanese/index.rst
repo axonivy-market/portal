@@ -19,5 +19,5 @@
    process-viewer/index
    style-customization/index
 
-使用やカスタマイズの詳細、サポートされるテーマにおける各コンポーネントの外観については、``portal-components-examples`` プロジェクトを参照してください。
+使用やカスタマイズの詳細、サポートされるテーマにおける各コンポーネントの外観については、 ``portal-components-examples`` プロジェクトを参照してください。
 

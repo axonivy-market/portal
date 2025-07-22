@@ -48,10 +48,10 @@
          isRequired="true" floatingLabel="true" />
 
 .. tip::
-   ロールの選択コンポーネントのオートコンプリート要素を使用して、子イベントや Ajax イベントを挿入できます（``RoleSelection.xhtml`` を参照）。
+   ロールの選択コンポーネントのオートコンプリート要素を使用して、子イベントや Ajax イベントを挿入できます（ ``RoleSelection.xhtml`` を参照）。
    
-   RoleSelection コンポーネントの任意の子は、``insertChildren`` タグの位置にあるこのオートコンプリートにリペアレントされます。
-   また、Ajax イベントを入れ子にできるように、``event`` という名前のオートコンプリートのファセットを導入しました。
+   RoleSelection コンポーネントの任意の子は、 ``insertChildren`` タグの位置にあるこのオートコンプリートにリペアレントされます。
+   また、Ajax イベントを入れ子にできるように、 ``event`` という名前のオートコンプリートのファセットを導入しました。
    
    
 
@@ -84,7 +84,7 @@
          </f:facet>
       </ic:com.axonivy.portal.components.RoleSelection>
 
-詳細については、``portal-components-examples`` プロジェクトの ``RoleSelectionExample.xhtml`` を参照してください。
+詳細については、 ``portal-components-examples`` プロジェクトの ``RoleSelectionExample.xhtml`` を参照してください。
 
 このコンポーネントには以下の属性が用意されています。
 

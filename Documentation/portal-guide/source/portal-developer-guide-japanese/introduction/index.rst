@@ -252,7 +252,7 @@
 ユーザーとロールの選択コンポーネント
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-ユーザーとロールの選択が必要な場合、自分で行う代わりに、ポータルのコンポーネントを使用できます。詳細については、:ref:`components-portal-components-user-selection` と :ref:`components-portal-components-role-selection` を参照してください。
+ユーザーとロールの選択が必要な場合、自分で行う代わりに、ポータルのコンポーネントを使用できます。詳細については、:ref:`components-portal-components-user-selection-ja` と :ref:`components-portal-components-role-selection-ja` を参照してください。
 
 
 9.1 の新機能と注目すべき変更点

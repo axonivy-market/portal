@@ -7,7 +7,7 @@
 ^^^^^^^^^^^^^^^^^^^
 
 このコンポーネントは、ivy のセキュリティシステムでセキュリティメンバーの名前とアバターを表示するのに使用します。
-コンポーネントは、:ref:`components-portal-components-user-selection`、:ref:`components-portal-components-role-selection` にも統合されています。
+コンポーネントは、:ref:`components-portal-components-user-selection-ja`、:ref:`components-portal-components-role-selection-ja` にも統合されています。
 
 使用方法
 ^^^^^^^^^^^^^^^^^^^^
@@ -40,7 +40,7 @@
   :class: longtable
   :widths: 1 1 1 1 3
 
-詳細については、``portal-components-examples`` プロジェクトの ``SecurityMemberNameAndAvatarExample`` プロセスを参照してください。
+詳細については、 ``portal-components-examples`` プロジェクトの ``SecurityMemberNameAndAvatarExample`` プロセスを参照してください。
 
 .. |session-user-security-member-name-and-avatar| image:: ../../screenshots/components/session-user-security-member-name-and-avatar.png
 .. |session-role-security-member-name-and-avatar| image:: ../../screenshots/components/session-role-security-member-name-and-avatar.png
