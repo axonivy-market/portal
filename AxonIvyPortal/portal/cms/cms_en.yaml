@@ -807,7 +807,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Advanced settings
         ChooseAFit: Choose a fit
-        DisplayedText: display text
+        DisplayedText: '{0} display text'
         Greeting:
           Afternoon: Good afternoon
           Evening: Good evening
