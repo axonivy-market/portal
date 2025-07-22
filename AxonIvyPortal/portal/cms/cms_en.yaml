@@ -255,6 +255,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SearchScopeCaseFields: Defining the fields that the global search will use to find matching cases beside case Id (this can influence the performance of the search)
       SearchScopeTaskFields: Defining the fields that the global search will use to find matching tasks beside task Id (this can influence the performance of the search)
       ShowLoginPageFooter: For switch on/off the display of the footer on the login page.
+      allowKeyboardShortcutsConfiguration: Set to true to allow the user interact with the keyboard shortcuts button.
       behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
       chatResponseTimeout: Chat response timeout in seconds, default value is 0 and means no timeout. If chat messages go through the reverse proxy Nginx, chat response timeout must be less than the Nginx timeout, e.g. less than 60 seconds.

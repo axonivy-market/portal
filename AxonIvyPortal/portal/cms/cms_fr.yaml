@@ -255,6 +255,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SearchScopeCaseFields: Définir les champs que la recherche globale utilisera pour trouver les cas correspondants en plus de l'identifiant du cas (cela peut influencer les performances de la recherche).
       SearchScopeTaskFields: Définir les champs que la recherche globale utilisera pour trouver les tâches correspondantes à côté de l'Id de la tâche (cela peut influencer les performances de la recherche)
       ShowLoginPageFooter: Pour activer/désactiver l'affichage du pied de page sur la page de connexion.
+      allowKeyboardShortcutsConfiguration: Définissez sur true pour permettre à l’utilisateur d’interagir avec le bouton des raccourcis clavier.
       behaviourWhenClickingOnLineInTaskList: Pour changer de comportement (exécuter la tâche ou accéder aux détails de la tâche) en cliquant sur une ligne dans la liste des tâches, le widget des tâches du tableau de bord et les tâches liées dans la page des détails du cas.
       chatMaxConnection: Si le nombre de tabs du browser est supérieur à ce nombre maximum, le chat sera désactivé sur les tabs inactifs du browser. Les valeurs valides sont 1, 2, 3, 4, 5.
       chatResponseTimeout: Délai de réponse au chat en secondes, la valeur par défaut est 0 et signifie aucun délai. Si les messages de chat passent par le proxy inverse Nginx, le délai de réponse du chat doit être inférieur au délai de Nginx, par exemple moins de 60 secondes.
