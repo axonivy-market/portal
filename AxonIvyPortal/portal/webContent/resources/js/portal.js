@@ -853,7 +853,6 @@ $(document).ready(function () {
 
   setAltForAvatar();
 });
-// End of accessibility for shortcuts navigation
 
 function setAltForAvatar() {
   $("div.has-avatar").each((index, item) => {
