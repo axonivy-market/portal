@@ -817,7 +817,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Erweiterte Einstellungen
         ChooseAFit: Wählen Sie eine Passform
-        DisplayedText: Anzeigetext
+        DisplayedText: '{0} anzeigetext'
         Greeting:
           Afternoon: Guten Tag
           Evening: Guten Abend
