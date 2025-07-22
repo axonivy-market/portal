@@ -39,7 +39,7 @@
 
 #. 以下のパラメーターを変更できます。
 
-   -  要件に`応じて `shape`` を ``CIRCLE`` または ``LINE`` に変更します。初期値は ``CIRCLE`` です。
+   -  要件に`応じて ``shape`` を ``CIRCLE`` または ``LINE`` に変更します。初期値は ``CIRCLE`` です。
    -  ``direction`` を ``HORIZONTAL`` または ``VERTICAL`` に変更します。初期値は ``HORIZONTAL`` です。
    -  ``isShowAllSteps`` を ``TRUE`` または ``FALSE`` に変更します初期値は ``FALSE`` です。
 
@@ -50,7 +50,7 @@
   :widths: 1 1 1 3
 
 
-スタイルをカスタマイズしたい場合は、:ref:`components-portal-components-style-customization` を参照してください。
+スタイルをカスタマイズしたい場合は、:ref:`components-portal-components-style-customization-ja` を参照してください。
 
 
 .. _components-portal-components-migrate-from-old-process-chain-ja:

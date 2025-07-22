@@ -94,11 +94,11 @@ TaskItemDetails には以下が含まれます。
 
    ``widgets``：レイアウト内のウィジェットの定義。
 
-   ``filters``：レイアウトを使用可能なタスクを決定する条件。 ``categories``（タスクのカテゴリー）と ``states``（タスクのビジネスの状態）の 2 つのタイプのフィルターがあります。
+   ``filters``：レイアウトを使用可能なタスクを決定する条件。 ``categories`` （タスクのカテゴリー）と ``states`` （タスクのビジネスの状態）の 2 つのタイプのフィルターがあります。
 
 -  **Portal.TaskDetails** 変数の各タスクの詳細のレイアウトに含まれる各ウィジェットの構造：
 
-   ``type``： ``information``、 ``document``、 ``history``、 ``custom``の 4 つのタイプがあります。
+   ``type``： ``information``、 ``document``、 ``history``、 ``custom`` の 4 つのタイプがあります。
 
    ``x``：HTML DOMスタイル ``left`` は ``x / 12 * 100%`` で計算されます。
 
@@ -108,11 +108,11 @@ TaskItemDetails には以下が含まれます。
 
    ``h``：HTML DOMスタイル ``height`` は ``60 * h + 20 * (h - 1)`` で計算されます。
 
-   ``styleClass``（オプション）：CSS クラスを HTML DOM に追加します。
+   ``styleClass`` （オプション）：CSS クラスを HTML DOM に追加します。
 
-   ``style``（オプション）：インラインスタイルを HTML DOM に追加します。
+   ``style`` （オプション）：インラインスタイルを HTML DOM に追加します。
 
-   ``data``（カスタムウィジェット）：iframe を使用するカスタムウィジェットのデータ。
+   ``data`` （カスタムウィジェット）：iframe を使用するカスタムウィジェットのデータ。
 
       ``type``：IFrame を使用しないカスタムウィジェットのタイプ。 ``taskItemDetailCustomPanelTop`` と ``taskItemDetailCustomPanelBottom`` の 2 つのタイプがあります。
 
@@ -158,7 +158,7 @@ TaskItemDetails には以下が含まれます。
    変数の設定方法については、:dev-url:`|ivy| の変数 </doc/|version|/designer-guide/configuration/variables.html>` を参照してください。
 
 
-以下の **2 つのステップ**で、新しいカスタムパネルを追加します。
+以下の **2 つのステップ** で、新しいカスタムパネルを追加します。
 
 #. カスタムウィジェットを追加するには、 **エンジンの管理者** がコックピットページで :ref:`Portal.TaskDetails <task-details-configuration-variable-ja>` 変数を設定する必要があります。
    

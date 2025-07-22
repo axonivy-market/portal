@@ -1,4 +1,4 @@
-.. _components-portal-components-style-customization:
+.. _components-portal-components-style-customization-ja:
 
 スタイルのカスタマイズ
 *******************************************

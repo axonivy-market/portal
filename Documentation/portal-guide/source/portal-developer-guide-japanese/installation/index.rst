@@ -6,7 +6,7 @@
 インストールのセクションでは、ポータルをインストール、設定するのに必要なすべての手順を説明します。
 アプリケーションを初めてインストールする場合は、基本インストールから始めることが重要です。
 このセクションでは、初回インストールで行う必要があるすべての初期手順を説明します。
-アプリケーションがすでにインストールされ、設定されている場合は、`移行に関する注記`_を参照して移行してください。
+アプリケーションがすでにインストールされ、設定されている場合は、 `移行に関する注記`_ を参照して移行してください。
 
 
 基本インストール
@@ -26,7 +26,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 
 インストール
-------------
+------------------------
 
 デザイナー
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -272,7 +272,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
    
    ``PortalStyle`` で CMS を変更している場合は、 ``portal`` の CMS をそれに合わせます。
 
-#. ``customization.css`` ファイルが削除されました。このファイルをプロジェクトで使用している場合は、:dev-url:`エンジンのブランディング </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>`の使用に切り替えて、スタイルをカスタマイズしてください。
+#. ``customization.css`` ファイルが削除されました。このファイルをプロジェクトで使用している場合は、:dev-url:`エンジンのブランディング </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` の使用に切り替えて、スタイルをカスタマイズしてください。
    
 
 #. ドキュメントに関連するサブプロセスが独立した ``portal-components`` プロジェクトに移動されました。
@@ -281,7 +281,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
    以下は ``portal`` プロジェクトの非推奨プロセスと ``portal-components`` プロジェクトの新しいプロセスのリストです。
 
    +-----------------------------------+--------------------------+
-   | 新しいサブプロセス                    | 非推奨のサブプロセス    |
+   | 新しいサブプロセス                | 非推奨のサブプロセス     |
    +===================================+==========================+
    | GetDocumentItems                  | GetDocumentList          |
    +-----------------------------------+--------------------------+
@@ -357,7 +357,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 9.1 から 9.2 への移行
 ------------------------
 
-#. download: `MigrateData.iar <documents/MigrateData.iar>` プロジェクトを Ivy アプリケーションに展開し、 ``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp`` リンクにアクセスして実行します。
+#. :download:`MigrateData.iar <documents/MigrateData.iar>` プロジェクトを Ivy アプリケーションに展開し、 ``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp`` リンクにアクセスして実行します。
    
 
    アプリケーションが複数ある場合は、1 つのアプリケーションにのみ展開し、 ``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp`` リンクにアクセスして実行してください。

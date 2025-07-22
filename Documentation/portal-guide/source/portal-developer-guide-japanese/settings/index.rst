@@ -15,7 +15,7 @@
 
 |portal-header|
 
-.. _settings-admin-settings:
+.. _settings-admin-settings-ja:
 
 ポータル設定の実行
 =========================

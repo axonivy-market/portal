@@ -4,8 +4,7 @@
 *************************************
 
 概要
-^^^^^
-
+^^^^^^^^^^
 プロセスビューアーコンポーネントは、指定されたタスク ID、ケース ID、プロセスの相対リンクからのプロセスフローを視覚的に表現します。
 
 |portal-process-viewer-component|
@@ -22,19 +21,19 @@
   :widths: 1 1 1 3
 
 使用方法
-^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 以下のコードを含めることにより、任意のページにプロセスビューアーコンポーネントを統合できます。
 
 #. 以下のいずれかのパラメーターを設定する必要があります。
 
-   - ``taskId``：``taskId`` に等しい ID を持つタスクのプロセスまたはケースマップを表示します。
+   - ``taskId``： ``taskId`` に等しい ID を持つタスクのプロセスまたはケースマップを表示します。
 
    .. code-block:: html
 
       <ic:com.axonivy.portal.components.ProcessViewer taskId="000001" containerStyleClass="process-viewer-container" />
 
-   - ``caseId``：``caseId`` に等しい ID を持つケースのプロセスまたはケースマップを表示します。
+   - ``caseId``： ``caseId`` に等しい ID を持つケースのプロセスまたはケースマップを表示します。
 
    .. code-block:: html
 
@@ -51,10 +50,10 @@
 
 #. ``containerStyleClass`` パラメーターを使用して、コンテナのスタイルをカスタマイズできます。
 
-詳細については、``portal-components-examples`` プロジェクトの ``ProcessViewerExample`` プロセスを参照してください。
+詳細については、 ``portal-components-examples`` プロジェクトの ``ProcessViewerExample`` プロセスを参照してください。
 
 
-スタイルをカスタマイズしたい場合は、:ref:`components-portal-components-style-customization` を参照してください。
+スタイルをカスタマイズしたい場合は、:ref:`components-portal-components-style-customization-ja` を参照してください。
 
 
 .. |portal-process-viewer-component| image:: ../../screenshots/components/portal-process-viewer-component.png

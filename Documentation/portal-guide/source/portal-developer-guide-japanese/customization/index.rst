@@ -2,8 +2,8 @@
 ********************************
 
 ポータルでは、簡単な方法で、機能、ユーザーインターフェース、ユーザーエクスペリエンスなどをカスタマイズできます。
-このドキュメントに加えて、``portal-developer-examples`` プロジェクトのカスタマイズの例も参照してください。
-`ポータルダウンロードページ<https://market.axonivy.com/portal>`_にアクセスして、``portal-developer-examples`` を参照できます。
+このドキュメントに加えて、 ``portal-developer-examples`` プロジェクトのカスタマイズの例も参照してください。
+`ポータルダウンロードページ <https://market.axonivy.com/portal>`_ にアクセスして、 ``portal-developer-examples`` を参照できます。
 
 ［ダウンロード］をクリックし、アーティファクトを選択するか、デザイナーの ``Ivy Projects`` にインポートしてください。
 

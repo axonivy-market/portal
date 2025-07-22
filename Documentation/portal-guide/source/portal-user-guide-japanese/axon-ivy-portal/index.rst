@@ -62,7 +62,7 @@
    |axon-ivy-portal-menu|
 
 #. 中央には、個人用ダッシュボードが表示され、自分のプロセス、ケース、タスク、パフォーマンス指標にアクセスできます。
-   詳細については、:ref:`new-dashboard-ja` を参照してください。
+   詳細については、 :ref:`new-dashboard-ja` を参照してください。
    
 
    |axon-ivy-portal|

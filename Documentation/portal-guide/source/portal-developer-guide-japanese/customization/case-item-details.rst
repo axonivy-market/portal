@@ -103,8 +103,8 @@ CaseItemDetails には以下が含まれます。
 
       ``filters``：レイアウトを使用可能なケースを決定する条件。以下の 2 つのタイプのケースフィルターがあります。
       
-      -  ``categories``（ケースのカテゴリー）
-      -  ``states``（ケースのビジネスの状態）
+      -  ``categories`` （ケースのカテゴリー）
+      -  ``states`` （ケースのビジネスの状態）
 
          利用可能なケースのビジネスの状態については、:dev-url:`ケースのビジネスの状態 </doc/|version|/public-api/ch/ivyteam/ivy/workflow/caze/CaseBusinessState.html>` を参照してください。
          
@@ -133,9 +133,9 @@ CaseItemDetails には以下が含まれます。
 
          ``styleClass``（オプション）：CSS クラスを HTML DOM に追加します。
 
-         ``style``（オプション）：インラインスタイルを HTML DOM に追加します。
+         ``style`` （オプション）：インラインスタイルを HTML DOM に追加します。
 
-      ``data``（カスタムウィジェット）：カスタムウィジェットのデータ。:ref:`カスタムウィジェットの表示 <customization-case-item-details-how-to-override-ui-custom-body-ja>` を参照してください。
+      ``data`` （カスタムウィジェット）：カスタムウィジェットのデータ。:ref:`カスタムウィジェットの表示 <customization-case-item-details-how-to-override-ui-custom-body-ja>` を参照してください。
 
    .. important::
 
@@ -149,7 +149,7 @@ CaseItemDetails には以下が含まれます。
 .. _customization-case-item-details-how-to-override-ui-custom-body-ja:
 
 カスタムウィジェットの表示
-------------------------
+--------------------------------------------------------
 
 カスタムウィジェット用に、ケースの詳細ウィジェット内に新しい ``data`` ノードを提供します。各カスタムウィジェットの ``data`` の構造は以下のとおりです。
 
