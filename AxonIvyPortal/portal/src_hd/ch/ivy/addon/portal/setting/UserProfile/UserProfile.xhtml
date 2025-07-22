@@ -127,7 +127,7 @@
                         <c:set var="subscription" value="#{channel.getSubscription(event)}" />
                         <div class="flex align-content-center gap-3">
                           <i class="flex align-items-center si table-icon si-#{subscription.icon} subscription-icon " title="#{subscription.title}" />
-                          <p:triStateCheckbox id="subscriptionCheckbox" value="#{subscription.stateAsString}" styleClass="flex align-items-center">
+                          <p:triStateCheckbox disabled="#{userProfileBean.disableConfigureNotificationChannels()}" id="subscriptionCheckbox" value="#{subscription.stateAsString}" styleClass="flex align-items-center">
                             <p:ajax event="change" global="false"
                               update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
                               listener="#{channel.setSubscriptionIconAndTitle(event.event)}" />

@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelSubcriptionDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationEventDTO;
@@ -112,5 +113,9 @@ public class UserProfileBean implements Serializable {
       addMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/unpinAllPinnedCases",
           Arrays.asList(currentUser.getDisplayName())));
     }
+  }
+  
+  public boolean disableConfigureNotificationChannels() {
+    return !PermissionUtils.hasPortalPermission(PortalPermission.NOTIFICATION_CHANNELS_SETTING);
   }
 }
