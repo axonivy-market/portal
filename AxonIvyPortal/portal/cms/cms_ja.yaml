@@ -810,7 +810,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: 詳細設定
         ChooseAFit: フィットを選択
-        DisplayedText: テキストを表示
+        DisplayedText: '{0}テキストを表示'
         Greeting:
           Afternoon: こんにちは
           Evening: こんばんは
