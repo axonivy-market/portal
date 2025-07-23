@@ -75,7 +75,7 @@
 
 |add-widget|
 
-.. _new-dashboard-task-list-widget:
+.. _new-dashboard-task-list-widget-ja:
 
 タスクリストウィジェット
 ===================================================
@@ -160,7 +160,7 @@
 
     列の全幅がウィジェットの幅よりも狭い場合、ポータルは自動的に列の幅をウィジェットの幅に合わせて調整します。
 
-.. _new-dashboard-case-list-widget:
+.. _new-dashboard-case-list-widget-ja:
 
 ケースリストウィジェット
 ==================================================
@@ -239,7 +239,7 @@
 
     列の全幅がウィジェットの幅よりも狭い場合、ポータルは自動的に列の幅をウィジェットの幅に合わせて調整します。
 
-.. _new-dashboard-process-list-widget:
+.. _new-dashboard-process-list-widget-ja:
 
 プロセスリストウィジェット
 ======================================================
@@ -332,7 +332,8 @@
 
 **ニュースフィードのコンテンツの管理**
 
-.. note::ユーザーがニュースフィードのコンテンツを管理できるようにするには、 :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` 権限を付与してください。
+.. note:: 
+   ユーザーがニュースフィードのコンテンツを管理できるようにするには、 :bdg-ref-warning:`🔑NewsManagement <NewsManagement>` 権限を付与してください。
 
 ユーザーに権限がある場合は、以下を行うことができます。
 
@@ -367,7 +368,7 @@ URL を入力して、外部ウェブページをポータルダッシュボー�
 
 |external-page-widget-configuration|
 
-.. _add-new-notification-widget:
+.. _add-new-notification-widget-ja:
 
 通知ウィジェット
 ==============================

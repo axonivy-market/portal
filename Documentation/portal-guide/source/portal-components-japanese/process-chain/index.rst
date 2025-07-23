@@ -3,7 +3,7 @@
 プロセスチェーン
 *****************************
 
-.. _components-portal-components-process-chain-introduction:
+.. _components-portal-components-process-chain-introduction-ja:
 
 概要
 ^^^^^^^^^^^
@@ -19,7 +19,7 @@
 
 |process-chain|
 
-.. _components-portal-components-process-chain-how-to-use:
+.. _components-portal-components-process-chain-how-to-use-ja:
 
 使用方法
 ^^^^^^^^^^^^^^^^
@@ -56,7 +56,7 @@
 .. _components-portal-components-migrate-from-old-process-chain-ja:
 
 非推奨のプロセスチェーンからの移行
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 - HTML ファイルのコードを置き換えます。 ``ch.ivy.addon.portalkit.singleapp.process.ProcessChain`` を ``com.axonivy.portal.components.ProcessChain`` に置き換えてください。
 

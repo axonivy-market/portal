@@ -1,9 +1,9 @@
-.. _customization-new-dashboard:
+.. _customization-new-dashboard-ja:
 
 ポータルダッシュボード
 =============================================
 
-.. _customization-portal-dashboard-introduction:
+.. _customization-portal-dashboard-introduction-ja:
 
 概要
 ------------
@@ -29,7 +29,7 @@
 **Portal.Dashboard** 変数を設定することにより、ポータルダッシュボードと各ウィジェットの詳細を事前に定義できます。
 
 
-.. _customization-dashboards-customization:
+.. _customization-dashboards-customization-ja:
 
 ダッシュボードの定義
 ---------------------------------
@@ -216,7 +216,7 @@
 ダッシュボードの名前などの項目を入力し、事前定義されたテンプレートから 1 つ選び、ニーズに合わせて詳細を変更するだけで、素早くダッシュボードを作成できます。
 
 
-これらのテンプレートは、``DashboardTemplates.json`` 変数を使用して設定可能です。
+これらのテンプレートは、 ``DashboardTemplates.json`` 変数を使用して設定可能です。
 
 .. toctree::
    :maxdepth: 1

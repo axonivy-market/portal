@@ -1,0 +1,5 @@
+新しいサブプロセス,非推奨のサブプロセス
+GetDocumentItems,GetDocumentList
+UploadDocumentItem,UploadDocument
+DeleteDocumentItem,DeleteDocument
+DownloadDocumentItem,DownloadDocument

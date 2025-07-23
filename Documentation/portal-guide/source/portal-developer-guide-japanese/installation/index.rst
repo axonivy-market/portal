@@ -1,4 +1,4 @@
-.. _installation:
+.. _installation-ja:
 
 インストール
 **************************
@@ -70,7 +70,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
    JSON ファイルの名前は Portal.Dashboard.json とする必要があります。:dev-url:`エンジンの展開 </doc/|version|/engine-guide/deployment/index.html>` を参照してください。 
 - Dashboard.json ファイルを ``<engine>/configuration/applications/<application>`` パスの ``<application>`` フォルダーに直接コピーします。JSON ファイルの名前は ``variables.Portal.Dashboard.json`` とする必要があります。
 
-- ポータルのダッシュボードのインポート機能を使用します。:ref:`公開用ダッシュボードのインポート方法 <howto-import-your-public-dashboards>` を参照してください。
+- ポータルのダッシュボードのインポート機能を使用します。:ref:`公開用ダッシュボードのインポート方法 <howto-import-your-public-dashboards-ja>` を参照してください。
 
 ポータルのマルチアプリケーションのセットアップ
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -78,14 +78,14 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
    これは、各ユーザーの共通タスクリストを複数のアプリケーションで表示するのに使用します。セキュリティコンテキストにインストールされたすべてのアプリケーションのタスク／ケースリストが、このセキュリティコンテキストで実行中のポータルによって表示されます。
 
-すべてのアプリケーションは同じセキュリティコンテキストにあり、他のアプリケーションに展開されるのは **portal-components** だけです。:ref:`ポータルのマルチアプリケーション <multi-app-structure>` の概要を参照してください。
+すべてのアプリケーションは同じセキュリティコンテキストにあり、他のアプリケーションに展開されるのは **portal-components** だけです。:ref:`ポータルのマルチアプリケーション <multi-app-structure-ja>` の概要を参照してください。
 
 -  新しいアプリケーションを作成します。このアプリケーションにポータル（portal、portal-components）を展開します。
 
 -  新しいアプリケーション（アプリ 1、アプリ 2...）を作成します。新しいアプリケーションにプロジェクトを展開します。
 
 
-.. _installation-migration-notes:
+.. _installation-migration-notes-ja:
 
 移行に関する注記
 ===================================
@@ -135,12 +135,11 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 管理者が何かを行う必要はありません。これは単なる参考情報です。
 
 - タスクウィジェットとケースウィジェットの列の幅を調整する新しい機能を実装しました。
-この変更により、以前のバージョンからのタスクウィジェットとケースウィジェットの列の幅に若干の影響が生じることがあります。
-列の幅を手動で調整する方法については、:ref:`タスクウィジェットの設定 <new-dashboard-task-list-widget>` と :ref:`ケースウィジェットの設定 <new-dashboard-case-list-widget>` を参照してください。
+この変更により、以前のバージョンからのタスクウィジェットとケースウィジェットの列の幅に若干の影響が生じることがあります。列の幅を手動で調整する方法については、:ref:`タスクウィジェットの設定 <new-dashboard-task-list-widget-ja>` と :ref:`ケースウィジェットの設定 <new-dashboard-case-list-widget-ja>` を参照してください。
 
 
 11.1.0 から 11.2.0 への移行
-------------------------
+-----------------------------------------------
 
 ``AxonIvyExpress`` モジュールは ``axonivy-express`` という名前に変更され、Axon Ivy Market で入手できるようになりました。移行するには、以下の手順を実行する必要があります。
 
@@ -154,9 +153,9 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 #. 例：毎日 01:00 AM にジョブをトリガーする場合は、 ``0 0 1 * * ?`` を ``0 1 * * *`` に変更します。
 
 10.0.19 から 10.0.20 への移行
-------------------------------------------------
+---------------------------------------------------
 
-ポータルはこれまで、文字列または配列形式による :ref:`プロセスチェーン <components-portal-components-process-chain>` のプロセスステップの設定をサポートしてきました。 
+ポータルはこれまで、文字列または配列形式による :ref:`プロセスチェーン <components-portal-components-process-chain-ja>` のプロセスステップの設定をサポートしてきました。 
 文字列形式は非推奨ですが、後方互換性のため、引き続きサポートします。配列形式を使用することを推奨します。以下のように変更できます。
 
 #. ``window.processSteps = "Create Investment Request,Approve Investment Request";`` を ``window.processSteps = ["Create Investment Request", "Approve Investment Request"];`` に変更します。
@@ -164,7 +163,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 #. ``window.processSteps = "#{fn:join(data.steps.toArray(), ',')}";`` を ``window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};`` に変更します。
 
 10.0.12 から 10.0.13 への移行
---------------------------
+---------------------------------------------------------------
 
 #. HTML のオーバーライドダイアログである ``UserWithEnvironmentInfo`` が削除され、サポート対象外になりました。代わりに ``GlobalFooterInfo`` ダイアログと GlobalVariable を使用してください。
 
@@ -175,7 +174,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 #. いくつかのサブプロセスについて、プロセスのオーバーライドがサポート対象外になりました。以下のガイドラインに従って、サブプロセスのオーバーライドを移行してください。
 
-   - :ref:`パスワードを忘れた場合のカスタマイズ <customization-forgot-password>`
+   - :ref:`パスワードを忘れた場合のカスタマイズ <customization-forgot-password-ja>`
       - プロジェクトから ``ResetPassword``、 ``SendPasswordResetEmail`` のサブプロセスのオーバーライドを削除します。
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
@@ -187,7 +186,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
          | SendPasswordResetEmail  | portalSendPasswordResetEmail  |
          +-------------------------+-------------------------------+
 
-   - :ref:`ドキュメントのプロセス <customization-document-processes>`
+   - :ref:`ドキュメントのプロセス <customization-document-processes-ja>`
       - プロジェクトから ``GetDocumentList``、 ``UploadDocument``、 ``DeleteDocument``、 ``DownloadDocument`` のサブプロセスのオーバーライドを削除します。
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
@@ -203,7 +202,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
          | DownloadDocument     | portalDownloadDocument     |
          +----------------------+----------------------------+
 
-   - :ref:`ログアウトプロセスのカスタマイズ <customization-logout>`
+   - :ref:`ログアウトプロセスのカスタマイズ <customization-logout-ja>`
       - プロジェクトから ``LogoutPage``、 ``Logout`` のサブプロセスのオーバーライドを削除します。
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
@@ -215,7 +214,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
          | Logout               | portalLogout               |
          +----------------------+----------------------------+
 
-   - :ref:`パスワードの変更プロセスのカスタマイズ <customization-change-password-process>`
+   - :ref:`パスワードの変更プロセスのカスタマイズ <customization-change-password-process-ja>`
       - プロジェクトから ``ChangePassword`` のサブプロセスのオーバーライドを削除します。
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
@@ -225,7 +224,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
          | ChangePassword       | portalChangePassword       |
          +----------------------+----------------------------+
 
-   - :ref:`タスクの委任 <customization-task-delegation>`
+   - :ref:`タスクの委任 <customization-task-delegation-ja>`
       - プロジェクトから ``CalculateTaskDelegate`` のサブプロセスのオーバーライドを削除します。
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
@@ -236,7 +235,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
             +-------------------------+-------------------------------+
 
 
-   - :ref:`メニュー項目のカスタマイズ <customization-menu-customization>`
+   - :ref:`メニュー項目のカスタマイズ <customization-menu-customization-ja>`
       - プロジェクトから ``LoadSubMenuItems`` のサブプロセスのオーバーライドを削除します。
       - 以下のとおり、呼び出し可能な開始サブプロセスのシグネチャを変更します。
 
@@ -249,26 +248,26 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
       - 各カスタムメニュー項目の ``index`` を更新します。
       - カスタムメニュー項目の作成方法の例については、 ``portal-developer-examples`` プロジェクトの ``CustomLoadSubMenuItems`` プロセスを参照してください。
 
-#. ``imageContent`` フィールドの **外部リンク** の設定を変更しました。詳細については、:ref:`ポータルプロセスの外部リンク <portal-process-external-link>` を参照してください。基本的に、エンジンでの移行は必要ありません。展開によって `Portal.Processes.ExternalLinks` 変数をオーバーライドした場合は、JSON 変数の `Portal.Processes.ExternalLinks` ファイルで `data:image/jpeg;base64` のようなプレフィックスを削除して、 ``imageContent`` フィールドを更新してください。
+#. ``imageContent`` フィールドの **外部リンク** の設定を変更しました。詳細については、:ref:`ポータルプロセスの外部リンク <portal-process-external-link-ja>` を参照してください。基本的に、エンジンでの移行は必要ありません。展開によって `Portal.Processes.ExternalLinks` 変数をオーバーライドした場合は、JSON 変数の `Portal.Processes.ExternalLinks` ファイルで `data:image/jpeg;base64` のようなプレフィックスを削除して、 ``imageContent`` フィールドを更新してください。
 
 10.0 から 10.0.7 への移行
-----------------------
+---------------------------------------------------------
 
 ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` を使用してください。 
 
 
 8.x から 10.0 への移行
-------------------------
+-----------------------------------------------------
 
 ``8.x から ... への移行`` から ``... から9.x への移行`` までのすべての手順を実行する必要があります。
 
 
 9.3 から 9.4 への移行
-------------------------
+------------------------------------------------
 
 9.4 から ``PortalStyle``、 ``PortalKit``、 ``PortalTemplate`` が ``portal-components`` と ``portal`` に置き換えられました。:ref:`architecture-ja` を参照してください。
 
-#. PortalStyle をカスタマイズしている場合は、:ref:`ポータルのロゴと色のカスタマイズ <customization-portal-logos-and-colors>` を参照して、ログインの背景、ファビコン、ロゴの画像をオーバーライドします。
+#. PortalStyle をカスタマイズしている場合は、:ref:`ポータルのロゴと色のカスタマイズ <customization-portal-logos-and-colors-ja>` を参照して、ログインの背景、ファビコン、ロゴの画像をオーバーライドします。
    
    ``PortalStyle`` で CMS を変更している場合は、 ``portal`` の CMS をそれに合わせます。
 
@@ -280,17 +279,11 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
    以下は ``portal`` プロジェクトの非推奨プロセスと ``portal-components`` プロジェクトの新しいプロセスのリストです。
 
-   +-----------------------------------+--------------------------+
-   | 新しいサブプロセス                | 非推奨のサブプロセス     |
-   +===================================+==========================+
-   | GetDocumentItems                  | GetDocumentList          |
-   +-----------------------------------+--------------------------+
-   | UploadDocumentItem                | UploadDocument           |
-   +-----------------------------------+--------------------------+
-   | DeleteDocumentItem                | DeleteDocument           |
-   +-----------------------------------+--------------------------+
-   | DownloadDocumentItem              | DownloadDocument         |
-   +-----------------------------------+--------------------------+
+    .. csv-table::
+      :file: tables/list-of-document-processes.csv
+      :header-rows: 1
+      :widths: 50, 50
+
 
 #. ポータルのいくつかのクラスが独立した ``portal-components`` プロジェクトに移動されました。以下の表を参照して、正しく移行してください。
 
@@ -308,7 +301,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
    - 新しい :ref:`ドキュメントテーブル <components-portal-components-document-table-ja>` コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-document-table-ja>`
 
-   - 新しい :ref:`プロセスチェーン <components-portal-components-process-chain-ja>` コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-process-chain>-ja`
+   - 新しい :ref:`プロセスチェーン <components-portal-components-process-chain-ja>` コンポーネントの :ref:`移行手順 <components-portal-components-migrate-from-old-process-chain-ja>`
 
 #. ポータルダッシュボードのウィジェットは、 ``custom-fields.yaml`` ファイルで宣言された ``CustomFields`` のみサポートします。
    ``CustomFields`` がダッシュボードのウィジェットで使用されている場合は、:dev-url:`カスタムフィールドのメタ情報 </doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` に従って、データを適合させてください。
@@ -355,7 +348,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
    
 
 9.1 から 9.2 への移行
-------------------------
+----------------------------------------------------------------------
 
 #. :download:`MigrateData.iar <documents/MigrateData.iar>` プロジェクトを Ivy アプリケーションに展開し、 ``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp`` リンクにアクセスして実行します。
    
@@ -452,7 +445,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
    
 
 8.x から 9.x への移行
--------------------------------
+--------------------------------------------------
 
 ``8.x から ... への移行`` から ``... から9.x への移行`` までのすべての手順を実行する必要があります。
 
@@ -466,24 +459,24 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 
 12.0.4 での変更内容
-----------------------
+---------------------------------------------------
 ダッシュボード、グローバル検索、関連ケース、複合モードのプロセスウィジェットのケースウィジェットでケースをクリックしたときに、ケースの詳細またはビジネスの詳細へのアクセスを切り替える ``Portal.Cases.BehaviourWhenClickingOnLineInCaseList`` ポータル設定を導入しました。
 
 12.0.1 での変更内容
---------------------
+------------------------------------------------
 #. タスクの詳細とケースの詳細のドキュメントプレビュー機能を導入しました。画像（png または jpeg）、プレーンテキスト（txt または log）、pdf ドキュメントをプレビューできます。
 #. ポータルのドキュメントのプレビューアイコンの表示設定を制御する ``Portal.Document.EnablePreview`` ポータル設定を導入しました。
 
 12.0.0 での変更内容
----------------------------
+-------------------------------------------------
 
-#. 古い統計チャートが削除されました。代わりに新しい :ref:`statistic-chart` を使用してください。
-#. IFrame のタスクを設定する IFrameTaskConfig コンポーネントを導入しました。詳細については、:ref:`iframe-configure-template` を参照してください。
-#. ダッシュボードウィジェットのコンセプトに合わせて、:ref:`全タスクリストページ<full-task-list>` と :ref:`全ケースリスト <full-case-list-ja>` のデザインが一新されました。ページは 1 つの全幅ウィジェットを含むダッシュボードとして機能します。他のウィジェットと同じように調整して設定できます。
+#. 古い統計チャートが削除されました。代わりに新しい :ref:`statistic-chart-ja` を使用してください。
+#. IFrame のタスクを設定する IFrameTaskConfig コンポーネントを導入しました。詳細については、:ref:`iframe-configure-template-ja` を参照してください。
+#. ダッシュボードウィジェットのコンセプトに合わせて、:ref:`全タスクリストページ <full-task-list-ja>` と :ref:`全ケースリスト <full-case-list-ja>` のデザインが一新されました。ページは 1 つの全幅ウィジェットを含むダッシュボードとして機能します。他のウィジェットと同じように調整して設定できます。
 #. 複数ケースのオーナーをサポートします。1 つのケースのオーナーの並べ替え機能は削除されます。
 
 11.2.0 での変更内容
---------------------------
+--------------------------------------------
 
 #. ``ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI`` を使用してください。
 #. ``ch.ivy.addon.portalkit.publicapi.CaseAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.CaseAPI`` を使用してください。
@@ -498,12 +491,12 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 #. ポータルのレガシーダッシュボードが削除されました。 ``AxonIvyExpress`` モジュールは ``axonivy-express`` という名前に変更され、Axon Ivy Market で入手できるようになりました。
 
 10 での変更内容
------------------
+--------------------------------------------
 
 - 全タスクリスト、全ケースリスト、ダッシュボードのタスクリスト、ダッシュボードのケースリスト、タスクの分析に ``アプリケーション`` フィルターと ``アプリケーション`` 列を導入しました。
 
 9.4 での変更内容
---------------------
+---------------------------------------------
 
 #. ``PortalStyle``、 ``PortalKit``、 ``PortalTemplate`` プロジェクトを ``portal`` という名前の 1 つのプロジェクトにまとめました。タスクリストの行、新しいダッシュボードのタスクウィジェット、ケースの詳細の関連するタスクをクリックしたときの動作を設定する ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` ポータル設定を導入しました。各ユーザーはユーザープロファイルから変更を行うことができます。  
 
@@ -515,7 +508,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 #. トップバーのテーマの切り替えボタンの状態を制御する ``Portal.Theme.EnableSwitchThemeModeButton`` ポータル設定を導入しました。
 
-#. ポータルの全タスクリストと全ケースリストに新しい ``タスク ID``、 ``タスク名``、 ``ケース ID``、 ``ケース名``フィルターを導入しました。
+#. ポータルの全タスクリストと全ケースリストに新しい ``タスク ID``、 ``タスク名``、 ``ケース ID``、 ``ケース名`` フィルターを導入しました。
 
 #. ``プロセスビューアー`` ページを導入しました。ユーザーは、プロセスの開始を視覚的に表示できます。 :ref:`プロセスビューアーの表示 <how-to-show-process-viewer>` で詳細をご覧ください。
 
@@ -536,25 +529,25 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
    - :ref:`プロセスビューアーコンポーネント <components-portal-components-process-viewer-ja>`
 
 9.3 での変更内容
---------------
+---------------------------------------
 
  ポータルのグループ ID を変更するときに PortalGroupId 変数を更新する必要はなくなりました。
 
 
 9.2 での変更内容
---------------
+----------------------------------------
 
 #. ポータルのタスクリストとタスクの状態フィルターに ``破棄済``、 ``失敗``、 ``参加失敗``、 ``イベント待機中`` などの新しいタスクの状態を含めました。
 
 #. ポータルのケースリストとケースの状態フィルターに新しいケースの状態 ``破棄済`` を含めました。
 
-#. :ref:`ワークフローイベントテーブル <how-to-show-workflow-events>` を導入しました。:bdg-warning:`🔑WorkflowEventReadAll` 権限を持つユーザーは、すべての ``WORKFLOW_EVENTS`` を表示できます。
+#. :ref:`ワークフローイベントテーブル <how-to-show-workflow-events-ja>` を導入しました。:bdg-warning:`🔑WorkflowEventReadAll` 権限を持つユーザーは、すべての ``WORKFLOW_EVENTS`` を表示できます。
 
 #. デフォルトのホームページを設定する ``Portal.Homepage`` ポータル設定を導入しました。各ユーザーはユーザープロファイルから変更を行うことができます。
 
-#. :ref:`ポータルのケース項目の詳細 <customization-case-item-details>` をカスタマイズする新しい方法を導入しました。ケースの詳細ページとケース情報ダイアログには、同じケース情報が表示されます。
+#. :ref:`ポータルのケース項目の詳細 <customization-case-item-details-ja>` をカスタマイズする新しい方法を導入しました。ケースの詳細ページとケース情報ダイアログには、同じケース情報が表示されます。
 
-#. :ref:`ポータルのタスク項目の詳細 <customization-task-item-details>` をカスタマイズする新しい方法を導入しました。
+#. :ref:`ポータルのタスク項目の詳細 <customization-task-item-details-ja>` をカスタマイズする新しい方法を導入しました。
 
 #. ポータルのボタンアイコンの表示設定を制御する ``Portal.ShowButtonIcon`` ポータル設定を導入しました。
 
@@ -569,7 +562,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 #. ポータルは SVG 形式のロゴをサポートします。
 
 9.1 での変更内容
---------------
+------------------------------------------
 
 #. スタイルのカスタマイズ方法をリファクタリングしました。今後は、ポータルは CSS をカスタマイズするテクノロジーとして CSS 変数を使用します。
 

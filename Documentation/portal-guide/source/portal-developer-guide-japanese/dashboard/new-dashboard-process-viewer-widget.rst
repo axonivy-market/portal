@@ -1,10 +1,10 @@
-.. _configure-new-dashboard-process-viewer-widget:
+.. _configure-new-dashboard-process-viewer-widget-ja:
 
 プロセスビューアーウィジェットの設定
-========================================================
+=========================================================================
 
 プロセスビューアーウィジェットの定義
-----------------------------
+-------------------------------------------------------------------------
 
 ポータルダッシュボードのプロセスビューアーウィジェットは、プロセスフローを視覚的に表現します。
 
@@ -49,9 +49,9 @@
 
       ``h``：HTML DOMスタイル ``height`` は ``60 * h + 20 * (h - 1)`` として計算されます。
 
-      ``styleClass``（オプション）：CSS クラスをウィジェットの HTML DOM に追加します。
+      ``styleClass`` （オプション）：CSS クラスをウィジェットの HTML DOM に追加します。
 
-      ``style``（オプション）：インラインスタイルをウィジェットの HTML DOM に追加します。
+      ``style`` （オプション）：インラインスタイルをウィジェットの HTML DOM に追加します。
 
    ``processPath``：表示したいプロセスの :dev-url:`|ivy| IWebStartable </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` ID。
 

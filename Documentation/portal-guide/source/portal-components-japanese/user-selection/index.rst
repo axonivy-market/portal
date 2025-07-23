@@ -89,13 +89,14 @@
 .. _components-portal-components-migrate-from-old-user-selection-ja:
 
 非推奨のユーザーの選択からの移行
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. HTML ファイルのコードを置き換えます。 ``ic:ch.ivy.addon.portalkit.component.UserSelection`` を ``ic:com.axonivy.portal.components.UserSelection`` に置き換えてください。
 
 #. ``ch.ivy.addon.portalkit.dto.UserDTO`` を ``com.axonivy.portal.components.dto.UserDTO`` に置き換えます。
 
-   .. note::データベースに ``ch.ivy.addon.portalkit.dto.UserDTO`` クラスを格納した場合は、データベースを手動で更新する必要があります。
+   .. note::
+      データベースに ``ch.ivy.addon.portalkit.dto.UserDTO`` クラスを格納した場合は、データベースを手動で更新する必要があります。
 
 .. |user-selection| image:: ../../screenshots/components/user-selection-component.png
 .. |user-selection-floating-label| image:: ../../screenshots/components/user-selection-component-floating-label.png

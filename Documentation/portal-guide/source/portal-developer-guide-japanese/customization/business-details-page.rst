@@ -1,9 +1,9 @@
-.. _customization-businessdetailspage:
+.. _customization-businessdetailspage-ja:
 
 ビジネスの詳細ページ
 =============================================
 
-.. _customization-additionalcasedetailspage.introduction:
+.. _customization-additionalcasedetailspage-ja.introduction:
 
 概要
 --------
@@ -13,7 +13,7 @@
 
 ポータルでは、ケースごとにこのページをカスタマイズできます。
 
-.. _customization-additionalcasedetailspage.customization:
+.. _customization-additionalcasedetailspage-ja.customization:
 
 ビジネスの詳細ページをカスタマイズする方法
 ---------------------------------------------------------

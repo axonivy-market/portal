@@ -1,4 +1,4 @@
-.. _ai-assistant:
+.. _ai-assistant-ja:
 
 AI アシスタント
 ****************************

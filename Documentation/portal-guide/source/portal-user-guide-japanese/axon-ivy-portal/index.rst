@@ -1,4 +1,4 @@
-.. _axon-ivy-portal:
+.. _axon-ivy-portal-ja:
 
 |ivy| Portal
 *******************

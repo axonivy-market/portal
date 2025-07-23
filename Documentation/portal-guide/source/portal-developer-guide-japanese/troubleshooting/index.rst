@@ -1,4 +1,4 @@
-.. _troubleshooting:
+.. _troubleshooting-ja:
 
 =================================
 トラブルシューティング
@@ -12,13 +12,13 @@
 
 -  コミュニティ
 
-   `コミュニティ<http://community.axonivy.com/>`__には、|ivy| のデザイナーとエンジンに関連する多くの質問とその答えが掲載されています。
+   `コミュニティ <http://community.axonivy.com/>`__ には、|ivy| のデザイナーとエンジンに関連する多くの質問とその答えが掲載されています。
    
    
 
 -  Stack Overflow
 
-   Java、JSF、Primefaces など、よく利用されるテクノロジーに関連する問題については、`Stack Overflow <http://www.stackoverflow.com/>`__などのウェブで回答されています。
+   Java、JSF、Primefaces など、よく利用されるテクノロジーに関連する問題については、 `Stack Overflow <http://www.stackoverflow.com/>`__ などのウェブで回答されています。
    
    
 
@@ -27,10 +27,10 @@
    support@axonivy.com にメールを送信してサポートを受けることができます（ライセンス契約によって、サポート料金がかかることがあります）。
    
 
-.. _troubleshooting-ie-security-problem:
+.. _troubleshooting-ie-security-problem-ja:
 
 リバースプロキシを使用したポータルのインストール
-======================================
+=========================================================================
 
 リバースプロキシ（Nginx、IIS、Apache httpd）を使用する環境にポータルをインストールする場合、|ivy-engine| の設定でプロキシを定義する必要があります。
 

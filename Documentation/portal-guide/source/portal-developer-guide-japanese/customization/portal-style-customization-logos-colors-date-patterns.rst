@@ -1,9 +1,9 @@
-.. _customization-portal-logos-and-colors:
+.. _customization-portal-logos-and-colors-ja:
 
 ポータルのスタイルのカスタマイズ（ロゴ、色、日付パターン）
 =====================================================================
 
-.. _customization-portal-logos-and-colors-change-portal-logos:
+.. _customization-portal-logos-and-colors-change-portal-logos-ja:
 
 ポータルで表示されるロゴの変更
 ------------------------------------------------------

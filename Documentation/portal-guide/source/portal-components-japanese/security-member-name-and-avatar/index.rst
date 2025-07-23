@@ -1,4 +1,4 @@
-.. _components-portal-components-security-member-name-and-avatar:
+.. _components-portal-components-security-member-name-and-avatar-ja:
 
 セキュリティメンバーの名前とアバター
 ************************************************************

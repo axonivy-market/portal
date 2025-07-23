@@ -1,4 +1,4 @@
-.. _components-portal-components-process-viewer:
+.. _components-portal-components-process-viewer-ja:
 
 プロセスビューアー
 *************************************

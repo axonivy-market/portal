@@ -1,13 +1,13 @@
-.. _configure-new-dashboard-proces-widget:
+.. _configure-new-dashboard-proces-widget-ja:
 
 プロセスウィジェットの設定
 ==================================================
 
 プロセスウィジェットの定義
----------------------
+-------------------------------------------------------
 
 ポータルダッシュボードのプロセスウィジェットは、3 つのモードの柔軟なプロセスリストです。
-詳細については、:ref:`プロセスリストウィジェット<new-dashboard-process-list-widget>`を参照してください。
+詳細については、:ref:`プロセスリストウィジェット <new-dashboard-process-list-widget-ja>` を参照してください。
 
 プロセスウィジェットの JSON の基本構造は以下のとおりです。
 
@@ -32,7 +32,7 @@
 
 The basic structure of the JSON of a Process widget
 
-   ``type``：プロセスウィジェットのタイプ。関連する表示モードには、``compact-process``（コンパクトモード）、``combined-process``（複合モード）、``full-process``（フルモード）、``image-process``（イメージモード）の 4 つのタイプがあります。
+   ``type``：プロセスウィジェットのタイプ。関連する表示モードには、 ``compact-process`` （コンパクトモード）、 ``combined-process`` （複合モード）、 ``full-process`` （フルモード）、 ``image-process`` （イメージモード）の 4 つのタイプがあります。
    
    
 
@@ -50,9 +50,9 @@ The basic structure of the JSON of a Process widget
 
       ``h``：HTML DOMスタイル ``height`` は ``60 * h + 20 * (h - 1)`` として計算されます。
 
-      ``styleClass``（オプション）：CSS クラスをウィジェットの HTML DOM に追加します。
+      ``styleClass`` （オプション）：CSS クラスをウィジェットの HTML DOM に追加します。
 
-      ``style``（オプション）：インラインスタイルをウィジェットの HTML DOM に追加します。
+      ``style`` （オプション）：インラインスタイルをウィジェットの HTML DOM に追加します。
       
    ``showFullscreenMode``：全画面モードのアイコンの表示設定。デフォルト値は ``true`` です。アイコンを非表示にするには ``false`` に設定してください。
    
@@ -64,7 +64,7 @@ The basic structure of the JSON of a Process widget
 
 
 コンパクトモード
-------------
+-------------------------------------------
 
 以下はコンパクトモードのプロセスウィジェットの標準的な JSON 定義の例です。
 
@@ -91,10 +91,10 @@ The basic structure of the JSON of a Process widget
       }
    ..
 
-``processPaths``：表示したいプロセスの :dev-url:`|ivy| IWebStartable </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` ID。
+``processPaths`` ：表示したいプロセスの :dev-url:`|ivy| IWebStartable </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html>` ID。
 
 
-``categories``：表示したいプロセスのカテゴリー。値はこのカテゴリーの :dev-url:`CMS URI </doc/|version|/designer-guide/how-to/workflow/categories.html#workflow-categories>` とします。プロセスウィジェットは、これらのカテゴリーに属するすべてのプロセスを表示します。
+``categories`` ：表示したいプロセスのカテゴリー。値はこのカテゴリーの :dev-url:`CMS URI </doc/|version|/designer-guide/how-to/workflow/categories.html#workflow-categories>` とします。プロセスウィジェットは、これらのカテゴリーに属するすべてのプロセスを表示します。
 
 
 ``processPaths`` と ``categories`` の両方を定義した場合、プロセスウィジェットは ``processPaths`` を基準にプロセスを表示します。
@@ -109,7 +109,7 @@ The basic structure of the JSON of a Process widget
 
    |dashboard-process-sort-index|
 
-``enableQuickSearch``：ウィジェットのクイック検索機能を有効にします。この機能は自動的に有効化され、``the process name`` を検索します。
+``enableQuickSearch``：ウィジェットのクイック検索機能を有効にします。この機能は自動的に有効化され、 ``the process name`` を検索します。
 
 
       有効な値：
@@ -119,7 +119,7 @@ The basic structure of the JSON of a Process widget
       - ``not defined``：デフォルトとしてクイック検索テキストボックスを表示します。
 
 複合モード
--------------
+-------------------------------
 
 以下は複合モードのプロセスウィジェットの標準的な JSON 定義の例です。
 
@@ -151,7 +151,7 @@ The basic structure of the JSON of a Process widget
 この属性を定義しない場合のデフォルト値は、1 ページあたり 5 行です。
 
 フルモード
----------
+-----------------------------------
 
 以下はフルモードのプロセスウィジェットの標準的な JSON 定義の例です。
 
@@ -176,7 +176,7 @@ The basic structure of the JSON of a Process widget
    ..
 
 イメージモード
-----------
+----------------------------------------------
 
 以下はイメージモードのプロセスウィジェットの標準的な JSON 定義の例です。
 

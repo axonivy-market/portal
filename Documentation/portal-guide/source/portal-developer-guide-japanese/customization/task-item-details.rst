@@ -163,7 +163,7 @@ TaskItemDetails には以下が含まれます。
 #. カスタムウィジェットを追加するには、 **エンジンの管理者** がコックピットページで :ref:`Portal.TaskDetails <task-details-configuration-variable-ja>` 変数を設定する必要があります。
    
 
-   .. _task-details-custom-configuration-variable-example:
+   .. _task-details-custom-configuration-variable-example-ja:
    
    -  レイアウト設定を含む Portal.TaskDetails の例には、4 つのカスタムウィジェットが含まれます。
    

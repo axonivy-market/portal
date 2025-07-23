@@ -1,4 +1,4 @@
-.. _configure-new-dashboard-task-widget:
+.. _configure-new-dashboard-task-widget-ja:
 
 タスクウィジェットの設定
 ==========================================
@@ -6,7 +6,7 @@
 タスクウィジェットの定義
 --------------------------------------------
 
-ポータルダッシュボードのタスクウィジェットは、インタラクティブなタスクリストです。詳細については、:ref:`タスクリストウィジェット<new-dashboard-task-list-widget>`を参照してください。
+ポータルダッシュボードのタスクウィジェットは、インタラクティブなタスクリストです。詳細については、:ref:`タスクリストウィジェット <new-dashboard-task-list-widget-ja>` を参照してください。
 
 
 以下はポータルダッシュボードのタスクウィジェットの JSON 定義の例です。
@@ -90,15 +90,15 @@
 
       ``h``：HTML DOMスタイル ``height`` は ``60 * h + 20 * (h - 1)`` として計算されます。
 
-      ``styleClass``（オプション）：CSS クラスをウィジェットの HTML DOM に追加します。
+      ``styleClass`` （オプション）：CSS クラスをウィジェットの HTML DOM に追加します。
 
-      ``style``（オプション）：インラインスタイルをウィジェットの HTML DOM に追加します。
+      ``style`` （オプション）：インラインスタイルをウィジェットの HTML DOM に追加します。
 
    ``sortField``：ウィジェットのソートフィールドの初期値。
 
-   ``sortDescending``：ソートフィールドの初期値の並べ替え方向。デフォルト値は ``false``（昇順で並べ替え）です。
+   ``sortDescending`` ：ソートフィールドの初期値の並べ替え方向。デフォルト値は ``false`` （昇順で並べ替え）です。
 
-   ``rowsPerPage``：タスク ウィジェットの 1 ページに表示可能なタスクの最大数。 
+   ``rowsPerPage`` ：タスク ウィジェットの 1 ページに表示可能なタスクの最大数。 
    デフォルト値は 1 ページあたり 10 行です。
 
    ``showWidgetInfo``：ウィジェット情報アイコンの表示設定。デフォルト値は ``true`` です。アイコンを非表示にするには ``false`` に設定してください。
@@ -106,7 +106,7 @@
    ``showFullscreenMode``：全画面モードのアイコンの表示設定。デフォルト値は ``true`` です。アイコンを非表示にするには ``false`` に設定してください。
 
    ``isTopMenu``：値が ``true`` の場合、ダッシュボードはナビゲーションバーの最上位の項目として表示されます。 
-   値が ``false`` の場合は、`ダッシュボード`メニューの下にサブ項目として表示されます。 
+   値が ``false`` の場合は、 `ダッシュボード` メニューの下にサブ項目として表示されます。 
    デフォルト値は ``false`` です。
 
    ``columns``：ウィジェットの各列の列設定。列のフィルター、スタイル、表示設定などを事前に定義し、カスタム列も定義できます。
@@ -138,7 +138,7 @@
             - ``actions``：タスクの詳細にアクセス、タスクをリセット、タスクを委任する、予約、タスクを破棄、エスカレーションタスクのトリガー、アドホックタスクの追加などのアクション
 
          カスタム列の ``field`` は、タスクのカスタムフィールドの名前になります。
-         ポータルは、``field`` の値を使用して、列の値を取得します。
+         ポータルは、 ``field`` の値を使用して、列の値を取得します。
 
       ``canWorkOn``：現在のユーザーが作業できるタスクのみフィルターします。デフォルト値は「false」です。
 
@@ -146,14 +146,14 @@
       列を非表示にするには、「false」に設定してください。
 
       ``quickSearch``：クイック検索の検索範囲にこのフィールドを追加します。デフォルト値は ``false`` です。
-      列の検索条件を適用するには、``true`` に設定してください。
+      列の検索条件を適用するには、 ``true`` に設定してください。
 
    -  ``headers``：列の複数言語のヘッダー。
 
-.. _configure-new-dashboard-task-widget-custom-columns:
+.. _configure-new-dashboard-task-widget-custom-columns-ja:
 
 カスタム列
---------------
+-------------------------------
 
 |ivy| は、タスクのカスタムフィールドをサポートします。タスクウィジェットでは列として表示できます。
 
@@ -179,22 +179,22 @@
 カスタム列には、前のセクションで説明した属性のほかに、以下の 2 つの違いがあります。
 
 
-   - ``type``：ウィジェットの列のタイプ。``STANDARD`` と ``CUSTOM`` の 2 つのオプションがあります。
+   - ``type``：ウィジェットの列のタイプ。 ``STANDARD`` と ``CUSTOM`` の 2 つのオプションがあります。
 
    - ``field``：この属性は、列のデータを取得するのに使用されるタスクのカスタムフィールドの名前です。
      
 
 .. important::
-   ポータルでは、``custom-fields.yaml`` ファイルで宣言されたカスタムフィールドのみ表示されます。
-   詳細については、:dev-url:`カスタムフィールドのメタ情報</doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>`を参照してください。
+   ポータルでは、 ``custom-fields.yaml`` ファイルで宣言されたカスタムフィールドのみ表示されます。
+   詳細については、:dev-url:`カスタムフィールドのメタ情報 </doc/|version|/designer-guide/how-to/workflow/custom-fields.html#meta-information>` を参照してください。
 
 フィルター条件
------------------
+-----------------------------------------
 
 タスクウィジェットのほとんどの列でフィルター条件を事前に定義できます。要件は列ごとに異なり、リストのみ、文字列のみを受け入れる列もあれば、日時など、特定の形式の文字列を必要とする列もあります。
 
 
-詳細については、:ref:`複合フィルター<complex-filter>`を参照してください。
+詳細については、:ref:`複合フィルター <complex-filter-ja>` を参照してください。
 
 Json フィルターの基本構造：
 
@@ -220,7 +220,7 @@ Json フィルターの基本構造：
 
    ..
 
-..  _configure-new-dashboard-task-widget-filter-structure:
+..  _configure-new-dashboard-task-widget-filter-structure-ja:
 
    - ``field``：列名に対応するフィルターのフィールド名
    - ``values``：フィルターの値（リスト、文字列または数値）
@@ -232,11 +232,11 @@ Json フィルターの基本構造：
 
       - **日付列**：today、yesterday、is、is_not、before、after、between、not_between、current、last、next、empty、not_empty
 
-   - ``type``：``standard``（標準の列）または``custom``（カスタム列）
+   - ``type``： ``standard`` （標準の列）または ``custom`` （カスタム列）
 
    - 日付タイプの追加フィールド：
 
-      - ``periodType``：文字列値。例：``YEAR``、``MONTH``、``WEEK``、``DAY``
+      - ``periodType``：文字列値。例： ``YEAR``、 ``MONTH``、 ``WEEK``、 ``DAY``
 
       - ``from``：文字列値。例："2024/04/04"
 
@@ -276,7 +276,7 @@ Json フィルターの基本構造：
       ..
 
       この列は、タスク責任者のユーザー名のフィルター条件としてロール名またはユーザー名のリストのみ受け入れます。
-      利用可能なフィルターの演算子は ``in``、``not_in``、``current_user`` です。
+      利用可能なフィルターの演算子は ``in``、 ``not_in``、 ``current_user`` です。
       ``current_user`` 演算子には値フィールドは必要ありません。
 
    - ``name``
@@ -331,7 +331,7 @@ Json フィルターの基本構造：
 
       ..
 
-      この列は、文字列列で利用可能なすべての演算子を受け入れます。さらに、文字列のリストとして``値``も受け入れます。
+      この列は、文字列列で利用可能なすべての演算子を受け入れます。さらに、文字列のリストとして ``値`` も受け入れます。
 
    - ``priority``
 
@@ -360,7 +360,7 @@ Json フィルターの基本構造：
       この列は、フィルター条件として優先度名のリストのみ受け入れます。
       利用可能なフィルターの演算子は ``in`` です。
 
-      利用可能なタスクの優先度については、:dev-url:`タスクの優先度</doc/|version|/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>`を参照してください。
+      利用可能なタスクの優先度については、:dev-url:`タスクの優先度 </doc/|version|/public-api/ch/ivyteam/ivy/workflow/WorkflowPriority.html>` を参照してください。
       
 
    - ``state``
@@ -389,11 +389,11 @@ Json フィルターの基本構造：
       この列は、フィルター条件としてタスクのビジネスの状態名のリストのみ受け入れます。
       利用可能なフィルターの演算子は ``in`` です。 
 
-      利用可能なタスクのビジネスの状態については、:dev-url:`タスクのビジネスの状態</doc/|version|/public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>`を参照してください。
+      利用可能なタスクのビジネスの状態については、:dev-url:`タスクのビジネスの状態 </doc/|version|/public-api/ch/ivyteam/ivy/workflow/TaskBusinessState.html>` を参照してください。
       
 
 
-   - ``startTimestamp``、``expiryTimestamp``：タスクの作成日と終了日
+   - ``startTimestamp``、 ``expiryTimestamp``：タスクの作成日と終了日
 
       .. code-block:: javascript
 
@@ -438,7 +438,7 @@ Json フィルターの基本構造：
 
       これらの列は、日付列で利用可能なすべての演算子を受け入れます。フィールドは演算子によって異なります。
       上記のJSONの例は、日付フィールドのほとんどのユースケースをカバーします。
-      受け入れ可能な日付の形式は、``dd.MM.yyyy``、``dd.MM.yyyy HH:mm``、``MM/dd/yyyy``、``MM/dd/yyyy HH:mm`` です。
+      受け入れ可能な日付の形式は、 ``dd.MM.yyyy``、 ``dd.MM.yyyy HH:mm``、 ``MM/dd/yyyy``、 ``MM/dd/yyyy HH:mm`` です。
       
 
    - ``application``
@@ -465,11 +465,11 @@ Json フィルターの基本構造：
 
 カスタムフィールド列：
 
-   - :ref:`configure-new-dashboard-task-widget-custom-columns`は、:ref:`標準の列<configure-new-dashboard-task-widget-filter-structure>`と同じ演算子を使用しています。
+   - :ref:`configure-new-dashboard-task-widget-custom-columns-ja` は、:ref:`標準の列 <configure-new-dashboard-task-widget-filter-structure-ja>` と同じ演算子を使用しています。
       
       
 
-   - ``type`` フィールドは ``custom``（カスタムフィールド）、``custom_case``（カスタムケースフィールド）になります。
+   - ``type`` フィールドは ``custom`` （カスタムフィールド）、 ``custom_case`` （カスタムケースフィールド）になります。
 
    .. code-block:: javascript
       
@@ -493,7 +493,7 @@ Json フィルターの基本構造：
    ..
 
 クイック検索
-------------
+-------------------------------------------------
 
 クイック検索は、ユーザーがタスクウィジェット内のタスクを素早く検索できる便利な機能です。
 クイック検索の設定には以下の 2 つの属性があります。
@@ -502,10 +502,10 @@ Json フィルターの基本構造：
 
    * ``quickSearch``：クイック検索機能を使用した列の検索が可能なことを示します。
 
-``enableQuickSearch`` 属性を ``false`` に設定すると、``quickSearch`` 属性の値にかかわらず、クイック検索機能が無効になります。
+``enableQuickSearch`` 属性を ``false`` に設定すると、 ``quickSearch`` 属性の値にかかわらず、クイック検索機能が無効になります。
 
 
-逆に、``enableQuickSearch`` 属性を ``true`` に設定した場合は、``quickSearch`` 属性が ``true`` に設定されているすべての列の値でクイック検索機能による検索が可能になります。
+逆に、 ``enableQuickSearch`` 属性を ``true`` に設定した場合は、 ``quickSearch`` 属性が ``true`` に設定されているすべての列の値でクイック検索機能による検索が可能になります。
 
 ``quickSearch`` 属性をタスクウィジェットのいずれの列にも割り当てていない場合、クイック検索機能はデフォルトで名前フィールドと説明フィールドを検索します。
 

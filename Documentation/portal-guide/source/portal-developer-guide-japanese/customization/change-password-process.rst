@@ -1,9 +1,9 @@
-.. _customization-change-password-process:
+.. _customization-change-password-process-ja:
 
 パスワードの変更プロセス
 ===============================================
 
-.. _customization-change-password-process-introduction:
+.. _customization-change-password-process-introduction-ja:
 
 概要
 --------------
@@ -11,7 +11,7 @@
 ポータルでは、パスワードの変更プロセスにより、例えばユーザーがパスワードを変更したときに新しいパスワードを漏洩パスワードデータベースで確認できます。
 
 
-.. _customization-change-password-process-customization:
+.. _customization-change-password-process-customization-ja:
 
 カスタマイズ
 -------------------------

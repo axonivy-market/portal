@@ -1,9 +1,9 @@
-.. _customization-user-menu:
+.. _customization-user-menu-ja:
 
 ユーザーメニュー
 ===============================
 
-.. _customization-user-menu-introduction:
+.. _customization-user-menu-introduction-ja:
 
 概要
 ------------
@@ -22,7 +22,7 @@
 .. _customization-user-menu-definition:
 
 独自のユーザーメニューの定義
--------------------------
+-----------------------------------------------
 
 ポータルでは、複数のユーザー項目を設定できます。これらはデフォルトのユーザー項目の下に表示されます。
 
@@ -79,7 +79,7 @@
     ``url``：外部ウェブページの URL またはリダイレクトしたい Ivy プロセスの開始。
 
     .. tip::
-        Ivy プロセスの開始 URL は、プロセスへの**相対リンク**です。
+        Ivy プロセスの開始 URL は、プロセスへの **相対リンク** です。
 
           - 例： ``Start Processes/CreateTestData/CreateTestDataForCustomizedDashboard.ivp``
 

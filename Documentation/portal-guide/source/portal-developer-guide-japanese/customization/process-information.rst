@@ -1,9 +1,9 @@
-.. _customization-process-information:
+.. _customization-process-information-ja:
 
 プロセス情報
 ===================================
 
-.. _customization-process-information-page-introduction:
+.. _customization-process-information-page-introduction-ja:
 
 概要
 ------------
@@ -11,14 +11,14 @@
 プロセス情報ページを表示するには、このセクションに従って、ポータルに組み込まれているプロセス情報ページを定義します。
 
 
-.. _customization-process-information-page-customization:
+.. _customization-process-information-page-customization-ja:
 
 独自のプロセス情報ページの定義
-----------------------------------------
+-------------------------------------------------------------
 
-#.プロセスの開始の:guilabel:`カスタムフィールド`で ``portalProcessInfo`` カスタムフィールドを定義します。
+#. プロセスの開始の :guilabel:`カスタムフィールド` で ``portalProcessInfo`` カスタムフィールドを定義します。
 
-#.``portalProcessInfo`` の値の定義
+#. ``portalProcessInfo`` の値の定義
 
    |define-portal-process-info|
 

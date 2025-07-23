@@ -1,19 +1,19 @@
-.. _components-portal-chat:
+.. _components-portal-chat-ja:
 
 ポータルチャット
 ===============================
 
-.. _components-portal-chat-chat-feature:
+.. _components-portal-chat-chat-feature-ja:
 
 チャット機能
-------------
+---------------------------
 
 |chat|
 
-.. _components-portal-chat-information:
+.. _components-portal-chat-information-ja:
 
 情報
------
+-----------------
 
 - ポータルチャットを使用するには、:ref:`portal-chat-ja` を参照してください。
 
@@ -34,7 +34,7 @@
     </Context>
 
 
-.. _components-portal-chat-limitation:
+.. _components-portal-chat-limitation-ja:
 
 現在のポータルチャットの制限
 ------------------------------------------

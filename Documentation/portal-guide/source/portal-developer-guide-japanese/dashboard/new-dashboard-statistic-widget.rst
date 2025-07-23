@@ -1,12 +1,12 @@
-.. _configure-new-dashboard-statistic-widget:
+.. _configure-new-dashboard-statistic-widget-ja:
 
 統計ウィジェットの設定
 =================================================
 
-.. _portal-statistic-widget:
+.. _portal-statistic-widget-ja:
 
 統計ウィジェットの定義
--------------------------
+-------------------------------------------------------------
 
 ポータルダッシュボードの統計ウィジェットには、統計とチャートが表示されます。
 

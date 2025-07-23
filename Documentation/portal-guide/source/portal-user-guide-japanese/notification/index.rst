@@ -1,4 +1,4 @@
-.. _notification:
+.. _notification-ja:
 
 通知
 **************

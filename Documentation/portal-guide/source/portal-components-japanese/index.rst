@@ -1,4 +1,4 @@
-.. _components-portal-components:
+.. _components-portal-components-ja:
 
 ポータルのコンポーネント
 **********************************************

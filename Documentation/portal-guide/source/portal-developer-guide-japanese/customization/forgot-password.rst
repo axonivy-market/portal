@@ -3,10 +3,10 @@
 パスワードを忘れた場合
 =================================================
 
-.. _customization-case-widget-how-to-override-token-generation-and-email-sending:
+.. _customization-case-widget-how-to-override-token-generation-and-email-sending-ja:
 
 トークンの生成とメールの送信のカスタマイズ
---------------------------------------------
+-----------------------------------------------------------------------------
 
 トークンの生成とメールの送信は、パスワードをリセットするためのメールを送信するプロセスです。
 
@@ -24,12 +24,11 @@
    トークンの生成とメールの送信プロセスのカスタマイズ方法の例については、 ``portal-developer-examples`` プロジェクトの ``CustomSendPasswordResetEmail`` プロセスを参照してください。
    
 
-.. _customization-case-widget-how-to-override-password-resetting:
 
-.. _customization-password-reset:
+.. _customization-password-reset-ja:
 
 パスワードのリセットのカスタマイズ
-----------------------------
+----------------------------------------------------------------------
 
 パスワードのリセットは、ユーザーのパスワードを検証、更新するプロセスです。
 

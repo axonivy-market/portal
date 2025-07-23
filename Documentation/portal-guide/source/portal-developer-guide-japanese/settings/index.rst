@@ -1,4 +1,4 @@
-.. _settings:
+.. _settings-ja:
 
 .. raw:: html
 
@@ -18,7 +18,7 @@
 .. _settings-admin-settings-ja:
 
 ポータル設定の実行
-=========================
+===================================
 
 ポータル設定を手動で行う方法については、:ref:`update-portal-settings-ja` を参照してください。
 
@@ -30,7 +30,7 @@
 これにより、デザイナーを再起動せずに済みます。
 
 
-.. _settings-language:
+.. _settings-language-ja:
 
 言語設定
 =================
@@ -54,7 +54,7 @@
    :widths: 30, 70
    :header-rows: 1
 
-.. _settings-permission-settings:
+.. _settings-permission-settings-ja:
 
 権限の設定
 ===================
@@ -64,7 +64,7 @@
 
 
 タスクの権限
--------------------
+-------------------------
 - ノートの追加
 
    ユーザーには次の権限が必要です：:bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`
@@ -151,7 +151,7 @@
    :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`.
 
 ケースの権限
-----------------
+---------------------------------
 
 - ノートの追加
 
@@ -203,17 +203,17 @@
 .. _settings-permission-settings-others-ja:
 
 その他の権限
------------------
+-----------------------------
 
 .. csv-table:: 
    :file: tables/portal-other-permissions.csv
    :widths: 20, 50, 30
    :header-rows: 1
 
-.. _settings-virus-scanning-setting:
+.. _settings-virus-scanning-setting-ja:
 
 ウイルススキャンの設定
-=======================
+============================================
 
 PrimeFaces には、 `VirusTotal <https://www.virustotal.com/>`_ を使用するインターフェースがあらかじめ実装されています。
 `VirusTotal <https://www.virustotal.com/>`_ を有効にするには、 `VirusTotalのウェブサイト <https://www.virustotal.com/>`_ でコミュニティアカウントを作成する必要があります。
@@ -260,7 +260,7 @@ web XML ファイルで context-param を設定すると、ウイルススキャ
 
 
 ポータルの通知
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ポータルの標準的な通知は、一般情報（ダウンタイム、変更など）に使用されます。
 ポータルのすべてのユーザーにこのメッセージを表示できます。
 
@@ -323,7 +323,7 @@ web XML ファイルで context-param を設定すると、ウイルススキャ
 .. _portal-statistic-charts:
 
 ポータルの統計チャート
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ポータルダッシュボードの :ref:`統計ウィジェット <portal-statistic-widget-ja>` で使用できるすべての統計チャートのフィルターロジック、外観などの設定を定義できます。
 
 
@@ -435,7 +435,7 @@ web XML ファイルで context-param を設定すると、ウイルススキャ
 .. _portal-process-external-link-ja:
 
 ポータルのプロセスの外部リンク
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ポータルの標準的な外部リンクは、以下のファイルで定義されます。
 
 ファイル名： ``variables.Portal.Processes.ExternalLinks.json``

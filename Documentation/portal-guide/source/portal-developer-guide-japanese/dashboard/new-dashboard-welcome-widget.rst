@@ -1,4 +1,4 @@
-.. _configure-new-dashboard-welcome-widget:
+.. _configure-new-dashboard-welcome-widget-ja:
 
 ウェルカムウィジェットの設定
 ==========================================
@@ -70,9 +70,9 @@
 
       ``h``：HTML DOMスタイル ``height`` は ``60 * h + 20 * (h - 1)`` として計算されます。
 
-      ``styleClass``（オプション）：CSS クラスをウィジェットの HTML DOM に追加します。
+      ``styleClass`` （オプション）：CSS クラスをウィジェットの HTML DOM に追加します。
 
-      ``style``（オプション）：インラインスタイルをウィジェットの HTML DOM に追加します。
+      ``style`` （オプション）：インラインスタイルをウィジェットの HTML DOM に追加します。
 
    ``welcomeTexts``：ウィジェットのウェルカムテキスト。ユーザーのロケールによる複数言語が可能です。
 
@@ -98,9 +98,9 @@
 
       ``HEADING_1``：大きなヘッダーのフォントサイズ（5rem）
 
-   ``welcomeTextColor``：ウェルカムテキストの色。``font-color`` CSS 属性が受け入れる任意の値を入力できます。
+   ``welcomeTextColor``：ウェルカムテキストの色。 ``font-color`` CSS 属性が受け入れる任意の値を入力できます。
    
-   ``welcomeTextColorDarkMode``：ダークモードでのウェルカムテキストの色。``font-color`` CSS 属性が受け入れる任意の値を入力できます。
+   ``welcomeTextColorDarkMode``：ダークモードでのウェルカムテキストの色。 ``font-color`` CSS 属性が受け入れる任意の値を入力できます。
 
    ``greeting``：挨拶文をウェルカムテキストに追加する場合に定義します。
 
@@ -128,6 +128,6 @@
 
 .. warning::
 
-   ポータルは内部で ``imageLocation``、``imageType``、``imageContent``、``imageLocationDarkMode``、``imageTypeDarkMode``、``imageContentDarkMode`` 属性を使用しています。
+   ポータルは内部で ``imageLocation``、 ``imageType``、 ``imageContent``、 ``imageLocationDarkMode``、 ``imageTypeDarkMode``、 ``imageContentDarkMode`` 属性を使用しています。
 
    ウィジェットのエラーの原因となるため、手動で変更しないでください。

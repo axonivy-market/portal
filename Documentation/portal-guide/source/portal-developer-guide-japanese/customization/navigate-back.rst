@@ -1,4 +1,4 @@
-.. _customization-navigateback:
+.. _customization-navigateback-ja:
 
 戻る
 =============
