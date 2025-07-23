@@ -65,6 +65,7 @@ public class NotificationsTest extends BaseTest {
   @Test
   public void testDisableNotificationIcon() {
     login(TestAccount.ADMIN_USER);
+	grantSpecificPortalPermission(PortalPermission.NOTIFICATION_CHANNELS_SETTING);
     NewDashboardPage homepage = new NewDashboardPage();
     UserProfilePage userProfilePage = homepage.openMyProfilePage();
     userProfilePage.unsubscribeAllChannels();
@@ -80,12 +81,11 @@ public class NotificationsTest extends BaseTest {
   @Test
   public void testDisableNotificationChannelsSettingCheckbox() {
 	login(TestAccount.DEMO_USER);
-	
 	grantSpecificPortalPermission(PortalPermission.NOTIFICATION_CHANNELS_SETTING);
 	NewDashboardPage homePage = new NewDashboardPage();
 	UserProfilePage userProfilePage = homePage.openMyProfilePage();
 	assertFalse(userProfilePage.isNoticationChannelsSettingCheckboxDisabled());
-	userProfilePage.unsubscribeAllChannels();
+	userProfilePage.subscribeAllChannels();
 	userProfilePage.save();
 
 	denySpecificPortalPermission(PortalPermission.NOTIFICATION_CHANNELS_SETTING);
