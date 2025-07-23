@@ -11,7 +11,7 @@
 <cc:implementation>
   <h:panelGroup rendered="#{cc.attrs.field.field eq 'priority'}">
     <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down display-flex-center">
-      <h:outputLabel value="#{cc.attrs.field.headerText}" for="priorities"/>
+      <p:outputLabel value="#{cc.attrs.field.headerText}" for="priorities"/>
     </div>
     <div class="ui-g-8 ui-sm-12 ui-fluid">
       <p:selectCheckboxMenu id="priorities" value="#{cc.attrs.selectedPriorities}" multiple="true"

@@ -1605,6 +1605,9 @@ Dialogs:
                   DragAndDropTooltip: Haz clic en vista previa y arrastra y suelta para cambiar el orden
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Bienvenido a Axon Ivy Portal
+          setting:
+            UserProfile:
+              DefaultSortDirection: Dirección de ordenación predeterminada
         portalkit:
           component:
             CaseItemDetails:

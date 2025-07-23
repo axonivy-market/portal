@@ -1603,6 +1603,9 @@ Dialogs:
                   DragAndDropTooltip: Cliquer sur l'aperçu puis glisser-déposer pour modifier l'ordre
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Bienvenue à Axon Ivy Portal
+          setting:
+            UserProfile:
+              DefaultSortDirection: Sens de tri par défaut
         portalkit:
           component:
             CaseItemDetails:
