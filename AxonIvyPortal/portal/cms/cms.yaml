@@ -1405,6 +1405,8 @@ Dialogs:
               defaultEmptyMessage: There are no cases
             IconSelection:
               IconLinkTooltip: Click to change icon
+            ProcessWidget:
+              ProcessListNav: Process List Navigation
   com:
     axonivy:
       portal:

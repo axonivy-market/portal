@@ -1622,6 +1622,8 @@ Dialogs:
               CustomWidgetIFrameTitle: Benutzerdefinierter Widget-Rahmen
             IconSelection:
               IconLinkTooltip: Klicken Sie hier, um das Symbol zu ändern
+            ProcessWidget:
+              ProcessListNav: Prozesslisten-Navigation
             TaskItemDetails:
               ShareTaskDetails: Aufgabendetails teilen
   com:
