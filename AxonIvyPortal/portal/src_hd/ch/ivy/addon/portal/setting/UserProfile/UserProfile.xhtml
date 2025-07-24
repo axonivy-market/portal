@@ -67,10 +67,28 @@
                       actionListener="#{userProfileBean.unpinAllPinnedCases}"
                       icon="pi pi-trash" />
                 </h:panelGroup>
+                
+              <!-- Accessibility Setting -->
+              <h:panelGroup id="accessibility-panel" layout="block" styleClass="my-profile-block col-12 p-0">
+                  <div class="setting-header">
+                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Accessibility')}</h5>
+                  </div>
+                  <div class="flex align-items-center">
+                    <div class="col-8 p-0">
+                        <p:outputLabel for="@next" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShortcutsNavigation')}" styleClass="mr-3"/>
+                    </div>
+                    <div class="col-4 text-right p-0">
+                        <p:toggleSwitch id="keyboard-shortcuts-toggle-button" value="#{data.isShortcutEnabled}" styleClass="pointer-events-auto" disabled="#{!userProfileBean.allowedConfigShortcutsByAdmin}" 
+                            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShorcutsNavigationInfor')}">
+                        </p:toggleSwitch>
+                        <p:tooltip for="keyboard-shortcuts-toggle-button" value="#{userProfileBean.renderTooltipMessageForKeyboardShortcutButton()}"/>
+                    </div>
+                  </div>
+                </h:panelGroup>
               </div>
               <p:divider layout="vertical" styleClass="responsive-divider"/>
 
-              <div class="ui-g-6 pl-5 ui-sm-12 relative user-profile-card-right">
+              <div class="ui-g-6 pl-5 ui-sm-12 relative user-profile-card-right justify-content-between grid">
                 <h:panelGroup id="language-setting-container" layout="block" styleClass="w-full my-profile-block">
                   <div class="setting-header">
                     <h5 id="language-setting-title" class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</h5>

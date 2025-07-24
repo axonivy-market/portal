@@ -145,11 +145,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rubrique 3
       NORMAL_TEXT: Texte normal
   MyProfile:
+    Accessibility: Accessibilité
     CaseList: Liste des cas
     DateFormat: Format de la date
     FormattingLanguage: Langue de mise en forme
     General: Général
     Homepage: Page d'accueil
+    KeyboardShortcutsNavigation: Raccourcis clavier pour la navigation
+    KeyboardShortcutsNavigationInfor: Basculer pour activer ou désactiver les raccourcis clavier de navigation.
+    KeyboardShortcutsTooltip: Ce bouton est actuellement indisponible et ne peut pas être utilisé en raison des paramètres.
     Language: Langue
     ProcessList: Liste des processus
     TaskList: Liste des tâches
