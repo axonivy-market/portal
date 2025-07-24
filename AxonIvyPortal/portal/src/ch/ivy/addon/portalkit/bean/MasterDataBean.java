@@ -143,13 +143,7 @@ public class MasterDataBean implements Serializable {
   }
   
   public boolean isKeyboardShortcutsEnabled() {
-    boolean isAllowedConfigShortcutsByAdmin = GlobalSettingService.getInstance().isAllowedConfigShortcutsByAdmin();
-    if (isAllowedConfigShortcutsByAdmin) {
-      return UserSettingService.getInstance().isKeyboardShortcutsEnabled();
-    }
-    UserSettingService.getInstance().updateUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS,
-        Boolean.TRUE.toString());
-    return true;
+    return UserSettingService.getInstance().isKeyboardShortcutsEnabled();
   }
 
 }

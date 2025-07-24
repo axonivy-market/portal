@@ -153,7 +153,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     General: Allgemeine
     Homepage: Homepage
     KeyboardShorcutsNavigationInfor: Umschalten, um Tastenkombinationen für die Navigation zu aktivieren oder zu deaktivieren.
-    KeyboardShortcutsNavigation: Tastenkombinationen für die Navigation.
+    KeyboardShortcutsNavigation: Tastenkombinationen für die Navigation
     KeyboardShortcutsTooltip: Diese Schaltfläche ist derzeit nicht verfügbar und kann aufgrund der Einstellungen nicht verwendet werden.
     Language: Sprache
     ProcessList: Prozess-Liste
