@@ -130,12 +130,11 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 11.3.2 から 12.0.0 への移行
 ---------------------------------------------
 
-- ビジネスの詳細ページのカスタムフィールドの値は、プロセスリンクの相対パスから :dev-url:`IWebStartable ID </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` にサイレントに移行されます。 
- 
-管理者が何かを行う必要はありません。これは単なる参考情報です。
+#. ビジネスの詳細ページのカスタムフィールドの値は、プロセスリンクの相対パスから :dev-url:`IWebStartable ID </doc/|version|/public-api/ch/ivyteam/ivy/workflow/start/IWebStartable.html#getId()>` にサイレントに移行されます。
+   管理者が何かを行う必要はありません。これは単なる参考情報です。
 
-- タスクウィジェットとケースウィジェットの列の幅を調整する新しい機能を実装しました。
-この変更により、以前のバージョンからのタスクウィジェットとケースウィジェットの列の幅に若干の影響が生じることがあります。列の幅を手動で調整する方法については、:ref:`タスクウィジェットの設定 <new-dashboard-task-list-widget-ja>` と :ref:`ケースウィジェットの設定 <new-dashboard-case-list-widget-ja>` を参照してください。
+#. タスクウィジェットとケースウィジェットの列の幅を調整する新しい機能を実装しました。
+   この変更により、以前のバージョンからのタスクウィジェットとケースウィジェットの列の幅に若干の影響が生じることがあります。列の幅を手動で調整する方法については、:ref:`タスクウィジェットの設定 <new-dashboard-task-list-widget-ja>` と :ref:`ケースウィジェットの設定 <new-dashboard-case-list-widget-ja>` を参照してください。
 
 
 11.1.0 から 11.2.0 への移行
@@ -464,31 +463,31 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 12.0.1 での変更内容
 ------------------------------------------------
-#. タスクの詳細とケースの詳細のドキュメントプレビュー機能を導入しました。画像（png または jpeg）、プレーンテキスト（txt または log）、pdf ドキュメントをプレビューできます。
-#. ポータルのドキュメントのプレビューアイコンの表示設定を制御する ``Portal.Document.EnablePreview`` ポータル設定を導入しました。
+- タスクの詳細とケースの詳細のドキュメントプレビュー機能を導入しました。画像（png または jpeg）、プレーンテキスト（txt または log）、pdf ドキュメントをプレビューできます。
+- ポータルのドキュメントのプレビューアイコンの表示設定を制御する ``Portal.Document.EnablePreview`` ポータル設定を導入しました。
 
 12.0.0 での変更内容
 -------------------------------------------------
 
-#. 古い統計チャートが削除されました。代わりに新しい :ref:`statistic-chart-ja` を使用してください。
-#. IFrame のタスクを設定する IFrameTaskConfig コンポーネントを導入しました。詳細については、:ref:`iframe-configure-template-ja` を参照してください。
-#. ダッシュボードウィジェットのコンセプトに合わせて、:ref:`全タスクリストページ <full-task-list-ja>` と :ref:`全ケースリスト <full-case-list-ja>` のデザインが一新されました。ページは 1 つの全幅ウィジェットを含むダッシュボードとして機能します。他のウィジェットと同じように調整して設定できます。
-#. 複数ケースのオーナーをサポートします。1 つのケースのオーナーの並べ替え機能は削除されます。
+- 古い統計チャートが削除されました。代わりに新しい :ref:`statistic-chart-ja` を使用してください。
+- IFrame のタスクを設定する IFrameTaskConfig コンポーネントを導入しました。詳細については、:ref:`iframe-configure-template-ja` を参照してください。
+- ダッシュボードウィジェットのコンセプトに合わせて、:ref:`全タスクリストページ <full-task-list-ja>` と :ref:`全ケースリスト <full-case-list-ja>` のデザインが一新されました。ページは 1 つの全幅ウィジェットを含むダッシュボードとして機能します。他のウィジェットと同じように調整して設定できます。
+- 複数ケースのオーナーをサポートします。1 つのケースのオーナーの並べ替え機能は削除されます。
 
 11.2.0 での変更内容
 --------------------------------------------
 
-#. ``ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI`` を使用してください。
-#. ``ch.ivy.addon.portalkit.publicapi.CaseAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.CaseAPI`` を使用してください。
-#. ``ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.PortalGlobalGrowInIFrameAPI`` を使用してください。
-#. ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.PortalNavigatorAPI`` を使用してください。
-#. ``ch.ivy.addon.portalkit.publicapi.ProcessStartAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.ProcessStartAPI`` を使用してください。
-#. ``ch.ivy.addon.portalkit.publicapi.RoleAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.RoleAPI`` を使用してください。
-#. ``ch.ivy.addon.portalkit.publicapi.TaskAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.TaskAPI`` を使用してください。
-#. ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI`` を使用してください。
-#. プロセスダッシュボードウィジェットの並べ替え機能を導入しました。ユーザーは、インデックス、アルファベット順、ユーザー設定順序でプロセスを並べ替えることができます。
-#. プロセスビューアーの現在のステップを強調表示する ``ic:com.axonivy.portal.components.ProcessViewer`` コンポーネントの ``taskId`` パラメーターを導入しました。
-#. ポータルのレガシーダッシュボードが削除されました。 ``AxonIvyExpress`` モジュールは ``axonivy-express`` という名前に変更され、Axon Ivy Market で入手できるようになりました。
+- ``ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.ApplicationMultiLanguageAPI`` を使用してください。
+- ``ch.ivy.addon.portalkit.publicapi.CaseAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.CaseAPI`` を使用してください。
+- ``ch.ivy.addon.portalkit.publicapi.PortalGlobalGrowInIFrameAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.PortalGlobalGrowInIFrameAPI`` を使用してください。
+- ``ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.PortalNavigatorAPI`` を使用してください。
+- ``ch.ivy.addon.portalkit.publicapi.ProcessStartAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.ProcessStartAPI`` を使用してください。
+- ``ch.ivy.addon.portalkit.publicapi.RoleAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.RoleAPI`` を使用してください。
+- ``ch.ivy.addon.portalkit.publicapi.TaskAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.TaskAPI`` を使用してください。
+- ``com.axonivy.portal.components.util.PortalNavigatorInFrameAPI`` クラスが削除され、サポート対象外になりました。代わりに ``com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI`` を使用してください。
+- プロセスダッシュボードウィジェットの並べ替え機能を導入しました。ユーザーは、インデックス、アルファベット順、ユーザー設定順序でプロセスを並べ替えることができます。
+- プロセスビューアーの現在のステップを強調表示する ``ic:com.axonivy.portal.components.ProcessViewer`` コンポーネントの ``taskId`` パラメーターを導入しました。
+- ポータルのレガシーダッシュボードが削除されました。 ``AxonIvyExpress`` モジュールは ``axonivy-express`` という名前に変更され、Axon Ivy Market で入手できるようになりました。
 
 10 での変更内容
 --------------------------------------------
@@ -498,25 +497,25 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 9.4 での変更内容
 ---------------------------------------------
 
-#. ``PortalStyle``、 ``PortalKit``、 ``PortalTemplate`` プロジェクトを ``portal`` という名前の 1 つのプロジェクトにまとめました。タスクリストの行、新しいダッシュボードのタスクウィジェット、ケースの詳細の関連するタスクをクリックしたときの動作を設定する ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` ポータル設定を導入しました。各ユーザーはユーザープロファイルから変更を行うことができます。  
+- ``PortalStyle``、 ``PortalKit``、 ``PortalTemplate`` プロジェクトを ``portal`` という名前の 1 つのプロジェクトにまとめました。タスクリストの行、新しいダッシュボードのタスクウィジェット、ケースの詳細の関連するタスクをクリックしたときの動作を設定する ``Portal.Tasks.BehaviourWhenClickingOnLineInTaskList`` ポータル設定を導入しました。各ユーザーはユーザープロファイルから変更を行うことができます。  
 
-#. 統計チャートのスケーリングの定期的なリクエストを行う際の間隔を秒単位で設定する ``Portal.StatisticChartScalingInterval`` ポータル設定を導入しました。
+- 統計チャートのスケーリングの定期的なリクエストを行う際の間隔を秒単位で設定する ``Portal.StatisticChartScalingInterval`` ポータル設定を導入しました。
 
-#. ログインページのフッターの表示設定を制御する ``Portal.LoginPage.ShowFooter`` ポータル設定を導入しました。
+- ログインページのフッターの表示設定を制御する ``Portal.LoginPage.ShowFooter`` ポータル設定を導入しました。
 
-#. デフォルトのテーマモード（ライトまたはダーク）を設定する ``Portal.Theme.Mode`` ポータル設定を導入しました。
+- デフォルトのテーマモード（ライトまたはダーク）を設定する ``Portal.Theme.Mode`` ポータル設定を導入しました。
 
-#. トップバーのテーマの切り替えボタンの状態を制御する ``Portal.Theme.EnableSwitchThemeModeButton`` ポータル設定を導入しました。
+- トップバーのテーマの切り替えボタンの状態を制御する ``Portal.Theme.EnableSwitchThemeModeButton`` ポータル設定を導入しました。
 
-#. ポータルの全タスクリストと全ケースリストに新しい ``タスク ID``、 ``タスク名``、 ``ケース ID``、 ``ケース名`` フィルターを導入しました。
+- ポータルの全タスクリストと全ケースリストに新しい ``タスク ID``、 ``タスク名``、 ``ケース ID``、 ``ケース名`` フィルターを導入しました。
 
-#. ``プロセスビューアー`` ページを導入しました。ユーザーは、プロセスの開始を視覚的に表示できます。 :ref:`プロセスビューアーの表示 <how-to-show-process-viewer>` で詳細をご覧ください。
+- ``プロセスビューアー`` ページを導入しました。ユーザーは、プロセスの開始を視覚的に表示できます。 :ref:`プロセスビューアーの表示 <how-to-show-process-viewer>` で詳細をご覧ください。
 
-#. 値の形式を設定する ``書式設定言語の設定`` を導入しました。例えば、小数点は世界中の異なる地域で異なる形式で表示されます。
+- 値の形式を設定する ``書式設定言語の設定`` を導入しました。例えば、小数点は世界中の異なる地域で異なる形式で表示されます。
 
-#. ``DefaultChartColor.p.json`` サブプロセスを削除し、デフォルトのチャートの色をカスタマイズするためのポータルの変数を導入しました。
+- ``DefaultChartColor.p.json`` サブプロセスを削除し、デフォルトのチャートの色をカスタマイズするためのポータルの変数を導入しました。
 
-#. 新しい ``portal-components`` プロジェクトに以下のコンポーネントを導入しました。
+- 新しい ``portal-components`` プロジェクトに以下のコンポーネントを導入しました。
 
    - :ref:`ユーザーの選択コンポーネント <components-portal-components-user-selection-ja>`
 
@@ -537,40 +536,40 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 9.2 での変更内容
 ----------------------------------------
 
-#. ポータルのタスクリストとタスクの状態フィルターに ``破棄済``、 ``失敗``、 ``参加失敗``、 ``イベント待機中`` などの新しいタスクの状態を含めました。
+- ポータルのタスクリストとタスクの状態フィルターに ``破棄済``、 ``失敗``、 ``参加失敗``、 ``イベント待機中`` などの新しいタスクの状態を含めました。
 
-#. ポータルのケースリストとケースの状態フィルターに新しいケースの状態 ``破棄済`` を含めました。
+- ポータルのケースリストとケースの状態フィルターに新しいケースの状態 ``破棄済`` を含めました。
 
-#. :ref:`ワークフローイベントテーブル <how-to-show-workflow-events-ja>` を導入しました。:bdg-warning:`🔑WorkflowEventReadAll` 権限を持つユーザーは、すべての ``WORKFLOW_EVENTS`` を表示できます。
+- :ref:`ワークフローイベントテーブル <how-to-show-workflow-events-ja>` を導入しました。:bdg-warning:`🔑WorkflowEventReadAll` 権限を持つユーザーは、すべての ``WORKFLOW_EVENTS`` を表示できます。
 
-#. デフォルトのホームページを設定する ``Portal.Homepage`` ポータル設定を導入しました。各ユーザーはユーザープロファイルから変更を行うことができます。
+- デフォルトのホームページを設定する ``Portal.Homepage`` ポータル設定を導入しました。各ユーザーはユーザープロファイルから変更を行うことができます。
 
-#. :ref:`ポータルのケース項目の詳細 <customization-case-item-details-ja>` をカスタマイズする新しい方法を導入しました。ケースの詳細ページとケース情報ダイアログには、同じケース情報が表示されます。
+- :ref:`ポータルのケース項目の詳細 <customization-case-item-details-ja>` をカスタマイズする新しい方法を導入しました。ケースの詳細ページとケース情報ダイアログには、同じケース情報が表示されます。
 
-#. :ref:`ポータルのタスク項目の詳細 <customization-task-item-details-ja>` をカスタマイズする新しい方法を導入しました。
+- :ref:`ポータルのタスク項目の詳細 <customization-task-item-details-ja>` をカスタマイズする新しい方法を導入しました。
 
-#. ポータルのボタンアイコンの表示設定を制御する ``Portal.ShowButtonIcon`` ポータル設定を導入しました。
+- ポータルのボタンアイコンの表示設定を制御する ``Portal.ShowButtonIcon`` ポータル設定を導入しました。
 
-#. ログインページを表示するか、非表示にして代わりにエラーページを表示する ``PortalLoginPageDisplay`` という名前の新しい変数を導入しました。
+- ログインページを表示するか、非表示にして代わりにエラーページを表示する ``PortalLoginPageDisplay`` という名前の新しい変数を導入しました。
 
-#. マルチアプリケーションがサポート対象外になりました。ポータルは現在のアプリケーションでのみ動作します。つまり、管理者は新しい Ivy アプリケーションを追加できません。
+- マルチアプリケーションがサポート対象外になりました。ポータルは現在のアプリケーションでのみ動作します。つまり、管理者は新しい Ivy アプリケーションを追加できません。
 
-#. 統計チャートは、サポートされる言語ごとに複数の名前をサポートします。
+- 統計チャートは、サポートされる言語ごとに複数の名前をサポートします。
 
-#. ポータルは、複数言語のユーザーのお気に入りをサポートします。
+- ポータルは、複数言語のユーザーのお気に入りをサポートします。
 
-#. ポータルは SVG 形式のロゴをサポートします。
+- ポータルは SVG 形式のロゴをサポートします。
 
 9.1 での変更内容
 ------------------------------------------
 
-#. スタイルのカスタマイズ方法をリファクタリングしました。今後は、ポータルは CSS をカスタマイズするテクノロジーとして CSS 変数を使用します。
+- スタイルのカスタマイズ方法をリファクタリングしました。今後は、ポータルは CSS をカスタマイズするテクノロジーとして CSS 変数を使用します。
 
-#. ポータルのボタンアイコンの表示設定を制御する ``Portal.ShowButtonIcon`` ポータル設定を導入しました。
+- ポータルのボタンアイコンの表示設定を制御する ``Portal.ShowButtonIcon`` ポータル設定を導入しました。
 
-#. アイコンデコレーターを含む新しいポータルダイアログを導入しました。
+- アイコンデコレーターを含む新しいポータルダイアログを導入しました。
 
-#. TaskTemplate-7、TaskTemplate、TwoColumnTemplate が削除されました。
+- TaskTemplate-7、TaskTemplate、TwoColumnTemplate が削除されました。
 
 
 .. |css_variable| raw:: html
