@@ -138,4 +138,6 @@ needs. These are options you can modify:
    | Keyboard shortcuts for navigation | Enable or disable keyboard shortcuts for navigation |
    +-----------------------------------+-----------------------------------------------------+
 
+The default value of **Keyboard shortcuts for navigation** is ``FALSE``.
+
 .. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png

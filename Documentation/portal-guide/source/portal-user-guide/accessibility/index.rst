@@ -55,6 +55,9 @@ We have introduced basic keyboard shortcuts to streamline the user experience in
 - **Alt + 7**: Jump to User Settings.
 - **Alt + 8**: Toggle the visibility of the main menu.
 
+.. important::
+   You can enable/disable keyboard shortcuts in your **My Profile**. Please visit :ref:`accessibility-settings` for more details.
+
 Widget Navigation
 ^^^^^^^^^^^^^^^^^
 
@@ -122,11 +125,6 @@ Support for the Microsoft Narrator Screen Reader
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We rely on Microsoft Narrator to support screen readers. You can activate it via the keyboard shortcut **Ctrl + Windows key + Enter**. This ensures that users with visual impairments can easily navigate through the portal and understand the information provided.
-
-Enable & Disable Keyboard shortcuts
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-You can enable/disable keyboard shortcuts in your **My Profile**. Please visit :ref:`accessibility-settings` for more details.
 
 Descriptive Elements in the Task Widget
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
