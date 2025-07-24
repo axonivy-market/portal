@@ -216,7 +216,7 @@
 
     - デフォルトでは Everybody ロールに付与
 
-.. _portal-absence-and-sub-permission:
+.. _portal-absence-and-sub-permission-ja:
 
 ポータルの不在者と代行者の権限
 -------------------------------------------------------
@@ -255,5 +255,9 @@
 
 - _`UserReadSubstitutes`
     - すべてのユーザーの代行者を閲覧する権限
+
+- _`UserSetOwnPassword`
+
+
 
 
