@@ -20,7 +20,7 @@
 |multi-app-structure|
 
 
-.. _architecture-portal-process-modules-structure:
+.. _architecture-portal-process-modules-structure-ja:
 
 
 ポータルアプリは、portal-components と portal モジュールで構成されます。
@@ -29,7 +29,7 @@
 
 .. warning:: 実行するポータルは、セキュリティコンテキストごとに 1 つのみとすることを強く推奨します。
 
-.. _architecture-portal-components:
+.. _architecture-portal-components-ja:
 
 portal-components
 =================
