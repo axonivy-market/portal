@@ -55,6 +55,9 @@ We have introduced basic keyboard shortcuts to streamline the user experience in
 - **Alt + 7**: Jump to User Settings.
 - **Alt + 8**: Toggle the visibility of the main menu.
 
+.. important::
+   You can enable/disable keyboard shortcuts in your **My Profile**. Please visit :ref:`accessibility-settings` for more details.
+
 Widget Navigation
 ^^^^^^^^^^^^^^^^^
 

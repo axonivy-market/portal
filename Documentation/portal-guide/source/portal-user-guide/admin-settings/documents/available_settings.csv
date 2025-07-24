@@ -1,4 +1,5 @@
 Key,Default value,Note
+Portal.Accessibility.AllowKeyboardShortcutsConfiguration,TRUE, Set to true to allow the user interact with the keyboard shortcuts toggle.
 Portal.ApplicationName,"Axon Ivy",The application name that will be displayed on the page title.
 Portal.CaseDetails.HideDocument,FALSE,"Set to true, the document section in case detail page will be hidden, otherwise it will be shown."
 Portal.CaseDetails.HideUploadDocumentForDoneCase,FALSE,Set to true to deny upload (also delete) document after a case is done.
