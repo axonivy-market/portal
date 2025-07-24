@@ -153,7 +153,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     General: Général
     Homepage: Page d'accueil
     KeyboardShorcutsNavigationInfor: Basculer pour activer ou désactiver les raccourcis clavier de navigation.
-    KeyboardShortcutsNavigation: Raccourcis clavier pour la navigation.
+    KeyboardShortcutsNavigation: Raccourcis clavier pour la navigation
     KeyboardShortcutsTooltip: Ce bouton est actuellement indisponible et ne peut pas être utilisé en raison des paramètres.
     Language: Langue
     ProcessList: Liste des processus

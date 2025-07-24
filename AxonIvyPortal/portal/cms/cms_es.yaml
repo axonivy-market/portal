@@ -153,7 +153,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     General: Generales
     Homepage: Página web
     KeyboardShorcutsNavigationInfor: Alternar para habilitar o deshabilitar los atajos de teclado para la navegación.
-    KeyboardShortcutsNavigation: Atajos de teclado para la navegación.
+    KeyboardShortcutsNavigation: Atajos de teclado para la navegación
     KeyboardShortcutsTooltip: Este botón no está disponible actualmente y no se puede usar debido a la configuración.
     Language: Idioma
     ProcessList: Lista de procesos
