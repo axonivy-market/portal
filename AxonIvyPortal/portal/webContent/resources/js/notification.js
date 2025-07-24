@@ -1,13 +1,13 @@
 function openNotificationPanel() {
     $('#notifications-panel').addClass('active')
     let right = document.getElementById("notifications-panel").style.right;
-    if (right !== '-420px') {
+    if (right !== '-470px') {
         document.getElementById("notifications-panel").style.right = "0";
     }
 }
 
 function closeNotificationPanel() {
-    document.getElementById("notifications-panel").style.right = "-420px";
+    document.getElementById("notifications-panel").style.right = "-470px";
 }
 
 function markAsRead(notiId) {
@@ -32,7 +32,7 @@ $(document).ready(function () {
             isClickOnBell = false;
         }
         if (!isClickInside && notificationPanel.style.right === '0px') {
-            notificationPanel.style.right = "-420px";
+            notificationPanel.style.right = "-470px";
         } else if (isClickOnBell) {
             notificationPanel.style.right = "0";
         }

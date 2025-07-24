@@ -80,13 +80,13 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
     TaskEditWidgetNewDashBoardPage taskWidget = newDashboardDetailsEditPage.addNewTaskWidget();
     taskWidget.waitPreviewTableLoaded();
     taskWidget.openFilter();
-    taskWidget.addFilter("Created Date",FilterOperator.TODAY);
+    taskWidget.addFilter("Created",FilterOperator.TODAY);
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(4));
 
     taskWidget.openFilter();
     taskWidget.removeFilter(0);
-    taskWidget.addFilter("Created Date", FilterOperator.WITHIN_NEXT);
+    taskWidget.addFilter("Created", FilterOperator.WITHIN_NEXT);
     taskWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "2","Year(s)");
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.sizeGreaterThanOrEqual(0));
@@ -139,7 +139,7 @@ public class DashboardEditTaskWidgetTest extends BaseTest {
     
     taskWidget.addFilter("Description", FilterOperator.NOT_EMPTY);
     
-    taskWidget.addFilter("Created Date", FilterOperator.WITHIN_NEXT);
+    taskWidget.addFilter("Created", FilterOperator.WITHIN_NEXT);
     taskWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "2", "Year(s)");
     
     taskWidget.addFilter("Customer name", FilterOperator.IS);

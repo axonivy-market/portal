@@ -145,11 +145,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Heading 3
       NORMAL_TEXT: Normal Text
   MyProfile:
+    Accessibility: Accessibility
     CaseList: Case List
     DateFormat: Date Format
     FormattingLanguage: Formatting language
     General: General
     Homepage: Homepage
+    KeyboardShortcutsNavigation: Keyboard shortcuts for navigation
+    KeyboardShortcutsNavigationInfor: Toggle to enable or disable keyboard navigation shortcuts.
+    KeyboardShortcutsTooltip: This button is currently unavailable and cannot be used due to settings.
     Language: Language
     ProcessList: Process list
     TaskList: Task List
@@ -223,6 +227,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SessionCacheTimeout: Defines the session cache timeout duration (in seconds) for the Portal. This value can be set between 300 (5 minutes) and 86,400 (24 hours).
       ShowLoginPageFooter: For switch on/off the display of the footer on the login page.
       ShowQRCode: For switch on/off the display of the QR code.
+      allowKeyboardShortcutsConfiguration: Set to true to allow the user interact with the keyboard shortcuts button.
       behaviourWhenClickingOnLineInCaseList: Toggle between accessing case details or business details when clicking on a case in the case widget on the dashboard, global search, related cases, and process widget in combined mode.
       behaviourWhenClickingOnLineInTaskList: For switch behaviours (run the task or access task details) when clicking on a line in task list, task widget of dashboard and related tasks  in case details page.
       chatMaxConnection: 'The set number controls the amount of tabs allowed with active chat. If more tabs are opened, the chat will be disabled in inactive tabs. Allowed values between 1-5 '
@@ -807,7 +812,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Advanced settings
         ChooseAFit: Choose a fit
-        DisplayedText: display text
+        DisplayedText: '{0} display text'
         Greeting:
           Afternoon: Good afternoon
           Evening: Good evening

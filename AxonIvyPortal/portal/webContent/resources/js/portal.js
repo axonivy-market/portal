@@ -431,26 +431,16 @@ function isPressedSpecialKeys(event) {
 
   const ctrlKeyActions = ['z', 'y', 'x', 'c', 'v', 'a'];
   const arrowKeys = [37, 38, 39, 40]; // Arrow Left, Arrow Up, Arrow Right, Arrow Down
-
-  if (ctrlPressed && ctrlKeyActions.includes(event.key.toLowerCase())) {
-      return true;
-  }
-
-  if (shiftPressed && arrowKeys.includes(event.keyCode)) {
-      return true;
-  }
-
-  if (arrowKeys.includes(event.keyCode)) {
-    return true;
-  }
-
   const specialKeys = [
     'Control', 'Alt', 'Pause', 'CapsLock', 'Escape',
     'PageUp', 'PageDown', 'PrintScreen', 'Insert', 'Meta',
-    'ContextMenu', 'NumLock', 'ScrollLock', 'Home', 'End'
+    'ContextMenu', 'NumLock', 'ScrollLock', 'Home', 'End', 'Tab'
   ];
 
-  return specialKeys.includes(event.key);
+  return (ctrlPressed && ctrlKeyActions.includes(event.key.toLowerCase()))
+      || (shiftPressed && arrowKeys.includes(event.keyCode))
+      || arrowKeys.includes(event.keyCode)
+      || specialKeys.includes(event.key);
 }
 
 function showQuickSearchInput(index) {
@@ -506,6 +496,13 @@ const caseItemId = '[id="user-menu-required-login:main-navigator:main-menu__js__
 const searchInputId = '[id="global-search-component:global-search-data"]:visible'
 const useSettingMenuId = 'a#user-settings-menu:visible';
 const pinButton = 'a[id="user-menu-required-login:toggle-menu"]';
+let isKeyboardShortcutsEnabled = false;
+
+function initKeyboardShortcutsEnabledValue(value) {
+  if (typeof value === 'boolean') {
+    isKeyboardShortcutsEnabled = value;
+  }
+}
 
 $(document).ready(function () {
 
@@ -584,7 +581,7 @@ $(document).ready(function () {
     iframe.onload = function () {
       const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
       iframeDocument.addEventListener('keydown', function (event) {
-        if (onlyAltPressed(event)) {
+        if (isKeyboardShortcutsEnabled && onlyAltPressed(event)) {
           if(toggleLeftMenu(event.code)) {
             return;
           }
@@ -648,7 +645,7 @@ $(document).ready(function () {
     var taskActionStepsPanel = $('[id$=":side-steps-panel"]:visible');
     var taskActionStepsPanelVisible = taskActionStepsPanel.length > 0;
 
-    if (onlyAltPressed(event)) {
+    if (isKeyboardShortcutsEnabled && onlyAltPressed(event)) {
       if(toggleLeftMenu(keyCode)) {
         return;
       }
@@ -808,7 +805,7 @@ $(document).ready(function () {
     parentMenu.find('li').each((index, item) => {
       let linkItem = $(item).find('a');
       if (linkItem && linkItem.attr('aria-label') === undefined) {
-        linkItem.attr('aria-label', 'Aria label');
+        linkItem.attr('aria-label', linkItem.text());
       }
     })
   }

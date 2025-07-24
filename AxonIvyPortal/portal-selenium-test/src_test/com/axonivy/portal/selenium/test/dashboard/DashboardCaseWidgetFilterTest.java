@@ -79,7 +79,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
 
     // Add several options
     caseWidget.openFilterWidget();
-    caseWidget.addFilter("Created Date", FilterOperator.TODAY);
+    caseWidget.addFilter("Created", FilterOperator.TODAY);
     caseWidget.addFilter("Name", FilterOperator.CONTAINS);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "TestCase");
     caseWidget.addFilter("Description", FilterOperator.EMPTY);
@@ -99,7 +99,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
 
     // Create and save filter
     caseWidget.openFilterWidget();
-    caseWidget.addFilter("Created Date", FilterOperator.YESTERDAY);
+    caseWidget.addFilter("Created", FilterOperator.YESTERDAY);
     caseWidget.addFilter("State", null);
     caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
     caseWidget.saveFilter("CasesOpenYesterday");
@@ -170,7 +170,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
 
     // Add 2 filter items
     caseWidget.openFilterWidget();
-    caseWidget.addFilter("Created Date", FilterOperator.TODAY);
+    caseWidget.addFilter("Created", FilterOperator.TODAY);
     caseWidget.addFilter("Description", FilterOperator.EMPTY);
     caseWidget.applyFilter();
 
@@ -202,20 +202,20 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     CaseWidgetNewDashBoardPage caseWidget = newDashboardPage.selectCaseWidget(YOUR_CASES_WIDGET);
 
     caseWidget.openFilterWidget();
-    caseWidget.addFilter("Created Date", FilterOperator.TODAY);
+    caseWidget.addFilter("Created", FilterOperator.TODAY);
     caseWidget.applyFilter();
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(12));
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
 
     caseWidget.openFilterWidget();
-    caseWidget.changeOperator("Created Date", FilterOperator.AFTER, "date");
+    caseWidget.changeOperator("Created", FilterOperator.AFTER, "date");
     caseWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
     caseWidget.applyFilter();
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(12));
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
 
     caseWidget.openFilterWidget();
-    caseWidget.changeOperator("Created Date", FilterOperator.CURRENT, "date");
+    caseWidget.changeOperator("Created", FilterOperator.CURRENT, "date");
     caseWidget.applyFilter();
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(12));
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
@@ -318,7 +318,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     removeSavedFilterItemsIfExist(caseWidget);
 
     caseWidget.openFilterWidget();
-    caseWidget.addFilter("Created Date", FilterOperator.TODAY);
+    caseWidget.addFilter("Created", FilterOperator.TODAY);
     caseWidget.addFilter("State", null);
     caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
     caseWidget.saveFilter("CasesOpenToday");
