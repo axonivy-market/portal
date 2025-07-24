@@ -6176,3 +6176,7 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
   background: var(--dashboard-light-dark-button-background-color);
   border-color: var(--dashboard-light-dark-button-background-color);
 }
+
+.command-link-focused:focus {
+	outline: 2px solid var(--ivy-primary-lightest-color) !important;
+}

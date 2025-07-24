@@ -162,7 +162,7 @@
             <ui:define name="dialogFooter">
               <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                onclick="PF('destroy-task-dialog').hide();" styleClass="u-mar-right-15" />
+                onclick="PF('destroy-task-dialog').hide();" styleClass="u-mar-right-15 command-link-focused" />
               <p:commandButton id="confirm-destruction-dashboard-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
                icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
@@ -216,7 +216,7 @@
            <ui:define name="dialogFooter">
             <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-              onclick="PF('destroy-case-dialog').hide();" styleClass="u-mar-right-15"/>
+              onclick="PF('destroy-case-dialog').hide();" styleClass="u-mar-right-15 command-link-focused"/>
             <p:commandButton id="confirm-destruction-dashboard-cases"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"

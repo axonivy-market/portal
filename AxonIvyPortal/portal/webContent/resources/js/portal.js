@@ -870,8 +870,16 @@ function setAltForAvatar() {
  * @param {string} selector - The jQuery selector for the element(s) to focus.
  */
 function focusFirstVisibleElementInPanel(widgetVar, selector) {
-  var panel = PF(widgetVar).jq;
-  var first = panel.find(selector + ':visible').first();
+  var panel = PF(widgetVar).jq;  
+  var first;
+  var destructionWords = ['remove', 'destroy', 'delete', 'confirmation', 'confirm', 'deletion', 'reset'];
+  
+  if (destructionWords.some(word => widgetVar.includes(word))) {
+    first = panel.find('a').first();
+  } else {
+  	first = panel.find(selector).first();
+  }
+  
   if (first.length) {
     first.focus();
   }
