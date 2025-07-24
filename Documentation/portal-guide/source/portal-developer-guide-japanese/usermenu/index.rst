@@ -1,4 +1,4 @@
-.. _customization-user-menu:
+.. _customization-user-menu-ja:
 
 ユーザーメニュー
 ===========================================
@@ -19,7 +19,7 @@
 **Portal.UserMenu** 変数を設定することにより、ユーザーメニュー項目と各項目の詳細を事前に定義できます。
 
 
-.. _customization-user-menu-definition:
+.. _customization-user-menu-definition-ja:
 
 独自のユーザーメニューの定義
 ----------------------------------------------------

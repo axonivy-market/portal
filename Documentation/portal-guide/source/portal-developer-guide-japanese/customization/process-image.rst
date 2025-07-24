@@ -1,9 +1,9 @@
-.. _customization-process-image:
+.. _customization-process-image-ja:
 
 プロセスの画像
 =============================
 
-.. _customization-process-image-introduction:
+.. _customization-process-image-introduction-ja:
 
 概要
 ------------
@@ -11,10 +11,10 @@
 このセクションに従って、ポータルのプロセスの画像をカスタマイズします。
 
 
-.. _customization-process-image-customization:
+.. _customization-process-image-customization-ja:
 
 独自のプロセスの画像の定義
------------------------------
+------------------------------------------------------
 
 #. タイプ画像を使用して、プロジェクトで CMS オブジェクトを作成します。
 

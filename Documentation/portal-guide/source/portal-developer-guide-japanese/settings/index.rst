@@ -1,4 +1,4 @@
-.. _settings:
+.. _settings-ja:
 
 .. raw:: html
 
@@ -9,7 +9,7 @@
     </style>
 
 設定
-********
+************
 
 このセクションでは、ポータルのロール、権限などの設定について取り上げます。
 
@@ -18,7 +18,7 @@
 .. _settings-admin-settings-ja:
 
 ポータル設定の実行
-=========================
+======================================
 
 ポータル設定を手動で行う方法については、:ref:`update-portal-settings-ja` を参照してください。
 
@@ -30,15 +30,15 @@
 これにより、デザイナーを再起動せずに済みます。
 
 
-.. _settings-language:
+.. _settings-language-ja:
 
 言語設定
-=================
+===================
 
 新しい言語をポータルに追加するには、以下を行う必要があります。
 
 -  ポータルのすべての CMS エントリを Excel ファイルにエクスポートします。
--  このファイルの最後に新しい列を 1 つ追加し、新しい言語のロケール（例えば、イタリア語の場合は ``it``）をその新しい列の最初のセルに追加します。サポートされるロケールについては、 `Java がサポートするロケール <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ を参照してください。
+-  このファイルの最後に新しい列を 1 つ追加し、新しい言語のロケール（例えば、イタリア語の場合は ``it`` ）をその新しい列の最初のセルに追加します。サポートされるロケールについては、 `Java がサポートするロケール <https://www.oracle.com/java/technologies/javase/jdk11-suported-locales.html>`_ を参照してください。
 
    |export-cms|
 
@@ -47,24 +47,24 @@
 -  ポータルを再展開します。
 
 ロールの設定
-==================
+=============================
 
 .. csv-table:: 
    :file: tables/portal-roles.csv
    :widths: 30, 70
    :header-rows: 1
 
-.. _settings-permission-settings:
+.. _settings-permission-settings-ja:
 
 権限の設定
-===================
+==============================
 
 :dev-url:`エンジンコックピット </doc/|version|/engine-guide/reference/engine-cockpit/security.html>` で権限を設定します。
 セキュリティ領域の「PortalPermissions」グループにこれらすべての権限があります。
 
 
 タスクの権限
------------------------
+----------------------------------
 - ノートの追加
 
    ユーザーには次の権限が必要です：:bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`
@@ -153,7 +153,7 @@
    :bdg-ref-warning:`🔑TaskDisplayAdditionalOptions <TaskDisplayAdditionalOptions>`.
 
 ケースの権限
-----------------
+----------------------------------
 
 - ノートの追加
 
@@ -205,17 +205,17 @@
 .. _settings-permission-settings-others-ja:
 
 その他の権限
------------------
+-----------------------------
 
 .. csv-table:: 
    :file: tables/portal-other-permissions.csv
    :widths: 20, 50, 30
    :header-rows: 1
 
-.. _settings-virus-scanning-setting:
+.. _settings-virus-scanning-setting-ja:
 
 ウイルススキャンの設定
-=======================
+=============================================
 
 PrimeFaces には、 `VirusTotal <https://www.virustotal.com/>`_ を使用するインターフェースがあらかじめ実装されています。
 `VirusTotal <https://www.virustotal.com/>`_ を有効にするには、 `VirusTotal のウェブサイト <https://www.virustotal.com/>`_ でコミュニティアカウントを作成する必要があります。
@@ -323,11 +323,11 @@ web XML ファイルで context-param を設定すると、ウイルススキャ
 - ``name``：サードパーティーのアプリの名前。
 - ``link``：サードパーティーのアプリのURL。
 
-.. _portal-statistic-charts:
+.. _portal-statistic-charts-ja:
 
 ポータルの統計チャート
-^^^^^^^^^^^^^^^^^^^^^^^
-ポータルダッシュボードの :ref:`統計ウィジェット <portal-statistic-widget>` で使用できるすべての統計チャートのフィルターロジック、外観などの設定を定義できます。
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ポータルダッシュボードの :ref:`統計ウィジェット <portal-statistic-widget-ja>` で使用できるすべての統計チャートのフィルターロジック、外観などの設定を定義できます。
 
 
 ファイル名： ``variables.Portal.ClientStatistic.json``
@@ -424,7 +424,7 @@ web XML ファイルで context-param を設定すると、ウイルススキャ
 
    - ``xTitles``：X 軸の複数言語の表示タイトル
    - ``yTitles``：Y 軸の複数言語の表示タイトル
-   - ``yValue``：Y 軸に時間を表示したい場合は、このフィールドに**時間**の値を追加します。
+   - ``yValue``：Y 軸に時間を表示したい場合は、このフィールドに **時間** の値を追加します。
 
 - ``lineChartConfig``：``折れ線``グラフを設定する場合に必要なフィールド。チャートのタイプが ``line`` の場合に追加してください。
 
@@ -438,7 +438,7 @@ web XML ファイルで context-param を設定すると、ウイルススキャ
 .. _portal-process-external-link-ja:
 
 ポータルのプロセスの外部リンク
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ポータルの標準的な外部リンクは、以下のファイルで定義されます。
 
 ファイル名： ``variables.Portal.Processes.ExternalLinks.json``

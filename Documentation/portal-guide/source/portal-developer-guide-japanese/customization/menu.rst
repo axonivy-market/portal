@@ -1,9 +1,9 @@
-.. _customization-menu:
+.. _customization-menu-ja:
 
 ユーザープロファイルのメニューとデフォルトのホームページ
 ==========================================================================================
 
-.. _customization-menu-introduction:
+.. _customization-menu-introduction-ja:
 
 概要
 ------------
@@ -105,7 +105,7 @@ Ivy プロセスにリダイレクトするメニューの例
     | 例： ``subMenuItem.setLabel(ApplicationMultiLanguageAPI.getCmsValueByUserLocale<CMS_URI>));``
 
 ポータルの変数
-+++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++
 
 呼び出し可能サブプロセスを作成する方法のほかにも、ポータルの ``Portal.CustomMenuItems`` 変数でカスタムメニュー項目を定義できます。
 

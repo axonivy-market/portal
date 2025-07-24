@@ -1,7 +1,7 @@
-.. _components-error-handling:
+.. _components-error-handling-ja:
 
 エラー処理
-==============
+======================================
 
 このセクションでは、ポータルの使用中に発生する可能性があるエラーのタイプと、ポータル内でのエラー処理の方法について説明します。
 
@@ -17,12 +17,12 @@
 -  期限切れエラーの表示：ユーザーがセッションのアクティブ表示ではなくなったページのリクエストを送信した場合や、ユーザーのセッションの期限が切れた場合に発生するエラーです。
    
 
-.. _components-error-handling-ajax-error-handling:
+.. _components-error-handling-ajax-error-handling-ja:
 
 Ajax エラーの処理
--------------------
+---------------------------------------------
 
-.. _components-error-handling-ajax-error-handling-introduction:
+.. _components-error-handling-ajax-error-handling-introduction-ja:
 
 概要
 ^^^^^^^^^^^^
@@ -30,7 +30,7 @@ Ajax エラーの処理
 ポータルは自動的に Ajax リクエストによって生成されるすべての例外を処理します。
 
 例外が発生すると、例外タイプとメッセージを含むエラー通知がエンドユーザーに表示されます。
-エラーメッセージの``詳細``リンクをクリックすると、例外の詳細が表示されます。
+エラーメッセージの ``詳細`` リンクをクリックすると、例外の詳細が表示されます。
 
 
 スタックトレースの表示は、Ivy システムの ``Errors.ShowDetailsToEndUser`` プロパティで制御されます。
@@ -48,12 +48,12 @@ Ajax エラーの処理
 
 |portal-ajax-error-handler|
 
-.. _components-error-handling-nonajax-error-handling:
+.. _components-error-handling-nonajax-error-handling-ja:
 
 Ajax 以外のエラーの処理
------------------------
+--------------------------------------------------
 
-.. _components-error-handling-nonajax-error-handling-introduction:
+.. _components-error-handling-nonajax-error-handling-introduction-ja:
 
 概要
 ^^^^^^^^^^^^
@@ -69,18 +69,19 @@ Ajax 以外のエラーの処理
 そのため、|ivy| Portal では、エンドユーザーがこのページを理解しやすくする別の方法が用意されています。
 
 
-.. _components-error-handling-nonajax-error-handling-howtoconfigure:
+.. _components-error-handling-nonajax-error-handling-howtoconfigure-ja:
 
 設定方法
 ^^^^^^^^^^^^^^^^
 
 以下の ZIP ファイルをダウンロードし、エンジン（またはデザイナー）で設定します。
 
-.. important:: ZIP ファイルを展開し、README.txt ファイルの指示に従ってください。
+.. important:: 
+   ZIP ファイルを展開し、README.txt ファイルの指示に従ってください。
 
 :download:`PortalErrorPageConfiguration.zip <documents/error-handling/portal-error-page-configuration.zip>` 
 
-.. _components-error-handling-nonajax-error-handling-result:
+.. _components-error-handling-nonajax-error-handling-result-ja:
 
 結果
 ^^^^^^
@@ -104,7 +105,7 @@ HTTP 500エラー
 概要
 ^^^^^^^^^^^^
 
-.. _components-error-handling-customize-view-expired-dialog:
+.. _components-error-handling-customize-view-expired-dialog-ja:
 
 Ivy には ``ViewExpiredException`` の警告ダイアログが用意されています。このダイアログは、プロジェクトの ``webContent/layouts/includes/exception.xhtml`` ファイルにあります。
 
@@ -130,6 +131,6 @@ Ivy には ``ViewExpiredException`` の警告ダイアログが用意されて�
 .. |portal-ajax-error-handler| image:: ../../screenshots/error-handling/portal-ajax-error-handler.png
 .. |default-ivy-error| image:: ../../screenshots/error-handling/default-ivy-error.png
 .. |404| image:: ../../screenshots/error-handling/404.png
-..|500| image:: ../../screenshots/error-handling/500.png
+.. |500| image:: ../../screenshots/error-handling/500.png
 
 

@@ -1,12 +1,12 @@
 .. _customization-portal-logos-and-colors-ja:
 
 ポータルのスタイルのカスタマイズ（ロゴ、色、日付パターン）
-========================================================================================
+=============================================================================================================
 
-.. _customization-portal-logos-and-colors-change-portal-logos:
+.. _customization-portal-logos-and-colors-change-portal-logos-ja:
 
 ポータルで表示されるロゴの変更
-------------------------------------------------
+---------------------------------------------------------------------
 
 :dev-url:`エンジンのブランディング </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` により、メニューの左上隅のロゴとログインロゴの両方を変更できます。
 
@@ -33,7 +33,7 @@
 
 
 展開されたメニューのロゴ
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 -  左側のメニューが展開されたときは、 ``logo`` リソースを使用して、ホームページのロゴを更新します。
 
@@ -62,7 +62,7 @@
 -  ``favicon`` リソースを使用して、ファビコンを更新します。
 
    .. tip::
-      - サイズが 16x16 または 32x32 ピクセルの画像を使用することを推奨します。
+      サイズが 16x16 または 32x32 ピクセルの画像を使用することを推奨します。
 
 ポータルのスタイルの変更
 -------------------------------------------
@@ -75,7 +75,8 @@
 :dev-url:`custom.css </doc/|version|/engine-guide/configuration/files/custom-css.html>` の場所については、:dev-url:`エンジンのブランディング </doc/|version|/designer-guide/user-interface/branding/branding-engine.html>` を参照してください。
 
 
-.. caution:: 将来のポータルバージョンで変更される可能性があるため、 ``portal-root-variables.css``、 ``portal-variables-light.css``、 ``portal-variables-dark.css``、 ``portal.css`` 変数を直接変更しないでください。
+.. caution:: 
+   将来のポータルバージョンで変更される可能性があるため、 ``portal-root-variables.css``、 ``portal-variables-light.css``、 ``portal-variables-dark.css``、 ``portal.css`` 変数を直接変更しないでください。
 
 ..
 

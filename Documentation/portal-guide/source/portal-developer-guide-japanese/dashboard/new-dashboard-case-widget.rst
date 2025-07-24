@@ -1,4 +1,4 @@
-.. _configure-new-dashboard-case-widget:
+.. _configure-new-dashboard-case-widget-ja:
 
 ケースウィジェットの設定
 =====================================================
@@ -93,13 +93,13 @@
 
    -  ``h``：HTML DOMスタイル ``height`` は ``60 * h + 20 * (h - 1)`` として計算されます。
 
-   -  ``styleClass``（オプション）：CSS クラスをケースウィジェットの HTML DOM に追加します。
+   -  ``styleClass`` （オプション）：CSS クラスをケースウィジェットの HTML DOM に追加します。
 
-   -  ``style``（オプション）：インラインスタイルをケースウィジェットの HTML DOM に追加します。
+   -  ``style`` （オプション）：インラインスタイルをケースウィジェットの HTML DOM に追加します。
 
 -  ``sortField``：ケースウィジェットのソートフィールドの初期値。
 
--  ``sortDescending``：ソートフィールドの初期値の並べ替え方向。デフォルト値は ``false``（昇順で並べ替え）です。 
+-  ``sortDescending``：ソートフィールドの初期値の並べ替え方向。デフォルト値は ``false`` （昇順で並べ替え）です。 
    
 
 -  ``rowsPerPage``：ケースウィジェットの 1 ページに表示されるケースの最大数。
@@ -110,8 +110,8 @@
 -  ``showFullscreenMode``：全画面モードのアイコンの表示設定。デフォルト値は ``true`` です。アイコンを非表示にするには ``false`` に設定してください。
 
 -  ``isTopMenu``：値が ``true`` の場合、ダッシュボードはナビゲーションバーの最上位の項目として表示されます。 
-   値が ``false`` の場合は、`ダッシュボード`メニューの下にサブ項目として表示されます。 
-   デフォルト値は ``false`` です。
+   値が ``false`` の場合は、 `ダッシュボード` メニューの下にサブ項目として表示されます。 
+   デフォルト値は  ``false``  です。
 
 -  ``columns``：ケースウィジェットの各列の列設定。列のフィルター、スタイル、表示設定などを事前に定義し、カスタム列も定義できます。
    
@@ -137,7 +137,7 @@
 
             - ``owner``：ケースオーナーのリスト
 
-            - ``actions``：``ケースの詳細にアクセス``、``ケースのビジネスの詳細``、``ケースを破棄``などのアクション
+            - ``actions``： ``ケースの詳細にアクセス``、 ``ケースのビジネスの詳細``、 ``ケースを破棄`` などのアクション
               
 
          カスタム列の ``field`` は、ケースのカスタムフィールドの名前になります。
@@ -155,13 +155,13 @@
 .. _configure-new-dashboard-case-widget-custom-columns-ja:
 
 カスタム列
---------------
+------------------------------------
 
 ポータルは、ケースのカスタムフィールドをサポートします。ケースウィジェットでは列として表示できます。
 
 
 従来のカスタム列
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 表示する列を、フィルター、形式、スタイルなどの他の属性とともに事前に定義できます。
 以下はカスタム列の標準的な JSON の例です。
@@ -203,7 +203,7 @@
 以下の手順に従って実装します。
 
    #. カスタムアクションボタンをクリックするとトリガーされる新しいプロセスを作成します。このプロセスで、 ``uuid`` パラメーターを受け入れるリクエスト開始イベントを定義します。 
-   ケースの詳細ページの``カスタムアクション``ボタンをクリックすると、このプロセスが呼び出され、ケースの UUID が ``uuid`` パラメーターとして受け渡されます。 
+      ケースの詳細ページの ``カスタムアクション`` ボタンをクリックすると、このプロセスが呼び出され、ケースの UUID が ``uuid`` パラメーターとして受け渡されます。 
    
       
       |custom-action-button-process-demo|
@@ -232,7 +232,7 @@
       |custom-action-button-custom-field|
 
 フィルター条件
------------------
+----------------------------------
 
 ケースウィジェットのほとんどの列でフィルター条件を事前に定義できます。条件は列ごとに異なり、リストのみ、文字列のみを受け入れる列もあれば、日時など、特定の形式の文字列を必要とする列もあります。
 
@@ -263,7 +263,7 @@ Json フィルターの基本構造：
 
    ..
    
-.._configure-new-dashboard-case-widget-filter-structure-ja:
+.. _configure-new-dashboard-case-widget-filter-structure-ja:
 
    - ``field``：列名に対応するフィルターのフィールド名
 
@@ -277,7 +277,7 @@ Json フィルターの基本構造：
 
      - **日付列**：today、yesterday、is、is_not、before、after、between、not_between、current、last、next、empty、not_empty
 
-   - ``type``： ``standard``（標準の列）または ``custom``（カスタム列）
+   - ``type``： ``standard`` （標準の列）または ``custom`` （カスタム列）
 
    - 日付タイプの追加フィールド：
 
@@ -595,7 +595,7 @@ Json フィルターの基本構造：
 
       * ``true``：この列にクイック検索を適用します。
       * ``false``：この列にクイック検索を適用しません。
-      * ``not defined``：``name`` 列と ``description`` 列は ``true``、その他の列は自動的に ``false`` になります。
+      * ``not defined``： ``name`` 列と ``description`` 列は ``true``、その他の列は自動的に ``false`` になります。
 
 .. |custom-action-button-custom-field| image:: images/new-dashboard-case-widget/custom-action-button-custom-field.png
 .. |custom-action-button-process-demo| image:: images/new-dashboard-case-widget/custom-action-button-process-demo.png

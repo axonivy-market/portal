@@ -3,7 +3,7 @@
 プロセスチェーン
 ********************************
 
-.. _components-portal-components-process-chain-introduction:
+.. _components-portal-components-process-chain-introduction-ja:
 
 概要
 ^^^^^^^^^^^^
@@ -19,7 +19,7 @@
 
 |process-chain|
 
-.. _components-portal-components-process-chain-how-to-use:
+.. _components-portal-components-process-chain-how-to-use-ja:
 
 使用方法
 ^^^^^^^^^^^^^^^^^^
