@@ -53,7 +53,7 @@
 **シグネチャ**：portalLoadSubMenuItems
 
 .. csv-table::
-  :file: tables/portal-load-submenu-items.csv
+  :file: tables/portal-load-sub-menu.csv
   :header-rows: 1
   :widths: 50, 50
 

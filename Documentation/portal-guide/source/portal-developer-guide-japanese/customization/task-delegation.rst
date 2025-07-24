@@ -9,7 +9,7 @@
 **シグネチャ**：portalCalculateTaskDelegate
 
 .. csv-table::
-  :file: tables/portal-task-delegation.csv
+  :file: tables/portal-calculate-task-delegate.csv.csv
   :header-rows: 1
   :widths: 30, 50, 20
 
