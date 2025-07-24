@@ -31,6 +31,7 @@ import ch.ivy.addon.portalkit.dto.AbstractConfigurableContent;
 import ch.ivy.addon.portalkit.dto.AbstractWidgetFilter;
 import ch.ivy.addon.portalkit.dto.WidgetLayout;
 import ch.ivy.addon.portalkit.dto.widget.AbstractWidget;
+import ch.ivy.addon.portalkit.dto.widget.BusinessDetailsWidget;
 import ch.ivy.addon.portalkit.dto.widget.CustomWidget;
 import ch.ivy.addon.portalkit.dto.widget.DocumentWidget;
 import ch.ivy.addon.portalkit.dto.widget.HistoryWidget;
@@ -161,7 +162,7 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
       }
     }
   }
-
+  
   private String readConfigurationOfUser() {
     if (Ivy.session().isSessionUserUnknown()) {
       return EMPTY;
@@ -223,6 +224,9 @@ public abstract class AbstractConfigurableContentBean<T extends AbstractConfigur
       }
       else if (widget instanceof TechnicalCaseWidget) {
         widget.setType(WidgetType.TECHINCAL_CASE);
+      }
+      else if (widget instanceof BusinessDetailsWidget) {
+        widget.setType(WidgetType.BUSINESS_DETAILS);
       }
       else {
         widget.setType(WidgetType.CUSTOM);

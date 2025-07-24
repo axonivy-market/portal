@@ -20,16 +20,20 @@ import com.axonivy.portal.components.enums.DocumentType;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 
+import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.enums.ApplicationType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 import ch.ivy.addon.portalkit.service.CaseDocumentService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.GrowlMessageService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IUser;
 
 @ManagedBean
 @SessionScoped
@@ -136,5 +140,9 @@ public class MasterDataBean implements Serializable {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allTypes");
     } else
       return String.join(", ", extensionList);
+  }
+  
+  public boolean isKeyboardShortcutsEnabled() {
+    return UserSettingService.getInstance().isKeyboardShortcutsEnabled();
   }
 }

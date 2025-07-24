@@ -19,10 +19,12 @@ import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
+import com.axonivy.portal.selenium.page.ClientStatisticWidgetNewDashboardPage;
 import com.axonivy.portal.selenium.page.CustomWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
@@ -352,11 +354,14 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     NewDashboardDetailsEditPage newDashboard = new NewDashboardDetailsEditPage();
     newDashboard.waitPageLoaded();
 
+    // Wait for canvas completely loaded. 
+    Sleeper.sleep(2000);
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "edit-statistic-widget");
     ScreenshotUtils.capturePageScreenshot(ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-widget-configuration");
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
     homePage = new NewDashboardPage();
-    ScreenshotUtils.captureElementScreenshot(homePage.waitAndGetClientStatisticChart(0),
+    ClientStatisticWidgetNewDashboardPage tasksByPriorityWidget = homePage.selectClientStatisticChartWidget("Tasks By Priority");
+    ScreenshotUtils.captureElementScreenshot(tasksByPriorityWidget.getWidget(),
         ScreenshotUtils.NEW_DASHBOARD_FOLDER + "task-by-priority-statistic-chart-widget");
   }
 
@@ -452,7 +457,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     caseWidget.addFilter("Account Number", FilterOperator.EQUAL);
     caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER, 40);
 
-    caseWidget.addFilter("Created Date", FilterOperator.WITHIN_LAST);
+    caseWidget.addFilter("Created", FilterOperator.WITHIN_LAST);
     caseWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "2", "Year(s)");
     
     caseWidget.addFilter("Description", FilterOperator.CONTAINS);
@@ -510,6 +515,8 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     caseWidget.openFilterWidget();
     homePage.clickOnManageFilterLink();
     homePage.waitForPageLoad();
+    // Wait for canvas completely loaded. 
+    Sleeper.sleep(2000);
     ScreenshotUtils.captureElementScreenshot(homePage.getManageFilterDialog(),
     ScreenshotUtils.NEW_DASHBOARD_FOLDER + "widget-filter-management"); //#delete-saved-filter-form\:quick-filter-table > div.ui-datatable-scrollable-body
   }
@@ -527,7 +534,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     caseWidget.addFilter("State", null);
     caseWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
     
-    caseWidget.addFilter("Created Date", FilterOperator.TODAY);
+    caseWidget.addFilter("Created", FilterOperator.TODAY);
     
     caseWidget.removeFocusFilterDialog();
     ScreenshotUtils.captureElementScreenshot(caseWidget.getConfigurationFilter(),

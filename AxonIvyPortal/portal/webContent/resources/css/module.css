@@ -5768,3 +5768,7 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-butto
 .iframe-body.ai-result .grid-stack {
   padding: 0;
 }
+
+body.edit-mode {
+  overflow: hidden;
+}

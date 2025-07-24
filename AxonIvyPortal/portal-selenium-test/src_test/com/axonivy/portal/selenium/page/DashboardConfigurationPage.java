@@ -13,6 +13,7 @@ import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
 import com.axonivy.portal.selenium.common.FileHelper;
+import com.axonivy.portal.selenium.common.Sleeper;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
@@ -443,6 +444,8 @@ public class DashboardConfigurationPage extends TemplatePage {
   }
 
   public SelenideElement getImportDialog() {
+    // wait ajax loading
+    Sleeper.sleep(2000);
     return $("div[id$=':dashboard-import-dialog']");
   }
 

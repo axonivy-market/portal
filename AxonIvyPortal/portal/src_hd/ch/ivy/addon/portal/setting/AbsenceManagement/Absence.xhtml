@@ -25,7 +25,7 @@
         <p:messages widgetVar="growl" closable="true" id="absence-messages" escape="false" styleClass="new-absence-messages " />
       </div>
       <h:panelGroup id="input-adsence-data-section" layout="block" styleClass="ui-g-12 u-padding-0 ui-fluid">
-        <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0" rendered="#{data.canCreateAbsenceForOtherUsers}">
+        <h:panelGroup layout="block" styleClass="pl-2" rendered="#{data.canCreateAbsenceForOtherUsers}">
           <ic:com.axonivy.portal.components.UserSelection id="absence-selection-component" componentId="absence-username"
             selectedUser="#{data.selectedUser}" isRenderedMessage="false" scrollHeight="200"
             completeMethod="#{logic.autoCompleteForUserOnApp}" isDisabled="#{!data.isCreateMode}" isRequired="true"

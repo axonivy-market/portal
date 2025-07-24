@@ -13,10 +13,12 @@ import com.axonivy.portal.bo.jsonversion.DashboardFilterJsonVersion;
 import com.axonivy.portal.migration.dashboard.migrator.JsonDashboardMigrator;
 import com.axonivy.portal.migration.dashboardfilter.migrator.JsonDashboardFilterMigrator;
 import com.axonivy.portal.migration.dashboardtemplate.migrator.JsonDashboardTemplateMigrator;
+import com.axonivy.portal.migration.thirdpartyapplication.migrator.JsonThirdPartyApplicationMigrator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.configuration.AbstractConfiguration;
+import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardTemplate;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetFilterModel;
@@ -77,7 +79,6 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
     return Optional.ofNullable(convertToLatestVersion(jsonValue))
       .orElseGet(() -> BusinessEntityConverter.jsonValueToEntities(jsonValue, getType()));
   }
-
   private List<T> convertToLatestVersion(String jsonValue) {
     ObjectMapper mapper = new ObjectMapper();
     try {
@@ -91,6 +92,10 @@ public abstract class JsonConfigurationService<T extends AbstractConfiguration> 
       }
       if (getType() == DashboardTemplate.class) {
         JsonDashboardTemplateMigrator migrator = new JsonDashboardTemplateMigrator(mapper.readTree(jsonValue));
+        return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), getType());
+      }
+      if (getType() == Application.class) {
+        JsonThirdPartyApplicationMigrator migrator = new JsonThirdPartyApplicationMigrator(mapper.readTree(jsonValue));
         return BusinessEntityConverter.convertJsonNodeToList(migrator.migrate(), getType());
       }
     } catch (JsonProcessingException ex) {

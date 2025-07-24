@@ -86,7 +86,7 @@ public class TaskWidgetTest extends BaseTest {
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
 
     taskWidget.openFilterWidget();
-    taskWidget.addFilter("Created Date", FilterOperator.AFTER);
+    taskWidget.addFilter("Created", FilterOperator.AFTER);
     taskWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
     taskWidget.applyFilter();
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(4));
@@ -95,7 +95,7 @@ public class TaskWidgetTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.resetFilter();
     taskWidget.openFilterWidget();
-    taskWidget.addFilter("Completed Date", FilterOperator.BEFORE);
+    taskWidget.addFilter("Completed", FilterOperator.BEFORE);
     taskWidget.inputValueOnLatestFilter(FilterValueType.DATE,
         LocalDate.now().plusDays(1).format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     taskWidget.applyFilter();

@@ -15,6 +15,8 @@
         <p:selectOneMenu id="field-type-selection" value="#{columnManagementBean.selectedFieldType}" styleClass="field-add-fieldset__input">
           <f:selectItems value="#{columnManagementBean.fieldTypes}" var="type" itemLabel="#{type.label}"/>
           <p:ajax listener="#{columnManagementBean.fetchFields}" update="field-add-fieldset" />
+          <p:ajax event="change" listener="#{columnManagementBean.onSelectType}" update="field-add-fieldset" />
+
         </p:selectOneMenu>
       </div>
 
@@ -68,7 +70,7 @@
         </div>
       </h:panelGroup>
 
-    <div class="ui-g-3 field-add-fieldset__label">
+      <div class="ui-g-3 field-add-fieldset__label">
         <p:outputLabel for="standard-field-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')}" rendered="#{selectedStandardField}" />
         <p:outputLabel for="custom-field-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')}" rendered="#{selectedCustomField}" />
         <p:outputLabel for="custom-case-field-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')}" rendered="#{selectedCustomCaseField}" />
@@ -83,6 +85,7 @@
             <f:attribute name="existingFields" value="#{columnManagementBean.existingFields}" />
             <f:selectItems value="#{columnManagementBean.fields}" var="field" itemValue="#{field}" itemLabel="#{field}" />
             <f:selectItem noSelectionOption="true" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"/>
+            <p:ajax listener="#{columnManagementBean.onSelectStandardField()}" process="@this" update="field-add-fieldset"/>
           </p:selectOneMenu>
         </ui:fragment>
 
@@ -120,7 +123,7 @@
             <p:ajax listener="#{columnManagementBean.onSelectCustomField()}" process="@this" update="field-add-fieldset" />
           </p:autoComplete>
         </ui:fragment>
-    </div>
+      </div>
 
       <h:panelGroup id="number-pattern-container" 
         styleClass="#{columnManagementBean.selectedCustomFieldType eq 'NUMBER' ? 'ui-g-12 field-add-fieldset__number-pattern-container' : ''}">
@@ -141,25 +144,42 @@
           <p:outputLabel for="custom-field-description" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}"/>
         </div>
         <div class="ui-g-9 ui-fluid">
-          <p:inputText id="custom-field-description" readonly="true" value="#{columnManagementBean.fieldDescription}"/>
+          <p:inputText id="custom-field-description" readonly="true" disabled="true" value="#{columnManagementBean.fieldDescription}"/>
         </div>
       </h:panelGroup>
 
       <div class="ui-g-3 field-add-fieldset__label">
         <p:outputLabel for="field-display-name" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}" />
       </div>
-      <div class="ui-g-9 ui-fluid">
+      <div class="ui-g-9 ui-fluid ui-inputgroup">
         <p:inputText id="field-display-name" value="#{columnManagementBean.fieldDisplayName}" styleClass="field-add-fieldset__input"
-           required="#{!selectedCustomField and !selectedCustomCaseField and !selectedCustomBusinessCaseField}" requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
+           required="#{!selectedCustomField and !selectedCustomCaseField and !selectedCustomBusinessCaseField}"
+           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
+           disabled="#{selectedCustomField or selectedCustomCaseField or selectedCustomBusinessCaseField}"
            readonly="#{selectedCustomField or selectedCustomCaseField or selectedCustomBusinessCaseField}"/>
+
+        <p:commandButton id="name-add-language-button" icon="si si-chat-translate"
+                         rendered="#{columnManagementBean.isDisplayMultiLanguage()}"
+                         actionListener="#{columnManagementBean.updateNameByLocale()}" process="field-display-name"
+                         update="name-language-config:multiple-languages-dialog"
+                         oncomplete="PF('multiple-languages-dialog').show();" />
       </div>
 
       <div class="ui-g-12 text-right">
-        <p:commandButton id="field-add-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addField')}" 
+        <p:commandButton id="field-add-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addField')}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addField')}"
           actionListener="#{columnManagementBean.add}" update="field-add-fieldset column-management-datatable"
           oncomplete="PF('column-management-dialog').initPosition();" icon="si si-add" process="column-management-form"/>
       </div>
+
+      <ic:ch.ivy.addon.portal.generic.dashboard.component.MultiLanguageConfiguration
+              rendered="#{columnManagementBean.isDisplayMultiLanguage()}"
+              id="name-language-config" titles="#{columnManagementBean.getFieldDisplayNames()}"
+              managedBean="#{columnManagementBean}" dynamic="true"
+              updateCurrentLanguage="#{columnManagementBean.updateCurrentLanguage()}"
+              componentToUpdateOnModify="#{p:resolveFirstComponentWithId('field-display-name', view).clientId}"
+              componentToUpdateOnCreate="#{p:resolveFirstComponentWithId('field-display-name', view).clientId}"
+              titleRequired="false" />
     </div>
   </p:fieldset>
 </html>

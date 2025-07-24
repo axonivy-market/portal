@@ -25,7 +25,10 @@ public class TaskFilterFieldName extends FilterField {
 
   @Override
   public String getLabel() {
-    return DashboardStandardTaskColumn.NAME.getLabel();
+    if (org.apache.commons.lang3.StringUtils.isBlank(this.label)) {
+      return DashboardStandardTaskColumn.NAME.getLabel();
+    }
+    return this.label;
   }
 
   @Override
@@ -34,6 +37,9 @@ public class TaskFilterFieldName extends FilterField {
     filter.setFilterType(DashboardColumnType.STANDARD);
     filter.setFilterFormat(FilterFormat.TEXT);
     filter.setField(getName());
+    if (this.label == null) {
+      setLabel(filter.getLabel());
+    }
   }
 
   @Override

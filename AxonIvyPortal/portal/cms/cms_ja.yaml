@@ -144,11 +144,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: 見出し 3
       NORMAL_TEXT: 通常のテキスト
   MyProfile:
+    Accessibility: 'TODO: Accessibility'
     CaseList: ケースリスト
     DateFormat: 日付の形式
     FormattingLanguage: 書式設定言語
     General: 一般
     Homepage: ホームページ
+    KeyboardShortcutsNavigation: 'TODO: Keyboard shortcuts for navigation'
+    KeyboardShortcutsNavigationInfor: 'TODO: Toggle to enable or disable keyboard navigation shortcuts.'
+    KeyboardShortcutsTooltip: 'TODO: This button is currently unavailable and cannot be used due to settings.'
     Language: 言語
     ProcessList: プロセスリスト
     TaskList: 'TODO: Task List'
@@ -223,6 +227,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SessionCacheTimeout: TODO Defines the session cache timeout duration (in seconds) for the Portal. This value can be set between 300 (5 minutes) and 86,400 (24 hours).
       ShowLoginPageFooter: ログインページのフッターの表示のオン／オフを切り替えます。
       ShowQRCode: QRコードの表示のオン／オフを切り替えます。
+      allowKeyboardShortcutsConfiguration: 'TODO: Set to true to allow the user interact with the keyboard shortcuts button.'
       behaviourWhenClickingOnLineInCaseList: ダッシュボード・グローバル検索・関連ケース・または複合モードのプロセスウィジェットの各ケースウィジェットでケースをクリックしたときに、ケースの詳細またはビジネスの詳細へのアクセスを切り替えます。
       behaviourWhenClickingOnLineInTaskList: タスク リスト、ダッシュボードのタスク ウィジェット、およびケース詳細ページの関連タスクの行をクリックしたときの動作（タスクを実行するか、タスクの詳細にアクセスするか）を切り替えます。
       chatMaxConnection: 設定された数値は、アクティブなチャットで許可されるタブの数を制御します。それ以上のタブが開かれると、非アクティブなタブではチャットが無効になります。許可される値は 1 から 5 です。
@@ -802,7 +807,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: 詳細設定
         ChooseAFit: フィットを選択
-        DisplayedText: テキストを表示
+        DisplayedText: '{0}テキストを表示'
         Greeting:
           Afternoon: こんにちは
           Evening: こんばんは

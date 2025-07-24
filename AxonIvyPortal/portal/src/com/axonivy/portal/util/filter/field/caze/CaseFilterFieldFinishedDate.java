@@ -27,7 +27,10 @@ public class CaseFilterFieldFinishedDate extends FilterField {
 
   @Override
   public String getLabel() {
-    return DashboardStandardCaseColumn.FINISHED.getLabel();
+    if (org.apache.commons.lang3.StringUtils.isBlank(this.label)) {
+      return DashboardStandardCaseColumn.FINISHED.getLabel();
+    }
+    return this.label;
   }
 
   @Override
@@ -36,6 +39,9 @@ public class CaseFilterFieldFinishedDate extends FilterField {
     filter.setFilterType(DashboardColumnType.STANDARD);
     filter.setFilterFormat(FilterFormat.DATE);
     filter.setField(getName());
+    if (this.label == null) {
+      setLabel(filter.getLabel());
+    }
   }
 
   @Override

@@ -145,11 +145,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rubrik 3
       NORMAL_TEXT: Normaler Text
   MyProfile:
+    Accessibility: Erreichbarkeit
     CaseList: Vorfall-Liste
     DateFormat: Datum Format
     FormattingLanguage: Sprache der Formatierung
     General: Allgemeine
     Homepage: Homepage
+    KeyboardShortcutsNavigation: Tastenkombinationen für die Navigation
+    KeyboardShortcutsNavigationInfor: Umschalten, um Tastenkombinationen für die Navigation zu aktivieren oder zu deaktivieren.
+    KeyboardShortcutsTooltip: Diese Schaltfläche ist derzeit nicht verfügbar und kann aufgrund der Einstellungen nicht verwendet werden.
     Language: Sprache
     ProcessList: Prozess-Liste
     TaskList: Aufgabenliste
@@ -223,6 +227,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       SessionCacheTimeout: Sitzungs-Cache-Timeout für das Portal. Legt die Ablaufzeit des Sitzungs-Caches (in Sekunden) für das Portal fest. Dieser Wert kann zwischen 300 (5 Minuten) und 86.400 (24 Stunden) eingestellt werden.
       ShowLoginPageFooter: Zum Ein-/Ausschalten der Anzeige der Fußzeile auf der Anmeldeseite.
       ShowQRCode: Zum Ein- und Ausschalten der Anzeige des QR-Codes.
+      allowKeyboardShortcutsConfiguration: Auf true setzen, damit der Benutzer mit der Schaltfläche für Tastenkombinationen interagieren kann.
       behaviourWhenClickingOnLineInCaseList: Umschalten zwischen dem Zugriff auf Falldaten oder Geschäftsdaten beim Klicken auf einen Fall im Fall-Widget des Dashboards, in der globalen Suche, in verwandten Fällen und im Prozess-Widget im kombinierten Modus.
       behaviourWhenClickingOnLineInTaskList: Zum Umschalten des Verhaltens (Ausführen der Aufgabe oder Aufrufen der Aufgabendetails) beim Klicken auf eine Zeile in der Aufgabenliste, im Aufgaben-Widget des Dashboards und bei verwandten Aufgaben auf der Seite mit den Vorgangsdetails.
       chatMaxConnection: 'Die gesetzte Nummer steuert die Anzahl der erlaubten Tabs mit aktiven Chat. Falls mehr Tabs geöffnet werden, wird der Chat in inaktive Tabs deaktiviert. Erlaubte Werte zw. 1-5 '
@@ -239,7 +244,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       delegationAppendOption: Diese Einstellung bestimmt, welche zusätzlichen Informationen beim Formatieren von Rollennamen enthalten sind.
       disableCaseCount: Auf "true" setzen, um das zählen der Vorgänge in der Vorgangsliste zu deaktivieren
       disableTaskCount: Auf "true" setzen, um das zählen der Aufgaben in der Aufgabenliste zu deaktivieren
-      displayAllUsersOfTaskActivator: Diese Einstellung wird für die Komponente SecurityMemberDisplayName verwendet. Wenn der SecurityMember eine Rolle ist, setzen Sie diese Einstellung auf true, um alle Benutzer dieser Rolle aufzulisten. Wenn diese Einstellung auf true gesetzt ist, wird neben dem Rollennamen eine Symbolinfo angezeigt.
+      displayAllUsersOfTaskActivator: Diese Einstellung wird für die Komponente SecurityMemberDisplayName verwendet. Wenn der SecurityMember eine Rolle ist, setzen Sie diese Einstellung auf true, um alle Benutzer dieser Rolle aufzulisten. Wenn diese Einstellung auf true gesetzt ist, wird neben dem Rollennamen
+        eine Symbolinfo angezeigt.
       displayMessageAfterFinishOrLeaveTask: Eine Feedback-Nachricht wird angezeigt, nachdem der Benutzer eine Aufgabe beendet oder verlassen hat.
       documentUploadSizeLimit: Legen Sie das Größenlimit für das Hochladen von Dokumenten in Megabyte (MB) fest. Der Standardwert beträgt 20 MB.
       embedInFrame: Auf true gesetzt, um einen Prozess/Task im IFrame-Modus zu starten
@@ -680,11 +686,13 @@ ch.ivy.addon.portalkit.ui.jsf:
       filterToSee: Filtern, um mehr anzuzeigen
       loadMore: Mehr laden
       noUser: Es sind keine Benutzer vorhanden.
-      tooltipHelper: Klicken Sie hier, um alle Benutzer anzuzeigen, die diese Rolle direkt oder indirekt besitzen
-      userOfRoleTitle: Benutzer der Gruppe {0}
       roleMemberItemFormat: <li class="tooltip-body-item">{0}</li>
       roleMemberLineFormat: <p class="tooltip-body-item">{0}</p>
-      roleMembersTooltipFormat: "<p class=\"tooltip-header\">{0}</p>\n<ul style=\"margin: auto; {1}\">{2}</ul>"
+      roleMembersTooltipFormat: |-
+        <p class="tooltip-header">{0}</p>
+        <ul style="margin: auto; {1}">{2}</ul>
+      tooltipHelper: Klicken Sie hier, um alle Benutzer anzuzeigen, die diese Rolle direkt oder indirekt besitzen
+      userOfRoleTitle: Benutzer der Gruppe {0}
     passwordValidation:
       criteria: Kriterien
       enablePasswordValidation: Kennwortüberprüfung einschalten
@@ -803,11 +811,11 @@ ch.ivy.addon.portalkit.ui.jsf:
       RestoreDefaultDashboardTemplateTooltip: Wir können die Vorlage für Ihr Dashboard nicht finden und es daher nicht auf die Standardkonfiguration zurücksetzen. Bitte erkundigen Sie sich bei Ihrem Administrator nach weiteren Details!
       SelectTheTemplate: Wählen Sie die Vorlage
       SelectYourTemplate: Wählen Sie Ihre Vorlage
-      WelcomeConfigurationDescription: 'Sie können Ihr Widget in diesem Konfigurationsbereich konfigurieren. Bitte legen Sie den Begrüßungstext und das Bild fest, die verwendet werden sollen.'
+      WelcomeConfigurationDescription: Sie können Ihr Widget in diesem Konfigurationsbereich konfigurieren. Bitte legen Sie den Begrüßungstext und das Bild fest, die verwendet werden sollen.
       WelcomeWidget:
         AdvancedSettings: Erweiterte Einstellungen
         ChooseAFit: Wählen Sie eine Passform
-        DisplayedText: Anzeigetext
+        DisplayedText: '{0} anzeigetext'
         Greeting:
           Afternoon: Guten Tag
           Evening: Guten Abend
@@ -1311,8 +1319,10 @@ ch.ivy.addon.portalkit.ui.jsf:
   taskWarning:
     createdTaskLeave: '<div>Sie verlassen die aktuelle Seite.<br/>  Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     createdTaskLogout: '<div>Sie verlassen die aktuelle Seite.<br/> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLeave: '<div>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
-    resetParkTaskBeforeLogout: '<div>Sie verlassen die aktuelle Aufgabe.</br> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben. Dann abmelden.<LI>Abbrechen: Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLeave: '<div>Sie verlassen die aktuelle Aufgabe.<br/>Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Verlassen: Ihre Änderungen verwerfen und zur ausgewählten Seite gehen.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre Aufgabenliste verschieben<LI>Abbrechen:
+      Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
+    resetParkTaskBeforeLogout: '<div>Sie verlassen die aktuelle Aufgabe.</br> Bitte wählen Sie eine der folgenden Optionen:</div><UL><LI>Abmelden: Ihre Änderungen verwerfen und abmelden.<LI>Reservieren: Ihre Änderungen verwerfen und die Aufgabe in Ihre persönliche Aufgabenliste verschieben. Dann abmelden.<LI>Abbrechen:
+      Die Bearbeitung dieser Aufgabe fortsetzen.</UL>'
     taskNotFound: Die Aufgabe existiert nicht oder Sie haben ungenügende Rechte, um diese Aufgabe zu sehen.
   userProfile:
     myProfileTitle: Mein Profil
@@ -1464,7 +1474,9 @@ Dialogs:
                         <span class="shortcut-key">Alt + 4</span>Fokus auf die Fälle
                     </div>
                 </div>
-              title: 'Barrierefreiheitskürzel. Alt + 1: Se focaliser sur l’onglet du Dashboard. Alt + 2: Se focaliser sur l’onglet des processus. Alt + 3: Se focaliser sur l’onglet des tâches. Alt + 4: Se focaliser sur l’onglet des cas. Alt + 5: Se focaliser sur la recherche. Alt + 6: Se focaliser sur les paramètres utilisateur. Alt + 7: Schaltet die Sichtbarkeit des Hauptmenüs um. Alt + A: Se focaliser sur le premier processus. Alt + W: Se focaliser sur la première tâche. Alt + Q: Se focaliser sur le premier cas. Tab: Navigation séquentielle entre les éléments. Esc: Fermer les widgets agrandis/Fermer les menus contextuels. Enter: Confirmer la sélection'
+              title: 'Barrierefreiheitskürzel. Alt + 1: Se focaliser sur l’onglet du Dashboard. Alt + 2: Se focaliser sur l’onglet des processus. Alt + 3: Se focaliser sur l’onglet des tâches. Alt + 4: Se focaliser sur l’onglet des cas. Alt + 5: Se focaliser sur la recherche. Alt + 6: Se focaliser sur
+                les paramètres utilisateur. Alt + 7: Schaltet die Sichtbarkeit des Hauptmenüs um. Alt + A: Se focaliser sur le premier processus. Alt + W: Se focaliser sur la première tâche. Alt + Q: Se focaliser sur le premier cas. Tab: Navigation séquentielle entre les éléments. Esc: Fermer les widgets
+                agrandis/Fermer les menus contextuels. Enter: Confirmer la sélection'
             CaseWidgetConfiguration:
               AddFilter: Filter hinzufügen
             ClientStatisticWidget:
@@ -1535,13 +1547,13 @@ Dialogs:
 Labels:
   AI:
     Error:
-      CannotFindUser: 'Leider kann kein Benutzer gefunden werden, der Ihrer Anfrage entspricht. Bitte versuchen Sie es erneut.'
-      CannotStartTask: 'Aufgabe kann nicht gestartet werden hat ID {0}'
+      CannotFindUser: Leider kann kein Benutzer gefunden werden, der Ihrer Anfrage entspricht. Bitte versuchen Sie es erneut.
+      CannotStartTask: Aufgabe kann nicht gestartet werden hat ID {0}
       InvalidTaskPriority: 'Ungültige Aufgabenpriorität. Gültige Aufgabenprioritäten sind: niedrig, normal, hoch oder Ausnahme.'
       InvalidTaskState: 'Ungültiger Aufgabenstatus. Gültige Aufgabenstatus sind: offen, erledigt, in Bearbeitung oder Fehler.'
-      NoMatchingCase: 'Sie haben keine Aufgabe gefunden, die Ihrer Anfrage entspricht'
-      NoMatchingProcesses: 'Keine Matching-Prozesse.'
-      NoMatchingTask: 'Sie haben keine Aufgabe gefunden, die Ihrer Anfrage entspricht'
+      NoMatchingCase: Sie haben keine Aufgabe gefunden, die Ihrer Anfrage entspricht
+      NoMatchingProcesses: Keine Matching-Prozesse.
+      NoMatchingTask: Sie haben keine Aufgabe gefunden, die Ihrer Anfrage entspricht
     FindCaseAIResult: 'ID: {0}, Name: {1}, Beschreibung: {2}, Zustand: {3}'
     FindProcessAIResult: '   - ID: {0}, Name: {1}, Beschreibung: {2}'
     FindTaskAIResult: 'ID: {0}, Name: {1}, Beschreibung: {2}, Zustand: {3}, Priorität {4}'
@@ -1550,21 +1562,23 @@ Labels:
     FoundProcessesHeader: 'Gefundene Prozesse:'
     FoundTaskHeader: 'Gefundene Aufgaben:'
     FoundUsersHeader: 'Gefundene Benutzer:'
-    ProcessInfoHeader: '**Prozessname:** {0}
-
-      **Prozessbeschreibung:** {1}'
-    ProcessInfoHeaderWithParameters: '- **Prozessname:** {0}
-
+    ProcessInfoHeader: |-
+      **Prozessname:** {0}
+      **Prozessbeschreibung:** {1}
+    ProcessInfoHeaderWithParameters: |-
+      - **Prozessname:** {0}
       - **Prozessbeschreibung:** {1}
-
-      - **Anzahl der Parameter:** {2}'
+      - **Anzahl der Parameter:** {2}
     ProcessParameterInfo: "\t+ {0} ({1})"
-    ProcessParameterInfoWithValue: "- Name: {0}\n  Beschreibung: {1}\n  Wert:"
-    TaskDetailsResult: 'Details zur Aufgabe **{0} (#{1})**:
-
-      {2}'
-  AllTasks: Alle Aufgaben
+    ProcessParameterInfoWithValue: |-
+      - Name: {0}
+        Beschreibung: {1}
+        Wert:
+    TaskDetailsResult: |-
+      Details zur Aufgabe **{0} (#{1})**:
+      {2}
   AIAssistant: AI-Assistent
+  AllTasks: Alle Aufgaben
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
   Chat: Chat
