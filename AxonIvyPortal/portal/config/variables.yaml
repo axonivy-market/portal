@@ -64,7 +64,7 @@ Variables:
     
     Accessibility:
       # Set to true to allow the user interact with the keyboard shortcuts toggle.
-      AllowKeyboardShortcutsConfiguration: false
+      AllowKeyboardShortcutsConfiguration: true
 
     # You can define the own user menu via this JSON file.
     # It will be shown as the your user menu in the user menu settings.
