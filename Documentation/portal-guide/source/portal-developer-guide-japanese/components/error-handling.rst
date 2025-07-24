@@ -51,7 +51,7 @@ Ajax エラーの処理
 .. _components-error-handling-nonajax-error-handling-ja:
 
 Ajax 以外のエラーの処理
-----------------------
+------------------------------------------------------------
 
 .. _components-error-handling-nonajax-error-handling-introduction-ja:
 
@@ -80,7 +80,7 @@ Ajax 以外のエラーの処理
 
 :download:`PortalErrorPageConfiguration.zip <documents/error-handling/portal-error-page-configuration.zip>` 
 
-.. _components-error-handling-nonajax-error-handling-result:
+.. _components-error-handling-nonajax-error-handling-result-ja:
 
 結果
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -99,7 +99,7 @@ HTTP 500エラー
 |500|
 
 期限切れエラーの表示
-------------------
+----------------------------------------------------
 
 概要
 ^^^^^^^^^^^^^^^^^

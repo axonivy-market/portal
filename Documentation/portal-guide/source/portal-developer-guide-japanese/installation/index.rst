@@ -449,7 +449,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 ``8.x から ... への移行`` から ``... から9.x への移行`` までのすべての手順を実行する必要があります。
 
 
-.. _installation-release-notes:
+.. _installation-release-notes-ja:
 
 リリースノート
 ==========================

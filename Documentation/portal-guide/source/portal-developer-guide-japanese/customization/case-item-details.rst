@@ -21,9 +21,10 @@ CaseItemDetails には以下が含まれます。
 
 |case-standard-2|
 
-.. important::表示可能なウィジェットはすべて :ref:`variable Portal.CaseDetails <case-details-configuration-variable>` で設定されます。
+.. important::
+   表示可能なウィジェットはすべて :ref:`variable Portal.CaseDetails <case-details-configuration-variable-ja>` で設定されます。
 
-.. _case-details-configuration-variable:
+.. _case-details-configuration-variable-ja:
 
 ケースの詳細ページのウィジェットを設定する方法
 ------------------------------------------------------------------------------
@@ -189,7 +190,7 @@ CaseItemDetails には以下が含まれます。
 
 新規カスタムパネルを追加するには、以下の 2 つのステップが必要です。
 
-#. カスタムウィジェットを追加するには、 **エンジンの管理者** がコックピットページで :ref:`Portal.CaseDetails <case-details-configuration-variable>` 変数を設定する必要があります。
+#. カスタムウィジェットを追加するには、 **エンジンの管理者** がコックピットページで :ref:`Portal.CaseDetails <case-details-configuration-variable-ja>` 変数を設定する必要があります。
    
 
    .. _case-details-custom-configuration-variable-example:

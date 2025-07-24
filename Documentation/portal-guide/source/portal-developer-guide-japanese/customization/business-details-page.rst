@@ -44,7 +44,7 @@
 
 カスタマイズ
 -----------------------
--  カスタムのビジネスの詳細ページで IFrame を使用する場合は、そのように UI を設定できます。詳細については、:ref:`iframe-configure-template` を参照してください。
+-  カスタムのビジネスの詳細ページで IFrame を使用する場合は、そのように UI を設定できます。詳細については、:ref:`iframe-configure-template-ja` を参照してください。
 
 -  パブリック API を使用し、 ``BusinessDetailsDTO.builder().isEmbedInFrame(Boolean)`` の値を設定することにより、ビジネスの詳細ページを IFrame 内で開始するかどうかを制御できます。 
    

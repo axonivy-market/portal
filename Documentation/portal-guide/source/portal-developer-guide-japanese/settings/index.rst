@@ -320,7 +320,7 @@ web XML ファイルで context-param を設定すると、ウイルススキャ
 - ``name``：サードパーティーのアプリの名前。
 - ``link``：サードパーティーのアプリのURL。
 
-.. _portal-statistic-charts:
+.. _portal-statistic-charts-ja:
 
 ポータルの統計チャート
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

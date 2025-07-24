@@ -203,7 +203,7 @@
 9.2 の新機能と注目すべき変更点
 ------------------------------------------------------------------
 
-.. _introduction-new-and-note-worthy-task-case-details-configuration:
+.. _introduction-new-and-note-worthy-task-case-details-configuration-ja:
 
 タスク／ケースの詳細の設定
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -263,7 +263,7 @@ Json フィルターの基本構造：
 
    ..
    
-.. _configure-new-dashboard-case-widget-filter-structure:
+.. _configure-new-dashboard-case-widget-filter-structure-ja:
 
    - ``field``：列名に対応するフィルターのフィールド名
 

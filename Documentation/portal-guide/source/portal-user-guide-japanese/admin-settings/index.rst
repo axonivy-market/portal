@@ -20,7 +20,7 @@
 
    |select-admin-settings|
 
-.. _add-third-party-application:
+.. _add-third-party-application-ja:
 
 ハウツー：サードパーティーのアプリケーションを追加する
 --------------------------------------------------------------------------------

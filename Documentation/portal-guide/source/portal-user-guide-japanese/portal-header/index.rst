@@ -114,7 +114,7 @@
 
 .. note::
 
-   ユーザーがパスワードを変更できるようにするには、:bdg-ref-warning:`🔑UserSetOwnPassword` 権限を付与してください。
+   ユーザーがパスワードを変更できるようにするには、 :bdg-ref-warning:`🔑UserSetOwnPassword` 権限を付与してください。
    次に権限を設定します :dev-url:`エンジンコックピット </doc/|version|/engine-guide/reference/engine-cockpit/security.html>` . セキュリティ領域で［PersonalPermissions］、［PersonalSecurityPermissions］、［UserSetOwnPassword］を順に開いてください。
 
 情報
