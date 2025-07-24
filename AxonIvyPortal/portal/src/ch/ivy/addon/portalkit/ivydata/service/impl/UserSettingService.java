@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
 
+
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -56,8 +57,24 @@ public class UserSettingService {
     }
     return getSessionUser().getProperty(property);
   }
+  
+  public void updateUserProperty(String property, String value) {
+    IUser user = getSessionUser();
+    if (user != null) {
+      user.setProperty(property, value);
+    }
+  }
 
   private IUser getSessionUser() {
     return Ivy.session().getSessionUser();
+  }
+  
+  public boolean isKeyboardShortcutsEnabled() {
+    String isKeyboardShortcutsEnabled = getUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS);
+    if (StringUtils.isBlank(isKeyboardShortcutsEnabled)) {
+      updateUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS, Boolean.TRUE.toString());
+      return Boolean.TRUE;
+    }
+    return Boolean.parseBoolean(isKeyboardShortcutsEnabled);
   }
 }

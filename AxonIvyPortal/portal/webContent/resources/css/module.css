@@ -3081,7 +3081,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .user-profile-footer {
   text-align: right;
-  margin-top: 4rem;
+  margin-top: auto;
 }
 
 .user-profile-footer .ui-button {
@@ -5755,4 +5755,8 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-butto
 .iframe-body.ai-result .layout-content,
 .iframe-body.ai-result .grid-stack {
   padding: 0;
+}
+
+body.edit-mode {
+  overflow: hidden;
 }

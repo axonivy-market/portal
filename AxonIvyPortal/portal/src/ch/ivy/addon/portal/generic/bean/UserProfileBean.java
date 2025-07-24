@@ -13,9 +13,11 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelSubcriptionDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationEventDTO;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -34,7 +36,6 @@ public class UserProfileBean implements Serializable {
 
   private ISecurityMember subscriber;
   private ISecurityContext securityContext;
-
   private List<IvyNotificationEventDTO> events;
   private List<IvyNotificationChannelDTO> channels;
 
@@ -51,12 +52,12 @@ public class UserProfileBean implements Serializable {
     }
     user.setProperty(UserProperty.HOMEPAGE, homepageName);
   }
-
+  
   public void onloadChannel() {
     events = IvyNotificationEventDTO.all();
     channels = IvyNotificationChannelDTO.all(subscriber, securityContext);
   }
-
+  
   public void resetAllChannel() {
     channels.forEach(this::resetChannel);
     onloadChannel();
@@ -112,5 +113,16 @@ public class UserProfileBean implements Serializable {
       addMessage(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/unpinAllPinnedCases",
           Arrays.asList(currentUser.getDisplayName())));
     }
+  }
+  
+  public boolean isAllowedConfigShortcutsByAdmin() {
+    return GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ALLOW_KEYBOARD_SHORTCUTS_CONFIGURATION);
+  }
+
+  public String renderTooltipMessageForKeyboardShortcutButton() {
+    if (isAllowedConfigShortcutsByAdmin()) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShorcutsNavigationInfor");
+    }
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShortcutsTooltip");
   }
 }
