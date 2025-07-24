@@ -151,7 +151,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     FormattingLanguage: Sprache der Formatierung
     General: Allgemeine
     Homepage: Homepage
-    KeyboardShortcutsNavigation: Tastenkombinationen für die Navigation.
+    KeyboardShortcutsNavigation: Tastenkombinationen für die Navigation
     KeyboardShortcutsNavigationInfor: Umschalten, um Tastenkombinationen für die Navigation zu aktivieren oder zu deaktivieren.
     KeyboardShortcutsTooltip: Diese Schaltfläche ist derzeit nicht verfügbar und kann aufgrund der Einstellungen nicht verwendet werden.
     Language: Sprache
