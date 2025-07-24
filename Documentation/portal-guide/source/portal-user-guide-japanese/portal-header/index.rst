@@ -18,7 +18,7 @@
 |portal-header|
 
 |ivy| Portal のユーザー設定
-------------------------------------
+-----------------------------------------------------
 
 |ivy| Portal の右上にあるユーザー名をクリックすると、自分のニーズに合わせてポータルを設定できるメニューが表示されます。
 
@@ -116,7 +116,7 @@
    次に権限を設定します :dev-url:`エンジンコックピット </doc/|version|/engine-guide/reference/engine-cockpit/security.html>` . セキュリティ領域で［PersonalPermissions］、［PersonalSecurityPermissions］、［UserSetOwnPassword］を順に開いてください。
 
 情報
-----
+----------------------
 
 :guilabel:`情報` メニューエントリには、|ivy-engine|、|ivy| Portal、会社のアプリケーションに関する詳細情報が表示されます。
 サポートリクエストを発行する場合、この情報が求められることがあります。

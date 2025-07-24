@@ -1,19 +1,19 @@
-.. _customization-businessdetailspage:
+.. _customization-businessdetailspage-ja:
 
 ビジネスの詳細ページ
 =======================================
 
-.. _customization-additionalcasedetailspage.introduction:
+.. _customization-additionalcasedetailspage-ja.introduction:
 
 概要
 ------------
 
-デフォルトのビジネスの詳細ページには、ケースのすべてのカスタムフィールドが表示されます。ケースの詳細ページで``ビジネスの詳細``ボタンをクリックすると開きます。
+デフォルトのビジネスの詳細ページには、ケースのすべてのカスタムフィールドが表示されます。ケースの詳細ページで ``ビジネスの詳細`` ボタンをクリックすると開きます。
 
 
 ポータルでは、ケースごとにこのページをカスタマイズできます。
 
-.. _customization-additionalcasedetailspage.customization:
+.. _customization-additionalcasedetailspage-ja.customization:
 
 ビジネスの詳細ページをカスタマイズする方法
 -------------------------------------------------------------------
@@ -44,14 +44,14 @@
 
 カスタマイズ
 --------------------
--  カスタムのビジネスの詳細ページで IFrame を使用する場合は、そのように UI を設定できます。詳細については、:ref:`iframe-configure-template` を参照してください。
+-  カスタムのビジネスの詳細ページで IFrame を使用する場合は、そのように UI を設定できます。詳細については、:ref:`iframe-configure-template-ja` を参照してください。
 
 -  パブリック API を使用し、 ``BusinessDetailsDTO.builder().isEmbedInFrame(Boolean)`` の値を設定することにより、ビジネスの詳細ページを IFrame 内で開始するかどうかを制御できます。 
    
    	- ``true``：IFrame 内で開始する（デフォルト値）
    	- ``false``：IFrame 内で開始しない
 
--  また、``ICase`` の値もカスタマイズできます。API は自動的に ``Ivy.wfCase()`` から ``ICase`` を受け取ります。 ``BusinessDetailsDTO.builder().iCase(ICase)`` を使用して、これを変更します。
+-  また、 ``ICase`` の値もカスタマイズできます。API は自動的に ``Ivy.wfCase()`` から ``ICase`` を受け取ります。 ``BusinessDetailsDTO.builder().iCase(ICase)`` を使用して、これを変更します。
 
    |start-business-details-page-iframe|
 
@@ -68,7 +68,7 @@
    - 外部リンクを使用する場合は、リンクが安全で、アプリケーション環境からアクセスできることを確認してください。
 
 権限の設定
-------------------
+--------------------------
 
 :dev-url:`エンジンコックピット </doc/|version|/engine-guide/reference/engine-cockpit/security.html>` で権限を設定します。
 セキュリティ領域で［PortalPermissions］、［PortalCasePermissions］、［ShowCaseDetails］を順に開いてください。

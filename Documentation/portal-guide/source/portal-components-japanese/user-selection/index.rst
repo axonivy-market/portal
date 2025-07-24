@@ -95,7 +95,8 @@
 
 #. ``ch.ivy.addon.portalkit.dto.UserDTO`` を ``com.axonivy.portal.components.dto.UserDTO`` に置き換えます。
 
-   .. note::データベースに ``ch.ivy.addon.portalkit.dto.UserDTO`` クラスを格納した場合は、データベースを手動で更新する必要があります。
+   .. note::
+      データベースに ``ch.ivy.addon.portalkit.dto.UserDTO`` クラスを格納した場合は、データベースを手動で更新する必要があります。
 
 .. |user-selection| image:: ../../screenshots/components/user-selection-component.png
 .. |user-selection-floating-label| image:: ../../screenshots/components/user-selection-component-floating-label.png

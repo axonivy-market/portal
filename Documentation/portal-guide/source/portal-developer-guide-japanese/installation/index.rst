@@ -1,4 +1,4 @@
-.. _installation:
+.. _installation-ja:
 
 インストール
 ***************************************
@@ -10,10 +10,10 @@
 
 
 基本インストール
-==================
+========================================
 
 プロジェクトモジュール
----------------------------------
+--------------------------------------------
 
 アプリケーションは 3 つのプロセスモジュールで構成されます。各モジュールの詳細については、:ref:`architecture-ja` を参照してください。
 
@@ -26,7 +26,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 
 インストール
-------------
+--------------------------------
 
 デザイナー
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -45,13 +45,13 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 
 ライセンス付きエンジン（プロダクションモード）
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 エンジンは何も展開しません。ポータルアプリケーションを手動で展開、設定する必要があります。
 
 
 ダッシュボードの設定ファイルのエンジンへのインストール（プロダクションモード）
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ダッシュボードの JSON 設定ファイルを Axon Ivy エンジンにインストールする方法として、以下のいずれかを選択できます。
 
 - 以下の構造に示すように、 ``<app.zip>/config/variables/Portal.Dashboard.json`` の app.zip の下に Dashboard.json ファイルを配置します。
@@ -78,14 +78,14 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
    これは、各ユーザーの共通タスクリストを複数のアプリケーションで表示するのに使用します。セキュリティコンテキストにインストールされたすべてのアプリケーションのタスク／ケースリストが、このセキュリティコンテキストで実行中のポータルによって表示されます。
 
-すべてのアプリケーションは同じセキュリティコンテキストにあり、他のアプリケーションに展開されるのは **portal-components** だけです。:ref:`ポータルのマルチアプリケーション <multi-app-structure>` の概要を参照してください。
+すべてのアプリケーションは同じセキュリティコンテキストにあり、他のアプリケーションに展開されるのは **portal-components** だけです。:ref:`ポータルのマルチアプリケーション <multi-app-structure-ja>` の概要を参照してください。
 
 -  新しいアプリケーションを作成します。このアプリケーションにポータル（portal、portal-components）を展開します。
 
 -  新しいアプリケーション（アプリ 1、アプリ 2...）を作成します。新しいアプリケーションにプロジェクトを展開します。
 
 
-.. _installation-migration-notes:
+.. _installation-migration-notes-ja:
 
 移行に関する注記
 ===================================
@@ -108,7 +108,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
    
 
 デザイナー
------------
+-------------------------
 
 #. ポータルのすべてのプロジェクトを新しいリリースのバージョンに置き換えます。
 #. 最新のポータルバージョンを使用するため、 **プロジェクトの変換** 機能を使用して、プロジェクトをアップグレードします。:dev-url:`プロジェクトの変換 </doc/|version|/designer-guide/process-modeling/projects/converting.html#converting-projects>` で詳細を確認してください。
@@ -119,7 +119,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 ..
 
 エンジン
------------
+-----------------------
 
 #. 必要に応じてデータベーススキーマを変換します。
 
@@ -140,40 +140,40 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 
 11.1.0 から 11.2.0 への移行
-------------------------------------------------
+----------------------------------------------------------
 
 ``AxonIvyExpress`` モジュールは ``axonivy-express`` という名前に変更され、Axon Ivy Market で入手できるようになりました。移行するには、以下の手順を実行する必要があります。
 
-- **ポータル** を開き、［ **設定** ］、［ **Express の管理** ］の順に移動します。Express のすべての設定をエクスポートします。
-- **コックピット** を開き、 **ポータル** アプリケーションで PM **AxonIvyExpress** を停止します。
-- Axon Ivy Market から取得した **axonivy-express** モジュールを **ポータル** アプリケーションに展開します。
-- エンジンを再起動します。
-- **ポータル**を開き、［ **設定** ］、［ **Expressの管理** ］の順に移動します。最初にエクスポートした設定をインポートします。
+#. **ポータル** を開き、［ **設定** ］、［ **Express の管理** ］の順に移動します。Express のすべての設定をエクスポートします。
+#. **コックピット** を開き、 **ポータル** アプリケーションで PM **AxonIvyExpress** を停止します。
+#. Axon Ivy Market から取得した **axonivy-express** モジュールを **ポータル** アプリケーションに展開します。
+#. エンジンを再起動します。
+#. **ポータル**を開き、［ **設定** ］、［ **Expressの管理** ］の順に移動します。最初にエクスポートした設定をインポートします。
 
 
-- ``PortalStartTimeCleanObsoletedDataExpression`` 変数をオーバーライドする場合は、新しい Ivy CRON のジョブパターンに更新します。
-- Axon Ivy CRON のジョブパターンを参照してください（ `CRON Expression <https://developer.axonivy.com/doc/|version|/engine-guide/configuration/advanced-configuration.html#cron-expression>`_ ）。
-- 例：毎日 01:00 AM にジョブをトリガーする場合は、 ``0 0 1 * * ?`` を ``0 1 * * *`` に変更します。
+#. ``PortalStartTimeCleanObsoletedDataExpression`` 変数をオーバーライドする場合は、新しい Ivy CRON のジョブパターンに更新します。
+#. Axon Ivy CRON のジョブパターンを参照してください（ `CRON Expression <https://developer.axonivy.com/doc/|version|/engine-guide/configuration/advanced-configuration.html#cron-expression>`_ ）。
+#. 例：毎日 01:00 AM にジョブをトリガーする場合は、 ``0 0 1 * * ?`` を ``0 1 * * *`` に変更します。
 
 10.0.19 から 10.0.20 への移行
------------------------------------------
+-----------------------------------------------------------
 
 ポータルはこれまで、文字列または配列形式による :ref:`プロセスチェーン <components-portal-components-process-chain-ja>` のプロセスステップの設定をサポートしてきました。 
 文字列形式は非推奨ですが、後方互換性のため、引き続きサポートします。配列形式を使用することを推奨します。以下のように変更できます。
 
-- ``window.processSteps = "Create Investment Request,Approve Investment Request";`` を ``window.processSteps = ["Create Investment Request", "Approve Investment Request"];`` に変更します。
+#. ``window.processSteps = "Create Investment Request,Approve Investment Request";`` を ``window.processSteps = ["Create Investment Request", "Approve Investment Request"];`` に変更します。
 
-- ``window.processSteps = "#{fn:join(data.steps.toArray(), ',')}";`` を ``window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};`` に変更します。
+#. ``window.processSteps = "#{fn:join(data.steps.toArray(), ',')}";`` を ``window.processSteps = #{portalComponentUtilsBean.convertToJSON(data.steps)};`` に変更します。
 
 10.0.12 から 10.0.13 への移行
-----------------------------------------------
+-------------------------------------------------------------
 
 - HTML のオーバーライドダイアログである ``UserWithEnvironmentInfo`` が削除され、サポート対象外になりました。代わりに ``GlobalFooterInfo`` ダイアログと GlobalVariable を使用してください。
 
 - HTML のオーバーライドダイアログである ``PageHeader`` と ``PageFooter`` がサポート対象外になりました。代わりに callable を使用してください。
 
 10.0.11 から 10.0.12 への移行
-------------------------------------------------------
+------------------------------------------------------------
 
 #. いくつかのサブプロセスについて、プロセスのオーバーライドがサポート対象外になりました。以下のガイドラインに従って、サブプロセスのオーバーライドを移行してください。
 
@@ -265,7 +265,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 
 9.3 から 9.4 への移行
----------------------------------
+----------------------------------------------
 
 9.4 から ``PortalStyle``、 ``PortalKit``、 ``PortalTemplate`` が ``portal-components`` と ``portal`` に置き換えられました。:ref:`architecture-ja` を参照してください。
 
@@ -352,7 +352,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
    
 
 9.1 から 9.2 への移行
-------------------------------
+---------------------------------------------
 
 #. :download:`MigrateData.iar <documents/MigrateData.iar>` プロジェクトを Ivy アプリケーションに展開し、 ``your_host/your_application/pro/MigrateData/175F92F71BC45295/startMigrateConfiguration.ivp`` リンクにアクセスして実行します。
    
@@ -378,7 +378,8 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
    ポータルでは、:dev-url:`|ivy| HtmlOverride ウィザード </doc/|version|/designer-guide/how-to/overrides.html?#override-new-wizard>` を使用して、 ``ポータルの HTML ダイアログ`` をカスタマイズすることを推奨します。
 
-   .. important:: カスタマイズダイアログを開く呼び出し可能プロセスは将来削除されます。新しいプロジェクトでは使用しないでください。
+   .. important:: 
+      カスタマイズダイアログを開く呼び出し可能プロセスは将来削除されます。新しいプロジェクトでは使用しないでください。
 
 #. ivy-icon.css を削除し、現在のクラスを `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_ にある Streamline アイコンからの新しいクラスに置き換えました。そのため、ivy-icon.css のクラスを使用しているファイルを更新する必要があります。
 
@@ -387,7 +388,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 #. ``caseItemDetailCustomTop``、 ``caseItemDetailCustomMiddle``、 ``caseItemDetailCustomBottom`` をカスタマイズしている場合は、:ref:`CaseItemDetail のオーバーライド方法 <customization-case-item-details-ja>` に従って、これらのカスタムウィジェットを追加してください。
 
 8.x から 9.1 への移行
--------------------------------
+-----------------------------------------
 
 #. SubMenuItem.java の ``views`` を削除します。 ``LoadSubMenuItems`` 呼び出し可能プロセスをオーバーライドしている場合は、適合させます。
 
@@ -451,12 +452,12 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
    
 
 8.x から 9.x への移行
-------------------------------------
+------------------------------------------------
 
 ``8.x から ... への移行``から ``... から9.x への移行``までのすべての手順を実行する必要があります。
 
 
-.. _installation-release-notes:
+.. _installation-release-notes-ja:
 
 リリースノート
 ========================
@@ -477,7 +478,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 ---------------------------------
 
 - 古い統計チャートが削除されました。代わりに新しい :ref:`statistic-chart-ja` を使用してください。
-- IFrame のタスクを設定する IFrameTaskConfig コンポーネントを導入しました。詳細については、:ref:`iframe-configure-template` を参照してください。
+- IFrame のタスクを設定する IFrameTaskConfig コンポーネントを導入しました。詳細については、:ref:`iframe-configure-template-ja` を参照してください。
 - ダッシュボードウィジェットのコンセプトに合わせて、:ref:`全タスクリストページ <full-task-list-ja>` と :ref:`全ケースリスト <full-case-list-ja>` のデザインが一新されました。 
   ページは 1 つの全幅ウィジェットを含むダッシュボードとして機能します。他のウィジェットと同じように調整して設定できます。
 - 複数ケースのオーナーをサポートします。1 つのケースのオーナーの並べ替え機能は削除されます。
@@ -498,12 +499,12 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 - ポータルのレガシーダッシュボードが削除されました。 ``AxonIvyExpress`` モジュールは ``axonivy-express`` という名前に変更され、Axon Ivy Market で入手できるようになりました。
 
 10 での変更内容
------------------------
+-------------------------------------
 
 - 全タスクリスト、全ケースリスト、ダッシュボードのタスクリスト、ダッシュボードのケースリスト、タスクの分析に ``アプリケーション`` フィルターと ``アプリケーション`` 列を導入しました。
 
 9.4 での変更内容
-----------------------------
+------------------------------------
 
 - ``PortalStyle``、 ``PortalKit``、 ``PortalTemplate`` プロジェクトを ``portal`` という名前の 1 つのプロジェクトにまとめました。
 
@@ -520,7 +521,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 - ポータルの全タスクリストと全ケースリストに新しい ``タスク ID``、 ``タスク名``、 ``ケース ID``、 ``ケース名`` フィルターを導入しました。
 
-- ``プロセスビューアー`` ページを導入しました。ユーザーは、プロセスの開始を視覚的に表示できます。 :ref:`プロセスビューアーの表示 <how-to-show-process-viewer>` で詳細をご覧ください。
+- ``プロセスビューアー`` ページを導入しました。ユーザーは、プロセスの開始を視覚的に表示できます。 :ref:`プロセスビューアーの表示 <how-to-show-process-viewer-ja>` で詳細をご覧ください。
 
 - 値の形式を設定する ``書式設定言語の設定`` を導入しました。例えば、小数点は世界中の異なる地域で異なる形式で表示されます。
 
@@ -551,7 +552,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
 
 - ポータルのケースリストとケースの状態フィルターに新しいケースの状態 ``破棄済`` を含めました。
 
-- :ref:`ワークフローイベントテーブル <how-to-show-workflow-events>` を導入しました。:bdg-warning:`🔑WorkflowEventReadAll` 権限を持つユーザーは、すべての ``WORKFLOW_EVENTS`` を表示できます。
+- :ref:`ワークフローイベントテーブル <how-to-show-workflow-events-ja>` を導入しました。:bdg-warning:`🔑WorkflowEventReadAll` 権限を持つユーザーは、すべての ``WORKFLOW_EVENTS`` を表示できます。
 
 - デフォルトのホームページを設定する ``Portal.Homepage`` ポータル設定を導入しました。各ユーザーはユーザープロファイルから変更を行うことができます。
 

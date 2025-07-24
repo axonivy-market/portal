@@ -1,4 +1,4 @@
-.. _configure-new-dashboard-proces-widget:
+.. _configure-new-dashboard-proces-widget-ja:
 
 プロセスウィジェットの設定
 ====================================================
@@ -7,7 +7,7 @@
 ------------------------------------------------------
 
 ポータルダッシュボードのプロセスウィジェットは、3 つのモードの柔軟なプロセスリストです。
-詳細については、:ref:`プロセスリストウィジェット <new-dashboard-process-list-widget>` を参照してください。
+詳細については、:ref:`プロセスリストウィジェット <new-dashboard-process-list-widget-ja>` を参照してください。
 
 プロセスウィジェットの JSON の基本構造は以下のとおりです。
 
@@ -32,7 +32,7 @@
 
 The basic structure of the JSON of a Process widget
 
-   ``type``：プロセスウィジェットのタイプ。関連する表示モードには、 ``compact-process``（コンパクトモード）、 ``combined-process``（複合モード）、 ``full-process``（フルモード）、 ``image-process``（イメージモード）の 4 つのタイプがあります。
+   ``type``：プロセスウィジェットのタイプ。関連する表示モードには、 ``compact-process`` （コンパクトモード）、 ``combined-process`` （複合モード）、 ``full-process`` （フルモード）、 ``image-process`` （イメージモード）の 4 つのタイプがあります。
    
    
 
@@ -50,9 +50,9 @@ The basic structure of the JSON of a Process widget
 
       ``h``：HTML DOMスタイル ``height`` は ``60 * h + 20 * (h - 1)`` として計算されます。
 
-      ``styleClass``（オプション）：CSS クラスをウィジェットの HTML DOM に追加します。
+      ``styleClass`` （オプション）：CSS クラスをウィジェットの HTML DOM に追加します。
 
-      ``style``（オプション）：インラインスタイルをウィジェットの HTML DOM に追加します。
+      ``style`` （オプション）：インラインスタイルをウィジェットの HTML DOM に追加します。
       
    ``showFullscreenMode``：全画面モードのアイコンの表示設定。デフォルト値は ``true`` です。アイコンを非表示にするには ``false`` に設定してください。
    
@@ -119,7 +119,7 @@ The basic structure of the JSON of a Process widget
       - ``not defined``：デフォルトとしてクイック検索テキストボックスを表示します。
 
 複合モード
--------------
+------------------------
 
 以下は複合モードのプロセスウィジェットの標準的な JSON 定義の例です。
 

@@ -1,9 +1,9 @@
-.. _customization-navigateback:
+.. _customization-navigateback-ja:
 
 戻る
 =============
 
-.. _customization-navigateback.introduction:
+.. _customization-navigateback-ja.introduction:
 
 タスクが完了すると、ポータルは前のページに戻ります。例えば、タスクがホームページから開始された場合、ホームページにリダイレクトします。
 

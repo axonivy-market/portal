@@ -1,7 +1,7 @@
 .. _customization-task-item-details-ja:
 
 タスク項目の詳細
-=======================
+=================================
 
 TaskItemDetails は、ユーザーが操作できるロール、ユーザー、タスク、ケース、時間情報を含む、ポータルの組み込みコンポーネントです。
 
@@ -20,7 +20,8 @@ TaskItemDetails には以下が含まれます。
 
 |task-standard|
 
-.. important:: 表示可能なウィジェットはすべて :ref:`Portal.TaskDetails <task-details-configuration-variable-ja> 変数` で設定されます。
+.. important:: 
+   表示可能なウィジェットはすべて :ref:`Portal.TaskDetails <task-details-configuration-variable-ja> 変数` で設定されます。
 
 
 .. _task-details-configuration-variable-ja:
@@ -163,7 +164,7 @@ TaskItemDetails には以下が含まれます。
 #. カスタムウィジェットを追加するには、 **エンジンの管理者** がコックピットページで :ref:`Portal.TaskDetails <task-details-configuration-variable-ja>` 変数を設定する必要があります。
    
 
-   .. _task-details-custom-configuration-variable-example:
+   .. _task-details-custom-configuration-variable-example-ja:
    
    -  レイアウト設定を含む Portal.TaskDetails の例には、4 つのカスタムウィジェットが含まれます。
    

@@ -8,7 +8,7 @@
       これらは将来のバージョンで変更される可能性があるため、使用しないでください。
       
 
-.. _multi-app-structure:
+.. _multi-app-structure-ja:
 
 基本的には、ポータルとプロジェクトの両方を 1 つのアプリケーションに展開できます。これは、シンプルなアプリケーションには合理的です。ただし、この方法では移行が難しくなることがあります。そのため、ポータルとプロジェクトを別々のアプリケーションに展開することを推奨します。
 
@@ -20,14 +20,15 @@
 |multi-app-structure|
 
 
-.. _architecture-portal-process-modules-structure:
+.. _architecture-portal-process-modules-structure-ja:
 
 
 ポータルアプリは、portal-components と portal モジュールで構成されます。
 
 |process-module-structure|
 
-.. warning:: 実行するポータルは、セキュリティコンテキストごとに 1 つのみとすることを強く推奨します。
+.. warning::
+      実行するポータルは、セキュリティコンテキストごとに 1 つのみとすることを強く推奨します。
 
 .. _architecture-portal-components:
 
@@ -40,7 +41,7 @@ portal-components
 これらのコンポーネントは、ポータルのパブリック API を提供しますが、モジュールのポータルには依存しません。
 これらを自社のアプリケーションで使用できます。
 
-.. _architecture-portal:
+.. _architecture-portal-ja:
 
 portal
 ======

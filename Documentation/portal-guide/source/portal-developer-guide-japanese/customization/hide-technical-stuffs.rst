@@ -1,13 +1,13 @@
-.. _customization-hideTechnicalStuffs:
+.. _customization-hideTechnicalStuffs-ja:
 
 テクニカル要素の非表示
-====================================
+=================================================
 
 Ivy の ``PortalHiddenTaskCaseExcluded`` の値によって、非表示のタスクとケースが表示（ ``FALSE`` ）または非表示（ ``TRUE`` ）になります。
 デフォルト値は ``TRUE`` です。
 
 テクニカルロールの非表示
------------------------------------
+-------------------------------------------
 
 テクニカルロールはどこにも表示されません（委任や不在の管理など）。
 デフォルトでは、 ``AXONIVY_PORTAL_ADMIN`` がテクニカルロールです。
@@ -15,7 +15,8 @@ Ivy の ``PortalHiddenTaskCaseExcluded`` の値によって、非表示のタス
 ロールをテクニカルロールとしてマークするには、そのロールの任意の値で ``HIDE`` プロパティを設定します。
 
 
-.. admonition::ポータルのユーティリティメソッドの使用
+.. admonition::
+   ポータルのユーティリティメソッドの使用
       
       - プロパティの設定：
          com.axonivy.portal.components.util.RoleAPI.setProperty([自分のロール], ch.ivy.addon.portalkit.enums.AdditionalProperty.HIDE.toString(), "HIDE")
@@ -30,7 +31,8 @@ Ivy の ``PortalHiddenTaskCaseExcluded`` の値によって、非表示のタス
 
 タスクをテクニカルタスクとしてマークするには、以下のいずれかの方法に従います。
 
-.. admonition:: ポータルの TaskAPI のユーティリティメソッドの使用
+.. admonition:: 
+   ポータルの TaskAPI のユーティリティメソッドの使用
 
       プロジェクトがポータルに依存する場合
 
@@ -39,7 +41,8 @@ Ivy の ``PortalHiddenTaskCaseExcluded`` の値によって、非表示のタス
       - 設定の取り消し：
          com.axonivy.portal.components.util.TaskAPI.removeHidePropertyToDisplayInPortal(ITask)
 
-.. admonition:: ITask API のカスタムフィールドの使用
+.. admonition:: 
+   ITask API のカスタムフィールドの使用
 
       タスクエディターを開き、 ``Custom Fields`` セクションを展開します。
 
@@ -61,7 +64,8 @@ Ivy の ``PortalHiddenTaskCaseExcluded`` の値によって、非表示のタス
 
 ケースをテクニカルケースとしてマークするには、以下のいずれかの方法に従います。
 
-.. admonition::ポータルの CaseAPI のユーティリティメソッドの使用
+.. admonition::
+   ポータルの CaseAPI のユーティリティメソッドの使用
 
       プロジェクトがポータルに依存する場合
 
@@ -70,7 +74,8 @@ Ivy の ``PortalHiddenTaskCaseExcluded`` の値によって、非表示のタス
       - 設定の取り消し：
          com.axonivy.portal.components.publicapi.CaseAPI.removeHidePropertyToDisplayInPortal(ICase)
 
-.. admonition::ICase API のカスタムフィールドの使用
+.. admonition::
+   ICase API のカスタムフィールドの使用
 
       ケースエディターを開き、 ``Custom Fields`` セクションを展開します。
 

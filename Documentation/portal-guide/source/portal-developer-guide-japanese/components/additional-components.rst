@@ -1,14 +1,14 @@
-.. _components-additional-component:
+.. _components-additional-component-ja:
 
 追加コンポーネント
 =====================
 
-.. _components-additional-component-global-growl:
+.. _components-additional-component-global-growl-ja:
 
 グローバル通知
 ---------------------------------
 
-.. _components-additional-component-global-growl-introduction:
+.. _components-additional-component-global-growl-introduction-ja:
 
 概要
 ^^^^^^^^^^^^
@@ -28,7 +28,7 @@
 
 |example-global-growl-finished-task|
 
-.. _components-additional-component-global-growl-display-growl-after-finish-task:
+.. _components-additional-component-global-growl-display-growl-after-finish-task-ja:
 
 タスクを離れた後の通知の表示
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

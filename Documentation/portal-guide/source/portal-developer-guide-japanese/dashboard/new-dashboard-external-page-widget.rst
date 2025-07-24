@@ -1,12 +1,12 @@
-.. _configure-new-dashboard-external-page-widget:
+.. _configure-new-dashboard-external-page-widget-ja:
 
 外部ページウィジェットの設定
 =====================================================
 
-.. _define-an-external-page-widget:
+.. _define-an-external-page-widget-ja:
 
 外部ページウィジェットの定義
-------------------------------
+--------------------------------------------------------
 
 このウィジェットを使用して、外部ウェブページをポータルダッシュボードに埋め込むことができます。
 この機能は、|ivy| の他にアプリケーションを使用している企業にとって特に便利です。
