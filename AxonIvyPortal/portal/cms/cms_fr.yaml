@@ -1628,6 +1628,8 @@ Dialogs:
               CustomWidgetIFrameTitle: Cadre de widget personnalisé
             IconSelection:
               IconLinkTooltip: Cliquez pour changer d'icône
+            ProcessWidget:
+              ProcessListNav: Navigation dans la liste des processus
             TaskItemDetails:
               ShareTaskDetails: Partager les détails de la tâche
   com:

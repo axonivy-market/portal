@@ -1628,6 +1628,8 @@ Dialogs:
               CustomWidgetIFrameTitle: Custom widget frame
             IconSelection:
               IconLinkTooltip: Click to change icon
+            ProcessWidget:
+              ProcessListNav: Process List Navigation
             TaskItemDetails:
               ShareTaskDetails: Share Task Details
   com:
