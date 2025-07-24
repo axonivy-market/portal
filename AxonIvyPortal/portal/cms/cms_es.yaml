@@ -1625,6 +1625,8 @@ Dialogs:
               CustomWidgetIFrameTitle: Marco de widgets personalizado
             IconSelection:
               IconLinkTooltip: Haga clic para cambiar el icono
+            ProcessWidget:
+              ProcessListNav: Navegación por la lista de procesos
             TaskItemDetails:
               ShareTaskDetails: Compartir detalles de la tarea
   com:
