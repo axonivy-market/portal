@@ -108,7 +108,7 @@ HTTP 500エラー
 
 Ivy には ``ViewExpiredException`` の警告ダイアログが用意されています。このダイアログは、プロジェクトの ``webContent/layouts/includes/exception.xhtml`` ファイルにあります。
 
-プロジェクトのダイアログで :ref:`iframe-in-portal` が使用されている場合、 ``ViewExpiredException`` が発生すると、デフォルトの警告ダイアログが表示されます。
+プロジェクトのダイアログで :ref:`iframe-in-portal-ja` が使用されている場合、 ``ViewExpiredException`` が発生すると、デフォルトの警告ダイアログが表示されます。
 
 
 設定方法

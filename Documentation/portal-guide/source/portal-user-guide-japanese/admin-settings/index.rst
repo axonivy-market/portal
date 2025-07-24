@@ -116,9 +116,7 @@
 
 ハウツー：パスワード検証を有効／無効にする
 ----------------------------------------------------
-ポータルの :guilabel:`管理者設定` 領域にある :guilabel:`パスワード検証` セクションで、パスワード検証を有効／無効にし、パスワードポリシーを変更できます。 
-
-| :guilabel:`パスワード検証` タブを表示するには、:bdg-ref-warning:`🔑PasswordValidation <PasswordValidation>` 権限が必要です。
+ポータルの  :guilabel:`管理者設定`  領域にある  :guilabel:`パスワード検証`  セクションで、パスワード検証を有効／無効にし、パスワードポリシーを変更できます。 :guilabel:`パスワード検証` タブを表示するには、:bdg-ref-warning:`🔑PasswordValidation <PasswordValidation>` 権限が必要です。
 
 #. :guilabel:`パスワード検証` タブを選択します。
 

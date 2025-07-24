@@ -472,8 +472,6 @@ URL を入力して、外部ウェブページをポータルダッシュボー�
    :alt: ダッシュボードのニュースフィードウィジェットのニュースの管理ダイアログ
 .. |external-page-widget-configuration| image:: ../../screenshots/dashboard/external-page-widget-configuration.png
    :alt: ダッシュボードの外部ページウィジェットの設定ダイアログ
-.. |add-statistic-widget| image:: ../../screenshots/new-dashboard/add-client-statistic-widget.png
-   :alt: 新しいダッシュボードのクライアント統計ウィジェットの追加
 .. |notification-widget-configuration| image:: ../../screenshots/new-dashboard/notification-widget-configuration.png
    :alt: ダッシュボードの通知ウィジェットの設定ダイアログ
 .. |notification-widget| image:: ../../screenshots/new-dashboard/notification-widget.png
