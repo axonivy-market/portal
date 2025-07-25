@@ -382,10 +382,14 @@ ch.ivy.addon.portalkit.ui.jsf:
     cases: Casos
     confirmDeleteMessage: Esta acción no se puede deshacer. ¿De verdad quieres eliminar este objeto comercial?
     defaultColumns:
+      ACTIONS: Acciones
       APPLICATION: Aplicación
       CATEGORY: Categoría
+      CREATED: Creado
       CREATION_TIME: Creado
       CREATOR: Creador
+      DESCRIPTION: Descripción
+      FINISHED: Terminado
       FINISHED_TIME: Terminado
       ID: ID del caso
       NAME: Nombre / Descripción
@@ -1389,16 +1393,21 @@ ch.ivy.addon.portalkit.ui.jsf:
     deadline: Fecha límite
     default: Predeterminado
     defaultColumns:
+      ACTIONS: Acciones
       ACTIVATOR: Responsable
       APPLICATION: Aplicación
       CATEGORY: Categoría
       COMPLETED: Completado
       COMPLETED_ON: Completado en
       CREATION_TIME: Creado
+      DESCRIPTION: Descripción
+      EXPIRY: Caducidad
       EXPIRY_TIME: Expiración
       ID: ID de tarea
       NAME: Nombre / Descripción
       PRIORITY: Prioridad
+      RESPONSIBLE: Responsable
+      START: Inicio
       STATE: Estado
       TASK_FOR_UNAVAILABLE_ACTIVATOR: Falta el activador
       abbreviation:
