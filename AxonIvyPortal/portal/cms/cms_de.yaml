@@ -992,6 +992,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcesses: Ihre Prozesse
     yourStatistics: Ihre Statistiken
     yourTasks: Ihre Aufgaben
+  dashboardProcess:
+    processAriaLabel: |
+      Prozessname: {0}. Prozessbeschreibung: {1}
   documentFiles:
     PreviewDocument: Vorschau
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
@@ -1629,6 +1632,8 @@ Dialogs:
               IconLinkTooltip: Klicken Sie hier, um das Symbol zu ändern
             ProcessWidget:
               ProcessListNav: Prozesslisten-Navigation
+            TaskItem:
+              StartTaskWithTaskName: Aufgabe {0} starten
             TaskItemDetails:
               ShareTaskDetails: Aufgabendetails teilen
   com:

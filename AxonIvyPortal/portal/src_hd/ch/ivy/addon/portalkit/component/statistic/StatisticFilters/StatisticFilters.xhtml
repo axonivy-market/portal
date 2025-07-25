@@ -31,7 +31,7 @@
   
         <f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/timePeriod')}" />
-          <p:outputLabel id="time-period-filter-info" styleClass="chart-filter-info-icon"><span class="si si-information-circle"/></p:outputLabel>
+          <p:commandLink id="time-period-filter-info" styleClass="chart-filter-info-icon" onclick="return;"><span class="si si-information-circle"/></p:commandLink>
           <p:tooltip for="time-period-filter-info" styleClass="statistic-filter-tooltip">
             #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
@@ -72,7 +72,7 @@
   
         <f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/rolesLabel')}" />
-          <p:outputLabel id="role-filter-info" styleClass="chart-filter-info-icon"><span class="si si-information-circle"/></p:outputLabel>
+          <p:commandLink id="role-filter-info" styleClass="chart-filter-info-icon" onclick="return;"><span class="si si-information-circle"/></p:commandLink>
           <p:tooltip for="role-filter-info" styleClass="statistic-filter-tooltip">
             #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}<br/>
@@ -99,7 +99,7 @@
   
         <f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/caseCategoriesLabel')}" />
-          <p:outputLabel id="case-category-filter-info" styleClass="chart-filter-info-icon"><span class="si si-information-circle"/></p:outputLabel>
+          <p:commandLink id="case-category-filter-info" styleClass="chart-filter-info-icon" onclick="return;"><span class="si si-information-circle"/></p:commandLink>
           <p:tooltip for="case-category-filter-info" styleClass="statistic-filter-tooltip">
             #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
@@ -121,7 +121,7 @@
   
         <f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/workflowStatesLabel')}" />
-          <p:outputLabel id="case-state-filter-info" styleClass="chart-filter-info-icon"><span class="si si-information-circle"/></p:outputLabel>
+          <p:commandLink id="case-state-filter-info" styleClass="chart-filter-info-icon" onclick="return;"><span class="si si-information-circle"/></p:commandLink>
           <p:tooltip for="case-state-filter-info" styleClass="statistic-filter-tooltip">
             #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
@@ -149,7 +149,7 @@
   
         <f:facet name="title">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/taskPrioritiesLabel')}" />
-          <p:outputLabel id="task-priority-filter-info" styleClass="chart-filter-info-icon"><span class="si si-information-circle"/></p:outputLabel>
+          <p:commandLink id="task-priority-filter-info" styleClass="chart-filter-info-icon" onclick="return;"><span class="si si-information-circle"/></p:commandLink>
           <p:tooltip for="task-priority-filter-info" styleClass="statistic-filter-tooltip">
             #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')},
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}<br/>
@@ -176,9 +176,9 @@
         <p:tab title="#{tabVar}" id="custom-field-filter-#{status.index}">
           <f:facet name="title">
             <h:outputText value="#{tabVar}" styleClass="statistic-filter-custom-title"/>
-            <p:outputLabel id="case-custom-#{status.index}" styleClass="chart-filter-info-icon">
+            <p:commandLink id="case-custom-#{status.index}" styleClass="chart-filter-info-icon" onclick="return;">
               <span class="si si-information-circle" />
-            </p:outputLabel>
+            </p:commandLink>
             <p:tooltip for="case-custom-#{status.index}" styleClass="statistic-filter-tooltip">
                #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
                #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},

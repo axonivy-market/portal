@@ -1407,6 +1407,8 @@ Dialogs:
               IconLinkTooltip: Click to change icon
             ProcessWidget:
               ProcessListNav: Process List Navigation
+            TaskItem:
+              StartTaskWithTaskName: Start task {0}
   com:
     axonivy:
       portal:
