@@ -1,0 +1,6 @@
+Variable,Description
+currentProcessStep,current process step
+processSteps,list of process steps
+isShowAllSteps,"shows all of steps on large screens, false (default) or true"
+processChainDirection,HORIZONTAL (default) or VERTICAL
+processChainShape,CIRCLE (default) or LINE

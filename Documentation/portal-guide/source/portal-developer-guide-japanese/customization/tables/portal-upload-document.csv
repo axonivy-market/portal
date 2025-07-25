@@ -1,0 +1,11 @@
+名前,タイプ,注記
+**パラメーター**
+businessCase,ch.ivyteam.ivy.workflow.ICase,
+uploadedFile,org.primefaces.model.file.UploadedFile,
+enableScriptCheckingForUploadedDocument,java.lang.Boolean,
+enableVirusScannerForUploadedDocument,java.lang.Boolean,
+allowedUploadFileTypes,java.lang.String,
+**結果**
+uploadedDocument,ch.ivyteam.ivy.workflow.document.IDocument,
+message,java.lang.String,
+status,java.lang.String,OK or FAIL
