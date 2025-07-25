@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import ch.addon.portal.generic.menu.SubMenuItem;
-import ch.ivy.addon.portalkit.enums.MenuKind;
+import com.axonivy.portal.components.enums.MenuKind;
 
 public class HomepageMapper {
 

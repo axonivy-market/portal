@@ -14,13 +14,14 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.axonivy.portal.components.comparator.CustomSubMenuItemComparator;
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
+import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.enums.PortalCustomSignature;
 
 import ch.addon.portal.generic.menu.SubMenuItem;
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
-import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.util.StaticPageUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCallStart;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
@@ -74,15 +75,22 @@ public class CustomSubMenuItemService {
       }
 
       SubMenuItem result = new SubMenuItem();
-      result.setLink(customMenu.getLink());
+      String link = customMenu.getLink();
+      if (customMenu.getMenuKind() == MenuKind.STATIC_PAGE) {
+        link = StaticPageUtils.buildUrl(link);
+      }
+      result.setLink(link);
       result.setLabel(customMenu.getLabel());
       result.setName(HomepageType.CUSTOM.name());
       result.setIcon(StringUtils.defaultIfBlank(customMenu.getIcon(), DEFAULT_ICON));
 
-      result.setMenuKind(Optional.ofNullable(customMenu)
-          .map(CustomSubMenuItem::getIsExternalLink)
-          .orElse(false) ? 
-              MenuKind.EXTERNAL_LINK : MenuKind.CUSTOM);
+      if (customMenu.getMenuKind() != null) {
+        result.setMenuKind(customMenu.getMenuKind());
+      } else {
+        result.setMenuKind(Optional.ofNullable(customMenu).map(CustomSubMenuItem::getIsExternalLink).orElse(false)
+            ? MenuKind.EXTERNAL_LINK
+            : MenuKind.CUSTOM);
+      }
 
       return result;
     };

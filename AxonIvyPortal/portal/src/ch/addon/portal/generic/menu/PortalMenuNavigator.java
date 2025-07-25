@@ -19,6 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.MenuActionEvent;
 import org.primefaces.model.menu.MenuItem;
 
+import com.axonivy.portal.components.enums.MenuKind;
 import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.service.CustomSubMenuItemService;
 
@@ -29,7 +30,6 @@ import ch.ivy.addon.portalkit.configuration.Application;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
-import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -56,6 +56,7 @@ public class PortalMenuNavigator {
       case MAIN_DASHBOARD:
       case CUSTOM:
       case EXTERNAL_LINK:
+      case STATIC_PAGE:
         redirectToSelectedMenuUrl(params);
         break;
       case PROCESS:
