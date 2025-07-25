@@ -259,4 +259,5 @@
 - _`UserReadSubstitutes`
     - すべてのユーザーの代行者を閲覧する権限
 
+- _`UserSetOwnPassword`
 
