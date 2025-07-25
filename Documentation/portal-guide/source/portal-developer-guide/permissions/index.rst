@@ -219,6 +219,11 @@ Portal General Permissions
 
     - Granted to role Everybody by default
 
+- _`NotificationChannelsSetting`
+    - Permission to customize notification channel preferences in :ref:`my-profile` page
+
+    - Granted to role Everybody by default.
+
 .. _portal-absence-and-sub-permission:
 
 Portal Absence And Substitute Permissions

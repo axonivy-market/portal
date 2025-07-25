@@ -157,4 +157,8 @@ public class UserProfilePage extends TemplatePage {
   public boolean isCaseListSettingDisplayed() {
     return $("div[id='my-profile-form:case-sort-field-selection']").is(Condition.appear);
   }
+  
+  public boolean isNoticationChannelsSettingCheckboxHidden() {
+	return $$(NOTI_CHANNELS_CHECKBOX_SELECTOR).isEmpty();
+  }
 }

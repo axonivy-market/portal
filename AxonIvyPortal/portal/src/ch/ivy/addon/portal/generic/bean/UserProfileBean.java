@@ -14,6 +14,7 @@ import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelSubcriptionDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationEventDTO;
@@ -115,7 +116,7 @@ public class UserProfileBean implements Serializable {
           Arrays.asList(currentUser.getDisplayName())));
     }
   }
-  
+
   public boolean isAllowedConfigShortcutsByAdmin() {
     return GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ALLOW_KEYBOARD_SHORTCUTS_CONFIGURATION);
   }
@@ -125,5 +126,9 @@ public class UserProfileBean implements Serializable {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShortcutsNavigationInfor");
     }
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShortcutsTooltip");
+  }
+
+  public boolean hasNotificationChannelsSettingPermission() {
+    return PermissionUtils.hasPortalPermission(PortalPermission.NOTIFICATION_CHANNELS_SETTING);
   }
 }

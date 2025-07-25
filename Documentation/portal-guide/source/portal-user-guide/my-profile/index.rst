@@ -108,7 +108,13 @@ The table :guilabel:`Notification Channels` displays all the available
 events that can either be subscribed or unsubscribed.
 
 The checkbox in each event column allow you to specify 
-three state of event: subscribed by default, subscribe, unsubscribe.
+three state of event: subscribed by default, subscribe, unsubscribe. These checkboxes can be disabled by the administrator 
+to prevent users from modifying them.
+
+.. note::
+   - As an administrator, you can configure the permission :bdg-ref-warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>` to allow or prevent users from modifying notification channel preferences.
+   
+   - To do this, access the :dev-url:`Engine Cockpit </doc/|version|/engine-guide/reference/engine-cockpit/security.html>`, open the **Security area**. Since this permission is granted to the Everybody role by default, administrators need to deny this permission from the Everybody role, then grant it to specific roles that should be allowed to modify notification channel preferences.
 
 .. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png
    :alt: My profile page

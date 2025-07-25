@@ -272,6 +272,10 @@ Other Permissions
  |           | the full process list           |                                                                                       |
  |           +---------------------------------+---------------------------------------------------------------------------------------+
  |           | Dashboard sharing               | :bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`                          |
+ |           +---------------------------------+---------------------------------------------------------------------------------------+
+ |           | Modify notification channels    | :bdg-ref-warning:`🔑NotificationChannelsSetting <NotificationChannelsSetting>`        |
+ |           | preferences in :ref:`my-profile`|                                                                                       |
+ |           | page                            |                                                                                       |
  +-----------+---------------------------------+---------------------------------------------------------------------------------------+
 
 .. _settings-virus-scanning-setting:

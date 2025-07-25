@@ -10,6 +10,8 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.UserProfilePage;
 import com.codeborne.selenide.SelenideElement;
 
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+
 @IvyWebTest
 public class NotificationsTest extends BaseTest {
 
@@ -63,6 +65,7 @@ public class NotificationsTest extends BaseTest {
   @Test
   public void testDisableNotificationIcon() {
     login(TestAccount.ADMIN_USER);
+	grantSpecificPortalPermission(PortalPermission.NOTIFICATION_CHANNELS_SETTING);
     NewDashboardPage homepage = new NewDashboardPage();
     UserProfilePage userProfilePage = homepage.openMyProfilePage();
     userProfilePage.unsubscribeAllChannels();
@@ -73,6 +76,22 @@ public class NotificationsTest extends BaseTest {
     userProfilePage.subscribeAllChannels();
     userProfilePage.save();
     homepage.showNotificationsIcon();
+  }
+  
+  @Test
+  public void testDisableNotificationChannelsSettingCheckbox() {
+	login(TestAccount.DEMO_USER);
+	grantSpecificPortalPermission(PortalPermission.NOTIFICATION_CHANNELS_SETTING);
+	NewDashboardPage homePage = new NewDashboardPage();
+	UserProfilePage userProfilePage = homePage.openMyProfilePage();
+	assertFalse(userProfilePage.isNoticationChannelsSettingCheckboxHidden());
+	userProfilePage.subscribeAllChannels();
+	userProfilePage.save();
+
+	denySpecificPortalPermission(PortalPermission.NOTIFICATION_CHANNELS_SETTING);
+	homePage.openMyProfilePage();
+	userProfilePage = new UserProfilePage();
+	assertTrue(userProfilePage.isNoticationChannelsSettingCheckboxHidden());
   }
 
 }
