@@ -1,0 +1,10 @@
+名前,タイプ,注記
+**パラメーター**
+roles,java.util.List<com.axonivy.portal.components.dto.RoleDTO>,
+users,java.util.List<com.axonivy.portal.components.dto.UserDTO>,
+currentUser,com.axonivy.portal.components.dto.SecurityMemberDTO,
+task,ch.ivyteam.ivy.workflow.ITask,
+**結果**
+status,java.lang.String,OK or SKIP
+roles,java.util.List<com.axonivy.portal.components.dto.RoleDTO>,
+users,java.util.List<com.axonivy.portal.components.dto.UserDTO>,

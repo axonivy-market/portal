@@ -1,0 +1,16 @@
+,アクション,必要な権限
+不在,閲覧,:bdg-ref-warning:`🔑UserReadOwnAbsences <UserReadOwnAbsences>` または :bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`
+,作成、編集,:bdg-ref-warning:`🔑UserCreateOwnAbsence <UserCreateOwnAbsence>` または :bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`
+,削除,:bdg-ref-warning:`🔑UserDeleteOwnAbsence <UserDeleteOwnAbsence>` または :bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`
+,すべてのユーザーの不在の閲覧,:bdg-ref-warning:`🔑UserReadAbsences <UserReadAbsences>`
+,すべてのユーザーの不在の削除,:bdg-ref-warning:`🔑UserDeleteAbsence <UserDeleteAbsence>`
+,すべてのユーザーの新しい不在の作成,:bdg-ref-warning:`🔑UserCreateAbsence <UserCreateAbsence>`
+代行者,代行者の管理,:bdg-ref-warning:`🔑UserCreateSubstitute <UserCreateSubstitute>`、:bdg-ref-warning:`🔑UserReadSubstitutes <UserReadSubstitutes>`
+ドキュメント,アップロード、削除,:bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>`
+ポータルの権限,全プロセスリストへのアクセス左側のメニューに表示される「プロセス」、ダッシュボードの「すべてのプロセスの表示」リンク）,:bdg-ref-warning:`🔑AccessFullProcessList <AccessFullProcessList>`
+,全タスクリストへのアクセス（左側のメニューに表示される「タスク」、ダッシュボードの「タスクリスト全体を表示」リンク）,:bdg-ref-warning:`🔑AccessFullTaskList <AccessFullTaskList>`
+,全ケースリストへのアクセス（左側のメニューに表示される「ケース」）,:bdg-ref-warning:`🔑AccessFullCaseList <AccessFullCaseList>`
+,タスク／ケースへのノートの追加,:bdg-ref-warning:`🔑TaskCaseAddNote <TaskCaseAddNote>`
+,［さらにノートを表示］の表示,:bdg-ref-warning:`🔑TaskCaseShowMoreNote <TaskCaseShowMoreNote>`
+,公開用外部リンクの作成。他のユーザーには全プロセスリストでそのリンクが表示されます。,:bdg-ref-warning:`🔑CreatePublicExternalLink <CreatePublicExternalLink>`
+,ダッシュボードの共有,:bdg-ref-warning:`🔑ShareDashboardLink <ShareDashboardLink>`

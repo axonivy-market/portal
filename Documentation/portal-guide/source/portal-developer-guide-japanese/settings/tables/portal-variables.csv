@@ -1,0 +1,5 @@
+変数,デフォルト値,説明
+PortalStartTimeCleanObsoletedDataExpression,0 6 \* \* \*,クロン式は、古いユーザーのデータを消去する時間を定義します。例えば、毎日 6AM の式は ``0 6 * * *`` になります。 `CRON Expression <https://developer.axonivy.com/doc/11.2/engine-guide/configuration/advanced-configuration.html#cron-expression>`_ を参照してください。この変数の変更後、Ivy エンジンを再起動します。
+PortalDeleteAllFinishedHiddenCases,false,``true`` に設定すると、上記の cron ジョブが毎日動作し、エンジンのすべての完了した非表示のケースを削除します。そうでない場合は、このポータルで生成されたケースのみ削除されます。
+PortalHiddenTaskCaseExcluded,true,ポータルは自動的に非表示でないタスクとケースを問い合わせます。``false`` に設定すると、ポータルはこのプロパティを無視します。
+PortalLoginPageDisplay,true,ログインが必要で、ユーザーが不明な場合、ポータルは自動的にログインページにリダイレクトします。ログインエラーページにリダイレクトし、ユーザーメニューの［ログアウト］を非表示にするには、``false`` に設定します（外部認証を使用しており、アプリケーションのユーザーリストに該当するユーザーが存在しない場合）。
