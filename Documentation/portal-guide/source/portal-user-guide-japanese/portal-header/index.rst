@@ -42,7 +42,7 @@
 
 
 不在
---------
+---------
 
 :guilabel:`不在` メニューエントリには、不在管理コンポーネントがあります。
 自分の不在を入力し、自分に割り当てられたタスクまたは保有するロールの 1 つに割り当てられたタスクの委任を定義できます。
@@ -78,7 +78,7 @@
    
 
 ハウツー：代行者を設定する
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. 自分のタスクと自分が保有する各ロールの 2 つの項目のリストが表示されます。
    
@@ -112,8 +112,7 @@
 
 .. note::
 
-   ユーザーがパスワードを変更できるようにするには、 :bdg-ref-warning:`🔑UserSetOwnPassword` 権限を付与してください。
-   次に権限を設定します :dev-url:`エンジンコックピット </doc/|version|/engine-guide/reference/engine-cockpit/security.html>` . セキュリティ領域で［PersonalPermissions］、［PersonalSecurityPermissions］、［UserSetOwnPassword］を順に開いてください。
+   ユーザーがパスワードを変更できるようにするには、 :bdg-ref-warning:`🔑UserSetOwnPassword <UserSetOwnPassword>` 権限を付与してください。次に権限を設定します :dev-url:`エンジンコックピット </doc/|version|/engine-guide/reference/engine-cockpit/security.html>` . セキュリティ領域で［PersonalPermissions］、［PersonalSecurityPermissions］、［UserSetOwnPassword］を順に開いてください。
 
 情報
 ----------------------
