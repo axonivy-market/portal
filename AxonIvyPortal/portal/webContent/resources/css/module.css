@@ -3172,6 +3172,15 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   text-overflow: ellipsis;
 }
 
+.keyboard-shortcuts-container {
+  align-items: center;
+}
+
+.keyboard-shortcuts-container > label {
+  padding-left: 0.5em;
+  padding-right: 4em;
+}
+
 @media screen and (max-width: 40em) {
   .my-profile-container .sort-field-selection {
     width: 100%;
@@ -6176,6 +6185,11 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
   background: var(--dashboard-light-dark-button-background-color);
   border-color: var(--dashboard-light-dark-button-background-color);
 }
+
+body.edit-mode {
+  overflow: hidden;
+}
+
 
 .command-link-focused:focus {
 	outline: 2px solid var(--ivy-primary-lightest-color) !important;

@@ -27,6 +27,7 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.DashboardUtils;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -57,10 +58,7 @@ public class DashboardWelcomeWidgetBean implements Serializable {
     }
 
     if (!CollectionUtils.isEmpty(widget.getWelcomeTexts())) {
-      String userLanguage = UserUtils.getUserLanguage();
-      widget.setWelcomeText(CollectionUtils.emptyIfNull(widget.getWelcomeTexts()).stream()
-          .filter(name -> equalsLanguageLocale(name, userLanguage))
-          .findFirst().orElse(new DisplayName()).getValue());
+      widget.setWelcomeText(LanguageUtils.getLocalizedName(widget.getWelcomeTexts()));
     }
     widget.setImageContentObject(renderImage());
     if (StringUtils.isNotBlank(widget.getId())) {

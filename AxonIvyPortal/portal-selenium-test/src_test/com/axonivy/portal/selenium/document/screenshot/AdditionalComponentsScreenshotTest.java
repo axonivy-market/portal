@@ -52,7 +52,8 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotBaseTest {
 
     ScreenshotUtils.resizeBrowser(new Dimension(1500, 1500));
     redirectToRelativeLink(createTestingTasksUrl);
-    newDashboardPage.startTask(1);
+    newDashboardPage = new NewDashboardPage();
+    WaitHelper.waitForNavigation(() -> new NewDashboardPage().startTask(1));
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     WaitHelper.waitForNavigation(() -> taskTemplatePage.clickCancelButton());
     ScreenshotUtils.resizeBrowser(new Dimension(1366, 800));

@@ -182,8 +182,21 @@
                 </div>
               </div>
 
+              <!-- Accessibility Setting -->
+              <div id="accessibility-setting-container" class="accessibility-setting-container ui-g-12">
+                <div class="accessibility-setting-header ui-g-12">
+                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Accessibility')}</h2>
+                </div>
+                <div class="ui-g-12 keyboard-shortcuts-container">
+                  <p:outputLabel id="keyboard-shortcuts-toggle-label" for="keyboard-shortcuts-toggle" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShortcutsNavigation')}" />
+                  <p:inputSwitch id="keyboard-shortcuts-toggle" value="#{data.isShortcutsEnabled}" style="pointer-events: auto;"
+                  disabled="#{!userProfileBean.allowedConfigShortcutsByAdmin}"/>
+                  <p:tooltip value="#{userProfileBean.renderTooltipMessageForKeyboardShortcutButton()}" for="keyboard-shortcuts-toggle"/>
+                </div>
+              </div>
             </div>
           </div>
+
 
           <div class="user-profile-footer ui-g-12">
             <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
