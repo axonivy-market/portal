@@ -128,7 +128,7 @@ public class UserProfileBean implements Serializable {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShortcutsTooltip");
   }
 
-  public boolean disableConfigureNotificationChannels() {
-    return !PermissionUtils.hasPortalPermission(PortalPermission.NOTIFICATION_CHANNELS_SETTING);
+  public boolean hasNotificationChannelsSettingPermission() {
+    return PermissionUtils.hasPortalPermission(PortalPermission.NOTIFICATION_CHANNELS_SETTING);
   }
 }
