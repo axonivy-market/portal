@@ -158,11 +158,7 @@ public class UserProfilePage extends TemplatePage {
     return $("div[id='my-profile-form:case-sort-field-selection']").is(Condition.appear);
   }
   
-  public boolean isNoticationChannelsSettingCheckboxDisabled() {
-	return $$(NOTI_CHANNELS_CHECKBOX_SELECTOR).asDynamicIterable().stream().allMatch(
-			checkbox -> {
-			  SelenideElement inputElem = checkbox.$(".ui-helper-hidden-accessible input");
-	          return !inputElem.isEnabled();
-			});
+  public boolean isNoticationChannelsSettingCheckboxHidden() {
+	return $$(NOTI_CHANNELS_CHECKBOX_SELECTOR).isEmpty();
   }
 }

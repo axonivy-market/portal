@@ -127,7 +127,7 @@
                         <c:set var="subscription" value="#{channel.getSubscription(event)}" />
                         <div class="flex align-content-center gap-3">
                           <i class="flex align-items-center si table-icon si-#{subscription.icon} subscription-icon " title="#{subscription.title}" />
-                          <p:triStateCheckbox disabled="#{userProfileBean.disableConfigureNotificationChannels()}" id="subscriptionCheckbox" value="#{subscription.stateAsString}" styleClass="flex align-items-center">
+                          <p:triStateCheckbox rendered="#{!userProfileBean.disableConfigureNotificationChannels()}" id="subscriptionCheckbox" value="#{subscription.stateAsString}" styleClass="flex align-items-center">
                             <p:ajax event="change" global="false"
                               update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
                               listener="#{channel.setSubscriptionIconAndTitle(event.event)}" />
@@ -142,7 +142,8 @@
                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}"
                       actionListener="#{userProfileBean.resetAllChannel}"
                       update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
-                      styleClass="ui-button-flat setting-tab-action-buttons font-medium" >
+                      styleClass="ui-button-flat setting-tab-action-buttons font-medium"
+                      rendered="#{!userProfileBean.disableConfigureNotificationChannels()}" >
                         <i class="si si-undo"/>
                         <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}</span>
                       </p:commandLink>

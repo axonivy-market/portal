@@ -84,14 +84,14 @@ public class NotificationsTest extends BaseTest {
 	grantSpecificPortalPermission(PortalPermission.NOTIFICATION_CHANNELS_SETTING);
 	NewDashboardPage homePage = new NewDashboardPage();
 	UserProfilePage userProfilePage = homePage.openMyProfilePage();
-	assertFalse(userProfilePage.isNoticationChannelsSettingCheckboxDisabled());
+	assertFalse(userProfilePage.isNoticationChannelsSettingCheckboxHidden());
 	userProfilePage.subscribeAllChannels();
 	userProfilePage.save();
 
 	denySpecificPortalPermission(PortalPermission.NOTIFICATION_CHANNELS_SETTING);
 	homePage.openMyProfilePage();
 	userProfilePage = new UserProfilePage();
-	assertTrue(userProfilePage.isNoticationChannelsSettingCheckboxDisabled());
+	assertTrue(userProfilePage.isNoticationChannelsSettingCheckboxHidden());
   }
 
 }
