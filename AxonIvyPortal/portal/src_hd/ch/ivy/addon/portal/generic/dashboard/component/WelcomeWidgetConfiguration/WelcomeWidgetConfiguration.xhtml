@@ -62,6 +62,7 @@
           <p:outputLabel for="welcome-image-fit" styleClass="welcome-text-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/ChooseAFit')}" />
          </div>
          <div class="ui-g-9 ui-md-8">
+           <p:focus for="welcome-image-fit"/>
            <p:selectOneMenu id="welcome-image-fit" value="#{dashboardWelcomeWidgetConfigurationBean.widget.welcomeImageFit}" styleClass="welcome-text-select-one-menu">
             <f:selectItem value="#{null}" noSelectionOption="true" />
              <f:selectItems var="fit" value="#{dashboardWelcomeWidgetConfigurationBean.imageFits}" itemLabel="#{fit.label}" itemValue="#{fit}" />

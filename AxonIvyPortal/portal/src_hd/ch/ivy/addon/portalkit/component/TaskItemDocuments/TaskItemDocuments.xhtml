@@ -114,7 +114,7 @@
 
   <p:dialog id="document-upload-dialog" widgetVar="document-upload-dialog" appendTo="@(body)" dynamic="true" styleClass="document-upload-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" modal="true" resizable="false" showEffect="fade" hideEffect="fade"
-    responsive="true">
+    responsive="true" focus="@(.ui-fileupload-choose)">
     <h:form id="document-upload-form">
       <p:messages id="upload-messages" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}" />
@@ -163,7 +163,7 @@
     <ui:define name="dialogFooter">
       <p:commandLink id="document-deletion-cancellation-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="u-mar-right-15"/>
+        process="@this" onsuccess="PF('document-deletion-dialog').hide()" styleClass="u-mar-right-15 command-link-focused"/>
       <p:commandButton id="document-deletion-command" 
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" process="@this"

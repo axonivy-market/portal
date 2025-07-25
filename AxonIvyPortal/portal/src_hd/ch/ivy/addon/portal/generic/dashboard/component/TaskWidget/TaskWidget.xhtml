@@ -157,7 +157,7 @@
     <ui:define name="dialogFooter">
       <h:form id="reset-task-confirmation-form">
         <p:commandLink onclick="PF('reset-task-confirmation-dialog').hide()" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15 command-link-focused" />
         <p:commandButton actionListener="#{dashboardBean.resetAndOpenTask}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"

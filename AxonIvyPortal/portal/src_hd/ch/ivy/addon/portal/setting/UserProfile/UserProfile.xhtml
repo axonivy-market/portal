@@ -176,6 +176,7 @@
                       styleClass="daily-summary">
                       <f:selectItems value="#{data.dailySummaryList}" var="day" itemLabel="#{day.getLocalizedName(ivy.session.getContentLocale())}"
                         itemValue="#{day}" />
+                      <p:ajax update="@this" />
                     </p:selectManyCheckbox>
                   </h:panelGrid>
                 </div>

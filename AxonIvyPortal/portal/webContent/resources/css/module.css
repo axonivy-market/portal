@@ -6189,3 +6189,8 @@ body .ui-dialog.ui-widget.import-dashboard-dialog{
 body.edit-mode {
   overflow: hidden;
 }
+
+
+.command-link-focused:focus {
+	outline: 2px solid var(--ivy-primary-lightest-color) !important;
+}

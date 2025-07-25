@@ -23,6 +23,14 @@ public class DateTimePatternBean implements Serializable {
     return dateTimePatternService.getDatePattern();
   }
 
+  public String getShortDatePattern() {
+    return dateTimePatternService.getDatePatternForDatePicker();
+  }
+
+  public String getShortDateTimePattern(boolean isDateFilter) {
+    return dateTimePatternService.getDateTimePatternForDatePicker(isDateFilter);
+  }
+
   public String getDateTimePattern() {
     return dateTimePatternService.getDateTimePattern();
   }

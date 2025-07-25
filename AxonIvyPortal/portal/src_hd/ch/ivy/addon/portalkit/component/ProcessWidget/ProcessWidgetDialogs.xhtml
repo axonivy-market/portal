@@ -12,7 +12,7 @@
   <!-- Start Edit Process -->
   <p:dialog id="edit-process-dialog" widgetVar="edit-process-dialog" 
     closeOnEscape="true" modal="true" appendTo="@(body)"
-    responsive="true" resizable="false" fitViewport="true" positionType="absolute"
+    responsive="true" resizable="false" fitViewport="true" positionType="absolute" focus="@(.ui-inplace-display:first)"
     styleClass="edit-process-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editDialog/dialogHeaderTitle', [processWidgetBean.editedProcess.getName()])}">
     <p:ajax event="close" update="edit-process-dialog" resetValues="true" />
     <h:form id="edit-process-form" styleClass="ui-g edit-process-form">
