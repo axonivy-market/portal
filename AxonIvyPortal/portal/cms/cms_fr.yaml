@@ -1608,6 +1608,9 @@ Dialogs:
                   DragAndDropTooltip: Cliquer sur l'aperçu puis glisser-déposer pour modifier l'ordre
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Bienvenue à Axon Ivy Portal
+          setting:
+            UserProfile:
+              DefaultSortDirection: Sens de tri par défaut
         portalkit:
           component:
             CaseItemDetails:
@@ -1618,6 +1621,7 @@ Dialogs:
                 CaseDetailTitle: Détail du cas
                 DataDescription: Données et description
                 destroyCase: détruire le cas
+              CaseListHeader: En-tête de la liste des dossiers
               CaseOwner: Responsable de processus
               Finished: Terminé
               GlobalSearchText: Les cas contiennent le mot-clé "{0}" dans Id du dossier{1}.
@@ -1632,6 +1636,8 @@ Dialogs:
               ProcessListNav: Navigation dans la liste des processus
             TaskItemDetails:
               ShareTaskDetails: Partager les détails de la tâche
+            TaskWidget:
+              TaskListHeader: En-tête de la liste des tâches
   com:
     axonivy:
       portal:

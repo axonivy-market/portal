@@ -1390,6 +1390,9 @@ Dialogs:
                   DragAndDropTooltip: Click preview then drag and drop to change order
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Welcome to Axon Ivy Portal
+          setting:
+            UserProfile:
+              DefaultSortDirection: Default sort direction
         portalkit:
           component:
             CaseWidget:
@@ -1398,6 +1401,7 @@ Dialogs:
                 CaseDetailTitle: Case Details
                 DataDescription: Data and Description
                 destroyCase: Destroy case
+              CaseListHeader: case list header
               CaseOwner: Case Owner
               Finished: Finished
               ShowBusinessDetails: Business details
@@ -1407,6 +1411,8 @@ Dialogs:
               IconLinkTooltip: Click to change icon
             ProcessWidget:
               ProcessListNav: Process List Navigation
+            TaskWidget:
+              TaskListHeader: Task list header
   com:
     axonivy:
       portal:

@@ -1607,6 +1607,9 @@ Dialogs:
                   DragAndDropTooltip: Klicken Sie auf die Vorschau und ändern Sie die Reihenfolge durch Ziehen und Ableg
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Willkommen bei Axon Ivy Portal
+          setting:
+            UserProfile:
+              DefaultSortDirection: Standard-Sortierrichtung
         portalkit:
           component:
             CaseItemDetails:
@@ -1617,6 +1620,7 @@ Dialogs:
                 CaseDetailTitle: Vorgangsdetails
                 DataDescription: Daten und Beschreibung
                 destroyCase: Vorgang löschen
+              CaseListHeader: Vorfall-Liste Kopfzeile
               CaseOwner: Prozessverantwortlicher
               Finished: Erledigt
               GlobalSearchText: Die Vorgänge enthalten das Schlüsselwort "{0}" in Vorgangs Id{1}.
@@ -1631,6 +1635,8 @@ Dialogs:
               ProcessListNav: Prozesslisten-Navigation
             TaskItemDetails:
               ShareTaskDetails: Aufgabendetails teilen
+            TaskWidget:
+              TaskListHeader: Aufgabenlistenüberschrift
   com:
     axonivy:
       portal:
