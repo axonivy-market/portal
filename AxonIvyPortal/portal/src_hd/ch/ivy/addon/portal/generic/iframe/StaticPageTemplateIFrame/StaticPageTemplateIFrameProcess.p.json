@@ -1,0 +1,56 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "id" : "1977D42A1055E39B",
+  "kind" : "HTML_DIALOG",
+  "config" : {
+    "data" : "ch.ivy.addon.portal.generic.iframe.StaticPageTemplateIFrame.StaticPageTemplateIFrameData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "HtmlDialogStart",
+      "name" : "start(String)",
+      "config" : {
+        "signature" : "start",
+        "input" : {
+          "params" : [
+            { "name" : "url", "type" : "String", "desc" : "" }
+          ],
+          "map" : {
+            "out.url" : "param.url"
+          }
+        },
+        "guid" : "1977D42A1056D750"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEventStart",
+      "name" : "close",
+      "config" : {
+        "guid" : "1977D42A108D4A63"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f5", "to" : "f4" }
+      ]
+    }, {
+      "id" : "f4",
+      "type" : "HtmlDialogExit",
+      "visual" : {
+        "at" : { "x" : 224, "y" : 160 }
+      }
+    } ]
+}

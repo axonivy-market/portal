@@ -1,10 +1,12 @@
 package com.axonivy.portal.components.configuration;
 
+import com.axonivy.portal.components.enums.MenuKind;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CustomSubMenuItem {
+  private MenuKind menuKind;
   private String link;
   private String icon;
   private String label;
@@ -14,6 +16,14 @@ public class CustomSubMenuItem {
   private Boolean isExternalLink; 
 
   private String version;
+
+  public MenuKind getMenuKind() {
+    return menuKind;
+  }
+
+  public void setMenuKind(MenuKind menuKind) {
+    this.menuKind = menuKind;
+  }
 
   public String getLink() {
     return link;
