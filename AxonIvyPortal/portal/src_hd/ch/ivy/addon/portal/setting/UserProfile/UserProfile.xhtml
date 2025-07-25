@@ -68,7 +68,7 @@
                 </div>
                 
                 <div class="ui-g ui-g-12 u-padding-0">
-                  <div class="ui-g-6 ui-sm-12 u-no-padding-top">
+                  <div class="ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-right">
                     <p:outputLabel for="task-sort-field-selection" styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}" />
                     <div class="ui-g-12">
                       <p:selectOneMenu id="task-sort-field-selection" value="#{data.selectedTaskListSortField}" >
@@ -79,7 +79,7 @@
                   </div>
                   
                   <!-- Task sort direction -->
-                  <div class="ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-left">
+                  <div class="ui-g-6 ui-sm-12 u-no-padding-top">
                     <p:outputLabel for="task-sort-direction-selection" id="task-sort-direction-label" styleClass="ui-g-12" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/DefaultSortDirection')}" />
                     <div class="ui-g-12">
                       <p:selectOneMenu id="task-sort-direction-selection" value="#{data.selectedTaskListSortDirection}"
@@ -100,7 +100,7 @@
                   <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/CaseList')}</h2>
                 </div>
                 <div class="ui-g ui-g-12 u-padding-0">
-                  <div class="ui-g-6 ui-sm-12 u-no-padding-top">
+                  <div class="ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-right">
                     <p:outputLabel for="case-sort-field-selection" styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}" />
                     <div class="ui-g-12">
                       <p:selectOneMenu id="case-sort-field-selection" value="#{data.selectedCaseListSortField}"
@@ -110,7 +110,7 @@
                       </p:selectOneMenu>
                     </div>
                   </div>
-                  <div class="ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-left">
+                  <div class="ui-g-6 ui-sm-12 u-no-padding-top">
                     <p:outputLabel for="case-sort-direction-selection" styleClass="ui-g-12" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/DefaultSortDirection')}" />
                     <div class="ui-g-12">
                     <p:selectOneMenu id="case-sort-direction-selection" value="#{data.selectedCaseListSortDirection}"

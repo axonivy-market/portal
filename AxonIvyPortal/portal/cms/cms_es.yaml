@@ -1618,6 +1618,7 @@ Dialogs:
                 CaseDetailTitle: Detalles del caso
                 DataDescription: Datos y Descripción
                 destroyCase: Borrar caso
+              CaseListHeader: Encabezado de la lista de casos
               CaseOwner: Responsable del proceso
               Finished: Terminado
               GlobalSearchText: Los casos contienen la palabra clave "{0}" en ID del caso{1}.
@@ -1630,6 +1631,8 @@ Dialogs:
               IconLinkTooltip: Haga clic para cambiar el icono
             TaskItemDetails:
               ShareTaskDetails: Compartir detalles de la tarea
+            TaskWidget:
+              TaskListHeader: Encabezado de la lista de tareas
   com:
     axonivy:
       portal:

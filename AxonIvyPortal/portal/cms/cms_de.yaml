@@ -1615,6 +1615,7 @@ Dialogs:
                 CaseDetailTitle: Vorgangsdetails
                 DataDescription: Daten und Beschreibung
                 destroyCase: Vorgang löschen
+              CaseListHeader: Vorfall-Liste Kopfzeile
               CaseOwner: Prozessverantwortlicher
               Finished: Erledigt
               GlobalSearchText: Die Vorgänge enthalten das Schlüsselwort "{0}" in Vorgangs Id{1}.
@@ -1627,6 +1628,8 @@ Dialogs:
               IconLinkTooltip: Klicken Sie hier, um das Symbol zu ändern
             TaskItemDetails:
               ShareTaskDetails: Aufgabendetails teilen
+            TaskWidget:
+              TaskListHeader: Aufgabenlistenüberschrift
   com:
     axonivy:
       portal:

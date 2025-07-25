@@ -1401,6 +1401,7 @@ Dialogs:
                 CaseDetailTitle: Case Details
                 DataDescription: Data and Description
                 destroyCase: Destroy case
+              CaseListHeader: case list header
               CaseOwner: Case Owner
               Finished: Finished
               ShowBusinessDetails: Business details
@@ -1408,6 +1409,8 @@ Dialogs:
               defaultEmptyMessage: There are no cases
             IconSelection:
               IconLinkTooltip: Click to change icon
+            TaskWidget:
+              TaskListHeader: Task list header
   com:
     axonivy:
       portal:
