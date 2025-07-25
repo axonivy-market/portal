@@ -475,7 +475,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     continue: Continuar
     create: Creado
     creationDate: Fecha de creación
-    dashboard: Dashboard
+    dashboard: Tablero de mandos
     data: Datos
     dateFromBiggerThanTo: Hasta' debe ser después de 'Desde'
     dateRequired: La fecha no puede estar vacía.
