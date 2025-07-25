@@ -20,3 +20,4 @@ Developer Guide
    troubleshooting/index
    permissions/index
    public-api/index
+   static-page/index
