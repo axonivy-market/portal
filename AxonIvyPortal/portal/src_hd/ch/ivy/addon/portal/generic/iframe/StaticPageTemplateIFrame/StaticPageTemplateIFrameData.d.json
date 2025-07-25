@@ -1,0 +1,11 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.1.0/data-class.json",
+  "simpleName" : "StaticPageTemplateIFrameData",
+  "namespace" : "ch.ivy.addon.portal.generic.iframe.StaticPageTemplateIFrame",
+  "isBusinessCaseData" : false,
+  "fields" : [ {
+    "name" : "url",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  } ]
+}

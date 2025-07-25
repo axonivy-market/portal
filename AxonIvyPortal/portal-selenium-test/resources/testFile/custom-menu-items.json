@@ -31,5 +31,12 @@
     "isExternal": "false",
     "index": 4,
     "version": "10.0.0"
+  }, {
+    "id": "6",
+    "label": "Static page",
+    "menuKind":"STATIC_PAGE",
+    "link": "portal-components-examples/static.xhtml",
+    "version": "12.0.0"
   }
+
 ]
