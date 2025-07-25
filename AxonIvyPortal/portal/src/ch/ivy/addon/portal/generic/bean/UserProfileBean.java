@@ -13,10 +13,12 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.util.FacesMessageUtils;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationChannelSubcriptionDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyNotificationEventDTO;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -114,7 +116,18 @@ public class UserProfileBean implements Serializable {
           Arrays.asList(currentUser.getDisplayName())));
     }
   }
-  
+
+  public boolean isAllowedConfigShortcutsByAdmin() {
+    return GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ALLOW_KEYBOARD_SHORTCUTS_CONFIGURATION);
+  }
+
+  public String renderTooltipMessageForKeyboardShortcutButton() {
+    if (isAllowedConfigShortcutsByAdmin()) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShortcutsNavigationInfor");
+    }
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShortcutsTooltip");
+  }
+
   public boolean disableConfigureNotificationChannels() {
     return !PermissionUtils.hasPortalPermission(PortalPermission.NOTIFICATION_CHANNELS_SETTING);
   }
