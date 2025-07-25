@@ -78,7 +78,8 @@
         listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
         
       <c:set var="showGlobalSearch" value="#{userMenuBean.isShowGlobalSearch}" />
-        
+      <c:set var="isKeyboardShortcutsEnabled" value="#{masterDataBean.keyboardShortcutsEnabled}" />
+
      <div id="portal-template-header" class="js-portal-template-header #{showMainArea eq true ? '' : 'u-invisibility'}">
         <ic:ch.ivy.addon.portalkit.component.PageHeader />
       </div>
@@ -173,6 +174,10 @@
         Portal.updateBreadcrumb();
         MainMenu.highlightMenuItem();
       });
+    // Initialize shortcuts state from server
+    if (typeof initKeyboardShortcutsEnabledValue === 'function') {
+      initKeyboardShortcutsEnabledValue(#{isKeyboardShortcutsEnabled});
+    }
     </script>
   </ui:insert>
   
