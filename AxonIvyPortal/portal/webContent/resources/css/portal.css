@@ -361,6 +361,10 @@ body .statistic-carousel .ui-widget-header.ui-carousel-header {
 
 .statistic-filter-accordion-panel .ui-accordion-content {
   border: solid 1px var(--statistic-filter-accordion-panel-border); }
+  
+.chart-filter-info-icon .si-information-circle {
+  color: var(--ivy-primary-color-grey-dark);
+}
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
 body .portal-cancel-button.ui-widget.ui-button,
