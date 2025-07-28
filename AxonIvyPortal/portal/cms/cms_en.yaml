@@ -1610,6 +1610,9 @@ Dialogs:
                   DragAndDropTooltip: Click Preview, then drag and drop to change the order
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Welcome to Axon Ivy Portal
+          setting:
+            UserProfile:
+              DefaultSortDirection: Default sort direction
         portalkit:
           component:
             CaseItemDetails:
@@ -1620,6 +1623,7 @@ Dialogs:
                 CaseDetailTitle: Case Details
                 DataDescription: Data and Description
                 destroyCase: Destroy case
+              CaseListHeader: Case list header
               CaseOwner: Case Owner
               Finished: Finished
               GlobalSearchText: Cases contain the keyword "{0}" in Case Id{1}.
@@ -1636,6 +1640,8 @@ Dialogs:
               StartTaskWithTaskName: Start task {0}
             TaskItemDetails:
               ShareTaskDetails: Share Task Details
+            TaskWidget:
+              TaskListHeader: Task list header
   com:
     axonivy:
       portal:

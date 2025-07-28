@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="ui-g-12 u-no-padding-top">
-                  <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage')}</span>
+                  <p:outputLabel styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage')}" for="homepage" />
                   <div class="ui-g ui-g-12 u-padding-0">
                     <div class="ui-g-6 ui-sm-12 ui-fluid">
                       <p:selectOneMenu id="homepage" value="#{data.selectedHomepage}" converter="pojoConverter">
@@ -50,7 +50,7 @@
                   <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/ProcessList')}</h2>
                 </div>
                 <div class="ui-g-12 u-no-padding-top">
-                  <span class="ui-g-12">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultViewMode")}</span>
+                  <p:outputLabel styleClass="ui-g-12" for="process-mode-selection" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultViewMode')}" />
                   <div class="ui-g-6 ui-sm-12 ui-fluid">
                     <p:selectOneMenu id="process-mode-selection" value="#{data.selectedProcessMode}">
                       <f:selectItems value="#{data.processModes}" var="mode"
@@ -61,51 +61,64 @@
               </h:panelGroup>
 
               <!-- Task List Setting -->
-              <h:panelGroup layout="block" styleClass="ui-g-12"
+              <h:panelGroup layout="block" styleClass="ui-g-12 ui-fluid"
                 rendered="#{userProfileBean.canAccessTaskList()}">
                 <div class="setting-header ui-g-12">
                   <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/TaskList')}</h2>
                 </div>
-                <div class="ui-g-12 u-no-padding-top ui-fluid">
-                  <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}</span>
-                  <div class="ui-g-6 ui-sm-12">
-                    <p:selectOneMenu id="task-sort-field-selection" value="#{data.selectedTaskListSortField}"
-                      styleClass="sort-field-selection my-profile-selection-menu">
-                      <f:selectItems value="#{data.taskListSortFields}" var="taskSortField" itemValue="#{taskSortField}"
-                        itemLabel="#{userProfileBean.getDisplayNameOfTaskSortField(taskSortField)}" />
-                    </p:selectOneMenu>
+                
+                <div class="ui-g ui-g-12 u-padding-0">
+                  <div class="ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-right">
+                    <p:outputLabel for="task-sort-field-selection" styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}" />
+                    <div class="ui-g-12">
+                      <p:selectOneMenu id="task-sort-field-selection" value="#{data.selectedTaskListSortField}" >
+                        <f:selectItems value="#{data.taskListSortFields}" var="taskSortField" itemValue="#{taskSortField}"
+                          itemLabel="#{userProfileBean.getDisplayNameOfTaskSortField(taskSortField)}" />
+                      </p:selectOneMenu>
+                    </div>
                   </div>
-                  <div class="ui-g-6 ui-sm-12">
-                    <p:selectOneMenu id="task-sort-direction-selection" value="#{data.selectedTaskListSortDirection}"
-                      styleClass="my-profile-selection-menu">
-                      <f:selectItems value="#{data.sortDirections}" var="direction" itemValue="#{direction}"
-                        itemLabel="#{userProfileBean.getDisplayNameOfTaskSortDirection(direction)}" />
-                    </p:selectOneMenu>
+                  
+                  <!-- Task sort direction -->
+                  <div class="ui-g-6 ui-sm-12 u-no-padding-top">
+                    <p:outputLabel for="task-sort-direction-selection" id="task-sort-direction-label" styleClass="ui-g-12" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/DefaultSortDirection')}" />
+                    <div class="ui-g-12">
+                      <p:selectOneMenu id="task-sort-direction-selection" value="#{data.selectedTaskListSortDirection}"
+                        styleClass="my-profile-selection-menu">
+                        <f:selectItems value="#{data.sortDirections}" var="direction" itemValue="#{direction}"
+                          itemLabel="#{userProfileBean.getDisplayNameOfTaskSortDirection(direction)}" />
+                      </p:selectOneMenu>
+                    </div>
                   </div>
+                  
                 </div>
               </h:panelGroup>
 
               <!-- Case List Setting -->
-              <h:panelGroup layout="block" styleClass="ui-g-12"
+              <h:panelGroup layout="block" styleClass="ui-g-12 ui-fluid"
                 rendered="#{userProfileBean.canAccessCaseList()}">
                 <div class="setting-header ui-g-12">
                   <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/CaseList')}</h2>
                 </div>
-                <div class="ui-g-12 u-no-padding-top ui-fluid">
-                  <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}</span>
-                  <div class="ui-g-6 ui-sm-12">
-                    <p:selectOneMenu id="case-sort-field-selection" value="#{data.selectedCaseListSortField}"
-                      styleClass="sort-field-selection my-profile-selection-menu">
-                      <f:selectItems value="#{data.caseListSortFields}" var="caseSortField" itemValue="#{caseSortField}"
-                        itemLabel="#{userProfileBean.getDisplayNameOfCaseSortField(caseSortField)}" />
-                    </p:selectOneMenu>
+                <div class="ui-g ui-g-12 u-padding-0">
+                  <div class="ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-right">
+                    <p:outputLabel for="case-sort-field-selection" styleClass="ui-g-12" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}" />
+                    <div class="ui-g-12">
+                      <p:selectOneMenu id="case-sort-field-selection" value="#{data.selectedCaseListSortField}"
+                        styleClass="sort-field-selection my-profile-selection-menu">
+                        <f:selectItems value="#{data.caseListSortFields}" var="caseSortField" itemValue="#{caseSortField}"
+                          itemLabel="#{userProfileBean.getDisplayNameOfCaseSortField(caseSortField)}" />
+                      </p:selectOneMenu>
+                    </div>
                   </div>
-                  <div class="ui-g-6 ui-sm-12">
+                  <div class="ui-g-6 ui-sm-12 u-no-padding-top">
+                    <p:outputLabel for="case-sort-direction-selection" styleClass="ui-g-12" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/setting/UserProfile/DefaultSortDirection')}" />
+                    <div class="ui-g-12">
                     <p:selectOneMenu id="case-sort-direction-selection" value="#{data.selectedCaseListSortDirection}"
                       styleClass="ui-sm-12 my-profile-selection-menu">
                       <f:selectItems value="#{data.sortDirections}" var="direction" itemValue="#{direction}"
                         itemLabel="#{userProfileBean.getDisplayNameOfCaseSortDirection(direction)}" />
                     </p:selectOneMenu>
+                    </div>
                   </div>
                 </div>
               </h:panelGroup>
@@ -123,7 +136,7 @@
                 <div class="ui-g ui-g-12 u-padding-0">
                   <!-- Language Setting -->
                   <div class="language-selection ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-right">
-                    <h:outputText id="language-selection-label" styleClass="language-selection-label ui-g-12"
+                    <p:outputLabel for="language-selection" id="language-selection-label" styleClass="language-selection-label ui-g-12"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}" />
                     <div class="ui-g-12">
                       <p:selectOneMenu id="language-selection" value="#{data.language.userLanguage}">
@@ -133,7 +146,7 @@
                   </div>
                   <!-- Format language Setting -->
                   <div class="language-selection ui-g-6 ui-sm-12 u-no-padding-top u-no-padding-left">
-                    <h:outputText id="format-language-selection-label" styleClass="language-selection-label ui-g-12"
+                    <p:outputLabel id="format-language-selection-label" for="format-language-selection" styleClass="language-selection-label ui-g-12"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/FormattingLanguage')}" />
                     <div class="ui-g-12">
                       <p:autoComplete id="format-language-selection" scrollHeight="210" dropdown="true" size="35"
@@ -159,12 +172,12 @@
                     <p:outputLabel id="mail-notification-on-task-assign-label"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/mailNotificationOnTaskAssign')}"
                       for="mail-notification-on-task-assign" />
-                    <p:inputSwitch id="mail-notification-on-task-assign" value="#{data.emailSetting.emailSendOnNewWorkTasks}" />
+                    <p:toggleSwitch id="mail-notification-on-task-assign" value="#{data.emailSetting.emailSendOnNewWorkTasks}" />
 
                     <!-- FURTHER MAILS FROM APPLICATION -->
                     <p:outputLabel id="further-mails-from-application-label"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/furtherEmailFromApp')}" for="further-mails-from-application" />
-                    <p:inputSwitch id="further-mails-from-application" value="#{data.emailSetting.customMailEnabled}" />
+                    <p:toggleSwitch id="further-mails-from-application" value="#{data.emailSetting.customMailEnabled}" />
                   </h:panelGrid>
 
                   <h:panelGrid columns="1" styleClass="ui-g-12 u-padding-0">

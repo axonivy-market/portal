@@ -4,7 +4,8 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="dataModel" shortDescription="List of cases to be displayed" />
@@ -30,7 +31,8 @@
 
   <div id="#{cc.clientId}" class="widget case-widget case-widget-container ui-g">
     <h:panelGroup id="case-widget-header" layout="block"
-      styleClass="widget-header ui-g-12 ui-g u-no-padding-left u-no-padding-bottom js-case-widget-header">
+      styleClass="widget-header ui-g-12 ui-g u-no-padding-left u-no-padding-bottom js-case-widget-header" 
+      pt:role="region" pt:aria-label="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseListHeader')}">
       <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container ui-g-12 u-no-padding-bottom">
         <h:panelGroup layout="block" rendered="#{!cc.attrs.hideCaseFilter and !cc.attrs.hideWidgetHeader}">
           <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group  u-hidden-md-down"
@@ -234,7 +236,7 @@
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" />
       </h:panelGroup>
     </h:panelGroup>
-    <h:panelGroup id="case-view" layout="block" class="ui-g-12 case-view">
+    <h:panelGroup id="case-view" layout="block" class="ui-g-12 case-view" pt:role="region" pt:aria-label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseList')}">
       <h:panelGroup id="case-list" layout="block" styleClass="case-list">
         <p:dataScroller id="case-list-scroller" value="#{data.dataModel}" var="case" chunkSize="#{cc.attrs.chunkSize}"
           lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list" widgetVar="case-list-scroller">
