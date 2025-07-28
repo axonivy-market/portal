@@ -39,6 +39,7 @@
           disabled="#{dataModel.isDisableSelectionCheckboxes()}">
           <f:selectItems value="#{dataModel.allColumns}" var="column" itemLabel="#{dataModel.getColumnLabel(column)}"
             itemDisabled="#{dataModel.getPortalRequiredColumns().contains(column) or column eq 'NAME'}" />
+          <p:ajax event="change" update="@this" />
         </p:selectManyCheckbox>
 
         <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer">

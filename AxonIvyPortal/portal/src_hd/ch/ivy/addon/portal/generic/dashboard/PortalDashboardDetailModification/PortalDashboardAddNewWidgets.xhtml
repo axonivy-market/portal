@@ -9,7 +9,8 @@
   fitViewport="true" responsive="true"
   modal="true" dynamic="true"
   position="center center"
-  onShow="PF('new-configuration-widget-dialog').initPosition()">
+  onShow="PF('new-configuration-widget-dialog').initPosition()"
+  focus="@(.new-widget-dialog__content .ui-button:first)">
   <div class="new-widget-dialog__content ">
     <p:repeat id="new-widget-dialog-content"
       var="sample"

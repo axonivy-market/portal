@@ -132,12 +132,13 @@
 
   <p:dialog id="view-note-dialog" widgetVar="view-note-dialog" closeOnEscape="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}" appendTo="@(body)"
-    modal="true" resizable="false" dynamic="true" styleClass="case-view-note-dialog" responsive="true">
+    modal="true" resizable="false" dynamic="true" styleClass="case-view-note-dialog" responsive="true"
+    focus="view-note-dialog-close-button">
     <h:panelGroup layout="block">
       <h:outputText value="#{data.fullNote}" />
     </h:panelGroup>
     <f:facet name="footer">
-      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
+      <p:commandButton id="view-note-dialog-close-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
         ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
         icon="#{visibilityBean.generateButtonIcon('si si-remove')}" type="button"
         onclick="PF('view-note-dialog').hide()" />

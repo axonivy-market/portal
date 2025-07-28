@@ -52,7 +52,7 @@
         <p:commandLink onclick="PF('#{cc.attrs.widgetVar}').hide();#{cc.attrs.cancelOnClick}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           actionListener="#{cc.attrs.cancelActionListener}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="command-link-focused" />
         <p:spacer width="15px" />
         <p:commandButton id="reserve-task-button" actionListener="#{cc.attrs.reserveActionListener}"
           process="@this" update="@none" rendered="#{cc.attrs.taskState != 'CREATED'}"
