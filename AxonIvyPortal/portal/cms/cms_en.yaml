@@ -1610,6 +1610,8 @@ Dialogs:
                   DragAndDropTooltip: Click Preview, then drag and drop to change the order
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Welcome to Axon Ivy Portal
+                WelcomeWidgetConfiguration:
+                  AltText: Alternative text
           setting:
             UserProfile:
               DefaultSortDirection: Default sort direction

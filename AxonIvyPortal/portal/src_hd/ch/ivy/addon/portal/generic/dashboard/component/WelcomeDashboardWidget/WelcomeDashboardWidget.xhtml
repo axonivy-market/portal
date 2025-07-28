@@ -54,7 +54,7 @@
 
       <h:panelGroup rendered="#{not empty widget.imageLocation}">
         <p:graphicImage id="welcome-image" styleClass="welcome-image js-welcome-image #{widget.imageStyleClass}"
-          alt="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/WelcomeDashboardWidget/WelcomeToAxon')}"
+          alt="#{dashboardWelcomeWidgetBean.sanitizeHTML(widget.altText)}"
           library="ivy-cms"
           rendered="#{widget.imageContentObject.exists()}"
           name="#{widget.imageContentObject.uri()}"/>
