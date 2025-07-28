@@ -21,7 +21,6 @@ TaskItemDetails には以下が含まれます。
 |task-standard|
 
 .. important:: 
-   表示可能なウィジェットはすべて :ref:`Portal.TaskDetails <task-details-configuration-variable-ja> 変数` で設定されます。
    表示可能なウィジェットはすべて :ref:`Portal.TaskDetails <task-details-configuration-variable-ja>` 変数 で設定されます。
 
 
