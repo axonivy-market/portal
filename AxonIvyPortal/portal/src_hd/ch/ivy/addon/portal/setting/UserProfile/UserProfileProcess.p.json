@@ -6,6 +6,89 @@
     "data" : "ch.ivy.addon.portal.setting.UserProfile.UserProfileData"
   },
   "elements" : [ {
+      "id" : "S01",
+      "type" : "EmbeddedProcess",
+      "name" : "Save Accessibility Setting",
+      "elements" : [ {
+          "id" : "S01-f26",
+          "type" : "Script",
+          "name" : "Save Acceessibity settings",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.constant.UserProperty;",
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "",
+                "UserSettingService.getInstance().updateUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS, Boolean.toString(in.isShortcutsEnabled));"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 224, "y" : 144 }
+          },
+          "connect" : { "id" : "S01-f0", "to" : "S01-g1" }
+        }, {
+          "id" : "S01-g0",
+          "type" : "EmbeddedStart",
+          "visual" : {
+            "at" : { "x" : 80, "y" : 144 }
+          },
+          "parentConnector" : "f17",
+          "connect" : { "id" : "S01-f1", "to" : "S01-f26" }
+        }, {
+          "id" : "S01-g1",
+          "type" : "EmbeddedEnd",
+          "visual" : {
+            "at" : { "x" : 360, "y" : 144 }
+          },
+          "parentConnector" : "f26"
+        } ],
+      "visual" : {
+        "at" : { "x" : 1080, "y" : 280 }
+      },
+      "connect" : { "id" : "f26", "to" : "f6" }
+    }, {
+      "id" : "S91",
+      "type" : "EmbeddedProcess",
+      "name" : "Init Accessibility setting",
+      "elements" : [ {
+          "id" : "S91-f10",
+          "type" : "Script",
+          "name" : "Init isShortcutEnabled",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "boolean isShortcutsEnabled = UserSettingService.getInstance().isKeyboardShortcutsEnabled();",
+                "in.isShortcutsEnabled = isShortcutsEnabled;"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 224, "y" : 240 }
+          },
+          "connect" : { "id" : "S91-f0", "to" : "S91-g1" }
+        }, {
+          "id" : "S91-g0",
+          "type" : "EmbeddedStart",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 240 }
+          },
+          "parentConnector" : "f10",
+          "connect" : { "id" : "S91-f1", "to" : "S91-f10" }
+        }, {
+          "id" : "S91-g1",
+          "type" : "EmbeddedEnd",
+          "visual" : {
+            "at" : { "x" : 392, "y" : 240 }
+          },
+          "parentConnector" : "f18"
+        } ],
+      "visual" : {
+        "at" : { "x" : 1080, "y" : 144 }
+      },
+      "connect" : { "id" : "f18", "to" : "f8" }
+    }, {
       "id" : "S90",
       "type" : "EmbeddedProcess",
       "name" : "Save Sort Setting",
@@ -171,12 +254,12 @@
             "at" : { "x" : 352, "y" : 160 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
-          "parentConnector" : "f26"
+          "parentConnector" : "f10"
         } ],
       "visual" : {
         "at" : { "x" : 880, "y" : 144 }
       },
-      "connect" : { "id" : "f26", "to" : "f8" }
+      "connect" : { "id" : "f10", "to" : "S91" }
     }, {
       "id" : "S20",
       "type" : "EmbeddedProcess",
@@ -515,7 +598,7 @@
       "id" : "f8",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1032, "y" : 144 }
+        "at" : { "x" : 1232, "y" : 144 }
       }
     }, {
       "id" : "f12",
@@ -564,7 +647,7 @@
       "id" : "f42",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 1168, "y" : 280 }
+        "at" : { "x" : 1400, "y" : 280 }
       }
     }, {
       "id" : "f45",
@@ -653,7 +736,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1040, "y" : 280 }
+        "at" : { "x" : 1272, "y" : 280 }
       },
       "connect" : { "id" : "f3", "to" : "f42" }
     }, {
@@ -692,12 +775,18 @@
             "size" : { "width" : 128, "height" : 60 }
           },
           "connect" : { "id" : "S00-f0", "to" : "S00-g1" }
+        }, {
+          "id" : "S00-g2",
+          "type" : "EmbeddedEnd",
+          "visual" : {
+            "at" : { "x" : 352, "y" : 448 }
+          }
         } ],
       "visual" : {
         "at" : { "x" : 864, "y" : 280 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f17", "to" : "f6" }
+      "connect" : { "id" : "f17", "to" : "S01" }
     }, {
       "id" : "f23",
       "type" : "HtmlDialogMethodStart",

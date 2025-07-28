@@ -17,7 +17,7 @@
           <span class="process-start-list-item"> <p:commandLink
               actionListener="#{compactDashboardProcessBean.startProcessWithCompactMode(process)}"
               target="#{dashboardProcessBean.targetToStartProcess(process)}"
-              ariaLabel="#{process.name}"
+              ariaLabel="#{dashboardProcessBean.buildAriaLabel(process)}"
               ajax="#{!dashboardProcessBean.isExternalLink(process)}" styleClass="process-item">
               <h:panelGroup layout="block" class="process-start-list-item-icon">
                 <span class="#{iconSelectionBean.generateIconWithFontFamily(process.getIcon())}" />

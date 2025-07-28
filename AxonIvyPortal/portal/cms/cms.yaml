@@ -1392,6 +1392,9 @@ Dialogs:
                   WelcomeToAxon: Welcome to Axon Ivy Portal
                 WelcomeWidgetConfiguration:
                   AltText: Alt text
+          setting:
+            UserProfile:
+              DefaultSortDirection: Default sort direction
         portalkit:
           component:
             CaseWidget:
@@ -1400,6 +1403,7 @@ Dialogs:
                 CaseDetailTitle: Case Details
                 DataDescription: Data and Description
                 destroyCase: Destroy case
+              CaseListHeader: case list header
               CaseOwner: Case Owner
               Finished: Finished
               ShowBusinessDetails: Business details
@@ -1407,6 +1411,12 @@ Dialogs:
               defaultEmptyMessage: There are no cases
             IconSelection:
               IconLinkTooltip: Click to change icon
+            ProcessWidget:
+              ProcessListNav: Process List Navigation
+            TaskWidget:
+              TaskListHeader: Task list header
+            TaskItem:
+              StartTaskWithTaskName: Start task {0}
   com:
     axonivy:
       portal:

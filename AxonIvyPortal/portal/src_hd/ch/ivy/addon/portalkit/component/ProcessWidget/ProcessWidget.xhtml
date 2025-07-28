@@ -137,7 +137,8 @@
       </h:panelGroup>
 
         <!-- Process navigator -->
-      <h:panelGroup id="process-nav" layout="block" styleClass="process-nav js-process-nav u-invisibility" rendered="#{!cc.attrs.hideProcessNavigation}">
+      <h:panelGroup id="process-nav" layout="block" styleClass="process-nav js-process-nav u-invisibility" rendered="#{!cc.attrs.hideProcessNavigation}"
+        pt:role="navigation" pt:aria-label="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/ProcessWidget/ProcessListNav')}">
         <div class="js-character-container character-container">
           <p:commandLink styleClass="process-nav-item js-process-nav-item js-process-starts-with-reset" value="All"
             ariaLabel="All"
