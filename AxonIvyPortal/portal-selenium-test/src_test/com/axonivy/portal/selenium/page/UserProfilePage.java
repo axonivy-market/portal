@@ -177,7 +177,7 @@ public class UserProfilePage extends TemplatePage {
 
   public boolean isSettingSwitchedOn(String cssSelector) {
     WebElement inputSwitch = findElementByCssSelector(cssSelector);
-    return inputSwitch != null ? inputSwitch.getAttribute("class").contains("ui-inputswitch-checked") : false;
+    return inputSwitch != null ? inputSwitch.getAttribute("class").contains("ui-toggleswitch-checked") : false;
   }
 
   public boolean isFurtherEmailFromAppSettingSwitchedOn() {
@@ -190,7 +190,7 @@ public class UserProfilePage extends TemplatePage {
   
   private void switchOffSetting(String cssSelector) {
     WebElement inputSwitch = findElementByCssSelector(cssSelector);
-    if (inputSwitch.getAttribute("class").contains("ui-inputswitch-checked")) {
+    if (inputSwitch.getAttribute("class").contains("ui-toggleswitch-checked")) {
       $(inputSwitch).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
     }
   }
