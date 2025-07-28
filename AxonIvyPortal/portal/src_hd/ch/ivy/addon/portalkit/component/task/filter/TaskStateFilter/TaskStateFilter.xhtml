@@ -26,7 +26,7 @@
       <f:selectItems value="#{cc.attrs.filter.filteredStates}" var="state"
         itemValue="#{state}" itemLabel="#{cc.attrs.filter.userFriendlyState(state)}" />
       <p:ajax listener="#{cc.attrs.filter.onSelectState()}"
-        update="states-select-all" global="false" partialSubmit="true"/>
+        update="states-select-all @this" global="false" partialSubmit="true"/>
     </p:selectManyCheckbox>
   </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
 </cc:implementation>

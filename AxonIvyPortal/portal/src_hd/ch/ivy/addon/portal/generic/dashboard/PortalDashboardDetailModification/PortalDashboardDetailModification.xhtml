@@ -83,7 +83,7 @@
 
         <ui:define name="dialogFooter">
           <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('restore-confirm-dialog').hide();"
-            styleClass="u-mar-right-15 cancel-reset-dashboard-link" />
+            styleClass="u-mar-right-15 cancel-reset-dashboard-link command-link-focused" />
           <p:commandButton id="reset-dashboard-button" widgetVar="reset-dashboard-button"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
@@ -105,7 +105,7 @@
 
         <ui:define name="dialogFooter">
           <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('remove-widget-dialog').hide();"
-            styleClass="u-mar-right-15" />
+            styleClass="u-mar-right-15 command-link-focused" />
           <p:commandButton id="remove-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
             actionListener="#{dashboardDetailModificationBean.removeWidget()}"
