@@ -30,6 +30,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.enums.ProcessWidgetMode;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
@@ -163,5 +164,11 @@ public class DashboardProcessBean extends AbstractProcessBean implements Seriali
 
   public void setApplications(List<String> applications) {
     this.applications = applications;
+  }
+  
+  public String buildAriaLabel(Process process) {
+    return StringUtils.isNotEmpty(process.getDescription()) 
+        ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboardProcess/processAriaLabel", Arrays.asList(process.getName(), process.getDescription())) 
+            : process.getName();
   }
 }

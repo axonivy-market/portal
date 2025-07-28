@@ -10,7 +10,7 @@
   <div id="action-cell-#{rowIndex}" class="task-header-action-cell">
     <div class="action-container">
       <p:commandLink id="task-action-component" actionListener="#{logic.openTask(task,dataModel)}"
-        ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}"
+        ariaLabel="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/TaskItem/StartTaskWithTaskName', [task.name])}"
         disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task) or cc.attrs.inFrame}" rendered="#{task.state != 'RESUMED' and !cc.attrs.readOnly}" onstart="event.stopPropagation();"
         styleClass="task-action-item start-task-action" oncomplete="resetPortalLeftMenuState()">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label ui-sm-hidden" />
