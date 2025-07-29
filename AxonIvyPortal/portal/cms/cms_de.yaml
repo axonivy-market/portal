@@ -173,6 +173,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: Prozess-Viewer von {0} Prozess
     ProcessViewerText: Prozess-Viewer
     Title: Prozess-Viewer
+  SideStep:
+    AddNew: Hinzufügen eines neuen Seitenschrittverfahrens
+    SideStepProcess: Wählen Sie ein Seitenschrittverfahren
   TaskDocuments:
     TaskDocumentsPageTitle: Aufgaben-Dokumente
   adminSettings:
@@ -339,7 +342,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRunningCase: Es wird kein Vorfall ausgeführt.
     noRunningTask: Es wird keine Aufgabe ausgeführt.
     noRunningTasksAndCasesPermission: Weitere Aufgaben werden derzeit bearbeitet. Sie haben keine Berechtigung, die zugehörigen Aufgaben dieses Vorganges zu sehen.
-    noSideSteps: Keine Sidesteps verfügbar
+    noSideSteps: Keine Case Map Sidesteps verfügbar
     noTaskName: <Kein Aufgabenname>
     noTasks: Keine Aufgabe
     relatedTasks: Zugehörige Aufgaben
@@ -1581,6 +1584,8 @@ Labels:
   AllTasks: Alle Aufgaben
   AppendTask-Explain: Die Aufgabe wird in der Sequenz nach meiner Aufgabe hinzugefügt.
   AppendTheTask: Aufgabe anhängen
+  AssignToRole: Der Gruppe zuordnen
+  AssignToUser: Assign to user
   Chat: Chat
   Collapse: Einklappen
   CreateNewDashboard: Neues Dashboard erstellen
@@ -1688,7 +1693,9 @@ Labels:
   Permissions: Berechtigungen
   PinnedCases: Angeheftete Fälle
   PinnedTasks: Angehängte Aufgaben
+  SelectProcess: Wählen Sie einen Prozess
   Share: Aktie
+  StepType: Step type
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails
   TaskUser-Explain: Kommaseparierte Liste von Benutzern

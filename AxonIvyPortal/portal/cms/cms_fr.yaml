@@ -173,6 +173,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: Visualisation du processus {0}
     ProcessViewerText: Visualisation du processus
     Title: Visualisation du processus
+  SideStep:
+    AddNew: Ajouter un nouveau processus d'étapes latérales
+    SideStepProcess: Sélectionner un processus de pas de côté
   TaskDocuments:
     TaskDocumentsPageTitle: Documents de tâches
   adminSettings:
@@ -338,7 +341,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRunningCase: Aucune cas n'est en cours d'exécution
     noRunningTask: Aucune tâche n'est en cours d'exécution
     noRunningTasksAndCasesPermission: D'autres tâches sont en cours d'exécution. Vous n'êtes pas autorisé à voir les tâches associées à ce cas.
-    noSideSteps: Pas de Sidestep disponible
+    noSideSteps: Pas de Case Map Sidestep disponible
     noTaskName: < Aucun nom de tâche >
     noTasks: Aucune tâche
     relatedTasks: Tâches associées
@@ -1577,6 +1580,8 @@ Labels:
   AllTasks: Toutes les tâches
   AppendTask-Explain: La tâche est ajoutée à la séquence après ma tâche.
   AppendTheTask: Ajouter la tâche
+  AssignToRole: Assigner à un groupe
+  AssignToUser: Assign to user
   Chat: Chat
   Collapse: Réduire
   CreateNewDashboard: Créer un nouveau tableau de bord
@@ -1684,7 +1689,9 @@ Labels:
   Permissions: Permissions
   PinnedCases: Cas épinglés
   PinnedTasks: Tâches épinglées
+  SelectProcess: Sélectionner un processus
   Share: Partager
+  StepType: Step type
   Task: Tâche
   TaskItemDetail: Détails de la tâche
   TaskUser-Explain: Liste d’utilisateurs séparés par des virgules
