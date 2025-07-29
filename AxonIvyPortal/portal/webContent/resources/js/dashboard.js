@@ -242,15 +242,13 @@ function resizeTableBody() {
       requestAnimationFrame(() => {
         entries.forEach(entry => {
           let tableBody = $(entry.target);
-          let parentHeight = tableBody.parents('.grid-stack-item-content.card.dashboard-card').height();
+          var widgetCard = tableBody.parents('.grid-stack-item-content.card.dashboard-card');
+          let parentHeight = widgetCard.height();
+          let headerHeight = widgetCard.find('.widget__header').outerHeight();
+          let tableHeaderHeight = widgetCard.find('.ui-widget-header').outerHeight();
 
-          if (!window.matchMedia("(max-width: 767px)").matches) {
-            if (tableBody.height() !== parentHeight - 100) {
-              tableBody.height(parentHeight - 100);
-            }
-          } else {
-            tableBody.height(parentHeight * 0.9);
-          }
+          tableBody.height(parentHeight - headerHeight - tableHeaderHeight);
+
           const widgetName = tableBody.parents('.grid-stack-item').find('.js-table-widget-var').val();
           if (!widgetName) return;
 
