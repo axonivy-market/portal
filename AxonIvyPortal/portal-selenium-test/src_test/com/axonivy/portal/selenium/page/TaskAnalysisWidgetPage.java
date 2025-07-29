@@ -143,6 +143,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
         "div[id$='task-widget:case-filters-container'] button[id$='state-filter:filter-open-form:advanced-filter-command']"));
     SelenideElement selectionElement = findElementByCssSelector(
         "div[id$='task-widget:case-filters-container'] div[id$='state-filter:filter-input-form:advanced-filter-panel-content']");
+    selectionElement.shouldBe(appear);
     for (SelenideElement labelElement : selectionElement.$$(By.tagName("LABEL"))) {
       if (!selectedPriorities.contains(labelElement.getText())) {
         waitForElementClickableThenClick(labelElement);
