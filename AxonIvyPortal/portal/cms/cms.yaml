@@ -1123,6 +1123,11 @@ Dialogs:
               SeeMore: See more
             NewsWidgetConfiguration:
               NewsWidgetDescription: This widget shares relevant information as a News Feed into Axon Ivy.
+            filter:
+              DashboardFilter:
+                SelectFilterField: Select Filter Field
+              DateFilter:
+                SelectPeriod: Select period
         page:
           StatisticConfiguration:
             Aggregate: Aggregate
@@ -1163,6 +1168,10 @@ Labels:
   Configuration: Configuration
   CreateNewDashboard: Create new dashboard
   Description: Description
+  EnterFromValue: Enter from value
+  EnterToValue: Enter to value
+  EnterValue: Enter value
+  EnterValues: Enter values
   Enums:
     DashboardStandardTaskColumn:
       EXPIRY: Expiry
@@ -1176,6 +1185,8 @@ Labels:
   Name: Name
   Preview: Preview
   Save: Save
+  SelectOperator: Choose Operator
+  SelectValues: Select values
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users

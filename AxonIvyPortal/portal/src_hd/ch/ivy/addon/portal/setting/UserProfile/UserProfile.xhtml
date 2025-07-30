@@ -25,7 +25,7 @@
                   <div class="setting-header">
                     <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/General')}</h5>
                   </div>
-                  <div class="user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage')}</div>
+                  <p:outputLabel for="homepage" class="user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage')}</p:outputLabel >
                   <div class="ui-fluid">
                     <p:selectOneMenu id="homepage" value="#{data.selectedHomepage}" converter="pojoConverter">
                       <f:selectItems value="#{data.homepages}" var="homepage" itemValue="#{homepage}" itemLabel="#{homepage.label}" />
@@ -36,7 +36,7 @@
                 <!-- Process List Setting -->
                 <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{userProfileBean.canAccessProcessList()}">
                   <div class="setting-header">
-                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/ProcessList')}</h5>
+                    <p:outputLabel for="process-mode-selection" class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/ProcessList')}</p:outputLabel>
                   </div>
                   <div class="user-profile-setting-title">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultViewMode")}</div>
                   <div class="ui-fluid">
@@ -96,7 +96,7 @@
                   </div>
                   <!-- Language Setting -->
                   <div class="language-selection w-full">
-                    <div id="language-selection-label" class="language-selection-label user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</div>
+                    <p:outputLabel for="@next" id="language-selection-label" class="language-selection-label user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</p:outputLabel>
                     <div class="ui-fluid">
                       <p:selectOneMenu id="language-selection" value="#{data.language.userLanguage}">
                         <f:selectItems value="#{data.language.languages}" />
@@ -105,7 +105,8 @@
                   </div>
                   <!-- Format language Setting -->
                   <label class="language-selection w-full">
-                    <div id="format-language-selection-label" class="language-selection-label user-profile-setting-title mt-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/FormattingLanguage')}</div>
+                    <p:outputLabel for="@next" id="format-language-selection-label" 
+                      class="language-selection-label user-profile-setting-title mt-3">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/FormattingLanguage')}</p:outputLabel>
                     <div class="ui-fluid">
                       <p:autoComplete id="format-language-selection" scrollHeight="210" dropdown="true" size="35"
                         completeMethod="#{logic.completeFormattingLanguage}" value="#{data.language.itemFormattingLanguage}" var="language"
