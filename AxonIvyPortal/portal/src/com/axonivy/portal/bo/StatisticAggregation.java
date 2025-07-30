@@ -52,4 +52,23 @@ public class StatisticAggregation implements Serializable {
     this.customFieldValue = customFieldValue;
   }
 
+  private String kpiField;
+  private String aggregationMethod;
+
+  public String getKpiField() {
+    return kpiField;
+  }
+
+  public void setKpiField(String kpiField) {
+    this.kpiField = kpiField;
+  }
+
+  public String getAggregationMethod() {
+    return aggregationMethod;
+  }
+
+  public void setAggregationMethod(String aggregationMethod) {
+    this.aggregationMethod = aggregationMethod;
+  }
+
 }

@@ -223,6 +223,8 @@ function previewChart(data, defaultLocale, datePatternConfig, defaultContentLoca
   
   try {
     let chartData = generateChart(charts[0], data);
+    console.log("CHART DATA");
+    console.log(chartData);
     if (chartData) {
       chartData.render();
     }
@@ -501,6 +503,9 @@ class ClientCartesianChart extends ClientCanvasChart {
     let config = this.data.chartConfig;
     let chart = this.chart;
 
+    console.log("CONFIG");
+    console.log(config);
+
     if (result.length == 0) {
       return this.renderEmptyChart(chart, config.additionalConfigs);
     } else {
@@ -516,6 +521,12 @@ class ClientCartesianChart extends ClientCanvasChart {
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : 2;
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
 
+      console.log("MAGIC");
+      console.log(data);
+
+      console.log("CHART TYPE CONFIG")
+      console.log(chartTypeConfig)
+
       $(chart).html(html);
       let canvasObject = $(chart).find('canvas');
       this.clientChartConfig = new Chart(canvasObject, {
@@ -524,7 +535,7 @@ class ClientCartesianChart extends ClientCanvasChart {
           labels: data.map(bucket => this.formatChartLabel(bucket.key)),
           datasets: [{
             label: config.name,
-            data: data.map(bucket => bucket.count),
+            data: config.statisticAggregation.kpiField ? data.map(bucket => bucket.aggs[0].value) : data.map(bucket => bucket.count),
             backgroundColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors,
             pointBorderColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors,
             pointRadius: 4,

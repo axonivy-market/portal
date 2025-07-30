@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -133,6 +134,7 @@ public class StatisticService {
 
     if(StringUtils.isEmpty(aggregates)) {
       aggregates = convertAggregatesFromChartAggregation(chart);
+      Ivy.log().warn(aggregates);
     }
 
     if (!StringUtils.isEmpty(chart.getFilter())) {
@@ -251,6 +253,7 @@ public class StatisticService {
 
   public String convertAggregatesFromChartAggregation(Statistic chart) {
     StatisticAggregation chartAggregation = chart.getStatisticAggregation();
+    String metricAggregationQuery = this.getMetricAggregationQuery(chartAggregation);
 
     if (chartAggregation.getType() == DashboardColumnType.CUSTOM) {
       // INIT EXISTED CUSTOM FIELD STATISTIC WHEN LOADING
@@ -262,17 +265,27 @@ public class StatisticService {
       // CUSTOM FIELD TYPE TIMESTAMP
       if (chart.getStatisticAggregation().getInterval() != null) {
         return "customFields.timestamps." + chartAggregation.getCustomFieldValue() + ":bucket:"
-            + chartAggregation.getInterval().toString().toLowerCase();
+            + chartAggregation.getInterval().toString().toLowerCase() + metricAggregationQuery;
       }
 
       // CUSTOM FIELD TYPE STRING
-      return "customFields.strings." + chartAggregation.getCustomFieldValue();
+      return "customFields.strings." + chartAggregation.getCustomFieldValue() + metricAggregationQuery;
     }
 
     // STANDARD FIELD
     // IF INTERVAL NOT NULL -> TIMESTAMP
     // OTHERWISE -> STRING
-    return chartAggregation.getInterval() == null ? transformField(chartAggregation.getField()) : transformField(chartAggregation.getField()) + ":bucket:" + chartAggregation.getInterval().toString().toLowerCase();
+    String bucketQuery = chartAggregation.getInterval() == null ? transformField(chartAggregation.getField())
+        : transformField(chartAggregation.getField()) + ":bucket:"
+            + chartAggregation.getInterval().toString().toLowerCase();
+    
+    return bucketQuery + metricAggregationQuery;
+  }
+
+  private String getMetricAggregationQuery(StatisticAggregation chartAggregation) {
+    return Objects.nonNull(chartAggregation.getKpiField()) && !chartAggregation.getKpiField().isBlank()
+        ? ",customFields.numbers." + chartAggregation.getKpiField() + ":" + chartAggregation.getAggregationMethod()
+        : "";
   }
 
   private String transformField(String field) {
