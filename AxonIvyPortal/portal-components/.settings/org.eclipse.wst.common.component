@@ -4,6 +4,7 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_wsproc"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_dataClasses"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_generated"/>
         <property name="java-output-path" value="/portal-components/classes"/>
         <property name="context-root" value="portal-components"/>
     </wb-module>
