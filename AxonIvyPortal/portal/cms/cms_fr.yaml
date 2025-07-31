@@ -1526,7 +1526,7 @@ Dialogs:
               DashboardFilter:
                 SelectFilterField: Sélectionner le champ de filtre
               DateFilter:
-                SelectPeriod: Select period
+                SelectPeriod: Sélectionner la période
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: Cadre des détails de l'affaire
@@ -1697,7 +1697,7 @@ Labels:
   PinnedCases: Cas épinglés
   PinnedTasks: Tâches épinglées
   SelectOperator: Sélectionner l'opérateur
-  SelectValues: Select values
+  SelectValues: Sélectionner les valeurs
   Share: Partager
   Task: Tâche
   TaskItemDetail: Détails de la tâche

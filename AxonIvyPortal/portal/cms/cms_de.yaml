@@ -1530,7 +1530,8 @@ Dialogs:
               DashboardFilter:
                 SelectFilterField: Filterfeld auswählen
               DateFilter:
-                SelectPeriod: Select period
+                SelectPeriod: |
+                  Zeitraum auswählen
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: Falldetails Rahmen
@@ -1700,7 +1701,7 @@ Labels:
   PinnedCases: Angeheftete Fälle
   PinnedTasks: Angehängte Aufgaben
   SelectOperator: Operator auswählen
-  SelectValues: Select values
+  SelectValues: Werte auswählen
   Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails

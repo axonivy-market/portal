@@ -1529,7 +1529,7 @@ Dialogs:
                 SelectFilterField: |
                   Seleccionar campo de filtro
               DateFilter:
-                SelectPeriod: Select period
+                SelectPeriod: Seleccionar período
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: Detalles del caso marco
@@ -1699,7 +1699,7 @@ Labels:
   PinnedCases: Casos fijados
   PinnedTasks: Tareas fijadas
   SelectOperator: Seleccionar operador
-  SelectValues: Select values
+  SelectValues: Seleccionar valores
   Share: Compartir
   Task: Tarea
   TaskItemDetail: Detalles de la tarea

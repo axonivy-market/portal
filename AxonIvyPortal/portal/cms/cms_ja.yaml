@@ -1517,7 +1517,7 @@ Dialogs:
               DashboardFilter:
                 SelectFilterField: TODO Select Filter Field
               DateFilter:
-                SelectPeriod: Select period
+                SelectPeriod: TODO Select period
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: ケース詳細フレーム
@@ -1684,7 +1684,7 @@ Labels:
   PinnedCases: 'TODO: Pinned Cases'
   PinnedTasks: 'TODO: Pinned Tasks'
   SelectOperator: TODO Choose Operator
-  SelectValues: Select values
+  SelectValues: TODO Select values
   Share: 共有
   Task: タスク
   TaskItemDetail: タスクの詳細
