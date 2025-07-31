@@ -1140,7 +1140,6 @@ Labels:
   Chat: Chat
   Collapse: Collapse
   CreateNewDashboard: Create new dashboard
-  Description: Description
   EnterFromValue: Enter from value
   EnterToValue: Enter to value
   EnterValue: Enter value
@@ -1153,9 +1152,6 @@ Labels:
   Expand: Expand
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
-  Name: Name
-  Preview: Preview
-  Save: Save
   SelectOperator: Choose Operator
   SelectValues: Select values
   Task: Task
