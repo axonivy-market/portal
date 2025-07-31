@@ -752,7 +752,8 @@ class ClientNumberChart extends ClientChart {
     let multipleNumberChartInHTML = '';
     if (result?.length > 0) {
         result.forEach((item, index) => {
-          const yValue = item.aggs.length > 0 ? item.aggs[0].value : item.count;
+          const yValue = item.aggs.length > 0 ?
+              (item.aggs[0].value === "null" ? "0" : Number(item.aggs[0].value)) : item.count;
           let htmlString = this.generateItemHtml(item.key, yValue, suffixSymbold, index);
           multipleNumberChartInHTML += htmlString;
         })
