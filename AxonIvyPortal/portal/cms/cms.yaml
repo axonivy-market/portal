@@ -1073,6 +1073,8 @@ Dialogs:
                   DragAndDropToChangeOrder: Drag and drop to change the order.
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Welcome to Axon Ivy Portal
+                WelcomeWidgetConfiguration:
+                  AltText: Alt text
         portalkit:
           component:
             CaseItemDetails:
