@@ -1118,21 +1118,6 @@ Dialogs:
                 SelectFilterField: Select Filter Field
               DateFilter:
                 SelectPeriod: Select period
-        page:
-          StatisticConfiguration:
-            Aggregate: Aggregate
-            ChartType: Chart type
-            Color: Color {0}
-            Create: Create
-            EditStatistic: Edit Statistic Widget
-            For: For
-            GeneratePreview: Generate preview
-            HideLabel: Hide label
-            NewStatistic: New Statistic Widget
-            OutdatedChartMessage: The applied group-by or filter does not align with the current UI configuration. Please reconfigure it.
-            StatisticConfiguration: Statistic configuration
-            XAxisTitle: X axis title
-            YAxisTitle: Y axis title
   components:
     CaseDocument:
       FileDate: Modified at
@@ -1155,7 +1140,6 @@ Labels:
   Chat: Chat
   Collapse: Collapse
   CreateNewDashboard: Create new dashboard
-  Description: Description
   EnterFromValue: Enter from value
   EnterToValue: Enter to value
   EnterValue: Enter value
@@ -1168,7 +1152,6 @@ Labels:
   Expand: Expand
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
-  Name: Name
   SelectOperator: Choose Operator
   SelectValues: Select values
   Task: Task
