@@ -2,7 +2,8 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.BaseFilter" />
@@ -25,7 +26,8 @@
 
   <h:panelGroup id="state-filter-operator-panel" layout="block"
     styleClass="ui-fluid state-filter-operator-panel">
-      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
+      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}"
+        pt:aria-label="#{ivy.cms.co('/Labels/SelectOperator')}">
         <f:selectItems value="#{cc.attrs.operators ne null ? cc.attrs.operators : widgetStateFilterBean.stateOperators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
       </p:selectOneMenu>
@@ -36,7 +38,7 @@
       filter="true" filterMatchMode="contains"
       panelStyleClass="task-configuration__selectcheckboxmenu-panel"
       styleClass="task-configuration__selectcheckboxmenu"
-      disabled="#{readOnly}">
+      disabled="#{readOnly}" pt:aria-label="#{ivy.cms.co('/Labels/SelectValues')}">
       <f:selectItems value="#{widgetStateFilterBean.states}" var="state" itemValue="#{state}"
         itemLabel="#{widgetStateFilterBean.getUserFriendlyState(state, widgetType)}" />
       <f:param name="skipValidator" value="true" />

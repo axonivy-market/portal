@@ -1541,6 +1541,11 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Ajouter un filtre
               ResetFilter: Réinitialiser le filtre
+            filter:
+              DashboardFilter:
+                SelectFilterField: Sélectionner le champ de filtre
+              DateFilter:
+                SelectPeriod: Select period
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: Cadre des détails de l'affaire
@@ -1686,6 +1691,11 @@ Labels:
   CreateNewDashboard: Créer un nouveau tableau de bord
   Description: Description
   EditDescription: Editer la description
+  EnterFromValue: Saisir la valeur initiale
+  EnterToValue: |
+    Saisir la valeur finale
+  EnterValue: Enter value
+  EnterValues: Saisir les valeurs
   Enums:
     ChatbotCandidateQuestion:
       EXPLORE:
@@ -1796,6 +1806,8 @@ Labels:
   Preview: Aperçu
   RequiredFieldMessage: '{0} : La valeur est obligatoire'
   Save: Enregistrer
+  SelectOperator: Sélectionner l'opérateur
+  SelectValues: Select values
   Share: Partager
   Task: Tâche
   TaskItemDetail: Détails de la tâche
