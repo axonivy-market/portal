@@ -39,5 +39,9 @@
     "name" : "formatLanguages",
     "type" : "java.util.List<javax.faces.model.SelectItem>",
     "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isShortcutEnabled",
+    "type" : "Boolean",
+    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

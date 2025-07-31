@@ -24,17 +24,20 @@ import com.axonivy.portal.util.PortalSanitizeUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
+import ch.ivy.addon.portal.generic.bean.IMultiLanguage;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.WelcomeImageFit;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ViewScoped
 @ManagedBean
-public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWidgetBean implements Serializable {
+public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWidgetBean implements Serializable, IMultiLanguage  {
 
   private static final long serialVersionUID = 597266282990903281L;
 
@@ -220,5 +223,14 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
   public String getLanguageDisplayText(Locale x) {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/configuration/WelcomeWidget/DisplayedText", 
         Arrays.asList(x.getDisplayName(Ivy.session().getContentLocale())));
+  }
+  
+  public void updateAltTextByLocale() {
+    String currentAlt = LanguageUtils.getLocalizedName(widget.getAltTexts(), widget.getAltText());
+    initAndSetValue(currentAlt, widget.getAltTexts());
+  }
+  
+  public void updateCurrentLanguage() {
+    widget.setAltText(DisplayNameConvertor.updateCurrentValue(widget.getAltText(), widget.getAltTexts()));
   }
 }

@@ -59,7 +59,7 @@
         "size" : { "width" : 128 }
       },
       "connect" : [
-        { "id" : "f5", "to" : "S00" }
+        { "id" : "f5", "to" : "S80" }
       ]
     }, {
       "id" : "S60",
@@ -117,7 +117,7 @@
             "at" : { "x" : 3, "y" : 160 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
-          "parentConnector" : "f4",
+          "parentConnector" : "f9",
           "connect" : [
             { "id" : "S60-f0", "to" : "S60-f11" }
           ]
@@ -192,7 +192,7 @@
         "at" : { "x" : 416, "y" : 144 }
       },
       "connect" : [
-        { "id" : "f4", "to" : "S60" }
+        { "id" : "f4", "to" : "S71" }
       ]
     }, {
       "id" : "S30",
@@ -471,7 +471,7 @@
           "visual" : {
             "at" : { "y" : 256 }
           },
-          "parentConnector" : "f5",
+          "parentConnector" : "f13",
           "connect" : [
             { "id" : "S00-f2", "to" : "S00-f1" }
           ]
@@ -573,5 +573,103 @@
       "visual" : {
         "at" : { "x" : 496, "y" : 512 }
       }
+    }, {
+      "id" : "S71",
+      "type" : "EmbeddedProcess",
+      "name" : "Init Accessibility settings",
+      "elements" : [ {
+          "id" : "S71-f9",
+          "type" : "Script",
+          "name" : "Init Accessibility settings",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "boolean isShortcutEnable = UserSettingService.getInstance().isKeyboardShortcutsEnabled();",
+                "in.isShortcutEnabled = isShortcutEnable;"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 184, "y" : 256 }
+          },
+          "connect" : [
+            { "id" : "S71-f1", "to" : "S71-g1" }
+          ]
+        }, {
+          "id" : "S71-g0",
+          "type" : "EmbeddedStart",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 256 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f4",
+          "connect" : [
+            { "id" : "S71-f0", "to" : "S71-f9" }
+          ]
+        }, {
+          "id" : "S71-g1",
+          "type" : "EmbeddedEnd",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 256 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f9"
+        } ],
+      "visual" : {
+        "at" : { "x" : 624, "y" : 144 }
+      },
+      "connect" : [
+        { "id" : "f9", "to" : "S60" }
+      ]
+    }, {
+      "id" : "S80",
+      "type" : "EmbeddedProcess",
+      "name" : "Save Accessibility settings",
+      "elements" : [ {
+          "id" : "S80-f13",
+          "type" : "Script",
+          "name" : "Save isShortcutsEnabled",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.constant.UserProperty;",
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "UserSettingService.getInstance().updateUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS, Boolean.toString(in.isShortcutEnabled));"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 168, "y" : 64 }
+          },
+          "connect" : [
+            { "id" : "S80-f1", "to" : "S80-g1", "color" : "default" }
+          ]
+        }, {
+          "id" : "S80-g0",
+          "type" : "EmbeddedStart",
+          "visual" : {
+            "at" : { "x" : 32, "y" : 64 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f5",
+          "connect" : [
+            { "id" : "S80-f0", "to" : "S80-f13" }
+          ]
+        }, {
+          "id" : "S80-g1",
+          "type" : "EmbeddedEnd",
+          "visual" : {
+            "at" : { "x" : 320, "y" : 64 },
+            "labelOffset" : { "x" : 3, "y" : 23 }
+          },
+          "parentConnector" : "f13"
+        } ],
+      "visual" : {
+        "at" : { "x" : 624, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f13", "to" : "S00" }
+      ]
     } ]
 }

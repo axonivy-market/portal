@@ -6,5 +6,6 @@ public class WidgetType {
   public static final String RELATED_TASK = "relatedTask";
   public static final String TECHINCAL_CASE = "technicalCase";
   public static final String HISTORY = "history";
+  public static final String BUSINESS_DETAILS = "businessDetails";
   public static final String CUSTOM = "custom";
 }

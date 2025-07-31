@@ -67,10 +67,28 @@
                       actionListener="#{userProfileBean.unpinAllPinnedCases}"
                       icon="pi pi-trash" />
                 </h:panelGroup>
+                
+              <!-- Accessibility Setting -->
+              <h:panelGroup id="accessibility-panel" layout="block" styleClass="my-profile-block col-12 p-0">
+                  <div class="setting-header">
+                    <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Accessibility')}</h5>
+                  </div>
+                  <div class="flex align-items-center">
+                    <div class="col-8 p-0">
+                        <p:outputLabel for="@next" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShortcutsNavigation')}" styleClass="mr-3"/>
+                    </div>
+                    <div class="col-4 text-right p-0">
+                        <p:toggleSwitch id="keyboard-shortcuts-toggle-button" value="#{data.isShortcutEnabled}" styleClass="pointer-events-auto" disabled="#{!userProfileBean.allowedConfigShortcutsByAdmin}" 
+                            ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/KeyboardShortcutsNavigationInfor')}">
+                        </p:toggleSwitch>
+                        <p:tooltip for="keyboard-shortcuts-toggle-button" value="#{userProfileBean.renderTooltipMessageForKeyboardShortcutButton()}"/>
+                    </div>
+                  </div>
+                </h:panelGroup>
               </div>
               <p:divider layout="vertical" styleClass="responsive-divider"/>
 
-              <div class="ui-g-6 pl-5 ui-sm-12 relative user-profile-card-right">
+              <div class="ui-g-6 pl-5 ui-sm-12 relative user-profile-card-right justify-content-between grid">
                 <h:panelGroup id="language-setting-container" layout="block" styleClass="w-full my-profile-block">
                   <div class="setting-header">
                     <h5 id="language-setting-title" class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Language')}</h5>
@@ -127,7 +145,7 @@
                         <c:set var="subscription" value="#{channel.getSubscription(event)}" />
                         <div class="flex align-content-center gap-3">
                           <i class="flex align-items-center si table-icon si-#{subscription.icon} subscription-icon " title="#{subscription.title}" />
-                          <p:triStateCheckbox id="subscriptionCheckbox" value="#{subscription.stateAsString}" styleClass="flex align-items-center">
+                          <p:triStateCheckbox rendered="#{userProfileBean.hasNotificationChannelsSettingPermission()}" id="subscriptionCheckbox" value="#{subscription.stateAsString}" styleClass="flex align-items-center">
                             <p:ajax event="change" global="false"
                               update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
                               listener="#{channel.setSubscriptionIconAndTitle(event.event)}" />
@@ -142,7 +160,8 @@
                       ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}"
                       actionListener="#{userProfileBean.resetAllChannel}"
                       update="#{p:resolveFirstComponentWithId('notification-Channels-Table', view).clientId}"
-                      styleClass="ui-button-flat setting-tab-action-buttons font-medium" >
+                      styleClass="ui-button-flat setting-tab-action-buttons font-medium"
+                      rendered="#{userProfileBean.hasNotificationChannelsSettingPermission()}" >
                         <i class="si si-undo"/>
                         <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}</span>
                       </p:commandLink>

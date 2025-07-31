@@ -145,11 +145,15 @@ ch.ivy.addon.portalkit.ui.jsf:
       HEADING_3: Rúbrica 3
       NORMAL_TEXT: Texto normal
   MyProfile:
+    Accessibility: Accesibilidad
     CaseList: Case List
     DateFormat: Formato de la fecha
     FormattingLanguage: Lenguaje de formato
     General: Generales
     Homepage: Página web
+    KeyboardShortcutsNavigation: Atajos de teclado para la navegación
+    KeyboardShortcutsNavigationInfor: Alternar para habilitar o deshabilitar los atajos de teclado para la navegación.
+    KeyboardShortcutsTooltip: Este botón no está disponible actualmente y no se puede usar debido a la configuración.
     Language: Idioma
     ProcessList: Lista de procesos
     TaskList: Lista de tareas
@@ -812,7 +816,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       WelcomeWidget:
         AdvancedSettings: Configuración avanzada
         ChooseAFit: Elija un ajuste
-        DisplayedText: mostrar texto
+        DisplayedText: '{0} mostrar texto'
         Greeting:
           Afternoon: Buenas tardes
           Evening: Buenas noches
@@ -1377,6 +1381,8 @@ Dialogs:
                   DragAndDropTooltip: Haz clic en vista previa y arrastra y suelta para cambiar el orden
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Bienvenido a Axon Ivy Portal
+                WelcomeWidgetConfiguration:
+                  AltText: Texto alternativo
           setting:
             UserProfile:
               unpinAllPinnedCases: Desanclar todos los casos fijados
