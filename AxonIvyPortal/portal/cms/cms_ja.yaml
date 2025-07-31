@@ -1375,6 +1375,8 @@ Dialogs:
                   DragAndDropTooltip: プレビューをクリックしてください、そして順序を入れ替えるにはドラッグ＆ドロップしてください
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Axon Ivy Portalへようこそ
+                WelcomeWidgetConfiguration:
+                  AltText: TODO Alternative text
           setting:
             UserProfile:
               unpinAllPinnedCases: 'TODO: Unpin all pinned cases'

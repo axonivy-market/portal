@@ -1384,6 +1384,8 @@ Dialogs:
                   DragAndDropTooltip: Cliquer sur l'aperçu puis glisser-déposer pour modifier l'ordre
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Bienvenue à Axon Ivy Portal
+                WelcomeWidgetConfiguration:
+                  AltText: Alternativtext
           setting:
             UserProfile:
               unpinAllPinnedCases: Détacher tous les cas épinglés
