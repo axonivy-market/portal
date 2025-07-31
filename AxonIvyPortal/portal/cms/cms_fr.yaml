@@ -936,6 +936,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcessViewer: Votre visualisateur de processus
     yourProcesses: Vos processus
     yourTasks: Vos tâches
+  dashboardProcess:
+    processAriaLabel: 'Nom du processus : {0}. Description du processus : {1}'
   documentFiles:
     PreviewDocument: Aperçu
     deleteDocumentNote: '{0} a supprimé(e) {1}'

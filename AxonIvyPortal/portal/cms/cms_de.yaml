@@ -938,6 +938,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcessViewer: Ihr Prozessbetrachter
     yourProcesses: Ihre Prozesse
     yourTasks: Ihre Aufgaben
+  dashboardProcess:
+    processAriaLabel: Aufgabe {0} starten
   documentFiles:
     PreviewDocument: Vorschau
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
