@@ -1696,9 +1696,6 @@ Labels:
   Permissions: Permissions
   PinnedCases: Cas épinglés
   PinnedTasks: Tâches épinglées
-  Preview: Aperçu
-  RequiredFieldMessage: '{0} : La valeur est obligatoire'
-  Save: Enregistrer
   SelectOperator: Sélectionner l'opérateur
   SelectValues: Select values
   Share: Partager

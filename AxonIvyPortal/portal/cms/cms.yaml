@@ -1169,8 +1169,6 @@ Labels:
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
   Name: Name
-  Preview: Preview
-  Save: Save
   SelectOperator: Choose Operator
   SelectValues: Select values
   Task: Task

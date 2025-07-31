@@ -1699,9 +1699,6 @@ Labels:
   Permissions: Berechtigungen
   PinnedCases: Angeheftete Fälle
   PinnedTasks: Angehängte Aufgaben
-  Preview: Vorschau
-  RequiredFieldMessage: '{0}: Wert ist erforderlich'
-  Save: Speichern
   SelectOperator: Operator auswählen
   SelectValues: Select values
   Share: Aktie

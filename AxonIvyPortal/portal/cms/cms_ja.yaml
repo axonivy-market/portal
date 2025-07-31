@@ -1683,9 +1683,6 @@ Labels:
   Permissions: 権限
   PinnedCases: 'TODO: Pinned Cases'
   PinnedTasks: 'TODO: Pinned Tasks'
-  Preview: プレビュー
-  RequiredFieldMessage: 'TODO {0}: Value is required'
-  Save: 保存
   SelectOperator: TODO Choose Operator
   SelectValues: Select values
   Share: 共有

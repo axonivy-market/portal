@@ -1694,9 +1694,6 @@ Labels:
   Permissions: Permissions
   PinnedCases: Pinned Cases
   PinnedTasks: Pinned Tasks
-  Preview: Preview
-  RequiredFieldMessage: '{0}: Value is required'
-  Save: Save
   SelectOperator: Select Operator
   SelectValues: Select values
   Share: Share

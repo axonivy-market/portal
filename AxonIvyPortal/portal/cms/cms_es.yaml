@@ -1698,9 +1698,6 @@ Labels:
   Permissions: Permiso
   PinnedCases: Casos fijados
   PinnedTasks: Tareas fijadas
-  Preview: Vista previa
-  RequiredFieldMessage: '{0}: Valor requerido'
-  Save: Guardar
   SelectOperator: Seleccionar operador
   SelectValues: Select values
   Share: Compartir
