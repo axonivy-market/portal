@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -17,8 +18,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
+import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.ProcessDashboardWidget;
@@ -27,6 +30,7 @@ import ch.ivy.addon.portalkit.enums.DashboardStandardProcessColumn;
 import ch.ivy.addon.portalkit.enums.ProcessSorting;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
@@ -230,5 +234,11 @@ public class CompactDashboardProcessBean
     }
     CompactProcessDashboardWidget compactProcessWidget = (CompactProcessDashboardWidget)widget;
     return compactProcessWidget.isPreview() && ProcessSorting.BY_CUSTOM_ORDER.name().equals(compactProcessWidget.getSorting());
+  }
+  
+  public String buildAriaLabel(Process process) {
+    return StringUtils.isNotEmpty(process.getDescription()) 
+        ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboardProcess/processAriaLabel", Arrays.asList(process.getName(), process.getDescription())) 
+            : process.getName();
   }
 }
