@@ -730,21 +730,13 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     return customFieldNameList;
   }
 
-  public List<String> getCustomFieldNamesForKpi() {
+  public List<String> getNumericCustomFieldNames() {
     Set<ICustomFieldMeta> customFieldList = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
         : ICustomFieldMeta.cases();
     List<String> customFieldNameList = new ArrayList<>();
     customFieldList.stream().filter(cf -> cf.type().equals(CustomFieldType.NUMBER)).forEach(customField -> {
       customFieldNameList.add(customField.name());
     });
-
-    if (statistic.getStatisticAggregation().getCustomFieldValue() == null) {
-      ICustomFieldMeta firstCustomField = customFieldList.iterator().next();
-      StatisticAggregation statisticAggregation = statistic.getStatisticAggregation();
-      statisticAggregation.setCustomFieldValue(firstCustomField.name());
-      statisticAggregation.setType(DashboardColumnType.CUSTOM);
-      this.setCurrentCustomFieldDescription(firstCustomField.description());
-    }
 
     return customFieldNameList;
   }

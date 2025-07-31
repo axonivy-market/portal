@@ -20,6 +20,9 @@ public class StatisticAggregation implements Serializable {
   private DashboardColumnType type;
   private AggregationInterval interval;
 
+  private String kpiField;
+  private String aggregationMethod;
+
   public AggregationInterval getInterval() {
     return interval;
   }
@@ -51,9 +54,6 @@ public class StatisticAggregation implements Serializable {
   public void setCustomFieldValue(String customFieldValue) {
     this.customFieldValue = customFieldValue;
   }
-
-  private String kpiField;
-  private String aggregationMethod;
 
   public String getKpiField() {
     return kpiField;

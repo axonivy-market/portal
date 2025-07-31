@@ -120,7 +120,7 @@
                       <p:selectOneMenu id="kpi-custom-fields" styleClass="w-full"
                         value="#{statisticConfigurationBean.statistic.statisticAggregation.kpiField}">
                         <f:selectItem itemLabel="Counting" itemValue="" />
-                        <f:selectItems value="#{statisticConfigurationBean.customFieldNamesForKpi}" var="kpiFieldItem" />
+                        <f:selectItems value="#{statisticConfigurationBean.numericCustomFieldNames}" var="kpiFieldItem" />
                         <p:ajax update="kpi-aggregation-method" />
                       </p:selectOneMenu>
                     </div>

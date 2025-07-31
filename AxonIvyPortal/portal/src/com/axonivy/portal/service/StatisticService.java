@@ -134,7 +134,6 @@ public class StatisticService {
 
     if(StringUtils.isEmpty(aggregates)) {
       aggregates = convertAggregatesFromChartAggregation(chart);
-      Ivy.log().warn(aggregates);
     }
 
     if (!StringUtils.isEmpty(chart.getFilter())) {

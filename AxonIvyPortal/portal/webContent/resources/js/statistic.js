@@ -223,8 +223,6 @@ function previewChart(data, defaultLocale, datePatternConfig, defaultContentLoca
   
   try {
     let chartData = generateChart(charts[0], data);
-    console.log("CHART DATA");
-    console.log(chartData);
     if (chartData) {
       chartData.render();
     }
@@ -464,7 +462,7 @@ class ClientPieChart extends ClientCanvasChart {
           labels: result.map(bucket => this.formatChartLabel(bucket.key)),
           datasets: [{
             label: config.name,
-            data: result.map(bucket => bucket.count),
+            data: config.statisticAggregation.kpiField ? result.map(bucket => bucket.aggs[0].value) : result.map(bucket => bucket.count),
             backgroundColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors
           }],
           hoverOffset: 4
@@ -503,9 +501,6 @@ class ClientCartesianChart extends ClientCanvasChart {
     let config = this.data.chartConfig;
     let chart = this.chart;
 
-    console.log("CONFIG");
-    console.log(config);
-
     if (result.length == 0) {
       return this.renderEmptyChart(chart, config.additionalConfigs);
     } else {
@@ -520,12 +515,6 @@ class ClientCartesianChart extends ClientCanvasChart {
 
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : 2;
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
-
-      console.log("MAGIC");
-      console.log(data);
-
-      console.log("CHART TYPE CONFIG")
-      console.log(chartTypeConfig)
 
       $(chart).html(html);
       let canvasObject = $(chart).find('canvas');
@@ -763,7 +752,8 @@ class ClientNumberChart extends ClientChart {
     let multipleNumberChartInHTML = '';
     if (result?.length > 0) {
         result.forEach((item, index) => {
-          let htmlString = this.generateItemHtml(item.key, item.count, suffixSymbold, index);
+          const yValue = item.aggs.length > 0 ? item.aggs[0].value : item.count;
+          let htmlString = this.generateItemHtml(item.key, yValue, suffixSymbold, index);
           multipleNumberChartInHTML += htmlString;
         })
 
