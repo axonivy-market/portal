@@ -1677,7 +1677,7 @@ Labels:
   EditDescription: 説明を編集
   EnterFromValue: TODO Enter from value
   EnterToValue: TODO Enter to value
-  EnterValue: Enter value
+  EnterValue: TODO Enter value
   EnterValues: TODO Enter values
   Enums:
     ChatbotCandidateQuestion:
@@ -1790,7 +1790,7 @@ Labels:
   RequiredFieldMessage: 'TODO {0}: Value is required'
   Save: 保存
   SelectOperator: TODO Choose Operator
-  SelectValues: Select values
+  SelectValues: TODO Select values
   Share: 共有
   Task: タスク
   TaskItemDetail: タスクの詳細

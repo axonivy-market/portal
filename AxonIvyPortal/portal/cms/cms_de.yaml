@@ -1811,7 +1811,7 @@ Labels:
   RequiredFieldMessage: '{0}: Wert ist erforderlich'
   Save: Speichern
   SelectOperator: Operator auswählen
-  SelectValues: Select values
+  SelectValues: Werte auswählen
   Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails

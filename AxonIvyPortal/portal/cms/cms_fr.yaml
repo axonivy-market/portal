@@ -1694,7 +1694,7 @@ Labels:
   EnterFromValue: Saisir la valeur initiale
   EnterToValue: |
     Saisir la valeur finale
-  EnterValue: Enter value
+  EnterValue: ' Sélectionner la période'
   EnterValues: Saisir les valeurs
   Enums:
     ChatbotCandidateQuestion:
@@ -1807,7 +1807,7 @@ Labels:
   RequiredFieldMessage: '{0} : La valeur est obligatoire'
   Save: Enregistrer
   SelectOperator: Sélectionner l'opérateur
-  SelectValues: Select values
+  SelectValues: Sélectionner les valeurs
   Share: Partager
   Task: Tâche
   TaskItemDetail: Détails de la tâche
