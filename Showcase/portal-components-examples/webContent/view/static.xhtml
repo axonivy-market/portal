@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Hello World</title>
+	<style>
+		.card {
+			max-width: 600px;
+			margin: 2rem auto;
+			padding: 1.5rem;
+			box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+			border-radius: 8px;
+			background-color: #fff;
+			font-family: Arial, sans-serif;
+		}
+		.card-body {
+			padding: 1rem;
+		}
+		h1 {
+			color: #333;
+			text-align: center;
+		}
+		p {
+			color: #555;
+			font-size: 1.1rem;
+			line-height: 1.6;
+			text-align: center;
+		}
+		.section {
+			margin-top: 2rem;
+			padding: 1rem;
+			background-color: #f9f9f9;
+			border-radius: 6px;
+			box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+		}
+		.section h2 {
+			color: #444;
+			margin-bottom: 0.5rem;
+			text-align: center;
+		}
+	</style>
+</h:head>
+
+<h:body>
+	<ui:composition
+		template="/layouts/frame-10-full-width.xhtml">
+		<ui:define name="content">
+			<div class="card">
+				<div class="card-body">
+					<h1>Hello World!</h1>
+					<p>This is a simple static page.</p>
+					<div class="section">
+						<h2>About This Page</h2>
+						<p>This page demonstrates a basic static content layout using JSF and PrimeFaces components with enhanced styling for a modern look.</p>
+					</div>
+					<div class="section">
+						<h2>Features</h2>
+						<ul>
+							<li>Responsive card layout</li>
+							<li>Clean and readable typography</li>
+							<li>Simple and elegant design</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+
+</html>

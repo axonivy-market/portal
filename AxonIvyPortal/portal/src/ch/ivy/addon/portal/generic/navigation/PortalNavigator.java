@@ -17,7 +17,7 @@ import com.axonivy.portal.components.generic.navigation.BaseNavigator;
 import com.axonivy.portal.components.publicapi.ProcessStartAPI;
 import com.axonivy.portal.components.util.ProcessStartUtils;
 
-import ch.ivy.addon.portalkit.enums.MenuKind;
+import com.axonivy.portal.components.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.AiProcessService;
 import ch.ivy.addon.portalkit.util.RequestUtils;
