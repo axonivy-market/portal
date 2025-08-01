@@ -15,7 +15,7 @@
     <p:focus for="text-field-input" rendered="#{cc.attrs.focusOnTextField}" />
 
     <div class="ui-g-4 ui-sm-12 u-no-padding-bottom-sm-down display-flex-center">
-      <h:outputText value="#{cc.attrs.field.headerText}" />
+      <p:outputLabel for="text-field-input" value="#{cc.attrs.field.headerText}" />
     </div>
     <div class="ui-g-8 ui-sm-12 ui-fluid">
       <p:inputText id="text-field-input" rendered="#{cc.attrs.field.filterType eq 'LIKE'}"

@@ -2,7 +2,8 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.DashboardFilter" />
@@ -23,7 +24,8 @@
 
   <h:panelGroup id="date-filter-operator-panel" layout="block"
     styleClass="ui-fluid md-inputfield">
-      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
+      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}"
+        pt:aria-label="#{ivy.cms.co('/Labels/SelectOperator')}">
         <f:selectItems value="#{operators ne null ? operators : widgetDateFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetDateFilterBean.onChangeOperator(filter)}"
@@ -36,7 +38,8 @@
     styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="is-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
-      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}"
+      pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -51,7 +54,8 @@
     styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="is-not-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
-      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}"
+      pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -66,7 +70,8 @@
     styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="before-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
-      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}"
+      pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -81,7 +86,8 @@
     styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="after-date" value="#{filter.toDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
-      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}"
+      pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateToDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -97,7 +103,8 @@
     styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="from-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
-      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}"
+      pt:aria-label="#{ivy.cms.co('/Labels/EnterFromValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -116,7 +123,8 @@
     rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}"
     styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="to-date" value="#{filter.toDate}" locale="#{localeBean.locale}" disabled="#{readOnly}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
-      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}">
+      showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}"
+      pt:aria-label="#{ivy.cms.co('/Labels/EnterToValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateToDate(filter)}" />
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardDateFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
@@ -128,7 +136,8 @@
   </h:panelGroup>
 
   <h:panelGroup id="current-period-panel" layout="block" rendered="#{filter.operator == 'CURRENT'}">
-    <p:selectOneMenu id="current-period-selection" value="#{filter.periodType}" disabled="#{readOnly}">
+    <p:selectOneMenu id="current-period-selection" value="#{filter.periodType}" disabled="#{readOnly}"
+      pt:aria-label="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/filter/DateFilter/SelectPeriod')}">
       <f:selectItems value="#{widgetDateFilterBean.currentFilterPeriodTypes}" var="period"
         itemValue="#{period}" itemLabel="#{period.label}" />
       <p:ajax partialSubmit="true" global="false" />
@@ -139,7 +148,8 @@
   <h:panelGroup id="number-of-periods-panel" layout="block"
     rendered="#{filter.operator == 'LAST' or filter.operator == 'NEXT'}"
     styleClass="number-of-periods-panel ui-fluid md-inputfield">
-    <p:spinner id="number-of-period" value="#{filter.periods}" min="1" disabled="#{readOnly}">
+    <p:spinner id="number-of-period" value="#{filter.periods}" min="1" disabled="#{readOnly}"
+      pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
       <p:ajax partialSubmit="true" global="false" />
       <f:param name="skipValidator" value="true" />
     </p:spinner>
@@ -148,7 +158,8 @@
   <h:panelGroup id="period-type-panel" layout="block"
     rendered="#{filter.operator == 'LAST' or filter.operator == 'NEXT'}"
     styleClass="period-type-panel ui-fluid md-inputfield">
-    <p:selectOneMenu id="period-n-type-selection" value="#{filter.periodType}" disabled="#{readOnly}">
+    <p:selectOneMenu id="period-n-type-selection" value="#{filter.periodType}" disabled="#{readOnly}"
+      pt:aria-label="#{ivy.cms.co('/Dialogs/com/axonivy/portal/dashboard/component/filter/DateFilter/SelectPeriod')}">
       <f:selectItems value="#{widgetDateFilterBean.filterPeriodTypes}" var="period"
         itemValue="#{period}" itemLabel="#{period.pluralLabel}" />
       <p:ajax partialSubmit="true" global="false" />

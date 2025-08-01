@@ -2,7 +2,8 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
-  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="filter" type="com.axonivy.portal.dto.dashboard.filter.DashboardFilter" />
@@ -20,7 +21,8 @@
 
   <h:panelGroup id="number-filter-operator-panel" layout="block"
     styleClass="md-inputfield ui-fluid">
-      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}">
+      <p:selectOneMenu id="operator-selection" value="#{filter.operator}" disabled="#{readOnly}"
+        pt:aria-label="#{ivy.cms.co('/Labels/SelectOperator')}">
         <f:selectItems value="#{widgetNumberFilterBean.operators}" var="operator"
           itemValue="#{operator}" itemLabel="#{operator.label}" />
           <p:ajax event="itemSelect" listener="#{widgetNumberFilterBean.onChangeOperator(filter)}"
@@ -35,7 +37,8 @@
     <p:inputNumber id="number" value="#{filter.value}" disabled="#{readOnly}"
       maxValue="999999999.99"
       minValue="-999999999.99"
-      onkeypress="if (event.keyCode == 13) { return false; }">
+      onkeypress="if (event.keyCode == 13) { return false; }"
+      pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardNumberFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:attribute name="filter" value="#{filter}" />
@@ -51,7 +54,8 @@
     styleClass="md-inputfield ui-fluid number-panel">
     <p:inputNumber id="from-number" value="#{filter.from}" disabled="#{readOnly}"
       maxValue="999999999.99" minValue="-999999999.99"
-      onkeypress="if (event.keyCode == 13) { return false; }">
+      onkeypress="if (event.keyCode == 13) { return false; }"
+      pt:aria-label="#{ivy.cms.co('/Labels/EnterFromValue')}">
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardNumberFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:attribute name="filter" value="#{filter}" />
@@ -74,7 +78,8 @@
     <p:inputNumber id="to-number" value="#{filter.to}" disabled="#{readOnly}"
       maxValue="999999999.99"
       minValue="-999999999.99"
-      onkeypress="if (event.keyCode == 13) { return false; }">
+      onkeypress="if (event.keyCode == 13) { return false; }"
+      pt:aria-label="#{ivy.cms.co('/Labels/EnterToValue')}">
       <f:param name="skipValidator" value="true" />
       <f:validator validatorId="dashboardNumberFilterValidator" disabled="#{param['skipValidator'] == 'true'}" />
       <f:attribute name="filter" value="#{filter}" />

@@ -44,7 +44,7 @@
           </ic:com.axonivy.portal.components.UserSelection>
         </h:panelGroup>
         <div class="ui-g-6 ui-sm-12 u-padding-0">
-          <h:outputLabel for="absence-start-date" styleClass="ui-g-12"
+          <p:outputLabel for="absence-start-date" styleClass="ui-g-12"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}:" />
           <div class="ui-g-12">
             <p:datePicker id="absence-start-date" value="#{data.selectedAbsence.from}" 
@@ -59,7 +59,7 @@
         </div>
 
         <div class="ui-g-6 ui-sm-12 u-padding-0">
-          <h:outputLabel for="absence-end-date" styleClass="ui-g-12"
+          <p:outputLabel for="absence-end-date" styleClass="ui-g-12"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/till')}:" />
           <div class="ui-g-12">
             <p:datePicker id="absence-end-date" value="#{data.selectedAbsence.until}" showIcon="true"
