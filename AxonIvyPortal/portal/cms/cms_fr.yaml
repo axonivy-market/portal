@@ -1591,7 +1591,7 @@ Labels:
   EnterFromValue: Saisir la valeur initiale
   EnterToValue: |
     Saisir la valeur finale
-  EnterValue: Enter value
+  EnterValue: Saisir une valeur
   EnterValues: Saisir les valeurs
   Enums:
     ChatbotCandidateQuestion:
