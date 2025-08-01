@@ -14,7 +14,7 @@ import com.axonivy.portal.selenium.page.StatisticConfigurationPage;
 import com.axonivy.portal.selenium.page.StatisticWidgetNewDashboardPage;
 import com.codeborne.selenide.CollectionCondition;
 
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class StatisticWidgetTest extends BaseTest {
   private NewDashboardPage newDashboardPage;
 

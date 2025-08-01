@@ -1,6 +1,7 @@
 package com.axonivy.portal.bo;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import com.axonivy.portal.enums.statistic.AggregationInterval;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -64,7 +65,7 @@ public class StatisticAggregation implements Serializable {
   }
 
   public String getAggregationMethod() {
-    return aggregationMethod;
+    return Objects.isNull(this.kpiField) || this.kpiField.isEmpty() ? "" : aggregationMethod;
   }
 
   public void setAggregationMethod(String aggregationMethod) {
