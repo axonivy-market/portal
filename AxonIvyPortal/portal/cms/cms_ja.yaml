@@ -1578,7 +1578,7 @@ Labels:
   EditDescription: 説明を編集
   EnterFromValue: TODO Enter from value
   EnterToValue: TODO Enter to value
-  EnterValue: Enter value
+  EnterValue: TODO Enter value
   EnterValues: TODO Enter values
   Enums:
     ChatbotCandidateQuestion:
