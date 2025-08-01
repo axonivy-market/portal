@@ -462,7 +462,7 @@ class ClientPieChart extends ClientCanvasChart {
           labels: result.map(bucket => this.formatChartLabel(bucket.key)),
           datasets: [{
             label: config.name,
-            data: result.map(bucket => bucket.count),
+            data: config.statisticAggregation.kpiField ? result.map(bucket => bucket.aggs[0].value) : result.map(bucket => bucket.count),
             backgroundColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors
           }],
           hoverOffset: 4
@@ -524,7 +524,7 @@ class ClientCartesianChart extends ClientCanvasChart {
           labels: data.map(bucket => this.formatChartLabel(bucket.key)),
           datasets: [{
             label: config.name,
-            data: data.map(bucket => bucket.count),
+            data: config.statisticAggregation.kpiField ? data.map(bucket => bucket.aggs[0].value) : data.map(bucket => bucket.count),
             backgroundColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors,
             pointBorderColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors,
             pointRadius: 4,
@@ -752,7 +752,9 @@ class ClientNumberChart extends ClientChart {
     let multipleNumberChartInHTML = '';
     if (result?.length > 0) {
         result.forEach((item, index) => {
-          let htmlString = this.generateItemHtml(item.key, item.count, suffixSymbold, index);
+          const yValue = item.aggs.length > 0 ?
+              (item.aggs[0].value === "null" ? "0" : Number(item.aggs[0].value)) : item.count;
+          let htmlString = this.generateItemHtml(item.key, yValue, suffixSymbold, index);
           multipleNumberChartInHTML += htmlString;
         })
 

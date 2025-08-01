@@ -128,6 +128,13 @@ Available values for configuring statistic chart
  * - Icon
    - | Icon for custom statistic chart.
      | Click on the plus icon at the end of the line to see full list of icons.
+ * - Select KPI
+   - | List of numeric custom fields is shown alongside with `Counting`.
+     | The calculation using below aggregation method will be performed on selected KPI. 
+     | If `Counting` is selected to count numbers of tasks or cases, the aggregation method 
+     | selection will be disabled.
+ * - Aggregation method
+   - | List of 4 aggregation methods: `Sum`, `Average`, `Max`, `Min`.
  * - Group by
    - | Aggregation to group all the results, the drop down values depend on the chart target.
      | Currently we don't support aggregations have type number.
