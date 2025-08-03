@@ -173,6 +173,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: Visualización del proceso {0}
     ProcessViewerText: Visualizador de procesos
     Title: Visualizador de procesos
+  SideStep:
+    NewSideStepMessage: New Task {0} for {1}
+    SideStepProcess: Iniciar proceso paralelo
   TaskDocuments:
     TaskDocumentsPageTitle: Documentos de la tarea
   adminSettings:
@@ -1581,6 +1584,8 @@ Labels:
   AllTasks: Todas las tareas
   AppendTask-Explain: La tarea es añadida a la secuencia después de mi tarea.
   AppendTheTask: Anexar la tarea
+  AssignToRole: Seleccionar grupo asignado
+  AssignToUser: Seleccionar usuario asignado
   Chat: Chat
   Collapse: Contraer
   CreateNewDashboard: Crear un nuevo cuadro de mandos
@@ -1688,7 +1693,10 @@ Labels:
   Permissions: Permiso
   PinnedCases: Casos fijados
   PinnedTasks: Tareas fijadas
+  SelectProcess: Seleccione un proceso
   Share: Compartir
+  StepType: Step type
+  Submit: Presentar
   Task: Tarea
   TaskItemDetail: Detalles de la tarea
   TaskUser-Explain: Lista de usuario separados por coma

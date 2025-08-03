@@ -124,7 +124,56 @@ Dialogs:
                   IsRequired: Mandatorio
                   Representation: Representante
                   To: Hasta
+  com:
+    axonivy:
+      portal:
+        developerexamples:
+          customization:
+            sidestep:
+              LeaveRequestApproval:
+                Approve: Aprobar
+                EmployeeNote: Nota del empleado
+                Reject: Rechazar
+              LeaveRequestBusinessDetailsPage:
+                LeaveRequest: Solicitud de baja Detalles de la empresa
+                SideStepComment: Comentario sobre el paso lateral
+              LeaveRequestSummary:
+                Finish: Acabar
+              SideStepExample:
+                SideStepExample: Ejemplo de paso lateral
+              SideStepResultExample:
+                Answer: Respuesta
+                Assignee: Cesionario
+                Comment: Comentario
+                Question: Pregunta
+                SideStepResult: Resultado del paso lateral
+Enums:
+  LeaveType:
+    ANNUAL_LEAVE: Ausencia anual
+    MATERNITY_LEAVE: Ausencia maternal
+    SICK_LEAVE: Ausencia por enfermedad
 Labels:
+  Close: Close
+  LeaveRequest:
+    LeaveSteps:
+      RequesterSideStepComment: Comentario del solicitante
+      SideStepComment: Comentario sobre el paso lateral
+      approval: Aprobar
+      approvalResult: Resultado del aprobado
+      creation: Crear ausencia
+    approvalResultTaskIntro: Más abajo encontrará un resumen de su solicitud.
+    approvalTaskIntro: 'Hay una solicitud para una ausencia. Detalles más abajo:'
+    approver: Aprovador
+    approverComment: Comentario del aprovador
+    from: Desde
+    leaveType: Tipo de ausencia
+    requester: Solicitante
+    requesterComment: Comentario del solicitante
+    stepTypeParallelTitle: This is customized parallel title
+    stepTypeSwitchTitle: This is customized switch title
+    submitLeaveRequest: Presentar solicitud para ausencia
+    to: Hasta
+  OK: OK
   changePasswordWSError: Se produjo un error al cambiar su contraseña. Póngase en contacto con su administrador si este problema persiste.
   forgotPasswordError: Ha habido un error mientras se procesaba su solicitud. Por favor inténtelo más tarde.
   passwordResetEmailCantSend: 'Ha habido un problema para enviarle un E-Mail. Por favor inténtelo más tarde. '
@@ -163,6 +212,15 @@ Processes:
       #Resumen
       Solicitante obtendrá un resumen
       Tomar nota del resultado
+  LeaveRequest:
+    LeaveRequest: Leave Request
+    LeaveRequestWithSideSteps: Solicitud de permiso con procesos paralelos (nivel de tarea)
+    LeaveRequestWithSideStepsProcessLevel: Solicitud de permiso con procesos paralelos (a nivel de caso)
+    approvalTask: Su ausencia ha sido aprovada
+    approvalTaskName: Aprovar solicitud para ausencia del {0}
+    createLeaveRequest: 'Crear ausencia para: {0}'
+    createNewLeaveRequest: 'Tarea de sistema: Crear nueva solicitud para ausencia'
+    rejectedTask: Su solicitud para ausencia ha sido denegada
   MoreInformation:
     description: Haga clic en Más información para ver la página de información personalizada del proceso.
   Payment:
