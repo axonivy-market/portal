@@ -14,14 +14,14 @@
       <div class="card">
         <h:form id="side-step-example">
           <div class="grid">
-            <div class="col-12">
-              <div class="text-xl font-semibold mb-3">#{ivy.cms.co('/Labels/LeaveRequest/approvalTaskIntro')}</div>
+            <div class="field col-12">
+              <div class="text-xl font-semibold mb-3">CEO approval</div>
               <p:messages id="messages" showDetail="true" closable="true" styleClass="mb-3"/>
             </div>
             
             <div class="field col-12">
-                <p:outputLabel for="requester" value="#{ivy.cms.co('/Labels/LeaveRequest/requester')}" />
-                <p:inputText id="requester" disabled="true" value="#{data.requester.displayName}" styleClass="w-full"/>
+              <p:outputLabel for="requester" value="#{ivy.cms.co('/Labels/LeaveRequest/requester')}" />
+              <p:inputText id="requester" disabled="true" value="#{data.requester.displayName}" styleClass="w-full"/>
             </div>
             
             <div class="field col-12">
@@ -30,8 +30,8 @@
             </div>
             
             <div class="field col-12">
-              <p:outputLabel for="from" value="#{ivy.cms.co('/Labels/LeaveRequest/from')}" />
-              <p:datePicker id="from" value="#{data.leaveRequestData.from}" styleClass="w-full"
+                <p:outputLabel for="from" value="#{ivy.cms.co('/Labels/LeaveRequest/from')}" />
+                <p:datePicker id="from" value="#{data.leaveRequestData.from}" styleClass="w-full"
                     pattern="dd/MM/yyyy" disabled="true" />
             </div>
             
@@ -48,39 +48,29 @@
             
             <div class="field col-12">
               <p:outputLabel for="requester-comment" value="#{ivy.cms.co('/Labels/LeaveRequest/requesterComment')}" />
-              <p:inputTextarea id="requester-comment" value="#{data.leaveRequestData.sideStepComment3.comment3}"
+              <p:inputTextarea id="requester-comment" value="#{data.leaveRequestData.requesterComment}"
                     disabled="true" rows="4" styleClass="w-full" autoResize="false"/>
             </div>
             
             <div class="field col-12">
-              <p:outputLabel for="requester-step-comment" value="#{ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/requesterSideStepComment')}" />
-              <p:inputTextarea id="requester-step-comment" value="#{data.leaveRequestData.sideStepComment3.question}"
-                    required="true" rows="5" styleClass="w-full" autoResize="false"
-                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/requesterSideStepComment')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}" />
+              <p:outputLabel for="requester-step-comment" value="#{ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/RequesterSideStepComment')}" />
+              <p:inputTextarea id="requester-step-comment" value="#{data.comment}" disabled="true"
+                    rows="5" styleClass="w-full" autoResize="false" />
             </div>
             
             <div class="field col-12">
-              <p:outputLabel for="approver-comment" value="#{ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/sideStepComment')}" />
-              <p:inputTextarea id="approver-comment" value="#{data.leaveRequestData.sideStepComment3.answer}"
-                    required="true" rows="5" styleClass="w-full" autoResize="false"
-                    requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/approverComment')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}" />
+              <p:outputLabel for="approver-comment" value="CEO comment" />
+              <p:inputTextarea id="approver-comment" value="#{data.leaveRequestData.sideStep2.ceoApprovalComment}"
+                rows="5" styleClass="w-full" autoResize="false" />
             </div>
             
             <div class="col-12 flex justify-content-end gap-2">
-              <p:commandButton value="#{ivy.cms.co('/Labels/Close')}" 
-                icon="pi pi-times" 
-                styleClass="p-button-secondary"
-                id="rejected-btn" 
-                actionListener="#{logic.close}"
-                process="@form" 
-                update="@form" />
-                
-              <p:commandButton value="#{ivy.cms.co('/Labels/OK')}" 
-                icon="pi pi-check" 
-                id="approved-btn" 
-                actionListener="#{logic.submit}"
-                process="@form" 
-                update="@form" />
+              <p:commandButton value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/LeaveRequestApproval/Approve')}" icon="si si-check-1"
+                partialSubmit="true" id="approved-btn" actionListener="#{logic.approved}"
+                process="@form" update="@form" style="width: auto" />
+              <p:commandButton value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/LeaveRequestApproval/Reject')}" icon="si si-delete" partialSubmit="true"
+                id="rejected-btn" styleClass="secondary-btn Fright MarTop10" actionListener="#{logic.rejected}"
+                process="@form" update="@form"/>
             </div>
           </div>
         </h:form>

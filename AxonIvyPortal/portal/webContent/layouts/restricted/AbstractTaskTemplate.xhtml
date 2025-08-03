@@ -124,7 +124,7 @@
     
                 <p:menuitem id="side-steps-process" icon="si si-hierarchy-6 si-rotate-270"
                   rendered="#{sideStepProcessBean.isRendered(currentTask)}" onclick="PF('side-step-process-dialog').show();"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/SideStep/AddNew')}" />
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/SideStep/SideStepProcess')}" />
                 <p:divider styleClass="separator"
                     rendered="#{chatRendererBean.isGroupChatRendered and !(currentTask.state eq 'CREATED')}" />
     
@@ -245,17 +245,17 @@
               </div>
             </h:panelGroup>
             <h:panelGroup id="activator-delegate-panel" layout="block" class="field">
-              <h:panelGroup id="activator-panel" layout="block" styleClass="delegate-dialog-activator-panel">
-                <p:outputLabel for="activator-type-select" value="#{ivy.cms.co('/Labels/AssignTheTaskTo')}" />
-                <p:selectOneRadio id="activator-type-select" value="#{sideStepProcessBean.userDelegated}" >
+              <h:panelGroup id="activator-panel" layout="block" styleClass="field">
+                <p:outputLabel for="activator-type-select" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateTaskHeaderLabel')}" />
+                <p:selectOneRadio id="activator-type-select" value="#{sideStepProcessBean.userDelegated}" required="true">
                   <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toUser')}" itemValue="true" />
                   <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toGroup')}" itemValue="false"/>
                   <p:ajax event="change" listener="#{sideStepProcessBean.changeAssignType()}" update="select-delegate-panel"/>
                 </p:selectOneRadio> 
               </h:panelGroup>
               
-              <h:panelGroup id="select-delegate-panel" layout="block" styleClass="w-full MarTop10">
-                <h:panelGroup rendered="#{sideStepProcessBean.userDelegated}">
+              <h:panelGroup id="select-delegate-panel" layout="block">
+                <h:panelGroup rendered="#{sideStepProcessBean.userDelegated}" styleClass="field">
                   <div class="field">
                     <h:panelGroup rendered="#{not empty sideStepProcessBean.userRoles}">
                       <ic:com.axonivy.portal.components.UserSelection componentId="assignee" fromRoleNames="#{sideStepProcessBean.userRoles}" 
@@ -293,8 +293,8 @@
           <f:facet name="footer">
             <div class="field">
               <p:commandButton id="side-step-process-submit-button"  
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-                ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+                value="#{ivy.cms.co('/Labels/Submit')}"
+                ariaLabel="#{ivy.cms.co('/Labels/Submit')}"
                 styleClass="w-full"
                 actionListener="#{sideStepProcessBean.handleSelectProcess()}"
                 oncomplete="if (!args.validationFailed) PF('side-step-process-dialog').hide();"

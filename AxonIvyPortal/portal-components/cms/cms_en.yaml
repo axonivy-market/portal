@@ -89,8 +89,8 @@ Dialogs:
               IVY_PROCESS: Business Process
             ProcessViewerIFrameTitle: Process viewer frame
           SideStepType:
-            PARALLEL: Create a new task and continue working on the current task
-            SWITCH: Park the current task and start working on a new task
+            PARALLEL: Start a backgroud task (parallel)
+            SWITCH: Pause this task and start process (switch)
 Labels:
   AI:
     Error:

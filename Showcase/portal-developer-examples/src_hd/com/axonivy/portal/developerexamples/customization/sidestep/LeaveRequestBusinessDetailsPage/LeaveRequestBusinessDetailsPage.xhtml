@@ -55,27 +55,26 @@
           </div>
           
           <div class="field col-12">
-            <p:outputLabel for="side-step-comment-1" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/LeaveRequestBusinessDetailsPage/SideStepComment')}1" />
-            <p:inputTextarea id="side-step-comment-1" value="#{data.leaveRequestData.sideStepComment1.answer}"
+            <p:outputLabel for="side-step-comment-1" value="Ask for more details comment" />
+            <p:inputTextarea id="side-step-comment-1" value="#{data.leaveRequestData.sideStep1.askMoreDetails}"
               disabled="true" rows="5" styleClass="w-full" />
           </div>
           
           <div class="field col-12">
-            <p:outputLabel for="side-step-comment-2" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/LeaveRequestBusinessDetailsPage/SideStepComment')}2" />
-            <p:inputTextarea id="side-step-comment-2" value="#{data.leaveRequestData.sideStepComment2.answer}"
+            <p:outputLabel for="side-step-comment-2" value="CEO approval comment" />
+            <p:inputTextarea id="side-step-comment-2" value="#{data.leaveRequestData.sideStep2.ceoApproval}"
               disabled="true" rows="5" styleClass="w-full" />
           </div>
           
           <div class="field col-12">
-            <p:outputLabel for="side-step-comment-3" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/LeaveRequestBusinessDetailsPage/SideStepComment')}3" />
-            <p:inputTextarea id="side-step-comment-3" value="#{data.leaveRequestData.sideStepComment3.answer}"
+            <p:outputLabel for="side-step-comment-3" value="Inform customer commnet" />
+            <p:inputTextarea id="side-step-comment-3" value="#{data.leaveRequestData.sideStep3.customerToInform}"
               disabled="true" rows="5" styleClass="w-full" />
           </div>
           
           <div class="col-12 flex justify-content-end gap-2">
             <p:commandButton value="#{ivy.cms.co('/Labels/Close')}" icon="si si-check-1"
-              partialSubmit="true" id="finish-btn" actionListener="#{logic.close}"
-              process=":leave-request" update=":leave-request" styleClass="w-auto" />
+              partialSubmit="true" id="finish-btn" actionListener="#{logic.close}" styleClass="w-auto" />
           </div>
         </div>
 

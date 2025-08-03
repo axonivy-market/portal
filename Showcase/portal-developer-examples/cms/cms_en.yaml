@@ -215,7 +215,7 @@ Processes:
   LeaveRequest:
     LeaveRequest: Leave Request
     LeaveRequestWithSideSteps: Leave request with side step processes (task level)
-    LeaveRequestWithSideStepsProcessLevel: Leave request with side step processes (process level)
+    LeaveRequestWithSideStepsProcessLevel: Leave request with side step processes (case level)
     approvalTask: Your leave request is approved
     approvalTaskName: Approval for leave request of {0}
     createLeaveRequest: 'Create leave request for: {0}'

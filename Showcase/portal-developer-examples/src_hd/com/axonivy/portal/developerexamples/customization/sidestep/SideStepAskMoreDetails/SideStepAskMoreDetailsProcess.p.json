@@ -1,9 +1,9 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
-  "id" : "0196A8C451CFF155",
+  "id" : "19660C0146486D96",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "com.axonivy.portal.developerexamples.customization.sidestep.SideStepExample2.SideStepExample2Data"
+    "data" : "com.axonivy.portal.developerexamples.customization.sidestep.SideStepAskMoreDetails.SideStepAskMoreDetailsData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -20,6 +20,7 @@
           ],
           "map" : {
             "out.caseUuid" : "param.caseUuid",
+            "out.comment" : "param.comment",
             "out.originalTaskUuid" : "param.originalTaskUuid",
             "out.stepType" : "param.stepType"
           }
@@ -45,6 +46,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.workflow.ITask;",
             "import com.axonivy.portal.developerexamples.dto.SideStepExampleDTO;",
             "import com.axonivy.portal.components.util.CaseUtils;",
             "import ch.ivyteam.ivy.workflow.ICase;",
@@ -54,11 +56,14 @@
             "",
             "ICase caze = ivy.wf.findCase(in.caseUuid);",
             "in.leaveRequestData = ivy.repo.find(caze.getBusinessCase(), LeaveRequest.class) as LeaveRequest;",
-            "in.leaveRequestData.sideStepComment2 = new SideStepExampleDTO();",
-            "in.leaveRequestData.sideStepComment2.assignee = ivy.session.getSessionUserName();",
+            "",
+            "in.leaveRequestData.sideStep1 = new SideStepExampleDTO();",
+            "in.leaveRequestData.sideStep1.assignee = ivy.session.getSessionUserName();",
             "",
             "in.requester = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.requesterUsername));",
-            "in.approver = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.approverUsername));"
+            "if (!in.leaveRequestData.approverUsername.isBlank()) {",
+            "  in.approver = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.approverUsername));",
+            "}"
           ]
         },
         "sudo" : true
@@ -141,7 +146,8 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.publicapi.SideStepAPI;",
-            "in.leaveRequestData.sideStepComment2.setCompleted(true);",
+            "",
+            "in.leaveRequestData.sideStep1.setCompleted(true);",
             "SideStepAPI.handleSaveProcessData(in.leaveRequestData, in.originalTaskUuid, in.stepType);"
           ]
         },
@@ -178,5 +184,51 @@
       "visual" : {
         "at" : { "x" : 264, "y" : 424 }
       }
+    }, {
+      "id" : "f3",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 400, "y" : 528 }
+      }
+    }, {
+      "id" : "f4",
+      "type" : "Script",
+      "name" : "back to homepage",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;",
+            "",
+            "PortalNavigatorInFrameAPI.navigateToPortalEndPage();"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 528 }
+      },
+      "connect" : [
+        { "id" : "f23", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f5",
+      "type" : "HtmlDialogEventStart",
+      "name" : "cancel",
+      "config" : {
+        "guid" : "1985593B8B311B74",
+        "output" : {
+          "code" : [
+            "/*import javax.faces.context.FacesContext;",
+            "import ch.ivy.addon.portal.generic.bean.UserMenuBean;",
+            "String homePageUrl = new UserMenuBean().getHomePageURL();",
+            "FacesContext.getCurrentInstance().getExternalContext().redirect(homePageUrl);*/"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 528 }
+      },
+      "connect" : [
+        { "id" : "f22", "to" : "f4" }
+      ]
     } ]
 }

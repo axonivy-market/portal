@@ -70,14 +70,14 @@
             "import org.apache.commons.lang3.StringUtils;",
             "import com.axonivy.portal.developerexamples.LeaveRequest;",
             "",
-            "in.leaveRequestData = ivy.repo.get(LeaveRequest.class) as LeaveRequest;",
+            "//in.leaveRequestData = ivy.repo.get(LeaveRequest.class) as LeaveRequest;",
             "if(StringUtils.isEmpty(in.leaveRequestData.requesterUsername)) {",
             "  in.leaveRequestData.setRequesterUsername(ivy.session.getSessionUserName());",
             "  ivy.repo.save(in.leaveRequestData);",
             "}",
             "",
             "",
-            "in.requester = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.getRequesterUsername()));",
+            "in.requester = new UserDTO(ivy.session.getSessionUser());",
             "in.leaveTypes = LeaveType.class.getEnumConstants();",
             "in.approvers = UserUtils.findUsers(\"\", 0, -1, [], []);"
           ]
@@ -97,6 +97,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "in.leaveRequestData.setRequesterUsername(ivy.session.getSessionUserName());",
             "in.leaveRequestData.setApproverUsername(in.approver.name);",
             "ivy.repo.save(in.leaveRequestData);"
           ]

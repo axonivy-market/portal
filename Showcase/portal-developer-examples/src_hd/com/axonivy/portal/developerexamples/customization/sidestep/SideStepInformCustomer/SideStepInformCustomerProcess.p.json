@@ -1,9 +1,9 @@
 {
   "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
-  "id" : "19660C0146486D96",
+  "id" : "196A8C8472A12DDA",
   "kind" : "HTML_DIALOG",
   "config" : {
-    "data" : "com.axonivy.portal.developerexamples.customization.sidestep.SideStepExample.SideStepExampleData"
+    "data" : "com.axonivy.portal.developerexamples.customization.sidestep.SideStepInformCustomer.SideStepInformCustomerData"
   },
   "elements" : [ {
       "id" : "f0",
@@ -20,6 +20,7 @@
           ],
           "map" : {
             "out.caseUuid" : "param.caseUuid",
+            "out.comment" : "param.comment",
             "out.originalTaskUuid" : "param.originalTaskUuid",
             "out.stepType" : "param.stepType"
           }
@@ -45,7 +46,6 @@
       "config" : {
         "output" : {
           "code" : [
-            "import ch.ivyteam.ivy.workflow.ITask;",
             "import com.axonivy.portal.developerexamples.dto.SideStepExampleDTO;",
             "import com.axonivy.portal.components.util.CaseUtils;",
             "import ch.ivyteam.ivy.workflow.ICase;",
@@ -55,14 +55,11 @@
             "",
             "ICase caze = ivy.wf.findCase(in.caseUuid);",
             "in.leaveRequestData = ivy.repo.find(caze.getBusinessCase(), LeaveRequest.class) as LeaveRequest;",
-            "",
-            "in.leaveRequestData.sideStepComment1 = new SideStepExampleDTO();",
-            "in.leaveRequestData.sideStepComment1.assignee = ivy.session.getSessionUserName();",
+            "in.leaveRequestData.sideStep3 = new SideStepExampleDTO();",
+            "in.leaveRequestData.sideStep3.assignee = ivy.session.getSessionUserName();",
             "",
             "in.requester = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.requesterUsername));",
-            "if (!in.leaveRequestData.approverUsername.isBlank()) {",
-            "  in.approver = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.approverUsername));",
-            "}"
+            "in.approver = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.approverUsername));"
           ]
         },
         "sudo" : true
@@ -145,8 +142,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.publicapi.SideStepAPI;",
-            "",
-            "in.leaveRequestData.sideStepComment1.setCompleted(true);",
+            "in.leaveRequestData.sideStep3.setCompleted(true);",
             "SideStepAPI.handleSaveProcessData(in.leaveRequestData, in.originalTaskUuid, in.stepType);"
           ]
         },

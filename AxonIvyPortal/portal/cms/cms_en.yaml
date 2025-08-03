@@ -174,8 +174,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     ProcessViewerText: Process Viewer
     Title: Process Viewer
   SideStep:
-    AddNew: Add a new side step process
-    SideStepProcess: Select a side step process
+    NewSideStepMessage: New side step task is created
+    SideStepProcess: Start parallel process
   TaskDocuments:
     TaskDocumentsPageTitle: Task Documents
   adminSettings:
@@ -1581,8 +1581,8 @@ Labels:
   AllTasks: All Tasks
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
-  AssignToRole: Assign to group
-  AssignToUser: Assign to user
+  AssignToRole: Select assigned group
+  AssignToUser: Select assigned user
   Chat: Chat
   Collapse: Collapse
   CreateNewDashboard: Create new dashboard
@@ -1693,6 +1693,7 @@ Labels:
   SelectProcess: Select a process
   Share: Share
   StepType: Step type
+  Submit: Submit
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users

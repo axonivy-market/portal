@@ -24,6 +24,7 @@
           "anonymous" : false,
           "error" : ">> Ignore Exception"
         },
+        "persistOnStart" : true,
         "task" : {
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createNewLeaveRequest\")%>"
         },
@@ -50,7 +51,7 @@
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createLeaveRequest\", [ivy.session.getSessionUser().getDisplayName()])%>",
           "skipTasklist" : true,
           "code" : [
-            "import com.axonivy.portal.developerexamples.enums.CustomSignature;",
+            "/*import com.axonivy.portal.developerexamples.enums.CustomSignature;",
             "import java.util.Collections;",
             "import com.axonivy.portal.components.ivydata.dto.IvySecurityResultDTO;",
             "import com.axonivy.portal.components.ivydata.service.impl.SecurityService;",
@@ -117,7 +118,8 @@
             ".build();",
             "",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
-            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
+            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);",
+            "*/"
           ]
         },
         "output" : {
@@ -129,7 +131,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 456, "y" : 375 },
+        "at" : { "x" : 560, "y" : 375 },
         "size" : { "width" : 188, "height" : 63 }
       },
       "connect" : [
@@ -171,41 +173,30 @@
             "",
             "SideStepProcessDTO dto1 = SideStepProcessDTO.builder()",
             "  .taskUuid(task.uuid())",
-            "  .processName(\"Side step 1: Add comment\")",
-            "  .signal(\"com:axonivy:portal:developerexample:sideStep1:created\")",
+            "  .caseUuid(caze.uuid())",
+            "  .processName(\"Side step 1: Ask more details\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep:askMoreDetails\")",
             "  .params(params1)",
             "  .build();",
             "",
             "",
             "Map params2 = new HashMap();",
-            "params2.put(\"stepId\", \"2\");",
-            "params2.put(\"taskId\", task.uuid());",
-            "params2.put(\"caseId\", caze.getId());",
+            "params1.put(\"caseUuid\", caze.uuid());",
+            "params1.put(\"stepId\", \"2\");",
+            "params1.put(\"taskUuid\", task.uuid());",
             "",
             "SideStepProcessDTO dto2 = SideStepProcessDTO.builder()",
             "  .taskUuid(task.uuid())",
-            "  .processName(\"Side step 2: Add comment\")",
-            "  .signal(\"com:axonivy:portal:developerexample:sideStep2:created\")",
+            "  .caseUuid(caze.uuid())",
+            "  .processName(\"Side step 2: CEO Approval\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep:CEOApproval\")",
             "  .params(params2)",
-            "  .build();",
-            "",
-            "Map params3 = new HashMap();",
-            "params3.put(\"caseUuid\", caze.uuid());",
-            "params3.put(\"stepId\", \"3\");",
-            "params3.put(\"taskUuid\", task.uuid());",
-            "",
-            "SideStepProcessDTO dto3 = SideStepProcessDTO.builder()",
-            "  .taskUuid(task.uuid())",
-            "  .processName(\"Side step 3: Add comment\")",
-            "  .signal(\"com:axonivy:portal:developerexample:sideStep3:created\")",
-            "  .params(params3)",
             "  .build();",
             "",
             "// define side step dto",
             "List processes = new List();",
             "processes.add(dto1);",
             "processes.add(dto2);",
-            "processes.add(dto3);",
             "",
             "SideStepDTO sideStepDto = SideStepDTO.builder()",
             ".processes(processes)",
@@ -225,7 +216,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 668, "y" : 376 },
+        "at" : { "x" : 944, "y" : 375 },
         "size" : { "width" : 184, "height" : 63 }
       },
       "connect" : [
@@ -261,35 +252,22 @@
             "ICase caze = ivy.case;",
             "",
             "",
-            "Map params2 = new HashMap();",
-            "params2.put(\"stepId\", \"2\");",
-            "params2.put(\"taskUuid\", task.uuid());",
-            "params2.put(\"caseUuid\", caze.uuid());",
+            "Map params = new HashMap();",
+            "params.put(\"stepId\", \"1\");",
+            "params.put(\"taskUuid\", task.uuid());",
+            "params.put(\"caseUuid\", caze.uuid());",
             "",
-            "SideStepProcessDTO dto2 = SideStepProcessDTO.builder()",
+            "SideStepProcessDTO dto = SideStepProcessDTO.builder()",
             "  .taskUuid(task.uuid())",
-            "  .processName(\"Side step 2: Add comment\")",
-            "  .signal(\"com:axonivy:portal:developerexample:sideStep2:created\")",
-            "  .params(params2)",
-            "  .build();",
-            "",
-            "Map params3 = new HashMap();",
-            "params3.put(\"caseUuid\", caze.uuid());",
-            "params3.put(\"stepId\", \"3\");",
-            "params3.put(\"taskUuid\", task.uuid());",
-            "",
-            "SideStepProcessDTO dto3 = SideStepProcessDTO.builder()",
-            "  .taskUuid(task.uuid())",
-            "  .processName(\"Side step 3: Add comment\")",
-            "  .signal(\"com:axonivy:portal:developerexample:sideStep3:created\")",
-            "  .params(params3)",
+            "  .caseUuid(caze.uuid())",
+            "  .processName(\"Side step: Inform Customer\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep:informCustomer\")",
+            "  .params(params)",
             "  .build();",
             "",
             "// define side step dto",
             "List processes = new List();",
-            "",
-            "processes.add(dto2);",
-            "processes.add(dto3);",
+            "processes.add(dto);",
             "",
             "SideStepDTO sideStepDto = SideStepDTO.builder()",
             ".processes(processes)",
@@ -304,7 +282,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 920, "y" : 375 },
+        "at" : { "x" : 1272, "y" : 375 },
         "size" : { "width" : 188, "height" : 63 }
       },
       "connect" : [
@@ -314,7 +292,7 @@
       "id" : "f13",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1160, "y" : 376 }
+        "at" : { "x" : 1576, "y" : 376 }
       }
     }, {
       "id" : "f75",
@@ -408,7 +386,7 @@
     }, {
       "id" : "f93",
       "type" : "RequestStart",
-      "name" : "Leave request with side step processes (Process level)",
+      "name" : "Leave request with side step processes (Case level)",
       "config" : {
         "signature" : "start2",
         "request" : {
@@ -425,6 +403,7 @@
           "anonymous" : false,
           "error" : ">> Ignore Exception"
         },
+        "persistOnStart" : true,
         "task" : {
           "name" : "<%=ivy.cms.co(\"/Processes/LeaveRequest/createNewLeaveRequest\")%>"
         },
@@ -568,8 +547,8 @@
             "",
             "SideStepProcessDTO dto1 = SideStepProcessDTO.builder()",
             "  .caseUuid(caze.uuid())",
-            "  .processName(\"Side step 1: Add comment\")",
-            "  .signal(\"com:axonivy:portal:developerexample:sideStep1:created\")",
+            "  .processName(\"Side step 1: Ask more details\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep:askMoreDetails\")",
             "  .params(params1)",
             "  .build();",
             "",
@@ -580,8 +559,8 @@
             "",
             "SideStepProcessDTO dto2 = SideStepProcessDTO.builder()",
             "  .caseUuid(caze.uuid())",
-            "  .processName(\"Side step 2: Add comment\")",
-            "  .signal(\"com:axonivy:portal:developerexample:sideStep2:created\")",
+            "  .processName(\"Side step 2: CEO Approval\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep:CEOApproval\")",
             "  .params(params2)",
             "  .build();",
             "",
@@ -591,8 +570,8 @@
             "",
             "SideStepProcessDTO dto3 = SideStepProcessDTO.builder()",
             "  .caseUuid(caze.uuid())",
-            "  .processName(\"Side step 3: Add comment\")",
-            "  .signal(\"com:axonivy:portal:developerexample:sideStep3:created\")",
+            "  .processName(\"Side step 3: Inform Customer\")",
+            "  .signal(\"com:axonivy:portal:developerexample:sideStep:informCustomer\")",
             "  .params(params3)",
             "  .build();",
             "",
@@ -630,23 +609,18 @@
         "",
         "1 - Set custom business detail",
         "",
-        "2 - First task, build side step config with 3 options.",
-        "- Create list of 3 SideStepProcessDTO objects, each will trigger a signal process",
-        "- Parse to Json and save to task custom text field",
-        "- Side step for first task will have 3 options ",
+        "2 - First task has no side step menu",
         "",
-        "3 - Second task, build side step config with 3 options.",
-        "- Create list of 3 SideStepProcessDTO objects, each will trigger a signal process",
-        "- Parse to Json and save to task custom text field",
-        "- Side step for first task will have 3 options ",
-        "",
-        "4 - Third task, build side step config with 2 options.",
+        "3 - Second task, build side step config with 2 options.",
         "- Create list of 2 SideStepProcessDTO objects, each will trigger a signal process",
         "- Parse to Json and save to task custom text field",
-        "- Side step for first task will have 2 options "
+        "",
+        "4 - Third task, build side step config with 1 option.",
+        "- Create list of 2 SideStepProcessDTO objects, each will trigger a signal process",
+        "- Parse to Json and save to task custom text field"
       ],
       "visual" : {
-        "at" : { "x" : 462, "y" : 156 },
+        "at" : { "x" : 416, "y" : 184 },
         "size" : { "width" : 612, "height" : 296 }
       },
       "connect" : [
@@ -678,7 +652,7 @@
       "type" : "ProcessAnnotation",
       "name" : "Business case detail of side step",
       "visual" : {
-        "at" : { "x" : 329, "y" : 461 },
+        "at" : { "x" : 328, "y" : 528 },
         "size" : { "width" : 350, "height" : 54 }
       },
       "connect" : [

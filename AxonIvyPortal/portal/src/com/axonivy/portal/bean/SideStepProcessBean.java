@@ -7,11 +7,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.constant.CustomFields;
 import com.axonivy.portal.components.dto.RoleDTO;
@@ -23,9 +26,11 @@ import com.axonivy.portal.components.enums.SideStepType;
 import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;
 import com.axonivy.portal.components.publicapi.TaskAPI;
 import com.axonivy.portal.components.service.IvyAdapterService;
+import com.axonivy.portal.components.util.FacesMessageUtils;
 import com.axonivy.portal.components.util.TaskUtils;
 
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
+import ch.ivy.addon.portalkit.service.GrowlMessageService;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -136,6 +141,7 @@ public class SideStepProcessBean implements Serializable {
     if (task != null && selectedProcess != null) {
       ISecurityMember delegatedSecurityMember;
       if (assignee != null) {
+        Ivy.log().error("assignee is {0}", assignee.getName());
         delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromUserDTO(assignee);
       } else {
         delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(assignedRole);
@@ -149,7 +155,9 @@ public class SideStepProcessBean implements Serializable {
         TaskAPI.setHidePropertyToHideInPortal(task);
         PortalNavigatorInFrameAPI.navigateToPortalHome();
       }
-
+      String message = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/SideStep/NewSideStepMessage", Arrays.asList(task.getName(), memberName));
+      FacesContext.getCurrentInstance().addMessage(GrowlMessageService.PORTAL_GLOBAL_GROWL_MESSAGE, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, message, null));
+      PrimeFaces.current().ajax().update(GrowlMessageService.PORTAL_GLOBAL_GROWL);
     }
   }
 

@@ -7,7 +7,6 @@
     <ui:define name="title">#{ivy.cms.co("/Labels/LeaveRequest/LeaveSteps/creation")}</ui:define>
 
     <ui:define name="content">
-      <h:outputStylesheet library="css" name="leave-request-examples.css" />
       <h:form id="leave-request">
         <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
 
@@ -63,8 +62,8 @@
               
               <div class="col-12 flex justify-content-end gap-2">
                 <p:commandButton value="#{ivy.cms.co('/Labels/LeaveRequest/submitLeaveRequest')}"  styleClass="w-auto"
-                  partialSubmit="true" id="button-submit" actionListener="#{logic.close}" process=":leave-request"
-                  update=":leave-request" />
+                  partialSubmit="true" id="button-submit" actionListener="#{logic.close}" process="@form"
+                  update="@form" />
               </div>
               
 
@@ -75,7 +74,7 @@
       </h:form>
       <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="0" />
       
-      <ic:com.axonivy.portal.developerexamples.customization.sidestep.SideStepResultExample data="#{data.leaveRequestData.sideStepComment1}" />
+
     </ui:define>
   </ui:composition>
 </h:body>

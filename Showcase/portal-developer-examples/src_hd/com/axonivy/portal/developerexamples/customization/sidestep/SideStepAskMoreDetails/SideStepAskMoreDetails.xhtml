@@ -12,8 +12,8 @@
         <h:form id="side-step-example">
           <div class="grid">
             <div class="col-12">
-              <div class="text-xl font-semibold mb-3">#{ivy.cms.co('/Labels/LeaveRequest/approvalTaskIntro')}</div>
-              <p:messages id="messages" showDetail="true" closable="true" styleClass="mb-3" />
+              <p:messages id="messages" closable="true" styleClass="mb-3" />
+              <div class="text-xl font-semibold mb-3">Ask for more details about this leave request</div>
             </div>
 
             <div class="field col-12">
@@ -42,34 +42,35 @@
 
             <div class="field col-12">
               <p:outputLabel for="requester-comment" value="#{ivy.cms.co('/Labels/LeaveRequest/requesterComment')}" /> 
-              <p:inputTextarea id="requester-comment" value="#{data.leaveRequestData.sideStepComment1.comment1}" disabled="true"
+              <p:inputTextarea id="requester-comment" value="#{data.leaveRequestData.requesterComment}" disabled="true"
                     rows="4" styleClass="w-full" autoResize="false" />
             </div>
 
             <div class="field col-12">
-              <p:outputLabel for="requester-step-comment"
+              <p:outputLabel 
                 value="#{ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/RequesterSideStepComment')}" /> 
-              <p:inputTextarea
-                id="requester-step-comment" value="#{data.leaveRequestData.sideStepComment1.question}"
-                required="true" rows="5" styleClass="w-full" autoResize="false"
-                requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/requesterSideStepComment')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}" />
+              <p:inputTextarea disabled="true"
+                id="requester-step-comment" value="#{data.comment}" rows="5" styleClass="w-full" autoResize="false" />
             </div>
 
             <div class="field col-12">
               <p:outputLabel for="approver-comment"
-                  value="#{ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/SideStepComment')}" /> 
+                  value="More details for leave request" /> 
               <p:inputTextarea
-                  id="approver-comment" value="#{data.leaveRequestData.sideStepComment1.answer}" required="true"
-                  rows="5" styleClass="w-full" autoResize="false"
-                  requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/approverComment')}: #{ivy.cms.co('/Dialogs/com/axonivy/portal/component/Common/RequiredFieldMessage')}" />
+                  id="approver-comment" value="#{data.leaveRequestData.sideStep1.askMoreDetails}"
+                  rows="5" styleClass="w-full" autoResize="false" />
             </div>
 
             <div class="col-12 flex justify-content-end gap-2">
-              <p:commandButton value="#{ivy.cms.co('/Labels/Close')}" icon="pi pi-times" styleClass="p-button-secondary" id="rejected-btn"
-                actionListener="#{logic.close}" process="@form" update="@form" />
-
-              <p:commandButton value="#{ivy.cms.co('/Labels/OK')}" icon="pi pi-check" id="approved-btn" actionListener="#{logic.submit}"
-                process="@form" update="@form" />
+              <p:commandLink value="Cancel" id="button-cancel" actionListener="#{logic.cancel}" partialSubmit="true"
+                process="@this" styleClass="mt-2"/>
+              <p:spacer width="10px" />
+              <p:commandButton value="#{ivy.cms.co('/Labels/OK')}" 
+                icon="pi pi-check" 
+                id="approved-btn" 
+                actionListener="#{logic.submit}"
+                process="@form" 
+                update="@form" />
             </div>
           </div>
         </h:form>

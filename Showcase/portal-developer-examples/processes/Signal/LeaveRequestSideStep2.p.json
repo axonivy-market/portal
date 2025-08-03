@@ -8,9 +8,9 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "SignalStartEvent",
-      "name" : "Signal side step 2",
+      "name" : "Signal side step CEO approval",
       "config" : {
-        "signalCode" : "com:axonivy:portal:developerexample:sideStep2:created",
+        "signalCode" : "com:axonivy:portal:developerexample:sideStep:CEOApproval",
         "output" : {
           "map" : { },
           "code" : [
@@ -29,7 +29,7 @@
             "// custom params",
             "Map params = data.getSideStepDto().getParams();",
             "out.originalTaskUuid = data.getSideStepDto().getOriginalTaskUuid();",
-            "out.originalCaseUuid = params.get(\"caseUuid\") as String;",
+            "out.originalCaseUuid = data.getSideStepDto().getCaseUuid();",
             "",
             "// required fields",
             "out.securityMember = data.getMemberName();",
@@ -74,9 +74,9 @@
     }, {
       "id" : "f4",
       "type" : "DialogCall",
-      "name" : "Side step example 2",
+      "name" : "Side step CEO approval",
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.customization.sidestep.SideStepExample2:start(String,String,String,com.axonivy.portal.components.enums.SideStepType)",
+        "dialog" : "com.axonivy.portal.developerexamples.customization.sidestep.SideStepCEOApproval:start(String,String,String,com.axonivy.portal.components.enums.SideStepType)",
         "call" : {
           "map" : {
             "param.originalTaskUuid" : "in.originalTaskUuid",

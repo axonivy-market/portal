@@ -1,7 +1,7 @@
 {
   "$schema" : "https://json-schema.axonivy.com/data-class/12.0.0/data-class.json",
-  "simpleName" : "SideStepExample3Data",
-  "namespace" : "com.axonivy.portal.developerexamples.customization.sidestep.SideStepExample3",
+  "simpleName" : "SideStepCEOApprovalData",
+  "namespace" : "com.axonivy.portal.developerexamples.customization.sidestep.SideStepCEOApproval",
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "originalTaskUuid",

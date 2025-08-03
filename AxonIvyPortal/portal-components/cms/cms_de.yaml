@@ -89,8 +89,8 @@ Dialogs:
               IVY_PROCESS: Geschäftsprozess
             ProcessViewerIFrameTitle: Prozessbetrachterrahmen
           SideStepType:
-            PARALLEL: Erstellen Sie eine neue Aufgabe und arbeiten Sie an der aktuellen Aufgabe weiter
-            SWITCH: Die aktuelle Aufgabe parken und mit der Arbeit an einer neuen Aufgabe beginnen
+            PARALLEL: Eine Hintergrundaufgabe starten (parallel)
+            SWITCH: Diese Aufgabe anhalten und Prozess starten (umschalten)
 Labels:
   AI:
     Error:

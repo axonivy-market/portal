@@ -1132,8 +1132,8 @@ Labels:
   AIAssistant: AI Assistant
   AppendTask-Explain: The task is added to the sequence after my task.
   AppendTheTask: Append the task
-  AssignToRole: Assign to role
-  AssignToUser: Assign to user
+  AssignToRole: Select assigned group
+  AssignToUser: Select assigned user
   Chat: Chat
   Collapse: Collapse
   CreateNewDashboard: Create new dashboard

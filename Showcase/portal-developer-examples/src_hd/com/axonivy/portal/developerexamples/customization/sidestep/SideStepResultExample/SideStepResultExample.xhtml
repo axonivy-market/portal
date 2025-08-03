@@ -2,7 +2,7 @@
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="data" />
+  <cc:attribute name="data" type="com.axonivy.portal.developerexamples.dto.SideStepExampleDTO"/>
 </cc:interface>
 
 <cc:implementation>
@@ -15,38 +15,29 @@
       <div class="grid">
 
         <div class="field col-12">
-          <p:outputLabel for="assignee" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/SideStepResultExample/Assignee')}" /> 
+          <p:outputLabel for="assignee" value="Side step task is done by" /> 
           <p:inputText id="assignee"
                 value="#{cc.attrs.data.assignee}" disabled="true" styleClass="w-full" />
         </div>
 
-        <div class="field col-12">
-          <p:outputLabel for="question" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/SideStepResultExample/Question')}" /> 
-          <p:inputText id="question"
-                value="#{cc.attrs.data.question}" disabled="true" styleClass="w-full" />
-        </div>
+        <h:panelGroup layout="block" styleClass="field col-12" rendered="#{not empty cc.attrs.data.askMoreDetails}">
+          <p:outputLabel value="Ask more details" /> 
+          <p:inputTextarea disabled="true"
+                value="#{cc.attrs.data.askMoreDetails}"  rows="5" styleClass="w-full" autoResize="false" />
+        </h:panelGroup>
 
-        <div class="field col-12">
-          <p:outputLabel for="answer" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/SideStepResultExample/Answer')}" /> 
-          <p:inputTextarea id="answer" disabled="true"
-              value="#{cc.attrs.data.answer}" rows="5" styleClass="w-full" autoResize="false" />
-        </div>
+        <h:panelGroup layout="block" styleClass="field col-12" rendered="#{not empty cc.attrs.data.ceoApprovalComment}">
+          <p:outputLabel value="CEO Approval" /> 
+          <p:inputTextarea disabled="true"
+              value="#{cc.attrs.data.ceoApprovalComment}" rows="5" styleClass="w-full" autoResize="false" />
+        </h:panelGroup>
 
-        <div class="field col-12" hidden="#{empty cc.attrs.data.comment1}">
-          <p:outputLabel for="comment1" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/SideStepResultExample/Comment')}" /> 
-          <p:inputTextarea id="comment1"
-              disabled="true" value="#{cc.attrs.data.comment1}" rows="5" styleClass="w-full" autoResize="false" />
-        </div>
+        <h:panelGroup layout="block" styleClass="field col-12" rendered="#{not empty cc.attrs.data.customerToInform}">
+          <p:outputLabel value="Inform customer" /> 
+          <p:inputTextarea
+              disabled="true" value="#{cc.attrs.data.customerToInform}" rows="5" styleClass="w-full" autoResize="false" />
+        </h:panelGroup>
 
-        <div class="field col-12" hidden="#{empty cc.attrs.data.comment2}">
-          <p:outputLabel for="comment2" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/SideStepResultExample/Comment')}" /> 
-          <p:inputTextarea id="comment2" disabled="true" value="#{cc.attrs.data.comment2}" rows="5" styleClass="w-full" autoResize="false" />
-        </div>
-
-        <div class="field col-12" hidden="#{empty cc.attrs.data.comment3}">
-          <p:outputLabel for="comment3" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/SideStepResultExample/Comment')}" /> 
-          <p:inputTextarea id="comment3" disabled="true" value="#{cc.attrs.data.comment3}" rows="5" styleClass="w-full" autoResize="false" />
-        </div>
       </div>
     </h:form>
     <f:facet name="footer">
