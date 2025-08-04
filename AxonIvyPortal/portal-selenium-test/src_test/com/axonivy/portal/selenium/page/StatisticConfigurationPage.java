@@ -119,7 +119,8 @@ public class StatisticConfigurationPage extends TemplatePage {
   }
 
   public void clickGeneratePreviewChart() {
-    $("button[id$='config-form:generate-statistic-chart'").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $("button[id$='config-form:generate-statistic-chart'").scrollIntoCenter()
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     waitForElementClickable($("button[id$='config-form:generate-statistic-chart'"));
   }
 
