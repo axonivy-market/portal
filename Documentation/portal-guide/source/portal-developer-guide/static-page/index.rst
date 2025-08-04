@@ -126,7 +126,7 @@ Add the following JSON configuration to the `Portal.CustomMenuItems` variable:
             "menuKind": "STATIC_PAGE",
             "link": "portal-components-examples/static.xhtml",
             "label": "Static Page Example",
-            "icon": "si si-document",
+            "icon": "si si-task-list-edit",
             "index": 0,
             "version": "12.0.0"
         }
@@ -136,9 +136,9 @@ Parameters:
 - **menuKind**: Must be set to `"STATIC_PAGE"`
 - **link**: Path to your static page relative to the view directory
 - **label**: Display name in the menu
-- **icon**: Icon class (optional)
-- **index**: Menu position (optional)
-- **version**: Portal version (optional)
+- **icon**: Icon class
+- **index**: Menu position (optional, defaults to 0)
+- **version**: Portal version
 
 Programmatic Method
 -------------------
@@ -151,7 +151,7 @@ You can also add static pages programmatically using a callable subprocess:
 
     CustomSubMenuItem staticPage = new CustomSubMenuItem();
     staticPage.setMenuKind(MenuKind.STATIC_PAGE);
-    staticPage.setIcon("si si-document");
+    staticPage.setIcon("si si-task-list-edit");
     staticPage.setLabel("Static Page Example");
     staticPage.setLink("portal-components-examples/static.xhtml");
     staticPage.setIndex(0);
