@@ -6,7 +6,7 @@
     <div class="ui-g">
       <h:panelGroup rendered="#{field.field eq 'type'}">
         <div class="ui-g-4 ui-sm-12">
-          <h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processType')}" for="types"/>
+          <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processType')}" for="process-types"/>
         </div>
         <div class="ui-g-8 ui-sm-12 ui-fluid">
           <p:selectCheckboxMenu id="process-types" value="#{field.userProcessTypes}" multiple="true" filter="true" filterMatchMode="contains"
