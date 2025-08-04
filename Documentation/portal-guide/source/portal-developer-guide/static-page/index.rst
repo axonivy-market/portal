@@ -53,15 +53,6 @@ Here's a basic template for creating a static page:
         <title>Your Page Title</title>
         <style>
             /* Your custom CSS styles */
-            .card {
-                max-width: 600px;
-                margin: 2rem auto;
-                padding: 1.5rem;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-                border-radius: 8px;
-                background-color: #fff;
-                font-family: Arial, sans-serif;
-            }
         </style>
     </h:head>
 
