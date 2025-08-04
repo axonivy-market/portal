@@ -28,7 +28,6 @@ public class MenuTest extends BaseTest {
   private static final String PROCESSES_PAGE_TITLE = "Processes - Portal - Axon Ivy";
   private static final String DASHBOARD_PAGE_TITLE = "Dashboard - Portal - Axon Ivy";
 
-
   @Override
   @BeforeEach
   public void setup() {
@@ -50,8 +49,8 @@ public class MenuTest extends BaseTest {
 
     MainMenuPage mainMenuPage = new MainMenuPage();
     String expected =
-        "Dashboard,Processes,Tasks,Cases,User Guide Dashboard,Google,Testing link google,Testing example,A link,B link";
-    assertEquals(expected, mainMenuPage.getMenuItemsAsString());
+        "Dashboard,Processes,Tasks,Cases,User Guide Dashboard,Google,Testing link google,Testing example,A link,B link,Static page";
+    assertTrue(mainMenuPage.getMenuItemsAsString().equals(expected));
   }
 
   @Test
@@ -194,4 +193,5 @@ public class MenuTest extends BaseTest {
 	userProfilePage.selectLanguage(index);
     newDashboardPage = userProfilePage.save();
   }
+
 }

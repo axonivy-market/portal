@@ -52,14 +52,14 @@
             "at" : { "x" : 384, "y" : 160 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
-          "parentConnector" : "f5"
+          "parentConnector" : "f75"
         } ],
       "visual" : {
         "at" : { "x" : 456, "y" : 280 },
         "size" : { "width" : 128 }
       },
       "connect" : [
-        { "id" : "f5", "to" : "S00" }
+        { "id" : "f75", "to" : "S71" }
       ]
     }, {
       "id" : "S60",
@@ -117,7 +117,7 @@
             "at" : { "x" : 3, "y" : 160 },
             "labelOffset" : { "x" : 18, "y" : 25 }
           },
-          "parentConnector" : "f4",
+          "parentConnector" : "f78",
           "connect" : [
             { "id" : "S60-f0", "to" : "S60-f11" }
           ]
@@ -161,7 +161,7 @@
             "at" : { "x" : 584, "y" : 160 },
             "labelOffset" : { "x" : 21, "y" : 25 }
           },
-          "parentConnector" : "f4"
+          "parentConnector" : "f77"
         }, {
           "id" : "S40-f4",
           "type" : "Script",
@@ -192,7 +192,7 @@
         "at" : { "x" : 416, "y" : 144 }
       },
       "connect" : [
-        { "id" : "f4", "to" : "S60" }
+        { "id" : "f77", "to" : "S72" }
       ]
     }, {
       "id" : "S30",
@@ -471,7 +471,7 @@
           "visual" : {
             "at" : { "y" : 256 }
           },
-          "parentConnector" : "f5",
+          "parentConnector" : "f76",
           "connect" : [
             { "id" : "S00-f2", "to" : "S00-f1" }
           ]
@@ -573,5 +573,103 @@
       "visual" : {
         "at" : { "x" : 496, "y" : 512 }
       }
+    }, {
+      "id" : "S71",
+      "type" : "EmbeddedProcess",
+      "name" : "Save Accessibility Setting",
+      "elements" : [ {
+          "id" : "S71-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in",
+          "visual" : {
+            "at" : { "x" : 520, "y" : 280 }
+          },
+          "parentConnector" : "f75",
+          "connect" : [
+            { "id" : "S71-f3", "to" : "S71-f2" }
+          ]
+        }, {
+          "id" : "S71-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out",
+          "visual" : {
+            "at" : { "x" : 920, "y" : 280 }
+          },
+          "parentConnector" : "f76"
+        }, {
+          "id" : "S71-f2",
+          "type" : "Script",
+          "name" : "Update IsShortcutEnabled",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.constant.UserProperty;",
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "UserSettingService.getInstance().updateUserProperty(UserProperty.ENABLE_KEYBOARD_SHORTCUTS, Boolean.toString(in.isShortcutEnabled));"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 712, "y" : 280 }
+          },
+          "connect" : [
+            { "id" : "S71-f4", "to" : "S71-g1" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 632, "y" : 280 }
+      },
+      "connect" : [
+        { "id" : "f76", "to" : "S00" }
+      ]
+    }, {
+      "id" : "S72",
+      "type" : "EmbeddedProcess",
+      "name" : "Init Accessibility Setting",
+      "elements" : [ {
+          "id" : "S72-f0",
+          "type" : "Script",
+          "name" : "Init IsShortcutEnabled",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
+                "boolean isShortcutEnable = UserSettingService.getInstance().isKeyboardShortcutsEnabled();",
+                "in.isShortcutEnabled = isShortcutEnable;"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 304, "y" : 256 }
+          },
+          "connect" : [
+            { "id" : "S72-f3", "to" : "S72-g1" }
+          ]
+        }, {
+          "id" : "S72-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 256 }
+          },
+          "parentConnector" : "f77",
+          "connect" : [
+            { "id" : "S72-f2", "to" : "S72-f0" }
+          ]
+        }, {
+          "id" : "S72-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out",
+          "visual" : {
+            "at" : { "x" : 544, "y" : 256 }
+          },
+          "parentConnector" : "f78"
+        } ],
+      "visual" : {
+        "at" : { "x" : 624, "y" : 144 }
+      },
+      "connect" : [
+        { "id" : "f78", "to" : "S60" }
+      ]
     } ]
 }

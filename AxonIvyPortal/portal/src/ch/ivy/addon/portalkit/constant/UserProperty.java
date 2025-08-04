@@ -14,4 +14,5 @@ public class UserProperty {
   public static final String PORTAL_PINNED_TASKS = "PORTAL_PINNED_TASKS";
   public static final String PORTAL_PINNED_CASES = "PORTAL_PINNED_CASES";
   public static final String PORTAL_SHOW_USER_GUIDE = "PORTAL_SHOW_USER_GUIDE";
+  public static final String ENABLE_KEYBOARD_SHORTCUTS = "ENABLE_KEYBOARD_SHORTCUTS";
 }
