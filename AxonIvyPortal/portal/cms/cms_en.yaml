@@ -1521,6 +1521,11 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Add filter
               ResetFilter: Reset filter
+            filter:
+              DashboardFilter:
+                SelectFilterField: Select Filter Field
+              DateFilter:
+                SelectPeriod: Select period
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: Case details frame
@@ -1582,6 +1587,10 @@ Labels:
   Collapse: Collapse
   CreateNewDashboard: Create new dashboard
   EditDescription: Edit description
+  EnterFromValue: Enter from value
+  EnterToValue: Enter to value
+  EnterValue: Enter value
+  EnterValues: Enter values
   Enums:
     ChatbotCandidateQuestion:
       EXPLORE:
@@ -1685,6 +1694,8 @@ Labels:
   Permissions: Permissions
   PinnedCases: Pinned Cases
   PinnedTasks: Pinned Tasks
+  SelectOperator: Select Operator
+  SelectValues: Select values
   Share: Share
   Task: Task
   TaskItemDetail: Task Details
