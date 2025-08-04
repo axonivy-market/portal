@@ -92,7 +92,7 @@ Choose the appropriate template based on your content needs.
 .. _static-page-integration:
 
 Integrating Static Pages into Portal
-===================================
+====================================
 
 There are several ways to integrate static pages into the portal navigation system.
 
@@ -280,7 +280,7 @@ Create a simple information page with custom styling:
 .. _static-page-best-practices:
 
 Best Practices
-===============
+==============
 
 File Organization
 -----------------
@@ -311,7 +311,7 @@ Security Considerations
 References
 ==========
 
-- `Static JSF Pages Documentation <https://developer.axonivy.com//doc/latest/designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_
+- `Static JSF Pages Documentation <https://developer.axonivy.com/doc/12/designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_
 - `Portal Menu Configuration <customization-menu.html>`_
 - `User Menu Configuration <usermenu/index.html>`_
 - `PrimeFaces Documentation <https://www.primefaces.org/documentation/>`_
