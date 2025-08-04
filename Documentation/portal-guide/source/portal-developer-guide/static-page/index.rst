@@ -105,10 +105,6 @@ Static pages can be accessed directly using the standard portal URL format:
 
     /designer/pro/portal/1549F58C18A6C562/DefaultFramePage.ivp?relativeUrl=/designer/faces/view/portal-components-examples/static.xhtml
 
-Where:
-- `portal-components-examples` is your application name
-- `static.xhtml` is your static page file
-
 Main Menu Integration
 =====================
 
@@ -133,6 +129,7 @@ Add the following JSON configuration to the `Portal.CustomMenuItems` variable:
     ]
 
 Parameters:
+
 - **menuKind**: Must be set to `"STATIC_PAGE"`
 - **link**: Path to your static page relative to the view directory
 - **label**: Display name in the menu
@@ -185,6 +182,7 @@ Static pages can also be added to the user menu using the `Portal.UserMenu` conf
     ]
 
 Parameters:
+
 - **id**: Unique identifier for the menu item
 - **menuKind**: Must be set to `"STATIC_PAGE"`
 - **titles**: Multilingual titles
@@ -203,6 +201,7 @@ Portal automatically converts static page links to the proper format when used i
 3. **Output**: Full portal URL with iframe wrapper
 
 The conversion formula:
+
 .. code-block:: text
 
     /designer/pro/portal/{processId}/DefaultFramePage.ivp?relativeUrl=/{applicationName}/faces/view/{staticPagePath}
