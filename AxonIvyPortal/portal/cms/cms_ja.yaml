@@ -927,6 +927,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcessViewer: プロセス ビューアー
     yourProcesses: プロセス
     yourTasks: タスク
+  dashboardProcess:
+    processAriaLabel: 'TODO Process name: {0}. Process description: {1}'
   documentFiles:
     PreviewDocument: タスクの詳細にアクセス
     deleteDocumentNote: '{0} が {1} を削除しました'

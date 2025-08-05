@@ -25,7 +25,7 @@
                   <div class="setting-header">
                     <h5 class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/General')}</h5>
                   </div>
-                  <p:outputLabel for="homepage" class="user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage')}</p:outputLabel >
+                  <p:outputLabel for="homepage" styleClass="user-profile-setting-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/Homepage')}</p:outputLabel >
                   <div class="ui-fluid">
                     <p:selectOneMenu id="homepage" value="#{data.selectedHomepage}" converter="pojoConverter">
                       <f:selectItems value="#{data.homepages}" var="homepage" itemValue="#{homepage}" itemLabel="#{homepage.label}" />
@@ -36,9 +36,9 @@
                 <!-- Process List Setting -->
                 <h:panelGroup layout="block" styleClass="w-full my-profile-block" rendered="#{userProfileBean.canAccessProcessList()}">
                   <div class="setting-header">
-                    <p:outputLabel for="process-mode-selection" class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/ProcessList')}</p:outputLabel>
+                    <h5 for="process-mode-selection" class="font-semibold">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/ProcessList')}</h5>
                   </div>
-                  <div class="user-profile-setting-title">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultViewMode")}</div>
+                  <p:outputLabel for="process-mode-selection" styleClass="user-profile-setting-title">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultViewMode")}</p:outputLabel>
                   <div class="ui-fluid">
                     <p:selectOneMenu id="process-mode-selection" value="#{data.selectedProcessMode}">
                       <f:selectItems value="#{data.processModes}" var="mode" itemValue="#{mode}" itemLabel="#{mode}" />
