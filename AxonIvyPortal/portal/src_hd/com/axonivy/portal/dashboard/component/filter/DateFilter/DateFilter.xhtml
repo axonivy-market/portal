@@ -38,6 +38,7 @@
     styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="is-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+      placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}"
       pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
@@ -54,6 +55,7 @@
     styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="is-not-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+      placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}"
       pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
@@ -70,6 +72,7 @@
     styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="before-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+      placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}"
       pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
@@ -86,6 +89,7 @@
     styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="after-date" value="#{filter.toDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+      placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}"
       pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateToDate(filter)}" />
@@ -103,6 +107,7 @@
     styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="from-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+      placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}"
       pt:aria-label="#{ivy.cms.co('/Labels/EnterFromValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
@@ -123,6 +128,7 @@
     rendered="#{filter.operator == 'BETWEEN' || filter.operator == 'NOT_BETWEEN'}"
     styleClass="ui-fluid md-inputfield date-picker-panel">
     <p:datePicker id="to-date" value="#{filter.toDate}" locale="#{localeBean.locale}" disabled="#{readOnly}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
+      placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widget)}"
       pt:aria-label="#{ivy.cms.co('/Labels/EnterToValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateToDate(filter)}" />
