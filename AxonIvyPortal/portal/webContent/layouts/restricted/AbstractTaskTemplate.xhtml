@@ -180,7 +180,7 @@
            process="@this"
            partialSubmit="true"
            update="case-info-dialog"  
-           oncomplete="PF('case-info-dialog').show()" />
+           oncomplete="PF('case-info-dialog').show();handleCaseDetailsPanelInIframe();" />
         <p:dialog id="case-info-dialog" resizable="false" fitViewport="true" width="95vw" height="80vh"
           closeOnEscape="true" draggable="false" responsive="true"
           onHide="PF('caseInfoPoll').stop();"

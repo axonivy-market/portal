@@ -523,7 +523,96 @@ function initKeyboardShortcutsEnabledValue(value) {
   }
 }
 
+var lastFocusedElements = [];
+
+function initFocusManagament(targetWindow, storeFn, restoreFn) {
+  if (!targetWindow || !targetWindow.PrimeFaces) {
+    return;
+  }
+  
+  // Dialog
+  if (targetWindow.PrimeFaces.widget.Dialog) {
+    var postShowEvent = targetWindow.PrimeFaces.widget.Dialog.prototype.postShow;
+    var onHideEvent = targetWindow.PrimeFaces.widget.Dialog.prototype.onHide;
+    
+    targetWindow.PrimeFaces.widget.Dialog.prototype.postShow = function() {
+      storeFn();
+      postShowEvent.call(this);
+    };
+
+    targetWindow.PrimeFaces.widget.Dialog.prototype.onHide = function() {
+      restoreFn();
+      onHideEvent.call(this);
+    };
+  }
+  
+  // OverlayPanel
+  if (targetWindow.PrimeFaces.widget.OverlayPanel) {
+    var showEvent = targetWindow.PrimeFaces.widget.OverlayPanel.prototype.show;
+    var hideEvent = targetWindow.PrimeFaces.widget.OverlayPanel.prototype.hide;
+    
+    targetWindow.PrimeFaces.widget.OverlayPanel.prototype.show = function() {
+      storeFn();
+      showEvent.call(this);
+    };
+
+    targetWindow.PrimeFaces.widget.OverlayPanel.prototype.hide = function() {
+      restoreFn();
+      hideEvent.call(this);
+    };
+  }
+}
+
+function createFocusFunctions(targetDocument, focusElements) {
+  return {
+    storeFocusedEl: function() {
+      var currentElement = targetDocument.activeElement;
+      if (currentElement && currentElement !== targetDocument.body && currentElement.tagName !== 'HTML') {
+        if (focusElements.length === 0 || focusElements[focusElements.length - 1] !== currentElement) {
+          focusElements.push(currentElement);
+        }
+      }
+    },
+    
+    restoreFocusedEl: function() {
+      while (focusElements.length > 0) {
+        var lastEl = focusElements.pop();
+        if (lastEl && targetDocument.contains(lastEl) && 
+            lastEl.offsetParent !== null && !lastEl.disabled && lastEl.tabIndex !== -1) {
+          try {
+            lastEl.focus();
+            return;
+          } catch(e) {
+            targetDocument.body.focus();
+          }
+        }
+      }
+    }
+  };
+}
+
+function initIframeFocusManagement(iframe) {
+  if (!iframe || !iframe.contentWindow) {
+    return;
+  }
+  
+  try {
+    var iframeWindow = iframe.contentWindow;
+    var iframeDocument = iframe.contentDocument || iframeWindow.document;
+    var iframeFocusStack = [];
+    
+    var focusFunctions = createFocusFunctions(iframeDocument, iframeFocusStack);
+    initFocusManagament(iframeWindow, focusFunctions.storeFocusedEl, focusFunctions.restoreFocusedEl);
+    
+    console.log('Focus management initialized for iframe');
+  } catch (e) {
+    console.warn('Cannot initialize focus management for iframe:', e.message);
+  }
+}
+
 $(document).ready(function () {
+  var focusFunctions = createFocusFunctions(document, lastFocusedElements);
+  initFocusManagament(window, focusFunctions.storeFocusedEl, focusFunctions.restoreFocusedEl);
 
   const shortcuts = {
     'Digit1': $(singleDashboardId).length ? singleDashboardId : multipleDashboardId,
@@ -615,9 +704,9 @@ $(document).ready(function () {
           handleFocusOnMainElement(event);
         }
         registerSearchIconClick();
+        
       });
       handleExpandButtonInFilePreview(document.getElementById("iFrame").contentWindow);
-
     };
   }
 
@@ -874,7 +963,7 @@ function focusFirstVisibleElementInPanel(widgetVar, selector) {
   if (destructionWords.some(word => widgetVar.includes(word))) {
     first = panel.find('a').first();
   } else {
-  	first = panel.find(selector).first();
+  	first = panel.find(selector).first() || panel.find('a').first();
   }
   
   if (first.length) {
@@ -893,6 +982,16 @@ function addMissingAttr(query, attrName, attrValue) {
       $(btn).attr(attrName, attrValue);
     }
   });
+}
+
+function handleCaseDetailsPanelInIframe() {
+  const caseInfoDialog = document.getElementById('case-info-dialog');
+  if (caseInfoDialog.innerHTML.includes('i-frame-case-details')) {
+    const iframe = document.getElementById('i-frame-case-details');
+    setTimeout(() => {
+      initIframeFocusManagement(iframe);
+    }, 2000)
+  }
 }
 
 // END ACCESSIBILITY FIX
