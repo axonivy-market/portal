@@ -40,6 +40,7 @@
     <p:datePicker id="is-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}"
+      placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
       pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
@@ -56,6 +57,7 @@
     <p:datePicker id="is-not-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}"
+      placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
       pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
@@ -72,6 +74,7 @@
     <p:datePicker id="before-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}"
+      placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
       pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
@@ -88,6 +91,7 @@
     <p:datePicker id="after-date" value="#{filter.toDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}"
+      placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
       pt:aria-label="#{ivy.cms.co('/Labels/EnterValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateToDate(filter)}" />
       <f:param name="skipValidator" value="true" />
@@ -105,6 +109,7 @@
     <p:datePicker id="from-date" value="#{filter.fromDate}" locale="#{localeBean.locale}" disabled="#{readOnly}"
       onkeypress="if (event.keyCode == 13) { return false; }" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}"
+      placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
       pt:aria-label="#{ivy.cms.co('/Labels/EnterFromValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateFromDate(filter)}" />
       <f:param name="skipValidator" value="true" />
@@ -125,6 +130,7 @@
     styleClass="ui-fluid date-picker-panel">
     <p:datePicker id="to-date" value="#{filter.toDate}" locale="#{localeBean.locale}" disabled="#{readOnly}" showTime="#{dateTimePatternBean.isDateFilterWithTime}"
       showIcon="true" converterMessage="#{widgetDateFilterBean.getWrongFormatMessage(filter.field, filterIndex, widgetType)}"
+      placeholder="#{dateTimePatternBean.getShortDateTimePattern(true)}"
       pt:aria-label="#{ivy.cms.co('/Labels/EnterToValue')}">
       <p:ajax event="close" partialSubmit="true" global="false" listener="#{widgetDateFilterBean.updateToDate(filter)}" />
       <f:param name="skipValidator" value="true" />

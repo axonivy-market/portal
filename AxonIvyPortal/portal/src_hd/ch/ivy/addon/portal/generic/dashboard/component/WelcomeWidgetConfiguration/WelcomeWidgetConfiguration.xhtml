@@ -14,7 +14,8 @@
   <h:outputScript name="welcome-widget.js" library="js" />
   <c:set var="widget" value="#{cc.attrs.widget}" />
   <f:event listener="#{dashboardWelcomeWidgetConfigurationBean.init()}" type="preRenderComponent" />
-  
+  <p:focus for="welcome-image-fit"/>
+
   <!-- Configuration -->
   <h:panelGroup id="user-filter" layout="block" styleClass="card dashboard-card welcome-widget-configuration-panel">
     <div class="user-filter ui-g">
