@@ -208,6 +208,7 @@
               <p:ajax event="save" listener="#{logic.updateDelayTimestamp(task)}"
                 update="delay-form #{cc.clientId}:task-detail-state #{cc.attrs.componentToUpdate}" resetValues="true" />
               <p:datePicker id="delay-date-calendar" styleClass="delay-date-calendar" value="#{task.delayTimestamp}"
+                placeholder="#{dateTimePatternBean.getShortDateTimePattern(false)}"
                 showTime="#{!dateTimePatternBean.isTimeHidden}"  locale="#{localeBean.locale}" >
                 <f:validator validatorId="taskDelayTimestampValidator" />
               </p:datePicker>
@@ -238,6 +239,7 @@
                 <p:ajax event="save" listener="#{logic.updateExpiryTime(task)}"
                   update="expiry-form #{cc.attrs.componentToUpdate}" process="@this expiry-calendar"/>
                 <p:datePicker id="expiry-calendar" styleClass="task-details-data-expiry" value="#{data.expiryTimestamp}"
+                  placeholder="#{dateTimePatternBean.getShortDateTimePattern(false)}"
                   showTime="#{!dateTimePatternBean.isTimeHidden}" locale="#{localeBean.locale}" >
                   <f:validator validatorId="taskExpiryTimestampValidator" />
                 </p:datePicker>
