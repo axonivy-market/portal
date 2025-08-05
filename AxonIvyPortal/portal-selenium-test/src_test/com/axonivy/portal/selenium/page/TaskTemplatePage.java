@@ -273,10 +273,10 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void inputFields(String employee, String from, String to, String representation) {
-    $(By.id("leave-request:fullname")).sendKeys(employee);;
-    $(By.id("leave-request:from_input")).sendKeys(from);;
-    $(By.id("leave-request:to_input")).sendKeys(to);;
-    $(By.id("leave-request:substitute")).sendKeys(representation);;
+    $(By.id("leave-request:fullname")).sendKeys(employee);
+    $(By.id("leave-request:from_input")).sendKeys(from);
+    $(By.id("leave-request:to_input")).sendKeys(to);
+    $(By.id("leave-request:substitute")).sendKeys(representation);
   }
 
   public CaseDetailsPage goToCaseDetail() {
@@ -292,21 +292,21 @@ public class TaskTemplatePage extends TemplatePage {
   
   public void inputSideStepInfoTaskLevel() {
     $("div[id='side-step-process-form:side-step-process-select']").click();
-    $("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step 2")).first().click();
+    $("ul[id='side-step-process-form:side-step-process-select_items']").$$("li").filter(Condition.text("Side step 1")).first().click();
+    
     
     $("input[id$=':assignee_input']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
     $("input[id$=':assignee_input']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).clear();
-    $("input[id$=':assignee_input']").sendKeys("Portal Admin User");
+    $("input[id$=':assignee_input']").sendKeys("Portal Demo User");
     ElementsCollection selectionItems = $("span[id$=':assignee_panel']")
         .shouldBe(Condition.appear, DEFAULT_TIMEOUT).findAll(".ui-autocomplete-item");
     selectionItems.get(0).shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    
+    
+    $("div[id='side-step-process-form:step-type']").click();
+    $("ul[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("Start a backgroud task (parallel)")).first().click();
+    
     $("button[id='side-step-process-submit-button']").click();
-    driver.switchTo().frame("iFrame");
-    
-    waitForElementDisplayed(By.id("leave-request:button-submit"), true);
-    clickByJavaScript($(By.id("leave-request:button-submit")));
-    
-    driver.switchTo().defaultContent();
   }
   
   public void inputSideStepInfoCaseLevel(int numberOfConfig) {
@@ -327,10 +327,15 @@ public class TaskTemplatePage extends TemplatePage {
     $("ul[id='side-step-process-form:step-type_items']").$$("li").filter(Condition.text("This is customized parallel")).first().click();
     
     $("button[id='side-step-process-submit-button']").click();
+  }
+  
+  public void approveLeaveRequest() {
     driver.switchTo().frame("iFrame");
     
-    waitForElementDisplayed(By.id("leave-request:button-submit"), true);
-    clickByJavaScript($(By.id("leave-request:button-submit")));
+    waitForElementDisplayed(By.id("leave-request:approver-comment"), true);
+    $("textarea[id$='leave-request:approver-comment']").sendKeys("It's OK");
+    waitForElementDisplayed(By.id("leave-request:approved-btn"), true);
+    clickByJavaScript($(By.id("leave-request:approved-btn")));
     
     driver.switchTo().defaultContent();
   }
@@ -348,12 +353,13 @@ public class TaskTemplatePage extends TemplatePage {
     inputDate(tomorrow, "input[id*='leave-request:to_input']");
     
     $("div[id='leave-request:approver']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
-    $("ul[id='leave-request:approver_items']").$$("li").filter(Condition.text("Portal Demo User")).first().click();
+    $("ul[id='leave-request:approver_items']").$$("li").filter(Condition.text("Portal Admin User")).first().click();
     
     $("div[id='leave-request:leave-type']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
     $("ul[id='leave-request:leave-type_items']").$$("li").filter(Condition.text("Maternity Leave")).first().click();
     
     $("textarea[id='leave-request:requester-comment']").sendKeys("Requester comment");
+    $("button[id='leave-request:button-submit']").click();
     driver.switchTo().defaultContent();
   }
   

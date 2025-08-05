@@ -85,6 +85,34 @@ Lending (Case Map)
    the case is Done. If we reject task, the case will end in status Rejected.
 
 
+
+Side step
+---------
+#. Login to Portal.
+
+#. Go to process list, select :guilabel:`Leave request with side step processes (task level)` :guilabel:`Leave request with side step processes (case level)` or to start a leave request.
+
+#. You will go directly to the first task **Create leave request for: <user>**.
+
+   |leave-request-creation|
+
+#. Input your data and submit your leave request. Based on your selected
+   approver, the next task will be assigned to that user.
+
+#. The second task is **Leave request approval**. You can start a side step task by selecting **Start parallel process** with the approval task. For more details about this concept, please refer to :ref:`side-step`
+
+   - With task level, each task will have different process list to select.
+   - With case level, all tasks will have same process list to select.
+   - The side step can be started asynchronously or synchronously by selecting **Step type**
+   
+   |side-step-menu|
+
+   |side-step-config|
+
+#. After the requester finishes the **summary task** is created, here you can also start another side step task.
+
+
+
 .. |example-overview-leave-request| image:: ../../screenshots/demo-processes/example-overview-leave-request.png
    :alt: Portal examples: Leave request example
 .. |leave-request-creation| image:: ../../screenshots/demo-processes/leave-request-creation.png
@@ -99,3 +127,5 @@ Lending (Case Map)
    :alt: Portal examples: Lending case map - external solvency service
 .. |lending-casemap-approval-task| image:: ../../screenshots/demo-processes/lending-casemap-approval-task.png
    :alt: Portal examples: Lending casemap - approval task
+.. |side-step-menu| image:: ../../screenshots/side-step/side-step-menu.png
+.. |side-step-config| image:: ../../screenshots/side-step/side-step-config.png

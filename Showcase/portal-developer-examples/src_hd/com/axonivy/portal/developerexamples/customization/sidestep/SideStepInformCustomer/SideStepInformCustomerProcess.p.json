@@ -46,6 +46,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import org.apache.commons.lang3.StringUtils;",
             "import com.axonivy.portal.developerexamples.dto.SideStepExampleDTO;",
             "import com.axonivy.portal.components.util.CaseUtils;",
             "import ch.ivyteam.ivy.workflow.ICase;",
@@ -58,8 +59,12 @@
             "in.leaveRequestData.sideStep3 = new SideStepExampleDTO();",
             "in.leaveRequestData.sideStep3.assignee = ivy.session.getSessionUserName();",
             "",
-            "in.requester = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.requesterUsername));",
-            "in.approver = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.approverUsername));"
+            "if (StringUtils.isNoneBlank(in.leaveRequestData.requesterUsername)){",
+            "  in.requester = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.requesterUsername));",
+            "}",
+            "if (StringUtils.isNoneBlank(in.leaveRequestData.approverUsername)){",
+            "  in.approver = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.approverUsername));",
+            "}"
           ]
         },
         "sudo" : true

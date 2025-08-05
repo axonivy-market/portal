@@ -1,5 +1,4 @@
 package com.axonivy.portal.selenium.test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +11,7 @@ import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class PortalSideStepTest extends BaseTest {
   
   @Override
@@ -28,22 +27,26 @@ public class PortalSideStepTest extends BaseTest {
     processWidget.startProcessByName("Leave request with side step processes (task level)");
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.inputLeaveRequestInfo();
-    taskTemplatePage.clickActionButton();
-    taskTemplatePage.startSideStep();
-    taskTemplatePage.inputSideStepInfoTaskLevel();
-    
     
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.openTaskList();
     
+    login(TestAccount.ADMIN_USER);
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.openTaskList();
+    
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.startTaskByNameInIFrame("Approval for leave request of Portal Demo User");
-    taskWidget.finishApprovalForLeaveRequest();
 
+    taskTemplatePage.clickActionButton();
+    taskTemplatePage.startSideStep();
+    taskTemplatePage.inputSideStepInfoTaskLevel();
+    taskTemplatePage.openTaskList();
+    
     // Admin finish side step
-    login(TestAccount.ADMIN_USER);
+    login(TestAccount.DEMO_USER);
     taskWidget = new TopMenuTaskWidgetPage();
-    taskWidget.startTaskByNameInIFrame("Side step task for: Create leave request for: Portal Demo User");
+    taskWidget.startTaskByNameInIFrame("Side step task for: Approval for leave request of Portal Demo User");
     taskWidget.finishSideStepForLeaveRequest();
   }
   
@@ -51,23 +54,37 @@ public class PortalSideStepTest extends BaseTest {
   public void testCreateSideStepCaseLevel() {
     // number of config is fixed for both creation and approval task
     int numberOfConfig = 4; // 3 options + 1 empty option
+    
     login(TestAccount.DEMO_USER);
     ProcessWidgetPage processWidget = NavigationHelper.navigateToProcessList();
-    processWidget.startProcessByName("Leave request with side step processes (process level)");
+    processWidget.startProcessByName("Leave request with side step processes (case level)");
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.inputLeaveRequestInfo();
-    taskTemplatePage.clickActionButton();
-    taskTemplatePage.startSideStep();
-    taskTemplatePage.inputSideStepInfoCaseLevel(numberOfConfig);
-    
     
     NewDashboardPage newDashboardPage = new NewDashboardPage();
     newDashboardPage.openTaskList();
     
+    login(TestAccount.ADMIN_USER);
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.openTaskList();
+    
     TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.startTaskByNameInIFrame("Approval for leave request of Portal Demo User");
+
     taskTemplatePage.clickActionButton();
     taskTemplatePage.startSideStep();
-    Assertions.assertEquals(numberOfConfig, taskTemplatePage.getNumberOfConfigForSideStep());
+    taskTemplatePage.inputSideStepInfoCaseLevel(numberOfConfig);
+    taskTemplatePage.approveLeaveRequest();
+    taskTemplatePage.openTaskList();
+    
+    login(TestAccount.DEMO_USER);
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.openTaskList();
+    taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.startTaskByNameInIFrame("Your leave request is approved");
+    
+    taskTemplatePage.clickActionButton();
+    taskTemplatePage.startSideStep();
+    taskTemplatePage.inputSideStepInfoCaseLevel(numberOfConfig);
   }
 }

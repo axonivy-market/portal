@@ -2,11 +2,9 @@ package com.axonivy.portal.components.publicapi;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.portal.components.constant.CustomFields;
 import com.axonivy.portal.components.enums.SideStepType;
 
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 
 /**
@@ -23,8 +21,8 @@ public final class SideStepAPI {
     ITask originalTask = Ivy.wf().findTask(originalTaskUuid);
     if (type == SideStepType.SWITCH && originalTask != null) {
       TaskAPI.removeHidePropertyToDisplayInPortal(originalTask);
-      ICase currentCase = Ivy.wfCase();
-      originalTask.customFields().stringField(CustomFields.SIDE_STEP_CASE).set(currentCase.uuid());
+//      ICase currentCase = Ivy.wfCase();
+//      originalTask.customFields().stringField(CustomFields.SIDE_STEP_CASE).set(currentCase.uuid());
     }
     // update original task name
     if (originalTask != null) {

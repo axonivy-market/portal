@@ -11,19 +11,35 @@ import com.axonivy.portal.selenium.common.ScreenshotBaseTest;
 import com.axonivy.portal.selenium.common.ScreenshotMargin;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
-@IvyWebTest
+import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
+@IvyWebTest(headless = false)
 public class SideStepScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotSideStepConfiguration() throws IOException {
     login(TestAccount.DEMO_USER);
-    ScreenshotUtils.resizeBrowser(new Dimension(1366, 1000));
     ProcessWidgetPage processWidget = NavigationHelper.navigateToProcessList();
-    processWidget.startProcessByName("Leave request with side step processes (process level)");
+    processWidget.startProcessByName("Leave request with side step processes (task level)");
+    
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    taskTemplatePage.inputLeaveRequestInfo();
+    
+    NewDashboardPage newDashboardPage = new NewDashboardPage();
+    newDashboardPage.openTaskList();
+    
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtils.resizeBrowser(new Dimension(1366, 1000));
+    newDashboardPage = new NewDashboardPage();
+    newDashboardPage.openTaskList();
+    
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.startTaskByNameInIFrame("Approval for leave request of Portal Demo User");
+
     taskTemplatePage.clickActionButton();
+    
     ScreenshotUtils.captureHalfTopRightPageScreenShot(ScreenshotUtils.SIDE_STEP_FOLDER + "side-step-menu");
     taskTemplatePage.startSideStep();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(taskTemplatePage.getSideStepConfigDialog(), ScreenshotUtils.SIDE_STEP_FOLDER + "side-step-config", new ScreenshotMargin(5, 5));

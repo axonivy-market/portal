@@ -105,7 +105,7 @@ public class SideStepProcessBean implements Serializable {
       try {
         if (task != null) {
           this.task = task;
-          String sideStepString = task.getCase().customFields().textField(CustomFields.SIDE_STEPS_PROCESS).getOrNull();
+          String sideStepString = task.getCase().customFields().textField(CustomFields.SIDE_STEP_CASE).getOrNull();
           if (StringUtils.isBlank(sideStepString)) {
             sideStepString = task.customFields().textField(CustomFields.SIDE_STEPS_TASK).getOrNull();
           }
@@ -141,12 +141,11 @@ public class SideStepProcessBean implements Serializable {
     if (task != null && selectedProcess != null) {
       ISecurityMember delegatedSecurityMember;
       if (assignee != null) {
-        Ivy.log().error("assignee is {0}", assignee.getName());
         delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromUserDTO(assignee);
       } else {
         delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(assignedRole);
       }
-      String memberName = delegatedSecurityMember.getMemberName();
+      String memberName = delegatedSecurityMember != null ? delegatedSecurityMember.getMemberName() : "";
       SideStepProcessParam param = new SideStepProcessParam(selectedProcess, memberName, selectedStepType, comment);
       String jsonSerializedPayload = BusinessEntityConverter.entityToJsonValue(param);
       Ivy.wf().signals().create().data(jsonSerializedPayload).send(selectedProcess.getSignal());
