@@ -1528,6 +1528,12 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen
+            filter:
+              DashboardFilter:
+                SelectFilterField: Filterfeld auswählen
+              DateFilter:
+                SelectPeriod: |
+                  Zeitraum auswählen
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: Falldetails Rahmen
@@ -1589,6 +1595,10 @@ Labels:
   Collapse: Einklappen
   CreateNewDashboard: Neues Dashboard erstellen
   EditDescription: Beschreibung bearbeiten
+  EnterFromValue: Anfangswert eingeben
+  EnterToValue: Endwert eingeben
+  EnterValue: Wert eingeben
+  EnterValues: Werte eingeben
   Enums:
     ChatbotCandidateQuestion:
       EXPLORE:
@@ -1692,6 +1702,8 @@ Labels:
   Permissions: Berechtigungen
   PinnedCases: Angeheftete Fälle
   PinnedTasks: Angehängte Aufgaben
+  SelectOperator: Operator auswählen
+  SelectValues: Werte auswählen
   Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails

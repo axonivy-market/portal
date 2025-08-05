@@ -1515,6 +1515,11 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: フィルターの追加
               ResetFilter: フィルターのリセット
+            filter:
+              DashboardFilter:
+                SelectFilterField: TODO Select Filter Field
+              DateFilter:
+                SelectPeriod: TODO Select period
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: ケース詳細フレーム
@@ -1573,6 +1578,10 @@ Labels:
   Collapse: TODO 折りたたむ
   CreateNewDashboard: 新しいダッシュボードを作成
   EditDescription: 説明を編集
+  EnterFromValue: TODO Enter from value
+  EnterToValue: TODO Enter to value
+  EnterValue: TODO Enter value
+  EnterValues: TODO Enter values
   Enums:
     ChatbotCandidateQuestion:
       EXPLORE:
@@ -1676,6 +1685,8 @@ Labels:
   Permissions: 権限
   PinnedCases: 'TODO: Pinned Cases'
   PinnedTasks: 'TODO: Pinned Tasks'
+  SelectOperator: TODO Choose Operator
+  SelectValues: TODO Select values
   Share: 共有
   Task: タスク
   TaskItemDetail: タスクの詳細
