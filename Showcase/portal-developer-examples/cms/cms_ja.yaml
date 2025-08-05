@@ -123,10 +123,15 @@ Dialogs:
                 EmployeeNote: 'TODO: Employee Note'
                 Reject: 却下
               LeaveRequestBusinessDetailsPage:
+                AskForMore: 'TODO: Ask for more details about leave request'
+                CEOApproval: 'TODO: CEO Comment'
+                InformCustomer: 'TODO: Inform customer'
                 LeaveRequest: 'TODO: Leave Request Business Details'
                 SideStepComment: TODO:Side step comment
               LeaveRequestSummary:
                 Finish: 完了
+              SideStepCEOApproval:
+                CEOApproval: CEO approval
               SideStepExample:
                 SideStepExample: 'TODO: Side Step Example'
               SideStepResultExample:
@@ -135,6 +140,7 @@ Dialogs:
                 Comment: 'TODO: Comment'
                 Question: 'TODO: Question'
                 SideStepResult: 'TODO: Side step result'
+                SideStepTaskIs: 'TODO: Side step task is done by'
 Enums:
   LeaveType:
     ANNUAL_LEAVE: 年次有給休暇

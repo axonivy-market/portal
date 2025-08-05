@@ -135,10 +135,15 @@ Dialogs:
                 EmployeeNote: Nota del empleado
                 Reject: Rechazar
               LeaveRequestBusinessDetailsPage:
+                AskForMore: Solicite más detalles.
+                CEOApproval: Comentario del director ejecutivo
+                InformCustomer: Informar al cliente
                 LeaveRequest: Solicitud de baja Detalles de la empresa
                 SideStepComment: Comentario sobre el paso lateral
               LeaveRequestSummary:
                 Finish: Acabar
+              SideStepCEOApproval:
+                CEOApproval: CEO approval
               SideStepExample:
                 SideStepExample: Ejemplo de paso lateral
               SideStepResultExample:
@@ -147,6 +152,7 @@ Dialogs:
                 Comment: Comentario
                 Question: Pregunta
                 SideStepResult: Resultado del paso lateral
+                SideStepTaskIs: La tarea de paso lateral se realiza mediante
 Enums:
   LeaveType:
     ANNUAL_LEAVE: Ausencia anual

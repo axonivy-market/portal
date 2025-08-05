@@ -9,7 +9,7 @@ Introduction
 ------------
 
 Side-step processes let you attach one or more auxiliary workflow steps to an existing business process in Axon Ivy Portal without touching the core flow. 
-At runtime the Portal reads a JSON definition from the custom field ``SIDE_STEPS_TASK`` (task scope) or ``SIDE_STEPS_PROCESS`` (case scope), shows the available side steps in the task action menu and launches them either
+At runtime the Portal reads a JSON definition from the custom field ``sideStepTask`` (task scope) or ``sideStepCase`` (case scope), shows the available side steps in the task action menu and launches them either
 
 - Synchronously - the main task pauses until the side step finishes, or
 
@@ -42,8 +42,8 @@ How to Use and Set Up
 
 #. Model the side-step process
 
-    - Create a normal Ivy process that performs the additional work (for example “Ask for more details”).
-    - Define an Ivy signal that starts this process (e.g. ``com:axonivy:portal:developerexample:sideStep:askMoreDetails`` ).
+    - Create a process that performs the additional work (for example “Ask for more details”).
+    - Define a signal that starts this process (e.g. ``com:axonivy:portal:developerexample:sideStep:askMoreDetails`` ).
     |signal-process|
 
 #. Define configuration for side step by building a list of ``SideStepProcessDTO`` objects. 
@@ -89,8 +89,8 @@ How to Use and Set Up
 
 #. Create a ``SideStepDTO`` object of ``portal-components`` from this list created on the above code snippet. Convert it to JSON and write the value to a custom field
 
-    - For a single task: ``SIDE_STEPS_TASK`` on that task.
-    - For every task in a case: ``SIDE_STEPS_PROCESS`` on the case.
+    - For a single task: ``sideStepTask`` on that task.
+    - For every task in a case: ``sideStepCase`` on the case.
 
     .. code-block:: javascript
 

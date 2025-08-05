@@ -135,10 +135,15 @@ Dialogs:
                 EmployeeNote: Employee Note
                 Reject: Reject
               LeaveRequestBusinessDetailsPage:
+                AskForMore: Ask for more details about leave request
+                CEOApproval: CEO comment
+                InformCustomer: Inform customer
                 LeaveRequest: Leave Request Business Details
                 SideStepComment: Side step comment
               LeaveRequestSummary:
                 Finish: Finish
+              SideStepCEOApproval:
+                CEOApproval: CEO approval
               SideStepExample:
                 SideStepExample: Side Step Example
               SideStepResultExample:
@@ -147,6 +152,7 @@ Dialogs:
                 Comment: Comment
                 Question: Question
                 SideStepResult: Side step result
+                SideStepTaskIs: Side step task is done by
 Enums:
   LeaveType:
     ANNUAL_LEAVE: Annual Leave

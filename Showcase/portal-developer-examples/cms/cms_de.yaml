@@ -135,10 +135,15 @@ Dialogs:
                 EmployeeNote: Anmerkung für Mitarbeiter
                 Reject: Ablehnen
               LeaveRequestBusinessDetailsPage:
+                AskForMore: Weitere Informationen anfordern
+                CEOApproval: Kommentar des CEO
+                InformCustomer: Kunden informieren
                 LeaveRequest: Urlaubsantrag Business Details
                 SideStepComment: Kommentar zum Seitenschritt
               LeaveRequestSummary:
                 Finish: Beenden
+              SideStepCEOApproval:
+                CEOApproval: CEO approval
               SideStepExample:
                 SideStepExample: Beispiel für einen Seitenschritt
               SideStepResultExample:
@@ -147,6 +152,7 @@ Dialogs:
                 Comment: Kommentar
                 Question: Frage
                 SideStepResult: Seitenschritt Ergebnis
+                SideStepTaskIs: Die seitliche Schrittbewegung wird ausgeführt durch
 Enums:
   LeaveType:
     ANNUAL_LEAVE: Jahresurlaub

@@ -135,10 +135,15 @@ Dialogs:
                 EmployeeNote: Note à l'attention des employés
                 Reject: Refuser
               LeaveRequestBusinessDetailsPage:
+                AskForMore: Demandez plus de détails
+                CEOApproval: Commentaire du PDG
+                InformCustomer: Informer le client
                 LeaveRequest: Demande de congé Détails de l'entreprise
                 SideStepComment: Commentaire sur le pas de côté
               LeaveRequestSummary:
                 Finish: Terminer
+              SideStepCEOApproval:
+                CEOApproval: CEO approval
               SideStepExample:
                 SideStepExample: Exemple de pas de côté
               SideStepResultExample:
@@ -147,6 +152,7 @@ Dialogs:
                 Comment: Commentaire
                 Question: Question
                 SideStepResult: Résultat du pas de côté
+                SideStepTaskIs: La tâche latérale est effectuée par
 Enums:
   LeaveType:
     ANNUAL_LEAVE: Congé annuel

@@ -21,8 +21,6 @@ public final class SideStepAPI {
     ITask originalTask = Ivy.wf().findTask(originalTaskUuid);
     if (type == SideStepType.SWITCH && originalTask != null) {
       TaskAPI.removeHidePropertyToDisplayInPortal(originalTask);
-//      ICase currentCase = Ivy.wfCase();
-//      originalTask.customFields().stringField(CustomFields.SIDE_STEP_CASE).set(currentCase.uuid());
     }
     // update original task name
     if (originalTask != null) {
