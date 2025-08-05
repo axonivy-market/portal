@@ -1126,13 +1126,19 @@ Dialogs:
         page:
           StatisticConfiguration:
             Aggregate: Aggregate
+            AggregationMethod: Aggregation method
+            AggregationMethodTooltip: Choose an aggregation method to perform calculations on your KPI field - Sum, Average, Max, or Min. Disabled when 'Counting' is selected
+            ChartConfiguration: Chart Configuration
             ChartType: Chart type
             Color: Color {0}
             Create: Create
             EditStatistic: Edit Statistic Widget
             For: For
             GeneratePreview: Generate preview
+            GroupbyTooltip: The selected aggregation method will be applied to each group
             HideLabel: Hide label
+            KPI: KPI
+            KPITooltip: 'Select what to measure: Choose ''Counting'' to count the number of tasks or cases (default), or select a numeric custom field to analyze its values as a KPI'
             NewStatistic: New Statistic Widget
             OutdatedChartMessage: The applied group-by or filter does not align with the current UI configuration. Please reconfigure it.
             StatisticConfiguration: Statistic configuration

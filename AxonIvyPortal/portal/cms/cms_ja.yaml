@@ -1536,6 +1536,9 @@ Dialogs:
           StatisticConfiguration:
             AddFilter: TODO Add filter
             Advanced: TODO Advanced
+            AggregationMethod: TODO Aggregation method
+            AggregationMethodTooltip: TODO Choose an aggregation method to perform calculations on your KPI field - Sum, Average, Max, or Min. Disabled when 'Counting' is selected
+            ChartConfiguration: TODO Chart Configuration
             ChartType: TODO Chart type
             Color: 色{0}
             Create: TODO Create
@@ -1543,7 +1546,10 @@ Dialogs:
             For: TODO For
             GeneratePreview: TODO Generate preview
             GroupBy: TODO Group by
+            GroupbyTooltip: TODO The selected aggregation method will be applied to each group
             HideLabel: TODO Hide label
+            KPI: TODO KPI
+            KPITooltip: 'TODO Select what to measure: Choose ''Counting'' to count the number of tasks or cases (default), or select a numeric custom field to analyze its values as a KPI'
             NewStatistic: TODO New Statistic Widget
             OutdatedChartMessage: TODO The applied group-by or filter does not align with the current UI configuration. Please reconfigure it.
             RefreshInterval: TODO Auto-refresh enabled
