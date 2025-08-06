@@ -567,11 +567,18 @@ function createFocusFunctions(targetDocument, focusElements) {
   return {
     storeFocusedEl: function() {
       var currentElement = targetDocument.activeElement;
+      
       if (currentElement && currentElement !== targetDocument.body && currentElement.tagName !== 'HTML') {
+        // Clean stale elements before adding new one
+        focusElements = focusElements.filter(function(el) {
+          return el && targetDocument.contains(el) && el.offsetParent !== null;
+        });
+        
         if (focusElements.length === 0 || focusElements[focusElements.length - 1] !== currentElement) {
           focusElements.push(currentElement);
         }
       }
+      console.log('focused el' + currentElement);
     },
     
     restoreFocusedEl: function() {
@@ -585,6 +592,12 @@ function createFocusFunctions(targetDocument, focusElements) {
           } catch(e) {
             targetDocument.body.focus();
           }
+        }
+        console.log('focused el restore' + focusElements.length);
+        // in case an ajax event happens before closing dialog or panel
+        if (lastEl.id) {
+          lastEl = targetDocument.getElementById(lastEl.id);
+          return;
         }
       }
     }
