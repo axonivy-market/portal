@@ -463,6 +463,9 @@ class ClientPieChart extends ClientCanvasChart {
           datasets: [{
             label: config.name,
             data: config.statisticAggregation.kpiField ? result.map(bucket => bucket.aggs[0].value) : result.map(bucket => bucket.count),
+            counting: result.map(bucket => bucket.count),
+            chartTarget: config.chartTarget,
+            aggregation: config.statisticAggregation,
             backgroundColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors
           }],
           hoverOffset: 4
@@ -474,6 +477,12 @@ class ClientPieChart extends ClientCanvasChart {
             legend: {
               labels: {
                 color: CHART_TEXT_COLOR
+              }
+            },
+            tooltip: {
+              callbacks: {
+                footer: customFooterChartTooltip,
+                beforeBody: customBeforeBodyChartTooltip,
               }
             }
           }
@@ -525,6 +534,9 @@ class ClientCartesianChart extends ClientCanvasChart {
           datasets: [{
             label: config.name,
             data: config.statisticAggregation.kpiField ? data.map(bucket => bucket.aggs[0].value) : data.map(bucket => bucket.count),
+            counting: data.map(bucket => bucket.count),
+            chartTarget: config.chartTarget,
+            aggregation: config.statisticAggregation,
             backgroundColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors,
             pointBorderColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors,
             pointRadius: 4,
@@ -538,6 +550,12 @@ class ClientCartesianChart extends ClientCanvasChart {
           plugins: {
             legend: {
               display: false
+            },
+            tooltip: {
+              callbacks: {
+                footer: customFooterChartTooltip,
+                beforeBody: customBeforeBodyChartTooltip,
+              }
             }
           },
           scales: {
@@ -729,7 +747,7 @@ class ClientNumberChart extends ClientChart {
     }
 
     $(this.chart).parents('.statistic-chart-widget__chart').addClass('client-number-chart');
-    let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol);
+    let multipleKPI = this.renderMultipleNumberChartInHTML(result, config.numberChartConfig.suffixSymbol, config.chartTarget);
     return $(this.chart).html(multipleKPI);
   }
 
@@ -748,23 +766,24 @@ class ClientNumberChart extends ClientChart {
     }
   }
 
-  renderMultipleNumberChartInHTML(result, suffixSymbold) {
+  renderMultipleNumberChartInHTML(result, suffixSymbold, chartTarget) {
     let multipleNumberChartInHTML = '';
     if (result?.length > 0) {
         result.forEach((item, index) => {
           const yValue = item.aggs.length > 0 ?
               (item.aggs[0].value === "null" ? "0" : Number(item.aggs[0].value)) : item.count;
-          let htmlString = this.generateItemHtml(item.key, yValue, suffixSymbold, index);
+          const counting = item.aggs.length > 0 ? item.count + " " + chartTarget + "s" : "";
+          let htmlString = this.generateItemHtml(item.key, yValue, suffixSymbold, index, counting);
           multipleNumberChartInHTML += htmlString;
         })
 
     } else {
-      multipleNumberChartInHTML = this.generateItemHtml('', '0', suffixSymbold, 0);
+      multipleNumberChartInHTML = this.generateItemHtml('', '0', suffixSymbold, 0, '');
     }
     return multipleNumberChartInHTML;
   }
 
-  generateItemHtml(label, number, suffixSymbol, index) {
+  generateItemHtml(label, number, suffixSymbol, index, counting) {
     let border = '<div class="chart-border">' + '</div>';
     label = this.data.chartConfig.numberChartConfig?.hideLabel === true ? '' : this.formatChartLabel(label) ;
     let html =
@@ -773,6 +792,7 @@ class ClientNumberChart extends ClientChart {
       '        <span class="card-number chart-number-font-size chart-number-animation">' + number + '</span>' +
       '        <i class="card-number chart-number-font-size chart-number-animation ' + suffixSymbol + '"></i>' +
       '    </div>' +
+      '    <h4 class="chart-number-animation">' + counting + '</h4>' +
       '    <div class="chart-label-container">' +
       '        <span class="card-name chart-name-font-size chart-number-animation">' + label + '</span>' +
       '    </div>' +
@@ -814,4 +834,22 @@ class ClientNumberChart extends ClientChart {
   updateClientChart() {
     this.render();
   }
+}
+
+const customFooterChartTooltip = (tooltipItems) => {
+  let total = 0;
+  if (tooltipItems.length === 0 || !tooltipItems[0].dataset.aggregation.kpiField) {
+    return;
+  }
+  tooltipItems.forEach((tooltipItem) => total += tooltipItem.dataset.counting[tooltipItem.dataIndex]);
+  return 'Total: ' + total + ' ' + tooltipItems[0].dataset.chartTarget + "s";
+};
+
+const customBeforeBodyChartTooltip = (tooltipItems) => {
+  if (tooltipItems.length === 0 || !tooltipItems[0].dataset.aggregation.kpiField) {
+    return;
+  }
+  const aggregation = tooltipItems[0].dataset.aggregation;
+  const s = aggregation.aggregationMethod + " of " + aggregation.kpiField;
+  return s.charAt(0).toUpperCase() + s.slice(1);
 }

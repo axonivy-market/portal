@@ -121,14 +121,14 @@ Available values for configuring statistic chart
    - | Name of the statistic chart.
  * - Description
    - | Description for the statistic chart.
+ * - Icon
+   - | Icon for custom statistic chart.
+     | Click on the plus icon at the end of the line to see full list of icons.
  * - Chart type
    - | Type of the chart (Bar, Line, Pie, Number).
  * - For
    - | Chart target (Task, Case).
- * - Icon
-   - | Icon for custom statistic chart.
-     | Click on the plus icon at the end of the line to see full list of icons.
- * - Select KPI
+ * - KPI
    - | List of numeric custom fields is shown alongside with `Counting`.
      | The calculation using below aggregation method will be performed on selected KPI. 
      | If `Counting` is selected to count numbers of tasks or cases, the aggregation method 
