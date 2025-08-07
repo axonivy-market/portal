@@ -977,7 +977,6 @@ function initFocusManagament(targetWindow) {
 function storeFocusedElement(targetDocument, focusElements) {
   var currentElement = targetDocument.activeElement;
   if (currentElement && currentElement !== targetDocument.body && currentElement.tagName !== 'HTML') {
-    
     if (focusElements.length === 0 || focusElements[focusElements.length - 1] !== currentElement) {
       focusElements.push(currentElement);
     }
@@ -985,24 +984,24 @@ function storeFocusedElement(targetDocument, focusElements) {
 }
 
 function restoreFocusedElement(targetDocument, focusElements) {
-  console.log(focusElements);
   while (focusElements.length > 0) {
     var lastEl = focusElements.pop();
 
     if (lastEl && targetDocument.contains(lastEl) && 
         lastEl.offsetParent !== null && !lastEl.disabled && lastEl.tabIndex !== -1) {
+          
       try {
         lastEl.focus();
+        targetDocument.PrimeFaces.utils.blockEnterKey();
         return;
       } catch(e) {
         targetDocument.body.focus();
       }
     }
-    // in case an ajax event happens before closing dialog or panel
+
     if (lastEl.id) {
       lastEl = targetDocument.getElementById(lastEl.id);
-      lastEl.focus();
-      return;
+      focusElementWithId(lastEl.id);
     }
   }
 }
