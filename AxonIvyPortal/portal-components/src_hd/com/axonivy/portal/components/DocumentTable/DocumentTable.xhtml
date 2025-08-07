@@ -84,6 +84,7 @@
         <div class="col-4 align-content-right">
         <p:commandLink id="document-preview" ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" 
           title="#{cc.attrs.previewTitle}"
+          process="@this"
           styleClass="#{cc.attrs.previewStyleClass}"
           actionListener="#{logic.download(document)}"
           rendered="#{documentUploadBean.canPreviewDocument(document,cc.attrs.previewRendered)}"
