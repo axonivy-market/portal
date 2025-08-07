@@ -83,6 +83,7 @@
         <div class="flex">
         <div class="col-4 align-content-right">
         <p:commandLink id="document-preview" ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" 
+          process="@this"
           title="#{cc.attrs.previewTitle}"
           styleClass="#{cc.attrs.previewStyleClass}"
           actionListener="#{logic.download(document)}"

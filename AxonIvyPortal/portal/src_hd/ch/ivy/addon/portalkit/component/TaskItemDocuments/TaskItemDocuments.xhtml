@@ -65,6 +65,7 @@
                   fileSizeStyleClass="document-size" />
               </p:commandLink>
               <p:commandLink id="preview-file" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
+                process="@this"
                 styleClass="si si-view-1 Fright document-preview ui-sm-hidden"
                 actionListener="#{logic.downloadDocument(document)}"
                 rendered="#{caseTaskDocumentBean.canPreviewDocument(document)}"
