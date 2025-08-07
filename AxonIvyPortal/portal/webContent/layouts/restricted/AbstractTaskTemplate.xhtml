@@ -272,10 +272,12 @@
                   <div class="field">
                     <h:panelGroup rendered="#{not empty sideStepProcessBean.roles}">
                       <ic:com.axonivy.portal.components.RoleSelection componentId="assignee-role" fromRoleNames="#{sideStepProcessBean.roles}"
+                        labelPanelStyleClass="ui-g-6 pl-0" 
                         selectedRole="#{sideStepProcessBean.assignedRole}" label="#{ivy.cms.co('/Labels/AssignToRole')}" />
                     </h:panelGroup>
                     <h:panelGroup rendered="#{empty sideStepProcessBean.roles}">
                       <ic:com.axonivy.portal.components.RoleSelection componentId="assignee-role"
+                        labelPanelStyleClass="ui-g-6 pl-0" 
                         selectedRole="#{sideStepProcessBean.assignedRole}" label="#{ivy.cms.co('/Labels/AssignToRole')}" />
                     </h:panelGroup>
                     
