@@ -277,4 +277,101 @@ public class StatisticWidgetTest extends BaseTest {
     openTasksWidget.getAllChartLabels().first().text().equals("Open");
     openTasksWidget.getAllChartNumbers().shouldHave(CollectionCondition.size(1));
   }
+
+  @Test
+  public void testCreateCustomChartWithKpiField() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(testCaseListPermission);
+    redirectToNewDashBoard();
+
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ScreenshotUtils.maximizeBrowser();
+    configurationPage.clickOnAddWidgetButton();
+    StatisticConfigurationPage statisticConfigurationPage = configurationPage
+        .clickOnCreateCustomStatisticWidgetButton();
+    statisticConfigurationPage.setChartName("Custom statistic chart CASE with KPI field");
+    // Chart target to CASE
+    statisticConfigurationPage.changeChartTarget("Case");
+    assertTrue(statisticConfigurationPage.getPermissions().size() == 2);
+
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+
+    assertEquals(statisticConfigurationPage.getKpiFieldsItems().size(), 7);
+
+    // BAR chart
+    // Counting
+    statisticConfigurationPage.changeChartType("Bar");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    assertEquals(statisticConfigurationPage.getAggregationItems().size(), 6);
+
+    // Select a numeric custom field as KPI
+    statisticConfigurationPage.changeKPIField("InvoiceTotalAmount");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+
+    // Change the method
+    assertEquals(statisticConfigurationPage.getAggregationMethodItems().size(), 4);
+    statisticConfigurationPage.changeAggregationMethod("Max");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+
+    statisticConfigurationPage.changeAggregationMethod("Min");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+
+    statisticConfigurationPage.changeAggregationMethod("Average");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+
+    // Change Group by to Custom field
+    statisticConfigurationPage.changeGroupBy("Custom field");
+    assertTrue(statisticConfigurationPage.getCaseCustomFieldItems().size() > 0);
+    statisticConfigurationPage.axisXYVisible();
+    statisticConfigurationPage.autoRefeshToggleVisible();
+    statisticConfigurationPage.backgroundColorVisible();
+    statisticConfigurationPage.changeCustomFieldGroupBy("CustomerType");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+
+    // Change to LINE chart
+    statisticConfigurationPage.changeChartType("Line");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+
+    // Change to PIE chart
+    statisticConfigurationPage.changeChartType("Pie");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+
+    // Change to NUMBER chart
+    statisticConfigurationPage.changeChartType("Number");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+
+
+    // Configure for Filter
+    statisticConfigurationPage.changeGroupBy("State");
+
+    // Filter State
+    statisticConfigurationPage.addFilter("State", null);
+    statisticConfigurationPage.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    assertEquals(statisticConfigurationPage.getPreviewChartNumberLabel(), "Open");
+    assertTrue(statisticConfigurationPage.getPreviewChartNumberValue() == 222);
+
+    // Filter Category
+    statisticConfigurationPage.addFilter("Category", null);
+    statisticConfigurationPage.inputValueOnLatestFilter(FilterValueType.CATEGORY_TYPE, "TestCase11");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    assertEquals(statisticConfigurationPage.getPreviewChartNumberLabel(), "Open");
+    assertTrue(statisticConfigurationPage.getPreviewChartNumberValue() == 222);
+
+    statisticConfigurationPage.clickCreateStatisticChart();
+
+    // Add Custom statistic widget
+    configurationPage.clickOnAddWidgetButton();
+    configurationPage.addNewStatisticWidget("Custom statistic chart CASE with KPI field");
+  }
 }

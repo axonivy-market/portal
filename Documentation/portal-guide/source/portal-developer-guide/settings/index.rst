@@ -451,7 +451,9 @@ Data model:
     "version": "13.1.0",
     "statisticAggregation": {
       "field": "state",
-      "type": "standard"
+      "type": "standard",
+      "kpiField": "InvoiceTotalAmount",
+      "aggregationMethod": "avg"
     },
     "filters": [
       {
@@ -581,9 +583,16 @@ Data model:
 
 - ``statisticAggregation``: statistic's aggregation.
 
-   - ``field``: aggregation field.
+   - ``field``: aggregation (group by) field.
 
    - ``type``: type of the field, could be `standard` or `custom`.
+
+   - ``kpiField`` (optional): the numeric custom field on which to perform calculations.
+
+   - ``aggregationMethod`` (optional): the calculation method to apply, could be `sum`, `avg`, `max` or `min`.
+
+   When ``kpiField`` and ``aggregationMethod`` are not provided, returns count statistics (counting number of tasks or cases).
+   In contrast, the system applies the specified aggregation method to the numeric values in ``kpiField``.
 
 - ``filters``: filters for the statistic chart.
 
