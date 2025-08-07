@@ -33,6 +33,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   protected String caseDetailsLink;
   protected ITask task;
   protected ITask currentTask;
+  protected List<String> sideSteps;
 
   public List<IStartableSideStep> getSideStepList() {
     return sideStepList;
