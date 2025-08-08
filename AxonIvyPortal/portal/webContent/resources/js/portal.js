@@ -524,6 +524,7 @@ function initKeyboardShortcutsEnabledValue(value) {
 }
 
 $(document).ready(function () {
+  initFocusManagament(window);
 
   const shortcuts = {
     'Digit1': $(singleDashboardId).length ? singleDashboardId : multipleDashboardId,
@@ -615,9 +616,9 @@ $(document).ready(function () {
           handleFocusOnMainElement(event);
         }
         registerSearchIconClick();
+        
       });
       handleExpandButtonInFilePreview(document.getElementById("iFrame").contentWindow);
-
     };
   }
 
@@ -874,7 +875,7 @@ function focusFirstVisibleElementInPanel(widgetVar, selector) {
   if (destructionWords.some(word => widgetVar.includes(word))) {
     first = panel.find('a').first();
   } else {
-  	first = panel.find(selector).first();
+  	first = panel.find(selector).first() || panel.find('a').first();
   }
   
   if (first.length) {
@@ -893,6 +894,101 @@ function addMissingAttr(query, attrName, attrValue) {
       $(btn).attr(attrName, attrValue);
     }
   });
+}
+
+function initFocusManagament(targetWindow) {
+  if (!targetWindow || !targetWindow.PrimeFaces) {
+    return;
+  }
+  var lastFocusedElements = [];
+
+  // Dialog
+  if (targetWindow.PrimeFaces.widget.Dialog) {
+    var postShowEvent = targetWindow.PrimeFaces.widget.Dialog.prototype.postShow;
+    var onHideEvent = targetWindow.PrimeFaces.widget.Dialog.prototype.onHide;
+    
+    targetWindow.PrimeFaces.widget.Dialog.prototype.postShow = function() {
+      storeFocusedElement(targetWindow.document, lastFocusedElements);
+      postShowEvent.call(this);
+    };
+
+    targetWindow.PrimeFaces.widget.Dialog.prototype.onHide = function() {
+      restoreFocusedElement(targetWindow.document, lastFocusedElements);
+      onHideEvent.call(this);
+    };
+  }
+  
+  // OverlayPanel
+  if (targetWindow.PrimeFaces.widget.OverlayPanel) {
+    var showEvent = targetWindow.PrimeFaces.widget.OverlayPanel.prototype.show;
+    var hideEvent = targetWindow.PrimeFaces.widget.OverlayPanel.prototype.hide;
+    
+    targetWindow.PrimeFaces.widget.OverlayPanel.prototype.show = function() {
+      storeFocusedElement(targetWindow.document, lastFocusedElements);
+      showEvent.call(this);
+    };
+
+    targetWindow.PrimeFaces.widget.OverlayPanel.prototype.hide = function() {
+      restoreFocusedElement(targetWindow.document, lastFocusedElements);
+      hideEvent.call(this);
+    };
+  }
+}
+
+function storeFocusedElement(targetDocument, focusElements) {
+  var currentElement = targetDocument.activeElement;
+  if (currentElement && currentElement !== targetDocument.body && currentElement.tagName !== 'HTML') {
+    if (focusElements.length === 0 || focusElements[focusElements.length - 1] !== currentElement) {
+      focusElements.push(currentElement);
+    }
+  }
+}
+
+function restoreFocusedElement(targetDocument, focusElements) {
+  while (focusElements.length > 0) {
+    var lastEl = focusElements.pop();
+
+    if (lastEl && targetDocument.contains(lastEl) && 
+        lastEl.offsetParent !== null && !lastEl.disabled && lastEl.tabIndex !== -1) {
+          
+      try {
+        lastEl.focus();
+        targetDocument.PrimeFaces.utils.blockEnterKey();
+        return;
+      } catch(e) {
+        targetDocument.body.focus();
+      }
+    }
+
+    if (lastEl.id) {
+      lastEl = targetDocument.getElementById(lastEl.id);
+      focusElementWithId(lastEl.id);
+    }
+  }
+}
+
+function initIframeFocusManagement(iframe) {
+  if (!iframe || !iframe.contentWindow) {
+    return;
+  }
+  
+  try {
+    var iframeWindow = iframe.contentWindow;
+    initFocusManagament(iframeWindow);
+    console.log('Focus management initialized for iframe');
+  } catch (e) {
+    console.warn('Cannot initialize focus management for iframe:', e.message);
+  }
+}
+
+function handleCaseDetailsPanelInIframe() {
+  const caseInfoDialog = document.getElementById('case-info-dialog');
+  if (caseInfoDialog.innerHTML.includes('i-frame-case-details')) {
+    const iframe = document.getElementById('i-frame-case-details');
+    setTimeout(() => {
+      initIframeFocusManagement(iframe);
+    }, 2000)
+  }
 }
 
 // END ACCESSIBILITY FIX
