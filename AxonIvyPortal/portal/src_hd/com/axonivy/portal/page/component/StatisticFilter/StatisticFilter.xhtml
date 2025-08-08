@@ -22,7 +22,7 @@
         <p:selectOneMenu id="field-selection" value="#{filter.filterField}" converter="pojoConverter">
           <f:selectItems value="#{managedBean.filterFields}" var="field" itemValue="#{field}" itemLabel="#{field.label}" />
           <f:param name="skipValidator" value="true" />
-          <p:ajax event="itemSelect" listener="#{managedBean.onSelectFilter(filter)}" update="filter-selection-panel"
+          <p:ajax event="itemSelect" listener="#{managedBean.onSelectFilter(filter)}" update="filter-selection-panel #{cc.attrs.conditionBasedColoringComponent}"
             global="false" />
         </p:selectOneMenu>
       </div>
@@ -96,7 +96,7 @@
           styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger dashboard-widget-filter__remove-filter"
           actionListener="#{managedBean.removeFilter(filter)}"
           ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}"
-          update="#{cc.attrs.componentToUpdateWhenRemoveFilter} #{cc.attrs.componentToUpdate}" global="false"
+          update="#{cc.attrs.componentToUpdateWhenRemoveFilter} #{cc.attrs.componentToUpdate} #{cc.attrs.conditionBasedColoringComponent}" global="false"
           oncomplete="#{cc.attrs.onCompleteRemoveFilter}" immediate="true" partialSubmit="true">
           <f:param name="skipValidator" value="true" />
         </p:commandButton>

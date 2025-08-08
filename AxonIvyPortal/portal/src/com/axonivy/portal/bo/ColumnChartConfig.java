@@ -77,5 +77,4 @@ public abstract class ColumnChartConfig {
   public void setBackgroundColors(List<String> backgroundColors) {
     this.backgroundColors = backgroundColors;
   }
-
 }

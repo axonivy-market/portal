@@ -277,4 +277,136 @@ public class StatisticWidgetTest extends BaseTest {
     openTasksWidget.getAllChartLabels().first().text().equals("Open");
     openTasksWidget.getAllChartNumbers().shouldHave(CollectionCondition.size(1));
   }
+  
+  @Test
+  public void testConditionBasedColoringFeature() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToNewDashBoard();
+
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ScreenshotUtils.maximizeBrowser();
+    configurationPage.clickOnAddWidgetButton();
+    StatisticConfigurationPage statisticConfigurationPage = configurationPage.clickOnCreateCustomStatisticWidgetButton();
+    
+    // Configure basic chart settings
+    statisticConfigurationPage.setChartName("Condition-Based Coloring Test Chart");
+    statisticConfigurationPage.changeChartTarget("Task");
+    statisticConfigurationPage.changeChartType("Bar");
+    statisticConfigurationPage.changeGroupBy("State");
+
+    // Enable condition-based coloring
+    statisticConfigurationPage.toggleConditionBasedColoring();
+    
+    // Test "All Values" scope first
+    statisticConfigurationPage.verifyColoringScopeVisible();
+    statisticConfigurationPage.selectColoringScope("All values");
+    
+    // Add threshold conditions for "All Values" scope
+    statisticConfigurationPage.addNewCondition();
+    statisticConfigurationPage.configureThreshold(0, "Greater than", "5", "#f76363");
+    
+    statisticConfigurationPage.addNewCondition();
+    statisticConfigurationPage.configureThreshold(1, "Greater than or equal to", "10", "#f76363");
+
+    // Generate preview
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+    
+    // Add threshold conditions for "Specific value" scope
+    statisticConfigurationPage.selectColoringScope("Specific value");
+    statisticConfigurationPage.addNewCondition();
+    statisticConfigurationPage.configureThresholdWithCategory(0, "Greater than", "5", "#f76363", "Done");
+    
+    // Generate preview
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+
+    // Test with Case
+    statisticConfigurationPage.changeChartTarget("Case");
+    // Enable condition-based coloring
+    statisticConfigurationPage.toggleConditionBasedColoring();
+    
+    // Test "All Values" scope
+    statisticConfigurationPage.verifyColoringScopeVisible();
+    statisticConfigurationPage.selectColoringScope("All values");
+    
+    // Add threshold conditions for "All Values" scope
+    statisticConfigurationPage.addNewCondition();
+    statisticConfigurationPage.configureThreshold(0, "Greater than", "5", "#f76363");
+
+    // Generate preview
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+    
+    // Add threshold conditions for "Specific value" scope
+    statisticConfigurationPage.selectColoringScope("Specific value");
+    statisticConfigurationPage.addNewCondition();
+    statisticConfigurationPage.configureThresholdWithCategory(0, "Greater than", "5", "#f76363", "Done");
+    
+    // Generate preview
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+  }
+  
+  @Test
+  public void testConditionBasedColoringWhenNoDataAvailable() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToNewDashBoard();
+
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ScreenshotUtils.maximizeBrowser();
+    configurationPage.clickOnAddWidgetButton();
+    StatisticConfigurationPage statisticConfigurationPage = configurationPage.clickOnCreateCustomStatisticWidgetButton();
+    
+    statisticConfigurationPage.setChartName("No Data Available Test Chart");
+    statisticConfigurationPage.changeChartTarget("Case");
+    statisticConfigurationPage.changeChartType("Bar");
+    statisticConfigurationPage.changeGroupBy("Custom field");
+
+    statisticConfigurationPage.toggleConditionBasedColoring();
+    statisticConfigurationPage.verifyColoringScopeVisible();
+    statisticConfigurationPage.selectColoringScope("Specific value");
+    
+    statisticConfigurationPage.verifyNoDataAvailableMessage();
+  }
+  
+  @Test
+  public void testConditionBasedColoringWithCustomFields() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(createCasesForCaseListCustomization);
+    redirectToNewDashBoard();
+
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ScreenshotUtils.maximizeBrowser();
+    configurationPage.clickOnAddWidgetButton();
+    StatisticConfigurationPage statisticConfigurationPage = configurationPage.clickOnCreateCustomStatisticWidgetButton();
+    
+    statisticConfigurationPage.setChartName("No Data Available Test Chart");
+    statisticConfigurationPage.changeChartTarget("Case");
+    statisticConfigurationPage.changeChartType("Bar");
+    statisticConfigurationPage.changeGroupBy("Custom field");
+    statisticConfigurationPage.selectCustomField("CustomerName");
+
+    statisticConfigurationPage.toggleConditionBasedColoring();
+    statisticConfigurationPage.verifyColoringScopeVisible();
+    statisticConfigurationPage.selectColoringScope("Specific value");
+    statisticConfigurationPage.addNewCondition();
+    statisticConfigurationPage.configureThresholdWithCategory(0, "Greater than", "5", "#f76363", "Customer name 0");
+    
+    // Generate preview
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+  }
 }

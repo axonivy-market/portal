@@ -1298,10 +1298,23 @@ body .ui-widget.new-widget-dialog__introduction {
   position: relative;
   padding: 0;
 }
+
+.preview-statistic-chart-widget__content {
+  overflow: hidden;
+  width: 100%;
+  height: calc(100vh - 280px);
+  position: relative;
+  padding: 0;
+}
+
 .statistic-chart-widget__chart--small {
   height: 350px;
   width: 450px;
   margin: auto;
+}
+.statistic-configuration-panel {
+  height: calc(100vh - 95px);
+  overflow: hidden;
 }
 
 .has-avatar .case-info-avatar {

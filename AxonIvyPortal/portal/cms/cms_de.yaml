@@ -1564,6 +1564,31 @@ Dialogs:
             Advanced: Fortgeschrittene
             ChartType: Diagrammtyp
             Color: Farbe {0}
+            ConditionBasedColoring:
+              AddCondition: Bedingung hinzufügen
+              AllValue: Alle Werte
+              CategoryValue: Value
+              Color: Farbe
+              ConditionBasedColoringEnabled: Bedingungsabhängige Farbgebung aktiviert
+              ConditionBasedColoringScopeInformation: |-
+                Wählen Sie den Geltungsbereich, auf den die Bedingung angewendet wird:
+                Alle Werte: Wendet Bedingungen auf alle Daten im Diagramm an.
+                Spezifischer Wert: Wendet Farbbedingungen nur auf den ausgewählten Wert an.
+              ConditionValue: Bedingungswert
+              DefaultColor: Standardfarbe
+              Information: |-
+                Die bedingungsbasierte Farbgebung ermöglicht es Ihnen, für jedes Diagramm Farben basierend auf bestimmten Bedingungen festzulegen.
+                Regeln:
+
+                Definieren Sie klare Bedingungen.
+
+                Wenn mehrere Bedingungen zutreffen, gilt die zuerst definierte.
+
+                Halten Sie es einfach.
+              NoDataAvailable: Keine Daten verfügbar, um Farbbedingungen zu definieren.
+              Operator: Operator
+              Scope: Geltungsbereich
+              SpecificValue: Spezifischer Wert
             Create: Erstellen
             EditStatistic: Statistisches Widget bearbeiten
             For: Für
@@ -1653,6 +1678,26 @@ Enums:
                 name: Kennzahl / Metrik
               PIE:
                 name: Kreisdiagramm
+            ConditionBasedColoringScope:
+              ALL:
+                name: Alle Werte
+              SPECIFIC:
+                name: Spezifischer Wert
+            OperatorFieldStatistic:
+              EQUAL:
+                name: Gleich
+              GREATER:
+                name: Größer als
+              GREATEROREQUAL:
+                name: Größer oder gleich
+              LESS:
+                name: |+
+                  Kleiner als
+
+              LESSOREQUAL:
+                name: |+
+                  Kleiner oder gleich
+
 Labels:
   AI:
     Error:

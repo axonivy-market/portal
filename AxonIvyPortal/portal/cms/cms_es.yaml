@@ -1563,6 +1563,31 @@ Dialogs:
             Advanced: Avanzado
             ChartType: Tipo de gráfico
             Color: Color {0}
+            ConditionBasedColoring:
+              AddCondition: Agregar condición
+              AllValue: Todos los valores
+              CategoryValue: Value
+              Color: Color
+              ConditionBasedColoringEnabled: Coloreado condicional activado
+              ConditionBasedColoringScopeInformation: |-
+                Elija el alcance que afectará la condición:
+                Todos los valores: Aplica condiciones a todos los datos del gráfico.
+                Valor específico: Aplica condiciones de color solo al valor seleccionado.
+              ConditionValue: Valor de condición
+              DefaultColor: Color predeterminado
+              Information: |-
+                La función de coloración basada en condiciones permite definir colores para cada gráfico según condiciones específicas.
+                Reglas:
+
+                Defina condiciones claras.
+
+                Si se cumplen varias condiciones, prevalece la primera definida.
+
+                Manténgalo simple.
+              NoDataAvailable: No hay datos disponibles para definir condiciones de color.
+              Operator: Operador
+              Scope: Alcance
+              SpecificValue: Valor específico
             Create: Cree
             EditStatistic: Editar widget de estadísticas
             For: Para
@@ -1652,6 +1677,28 @@ Enums:
                 name: Gráfico numérico
               PIE:
                 name: Gráfico circular
+            ConditionBasedColoringScope:
+              ALL:
+                name: Todos los valores
+              SPECIFIC:
+                name: Valor específico
+            OperatorFieldStatistic:
+              EQUAL:
+                name: |+
+                  Igual a
+
+              GREATER:
+                name: Mayor que
+              GREATEROREQUAL:
+                name: Mayor o igual que
+              LESS:
+                name: |+
+                  Menor que
+
+              LESSOREQUAL:
+                name: |+
+                  Menor o igual que
+
 Labels:
   AI:
     Error:

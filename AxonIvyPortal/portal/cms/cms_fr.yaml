@@ -1559,6 +1559,31 @@ Dialogs:
             Advanced: Avancé
             ChartType: Type de graphique
             Color: Couleur {0}
+            ConditionBasedColoring:
+              AddCondition: Ajouter une condition
+              AllValue: Toutes les valeurs
+              CategoryValue: Value
+              Color: Couleur
+              ConditionBasedColoringEnabled: Coloration conditionnelle activée
+              ConditionBasedColoringScopeInformation: |-
+                Choisissez la portée à laquelle la condition s’appliquera :
+                Toutes les valeurs : Applique les conditions à l’ensemble des données du graphique.
+                Valeur spécifique : Applique les conditions de couleur uniquement à la valeur sélectionnée.
+              ConditionValue: Valeur de condition
+              DefaultColor: Couleur par défaut
+              Information: |-
+                La fonctionnalité de coloration conditionnelle vous permet de définir des couleurs pour chaque graphique selon des conditions spécifiques.
+                Règles :
+
+                Définissez des conditions claires.
+
+                Si plusieurs conditions sont remplies, la première définie prévaut.
+
+                Restez simple
+              NoDataAvailable: Aucune donnée disponible pour définir les conditions de couleur.
+              Operator: Opérateur
+              Scope: Portée
+              SpecificValue: Valeur spécifique
             Create: Créer
             EditStatistic: Modifier le widget statistique
             For: Pour
@@ -1648,6 +1673,26 @@ Enums:
                 name: Graphique numérique
               PIE:
                 name: Diagramme circulaire
+            ConditionBasedColoringScope:
+              ALL:
+                name: Toutes les valeurs
+              SPECIFIC:
+                name: Valeur spécifique
+            OperatorFieldStatistic:
+              EQUAL:
+                name: Égal à
+              GREATER:
+                name: Supérieur à
+              GREATEROREQUAL:
+                name: Supérieur ou égal à
+              LESS:
+                name: |+
+                  Inférieur à
+
+              LESSOREQUAL:
+                name: |+
+                  Inférieur ou égal à
+
 Labels:
   AI:
     Error:

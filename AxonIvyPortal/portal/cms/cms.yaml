@@ -1135,6 +1135,8 @@ Dialogs:
             Aggregate: Aggregate
             ChartType: Chart type
             Color: Color {0}
+            ConditionBasedColoring:
+              ConditionBasedColoringEnabled: Conditional based coloring enabled
             Create: Create
             EditStatistic: Edit Statistic Widget
             For: For
