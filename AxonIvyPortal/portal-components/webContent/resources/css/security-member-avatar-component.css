@@ -6,7 +6,8 @@
 
 .name-after-avatar {
   flex: 1;
-  display: flex;
+  text-overflow: ellipsis;
+  overflow: hidden;
   padding-left: .3rem;
 }
 
