@@ -523,45 +523,6 @@ function initKeyboardShortcutsEnabledValue(value) {
   }
 }
 
-function createFocusFunctions(targetDocument, focusElements) {
-  return {
-    storeFocusedEl: function() {
-      var currentElement = targetDocument.activeElement;
-
-      if (currentElement && currentElement !== targetDocument.body && currentElement.tagName !== 'HTML') {
-        // Clean stale elements before adding new one
-        focusElements = focusElements.filter(function(el) {
-          return el && targetDocument.contains(el) && el.offsetParent !== null;
-        });
-        
-        if (focusElements.length === 0 || focusElements[focusElements.length - 1] !== currentElement) {
-          focusElements.push(currentElement);
-        }
-      }
-    },
-    
-    restoreFocusedEl: function() {
-      while (focusElements.length > 0) {
-        var lastEl = focusElements.pop();
-        if (lastEl && targetDocument.contains(lastEl) && 
-            lastEl.offsetParent !== null && !lastEl.disabled && lastEl.tabIndex !== -1) {
-          try {
-            lastEl.focus();
-            return;
-          } catch(e) {
-            targetDocument.body.focus();
-          }
-        }
-        // in case an ajax event happens before closing dialog or panel
-        if (lastEl.id) {
-          lastEl = targetDocument.getElementById(lastEl.id);
-          return;
-        }
-      }
-    }
-  };
-}
-
 $(document).ready(function () {
   initFocusManagament(window);
 
@@ -1013,12 +974,7 @@ function initIframeFocusManagement(iframe) {
   
   try {
     var iframeWindow = iframe.contentWindow;
-    var iframeDocument = iframe.contentDocument || iframeWindow.document;
-    var iframeFocusStack = [];
-    
-    var focusFunctions = createFocusFunctions(iframeDocument, iframeFocusStack);
-    initFocusManagament(iframeWindow, focusFunctions.storeFocusedEl, focusFunctions.restoreFocusedEl);
-    
+    initFocusManagament(iframeWindow);
     console.log('Focus management initialized for iframe');
   } catch (e) {
     console.warn('Cannot initialize focus management for iframe:', e.message);
