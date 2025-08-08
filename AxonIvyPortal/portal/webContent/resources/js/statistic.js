@@ -2,7 +2,6 @@ const DATA_CHART_ID = 'data-chart-id';
 const WIDGET_HEADER_TITLE = '.widget__header-title';
 const AVERAGE_BUSINESS_RUNTIME = "avg-businessRuntime";
 
-
 // Additional configs
 const EMPTY_CHART_MESSAGE =  'emptyChartDataMessage';
 const MANIPULATE_BY = 'manipulateValueBy';
@@ -10,6 +9,15 @@ const CHART_TEXT_COLOR = '#808080';
 const CHART_GRID_COLOR = 'rgba(192, 192, 192, 0.5)';
 const MIN_REFRESH_INTERVAL = 60;
 const SUCCESS_STATUS_CODE = 200;
+
+const OPERATOR_FIELD_STATISTIC = Object.freeze({
+  GREATER: "greater",
+  LESS: "less",
+  GREATEROREQUAL: "greaterOrEqual",
+  LESSOREQUAL: "lessOrEqual",
+  EQUAL: "equal"
+});
+
 
 let locale;
 let contentLocale;
@@ -337,6 +345,97 @@ class ClientChart {
     this.updateClientChart();
   }
 
+  calculateConditionalColors(chartConfig, data, backgroundColors) {
+    if (chartConfig.conditionBasedColoringEnabled) {
+      if (chartConfig.thresholdStatisticCharts == null) {
+        return chartConfig.defaultBackgroundColor;
+      }
+      if (this.data.chartConfig.conditionBasedColoringScope === 'all') {
+        return this.getBackgroundColorsWithAllScope(chartConfig, data);
+      } else if (this.data.chartConfig.conditionBasedColoringScope === 'specific') {
+        return this.getBackgroundColorsWithSpecificScope(chartConfig, data);
+      }
+    }
+
+    return backgroundColors;
+  }
+
+  getBackgroundColorsWithSpecificScope(chartConfig, data) {
+    const { defaultBackgroundColor, thresholdStatisticCharts } = chartConfig;
+
+    const generatedCompareFunctions = thresholdStatisticCharts.map(rule => {
+      const { operator, value, backgroundColor, targetValue } = rule;
+
+      switch (operator) {
+        case OPERATOR_FIELD_STATISTIC.GREATER:
+          return (count, key) => this.compareValue(key, targetValue) && count > value ? backgroundColor : null;
+        case OPERATOR_FIELD_STATISTIC.GREATEROREQUAL:
+          return (count, key) => this.compareValue(key, targetValue) && count >= value ? backgroundColor : null;
+        case OPERATOR_FIELD_STATISTIC.LESS:
+          return (count, key) => this.compareValue(key, targetValue) && count < value ? backgroundColor : null;
+        case OPERATOR_FIELD_STATISTIC.LESSOREQUAL:
+          return (count, key) => this.compareValue(key, targetValue) && count <= value ? backgroundColor : null;
+        case OPERATOR_FIELD_STATISTIC.EQUAL:
+          return (count, key) => this.compareValue(key, targetValue) && count === value ? backgroundColor : null;
+        default:
+          return () => null;
+      }
+    });
+
+    return data.map((val) => {
+      if (!val || typeof val.count !== 'number') return defaultBackgroundColor;
+
+      for (const func of generatedCompareFunctions) {
+        const result = func(val.count, val.key);
+        if (result) return result;
+      }
+
+      return defaultBackgroundColor;
+    });
+  }
+
+getBackgroundColorsWithAllScope(chartConfig, data) {
+  const { defaultBackgroundColor, thresholdStatisticCharts } = chartConfig;
+
+  const generatedCompareFunction = thresholdStatisticCharts.map(rule => {
+    const { operator, value, backgroundColor } = rule;
+
+    switch (operator) {
+      case OPERATOR_FIELD_STATISTIC.GREATER:
+        return (count) => count > value ? backgroundColor : null;
+      case OPERATOR_FIELD_STATISTIC.GREATEROREQUAL:
+        return (count) => count >= value ? backgroundColor : null;
+      case OPERATOR_FIELD_STATISTIC.LESS:
+        return (count) => count < value ? backgroundColor : null;
+      case OPERATOR_FIELD_STATISTIC.LESSOREQUAL:
+        return (count) => count <= value ? backgroundColor : null;
+      case OPERATOR_FIELD_STATISTIC.EQUAL:
+        return (count) => count === value ? backgroundColor : null;
+      default:
+        return () => null;
+    }
+  });
+
+  return data.map((val) => {
+    if (!val || typeof val.count !== 'number') return defaultBackgroundColor;
+
+    for (const func of generatedCompareFunction) {
+      const result = func(val.count);
+      if (result) return result;
+    }
+
+    return defaultBackgroundColor;
+  });
+}
+
+  compareValue(value, targetValue) {
+    if (isNumeric(targetValue)) {
+      const num = Number(targetValue);
+      return value == num;
+    }
+    return value === targetValue;
+  }
+
   updateClientChart() { }
 
   // Method to render empty chart
@@ -455,6 +554,7 @@ class ClientPieChart extends ClientCanvasChart {
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
       $(chart).html(html);
       let canvasObject = $(chart).find('canvas');
+      let backgroundColors = this.calculateConditionalColors(config, result, config.pieChartConfig.backgroundColors);
       this.clientChartConfig = new Chart(canvasObject, {
         type: config.chartType,
         label: config.name,
@@ -466,7 +566,7 @@ class ClientPieChart extends ClientCanvasChart {
             counting: result.map(bucket => bucket.count),
             chartTarget: config.chartTarget,
             aggregation: config.statisticAggregation,
-            backgroundColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors
+            backgroundColor: backgroundColors
           }],
           hoverOffset: 4
         },
@@ -516,7 +616,6 @@ class ClientCartesianChart extends ClientCanvasChart {
       //If the target type for the Y axis is 'time', get average time from sub aggregate of the result.
       const chartTypeConfig = this.getChartTypeConfig();
       let data = chartTypeConfig?.yValue ? this.processYValue(result, chartTypeConfig?.yValue) : result;
-
       // Because processYValue removes bucket which has empty key, if the returned result is empty, render empty chart
       if (data.length == 0) {
         return this.renderEmptyChart(chart, config.additionalConfigs);
@@ -524,7 +623,7 @@ class ClientCartesianChart extends ClientCanvasChart {
 
       let stepSize = chartTypeConfig?.yValue === 'time' ? 200 : 2;
       let html = this.renderChartCanvas(chart.getAttribute(DATA_CHART_ID));
-
+      let backgroundColors = this.calculateConditionalColors(config, data, config.chartType == 'bar' ? config.barChartConfig.backgroundColors : config.lineChartConfig.backgroundColors);
       $(chart).html(html);
       let canvasObject = $(chart).find('canvas');
       this.clientChartConfig = new Chart(canvasObject, {
@@ -537,8 +636,8 @@ class ClientCartesianChart extends ClientCanvasChart {
             counting: data.map(bucket => bucket.count),
             chartTarget: config.chartTarget,
             aggregation: config.statisticAggregation,
-            backgroundColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors,
-            pointBorderColor: this.getBackgoundColors()?.length ? this.getBackgoundColors() : chartColors,
+            backgroundColor: backgroundColors,
+            pointBorderColor: backgroundColors,
             pointRadius: 4,
             borderColor: getCssVariable("--ivy-primary-color-grey-medium"),
             borderWidth: 1
@@ -549,7 +648,10 @@ class ClientCartesianChart extends ClientCanvasChart {
           maintainAspectRatio: false,
           plugins: {
             legend: {
-              display: false
+              display: false,
+              labels: {
+                color: backgroundColors
+              }
             },
             tooltip: {
               callbacks: {

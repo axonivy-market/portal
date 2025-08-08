@@ -1076,6 +1076,8 @@ Dialogs:
                   DragAndDropToChangeOrder: Drag and drop to change the order.
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Welcome to Axon Ivy Portal
+                WelcomeWidgetConfiguration:
+                  AltText: Alt text
         portalkit:
           component:
             CaseItemDetails:
@@ -1123,6 +1125,11 @@ Dialogs:
               SeeMore: See more
             NewsWidgetConfiguration:
               NewsWidgetDescription: This widget shares relevant information as a News Feed into Axon Ivy.
+            filter:
+              DashboardFilter:
+                SelectFilterField: Select Filter Field
+              DateFilter:
+                SelectPeriod: Select period
         page:
           StatisticConfiguration:
             Aggregate: Aggregate
@@ -1131,6 +1138,8 @@ Dialogs:
             ChartConfiguration: Chart Configuration
             ChartType: Chart type
             Color: Color {0}
+            ConditionBasedColoring:
+              ConditionBasedColoringEnabled: Conditional based coloring enabled
             Create: Create
             EditStatistic: Edit Statistic Widget
             For: For
@@ -1169,6 +1178,10 @@ Labels:
   Configuration: Configuration
   CreateNewDashboard: Create new dashboard
   Description: Description
+  EnterFromValue: Enter from value
+  EnterToValue: Enter to value
+  EnterValue: Enter value
+  EnterValues: Enter values
   Enums:
     DashboardStandardTaskColumn:
       EXPIRY: Expiry
@@ -1182,6 +1195,8 @@ Labels:
   Name: Name
   Preview: Preview
   Save: Save
+  SelectOperator: Choose Operator
+  SelectValues: Select values
   Task: Task
   TaskItemDetail: Task Details
   TaskUser-Explain: Comma separated list of users

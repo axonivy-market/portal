@@ -935,6 +935,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcessViewer: Your Process Viewer
     yourProcesses: Your Processes
     yourTasks: Your Tasks
+  dashboardProcess:
+    processAriaLabel: 'Process name: {0}. Process description: {1}'
   documentFiles:
     PreviewDocument: Preview
     deleteDocumentNote: '{0} has deleted {1}'
@@ -1383,6 +1385,8 @@ Dialogs:
                   DragAndDropTooltip: Click Preview, then drag and drop to change the order
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Welcome to Axon Ivy Portal
+                WelcomeWidgetConfiguration:
+                  AltText: Alternative text
           setting:
             UserProfile:
               unpinAllPinnedCases: Unpin all pinned cases
@@ -1536,6 +1540,11 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Add filter
               ResetFilter: Reset filter
+            filter:
+              DashboardFilter:
+                SelectFilterField: Select Filter Field
+              DateFilter:
+                SelectPeriod: Select period
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: Case details frame
@@ -1550,6 +1559,25 @@ Dialogs:
             ChartConfiguration: Chart Configuration
             ChartType: Chart type
             Color: Color {0}
+            ConditionBasedColoring:
+              AddCondition: Add condition
+              AllValue: All values
+              CategoryValue: Value
+              Color: Color
+              ConditionBasedColoringEnabled: Condition-based coloring enabled
+              ConditionBasedColoringScopeInformation: 'Choose the scope that the condition will affect: All values: Apply conditions to all data in the chart.  Specific value: Apply color conditions only to selected value.'
+              ConditionValue: Condition value
+              DefaultColor: Default color
+              Information: |-
+                The condition-based coloring feature allows you to define colors for each chart based on specific conditions.
+                Rules:
+                - Define clear conditions.
+                - When multiple conditions are satisfied, the first condition defined wins
+                - Keep it simple.
+              NoDataAvailable: No data available to define color conditions.
+              Operator: Operator
+              Scope: Scope
+              SpecificValue: Specific value
             Create: Create
             EditStatistic: Edit Statistic Widget
             For: For
@@ -1642,6 +1670,22 @@ Enums:
                 name: Number
               PIE:
                 name: Pie
+            ConditionBasedColoringScope:
+              ALL:
+                name: All values
+              SPECIFIC:
+                name: Specific value
+            OperatorFieldStatistic:
+              EQUAL:
+                name: Equal to
+              GREATER:
+                name: Greater than
+              GREATEROREQUAL:
+                name: Greater than or equal to
+              LESS:
+                name: Less than
+              LESSOREQUAL:
+                name: Less than or equal to
 Labels:
   AI:
     Error:
@@ -1687,6 +1731,10 @@ Labels:
   CreateNewDashboard: Create new dashboard
   Description: Description
   EditDescription: Edit description
+  EnterFromValue: Enter from value
+  EnterToValue: Enter to value
+  EnterValue: Enter value
+  EnterValues: Enter values
   Enums:
     ChatbotCandidateQuestion:
       EXPLORE:
@@ -1797,6 +1845,8 @@ Labels:
   Preview: Preview
   RequiredFieldMessage: '{0}: Value is required'
   Save: Save
+  SelectOperator: Select Operator
+  SelectValues: Select values
   Share: Share
   Task: Task
   TaskItemDetail: Task Details

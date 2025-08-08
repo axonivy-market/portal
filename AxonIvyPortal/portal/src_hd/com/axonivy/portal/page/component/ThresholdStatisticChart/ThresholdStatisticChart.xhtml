@@ -1,0 +1,89 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="threshold" type="com.axonivy.portal.bo.Threshold" />
+  <cc:attribute name="managedBean" required="true" />
+  <cc:attribute name="readOnly" default="false" />
+  <cc:attribute name="componentToUpdate" />
+  <cc:attribute name="onCompleteRemoveThreshold" />
+  <cc:attribute name="thresholdIndex" />
+  <cc:attribute name="messageId" />
+  <cc:attribute name="componentToUpdateWhenRemoveThreshold" />
+  <cc:attribute name="categoryData" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="managedBean" value="#{cc.attrs.managedBean}" />
+  <c:set var="threshold" value="#{cc.attrs.threshold}" />
+  <c:set var="thresholdIndex" value="#{cc.attrs.thresholdIndex}" />
+  <c:set var="categoryData" value="#{cc.attrs.categoryData}" />
+
+  <div class="col-12">
+    <h:panelGroup id="threshold-panel" layout="block" styleClass="flex">
+         <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
+             <p:selectOneMenu class="threshold-category-data" required="true" styleClass="w-full" rendered="#{managedBean.statistic.conditionBasedColoringScope eq 'SPECIFIC'}"
+               label="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/CategoryValue')}"
+               disabled="#{!managedBean.isCategoryDataAvailable}"
+               value="#{threshold.targetValue}">
+               <f:selectItems value="#{managedBean.categoryData}" 
+                 var="value" itemValue="#{value}" itemLabel="#{managedBean.displayThresholdTargetValue(value)}"
+                 rendered="#{managedBean.statistic.conditionBasedColoringScope eq 'SPECIFIC'}"/>
+                <p:ajax event="itemSelect" partialSubmit="true" global="false"/>
+                <f:param name="skipValidator" value="true" />
+                <f:attribute name="threshold" value="#{threshold}" />
+                <f:attribute name="thresholdIndex" value="#{thresholdIndex}" />
+             </p:selectOneMenu>
+             <p:selectOneMenu class="threshold-category-data" disabled="true" required="true" styleClass="w-full" rendered="#{managedBean.statistic.conditionBasedColoringScope eq 'ALL'}"
+               value="#{threshold.targetValue}">
+               <f:selectItem itemValue="All" itemLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/AllValue')}"/>
+             </p:selectOneMenu>
+         </h:panelGroup>
+         <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
+             <p:selectOneMenu label="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/Operator')}" required="true" styleClass="threshold-operator-value" disabled="#{!managedBean.isCategoryDataAvailable and managedBean.statistic.conditionBasedColoringScope eq 'SPECIFIC'}"
+               value="#{threshold.operator}">
+               <f:selectItems value="#{managedBean.getAllOperatorField()}"
+                 var="operator" itemValue="#{operator}" itemLabel="#{operator.getCmsName()}" />
+                <p:ajax event="change" partialSubmit="true" global="false"/>
+                <f:param name="skipValidator" value="true" />
+                <f:attribute name="threshold" value="#{threshold}" />
+                <f:attribute name="thresholdIndex" value="#{thresholdIndex}" />
+             </p:selectOneMenu>
+         </h:panelGroup>
+         
+         <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
+          <p:inputNumber label="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/ConditionValue')}" styleClass="threshold-input-value" required="true" value="#{threshold.value}" disabled="#{!managedBean.isCategoryDataAvailable and managedBean.statistic.conditionBasedColoringScope eq 'SPECIFIC'}"
+            decimalPlaces="0" minValue="0" onkeydown="return event.key !== '-'" size="7">
+            <p:ajax event="change" partialSubmit="true" global="false"/>
+            <f:param name="skipValidator" value="true" />
+            <f:attribute name="threshold" value="#{threshold}" />
+            <f:attribute name="thresholdIndex" value="#{thresholdIndex}" />
+          </p:inputNumber>
+         </h:panelGroup>
+
+         <h:panelGroup class="threshold-item mt-3 mr-3" layout="block">
+           <p:colorPicker styleClass="threshold-color-value" value="#{threshold.backgroundColor}"
+            required="true" disabled="#{!managedBean.isCategoryDataAvailable and managedBean.statistic.conditionBasedColoringScope eq 'SPECIFIC'}" label="#{ivy.cms.co('/Dialogs/com/axonivy/portal/page/StatisticConfiguration/ConditionBasedColoring/Color')}"
+            clearButton="true" closeButton="true" size="10">
+            <f:param name="skipValidator" value="true" />
+            <p:ajax event="change" partialSubmit="true" global="false"/>
+            <f:attribute name="threshold" value="#{threshold}" />
+            <f:attribute name="thresholdIndex" value="#{thresholdIndex}" />
+           </p:colorPicker>
+         </h:panelGroup>
+
+         <div class="remove-threshold-panel align-items-center flex mt-3">
+          <p:commandButton id="remove-threshold" icon="si si-subtract"  disabled="#{!managedBean.isCategoryDataAvailable and managedBean.statistic.conditionBasedColoringScope eq 'SPECIFIC'}"
+            styleClass="rounded-button ui-button-outlined action-column-icon-button ui-button-danger dashboard-widget-filter__remove-filter"
+            actionListener="#{managedBean.removeThreshold(threshold)}"
+            update="#{cc.attrs.componentToUpdateWhenRemoveThreshold} #{cc.attrs.componentToUpdate}" global="false"
+            immediate="true" partialSubmit="true">
+            <f:param name="skipValidator" value="true" />
+          </p:commandButton>
+         </div>
+    </h:panelGroup>
+  </div>
+
+</cc:implementation>
+
+</html>

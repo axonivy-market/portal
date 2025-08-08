@@ -938,6 +938,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcessViewer: Ihr Prozessbetrachter
     yourProcesses: Ihre Prozesse
     yourTasks: Ihre Aufgaben
+  dashboardProcess:
+    processAriaLabel: Aufgabe {0} starten
   documentFiles:
     PreviewDocument: Vorschau
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
@@ -1387,6 +1389,8 @@ Dialogs:
                   DragAndDropTooltip: Klicken Sie auf die Vorschau und ändern Sie die Reihenfolge durch Ziehen und Ableg
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Willkommen bei Axon Ivy Portal
+                WelcomeWidgetConfiguration:
+                  AltText: Texte alternatif
           setting:
             UserProfile:
               unpinAllPinnedCases: Alle angehefteten Fälle lösen
@@ -1544,6 +1548,11 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen
+            filter:
+              DashboardFilter:
+                SelectFilterField: Filterfeld auswählen
+              DateFilter:
+                SelectPeriod: Select period
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: Falldetails Rahmen
@@ -1558,6 +1567,31 @@ Dialogs:
             ChartConfiguration: Diagrammeinstellungen
             ChartType: Diagrammtyp
             Color: Farbe {0}
+            ConditionBasedColoring:
+              AddCondition: Bedingung hinzufügen
+              AllValue: Alle Werte
+              CategoryValue: Value
+              Color: Farbe
+              ConditionBasedColoringEnabled: Bedingungsabhängige Farbgebung aktiviert
+              ConditionBasedColoringScopeInformation: |-
+                Wählen Sie den Geltungsbereich, auf den die Bedingung angewendet wird:
+                Alle Werte: Wendet Bedingungen auf alle Daten im Diagramm an.
+                Spezifischer Wert: Wendet Farbbedingungen nur auf den ausgewählten Wert an.
+              ConditionValue: Bedingungswert
+              DefaultColor: Standardfarbe
+              Information: |-
+                Die bedingungsbasierte Farbgebung ermöglicht es Ihnen, für jedes Diagramm Farben basierend auf bestimmten Bedingungen festzulegen.
+                Regeln:
+
+                Definieren Sie klare Bedingungen.
+
+                Wenn mehrere Bedingungen zutreffen, gilt die zuerst definierte.
+
+                Halten Sie es einfach.
+              NoDataAvailable: Keine Daten verfügbar, um Farbbedingungen zu definieren.
+              Operator: Operator
+              Scope: Geltungsbereich
+              SpecificValue: Spezifischer Wert
             Create: Erstellen
             EditStatistic: Statistisches Widget bearbeiten
             For: Für
@@ -1650,6 +1684,26 @@ Enums:
                 name: Kennzahl / Metrik
               PIE:
                 name: Kreisdiagramm
+            ConditionBasedColoringScope:
+              ALL:
+                name: Alle Werte
+              SPECIFIC:
+                name: Spezifischer Wert
+            OperatorFieldStatistic:
+              EQUAL:
+                name: Gleich
+              GREATER:
+                name: Größer als
+              GREATEROREQUAL:
+                name: Größer oder gleich
+              LESS:
+                name: |+
+                  Kleiner als
+
+              LESSOREQUAL:
+                name: |+
+                  Kleiner oder gleich
+
 Labels:
   AI:
     Error:
@@ -1695,6 +1749,10 @@ Labels:
   CreateNewDashboard: Neues Dashboard erstellen
   Description: Beschreibung
   EditDescription: Beschreibung bearbeiten
+  EnterFromValue: Anfangswert eingeben
+  EnterToValue: Endwert eingeben
+  EnterValue: Wert eingeben
+  EnterValues: Werte eingeben
   Enums:
     ChatbotCandidateQuestion:
       EXPLORE:
@@ -1805,6 +1863,8 @@ Labels:
   Preview: Vorschau
   RequiredFieldMessage: '{0}: Wert ist erforderlich'
   Save: Speichern
+  SelectOperator: Operator auswählen
+  SelectValues: Werte auswählen
   Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails

@@ -937,6 +937,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcessViewer: Su visor de procesos
     yourProcesses: Sus procesos
     yourTasks: Sus tareas
+  dashboardProcess:
+    processAriaLabel: 'Nombre del proceso: {0}. Descripción del proceso: {1}'
   documentFiles:
     PreviewDocument: Vista previa
     deleteDocumentNote: '{0} ha eliminado {1}'
@@ -1386,6 +1388,8 @@ Dialogs:
                   DragAndDropTooltip: Haz clic en vista previa y arrastra y suelta para cambiar el orden
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Bienvenido a Axon Ivy Portal
+                WelcomeWidgetConfiguration:
+                  AltText: Texto alternativo
           setting:
             UserProfile:
               unpinAllPinnedCases: Desanclar todos los casos fijados
@@ -1542,6 +1546,12 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Añadir filtro
               ResetFilter: Restablecer filtro
+            filter:
+              DashboardFilter:
+                SelectFilterField: |
+                  Seleccionar campo de filtro
+              DateFilter:
+                SelectPeriod: Select period
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: Detalles del caso marco
@@ -1556,6 +1566,31 @@ Dialogs:
             ChartConfiguration: Configuración de gráficos
             ChartType: Tipo de gráfico
             Color: Color {0}
+            ConditionBasedColoring:
+              AddCondition: Agregar condición
+              AllValue: Todos los valores
+              CategoryValue: Value
+              Color: Color
+              ConditionBasedColoringEnabled: Coloreado condicional activado
+              ConditionBasedColoringScopeInformation: |-
+                Elija el alcance que afectará la condición:
+                Todos los valores: Aplica condiciones a todos los datos del gráfico.
+                Valor específico: Aplica condiciones de color solo al valor seleccionado.
+              ConditionValue: Valor de condición
+              DefaultColor: Color predeterminado
+              Information: |-
+                La función de coloración basada en condiciones permite definir colores para cada gráfico según condiciones específicas.
+                Reglas:
+
+                Defina condiciones claras.
+
+                Si se cumplen varias condiciones, prevalece la primera definida.
+
+                Manténgalo simple.
+              NoDataAvailable: No hay datos disponibles para definir condiciones de color.
+              Operator: Operador
+              Scope: Alcance
+              SpecificValue: Valor específico
             Create: Cree
             EditStatistic: Editar widget de estadísticas
             For: Para
@@ -1648,6 +1683,28 @@ Enums:
                 name: Gráfico numérico
               PIE:
                 name: Gráfico circular
+            ConditionBasedColoringScope:
+              ALL:
+                name: Todos los valores
+              SPECIFIC:
+                name: Valor específico
+            OperatorFieldStatistic:
+              EQUAL:
+                name: |+
+                  Igual a
+
+              GREATER:
+                name: Mayor que
+              GREATEROREQUAL:
+                name: Mayor o igual que
+              LESS:
+                name: |+
+                  Menor que
+
+              LESSOREQUAL:
+                name: |+
+                  Menor o igual que
+
 Labels:
   AI:
     Error:
@@ -1693,6 +1750,10 @@ Labels:
   CreateNewDashboard: Crear un nuevo cuadro de mandos
   Description: Descripción
   EditDescription: Editar descripción
+  EnterFromValue: Ingresar valor desde
+  EnterToValue: Ingresar valor hasta
+  EnterValue: Ingresar valor
+  EnterValues: Ingresar valores
   Enums:
     ChatbotCandidateQuestion:
       EXPLORE:
@@ -1803,6 +1864,8 @@ Labels:
   Preview: Vista previa
   RequiredFieldMessage: '{0}: Valor requerido'
   Save: Guardar
+  SelectOperator: Seleccionar operador
+  SelectValues: Seleccionar valores
   Share: Compartir
   Task: Tarea
   TaskItemDetail: Detalles de la tarea
