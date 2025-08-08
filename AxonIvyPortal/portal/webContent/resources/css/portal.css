@@ -1958,12 +1958,19 @@ body.dark .focused {
 /* ======================= PREVIEW STATISTIC CHART ==========================  **/
 
 .preview-chart-box {
-  height: 60%;
   position: inherit;
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
+  height: 70%;
   width: 60%;
+}
+
+@media (max-width: 1920px) {
+   .preview-chart-box {
+     width: 70%;
+     height: 80%
+   }
 }
 
 .statistic-configuration__preview {
