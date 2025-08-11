@@ -30,18 +30,6 @@ public class StatisticConfigurationPage extends TemplatePage {
     $("div[id$='config-form:target'] div.ui-selectonemenu-trigger").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
     $$("li[id^='config-form:target_']").filter(text(chartTargetName)).first().shouldBe(getClickableCondition()).click();
   }
-  
-  public boolean isAdvancedSettingsOpen() {
-    return getAdvancedSettingsLegend().shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("span").filter(Condition.cssClass("ui-icon-minusthick")).first().isDisplayed();
-  }
-  
-  public void clickAdvancedSettings() {
-    getAdvancedSettingsLegend().shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
-  }
-  
-  public SelenideElement getAdvancedSettingsLegend() {
-    return $("fieldset[id$='advanced-settings'] legend");
-  }
 
   public void changeChartType(String chartTypeName) {
     $("div[id$='config-form:type'] div.ui-selectonemenu-trigger").shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
