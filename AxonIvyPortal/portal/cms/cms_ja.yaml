@@ -105,6 +105,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       BY_ALPHABETICALLY: アルファベット順
       BY_CUSTOM_ORDER: ユーザー設定順序
       BY_INDEX: 並べ替えインデックス
+      BY_SMART_ORDER: 'TODO: Most used'
     ProcessType:
       EXTERNAL_LINK: 外部リンク
       IVY_PROCESS: ビジネスプロセス
@@ -224,7 +225,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       RoleParentLimit: 設定された数値は、ロール管理タブでロールをフィルタリングするときに表示される親ロールの数を制御します。有効な数値：5、10、20
       SearchScopeCaseFields: グローバル検索で一致するケースを見つけるために、ケースIDのほかに使用するフィールドを定義します。（検索のパフォーマンスに影響する可能性があります）
       SearchScopeTaskFields: グローバル検索で一致するタスクを見つけるために、タスクIDのほかに使用するフィールドを定義します。（検索のパフォーマンスに影響する可能性があります）
-      SessionCacheTimeout: TODO Defines the session cache timeout duration (in seconds) for the Portal. This value can be set between 300 (5 minutes) and 86,400 (24 hours).
+      SessionCacheTimeout: 'TODO: Defines the session cache timeout duration (in seconds) for the Portal. This value can be set between 300 (5 minutes) and 86,400 (24 hours).'
       ShowLoginPageFooter: ログインページのフッターの表示のオン／オフを切り替えます。
       ShowQRCode: QRコードの表示のオン／オフを切り替えます。
       allowKeyboardShortcutsConfiguration: 'TODO: Set to true to allow the user interact with the keyboard shortcuts button.'
@@ -283,6 +284,9 @@ ch.ivy.addon.portalkit.ui.jsf:
       showTaskDurationTime: タスク詳細ページでの所要時間の表示のオン／オフを切り替えます。
       showTooltipTechnicalName: TODO Enable to show users' technical name on tooltips.
       uploadDocumentWhiteListExtensionNote: すべての拡張子を許可する場合は、空欄にしてください。一部の拡張子のみを許可する場合は、対象の拡張子をカンマで区切って入力してください。（例：pdf, txt, doc, docx）
+      documentUploadSizeLimit: 'TODO: Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.'
+      enableDocumentPreview: 'TODO: Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
+      imageUploadSizeLimit: 'TODO: Set the size limit for uploading images in megabytes (MB). The default value is 6MB.'
     key: キー
     link: リンク
     loading: 読み込み中
@@ -927,6 +931,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcessViewer: プロセス ビューアー
     yourProcesses: プロセス
     yourTasks: タスク
+    NoColumnsEnabledForQuickSearch: 'TODO: No columns are enabled for quick search'
+    QuickSearchScope: 'TODO: Search Scope: {0}'
   dashboardProcess:
     processAriaLabel: 'TODO Process name: {0}. Process description: {1}'
   documentFiles:
@@ -1742,9 +1748,11 @@ Texts:
     フォローアップの質問を <B>送信</B> するか、ワークフローを <B>終了</B> することができます。
 
     </P>
-  ToDo-Explain: |-
+  ToDo-Explain: |+
     <P>
 
     <B> TODO </B> が <B>完了</B> であることを確認するか、または拒否してください。
 
     </P>
+
+...
