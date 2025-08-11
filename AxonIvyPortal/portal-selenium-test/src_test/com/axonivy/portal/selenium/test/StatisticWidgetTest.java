@@ -326,6 +326,9 @@ public class StatisticWidgetTest extends BaseTest {
     statisticConfigurationPage.chartCanvasVisible();
 
     // Test with Case
+    if (!statisticConfigurationPage.isAdvancedSettingsOpen()) {
+      statisticConfigurationPage.clickAdvancedSettings();
+    }
     statisticConfigurationPage.changeChartTarget("Case");
     // Enable condition-based coloring
     statisticConfigurationPage.toggleConditionBasedColoring();
