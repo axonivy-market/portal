@@ -908,12 +908,14 @@ function initFocusManagament(targetWindow) {
     var onHideEvent = targetWindow.PrimeFaces.widget.Dialog.prototype.onHide;
     
     targetWindow.PrimeFaces.widget.Dialog.prototype.postShow = function() {
-      storeFocusedElement(targetWindow.document, lastFocusedElements);
+var containerId = this.cfg.id;
+      storeFocusedElement(targetWindow.document, lastFocusedElements, containerId);
       postShowEvent.call(this);
     };
 
     targetWindow.PrimeFaces.widget.Dialog.prototype.onHide = function() {
-      restoreFocusedElement(targetWindow.document, lastFocusedElements);
+      var containerId = this.cfg.id;
+      restoreFocusedElement(targetWindow.document, lastFocusedElements, containerId);
       onHideEvent.call(this);
     };
   }
@@ -924,45 +926,63 @@ function initFocusManagament(targetWindow) {
     var hideEvent = targetWindow.PrimeFaces.widget.OverlayPanel.prototype.hide;
     
     targetWindow.PrimeFaces.widget.OverlayPanel.prototype.show = function() {
-      storeFocusedElement(targetWindow.document, lastFocusedElements);
+      var containerId = this.cfg.id;
+      storeFocusedElement(targetWindow.document, lastFocusedElements, containerId);
       showEvent.call(this);
     };
 
     targetWindow.PrimeFaces.widget.OverlayPanel.prototype.hide = function() {
-      restoreFocusedElement(targetWindow.document, lastFocusedElements);
+      var containerId = this.cfg.id;
+      restoreFocusedElement(targetWindow.document, lastFocusedElements, containerId);
       hideEvent.call(this);
     };
   }
 }
 
-function storeFocusedElement(targetDocument, focusElements) {
+function storeFocusedElement(targetDocument, focusElements, containerId) {
   var currentElement = targetDocument.activeElement;
   if (currentElement && currentElement !== targetDocument.body && currentElement.tagName !== 'HTML') {
-    if (focusElements.length === 0 || focusElements[focusElements.length - 1] !== currentElement) {
-      focusElements.push(currentElement);
+    var item = {"containerId": containerId, "activeElement": currentElement};
+    
+    if (focusElements.length === 0 || 
+        focusElements[focusElements.length - 1].containerId !== containerId ||
+        focusElements[focusElements.length - 1].activeElement !== currentElement) {
+      focusElements.push(item);
     }
   }
 }
 
-function restoreFocusedElement(targetDocument, focusElements) {
-  while (focusElements.length > 0) {
-    var lastEl = focusElements.pop();
+function restoreFocusedElement(targetDocument, focusElements, containerId) {
+  if (focusElements.length > 0) {
+    var itemIndex = -1;
+    for (var i = focusElements.length - 1; i >= 0; i--) {
+      if (focusElements[i].containerId === containerId) {
 
-    if (lastEl && targetDocument.contains(lastEl) && 
-        lastEl.offsetParent !== null && !lastEl.disabled && lastEl.tabIndex !== -1) {
-          
-      try {
-        lastEl.focus();
-        targetDocument.PrimeFaces.utils.blockEnterKey();
-        return;
-      } catch(e) {
-        targetDocument.body.focus();
+        itemIndex = i;
+        break;
       }
     }
+    
+    if (itemIndex !== -1) {
+      var item = focusElements[itemIndex];
+      var lastEl = item.activeElement;
+      
+      focusElements.splice(itemIndex, 1);
 
-    if (lastEl.id) {
-      lastEl = targetDocument.getElementById(lastEl.id);
-      focusElementWithId(lastEl.id);
+      if (lastEl && targetDocument.contains(lastEl) && 
+          lastEl.offsetParent !== null && !lastEl.disabled && lastEl.tabIndex !== -1) {
+            
+        try {
+          lastEl.focus();
+        } catch(e) {
+          targetDocument.body.focus();
+        }
+      }
+
+      if (lastEl.id) {
+        lastEl = targetDocument.getElementById(lastEl.id);
+        focusElementWithId(lastEl.id);
+      }
     }
   }
 }
@@ -981,7 +1001,7 @@ function initIframeFocusManagement(iframe) {
   }
 }
 
-function handleCaseDetailsPanelInIframe() {
+function handleFocusOnElementsInCaseDetailsPanel() {
   const caseInfoDialog = document.getElementById('case-info-dialog');
   if (caseInfoDialog.innerHTML.includes('i-frame-case-details')) {
     const iframe = document.getElementById('i-frame-case-details');
