@@ -279,7 +279,7 @@ public class StatisticWidgetTest extends BaseTest {
   }
   
   @Test
-  public void testConditionBasedColoringFeature() {
+  public void testConditionBasedColoringFeatureForTask() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(create12CasesWithCategoryUrl);
     redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
@@ -324,19 +324,41 @@ public class StatisticWidgetTest extends BaseTest {
     // Generate preview
     statisticConfigurationPage.clickGeneratePreviewChart();
     statisticConfigurationPage.chartCanvasVisible();
+  }
+  
+  @Test
+  public void testConditionBasedColoringFeatureForCase() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToNewDashBoard();
 
-    // Test with Case
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ScreenshotUtils.maximizeBrowser();
+    configurationPage.clickOnAddWidgetButton();
+    StatisticConfigurationPage statisticConfigurationPage = configurationPage.clickOnCreateCustomStatisticWidgetButton();
+    
+    // Configure basic chart settings
+    statisticConfigurationPage.setChartName("Condition-Based Coloring Test Chart");
     statisticConfigurationPage.changeChartTarget("Case");
+    statisticConfigurationPage.changeChartType("Pie");
+    statisticConfigurationPage.changeGroupBy("Category");
+
     // Enable condition-based coloring
     statisticConfigurationPage.toggleConditionBasedColoring();
     
-    // Test "All Values" scope
+    // Test "All Values" scope first
     statisticConfigurationPage.verifyColoringScopeVisible();
     statisticConfigurationPage.selectColoringScope("All values");
     
     // Add threshold conditions for "All Values" scope
     statisticConfigurationPage.addNewCondition();
     statisticConfigurationPage.configureThreshold(0, "Greater than", "5", "#f76363");
+    
+    statisticConfigurationPage.addNewCondition();
+    statisticConfigurationPage.configureThreshold(1, "Greater than or equal to", "10", "#f76363");
 
     // Generate preview
     statisticConfigurationPage.clickGeneratePreviewChart();
@@ -345,7 +367,7 @@ public class StatisticWidgetTest extends BaseTest {
     // Add threshold conditions for "Specific value" scope
     statisticConfigurationPage.selectColoringScope("Specific value");
     statisticConfigurationPage.addNewCondition();
-    statisticConfigurationPage.configureThresholdWithCategory(0, "Greater than", "5", "#f76363", "Done");
+    statisticConfigurationPage.configureThresholdWithCategory(0, "Greater than", "5", "#f76363", "CaseGroup/Group1/TestCase0");
     
     // Generate preview
     statisticConfigurationPage.clickGeneratePreviewChart();
