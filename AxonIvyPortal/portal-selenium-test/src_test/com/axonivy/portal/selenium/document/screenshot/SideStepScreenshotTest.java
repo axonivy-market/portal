@@ -2,6 +2,7 @@ package com.axonivy.portal.selenium.document.screenshot;
 
 import java.io.IOException;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Dimension;
 
@@ -15,9 +16,16 @@ import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.ProcessWidgetPage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
-@IvyWebTest(headless = false)
+@IvyWebTest
 public class SideStepScreenshotTest extends ScreenshotBaseTest {
 
+  @Override
+  @BeforeEach
+  public void setup() {
+    super.setup();
+  }
+
+  
   @Test
   public void screenshotSideStepConfiguration() throws IOException {
     login(TestAccount.DEMO_USER);
