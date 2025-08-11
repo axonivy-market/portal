@@ -504,7 +504,6 @@ public class StatisticWidgetTest extends BaseTest {
     statisticConfigurationPage.changeChartType("Number");
     statisticConfigurationPage.clickGeneratePreviewChart();
 
-
     // Configure for Filter
     statisticConfigurationPage.changeGroupBy("State");
 
