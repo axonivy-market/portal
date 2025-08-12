@@ -1011,4 +1011,36 @@ function handleFocusOnElementsInCaseDetailsPanel() {
   }
 }
 
+function addEventForCaseDetailsIframe() {
+  const caseDetailsIframe = document.getElementById('i-frame-case-details');
+  if (caseDetailsIframe) {
+    const caseDetailsIframeDocument = caseDetailsIframe.contentDocument || caseDetailsIframe.contentWindow.document;
+    caseDetailsIframeDocument.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        PF('case-info-dialog').hide();
+      }
+    })
+
+    const script = caseDetailsIframeDocument.createElement('script');
+    script.textContent = `
+      function focusFirstVisibleElementInPanel(widgetVar, selector) {
+        var panel = PF(widgetVar).jq;  
+        var first;
+        var destructionWords = ['remove', 'destroy', 'delete', 'confirmation', 'confirm', 'deletion', 'reset'];
+        
+        if (destructionWords.some(word => widgetVar.includes(word))) {
+          first = panel.find('a').first();
+        } else {
+          first = panel.find(selector).first();
+        }
+        
+        if (first.length) {
+          first.focus();
+        }
+      }
+	  `;
+    caseDetailsIframeDocument.head.appendChild(script);
+  }
+}
+
 // END ACCESSIBILITY FIX
