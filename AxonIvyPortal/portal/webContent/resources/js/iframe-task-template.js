@@ -6,23 +6,31 @@ function loadIframe(recheckIndicator) {
 
   if (!recheckIndicator) {
     $(iframe).on('load', function () {
-      if (!document.documentURI.endsWith('?taskUrl=blank')) {
-        iframe.style.visibility = 'hidden';
-      }
+      iframe.style.visibility = 'hidden';
       processIFrameData(iframe);
       clearTimeout(recheckFrameTimer);
-      setTimeout(function() {
-        if ($(iframe).attr('src') != 'about:blank') {
-          iframe.style.visibility = 'visible';
+
+      // Perform render Iframe content once src URL is found
+      if ($(iframe).attr('src') !== 'about:blank') {
+        const checkInterval = setInterval(function () {
+          const doc = iframe.contentDocument || iframe.contentWindow.document;
+
+          // Every 50ms check if state of the inside document ready
+          // If the document is ready, show it
+          if (doc && doc.readyState === 'complete' && doc.body) {
+            iframe.style.visibility = 'visible';
+            clearInterval(checkInterval); // Stop checking once ready
           }
-        }, 500);
+        }, 50);
+      }
+
       return;
     });
   }
   else {
     const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
     iframeDoc.onbeforeunload = function() {
-      $(iframe).addClass('hidden');
+      iframe.style.visibility = 'hidden';
     }
     if (iframeDoc.readyState == 'complete') {
       processIFrameData(iframe);
