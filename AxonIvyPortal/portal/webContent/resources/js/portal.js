@@ -908,7 +908,7 @@ function initFocusManagament(targetWindow) {
     var onHideEvent = targetWindow.PrimeFaces.widget.Dialog.prototype.onHide;
     
     targetWindow.PrimeFaces.widget.Dialog.prototype.postShow = function() {
-var containerId = this.cfg.id;
+      var containerId = this.cfg.id;
       storeFocusedElement(targetWindow.document, lastFocusedElements, containerId);
       postShowEvent.call(this);
     };
