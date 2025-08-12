@@ -46,6 +46,6 @@ jobs:
           gh pr create --title "Language update :globe_with_meridians:"\
             --body "auto-updates language files"\
             --label "i18n"\
-            --base master
+            --base feature/IVYPORTAL-19240-Integrate-Portal-Documentation-into-Weblate
         env:
           GH_TOKEN: ${{ github.token }}
