@@ -132,7 +132,7 @@
             "import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;",
             "import org.primefaces.PrimeFaces;",
             "",
-            "in.totalTasks = DashboardTaskService.getInstance().countByTaskQuery(in.widget.dataModel.criteria.buildQuery());"
+            "in.totalTasks = DashboardTaskService.getInstance().countDashboardTaskByCriteria(in.widget.dataModel.criteria);"
           ]
         }
       },
@@ -151,7 +151,7 @@
             "import ch.ivy.addon.portalkit.ivydata.service.impl.DashboardTaskService;",
             "",
             "int startIndex = in.loopCounter * in.maxResultNumberPerQuery;",
-            "in.collectedTasksForExporting.addAll(DashboardTaskService.getInstance().findByTaskQuery(in.widget.dataModel.getCriteria().buildQuery(), startIndex, in.maxResultNumberPerQuery));"
+            "in.collectedTasksForExporting.addAll(DashboardTaskService.getInstance().findDashboardTaskByCriteria(in.widget.dataModel.getCriteria(), startIndex, in.maxResultNumberPerQuery));"
           ]
         }
       },

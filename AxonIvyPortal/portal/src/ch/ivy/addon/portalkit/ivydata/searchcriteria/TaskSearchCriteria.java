@@ -40,6 +40,7 @@ public class TaskSearchCriteria {
   private String involvedUsername;
   private List<TaskState> includedStates;
   private boolean isAdminQuery;
+  private boolean isCaseOwner;
   private String keyword;
   private Long taskId;
   private Long caseId;
@@ -382,6 +383,14 @@ public class TaskSearchCriteria {
 
   public void setAdminQuery(boolean isAdminQuery) {
     this.isAdminQuery = isAdminQuery;
+  }
+
+  public boolean isCaseOwner() {
+    return isCaseOwner;
+  }
+
+  public void setCaseOwner(boolean isCaseOwner) {
+    this.isCaseOwner = isCaseOwner;
   }
 
   public Long getCaseId() {

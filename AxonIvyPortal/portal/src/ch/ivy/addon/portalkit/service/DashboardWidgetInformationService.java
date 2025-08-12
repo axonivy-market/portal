@@ -127,6 +127,7 @@ public class DashboardWidgetInformationService {
     var taskSearchCriteria = new TaskSearchCriteria();
     taskSearchCriteria.setFinalTaskQuery(dataModel.getCriteria().buildQueryWithoutOrderByClause());
     taskSearchCriteria.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
+    taskSearchCriteria.setCaseOwner(dataModel.getCriteria().isCaseOwner());
     return taskSearchCriteria;
   }
 
