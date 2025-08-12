@@ -1,0 +1,325 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2025 Axon Ivy AG
+# This file is distributed under the same license as the Portal Guide
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Portal Guide ${revision}\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-12 11:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../source/ai.rst:3
+msgid "RAG: Retrieval-Augmented Generation"
+msgstr ""
+
+#: ../../source/ai.rst:6
+msgid "Contents"
+msgstr ""
+
+#: ../../source/ai.rst:9
+msgid "What is RAG?"
+msgstr ""
+
+#: ../../source/ai.rst:11
+msgid ""
+"**Retrieval-Augmented Generation (RAG)** is a technique that combines "
+"information retrieval with language generation to produce more accurate "
+"and contextual responses."
+msgstr ""
+
+#: ../../source/ai.rst:14
+msgid "Core Concept"
+msgstr ""
+
+#: ../../source/ai.rst:16
+msgid "RAG enhances language models by:"
+msgstr ""
+
+#: ../../source/ai.rst:18
+msgid "**Retrieving** relevant information from external knowledge bases"
+msgstr ""
+
+#: ../../source/ai.rst:19
+msgid "**Augmenting** the prompt with retrieved context"
+msgstr ""
+
+#: ../../source/ai.rst:20
+msgid "**Generating** responses based on both the query and retrieved information"
+msgstr ""
+
+#: ../../source/ai.rst:23
+msgid "Architecture"
+msgstr ""
+
+#: ../../source/ai.rst:26
+msgid "Basic Components"
+msgstr ""
+
+#: ../../source/ai.rst:34
+msgid "Key Components:"
+msgstr ""
+
+#: ../../source/ai.rst:36
+msgid "**Retriever**: Finds relevant documents/passages"
+msgstr ""
+
+#: ../../source/ai.rst:37
+msgid "**Knowledge Base**: External source of information (vector DB, documents)"
+msgstr ""
+
+#: ../../source/ai.rst:38
+msgid "**Generator**: Language model that produces the final response"
+msgstr ""
+
+#: ../../source/ai.rst:39
+msgid "**Embeddings**: Vector representations for semantic search"
+msgstr ""
+
+#: ../../source/ai.rst:42
+msgid "Workflow"
+msgstr ""
+
+#: ../../source/ai.rst:45
+msgid "RAG Process"
+msgstr ""
+
+#: ../../source/ai.rst:47
+msgid "**Index Creation**"
+msgstr ""
+
+#: ../../source/ai.rst:49
+msgid "Split documents into chunks"
+msgstr ""
+
+#: ../../source/ai.rst:50
+msgid "Generate embeddings for each chunk"
+msgstr ""
+
+#: ../../source/ai.rst:51
+msgid "Store in vector database"
+msgstr ""
+
+#: ../../source/ai.rst:53
+msgid "**Query Processing**"
+msgstr ""
+
+#: ../../source/ai.rst:55
+msgid "Convert user query to embedding"
+msgstr ""
+
+#: ../../source/ai.rst:56
+msgid "Search for similar chunks in vector DB"
+msgstr ""
+
+#: ../../source/ai.rst:57
+msgid "Retrieve top-k most relevant passages"
+msgstr ""
+
+#: ../../source/ai.rst:59
+msgid "**Response Generation**"
+msgstr ""
+
+#: ../../source/ai.rst:61
+msgid "Combine query + retrieved context"
+msgstr ""
+
+#: ../../source/ai.rst:62
+msgid "Feed to language model"
+msgstr ""
+
+#: ../../source/ai.rst:63
+msgid "Generate contextually informed response"
+msgstr ""
+
+#: ../../source/ai.rst:66
+msgid "Advantages"
+msgstr ""
+
+#: ../../source/ai.rst:69
+msgid "Benefits of RAG"
+msgstr ""
+
+#: ../../source/ai.rst:71
+msgid "**Up-to-date Information**: Access to current data beyond training cutoff"
+msgstr ""
+
+#: ../../source/ai.rst:72
+msgid "**Domain Specificity**: Can work with specialized knowledge bases"
+msgstr ""
+
+#: ../../source/ai.rst:73
+msgid "**Reduced Hallucination**: Grounds responses in actual source material"
+msgstr ""
+
+#: ../../source/ai.rst:74
+msgid "**Transparency**: Can cite sources and show retrieved context"
+msgstr ""
+
+#: ../../source/ai.rst:75
+msgid "**Cost Effective**: No need to retrain large models"
+msgstr ""
+
+#: ../../source/ai.rst:78
+msgid "Use Cases"
+msgstr ""
+
+#: ../../source/ai.rst:81
+msgid "Common Applications"
+msgstr ""
+
+#: ../../source/ai.rst:83
+msgid "**Document Q&A**: Query large document collections"
+msgstr ""
+
+#: ../../source/ai.rst:84
+msgid "**Customer Support**: Access product manuals and FAQs"
+msgstr ""
+
+#: ../../source/ai.rst:85
+msgid "**Research Assistant**: Search academic papers and reports"
+msgstr ""
+
+#: ../../source/ai.rst:86
+msgid "**Enterprise Search**: Internal knowledge management"
+msgstr ""
+
+#: ../../source/ai.rst:87
+msgid "**Legal/Medical**: Domain-specific information retrieval"
+msgstr ""
+
+#: ../../source/ai.rst:90
+msgid "Implementation Tools"
+msgstr ""
+
+#: ../../source/ai.rst:93
+msgid "Popular Frameworks"
+msgstr ""
+
+#: ../../source/ai.rst:95
+msgid "**LangChain**: Python framework for LLM applications"
+msgstr ""
+
+#: ../../source/ai.rst:96
+msgid "**LlamaIndex**: Data framework for LLM applications"
+msgstr ""
+
+#: ../../source/ai.rst:97
+msgid "**Haystack**: End-to-end NLP framework"
+msgstr ""
+
+#: ../../source/ai.rst:98
+msgid "**Pinecone/Weaviate**: Vector databases"
+msgstr ""
+
+#: ../../source/ai.rst:99
+msgid "**OpenAI Embeddings**: Text embedding models"
+msgstr ""
+
+#: ../../source/ai.rst:102
+msgid "Challenges"
+msgstr ""
+
+#: ../../source/ai.rst:105
+msgid "Common Issues"
+msgstr ""
+
+#: ../../source/ai.rst:107
+msgid "**Chunk Size**: Balancing context vs. precision"
+msgstr ""
+
+#: ../../source/ai.rst:108
+msgid "**Retrieval Quality**: Ensuring relevant documents are found"
+msgstr ""
+
+#: ../../source/ai.rst:109
+msgid "**Context Length**: Managing token limits in prompts"
+msgstr ""
+
+#: ../../source/ai.rst:110
+msgid "**Latency**: Real-time performance considerations"
+msgstr ""
+
+#: ../../source/ai.rst:111
+msgid "**Cost**: API calls for embeddings and generation"
+msgstr ""
+
+#: ../../source/ai.rst:114
+msgid "Best Practices"
+msgstr ""
+
+#: ../../source/ai.rst:117
+msgid "Implementation Tips"
+msgstr ""
+
+#: ../../source/ai.rst:119
+msgid "**Optimize Chunking**"
+msgstr ""
+
+#: ../../source/ai.rst:121
+msgid "Use semantic splitting (sentences, paragraphs)"
+msgstr ""
+
+#: ../../source/ai.rst:122
+msgid "Consider overlap between chunks"
+msgstr ""
+
+#: ../../source/ai.rst:123
+msgid "Test different chunk sizes"
+msgstr ""
+
+#: ../../source/ai.rst:125
+msgid "**Improve Retrieval**"
+msgstr ""
+
+#: ../../source/ai.rst:127
+msgid "Use hybrid search (keyword + semantic)"
+msgstr ""
+
+#: ../../source/ai.rst:128
+msgid "Implement re-ranking mechanisms"
+msgstr ""
+
+#: ../../source/ai.rst:129
+msgid "Fine-tune embedding models if needed"
+msgstr ""
+
+#: ../../source/ai.rst:131
+msgid "**Context Management**"
+msgstr ""
+
+#: ../../source/ai.rst:133
+msgid "Prioritize most relevant chunks"
+msgstr ""
+
+#: ../../source/ai.rst:134
+msgid "Implement context compression"
+msgstr ""
+
+#: ../../source/ai.rst:135
+msgid "Handle multiple document sources"
+msgstr ""
+
+#: ../../source/ai.rst:138
+msgid ""
+"RAG is particularly effective for knowledge-intensive tasks where "
+"accuracy and source attribution are important."
+msgstr ""
+
+#: ../../source/ai.rst:141
+msgid ""
+"Quality of retrieved documents directly impacts the final response "
+"quality. Ensure your knowledge base is well-curated and up-to-date."
+msgstr ""
+

@@ -1,0 +1,365 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2025 Axon Ivy AG
+# This file is distributed under the same license as the Portal Guide
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Portal Guide ${revision}\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-12 11:25+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ja\n"
+"Language-Team: ja <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: ../../source/claude.rst:3
+msgid "Claude: AI Assistant Overview"
+msgstr ""
+
+#: ../../source/claude.rst:7
+msgid "Table of Contents"
+msgstr ""
+
+#: ../../source/claude.rst:10
+msgid "Introduction"
+msgstr ""
+
+#: ../../source/claude.rst:12
+msgid ""
+"Claude is an AI assistant created by Anthropic. This document provides an"
+" overview of Claude's capabilities, features, and usage guidelines."
+msgstr ""
+
+#: ../../source/claude.rst:15
+msgid "About Claude"
+msgstr ""
+
+#: ../../source/claude.rst:18
+msgid "Model Information"
+msgstr ""
+
+#: ../../source/claude.rst:20
+msgid ""
+"Claude Sonnet 4 is part of the Claude 4 model family, which currently "
+"includes:"
+msgstr ""
+
+#: ../../source/claude.rst:22
+msgid "**Claude Sonnet 4**: A smart, efficient model for everyday use"
+msgstr ""
+
+#: ../../source/claude.rst:23
+msgid "**Claude Opus 4**: Advanced model for complex tasks"
+msgstr ""
+
+#: ../../source/claude.rst:26
+msgid "Key Characteristics"
+msgstr ""
+
+#: ../../source/claude.rst:28
+msgid "Claude is designed to be:"
+msgstr ""
+
+#: ../../source/claude.rst:30
+msgid "**Helpful**: Assists with a wide range of tasks"
+msgstr ""
+
+#: ../../source/claude.rst:31
+msgid "**Harmless**: Built with safety considerations in mind"
+msgstr ""
+
+#: ../../source/claude.rst:32
+msgid "**Honest**: Provides accurate information and acknowledges limitations"
+msgstr ""
+
+#: ../../source/claude.rst:35
+msgid "Capabilities"
+msgstr ""
+
+#: ../../source/claude.rst:38
+msgid "Text Generation"
+msgstr ""
+
+#: ../../source/claude.rst:40
+msgid "Claude can help with various text-related tasks:"
+msgstr ""
+
+#: ../../source/claude.rst:42
+msgid "Writing and editing"
+msgstr ""
+
+#: ../../source/claude.rst:43
+msgid "Summarization"
+msgstr ""
+
+#: ../../source/claude.rst:44
+msgid "Translation"
+msgstr ""
+
+#: ../../source/claude.rst:45
+msgid "Creative writing"
+msgstr ""
+
+#: ../../source/claude.rst:46
+msgid "Technical documentation"
+msgstr ""
+
+#: ../../source/claude.rst:49
+msgid "Code Assistance"
+msgstr ""
+
+#: ../../source/claude.rst:51
+msgid "Programming support includes:"
+msgstr ""
+
+#: ../../source/claude.rst:53
+msgid "Code generation and debugging"
+msgstr ""
+
+#: ../../source/claude.rst:54
+msgid "Explanation of programming concepts"
+msgstr ""
+
+#: ../../source/claude.rst:55
+msgid "Multiple programming languages"
+msgstr ""
+
+#: ../../source/claude.rst:56
+msgid "Best practices and optimization"
+msgstr ""
+
+#: ../../source/claude.rst:59
+msgid "Analysis and Research"
+msgstr ""
+
+#: ../../source/claude.rst:61
+msgid "Claude can assist with:"
+msgstr ""
+
+#: ../../source/claude.rst:63
+msgid "Data analysis and interpretation"
+msgstr ""
+
+#: ../../source/claude.rst:64
+msgid "Research assistance"
+msgstr ""
+
+#: ../../source/claude.rst:65
+msgid "Document review"
+msgstr ""
+
+#: ../../source/claude.rst:66
+msgid "Information synthesis"
+msgstr ""
+
+#: ../../source/claude.rst:69
+msgid "Access Methods"
+msgstr ""
+
+#: ../../source/claude.rst:72
+msgid "Web Interface"
+msgstr ""
+
+#: ../../source/claude.rst:74
+msgid "Claude is accessible through a web-based chat interface that provides:"
+msgstr ""
+
+#: ../../source/claude.rst:76
+msgid "Real-time conversation"
+msgstr ""
+
+#: ../../source/claude.rst:77
+msgid "File upload capabilities"
+msgstr ""
+
+#: ../../source/claude.rst:78
+msgid "Artifact creation and editing"
+msgstr ""
+
+#: ../../source/claude.rst:79
+msgid "Mobile and desktop compatibility"
+msgstr ""
+
+#: ../../source/claude.rst:82
+msgid "API Access"
+msgstr ""
+
+#: ../../source/claude.rst:84
+msgid "For developers, Claude is available via API:"
+msgstr ""
+
+#: ../../source/claude.rst:90
+msgid "API documentation is available at: https://docs.anthropic.com"
+msgstr ""
+
+#: ../../source/claude.rst:93
+msgid "Claude Code"
+msgstr ""
+
+#: ../../source/claude.rst:95
+msgid ""
+"A command-line tool for agentic coding that allows developers to delegate"
+" coding tasks directly from the terminal."
+msgstr ""
+
+#: ../../source/claude.rst:98
+msgid "Usage Guidelines"
+msgstr ""
+
+#: ../../source/claude.rst:101
+msgid "Best Practices"
+msgstr ""
+
+#: ../../source/claude.rst:103
+msgid "For optimal results:"
+msgstr ""
+
+#: ../../source/claude.rst:105
+msgid "**Be Clear and Specific**: Provide detailed context and requirements"
+msgstr ""
+
+#: ../../source/claude.rst:106
+msgid "**Use Examples**: Include positive and negative examples when helpful"
+msgstr ""
+
+#: ../../source/claude.rst:107
+msgid "**Request Step-by-Step**: Ask for reasoning to be broken down"
+msgstr ""
+
+#: ../../source/claude.rst:108
+msgid "**Specify Format**: Indicate desired output format or structure"
+msgstr ""
+
+#: ../../source/claude.rst:109
+msgid ""
+"**Set Length Expectations**: Specify if you want brief or detailed "
+"responses"
+msgstr ""
+
+#: ../../source/claude.rst:112
+msgid "Effective Prompting"
+msgstr ""
+
+#: ../../source/claude.rst:114
+msgid "Consider these techniques:"
+msgstr ""
+
+#: ../../source/claude.rst:116
+msgid "Provide context and background information"
+msgstr ""
+
+#: ../../source/claude.rst:117
+msgid "Use specific terminology relevant to your domain"
+msgstr ""
+
+#: ../../source/claude.rst:118
+msgid "Break complex requests into smaller parts"
+msgstr ""
+
+#: ../../source/claude.rst:119
+msgid "Ask for clarification when responses aren't quite right"
+msgstr ""
+
+#: ../../source/claude.rst:122
+msgid "Limitations"
+msgstr ""
+
+#: ../../source/claude.rst:125
+msgid "Knowledge Cutoff"
+msgstr ""
+
+#: ../../source/claude.rst:127
+msgid ""
+"Claude's reliable knowledge extends through January 2025. For more recent"
+" information, it can use web search capabilities when available."
+msgstr ""
+
+#: ../../source/claude.rst:130
+msgid "Content Restrictions"
+msgstr ""
+
+#: ../../source/claude.rst:132
+msgid "Claude is designed to decline requests that could be:"
+msgstr ""
+
+#: ../../source/claude.rst:134
+msgid "Harmful or dangerous"
+msgstr ""
+
+#: ../../source/claude.rst:135
+msgid "Illegal or unethical"
+msgstr ""
+
+#: ../../source/claude.rst:136
+msgid "Involving creation of malicious code"
+msgstr ""
+
+#: ../../source/claude.rst:137
+msgid "Inappropriate for minors"
+msgstr ""
+
+#: ../../source/claude.rst:140
+msgid "No Memory Between Sessions"
+msgstr ""
+
+#: ../../source/claude.rst:142
+msgid ""
+"Claude doesn't retain information between separate conversations and "
+"cannot learn from previous interactions."
+msgstr ""
+
+#: ../../source/claude.rst:145
+msgid "Support and Documentation"
+msgstr ""
+
+#: ../../source/claude.rst:147
+msgid "For additional help:"
+msgstr ""
+
+#: ../../source/claude.rst:149
+msgid "**General Support**: https://support.anthropic.com"
+msgstr ""
+
+#: ../../source/claude.rst:150
+msgid "**API Documentation**: https://docs.anthropic.com"
+msgstr ""
+
+#: ../../source/claude.rst:151
+msgid ""
+"**Prompting Guide**: https://docs.anthropic.com/en/docs/build-with-claude"
+"/prompt-engineering/overview"
+msgstr ""
+
+#: ../../source/claude.rst:154
+msgid "Conclusion"
+msgstr ""
+
+#: ../../source/claude.rst:156
+msgid ""
+"Claude represents a capable AI assistant designed to help with a wide "
+"variety of tasks while maintaining safety and reliability. Whether you're"
+" using it for creative projects, technical work, or everyday assistance, "
+"understanding its capabilities and limitations will help you get the best"
+" results."
+msgstr ""
+
+#: ../../source/claude.rst:159
+msgid ""
+"This documentation reflects Claude Sonnet 4 capabilities as of August "
+"2025. Features and capabilities may evolve over time."
+msgstr ""
+
+#: ../../source/claude.rst:162
+msgid ""
+"Always verify important information, especially for critical decisions or"
+" recent events that may have occurred after the knowledge cutoff date."
+msgstr ""
+
