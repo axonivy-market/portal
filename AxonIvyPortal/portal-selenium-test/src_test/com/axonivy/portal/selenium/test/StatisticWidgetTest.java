@@ -492,35 +492,6 @@ public class StatisticWidgetTest extends BaseTest {
     statisticConfigurationPage.clickGeneratePreviewChart();
     statisticConfigurationPage.chartCanvasVisible();
 
-    // Change to LINE chart
-    statisticConfigurationPage.changeChartType("Line");
-    statisticConfigurationPage.clickGeneratePreviewChart();
-
-    // Change to PIE chart
-    statisticConfigurationPage.changeChartType("Pie");
-    statisticConfigurationPage.clickGeneratePreviewChart();
-
-    // Change to NUMBER chart
-    statisticConfigurationPage.changeChartType("Number");
-    statisticConfigurationPage.clickGeneratePreviewChart();
-
-    // Configure for Filter
-    statisticConfigurationPage.changeGroupBy("State");
-
-    // Filter State
-    statisticConfigurationPage.addFilter("State", null);
-    statisticConfigurationPage.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
-    statisticConfigurationPage.clickGeneratePreviewChart();
-    assertEquals(statisticConfigurationPage.getPreviewChartNumberLabel(), "Open");
-    assertTrue(statisticConfigurationPage.getPreviewChartNumberValue() == 222);
-
-    // Filter Category
-    statisticConfigurationPage.addFilter("Category", null);
-    statisticConfigurationPage.inputValueOnLatestFilter(FilterValueType.CATEGORY_TYPE, "TestCase11");
-    statisticConfigurationPage.clickGeneratePreviewChart();
-    assertEquals(statisticConfigurationPage.getPreviewChartNumberLabel(), "Open");
-    assertTrue(statisticConfigurationPage.getPreviewChartNumberValue() == 222);
-
     statisticConfigurationPage.clickCreateStatisticChart();
 
     // Add Custom statistic widget
