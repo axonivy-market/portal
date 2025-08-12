@@ -4,7 +4,7 @@ run-name: Update language files
 on:
   push:
     branches:
-      - master
+      - feature/IVYPORTAL-19240-Integrate-Portal-Documentation-into-Weblate
     paths:
       - 'Documentation/portal-guide/source/**'
   workflow_dispatch:
