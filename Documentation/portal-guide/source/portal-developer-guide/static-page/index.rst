@@ -87,15 +87,6 @@ Integrating Static Pages into Portal
 
 There are several ways to integrate static pages into the portal navigation system.
 
-Standard Link Format
---------------------
-
-Static pages can be accessed directly using the standard portal URL format:
-
-.. code-block:: text
-
-    /designer/pro/portal/1549F58C18A6C562/DefaultFramePage.ivp?relativeUrl=/designer/faces/view/portal-components-examples/static.xhtml
-
 Main Menu Integration
 =====================
 
@@ -111,7 +102,7 @@ Add the following JSON configuration to the `Portal.CustomMenuItems` variable:
     [
         {
             "menuKind": "STATIC_PAGE",
-            "link": "portal-components-examples/static.xhtml",
+            "link": "app/faces/view/portal-components-examples/static.xhtml",
             "label": "Static Page Example",
             "icon": "si si-task-list-edit",
             "index": 0,
@@ -141,7 +132,7 @@ You can also add static pages programmatically using a callable subprocess:
     staticPage.setMenuKind(MenuKind.STATIC_PAGE);
     staticPage.setIcon("si si-task-list-edit");
     staticPage.setLabel("Static Page Example");
-    staticPage.setLink("portal-components-examples/static.xhtml");
+    staticPage.setLink("app/faces/view/portal-components-examples/static.xhtml");
     staticPage.setIndex(0);
 
     in.subMenuItems.add(staticPage);
@@ -168,7 +159,7 @@ Static pages can also be added to the user menu using the `Portal.UserMenu` conf
                 }
             ],
             "permissions": ["Everybody"],
-            "url": "portal-components-examples/static.xhtml"
+            "url": "app/faces/view/portal-components-examples/static.xhtml"
         }
     ]
 
@@ -187,7 +178,7 @@ URL Conversion
 
 Portal automatically converts static page links to the proper format when used in menus. The conversion process:
 
-1. **Input**: `portal-components-examples/static.xhtml`
+1. **Input**: `app/faces/view/portal-components-examples/static.xhtml`
 2. **Conversion**: Uses `StaticPageUtils.buildUrl()` method
 3. **Output**: Full portal URL with iframe wrapper
 
@@ -195,7 +186,7 @@ The conversion formula:
 
 .. code-block:: text
 
-    /designer/pro/portal/{processId}/DefaultFramePage.ivp?relativeUrl=/{applicationName}/faces/view/{staticPagePath}
+    {baseUrl}?relativeUrl=/{applicationName}/faces/view/{PM}/{staticPage}
 
 .. _static-page-examples:
 
@@ -283,7 +274,7 @@ Create a simple information page with custom styling:
         <div class="card">
             <h2>Welcome</h2>
             <p>Your journey with Axon Ivy starts here.<br />
-               Let’s explore powerful workflows and process automation together.</p>
+               Let's explore powerful workflows and process automation together.</p>
             <a href="https://developer.axonivy.com/" class="button">Get Started</a>
         </div>
     </div>
@@ -327,4 +318,3 @@ References
 - `Static JSF Pages Documentation <https://developer.axonivy.com/doc/12/designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_
 - `Portal Menu Configuration <customization-menu.html>`_
 - `User Menu Configuration <usermenu/index.html>`_
-- `PrimeFaces Documentation <https://www.primefaces.org/documentation/>`_
