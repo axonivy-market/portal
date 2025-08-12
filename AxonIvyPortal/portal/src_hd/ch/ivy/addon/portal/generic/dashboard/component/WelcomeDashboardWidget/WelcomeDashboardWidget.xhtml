@@ -64,7 +64,7 @@
       <h:panelGroup rendered="#{not empty widget.imageLocation}">
         <p:graphicImage id="welcome-image" styleClass="default-welcome-image welcome-image js-welcome-image #{widget.imageStyleClass}"
           library="ivy-cms"
-          alt="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/WelcomeDashboardWidget/WelcomeToAxon')}"
+          alt="#{dashboardWelcomeWidgetBean.sanitizeHTML(widget.altText)}"
           rendered="#{widget.imageContentObject.exists()}"
           name="#{widget.imageContentObject.uri()}"/>
         <h:panelGroup id="not-found-welcome-image" styleClass="empty-message-container w-full" layout="block"
@@ -78,7 +78,7 @@
       <h:panelGroup rendered="#{not empty widget.imageLocationDarkMode}">
         <p:graphicImage id="welcome-image-dark-mode" styleClass="default-welcome-image-dark welcome-image js-welcome-image #{widget.imageStyleClass}"
           library="ivy-cms"
-          alt="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portal/generic/dashboard/component/WelcomeDashboardWidget/WelcomeToAxon')}"
+          alt="#{dashboardWelcomeWidgetBean.sanitizeHTML(widget.altText)}"
           rendered="#{widget.imageContentObjectDarkMode.exists()}"
           name="#{widget.imageContentObjectDarkMode.uri()}"/>
       </h:panelGroup>

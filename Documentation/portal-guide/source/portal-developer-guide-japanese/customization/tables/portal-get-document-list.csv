@@ -1,0 +1,6 @@
+名前,タイプ
+**パラメーター**
+businessCase,ch.ivyteam.ivy.workflow.ICase
+**結果**
+documents,java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument>
+message,java.lang.String

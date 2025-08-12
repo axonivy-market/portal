@@ -935,6 +935,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcessViewer: Ihr Prozessbetrachter
     yourProcesses: Ihre Prozesse
     yourTasks: Ihre Aufgaben
+  dashboardProcess:
+    processAriaLabel: Aufgabe {0} starten
   documentFiles:
     PreviewDocument: Vorschau
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
@@ -1380,6 +1382,8 @@ Dialogs:
                   DragAndDropTooltip: Klicken Sie auf die Vorschau und ändern Sie die Reihenfolge durch Ziehen und Ableg
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Willkommen bei Axon Ivy Portal
+                WelcomeWidgetConfiguration:
+                  AltText: Texte alternatif
           setting:
             UserProfile:
               unpinAllPinnedCases: Alle angehefteten Fälle lösen
@@ -1524,6 +1528,12 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen
+            filter:
+              DashboardFilter:
+                SelectFilterField: Filterfeld auswählen
+              DateFilter:
+                SelectPeriod: |
+                  Zeitraum auswählen
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: Falldetails Rahmen
@@ -1585,6 +1595,10 @@ Labels:
   Collapse: Einklappen
   CreateNewDashboard: Neues Dashboard erstellen
   EditDescription: Beschreibung bearbeiten
+  EnterFromValue: Anfangswert eingeben
+  EnterToValue: Endwert eingeben
+  EnterValue: Wert eingeben
+  EnterValues: Werte eingeben
   Enums:
     ChatbotCandidateQuestion:
       EXPLORE:
@@ -1688,6 +1702,8 @@ Labels:
   Permissions: Berechtigungen
   PinnedCases: Angeheftete Fälle
   PinnedTasks: Angehängte Aufgaben
+  SelectOperator: Operator auswählen
+  SelectValues: Werte auswählen
   Share: Aktie
   Task: Aufgabe
   TaskItemDetail: Aufgabendetails

@@ -1,0 +1,9 @@
+Variable,Default value,Description
+"\--process-chain-process-step-font-size",12px,Size of process step in of process chain component.
+"\--process-chain-body-background-color","rgba(0,0,0,0)",Background color of waiting circle process steps.
+"\--process-chain-menu-color","var(\--primary-color, hsl(195, 100%, 29%))",Color of process steps.
+"\--process-chain-link-color","#D9DADA",Link color between process steps.
+"\--process-chain-current-circle-horizontal-step-title-font-weight",bold,Font weight of circle horizontal process step title.
+"\--process-chain-current-circle-vertical-step-title-font-weight",bold,Font weight of circle vertical process step title.
+"\--process-chain-current-line-horizontal-step-title-font-weight",bold,Font weight of line horizontal process step title.
+"\--process-chain-current-line-vertical-step-title-font-weight",bold,Font weight of line vertical process step title.

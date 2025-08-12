@@ -932,6 +932,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcessViewer: Your Process Viewer
     yourProcesses: Your Processes
     yourTasks: Your Tasks
+  dashboardProcess:
+    processAriaLabel: 'Process name: {0}. Process description: {1}'
   documentFiles:
     PreviewDocument: Preview
     deleteDocumentNote: '{0} has deleted {1}'
@@ -1376,6 +1378,8 @@ Dialogs:
                   DragAndDropTooltip: Click Preview, then drag and drop to change the order
                 WelcomeDashboardWidget:
                   WelcomeToAxon: Welcome to Axon Ivy Portal
+                WelcomeWidgetConfiguration:
+                  AltText: Alternative text
           setting:
             UserProfile:
               unpinAllPinnedCases: Unpin all pinned cases
@@ -1519,6 +1523,11 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Add filter
               ResetFilter: Reset filter
+            filter:
+              DashboardFilter:
+                SelectFilterField: Select Filter Field
+              DateFilter:
+                SelectPeriod: Select period
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: Case details frame
@@ -1580,6 +1589,10 @@ Labels:
   Collapse: Collapse
   CreateNewDashboard: Create new dashboard
   EditDescription: Edit description
+  EnterFromValue: Enter from value
+  EnterToValue: Enter to value
+  EnterValue: Enter value
+  EnterValues: Enter values
   Enums:
     ChatbotCandidateQuestion:
       EXPLORE:
@@ -1683,6 +1696,8 @@ Labels:
   Permissions: Permissions
   PinnedCases: Pinned Cases
   PinnedTasks: Pinned Tasks
+  SelectOperator: Select Operator
+  SelectValues: Select values
   Share: Share
   Task: Task
   TaskItemDetail: Task Details

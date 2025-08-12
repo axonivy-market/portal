@@ -12,6 +12,8 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.WelcomeImageFit;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
 import ch.ivy.addon.portalkit.enums.WelcomeTextSize;
+import ch.ivy.addon.portalkit.util.LanguageUtils;
+import ch.ivy.addon.portalkit.util.LanguageUtils.NameResult;
 import ch.ivyteam.ivy.cm.ContentObject;
 
 public class WelcomeDashboardWidget extends DashboardWidget {
@@ -36,6 +38,7 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   private String imageInlineStyle;
   private String imageContent;
   private String imageContentDarkMode;
+  private List<DisplayName> altTexts;
 
   @JsonIgnore
   private String welcomeText;
@@ -45,6 +48,8 @@ public class WelcomeDashboardWidget extends DashboardWidget {
   private ContentObject imageContentObjectDarkMode;
   @JsonIgnore
   private String internalId;
+  @JsonIgnore
+  private String altText;
 
   @JsonIgnore
   public static WelcomeDashboardWidget buildDefaultWidget(String id, String name) {
@@ -241,5 +246,23 @@ public class WelcomeDashboardWidget extends DashboardWidget {
 
   public void setWelcomeTextColorDarkMode(String welcomeTextColorDarkMode) {
     this.welcomeTextColorDarkMode = welcomeTextColorDarkMode;
+  }
+
+  public List<DisplayName> getAltTexts() {
+    return altTexts;
+  }
+
+  public void setAltTexts(List<DisplayName> altTexts) {
+    this.altTexts = altTexts;
+  }
+
+  public String getAltText() {
+    return LanguageUtils.getLocalizedName(altTexts, altText);
+  }
+
+  public void setAltText(String altText) {
+    NameResult nameResult = LanguageUtils.collectMultilingualNames(altTexts, altText);
+    this.altTexts = nameResult.names();
+    this.altText = nameResult.name();
   }
 }
