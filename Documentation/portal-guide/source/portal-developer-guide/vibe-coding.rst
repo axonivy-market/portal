@@ -74,7 +74,6 @@ Regular Check-ins
 
 * What's working well in our team dynamic
 * Areas where we can improve our collaboration
-* Action items to enhance our vibe code
 
 .. warning::
    Ignoring team culture issues can lead to decreased productivity and higher turnover rates.
