@@ -19,11 +19,20 @@ jobs:
       - name: POT Templates
         working-directory: Documentation/portal-guide
         run: |
-          docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make gettext BASEDIR=/doc
+          # Create filtered copy excluding Japanese folders
+          mkdir -p /tmp/filtered-docs
+          rsync -av \
+            --exclude='source/portal-components-japanese' \
+            --exclude='source/portal-developer-guide-japanese' \
+            --exclude='source/portal-user-guide-japanese' \
+            ./ /tmp/filtered-docs/
+
+          # Run the command on filtered docs
+          docker run -v /tmp/filtered-docs:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make gettext BASEDIR=/doc
       - name: Update PO Languages
         working-directory: Documentation/portal-guide
         run: |
-          docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
+          docker run -v /tmp/filtered-docs:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
             generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=ja
       - name: Locale Diff
         id: locale-diff
