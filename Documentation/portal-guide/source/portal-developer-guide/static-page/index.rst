@@ -53,15 +53,6 @@ Here's a basic template for creating a static page:
         <title>Your Page Title</title>
         <style>
             /* Your custom CSS styles */
-            .card {
-                max-width: 600px;
-                margin: 2rem auto;
-                padding: 1.5rem;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-                border-radius: 8px;
-                background-color: #fff;
-                font-family: Arial, sans-serif;
-            }
         </style>
     </h:head>
 
@@ -92,22 +83,9 @@ Choose the appropriate template based on your content needs.
 .. _static-page-integration:
 
 Integrating Static Pages into Portal
-===================================
+====================================
 
 There are several ways to integrate static pages into the portal navigation system.
-
-Standard Link Format
---------------------
-
-Static pages can be accessed directly using the standard portal URL format:
-
-.. code-block:: text
-
-    /designer/pro/portal/1549F58C18A6C562/DefaultFramePage.ivp?relativeUrl=/designer/faces/view/portal-components-examples/static.xhtml
-
-Where:
-- `portal-components-examples` is your application name
-- `static.xhtml` is your static page file
 
 Main Menu Integration
 =====================
@@ -124,21 +102,22 @@ Add the following JSON configuration to the `Portal.CustomMenuItems` variable:
     [
         {
             "menuKind": "STATIC_PAGE",
-            "link": "portal-components-examples/static.xhtml",
+            "link": "app/faces/view/portal-components-examples/static.xhtml",
             "label": "Static Page Example",
-            "icon": "si si-document",
+            "icon": "si si-task-list-edit",
             "index": 0,
             "version": "12.0.0"
         }
     ]
 
 Parameters:
+
 - **menuKind**: Must be set to `"STATIC_PAGE"`
 - **link**: Path to your static page relative to the view directory
 - **label**: Display name in the menu
-- **icon**: Icon class (optional)
-- **index**: Menu position (optional)
-- **version**: Portal version (optional)
+- **icon**: Icon class
+- **index**: Menu position (optional, defaults to 0)
+- **version**: Portal version
 
 Programmatic Method
 -------------------
@@ -151,9 +130,9 @@ You can also add static pages programmatically using a callable subprocess:
 
     CustomSubMenuItem staticPage = new CustomSubMenuItem();
     staticPage.setMenuKind(MenuKind.STATIC_PAGE);
-    staticPage.setIcon("si si-document");
+    staticPage.setIcon("si si-task-list-edit");
     staticPage.setLabel("Static Page Example");
-    staticPage.setLink("portal-components-examples/static.xhtml");
+    staticPage.setLink("app/faces/view/portal-components-examples/static.xhtml");
     staticPage.setIndex(0);
 
     in.subMenuItems.add(staticPage);
@@ -180,11 +159,12 @@ Static pages can also be added to the user menu using the `Portal.UserMenu` conf
                 }
             ],
             "permissions": ["Everybody"],
-            "url": "portal-components-examples/static.xhtml"
+            "url": "app/faces/view/portal-components-examples/static.xhtml"
         }
     ]
 
 Parameters:
+
 - **id**: Unique identifier for the menu item
 - **menuKind**: Must be set to `"STATIC_PAGE"`
 - **titles**: Multilingual titles
@@ -198,14 +178,15 @@ URL Conversion
 
 Portal automatically converts static page links to the proper format when used in menus. The conversion process:
 
-1. **Input**: `portal-components-examples/static.xhtml`
+1. **Input**: `app/faces/view/portal-components-examples/static.xhtml`
 2. **Conversion**: Uses `StaticPageUtils.buildUrl()` method
 3. **Output**: Full portal URL with iframe wrapper
 
 The conversion formula:
+
 .. code-block:: text
 
-    /designer/pro/portal/{processId}/DefaultFramePage.ivp?relativeUrl=/{applicationName}/faces/view/{staticPagePath}
+    {baseUrl}?relativeUrl=/{applicationName}/faces/view/{PM}/{staticPage}
 
 .. _static-page-examples:
 
@@ -219,68 +200,91 @@ Create a simple information page with custom styling:
 
 .. code-block:: xml
 
-    <!DOCTYPE html>
-    <html xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:f="http://xmlns.jcp.org/jsf/core"
-        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html 
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-    <h:head>
-        <title>Help Documentation</title>
-        <style>
-            .help-container {
-                max-width: 800px;
-                margin: 2rem auto;
-                padding: 2rem;
-                background: #fff;
-                border-radius: 8px;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            }
-            .help-section {
-                margin-bottom: 2rem;
-                padding: 1rem;
-                border-left: 4px solid #007bff;
-                background: #f8f9fa;
-            }
-            .help-section h2 {
-                color: #007bff;
-                margin-bottom: 1rem;
-            }
-        </style>
-    </h:head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>Welcome - Axon Ivy</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            margin: 0;
+            background-color: #f7f9fb;
+        }
+        .header {
+            background-color: var(--ivy-primary-color);
+            color: var(--ivy-primary-text-color);
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.8em;
+            font-weight: normal;
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+        }
+        .card {
+            background: white;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .card h2 {
+            color: var(--ivy-primary-color);
+            margin-bottom: 10px;
+        }
+        .card p {
+            color: #555;
+            margin-bottom: 25px;
+        }
+        .button {
+            display: inline-block;
+            background-color: var(--ivy-primary-color);
+            color: var(--ivy-primary-text-color);
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: var(--ivy-primary-dark-color);
+        }
+    </style>
+</h:head>
+<h:body>
+    <div class="header">
+        <h1>Axon Ivy Portal</h1>
+    </div>
 
-    <h:body>
-        <ui:composition template="/layouts/frame-10-full-width.xhtml">
-            <ui:define name="content">
-                <div class="help-container">
-                    <h1>Help Documentation</h1>
-                    
-                    <div class="help-section">
-                        <h2>Getting Started</h2>
-                        <p>Welcome to the portal. This guide will help you get started with the basic features.</p>
-                    </div>
-                    
-                    <div class="help-section">
-                        <h2>Process Management</h2>
-                        <p>Learn how to start and manage processes within the portal.</p>
-                    </div>
-                    
-                    <div class="help-section">
-                        <h2>Task Management</h2>
-                        <p>Understand how to view and complete tasks assigned to you.</p>
-                    </div>
-                </div>
-            </ui:define>
-        </ui:composition>
-    </h:body>
-
-    </html>
+    <div class="content">
+        <div class="card">
+            <h2>Welcome</h2>
+            <p>Your journey with Axon Ivy starts here.<br />
+               Let's explore powerful workflows and process automation together.</p>
+            <a href="https://developer.axonivy.com/" class="button">Get Started</a>
+        </div>
+    </div>
+</h:body>
+</html>
 
 .. _static-page-best-practices:
 
 Best Practices
-===============
+==============
 
 File Organization
 -----------------
@@ -311,7 +315,4 @@ Security Considerations
 References
 ==========
 
-- `Static JSF Pages Documentation <https://developer.axonivy.com//doc/latest/designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_
-- `Portal Menu Configuration <customization-menu.html>`_
-- `User Menu Configuration <usermenu/index.html>`_
-- `PrimeFaces Documentation <https://www.primefaces.org/documentation/>`_
+- `Static JSF Pages Documentation <https://developer.axonivy.com/doc/12/designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_
