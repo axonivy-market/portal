@@ -5773,3 +5773,7 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-butto
 body.edit-mode {
   overflow: hidden;
 }
+
+.ui-focused:focus {
+  outline: 2px solid var(--ivy-primary-lightest-color) !important;
+}

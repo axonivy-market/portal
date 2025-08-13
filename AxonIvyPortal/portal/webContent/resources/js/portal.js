@@ -505,7 +505,7 @@ function initKeyboardShortcutsEnabledValue(value) {
 }
 
 $(document).ready(function () {
-
+  initFocusManagament(window);
   const shortcuts = {
     'Digit1': $(singleDashboardId).length ? singleDashboardId : multipleDashboardId,
     'Digit2': processItemId,
@@ -832,3 +832,118 @@ function setAltForAvatar() {
     }
   })
 }
+
+function initFocusManagament(targetWindow) {
+  if (!targetWindow || !targetWindow.PrimeFaces) {
+    return;
+  }
+  var lastFocusedElements = [];
+
+  // Dialog
+  if (targetWindow.PrimeFaces.widget.Dialog) {
+    var postShowEvent = targetWindow.PrimeFaces.widget.Dialog.prototype.postShow;
+    var onHideEvent = targetWindow.PrimeFaces.widget.Dialog.prototype.onHide;
+    
+    targetWindow.PrimeFaces.widget.Dialog.prototype.postShow = function() {
+      var containerId = this.cfg.id;
+      storeFocusedElement(targetWindow.document, lastFocusedElements, containerId);
+      postShowEvent.call(this);
+    };
+
+    targetWindow.PrimeFaces.widget.Dialog.prototype.onHide = function() {
+      var containerId = this.cfg.id;
+      restoreFocusedElement(targetWindow.document, lastFocusedElements, containerId);
+      onHideEvent.call(this);
+    };
+  }
+
+  // OverlayPanel
+  if (targetWindow.PrimeFaces.widget.OverlayPanel) {
+    var showEvent = targetWindow.PrimeFaces.widget.OverlayPanel.prototype.show;
+    var hideEvent = targetWindow.PrimeFaces.widget.OverlayPanel.prototype.hide;
+    
+    targetWindow.PrimeFaces.widget.OverlayPanel.prototype.show = function() {
+      var containerId = this.cfg.id;
+      storeFocusedElement(targetWindow.document, lastFocusedElements, containerId);
+      showEvent.call(this);
+    };
+
+    targetWindow.PrimeFaces.widget.OverlayPanel.prototype.hide = function() {
+      var containerId = this.cfg.id;
+      restoreFocusedElement(targetWindow.document, lastFocusedElements, containerId);
+      hideEvent.call(this);
+    };
+  }
+}
+
+function storeFocusedElement(targetDocument, focusElements, containerId) {
+  var currentElement = targetDocument.activeElement;
+  if (currentElement && currentElement !== targetDocument.body && currentElement.tagName !== 'HTML') {
+    var item = {"containerId": containerId, "activeElement": currentElement};
+    
+    if (focusElements.length === 0 || 
+        focusElements[focusElements.length - 1].containerId !== containerId ||
+        focusElements[focusElements.length - 1].activeElement !== currentElement) {
+      focusElements.push(item);
+    }
+  }
+}
+
+function restoreFocusedElement(targetDocument, focusElements, containerId) {
+  if (focusElements.length === 0) return;
+
+  const itemIndex = focusElements.findIndex(item => item.containerId === containerId);
+  
+  if (itemIndex === -1) {
+    focusOnFirstFocusableElement(targetDocument);
+    return;
+  }
+
+  const item = focusElements[itemIndex];
+  const lastEl = item.activeElement;
+  focusElements.splice(itemIndex, 1);
+
+  if (lastEl && 
+      targetDocument.contains(lastEl) && 
+      lastEl.offsetParent !== null && 
+      !lastEl.disabled && 
+      lastEl.tabIndex !== -1) {
+    lastEl.focus();
+  }
+}
+
+function initIframeFocusManagement(iframe) {
+  if (!iframe || !iframe.contentWindow) {
+    return;
+  }
+  
+  try {
+    var iframeWindow = iframe.contentWindow;
+    initFocusManagament(iframeWindow);
+    console.log('Focus management initialized for iframe');
+  } catch (e) {
+    console.warn('Cannot initialize focus management for iframe:', e.message);
+  }
+}
+
+function handleFocusOnElementsInCaseDetailsPanel() {
+  const caseInfoDialog = document.getElementById('case-info-dialog');
+  if (caseInfoDialog.innerHTML.includes('i-frame-case-details')) {
+    const iframe = document.getElementById('i-frame-case-details');
+    setTimeout(() => {
+      initIframeFocusManagement(iframe);
+    }, 2000)
+  }
+}
+
+function focusOnFirstFocusableElement(targetDocument) {
+    let visibleDialogs = $('.ui-dialog:visible');
+    let currentOpeningDialog = visibleDialogs[visibleDialogs.length - 1];
+    if (currentOpeningDialog) {
+        var focusableElements = currentOpeningDialog.querySelectorAll('input[type="text"], button');
+        if (focusableElements && focusableElements.length > 0) {
+          focusableElements[0].focus();
+        }
+    }
+}
+  
