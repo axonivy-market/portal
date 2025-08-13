@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-13 04:31+0000\n"
+"POT-Creation-Date: 2025-08-13 04:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -135,6 +135,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/introduction/index.rst:4
 #: ../../source/portal-developer-guide/static-page/index.rst:9
 #: ../../source/portal-developer-guide/usermenu/index.rst:9
+#: ../../source/portal-developer-guide/vibe-coding.rst:9
 msgid "Introduction"
 msgstr ""
 
@@ -3798,6 +3799,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:684
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:652
+#: ../../source/portal-developer-guide/vibe-coding.rst:82
 msgid "Conclusion"
 msgstr ""
 
@@ -10092,5 +10094,165 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/usermenu/index.rst:93
 msgid "Params are not required if the URL denotes an external webpage."
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:-1
+msgid ""
+"Learn about vibe code and how to maintain positive team energy in your "
+"workplace"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:-1
+msgid "vibe code, team culture, workplace energy, collaboration"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:2
+msgid "Vibe Code: Understanding Team Energy"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:11
+msgid ""
+"**Vibe code** refers to the unwritten rules and energy patterns that "
+"define how a team or organization operates. It encompasses the collective"
+" mood, communication style, and cultural norms that influence daily "
+"interactions."
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:14
+msgid "Core Principles"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:17
+msgid "Positive Energy"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:19
+msgid ""
+"Maintaining positive energy is essential for productive teamwork. This "
+"includes:"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:21
+msgid "Celebrating small wins and achievements"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:22
+msgid "Offering constructive feedback rather than criticism"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:23
+msgid "Supporting teammates during challenging periods"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:26
+msgid "Open Communication"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:28
+msgid "Transparent communication forms the backbone of good vibe code:"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:31
+msgid "Always assume positive intent when interpreting messages from colleagues."
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:33
+msgid "Share updates proactively"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:34
+msgid "Ask questions when something is unclear"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:35
+msgid "Listen actively to understand different perspectives"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:38
+msgid "Respect and Inclusion"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:40
+msgid "Creating an inclusive environment where everyone feels valued:"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:43
+msgid ""
+"Every team member's contribution matters, regardless of their role or "
+"seniority level."
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:46
+msgid "Building Your Vibe Code"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:49
+msgid "Step 1: Assess Current Culture"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:51
+msgid "Before improving your team's vibe code, evaluate the current state:"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:53
+msgid "Observe daily interactions and meeting dynamics"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:54
+msgid "Gather feedback through anonymous surveys"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:55
+msgid "Identify patterns in communication and collaboration"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:58
+msgid "Step 2: Define Desired Values"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:60
+msgid "Work together to establish clear values:"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:70
+msgid "Maintaining Positive Vibes"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:73
+msgid "Regular Check-ins"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:75
+msgid "What's working well in our team dynamic"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:76
+msgid "Areas where we can improve our collaboration"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:79
+msgid ""
+"Ignoring team culture issues can lead to decreased productivity and "
+"higher turnover rates."
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:84
+msgid ""
+"A strong vibe code doesn't happen overnight. It requires intentional "
+"effort, consistent reinforcement, and regular evaluation. When teams "
+"invest in their collective energy and culture, they create an environment"
+" where everyone can thrive."
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:88
+msgid ":doc:`team_communication_guide`"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:89
+msgid ":doc:`remote_work_culture`"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:90
+msgid ":doc:`conflict_resolution_strategies`"
 msgstr ""
 
