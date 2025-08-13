@@ -39,5 +39,14 @@ public class DateTimePatternBean implements Serializable {
   public boolean getIsTimeHidden() {
     return dateTimePatternService.isTimeHidden();
   }
+  
+  public String getShortDatePattern() {
+    return dateTimePatternService.getDatePatternForDatePicker();
+  }
+
+  public String getShortDateTimePattern(boolean isDateFilter) {
+    return dateTimePatternService.getDateTimePatternForDatePicker(isDateFilter);
+  }
+
 
 }

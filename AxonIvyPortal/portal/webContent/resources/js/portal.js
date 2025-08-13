@@ -821,7 +821,6 @@ $(document).ready(function () {
 
   setAltForAvatar();
 });
-// End of accessibility for shortcuts navigation
 
 function setAltForAvatar() {
   $("div.has-avatar").each((index, item) => {
@@ -831,6 +830,41 @@ function setAltForAvatar() {
       $(imgTag).attr('alt', alt)
     }
   })
+}
+
+
+/**
+ * Focuses the first visible element matching the selector in a PrimeFaces overlay panel.
+ * @param {string} widgetVar - The widgetVar of the PrimeFaces overlay panel.
+ * @param {string} selector - The jQuery selector for the element(s) to focus.
+ */
+function focusFirstVisibleElementInPanel(widgetVar, selector) {
+  var panel = PF(widgetVar).jq;  
+  var first;
+  var destructionWords = ['remove', 'destroy', 'delete', 'confirmation', 'confirm', 'deletion', 'reset'];
+  
+  if (destructionWords.some(word => widgetVar.includes(word))) {
+    first = panel.find('a').first();
+  } else {
+  	first = panel.find(selector).first();
+  }
+  
+  if (first.length) {
+    first.focus();
+  }
+}
+
+function focusElementWithId(elementId) {
+    var element = document.querySelector('[id$="' + elementId + '"]');
+    if (element) { element.focus(); }
+}
+
+function addMissingAttr(query, attrName, attrValue) {
+  $(query).each((index, btn) => {
+    if ($(btn).attr(attrName) === undefined) {
+      $(btn).attr(attrName, attrValue);
+    }
+  });
 }
 
 function initFocusManagament(targetWindow) {
@@ -940,4 +974,5 @@ function focusOnFirstFocusableElement() {
         focusableElement?.focus();
     }
 }
-  
+
+// END: FIX ACCESSIBILITY ISSUES  

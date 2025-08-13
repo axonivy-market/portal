@@ -1,9 +1,9 @@
-.. _static-page:
+.. _static-page-ja:
 
 Static Pages
 ************
 
-.. _static-page-introduction:
+.. _static-page-introduction-ja:
 
 Introduction
 ============
@@ -12,7 +12,7 @@ Static pages in Axon Ivy Portal allow developers to create custom JSF pages that
 
 Static pages are JSF (JavaServer Faces) pages that use the portal's layout templates and styling, providing a consistent user experience while allowing for custom content.
 
-.. _static-page-creation:
+.. _static-page-creation-ja:
 
 Creating Static Pages
 =====================
@@ -80,7 +80,7 @@ Portal provides several layout templates you can use:
 
 Choose the appropriate template based on your content needs.
 
-.. _static-page-integration:
+.. _static-page-integration-ja:
 
 Integrating Static Pages into Portal
 ====================================
@@ -171,7 +171,7 @@ Parameters:
 - **permissions**: Array of roles or users who can see this item
 - **url**: Path to your static page
 
-.. _static-page-url-conversion:
+.. _static-page-url-conversion-ja:
 
 URL Conversion
 --------------
@@ -188,7 +188,7 @@ The conversion formula:
 
     {baseUrl}?relativeUrl=/{applicationName}/faces/view/{PM}/{staticPage}
 
-.. _static-page-examples:
+.. _static-page-examples-ja:
 
 Examples
 ========
@@ -281,7 +281,7 @@ Create a simple information page with custom styling:
     </h:body>
     </html>
 
-.. _static-page-best-practices:
+.. _static-page-best-practices-ja:
 
 Best Practices
 ==============
@@ -310,7 +310,7 @@ Security Considerations
 - Sanitize any dynamic content
 - Follow portal security guidelines
 
-.. _static-page-references:
+.. _static-page-references-ja:
 
 References
 ==========

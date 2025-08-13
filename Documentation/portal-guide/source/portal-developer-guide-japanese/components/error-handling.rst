@@ -41,7 +41,7 @@ Ajax エラーの処理
       この機能は、ポータルのデフォルトのテンプレート（ ``BasicTemplate`` ）またはその拡張バージョンを使用している場合のみ、利用可能です。
       
 
-.. _components-error-handling-ajax-error-handling-result:
+.. _components-error-handling-ajax-error-handling-result-ja:
 
 結果
 ^^^^^^
