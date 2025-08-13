@@ -1,4 +1,4 @@
-.. _portal-document:
+.. _portal-document-ja:
 
 開発者ガイド
 *********************
