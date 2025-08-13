@@ -29,6 +29,9 @@ jobs:
         run: |
           docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
             generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=ja
+          
+          docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
+                      generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=de
       - name: Locale Diff
         id: locale-diff
         working-directory: Documentation/portal-guide
