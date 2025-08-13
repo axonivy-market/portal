@@ -316,5 +316,3 @@ References
 ==========
 
 - `Static JSF Pages Documentation <https://developer.axonivy.com/doc/12/designer-guide/user-interface/static-jsf-pages.html#static-jsf-pages>`_
-- `Portal Menu Configuration <customization-menu.html>`_
-- `User Menu Configuration <usermenu/index.html>`_
