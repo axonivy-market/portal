@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-13 06:55+0000\n"
+"POT-Creation-Date: 2025-08-13 07:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -10204,6 +10204,10 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/vibe-coding.rst:55
 msgid "Identify patterns in communication and collaboration"
+msgstr ""
+
+#: ../../source/portal-developer-guide/vibe-coding.rst:57
+msgid "4. Add Content Here"
 msgstr ""
 
 #: ../../source/portal-developer-guide/vibe-coding.rst:59
