@@ -39,7 +39,7 @@ jobs:
         working-directory: Documentation/portal-guide
         run: |
           echo "LOCALE_DIFF<<EOF" >> $GITHUB_ENV
-          git --no-pager status -s weblate/locale/* >> $GITHUB_ENV
+          git --no-pager status -s /tmp/filtered-docs/weblate/locale/* >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
       - name: Create Pull Request
         if: ${{ env.LOCALE_DIFF != '' }}

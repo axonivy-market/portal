@@ -72,8 +72,6 @@ Maintaining Positive Vibes
 Regular Check-ins
 ~~~~~~~~~~~~~~~~~
 
-Schedule monthly team retrospectives to discuss:
-
 * What's working well in our team dynamic
 * Areas where we can improve our collaboration
 * Action items to enhance our vibe code
