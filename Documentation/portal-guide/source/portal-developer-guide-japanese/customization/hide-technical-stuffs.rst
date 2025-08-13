@@ -1,7 +1,7 @@
 .. _customization-hideTechnicalStuffs-ja:
 
 テクニカル要素の非表示
-=================================================
+===========================================
 
 Ivy の ``PortalHiddenTaskCaseExcluded`` の値によって、非表示のタスクとケースが表示（ ``FALSE`` ）または非表示（ ``TRUE`` ）になります。
 デフォルト値は ``TRUE`` です。
@@ -15,8 +15,7 @@ Ivy の ``PortalHiddenTaskCaseExcluded`` の値によって、非表示のタス
 ロールをテクニカルロールとしてマークするには、そのロールの任意の値で ``HIDE`` プロパティを設定します。
 
 
-.. admonition::
-   ポータルのユーティリティメソッドの使用
+.. admonition:: ポータルのユーティリティメソッドの使用
       
       - プロパティの設定：
          com.axonivy.portal.components.util.RoleAPI.setProperty([自分のロール], ch.ivy.addon.portalkit.enums.AdditionalProperty.HIDE.toString(), "HIDE")
@@ -25,14 +24,13 @@ Ivy の ``PortalHiddenTaskCaseExcluded`` の値によって、非表示のタス
 
 
 テクニカルタスクの非表示
-------------------------------------------
+----------------------------------------------------
 
 テクニカルタスクは、ポータルのタスクリストに表示されません。
 
 タスクをテクニカルタスクとしてマークするには、以下のいずれかの方法に従います。
 
-.. admonition:: 
-   ポータルの TaskAPI のユーティリティメソッドの使用
+.. admonition:: ポータルの TaskAPI のユーティリティメソッドの使用
 
       プロジェクトがポータルに依存する場合
 
@@ -41,8 +39,7 @@ Ivy の ``PortalHiddenTaskCaseExcluded`` の値によって、非表示のタス
       - 設定の取り消し：
          com.axonivy.portal.components.util.TaskAPI.removeHidePropertyToDisplayInPortal(ITask)
 
-.. admonition:: 
-   ITask API のカスタムフィールドの使用
+.. admonition:: ITask API のカスタムフィールドの使用
 
       タスクエディターを開き、 ``Custom Fields`` セクションを展開します。
 
@@ -54,7 +51,7 @@ Ivy の ``PortalHiddenTaskCaseExcluded`` の値によって、非表示のタス
       |hide-technical-task|
 
 テクニカルケースの非表示
-------------------------------------------
+----------------------------------------------------
 
 テクニカルケースは、ポータルのケースリストに表示されません。
 
@@ -63,22 +60,20 @@ Ivy の ``PortalHiddenTaskCaseExcluded`` の値によって、非表示のタス
 
 ケースをテクニカルケースとしてマークするには、以下のいずれかの方法に従います。
 
-.. admonition::
-   ポータルの CaseAPI のユーティリティメソッドの使用
+.. admonition:: ポータルの CaseAPI のユーティリティメソッドの使用
 
       プロジェクトがポータルに依存する場合
 
-      テクニカルケースの設定：
+      - テクニカルケースの設定：
          com.axonivy.portal.components.publicapi.CaseAPI.setHidePropertyToHideInPortal(ICase)
       - 設定の取り消し：
          com.axonivy.portal.components.publicapi.CaseAPI.removeHidePropertyToDisplayInPortal(ICase)
 
-.. admonition::
-   ICase API のカスタムフィールドの使用
+.. admonition:: ICase API のカスタムフィールドの使用
 
-      ケースエディターを開き、 ``Custom Fields`` セクションを展開します。
+      ケースエディターを開き、``Custom Fields`` セクションを展開します。
 
-      テクニカルケースの設定：
+      - テクニカルケースの設定：
          ``HIDE`` という名前で ``STRING`` フィールドを定義します。値を ``HIDE`` に設定します。
       - 設定の取り消し：
          ``HIDE`` という名前のカスタム ``STRING`` フィールドを削除します。

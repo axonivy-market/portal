@@ -3,7 +3,7 @@
 ユーザーメニュー
 ===========================================
 
-.. _customization-user-menu-introduction:
+.. _customization-user-menu-introduction-ja:
 
 概要
 ------------
