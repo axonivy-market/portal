@@ -83,6 +83,7 @@ function loadDialogStreamlineIcon(clientId) {
     iconAnchor.className = "icon-selection-dialog-selecting-icon icon-color";
     iconAnchor.appendChild(iconImage);
     iconAnchor.title = iconCode;
+    iconAnchor.tabindex="0";
     iconAnchor.onclick = function() {
       updateSelectedIconDisplay(iconCode, "streamline", clientId);
       PF(selectionIconDialogId).hide();
@@ -119,7 +120,7 @@ function reloadArrayStreamlineIcon(clientId, currentIconCode) {
 
       iconAnchor.appendChild(iconImage);
       iconAnchor.title = iconCode;
-
+      iconAnchor.tabindex="0";
       iconAnchor.onclick = function() {
         updateSelectedIconDisplay(iconCode, "streamline", clientId);
         resetIconArrayStyle(container);
