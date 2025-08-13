@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-13 06:46+0000\n"
+"POT-Creation-Date: 2025-08-13 06:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -3799,7 +3799,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-case-widget.rst:684
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-task-widget.rst:652
-#: ../../source/portal-developer-guide/vibe-coding.rst:75
+#: ../../source/portal-developer-guide/vibe-coding.rst:74
 msgid "Conclusion"
 msgstr ""
 
@@ -10206,29 +10206,25 @@ msgstr ""
 msgid "Identify patterns in communication and collaboration"
 msgstr ""
 
-#: ../../source/portal-developer-guide/vibe-coding.rst:58
-msgid "Step 2: Define Desired Values"
-msgstr ""
-
-#: ../../source/portal-developer-guide/vibe-coding.rst:60
+#: ../../source/portal-developer-guide/vibe-coding.rst:59
 msgid "Work together to establish clear values:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/vibe-coding.rst:68
+#: ../../source/portal-developer-guide/vibe-coding.rst:67
 msgid "What's working well in our team dynamic"
 msgstr ""
 
-#: ../../source/portal-developer-guide/vibe-coding.rst:69
+#: ../../source/portal-developer-guide/vibe-coding.rst:68
 msgid "Areas where we can improve our collaboration"
 msgstr ""
 
-#: ../../source/portal-developer-guide/vibe-coding.rst:72
+#: ../../source/portal-developer-guide/vibe-coding.rst:71
 msgid ""
 "Ignoring team culture issues can lead to decreased productivity and "
 "higher turnover rates."
 msgstr ""
 
-#: ../../source/portal-developer-guide/vibe-coding.rst:77
+#: ../../source/portal-developer-guide/vibe-coding.rst:76
 msgid ""
 "A strong vibe code doesn't happen overnight. It requires intentional "
 "effort, consistent reinforcement, and regular evaluation. When teams "
@@ -10236,15 +10232,18 @@ msgid ""
 " where everyone can thrive."
 msgstr ""
 
-#: ../../source/portal-developer-guide/vibe-coding.rst:81
+#: ../../source/portal-developer-guide/vibe-coding.rst:80
 msgid ":doc:`team_communication_guide`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/vibe-coding.rst:82
+#: ../../source/portal-developer-guide/vibe-coding.rst:81
 msgid ":doc:`remote_work_culture`"
 msgstr ""
 
-#: ../../source/portal-developer-guide/vibe-coding.rst:83
+#: ../../source/portal-developer-guide/vibe-coding.rst:82
 msgid ":doc:`conflict_resolution_strategies`"
 msgstr ""
+
+#~ msgid "Step 2: Define Desired Values"
+#~ msgstr ""
 
