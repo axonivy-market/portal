@@ -30,7 +30,7 @@
 .. warning::
       実行するポータルは、セキュリティコンテキストごとに 1 つのみとすることを強く推奨します。
 
-.. _architecture-portal-components:
+.. _architecture-portal-components-ja:
 
 portal-components
 =================
