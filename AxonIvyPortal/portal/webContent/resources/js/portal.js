@@ -880,7 +880,7 @@ function storeFocusedElement(targetDocument, focusElements, containerId) {
   var currentElement = targetDocument.activeElement;
   if (currentElement && currentElement !== targetDocument.body && currentElement.tagName !== 'HTML') {
     var item = {"containerId": containerId, "activeElement": currentElement};
-    
+
     if (focusElements.length === 0 || 
         focusElements[focusElements.length - 1].containerId !== containerId ||
         focusElements[focusElements.length - 1].activeElement !== currentElement) {
@@ -895,19 +895,15 @@ function restoreFocusedElement(targetDocument, focusElements, containerId) {
   const itemIndex = focusElements.findIndex(item => item.containerId === containerId);
   
   if (itemIndex === -1) {
-    focusOnFirstFocusableElement(targetDocument);
+    focusOnFirstFocusableElement();
     return;
   }
 
   const item = focusElements[itemIndex];
-  const lastEl = item.activeElement;
+  const lastEl = targetDocument.getElementById(item.activeElement.id);
   focusElements.splice(itemIndex, 1);
 
-  if (lastEl && 
-      targetDocument.contains(lastEl) && 
-      lastEl.offsetParent !== null && 
-      !lastEl.disabled && 
-      lastEl.tabIndex !== -1) {
+  if (lastEl && targetDocument.contains(lastEl) && lastEl.offsetParent !== null && !lastEl.disabled && lastEl.tabIndex !== -1) {
     lastEl.focus();
   }
 }
