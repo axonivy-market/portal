@@ -936,14 +936,12 @@ function handleFocusOnElementsInCaseDetailsPanel() {
   }
 }
 
-function focusOnFirstFocusableElement(targetDocument) {
-    let visibleDialogs = $('.ui-dialog:visible');
-    let currentOpeningDialog = visibleDialogs[visibleDialogs.length - 1];
+function focusOnFirstFocusableElement() {
+    const currentOpeningDialog = $('.ui-dialog:visible').last()[0];
+    
     if (currentOpeningDialog) {
-        var focusableElements = currentOpeningDialog.querySelectorAll('input[type="text"], button');
-        if (focusableElements && focusableElements.length > 0) {
-          focusableElements[0].focus();
-        }
+        const focusableElement = currentOpeningDialog.querySelector('input[type="text"], button');
+        focusableElement?.focus();
     }
 }
   
