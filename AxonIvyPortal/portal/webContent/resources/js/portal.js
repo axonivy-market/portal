@@ -953,37 +953,20 @@ function storeFocusedElement(targetDocument, focusElements, containerId) {
 }
 
 function restoreFocusedElement(targetDocument, focusElements, containerId) {
-  if (focusElements.length > 0) {
-    var itemIndex = -1;
-    for (var i = focusElements.length - 1; i >= 0; i--) {
-      if (focusElements[i].containerId === containerId) {
+  if (focusElements.length === 0) return;
 
-        itemIndex = i;
-        break;
-      }
-    }
-    
-    if (itemIndex !== -1) {
-      var item = focusElements[itemIndex];
-      var lastEl = item.activeElement;
-      
-      focusElements.splice(itemIndex, 1);
+  const itemIndex = focusElements.findIndex(item => item.containerId === containerId);
+  if (itemIndex === -1) {
+    focusOnFirstFocusableElement();
+    return;
+  }
 
-      if (lastEl && targetDocument.contains(lastEl) && 
-          lastEl.offsetParent !== null && !lastEl.disabled && lastEl.tabIndex !== -1) {
-            
-        try {
-          lastEl.focus();
-        } catch(e) {
-          targetDocument.body.focus();
-        }
-      }
+  const item = focusElements[itemIndex];
+  const lastEl = targetDocument.getElementById(item.activeElement.id);
+  focusElements.splice(itemIndex, 1);
 
-      if (lastEl.id) {
-        lastEl = targetDocument.getElementById(lastEl.id);
-        focusElementWithId(lastEl.id);
-      }
-    }
+  if (lastEl && targetDocument.contains(lastEl) && lastEl.offsetParent !== null && !lastEl.disabled && lastEl.tabIndex !== -1) {
+    lastEl.focus();
   }
 }
 
@@ -1041,6 +1024,15 @@ function addEventForCaseDetailsIframe() {
 	  `;
     caseDetailsIframeDocument.head.appendChild(script);
   }
+}
+
+function focusOnFirstFocusableElement() {
+    const currentOpeningDialog = $('.ui-dialog:visible').last()[0];
+    
+    if (currentOpeningDialog) {
+        const focusableElement = currentOpeningDialog.querySelector('input[type="text"], button');
+        focusableElement?.focus();
+    }
 }
 
 // END ACCESSIBILITY FIX
