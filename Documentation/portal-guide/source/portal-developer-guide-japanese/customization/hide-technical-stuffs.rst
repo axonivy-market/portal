@@ -50,7 +50,6 @@ Ivy の ``PortalHiddenTaskCaseExcluded`` の値によって、非表示のタス
 
       |hide-technical-task|
 
-
 テクニカルケースの非表示
 ----------------------------------------------------
 
