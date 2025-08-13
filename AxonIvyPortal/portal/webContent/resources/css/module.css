@@ -4993,6 +4993,7 @@ body .process-compact-mode > .ui-fieldset-content {
   overflow: hidden;
   width: 100%;
   text-align: end;
+  padding: 2px;
 }
 
 .image-view-form .start-process > button > span, .image-process-actions > button > span{
@@ -5749,6 +5750,10 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page {
   border: transparent ;
   background: transparent;
   box-shadow: none;
+}
+
+body .ui-button.ui-widget.ui-no-rounded-button-process-page.ui-state-focus {
+  box-shadow: 0 0 0 0.2rem var(--ivy-primary-light-color);
 }
 
 body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-button {
