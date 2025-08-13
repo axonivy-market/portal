@@ -48,7 +48,7 @@ public class MenuTest extends BaseTest {
 
     MainMenuPage mainMenuPage = new MainMenuPage();
     String expected =
-        "Dashboard,Processes,Tasks,Cases,User Example Guide,Google,Testing link google,Testing example,A link,B link, Static page";
+        "Dashboard,Processes,Tasks,Cases,User Example Guide,Google,Testing link google,Testing example,A link,B link,Static page";
     assertEquals(expected, mainMenuPage.getMenuItemsAsString());
   }
 
