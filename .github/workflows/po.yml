@@ -19,15 +19,12 @@ jobs:
       - name: POT Templates
         working-directory: Documentation/portal-guide
         run: |
-          cat > .dockerignore << EOF
-          source/portal-components-japanese
-          source/portal-developer-guide-japanese
-          source/portal-user-guide-japanese
-          EOF
+          rm -r source/portal-components-japanese
+          rm -r source/portal-developer-guide-japanese
+          rm -r source/portal-user-guide-japanese
+          rm source/index.rst
 
           docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make gettext BASEDIR=/doc
-          
-          rm .dockerignore
       - name: Update PO Languages
         working-directory: Documentation/portal-guide
         run: |

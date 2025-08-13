@@ -69,7 +69,6 @@ Work together to establish clear values:
 Maintaining Positive Vibes
 --------------------------
 
-Regular Check-ins
 ~~~~~~~~~~~~~~~~~
 
 * What's working well in our team dynamic
