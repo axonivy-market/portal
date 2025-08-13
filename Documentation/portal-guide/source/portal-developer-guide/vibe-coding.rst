@@ -61,11 +61,6 @@ Work together to establish clear values:
 
 .. code-block:: text
 
-   Our Team Vibe Code:
-   - We communicate with kindness and clarity
-   - We celebrate diversity of thought and background
-   - We prioritize collective success over individual recognition
-
 --------------------------
 
 ~~~~~~~~~~~~~~~~~
