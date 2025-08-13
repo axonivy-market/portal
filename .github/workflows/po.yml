@@ -22,7 +22,6 @@ jobs:
           rm -r source/portal-components-japanese
           rm -r source/portal-developer-guide-japanese
           rm -r source/portal-user-guide-japanese
-          rm source/index.rst
 
           docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make gettext BASEDIR=/doc
       - name: Update PO Languages

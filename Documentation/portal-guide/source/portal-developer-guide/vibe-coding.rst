@@ -66,7 +66,6 @@ Work together to establish clear values:
    - We celebrate diversity of thought and background
    - We prioritize collective success over individual recognition
 
-Maintaining Positive Vibes
 --------------------------
 
 ~~~~~~~~~~~~~~~~~
