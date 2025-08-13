@@ -299,7 +299,7 @@
                 ariaLabel="#{ivy.cms.co('/Labels/Submit')}"
                 styleClass="w-full"
                 actionListener="#{sideStepProcessBean.handleSelectProcess()}"
-                oncomplete="if (!args.validationFailed) PF('side-step-process-dialog').hide();"
+                oncomplete="if (!args.validationFailed) {PF('side-step-process-dialog').hide();resetDataSideStep();}"
                 update="side-step-process-form"
                 form="side-step-process-form"/>
               <div class="w-full flex justify-content-center mt-2">
@@ -310,6 +310,7 @@
               </div>
             </div>
           </f:facet>
+          <p:remoteCommand name="resetDataSideStep" actionListener="#{sideStepProcessBean.resetData()}" process="@this" immediate="true" update="side-step-process-dialog"/>
         </p:dialog>
         <!-- END DIALOG TO CONFIGURE SIDE STEP PROCESSES -->
   

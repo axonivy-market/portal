@@ -2,48 +2,50 @@
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="data" type="com.axonivy.portal.developerexamples.dto.SideStepExampleDTO"/>
+  <cc:attribute name="tasks" type="java.util.List"/>
 </cc:interface>
 
 <cc:implementation>
 
-  <p:dialog visible="#{cc.attrs.data.completed}" id="side-step-result-dialog" resizable="false" closeOnEscape="true"
+  <p:dialog id="side-step-result-dialog" resizable="false" closeOnEscape="true" visible="#{sideStepExampleBean.isVisible(cc.attrs.tasks)}"
     header="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/SideStepResultExample/SideStepResult')}" 
-    width="650" widgetVar="side-step-result-dialog" appendTo="@(body)" modal="true"
+    width="650" widgetVar="side-step-result-dialog" appendTo="@(body)" modal="true" height="700"
     dynamic="true" responsive="true">
-    <h:form id="side-step-result-form" styleClass="ui-fluid">
-      <div class="grid">
-
-        <div class="field col-12">
-          <p:outputLabel for="assignee" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/SideStepResultExample/SideStepTaskIs')}" /> 
-          <p:inputText id="assignee"
-                value="#{cc.attrs.data.assignee}" disabled="true" styleClass="w-full" />
-        </div>
-
-        <h:panelGroup layout="block" styleClass="field col-12" rendered="#{not empty cc.attrs.data.askMoreDetails}">
-          <p:outputLabel value="Ask more details" /> 
-          <p:inputTextarea disabled="true"
-                value="#{cc.attrs.data.askMoreDetails}"  rows="5" styleClass="w-full" autoResize="false" />
-        </h:panelGroup>
-
-        <h:panelGroup layout="block" styleClass="field col-12" rendered="#{not empty cc.attrs.data.ceoApprovalComment}">
-          <p:outputLabel value="CEO Approval" /> 
-          <p:inputTextarea disabled="true"
-              value="#{cc.attrs.data.ceoApprovalComment}" rows="5" styleClass="w-full" autoResize="false" />
-        </h:panelGroup>
-
-        <h:panelGroup layout="block" styleClass="field col-12" rendered="#{not empty cc.attrs.data.customerToInform}">
-          <p:outputLabel value="Inform customer" /> 
-          <p:inputTextarea
-              disabled="true" value="#{cc.attrs.data.customerToInform}" rows="5" styleClass="w-full" autoResize="false" />
-        </h:panelGroup>
-
-      </div>
-    </h:form>
+    <h:panelGroup layout="block" rendered="#{not empty cc.attrs.tasks}">
+      <ui:repeat var="task" value="#{sideStepExampleBean.filterSideStepTaskList(cc.attrs.tasks)}" varStatus="count">
+          
+          <p:outputLabel value="Task #{count.index + 1}"/> 
+          
+          <div class="field col-12">
+            <p:outputLabel for="assignee" value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/SideStepResultExample/SideStepTaskIs')}" /> 
+            <p:inputText id="assignee"
+                  value="#{task.assignee}" disabled="true" styleClass="w-full" />
+          </div>
+    
+          <h:panelGroup layout="block" styleClass="field col-12" rendered="#{not empty task.askMoreDetails}">
+            <p:outputLabel value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/LeaveRequestBusinessDetailsPage/AskForMore')}" /> 
+            <p:inputTextarea disabled="true"
+                  value="#{task.askMoreDetails}"  rows="5" styleClass="w-full" autoResize="false" />
+          </h:panelGroup>
+    
+          <h:panelGroup layout="block" styleClass="field col-12" rendered="#{not empty task.ceoApprovalComment}">
+            <p:outputLabel value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/LeaveRequestBusinessDetailsPage/CEOApproval')}" /> 
+            <p:inputTextarea disabled="true"
+                value="#{task.ceoApprovalComment}" rows="5" styleClass="w-full" autoResize="false" />
+          </h:panelGroup>
+    
+          <h:panelGroup layout="block" styleClass="field col-12" rendered="#{not empty task.customerToInform}">
+            <p:outputLabel value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/LeaveRequestBusinessDetailsPage/InformCustomer')}" /> 
+            <p:inputTextarea
+                disabled="true" value="#{task.customerToInform}" rows="5" styleClass="w-full" autoResize="false" />
+          </h:panelGroup>
+      
+      </ui:repeat>
+    </h:panelGroup>
     <f:facet name="footer">
       <div class="flex justify-content-end gap-2">
-        <p:commandButton id="side-step-result-ok-button" value="OK" icon="pi pi-check" styleClass="p-button-primary"
-          onclick="PF('side-step-result-dialog').hide()" form="side-step-result-form" />
+        <p:commandButton id="side-step-result-ok-button" type="button" value="OK" icon="pi pi-check" styleClass="p-button-primary"
+          onclick="PF('side-step-result-dialog').hide()" />
       </div>
     </f:facet>
   </p:dialog>

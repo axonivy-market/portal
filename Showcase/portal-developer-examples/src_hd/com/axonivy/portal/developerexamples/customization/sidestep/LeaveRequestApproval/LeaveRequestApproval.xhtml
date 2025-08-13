@@ -70,7 +70,7 @@
       </h:form>
       <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="1" />
   
-      <ic:com.axonivy.portal.developerexamples.customization.sidestep.SideStepResultExample data="#{data.leaveRequestData.sideStep2}" />
+      <ic:com.axonivy.portal.developerexamples.customization.sidestep.SideStepResultExample tasks="#{data.leaveRequestData.sideStepTasks}"/>
     </ui:define>
   </ui:composition>
 </h:body>

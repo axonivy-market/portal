@@ -130,6 +130,8 @@ Dialogs:
                 SideStepComment: TODO:Side step comment
               LeaveRequestSummary:
                 Finish: 完了
+              SideStepAskMoreDetails:
+                MoreDetailsFor: More details for leave request
               SideStepCEOApproval:
                 CEOApproval: CEO approval
               SideStepExample:

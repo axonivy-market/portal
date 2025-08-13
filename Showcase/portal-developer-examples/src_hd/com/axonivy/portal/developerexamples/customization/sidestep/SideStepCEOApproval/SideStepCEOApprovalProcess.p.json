@@ -46,25 +46,11 @@
       "config" : {
         "output" : {
           "code" : [
-            "import org.apache.commons.lang3.StringUtils;",
-            "import com.axonivy.portal.developerexamples.dto.SideStepExampleDTO;",
-            "import com.axonivy.portal.components.util.CaseUtils;",
             "import ch.ivyteam.ivy.workflow.ICase;",
-            "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import com.axonivy.portal.components.dto.UserDTO;",
             "import com.axonivy.portal.developerexamples.LeaveRequest;",
             "",
             "ICase caze = ivy.wf.findCase(in.caseUuid);",
-            "in.leaveRequestData = ivy.repo.find(caze.getBusinessCase(), LeaveRequest.class) as LeaveRequest;",
-            "in.leaveRequestData.sideStep2 = new SideStepExampleDTO();",
-            "in.leaveRequestData.sideStep2.assignee = ivy.session.getSessionUserName();",
-            "",
-            "if (StringUtils.isNoneBlank(in.leaveRequestData.requesterUsername)){",
-            "  in.requester = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.requesterUsername));",
-            "}",
-            "if (StringUtils.isNoneBlank(in.leaveRequestData.approverUsername)){",
-            "  in.approver = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.approverUsername));",
-            "}"
+            "in.leaveRequestData = ivy.repo.find(caze.getBusinessCase(), LeaveRequest.class) as LeaveRequest;"
           ]
         },
         "sudo" : true
@@ -82,8 +68,18 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.developerexamples.dto.SideStepExampleDTO;",
             "import com.axonivy.portal.components.publicapi.SideStepAPI;",
-            "in.leaveRequestData.sideStep2.setCompleted(true);",
+            "",
+            "",
+            "SideStepExampleDTO dto = new SideStepExampleDTO();",
+            "",
+            "dto.setCeoApprovalComment(in.ceoApproval);",
+            "dto.setAssignee(ivy.session.getSessionUserName());",
+            "dto.setOriginalTaskUuid(in.originalTaskUuid);",
+            "dto.setCompleted(true);",
+            "",
+            "in.leaveRequestData.sideStepTasks.add(dto);",
             "SideStepAPI.handleSaveProcessData(in.leaveRequestData, in.originalTaskUuid, in.stepType);"
           ]
         },

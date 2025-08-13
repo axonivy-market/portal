@@ -27,9 +27,5 @@
     "name" : "securityMember",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "uuid",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
   } ]
 }

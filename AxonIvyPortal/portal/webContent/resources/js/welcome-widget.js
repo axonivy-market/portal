@@ -107,15 +107,23 @@ updatePreviewImageFit : function() {
   },
 
   updatePreviewTextColor : function() {
-    var previewDialog = $('#new-widget-configuration-dialog');
-    var findSelectedColor = previewDialog.find('.js-welcome-text-color');
-    if (findSelectedColor != undefined){
-      var selectedColor = findSelectedColor.get(0).value;
-      var findPreviewText = previewDialog.find('.js-preview-text');
-      if (findPreviewText != undefined){
-        findPreviewText.css({'color': selectedColor});
-      }	
+	try {
+		var previewDialog = $('#new-widget-configuration-dialog');
+		    var findSelectedColor = previewDialog.find('.js-welcome-text-color');
+		    if (findSelectedColor != undefined){
+		      var selectedColor = findSelectedColor.get(0).value;
+		      var findPreviewText = previewDialog.find('.js-preview-text');
+		      if (findPreviewText != undefined){
+		        findPreviewText.css({'color': selectedColor});
+		      }	
+			}			
+	} catch(error){
+		console.error("XXXXXXXXXXXXXXXXXXX" + error);	
+	} finally {
+		console.error('DONE WITH TRY CATCH');
 	}
+	
+	
   },
 
   updatePreviewTextColorDarkMode : function() {

@@ -17,7 +17,7 @@
 
             <div class="field col-12">
               <p:outputLabel for="requester" value="#{ivy.cms.co('/Labels/LeaveRequest/requester')}" />
-              <p:inputText id="requester" disabled="true" value="#{data.requester.displayName}" styleClass="w-full"/>
+              <p:inputText id="requester" disabled="true" value="#{data.leaveRequestData.requesterUsername}" styleClass="w-full"/>
             </div>
             <div class="field col-12">
               <p:outputLabel for="leave-type" value="#{ivy.cms.co('/Labels/LeaveRequest/leaveType')}" />
@@ -36,7 +36,7 @@
 
             <div class="field col-12">
               <p:outputLabel for="approver" value="#{ivy.cms.co('/Labels/LeaveRequest/approver')}" /> 
-              <p:inputText id="approver" value="#{data.approver.displayName}" disabled="true" styleClass="w-full" />
+              <p:inputText id="approver" value="#{data.leaveRequestData.approverUsername}" disabled="true" styleClass="w-full" />
             </div>
 
             <div class="field col-12">
@@ -54,9 +54,9 @@
 
             <div class="field col-12">
               <p:outputLabel for="approver-comment"
-                  value="More details for leave request" /> 
+                  value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/LeaveRequestBusinessDetailsPage/AskForMore')}" /> 
               <p:inputTextarea
-                  id="approver-comment" value="#{data.leaveRequestData.sideStep1.askMoreDetails}"
+                  id="approver-comment" value="#{data.leaveRequestDetails}"
                   rows="5" styleClass="w-full" autoResize="false" />
             </div>
 

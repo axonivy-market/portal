@@ -18,9 +18,6 @@ public class SideStepProcessDTO implements Serializable {
   private static final long serialVersionUID = 1L;
   private String signal;
   private String processName;
-  private String caseUuid;
-  private String taskUuid;
-  private String originalTaskUuid;
   private Map<String, Object> params;
   private String securityMembersCallable;
 
@@ -29,10 +26,7 @@ public class SideStepProcessDTO implements Serializable {
 
   private SideStepProcessDTO(Builder builder) {
     this.signal = builder.signal;
-    this.caseUuid = builder.caseUuid;
-    this.taskUuid = builder.taskUuid;
     this.processName = builder.processName;
-    this.originalTaskUuid = builder.originalTaskUuid;
     this.params = builder.params;
     this.securityMembersCallable = builder.securityMembersCallable;
   }
@@ -43,22 +37,6 @@ public class SideStepProcessDTO implements Serializable {
 
   public String getSignal() {
     return signal;
-  }
-
-  public String getCaseUuid() {
-    return caseUuid;
-  }
-
-  public String getTaskUuid() {
-    return taskUuid;
-  }
-
-  public String getOriginalTaskUuid() {
-    return originalTaskUuid;
-  }
-
-  public void setOriginalTaskUuid(String originalTaskUuid) {
-    this.originalTaskUuid = originalTaskUuid;
   }
 
   public Map<String, Object> getParams() {
@@ -75,10 +53,7 @@ public class SideStepProcessDTO implements Serializable {
 
   public static class Builder {
     private String signal;
-    private String caseUuid;
-    private String taskUuid;
     private String processName;
-    private String originalTaskUuid;
     private String securityMembersCallable;
     private Map<String, Object> params;
 
@@ -97,21 +72,6 @@ public class SideStepProcessDTO implements Serializable {
       return this;
     }
 
-    public Builder caseUuid(String caseUuid) {
-      this.caseUuid = caseUuid;
-      return this;
-    }
-
-    public Builder taskUuid(String taskUuid) {
-      this.taskUuid = taskUuid;
-      return this;
-    }
-
-    public Builder originalTaskUuid(String originalTaskUuid) {
-      this.originalTaskUuid = originalTaskUuid;
-      return this;
-    }
-
     public Builder params(Map<String, Object> params) {
       this.params = params;
       return this;
@@ -125,9 +85,6 @@ public class SideStepProcessDTO implements Serializable {
     private void validate() {
       if (StringUtils.isBlank(signal)) {
         throw new IllegalArgumentException("Signal must be provided");
-      }
-      if (StringUtils.isBlank(taskUuid) && StringUtils.isBlank(caseUuid)) {
-        throw new IllegalArgumentException("Task uuid or Case uuid must be provided");
       }
     }
   }

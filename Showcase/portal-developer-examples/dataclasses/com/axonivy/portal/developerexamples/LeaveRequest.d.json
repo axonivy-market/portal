@@ -40,16 +40,7 @@
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "sideStep1",
-    "type" : "com.axonivy.portal.developerexamples.dto.SideStepExampleDTO",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "sideStep2",
-    "type" : "com.axonivy.portal.developerexamples.dto.SideStepExampleDTO",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "sideStep3",
-    "type" : "com.axonivy.portal.developerexamples.dto.SideStepExampleDTO",
-    "modifiers" : [ "PERSISTENT" ]
+    "name" : "sideStepTasks",
+    "type" : "List<com.axonivy.portal.developerexamples.dto.SideStepExampleDTO>"
   } ]
 }

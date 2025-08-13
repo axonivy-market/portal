@@ -101,8 +101,8 @@
             "params1.put(\"taskUuid\", task.uuid());",
             "",
             "SideStepProcessDTO dto1 = SideStepProcessDTO.builder()",
-            "  .taskUuid(task.uuid())",
-            "  .caseUuid(caze.uuid())",
+            "//  .taskUuid(task.uuid())",
+            "//  .caseUuid(caze.uuid())",
             "  .processName(\"Side step 1: Ask more details\")",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:askMoreDetails\")",
             "  .params(params1)",
@@ -115,8 +115,8 @@
             "params2.put(\"taskUuid\", task.uuid());",
             "",
             "SideStepProcessDTO dto2 = SideStepProcessDTO.builder()",
-            "  .taskUuid(task.uuid())",
-            "  .caseUuid(caze.uuid())",
+            "//  .taskUuid(task.uuid())",
+            "//  .caseUuid(caze.uuid())",
             "  .processName(\"Side step 2: CEO Approval\")",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:CEOApproval\")",
             "  .params(params2)",
@@ -134,7 +134,8 @@
             "",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
             "",
-            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
+            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);",
+            "ivy.log.error(valueString);"
           ]
         },
         "output" : {
@@ -187,8 +188,8 @@
             "params.put(\"caseUuid\", caze.uuid());",
             "",
             "SideStepProcessDTO dto = SideStepProcessDTO.builder()",
-            "  .taskUuid(task.uuid())",
-            "  .caseUuid(caze.uuid())",
+            "//  .taskUuid(task.uuid())",
+            "//  .caseUuid(caze.uuid())",
             "  .processName(\"Side step: Inform Customer\")",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:informCustomer\")",
             "  .params(params)",
@@ -206,7 +207,8 @@
             "",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
             "",
-            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
+            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);",
+            "ivy.log.error(valueString);"
           ]
         }
       },
@@ -475,7 +477,7 @@
             "params1.put(\"stepId\", \"1\");",
             "",
             "SideStepProcessDTO dto1 = SideStepProcessDTO.builder()",
-            "  .caseUuid(caze.uuid())",
+            "//  .caseUuid(caze.uuid())",
             "  .processName(\"Side step 1: Ask more details\")",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:askMoreDetails\")",
             "  .params(params1)",
@@ -487,7 +489,7 @@
             "params2.put(\"caseUuid\", caze.uuid());",
             "",
             "SideStepProcessDTO dto2 = SideStepProcessDTO.builder()",
-            "  .caseUuid(caze.uuid())",
+            "//  .caseUuid(caze.uuid())",
             "  .processName(\"Side step 2: CEO Approval\")",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:CEOApproval\")",
             "  .params(params2)",
@@ -498,7 +500,7 @@
             "params3.put(\"stepId\", \"3\");",
             "",
             "SideStepProcessDTO dto3 = SideStepProcessDTO.builder()",
-            "  .caseUuid(caze.uuid())",
+            "//  .caseUuid(caze.uuid())",
             "  .processName(\"Side step 3: Inform Customer\")",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:informCustomer\")",
             "  .params(params3)",
@@ -518,7 +520,8 @@
             "",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
             "",
-            "caze.customFields().textField(CustomFields.SIDE_STEP_CASE).set(valueString);"
+            "caze.customFields().textField(CustomFields.SIDE_STEP_CASE).set(valueString);",
+            "ivy.log.error(valueString);"
           ]
         }
       },

@@ -16,23 +16,15 @@
     "type" : "com.axonivy.portal.developerexamples.LeaveRequest",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "requester",
-    "type" : "com.axonivy.portal.components.dto.UserDTO",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "approver",
-    "type" : "com.axonivy.portal.components.dto.UserDTO",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
-    "name" : "isValid",
-    "type" : "Boolean",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
     "name" : "stepType",
     "type" : "com.axonivy.portal.components.enums.SideStepType",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "comment",
+    "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "informCustomer",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   } ]

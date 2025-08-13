@@ -14,6 +14,8 @@
         "output" : {
           "map" : { },
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityMember;",
+            "import com.axonivy.portal.components.util.SecurityMemberUtils;",
             "import java.util.Arrays;",
             "import com.axonivy.portal.components.enums.SideStepType;",
             "import com.axonivy.portal.components.dto.SideStepProcessParam;",
@@ -28,14 +30,14 @@
             "",
             "// custom params",
             "Map params = data.getSideStepDto().getParams();",
-            "out.originalTaskUuid = data.getSideStepDto().getOriginalTaskUuid();",
-            "out.originalCaseUuid = data.getSideStepDto().getCaseUuid();",
+            "out.originalTaskUuid = data.getSideStepDto().getParams().get(\"taskUuid\") as String;",
+            "out.originalCaseUuid = data.getSideStepDto().getParams().get(\"caseUuid\") as String;",
             "",
             "// required fields",
-            "out.securityMember = data.getMemberName();",
+            "ISecurityMember member = ivy.security.members().findById(data.getSecurityMemberId());",
+            "out.securityMember = member != null ? member.getMemberName() : \"\";",
             "out.comment = data.getComment();",
-            "out.stepType = data.getSelectedStepType();",
-            "ivy.log.warn(\"steptype {0}\", data);"
+            "out.stepType = data.getSelectedStepType();"
           ]
         }
       },

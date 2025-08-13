@@ -142,6 +142,8 @@ Dialogs:
                 SideStepComment: Comentario sobre el paso lateral
               LeaveRequestSummary:
                 Finish: Acabar
+              SideStepAskMoreDetails:
+                MoreDetailsFor: More details for leave request
               SideStepCEOApproval:
                 CEOApproval: CEO approval
               SideStepExample:

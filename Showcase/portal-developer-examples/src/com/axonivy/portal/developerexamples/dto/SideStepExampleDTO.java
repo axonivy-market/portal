@@ -1,6 +1,7 @@
 package com.axonivy.portal.developerexamples.dto;
 
 public class SideStepExampleDTO {
+  private String originalTaskUuid;
   private String assignee;
   private boolean isCompleted;
   
@@ -46,6 +47,14 @@ public class SideStepExampleDTO {
 
   public void setAskMoreDetails(String askMoreDetails) {
     this.askMoreDetails = askMoreDetails;
+  }
+
+  public String getOriginalTaskUuid() {
+    return originalTaskUuid;
+  }
+
+  public void setOriginalTaskUuid(String originalTaskUuid) {
+    this.originalTaskUuid = originalTaskUuid;
   }
 
 }

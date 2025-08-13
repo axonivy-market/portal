@@ -9,13 +9,13 @@ Introduction
 ------------
 
 Side-step processes let you attach one or more auxiliary workflow steps to an existing business process in Axon Ivy Portal without touching the core flow. 
-At runtime the Portal reads a JSON definition from the custom field ``sideStepTask`` (task scope) or ``sideStepCase`` (case scope), shows the available side steps in the task action menu and launches them either
+At runtime Portal reads a JSON definition from the custom field ``sideStepTask`` (task scope) or ``sideStepCase`` (case scope), shows the available side steps in the task action menu and launches them either
 
 - Synchronously - the main task pauses until the side step finishes, or
 
 - Asynchronously - the main task continues while the side step runs in parallel.
 
-The Portal delivers the framework (public APIs, DTOs and UI hooks); you design and own the actual side-step BPMN, dialogs, signals and business logic.
+Portal delivers the framework (public APIs, DTOs and UI hooks); you design and own the actual side-step BPMN, dialogs, signals and business logic.
   
 |side-step-menu|
 
@@ -141,15 +141,15 @@ How to Use and Set Up
 
 #. Start of the main task
 
-    When the user opens the task, the Portal reads the field and populates the task action menu with the configured side steps.
+    When the user opens the task, Portal reads the field and populates the task action menu with the configured side steps.
 
 #. User triggers a side step
 
-    The Portal launches your signal, passes the JSON parameters and, if synchronous, parks the original task until the side step completes in case user select ``SWITCH`` step type.
+    Portal launches your signal, passes the JSON parameters and, if synchronous, parks the original task until the side step completes in case user select ``SWITCH`` step type.
 
 #. Handle completion
 
-    On finish your side-step process must raise a done signal. The Portal reactivates the parked task, opens an optional Side-step result dialog that you can fully customize and writes any output data back to the task or case as needed.
+    On finish your side-step process must raise a done signal. Portal reactivates the parked task, opens an optional Side-step result dialog that you can fully customize and writes any output data back to the task or case as needed.
     |optional-side-step-result|
 
 

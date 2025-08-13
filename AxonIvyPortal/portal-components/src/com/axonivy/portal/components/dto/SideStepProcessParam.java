@@ -12,16 +12,16 @@ public class SideStepProcessParam implements Serializable{
    */
   private static final long serialVersionUID = -4988849644631374542L;
   private SideStepProcessDTO sideStepDto;
-  private String memberName;
+  private String securityMemberId;
   private SideStepType selectedStepType;
   private String comment;
 
   public SideStepProcessParam() {
   }
 
-  public SideStepProcessParam(SideStepProcessDTO sideStepDto, String memberName, SideStepType selectedStepType, String comment) {
+  public SideStepProcessParam(SideStepProcessDTO sideStepDto, String securityMemberId, SideStepType selectedStepType, String comment) {
     this.sideStepDto = sideStepDto;
-    this.setMemberName(memberName);
+    this.securityMemberId = securityMemberId;
     this.selectedStepType = selectedStepType;
     this.comment = comment;
   }
@@ -50,12 +50,13 @@ public class SideStepProcessParam implements Serializable{
     this.comment = comment;
   }
 
-  public String getMemberName() {
-    return memberName;
+  public String getSecurityMemberId() {
+    return securityMemberId;
   }
 
-  public void setMemberName(String memberName) {
-    this.memberName = memberName;
+  public void setSecurityMemberId(String securityMemberId) {
+    this.securityMemberId = securityMemberId;
   }
+
 
 }

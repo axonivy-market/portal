@@ -7,8 +7,6 @@
     <ui:define name="title">#{ivy.cms.co("/Labels/LeaveRequest/LeaveSteps/approvalResult")}</ui:define>
 
     <ui:define name="content">
-      <h:outputStylesheet library="css" name="leave-request-examples.css" />
-
       <h:form id="leave-request">
         <div class="card">
           <div class="grid">
@@ -66,7 +64,7 @@
       </h:form>
       <ic:com.axonivy.portal.components.IFrameTaskConfig processSteps="#{portalComponentUtilsBean.convertToJSON(data.steps)}" currentProcessStep="2" />
       
-      <ic:com.axonivy.portal.developerexamples.customization.sidestep.SideStepResultExample data="#{data.leaveRequestData.sideStep3}" />
+      <ic:com.axonivy.portal.developerexamples.customization.sidestep.SideStepResultExample tasks="#{data.leaveRequestData.sideStepTasks}"/>
     </ui:define>
   </ui:composition>
 </h:body>

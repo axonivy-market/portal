@@ -46,25 +46,11 @@
       "config" : {
         "output" : {
           "code" : [
-            "import org.apache.commons.lang3.StringUtils;",
-            "import com.axonivy.portal.developerexamples.dto.SideStepExampleDTO;",
-            "import com.axonivy.portal.components.util.CaseUtils;",
             "import ch.ivyteam.ivy.workflow.ICase;",
-            "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import com.axonivy.portal.components.dto.UserDTO;",
             "import com.axonivy.portal.developerexamples.LeaveRequest;",
             "",
             "ICase caze = ivy.wf.findCase(in.caseUuid);",
-            "in.leaveRequestData = ivy.repo.find(caze.getBusinessCase(), LeaveRequest.class) as LeaveRequest;",
-            "in.leaveRequestData.sideStep3 = new SideStepExampleDTO();",
-            "in.leaveRequestData.sideStep3.assignee = ivy.session.getSessionUserName();",
-            "",
-            "if (StringUtils.isNoneBlank(in.leaveRequestData.requesterUsername)){",
-            "  in.requester = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.requesterUsername));",
-            "}",
-            "if (StringUtils.isNoneBlank(in.leaveRequestData.approverUsername)){",
-            "  in.approver = new UserDTO(ISecurityContext.current().users().find(in.leaveRequestData.approverUsername));",
-            "}"
+            "in.leaveRequestData = ivy.repo.find(caze.getBusinessCase(), LeaveRequest.class) as LeaveRequest;"
           ]
         },
         "sudo" : true
@@ -86,59 +72,8 @@
         "at" : { "x" : 96, "y" : 264 }
       },
       "connect" : [
-        { "id" : "f9", "to" : "f10" }
+        { "id" : "f9", "to" : "f16" }
       ]
-    }, {
-      "id" : "f10",
-      "type" : "Script",
-      "name" : "validation",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.util.FacesMessageUtils;",
-            "import javax.faces.application.FacesMessage;",
-            "import javax.faces.context.FacesContext;",
-            "in.isValid = in.leaveRequestData.from.compareTo(in.leaveRequestData.to) > 0? false : true;",
-            "if(!in.isValid) {",
-            "FacesContext.getCurrentInstance().validationFailed();",
-            "FacesContext.getCurrentInstance().addMessage(",
-            "          null,",
-            "          FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(",
-            "              \"/ch.ivy.addon.portalkit.ui.jsf/common/dateFromBiggerThanTo\"), null));",
-            "}"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 232, "y" : 264 }
-      },
-      "connect" : [
-        { "id" : "f11", "to" : "f12" }
-      ]
-    }, {
-      "id" : "f12",
-      "type" : "Alternative",
-      "name" : "valid?",
-      "config" : {
-        "conditions" : {
-          "f13" : "in.isValid"
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 360, "y" : 264 },
-        "labelOffset" : { "x" : 8, "y" : -16 }
-      },
-      "connect" : [
-        { "id" : "f13", "to" : "f16" },
-        { "id" : "f14", "to" : "f15" }
-      ]
-    }, {
-      "id" : "f15",
-      "type" : "HtmlDialogEnd",
-      "visual" : {
-        "at" : { "x" : 360, "y" : 360 }
-      }
     }, {
       "id" : "f16",
       "type" : "Script",
@@ -146,15 +81,24 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.developerexamples.dto.SideStepExampleDTO;",
             "import com.axonivy.portal.components.publicapi.SideStepAPI;",
-            "in.leaveRequestData.sideStep3.setCompleted(true);",
+            "",
+            "",
+            "SideStepExampleDTO dto = new SideStepExampleDTO();",
+            "dto.setCustomerToInform(in.informCustomer);",
+            "dto.setAssignee(ivy.session.getSessionUserName());",
+            "dto.setOriginalTaskUuid(in.originalTaskUuid);",
+            "dto.setCompleted(true);",
+            "",
+            "in.leaveRequestData.sideStepTasks.add(dto);",
             "SideStepAPI.handleSaveProcessData(in.leaveRequestData, in.originalTaskUuid, in.stepType);"
           ]
         },
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 488, "y" : 264 }
+        "at" : { "x" : 328, "y" : 264 }
       },
       "connect" : [
         { "id" : "f17", "to" : "f18" }
@@ -163,7 +107,7 @@
       "id" : "f18",
       "type" : "HtmlDialogExit",
       "visual" : {
-        "at" : { "x" : 616, "y" : 264 }
+        "at" : { "x" : 488, "y" : 264 }
       }
     }, {
       "id" : "f19",

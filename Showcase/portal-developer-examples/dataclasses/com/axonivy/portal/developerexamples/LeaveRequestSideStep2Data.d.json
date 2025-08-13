@@ -4,10 +4,6 @@
   "namespace" : "com.axonivy.portal.developerexamples",
   "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "uuid",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
     "name" : "securityMember",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
@@ -20,16 +16,16 @@
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "originalCaseUuid",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
     "name" : "comment",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "stepType",
     "type" : "com.axonivy.portal.components.enums.SideStepType",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "originalCaseUuid",
+    "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   } ]
 }

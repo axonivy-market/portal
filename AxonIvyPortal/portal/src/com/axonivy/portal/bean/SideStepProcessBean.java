@@ -75,10 +75,9 @@ public class SideStepProcessBean implements Serializable {
     this.selectedProcess = selectedProcess;
     this.isUserDelegated = true;
     if (task != null && selectedProcess != null) {
-      if (selectedProcess.getOriginalTaskUuid() == null) {
-        selectedProcess.setOriginalTaskUuid(task.uuid());
+      if (selectedProcess.getParams() != null) {
+        selectedProcess.getParams().put("taskUuid", task.uuid());
       }
-
       String securityMembersCallable = selectedProcess.getSecurityMembersCallable();
 
       List<RoleDTO> userRolesDTO = new ArrayList<>();
@@ -145,8 +144,8 @@ public class SideStepProcessBean implements Serializable {
       } else {
         delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(assignedRole);
       }
-      String memberName = delegatedSecurityMember != null ? delegatedSecurityMember.getMemberName() : "";
-      SideStepProcessParam param = new SideStepProcessParam(selectedProcess, memberName, selectedStepType, comment);
+      String securityMemberId = delegatedSecurityMember != null ? delegatedSecurityMember.getSecurityMemberId() : "";
+      SideStepProcessParam param = new SideStepProcessParam(selectedProcess, securityMemberId, selectedStepType, comment);
       String jsonSerializedPayload = BusinessEntityConverter.entityToJsonValue(param);
       Ivy.wf().signals().create().data(jsonSerializedPayload).send(selectedProcess.getSignal());
       if (selectedStepType == SideStepType.SWITCH) {
@@ -154,10 +153,19 @@ public class SideStepProcessBean implements Serializable {
         TaskAPI.setHidePropertyToHideInPortal(task);
         PortalNavigatorInFrameAPI.navigateToPortalHome();
       }
-      String message = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/SideStep/NewSideStepMessage", Arrays.asList(task.getName(), memberName));
+      String message = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/SideStep/NewSideStepMessage");
       FacesContext.getCurrentInstance().addMessage(GrowlMessageService.PORTAL_GLOBAL_GROWL_MESSAGE, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_INFO, message, null));
       PrimeFaces.current().ajax().update(GrowlMessageService.PORTAL_GLOBAL_GROWL);
     }
+  }
+  
+  public void resetData() {
+    this.selectedProcess = null;
+    this.selectedStepType = null;
+    this.assignedRole = null;
+    this.assignee = null;
+    this.isUserDelegated = true;
+    this.comment = "";
   }
 
   public void changeAssignType() {

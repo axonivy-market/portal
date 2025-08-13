@@ -4,10 +4,6 @@
   "namespace" : "com.axonivy.portal.developerexamples",
   "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "uuid",
-    "type" : "String",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
     "name" : "members",
     "type" : "java.util.List<String>",
     "modifiers" : [ "PERSISTENT" ]

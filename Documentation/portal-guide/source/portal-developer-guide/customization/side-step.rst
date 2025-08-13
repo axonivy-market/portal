@@ -149,13 +149,12 @@ How to Use and Set Up
 
 #. Handle completion
 
-    On finish your side-step process must raise a done signal. The Portal reactivates the parked task, opens an optional Side-step result dialog that you can fully customize and writes any output data back to the task or case as needed.
-    |optional-side-step-result|
+    On finish your side-step process must raise a done signal. The Portal reactivates the parked task, opens an optional Side-step result dialog that you can write output data back to the task or case as needed.
 
 
 .. |signal-process| image:: images/side-step/signal-process.png
 .. |side-step-sample-process| image:: images/side-step/side-step-sample-process.png
+.. |business-case-detail-page| image:: images/side-step/business-case-detail-page.png
 .. |side-step-menu| image:: ../../screenshots/side-step/side-step-menu.png
 .. |side-step-config| image:: ../../screenshots/side-step/side-step-config.png
-.. |business-case-detail-page| image:: ../../screenshots/side-step/business-case-detail-page.png
-.. |optional-side-step-result| image:: ../../screenshots/side-step/optional-side-step-result.png
+
