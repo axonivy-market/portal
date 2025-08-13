@@ -5774,6 +5774,6 @@ body.edit-mode {
   overflow: hidden;
 }
 
-.ui-focused:focus {
-  outline: 2px solid var(--ivy-primary-lightest-color) !important;
+.ui-focused:focus{
+  outline: 0.2rem solid var(--ivy-primary-lightest-color) !important;
 }
