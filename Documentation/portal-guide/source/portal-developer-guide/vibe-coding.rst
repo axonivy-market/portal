@@ -54,7 +54,6 @@ Before improving your team's vibe code, evaluate the current state:
 2. Gather feedback through anonymous surveys
 3. Identify patterns in communication and collaboration
 
-Step 2: Define Desired Values
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Work together to establish clear values:
