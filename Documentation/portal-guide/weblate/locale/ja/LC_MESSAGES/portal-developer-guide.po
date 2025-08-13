@@ -8,17 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-13 07:18+0000\n"
+"POT-Creation-Date: 2025-08-13 08:10+0000\n"
 "PO-Revision-Date: 2025-08-13 07:50+0000\n"
 "Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
-"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
-"portal-le/portal-developer-guide/ja/>\n"
 "Language: ja\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-"
+"portal/portal-le/portal-developer-guide/ja/>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.13-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
@@ -10204,7 +10203,7 @@ msgid "Gather feedback through anonymous surveys"
 msgstr ""
 
 #: ../../source/portal-developer-guide/vibe-coding.rst:55
-msgid "Identify patterns in communication and collaboration"
+msgid "Identify patterns in communication and collaboration I Updated Here"
 msgstr ""
 
 #: ../../source/portal-developer-guide/vibe-coding.rst:57
@@ -10251,3 +10250,7 @@ msgstr ""
 
 #~ msgid "Step 2: Define Desired Values"
 #~ msgstr ""
+
+#~ msgid "Identify patterns in communication and collaboration"
+#~ msgstr ""
+
