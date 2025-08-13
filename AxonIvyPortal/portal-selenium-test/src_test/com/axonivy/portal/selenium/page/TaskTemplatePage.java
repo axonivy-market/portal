@@ -347,10 +347,10 @@ public class TaskTemplatePage extends TemplatePage {
   
   public void inputLeaveRequestInfo() {
     driver.switchTo().frame("iFrame");
-    LocalDate today = LocalDate.now();
-    LocalDate tomorrow = today.plusDays(1);
-    inputDate(today, "input[id*='leave-request:from_input']");
-    inputDate(tomorrow, "input[id*='leave-request:to_input']");
+//    LocalDate today = LocalDate.now();
+//    LocalDate tomorrow = today.plusDays(1);
+//    inputDate(today, "input[id*='leave-request:from_input']");
+//    inputDate(tomorrow, "input[id*='leave-request:to_input']");
     
     $("div[id='leave-request:approver']").shouldBe(clickable(), DEFAULT_TIMEOUT).click();
     $("ul[id='leave-request:approver_items']").$$("li").filter(Condition.text("Portal Admin User")).first().click();
