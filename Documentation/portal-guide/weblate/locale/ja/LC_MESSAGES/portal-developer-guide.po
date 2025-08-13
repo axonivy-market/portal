@@ -4,20 +4,21 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-13 07:18+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2025-08-13 07:50+0000\n"
+"Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-le/portal-developer-guide/ja/>\n"
 "Language: ja\n"
-"Language-Team: ja <LL@li.org>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.13-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
@@ -10208,7 +10209,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/vibe-coding.rst:57
 msgid "4. Add Content Here"
-msgstr ""
+msgstr "4. ここにコンテンツを追加してください。"
 
 #: ../../source/portal-developer-guide/vibe-coding.rst:59
 msgid "Work together to establish clear values:"
@@ -10250,4 +10251,3 @@ msgstr ""
 
 #~ msgid "Step 2: Define Desired Values"
 #~ msgstr ""
-
