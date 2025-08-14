@@ -873,51 +873,42 @@ function initFocusManagament(targetWindow) {
   }
   var lastFocusedElements = [];
 
-  // Dialog
-  if (targetWindow.PrimeFaces.widget.Dialog) {
-    var postShowEvent = targetWindow.PrimeFaces.widget.Dialog.prototype.postShow;
-    var onHideEvent = targetWindow.PrimeFaces.widget.Dialog.prototype.onHide;
-    
-    targetWindow.PrimeFaces.widget.Dialog.prototype.postShow = function() {
-      var containerId = this.cfg.id;
-      storeFocusedElement(targetWindow.document, lastFocusedElements, containerId);
-      postShowEvent.call(this);
-    };
-
-    targetWindow.PrimeFaces.widget.Dialog.prototype.onHide = function() {
-      var containerId = this.cfg.id;
-      restoreFocusedElement(targetWindow.document, lastFocusedElements, containerId);
-      onHideEvent.call(this);
-    };
-  }
-
   // OverlayPanel
   if (targetWindow.PrimeFaces.widget.OverlayPanel) {
-    var showEvent = targetWindow.PrimeFaces.widget.OverlayPanel.prototype.show;
-    var hideEvent = targetWindow.PrimeFaces.widget.OverlayPanel.prototype.hide;
-    
-    targetWindow.PrimeFaces.widget.OverlayPanel.prototype.show = function() {
-      var containerId = this.cfg.id;
-      storeFocusedElement(targetWindow.document, lastFocusedElements, containerId);
-      showEvent.call(this);
-    };
+    targetWindow.PrimeFaces.widget.OverlayPanel = targetWindow.PrimeFaces.widget.OverlayPanel.extend({
+        init: function(cfg) {
+          this._super(cfg);
 
-    targetWindow.PrimeFaces.widget.OverlayPanel.prototype.hide = function() {
-      var containerId = this.cfg.id;
-      restoreFocusedElement(targetWindow.document, lastFocusedElements, containerId);
-      hideEvent.call(this);
-    };
+          this.originalOnHide = cfg.onHide;
+          this.originalOnShow = cfg.onShow;
+          var self = this;
+
+          cfg.onShow = function() {
+            if (self.originalOnShow) {
+              self.originalOnShow.call(this);
+            }
+            let targetElement = this.targetElement[0];
+            storeFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id, targetElement);
+          };
+
+          cfg.onHide = function() {            
+              if (self.originalOnHide) {
+                  self.originalOnHide.call(this);
+              }
+              restoreFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id);
+          };
+      }
+    })
   }
 }
 
-function storeFocusedElement(targetDocument, focusElements, containerId) {
-  var currentElement = targetDocument.activeElement;
-  if (currentElement && currentElement !== targetDocument.body && currentElement.tagName !== 'HTML') {
-    var item = {"containerId": containerId, "activeElement": currentElement};
+function storeFocusedElement(targetDocument, focusElements, containerId, targetElement) {
+  if (targetElement && targetElement !== targetDocument.body && targetElement.tagName !== 'HTML') {
+    var item = {"containerId": containerId, "activeElement": targetElement};
 
     if (focusElements.length === 0 || 
         focusElements[focusElements.length - 1].containerId !== containerId ||
-        focusElements[focusElements.length - 1].activeElement !== currentElement) {
+        focusElements[focusElements.length - 1].activeElement !== targetElement) {
       focusElements.push(item);
     }
   }
@@ -927,7 +918,7 @@ function restoreFocusedElement(targetDocument, focusElements, containerId) {
   if (focusElements.length === 0) return;
 
   const itemIndex = focusElements.findIndex(item => item.containerId === containerId);
-  
+
   if (itemIndex === -1) {
     focusOnFirstFocusableElement();
     return;
