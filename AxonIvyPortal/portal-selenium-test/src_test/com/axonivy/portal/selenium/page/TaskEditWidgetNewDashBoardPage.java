@@ -315,6 +315,12 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
+  public SelenideElement getCaseOwnerFilterCheckBox() {
+    return $(
+        "div[id='widget-configuration-form:new-widget-configuration-component:current-by-case-owner-filter:boolean-field-input']")
+        .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
+  }
+
   public void clickOnQuickSearchCheckBox() {
     getQuickSearchCheckBox().click();
   }

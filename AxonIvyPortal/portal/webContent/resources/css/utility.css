@@ -347,6 +347,9 @@
   clear: both;
 }
 
+.ml-10p {
+    margin-left: 10% !important;
+}
 .MarTop0 {
   margin-top: 0 !important;
 }

@@ -92,6 +92,10 @@ Setting multiple languages for the widget title:
 
 |dashboard-multi-language-widget-dialog|
 
+  .. important::
+
+    ``Cases owned by current user`` filter is hidden by default. To make it visible, you need to set the ``Portal.Cases.EnableOwner`` setting to ``true`` in the :ref:`Admin Settings <update-portal-settings>`.
+
 **Table configuration panel**
 
 Edit the default sort order of the table rows by clicking on the column headers
