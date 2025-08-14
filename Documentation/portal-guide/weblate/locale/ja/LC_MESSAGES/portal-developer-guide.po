@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-14 03:10+0000\n"
+"POT-Creation-Date: 2025-08-14 09:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -38,36 +38,40 @@ msgstr ""
 #: ../../source/portal-developer-guide/architecture/index.rst:16
 msgid ""
 "The Portal and Projects using it should be deployed in different "
-"applications but in the same security context."
+"applications but in the same."
 msgstr ""
 
 #: ../../source/portal-developer-guide/architecture/index.rst:18
 msgid "|multi-app-structure|"
 msgstr ""
 
-#: ../../source/portal-developer-guide/architecture/index.rst:57
+#: ../../source/portal-developer-guide/architecture/index.rst:60
 msgid "multi-app-structure"
 msgstr ""
 
-#: ../../source/portal-developer-guide/architecture/index.rst:24
+#: ../../source/portal-developer-guide/architecture/index.rst:21
+msgid "Add New Content"
+msgstr ""
+
+#: ../../source/portal-developer-guide/architecture/index.rst:27
 msgid ""
 "The Portal App consists of the following modules: portal-components, "
 "portal."
 msgstr ""
 
-#: ../../source/portal-developer-guide/architecture/index.rst:26
+#: ../../source/portal-developer-guide/architecture/index.rst:29
 msgid "|process-module-structure|"
 msgstr ""
 
-#: ../../source/portal-developer-guide/architecture/index.rst:56
+#: ../../source/portal-developer-guide/architecture/index.rst:59
 msgid "process-module-structure"
 msgstr ""
 
-#: ../../source/portal-developer-guide/architecture/index.rst:28
+#: ../../source/portal-developer-guide/architecture/index.rst:31
 msgid "We highly recommend running only one portal per security context."
 msgstr ""
 
-#: ../../source/portal-developer-guide/architecture/index.rst:33
+#: ../../source/portal-developer-guide/architecture/index.rst:36
 #: ../../source/portal-developer-guide/deployment/index.rst:55
 #: ../../source/portal-developer-guide/deployment/index.rst:60
 #: ../../source/portal-developer-guide/installation/documents/class_replacement_9.4.csv:1
@@ -75,11 +79,11 @@ msgstr ""
 msgid "portal-components"
 msgstr ""
 
-#: ../../source/portal-developer-guide/architecture/index.rst:35
+#: ../../source/portal-developer-guide/architecture/index.rst:38
 msgid "**Contains a set of public UI components**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/architecture/index.rst:37
+#: ../../source/portal-developer-guide/architecture/index.rst:40
 msgid ""
 "This module contains Ivy components such as User Selection, Role "
 "Selection, Document Table, Process Chain, Process History, and Process "
@@ -88,24 +92,24 @@ msgid ""
 "applications."
 msgstr ""
 
-#: ../../source/portal-developer-guide/architecture/index.rst:44
+#: ../../source/portal-developer-guide/architecture/index.rst:47
 #: ../../source/portal-developer-guide/deployment/index.rst:56
 #: ../../source/portal-developer-guide/installation/index.rst:22
 msgid "portal"
 msgstr ""
 
-#: ../../source/portal-developer-guide/architecture/index.rst:46
+#: ../../source/portal-developer-guide/architecture/index.rst:49
 msgid "**Contains portal specific UI components, templates and pages**"
 msgstr ""
 
-#: ../../source/portal-developer-guide/architecture/index.rst:48
+#: ../../source/portal-developer-guide/architecture/index.rst:51
 msgid ""
 "The module ``portal`` provides a set of specific UI components that you "
 "need to use and administer (or manage) the portal, templates for "
 "developer and portal pages."
 msgstr ""
 
-#: ../../source/portal-developer-guide/architecture/index.rst:51
+#: ../../source/portal-developer-guide/architecture/index.rst:54
 msgid ""
 "The templates offer features like top menu, application menu and user "
 "menu. It also contains start process links to default pages like Portal "
@@ -10089,4 +10093,11 @@ msgstr ""
 #: ../../source/portal-developer-guide/usermenu/index.rst:93
 msgid "Params are not required if the URL denotes an external webpage."
 msgstr ""
+
+#~ msgid ""
+#~ "The Portal and Projects using it "
+#~ "should be deployed in different "
+#~ "applications but in the same security"
+#~ " context."
+#~ msgstr ""
 
