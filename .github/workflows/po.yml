@@ -1,0 +1,58 @@
+name: Internationalization
+run-name: 🌐 Update language files
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'Documentation/portal-guide/source/**'
+  workflow_dispatch:
+  schedule:
+    - cron:  '21 21 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate POT Templates
+        working-directory: Documentation/portal-guide
+        run: |
+          rm -r source/portal-components-japanese
+          rm -r source/portal-developer-guide-japanese
+          rm -r source/portal-user-guide-japanese
+          docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make gettext BASEDIR=/doc
+
+      - name: Update PO Languages files
+        working-directory: Documentation/portal-guide
+        run: |
+          docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
+            generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=ja
+
+      - name: Check Locale Diff
+        id: locale-diff
+        working-directory: Documentation/portal-guide
+        run: |
+          echo "LOCALE_DIFF<<EOF" >> $GITHUB_ENV
+          git --no-pager status -s weblate/locale/* >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Create Pull Request
+        if: ${{ env.LOCALE_DIFF != '' }}
+        working-directory: .
+        run: |
+          echo "committing changes:\n ${{ env.LOCALE_DIFF }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git config user.name "${{ github.actor }}"
+          git checkout -b languages
+          git add Documentation/portal-guide/weblate/locale/*
+          git commit -m "update PO language files"
+          git push -u -f origin languages
+          gh pr create --title "Language update for documentation :globe_with_meridians:"\
+            --body "auto-updates language files"\
+            --label "i18n"\
+            --base master
+
+        env:
+          GH_TOKEN: ${{ github.token }}
