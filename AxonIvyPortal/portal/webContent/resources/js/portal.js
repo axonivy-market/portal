@@ -929,7 +929,6 @@ function restoreFocusedElement(targetDocument, focusElements, containerId) {
   const itemIndex = focusElements.findIndex(item => item.containerId === containerId);
 
   if (itemIndex === -1) {
-    focusOnFirstFocusableElement();
     return;
   }
 
@@ -964,15 +963,6 @@ function handleFocusOnElementsInCaseDetailsPanel() {
       initIframeFocusManagement(iframe);
     }, 2000)
   }
-}
-
-function focusOnFirstFocusableElement() {
-    const currentOpeningDialog = $('.ui-dialog:visible').last()[0];
-    
-    if (currentOpeningDialog) {
-        const focusableElement = currentOpeningDialog.querySelector('input[type="text"], button');
-        focusableElement?.focus();
-    }
 }
 
 // END: FIX ACCESSIBILITY ISSUES  
