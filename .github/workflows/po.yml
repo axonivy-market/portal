@@ -49,7 +49,7 @@ jobs:
           git add Documentation/portal-guide/weblate/locale/*
           git commit -m "update PO language files"
           git push -u -f origin languages
-          gh pr create --title "Language update :globe_with_meridians:"\
+          gh pr create --title "Language update for documentation :globe_with_meridians:"\
             --body "auto-updates language files"\
             --label "i18n"\
             --base release/12.0
