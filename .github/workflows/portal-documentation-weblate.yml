@@ -1,6 +1,9 @@
 name: Portal Documentation Weblate
 run-name: 🌐 Update Portal Documentation files in Weblate
 permissions:
+  actions: write
+  checks: write
+  contents: write
   pull-requests: write
 
 on:
@@ -63,7 +66,7 @@ jobs:
           git add Documentation/portal-guide/weblate/locale/*
           git commit -m "update PO language files"
           git push -u -f origin ${{ env.WEBLATE_BRANCH }}
-          gh pr create --title "Language update for documentation :globe_with_meridians:"\
+          gh pr create --title ":globe_with_meridians: Language update for documentation"\
             --body "auto-updates language files"\
             --label "i18n"\
             --base feature/IVYPORTAL-19240-Integrate-Portal-Documentation-into-Weblate-LE
