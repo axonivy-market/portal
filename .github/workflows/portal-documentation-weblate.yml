@@ -1,5 +1,7 @@
 name: Portal Documentation Weblate
 run-name: 🌐 Update Portal Documentation files in Weblate
+permissions:
+  pull-requests: write
 
 on:
   pull_request:
@@ -46,7 +48,7 @@ jobs:
           if [ -z "$ORIGINAL_BRANCH" ] || [ "$ORIGINAL_BRANCH" == "null" ]; then
             NEW_BRANCH="weblate/update-language-files"
           else
-            NEW_BRANCH="${ORIGINAL_BRANCH/feature\//weblate/}"
+            NEW_BRANCH="weblate/${ORIGINAL_BRANCH}"
           fi
           echo "WEBLATE_BRANCH=$NEW_BRANCH" >> $GITHUB_ENV
 
