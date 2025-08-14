@@ -15,10 +15,6 @@ The Portal multi applications
 
 The Portal and Projects using it should be deployed in different applications but in the same security context.
 
-
-RAG Architecture Integration
-=============================
-
 |multi-app-structure|
 
 
