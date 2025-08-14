@@ -25,10 +25,10 @@
 
         <h:panelGroup rendered="#{cc.attrs.taskWidget.caseOwnerEnabled}">
           <ic:ch.ivy.addon.portalkit.component.dashboard.widget.BooleanFilterColumn
+            id="current-by-case-owner-filter"
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CaseOwnerByCurrentUser')}"
             value="#{cc.attrs.taskWidget.caseOwner}" styleClass="ml-10p" />
         </h:panelGroup>
-
 
         <ui:repeat var="field" value="#{cc.attrs.taskWidget.filterableColumns}">
           <h:panelGroup rendered="#{field.field eq 'priority'}">
