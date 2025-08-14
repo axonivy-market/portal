@@ -325,7 +325,7 @@ public class StatisticWidgetTest extends BaseTest {
     statisticConfigurationPage.clickGeneratePreviewChart();
     statisticConfigurationPage.chartCanvasVisible();
   }
-  
+
   @Test
   public void testConditionBasedColoringFeatureForCase() {
     login(TestAccount.ADMIN_USER);
@@ -339,7 +339,7 @@ public class StatisticWidgetTest extends BaseTest {
     ScreenshotUtils.maximizeBrowser();
     configurationPage.clickOnAddWidgetButton();
     StatisticConfigurationPage statisticConfigurationPage = configurationPage.clickOnCreateCustomStatisticWidgetButton();
-    
+
     // Configure basic chart settings
     statisticConfigurationPage.setChartName("Condition-Based Coloring Test Chart");
     statisticConfigurationPage.changeChartTarget("Case");
@@ -356,7 +356,7 @@ public class StatisticWidgetTest extends BaseTest {
     // Add threshold conditions for "All Values" scope
     statisticConfigurationPage.addNewCondition();
     statisticConfigurationPage.configureThreshold(0, "Greater than", "5", "#f76363");
-    
+
     statisticConfigurationPage.addNewCondition();
     statisticConfigurationPage.configureThreshold(1, "Greater than or equal to", "10", "#f76363");
 
@@ -430,5 +430,72 @@ public class StatisticWidgetTest extends BaseTest {
     // Generate preview
     statisticConfigurationPage.clickGeneratePreviewChart();
     statisticConfigurationPage.chartCanvasVisible();
+  }
+
+  @Test
+  public void testCreateCustomChartWithKpiField() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    redirectToRelativeLink(createCaseWithTechnicalCaseUrl);
+    redirectToRelativeLink(testCaseListPermission);
+    redirectToNewDashBoard();
+
+    DashboardConfigurationPage configurationPage = newDashboardPage.openDashboardConfigurationPage();
+    var modificationPage = configurationPage.openEditPublicDashboardsPage();
+    modificationPage.navigateToEditDashboardDetailsByName("Dashboard");
+    ScreenshotUtils.maximizeBrowser();
+    configurationPage.clickOnAddWidgetButton();
+    StatisticConfigurationPage statisticConfigurationPage = configurationPage
+        .clickOnCreateCustomStatisticWidgetButton();
+    statisticConfigurationPage.setChartName("Custom statistic chart CASE with KPI field");
+    // Chart target to CASE
+    statisticConfigurationPage.changeChartTarget("Case");
+    assertTrue(statisticConfigurationPage.getPermissions().size() == 2);
+
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+
+    assertEquals(statisticConfigurationPage.getKpiFieldsItems().size(), 7);
+
+    // BAR chart
+    // Counting
+    statisticConfigurationPage.changeChartType("Bar");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    assertEquals(statisticConfigurationPage.getAggregationItems().size(), 6);
+
+    // Select a numeric custom field as KPI
+    statisticConfigurationPage.changeKPIField("InvoiceTotalAmount");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+
+    // Change the method
+    assertEquals(statisticConfigurationPage.getAggregationMethodItems().size(), 4);
+    statisticConfigurationPage.changeAggregationMethod("Max");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+
+    statisticConfigurationPage.changeAggregationMethod("Min");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+
+    statisticConfigurationPage.changeAggregationMethod("Average");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+
+    // Change Group by to Custom field
+    statisticConfigurationPage.changeGroupBy("Custom field");
+    assertTrue(statisticConfigurationPage.getCaseCustomFieldItems().size() > 0);
+    statisticConfigurationPage.axisXYVisible();
+    statisticConfigurationPage.autoRefeshToggleVisible();
+    statisticConfigurationPage.backgroundColorVisible();
+    statisticConfigurationPage.changeCustomFieldGroupBy("CustomerType");
+    statisticConfigurationPage.clickGeneratePreviewChart();
+    statisticConfigurationPage.chartCanvasVisible();
+
+    statisticConfigurationPage.clickCreateStatisticChart();
+
+    // Add Custom statistic widget
+    configurationPage.clickOnAddWidgetButton();
+    configurationPage.addNewStatisticWidget("Custom statistic chart CASE with KPI field");
   }
 }
