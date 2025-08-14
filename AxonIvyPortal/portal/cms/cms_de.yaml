@@ -1563,7 +1563,7 @@ Dialogs:
             AddFilter: Filter hinzufügen
             Advanced: Fortgeschrittene
             AggregationMethod: Aggregationsmethode
-            AggregationMethodTooltip: Wählen Sie eine Aggregationsmethode, um Berechnungen für Ihr KPI-Feld durchzuführen - Summe, Durchschnitt, Maximum oder Minimum. Deaktiviert, wenn „Counting“ ausgewählt ist
+            AggregationMethodTooltip: Wählen Sie eine Aggregationsmethode, um Berechnungen für Ihr KPI-Feld durchzuführen - Summe, Durchschnitt, Maximum oder Minimum. Deaktiviert, wenn 'Counting' ausgewählt ist
             ChartConfiguration: Diagrammeinstellungen
             ChartType: Diagrammtyp
             Color: Farbe {0}
@@ -1601,7 +1601,7 @@ Dialogs:
             HideLabel: Etikett ausblenden
             Interval: Intervall
             KPI: KPI
-            KPITooltip: 'Wählen Sie aus, was gemessen werden soll: Wählen Sie „Counting“, um die Anzahl der Aufgaben oder Vorgänge zu zählen (Standard), oder wählen Sie ein benutzerdefiniertes numerisches Feld, um dessen Werte als KPI zu analysieren'
+            KPITooltip: 'Wählen Sie aus, was gemessen werden soll: Wählen Sie ''Counting'', um die Anzahl der Aufgaben oder Vorgänge zu zählen (Standard), oder wählen Sie ein benutzerdefiniertes numerisches Feld, um dessen Werte als KPI zu analysieren'
             NewStatistic: Neues Statistik-Widget
             OutdatedChartMessage: Die angewendete Group-by- oder Filter-Einstellung stimmt nicht mit der aktuellen UI-Konfiguration überein. Bitte konfigurieren Sie sie neu.
             RefreshInterval: Automatisches Auffrischen aktiviert

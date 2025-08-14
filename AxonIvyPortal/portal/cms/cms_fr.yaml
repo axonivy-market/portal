@@ -1558,7 +1558,7 @@ Dialogs:
             AddFilter: Ajouter un filtre
             Advanced: Avancé
             AggregationMethod: Méthodes d'agrégation
-            AggregationMethodTooltip: Choisissez une méthode d’agrégation pour effectuer des calculs sur votre champ KPI - Somme, Moyenne, Maximum ou Minimum. Désactivé lorsque « Counting » est sélectionné
+            AggregationMethodTooltip: Choisissez une méthode d’agrégation pour effectuer des calculs sur votre champ KPI - Somme, Moyenne, Maximum ou Minimum. Désactivé lorsque 'Counting' est sélectionné
             ChartConfiguration: Configuration des graphiques
             ChartType: Type de graphique
             Color: Couleur {0}
@@ -1596,7 +1596,7 @@ Dialogs:
             HideLabel: Cacher l'étiquette
             Interval: Intervalle
             KPI: KPI
-            KPITooltip: 'Sélectionnez ce que vous souhaitez mesurer: Choisissez « Counting » pour compter le nombre de tâches ou de cas (valeur par défaut), ou sélectionnez un champ personnalisé numérique pour analyser ses valeurs comme indicateur clé de performance (KPI)'
+            KPITooltip: 'Sélectionnez ce que vous souhaitez mesurer: Choisissez ''Counting'' pour compter le nombre de tâches ou de cas (valeur par défaut), ou sélectionnez un champ personnalisé numérique pour analyser ses valeurs comme indicateur clé de performance (KPI)'
             NewStatistic: Nouveau widget statistique
             OutdatedChartMessage: Le groupement ou le filtre appliqué ne correspond pas à la configuration actuelle de l'interface. Veuillez le reconfigurer.
             RefreshInterval: Actualisation automatique activée
