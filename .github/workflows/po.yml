@@ -1,18 +1,19 @@
-name: Internationalization
-run-name: 🌐 Update language files
+name: Portal Documentation Weblate
+run-name: 🌐 Update Portal Documentation files in Weblate
 
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
-      - master
+      - feature/IVYPORTAL-19240-Integrate-Portal-Documentation-into-Weblate-LE
     paths:
       - 'Documentation/portal-guide/source/**'
   workflow_dispatch:
-  schedule:
-    - cron:  '21 21 * * *'
 
 jobs:
   build:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -38,6 +39,17 @@ jobs:
           git --no-pager status -s weblate/locale/* >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
+      - name: Get branch name
+        working-directory: .
+        run: |
+          ORIGINAL_BRANCH="${{ github.event.pull_request.head.ref }}"
+          if [ -z "$ORIGINAL_BRANCH" ] || [ "$ORIGINAL_BRANCH" == "null" ]; then
+            NEW_BRANCH="weblate/update-language-files"
+          else
+            NEW_BRANCH="${ORIGINAL_BRANCH/feature\//weblate/}"
+          fi
+          echo "WEBLATE_BRANCH=$NEW_BRANCH" >> $GITHUB_ENV
+
       - name: Create Pull Request
         if: ${{ env.LOCALE_DIFF != '' }}
         working-directory: .
@@ -45,14 +57,14 @@ jobs:
           echo "committing changes:\n ${{ env.LOCALE_DIFF }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
           git config user.name "${{ github.actor }}"
-          git checkout -b languages
+          git checkout -b ${{ env.WEBLATE_BRANCH }}
           git add Documentation/portal-guide/weblate/locale/*
           git commit -m "update PO language files"
-          git push -u -f origin languages
+          git push -u -f origin ${{ env.WEBLATE_BRANCH }}
           gh pr create --title "Language update for documentation :globe_with_meridians:"\
             --body "auto-updates language files"\
             --label "i18n"\
-            --base master
+            --base feature/IVYPORTAL-19240-Integrate-Portal-Documentation-into-Weblate-LE
 
         env:
           GH_TOKEN: ${{ github.token }}
