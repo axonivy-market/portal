@@ -1,39 +1,28 @@
 var invalidIFrameSrcPath = false;
-
-var recheckFrameTimer;
-function loadIframe(recheckIndicator) {
+var isMainPageNavigating = false;
+function loadIframe() {
   var iframe = getPortalIframe();
 
-  if (!recheckIndicator) {
-    $(iframe).on('load', function () {
-      if (!document.documentURI.endsWith('?taskUrl=blank')) {
-        iframe.style.visibility = 'hidden';
-      }
-      processIFrameData(iframe);
-      clearTimeout(recheckFrameTimer);
-      setTimeout(function() {
-        if ($(iframe).attr('src') != 'about:blank') {
-          iframe.style.visibility = 'visible';
-          }
-        }, 500);
-      return;
-    });
-  }
-  else {
-    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-    iframeDoc.onbeforeunload = function() {
-      $(iframe).addClass('hidden');
-    }
-    if (iframeDoc.readyState == 'complete') {
-      processIFrameData(iframe);
-      clearTimeout(recheckFrameTimer);
-      iframe.style.visibility = 'visible';
+  $(iframe).on('load', function () {
+    debugLog("=load", iframe.contentWindow.location.href);
+    processIFrameData(iframe);
+    if (isMainPageNavigating) {
       return;
     }
-  }
+    iframe.style.visibility = 'visible';
+
+    const unloadHandler = () => {
+      debugLog("=unloadHandler", iframe.contentWindow.location.href);
+      iframe.style.visibility = "hidden";
+    };
+
+    // Remove the unloadHandler in case it was already attached, could happen with skip task list.
+    iframe.contentWindow.removeEventListener("unload", unloadHandler);
+    iframe.contentWindow.addEventListener("unload", unloadHandler);
+    return;
+  });
 
   resizeIFrame();
-  recheckFrameTimer = setTimeout(function () { loadIframe(true); }, 500);
 }
 
 function getPortalIframe() {
@@ -41,6 +30,7 @@ function getPortalIframe() {
 }
 
 function processIFrameData(iframe) {
+  debugLog("== processIFrameData");
   var window = iframe.contentWindow;
   var appName = $('#application-name-for-title').get(0).value;
   checkUrl(iframe, appName);
@@ -48,7 +38,11 @@ function processIFrameData(iframe) {
     invalidIFrameSrcPath = false;
     return;
   }
+  if (isMainPageNavigating) {
+    return;
+  }
   streamliningPortalFrameStyle(window);
+  debugLog("===== getDataFromIFrame");
   getDataFromIFrame([{
     name: 'currentProcessStep',
     value: window.currentProcessStep
@@ -123,13 +117,16 @@ function checkUrl(iFrame, appName) {
   invalidIFrameSrcPath = false;
 
   if (path.match("/default/redirect.xhtml$")) {
+    debugLog("= parent redirect");
     var redirectUrl = new URLSearchParams(iFrame.contentWindow.location.search).get("redirectPage");
-    iFrame.src = "about:blank";
+    iFrame.contentWindow.stop();
     redirectToUrlCommand([{
       name: 'url',
       value: redirectUrl
     }]);
+    isMainPageNavigating = true;
   } else {
+    debugLog("= useTaskInIFrame");
     useTaskInIFrame([{
       name: 'url',
       value: path
@@ -228,3 +225,15 @@ const convertProcessSteps = processSteps => {
     return JSON.stringify(stepsCompatibleWithPortal8);
   }
 }
+
+// Turn on logging in console: localStorage.setItem("debug", "true"); Turn off: localStorage.removeItem("debug");
+function debugLog(...args) {
+    if (localStorage.getItem("debug") === "true") {
+        const stackLines = (new Error().stack || "").split("\n").slice(2);
+        console.log("%c[DEBUG]", "color: green; font-weight: bold;", ...args);
+        console.groupCollapsed("Call stack");
+        stackLines.forEach(line => console.log(line.trim()));
+        console.groupEnd();
+    }
+}
+
