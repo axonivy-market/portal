@@ -887,15 +887,24 @@ function initFocusManagament(targetWindow) {
             if (self.originalOnShow) {
               self.originalOnShow.call(this);
             }
-            let targetElement = this.targetElement[0];
-            storeFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id, targetElement);
+
+            try {
+              let targetElement = this.targetElement[0];
+              storeFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id, targetElement);
+            } catch(e) {
+              console.warn("Cannot store focused element");
+            }
           };
 
           cfg.onHide = function() {            
               if (self.originalOnHide) {
                   self.originalOnHide.call(this);
               }
-              restoreFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id);
+              try {
+                restoreFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id);
+              } catch (e) {
+                console.warn("Cannot focus on last element");
+              }
           };
       }
     })
