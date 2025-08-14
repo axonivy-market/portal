@@ -13,12 +13,10 @@ Architecture
 The Portal multi applications
 =============================
 
-The Portal and Projects using it should be deployed in different applications but in the same.
+The Portal and Projects using it should be deployed in different applications but in the same security context.
 
 |multi-app-structure|
 
-Large Language Model
-=============================
 
 .. _architecture-portal-process-modules-structure:
 
