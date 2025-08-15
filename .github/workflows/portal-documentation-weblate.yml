@@ -68,7 +68,7 @@ jobs:
           git push -u -f origin ${{ env.WEBLATE_BRANCH }}
           gh pr create --title ":globe_with_meridians: Update PO files for weblate"\
             --body "Update PO files"\
-            --label "i18n"\
+            --label "i18n,skip-changelog"\
             --base master
 
         env:

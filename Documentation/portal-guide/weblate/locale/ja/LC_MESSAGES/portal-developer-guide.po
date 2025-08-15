@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-14 09:18+0000\n"
+"POT-Creation-Date: 2025-08-15 02:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -3949,8 +3949,8 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-custom-widget.rst:85
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-external-page-widget.rst:54
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:148
-#: ../../source/portal-developer-guide/settings/index.rst:578
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:150
+#: ../../source/portal-developer-guide/settings/index.rst:580
 msgid "``id``: ID of the widget."
 msgstr ""
 
@@ -4154,7 +4154,7 @@ msgid ""
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-navigation-dashboard-widget.rst:68
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:146
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:148
 msgid "The basic JSON structure of a statistic widget"
 msgstr ""
 
@@ -4443,150 +4443,173 @@ msgid ""
 "dashboard"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:150
-#: ../../source/portal-developer-guide/settings/index.rst:580
-msgid "``version``: current version of the widget."
-msgstr ""
-
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:152
 #: ../../source/portal-developer-guide/settings/index.rst:582
-msgid "``statisticAggregation``: statistic's aggregation."
+msgid "``version``: current version of the widget."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:154
 #: ../../source/portal-developer-guide/settings/index.rst:584
-msgid "``field``: aggregation field."
+msgid "``statisticAggregation``: statistic's aggregation."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:156
 #: ../../source/portal-developer-guide/settings/index.rst:586
-msgid "``type``: type of the field, could be `standard` or `custom`."
+msgid "``field``: aggregation (group by) field."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:158
 #: ../../source/portal-developer-guide/settings/index.rst:588
-msgid "``filters``: filters for the statistic chart."
+msgid "``type``: type of the field, could be `standard` or `custom`."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:160
 #: ../../source/portal-developer-guide/settings/index.rst:590
-msgid "``field``: field to filter."
+msgid ""
+"``kpiField`` (optional): the numeric custom field on which to perform "
+"calculations."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:162
 #: ../../source/portal-developer-guide/settings/index.rst:592
-msgid "``values``: value of the filter to query."
+msgid ""
+"``aggregationMethod`` (optional): the calculation method to apply, could "
+"be `sum`, `avg`, `max` or `min`."
 msgstr ""
 
 #: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:164
 #: ../../source/portal-developer-guide/settings/index.rst:594
+msgid ""
+"When ``kpiField`` and ``aggregationMethod`` are not provided, returns "
+"count statistics (counting number of tasks or cases). In contrast, the "
+"system applies the specified aggregation method to the numeric values in "
+"``kpiField``."
+msgstr ""
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:167
+#: ../../source/portal-developer-guide/settings/index.rst:597
+msgid "``filters``: filters for the statistic chart."
+msgstr ""
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:169
+#: ../../source/portal-developer-guide/settings/index.rst:599
+msgid "``field``: field to filter."
+msgstr ""
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:171
+#: ../../source/portal-developer-guide/settings/index.rst:601
+msgid "``values``: value of the filter to query."
+msgstr ""
+
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:173
+#: ../../source/portal-developer-guide/settings/index.rst:603
 msgid "``operator``: operator for the filter."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:166
-#: ../../source/portal-developer-guide/settings/index.rst:596
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:175
+#: ../../source/portal-developer-guide/settings/index.rst:605
 msgid "``type``: type of the field."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:168
-#: ../../source/portal-developer-guide/settings/index.rst:598
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:177
+#: ../../source/portal-developer-guide/settings/index.rst:607
 msgid "``permissions``: permissions for statistic chart."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:170
-#: ../../source/portal-developer-guide/settings/index.rst:600
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:179
+#: ../../source/portal-developer-guide/settings/index.rst:609
 msgid "``chartTarget``: chart's target, could be `case` or `task`."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:172
-#: ../../source/portal-developer-guide/settings/index.rst:610
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:181
+#: ../../source/portal-developer-guide/settings/index.rst:619
 msgid "``chartType``: chart's type, could be `bar`, `line`, `pie` or `number`."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:174
-#: ../../source/portal-developer-guide/settings/index.rst:602
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:183
+#: ../../source/portal-developer-guide/settings/index.rst:611
 msgid "``icon``: icon for the statistic chart."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:176
-#: ../../source/portal-developer-guide/settings/index.rst:604
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:185
+#: ../../source/portal-developer-guide/settings/index.rst:613
 msgid ""
 "``refreshInterval``: number of seconds for the chart auto-refreshed, "
 "minimum value is 60."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:178
-#: ../../source/portal-developer-guide/settings/index.rst:606
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:187
+#: ../../source/portal-developer-guide/settings/index.rst:615
 msgid "``names``: name for the statistic chart, multi-language supported."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:180
-#: ../../source/portal-developer-guide/settings/index.rst:608
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:189
+#: ../../source/portal-developer-guide/settings/index.rst:617
 msgid ""
 "``descriptions``: description for the statistic chart, multi-language "
 "supported."
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:182
-#: ../../source/portal-developer-guide/settings/index.rst:628
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:191
+#: ../../source/portal-developer-guide/settings/index.rst:637
 msgid ""
 "For some specific charts such as ``Bar``, ``Pie``, ``Line`` or "
 "``Number``, there are additional fields:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:184
-#: ../../source/portal-developer-guide/settings/index.rst:630
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:193
+#: ../../source/portal-developer-guide/settings/index.rst:639
 msgid ""
 "``barChartConfig``: additional fields for configuring the ``Bar`` chart, "
 "you can add if chart type is ``bar``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:186
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:194
-#: ../../source/portal-developer-guide/settings/index.rst:632
-#: ../../source/portal-developer-guide/settings/index.rst:640
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:195
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:203
+#: ../../source/portal-developer-guide/settings/index.rst:641
+#: ../../source/portal-developer-guide/settings/index.rst:649
 msgid "``xTitles``: the multilingual display title for the x-axis"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:188
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:196
-#: ../../source/portal-developer-guide/settings/index.rst:634
-#: ../../source/portal-developer-guide/settings/index.rst:642
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:197
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:205
+#: ../../source/portal-developer-guide/settings/index.rst:643
+#: ../../source/portal-developer-guide/settings/index.rst:651
 msgid "``yTitles``: the multilingual display title for the y-axis"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:190
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:198
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:202
-#: ../../source/portal-developer-guide/settings/index.rst:636
-#: ../../source/portal-developer-guide/settings/index.rst:644
-#: ../../source/portal-developer-guide/settings/index.rst:648
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:199
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:207
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:211
+#: ../../source/portal-developer-guide/settings/index.rst:645
+#: ../../source/portal-developer-guide/settings/index.rst:653
+#: ../../source/portal-developer-guide/settings/index.rst:657
 msgid "``backgroundColors`` : the colors to display the chart"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:192
-#: ../../source/portal-developer-guide/settings/index.rst:638
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:201
+#: ../../source/portal-developer-guide/settings/index.rst:647
 msgid ""
 "``lineChartConfig``: additional fields for configuring the ``Line`` "
 "chart, you can add if chart type is ``line``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:200
-#: ../../source/portal-developer-guide/settings/index.rst:646
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:209
+#: ../../source/portal-developer-guide/settings/index.rst:655
 msgid ""
 "``pieChartConfig``: additional fields for configuring the ``Pie`` chart, "
 "you can add if chart type is ``pie``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:204
-#: ../../source/portal-developer-guide/settings/index.rst:650
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:213
+#: ../../source/portal-developer-guide/settings/index.rst:659
 msgid ""
 "``numberChartConfig``: additional fields for configuring the ``Number`` "
 "chart, you can add if chart type is ``number``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:206
-#: ../../source/portal-developer-guide/settings/index.rst:652
+#: ../../source/portal-developer-guide/dashboard/new-dashboard-statistic-widget.rst:215
+#: ../../source/portal-developer-guide/settings/index.rst:661
 msgid "``hideLabel``: toggle to show label of the number chart"
 msgstr ""
 
@@ -8768,7 +8791,7 @@ msgstr ""
 msgid "|portal-header|"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:697
+#: ../../source/portal-developer-guide/settings/index.rst:706
 msgid "portal-header"
 msgstr ""
 
@@ -8821,7 +8844,7 @@ msgstr ""
 msgid "|export-cms|"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:701
+#: ../../source/portal-developer-guide/settings/index.rst:710
 msgid "export-cms"
 msgstr ""
 
@@ -8839,7 +8862,7 @@ msgstr ""
 msgid "|translate-json|"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:710
+#: ../../source/portal-developer-guide/settings/index.rst:719
 msgid "translate-json"
 msgstr ""
 
@@ -8853,7 +8876,7 @@ msgstr ""
 msgid "|translate-java|"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:711
+#: ../../source/portal-developer-guide/settings/index.rst:720
 msgid "translate-java"
 msgstr ""
 
@@ -9456,7 +9479,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/settings/index.rst:383
 #: ../../source/portal-developer-guide/settings/index.rst:412
 #: ../../source/portal-developer-guide/settings/index.rst:445
-#: ../../source/portal-developer-guide/settings/index.rst:662
+#: ../../source/portal-developer-guide/settings/index.rst:671
 msgid "Data model:"
 msgstr ""
 
@@ -9535,99 +9558,99 @@ msgstr ""
 msgid "Filename: ``variables.Portal.CustomStatistic.json``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:612
+#: ../../source/portal-developer-guide/settings/index.rst:621
 msgid "``pie``: Pie chart"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:614
+#: ../../source/portal-developer-guide/settings/index.rst:623
 msgid "|pie-chart|"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:706
+#: ../../source/portal-developer-guide/settings/index.rst:715
 msgid "pie-chart"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:616
+#: ../../source/portal-developer-guide/settings/index.rst:625
 msgid "``bar``: Bar chart"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:618
+#: ../../source/portal-developer-guide/settings/index.rst:627
 msgid "|bar-chart|"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:707
+#: ../../source/portal-developer-guide/settings/index.rst:716
 msgid "bar-chart"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:620
+#: ../../source/portal-developer-guide/settings/index.rst:629
 msgid "``line``: Line chart"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:622
+#: ../../source/portal-developer-guide/settings/index.rst:631
 msgid "|line-chart|"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:709
+#: ../../source/portal-developer-guide/settings/index.rst:718
 msgid "line-chart"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:624
+#: ../../source/portal-developer-guide/settings/index.rst:633
 msgid "``number``: Labelled number chart"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:626
+#: ../../source/portal-developer-guide/settings/index.rst:635
 msgid "|number-chart|"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:708
+#: ../../source/portal-developer-guide/settings/index.rst:717
 msgid "number-chart"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:657
+#: ../../source/portal-developer-guide/settings/index.rst:666
 msgid "Portal Processes External Links"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:658
+#: ../../source/portal-developer-guide/settings/index.rst:667
 msgid ""
 "The standard external links of the Portal are defined in the following "
 "file:"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:660
+#: ../../source/portal-developer-guide/settings/index.rst:669
 msgid "Filename: ``variables.Portal.Processes.ExternalLinks.json``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:684
+#: ../../source/portal-developer-guide/settings/index.rst:693
 msgid "``id``: the identification of a link, auto-generated by UUID"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:685
+#: ../../source/portal-developer-guide/settings/index.rst:694
 msgid "``version``: the version of the json"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:686
+#: ../../source/portal-developer-guide/settings/index.rst:695
 msgid "``name``: the display name of a link"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:687
+#: ../../source/portal-developer-guide/settings/index.rst:696
 msgid "``link``: the URL of the link"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:688
+#: ../../source/portal-developer-guide/settings/index.rst:697
 msgid ""
 "``creatorId``: the user id who create the link. This user can see and "
 "start the external link in any case"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:689
+#: ../../source/portal-developer-guide/settings/index.rst:698
 msgid "``icon``: the style class of the link icon"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:690
+#: ../../source/portal-developer-guide/settings/index.rst:699
 msgid "``description``: the description of a link"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:691
+#: ../../source/portal-developer-guide/settings/index.rst:700
 msgid ""
 "``imageContent``: the base64 data format of the process image. If this "
 "value is valid then it will be converted to a physical file. If you want "
@@ -9635,20 +9658,20 @@ msgid ""
 " ``imageContent``"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:692
+#: ../../source/portal-developer-guide/settings/index.rst:701
 msgid ""
 "``imageLocation``: the location of the process image. This image is "
 "stored in Application CMS. Basically, this should be handled by the "
 "engine"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:693
+#: ../../source/portal-developer-guide/settings/index.rst:702
 msgid ""
 "``imageType``: the extension of the process image. Basically, this should"
 " be handled by the engine"
 msgstr ""
 
-#: ../../source/portal-developer-guide/settings/index.rst:694
+#: ../../source/portal-developer-guide/settings/index.rst:703
 msgid ""
 "``permissions``: users have these roles can see and start the external "
 "link. If you don't define it, default role is Everybody"
@@ -10089,4 +10112,7 @@ msgstr ""
 #: ../../source/portal-developer-guide/usermenu/index.rst:93
 msgid "Params are not required if the URL denotes an external webpage."
 msgstr ""
+
+#~ msgid "``field``: aggregation field."
+#~ msgstr ""
 

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-14 09:18+0000\n"
+"POT-Creation-Date: 2025-08-15 02:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -6494,7 +6494,7 @@ msgstr ""
 msgid "|statistic-widget-list-page|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:154
+#: ../../source/portal-user-guide/statistic-chart/index.rst:161
 msgid "Statistic widget list"
 msgstr ""
 
@@ -6512,7 +6512,7 @@ msgstr ""
 msgid "|tasks-by-prior-pie-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:158
+#: ../../source/portal-user-guide/statistic-chart/index.rst:165
 msgid "Task by priority pie chart"
 msgstr ""
 
@@ -6532,7 +6532,7 @@ msgstr ""
 msgid "|top-prior-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:176
+#: ../../source/portal-user-guide/statistic-chart/index.rst:183
 msgid "Top priority tasks chart"
 msgstr ""
 
@@ -6552,7 +6552,7 @@ msgstr ""
 msgid "|tasks-by-prior-bar-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:160
+#: ../../source/portal-user-guide/statistic-chart/index.rst:167
 msgid "Task by priority bar chart"
 msgstr ""
 
@@ -6570,7 +6570,7 @@ msgstr ""
 msgid "|avg-runtime-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:164
+#: ../../source/portal-user-guide/statistic-chart/index.rst:171
 msgid "Average runtime chart"
 msgstr ""
 
@@ -6586,7 +6586,7 @@ msgstr ""
 msgid "|new-cases-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:170
+#: ../../source/portal-user-guide/statistic-chart/index.rst:177
 msgid "Number of new cases chart"
 msgstr ""
 
@@ -6607,7 +6607,7 @@ msgstr ""
 msgid "|completed-cases-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:166
+#: ../../source/portal-user-guide/statistic-chart/index.rst:173
 msgid "Completed cases chart"
 msgstr ""
 
@@ -6623,7 +6623,7 @@ msgstr ""
 msgid "|running-cases-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:178
+#: ../../source/portal-user-guide/statistic-chart/index.rst:185
 msgid "Running cases chart"
 msgstr ""
 
@@ -6647,7 +6647,7 @@ msgstr ""
 msgid "|tasks-expire-end-week-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:174
+#: ../../source/portal-user-guide/statistic-chart/index.rst:181
 msgid "Number of tasks expire this week chart"
 msgstr ""
 
@@ -6659,7 +6659,7 @@ msgstr ""
 msgid "|tasks-by-prior-number-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:162
+#: ../../source/portal-user-guide/statistic-chart/index.rst:169
 msgid "Task by priority number chart"
 msgstr ""
 
@@ -6675,7 +6675,7 @@ msgstr ""
 msgid "|open-tasks-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:172
+#: ../../source/portal-user-guide/statistic-chart/index.rst:179
 msgid "Number of opening tasks chart"
 msgstr ""
 
@@ -6691,7 +6691,7 @@ msgstr ""
 msgid "|due-today-chart|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:168
+#: ../../source/portal-user-guide/statistic-chart/index.rst:175
 msgid "Number of tasks expire today"
 msgstr ""
 
@@ -6713,7 +6713,7 @@ msgstr ""
 msgid "|create-new-custom-statistic-widget|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:180
+#: ../../source/portal-user-guide/statistic-chart/index.rst:187
 msgid "Create new custom statistic widget"
 msgstr ""
 
@@ -6727,7 +6727,7 @@ msgstr ""
 msgid "|custom-statistic-widget-configuration-page|"
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:182
+#: ../../source/portal-user-guide/statistic-chart/index.rst:189
 msgid "Custom statistic widet configuration page"
 msgstr ""
 
@@ -6748,22 +6748,6 @@ msgid "Description for the statistic chart."
 msgstr ""
 
 #: ../../source/portal-user-guide/statistic-chart/index.rst:124
-msgid "Chart type"
-msgstr ""
-
-#: ../../source/portal-user-guide/statistic-chart/index.rst
-msgid "Type of the chart (Bar, Line, Pie, Number)."
-msgstr ""
-
-#: ../../source/portal-user-guide/statistic-chart/index.rst:126
-msgid "For"
-msgstr ""
-
-#: ../../source/portal-user-guide/statistic-chart/index.rst
-msgid "Chart target (Task, Case)."
-msgstr ""
-
-#: ../../source/portal-user-guide/statistic-chart/index.rst:128
 msgid "Icon"
 msgstr ""
 
@@ -6775,7 +6759,55 @@ msgstr ""
 msgid "Click on the plus icon at the end of the line to see full list of icons."
 msgstr ""
 
+#: ../../source/portal-user-guide/statistic-chart/index.rst:127
+msgid "Chart type"
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst
+msgid "Type of the chart (Bar, Line, Pie, Number)."
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:129
+msgid "For"
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst
+msgid "Chart target (Task, Case)."
+msgstr ""
+
 #: ../../source/portal-user-guide/statistic-chart/index.rst:131
+msgid "KPI"
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst
+msgid "List of numeric custom fields is shown alongside with `Counting`."
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst
+msgid ""
+"The calculation using below aggregation method will be performed on "
+"selected KPI."
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst
+msgid ""
+"If `Counting` is selected to count numbers of tasks or cases, the "
+"aggregation method"
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst
+msgid "selection will be disabled."
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:136
+msgid "Aggregation method"
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst
+msgid "List of 4 aggregation methods: `Sum`, `Average`, `Max`, `Min`."
+msgstr ""
+
+#: ../../source/portal-user-guide/statistic-chart/index.rst:138
 msgid "Group by"
 msgstr ""
 
@@ -6789,7 +6821,7 @@ msgstr ""
 msgid "Currently we don't support aggregations have type number."
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:134
+#: ../../source/portal-user-guide/statistic-chart/index.rst:141
 msgid "Filters"
 msgstr ""
 
@@ -6801,7 +6833,7 @@ msgstr ""
 msgid "Please refer to :ref:`complex-filter` for more details."
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:137
+#: ../../source/portal-user-guide/statistic-chart/index.rst:144
 msgid "Permissions"
 msgstr ""
 
@@ -6809,7 +6841,7 @@ msgstr ""
 msgid "Permission for the current statistic chart."
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:139
+#: ../../source/portal-user-guide/statistic-chart/index.rst:146
 msgid "Auto-refresh enabled"
 msgstr ""
 
@@ -6821,7 +6853,7 @@ msgstr ""
 msgid "Click on this button to turn on/off the feature."
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:142
+#: ../../source/portal-user-guide/statistic-chart/index.rst:149
 msgid "Auto-refresh interval (seconds)"
 msgstr ""
 
@@ -6833,7 +6865,7 @@ msgstr ""
 msgid "Minimum number is 60."
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:145
+#: ../../source/portal-user-guide/statistic-chart/index.rst:152
 msgid "X axis title"
 msgstr ""
 
@@ -6841,7 +6873,7 @@ msgstr ""
 msgid "X title for the statistic chart."
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:147
+#: ../../source/portal-user-guide/statistic-chart/index.rst:154
 msgid "Y axis title"
 msgstr ""
 
@@ -6849,7 +6881,7 @@ msgstr ""
 msgid "Y title for the statistic chart."
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:149
+#: ../../source/portal-user-guide/statistic-chart/index.rst:156
 msgid "Color 1-8"
 msgstr ""
 
@@ -6857,7 +6889,7 @@ msgstr ""
 msgid "Colors for data in the chart."
 msgstr ""
 
-#: ../../source/portal-user-guide/statistic-chart/index.rst:151
+#: ../../source/portal-user-guide/statistic-chart/index.rst:158
 msgid "Hide label"
 msgstr ""
 
