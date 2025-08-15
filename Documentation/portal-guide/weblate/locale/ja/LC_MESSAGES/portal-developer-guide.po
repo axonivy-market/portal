@@ -4,25 +4,26 @@
 # package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-08-15 02:58+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2025-08-15 08:08+0000\n"
+"Last-Translator: Thang Huynh <hhqthang@axonactive.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/axonivy-portal/"
+"portal-le/portal-doc-developer-guide/ja/>\n"
 "Language: ja\n"
-"Language-Team: ja <LL@li.org>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.13\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:4
 msgid "Architecture"
-msgstr ""
+msgstr "アーキテクチャ"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:7
 msgid ""
@@ -30,42 +31,47 @@ msgid ""
 "are only used internally in Portal. Don't use them because they can be "
 "changed in future versions."
 msgstr ""
+"明示的にドキュメント化されていない CSS スタイル、Java "
+"メソッドなどは、ポータル内でのみ使用されます。これらは将来のバージョンで変更"
+"される可能性があるため、使用しないでください。"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:14
 msgid "The Portal multi applications"
-msgstr ""
+msgstr "ポータルのマルチアプリケーション"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:16
 msgid ""
 "The Portal and Projects using it should be deployed in different "
 "applications but in the same security context."
-msgstr ""
+msgstr "ポータルとポータルを使用するプロジェクトは、同じセキュリティコンテキストの異"
+"なるアプリケーションに展開してください。"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:18
 msgid "|multi-app-structure|"
-msgstr ""
+msgstr "|multi-app-structure|"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:57
 msgid "multi-app-structure"
-msgstr ""
+msgstr "multi-app-structure"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:24
 msgid ""
 "The Portal App consists of the following modules: portal-components, "
 "portal."
-msgstr ""
+msgstr "ポータルアプリは、portal-components と portal モジュールで構成されます。"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:26
 msgid "|process-module-structure|"
-msgstr ""
+msgstr "|process-module-structure|"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:56
 msgid "process-module-structure"
-msgstr ""
+msgstr "process-module-structure"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:28
 msgid "We highly recommend running only one portal per security context."
-msgstr ""
+msgstr "実行するポータルは、セキュリティコンテキストごとに 1 "
+"つのみとすることを強く推奨します。"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:33
 #: ../../source/portal-developer-guide/deployment/index.rst:55
@@ -73,11 +79,11 @@ msgstr ""
 #: ../../source/portal-developer-guide/installation/documents/class_replacement_9.4.csv:1
 #: ../../source/portal-developer-guide/installation/index.rst:21
 msgid "portal-components"
-msgstr ""
+msgstr "portal-components"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:35
 msgid "**Contains a set of public UI components**"
-msgstr ""
+msgstr "**パブリック UI コンポーネント一式を含む**"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:37
 msgid ""
@@ -87,16 +93,22 @@ msgid ""
 "are independent of the modules portal. You can use them in your own "
 "applications."
 msgstr ""
+"このモジュールには、ユーザーの選択、ロールの選択、ドキュメントテーブル、プロ"
+"セスチェーン、プロセス履歴、プロセスビューアーなどの Ivy "
+"コンポーネントが含まれます。これらのコンポーネントは、ポータルのパブリック "
+"API "
+"を提供しますが、モジュールのポータルには依存しません。これらを自社のアプリケ"
+"ーションで使用できます。"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:44
 #: ../../source/portal-developer-guide/deployment/index.rst:56
 #: ../../source/portal-developer-guide/installation/index.rst:22
 msgid "portal"
-msgstr ""
+msgstr "portal"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:46
 msgid "**Contains portal specific UI components, templates and pages**"
-msgstr ""
+msgstr "**ポータル固有の UI コンポーネント、テンプレート、ページを含む**"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:48
 msgid ""
@@ -104,6 +116,9 @@ msgid ""
 "need to use and administer (or manage) the portal, templates for "
 "developer and portal pages."
 msgstr ""
+"``portal`` "
+"モジュールは、ポータル、開発者用テンプレート、ポータルのページを使用、"
+"管理するのに必要な UI コンポーネント一式を提供します。"
 
 #: ../../source/portal-developer-guide/architecture/index.rst:51
 msgid ""
@@ -111,14 +126,18 @@ msgid ""
 "menu. It also contains start process links to default pages like Portal "
 "home, Portal task list, Portal case list etc.."
 msgstr ""
+"テンプレートには、トップメニュー、アプリケーションメニュー、ユーザーメニュー"
+"などの機能が用意されています。また、ポータルホーム、ポータルタスクリスト、ポ"
+"ータルケースリストなどのデフォルトのページへのプロセスの開始リンクも含まれま"
+"す。"
 
 #: ../../source/portal-developer-guide/components/additional-components.rst:4
 msgid "Additional Components"
-msgstr ""
+msgstr "追加コンポーネント"
 
 #: ../../source/portal-developer-guide/components/additional-components.rst:9
 msgid "Global Growl"
-msgstr ""
+msgstr "グローバル通知"
 
 #: ../../source/portal-developer-guide/components/additional-components.rst:14
 #: ../../source/portal-developer-guide/components/error-handling.rst:28
@@ -136,60 +155,66 @@ msgstr ""
 #: ../../source/portal-developer-guide/static-page/index.rst:9
 #: ../../source/portal-developer-guide/usermenu/index.rst:9
 msgid "Introduction"
-msgstr ""
+msgstr "概要"
 
 #: ../../source/portal-developer-guide/components/additional-components.rst:16
 msgid ""
 "This component is a global growl introduced in BasicTemplate. You can use"
 " it to display your messages in Portal using this code:"
-msgstr ""
+msgstr "このコンポーネントは、基本テンプレートに導入されたグローバル通知です。以下の"
+"コードを使用して、ポータルでメッセージを表示できます。"
 
 #: ../../source/portal-developer-guide/components/additional-components.rst:25
 msgid "Display Growl After Finishing a Task"
-msgstr ""
+msgstr "タスクを終了した後の通知の表示"
 
 #: ../../source/portal-developer-guide/components/additional-components.rst:27
 msgid ""
 "After a task is finished, a growl message appears if "
 "``Portal.DisplayMessageAfterFinishTask`` is true."
 msgstr ""
+"``Portal.DisplayMessageAfterFinishTask`` が true "
+"の場合、タスクの完了後に通知メッセージが表示されます。"
 
 #: ../../source/portal-developer-guide/components/additional-components.rst:29
 msgid "|example-global-growl-finished-task|"
-msgstr ""
+msgstr "|example-global-growl-finished-task|"
 
 #: ../../source/portal-developer-guide/components/additional-components.rst:40
 msgid "example-global-growl-finished-task"
-msgstr ""
+msgstr "example-global-growl-finished-task"
 
 #: ../../source/portal-developer-guide/components/additional-components.rst:34
 msgid "Display Growl After Leaving a Task"
-msgstr ""
+msgstr "タスクを離れた後の通知の表示"
 
 #: ../../source/portal-developer-guide/components/additional-components.rst:36
 msgid ""
 "After the user cancels a task, a growl message is displayed if "
 "``Portal.DisplayMessageAfterFinishTask`` is true."
 msgstr ""
+"``Portal.DisplayMessageAfterFinishTask`` が true "
+"の場合、ユーザーがタスクをキャンセルすると通知メッセージが表示されます。"
 
 #: ../../source/portal-developer-guide/components/additional-components.rst:38
 msgid "|example-global-growl-cancelled-task|"
-msgstr ""
+msgstr "|example-global-growl-cancelled-task|"
 
 #: ../../source/portal-developer-guide/components/additional-components.rst:41
 msgid "example-global-growl-cancelled-task"
-msgstr ""
+msgstr "example-global-growl-cancelled-task"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:4
 msgid "Error Handling"
-msgstr ""
+msgstr "エラー処理"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:6
 msgid ""
 "In this section, we want to mention the types of errors that users may "
 "encounter when using the Portal, and how to enhance error handling "
 "approaches within the Portal."
-msgstr ""
+msgstr "このセクションでは、ポータルの使用中に発生する可能性があるエラーのタイプと、"
+"ポータル内でのエラー処理の方法について説明します。"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:9
 msgid ""
@@ -198,6 +223,11 @@ msgid ""
 "to full mode. Without proper error handling, users receive no feedback if"
 " the action was unsuccessful."
 msgstr ""
+"Ajax "
+"のエラー：タスクウィジェットをフルモードに切り替えるために「フルモードで表示"
+"」ボタンをクリックするなど、JSF Ajax "
+"リクエスト中に発生するエラーです。アクションが正常に完了しなかった場合、適切"
+"なエラー処理を行わないと、フィードバックを得られません。"
 
 #: ../../source/portal-developer-guide/components/error-handling.rst:13
 msgid ""
@@ -10115,4 +10145,3 @@ msgstr ""
 
 #~ msgid "``field``: aggregation field."
 #~ msgstr ""
-
