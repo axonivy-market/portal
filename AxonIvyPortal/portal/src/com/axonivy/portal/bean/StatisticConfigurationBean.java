@@ -25,6 +25,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -842,6 +843,22 @@ public class StatisticConfigurationBean implements Serializable, IMultiLanguage 
     }
 
     return customFieldNameList;
+  }
+
+  public List<String> getNumericCustomFieldNames() {
+    Set<ICustomFieldMeta> customFieldList = statistic.getChartTarget() == ChartTarget.TASK ? ICustomFieldMeta.tasks()
+        : ICustomFieldMeta.cases();
+    List<String> customFieldNameList = new ArrayList<>();
+    customFieldList.stream().filter(cf -> cf.type().equals(CustomFieldType.NUMBER)).forEach(customField -> {
+      customFieldNameList.add(customField.name());
+    });
+
+    return customFieldNameList;
+  }
+
+  public List<SelectItem> getAggregationMethods() {
+    return Arrays.asList(new SelectItem("sum", "Sum"), new SelectItem("avg", "Average"), new SelectItem("max", "Max"),
+        new SelectItem("min", "Min"));
   }
 
   public void onSelectChartType(ChartType newChartType) {

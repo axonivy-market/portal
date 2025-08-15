@@ -36,6 +36,28 @@ public class StatisticConfigurationPage extends TemplatePage {
     $$("li[id^='config-form:type_']").filter(text(chartTypeName)).first().shouldBe(getClickableCondition()).click();
   }
   
+  public void changeKPIField(String kpiFieldName) {
+    $("div[id$='config-form:kpi-custom-fields'] div.ui-selectonemenu-trigger")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $$("li[id^='config-form:kpi-custom-fields_']").filter(text(kpiFieldName)).first().shouldBe(getClickableCondition())
+        .click();
+  }
+
+  public void changeAggregationMethod(String aggMethod) {
+    $("div[id$='config-form:kpi-aggregation-method'] div.ui-selectonemenu-trigger")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $$("li[id^='config-form:kpi-aggregation-method_']").filter(text(aggMethod)).first()
+        .shouldBe(getClickableCondition())
+        .click();
+  }
+  
+  public void changeCustomFieldGroupBy(String customField) {
+    $("div[id$='config-form:aggregates-custom-fields'] div.ui-selectonemenu-trigger")
+        .shouldBe(Condition.appear, DEFAULT_TIMEOUT).click();
+    $$("li[id^='config-form:aggregates-custom-fields_']").filter(text(customField)).first()
+        .shouldBe(getClickableCondition()).click();
+  }
+
   public void changeGroupBy(String groupByName) {
     $("div[id$='config-form:aggregates'] div.ui-selectonemenu-trigger").shouldBe(getClickableCondition()).click();
     $$("li[id^='config-form:aggregates_']").filter(text(groupByName)).first().shouldBe(getClickableCondition()).click();
@@ -60,13 +82,23 @@ public class StatisticConfigurationPage extends TemplatePage {
     return $$("select[id$='config-form:aggregates-custom-fields_input'] option");
   }
 
+  public ElementsCollection getKpiFieldsItems() {
+    $("div[id='config-form:kpi-custom-fields']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $$("select[id$='config-form:kpi-custom-fields_input'] option");
+  }
+
+  public ElementsCollection getAggregationMethodItems() {
+    $("div[id='config-form:kpi-aggregation-method']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    return $$("select[id$='config-form:kpi-aggregation-method_input'] option");
+  }
+
   public String getPreviewChartNumberLabel() {
     return $("div[id$='config-form:stat-chart-widget__content']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("div.chart-content-card > div.chart-label-container").first().text();
   }
 
-  public int getPreviewChartNumberValue() {
+  public double getPreviewChartNumberValue() {
     String numberStr = $("div[id$='config-form:stat-chart-widget__content']").shouldBe(Condition.appear, DEFAULT_TIMEOUT).$$("div.chart-content-card > div.chart-number-container").first().text();
-    return Integer.parseInt(numberStr);
+    return Double.parseDouble(numberStr);
   }
 
   public void backgroundColorVisible() {
