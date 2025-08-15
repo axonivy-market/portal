@@ -6194,6 +6194,6 @@ body.edit-mode {
 }
 
 
-.command-link-focused:focus {
+.icon-more-menu-button:focus,.ui-focused:focus {
   outline: 2px solid var(--ivy-primary-lightest-color) !important;
 }

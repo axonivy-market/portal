@@ -45,7 +45,7 @@
           <p:commandButton id="advanced-filter-command" type="button" 
             ariaLabel="#{cc.attrs.caseFilter.label()}: #{cc.attrs.caseFilter.value()}"
             value="#{cc.attrs.caseFilter.label()}: #{cc.attrs.caseFilter.value()}"
-            styleClass="advanced-filter-command #{cc.attrs.buttonStyleClass} #{facesContext.validationFailed ? 'error-filter' : ''} #{cc.attrs.buttonStyleClass}" />
+            styleClass="advanced-filter-command #{cc.attrs.buttonStyleClass} #{facesContext.validationFailed ? 'error-filter' : ''} #{cc.attrs.buttonStyleClass} ui-focused"/>
           <p:commandLink id="advanced-filter-remove-command"
             ariaLabel="#{ivy.cms.co('/Labels/delete')}"
             styleClass="si si-delete-2 advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
@@ -79,7 +79,7 @@
             rendered="#{cc.attrs.displayFooterButtons}" styleClass="ui-overlaypanel-footer #{cc.attrs.dynamicUpdate? 'u-hidden js-filter-content' : ''}">
             <p:commandLink id="cancel-command" process="@this" global="false" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="#{cc.clientId}:filter-open-form @form" resetValues="true"
-              oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? caseFilter.resetValues() : ''};" />
+              oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? caseFilter.resetValues() : ''}; focusOnLastElementWhenClosing('#{widgetVarPanel}');"/>
             <p:spacer width="15" />
             <p:commandButton id="update-command" 
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
