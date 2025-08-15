@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	template="/layouts/basic-10.xhtml">
+
+	<!-- Optional: load your messages bundle -->
+	<!-- <f:loadBundle var="msg" basename="com.myapp.Messages" /> -->
+
+	<ui:define name="title">redirectToStaticPageExample</ui:define>
+
+	<ui:define name="content">
+		<h3>
+			This is an <a href="https://developer.axonivy.com/doc/"
+				target="_blank" rel="noopener noreferrer"> Html Dialog </a>
+			implemented redirect to static page example.
+		</h3>
+
+		<h:form id="form" prependId="false">
+			<p:messages id="msgs" showDetail="true" closable="true" />
+
+			<!-- Input + actions -->
+			<p:panelGrid id="grid" columns="2" layout="grid"
+				styleClass="ui-panelgrid-blank ui-fluid card"
+				columnClasses="ui-g-12 ui-md-3 ui-lg-2, ui-g-12 ui-md-9 ui-lg-6">
+
+				<!-- Static page path -->
+				<h:outputLabel for="staticPath" value="Static page path" />
+				<p:inputText id="staticPath" value="#{data.staticPagePath}"
+					required="true"
+					requiredMessage="Please enter a static page path (e.g. designer/faces/view/portal-components-examples/static.xhtml)"
+					placeholder="designer/faces/view/portal-components-examples/static.xhtml"
+					pt:aria-label="Static page path" />
+
+				<!-- Build link -->
+				<h:outputText />
+				<p:commandButton id="buildBtn" value="Build link" icon="pi pi-link"
+					actionListener="#{logic.generator}" update="preview msgs"
+					process="@form" />
+
+				<!-- Preview label -->
+				<h:outputText value="Preview" />
+				<h:panelGroup id="preview">
+					<h:panelGroup rendered="#{not empty data.staticLink}">
+						<h:outputLink id="staticLink" value="#{data.staticLink}"
+							target="_blank" pt:rel="noopener noreferrer"
+							pt:aria-label="Open static page in a new tab">
+							<h:outputText value="Open static page: " />
+							<h:outputText value="#{data.staticLink}"></h:outputText>
+						</h:outputLink>
+					</h:panelGroup>
+
+					<h:panelGroup rendered="#{empty data.staticLink}">
+						<p:tag value="No link built yet" severity="warning" />
+					</h:panelGroup>
+				</h:panelGroup>
+			</p:panelGrid>
+
+			<p:separator />
+
+			<div class="command-btns">
+				<p:commandLink id="cancel"
+					actionListener="#{ivyWorkflowView.cancel()}" value="Cancel"
+					styleClass="ui-button-flat" />
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
