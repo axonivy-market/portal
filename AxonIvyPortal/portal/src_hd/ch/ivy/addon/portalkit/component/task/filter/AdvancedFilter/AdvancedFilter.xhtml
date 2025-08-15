@@ -63,7 +63,7 @@
           <p:overlayPanel id="advanced-filter-panel" widgetVar="#{widgetVarPanel}"
             dismissable="#{cc.attrs.dismissableOverlayPanel}" styleClass="advanced-filter-panel #{widgetVarPanel}"
             for="#{cc.clientId}:filter-open-form:advanced-filter-command" my="left top" at="left bottom"
-            onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click(); #{cc.attrs.dynamicUpdate? 'hideFilterContent();' : ''}">
+            onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click(); #{cc.attrs.dynamicUpdate? 'hideFilterContent();' : ''}; focusOnLastElementWhenClosing('#{widgetVarPanel}')">
             <p:ajax disabled="#{!cc.attrs.dynamicUpdate}" event="show" listener="#{taskFilter.update()}" global="false" update="advanced-filter-panel-content"
               onstart="hideFilterContent();" oncomplete="showFilterContent();" />
 
@@ -81,7 +81,7 @@
               rendered="#{cc.attrs.displayFooterButtons}">
               <p:commandLink id="cancel-command" process="@this" global="false" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="#{cc.clientId}:filter-open-form @form" resetValues="true"
-                oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? taskFilter.resetValues() : ''}; focusOnLastElementForAdvancedWhenClosingPanelInTaskAndCaseList('#{widgetVarPanel}')"/>
+                oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? taskFilter.resetValues() : ''};focusOnLastElementWhenClosing('#{widgetVarPanel}');"/>
               <p:spacer width="15" />
               <p:commandButton id="update-command"
                 ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"

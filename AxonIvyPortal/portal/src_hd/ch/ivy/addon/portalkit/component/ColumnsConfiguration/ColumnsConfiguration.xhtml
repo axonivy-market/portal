@@ -47,7 +47,7 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             update="#{cc.clientId}:config-columns-container #{cc.clientId}:#{cc.attrs.overlayPanelId}" resetValues="true"
-            oncomplete="PF('#{cc.attrs.overlayPanelId}').hide(); focusOnLastElementForAdvancedWhenClosingPanelInTaskAndCaseList('#{cc.attrs.overlayPanelId}');"
+            oncomplete="PF('#{cc.attrs.overlayPanelId}').hide(); focusOnLastElementWhenClosing('#{cc.attrs.overlayPanelId}')"
             actionListener="#{dataModel.setDisableSelectionCheckboxes(dataModel.autoHideColumns)}" />
           <p:spacer width="15" />
           <p:commandButton id="update-command" global="true"

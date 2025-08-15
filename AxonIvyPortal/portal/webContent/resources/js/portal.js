@@ -516,6 +516,7 @@ const searchInputId = '[id="global-search-component:global-search-data"]:visible
 const useSettingMenuId = 'a#user-settings-menu:visible';
 const pinButton = 'a[id="user-menu-required-login:toggle-menu"]';
 let isKeyboardShortcutsEnabled = false;
+var lastFocusedElements = [];
 
 function initKeyboardShortcutsEnabledValue(value) {
   if (typeof value === 'boolean') {
@@ -868,10 +869,10 @@ function setAltForAvatar() {
  * @param {string} selector - The jQuery selector for the element(s) to focus.
  */
 function focusFirstVisibleElementInPanel(widgetVar, selector) {
-  var panel = PF(widgetVar).jq;  
+  var panel = PF(widgetVar).jq;
   var first;
   var destructionWords = ['remove', 'destroy', 'delete', 'confirmation', 'confirm', 'deletion', 'reset'];
-  
+
   if (destructionWords.some(word => widgetVar.includes(word))) {
     first = panel.find('a').first();
   } else {
@@ -900,7 +901,6 @@ function initFocusManagament(targetWindow) {
   if (!targetWindow || !targetWindow.PrimeFaces) {
     return;
   }
-  var lastFocusedElements = [];
 
   // Dialog
   if (targetWindow.PrimeFaces.widget.Dialog) {
@@ -914,7 +914,7 @@ function initFocusManagament(targetWindow) {
 
           cfg.onShow = function() {
             try {
-              let targetElement = targetWindow.document.activeElement
+              let targetElement = targetWindow.document.activeElement;
               storeFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id, targetElement);
               if (self.originalOnShow) {
                 self.originalOnShow.call(this);
@@ -934,7 +934,7 @@ function initFocusManagament(targetWindow) {
                 console.warn("Cannot focus on last element");
               }
           };
-        },
+        }
     })
   }
   
@@ -961,12 +961,12 @@ function initFocusManagament(targetWindow) {
             }
           };
 
-          cfg.onHide = function() {            
+          cfg.onHide = function() {
               if (self.originalOnHide) {
                   self.originalOnHide.call(this);
               }
               try {
-                restoreFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id);
+                restoreFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id); 
               } catch (e) {
                 console.warn("Cannot focus on last element");
               }
@@ -1006,20 +1006,6 @@ function restoreFocusedElement(targetDocument, focusElements, containerId) {
   }
 }
 
-function initIframeFocusManagement(iframe) {
-  if (!iframe || !iframe.contentWindow) {
-    return;
-  }
-  
-  try {
-    var iframeWindow = iframe.contentWindow;
-    initFocusManagament(iframeWindow);
-    console.log('Focus management initialized for iframe');
-  } catch (e) {
-    console.warn('Cannot initialize focus management for iframe:', e.message);
-  }
-}
-
 function handleFocusOnElementsInCaseDetailsPanel() {
   const caseInfoDialog = document.getElementById('case-info-dialog');
   if (caseInfoDialog.innerHTML.includes('i-frame-case-details')) {
@@ -1027,6 +1013,34 @@ function handleFocusOnElementsInCaseDetailsPanel() {
     setTimeout(() => {
       initIframeFocusManagement(iframe);
     }, 2000)
+  }
+}
+
+function initIframeFocusManagement(iframe) {
+  if (!iframe?.contentWindow?.document) {
+    return;
+  }
+  
+  try {
+    const { contentWindow: iframeWindow, contentWindow: { document: iframeDocument } } = iframe;
+    
+    if (!iframeWindow.PrimeFaces?.widgets) {
+      console.warn('PrimeFaces widgets not available in iframe');
+      return;
+    }
+    
+    iframeDocument.focusOnLastElementWhenClosing = function(panelId) {
+      if (!panelId) return;
+      
+      const panel = iframeWindow.PrimeFaces.widgets[panelId];
+      if (!panel?.cfg?.target) return;
+      
+      const targetElement = iframeDocument.getElementById(panel.cfg.target);
+      targetElement?.focus();
+    };
+    
+  } catch (error) {
+    console.warn('Cannot initialize focus management for iframe:', error.message);
   }
 }
 
@@ -1062,18 +1076,20 @@ function addEventForCaseDetailsIframe() {
   }
 }
 
-function focusOnLastElementForAdvancedWhenClosingPanelInTaskAndCaseList(panelId) {
+function focusOnLastElementWhenClosing(panelId) {
   try {
-    var panelConfig = PF(panelId).cfg;
-    var targetElementId = panelConfig.target;
-    var targetElement = document.getElementById(targetElementId);
-    if (targetElement) {
-      targetElement.focus();
+    var panel = PF(panelId);
+    if (panel) {
+      let panelCfg = panel.cfg;
+      var targetElementId = panelCfg.target;
+      var targetElement = document.getElementById(targetElementId);
+      if (targetElement) {
+        targetElement.focus();
+      }
     }
   } catch(e) {
     console.warn("Cannot focus on last element");
   }
-
 }
 
 // END ACCESSIBILITY FIX
