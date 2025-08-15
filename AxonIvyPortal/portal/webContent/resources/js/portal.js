@@ -904,20 +904,38 @@ function initFocusManagament(targetWindow) {
 
   // Dialog
   if (targetWindow.PrimeFaces.widget.Dialog) {
-    var postShowEvent = targetWindow.PrimeFaces.widget.Dialog.prototype.postShow;
-    var onHideEvent = targetWindow.PrimeFaces.widget.Dialog.prototype.onHide;
-    
-    targetWindow.PrimeFaces.widget.Dialog.prototype.postShow = function() {
-      var containerId = this.cfg.id;
-      storeFocusedElement(targetWindow.document, lastFocusedElements, containerId);
-      postShowEvent.call(this);
-    };
+    targetWindow.PrimeFaces.widget.Dialog = targetWindow.PrimeFaces.widget.Dialog.extend({
+        init: function(cfg) {
+          this._super(cfg);
 
-    targetWindow.PrimeFaces.widget.Dialog.prototype.onHide = function() {
-      var containerId = this.cfg.id;
-      restoreFocusedElement(targetWindow.document, lastFocusedElements, containerId);
-      onHideEvent.call(this);
-    };
+          this.originalOnHide = cfg.onHide;
+          this.originalOnShow = cfg.onShow;
+          var self = this;
+
+          cfg.onShow = function() {
+            try {
+              let targetElement = targetWindow.document.activeElement
+              storeFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id, targetElement);
+              if (self.originalOnShow) {
+                self.originalOnShow.call(this);
+              }
+            } catch(e) {
+              console.warn("Cannot store focused element");
+            }
+          };
+
+          cfg.onHide = function() {            
+              if (self.originalOnHide) {
+                  self.originalOnHide.call(this);
+              }
+              try {
+                restoreFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id);
+              } catch (e) {
+                console.warn("Cannot focus on last element");
+              }
+          };
+        },
+    })
   }
   
   // OverlayPanel
