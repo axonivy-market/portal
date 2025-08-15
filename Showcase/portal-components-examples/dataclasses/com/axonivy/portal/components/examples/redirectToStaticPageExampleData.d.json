@@ -1,0 +1,5 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.2.0/data-class.json",
+  "simpleName" : "redirectToStaticPageExampleData",
+  "namespace" : "com.axonivy.portal.components.examples"
+}

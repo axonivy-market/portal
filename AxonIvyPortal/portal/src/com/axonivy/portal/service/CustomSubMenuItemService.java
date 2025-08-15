@@ -15,13 +15,13 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.portal.components.comparator.CustomSubMenuItemComparator;
 import com.axonivy.portal.components.configuration.CustomSubMenuItem;
 import com.axonivy.portal.components.enums.MenuKind;
+import com.axonivy.portal.components.publicapi.PortalNavigatorAPI;
 import com.axonivy.portal.enums.PortalCustomSignature;
 
 import ch.addon.portal.generic.menu.SubMenuItem;
 import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.ivy.addon.portalkit.enums.PortalVariable;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
-import ch.ivy.addon.portalkit.util.StaticPageUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCallStart;
 import ch.ivyteam.ivy.process.call.SubProcessSearchFilter;
@@ -77,7 +77,7 @@ public class CustomSubMenuItemService {
       SubMenuItem result = new SubMenuItem();
       String link = customMenu.getLink();
       if (customMenu.getMenuKind() == MenuKind.STATIC_PAGE) {
-        link = StaticPageUtils.buildUrl(link);
+        link = PortalNavigatorAPI.buildPortalStaticPageUrl(link);
       }
       result.setLink(link);
       result.setLabel(customMenu.getLabel());

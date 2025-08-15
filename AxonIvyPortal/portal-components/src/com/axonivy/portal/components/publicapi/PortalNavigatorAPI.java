@@ -24,7 +24,7 @@ import ch.ivyteam.ivy.workflow.StandardProcessType;
 public final class PortalNavigatorAPI extends BaseNavigator {
   private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/DefaultApplicationHomePage.ivp";
   private static final String PORTAL_PASSWORD_RESET = "Start Processes/PortalStart/PasswordResetPage.ivp";
-
+  private static final String DEFAULT_FRAME_PAGE = "Start Processes/PortalStart/DefaultFramePage.ivp";
 
   private PortalNavigatorAPI() {}
 
@@ -114,5 +114,15 @@ public final class PortalNavigatorAPI extends BaseNavigator {
       return e.getKey() + "=" + URLEncoder.encode(e.getValue(), StandardCharsets.ISO_8859_1);
     }).collect(Collectors.joining("&"));
     return requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY);
+  }
+  
+  /**
+   * Builds a portal URL pointing to the given static page path.
+   *
+   * @param staticPagePath relative path to the static page inside the portal
+   * @return A full or relative portal URL with the static page as query parameter
+   */
+  public static String buildPortalStaticPageUrl(String staticPageUrl) {
+    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(DEFAULT_FRAME_PAGE) + "?relativeUrl=/" + staticPageUrl;
   }
 }
