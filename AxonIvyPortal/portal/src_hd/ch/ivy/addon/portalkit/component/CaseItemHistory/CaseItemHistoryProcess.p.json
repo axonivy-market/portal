@@ -163,12 +163,12 @@
             "import ch.ivy.addon.portalkit.util.PermissionUtils;",
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
             "GlobalSettingService service = new GlobalSettingService();",
-            "out.showSystemNotesChkbox = !service.findHideSystemNotesFromHistorySettingValue();",
-            "out.showSystemTasksChkbox = !service.findHideSystemTasksFromHistorySettingValue();",
+            "out.showSystemNotesChkbox = service.isCheckSystemNotesByDefault();",
+            "out.showSystemTasksChkbox = service.isCheckSystemTasksByDefault();",
             "out.showRelatedCaseInfoCheckbox = in.caze.isBusinessCase() && !service.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_RELATED_CASE_INFO_FROM_HISTORY);",
             "boolean isAdmin = PermissionUtils.isSessionUserHasAdminRole();",
-            "out.showSystemNotes = isAdmin && out.showSystemNotesChkbox;",
-            "out.showSystemTasks = isAdmin && out.showSystemTasksChkbox;",
+            "out.showSystemNotes = service.findHideSystemNotesFromHistorySettingValue();",
+            "out.showSystemTasks = service.findHideSystemTasksFromHistorySettingValue();",
             "out.showRelatedCaseInfo= isAdmin && out.showRelatedCaseInfoCheckbox;"
           ]
         }
