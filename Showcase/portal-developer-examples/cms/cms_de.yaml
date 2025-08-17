@@ -132,27 +132,20 @@ Dialogs:
             sidestep:
               LeaveRequestApproval:
                 Approve: Genehmigen
-                EmployeeNote: Anmerkung für Mitarbeiter
                 Reject: Ablehnen
               LeaveRequestBusinessDetailsPage:
-                AskForMore: Weitere Informationen anfordern
-                CEOApproval: Kommentar des CEO
                 InformCustomer: Kunden informieren
                 LeaveRequest: Urlaubsantrag Business Details
                 SideStepComment: Kommentar zum Seitenschritt
               LeaveRequestSummary:
                 Finish: Beenden
               SideStepAskMoreDetails:
-                MoreDetailsFor: More details for leave request
+                MoreDetails: Weitere Details zum Urlaubsantrag
               SideStepCEOApproval:
-                CEOApproval: CEO approval
+                CEOApproval: Zustimmung des CEO
               SideStepExample:
                 SideStepExample: Beispiel für einen Seitenschritt
               SideStepResultExample:
-                Answer: Antwort
-                Assignee: Rechtsnachfolger
-                Comment: Kommentar
-                Question: Frage
                 SideStepResult: Seitenschritt Ergebnis
                 SideStepTaskIs: Die seitliche Schrittbewegung wird ausgeführt durch
 Enums:
@@ -163,24 +156,24 @@ Enums:
 Labels:
   Close: Close
   LeaveRequest:
+    ApprovalResultTaskIntro: Unten finden Sie eine Zusammenfassung Ihres Urlaubsantrags und des Feedbacks des Genehmigers.
+    ApprovalTaskIntro: 'Es gibt einen Urlaubsantrag, der Ihre Genehmigung erfordert, Einzelheiten dazu finden Sie unten:'
+    Approver: Genehmigender
+    ApproverComment: Kommentar des Befürworters
+    From: Von
     LeaveSteps:
+      Approval: Genehmigung
+      ApprovalResult: Genehmigungsergebnis
+      Creation: Urlaubsantrag erstellen
       RequesterSideStepComment: Kommentar des Antragstellers zum Seitenschritt
       SideStepComment: Kommentar zum Seitenschritt
-      approval: Genehmigung
-      approvalResult: Genehmigungsergebnis
-      creation: Urlaubsantrag erstellen
-    approvalResultTaskIntro: Unten finden Sie eine Zusammenfassung Ihres Urlaubsantrags und des Feedbacks des Genehmigers.
-    approvalTaskIntro: 'Es gibt einen Urlaubsantrag, der Ihre Genehmigung erfordert, Einzelheiten dazu finden Sie unten:'
-    approver: Genehmigender
-    approverComment: Kommentar des Befürworters
-    from: Von
-    leaveType: Urlaubsart
-    requester: Antragsteller
-    requesterComment: Kommentar des Antragstellers
-    stepTypeParallelTitle: This is customized parallel title
-    stepTypeSwitchTitle: This is customized switch title
-    submitLeaveRequest: Urlaubsantrag einreichen
-    to: Bis
+    LeaveType: Urlaubsart
+    Requester: Antragsteller
+    RequesterComment: Kommentar des Antragstellers
+    StepTypeParallelTitle: 'TODO: Dies ist ein angepasster Paralleltitel'
+    StepTypeSwitchTitle: Dies ist ein angepasster Schaltertitel
+    SubmitLeaveRequest: Urlaubsantrag einreichen
+    To: Bis
   OK: OK
   changePasswordWSError: Ein Fehler ist während der Passwortänderung aufgetreten. Bitte, kontaktieren Sie Ihren Administrator falls das Problem nach mehreren Versuchen besteht.
   forgotPasswordError: Bei der Bearbeitung Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.

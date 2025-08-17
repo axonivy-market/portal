@@ -8,13 +8,13 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "CallSubStart",
-      "name" : "getSecurityMembers()",
+      "name" : "getCustomSecurityMemberForSideStep()",
       "config" : {
-        "signature" : "getSecurityMembers",
+        "signature" : "getCustomSecurityMemberForSideStep",
         "result" : {
           "params" : [
-            { "name" : "userRolesToDelegate", "type" : "java.util.List", "desc" : "" },
-            { "name" : "rolesToDelegate", "type" : "java.util.List", "desc" : "" }
+            { "name" : "userRolesToDelegate", "type" : "List<ch.ivyteam.ivy.security.IRole>", "desc" : "" },
+            { "name" : "rolesToDelegate", "type" : "List<ch.ivyteam.ivy.security.IRole>", "desc" : "" }
           ],
           "map" : {
             "result.userRolesToDelegate" : "in.userRolesToDelegate",
@@ -23,7 +23,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 64 }
+        "at" : { "x" : 88, "y" : 64 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f6" }
@@ -35,68 +35,26 @@
         "at" : { "x" : 440, "y" : 64 }
       }
     }, {
-      "id" : "f5",
-      "type" : "CallSubStart",
-      "name" : "getSecurityMembers2()",
-      "config" : {
-        "signature" : "getSecurityMembers2",
-        "result" : {
-          "params" : [
-            { "name" : "rolesToDelegate", "type" : "java.util.List", "desc" : "" }
-          ],
-          "map" : {
-            "result.rolesToDelegate" : "in.rolesToDelegate"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 96, "y" : 192 }
-      },
-      "connect" : [
-        { "id" : "f11", "to" : "f10" }
-      ]
-    }, {
-      "id" : "f9",
-      "type" : "CallSubEnd",
-      "visual" : {
-        "at" : { "x" : 440, "y" : 192 }
-      }
-    }, {
-      "id" : "f10",
-      "type" : "Script",
-      "name" : "Get roles for side steps",
-      "config" : {
-        "output" : {
-          "code" : [
-            "import com.axonivy.portal.components.util.RoleUtils;",
-            "",
-            "out.userRolesToDelegate = RoleUtils.findRoles([], [], \"\");",
-            "out.rolesToDelegate = RoleUtils.findRoles([], [], \"\");"
-          ]
-        },
-        "sudo" : true
-      },
-      "visual" : {
-        "at" : { "x" : 272, "y" : 192 }
-      },
-      "connect" : [
-        { "id" : "f12", "to" : "f9" }
-      ]
-    }, {
       "id" : "f6",
       "type" : "Script",
       "name" : "List roles to filter user",
       "config" : {
         "output" : {
           "code" : [
+            "import ch.ivyteam.ivy.security.ISecurityContext;",
+            "import ch.ivyteam.ivy.security.IRole;",
+            "import java.util.ArrayList;",
             "import com.axonivy.portal.components.util.RoleUtils;",
             "import java.util.Arrays;",
+            "// This example will return some users of roles",
+            "List<IRole> allRoles = ISecurityContext.current().roles().all();",
+            "in.rolesToDelegate = new ArrayList();",
+            "in.userRolesToDelegate = new ArrayList();",
+            "for (int i = 0; i < allRoles.size()/2; i ++){",
+            "  in.userRolesToDelegate.add(allRoles.get(i));",
+            "}",
             "",
-            "",
-            "in.rolesToDelegate = RoleUtils.findRoles([], [], \"\");",
-            "if (in.rolesToDelegate.size() > 0){",
-            "  in.userRolesToDelegate.add(in.rolesToDelegate.get(0));",
-            "}"
+            "in.rolesToDelegate.add(ISecurityContext.current().roles().find(\"Everybody\"));"
           ]
         },
         "sudo" : true

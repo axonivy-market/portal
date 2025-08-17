@@ -5,9 +5,9 @@
   "isBusinessCaseData" : false,
   "fields" : [ {
     "name" : "userRolesToDelegate",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"
+    "type" : "List<ch.ivyteam.ivy.security.IRole>"
   }, {
     "name" : "rolesToDelegate",
-    "type" : "java.util.List<com.axonivy.portal.components.dto.RoleDTO>"
+    "type" : "List<ch.ivyteam.ivy.security.IRole>"
   } ]
 }

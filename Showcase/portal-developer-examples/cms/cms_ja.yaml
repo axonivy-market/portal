@@ -120,27 +120,20 @@ Dialogs:
             sidestep:
               LeaveRequestApproval:
                 Approve: 承認
-                EmployeeNote: 'TODO: Employee Note'
                 Reject: 却下
               LeaveRequestBusinessDetailsPage:
-                AskForMore: 'TODO: Ask for more details about leave request'
-                CEOApproval: 'TODO: CEO Comment'
                 InformCustomer: 'TODO: Inform customer'
                 LeaveRequest: 'TODO: Leave Request Business Details'
                 SideStepComment: TODO:Side step comment
               LeaveRequestSummary:
                 Finish: 完了
               SideStepAskMoreDetails:
-                MoreDetailsFor: More details for leave request
+                MoreDetails: 'TODO: More details for leave request'
               SideStepCEOApproval:
-                CEOApproval: CEO approval
+                CEOApproval: 'TODO: CEO approval'
               SideStepExample:
                 SideStepExample: 'TODO: Side Step Example'
               SideStepResultExample:
-                Answer: 'TODO: Answer'
-                Assignee: 'TODO: Assignee'
-                Comment: 'TODO: Comment'
-                Question: 'TODO: Question'
                 SideStepResult: 'TODO: Side step result'
                 SideStepTaskIs: 'TODO: Side step task is done by'
 Enums:
@@ -151,24 +144,24 @@ Enums:
 Labels:
   Close: Close
   LeaveRequest:
+    ApprovalResultTaskIntro: 以下は休暇申請の概要と承認者からのフィードバックです。
+    ApprovalTaskIntro: 承認が必要な休暇申請があります。詳細は以下のとおりです：
+    Approver: 承認者
+    ApproverComment: 承認者のコメント
+    From: から
     LeaveSteps:
+      Approval: 承認
+      ApprovalResult: 承認結果
+      Creation: 休暇申請の作成
       RequesterSideStepComment: 'TODO: Requester side step comment'
       SideStepComment: 'TODO: Side step comment'
-      approval: 承認
-      approvalResult: 承認結果
-      creation: 休暇申請の作成
-    approvalResultTaskIntro: 以下は休暇申請の概要と承認者からのフィードバックです。
-    approvalTaskIntro: 承認が必要な休暇申請があります。詳細は以下のとおりです：
-    approver: 承認者
-    approverComment: 承認者のコメント
-    from: From
-    leaveType: 休暇の種類
-    requester: 申請者
-    requesterComment: 申請者のコメント
-    stepTypeParallelTitle: This is customized parallel title
-    stepTypeSwitchTitle: This is customized switch title
-    submitLeaveRequest: 休暇申請を送信
-    to: To
+    LeaveType: 休暇の種類
+    Requester: 申請者
+    RequesterComment: 申請者のコメント
+    StepTypeParallelTitle: This is customized parallel title
+    StepTypeSwitchTitle: 'TODO: This is customized switch title'
+    SubmitLeaveRequest: 休暇申請を送信
+    To: まで
   OK: OK
   changePasswordWSError: パスワードの変更中にエラーが発生しました。問題が解決しない場合は、管理者に連絡してください。
   forgotPasswordError: リクエストの処理中にエラーが発生しました。しばらくしてから、もう一度お試しください。

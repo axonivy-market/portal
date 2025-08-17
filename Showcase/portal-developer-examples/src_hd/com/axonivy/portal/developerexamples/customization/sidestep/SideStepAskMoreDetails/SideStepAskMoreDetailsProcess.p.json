@@ -8,7 +8,7 @@
   "elements" : [ {
       "id" : "f0",
       "type" : "HtmlDialogStart",
-      "name" : "start(String,String,String,SideStepType)",
+      "name" : "start(String,String,String,Boolean)",
       "config" : {
         "signature" : "start",
         "input" : {
@@ -16,13 +16,13 @@
             { "name" : "originalTaskUuid", "type" : "String", "desc" : "" },
             { "name" : "caseUuid", "type" : "String", "desc" : "" },
             { "name" : "comment", "type" : "String", "desc" : "" },
-            { "name" : "stepType", "type" : "com.axonivy.portal.components.enums.SideStepType", "desc" : "" }
+            { "name" : "isParallel", "type" : "Boolean", "desc" : "" }
           ],
           "map" : {
             "out.caseUuid" : "param.caseUuid",
             "out.comment" : "param.comment",
-            "out.originalTaskUuid" : "param.originalTaskUuid",
-            "out.stepType" : "param.stepType"
+            "out.isParallel" : "param.isParallel",
+            "out.originalTaskUuid" : "param.originalTaskUuid"
           }
         },
         "guid" : "19660C014688AF59"
@@ -94,7 +94,7 @@
             "",
             "",
             "in.leaveRequestData.sideStepTasks.add(dto);",
-            "SideStepAPI.handleSaveProcessData(in.leaveRequestData, in.originalTaskUuid, in.stepType);"
+            "SideStepAPI.handleSaveProcessData(in.leaveRequestData, in.originalTaskUuid, in.isParallel);"
           ]
         },
         "sudo" : true

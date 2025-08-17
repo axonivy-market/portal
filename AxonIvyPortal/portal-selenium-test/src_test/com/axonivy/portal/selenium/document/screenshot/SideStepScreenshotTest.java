@@ -18,7 +18,6 @@ import com.axonivy.portal.selenium.page.TaskTemplatePage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 @IvyWebTest
 public class SideStepScreenshotTest extends ScreenshotBaseTest {
-
   @Override
   @BeforeEach
   public void setup() {

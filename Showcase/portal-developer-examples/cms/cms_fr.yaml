@@ -132,27 +132,20 @@ Dialogs:
             sidestep:
               LeaveRequestApproval:
                 Approve: Approuver
-                EmployeeNote: Note à l'attention des employés
                 Reject: Refuser
               LeaveRequestBusinessDetailsPage:
-                AskForMore: Demandez plus de détails
-                CEOApproval: Commentaire du PDG
                 InformCustomer: Informer le client
                 LeaveRequest: Demande de congé Détails de l'entreprise
                 SideStepComment: Commentaire sur le pas de côté
               LeaveRequestSummary:
                 Finish: Terminer
               SideStepAskMoreDetails:
-                MoreDetailsFor: More details for leave request
+                MoreDetails: Plus de détails sur la demande de congé
               SideStepCEOApproval:
-                CEOApproval: CEO approval
+                CEOApproval: Approbation du PDG
               SideStepExample:
                 SideStepExample: Exemple de pas de côté
               SideStepResultExample:
-                Answer: Réponse
-                Assignee: Cessionnaire
-                Comment: Commentaire
-                Question: Question
                 SideStepResult: Résultat du pas de côté
                 SideStepTaskIs: La tâche latérale est effectuée par
 Enums:
@@ -163,24 +156,24 @@ Enums:
 Labels:
   Close: Close
   LeaveRequest:
+    ApprovalResultTaskIntro: Vous trouverez ci-dessous un résumé de votre demande de congé et les commentaires de l'approbateur.
+    ApprovalTaskIntro: 'Toute demande de congé doit être approuvée par vous, dont les détails figurent ci-dessous :'
+    Approver: Approbateur
+    ApproverComment: Commentaire d'approbation
+    From: Du
     LeaveSteps:
+      Approval: Approbation
+      ApprovalResult: Résultat de l'approbation
+      Creation: Créer une demande de congé
       RequesterSideStepComment: Commentaire du demandeur sur le pas de côté
       SideStepComment: Commentaire sur le pas de côté
-      approval: Approbation
-      approvalResult: Résultat de l'approbation
-      creation: Créer une demande de congé
-    approvalResultTaskIntro: Vous trouverez ci-dessous un résumé de votre demande de congé et les commentaires de l'approbateur.
-    approvalTaskIntro: 'Toute demande de congé doit être approuvée par vous, dont les détails figurent ci-dessous :'
-    approver: Approbateur
-    approverComment: Commentaire d'approbation
-    from: Du
-    leaveType: Type de congé
-    requester: Demandeur
-    requesterComment: Commentaire du demandeur
-    stepTypeParallelTitle: This is customized parallel title
-    stepTypeSwitchTitle: This is customized switch title
-    submitLeaveRequest: Soumettre une demande de congé
-    to: Au
+    LeaveType: Type de congé
+    Requester: Demandeur
+    RequesterComment: Commentaire du demandeur
+    StepTypeParallelTitle: Il s'agit d'un titre parallèle personnalisé
+    StepTypeSwitchTitle: Il s'agit d'un titre de commutateur personnalisé
+    SubmitLeaveRequest: Soumettre une demande de congé
+    To: Au
   OK: OK
   changePasswordWSError: Une error s'est produite lors du changement de mot de passe. Veuillez contacter votre administrateur si le problème persiste après plusieurs essais.
   forgotPasswordError: Une erreur s'est produite lors du traitement de votre demande. Veuillez réessayer plus tard.

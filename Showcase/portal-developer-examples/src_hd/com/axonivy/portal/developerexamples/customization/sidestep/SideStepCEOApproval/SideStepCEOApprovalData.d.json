@@ -16,16 +16,16 @@
     "type" : "com.axonivy.portal.developerexamples.LeaveRequest",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "stepType",
-    "type" : "com.axonivy.portal.components.enums.SideStepType",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
     "name" : "comment",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "ceoApproval",
     "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isParallel",
+    "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
   } ]
 }

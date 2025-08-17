@@ -18,12 +18,12 @@ import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.constant.CustomFields;
 import com.axonivy.portal.components.dto.RoleDTO;
-import com.axonivy.portal.components.dto.SideStepDTO;
-import com.axonivy.portal.components.dto.SideStepProcessDTO;
-import com.axonivy.portal.components.dto.SideStepProcessParam;
 import com.axonivy.portal.components.dto.UserDTO;
 import com.axonivy.portal.components.enums.SideStepType;
 import com.axonivy.portal.components.publicapi.PortalNavigatorInFrameAPI;
+import com.axonivy.portal.components.publicapi.SideStepConfigurationDTO;
+import com.axonivy.portal.components.publicapi.SideStepProcessDTO;
+import com.axonivy.portal.components.publicapi.SideStepProcessParam;
 import com.axonivy.portal.components.publicapi.TaskAPI;
 import com.axonivy.portal.components.service.IvyAdapterService;
 import com.axonivy.portal.components.util.FacesMessageUtils;
@@ -33,6 +33,7 @@ import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.service.GrowlMessageService;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -53,7 +54,7 @@ public class SideStepProcessBean implements Serializable {
   private SideStepType selectedStepType;
   private List<SideStepType> stepTypes;
   private String comment;
-  private SideStepDTO sideStepInfo;
+  private SideStepConfigurationDTO sideStepInfo;
   private boolean isUserDelegated = true;
 
   public List<SideStepProcessDTO> getProcesses() {
@@ -78,17 +79,16 @@ public class SideStepProcessBean implements Serializable {
       if (selectedProcess.getParams() != null) {
         selectedProcess.getParams().put("taskUuid", task.uuid());
       }
-      String securityMembersCallable = selectedProcess.getSecurityMembersCallable();
+      String securityMembersCallable = selectedProcess.getCustomSecurityMemberCallable();
 
-      List<RoleDTO> userRolesDTO = new ArrayList<>();
-      List<RoleDTO> rolesDTO = new ArrayList<>();
+      List<IRole> customUserRoles = new ArrayList<>();
+      List<IRole> customRoles = new ArrayList<>();
       if (StringUtils.isNotBlank(securityMembersCallable)) {
-        Map<String, Object> responseCallable = IvyAdapterService
-            .startSubProcessInSecurityContext(securityMembersCallable, null);
-        userRolesDTO = (List<RoleDTO>) responseCallable.get("userRolesToDelegate");
-        rolesDTO = (List<RoleDTO>) responseCallable.get("rolesToDelegate");
-        this.userRoles = userRolesDTO.stream().map(RoleDTO::getName).collect(Collectors.toList());
-        this.roles = rolesDTO.stream().map(RoleDTO::getName).collect(Collectors.toList());
+        Map<String, Object> responseCallable = IvyAdapterService.startSubProcessInSecurityContext(securityMembersCallable, null);
+        customUserRoles = (List<IRole>) responseCallable.get("userRolesToDelegate");
+        customRoles = (List<IRole>) responseCallable.get("rolesToDelegate");
+        this.userRoles = customUserRoles.stream().map(IRole::getName).collect(Collectors.toList());
+        this.roles = customRoles.stream().map(IRole::getName).collect(Collectors.toList());
       } 
     }
   }
@@ -109,10 +109,10 @@ public class SideStepProcessBean implements Serializable {
             sideStepString = task.customFields().textField(CustomFields.SIDE_STEPS_TASK).getOrNull();
           }
           if (StringUtils.isNotBlank(sideStepString)) {
-            sideStepInfo = BusinessEntityConverter.jsonValueToEntity(sideStepString, SideStepDTO.class);
-            if (sideStepInfo.getParallel() == null) {
+            sideStepInfo = BusinessEntityConverter.jsonValueToEntity(sideStepString, SideStepConfigurationDTO.class);
+            if (sideStepInfo.getIsParallelSideStep() == null) {
               setStepTypes(Arrays.asList(SideStepType.class.getEnumConstants()));
-            } else if (sideStepInfo.getParallel()) {
+            } else if (sideStepInfo.getIsParallelSideStep()) {
               this.selectedStepType = SideStepType.PARALLEL;
             } else {
               this.selectedStepType = SideStepType.SWITCH;
@@ -128,9 +128,9 @@ public class SideStepProcessBean implements Serializable {
 
   public String getStepTypeTitle(SideStepType type) {
     return switch (type) {
-      case SideStepType.PARALLEL -> StringUtils.defaultIfBlank(sideStepInfo.getStepTypeParallelTitle(),
+      case SideStepType.PARALLEL -> StringUtils.defaultIfBlank(sideStepInfo.getCustomParallelSideStepTitle(),
           Ivy.cms().co("/Dialogs/com/axonivy/portal/components/SideStepType/" + SideStepType.PARALLEL.name()));
-      case SideStepType.SWITCH -> StringUtils.defaultIfBlank(sideStepInfo.getStepTypeSwitchTitle(),
+      case SideStepType.SWITCH -> StringUtils.defaultIfBlank(sideStepInfo.getCustomSwitchSideStepTitle(),
           Ivy.cms().co("/Dialogs/com/axonivy/portal/components/SideStepType/" + SideStepType.SWITCH.name()));
       default -> null;
     };
@@ -145,7 +145,7 @@ public class SideStepProcessBean implements Serializable {
         delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(assignedRole);
       }
       String securityMemberId = delegatedSecurityMember != null ? delegatedSecurityMember.getSecurityMemberId() : "";
-      SideStepProcessParam param = new SideStepProcessParam(selectedProcess, securityMemberId, selectedStepType, comment);
+      SideStepProcessParam param = new SideStepProcessParam(selectedProcess, securityMemberId, selectedStepType == SideStepType.PARALLEL, comment);
       String jsonSerializedPayload = BusinessEntityConverter.entityToJsonValue(param);
       Ivy.wf().signals().create().data(jsonSerializedPayload).send(selectedProcess.getSignal());
       if (selectedStepType == SideStepType.SWITCH) {
@@ -229,11 +229,11 @@ public class SideStepProcessBean implements Serializable {
     this.comment = comment;
   }
 
-  public SideStepDTO getSideStepInfo() {
+  public SideStepConfigurationDTO getSideStepInfo() {
     return sideStepInfo;
   }
 
-  public void setSideStepInfo(SideStepDTO sideStepInfo) {
+  public void setSideStepInfo(SideStepConfigurationDTO sideStepInfo) {
     this.sideStepInfo = sideStepInfo;
   }
 

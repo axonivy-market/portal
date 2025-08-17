@@ -6,16 +6,12 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.stream.IntStream;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
-import com.axonivy.portal.selenium.common.DateTimePattern;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
@@ -363,15 +359,15 @@ public class TaskTemplatePage extends TemplatePage {
     driver.switchTo().defaultContent();
   }
   
-  private void inputDate(LocalDate absenceFrom, String inputCssSelector) {
-    $(inputCssSelector).shouldBe(appear, DEFAULT_TIMEOUT);
-    WebElement fromInput = $(inputCssSelector);
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN);
-    fromInput.clear();
-    fromInput.sendKeys(Keys.chord(Keys.CONTROL, "a"));
-    fromInput.sendKeys(Keys.BACK_SPACE);
-    fromInput.sendKeys(absenceFrom.format(formatter));
-  }
+//  private void inputDate(LocalDate absenceFrom, String inputCssSelector) {
+//    $(inputCssSelector).shouldBe(appear, DEFAULT_TIMEOUT);
+//    WebElement fromInput = $(inputCssSelector);
+//    DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DateTimePattern.DATE_PATTERN);
+//    fromInput.clear();
+//    fromInput.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+//    fromInput.sendKeys(Keys.BACK_SPACE);
+//    fromInput.sendKeys(absenceFrom.format(formatter));
+//  }
 
   public WebElement getSideStepConfigDialog() {
     return $("div[id='side-step-process-dialog']");

@@ -60,7 +60,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 560, "y" : 375 },
+        "at" : { "x" : 488, "y" : 375 },
         "size" : { "width" : 188, "height" : 63 }
       },
       "connect" : [
@@ -79,19 +79,14 @@
             "activator" : "in.approver"
           },
           "code" : [
-            "import java.util.Collections;",
-            "import com.axonivy.portal.components.ivydata.dto.IvySecurityResultDTO;",
-            "import com.axonivy.portal.components.ivydata.service.impl.SecurityService;",
+            "import com.axonivy.portal.components.publicapi.SideStepAPI;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
             "import java.util.Map;",
             "import java.util.HashMap;",
-            "import com.axonivy.portal.components.dto.SideStepDTO;",
-            "import com.axonivy.portal.components.dto.SideStepProcessDTO;",
+            "import com.axonivy.portal.components.publicapi.SideStepConfigurationDTO;",
+            "import com.axonivy.portal.components.publicapi.SideStepProcessDTO;",
             "import com.axonivy.portal.components.constant.CustomFields;",
-            "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import com.axonivy.portal.components.dto.UserDTO;",
-            "import com.axonivy.portal.developerexamples.LeaveRequest;",
             "",
             "ICase caze = ivy.case;",
             "",
@@ -101,8 +96,6 @@
             "params1.put(\"taskUuid\", task.uuid());",
             "",
             "SideStepProcessDTO dto1 = SideStepProcessDTO.builder()",
-            "//  .taskUuid(task.uuid())",
-            "//  .caseUuid(caze.uuid())",
             "  .processName(\"Side step 1: Ask more details\")",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:askMoreDetails\")",
             "  .params(params1)",
@@ -115,27 +108,24 @@
             "params2.put(\"taskUuid\", task.uuid());",
             "",
             "SideStepProcessDTO dto2 = SideStepProcessDTO.builder()",
-            "//  .taskUuid(task.uuid())",
-            "//  .caseUuid(caze.uuid())",
             "  .processName(\"Side step 2: CEO Approval\")",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:CEOApproval\")",
             "  .params(params2)",
             "  .build();",
             "",
-            "// define side step dto",
+            "// Define side step dto",
             "List processes = new List();",
             "processes.add(dto1);",
             "processes.add(dto2);",
             "",
-            "SideStepDTO sideStepDto = SideStepDTO.builder()",
+            "SideStepConfigurationDTO sideStepDto = SideStepConfigurationDTO.builder()",
             ".processes(processes)",
             ".build();",
             "",
             "",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
             "",
-            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);",
-            "ivy.log.error(valueString);"
+            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
           ]
         },
         "output" : {
@@ -146,7 +136,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 872, "y" : 375 },
+        "at" : { "x" : 712, "y" : 375 },
         "size" : { "width" : 184, "height" : 63 }
       },
       "connect" : [
@@ -165,19 +155,13 @@
             "activator" : "in.requester"
           },
           "code" : [
-            "import java.util.Collections;",
-            "import com.axonivy.portal.components.ivydata.dto.IvySecurityResultDTO;",
-            "import com.axonivy.portal.components.ivydata.service.impl.SecurityService;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
             "import java.util.Map;",
             "import java.util.HashMap;",
-            "import com.axonivy.portal.components.dto.SideStepDTO;",
-            "import com.axonivy.portal.components.dto.SideStepProcessDTO;",
+            "import com.axonivy.portal.components.publicapi.SideStepConfigurationDTO;",
+            "import com.axonivy.portal.components.publicapi.SideStepProcessDTO;",
             "import com.axonivy.portal.components.constant.CustomFields;",
-            "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import com.axonivy.portal.components.dto.UserDTO;",
-            "import com.axonivy.portal.developerexamples.LeaveRequest;",
             "",
             "ICase caze = ivy.case;",
             "",
@@ -188,32 +172,28 @@
             "params.put(\"caseUuid\", caze.uuid());",
             "",
             "SideStepProcessDTO dto = SideStepProcessDTO.builder()",
-            "//  .taskUuid(task.uuid())",
-            "//  .caseUuid(caze.uuid())",
             "  .processName(\"Side step: Inform Customer\")",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:informCustomer\")",
             "  .params(params)",
             "  .build();",
             "",
-            "// define side step dto",
+            "// Define side step dto",
             "List processes = new List();",
             "processes.add(dto);",
             "",
-            "SideStepDTO sideStepDto = SideStepDTO.builder()",
+            "SideStepConfigurationDTO sideStepDto = SideStepConfigurationDTO.builder()",
             ".processes(processes)",
-            ".parallel(false)",
+            ".isParallelSideStep(false)",
             ".build();",
-            "",
             "",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
             "",
-            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);",
-            "ivy.log.error(valueString);"
+            "task.customFields().textField(CustomFields.SIDE_STEPS_TASK).set(valueString);"
           ]
         }
       },
       "visual" : {
-        "at" : { "x" : 1272, "y" : 375 },
+        "at" : { "x" : 944, "y" : 375 },
         "size" : { "width" : 188, "height" : 63 }
       },
       "connect" : [
@@ -223,7 +203,7 @@
       "id" : "f13",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1576, "y" : 376 }
+        "at" : { "x" : 1136, "y" : 376 }
       }
     }, {
       "id" : "f75",
@@ -238,7 +218,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 240, "y" : 376 },
+        "at" : { "x" : 264, "y" : 376 },
         "size" : { "width" : 176 }
       },
       "connect" : [
@@ -260,7 +240,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 408, "y" : 640 },
+        "at" : { "x" : 488, "y" : 1216 },
         "size" : { "width" : 192 }
       },
       "connect" : [
@@ -270,7 +250,7 @@
       "id" : "f83",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 632, "y" : 640 }
+        "at" : { "x" : 648, "y" : 1216 }
       }
     }, {
       "id" : "f84",
@@ -291,7 +271,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 24, "y" : 640 }
+        "at" : { "x" : 40, "y" : 1216 }
       },
       "connect" : [
         { "id" : "f85", "to" : "f91" }
@@ -309,7 +289,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 192, "y" : 640 }
+        "at" : { "x" : 264, "y" : 1216 }
       },
       "connect" : [
         { "id" : "f92", "to" : "f81", "color" : "default" }
@@ -346,7 +326,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 24, "y" : 1016 }
+        "at" : { "x" : 24, "y" : 864 }
       },
       "connect" : [
         { "id" : "f94", "to" : "f95" }
@@ -364,7 +344,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 264, "y" : 1016 },
+        "at" : { "x" : 264, "y" : 864 },
         "size" : { "width" : 176 }
       },
       "connect" : [
@@ -392,7 +372,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 504, "y" : 1015 },
+        "at" : { "x" : 488, "y" : 863 },
         "size" : { "width" : 180, "height" : 63 }
       },
       "connect" : [
@@ -419,7 +399,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 944, "y" : 1015 },
+        "at" : { "x" : 944, "y" : 863 },
         "size" : { "width" : 184, "height" : 63 }
       },
       "connect" : [
@@ -440,8 +420,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 1352, "y" : 1016 },
-        "size" : { "width" : 168, "height" : 62 }
+        "at" : { "x" : 1226, "y" : 864 },
+        "size" : { "width" : 188, "height" : 63 }
       },
       "connect" : [
         { "id" : "f102", "to" : "f103" }
@@ -450,12 +430,12 @@
       "id" : "f103",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1520, "y" : 1016 }
+        "at" : { "x" : 1424, "y" : 864 }
       }
     }, {
       "id" : "f104",
       "type" : "Script",
-      "name" : "Config side step in process level",
+      "name" : "Config side step in case level",
       "config" : {
         "output" : {
           "code" : [
@@ -463,12 +443,9 @@
             "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
             "import java.util.Map;",
             "import java.util.HashMap;",
-            "import com.axonivy.portal.components.dto.SideStepDTO;",
-            "import com.axonivy.portal.components.dto.SideStepProcessDTO;",
+            "import com.axonivy.portal.components.publicapi.SideStepConfigurationDTO;",
+            "import com.axonivy.portal.components.publicapi.SideStepProcessDTO;",
             "import com.axonivy.portal.components.constant.CustomFields;",
-            "import ch.ivyteam.ivy.security.ISecurityContext;",
-            "import com.axonivy.portal.components.dto.UserDTO;",
-            "import com.axonivy.portal.developerexamples.LeaveRequest;",
             "",
             "ICase caze = ivy.case;",
             "",
@@ -477,7 +454,6 @@
             "params1.put(\"stepId\", \"1\");",
             "",
             "SideStepProcessDTO dto1 = SideStepProcessDTO.builder()",
-            "//  .caseUuid(caze.uuid())",
             "  .processName(\"Side step 1: Ask more details\")",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:askMoreDetails\")",
             "  .params(params1)",
@@ -489,7 +465,6 @@
             "params2.put(\"caseUuid\", caze.uuid());",
             "",
             "SideStepProcessDTO dto2 = SideStepProcessDTO.builder()",
-            "//  .caseUuid(caze.uuid())",
             "  .processName(\"Side step 2: CEO Approval\")",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:CEOApproval\")",
             "  .params(params2)",
@@ -499,23 +474,24 @@
             "params3.put(\"caseUuid\", caze.uuid());",
             "params3.put(\"stepId\", \"3\");",
             "",
+            "// This option has custom security member call",
             "SideStepProcessDTO dto3 = SideStepProcessDTO.builder()",
-            "//  .caseUuid(caze.uuid())",
             "  .processName(\"Side step 3: Inform Customer\")",
+            "  .customSecurityMembersCallable(\"getCustomSecurityMemberForSideStep()\")",
             "  .signal(\"com:axonivy:portal:developerexample:sideStep:informCustomer\")",
             "  .params(params3)",
             "  .build();",
             "",
-            "// define side step dto",
+            "// Define side step dto",
             "List processes = new List();",
             "processes.add(dto1);",
             "processes.add(dto2);",
             "processes.add(dto3);",
             "",
-            "SideStepDTO sideStepDto = SideStepDTO.builder()",
+            "SideStepConfigurationDTO sideStepDto = SideStepConfigurationDTO.builder()",
             ".processes(processes)",
-            ".stepTypeParallelTitle(ivy.cms.co(\"/Labels/LeaveRequest/stepTypeParallelTitle\"))",
-            ".stepTypeSwitchTitle(ivy.cms.co(\"/Labels/LeaveRequest/stepTypeSwitchTitle\"))",
+            ".customParallelSideStepTitle(ivy.cms.co(\"/Labels/LeaveRequest/StepTypeParallelTitle\"))",
+            ".customSwitchSideStepTitle(ivy.cms.co(\"/Labels/LeaveRequest/StepTypeSwitchTitle\"))",
             ".build();",
             "",
             "String valueString = BusinessEntityConverter.entityToJsonValue(sideStepDto);",
@@ -526,7 +502,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 720, "y" : 1016 },
+        "at" : { "x" : 712, "y" : 864 },
         "size" : { "width" : 120, "height" : 62 }
       },
       "connect" : [
@@ -536,7 +512,7 @@
       "id" : "f4",
       "type" : "ProcessAnnotation",
       "name" : [
-        "This is sample for side step task level (task scope)",
+        "This is sample for side step task level (task level)",
         "Each task in the process will have different side step configuration",
         "",
         "1 - Set custom business detail",
@@ -552,7 +528,7 @@
         "- Parse to Json and save to task custom text field"
       ],
       "visual" : {
-        "at" : { "x" : 416, "y" : 184 },
+        "at" : { "x" : 544, "y" : 160 },
         "size" : { "width" : 612, "height" : 296 }
       },
       "connect" : [
@@ -562,7 +538,7 @@
       "id" : "f7",
       "type" : "ProcessAnnotation",
       "name" : [
-        "This is sample for side step process level (case scope)",
+        "This is sample for side step process level (case level)",
         "All tasks in the process will have the same side step configuration",
         "",
         "1 - Set custom business detail",
@@ -570,10 +546,11 @@
         "2 - Build side step configuration for all tasks",
         "- Create list of 3 SideStepProcessDTO objects, each will trigger a signal process",
         "- Parse to Json and save to case custom text field",
-        "- Side step for all tasks in the process will have same 3 options "
+        "- Side step for all tasks in the process will have same 3 options ",
+        "- Third option has custom users and roles list"
       ],
       "visual" : {
-        "at" : { "x" : 515, "y" : 810 },
+        "at" : { "x" : 496, "y" : 640 },
         "size" : { "width" : 554, "height" : 180 }
       },
       "connect" : [
@@ -584,7 +561,7 @@
       "type" : "ProcessAnnotation",
       "name" : "Business case detail of side step",
       "visual" : {
-        "at" : { "x" : 328, "y" : 528 },
+        "at" : { "x" : 344, "y" : 1104 },
         "size" : { "width" : 350, "height" : 54 }
       },
       "connect" : [

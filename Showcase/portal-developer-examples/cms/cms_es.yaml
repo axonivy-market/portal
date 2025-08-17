@@ -132,27 +132,20 @@ Dialogs:
             sidestep:
               LeaveRequestApproval:
                 Approve: Aprobar
-                EmployeeNote: Nota del empleado
                 Reject: Rechazar
               LeaveRequestBusinessDetailsPage:
-                AskForMore: Solicite más detalles.
-                CEOApproval: Comentario del director ejecutivo
                 InformCustomer: Informar al cliente
                 LeaveRequest: Solicitud de baja Detalles de la empresa
                 SideStepComment: Comentario sobre el paso lateral
               LeaveRequestSummary:
                 Finish: Acabar
               SideStepAskMoreDetails:
-                MoreDetailsFor: More details for leave request
+                MoreDetails: Más detalles para la solicitud de licencia
               SideStepCEOApproval:
-                CEOApproval: CEO approval
+                CEOApproval: Aprobación del CEO
               SideStepExample:
                 SideStepExample: Ejemplo de paso lateral
               SideStepResultExample:
-                Answer: Respuesta
-                Assignee: Cesionario
-                Comment: Comentario
-                Question: Pregunta
                 SideStepResult: Resultado del paso lateral
                 SideStepTaskIs: La tarea de paso lateral se realiza mediante
 Enums:
@@ -163,24 +156,24 @@ Enums:
 Labels:
   Close: Close
   LeaveRequest:
+    ApprovalResultTaskIntro: Más abajo encontrará un resumen de su solicitud.
+    ApprovalTaskIntro: 'Hay una solicitud para una ausencia. Detalles más abajo:'
+    Approver: Aprovador
+    ApproverComment: Comentario del aprovador
+    From: Desde
     LeaveSteps:
+      Approval: Aprobar
+      ApprovalResult: Resultado del aprobado
+      Creation: Crear ausencia
       RequesterSideStepComment: Comentario del solicitante
       SideStepComment: Comentario sobre el paso lateral
-      approval: Aprobar
-      approvalResult: Resultado del aprobado
-      creation: Crear ausencia
-    approvalResultTaskIntro: Más abajo encontrará un resumen de su solicitud.
-    approvalTaskIntro: 'Hay una solicitud para una ausencia. Detalles más abajo:'
-    approver: Aprovador
-    approverComment: Comentario del aprovador
-    from: Desde
-    leaveType: Tipo de ausencia
-    requester: Solicitante
-    requesterComment: Comentario del solicitante
-    stepTypeParallelTitle: This is customized parallel title
-    stepTypeSwitchTitle: This is customized switch title
-    submitLeaveRequest: Presentar solicitud para ausencia
-    to: Hasta
+    LeaveType: Tipo de ausencia
+    Requester: Solicitante
+    RequesterComment: Comentario del solicitante
+    StepTypeParallelTitle: Este es un título paralelo personalizado
+    StepTypeSwitchTitle: Este es un título de interruptor personalizado
+    SubmitLeaveRequest: Presentar solicitud para ausencia
+    To: Hasta
   OK: OK
   changePasswordWSError: Se produjo un error al cambiar su contraseña. Póngase en contacto con su administrador si este problema persiste.
   forgotPasswordError: Ha habido un error mientras se procesaba su solicitud. Por favor inténtelo más tarde.

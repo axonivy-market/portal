@@ -9,8 +9,7 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "caze",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   }, {
     "name" : "originalTaskUuid",
     "type" : "String",
@@ -20,12 +19,12 @@
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
   }, {
-    "name" : "stepType",
-    "type" : "com.axonivy.portal.components.enums.SideStepType",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
     "name" : "originalCaseUuid",
     "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isParallel",
+    "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
   } ]
 }

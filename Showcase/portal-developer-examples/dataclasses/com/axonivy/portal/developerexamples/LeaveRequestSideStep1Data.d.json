@@ -4,10 +4,6 @@
   "namespace" : "com.axonivy.portal.developerexamples",
   "isBusinessCaseData" : false,
   "fields" : [ {
-    "name" : "stepType",
-    "type" : "com.axonivy.portal.components.enums.SideStepType",
-    "modifiers" : [ "PERSISTENT" ]
-  }, {
     "name" : "originalTaskUuid",
     "type" : "String",
     "modifiers" : [ "PERSISTENT" ]
@@ -21,11 +17,14 @@
     "modifiers" : [ "PERSISTENT" ]
   }, {
     "name" : "caze",
-    "type" : "ch.ivyteam.ivy.workflow.ICase",
-    "modifiers" : [ "PERSISTENT" ]
+    "type" : "ch.ivyteam.ivy.workflow.ICase"
   }, {
     "name" : "securityMember",
     "type" : "String",
+    "modifiers" : [ "PERSISTENT" ]
+  }, {
+    "name" : "isParallel",
+    "type" : "Boolean",
     "modifiers" : [ "PERSISTENT" ]
   } ]
 }

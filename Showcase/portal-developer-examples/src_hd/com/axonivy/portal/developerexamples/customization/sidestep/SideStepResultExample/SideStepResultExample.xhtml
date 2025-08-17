@@ -23,13 +23,13 @@
           </div>
     
           <h:panelGroup layout="block" styleClass="field col-12" rendered="#{not empty task.askMoreDetails}">
-            <p:outputLabel value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/LeaveRequestBusinessDetailsPage/AskForMore')}" /> 
+            <p:outputLabel value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/SideStepAskMoreDetails/MoreDetails')}" /> 
             <p:inputTextarea disabled="true"
                   value="#{task.askMoreDetails}"  rows="5" styleClass="w-full" autoResize="false" />
           </h:panelGroup>
     
           <h:panelGroup layout="block" styleClass="field col-12" rendered="#{not empty task.ceoApprovalComment}">
-            <p:outputLabel value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/LeaveRequestBusinessDetailsPage/CEOApproval')}" /> 
+            <p:outputLabel value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/SideStepCEOApproval/CEOApproval')}" /> 
             <p:inputTextarea disabled="true"
                 value="#{task.ceoApprovalComment}" rows="5" styleClass="w-full" autoResize="false" />
           </h:panelGroup>

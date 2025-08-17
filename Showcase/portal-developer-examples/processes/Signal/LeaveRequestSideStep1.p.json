@@ -22,27 +22,29 @@
             "import ch.ivyteam.ivy.security.ISecurityMember;",
             "import java.util.Arrays;",
             "import com.axonivy.portal.components.enums.SideStepType;",
-            "import com.axonivy.portal.components.dto.SideStepProcessParam;",
+            "import com.axonivy.portal.components.publicapi.SideStepProcessParam;",
             "import ch.ivyteam.ivy.workflow.ICase;",
             "import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;",
-            "import com.axonivy.portal.components.dto.SideStepDTO;",
+            "import com.axonivy.portal.components.publicapi.SideStepConfigurationDTO;",
             "import com.google.gson.Gson;",
             "import java.util.Map;",
             "import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;",
             "",
+            "// Get data send from Portal",
             "SideStepProcessParam data = BusinessEntityConverter.jsonValueToEntity(signal.getSignalData() as String, SideStepProcessParam.class) as SideStepProcessParam;",
             "",
             "// custom params",
-            "Map params = data.getSideStepDto().getParams();",
-            "out.originalTaskUuid = data.getSideStepDto().getParams().get(\"taskUuid\") as String;",
-            "out.originalCaseUuid = data.getSideStepDto().getParams().get(\"caseUuid\") as String;",
+            "Map params = data.getSideStepProcessDto().getParams();",
+            "out.originalTaskUuid = data.getSideStepProcessDto().getParams().get(\"taskUuid\") as String;",
+            "out.originalCaseUuid = data.getSideStepProcessDto().getParams().get(\"caseUuid\") as String;",
             "",
             "",
             "// required fields",
             "ISecurityMember member = ivy.security.members().findById(data.getSecurityMemberId());",
             "out.securityMember = member != null ? member.getMemberName() : \"\";",
             "out.comment = data.getComment();",
-            "out.stepType = data.getSelectedStepType();"
+            "//out.stepType = data.getSelectedSideStepType();",
+            "//out.isParallel = data.getIsParallelSideStep();"
           ]
         }
       },
@@ -81,13 +83,13 @@
       "type" : "DialogCall",
       "name" : "Side step ask more details",
       "config" : {
-        "dialog" : "com.axonivy.portal.developerexamples.customization.sidestep.SideStepAskMoreDetails:start(String,String,String,com.axonivy.portal.components.enums.SideStepType)",
+        "dialog" : "com.axonivy.portal.developerexamples.customization.sidestep.SideStepAskMoreDetails:start(String,String,String,Boolean)",
         "call" : {
           "map" : {
             "param.originalTaskUuid" : "in.originalTaskUuid",
             "param.caseUuid" : "in.originalCaseUuid",
             "param.comment" : "in.comment",
-            "param.stepType" : "in.stepType"
+            "param.isParallel" : "in.isParallel"
           }
         }
       },
