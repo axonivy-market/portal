@@ -1017,30 +1017,40 @@ function handleFocusOnElementsInCaseDetailsPanel() {
 }
 
 function initIframeFocusManagement(iframe) {
-  if (!iframe?.contentWindow?.document) {
+  if (!iframe || !iframe.contentWindow || !iframe.contentWindow.document) {
     return;
   }
   
   try {
-    const { contentWindow: iframeWindow, contentWindow: { document: iframeDocument } } = iframe;
-    
-    if (!iframeWindow.PrimeFaces?.widgets) {
+    var iframeWindow = iframe.contentWindow;
+    var iframeDocument = iframeWindow.document;
+
+    if (!iframeWindow.PrimeFaces || !iframeWindow.PrimeFaces.widgets) {
       console.warn('PrimeFaces widgets not available in iframe');
       return;
     }
-    
+
     iframeDocument.focusOnLastElementWhenClosing = function(panelId) {
-      if (!panelId) return;
+      if (!panelId) {
+        return;
+      }
       
-      const panel = iframeWindow.PrimeFaces.widgets[panelId];
-      if (!panel?.cfg?.target) return;
-      
-      const targetElement = iframeDocument.getElementById(panel.cfg.target);
-      targetElement?.focus();
+      var panel = iframeWindow.PrimeFaces.widgets[panelId];
+      if (panel) {
+        if (panel.cfg) {
+          var target = panel.cfg.target;
+          if (target) {
+            var targetElement = iframeDocument.getElementById(target);
+            if (targetElement) {
+              targetElement.focus();
+            }
+          }
+        }
+      }
     };
-    
-  } catch (error) {
-    console.warn('Cannot initialize focus management for iframe:', error.message);
+
+  } catch (e) {
+    console.warn('Cannot initialize focus management for iframe:', e.message);
   }
 }
 
