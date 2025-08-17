@@ -78,7 +78,8 @@ How to Use and Set Up
         // Second configuration option
         SideStepProcessDTO dto2 = SideStepProcessDTO.builder()
         .processName("Side step 2: CEO Approval")
-        .customSecurityMembersCallable("getCustomSecurityMemberForSideStep()") // Signature name of the process created in the previous step
+        // Set signature name of the process which defines custom users and roles in previous step
+        .customSecurityMembersCallable("getCustomSecurityMemberForSideStep()") 
         .signal("com:axonivy:portal:developerexample:sideStep:CEOApproval")
         .params(params2)
         .build();

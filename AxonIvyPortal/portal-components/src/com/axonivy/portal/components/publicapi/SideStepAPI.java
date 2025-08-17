@@ -14,18 +14,6 @@ public final class SideStepAPI {
   private SideStepAPI() {
   }
 
-//  public static <T> void handleSaveProcessData(T data, String originalTaskUuid, SideStepType sideStepType) {
-//    Ivy.repo().save(data);
-//    ITask originalTask = Ivy.wf().findTask(originalTaskUuid);
-//    if (sideStepType == SideStepType.SWITCH && originalTask != null) {
-//      TaskAPI.removeHidePropertyToDisplayInPortal(originalTask);
-//    }
-//    // update original task name
-//    if (originalTask != null) {
-//      originalTask.setName(StringUtils.replace(originalTask.getName(), Ivy.cms().co(DEFAULT_PREFIX_TASK_NAME_CMS), ""));
-//    }
-//  }
-  
   /**
    * Save process data to repository. If side step task is switch type, remove hide attribute to show it in task widget
    * @param <T>
@@ -39,10 +27,6 @@ public final class SideStepAPI {
     if (!isParallelSideStep && originalTask != null) {
       TaskAPI.removeHidePropertyToDisplayInPortal(originalTask);
     }
-    // update original task name
-//    if (originalTask != null) {
-//      originalTask.setName(StringUtils.replace(originalTask.getName(), Ivy.cms().co(DEFAULT_PREFIX_TASK_NAME_CMS), ""));
-//    }
   }
 
   /**

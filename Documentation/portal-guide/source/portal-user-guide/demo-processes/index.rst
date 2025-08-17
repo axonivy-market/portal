@@ -109,7 +109,7 @@ Side step
 
    |side-step-config|
 
-#. After the requester finishes the **summary task** is created, here you can also start another side step task.
+#. After the requester finishes the side step tasks and open again the original task (the task which you start side step task from it), a **summary dialog** will be shown. This dialog will list out information about all relevant completed side step tasks.
 
 
 
