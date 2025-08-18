@@ -18,10 +18,12 @@ function loadIframe() {
   var iframe = getPortalIframe();
 
   const onIframeLoad = function () {
-    processIFrameData(iframe);
+    var appName = $('#application-name-for-title').get(0).value;
+    checkUrl(iframe, appName);
     if (isMainPageNavigating) {
       return;
     }
+    processIFrameData(iframe);
     iframe.style.visibility = 'visible';
 
     const unloadHandler = () => {
@@ -50,13 +52,8 @@ function getPortalIframe() {
 
 function processIFrameData(iframe) {
   var window = iframe.contentWindow;
-  var appName = $('#application-name-for-title').get(0).value;
-  checkUrl(iframe, appName);
   if (invalidIFrameSrcPath) {
     invalidIFrameSrcPath = false;
-    return;
-  }
-  if (isMainPageNavigating) {
     return;
   }
   streamliningPortalFrameStyle(window);
