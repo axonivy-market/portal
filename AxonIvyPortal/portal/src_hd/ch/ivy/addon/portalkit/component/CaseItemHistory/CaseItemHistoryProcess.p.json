@@ -167,8 +167,8 @@
             "out.showSystemTasksChkbox = service.isCheckSystemTasksByDefault();",
             "out.showRelatedCaseInfoCheckbox = in.caze.isBusinessCase() && !service.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_RELATED_CASE_INFO_FROM_HISTORY);",
             "boolean isAdmin = PermissionUtils.isSessionUserHasAdminRole();",
-            "out.showSystemNotes = service.findHideSystemNotesFromHistorySettingValue();",
-            "out.showSystemTasks = service.findHideSystemTasksFromHistorySettingValue();",
+            "out.showSystemNotes = !service.findHideSystemNotesFromHistorySettingValue();",
+            "out.showSystemTasks = !service.findHideSystemTasksFromHistorySettingValue();",
             "out.showRelatedCaseInfo= isAdmin && out.showRelatedCaseInfoCheckbox;"
           ]
         }
