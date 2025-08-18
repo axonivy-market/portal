@@ -5,8 +5,8 @@ It makes iframe invisible when on unload, and visible when on load.
 If iframe reaches /default/redirect.xhtml$, Portal stops processing inside iframe.
 Portal navigates in main page, also not execute unnecessary JS.
 
-On latest Chrome, iframe is loaded with about:blank, then onload is registered, then loaded with the URL.
-In Firefox (like GUI test), iframe is loaded with the URL (no about:blank) before onload is registered.
+On Chrome, iframe is loaded with about:blank, then onload is registered, then loaded with the URL.
+On Firefox (like GUI test), iframe is loaded with the URL (no about:blank) before onload is registered.
 Therefore we need to check if iframe document is ready and not about:blank, execute logic of onload to not miss any onload event.
 
 Consider to test: multi-browsers, skip task list, back to home, session timeout.
