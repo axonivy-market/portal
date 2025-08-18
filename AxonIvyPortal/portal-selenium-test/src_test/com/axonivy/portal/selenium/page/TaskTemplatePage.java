@@ -94,7 +94,6 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public WebElement openAdhocHistoryDialog() {
-    clickActionButton();
     $("[id='horizontal-task-action-form:show-adhoc-history']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT)
         .click();
     return $("div[id$='adhoc-task-history-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
