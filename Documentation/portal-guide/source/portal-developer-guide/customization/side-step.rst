@@ -9,7 +9,7 @@ Introduction
 ------------
 
 Side step processes let you attach one or more auxiliary workflow steps to an existing business process in Axon Ivy Portal without touching the core flow. 
-At runtime Portal reads a JSON definition from the custom field ``sideStepTask`` (task scope) or ``sideStepCase`` (case scope), shows the available side steps in the task action menu and launches them either
+At runtime Portal reads a JSON definition from the custom field ``sideStepTask`` (task level) or ``sideStepCase`` (case level), shows the available side steps in the task action menu and launches them either
 
 - Synchronous - the main task pauses until the side step finishes, or
 
@@ -42,16 +42,19 @@ How to Use and Set Up
 
 #. Model the side step process
 
-    - Create a process that performs the additional work (for example “Ask for more details”).
-    - Define a signal that starts this process (e.g. ``com:axonivy:portal:developerexample:sideStep:askMoreDetails`` ).
-    |signal-process|
+   Create a process that performs the additional work (for example “Ask for more details”)
+   and define a signal that starts this process (e.g. ``com:axonivy:portal:developerexample:sideStep:askMoreDetails`` ).
+   |signal-process|
 
 
 #. Define custom list of users and roles which the side step task can be assigned (optional)
-   - Create a process with no parameter which return 2 lists type ``ch.ivyteam.ivy.security.IRole`` with the following names
-    - ``userRolesToDelegate`` : side step task can be assigned to all users who have role in this list
-    - ``rolesToDelegate`` : side step task can be assigned to all children roles in this list
-   - If not defined, side step task can be assigned to all users and roles in the security context
+   
+   Create a process with no parameter which return 2 lists type ``ch.ivyteam.ivy.security.IRole`` with the following names
+
+     - ``userRolesToDelegate`` : side step task can be assigned to all users who have role in this list
+     - ``rolesToDelegate`` : side step task can be assigned to all children roles in this list
+
+   If not defined, side step task can be assigned to all users and roles in the security context
 
 #. Define configuration for side step by building a list of ``SideStepProcessDTO`` objects. 
 
@@ -78,7 +81,7 @@ How to Use and Set Up
         // Second configuration option
         SideStepProcessDTO dto2 = SideStepProcessDTO.builder()
         .processName("Side step 2: CEO Approval")
-        // Set signature name of the process which defines custom users and roles in previous step
+        // Set signature name of the process which defines custom users and roles in the previous step
         .customSecurityMembersCallable("getCustomSecurityMemberForSideStep()") 
         .signal("com:axonivy:portal:developerexample:sideStep:CEOApproval")
         .params(params2)
@@ -142,31 +145,34 @@ How to Use and Set Up
 
 #. Build business case detail if needed
 
-    Your process needs to call the subprocess ``SetBusinessDetailsPage`` of the ``portal-components``, with param ``linkToBusinessDetailsPage`` set to the link of the custom business detail page in your project.
-    You can also do this by using ``BusinessDetailsAPI``.
-    |business-case-detail-page|
+   Your process needs to call the subprocess ``SetBusinessDetailsPage`` of the ``portal-components``, with param ``linkToBusinessDetailsPage`` set to the link of the custom business detail page in your project.
+   You can also do this by using ``BusinessDetailsAPI``.
+
+   |business-case-detail-page|
 
 #. Start of the main task
 
-    When the user opens the task, Portal reads the field and populates the task action menu with the configured side steps.
+   When the user opens the task, Portal reads the field and populates the task action menu with the configured side steps.
 
 #. User triggers a side step
 
-    Portal sends signal to your selected process, with the JSON parameters contain your input information like task uuid, case uuid, your comment. 
-    In case user select ``SWITCH`` step type (synchronously), Portal will park and set ``HIDE`` property to the original task until the side step completes. Otherwise the side step will run parallel with the original task.
+   Portal sends signal to your selected process, with the JSON parameters contain your input information like task uuid, case uuid, your comment. 
+   In case user select ``SWITCH`` step type (synchronously), Portal will park and set ``HIDE`` property to the original task until the side step completes. Otherwise the side step will run parallel with the original task.
 
 #. Handle data in the process which was triggers by Portal
-  Process developer gets data from signal as JSON string, parses it to class ``SideStepProcessParam`` object of ``portal-components``. This object contains data send from Portal to use for the process.
-  
-  .. code-block:: javascript
 
-    SideStepProcessParam data = BusinessEntityConverter.jsonValueToEntity(signal.getSignalData() as String, SideStepProcessParam.class) as SideStepProcessParam;
+   Process developer gets data from signal as JSON string, parses it to class ``SideStepProcessParam`` object of ``portal-components``. This object contains data send from Portal to use for the process.
+      
+    .. code-block:: javascript
 
-  ..
+      SideStepProcessParam data = BusinessEntityConverter.jsonValueToEntity(signal.getSignalData() as String, SideStepProcessParam.class) as SideStepProcessParam;
 
+    ..
+      
 #. Handle completion
 
-    On finish your side step process must raise a done signal. Portal reactivates and removes ``HIDE`` property from the parked task, opens an optional side step result dialog that you can write output data back to the task or case as needed.
+   On finish your side step process must raise a done signal by calling API ``SideStepAPI.finishSideStep(String originalTaskUuid, boolean isParallelSideStep)``. 
+   This API will reactivates and removes ``HIDE`` property from the parked task if the side step task is ``SWITCH`` step type (synchronously).
 
 
 .. |signal-process| image:: images/side-step/signal-process.png

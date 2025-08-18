@@ -80,7 +80,9 @@
             "dto.setCompleted(true);",
             "",
             "in.leaveRequestData.sideStepTasks.add(dto);",
-            "SideStepAPI.handleSaveProcessData(in.leaveRequestData, in.originalTaskUuid, in.isParallel);"
+            "",
+            "ivy.repo.save(in.leaveRequestData);",
+            "SideStepAPI.finishSideStep(in.originalTaskUuid, in.isParallel);"
           ]
         },
         "sudo" : true
