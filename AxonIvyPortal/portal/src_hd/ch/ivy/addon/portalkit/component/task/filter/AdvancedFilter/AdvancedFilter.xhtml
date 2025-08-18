@@ -63,7 +63,7 @@
           <p:overlayPanel id="advanced-filter-panel" widgetVar="#{widgetVarPanel}"
             dismissable="#{cc.attrs.dismissableOverlayPanel}" styleClass="advanced-filter-panel #{widgetVarPanel}"
             for="#{cc.clientId}:filter-open-form:advanced-filter-command" my="left top" at="left bottom"
-            onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click(); #{cc.attrs.dynamicUpdate? 'hideFilterContent();' : ''}; focusOnLastElementWhenClosing('#{widgetVarPanel}')">
+            onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click(); #{cc.attrs.dynamicUpdate? 'hideFilterContent();' : ''};">
             <p:ajax disabled="#{!cc.attrs.dynamicUpdate}" event="show" listener="#{taskFilter.update()}" global="false" update="advanced-filter-panel-content"
               onstart="hideFilterContent();" oncomplete="showFilterContent();" />
 
