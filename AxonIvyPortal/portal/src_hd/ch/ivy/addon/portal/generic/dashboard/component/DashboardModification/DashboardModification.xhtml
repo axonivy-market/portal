@@ -55,7 +55,7 @@
           <h:panelGroup layout="block">
             <p:commandButton id="dashboard-configuration-action-button" icon="fa fa-ellipsis-h"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
-              styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page" type="button" />
+              styleClass="rounded-button icon-more-menu-button #{buttonStyle} ui-no-rounded-button-process-page ui-focused" type="button" />
             <p:menu id="dashboard-configuration-action-menu" styleClass="w-auto" overlay="true" trigger="dashboard-configuration-action-button"
               my="right top" at="right bottom">
               <p:menuitem id="edit" process="@this" actionListener="#{dashboardModificationBean.openDashboardDetailDialog(dashboard)}"
