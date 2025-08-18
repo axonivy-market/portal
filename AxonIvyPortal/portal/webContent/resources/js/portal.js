@@ -516,6 +516,7 @@ const searchInputId = '[id="global-search-component:global-search-data"]:visible
 const useSettingMenuId = 'a#user-settings-menu:visible';
 const pinButton = 'a[id="user-menu-required-login:toggle-menu"]';
 let isKeyboardShortcutsEnabled = false;
+var lastFocusedElements = [];
 
 function initKeyboardShortcutsEnabledValue(value) {
   if (typeof value === 'boolean') {
@@ -524,6 +525,7 @@ function initKeyboardShortcutsEnabledValue(value) {
 }
 
 $(document).ready(function () {
+  initFocusManagament(window);
 
   const shortcuts = {
     'Digit1': $(singleDashboardId).length ? singleDashboardId : multipleDashboardId,
@@ -615,9 +617,9 @@ $(document).ready(function () {
           handleFocusOnMainElement(event);
         }
         registerSearchIconClick();
+        
       });
       handleExpandButtonInFilePreview(document.getElementById("iFrame").contentWindow);
-
     };
   }
 
@@ -867,10 +869,10 @@ function setAltForAvatar() {
  * @param {string} selector - The jQuery selector for the element(s) to focus.
  */
 function focusFirstVisibleElementInPanel(widgetVar, selector) {
-  var panel = PF(widgetVar).jq;  
+  var panel = PF(widgetVar).jq;
   var first;
   var destructionWords = ['remove', 'destroy', 'delete', 'confirmation', 'confirm', 'deletion', 'reset'];
-  
+
   if (destructionWords.some(word => widgetVar.includes(word))) {
     first = panel.find('a').first();
   } else {
@@ -893,6 +895,163 @@ function addMissingAttr(query, attrName, attrValue) {
       $(btn).attr(attrName, attrValue);
     }
   });
+}
+
+function initFocusManagament(targetWindow) {
+  if (!targetWindow || !targetWindow.PrimeFaces) {
+    return;
+  }
+
+  // Dialog
+  if (targetWindow.PrimeFaces.widget.Dialog) {
+    targetWindow.PrimeFaces.widget.Dialog = targetWindow.PrimeFaces.widget.Dialog.extend({
+        init: function(cfg) {
+          this._super(cfg);
+
+          this.originalOnHide = cfg.onHide;
+          this.originalOnShow = cfg.onShow;
+          var self = this;
+
+          cfg.onShow = function() {
+            try {
+              let targetElement = targetWindow.document.activeElement;
+              storeFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id, targetElement);
+              if (self.originalOnShow) {
+                self.originalOnShow.call(this);
+              }
+            } catch(e) {
+              console.warn("Cannot store focused element");
+            }
+          };
+
+          cfg.onHide = function() {            
+              if (self.originalOnHide) {
+                  self.originalOnHide.call(this);
+              }
+              try {
+                restoreFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id);
+              } catch (e) {
+                console.warn("Cannot focus on last element");
+              }
+          };
+        }
+    })
+  }
+  
+  // OverlayPanel
+  if (targetWindow.PrimeFaces.widget.OverlayPanel) {
+    targetWindow.PrimeFaces.widget.OverlayPanel = targetWindow.PrimeFaces.widget.OverlayPanel.extend({
+        init: function(cfg) {
+          this._super(cfg);
+
+          this.originalOnHide = cfg.onHide;
+          this.originalOnShow = cfg.onShow;
+          var self = this;
+
+          cfg.onShow = function() {
+            if (self.originalOnShow) {
+              self.originalOnShow.call(this);
+            }
+
+            try {
+              let targetElement = this.target[0];
+              storeFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id, targetElement);
+            } catch(e) {
+              console.warn("Cannot store focused element");
+            }
+          };
+
+          cfg.onHide = function() {
+              if (self.originalOnHide) {
+                  self.originalOnHide.call(this);
+              }
+              try {
+                restoreFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id); 
+              } catch (e) {
+                console.warn("Cannot focus on last element");
+              }
+          };
+        },
+    })
+  }
+}
+
+function storeFocusedElement(targetDocument, focusElements, containerId, targetElement) {
+  if (targetElement && targetElement !== targetDocument.body && targetElement.tagName !== 'HTML') {
+    var item = {"containerId": containerId, "activeElement": targetElement};
+
+    if (focusElements.length === 0 || 
+        focusElements[focusElements.length - 1].containerId !== containerId ||
+        focusElements[focusElements.length - 1].activeElement !== targetElement) {
+      focusElements.push(item);
+    }
+  }
+}
+
+function restoreFocusedElement(targetDocument, focusElements, containerId) {
+  if (focusElements.length === 0) return;
+
+  const itemIndex = focusElements.findIndex(item => item.containerId === containerId);
+
+  if (itemIndex === -1) {
+    return;
+  }
+
+  const item = focusElements[itemIndex];
+  const lastEl = targetDocument.getElementById(item.activeElement.id);
+  focusElements.splice(itemIndex, 1);
+
+  if (lastEl && targetDocument.contains(lastEl) && lastEl.offsetParent !== null && !lastEl.disabled && lastEl.tabIndex !== -1) {
+    lastEl.focus();
+  }
+}
+
+function handleFocusOnElementsInCaseDetailsPanel() {
+  const caseInfoDialog = document.getElementById('case-info-dialog');
+  if (caseInfoDialog.innerHTML.includes('i-frame-case-details')) {
+    const iframe = document.getElementById('i-frame-case-details');
+    setTimeout(() => {
+      initIframeFocusManagement(iframe);
+    }, 2000)
+  }
+}
+
+function initIframeFocusManagement(iframe) {
+  if (!iframe || !iframe.contentWindow || !iframe.contentWindow.document) {
+    return;
+  }
+  
+  try {
+    var iframeWindow = iframe.contentWindow;
+    var iframeDocument = iframeWindow.document;
+
+    if (!iframeWindow.PrimeFaces || !iframeWindow.PrimeFaces.widgets) {
+      console.warn('PrimeFaces widgets not available in iframe');
+      return;
+    }
+
+    iframeDocument.focusOnLastElementWhenClosing = function(panelId) {
+      if (!panelId) {
+        return;
+      }
+      
+      var panel = iframeWindow.PrimeFaces.widgets[panelId];
+      if (panel) {
+        if (panel.cfg) {
+          var target = panel.cfg.target;
+          if (target) {
+            var targetElement = iframeDocument.getElementById(target);
+            if (targetElement) {
+              targetElement.focus();
+            }
+          }
+        }
+      }
+    };
+
+  } catch (e) {
+    console.warn('Cannot initialize focus management for iframe:', e.message);
+  }
 }
 
 function addEventForCaseDetailsIframe() {
@@ -924,6 +1083,22 @@ function addEventForCaseDetailsIframe() {
       }
 	  `;
     caseDetailsIframeDocument.head.appendChild(script);
+  }
+}
+
+function focusOnLastElementWhenClosing(panelId) {
+  try {
+    var panel = PF(panelId);
+    if (panel) {
+      let panelCfg = panel.cfg;
+      var targetElementId = panelCfg.target;
+      var targetElement = document.getElementById(targetElementId);
+      if (targetElement) {
+        targetElement.focus();
+      }
+    }
+  } catch(e) {
+    console.warn("Cannot focus on last element");
   }
 }
 

@@ -139,19 +139,26 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
   }
 
   public void filterPriority(String... priorities) {
-    $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$=':priorities']")
-        .$(".ui-selectcheckboxmenu-trigger.ui-corner-right").shouldBe(getClickableCondition()).click();
+    clickOnPriorityFilterInTaskWidget();
     var priorityCheckboxOptions = $("[id$=':priorities_panel']").shouldBe(appear, DEFAULT_TIMEOUT)
         .$$(".ui-selectcheckboxmenu-item.ui-selectcheckboxmenu-list-item")
         .shouldBe(CollectionCondition.sizeGreaterThanOrEqual(1));
     for (var item : priorityCheckboxOptions) {
       for (var prio : priorities) {
+        if (!$("[id$=':priorities_panel']").isDisplayed()) {
+          clickOnPriorityFilterInTaskWidget();
+        }
         if (item.getAttribute("data-item-value").equalsIgnoreCase(prio)) {
           item.$(".ui-chkbox-box.ui-widget").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
           break;
         }
       }
     }
+  }
+
+  private void clickOnPriorityFilterInTaskWidget() {
+    $("div[id$='widget-filter-content']").shouldBe(appear, DEFAULT_TIMEOUT).$("div[id$=':priorities']")
+    .$(".ui-selectcheckboxmenu-trigger.ui-corner-right").shouldBe(getClickableCondition()).click();
   }
 
   public void filterCategories(String... categories) {
