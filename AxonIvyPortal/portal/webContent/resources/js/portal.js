@@ -876,7 +876,7 @@ function focusFirstVisibleElementInPanel(widgetVar, selector) {
   if (destructionWords.some(word => widgetVar.includes(word))) {
     first = panel.find('a').first();
   } else {
-  	first = panel.find(selector).first() || panel.find('a').first();
+  	first = panel.find(selector).first();
   }
   
   if (first.length) {
