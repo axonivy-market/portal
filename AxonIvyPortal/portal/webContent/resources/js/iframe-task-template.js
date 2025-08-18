@@ -18,7 +18,6 @@ function loadIframe() {
   var iframe = getPortalIframe();
 
   const onIframeLoad = function () {
-    debugLog("= onIframeLoad", iframe.contentWindow.location.href);
     processIFrameData(iframe);
     if (isMainPageNavigating) {
       return;
@@ -26,7 +25,6 @@ function loadIframe() {
     iframe.style.visibility = 'visible';
 
     const unloadHandler = () => {
-      debugLog("= unloadHandler", iframe.contentWindow.location.href);
       iframe.style.visibility = "hidden";
     };
 
@@ -37,9 +35,9 @@ function loadIframe() {
   };
 
   $(iframe).on('load', onIframeLoad);
+  // Handle for Firefox vs Chrome, see the comment on the top
   if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete' &&
     iframe.contentWindow.location.href !== 'about:blank') {
-    debugLog("= iframe already loaded");
     onIframeLoad(iframe);
   }
 
@@ -51,7 +49,6 @@ function getPortalIframe() {
 }
 
 function processIFrameData(iframe) {
-  debugLog("== processIFrameData");
   var window = iframe.contentWindow;
   var appName = $('#application-name-for-title').get(0).value;
   checkUrl(iframe, appName);
@@ -63,7 +60,6 @@ function processIFrameData(iframe) {
     return;
   }
   streamliningPortalFrameStyle(window);
-  debugLog("===== getDataFromIFrame");
   getDataFromIFrame([{
     name: 'currentProcessStep',
     value: window.currentProcessStep
@@ -138,7 +134,6 @@ function checkUrl(iFrame, appName) {
   invalidIFrameSrcPath = false;
 
   if (path.match("/default/redirect.xhtml$")) {
-    debugLog("= parent redirect");
     var redirectUrl = new URLSearchParams(iFrame.contentWindow.location.search).get("redirectPage");
     iFrame.contentWindow.stop();
     redirectToUrlCommand([{
@@ -147,7 +142,6 @@ function checkUrl(iFrame, appName) {
     }]);
     isMainPageNavigating = true;
   } else {
-    debugLog("= useTaskInIFrame");
     useTaskInIFrame([{
       name: 'url',
       value: path
@@ -246,15 +240,3 @@ const convertProcessSteps = processSteps => {
     return JSON.stringify(stepsCompatibleWithPortal8);
   }
 }
-
-// Turn on logging in console: localStorage.setItem("debug", "true"); Turn off: localStorage.removeItem("debug");
-function debugLog(...args) {
-  if (localStorage.getItem("debug") === "true") {
-    const stackLines = (new Error().stack || "").split("\n").slice(1);
-    console.log("%c[DEBUG]", "color: green; font-weight: bold;", ...args);
-    console.groupCollapsed("Call stack");
-    stackLines.forEach(line => console.log(line.trim()));
-    console.groupEnd();
-  }
-}
-
