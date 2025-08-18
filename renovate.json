@@ -11,6 +11,7 @@
     "labels": [
         "skip-changelog"
     ],
+    "schedule": ["before 5am on monday"],
     "semanticCommits": "disabled",
     "packageRules": [
         {
