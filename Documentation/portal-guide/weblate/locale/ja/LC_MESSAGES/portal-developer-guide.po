@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Portal Guide ${revision}\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-08-13 09:32+0000\n"
+"POT-Creation-Date: 2025-08-18 08:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -41,7 +41,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/architecture/index.rst:16
 msgid "The Portal multi applications"
-msgstr "ポータル マルチアプリケーション"
+msgstr ""
 
 #: ../../source/portal-developer-guide/architecture/index.rst:18
 msgid ""
@@ -73,7 +73,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/architecture/index.rst:30
 msgid "We highly recommend running only one portal per security context."
-msgstr "セキュリティ コンテキストごとに1つのポータルのみを実行することを強く推奨します。"
+msgstr ""
 
 #: ../../source/portal-developer-guide/architecture/index.rst:35
 #: ../../source/portal-developer-guide/deployment/index.rst:55
