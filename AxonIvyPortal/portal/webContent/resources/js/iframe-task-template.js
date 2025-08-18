@@ -1,10 +1,24 @@
+/*
+When iframe loads in dark mode, iframe shows white page. Portal handles by register iframe load, unload events.
+It makes iframe invisible when on unload, and visible when on load.
+
+If iframe reaches /default/redirect.xhtml$, Portal stops processing inside iframe.
+Portal navigates in main page, also not execute unnecessary JS.
+
+On latest Chrome, iframe is loaded with about:blank, then onload is registered, then loaded with the URL.
+In Firefox (like GUI test), iframe is loaded with the URL (no about:blank) before onload is registered.
+Therefore we need to check if iframe document is ready and not about:blank, execute logic of onload to not miss any onload event.
+
+Consider to test: multi-browsers, skip task list, back to home, session timeout.
+Check no white page in dark mode, try removing visibility = "hidden" to check handling inside iframe, log to see any unexpected behaviors.
+*/
 var invalidIFrameSrcPath = false;
 var isMainPageNavigating = false;
 function loadIframe() {
   var iframe = getPortalIframe();
 
-  $(iframe).on('load', function () {
-    debugLog("=load", iframe.contentWindow.location.href);
+  const onIframeLoad = function () {
+    debugLog("= onIframeLoad", iframe.contentWindow.location.href);
     processIFrameData(iframe);
     if (isMainPageNavigating) {
       return;
@@ -12,7 +26,7 @@ function loadIframe() {
     iframe.style.visibility = 'visible';
 
     const unloadHandler = () => {
-      debugLog("=unloadHandler", iframe.contentWindow.location.href);
+      debugLog("= unloadHandler", iframe.contentWindow.location.href);
       iframe.style.visibility = "hidden";
     };
 
@@ -20,7 +34,14 @@ function loadIframe() {
     iframe.contentWindow.removeEventListener("unload", unloadHandler);
     iframe.contentWindow.addEventListener("unload", unloadHandler);
     return;
-  });
+  };
+
+  $(iframe).on('load', onIframeLoad);
+  if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete' &&
+    iframe.contentWindow.location.href !== 'about:blank') {
+    debugLog("= iframe already loaded");
+    onIframeLoad(iframe);
+  }
 
   resizeIFrame();
 }
@@ -83,9 +104,9 @@ function processIFrameData(iframe) {
     name: 'taskName',
     value: window.taskName
   }, {
-    name : 'taskIcon',
-    value : window.taskIcon
-    }]);
+    name: 'taskIcon',
+    value: window.taskIcon
+  }]);
 }
 
 function streamliningPortalFrameStyle(window) {
@@ -228,12 +249,12 @@ const convertProcessSteps = processSteps => {
 
 // Turn on logging in console: localStorage.setItem("debug", "true"); Turn off: localStorage.removeItem("debug");
 function debugLog(...args) {
-    if (localStorage.getItem("debug") === "true") {
-        const stackLines = (new Error().stack || "").split("\n").slice(2);
-        console.log("%c[DEBUG]", "color: green; font-weight: bold;", ...args);
-        console.groupCollapsed("Call stack");
-        stackLines.forEach(line => console.log(line.trim()));
-        console.groupEnd();
-    }
+  if (localStorage.getItem("debug") === "true") {
+    const stackLines = (new Error().stack || "").split("\n").slice(1);
+    console.log("%c[DEBUG]", "color: green; font-weight: bold;", ...args);
+    console.groupCollapsed("Call stack");
+    stackLines.forEach(line => console.log(line.trim()));
+    console.groupEnd();
+  }
 }
 
