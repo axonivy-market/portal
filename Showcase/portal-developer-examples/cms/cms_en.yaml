@@ -134,6 +134,7 @@ Dialogs:
                 Approve: Approve
                 Reject: Reject
               LeaveRequestBusinessDetailsPage:
+                CompletedTaskNumber: 'Completed side step tasks:'
                 InformCustomer: Inform customer
                 LeaveRequest: Leave Request Business Details
                 SideStepComment: Side step comment

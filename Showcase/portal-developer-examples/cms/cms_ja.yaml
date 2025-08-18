@@ -122,6 +122,7 @@ Dialogs:
                 Approve: 承認
                 Reject: 却下
               LeaveRequestBusinessDetailsPage:
+                CompletedTaskNumber: 'TODO: Completed side step tasks:'
                 InformCustomer: 'TODO: Inform customer'
                 LeaveRequest: 'TODO: Leave Request Business Details'
                 SideStepComment: TODO:Side step comment

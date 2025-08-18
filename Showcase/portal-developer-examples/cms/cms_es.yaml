@@ -134,6 +134,7 @@ Dialogs:
                 Approve: Aprobar
                 Reject: Rechazar
               LeaveRequestBusinessDetailsPage:
+                CompletedTaskNumber: 'Tareas de paso lateral completadas:'
                 InformCustomer: Informar al cliente
                 LeaveRequest: Solicitud de baja Detalles de la empresa
                 SideStepComment: Comentario sobre el paso lateral

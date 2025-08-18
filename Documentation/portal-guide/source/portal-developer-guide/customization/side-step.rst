@@ -92,15 +92,15 @@ How to Use and Set Up
     ..
 
 
-#. Create a ``SideStepConfigurationDTO`` object of ``portal-components`` from this list created on the above code snippet. Convert it to JSON and write the value to a custom field
+#. Create a ``SideStepConfigurationDTO`` object of ``portal-components`` from this list created on the above code snippet. Convert it to JSON and write the value to a custom text field
 
-    - For a single task: ``sideStepTask`` on that task.
-    - For every task in a case: ``sideStepCase`` on the case.
+    - For a single task: save to custom text field ``sideStepTask`` on that task.
+    - For every task in a case: save to custom text field ``sideStepCase`` on that case.
 
     .. code-block:: javascript
 
       // Create a SideStepConfigurationDTO object of portal-components from this list created on the above code snippet
-      // The custom parallel / switch step type set is optional
+      // If the isParallelSideStep value is not defined, on the UI you will see a drop down to select
       SideStepConfigurationDTO sideStepConfigurationDto = SideStepConfigurationDTO.builder()
         .processes(processes)
         .isParallelSideStep(true)

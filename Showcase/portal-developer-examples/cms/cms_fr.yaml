@@ -134,6 +134,7 @@ Dialogs:
                 Approve: Approuver
                 Reject: Refuser
               LeaveRequestBusinessDetailsPage:
+                CompletedTaskNumber: 'Tâches de contournement terminées :'
                 InformCustomer: Informer le client
                 LeaveRequest: Demande de congé Détails de l'entreprise
                 SideStepComment: Commentaire sur le pas de côté

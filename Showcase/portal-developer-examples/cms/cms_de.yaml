@@ -134,6 +134,7 @@ Dialogs:
                 Approve: Genehmigen
                 Reject: Ablehnen
               LeaveRequestBusinessDetailsPage:
+                CompletedTaskNumber: 'Abgeschlossene Nebenaufgaben:'
                 InformCustomer: Kunden informieren
                 LeaveRequest: Urlaubsantrag Business Details
                 SideStepComment: Kommentar zum Seitenschritt
