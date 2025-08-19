@@ -18,7 +18,7 @@ on:
 
 jobs:
   build:
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,6 +35,15 @@ jobs:
         run: |
           docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
             generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=ja
+          
+          docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
+            generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=de
+          
+          docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
+            generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=fr
+          
+          docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
+            generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=es
 
       - name: Check Locale Diff
         id: locale-diff
