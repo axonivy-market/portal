@@ -80,8 +80,6 @@
             "",
             "HistoryService historyService = new HistoryService();",
             "in.histories = historyService.getCaseHistories(selectedCaseId, finishedTasks, cases, !in.showSystemTasksChkbox, !in.showSystemNotesChkbox);",
-            "//showSystemNotesChkbox",
-            "//showSystemTasksChkbox",
             "// Responsive table",
             "PrimeFaces.current().executeScript(\"ResponsiveTable.init(':case-histories')\");"
           ]
