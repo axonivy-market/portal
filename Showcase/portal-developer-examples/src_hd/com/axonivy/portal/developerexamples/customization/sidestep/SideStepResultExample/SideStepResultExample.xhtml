@@ -9,7 +9,7 @@
 
   <p:dialog id="side-step-result-dialog" resizable="false" closeOnEscape="true" visible="#{sideStepExampleBean.isVisible(cc.attrs.tasks)}"
     header="#{ivy.cms.co('/Dialogs/com/axonivy/portal/developerexamples/customization/sidestep/SideStepResultExample/SideStepResult')}" 
-    width="650" widgetVar="side-step-result-dialog" appendTo="@(body)" modal="true" height="700"
+    width="650" widgetVar="side-step-result-dialog" appendTo="@(body)" modal="true" height="500"
     dynamic="true" responsive="true">
     <h:panelGroup layout="block" rendered="#{not empty cc.attrs.tasks}">
       <ui:repeat var="task" value="#{sideStepExampleBean.filterSideStepTaskList(cc.attrs.tasks)}" varStatus="count">

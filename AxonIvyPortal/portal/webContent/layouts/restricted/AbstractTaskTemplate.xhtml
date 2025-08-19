@@ -226,7 +226,7 @@
             <div class="field">
               <p:outputLabel for="side-step-process-select" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/process')}" />
               <p:selectOneMenu id="side-step-process-select" converter="pojoConverter" required="true" value="#{sideStepProcessBean.selectedProcess}">
-                <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
+                <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/pleaseSelect')}"
                   itemValue="#{null}" noSelectionOption="true" />
                 <f:selectItems value="#{sideStepProcessBean.getSideStepProcesses(currentTask)}"
                   var="item" itemLabel="#{item.processName}" itemValue="#{item}" />
@@ -237,7 +237,7 @@
               <div class="field">
                 <p:outputLabel for="step-type" value="#{ivy.cms.co('/Labels/StepType')}" />
                 <p:selectOneMenu id="step-type" value="#{sideStepProcessBean.selectedStepType}" converter="pojoConverter" required="true" >
-                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
+                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/pleaseSelect')}"
                     itemValue="#{null}" noSelectionOption="true" />
                   <f:selectItems value="#{sideStepProcessBean.stepTypes}" var="type" itemLabel="#{sideStepProcessBean.getStepTypeTitle(type)}"
                     itemValue="#{type}" />
