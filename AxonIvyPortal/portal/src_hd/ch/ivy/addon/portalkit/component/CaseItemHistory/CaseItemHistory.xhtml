@@ -50,15 +50,13 @@
             <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" oncomplete="ResponsiveTable.init(':case-histories');"/>
           </p:selectBooleanCheckbox>
 
-          <!-- IN PROGRESS RELATED CASES ********************************************************************* -->
+          <!-- END IN PROGRESS ********************************************************************* -->
           <p:selectBooleanCheckbox id="related-case-checkbox" value="#{data.showRelatedCaseInfo}" 
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showRelatedCaseInfo')}"
             rendered="#{data.showRelatedCaseInfoCheckbox}"
             styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
             <p:ajax update="case-histories-table" process="@this" partialSubmit="true" oncomplete="ResponsiveTable.init(':case-histories');"/>
           </p:selectBooleanCheckbox>
-
-          <!-- END IN PROGRESS ********************************************************************* -->
         </h:panelGroup>
       </div>
     </div>
