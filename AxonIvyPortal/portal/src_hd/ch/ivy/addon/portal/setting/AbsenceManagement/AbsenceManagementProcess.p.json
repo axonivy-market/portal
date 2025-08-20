@@ -252,7 +252,7 @@
             "segment" : 1.25,
             "offset" : { "x" : 0, "y" : 10 }
           }, "condition" : "in.isCreateMode" },
-        { "id" : "f107", "to" : "f111", "via" : [ { "x" : 192, "y" : 528 } ] }
+        { "id" : "f21", "to" : "f65" }
       ]
     }, {
       "id" : "f37",
@@ -677,9 +677,9 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 336, "y" : 528 }
+        "at" : { "x" : 512, "y" : 520 }
       },
-      "connect" : { "id" : "f67", "to" : "f65" }
+      "connect" : { "id" : "f93", "to" : "f121" }
     }, {
       "id" : "f121",
       "type" : "Script",
@@ -1288,10 +1288,10 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 496, "y" : 528 },
+        "at" : { "x" : 320, "y" : 520 },
         "size" : { "width" : 144, "height" : 60 }
       },
-      "connect" : { "id" : "f21", "to" : "f121" }
+      "connect" : { "id" : "f67", "to" : "f111" }
     }, {
       "id" : "f88",
       "type" : "HtmlDialogEventStart",
