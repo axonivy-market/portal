@@ -5471,7 +5471,7 @@ msgid ""
 "Do you want to decouple your project and the **Portal** when starting a "
 "task to reduce your migration efforts? If the answer is yes, this chapter"
 " will help you."
-msgstr "タスク開始時にプロジェクトと**Portal**を分離して移行の手間を減らしたいですか？もしそうなら、本章が役立ちます。"
+msgstr "タスク開始時にプロジェクトと **Portal** を分離して移行の手間を減らしたいですか？もしそうなら、本章が役立ちます。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:9
 msgid ""
@@ -5479,7 +5479,7 @@ msgid ""
 "be started inside an IFrame This means that you can design your HTML "
 "dialog independent of the  **Portal**. It is rendered automatically "
 "inside an IFrame by default."
-msgstr "**Portal** 8以降、プロセス/タスクをIFrame内で開始できる新機能を導入しました。これにより、HTMLダイアログを**Portal**から独立して設計できます。既定では自動的にIFrame内に描画されます。"
+msgstr "**Portal** 8以降、プロセス/タスクを IFrame 内で開始できる新機能を導入しました。これにより、HTMLダイアログを **Portal** から独立して設計できます。既定では自動的に IFrame 内に描画されます。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:15
 msgid "Templates to Use with IFrame"
@@ -5514,7 +5514,7 @@ msgid ""
 "Ensure your HTML User Dialog is independent of the **Portal**. You can "
 "use the ``frame-_x_`` template in the designer or your own custom "
 "template. **Portal** will automatically render it in an IFrame."
-msgstr "HTMLユーザーダイアログが**Portal**に依存しないことを確認してください。デザイナーの ``frame-_x_`` テンプレートまたは独自のカスタムテンプレートを使用できます。**Portal**は自動的にIFrame内にレンダリングします。"
+msgstr "HTMLユーザーダイアログが **Portal** に依存しないことを確認してください。デザイナーの ``frame-_x_`` テンプレートまたは独自のカスタムテンプレートを使用できます。**Portal** は自動的に IFrame 内にレンダリングします。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:33
 msgid ""
@@ -5575,7 +5575,7 @@ msgid ""
 "The **Portal Administrator** can globally configure all tasks to start "
 "inside IFrames by setting the ``Portal.EmbedInFrame`` value in the Portal"
 " settings. Refer to :ref:`update-portal-settings`."
-msgstr "**Portal 管理者**は、Portal設定の ``Portal.EmbedInFrame`` 値を設定することで、すべてのタスクをIFrame内で開始するよう全体設定できます。:ref:`update-portal-settings` を参照してください。"
+msgstr "**Portal 管理者** は、Portal 設定の ``Portal.EmbedInFrame`` 値を設定することで、すべてのタスクを IFrame 内で開始するよう全体設定できます。:ref:`update-portal-settings` を参照してください。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:60
 msgid "Configure Template"
