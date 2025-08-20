@@ -889,7 +889,7 @@ function initFocusManagament(targetWindow) {
             }
 
             try {
-              if (this.targetElement.length > 0) {
+              if (this.targetElement && this.targetElement.length > 0) {
                 let targetElement = this.targetElement[0];
                 storeFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id, targetElement);
               }
