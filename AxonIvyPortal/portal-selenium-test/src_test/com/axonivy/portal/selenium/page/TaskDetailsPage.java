@@ -203,7 +203,7 @@ public class TaskDetailsPage extends TemplatePage {
 
   public SelenideElement getAddNoteDialog() {
     var noteDialog = $("[id$=':task-notes:add-new-note-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
-    noteDialog.$(".ui-dialog-title").shouldBe(appear, DEFAULT_TIMEOUT).click();
+    noteDialog.$("button[id$=':save-add-note-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     return noteDialog;
   }
 
@@ -222,6 +222,7 @@ public class TaskDetailsPage extends TemplatePage {
     $("[id$=':task-documents:add-document-command']").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition()).click();
     $("[id$=':task-documents:document-upload-dialog']").shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+    $("button[id$=':task-documents:document-upload-close-command']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
   public SelenideElement getAddAttachmentDialog() {
