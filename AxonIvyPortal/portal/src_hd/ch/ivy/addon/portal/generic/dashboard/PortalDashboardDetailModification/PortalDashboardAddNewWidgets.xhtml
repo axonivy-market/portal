@@ -10,7 +10,8 @@
   resizable="false"
   modal="true" dynamic="true"
   position="center center"
-  onShow="PF('new-widget-dialog').initPosition()">
+  onShow="PF('new-widget-dialog').initPosition()"
+  focus="@(.new-widget-dialog__content .ui-button:first)">
   <h:form class="w-full flex justify-content-between align-items-center mb-4">
     <div class="new-widget-dialog__search">
     <p:inputText id="search-input" styleClass="js-search-input new-widget-dialog__search-input"

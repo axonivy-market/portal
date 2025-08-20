@@ -1113,6 +1113,11 @@ Dialogs:
               SeeMore: See more
             NewsWidgetConfiguration:
               NewsWidgetDescription: This widget shares relevant information as a News Feed into Axon Ivy.
+            filter:
+              DashboardFilter:
+                SelectFilterField: Select Filter Field
+              DateFilter:
+                SelectPeriod: Select period
   components:
     CaseDocument:
       FileDate: Modified at
@@ -1137,6 +1142,10 @@ Labels:
   Chat: Chat
   Collapse: Collapse
   CreateNewDashboard: Create new dashboard
+  EnterFromValue: Enter from value
+  EnterToValue: Enter to value
+  EnterValue: Enter value
+  EnterValues: Enter values
   Enums:
     DashboardStandardTaskColumn:
       EXPIRY: Expiry
@@ -1145,6 +1154,8 @@ Labels:
   Expand: Expand
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
+  SelectOperator: Choose Operator
+  SelectValues: Select values
   StepType: Step type
   Task: Task
   TaskItemDetail: Task Details

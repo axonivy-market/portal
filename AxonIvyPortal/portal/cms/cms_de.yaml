@@ -174,10 +174,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     ProcessViewerText: Prozess-Viewer
     Title: Prozess-Viewer
   SideStep:
-    NewSideStepMessage: New side step task is created
+    NewSideStepMessage: Neue Nebenschrittaufgabe wird erstellt
     SideStepProcess: Parallelen Prozess starten
   TaskDocuments:
-    TaskDocumentsPageTitle: Aufgaben-Dokumente
+    TaskDocumentsPageTitle: Aufgaben-Dokumente    
   adminSettings:
     addLanguages: Sprachen hinzufügen
     addNewApplication: Neue Drittanwendung hinzufügen
@@ -342,7 +342,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRunningCase: Es wird kein Vorfall ausgeführt.
     noRunningTask: Es wird keine Aufgabe ausgeführt.
     noRunningTasksAndCasesPermission: Weitere Aufgaben werden derzeit bearbeitet. Sie haben keine Berechtigung, die zugehörigen Aufgaben dieses Vorganges zu sehen.
-    noSideSteps: Keine Case Map Sidesteps verfügbar
+    noSideSteps: Keine Sidesteps verfügbar
     noTaskName: <Kein Aufgabenname>
     noTasks: Keine Aufgabe
     relatedTasks: Zugehörige Aufgaben
@@ -938,6 +938,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcessViewer: Ihr Prozessbetrachter
     yourProcesses: Ihre Prozesse
     yourTasks: Ihre Aufgaben
+  dashboardProcess:
+    processAriaLabel: Aufgabe {0} starten
   documentFiles:
     PreviewDocument: Vorschau
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
@@ -1529,6 +1531,12 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Filter hinzufügen
               ResetFilter: Filter zurücksetzen
+            filter:
+              DashboardFilter:
+                SelectFilterField: Filterfeld auswählen
+              DateFilter:
+                SelectPeriod: |
+                  Zeitraum auswählen
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: Falldetails Rahmen
@@ -1592,6 +1600,10 @@ Labels:
   Collapse: Einklappen
   CreateNewDashboard: Neues Dashboard erstellen
   EditDescription: Beschreibung bearbeiten
+  EnterFromValue: Anfangswert eingeben
+  EnterToValue: Endwert eingeben
+  EnterValue: Wert eingeben
+  EnterValues: Werte eingeben
   Enums:
     ChatbotCandidateQuestion:
       EXPLORE:
@@ -1695,7 +1707,9 @@ Labels:
   Permissions: Berechtigungen
   PinnedCases: Angeheftete Fälle
   PinnedTasks: Angehängte Aufgaben
+  SelectOperator: Operator auswählen
   SelectProcess: Wählen Sie einen Prozess
+  SelectValues: Werte auswählen
   Share: Aktie
   StepType: Step type
   Submit: Einreichen

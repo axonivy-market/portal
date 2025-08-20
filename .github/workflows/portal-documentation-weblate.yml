@@ -1,0 +1,84 @@
+name: Portal Documentation Weblate
+run-name: 🌐 Update Portal Documentation files in Weblate
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  pull-requests: write
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - release/12.0
+    paths:
+      - 'Documentation/portal-guide/source/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate POT Templates
+        working-directory: Documentation/portal-guide
+        run: |
+          rm -r source/portal-components-japanese
+          rm -r source/portal-developer-guide-japanese
+          rm -r source/portal-user-guide-japanese
+          docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make gettext BASEDIR=/doc
+
+      - name: Update PO Languages files
+        working-directory: Documentation/portal-guide
+        run: |
+          docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
+            generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=ja
+          
+          docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
+            generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=de
+          
+          docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
+            generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=fr
+          
+          docker run -v .:/doc -u $(id -u) axonivy/build-container:read-the-docs-2 make\
+            generatePO BASEDIR=/doc LOCALEDIR=/doc/weblate/locale LANGUAGE=es
+
+      - name: Check Locale Diff
+        id: locale-diff
+        working-directory: Documentation/portal-guide
+        run: |
+          echo "LOCALE_DIFF<<EOF" >> $GITHUB_ENV
+          git --no-pager status -s weblate/locale/* >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Create branch name
+        working-directory: .
+        run: |
+          ORIGINAL_BRANCH="${{ github.event.pull_request.head.ref }}"
+          if [ -z "$ORIGINAL_BRANCH" ] || [ "$ORIGINAL_BRANCH" == "null" ]; then
+            NEW_BRANCH="weblate/update-language-files"
+          else
+            NEW_BRANCH="weblate/${ORIGINAL_BRANCH}"
+          fi
+          echo "WEBLATE_BRANCH=$NEW_BRANCH" >> $GITHUB_ENV
+
+      - name: Create Pull Request
+        if: ${{ env.LOCALE_DIFF != '' }}
+        working-directory: .
+        run: |
+          echo "committing changes:\n ${{ env.LOCALE_DIFF }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git config user.name "${{ github.actor }}"
+          git checkout -b ${{ env.WEBLATE_BRANCH }}
+          git add Documentation/portal-guide/weblate/locale/*
+          git commit -m "update PO language files"
+          git push -u -f origin ${{ env.WEBLATE_BRANCH }}
+          gh pr create --title ":globe_with_meridians: Update PO files for weblate"\
+            --body "Update PO files"\
+            --label "i18n,skip-changelog"\
+            --base release/12.0
+
+        env:
+          GH_TOKEN: ${{ github.token }}

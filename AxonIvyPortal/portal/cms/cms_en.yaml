@@ -341,7 +341,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noRunningCase: No case is running
     noRunningTask: No task is running
     noRunningTasksAndCasesPermission: Further tasks are running. You do not have permission to see the related tasks to this case.
-    noSideSteps: No Case Map Sidestep available
+    noSideSteps: No Sidestep available
     noTaskName: <No task name>
     noTasks: No tasks
     relatedTasks: Related tasks
@@ -935,6 +935,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     yourProcessViewer: Your Process Viewer
     yourProcesses: Your Processes
     yourTasks: Your Tasks
+  dashboardProcess:
+    processAriaLabel: 'Process name: {0}. Process description: {1}'
   documentFiles:
     PreviewDocument: Preview
     deleteDocumentNote: '{0} has deleted {1}'
@@ -1524,6 +1526,11 @@ Dialogs:
             TaskWidgetConfiguration:
               AddFilter: Add filter
               ResetFilter: Reset filter
+            filter:
+              DashboardFilter:
+                SelectFilterField: Select Filter Field
+              DateFilter:
+                SelectPeriod: Select period
         layouts:
           AbstractTaskTemplate:
             CaseDetailsIFrameTitle: Case details frame
@@ -1587,6 +1594,10 @@ Labels:
   Collapse: Collapse
   CreateNewDashboard: Create new dashboard
   EditDescription: Edit description
+  EnterFromValue: Enter from value
+  EnterToValue: Enter to value
+  EnterValue: Enter value
+  EnterValues: Enter values
   Enums:
     ChatbotCandidateQuestion:
       EXPLORE:
@@ -1690,7 +1701,9 @@ Labels:
   Permissions: Permissions
   PinnedCases: Pinned Cases
   PinnedTasks: Pinned Tasks
+  SelectOperator: Select Operator
   SelectProcess: Select a process
+  SelectValues: Select values
   Share: Share
   StepType: Step type
   Submit: Submit

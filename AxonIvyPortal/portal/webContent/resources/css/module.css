@@ -3162,6 +3162,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .user-profile-setting-title {
+  display: block;
   margin-bottom: 0.5rem;
 }
 
@@ -4996,6 +4997,7 @@ body .process-compact-mode > .ui-fieldset-content {
   overflow: hidden;
   width: 100%;
   text-align: end;
+  padding: 2px;
 }
 
 .image-view-form .start-process > button > span, .image-process-actions > button > span{
@@ -5754,6 +5756,10 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page {
   box-shadow: none;
 }
 
+body .ui-button.ui-widget.ui-no-rounded-button-process-page.ui-state-focus {
+  box-shadow: 0 0 0 0.2rem var(--ivy-primary-light-color);
+}
+
 body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-button {
   color: var(--widget-header-icon);
 }
@@ -5775,4 +5781,8 @@ body .ui-button.ui-widget.ui-no-rounded-button-process-page.icon-more-menu-butto
 
 body.edit-mode {
   overflow: hidden;
+}
+
+.ui-focused:focus, .action-column-icon-button:focus {
+  outline: 0.2rem solid var(--ivy-primary-lightest-color) !important;
 }

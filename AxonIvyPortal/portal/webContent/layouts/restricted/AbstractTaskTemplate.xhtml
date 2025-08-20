@@ -155,7 +155,7 @@
            process="@this"
            partialSubmit="true"
            update="case-info-dialog"
-           oncomplete="PF('case-info-dialog').show()" />
+           oncomplete="PF('case-info-dialog').show(); handleFocusOnElementsInCaseDetailsPanel();" />
         <p:dialog id="case-info-dialog" resizable="false" fitViewport="true" width="95vw" height="80vh"
           closeOnEscape="true" draggable="false" responsive="true"
           widgetVar="case-info-dialog" appendTo="@(body)" modal="true" styleClass="case-info-dialog"
@@ -174,7 +174,7 @@
               <div class="ui-g js-iframe-container">
                 <div class="ui-g-12 u-padding-0">
                   <iframe id="i-frame-case-details" src="#{taskTemplateBean.caseDetailsLink}"
-                    onload="setupHeightForIFrame();" class="case-information-frame js-iFrame-case-details"
+                    onload="setupHeightForIFrame(); if (PF('case-info-dialog')) focusFirstVisibleElementInPanel('case-info-dialog', '[id$=i-frame-case-details]')" class="case-information-frame js-iFrame-case-details"
                     scrolling="no" frameborder="0"
                     title="#{ivy.cms.co('/Dialogs/com/axonivy/portal/layouts/AbstractTaskTemplate/CaseDetailsIFrameTitle')}" />
                 </div>

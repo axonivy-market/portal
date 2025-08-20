@@ -6,7 +6,7 @@
 インストールのセクションでは、ポータルをインストール、設定するのに必要なすべての手順を説明します。
 アプリケーションを初めてインストールする場合は、基本インストールから始めることが重要です。
 このセクションでは、初回インストールで行う必要があるすべての初期手順を説明します。
-アプリケーションがすでにインストールされ、設定されている場合は、`移行に関する注記`_を参照して移行してください。
+アプリケーションがすでにインストールされ、設定されている場合は、`移行に関する注記`_ を参照して移行してください。
 
 
 基本インストール
@@ -381,7 +381,7 @@ Ivy プロジェクトの展開については、:dev-url:`project deployment </
    .. important:: 
       カスタマイズダイアログを開く呼び出し可能プロセスは将来削除されます。新しいプロジェクトでは使用しないでください。
 
-#. ivy-icon.css を削除し、現在のクラスを `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_ にある Streamline アイコンからの新しいクラスに置き換えました。そのため、ivy-icon.css のクラスを使用しているファイルを更新する必要があります。
+#. ivy-icon.css を削除し、現在のクラスを `HTML Dialog Demo <https://market.axonivy.com/html-dialog-demo>`_ にある新しいクラスに置き換えました。そのため、ivy-icon.css のクラスを使用しているファイルを更新する必要があります。
 
 #. taskItemDetailCustomPanelTop、taskItemDetailCustomPanelBottom をカスタマイズしている場合は、:ref:`TaskItemDetail のオーバーライド方法 <customization-task-item-details-ja>` に従って、カスタムウィジェットを追加してください。
 

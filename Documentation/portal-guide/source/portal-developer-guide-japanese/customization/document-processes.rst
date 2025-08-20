@@ -3,7 +3,7 @@
 ドキュメントのプロセス
 =====================================
 
-.. _customization-document-processes-introduction:
+.. _customization-document-processes-introduction-ja:
 
 概要
 ------------
@@ -12,7 +12,7 @@
 
 
 
-.. _customization-document-processes-customization:
+.. _customization-document-processes-customization-ja:
 
 カスタマイズ
 --------------------------
