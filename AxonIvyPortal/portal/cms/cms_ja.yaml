@@ -173,6 +173,9 @@ ch.ivy.addon.portalkit.ui.jsf:
     Breadcrumb: '{0} プロセスのプロセスビューアー'
     ProcessViewerText: プロセスビューアー
     Title: プロセスビューアー
+  SideStep:
+    NewSideStepMessage: 'TODO: New side step task is created'
+    SideStepProcess: 'TODO: Start parallel process'
   TaskDocuments:
     TaskDocumentsPageTitle: タスクドキュメント
   adminSettings:
@@ -1580,6 +1583,8 @@ Labels:
   AllTasks: 'TODO: All Tasks'
   AppendTask-Explain: このタスクは、自分のタスクの後のシーケンスに追加されます。
   AppendTheTask: タスクを追加
+  AssignToRole: 'TODO: Select assigned group'
+  AssignToUser: 'TODO: Select assigned user'
   Chat: TODO Chat
   Collapse: TODO 折りたたむ
   CreateNewDashboard: 新しいダッシュボードを作成
@@ -1692,8 +1697,11 @@ Labels:
   PinnedCases: 'TODO: Pinned Cases'
   PinnedTasks: 'TODO: Pinned Tasks'
   SelectOperator: TODO Choose Operator
+  SelectProcess: 'TODO: Select a process'
   SelectValues: TODO Select values
   Share: 共有
+  StepType: 'TODO: Step type'
+  Submit: 送信
   Task: タスク
   TaskItemDetail: タスクの詳細
   TaskUser-Explain: カンマ区切りのユーザーリスト
