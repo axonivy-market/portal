@@ -889,8 +889,11 @@ function initFocusManagament(targetWindow) {
             }
 
             try {
-              let targetElement = this.targetElement[0];
-              storeFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id, targetElement);
+              if (this.targetElement.length > 0) {
+                let targetElement = this.targetElement[0];
+                storeFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id, targetElement);
+              }
+
             } catch(e) {
               console.warn("Cannot store focused element");
             }
