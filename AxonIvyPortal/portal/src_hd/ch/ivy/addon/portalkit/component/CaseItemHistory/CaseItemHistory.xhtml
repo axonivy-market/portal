@@ -37,20 +37,19 @@
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
 
-          <!-- IN PROGRESS SYSTEM NOTES ********************************************************************* -->
-          <p:selectBooleanCheckbox id="system-note-checkbox" value="#{data.showSystemNotesChkbox}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}" rendered="#{data.showSystemNotes}"
+          <p:selectBooleanCheckbox id="system-note-checkbox" value="#{data.showSystemNotesChkbox}" 
+          itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}" 
+          rendered="#{data.showSystemNotes}"
             styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
             <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" oncomplete="ResponsiveTable.init(':case-histories');"/>
           </p:selectBooleanCheckbox>
 
-          <!-- IN PROGRESS SYSTEM TASK ********************************************************************* -->
           <p:selectBooleanCheckbox id="system-task-checkbox" value="#{data.showSystemTasksChkbox}" 
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemTasks')}" rendered="#{data.showSystemTasks}"
             styleClass="case-history-checkbox u-hidden-md-down u-hidden-sm-down">
             <p:ajax update="case-histories-table" process="@this" partialSubmit="true" listener="#{logic.loadHistories}" oncomplete="ResponsiveTable.init(':case-histories');"/>
           </p:selectBooleanCheckbox>
 
-          <!-- END IN PROGRESS ********************************************************************* -->
           <p:selectBooleanCheckbox id="related-case-checkbox" value="#{data.showRelatedCaseInfo}" 
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showRelatedCaseInfo')}"
             rendered="#{data.showRelatedCaseInfoCheckbox}"
