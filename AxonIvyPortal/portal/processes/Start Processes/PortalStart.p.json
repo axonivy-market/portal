@@ -1372,7 +1372,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 760, "y" : 1760 },
+        "at" : { "x" : 808, "y" : 1760 },
         "size" : { "width" : 128 }
       }
     }, {
@@ -1384,11 +1384,11 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 568, "y" : 1680 }
+        "at" : { "x" : 632, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f87", "to" : "f84" },
-        { "id" : "f90", "to" : "f80", "via" : [ { "x" : 568, "y" : 1760 } ] }
+        { "id" : "f90", "to" : "f80", "via" : [ { "x" : 632, "y" : 1760 } ] }
       ]
     }, {
       "id" : "f82",
@@ -1436,7 +1436,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 320, "y" : 1680 }
+        "at" : { "x" : 336, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f88", "to" : "f86" }
@@ -1455,7 +1455,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 760, "y" : 1680 },
+        "at" : { "x" : 808, "y" : 1680 },
         "size" : { "width" : 128 }
       }
     }, {
@@ -1483,7 +1483,7 @@
         "sudo" : true
       },
       "visual" : {
-        "at" : { "x" : 464, "y" : 1680 }
+        "at" : { "x" : 520, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f91", "to" : "f81" }
@@ -4381,16 +4381,16 @@
       "name" : "Is static page?",
       "config" : {
         "conditions" : {
-          "f300" : "in.callbackUrl != null && in.callbackUrl.contains(\"faces/view\")",
+          "f300" : "in.callbackUrl != null && in.callbackUrl.contains(\"faces/view\") || in.callbackUrl.contains(\"faces%2Fview\")",
           "f298" : ""
         }
       },
       "visual" : {
-        "at" : { "x" : 192, "y" : 1680 }
+        "at" : { "x" : 200, "y" : 1680 }
       },
       "connect" : [
         { "id" : "f298", "to" : "f83", "color" : "default" },
-        { "id" : "f300", "to" : "f299", "via" : [ { "x" : 192, "y" : 1600 } ] }
+        { "id" : "f300", "to" : "f299", "via" : [ { "x" : 200, "y" : 1600 } ] }
       ]
     }, {
       "id" : "f299",
@@ -4405,7 +4405,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 760, "y" : 1601 },
+        "at" : { "x" : 808, "y" : 1601 },
         "size" : { "width" : 128, "height" : 62 }
       }
     } ]
