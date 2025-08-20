@@ -44,6 +44,7 @@ How to Use and Set Up
 
    Create a process that performs the additional work (for example “Ask for more details”)
    and define a signal that starts this process (e.g. ``com:axonivy:portal:developerexample:sideStep:askMoreDetails`` ).
+   
    |signal-process|
 
 
