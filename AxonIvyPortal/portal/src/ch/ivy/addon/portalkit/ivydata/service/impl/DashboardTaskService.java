@@ -66,7 +66,7 @@ public class DashboardTaskService extends TaskService {
       var subQuery = TaskQuery.create();
       boolean hasSubQueryChanged = false;
 
-      if (criteria.isCaseOwner() && GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
+      if (criteria.isFilterTasksByCurrentCaseOwner() && GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
         CaseQuery subCaseQuery = CaseQuery.create().where().currentUserIsOwner();
         query.where().cases(subCaseQuery);
         hasSubQueryChanged = true;
@@ -89,7 +89,7 @@ public class DashboardTaskService extends TaskService {
       TaskQuery query = criteria.buildQuery();
       TaskQuery subQuery = TaskQuery.create();
       boolean hasSubQueryChanged = false;
-      if (criteria.isCaseOwner() && GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
+      if (criteria.isFilterTasksByCurrentCaseOwner() && GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
         CaseQuery subCaseQuery = CaseQuery.create().where().currentUserIsOwner();
         query.where().cases(subCaseQuery);
         hasSubQueryChanged = true;

@@ -97,12 +97,12 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.dataModel.setCanWorkOn(canWorkOn);
   }
 
-  public boolean isCaseOwner() {
-    return this.dataModel.isCaseOwner();
+  public boolean isFilterTasksByCurrentCaseOwner() {
+    return this.dataModel.isFilterTasksByCurrentCaseOwner();
   }
 
-  public void setCaseOwner(boolean isCaseOwner) {
-    this.dataModel.setCaseOwner(isCaseOwner);
+  public void setFilterTasksByCurrentCaseOwner(boolean filterTasksByCurrentCaseOwner) {
+    this.dataModel.setFilterTasksByCurrentCaseOwner(filterTasksByCurrentCaseOwner);
   }
 
   @JsonIgnore

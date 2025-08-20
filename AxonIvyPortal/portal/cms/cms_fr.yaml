@@ -802,7 +802,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Publique
       savedFilters: 'Filtres enregistrés:'
   dashboard:
-    CaseOwnerByCurrentUser: Dossiers appartenant à l’utilisateur actuel
     DashboardConfiguration:
       CreateFromScratch: Créer à partir de rien
       CreateFromScratchDescription: Créez votre propre tableau de bord à partir de zéro
@@ -828,6 +827,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: Aucun filtre trouvé
       WidgetNameColumn: Nom du widget
       WrongDateFormat: La date n'est pas valide
+    FilterTasksByCurrentCaseOwner: Filtrer les tâches par propriétaire actuel du dossier
     ManageFilter: Gérer les filtres
     NoData: Pas de données
     NoSavedFilterMessage: Aucun filtre enregistré n'a été trouvé. Essayez d'en créer un nouveau en cliquant sur le bouton Enregistrer le filtre.

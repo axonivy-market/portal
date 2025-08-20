@@ -804,7 +804,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Public
       savedFilters: 'Saved filters:'
   dashboard:
-    CaseOwnerByCurrentUser: Cases owned by current user
     DashboardConfiguration:
       CreateFromScratch: Create from scratch
       CreateFromScratchDescription: Create your own dashboard from scratch
@@ -830,6 +829,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: No filter found
       WidgetNameColumn: Widget name
       WrongDateFormat: The date is invalid
+    FilterTasksByCurrentCaseOwner: Filter tasks by current case owner
     ManageFilter: Manage filters
     NoData: No data
     NoSavedFilterMessage: No saved filter found. Try to create a new by click on Save Filter button

@@ -127,12 +127,12 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
     criteria.setCanWorkOn(canWorkOn);
   }
 
-  public boolean isCaseOwner() {
-    return criteria.isCaseOwner();
+  public boolean isFilterTasksByCurrentCaseOwner() {
+    return criteria.isFilterTasksByCurrentCaseOwner();
   }
 
-  public void setCaseOwner(boolean isCaseOwner) {
-    criteria.setCaseOwner(isCaseOwner);
+  public void setFilterTasksByCurrentCaseOwner(boolean filterTasksByCurrentCaseOwner) {
+    this.criteria.setFilterTasksByCurrentCaseOwner(filterTasksByCurrentCaseOwner);
   }
 
   @Override

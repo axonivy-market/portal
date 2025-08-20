@@ -33,7 +33,7 @@ public class DashboardTaskSearchCriteria {
 
   private static final String LIKE_FORMAT = "%%%s%%";
   private boolean canWorkOn;
-  private boolean isCaseOwner;
+  private boolean filterTasksByCurrentCaseOwner;
   private List<TaskColumnModel> columns;
   private String sortField;
   private boolean sortDescending;
@@ -542,12 +542,12 @@ public class DashboardTaskSearchCriteria {
     this.canWorkOn = canWorkOn;
   }
 
-  public boolean isCaseOwner() {
-    return isCaseOwner;
+  public boolean isFilterTasksByCurrentCaseOwner() {
+    return filterTasksByCurrentCaseOwner;
   }
 
-  public void setCaseOwner(boolean isCaseOwner) {
-    this.isCaseOwner = isCaseOwner;
+  public void setFilterTasksByCurrentCaseOwner(boolean filterTasksByCurrentCaseOwner) {
+    this.filterTasksByCurrentCaseOwner = filterTasksByCurrentCaseOwner;
   }
 
   public List<TaskColumnModel> getColumns() {

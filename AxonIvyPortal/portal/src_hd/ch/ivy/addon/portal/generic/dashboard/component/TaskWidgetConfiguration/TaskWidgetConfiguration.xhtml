@@ -25,9 +25,9 @@
 
         <h:panelGroup rendered="#{cc.attrs.taskWidget.caseOwnerEnabled}">
           <ic:ch.ivy.addon.portalkit.component.dashboard.widget.BooleanFilterColumn
-            id="current-by-case-owner-filter"
-            label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/CaseOwnerByCurrentUser')}"
-            value="#{cc.attrs.taskWidget.caseOwner}" styleClass="ml-10p" />
+            id="filter-tasks-by-current-case-owner"
+            label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/FilterTasksByCurrentCaseOwner')}"
+            value="#{cc.attrs.taskWidget.filterTasksByCurrentCaseOwner}"/>
         </h:panelGroup>
 
         <ui:repeat var="field" value="#{cc.attrs.taskWidget.filterableColumns}">
@@ -49,13 +49,10 @@
               responsibleCompleteMethod="#{dashboardTaskFilterBean.completeResponsibles}"
               selectedResponsibles="#{field.responsibles}"/>
 
-            <div class="ui-g-4 ui-sm-hidden" />
-            <div class="ui-g-8 ui-sm-12 ui-fluid">
-            <div class="ml-10p">
-              <p:selectBooleanCheckbox id="can-work-on" value="#{cc.attrs.taskWidget.canWorkOn}"
-                itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/canWorkOn')}" />
-            </div>
-            </div>
+            <ic:ch.ivy.addon.portalkit.component.dashboard.widget.BooleanFilterColumn
+              id="can-work-on"
+              label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/canWorkOn')}"
+              value="#{cc.attrs.taskWidget.canWorkOn}"/>
           </h:panelGroup>
 
           <ic:ch.ivy.addon.portalkit.component.dashboard.widget.TextFilterColumn field="#{field}"

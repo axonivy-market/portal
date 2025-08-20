@@ -802,7 +802,6 @@ ch.ivy.addon.portalkit.ui.jsf:
       publicFilter: Público
       savedFilters: 'Filtros guardados:'
   dashboard:
-    CaseOwnerByCurrentUser: Casos pertenecientes al usuario actual
     DashboardConfiguration:
       CreateFromScratch: Crear desde cero
       CreateFromScratchDescription: Cree su propio panel de control desde cero
@@ -828,6 +827,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: No se ha encontrado ningún filtro
       WidgetNameColumn: Nombre de widget
       WrongDateFormat: La fecha no es válida
+    FilterTasksByCurrentCaseOwner: Filtrar las tareas por el propietario actual del caso
     ManageFilter: Gestión de filtros
     NoData: No hay datos
     NoSavedFilterMessage: No se ha encontrado ningún filtro guardado. Intente crear uno nuevo haciendo clic en el botón Guardar filtro

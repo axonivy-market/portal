@@ -242,7 +242,7 @@ public class TaskService implements ITaskService {
     TaskQuery finalQuery = criteria.getFinalTaskQuery();
     TaskQuery clonedQuery = TaskQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in TaskSearchCriteria
 
-    if (criteria.isCaseOwner() && GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
+    if (criteria.isFilterTasksByCurrentCaseOwner() && GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
       CaseQuery subCaseQuery = CaseQuery.create().where().currentUserIsOwner();
       clonedQuery.where().cases(subCaseQuery);
     } else if (!criteria.isAdminQuery()) {

@@ -315,9 +315,9 @@ public class TaskEditWidgetNewDashBoardPage extends TemplatePage {
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
-  public SelenideElement getCaseOwnerFilterCheckBox() {
+  public SelenideElement getFilterByCurrentCaseOwnerCheckBox() {
     return $(
-        "div[id='widget-configuration-form:new-widget-configuration-component:current-by-case-owner-filter:boolean-field-input']")
+        "div[id='widget-configuration-form:new-widget-configuration-component:filter-tasks-by-current-case-owner:boolean-field-input']")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
   }
 
