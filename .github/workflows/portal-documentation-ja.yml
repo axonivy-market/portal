@@ -20,6 +20,10 @@ on:
         description: 'Ivy version use to replace |version| placeholder of the links which navigate to ivy documentation. e.g.: https://developer.axonivy.com/doc/nightly/designer-guide/configuration/variables.html'
         default: 'nightly'
         required: true
+
+  push:
+    branches:
+      - feature/IVYPORTAL-19240-Integrate-Portal-Documentation-into-Weblate-LE
 jobs:
   build-document:
     runs-on: ubuntu-latest
