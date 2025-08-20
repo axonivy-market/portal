@@ -1,3 +1,0 @@
-Variable,Description
-isHideCaseInfo,"Hide ``Show Information`` button, false (default) or true"
-caseId,ID of case to be displayed in case information dialog

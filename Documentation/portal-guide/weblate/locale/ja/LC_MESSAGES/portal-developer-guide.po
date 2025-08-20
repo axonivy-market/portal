@@ -5464,14 +5464,14 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/iframe/index.rst:4
 msgid "IFrame In Portal"
-msgstr ""
+msgstr "ポータルでのIFrame"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:6
 msgid ""
 "Do you want to decouple your project and the **Portal** when starting a "
 "task to reduce your migration efforts? If the answer is yes, this chapter"
 " will help you."
-msgstr ""
+msgstr "タスク開始時にプロジェクトと**Portal**を分離して移行の手間を減らしたいですか？もしそうなら、本章が役立ちます。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:9
 msgid ""
@@ -5479,336 +5479,336 @@ msgid ""
 "be started inside an IFrame This means that you can design your HTML "
 "dialog independent of the  **Portal**. It is rendered automatically "
 "inside an IFrame by default."
-msgstr ""
+msgstr "**Portal** 8以降、プロセス/タスクをIFrame内で開始できる新機能を導入しました。これにより、HTMLダイアログを**Portal**から独立して設計できます。既定では自動的にIFrame内に描画されます。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:15
 msgid "Templates to Use with IFrame"
-msgstr ""
+msgstr "IFrameで使用するテンプレート"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:17
 msgid ""
 "Use the ``frame-10`` templates (provided by the core and using the Freya "
 "theme). These templates fully support responsive designs."
-msgstr ""
+msgstr "``frame-10`` テンプレート（コア提供、Freyaテーマ使用）を使用してください。これらのテンプレートはレスポンシブデザインを完全にサポートします。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:21
 msgid "How To Use"
-msgstr ""
+msgstr "使い方"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:24
 msgid ""
 "By default, i.e. if there is no configuration, a process/task is started "
 "inside an IFrame."
-msgstr ""
+msgstr "既定（設定がない場合）では、プロセス/タスクはIFrame内で開始されます。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:26
 msgid "Follow these steps to use the IFrame approach:"
-msgstr ""
+msgstr "IFrame方式を使用するには次の手順に従います。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:28
 msgid "**HTML Dialog Independence**"
-msgstr ""
+msgstr "HTMLダイアログの独立性"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:30
 msgid ""
 "Ensure your HTML User Dialog is independent of the **Portal**. You can "
 "use the ``frame-_x_`` template in the designer or your own custom "
 "template. **Portal** will automatically render it in an IFrame."
-msgstr ""
+msgstr "HTMLユーザーダイアログが**Portal**に依存しないことを確認してください。デザイナーの ``frame-_x_`` テンプレートまたは独自のカスタムテンプレートを使用できます。**Portal**は自動的にIFrame内にレンダリングします。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:33
 msgid ""
 "**Configuration Levels** If you want custom behavior, configure at one of"
 " the following levels to open your tasks in an IFrame:"
-msgstr ""
+msgstr "**設定レベル** カスタム動作が必要な場合、以下のいずれかのレベルで設定してタスクをIFrameで開きます。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:36
 msgid "**Task Level**: Set the ``embedInFrame`` field in Task custom fields to:"
-msgstr ""
+msgstr "タスクレベル: タスクのカスタムフィールド ``embedInFrame`` を次のように設定します。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:38
 #: ../../source/portal-developer-guide/iframe/index.rst:46
 msgid "``true``: Start inside IFrame."
-msgstr ""
+msgstr "``true``: IFrame内で開始する。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:39
 #: ../../source/portal-developer-guide/iframe/index.rst:47
 msgid "``false``: Do not start inside IFrame."
-msgstr ""
+msgstr "``false``: IFrame内で開始しない。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:40
 msgid "Leave unset to use case or engine-level configuration."
-msgstr ""
+msgstr "未設定の場合は、ケースまたはエンジンレベルの設定が使用されます。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:42
 msgid "|task-embedInFrame|"
-msgstr ""
+msgstr "|task-embedInFrame|"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:357
 msgid "task-embedInFrame"
-msgstr ""
+msgstr "task-embedInFrame"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:44
 msgid ""
 "**Case Level**: Set the ``embedInFrame`` String field in Case custom "
 "fields to:"
-msgstr ""
+msgstr "ケースレベル: ケースのカスタムフィールド（文字列） ``embedInFrame`` を次のように設定します。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:48
 msgid "Leave unset to use engine-level configuration."
-msgstr ""
+msgstr "未設定の場合は、エンジンレベルの設定が使用されます。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:50
 msgid "|case-embedInFrame|"
-msgstr ""
+msgstr "|case-embedInFrame|"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:358
 msgid "case-embedInFrame"
-msgstr ""
+msgstr "case-embedInFrame"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:52
 msgid "**Engine Level**:"
-msgstr ""
+msgstr "エンジンレベル:"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:54
 msgid ""
 "The **Portal Administrator** can globally configure all tasks to start "
 "inside IFrames by setting the ``Portal.EmbedInFrame`` value in the Portal"
 " settings. Refer to :ref:`update-portal-settings`."
-msgstr ""
+msgstr "**Portal 管理者**は、Portal設定の ``Portal.EmbedInFrame`` 値を設定することで、すべてのタスクをIFrame内で開始するよう全体設定できます。:ref:`update-portal-settings` を参照してください。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:60
 msgid "Configure Template"
-msgstr ""
+msgstr "テンプレートの設定"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:62
 msgid ""
 "The **Portal** allows configuration of templates with the following "
 "options:"
-msgstr ""
+msgstr "**Portal** では、以下のオプションでテンプレートを設定できます。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:64
 msgid "Name and icon for the working task."
-msgstr ""
+msgstr "作業中タスクの名称とアイコン。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:65
 msgid ""
 "Process chain configuration. (See: :ref:`components-portal-components-"
 "process-chain`)."
-msgstr ""
+msgstr "プロセスチェーンの設定（:ref:`components-portal-components-process-chain` 参照）。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:67
 msgid "Show/hide case details and other actions."
-msgstr ""
+msgstr "ケース詳細やその他のアクションの表示/非表示。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:71
 msgid "Template Parameters"
-msgstr ""
+msgstr "テンプレートのパラメーター"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:73
 msgid "The following parameters are available for this template:"
-msgstr ""
+msgstr "このテンプレートで利用可能なパラメーターは次のとおりです。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:75
 msgid "**Task Details**"
-msgstr ""
+msgstr "タスク詳細"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:77
 #: ../../source/portal-developer-guide/iframe/index.rst:147
 msgid "``taskName``: Custom text for the task name."
-msgstr ""
+msgstr "``taskName``: タスク名のカスタムテキスト。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:78
 msgid "``taskIcon``: Icon for the task, using Streamline or Awesome font."
-msgstr ""
+msgstr "``taskIcon``: タスクのアイコン（Streamline または Awesome フォント）。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:79
 msgid "``isHideTaskName``: Hides the task name when true."
-msgstr ""
+msgstr "``isHideTaskName``: true の場合、タスク名を非表示にする。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:81
 msgid "**Case Information**"
-msgstr ""
+msgstr "ケース情報"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:83
 msgid "``caseId``: ID of the case to be displayed in the case information dialog."
-msgstr ""
+msgstr "``caseId``: ケース情報ダイアログに表示するケースのID。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:84
 msgid "``isHideCaseInfo``: Hides the ``Show Information`` button when true."
-msgstr ""
+msgstr "``isHideCaseInfo``: true の場合、``Show Information`` ボタンを非表示にする。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:86
 msgid "**Process Steps**"
-msgstr ""
+msgstr "プロセスステップ"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:88
 msgid ""
 "``currentProcessStep``: Current step in the process, either as an index "
 "or step name."
-msgstr ""
+msgstr "``currentProcessStep``: 現在のプロセスステップ（インデックスまたはステップ名）。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:89
 msgid "``processSteps``: List of process steps or JSON."
-msgstr ""
+msgstr "``processSteps``: プロセスステップのリストまたはJSON。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:90
 msgid "``isShowAllSteps``: Displays all steps on large screens when true."
-msgstr ""
+msgstr "``isShowAllSteps``: true の場合、大きな画面で全ステップを表示する。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:91
 msgid ""
 "``processChainDirection``: Orientation of the process chain, either "
 "``VERTICAL`` or ``HORIZONTAL``."
-msgstr ""
+msgstr "``processChainDirection``: プロセスチェーンの方向（``VERTICAL`` または ``HORIZONTAL``）。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:92
 msgid ""
 "``processChainShape``: Shape of the process chain, either ``LINE`` or "
 "``CIRCLE``."
-msgstr ""
+msgstr "``processChainShape``: プロセスチェーンの形状（``LINE`` または ``CIRCLE``）。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:94
 msgid "**Task Actions**"
-msgstr ""
+msgstr "タスクアクション"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:96
 msgid "``isHideTaskAction``: Hides the task action button when true."
-msgstr ""
+msgstr "``isHideTaskAction``: true の場合、タスクアクションボタンを非表示にする。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:97
 msgid ""
 "``isWorkingOnATask``: Indicates if a task is currently being worked on, "
 "useful for displaying a warning when leaving the page."
-msgstr ""
+msgstr "``isWorkingOnATask``: 現在タスクに取り組んでいるかを示す。ページ離脱時の警告表示に利用。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:100
 msgid "**Miscellaneous**"
-msgstr ""
+msgstr "その他"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:102
 msgid "``announcementInvisible``: Makes the announcement invisible."
-msgstr ""
+msgstr "``announcementInvisible``: お知らせを非表示にする。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:103
 msgid ""
 "``isCardFrame``: Displays content of the IFrame inside a card-style "
 "container."
-msgstr ""
+msgstr "``isCardFrame``: IFrameの内容をカードスタイルのコンテナ内に表示する。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:104
 msgid "``viewName``: Defines a custom breadcrumb view."
-msgstr ""
+msgstr "``viewName``: カスタムのパンくずビューを定義する。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:107
 msgid "Configuration Methods"
-msgstr ""
+msgstr "設定方法"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:109
 msgid "You can configure the UI in one of two ways:"
-msgstr ""
+msgstr "UIは次の2つの方法のいずれかで設定できます。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:112
 msgid "We recommend to sanitize your parameters before passing them."
-msgstr ""
+msgstr "パラメーターを渡す前にサニタイズすることを推奨します。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:114
 msgid "**Using ``IFrameTaskConfig`` Component**"
-msgstr ""
+msgstr "``IFrameTaskConfig`` コンポーネントの使用"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:143
 msgid "Configure Task Details"
-msgstr ""
+msgstr "タスク詳細の設定"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:144
 msgid "You can customize task details, such as the task name and icon."
-msgstr ""
+msgstr "タスク名やアイコンなど、タスクの詳細をカスタマイズできます。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:146
 #: ../../source/portal-developer-guide/iframe/index.rst:172
 #: ../../source/portal-developer-guide/iframe/index.rst:196
 #: ../../source/portal-developer-guide/iframe/index.rst:222
 msgid "**Parameters:**"
-msgstr ""
+msgstr "パラメーター:"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:148
 msgid ""
 "``taskIcon``: Using Streamline or Awesome font (e.g., `si si-arrow-"
 "right`)."
-msgstr ""
+msgstr "``taskIcon``: Streamline または Awesome フォントを使用（例: `si si-arrow-right`）。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:149
 msgid ""
 "``isHideTaskName``: Set to ``true`` to hide the task name. Default is "
 "``false``."
-msgstr ""
+msgstr "``isHideTaskName``: タスク名を非表示にするには ``true`` を設定（既定は ``false``）。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:151
 #: ../../source/portal-developer-guide/iframe/index.rst:177
 #: ../../source/portal-developer-guide/iframe/index.rst:202
 #: ../../source/portal-developer-guide/iframe/index.rst:232
 msgid "**Example:**"
-msgstr ""
+msgstr "例:"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:169
 msgid "Configure Case Information"
-msgstr ""
+msgstr "ケース情報の設定"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:170
 msgid ""
 "Customize how case details are displayed and whether to show the \"Show "
 "Information\" button."
-msgstr ""
+msgstr "ケース詳細の表示方法や ``Show Information`` ボタンの表示有無をカスタマイズします。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:173
 msgid "``caseId``: The ID of the case to display in the information dialog."
-msgstr ""
+msgstr "``caseId``: 情報ダイアログに表示するケースのID。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:174
 msgid ""
 "``isHideCaseInfo``: Set to ``true`` to hide the \"Show Information\" "
 "button. Default is ``false``."
-msgstr ""
+msgstr "``isHideCaseInfo``: ``Show Information`` ボタンを非表示にするには ``true`` を設定（既定は ``false``）。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:193
 msgid "Configure Task Actions"
-msgstr ""
+msgstr "タスクアクションの設定"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:194
 msgid "Control the visibility and behavior of task-related buttons and actions."
-msgstr ""
+msgstr "タスク関連のボタンやアクションの表示/動作を制御します。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:197
 msgid ""
 "``isHideTaskAction``: Set to ``true`` to hide the task action button. "
 "Default is ``false``."
-msgstr ""
+msgstr "``isHideTaskAction``: タスクアクションボタンを非表示にするには ``true`` を設定（既定は ``false``）。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:199
 msgid ""
 "``isWorkingOnATask``: Indicates if the task is active. Useful for "
 "displaying a warning when leaving the page. Default is ``true``."
-msgstr ""
+msgstr "``isWorkingOnATask``: タスクがアクティブかどうかを示す。ページ離脱時の警告表示に有用（既定は ``true``）。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:219
 msgid "Configure Miscellaneous Options"
-msgstr ""
+msgstr "その他のオプションの設定"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:220
 msgid "Additional settings can influence the layout and visibility of elements."
-msgstr ""
+msgstr "その他の設定により、レイアウトや要素の表示を調整できます。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:223
 msgid ""
 "``announcementInvisible``: Set to ``true`` to hide announcements. Default"
 " is ``false``."
-msgstr ""
+msgstr "``announcementInvisible``: お知らせを非表示にするには ``true`` を設定（既定は ``false``）。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:225
 msgid ""
 "``isCardFrame``: Set to ``true`` to display the IFrame content inside a "
 "card-style container."
-msgstr ""
+msgstr "``isCardFrame``: IFrameの内容をカードスタイルのコンテナで表示するには ``true`` を設定。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:227
 msgid ""
@@ -5817,29 +5817,29 @@ msgid ""
 "RELATED_TASK, USER_PROFILE, ABSENCES_MANAGEMENT, DASHBOARD_CONFIGURATION,"
 " EDIT_DASHBOARD_DETAILS, PROCESS_VIEWER, PORTAL_MANAGEMENT, "
 "NOTIFICATION``."
-msgstr ""
+msgstr "``viewName``: カスタムのパンくずビュー。指定可能な値: ``HOME, PROCESS, TASK, TASK_DETAIL, CASE_DETAIL, CASE, TECHNICAL_CASE, RELATED_TASK, USER_PROFILE, ABSENCES_MANAGEMENT, DASHBOARD_CONFIGURATION, EDIT_DASHBOARD_DETAILS, PROCESS_VIEWER, PORTAL_MANAGEMENT, NOTIFICATION``。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:249
 msgid "Configure Show Information"
-msgstr ""
+msgstr "Show Information の設定"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:251
 msgid ""
 "When you click the ``Show Information`` button, **Portal** will show  "
 "details of the running case in a modal dialog."
-msgstr ""
+msgstr "``Show Information`` ボタンをクリックすると、**Portal** は実行中のケースの詳細をモーダルダイアログで表示します。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:254
 msgid "Options for ``Show Information``"
-msgstr ""
+msgstr "``Show Information`` のオプション"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:256
 msgid "``caseId``: Case ID of the case you want to show in the modal dialog."
-msgstr ""
+msgstr "``caseId``: モーダルダイアログで表示するケースのID。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:257
 msgid "``isHideCaseInfo``: Hide the ``Show Information`` button"
-msgstr ""
+msgstr "``isHideCaseInfo``: ``Show Information`` ボタンを非表示にする。"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_show_information_options.csv:1
 msgid "isHideCaseInfo"
@@ -5861,131 +5861,131 @@ msgstr ""
 #: ../../source/portal-developer-guide/iframe/index.rst:298
 #: ../../source/portal-developer-guide/iframe/index.rst:326
 msgid "Example using IFrameTaskConfig:"
-msgstr ""
+msgstr "IFrameTaskConfig を使用した例:"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:280
 msgid "Configure Process steps"
-msgstr ""
+msgstr "プロセスステップの設定"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:282
 msgid ""
 "``Process steps`` have many options to be configured from the list of "
 "steps to layout and shape."
-msgstr ""
+msgstr "``Process steps`` には、ステップ一覧からレイアウトや形状まで多くの設定オプションがあります。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:284
 msgid "Options for ``Process steps``"
-msgstr ""
+msgstr "``Process steps`` のオプション"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_process_steps_options.csv:1
 msgid "currentProcessStep"
-msgstr ""
+msgstr "currentProcessStep"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_process_steps_options.csv:1
 msgid "current process step"
-msgstr ""
+msgstr "現在のプロセスステップ"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_process_steps_options.csv:1
 msgid "processSteps"
-msgstr ""
+msgstr "processSteps"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_process_steps_options.csv:1
 msgid "list of process steps"
-msgstr ""
+msgstr "プロセスステップのリスト"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_process_steps_options.csv:1
 msgid "isShowAllSteps"
-msgstr ""
+msgstr "isShowAllSteps"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_process_steps_options.csv:1
 msgid "shows all of steps on large screens, false (default) or true"
-msgstr ""
+msgstr "大きな画面で全ステップを表示。false（既定）または true"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_process_steps_options.csv:1
 msgid "processChainDirection"
-msgstr ""
+msgstr "processChainDirection"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_process_steps_options.csv:1
 msgid "HORIZONTAL (default) or VERTICAL"
-msgstr ""
+msgstr "HORIZONTAL（既定）または VERTICAL"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_process_steps_options.csv:1
 msgid "processChainShape"
-msgstr ""
+msgstr "processChainShape"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_process_steps_options.csv:1
 msgid "CIRCLE (default) or LINE"
-msgstr ""
+msgstr "CIRCLE（既定）または LINE"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:295
 msgid ""
 "When defining parameter ``processSteps``, please make sure that you add "
 "this JSP function tag to your HTML dialog: "
 "``xmlns:fn=\"http://xmlns.jcp.org/jsp/jstl/functions\"``"
-msgstr ""
+msgstr "パラメーター ``processSteps`` を定義する場合、HTMLダイアログに次のJSP関数タグを追加してください: ``xmlns:fn=\"http://xmlns.jcp.org/jsp/jstl/functions\"``"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:316
 msgid "Other options"
-msgstr ""
+msgstr "その他のオプション"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:318
 msgid "Various options can affect functions and layout."
-msgstr ""
+msgstr "さまざまなオプションが機能やレイアウトに影響します。"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_other_options.csv:1
 msgid "isHideTaskAction"
-msgstr ""
+msgstr "isHideTaskAction"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_other_options.csv:1
 msgid "hide task action button, false (default) or true"
-msgstr ""
+msgstr "タスクアクションボタンを隠す。false（既定）または true"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_other_options.csv:1
 msgid "isWorkingOnATask"
-msgstr ""
+msgstr "isWorkingOnATask"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_other_options.csv:1
 msgid ""
 "working on a task in order to display warning when leaving page, true "
 "(default) or false"
-msgstr ""
+msgstr "ページ離脱時に警告を表示するため、タスク作業中かどうか。true（既定）または false"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_other_options.csv:1
 msgid "announcementInvisible"
-msgstr ""
+msgstr "announcementInvisible"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_other_options.csv:1
 msgid "true (default) or false"
-msgstr ""
+msgstr "true（既定）または false"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_other_options.csv:1
 msgid "isCardFrame"
-msgstr ""
+msgstr "isCardFrame"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_other_options.csv:1
 msgid "display content of the IFrame inside a card style"
-msgstr ""
+msgstr "IFrameの内容をカードスタイルで表示する"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:344
 msgid "Developer tips"
-msgstr ""
+msgstr "開発者向けヒント"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:346
 msgid ""
 "If your project has a navigation button that does not complete a task "
 "(e.g., Cancel), redirect the user to the desired page (e.g., the "
 "application home, task list, process list, etc.) in the HTML dialog."
-msgstr ""
+msgstr "タスクを完了しないナビゲーションボタン（例: Cancel）がある場合は、HTMLダイアログ内で目的のページ（アプリケーションのホーム、タスクリスト、プロセスリストなど）へリダイレクトしてください。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:351
 msgid "Sanitize JavaScript string"
-msgstr ""
+msgstr "JavaScript文字列のサニタイズ"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:353
 msgid ""
 "Whenever you use a Portal feature that communicates through JavaScript, "
 "ensure that you sanitize your data before sending it to the Portal"
-msgstr ""
+msgstr "JavaScriptで連携するPortal機能を使用する場合は、Portalへ送信する前に必ずデータをサニタイズしてください。"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:355
 msgid ""
@@ -5993,7 +5993,7 @@ msgid ""
 " the ``portal-components`` project to help sanitize JavaScript strings by"
 " escaping special characters — one of the most common techniques for "
 "JavaScript string sanitization."
-msgstr ""
+msgstr "Portalは ``portal-components`` プロジェクトで公開API ``SanitizeAPI.escapeForJavascript`` を提供しています。これはJavaScript文字列のサニタイズで一般的な手法の1つである特殊文字のエスケープを行います。"
 
 #: ../../source/portal-developer-guide/index.rst:6
 msgid "Portal Developer Guide"
