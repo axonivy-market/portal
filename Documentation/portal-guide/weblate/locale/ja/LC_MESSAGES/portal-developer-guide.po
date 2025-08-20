@@ -5855,7 +5855,7 @@ msgstr ""
 
 #: ../../source/portal-developer-guide/iframe/documents/available_show_information_options.csv:1
 msgid "ID of case to be displayed in case information dialog"
-msgstr ""
+msgstr "ケース情報ダイアログに表示されるケースのID ケース情報ダイアログに表示されるケースのID ケース情報ダイアログに表示されるケースのID"
 
 #: ../../source/portal-developer-guide/iframe/index.rst:265
 #: ../../source/portal-developer-guide/iframe/index.rst:298
@@ -5948,7 +5948,7 @@ msgstr "isWorkingOnATask"
 msgid ""
 "working on a task in order to display warning when leaving page, true "
 "(default) or false"
-msgstr "ページ離脱時に警告を表示するため、タスク作業中かどうか。true（既定）または false"
+msgstr "ページ離脱時に警告を表示するため、タスク作業中かどうか。true（既定）または false ページ離脱時に警告を表示するため、タスク作業中かどうか。true（既定）または false ページ離脱時に警告を表示するため、タスク作業中かどうか。true（既定）または false"
 
 #: ../../source/portal-developer-guide/iframe/documents/available_other_options.csv:1
 msgid "announcementInvisible"
