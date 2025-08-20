@@ -123,6 +123,8 @@ public final class PortalNavigatorAPI extends BaseNavigator {
    * @return A full or relative portal URL with the static page as query parameter
    */
   public static String buildPortalStaticPageUrl(String staticPageUrl) {
-    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(DEFAULT_FRAME_PAGE) + "?relativeUrl=/" + staticPageUrl;
+    String encodeUrl = URLEncoder.encode(staticPageUrl, StandardCharsets.UTF_8);
+    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(DEFAULT_FRAME_PAGE) + "?relativeUrl=/"
+        + encodeUrl;
   }
 }
