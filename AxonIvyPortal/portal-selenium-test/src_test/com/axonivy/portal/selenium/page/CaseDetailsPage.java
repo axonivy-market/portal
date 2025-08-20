@@ -467,7 +467,6 @@ public class CaseDetailsPage extends TemplatePage {
     return $("th.history-related-case");
   }
 
-  
   public String getCaseName() {
     return getTextOfCurrentBreadcrumb().replace("Case: ", "");
   }
