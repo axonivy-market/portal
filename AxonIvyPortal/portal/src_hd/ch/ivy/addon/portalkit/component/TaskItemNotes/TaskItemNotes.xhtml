@@ -34,7 +34,7 @@
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
-          <p:selectBooleanCheckbox value="#{data.showSystemNotes}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}"
+          <p:selectBooleanCheckbox value="#{data.showSystemNotesChkbox}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}"
             rendered="#{data.showSystemNotesChkbox}" id="show-system-notes-checkbox" styleClass="task-history-checkbox">
             <p:ajax update="task-history-content-container" process="@this" partialSubmit="true" listener="#{logic.showHideSystemNotes}" oncomplete="ResponsiveTable.init(':task-note-table')"/>
           </p:selectBooleanCheckbox>
