@@ -137,7 +137,7 @@ Variables:
       # If true, if system notes is shown, the check box will be checked.
       CheckSystemNotesByDefault: "true"
       # If true, if system task is shown, the check box will be checked.
-      CheckSystemTasksByDefault: "false"
+      CheckSystemTasksByDefault: "true"
     Document:
       # Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
       EnableScriptChecking: "true"

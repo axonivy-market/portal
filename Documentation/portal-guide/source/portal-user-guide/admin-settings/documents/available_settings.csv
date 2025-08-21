@@ -32,7 +32,7 @@ Portal.Histories.HideSystemNotes,TRUE,"If true, case/task note does not display 
 Portal.Histories.HideSystemNotesForAdministrator,FALSE,"If true, case/task note does not display any system notes for administrator."
 Portal.Histories.HideSystemTasks,TRUE,"If true, case note does not display any system tasks for non-administrator users."
 Portal.Histories.HideSystemTasksForAdministrator,FALSE,"If true, case note does not display any system tasks for administrator."
-Portal.Histories.CheckSystemTasksByDefault,FALSE,"Check show system tasks by default in case/task details."
+Portal.Histories.CheckSystemTasksByDefault,TRUE,"Check show system tasks by default in case/task details."
 Portal.Histories.CheckSystemNotesByDefault,TRUE,"Check show system notes by default in case/task details."
 Portal.Homepage,Dashboard,"| Define the standard homepage which will be redirected to when clicking on home icon or logo.
 | This setting also applies to the end page for finished tasks."

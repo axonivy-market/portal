@@ -38,7 +38,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivyteam.ivy.workflow.task.TaskBusinessState;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class CaseDetailsTest extends BaseTest {
   private static final String BUSINESS_DETAILS_TITLE = "Business Details - Portal - Axon Ivy";
   private static final String ORDER_PIZZA = "Order Pizza";
@@ -562,7 +562,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testCheckSystemNotesByDefaultForNormalUser() {
     updateGlobalVariable(Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "false");
-    updateGlobalVariable(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "true");
+    updateGlobalVariable(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "false");
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink(CREATE_NOTES);
 
@@ -570,15 +570,14 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage = casePage.openDetailsCase("Create note");
     detailsPage.waitPageLoaded();
 
-    detailsPage.getNotesWithContent("System note").shouldHave(size(1));
-    detailsPage.clickOnSystemNotesCheckbox(false);
-
     detailsPage.getNotesWithContent("System note").shouldHave(size(0));
+    detailsPage.clickOnSystemNotesCheckbox(true);
+
+    detailsPage.getNotesWithContent("System note").shouldHave(size(1));
   }
 
   @Test
   public void testUncheckSystemTasksByDefaultForAdminUser() {
-//    updateGlobalVariable(Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR.getKey(), "false");
     updateGlobalVariable(Variable.CHECK_SYSTEM_TASKS_BY_DEFAULT.getKey(), "false");
     redirectToRelativeLink(CREATE_NOTES);
 
@@ -595,17 +594,17 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testCheckSystemTasksByDefaultForNormalUser() {
     updateGlobalVariable(Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY.getKey(), "false");
-    updateGlobalVariable(Variable.CHECK_SYSTEM_TASKS_BY_DEFAULT.getKey(), "true");
+    updateGlobalVariable(Variable.CHECK_SYSTEM_TASKS_BY_DEFAULT.getKey(), "false");
     redirectToRelativeLink(CREATE_NOTES);
 
     CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
     detailsPage = casePage.openDetailsCase("Create note");
     detailsPage.waitPageLoaded();
 
-    detailsPage.getNotesWithContent("System: create note").shouldHave(size(1));
-    detailsPage.clickOnSystemTasksCheckbox(false);
-
     detailsPage.getNotesWithContent("System: create note").shouldHave(size(0));
+    detailsPage.clickOnSystemTasksCheckbox(true);
+
+    detailsPage.getNotesWithContent("System: create note").shouldHave(size(1));
 
   }
 }

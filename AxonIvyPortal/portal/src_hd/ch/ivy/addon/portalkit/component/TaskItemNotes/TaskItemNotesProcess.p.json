@@ -60,7 +60,6 @@
             "import ch.ivyteam.ivy.workflow.ICase;",
             "",
             "ICase iCase = in.task.getCase();",
-            "//boolean showSystemNotes = out.showSystemNotes && out.showSystemNotesChkbox;",
             "out.notes = CaseUtils.findNotes(iCase, !in.showSystemNotesChkbox);"
           ]
         },
