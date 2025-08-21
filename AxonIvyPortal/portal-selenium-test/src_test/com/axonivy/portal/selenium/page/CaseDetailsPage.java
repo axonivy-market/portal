@@ -617,9 +617,9 @@ public class CaseDetailsPage extends TemplatePage {
     SelenideElement columnCheckbox = $(By.xpath(
         ("//*[contains(@id,\":task-widget:task-columns-configuration:select-columns-form:default-columns\")]/div[2]")));
     columnCheckbox.shouldBe(Condition.visible, DEFAULT_TIMEOUT).click();
-    WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector(
-        "label[for$='task-widget:task-columns-configuration:select-columns-form:columns-checkbox:5']")
-            .getAttribute("class").equals("ui-state-disabled"));
+    WaitHelper.assertTrueWithWait(() -> !"ui-state-disabled".equals(findElementByCssSelector(
+                "label[for$='task-widget:task-columns-configuration:select-columns-form:columns-checkbox:5']")
+                    .getAttribute("class")));
   }
 
   public void clickRelatedTaskColumnsButton() {
@@ -930,9 +930,9 @@ public class CaseDetailsPage extends TemplatePage {
     String xpath =
         "//*[contains(@id,\":related-cases-widget:case-columns-configuration:select-columns-form:default-columns\")]/div[2]";
     waitForElementClickableThenClick($(By.xpath(xpath)));
-    WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector(
-        "label[for$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:3']")
-            .getAttribute("class").equals("ui-state-disabled"));
+    WaitHelper.assertTrueWithWait(() -> !"ui-state-disabled".equals(findElementByCssSelector(
+                "label[for$='related-cases-widget:case-columns-configuration:select-columns-form:columns-checkbox:3']")
+                    .getAttribute("class")));
   }
 
   public void clickRelatedCaseApplyButton() {
@@ -1042,6 +1042,12 @@ public class CaseDetailsPage extends TemplatePage {
   
   public boolean getFirstItemPreviewDocumentVisible() {
     return $("a[id$=':0:preview-file']").exists();
+  }
+
+  @Override
+  public boolean isDisplayed() {
+    WaitHelper.waitForPresentAndVisible(getLoadedLocator());
+    return true;
   }
 }
 

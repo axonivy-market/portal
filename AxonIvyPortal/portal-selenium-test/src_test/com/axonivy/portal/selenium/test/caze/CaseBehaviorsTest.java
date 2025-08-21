@@ -57,7 +57,9 @@ public class CaseBehaviorsTest extends BaseTest {
     String firstCaseName = resultPage.getNameOfCase(0);
     assertEquals(ORDER_PIZZA, firstCaseName);
     resultPage.clickOnCase(0);
+
     detailsPage = new CaseDetailsPage();
+    assertTrue(detailsPage.isDisplayed());
     assertEquals(ORDER_PIZZA, detailsPage.getCaseName());
   }
 
