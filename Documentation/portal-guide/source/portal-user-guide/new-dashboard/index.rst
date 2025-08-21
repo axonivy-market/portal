@@ -94,7 +94,7 @@ Setting multiple languages for the widget title:
 
   .. important::
 
-    ``Cases owned by current user`` filter is hidden by default. To make it visible, you need to set the ``Portal.Cases.EnableOwner`` setting to ``true`` in the :ref:`Admin Settings <update-portal-settings>`.
+    ``Filter tasks by current case owner`` filter is hidden by default. To make it visible, you need to set the ``Portal.Cases.EnableOwner`` setting to ``true`` in the :ref:`Admin Settings <update-portal-settings>`.
 
 **Table configuration panel**
 
