@@ -14,6 +14,7 @@ import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
@@ -75,12 +76,14 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     assertTaskActionsByTaskState("Open",
         Arrays.asList(DETAILS, PIN, DELEGATE, RESERVE, CLEAR_EXPIRY, PROCESS_VIEWER));
     // TaskState : Done <=> TaskBusinessState : Done
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     assertTaskActionsByTaskState("Done", Arrays.asList(DETAILS, PIN, PROCESS_VIEWER));
   }
 
@@ -98,6 +101,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     assertTaskActionsByTaskStateAndName(OPEN, "Sick Leave Request", Arrays.asList(DETAILS, PIN, DELEGATE, RESERVE,
         CLEAR_EXPIRY, DESTROY, TRIGGER_ESCALATION, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
@@ -105,6 +109,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     assertTaskActionsByTaskStateAndName(DONE, "Categoried Leave Request",
         Arrays.asList(DETAILS, PIN, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
@@ -112,6 +117,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     assertTaskActionsByTaskStateAndName(DELAYED, "Task Switch C",
         Arrays.asList(DETAILS, PIN, DELEGATE, CLEAR_DELAY, DESTROY, WORKFLOW_EVENTS, PROCESS_VIEWER));
 
@@ -119,6 +125,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     removeAllExistingFilter();
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     assertTaskActionsByTaskStateAndName(DESTROYED, "Task Switch B",
         Arrays.asList(DETAILS, PIN, WORKFLOW_EVENTS, PROCESS_VIEWER));
   }
@@ -131,6 +138,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName("Sick Leave Request", FilterOperator.IS);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.clickOnTaskName("Sick Leave Request");
     
     TaskTemplateIFramePage templatePage = new TaskTemplateIFramePage();
@@ -143,6 +151,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.removeFilter(0);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     assertTaskActionsByTaskState(IN_PROGRESS, Arrays.asList(DETAILS, PIN, RESERVE, RESET, CLEAR_EXPIRY, DESTROY,
         WORKFLOW_EVENTS, PROCESS_VIEWER));
 
@@ -159,6 +168,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.removeFilter(1);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     assertTaskActionsByTaskState(IN_PROGRESS,
         Arrays.asList(DETAILS, PIN, RESERVE, RESET, CLEAR_EXPIRY, PROCESS_VIEWER));
   }
@@ -170,6 +180,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.filterTaskName(name, FilterOperator.IS);
     taskWidget.filterTaskState(state);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
   }
 
   @Test
@@ -244,6 +255,7 @@ public class DashboardTaskWidgetActionTest extends BaseTest {
     taskWidget.addFilter("State", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, state);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
   }
   
   private void removeAllExistingFilter() {

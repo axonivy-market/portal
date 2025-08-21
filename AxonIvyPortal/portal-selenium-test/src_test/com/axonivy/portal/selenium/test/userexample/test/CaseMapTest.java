@@ -9,6 +9,7 @@ import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.NavigationHelper;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseMapPage;
 import com.axonivy.portal.selenium.page.TopMenuTaskWidgetPage;
 import com.codeborne.selenide.CollectionCondition;
@@ -71,6 +72,7 @@ public class CaseMapTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Done");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(6));
   }
 
@@ -103,6 +105,7 @@ public class CaseMapTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Done");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
   }
 

@@ -9,6 +9,7 @@ import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskWidgetNewDashBoardPage;
@@ -53,6 +54,7 @@ public class DashboardWidgetEmptyMessageTest extends BaseTest {
     caseWidget.openFilterWidget();
     caseWidget.filterCaseName(WRONG_LEAVE_REQUEST_CASE_NAME);
     caseWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     newDashboardPage.getCaseWidgetEmptyMessageWhenFilter().shouldBe(Condition.appear);
     newDashboardPage.getCaseWidgetTable().shouldBe(Condition.disappear);
   }
@@ -73,6 +75,7 @@ public class DashboardWidgetEmptyMessageTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(WRONG_TASK_NAME, FilterOperator.IS);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     newDashboardPage.getTaskWidgetEmptyMessageWhenFilter().shouldBe(Condition.appear);
     newDashboardPage.getTaskWidgetTable().shouldBe(Condition.disappear);
   }

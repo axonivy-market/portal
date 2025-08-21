@@ -12,6 +12,7 @@ import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.CaseEditWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.CaseWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
@@ -50,24 +51,28 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     caseWidget.addFilter("Name", FilterOperator.IS);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "TestCase");
     caseWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(12));
 
     // CONTAINS
     caseWidget.openFilterWidget();
     caseWidget.changeOperator("Name", FilterOperator.CONTAINS, "text");
     caseWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(12));
 
     // START_WITH
     caseWidget.openFilterWidget();
     caseWidget.changeOperator("Name", FilterOperator.START_WITH, "text");
     caseWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(12));
 
     // END_WITH
     caseWidget.openFilterWidget();
     caseWidget.changeOperator("Name", FilterOperator.END_WITH, "text");
     caseWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(12));
   }
 
@@ -84,7 +89,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "TestCase");
     caseWidget.addFilter("Description", FilterOperator.EMPTY);
     caseWidget.applyFilter();
-
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(12));
   }
 
@@ -173,6 +178,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     caseWidget.addFilter("Created", FilterOperator.TODAY);
     caseWidget.addFilter("Description", FilterOperator.EMPTY);
     caseWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
 
     assertTrue(caseWidget.getFilterNotiNumber().equals(2));
   }
@@ -191,7 +197,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     caseWidget.addFilter("Name", null);
     caseWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "TestCase");
     caseWidget.applyFilter();
-
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(10));
   }
 
@@ -204,6 +210,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     caseWidget.openFilterWidget();
     caseWidget.addFilter("Created", FilterOperator.TODAY);
     caseWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(12));
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
 
@@ -211,12 +218,14 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     caseWidget.changeOperator("Created", FilterOperator.AFTER, "date");
     caseWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
     caseWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(12));
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
 
     caseWidget.openFilterWidget();
     caseWidget.changeOperator("Created", FilterOperator.CURRENT, "date");
     caseWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(12));
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
 
@@ -236,7 +245,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     caseWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
 
     caseWidget.applyFilter();
-
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(0));
   }
@@ -262,6 +271,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     caseWidget.selectSavedFilter("CasesContainCustomerName");
     caseWidget.selectSavedFilter("CasesAccountNumberNotEmpty");
     caseWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
 
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(0));
@@ -281,6 +291,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     caseWidget.addFilter("Invoice Subtotal Amount", FilterOperator.BETWEEN);
     caseWidget.inputValueOnLatestFilter(FilterValueType.NUMBER_BETWEEN, 100, 500);
     caseWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(0));
   }
@@ -296,6 +307,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     caseWidget.addFilter("Created Bill date", FilterOperator.IS_NOT);
     caseWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
     caseWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(0));
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
 
@@ -303,6 +315,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     caseWidget.changeOperator("Created Bill date", FilterOperator.BETWEEN, "date");
     caseWidget.inputValueOnLatestFilter(FilterValueType.DATE_BETWEEN, "01/01/2018", "01/01/2024");
     caseWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(0));
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
 
@@ -310,6 +323,7 @@ public class DashboardCaseWidgetFilterTest extends BaseTest {
     caseWidget.changeOperator("Created Bill date", FilterOperator.WITHIN_LAST, "date");
     caseWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "10", "Year(s)");
     caseWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.size(0));
     caseWidget.countCases("Test Case List Permission").shouldHave(CollectionCondition.size(1));
   }

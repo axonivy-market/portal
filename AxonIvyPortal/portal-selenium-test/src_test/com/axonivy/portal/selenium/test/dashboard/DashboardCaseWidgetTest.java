@@ -140,6 +140,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseWidget.openFilterWidget();
     caseWidget.filterCaseName(LEAVE_REQUEST_DEFAULT_CASE);
     caseWidget.applyFilter();
+
     CaseDetailsPage detailsCase = caseWidget.openDetailsFirstCase();
     detailsCase.openActionPanel();
     detailsCase.openAdditionalCaseDetailsPage();
@@ -158,6 +159,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseWidget.openFilterWidget();
     caseWidget.filterCaseName(INVESTMENT_REQUEST_CUSTOMIZATION_CASE);
     caseWidget.applyFilter();
+
     CaseDetailsPage detailsCase = caseWidget.openDetailsFirstCase();
     detailsCase.openActionPanel();
     detailsCase.openAdditionalCaseDetailsPage();
@@ -179,6 +181,7 @@ public class DashboardCaseWidgetTest extends BaseTest {
     caseWidget.openFilterWidget();
     caseWidget.filterCaseName("TestCase");
     caseWidget.applyFilter();
+
     caseWidget.countCases("TestCase").shouldHave(CollectionCondition.sizeGreaterThanOrEqual(4));
     caseWidget.openFilterWidget();
     caseWidget.resetFilter();

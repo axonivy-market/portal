@@ -15,6 +15,7 @@ import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.LinkNavigator;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.DashboardModificationPage;
 import com.axonivy.portal.selenium.page.MainMenuPage;
 import com.axonivy.portal.selenium.page.NewDashboardDetailsEditPage;
@@ -72,6 +73,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskEditWidget.openFilter();
     taskEditWidget.resetFilter();
     taskEditWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskEditWidget.openColumnManagementDialog();
     taskEditWidget.clickOnVisibilityCheckBoxByField("State");
     taskEditWidget.saveColumn();
@@ -82,6 +84,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(SICK_LEAVE_REQUEST, FilterOperator.IS);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.clickOnTaskName(SICK_LEAVE_REQUEST);
 
     TaskTemplateIFramePage templatePage = new TaskTemplateIFramePage();
@@ -103,6 +106,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(SICK_LEAVE_REQUEST, FilterOperator.IS);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.clickOnTaskActionLink(0);
     taskWidget.destroy();
     taskWidget.stateOfFirstTask().shouldHave(text(DESTROYED));
@@ -118,6 +122,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(SICK_LEAVE_REQUEST, FilterOperator.IS);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.clickOnTaskActionLink(0);
     taskWidget.destroyTaskLink().shouldNotHave(visible);
   }
@@ -134,6 +139,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.filterTaskName(TASK_NUMBER, FilterOperator.CONTAINS);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.countAllTasks().shouldHave(size(12));
     // Filter State
     taskWidget.openFilterWidget();
@@ -141,6 +147,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskWidget.addFilter("State", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN"); 
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     assertTrue(taskWidget.isEmptyMessageAppear());
   }
 
@@ -163,6 +170,7 @@ public class DashboardTaskWidgetTest extends BaseTest {
     taskEditWidget.addFilter("State", null);
     taskEditWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "OPEN");
     taskEditWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskEditWidget.countAllTasks().shouldHave(sizeGreaterThanOrEqual(12));
     taskEditWidget.save();
     TaskWidgetNewDashBoardPage taskWidgetEdited = newDashboardPage.selectTaskWidget(NEW_YOUR_TASK);

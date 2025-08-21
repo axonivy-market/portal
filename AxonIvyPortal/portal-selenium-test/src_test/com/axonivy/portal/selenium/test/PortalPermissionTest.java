@@ -78,6 +78,8 @@ public class PortalPermissionTest extends BaseTest {
     taskWidget.addFilter("state", null);
     taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Delayed");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
+
     boolean systemTaskAppear = taskWidget.checkNameOfTaskAt(0, "I'm a system task with delay");
     assertTrue(systemTaskAppear);
 
@@ -97,6 +99,8 @@ public class PortalPermissionTest extends BaseTest {
     taskWidget.openFilterWidget();
     taskWidget.addFilter("state", null);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
+
     taskWidget.countAllTasks().shouldHave(size(1), DEFAULT_TIMEOUT);
 
     caseWidgetPage = NavigationHelper.navigateToCaseList();

@@ -12,6 +12,7 @@ import com.axonivy.portal.selenium.common.FilterOperator;
 import com.axonivy.portal.selenium.common.FilterValueType;
 import com.axonivy.portal.selenium.common.ScreenshotUtils;
 import com.axonivy.portal.selenium.common.TestAccount;
+import com.axonivy.portal.selenium.common.WaitHelper;
 import com.axonivy.portal.selenium.page.DashboardConfigurationPage;
 import com.axonivy.portal.selenium.page.NewDashboardPage;
 import com.axonivy.portal.selenium.page.TaskEditWidgetNewDashBoardPage;
@@ -48,11 +49,13 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Annual Leave Request");
     taskWidget.addFilter("Description", FilterOperator.NOT_EMPTY);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
     
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Created", FilterOperator.TODAY);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(1));
   }
   
@@ -100,6 +103,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     // Apply selected filter items
     taskWidget.selectSavedFilter("TaskNameLeaveRequest");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(3));
     taskWidget.countTasks("LeaveRequest").shouldHave(CollectionCondition.size(0));
   }
@@ -134,6 +138,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.addFilter("Created", FilterOperator.TODAY);
     taskWidget.addFilter("Description", FilterOperator.EMPTY);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     
     assertTrue(taskWidget.getFilterNotiNumber().equals(2));
   }
@@ -151,6 +156,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "leave");
     taskWidget.addFilter("Description", FilterOperator.NOT_EMPTY);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(3));
   }
   
@@ -166,6 +172,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.addFilter("Created", FilterOperator.AFTER);
     taskWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(14));
     
     taskWidget.openFilterWidget();
@@ -174,6 +181,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.addFilter("Expiry", FilterOperator.WITHIN_NEXT);
     taskWidget.inputValueOnLatestFilter(FilterValueType.WITHIN, "2","Year(s)");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(2));
   }
   
@@ -195,6 +203,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.inputValueOnLatestFilter(FilterValueType.DATE_BETWEEN, "01/01/2024", "12/12/2124");
     taskWidget.clickOnWidgetFilterHeader();
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(2));
   }
   
@@ -211,6 +220,7 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.addFilter("AccountNumber", FilterOperator.BETWEEN);
     taskWidget.inputValueOnLatestFilter(FilterValueType.NUMBER_BETWEEN, "1","20");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.countAllTasks().shouldHave(CollectionCondition.size(2));
   }
   
@@ -253,11 +263,13 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.addFilter("Created Bill date", FilterOperator.BEFORE);
     taskWidget.inputValueOnLatestFilter(FilterValueType.DATE, "01/01/2024");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     assertTrue(taskWidget.isEmptyMessageAppear());
     
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Invoice date", FilterOperator.TODAY);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     assertTrue(taskWidget.isEmptyMessageAppear());
   }
   
@@ -277,11 +289,13 @@ public class DashboardTaskWidgetFilterTest extends BaseTest {
     taskWidget.addFilter("Invoice Subtotal Amount", FilterOperator.EQUAL);
     taskWidget.inputValueOnLatestFilter(FilterValueType.NUMBER, "1000");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     assertTrue(taskWidget.isEmptyMessageAppear());
     
     taskWidget.openFilterWidget();
     taskWidget.addFilter("Invoice Subtotal Amount", FilterOperator.NOT_EMPTY);
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     assertTrue(taskWidget.isEmptyMessageAppear());
   }
   

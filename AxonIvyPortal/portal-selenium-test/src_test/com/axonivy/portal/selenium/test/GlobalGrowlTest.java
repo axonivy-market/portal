@@ -52,6 +52,7 @@ public class GlobalGrowlTest extends BaseTest {
     taskTemplatePage.inputValue("Employee", today, today, "Representation");
     taskTemplatePage.clickOnSubmitButton();
     taskTemplatePage.switchBackToParent();
+    WaitHelper.waitForPresentAndVisible(".js-dashboard__wrapper");
     taskWidgetPage = new NewDashboardPage();
     assertGrowlMessage(taskWidgetPage, FINISH_MESSAGE_WITH_DETAILS);
   }
@@ -66,6 +67,7 @@ public class GlobalGrowlTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Growl Standard Message");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.startTaskIFrameByIndex(0);
     GlobalGrowlIframeTemplatePage taskPage = new GlobalGrowlIframeTemplatePage();
     taskWidgetPage = taskPage.clickProceed();
@@ -97,6 +99,7 @@ public class GlobalGrowlTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Growl Standard Message");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.startTaskIFrameByIndex(0);
     taskWidget.waitForPageLoad();
     GlobalGrowlIframeTemplatePage taskPage = new GlobalGrowlIframeTemplatePage();

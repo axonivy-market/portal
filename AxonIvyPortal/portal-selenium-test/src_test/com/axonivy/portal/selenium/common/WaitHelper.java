@@ -85,4 +85,36 @@ public final class WaitHelper {
       $("ASSERTION FAILED, CHECK STACK TRACE from BaseTest.assertTrue").shouldBe(exist, ZERO);
     }
   }
+
+  public static void waitForVisible(String cssSelector) {
+    try {
+      wait(WebDriverRunner.getWebDriver())
+          .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelector)));
+    } catch (Exception e) {
+      e.printStackTrace();
+      assertTrue(false);
+    }
+  }
+
+  public static void waitForHidden(String cssSelector) {
+    try {
+      wait(WebDriverRunner.getWebDriver())
+          .until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(cssSelector)));
+    } catch (Exception e) {
+      e.printStackTrace();
+      assertTrue(false);
+    }
+  }
+
+  public static void waitForPresentAndVisible(String cssSelector) {
+    try {
+      wait(WebDriverRunner.getWebDriver())
+          .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(cssSelector)));
+      wait(WebDriverRunner.getWebDriver())
+          .until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(cssSelector)));
+    } catch (Exception e) {
+      e.printStackTrace();
+      assertTrue(false);
+    }
+  }
 }

@@ -107,6 +107,7 @@ public class TaskTemplateTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Case Map Leave Request");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     TaskTemplatePage taskTemplatePage = taskWidget.startTaskByIndex(0);
     taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.startSideStep();

@@ -94,6 +94,7 @@ public class BackNavigationTest extends BaseTest {
     taskTemplatePage.clickOnSubmitButton();
 
     caseDetailsPage = new CaseDetailsPage();
+    caseDetailsPage.waitPageLoaded();
     caseDetailsPage.assertPageTitle(CASE_DETAILS_TITLE);
 
     caseWidgetPage = caseDetailsPage.goBackToCaseListFromCaseDetails();

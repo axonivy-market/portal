@@ -39,6 +39,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "IFrame task with custom params");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     TaskIFrameTemplatePage taskTemplatePage = taskWidget.startTaskIFrameByIndex(0);
     assertFalse(taskTemplatePage.isTaskNameDisplayed());
     assertFalse(taskTemplatePage.isTaskActionDisplayed());
@@ -66,6 +67,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.CONTAINS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Approve Investment");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
     taskTemplatePage2.waitForPageLoad();
     taskTemplatePage2.clickOnLogo();
@@ -83,6 +85,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.CONTAINS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Approve Investment");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
     taskTemplatePage2.backToHomeInIFrameApprovalTask();
   }
@@ -98,6 +101,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.CONTAINS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Approve Investment");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
     NewDashboardPage taskWidgetPage2 = taskTemplatePage2.finishIFrameReviewTask();
     WaitHelper.assertTrueWithWait(() -> taskWidgetPage2
@@ -119,6 +123,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.CONTAINS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Approve Investment");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     TaskIFrameTemplatePage taskTemplatePage2 = taskWidget.startTaskIFrameByIndex(0);
     taskTemplatePage2.waitForIFrameContentVisible();
     assertEquals("Review Request (Skip Tasklist in IFrame)",
@@ -135,6 +140,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.CONTAINS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "sale department");
     taskWidget.applyFilter();
+    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     TaskIFrameTemplatePage startTask = taskWidget.startTaskIFrameByIndex(0);
     startTask.openCaseInfo();
     resizeBrowserTo2kResolution();
