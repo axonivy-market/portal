@@ -113,7 +113,7 @@ public class TaskWidgetNewDashBoardPage extends TemplatePage {
     getTaskWidgetHeader().$(".widget__filter-sidebar-link").shouldBe(appear, DEFAULT_TIMEOUT)
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT);
     waitForElementClickableThenClick(getTaskWidgetHeader().$(".widget__filter-sidebar-link"));
-    $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$=':widget-saved-filters-items']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   public void filterTaskName(String input, FilterOperator operator) {

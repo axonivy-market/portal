@@ -118,7 +118,7 @@ public class CaseWidgetNewDashBoardPage extends TemplatePage {
     $$("div.table-widget-panel").filter(text(caseWidgetName)).first().shouldBe(appear, DEFAULT_TIMEOUT)
         .$(".widget__filter-sidebar-link")
         .shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$=':widget-saved-filters-items']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
   private SelenideElement getEditWidgetLink() {

@@ -442,7 +442,7 @@ public class NewDashboardPage extends TemplatePage {
 
   public SelenideElement getCompactModeProcessFilterPanelSaveFilters() {
     return getCompactModeProcessFilterPanel().shouldBe(appear, DEFAULT_TIMEOUT)
-        .$("div[id$=':widget-saved-filters-items");
+        .$("div[id$=':widget-saved-filters-items']");
   }
 
   public SelenideElement getCompactModeProcessFilterPanelProcessName() {
@@ -858,7 +858,7 @@ public class NewDashboardPage extends TemplatePage {
 
   public void openWidgetFilter(int index) {
     $("[id$='filter-sidebar-link-" + index + "']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
-    $("[id$=':widget-saved-filters-items").shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$=':widget-saved-filters-items']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
   
   public SelenideElement getWidgetFilter(int index) {
