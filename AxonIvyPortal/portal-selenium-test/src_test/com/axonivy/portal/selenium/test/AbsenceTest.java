@@ -170,11 +170,15 @@ public class AbsenceTest extends BaseTest {
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantCreateAbsencePermission.ivp");
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
+    absencePage.showAbsencesInThePast(true);
+    absencePage.countAbsences(1);
 
     login(TestAccount.DEMO_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadOwnAbsencesPermission.ivp");
     absencePage = openAbsencePage();
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
+    absencePage.showAbsencesInThePast(true);
+    absencePage.countAbsences(1);
 
     login(TestAccount.GUEST_USER);
     absencePage = openAbsencePage();
@@ -234,7 +238,8 @@ public class AbsenceTest extends BaseTest {
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(TODAY, TODAY, "For other reason", absencePage);
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
-    absencePage.countAbsences(1);
+    absencePage.showAbsencesInThePast(true);
+    absencePage.countAbsences(2);
 
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
@@ -254,7 +259,8 @@ public class AbsenceTest extends BaseTest {
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(TODAY, TODAY, "For other reason", absencePage);
     createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
-    absencePage.countAbsences(1);
+    absencePage.showAbsencesInThePast(true);
+    absencePage.countAbsences(2);
 
     login(TestAccount.GUEST_USER);
     redirectToRelativeLink("PortalKitTestHelper/14DE09882B540AD5/grantReadAbsencesPermission.ivp");
