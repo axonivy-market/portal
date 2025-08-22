@@ -38,6 +38,23 @@
         $(window).resize(function() {
           setTimeout(setupHeightForIFrame(), 1);
         });
+        
+        // FIX ACCESSIBILITY ISSUE
+        // SCREEN READER NOT READABLE WHEN IN TASK IFRAME
+        function updateMenuAriaLabel() {
+          let parentMenu = $("[id$='user-menu-required-login:main-navigator:main-menu']");
+          if (parentMenu) {
+            if (parentMenu.attr('role') === undefined) {
+              parentMenu.attr('role', 'menu');
+            }
+            parentMenu.find('li').each((index, item) => {
+              let linkItem = $(menuItem).find('a');
+              if (linkItem &amp;&amp; linkItem.attr('aria-label') === undefined) {
+                linkItem.attr('aria-label', linkItem.text());
+              }
+            })
+          }
+        };
       </script>
       <p:growl id="task-template-growl" />
       <div class="task-template-container #{taskTemplateContainerStyleClass}">
@@ -101,6 +118,7 @@
                     oncomplete="PF('sidestep-task-reset-confirmation-dialog').show()" />
                 </c:forEach>
               </p:menu>
+              <h:outputScript>updateMenuAriaLabel();</h:outputScript>
             </h:form>
           </h:panelGroup>
   
