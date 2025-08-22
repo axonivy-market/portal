@@ -274,7 +274,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayMessageAfterFinishOrLeaveTask: A feedback message will be displayed after user finishes or leaves a task.
       documentUploadSizeLimit: Set the size limit for uploading documents in megabytes (MB). The default value is 20MB.
       embedInFrame: Set to true to start a process/task in IFrame mode
-      enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic.
+      enableCaseOwner: Set to true to enable filtering case owner when cases are queried. This setting affects all case queries, e.g. for case list, global search, statistic. It also makes the "Filter tasks by current case owner" filter available in the task widget, which is hidden by default.
       enableDocumentPreview: 'Set to true to enable document preview for some certain file types. Supported file types are: pdf, png, txt, log.'
       enableGroupChat: Set this property to true to enable group chat function
       enablePrivateChat: Set this property to true to enable private chat function
