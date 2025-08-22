@@ -134,6 +134,5 @@ public class EscalationTaskTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.CONTAINS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, name);
     taskWidget.applyFilter();
-    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
   }
 }

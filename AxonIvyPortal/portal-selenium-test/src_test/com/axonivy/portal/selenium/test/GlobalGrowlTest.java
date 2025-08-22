@@ -67,7 +67,6 @@ public class GlobalGrowlTest extends BaseTest {
     taskWidget.addFilter("Name", FilterOperator.IS);
     taskWidget.inputValueOnLatestFilter(FilterValueType.TEXT, "Growl Standard Message");
     taskWidget.applyFilter();
-    WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
     taskWidget.startTaskIFrameByIndex(0);
     GlobalGrowlIframeTemplatePage taskPage = new GlobalGrowlIframeTemplatePage();
     taskWidgetPage = taskPage.clickProceed();

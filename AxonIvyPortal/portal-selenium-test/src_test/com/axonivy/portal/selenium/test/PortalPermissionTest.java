@@ -23,7 +23,7 @@ import com.axonivy.portal.selenium.page.UserProfilePage;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 
-@IvyWebTest
+@IvyWebTest(headless = false)
 public class PortalPermissionTest extends BaseTest {
 
   protected NewDashboardPage newDashboardPage;
@@ -98,6 +98,7 @@ public class PortalPermissionTest extends BaseTest {
     taskWidget = new TopMenuTaskWidgetPage();
     taskWidget.openFilterWidget();
     taskWidget.addFilter("state", null);
+    taskWidget.inputValueOnLatestFilter(FilterValueType.STATE_TYPE, "Delayed");
     taskWidget.applyFilter();
     WaitHelper.waitForPresentAndVisible("[id$=':widget-saved-filters-items']");
 

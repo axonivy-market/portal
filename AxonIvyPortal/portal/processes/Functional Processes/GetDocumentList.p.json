@@ -127,7 +127,7 @@
             "",
             "in.hasCustomProcess = result != null;",
             "if (in.hasCustomProcess) {",
-            "  in.documents = result.get(\"documents\") as List;",
+            "  in.documents = result.get(\"documents\") as java.util.List;",
             "  in.message = result.get(\"message\").toString();",
             "  in.status = UploadDocumentCheckStatus.toEnum(result.get(\"status\").toString());",
             "}"
