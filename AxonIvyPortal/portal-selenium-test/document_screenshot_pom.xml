@@ -10,7 +10,7 @@
   <groupId>com.axonivy.portal</groupId>
   <artifactId>portal-document-screenshots-selenide</artifactId>
   <version>13.2.0-SNAPSHOT</version>
-  <packaging>iar</packaging>
+  <packaging>pom</packaging>
   <properties>
     <ivy.engine.version>13.2.0</ivy.engine.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -79,6 +79,27 @@
               <goal>installEngine</goal>
             </goals>
             <phase>initialize</phase>
+          </execution>
+          <execution>
+            <id>generate-data-class-sources</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate-data-class-sources</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>generate-dialog-form-sources</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate-dialog-form-sources</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>generate-web-service-sources</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate-web-service-sources</goal>
+            </goals>
           </execution>
           <execution>
             <id>default-compileProject</id>
