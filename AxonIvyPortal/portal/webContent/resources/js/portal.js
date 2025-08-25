@@ -506,6 +506,7 @@ function initKeyboardShortcutsEnabledValue(value) {
 }
 
 $(document).ready(function () {
+  initFocusManagament(window);
   const shortcuts = {
     'Digit1': $(singleDashboardId).length ? singleDashboardId : multipleDashboardId,
     'Digit2': processItemId,
@@ -870,4 +871,104 @@ function addMissingAttr(query, attrName, attrValue) {
   });
 }
 
-// END: FIX ACCESSIBILITY ISSUES
+function initFocusManagament(targetWindow) {
+  if (!targetWindow || !targetWindow.PrimeFaces) {
+    return;
+  }
+  var lastFocusedElements = [];
+
+  // OverlayPanel
+  if (targetWindow.PrimeFaces.widget.OverlayPanel) {
+    targetWindow.PrimeFaces.widget.OverlayPanel = targetWindow.PrimeFaces.widget.OverlayPanel.extend({
+        init: function(cfg) {
+          this._super(cfg);
+
+          this.originalOnHide = cfg.onHide;
+          this.originalOnShow = cfg.onShow;
+          var self = this;
+
+          cfg.onShow = function() {
+            if (self.originalOnShow) {
+              self.originalOnShow.call(this);
+            }
+
+            try {
+              if (this.targetElement && this.targetElement.length > 0) {
+                let targetElement = this.targetElement[0];
+                storeFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id, targetElement);
+              }
+            } catch(e) {
+              console.warn("Cannot store focused element");
+            }
+          };
+
+          cfg.onHide = function() {            
+              if (self.originalOnHide) {
+                  self.originalOnHide.call(this);
+              }
+              try {
+                restoreFocusedElement(targetWindow.document, lastFocusedElements, this.cfg.id);
+              } catch (e) {
+                console.warn("Cannot focus on last element");
+              }
+          };
+      }
+    })
+  }
+}
+
+function storeFocusedElement(targetDocument, focusElements, containerId, targetElement) {
+  if (targetElement && targetElement !== targetDocument.body && targetElement.tagName !== 'HTML') {
+    var item = {"containerId": containerId, "activeElement": targetElement};
+
+    if (focusElements.length === 0 || 
+        focusElements[focusElements.length - 1].containerId !== containerId ||
+        focusElements[focusElements.length - 1].activeElement !== targetElement) {
+      focusElements.push(item);
+    }
+  }
+}
+
+function restoreFocusedElement(targetDocument, focusElements, containerId) {
+  if (focusElements.length === 0) return;
+
+  const itemIndex = focusElements.findIndex(item => item.containerId === containerId);
+
+  if (itemIndex === -1) {
+    return;
+  }
+
+  const item = focusElements[itemIndex];
+  const lastEl = targetDocument.getElementById(item.activeElement.id);
+  focusElements.splice(itemIndex, 1);
+
+  if (lastEl && targetDocument.contains(lastEl) && lastEl.offsetParent !== null && !lastEl.disabled && lastEl.tabIndex !== -1) {
+    lastEl.focus();
+  }
+}
+
+function initIframeFocusManagement(iframe) {
+  if (!iframe || !iframe.contentWindow) {
+    return;
+  }
+  
+  try {
+    var iframeWindow = iframe.contentWindow;
+    initFocusManagament(iframeWindow);
+    console.log('Focus management initialized for iframe');
+  } catch (e) {
+    console.warn('Cannot initialize focus management for iframe:', e.message);
+  }
+}
+
+function handleFocusOnElementsInCaseDetailsPanel() {
+  const caseInfoDialog = document.getElementById('case-info-dialog');
+  if (caseInfoDialog.innerHTML.includes('i-frame-case-details')) {
+    const iframe = document.getElementById('i-frame-case-details');
+    setTimeout(() => {
+      initIframeFocusManagement(iframe);
+    }, 2000)
+  }
+}
+
+// END: FIX ACCESSIBILITY ISSUES  
