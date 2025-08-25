@@ -275,7 +275,8 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayMessageAfterFinishOrLeaveTask: Eine Feedback-Nachricht wird angezeigt, nachdem der Benutzer eine Aufgabe beendet oder verlassen hat.
       documentUploadSizeLimit: Legen Sie das Größenlimit für das Hochladen von Dokumenten in Megabyte (MB) fest. Der Standardwert beträgt 20 MB.
       embedInFrame: Auf true gesetzt, um einen Prozess/Task im IFrame-Modus zu starten
-      enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …
+      enableCaseOwner: Wird auf true gesetzt, um die Filterung des Vorgangsinhabers bei der Abfrage von Vorgängen zu aktivieren. Diese Einstellung wirkt sich auf alle Vorgangsabfragen aus, z.B. nach Vorgangsliste, globale Suche, Statistik, …Außerdem wird der Filter "Aufgaben nach aktuellem Fallinhaber
+        filtern" im Aufgaben-Widget verfügbar gemacht, der standardmäßig ausgeblendet ist.
       enableDocumentPreview: 'Auf "true" setzen, um die Vorschau von Dokumenten für bestimmte Dateitypen zu aktivieren. Unterstützte Dateitypen sind: pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Setzen Sie diese Einstellung auf "true", um den Gruppenchat zu aktivieren
       enablePrivateChat: Setzen Sie diese Einstellung auf "true", um den privaten Chat zu aktivieren
@@ -826,6 +827,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: Kein Filter gefunden
       WidgetNameColumn: Widget-Name
       WrongDateFormat: Das Datum ist ungültig
+    FilterTasksByCurrentCaseOwner: Aufgaben nach aktuellem Fallbesitzer filtern
     ManageFilter: Filterverwaltung
     NoData: Keine Daten
     NoSavedFilterMessage: Kein gespeicherter Filter gefunden. Versuchen Sie, einen neuen zu erstellen, indem Sie auf die Schaltfläche Filter speichern klicken.

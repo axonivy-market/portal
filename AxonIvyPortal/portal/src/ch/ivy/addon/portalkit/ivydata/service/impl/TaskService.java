@@ -32,6 +32,7 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ITaskService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -42,6 +43,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.ITaskQueryExecutor;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.FilterLink;
@@ -239,9 +241,14 @@ public class TaskService implements ITaskService {
   private TaskQuery extendQueryWithInvolvedUser(TaskSearchCriteria criteria) {
     TaskQuery finalQuery = criteria.getFinalTaskQuery();
     TaskQuery clonedQuery = TaskQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in TaskSearchCriteria
-    if (!criteria.isAdminQuery()) {
+
+    if (criteria.isFilterTasksByCurrentCaseOwner() && GlobalSettingService.getInstance().isCaseOwnerEnabled()) {
+      CaseQuery subCaseQuery = CaseQuery.create().where().currentUserIsOwner();
+      clonedQuery.where().cases(subCaseQuery);
+    } else if (!criteria.isAdminQuery()) {
       clonedQuery.where().and(queryInvolvedTasks());
-    } 
+    }
+
     if (isHiddenTasksCasesExcluded()) {
       clonedQuery.where().and(queryExcludeHiddenTasks());
     }

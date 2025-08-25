@@ -6,7 +6,7 @@ Portal.CaseDetails.HideUploadDocumentForDoneCase,FALSE,Set to true to deny uploa
 Portal.CaseDetails.ShowDurationTime,TRUE,For switch on/off the display of the duration time in case details page.
 Portal.Cases.DisableCount,FALSE,Set to true to disable counting case in case list.
 Portal.Cases.EnableOwner,FALSE,"| Set to true to enable filtering case owner when cases are queried. This setting affects all case 
-| queries e.g. for case list, global search, statistic."
+| queries e.g. for case list, global search, statistic. It also makes the ""Filter tasks by current case owner"" filter available in the task widget, which is hidden by default."
 Portal.Cases.SortDirection,Sort descending,Default sort direction of case list.
 Portal.Cases.SortField,Case Id,Default sort field of the case list.
 Portal.Chat.EnableGroup,FALSE,Set this property to true to enable group chat function.

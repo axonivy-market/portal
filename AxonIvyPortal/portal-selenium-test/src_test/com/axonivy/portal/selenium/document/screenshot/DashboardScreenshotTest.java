@@ -147,6 +147,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
 
   @Test
   public void screenshotNewDashboardUserGuide() throws IOException {
+    updatePortalSetting(Variable.ENABLE_CASE_OWNER.getKey(), "true");
     showNewDashboard();
     ScreenshotUtils.resizeBrowser(new Dimension(1800, 1400));
     homePage = new NewDashboardPage();
