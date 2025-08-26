@@ -23,6 +23,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.addon.portal.generic.menu.MenuView.PortalDashboardItemWrapper;
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardOrder;
@@ -335,5 +336,9 @@ public class DashboardUtils {
   public static boolean isDefaultCaseListDashboard(Dashboard dashboard) {
     return Optional.ofNullable(dashboard).map(Dashboard::getId)
         .orElseGet(() -> "").contentEquals(DEFAULT_CASE_LIST_DASHBOARD);
+  }
+
+  public static String buildDashboardLink(Dashboard dashboard) {
+    return UrlUtils.getServerUrl() + PortalNavigator.getDashboardPageUrl(dashboard.getId());
   }
 }
