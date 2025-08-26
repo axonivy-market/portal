@@ -42,6 +42,10 @@ Dialogs:
             UploadFailed: Während des Hochladens ist ein Fehler aufgetreten. Bitte fragen Sie Ihren Administrator.
             UploadFileExists: Datei {0} ist bereits vorhanden
             UploadSucceed: Die Datei wurde erfolgreich hochgeladen
+            renamingDocumentNote: ''
+            renamingDuplicateName: ''
+            renamingErrorCharacters: ''
+            renamingFailed: ''
           Enums:
             BasicDocumentType:
               CONTRACT: Vertrag

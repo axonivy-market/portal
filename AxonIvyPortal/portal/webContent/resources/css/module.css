@@ -431,6 +431,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .document-preview{
   position:absolute;
   top:2px;
+  right:60px;
+}
+.document-renaming {
+  position:absolute;
+  top:2px;
   right:30px;
 }
 /********************************** CASE ITEM SIMILAR TO TASK ITEM CLASSES **********************************/
@@ -4797,7 +4802,7 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 
 .case-upload-dialog, .case-view-note-dialog, .document-upload-dialog, .task-note-dialog,
-.task-upload-dialog {
+.task-upload-dialog, .document-renaming-dialog {
   min-width: 50vw;
 }
 

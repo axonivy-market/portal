@@ -22,3 +22,7 @@ deleteDocumentMessage String #field
 deleteDocumentMessage PERSISTENT #fieldModifier
 isImage Boolean #field
 isImage PERSISTENT #fieldModifier
+renameDocumentMessage String #field
+renameDocumentMessage PERSISTENT #fieldModifier
+isRenameDocumentSuccess Boolean #field
+isRenameDocumentSuccess PERSISTENT #fieldModifier

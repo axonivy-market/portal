@@ -42,6 +42,10 @@ Dialogs:
             UploadFailed: An error occurred while uploading this file. Please ask your administrator for this issue.
             UploadFileExists: File {0} already exists
             UploadSucceed: The file was uploaded successfully
+            renamingDocumentNote: '{0} has renamed the file {1} to {2}'
+            renamingDuplicateName: There is already a file with the same name in this location.
+            renamingErrorCharacters: 'A file name can''t contain any of the following characters: \ / : * ? " < > |'
+            renamingFailed: An error occurs while renaming the document.
           Enums:
             BasicDocumentType:
               CONTRACT: Contract

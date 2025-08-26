@@ -42,6 +42,10 @@ Dialogs:
             UploadFailed: Une erreur est survenue lors de l’envoi du fichier. Veuillez contacter votre administrateur.
             UploadFileExists: Le fichier {0} existe déjà
             UploadSucceed: Le fichier a été téléchargé avec succès
+            renamingDocumentNote: ''
+            renamingDuplicateName: ''
+            renamingErrorCharacters: ''
+            renamingFailed: ''
           Enums:
             BasicDocumentType:
               CONTRACT: Contrat

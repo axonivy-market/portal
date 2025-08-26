@@ -42,6 +42,10 @@ Dialogs:
             UploadFailed: Se produjo un error al cargar este archivo. Por favor, pregunte a su administrador por este problema.
             UploadFileExists: El archivo {0} ya existe
             UploadSucceed: El archivo ha sido añadido con éxito
+            renamingDocumentNote: ''
+            renamingDuplicateName: ''
+            renamingErrorCharacters: ''
+            renamingFailed: ''
           Enums:
             BasicDocumentType:
               CONTRACT: Contrato

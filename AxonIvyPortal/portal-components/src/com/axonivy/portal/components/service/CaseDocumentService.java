@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
@@ -17,6 +18,7 @@ import org.primefaces.virusscan.VirusScannerService;
 
 import com.axonivy.portal.components.document.DocumentDetector;
 import com.axonivy.portal.components.document.DocumentDetectorFactory;
+import com.axonivy.portal.components.enums.NewFilenameValidation;
 import com.axonivy.portal.components.ivydata.bo.IvyDocument;
 import com.axonivy.portal.components.service.exception.PortalException;
 
@@ -31,6 +33,7 @@ import ch.ivyteam.ivy.workflow.document.Path;
 public class CaseDocumentService {
 
 	public static final String EXPRESS_UPLOAD_FOLDER = "AxonIvyExpress";
+	private static final Pattern FORBIDDEN_PATTERN = Pattern.compile("[\\\\/:*?\"<>|]");
 	private ICase iCase;
 
 	private CaseDocumentService(ICase iCase) {
@@ -86,6 +89,22 @@ public class CaseDocumentService {
 	public boolean doesDocumentExist(String filename) {
 		IDocument document = documentsOf(iCase).get(new Path(filename));
 		return document != null && !document.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER);
+	}
+	
+    public boolean containsForbiddenChars(String filename) {
+        return FORBIDDEN_PATTERN.matcher(filename).find();
+    }
+	
+	public NewFilenameValidation isNewFilenameValid(IvyDocument modifiedDoc) {
+		if (this.containsForbiddenChars(modifiedDoc.getName()))
+			return NewFilenameValidation.INVALID_FORMAT;
+		
+		List<IDocument> documents = documentsOf(iCase).getAllDirectBelow(new Path("/"));
+		boolean isFilenameAlreadyExist = documents.stream().anyMatch(doc -> doc.getName().equalsIgnoreCase(modifiedDoc.getName()) 
+			&& !doc.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER) && !(doc.getId() == Long.valueOf(modifiedDoc.getId())));
+		if (isFilenameAlreadyExist) return NewFilenameValidation.ALREADY_EXIST;
+		
+		return NewFilenameValidation.VALID;
 	}
 
 	public static boolean isDocumentTypeValid(String filename, String allowedFileTypes) {

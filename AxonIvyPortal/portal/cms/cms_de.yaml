@@ -367,6 +367,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noTasks: Keine Aufgabe
     relatedTasks: Zugehörige Aufgaben
     relatedTasksAndCases: Zugehörige Aufgaben und Vorgänge
+    renamingDocument: ''
     runningTasks: Laufende Aufgaben
     showAdditionalPage: Geschäftsdetails
     showAllTasks: Alle Tasks anzeigen
@@ -1000,11 +1001,17 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
     deleteSuceed: Datei wurde erfolgreich gelöscht
     download: Herunterladen
+    editFilename: ''
     fileContainScript: Diese Datei darf aufgrund von Skript-Inhalten nicht hochgeladen werden!
     fileContainVirus: Upload fehlgeschlagen, Virus/Infektion erkannt!
     fileCouldNotParse: Die Datei konnte nicht analysiert werden
     fileEmptyMessage: Datei ist leer
     name: Dateiname
+    renamingDocumentNote: ''
+    renamingDocumentSuccess: ''
+    renamingDuplicateName: ''
+    renamingErrorCharacters: ''
+    renamingFailed: ''
     size: Dateigröße
     type: Typ
     upload: Neue Datei hochladen
