@@ -6,12 +6,14 @@ import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Base64;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.menu.DefaultMenuItem;
 
 import com.axonivy.portal.components.enums.MenuKind;
+
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -104,6 +106,11 @@ public class PortalMenuItem extends DefaultMenuItem {
       this.setParams(null);
     } else {
       generateMenuParams(builder);
+
+      // Encode URL in a data attribute via CSS class
+      String urlClass = String.format("js-menu-url-%s", Base64.getUrlEncoder().encodeToString(StringUtils.defaultIfEmpty(builder.url, EMPTY).getBytes()));
+      this.setStyleClass(String.format("%s %s", StringUtils.defaultIfEmpty(this.getStyleClass(), EMPTY), urlClass));
+
       this.setUrl(null);
     }
   }
