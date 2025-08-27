@@ -248,7 +248,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayAllUsersOfTaskActivator: この設定は SecurityMemberDisplayName コンポーネントに使用します。SecurityMember がロールである場合、この設定を true に設定すると、このロールのすべてのユーザーが一覧表示されます。true に設定すると、ロール名の横にアイコン情報が表示されます。
       displayMessageAfterFinishOrLeaveTask: ユーザーがタスクを完了または退出すると、フィードバック メッセージが表示されます。
       embedInFrame: プロセス／タスクをIFrameモードで開始するには true に設定してください
-      enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。
+      enableCaseOwner: ケースがクエリーされるときに、フィルタリングケースオーナーを有効にするには true に設定します。この設定は、ケースリスト、グローバル検索、統計など、すべてのケースクエリーに影響します。デフォルトでは非表示になっているタスクウィジェットで、「現在のケース所有者でタスクをフィルタする」フィルタも利用可能になります。
       enableDeepLTranslation: DeepL翻訳サポートを有効にするには、このプロパティーを true に設定してください。
       enableGroupChat: グループ チャット機能を有効にするには、このプロパティーを true に設定してください。
       enablePinCase: 'TODO: Set this property to true to enable the ability to pin cases.'
@@ -763,6 +763,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: フィルターが見つかりません
       WidgetNameColumn: ウィジェット名
       WrongDateFormat: 日付が無効です
+    FilterTasksByCurrentCaseOwner: TODO Filter tasks by current case owner
     ManageFilter: フィルターの管理
     NoData: データなし
     NoSavedFilterMessage: 保存されたフィルターが見つかりません。［フィルターを保存］ ボタンをクリックして新しいフィルターを作成してください
