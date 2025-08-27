@@ -254,6 +254,13 @@ public class CaseDetailsPage extends TemplatePage {
     return $("div[id$='document-deletion-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
   }
 
+  public SelenideElement getRenameDocumentDialog() {
+    $("a[id$='edit-filename']").shouldBe(getClickableCondition()).click();
+    $(By.cssSelector("div[id$='document-renaming-dialog']")).shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='document-renaming-dialog_title']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $("div[id$='document-renaming-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
   public void waitForShowNoteHistory() {
     $(".note-history-container").shouldBe(Condition.visible, DEFAULT_TIMEOUT);
   }
