@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.bo.History;
 import ch.ivy.addon.portalkit.bo.History.HistoryType;
@@ -110,7 +111,7 @@ public class HistoryService {
   }
 
   private Predicate<? super ITask> isNotSystemTaskNote() {
-    return task -> !StringUtils.equals(task.getWorkerUserName(), ISecurityConstants.SYSTEM_USER_NAME);
+    return task -> !Strings.CS.equals(task.getWorkerUserName(), ISecurityConstants.SYSTEM_USER_NAME);
   }
 
   private Predicate<? super ITask> isNotExpressTask() {
@@ -118,7 +119,7 @@ public class HistoryService {
   }
 
   private boolean isNotSystemNote(INote note) {
-    return !StringUtils.equals(note.getWritterName(), ISecurityConstants.SYSTEM_USER_NAME);
+    return !Strings.CS.equals(note.getWritterName(), ISecurityConstants.SYSTEM_USER_NAME);
   }
 
   public History createHistoryFrom(ITask task) {

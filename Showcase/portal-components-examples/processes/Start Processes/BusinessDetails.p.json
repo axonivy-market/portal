@@ -85,7 +85,8 @@
           }
         },
         "outLink" : "showInvestmentRequestCustomFields.ivp",
-        "showInStartList" : false
+        "showInStartList" : false,
+        "case" : { }
       },
       "visual" : {
         "at" : { "x" : 144, "y" : 64 }
@@ -112,7 +113,7 @@
             { "name" : "ivyCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
           ],
           "map" : {
-            "param.ivyCase" : "in.iCase"
+            "param.ivyCase" : "in.caze"
           }
         }
       },
@@ -129,7 +130,7 @@
         "output" : {
           "code" : [
             "import com.axonivy.portal.components.util.CaseUtils;",
-            "out.iCase = CaseUtils.findCase(in.caseId);"
+            "out.caze = CaseUtils.findCase(in.caseId);"
           ]
         }
       },

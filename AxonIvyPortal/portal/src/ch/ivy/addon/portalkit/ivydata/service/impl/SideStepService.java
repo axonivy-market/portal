@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvySideStep;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySideStepResultDTO;
@@ -45,7 +46,7 @@ public class SideStepService implements ISideStepService {
         }
       }
       
-      ivySideSteps.sort((s1, s2) -> StringUtils.compareIgnoreCase(s1.getName(), s2.getName()));
+      ivySideSteps.sort((s1, s2) -> Strings.CI.compare(s1.getName(), s2.getName()));
       result.setSideSteps(ivySideSteps);
       return result;
     });

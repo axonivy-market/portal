@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.publicapi.RoleAPI;
@@ -242,7 +243,7 @@ public final class RoleUtils {
 
     List<IRole> filterRoles = new ArrayList<>();
     for (IRole role : roles) {
-      if (StringUtils.containsIgnoreCase(role.getDisplayName(), query) || StringUtils.containsIgnoreCase(role.getMemberName(), query)) {
+      if (Strings.CI.contains(role.getDisplayName(), query) || Strings.CI.contains(role.getMemberName(), query)) {
         filterRoles.add(role);
       }
     }
@@ -257,7 +258,7 @@ public final class RoleUtils {
 
     List<RoleDTO> filterRoles = new ArrayList<>();
     for (RoleDTO role : roles) {
-      if (StringUtils.containsIgnoreCase(role.getDisplayName(), query) || StringUtils.containsIgnoreCase(role.getMemberName(), query)) {
+      if (Strings.CI.contains(role.getDisplayName(), query) || Strings.CI.contains(role.getMemberName(), query)) {
         filterRoles.add(role);
       }
     }

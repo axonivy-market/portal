@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CompactProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
@@ -38,7 +39,7 @@ public class DashboardProcessSearchCriteria {
       if (NAME.getField().equalsIgnoreCase(column.getField())) {
         if (StringUtils.isNotEmpty(column.getUserFilter())) {
           displayProcesses = ListUtilities.filterList(displayProcesses,
-              process -> StringUtils.containsIgnoreCase(process.getName(), column.getUserFilter()));
+              process -> Strings.CI.contains(process.getName(), column.getUserFilter()));
         }
         if (CollectionUtils.isNotEmpty(displayProcesses) && column.canQuickSearch()
             && StringUtils.isNotBlank(quickSearchKeyword)) {

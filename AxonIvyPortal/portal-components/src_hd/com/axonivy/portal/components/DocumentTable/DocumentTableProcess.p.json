@@ -305,8 +305,8 @@
             "out.selectedDocument" : "param.selectedDocument"
           },
           "code" : [
-            "import org.apache.commons.lang3.StringUtils;",
-            "out.isImage = param.selectedDocument != null && StringUtils.startsWithIgnoreCase(param.selectedDocument.getContentType(), \"image/\");"
+            "import org.apache.commons.lang3.Strings;",
+            "out.isImage = param.selectedDocument != null && Strings.CI.startsWith(param.selectedDocument.getContentType(), \"image/\");"
           ]
         },
         "result" : {

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
@@ -107,7 +108,7 @@ public class SecurityService implements ISecurityService {
   }
 
   private IFilterQuery createFilterQuery(String query, UserQuery userQuery) {
-    String containingQuery = "%"+ StringUtils.defaultString(query, StringUtils.EMPTY) +"%";
+    String containingQuery = "%"+ Objects.toString(query, StringUtils.EMPTY) +"%";
     IFilterQuery filterQuery = userQuery.where();
     filterQuery.fullName()
       .isLikeIgnoreCase(containingQuery)
@@ -199,11 +200,11 @@ public class SecurityService implements ISecurityService {
   }
 
   private boolean doesNameContainQuery(String query, RoleDTO role) {
-    return StringUtils.containsIgnoreCase(role.getDisplayName(), query) || StringUtils.containsIgnoreCase(role.getName(), query);
+    return Strings.CI.contains(role.getDisplayName(), query) || Strings.CI.contains(role.getName(), query);
   }
 
   private Comparator<? super RoleDTO> getRoleDTOComparator() {
-    return (u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName());
+    return (u1, u2) -> Strings.CI.compare(u1.getDisplayName(), u2.getDisplayName());
   }
 
   @Override

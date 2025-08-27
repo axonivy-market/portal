@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
@@ -92,7 +93,7 @@ public class CaseExporter extends Exporter{
    * @return case column value
    */
   protected Object getCommonColumnValue(String column, ICase caseItem) {
-    if (StringUtils.equals(column, CaseLazyDataModel.DESCRIPTION)) {
+    if (Strings.CS.equals(column, CaseLazyDataModel.DESCRIPTION)) {
       return caseItem.descriptions().current();
     }
 
