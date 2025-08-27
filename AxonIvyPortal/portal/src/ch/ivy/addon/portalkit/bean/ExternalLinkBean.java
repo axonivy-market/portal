@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -84,8 +85,15 @@ public class ExternalLinkBean implements Serializable {
   public void handleImageUpload(FileUploadEvent event) {
     removeImage();
     Pair<String, String> imageInfo = ExternalLinkUtils.handleImageUpload(event);
-    externalLink.setImageLocation(imageInfo.getLeft());
-    externalLink.setImageType(imageInfo.getRight());
+    if (imageInfo.equals(Pair.of(null, null))) {
+      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          "SVG file contains potentially malicious content and cannot be uploaded", null);
+      FacesContext.getCurrentInstance().addMessage("external-link-dialog-message", message);
+      return;
+    } else {
+      externalLink.setImageLocation(imageInfo.getLeft());
+      externalLink.setImageType(imageInfo.getRight());
+    }
   }
   
   public void removeImage() {

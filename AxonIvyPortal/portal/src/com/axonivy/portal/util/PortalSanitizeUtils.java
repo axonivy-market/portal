@@ -21,6 +21,11 @@ public class PortalSanitizeUtils {
     static final Pattern DANGEROUS_URI_PATTERN = Pattern.compile("^\\s*(javascript|data):", Pattern.CASE_INSENSITIVE);
   }
 
+  /**
+   * @deprecated This method is deprecated. Use {@link ch.ivy.addon.portalkit.document.SVGSecurityScanner#isSafe(java.io.InputStream)} instead
+   * for better security validation. This method will be removed in a future version.
+   */
+  @Deprecated
   public static String sanitizeSvg(String svgContent) {
     Document doc = Jsoup.parse(svgContent, "", org.jsoup.parser.Parser.xmlParser());
 

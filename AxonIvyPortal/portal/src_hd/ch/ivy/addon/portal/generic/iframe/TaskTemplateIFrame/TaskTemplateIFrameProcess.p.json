@@ -41,11 +41,18 @@
       "config" : {
         "security" : "system",
         "output" : {
-          "code" : "out.task = ivy.wf.findTask(Long.valueOf(in.taskId));"
+          "code" : [
+            "import ch.ivyteam.ivy.bpm.error.BpmError;",
+            "out.task = ivy.wf.findTask(Long.valueOf(in.taskId));",
+            "",
+            "if (!in.url.startsWith(out.task.getApplication().getContextPath())) {",
+            "  BpmError.create(\"frame:unsupported:url\").withMessage(\"only relative urls are supported (security reasons)\").throwError();",
+            "}"
+          ]
         }
       },
       "visual" : {
-        "at" : { "x" : 256, "y" : 64 }
+        "at" : { "x" : 224, "y" : 64 }
       },
       "connect" : { "id" : "f2", "to" : "f1" }
     } ]

@@ -16,6 +16,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -329,8 +330,14 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
     }
     removeTempExternalLinkImage();
     Pair<String, String> imageInfo = ExternalLinkUtils.handleImageUpload(event);
+    if (imageInfo.equals(Pair.of(null, null))) {
+      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          "SVG file contains potentially malicious content and cannot be uploaded", null);
+      FacesContext.getCurrentInstance().addMessage("process-dialog-message", message);
+    } else {
     this.editedExternalLink.setImageLocation(imageInfo.getLeft());
-    this.editedExternalLink.setImageType(imageInfo.getRight());
+      this.editedExternalLink.setImageType(imageInfo.getRight());
+    }
   }
 
   public void removeTempExternalLinkImage() {
@@ -501,7 +508,7 @@ public class ProcessWidgetBean extends AbstractProcessBean implements Serializab
       return processGroups;
     }
     for (String processGroupName : CollectionUtils.emptyIfNull(processesByAlphabet.keySet())) {
-      if (!processGroupName.equals(SPECIAL_CHARACTER_KEY)) {
+      if (!SPECIAL_CHARACTER_KEY.equals(processGroupName)) {
         processGroups.put(processGroupName, processGroupName);
       } else {
         processGroups.put(SPECIAL_CHARACTER_KEY, "#");

@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.io.FileUtils;
@@ -20,10 +22,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
-import com.axonivy.portal.util.PortalSanitizeUtils;
 import com.axonivy.portal.util.UploadDocumentUtils;
 import com.axonivy.portal.util.WelcomeWidgetUtils;
 
+import ch.ivy.addon.portalkit.document.SVGSecurityScanner;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.WelcomeImageFit;
 import ch.ivy.addon.portalkit.enums.WelcomeTextPosition;
@@ -92,12 +94,16 @@ public class DashboardWelcomeWidgetConfigurationBean extends DashboardWelcomeWid
 
       byte[] content = file.getContent();
 
-      // hanlde sanitize svg
-      if ("svg".equals(extension)) {
-        content = PortalSanitizeUtils.sanitizeSvg(new String(content, StandardCharsets.UTF_8))
-            .getBytes(StandardCharsets.UTF_8);
+      // scan svg files for malicious scripts
+      if ("svg".equalsIgnoreCase(FilenameUtils.getExtension(file.getFileName()))) {
+        String fileContent = new String(file.getContent(), StandardCharsets.UTF_8);
+        if (!SVGSecurityScanner.isSafe(fileContent)) {
+          FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+              "SVG file contains potentially malicious content and cannot be uploaded", null);
+          FacesContext.getCurrentInstance().addMessage("config-welcome-widget-message", message);
+          return;
+        }
       }
-
       // save the temporary image
       imageCMSObject = getWelcomeWidgetImageContentObject(true);
       if (imageCMSObject != null) {
