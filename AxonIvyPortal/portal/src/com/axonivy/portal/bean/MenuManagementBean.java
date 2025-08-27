@@ -223,8 +223,32 @@ public class MenuManagementBean implements Serializable {
       }
     }
 
-    // Sort the menu definitions by index
+    eliminateDuplicateIndices();
     menuDefinitions.sort((menu1, menu2) -> menu1.getIndex() < menu2.getIndex() ? -1 : 1);
+  }
+
+  /**
+   * Eliminates duplicate indices by reassigning sequential indices to ensure proper ordering.
+   * Example: [1, 2, 2, 3] becomes [1, 2, 3, 4]
+   */
+  private void eliminateDuplicateIndices() {
+    // First, sort by current index to maintain relative order
+    menuDefinitions.sort((menu1, menu2) -> {
+      Integer index1 = menu1.getIndex();
+      Integer index2 = menu2.getIndex();
+      
+      // Handle null indices
+      if (index1 == null && index2 == null) return 0;
+      if (index1 == null) return 1;
+      if (index2 == null) return -1;
+      
+      return Integer.compare(index1, index2);
+    });
+    
+    // Reassign sequential indices starting from 0
+    for (int i = 0; i < menuDefinitions.size(); i++) {
+      menuDefinitions.get(i).setIndex(i);
+    }
   }
 
   private void addMenuDefinitions(List<PortalMenuItemDefinition> newMenuDefinitions) {
@@ -232,7 +256,14 @@ public class MenuManagementBean implements Serializable {
       return;
     }
 
-    int index = menuDefinitions.size() - 1;
+    // Find the highest existing index to avoid conflicts
+    int maxIndex = menuDefinitions.stream()
+        .mapToInt(menu -> menu.getIndex() != null ? menu.getIndex() : -1)
+        .max()
+        .orElse(-1);
+    
+    // Start new indices from maxIndex + 1
+    int index = maxIndex + 1;
     for (PortalMenuItemDefinition menu : newMenuDefinitions) {
       menu.setIndex(index++);
     }
@@ -670,8 +701,10 @@ public class MenuManagementBean implements Serializable {
 
   public void onRowReorder(ReorderEvent event) {
     MenuUtils.reorderMenuDefinitions(menuDefinitions, event.getFromIndex(), event.getToIndex());
+    eliminateDuplicateIndices();
+
     PortalMenuItemDefinitionService.getInstance().saveAllPublicConfig(menuDefinitions);
-    loadMenuDefinitions();
+    // Note: Don't call loadMenuDefinitions() to avoid overriding the reorder changes
   }
 
   public void onEditMenu(PortalMenuItemDefinition menu) {
