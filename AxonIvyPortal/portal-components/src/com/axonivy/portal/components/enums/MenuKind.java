@@ -1,8 +1,11 @@
 package com.axonivy.portal.components.enums;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum MenuKind {
-  DASHBOARD, PROCESS, CUSTOM, EXTERNAL_LINK, THIRD_PARTY, MAIN_DASHBOARD, STATIC_PAGE;
+  DASHBOARD, PROCESS, CUSTOM, EXTERNAL_LINK, THIRD_PARTY, MAIN_DASHBOARD, STATIC_PAGE, STANDARD;
   
+  @JsonValue
   @Override
   public String toString() {
     return super.toString().toLowerCase();
@@ -16,5 +19,8 @@ public enum MenuKind {
     }
     return null;
   }
-  
+
+  public String getCmsUri() {
+    return "/Labels/Enums/MenuKind/" + name();
+  }
 }

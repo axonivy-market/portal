@@ -1551,6 +1551,10 @@ Dialogs:
           IFrameTaskTemplate:
             TaskIFrameTitle: Task frame
         page:
+          MenuManagement:
+            AddNewMenu: Add new menu
+            HelpText: Customize the menu in this section to match your specific needs or preferences.
+            MenuTitle: Menu title
           StatisticConfiguration:
             AddFilter: Add filter
             Advanced: Advanced
@@ -1819,6 +1823,13 @@ Labels:
       CASES: Cases
       PROCESSES: Processes
       TASKS: Tasks
+    MenuKind:
+      CUSTOM: Custom
+      DASHBOARD: Dashboard
+      EXTERNAL_LINK: External Link
+      MAIN_DASHBOARD: Dashboard
+      STANDARD: Standard
+      STATIC_PAGE: Static page
     SearchScopeCaseField:
       CUSTOM: Custom string fields
       DESCRIPTION: Description
@@ -1838,6 +1849,7 @@ Labels:
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  MenuConfiguration: Menu Configuration
   Name: Name
   Permissions: Permissions
   PinnedCases: Pinned Cases

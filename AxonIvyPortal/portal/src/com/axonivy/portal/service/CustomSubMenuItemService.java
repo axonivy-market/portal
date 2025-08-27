@@ -1,6 +1,7 @@
 package com.axonivy.portal.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +46,7 @@ public class CustomSubMenuItemService {
   }
 
   @SuppressWarnings("unchecked")
-  private static List<CustomSubMenuItem> loadFromSubProcess() {
+  public static List<CustomSubMenuItem> loadFromSubProcess() {
     return Sudo.get(() -> {
       var filter = SubProcessSearchFilter.create()
           .setSearchScope(SearchScope.SECURITY_CONTEXT)
@@ -96,8 +97,34 @@ public class CustomSubMenuItemService {
     };
   }
 
-  private static List<CustomSubMenuItem> loadFromConfiguration() {
+  public static List<CustomSubMenuItem> loadFromConfiguration() {
     String menuJson = Ivy.var().get(PortalVariable.CUSTOM_MENU_ITEMS.key);
     return BusinessEntityConverter.jsonValueToEntities(menuJson, CustomSubMenuItem.class);
+  }
+
+  public static CustomSubMenuItem saveConfiguration(CustomSubMenuItem entity) {
+    List<CustomSubMenuItem> existedEntities = loadFromConfiguration();
+    existedEntities.removeIf(e -> entity.getId().contentEquals(e.getId()));
+    existedEntities.add(entity);
+    Ivy.var().set(PortalVariable.CUSTOM_MENU_ITEMS.key, BusinessEntityConverter.entityToJsonValue(existedEntities));
+    return entity;
+  }
+
+  public static void removeConfiguration(CustomSubMenuItem entity) {
+    List<CustomSubMenuItem> existedEntities = loadFromConfiguration();
+    existedEntities.sort(Comparator.comparingInt(CustomSubMenuItem::getIndex));
+    boolean deleted = false;
+    for (CustomSubMenuItem menu : existedEntities) {
+      if (deleted) {
+        menu.setIndex(menu.getIndex() - 1);
+        continue;
+      }
+
+      if (menu.getId().equals(entity.getId())) {
+        existedEntities.remove(menu);
+        deleted = true;
+      }
+    }
+    Ivy.var().set(PortalVariable.CUSTOM_MENU_ITEMS.key, BusinessEntityConverter.entityToJsonValue(existedEntities));
   }
 }

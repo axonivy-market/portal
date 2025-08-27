@@ -1131,6 +1131,8 @@ Dialogs:
               DateFilter:
                 SelectPeriod: Select period
         page:
+          MenuManagement:
+            HelpText: Customize the menu in this section to match your specific needs or preferences.
           StatisticConfiguration:
             Aggregate: Aggregate
             AggregationMethod: Aggregation method
@@ -1192,6 +1194,7 @@ Labels:
   Icon: Icon
   InsertTask-Explain: Insert the task. My task will be postponed.
   InsertTheTask: Insert the task
+  MenuConfiguration: Menu Configuration
   Name: Name
   Preview: Preview
   Save: Save

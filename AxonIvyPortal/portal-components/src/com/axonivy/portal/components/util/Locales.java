@@ -8,7 +8,7 @@ import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.exec.Sudo;
 
 public class Locales {
-  public Locale getCurrentLocale() {
+  public static Locale getCurrentLocale() {
     return Sudo.get(() -> {
       Locale userLanguage = Ivy.session().getSessionUser().getLanguage();
       if (userLanguage != null) {

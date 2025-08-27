@@ -4408,5 +4408,41 @@
         "at" : { "x" : 808, "y" : 1601 },
         "size" : { "width" : 128, "height" : 62 }
       }
+    }, {
+      "id" : "f301",
+      "type" : "RequestStart",
+      "name" : "MenuManagement.ivp",
+      "config" : {
+        "signature" : "MenuManagement",
+        "request" : {
+          "isVisibleOnStartList" : false
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 4192 }
+      },
+      "connect" : [
+        { "id" : "f302", "to" : "f304" }
+      ]
+    }, {
+      "id" : "f303",
+      "type" : "TaskEnd",
+      "visual" : {
+        "at" : { "x" : 448, "y" : 4192 }
+      }
+    }, {
+      "id" : "f304",
+      "type" : "DialogCall",
+      "name" : "Menu Management",
+      "config" : {
+        "dialog" : "com.axonivy.portal.page.MenuManagement:start()"
+      },
+      "visual" : {
+        "at" : { "x" : 244, "y" : 4193 },
+        "size" : { "width" : 120, "height" : 62 }
+      },
+      "connect" : [
+        { "id" : "f305", "to" : "f303" }
+      ]
     } ]
 }

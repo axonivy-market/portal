@@ -1559,6 +1559,10 @@ Dialogs:
           IFrameTaskTemplate:
             TaskIFrameTitle: Aufgabenrahmen
         page:
+          MenuManagement:
+            AddNewMenu: Füge ein neues Menü hinzu
+            HelpText: Passe das Menü in diesem Bereich an deine Bedürfnisse oder Vorlieben an.
+            MenuTitle: Menütitel
           StatisticConfiguration:
             AddFilter: Filter hinzufügen
             Advanced: Fortgeschrittene
@@ -1837,6 +1841,13 @@ Labels:
       CASES: Vorgänge
       PROCESSES: Prozesse
       TASKS: Aufgaben
+    MenuKind:
+      CUSTOM: Benutzerdefiniert
+      DASHBOARD: Armaturenbrett
+      EXTERNAL_LINK: Externer Link
+      MAIN_DASHBOARD: Armaturenbrett
+      STANDARD: Standard
+      STATIC_PAGE: Statische Seite
     SearchScopeCaseField:
       CUSTOM: Benutzerdefinierte Stringfelder
       DESCRIPTION: Beschreibung
@@ -1856,6 +1867,7 @@ Labels:
   Login:
     CompanyName: Axon Ivy Portal
     Copyright: Copyright Ⓒ Axon Ivy Portal
+  MenuConfiguration: Menükonfiguration
   Name: Titel
   Permissions: Berechtigungen
   PinnedCases: Angeheftete Fälle

@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.menu.DefaultMenuItem;
 
 import com.axonivy.portal.components.enums.MenuKind;
+
 import ch.ivy.addon.portalkit.util.DashboardUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -46,6 +47,15 @@ public class PortalMenuItem extends DefaultMenuItem {
   public final static String DEFAULT_DASHBOARD_ICON = "si si-layout-dashboard";
 
   private MenuKind menuKind;
+  private Integer index;
+
+  public void setIndex(Integer index) {
+    this.index = index;
+  }
+
+  public Integer getIndex() {
+    return this.index;
+  }
 
   public PortalMenuItem() { }
 
@@ -90,6 +100,7 @@ public class PortalMenuItem extends DefaultMenuItem {
     this.setGlobal(true);
     this.setDisabled(builder.disabled);
     this.setUrl(builder.url);
+    this.setIndex(builder.menuIndex);
 
     var isOpenOnNewTab = builder.menuKind == MenuKind.EXTERNAL_LINK || builder.menuKind == MenuKind.THIRD_PARTY;
     var onClick = String.format(DEFAULT_ON_CLICK_PATTERN, builder.isWorkingOnATask, isOpenOnNewTab);
@@ -167,6 +178,11 @@ public class PortalMenuItem extends DefaultMenuItem {
       this.name = name;
       this.menuKind = menuKind;
       this.isWorkingOnATask = isWorkingOnATask;
+    }
+
+    public PortalMenuBuilder isWorkingOnATask(boolean isWorkingOnATask) {
+      this.isWorkingOnATask = isWorkingOnATask;
+      return this;
     }
 
     public PortalMenuBuilder icon(String icon) {

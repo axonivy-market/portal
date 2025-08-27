@@ -1,16 +1,27 @@
 package ch.addon.portal.generic.menu;
 
 import com.axonivy.portal.components.enums.MenuKind;
+import com.axonivy.portal.enums.StandardMenuItemDefinitionType;
 
 import ch.ivy.addon.portalkit.enums.Protocol;
 
 public class SubMenuItem {
+  private String id;
   protected MenuKind menuKind;
   protected String link;
   protected String icon;
   protected String label;
   protected String name;
+  protected StandardMenuItemDefinitionType standardType;
   
+  public String getId() {
+    return id;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
   public MenuKind getMenuKind() {
     return menuKind;
   }
@@ -53,6 +64,14 @@ public class SubMenuItem {
 
   public String buildLink() {
     return correctProcessLink(link);
+  }
+
+  public StandardMenuItemDefinitionType getStandardType() {
+    return standardType;
+  }
+
+  public void setStandardType(StandardMenuItemDefinitionType standardType) {
+    this.standardType = standardType;
   }
 
   private String correctProcessLink(String link) {
