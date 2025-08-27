@@ -390,13 +390,6 @@ td.dashboard-tasks__category span {
   padding: 15px 20px 15px;
 }
 
-.task-configuration__chbox-work-on {
-  width: 10%; 
-  display: block;
-  padding: 5px 0;
-
-}
-
 .task-configuration__input-text {
   float: right;
   width: 90%;

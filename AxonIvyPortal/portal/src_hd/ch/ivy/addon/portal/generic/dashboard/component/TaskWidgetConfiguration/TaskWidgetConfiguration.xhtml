@@ -27,7 +27,11 @@
         <c:set var="filterComponentToUpdate" value="predefined-filter" />
 
         <div class="ui-g">
-          <span class="task-configuration__chbox-work-on" />
+          <h:panelGroup rendered="#{cc.attrs.taskWidget.caseOwnerEnabled}">
+            <p:selectBooleanCheckbox id="filter-tasks-by-current-case-owner"
+            value="#{cc.attrs.taskWidget.filterTasksByCurrentCaseOwner}"
+            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/FilterTasksByCurrentCaseOwner')}" />
+          </h:panelGroup>
           <p:selectBooleanCheckbox id="can-work-on"
             value="#{cc.attrs.taskWidget.canWorkOn}"
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/canWorkOn')}" />

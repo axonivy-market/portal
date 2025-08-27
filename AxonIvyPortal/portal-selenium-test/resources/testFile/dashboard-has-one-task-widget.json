@@ -67,7 +67,8 @@
         ],
         "sortDescending": true,
         "sortField": "ID",
-        "canWorkOn": false
+        "canWorkOn": false,
+        "filterTasksByCurrentCaseOwner": true
       }
     ],
     "permissions": [

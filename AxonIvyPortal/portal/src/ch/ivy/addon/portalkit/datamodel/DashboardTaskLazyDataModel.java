@@ -63,7 +63,7 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
           }
         }
       }
-      foundTasks = DashboardTaskService.getInstance().findByTaskQuery(criteria.buildQuery(), first, pageSize);
+      foundTasks = DashboardTaskService.getInstance().findDashboardTaskByCriteria(criteria, first, pageSize);
       addDistict(tasks, foundTasks);
       mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
     }
@@ -82,7 +82,7 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      foundTasks = DashboardTaskService.getInstance().findByTaskQuery(criteria.buildQuery(), 0, 25);
+      foundTasks = DashboardTaskService.getInstance().findDashboardTaskByCriteria(criteria, 0, 25);
       addDistict(tasks, foundTasks);
       mapTasks.putAll(foundTasks.stream().collect(Collectors.toMap(o -> o.getId(), Function.identity())));
       IvyThreadContext.reset();
@@ -125,6 +125,14 @@ public class DashboardTaskLazyDataModel extends LiveScrollLazyModel<ITask> {
 
   public void setCanWorkOn(boolean canWorkOn) {
     criteria.setCanWorkOn(canWorkOn);
+  }
+
+  public boolean isFilterTasksByCurrentCaseOwner() {
+    return criteria.isFilterTasksByCurrentCaseOwner();
+  }
+
+  public void setFilterTasksByCurrentCaseOwner(boolean filterTasksByCurrentCaseOwner) {
+    this.criteria.setFilterTasksByCurrentCaseOwner(filterTasksByCurrentCaseOwner);
   }
 
   @Override
