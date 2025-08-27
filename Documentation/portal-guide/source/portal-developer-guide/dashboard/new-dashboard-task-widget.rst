@@ -34,6 +34,8 @@ Below is a sample JSON definition of a task widget in the Portal dashboard
       "rowsPerPage": 20,
       "showWidgetInfo": true,
       "showFullscreenMode": true,
+      "filterTasksByCurrentCaseOwner": false,
+      "canWorkOn": false,
       "isTopMenu": false,
       "columns": [
          {
@@ -145,6 +147,8 @@ The basic JSON structure of a Task widget
          Portal will use the value of ``field`` to get the value of the column.
 
       ``canWorkOn``: filter only tasks that the current user can work on. The default value is "false".
+
+      ``filterTasksByCurrentCaseOwner``: filter only the tasks where the current user is the case owner. The default value is ``false``. This filter is visible only if the ``Portal.Cases.EnableOwner`` setting is set to ``true`` in the :ref:`Admin Settings <update-portal-settings>`.
 
       ``visible``: visibility of a column. The default value is "true".
       Set to "false" to hide the column.

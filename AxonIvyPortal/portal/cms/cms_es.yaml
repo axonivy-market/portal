@@ -251,7 +251,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       displayMessageAfterFinishOrLeaveTask: Se mostrará un mensaje después de finalizar una tarea
       documentUploadSizeLimit: Establece el límite de tamaño para la carga de documentos en megabytes (MB). El valor predeterminado es 20 MB.
       embedInFrame: Cambiar a "true" para abrir un proceso o tarea en modo iFrame
-      enableCaseOwner: 'Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. '
+      enableCaseOwner: Cambiar a "true" para también mostrar los casos en los que usted es el responsable del caso en su lista de casos. También hace disponible el filtro "Filtrar tareas por propietario actual del caso" en el widget de tareas, que está oculto de forma predeterminada.
       enableDeepLTranslation: Establezca esta propiedad en true para activar la traducción de DeepL
       enableDocumentPreview: 'Establecer en "true" para habilitar la vista previa de documentos para ciertos tipos de archivos. Los tipos de archivos compatibles son: pdf, png, jpeg, jpg, txt, log.'
       enableGroupChat: Cambie esta propiedad a "true" para activar el chat de grupos
@@ -764,6 +764,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       NotFound: No se ha encontrado ningún filtro
       WidgetNameColumn: Nombre de widget
       WrongDateFormat: La fecha no es válida
+    FilterTasksByCurrentCaseOwner: Filtrar las tareas por el propietario actual del caso
     ManageFilter: Gestión de filtros
     NoColumnsEnabledForQuickSearch: No hay columnas habilitadas para la búsqueda rápida
     NoData: No hay datos

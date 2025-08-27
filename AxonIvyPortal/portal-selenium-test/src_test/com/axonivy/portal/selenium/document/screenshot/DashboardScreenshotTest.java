@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.document.screenshot;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
-
 import static com.codeborne.selenide.Selenide.$;
 
 import java.io.IOException;
@@ -171,6 +170,7 @@ public class DashboardScreenshotTest extends ScreenshotBaseTest {
     redirectToRelativeLink(businessCaseUrl);
     redirectToRelativeLink(complexPaymentUrl);
     redirectToRelativeLink(PORTAL_HOME_PAGE_URL);
+    updatePortalSetting(Variable.ENABLE_CASE_OWNER.getKey(), "true");
     showNewDashboard();
     ScreenshotUtils.resizeBrowser(new Dimension(1800, 1400));
     homePage = new NewDashboardPage();
