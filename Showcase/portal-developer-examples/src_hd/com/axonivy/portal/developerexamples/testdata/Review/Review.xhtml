@@ -70,11 +70,11 @@
                 </div>
               </div>
             </p:fieldset>
-            <div class="ui-g flex-align-center">
+            <div class="ui-g">
               <div class="ui-g-2">
                 <h:outputLabel id="is-approved-label" for="is-approved" value="Decision" />
               </div>
-              <div class="ui-g-4">
+              <div class="ui-g-10 ui-fluid">
                 <p:selectOneRadio id="is-approved" value="#{data.investmentRequest.decision.isApproved}" disabled="true">
                   <f:selectItem itemValue="true" itemLabel="Approve" />
                   <f:selectItem itemValue="false" itemLabel="Reject" />
