@@ -35,6 +35,10 @@ Dialogs:
             Name: Nombre de archivo
             NoFile: ¡No se encuentran archivos!
             Preview: Vista previa
+            RenamingDocumentNote: '{0} ha renombrado el archivo {1} a {2}'
+            RenamingDuplicateName: Ya existe un archivo con el mismo nombre en esta ubicación.
+            RenamingErrorCharacters: 'Un nombre de archivo no puede contener ninguno de los siguientes caracteres: \ / : * ? " < > |'
+            RenamingFailed: Se ha producido un error al renombrar el documento.
             Size: Tamaño de archivo
             Type: Tipo
             Upload: Cargar archivo nuevo
@@ -42,10 +46,6 @@ Dialogs:
             UploadFailed: Se produjo un error al cargar este archivo. Por favor, pregunte a su administrador por este problema.
             UploadFileExists: El archivo {0} ya existe
             UploadSucceed: El archivo ha sido añadido con éxito
-            renamingDocumentNote: ''
-            renamingDuplicateName: ''
-            renamingErrorCharacters: ''
-            renamingFailed: ''
           Enums:
             BasicDocumentType:
               CONTRACT: Contrato

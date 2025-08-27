@@ -367,7 +367,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noTasks: Keine Aufgabe
     relatedTasks: Zugehörige Aufgaben
     relatedTasksAndCases: Zugehörige Aufgaben und Vorgänge
-    renamingDocument: ''
+    renamingDocument: Dokument umbenennen
     runningTasks: Laufende Aufgaben
     showAdditionalPage: Geschäftsdetails
     showAllTasks: Alle Tasks anzeigen
@@ -1007,11 +1007,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     fileCouldNotParse: Die Datei konnte nicht analysiert werden
     fileEmptyMessage: Datei ist leer
     name: Dateiname
-    renamingDocumentNote: ''
-    renamingDocumentSuccess: ''
-    renamingDuplicateName: ''
-    renamingErrorCharacters: ''
-    renamingFailed: ''
+    renamingDocumentNote: '{0} hat die Datei {1} in {2} umbenannt'
+    renamingDocumentSuccess: Erfolgreich umbenannt.
+    renamingDuplicateName: Es gibt bereits eine Datei mit diesem Namen an diesem Speicherort.
+    renamingErrorCharacters: 'Ein Dateiname darf keines der folgenden Zeichen enthalten: \ / : * ? " < > |'
+    renamingFailed: Beim Umbenennen des Dokuments ist ein Fehler aufgetreten.
     size: Dateigröße
     type: Typ
     upload: Neue Datei hochladen

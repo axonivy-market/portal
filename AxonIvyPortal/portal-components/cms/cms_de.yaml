@@ -35,6 +35,10 @@ Dialogs:
             Name: Dateiname
             NoFile: Keine Dateien vorhanden!
             Preview: Vorschau
+            RenamingDocumentNote: '{0} hat die Datei {1} in {2} umbenannt'
+            RenamingDuplicateName: Es gibt bereits eine Datei mit diesem Namen an diesem Speicherort.
+            RenamingErrorCharacters: 'Ein Dateiname darf keines der folgenden Zeichen enthalten: \ / : * ? " < > |'
+            RenamingFailed: Beim Umbenennen des Dokuments ist ein Fehler aufgetreten.
             Size: Dateigröße
             Type: Typ
             Upload: Neue Datei hochladen
@@ -42,10 +46,6 @@ Dialogs:
             UploadFailed: Während des Hochladens ist ein Fehler aufgetreten. Bitte fragen Sie Ihren Administrator.
             UploadFileExists: Datei {0} ist bereits vorhanden
             UploadSucceed: Die Datei wurde erfolgreich hochgeladen
-            renamingDocumentNote: ''
-            renamingDuplicateName: ''
-            renamingErrorCharacters: ''
-            renamingFailed: ''
           Enums:
             BasicDocumentType:
               CONTRACT: Vertrag

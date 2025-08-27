@@ -368,7 +368,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     noTasks: Sin tareas
     relatedTasks: Tareas relacionadas
     relatedTasksAndCases: Tareas y casos relacionados
-    renamingDocument: ''
+    renamingDocument: Renombrando documento
     runningTasks: Tareas pendientes
     showAdditionalPage: Detalles del negocio
     showAllTasks: Mostrar todas las tareas
@@ -1008,11 +1008,11 @@ ch.ivy.addon.portalkit.ui.jsf:
     fileCouldNotParse: No se pudo analizar el archivo
     fileEmptyMessage: El archivo está vacío
     name: Nombre de archivo
-    renamingDocumentNote: ''
-    renamingDocumentSuccess: ''
-    renamingDuplicateName: ''
-    renamingErrorCharacters: ''
-    renamingFailed: ''
+    renamingDocumentNote: '{0} ha renombrado el archivo {1} a {2}'
+    renamingDocumentSuccess: Renombrado exitosamente.
+    renamingDuplicateName: Ya existe un archivo con el mismo nombre en esta ubicación.
+    renamingErrorCharacters: 'Un nombre de archivo no puede contener ninguno de los siguientes caracteres: \ / : * ? " < > |'
+    renamingFailed: Se ha producido un error al renombrar el documento.
     size: Tamaño de archivo
     type: Tipo
     upload: Cargar archivo nuevo
