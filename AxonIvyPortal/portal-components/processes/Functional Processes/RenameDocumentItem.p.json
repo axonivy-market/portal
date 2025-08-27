@@ -178,7 +178,7 @@
         " This sub process can be customized to rename file in your DMS",
         "This sub process also contains some validation, so if you override it, you have to implement validation by your own",
         "",
-        "The custom proccess signature must be: \"portalRenameDocument(ICase,IvyDocument)\""
+        "The custom proccess signature must be: \"portalRenameDocumentItem(ICase,IvyDocument)\""
       ],
       "visual" : {
         "at" : { "x" : 368, "y" : 72 },
@@ -192,6 +192,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.enums.CustomProcessStatus;",
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import org.apache.commons.lang3.StringUtils;",
             "import java.util.HashMap;",
@@ -206,8 +207,9 @@
             "Map result = IvyAdapterService.startSubProcessInSecurityContext(CustomSignature.RENAME_DOCUMENT_ITEM.getSignature(), params);",
             "in.hasCustomProcess = result != null;",
             "if (in.hasCustomProcess) {",
+            "  in.isSuccess = result.get(\"isSuccess\").toBoolean();",
             "  in.message = result.get(\"message\").toString();",
-            "  in.status = UploadDocumentCheckStatus.toEnum(result.get(\"status\").toString());",
+            "  in.status = CustomProcessStatus.toEnum(result.get(\"status\").toString());",
             "}"
           ]
         }
@@ -231,7 +233,7 @@
         { "id" : "f12", "to" : "f11", "via" : [ { "x" : 688, "y" : 248 }, { "x" : 976, "y" : 248 } ], "label" : {
             "name" : "Yes",
             "segment" : 0.5
-          }, "condition" : "in.hasCustomProcess && in.status != com.axonivy.portal.components.enums.UploadDocumentCheckStatus.SKIP" },
+          }, "condition" : "in.hasCustomProcess && in.status != com.axonivy.portal.components.enums.CustomProcessStatus.SKIP" },
         { "id" : "f4", "to" : "S10", "label" : {
             "name" : "No"
           } }

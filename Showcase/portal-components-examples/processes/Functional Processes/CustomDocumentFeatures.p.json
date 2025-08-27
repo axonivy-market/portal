@@ -874,7 +874,9 @@
             "segment" : 0.5,
             "offset" : { "x" : -7, "y" : 3 }
           }, "condition" : "in.skip" },
-        { "id" : "f67", "to" : "S10" }
+        { "id" : "f67", "to" : "S10", "label" : {
+            "name" : "No"
+          } }
       ]
     }, {
       "id" : "f68",

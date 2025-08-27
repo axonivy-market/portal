@@ -186,6 +186,7 @@
       "config" : {
         "output" : {
           "code" : [
+            "import com.axonivy.portal.components.enums.CustomProcessStatus;",
             "import ch.ivyteam.ivy.environment.Ivy;",
             "import com.axonivy.portal.components.enums.UploadDocumentCheckStatus;",
             "import org.apache.commons.lang3.StringUtils;",
@@ -204,7 +205,7 @@
             "if (in.hasCustomProcess) {",
             "  in.message = result.get(\"message\").toString();",
             "  in.isSuccess = result.get(\"isSuccess\").toBoolean();",
-            "  in.status = UploadDocumentCheckStatus.toEnum(result.get(\"status\").toString());",
+            "  in.status = CustomProcessStatus.toEnum(result.get(\"status\").toString());",
             "}"
           ]
         }
@@ -228,7 +229,7 @@
         { "id" : "f12", "to" : "f11", "via" : [ { "x" : 648, "y" : 352 }, { "x" : 936, "y" : 352 } ], "label" : {
             "name" : "Yes",
             "segment" : 0.5
-          }, "condition" : "in.hasCustomProcess && in.status != com.axonivy.portal.components.enums.UploadDocumentCheckStatus.SKIP" },
+          }, "condition" : "in.hasCustomProcess && in.status != com.axonivy.portal.components.enums.CustomProcessStatus.SKIP" },
         { "id" : "f4", "to" : "S10", "label" : {
             "name" : "No"
           } }
