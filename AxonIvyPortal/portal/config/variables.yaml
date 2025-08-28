@@ -134,9 +134,9 @@ Variables:
       HideSystemNotesForAdministrator: "false"
       # If true, case history does not display the related case information in the history table.
       HideRelatedCaseInfo: "false"
-      # If true, if system notes is shown, the check box will be checked.
+      # If the value is true and system notes are visible, the checkbox will appear checked.
       CheckSystemNotesByDefault: "true"
-      # If true, if system task is shown, the check box will be checked.
+      # If the value is true and system tasks are visible, the checkbox will appear checked.
       CheckSystemTasksByDefault: "true"
     Document:
       # Set to true to enable script checking for uploaded document. Currently this function supports checking for PDF, Excel, Word.
