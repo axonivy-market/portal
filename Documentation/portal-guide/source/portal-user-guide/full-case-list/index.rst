@@ -225,9 +225,11 @@ HowTo: Preview a document of a case
 
 .. note::
 
-   Portal can preview images, plain text(txt and log) and pdf documents.
+    - Portal can preview images (jpg, jpeg, bmp and png), plain text (txt and log) and pdf documents by default.
 
-   Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
+    - Portal can preview Word (doc, docx), Excel(xls, xlsx) and email file (eml) if :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` is deployed in the same security context.
+
+    - Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
 
 HowTo: Remove an Attachment from the Case
 -----------------------------------------

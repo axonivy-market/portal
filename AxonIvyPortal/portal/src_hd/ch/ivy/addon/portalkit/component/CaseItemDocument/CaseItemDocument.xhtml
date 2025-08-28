@@ -32,7 +32,7 @@
             styleClass="case-details-document-add-link u-mar-right-10"
             ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}"
             rendered="#{caseTaskDocumentBean.canWriteDocument(case)}"
-            actionListener="#{data.setICase(case)}" oncomplete="PF('document-upload-dialog').show()">
+            actionListener="#{data.setCaze(case)}" oncomplete="PF('document-upload-dialog').show()">
             <span class="si si-common-file-add" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
@@ -66,8 +66,8 @@
               </p:commandLink>
               <p:commandLink id="preview-file" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
                 styleClass="si si-view-1 Fright document-preview ui-sm-hidden"
-                actionListener="#{logic.downloadDocument(document)}"
-                rendered="#{caseTaskDocumentBean.canPreviewDocument(document)}"
+                actionListener="#{logic.previewDocument(document)}"
+                rendered="#{data.isDocumentPreviewEnabled and caseTaskDocumentBean.isSupportedPreviewType(document)}"
                 update="#{cc.clientId}:preview-document-dialog"
                 oncomplete="PF('preview-document-dialog').show()">
                 <p:tooltip for="preview-file" trackMouse="true" hideEvent="mouseleave click"
