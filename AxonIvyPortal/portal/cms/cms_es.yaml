@@ -234,7 +234,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       chatMaxConnection: 'El número establecido controla la cantidad de pestañas permitidas con el chat activo. Si se abren más pestañas, el chat se desactivará en las pestañas inactivas. Valores permitidos entre 1-5 '
       chatResponseTimeout: Tiempo de respuesta del chat en segundos, el valor por defecto es 0 y significa que no hay tiempo de espera. Si los mensajes de chat pasan por el proxy inverso Nginx, el tiempo de espera de la respuesta del chat debe ser menor que el tiempo de espera de Nginx, por ejemplo, menos
         de 60 segundos.
-      checkSystemNotesByDefault: Si es cierto, si se muestran las notas del sistema, la casilla de verificación estará marcada.
+      checkSystemNotesByDefault: Si el valor es verdadero y las notas del sistema son visibles, la casilla aparecerá marcada.
       checkSystemTasksByDefault: Si es cierto, si se muestra la tarea del sistema, la casilla de verificación estará marcada.
       dateFilterWithTime: Cambiar a "True" para activar filtros de fecha con tiempo. Esta configuración afectará la lista de tareas, de casos y estadísticas.
       deepLAuthKey: DeepL Clave de autenticación (debe terminar en :fx)
