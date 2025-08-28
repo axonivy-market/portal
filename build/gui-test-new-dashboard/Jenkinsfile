@@ -27,6 +27,9 @@ pipeline {
 
   environment {
     engineDir = "$env.WORKSPACE/AxonIvyPortal/portal-selenium-test/engine"
+    MAVEN_OPTS = "-Xmx1g -Xms512m -XX:+UseG1GC -XX:MaxGCPauseMillis=200"
+    _JAVA_OPTIONS = "-Xmx1g -Xms512m -XX:+UseG1GC"
+    JAVA_TOOL_OPTIONS = "-Xmx1g -Xms512m -XX:+UseG1GC"
   }
 
   stages {
