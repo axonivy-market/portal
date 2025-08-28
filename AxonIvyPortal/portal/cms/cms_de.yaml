@@ -234,7 +234,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       chatMaxConnection: 'Die gesetzte Nummer steuert die Anzahl der erlaubten Tabs mit aktiven Chat. Falls mehr Tabs geöffnet werden, wird der Chat in inaktive Tabs deaktiviert. Erlaubte Werte zw. 1-5 '
       chatResponseTimeout: Chat-Antwort-Time-out in Sekunden, Standardwert ist 0 und bedeutet kein Time-out. Wenn Chat-Nachrichten durch den Reverse-Proxy Nginx gehen, muss das Chat-Antwort-Time-out kleiner sein als das Nginx-Time-out, z. B. kleiner als 60 Sekunden.
       checkSystemNotesByDefault: Wenn der Wert wahr ist und die Systemnotizen sichtbar sind, wird das Kontrollkästchen als aktiviert angezeigt.
-      checkSystemTasksByDefault: Wenn dies zutrifft und die Systemaufgabe angezeigt wird, ist das Kontrollkästchen aktiviert.
+      checkSystemTasksByDefault: Wenn dies zutrifft, wird das Kontrollkästchen aktiviert, wenn Systemaufgaben angezeigt werden.
       dateFilterWithTime: Setzen Sie diesen Wert auf true, um die Datumsfilterung mit Uhrzeit zu aktivieren. Diese Einstellung wirkt sich auf die Aufgabenliste, die Fallliste und die Statistik aus.
       deepLAuthKey: DeepL Authentifizierungsschlüssel (sollte mit :fx enden)
       defaultHomepage: Zum Einstellen der Standard-Homepage, zu der umgeleitet wird, wenn Sie auf das Home-Symbol oder das Logo klicken. Diese Einstellung gilt auch für die Endeseite nach Beendigung einer Aufgabe.
