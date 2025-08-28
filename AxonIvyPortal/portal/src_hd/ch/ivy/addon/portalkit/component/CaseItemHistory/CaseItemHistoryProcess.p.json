@@ -79,8 +79,7 @@
             "cases.addAll(CaseUtils.findSubCasesByBusinessCaseId(selectedCaseId));",
             "",
             "HistoryService historyService = new HistoryService();",
-            "in.histories = historyService.getCaseHistories(selectedCaseId, finishedTasks, cases, !in.showSystemTasks, !in.showSystemNotes);",
-            "",
+            "in.histories = historyService.getCaseHistories(selectedCaseId, finishedTasks, cases, !in.showSystemTasksChkbox, !in.showSystemNotesChkbox);",
             "// Responsive table",
             "PrimeFaces.current().executeScript(\"ResponsiveTable.init(':case-histories')\");"
           ]
@@ -162,13 +161,21 @@
             "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
             "import ch.ivy.addon.portalkit.util.PermissionUtils;",
             "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "",
             "GlobalSettingService service = new GlobalSettingService();",
-            "out.showSystemNotesChkbox = !service.findHideSystemNotesFromHistorySettingValue();",
-            "out.showSystemTasksChkbox = !service.findHideSystemTasksFromHistorySettingValue();",
+            "",
             "out.showRelatedCaseInfoCheckbox = in.caze.isBusinessCase() && !service.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_RELATED_CASE_INFO_FROM_HISTORY);",
             "boolean isAdmin = PermissionUtils.isSessionUserHasAdminRole();",
-            "out.showSystemNotes = isAdmin && out.showSystemNotesChkbox;",
-            "out.showSystemTasks = isAdmin && out.showSystemTasksChkbox;",
+            "",
+            "out.showSystemNotes = isAdmin ? !service.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR)",
+            "                              : !service.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_SYSTEM_NOTES_FROM_HISTORY);",
+            "",
+            "out.showSystemTasks = isAdmin ? !service.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR)",
+            "                              : !service.findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_SYSTEM_TASKS_FROM_HISTORY);",
+            "",
+            "out.showSystemNotesChkbox = out.showSystemNotes && service.isCheckSystemNotesByDefault();",
+            "out.showSystemTasksChkbox = out.showSystemTasks && service.isCheckSystemTasksByDefault();",
+            "",
             "out.showRelatedCaseInfo= isAdmin && out.showRelatedCaseInfoCheckbox;"
           ]
         }

@@ -70,6 +70,8 @@ public class CaseDetailsTest extends BaseTest {
   public static final String CREATE_EVENT_TEST_URL = "portal-developer-examples/17A2C6D73AB4186E/CreateEventTest.ivp";
   private static final String SICK_LEAVE_REQUEST_TASK = "Sick Leave Request";
   private static final String ANNUAL_LEAVE_REQUEST_TASK = "Annual Leave Request";
+  private static final String CREATE_NOTES = "InternalSupport/14B2FC03D2E87141/processWithSystemNote.ivp";
+  
 
   @Override
   @BeforeEach
@@ -540,5 +542,69 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.openTaskDelegateDialog("demo user is owner");
     detailsPage.selectDelegateResponsible("Emma", false);
     assertFalse(detailsPage.isTaskDelegateOptionDisable("demo user is owner"));
+  }
+
+  @Test
+  public void testUncheckSystemNotesByDefaultForAdminUser() {
+    updateGlobalVariable(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "false");
+    redirectToRelativeLink(CREATE_NOTES);
+
+    CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
+    detailsPage = casePage.openDetailsCase("Create note");
+    detailsPage.waitPageLoaded();
+
+    detailsPage.getNotesWithContent("System note").shouldHave(size(0));
+    detailsPage.clickOnSystemNotesCheckbox(true);
+
+    detailsPage.getNotesWithContent("System note").shouldHave(size(1));
+  }
+
+  @Test
+  public void testCheckSystemNotesByDefaultForNormalUser() {
+    updateGlobalVariable(Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "false");
+    updateGlobalVariable(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "false");
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(CREATE_NOTES);
+
+    CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
+    detailsPage = casePage.openDetailsCase("Create note");
+    detailsPage.waitPageLoaded();
+
+    detailsPage.getNotesWithContent("System note").shouldHave(size(0));
+    detailsPage.clickOnSystemNotesCheckbox(true);
+
+    detailsPage.getNotesWithContent("System note").shouldHave(size(1));
+  }
+
+  @Test
+  public void testUncheckSystemTasksByDefaultForAdminUser() {
+    updateGlobalVariable(Variable.CHECK_SYSTEM_TASKS_BY_DEFAULT.getKey(), "false");
+    redirectToRelativeLink(CREATE_NOTES);
+
+    CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
+    detailsPage = casePage.openDetailsCase("Create note");
+    detailsPage.waitPageLoaded();
+
+    detailsPage.getNotesWithContent("System: create note").shouldHave(size(0));
+    detailsPage.clickOnSystemTasksCheckbox(true);
+
+    detailsPage.getNotesWithContent("System: create note").shouldHave(size(1));
+  }
+
+  @Test
+  public void testCheckSystemTasksByDefaultForNormalUser() {
+    updateGlobalVariable(Variable.HIDE_SYSTEM_TASKS_FROM_HISTORY.getKey(), "false");
+    updateGlobalVariable(Variable.CHECK_SYSTEM_TASKS_BY_DEFAULT.getKey(), "false");
+    redirectToRelativeLink(CREATE_NOTES);
+
+    CaseWidgetNewDashBoardPage casePage = NavigationHelper.navigateToCaseList();
+    detailsPage = casePage.openDetailsCase("Create note");
+    detailsPage.waitPageLoaded();
+
+    detailsPage.getNotesWithContent("System: create note").shouldHave(size(0));
+    detailsPage.clickOnSystemTasksCheckbox(true);
+
+    detailsPage.getNotesWithContent("System: create note").shouldHave(size(1));
+
   }
 }
