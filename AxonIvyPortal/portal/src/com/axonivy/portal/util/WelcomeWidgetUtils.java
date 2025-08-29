@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.document.SVGSecurityScanner;
 import ch.ivy.addon.portalkit.dto.dashboard.WelcomeDashboardWidget;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivyteam.ivy.application.IApplication;
@@ -143,14 +144,18 @@ public class WelcomeWidgetUtils {
       String widgetId = DashboardWidgetUtils.generateNewWidgetId(WELCOME);
       String fileExtension = WelcomeWidgetUtils.getFileTypeOfImage(widget.getImageType());
       String imageLocation = widgetId.concat(WelcomeWidgetUtils.DEFAULT_LOCALE_AND_DOT).concat(fileExtension);
-      ContentObject newImageObject = WelcomeWidgetUtils.getImageContentObject(WelcomeWidgetUtils.getFileNameOfImage(imageLocation), fileExtension);
+      ContentObject newImageObject =
+          WelcomeWidgetUtils.getImageContentObject(WelcomeWidgetUtils.getFileNameOfImage(imageLocation), fileExtension);
       if (StringUtils.isNotBlank(widget.getImageContent())) {
         // If has defined content, create new image
         byte[] content = Base64.getDecoder().decode(widget.getImageContent());
-        // Handle sanitize SVG
-        if ("svg".equals(fileExtension)) {
-          content = PortalSanitizeUtils.sanitizeSvg(new String(content, StandardCharsets.UTF_8))
-              .getBytes(StandardCharsets.UTF_8);
+        // Handle SVG security scanning
+        if ("svg".equalsIgnoreCase(fileExtension)) {
+          String fileContent = new String(content, StandardCharsets.UTF_8);
+          if (!SVGSecurityScanner.isSafe(fileContent)) {
+            Ivy.log().warn("WidgetId [{}] image rejected: unsafe SVG content.", widget.getId());
+            return;
+          }
         }
         WelcomeWidgetUtils.readObjectValueOfDefaultLocale(newImageObject).write().bytes(content);
         widget.setImageLocation(imageLocation);

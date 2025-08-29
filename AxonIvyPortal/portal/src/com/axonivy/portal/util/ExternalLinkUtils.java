@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
+import ch.ivy.addon.portalkit.document.SVGSecurityScanner;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.cm.ContentObject;
 import ch.ivyteam.ivy.cm.ContentObjectValue;
@@ -29,10 +30,11 @@ public class ExternalLinkUtils {
       String fileExtension = FilenameUtils.getExtension(file.getFileName());
       byte[] content = file.getContent();
 
-      // hanlde sanitize svg
-      if ("svg".equals(fileExtension)) {
-        content = PortalSanitizeUtils.sanitizeSvg(new String(content, StandardCharsets.UTF_8))
-            .getBytes(StandardCharsets.UTF_8);
+      if ("svg".equalsIgnoreCase(fileExtension)) {
+        String fileContent = new String(content, StandardCharsets.UTF_8);
+        if (!SVGSecurityScanner.isSafe(fileContent)) {
+          return Pair.of(null, null);
+        }
       }
 
       ContentObject imageCMSObject =
