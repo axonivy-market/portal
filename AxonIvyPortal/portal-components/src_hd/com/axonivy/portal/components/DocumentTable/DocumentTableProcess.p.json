@@ -511,8 +511,9 @@
             "out.selectedDocument" : "param.selectedDocument"
           },
           "code" : [
-            "import org.apache.commons.lang3.Strings;",
-            "out.isImage = param.selectedDocument != null && Strings.CI.startsWith(param.selectedDocument.getContentType(), \"image/\");"
+            "import com.axonivy.portal.components.util.DocumentUtils;",
+            "",
+            "out.isImage = DocumentUtils.isImageDocument(param.selectedDocument);"
           ]
         },
         "result" : {
@@ -566,7 +567,7 @@
     }, {
       "id" : "f56",
       "type" : "SubProcessCall",
-      "name" : "Functional Processes/PreviewDocument",
+      "name" : "Search for DocFactory",
       "config" : {
         "processCall" : "Functional Processes/PreviewDocument:previewDocumentWithDocFactory(org.primefaces.model.StreamedContent)",
         "output" : {
