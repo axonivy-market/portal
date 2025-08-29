@@ -134,14 +134,14 @@ function checkUrl(iFrame, appName) {
   }
   invalidIFrameSrcPath = false;
 
-  if (path.match("/default/redirect.xhtml$")) {
-    var redirectUrl = new URLSearchParams(iFrame.contentWindow.location.search).get("redirectPage");
-    iFrame.contentWindow.stop();
-    redirectToUrlCommand([{
-      name: 'url',
-      value: redirectUrl
-    }]);
-    isMainPageNavigating = true;
+  if (path.endsWith('/go/end')) {
+    let redirectUrl = getMetaRefreshUrl(iFrame.contentDocument);
+    if (redirectUrl) {
+      iFrame.contentWindow.stop();
+      redirectToUrlCommand([{ name: 'url', value: redirectUrl }]);
+      isMainPageNavigating = true;
+      return;
+    }
   } else {
     useTaskInIFrame([{
       name: 'url',
@@ -225,6 +225,29 @@ let updateHistory = (newHref) => {
   let historyUrl = new URL(window.location);
   historyUrl.searchParams.set('taskUrl', newHrefUrl.pathname + newHrefUrl.search);
   history.replaceState({}, "", historyUrl);
+}
+
+function getMetaRefreshUrl(doc) {
+  if (!doc) {
+    return undefined;
+  }
+  const metas = Array.from(doc.getElementsByTagName('meta'));
+  const refreshMeta = metas.find(m => m.httpEquiv.toLowerCase() === 'refresh');
+  if (!refreshMeta) {
+    return undefined;
+  }
+
+  const content = refreshMeta.getAttribute('content') || '';
+  const urlPart = content.split(';').find(part => part.trim().toLowerCase().startsWith('url='));
+
+  if (!urlPart) {
+    return undefined;
+  }
+
+  let url = urlPart.substring(urlPart.indexOf('=') + 1).trim();
+  // trim quotes
+  url = url.replace(/^['"]|['"]$/g, '');
+  return url;
 }
 
 const convertProcessSteps = processSteps => {
