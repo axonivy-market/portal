@@ -134,7 +134,6 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   }
 
   public void navigateToUrl() throws IOException {
-    Ivy.log().error("DDDDMMMM");
     keepOverridePortalGrowl();
     Map<String, String> requestParamMap = getRequestParameterMap();
     String url = requestParamMap.get(URL_PARAM);
