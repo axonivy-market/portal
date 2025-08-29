@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -64,7 +65,7 @@ public class UserSettingService {
   }
 
   public boolean isDefaultProcessModeOption(String processMode) {
-    return StringUtils.startsWithIgnoreCase(processMode,
+    return Strings.CI.startsWith(processMode,
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption").replace("({0})", ""));
   }
 

@@ -3,7 +3,6 @@ package com.axonivy.portal.selenium.test.dashboard;
 import static com.codeborne.selenide.CollectionCondition.size;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
