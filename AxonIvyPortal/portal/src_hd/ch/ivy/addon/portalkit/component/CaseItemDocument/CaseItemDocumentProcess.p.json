@@ -17,7 +17,7 @@
         "at" : { "x" : 96, "y" : 96 }
       },
       "connect" : [
-        { "id" : "f1", "to" : "f2" }
+        { "id" : "f1", "to" : "f41" }
       ]
     }, {
       "id" : "f2",
@@ -116,11 +116,7 @@
           ],
           "map" : {
             "out.document" : "param.document"
-          },
-          "code" : [
-            "import org.apache.commons.lang3.StringUtils;",
-            "out.isImage = param.document!= null && StringUtils.startsWithIgnoreCase(param.document.getContentType(), \"image/\");"
-          ]
+          }
         },
         "result" : {
           "params" : [
@@ -229,16 +225,7 @@
             "segment" : 0.29,
             "offset" : { "y" : -7 }
           } },
-        { "id" : "f42", "to" : "f36" }
-      ]
-    }, {
-      "id" : "f36",
-      "type" : "Alternative",
-      "visual" : {
-        "at" : { "x" : 488, "y" : 384 }
-      },
-      "connect" : [
-        { "id" : "f11", "to" : "f9" }
+        { "id" : "f42", "to" : "f9", "via" : [ { "x" : 488, "y" : 384 } ] }
       ]
     }, {
       "id" : "f46",
@@ -455,6 +442,117 @@
       },
       "connect" : [
         { "id" : "f34", "to" : "f51" }
+      ]
+    }, {
+      "id" : "f17",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "previewDocument(IvyDocument)",
+      "config" : {
+        "signature" : "previewDocument",
+        "input" : {
+          "params" : [
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
+          ],
+          "map" : {
+            "out.document" : "param.document"
+          },
+          "code" : [
+            "import com.axonivy.portal.components.util.DocumentUtils;",
+            "",
+            "out.isImage = DocumentUtils.isImageDocument(param.document);"
+          ]
+        },
+        "result" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+          ],
+          "map" : {
+            "result.streamedContent" : "in.streamedContent"
+          }
+        },
+        "guid" : "198F0748899AFE87"
+      },
+      "visual" : {
+        "at" : { "x" : 104, "y" : 760 }
+      },
+      "connect" : [
+        { "id" : "f39", "to" : "f37" }
+      ]
+    }, {
+      "id" : "f37",
+      "type" : "SubProcessCall",
+      "name" : "Download Document",
+      "config" : {
+        "processCall" : "Functional Processes/DownloadDocument:downloadDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "call" : {
+          "map" : {
+            "param.bussinessCase" : "in.caze",
+            "param.document" : "in.document"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.streamedContent" : "result.streamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 264, "y" : 760 },
+        "size" : { "width" : 128 }
+      },
+      "connect" : [
+        { "id" : "f40", "to" : "f11" }
+      ]
+    }, {
+      "id" : "f38",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 688, "y" : 760 }
+      }
+    }, {
+      "id" : "f11",
+      "type" : "SubProcessCall",
+      "name" : "Search for DocFactory",
+      "config" : {
+        "processCall" : "Functional Processes/PreviewDocument:previewDocumentWithDocFactory(org.primefaces.model.StreamedContent)",
+        "call" : {
+          "map" : {
+            "param.streamedContent" : "in.streamedContent"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.streamedContent" : "result.streamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 440, "y" : 760 }
+      },
+      "connect" : [
+        { "id" : "f36", "to" : "f38", "color" : "default" }
+      ]
+    }, {
+      "id" : "f41",
+      "type" : "Script",
+      "name" : "Load preview enable setting",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+            "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
+            "",
+            "in.isDocumentPreviewEnabled = GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ENABLE_DOCUMENT_PREVIEW);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 96 }
+      },
+      "connect" : [
+        { "id" : "f43", "to" : "f2", "color" : "default" }
       ]
     } ]
 }

@@ -316,11 +316,7 @@
           ],
           "map" : {
             "out.selectedDocument" : "param.selectedDocument"
-          },
-          "code" : [
-            "import org.apache.commons.lang3.StringUtils;",
-            "out.isImage = param.selectedDocument!= null && StringUtils.startsWithIgnoreCase(param.selectedDocument.getContentType(), \"image/\");"
-          ]
+          }
         },
         "result" : {
           "params" : [
@@ -529,6 +525,92 @@
       },
       "connect" : [
         { "id" : "f17", "to" : "f43", "color" : "default" }
+      ]
+    }, {
+      "id" : "f49",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "preview(IvyDocument)",
+      "config" : {
+        "signature" : "preview",
+        "input" : {
+          "params" : [
+            { "name" : "selectedDocument", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument", "desc" : "" }
+          ],
+          "map" : {
+            "out.selectedDocument" : "param.selectedDocument"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+          ],
+          "map" : {
+            "result.streamedContent" : "in.streamedContent"
+          }
+        },
+        "guid" : "198F06B1AF55D8E6"
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 856 }
+      },
+      "connect" : [
+        { "id" : "f54", "to" : "f52" }
+      ]
+    }, {
+      "id" : "f52",
+      "type" : "SubProcessCall",
+      "name" : "DownloadDocument",
+      "config" : {
+        "processCall" : "Functional Processes/DownloadDocumentItem:downloadDocumentItem(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "call" : {
+          "map" : {
+            "param.bussinessCase" : "in.ivyCase",
+            "param.document" : "in.selectedDocument"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.streamedContent" : "result.streamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 856 },
+        "size" : { "width" : 128 }
+      },
+      "connect" : [
+        { "id" : "f55", "to" : "f56" }
+      ]
+    }, {
+      "id" : "f53",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 528, "y" : 856 }
+      }
+    }, {
+      "id" : "f56",
+      "type" : "SubProcessCall",
+      "name" : "Search for DocFactory",
+      "config" : {
+        "processCall" : "Functional Processes/PreviewDocument:previewDocumentWithDocFactory(org.primefaces.model.StreamedContent)",
+        "call" : {
+          "map" : {
+            "param.streamedContent" : "in.streamedContent"
+          }
+        },
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.streamedContent" : "result.streamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 392, "y" : 856 }
+      },
+      "connect" : [
+        { "id" : "f57", "to" : "f53", "color" : "default" }
       ]
     } ]
 }
