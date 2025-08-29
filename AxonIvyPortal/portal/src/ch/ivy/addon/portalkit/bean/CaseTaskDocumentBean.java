@@ -6,10 +6,10 @@ import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 
-import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.SortMeta;
 
 import com.axonivy.portal.components.ivydata.bo.IvyDocument;
+import com.axonivy.portal.components.util.DocumentUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -30,7 +30,7 @@ public class CaseTaskDocumentBean implements Serializable {
       "Start Processes/PortalStart/ShowTaskDocument.ivp";
   private static final String SHOW_CASE_DOCUMENT_FRIENDLY_REQUEST_PATH =
       "Start Processes/PortaStart/ShowCaseDocument.ivp";
-
+  
   public boolean isShowMoreDocument() {
     return PermissionUtils.hasPermission(IPermission.DOCUMENT_READ);
   }
@@ -86,12 +86,7 @@ public class CaseTaskDocumentBean implements Serializable {
     return SortFieldUtil.buildSortMeta("creation.timestamp", true);
   }
   
-  public boolean canPreviewDocument(IvyDocument document) {
-    boolean enablePreviewSetting = GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ENABLE_DOCUMENT_PREVIEW);
-    if (document != null && StringUtils.startsWithIgnoreCase(document.getContentType(), "image/")) {
-      return enablePreviewSetting;
-    }
-    boolean isSupportedPreviewType = StringUtils.endsWithAny(document.getPath().toLowerCase(), ".pdf", ".txt", ".log");
-    return enablePreviewSetting && isSupportedPreviewType;
+  public boolean isSupportedPreviewType(IvyDocument document) {
+    return DocumentUtils.isSupportedPreviewType(document);
   }
 }

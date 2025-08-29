@@ -472,6 +472,11 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of |ivy|.
 
+Changes in 10.0.31
+------------------
+- Enhanced the document preview feature for the task and case detail. If you have :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` in the same security context. You can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents.
+
+
 Changes in 10.0.25
 ------------------
 - Introduced the document preview feature for the task and case detail. You can preview images(png or jpeg), plain text(txt or log) and pdf documents.
