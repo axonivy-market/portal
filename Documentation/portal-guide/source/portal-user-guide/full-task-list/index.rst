@@ -226,7 +226,7 @@ HowTo: Move and Resize Widgets in Task Details
 
 
 
-HowTo: Preview a document of a case
+HowTo: Preview a document of a task
 ------------------------------------
 
 #. Open the task details of a task
