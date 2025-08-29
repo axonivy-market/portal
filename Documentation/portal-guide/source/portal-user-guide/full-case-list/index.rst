@@ -72,7 +72,7 @@ The case details are separated into four different sections:
    |case-details-histories|
 
 #. Documents: Here, documents attached to the case are listed. You
-   may add, delete, preview or rename documents as described in the HowTo’s below.
+   may add, delete, rename or preview documents as described in the HowTo’s below.
 
    |case-details-documents|
 
@@ -241,7 +241,7 @@ HowTo: Rename a document of a case
 
 #. Update filename as you expect in the input field
 
-#. Press :guilabel:`Enter` or click the button :guilabel:`Save` to save your change
+#. Click the button :guilabel:`Save` to save your change
 
 #. Filename will be updated and a note about the renaming will be added
 

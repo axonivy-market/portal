@@ -54,13 +54,13 @@
                     fileSizeStyleClass="document-size" />
                 </p:commandLink>
                 
-                <p:commandLink id="edit-filename" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/renamingDocument')}"
+                <p:commandLink id="edit-filename" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')} #{document.name}"
                   styleClass="si si-graphic-tablet-drawing-pen Fright document-renaming ui-sm-hidden"
                   actionListener="#{data.setDocument(document)}"
                   update="document-renaming-dialog"
                   oncomplete="PF('document-renaming-dialog').show()">
                   <p:tooltip for="edit-filename" trackMouse="true" hideEvent="mouseleave click"
-                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/renamingDocument')}" />
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')} #{document.name}" />
                 </p:commandLink>
                 
                 <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"
@@ -105,12 +105,12 @@
         <h:form id="document-renaming-form">
           <p:messages id="renaming-file-messages" escape="false" />
           <p:inputText id="new-filename" value="#{data.document.name}" converter="filenameConverter" 
-            onfocus="this.select()" styleClass="w-full" maxlength="255"/>
+            onfocus="this.select()" styleClass="w-full" maxlength="#{portalComponentUtilsBean.filenameMaxLength}"/>
           <h:panelGroup layout="block" styleClass="MarTop20 u-text-align-right">
             <p:commandLink id="document-rename-cancel-button"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-              onclick="PF('document-renaming-dialog').hide();"
+              onclick="PF('document-renaming-dialog').hide(); return false;"
               styleClass="u-mar-right-15" />
             <p:commandButton id="document-rename-save-button"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"

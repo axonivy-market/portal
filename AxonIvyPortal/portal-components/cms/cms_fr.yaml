@@ -39,8 +39,6 @@ Dialogs:
             RenamingDocument: Renommage de document
             RenamingDocumentNote: '{0} a renommé le fichier {1} en {2}'
             RenamingDocumentSuccess: Renommé avec succès.
-            RenamingDuplicateName: Il existe déjà un fichier avec le même nom à cet emplacement.
-            RenamingErrorCharacters: 'Un nom de fichier ne peut pas contenir les caractères suivants : \ / : * ? " < > |'
             RenamingFailed: Une erreur s'est produite lors du renommage du document.
             Size: Taille du fichier
             Type: Type
@@ -99,6 +97,10 @@ Dialogs:
             ProcessViewerIFrameTitle: Cadre de visualisation du processus
 Labels:
   DisabledUserPrefix: (désactivé)
+  Enums:
+    NewFilenameValidation:
+      ALREADY_EXIST: Il existe déjà un fichier avec le même nom à cet emplacement.
+      INVALID_FORMAT: 'Un nom de fichier ne peut pas contenir les caractères suivants : \ / : * ? " < > |'
   NoName: Aucun nom
   NoResults: Aucun résultat
   None: Aucun

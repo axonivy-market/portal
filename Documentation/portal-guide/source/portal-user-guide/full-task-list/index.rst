@@ -94,7 +94,7 @@ The task details are separated into 3 different sections:
    |detailed-task-information-note|
 
 #. Documents, these documents once attached to the case are
-   available on all tasks. You may add, delete, preview or rename documents
+   available on all tasks. You may add, delete, rename or preview documents
    described in the HowTo’s below.
 
    |detailed-task-information-documents|
@@ -277,7 +277,7 @@ HowTo: Rename a document of a case
 
 #. Update filename as you expect in the input field
 
-#. Press :guilabel:`Enter` or click the button :guilabel:`Save` to save your change
+#. Click the button :guilabel:`Save` to save your change
 
 #. Filename will be updated and a note about the renaming will be added
 

@@ -997,6 +997,7 @@ ch.ivy.addon.portalkit.ui.jsf:
       Prozessname: {0}. Prozessbeschreibung: {1}
   documentFiles:
     PreviewDocument: Vorschau
+    RenameFile: Datei umbenennen
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
     deleteSuceed: Datei wurde erfolgreich gelöscht
     download: Herunterladen
@@ -1008,8 +1009,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     renamingDocument: Dokument umbenennen
     renamingDocumentNote: '{0} hat die Datei {1} in {2} umbenannt'
     renamingDocumentSuccess: Erfolgreich umbenannt.
-    renamingDuplicateName: Es gibt bereits eine Datei mit diesem Namen an diesem Speicherort.
-    renamingErrorCharacters: 'Ein Dateiname darf keines der folgenden Zeichen enthalten: \ / : * ? " < > |'
     renamingFailed: Beim Umbenennen des Dokuments ist ein Fehler aufgetreten.
     size: Dateigröße
     type: Typ

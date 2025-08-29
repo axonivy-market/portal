@@ -414,7 +414,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-document-name-text, .task-document-name-text {
-  width: calc(100% - 20px);
+  width: calc(100% - 90px);
   display: block;
   overflow: hidden;
 }

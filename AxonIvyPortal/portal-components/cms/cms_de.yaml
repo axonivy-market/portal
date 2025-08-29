@@ -39,8 +39,6 @@ Dialogs:
             RenamingDocument: Dokument umbenennen
             RenamingDocumentNote: '{0} hat die Datei {1} in {2} umbenannt'
             RenamingDocumentSuccess: Erfolgreich umbenannt.
-            RenamingDuplicateName: Es gibt bereits eine Datei mit diesem Namen an diesem Speicherort.
-            RenamingErrorCharacters: 'Ein Dateiname darf keines der folgenden Zeichen enthalten: \ / : * ? " < > |'
             RenamingFailed: Beim Umbenennen des Dokuments ist ein Fehler aufgetreten.
             Size: Dateigröße
             Type: Typ
@@ -98,6 +96,10 @@ Dialogs:
             ProcessViewerIFrameTitle: Prozessbetrachterrahmen
 Labels:
   DisabledUserPrefix: (inaktiv)
+  Enums:
+    NewFilenameValidation:
+      ALREADY_EXIST: Es gibt bereits eine Datei mit diesem Namen an diesem Speicherort.
+      INVALID_FORMAT: 'Ein Dateiname darf keines der folgenden Zeichen enthalten: \ / : * ? " < > |'
   NoName: kein Name
   NoResults: Keine Ergebnisse
   None: Keine

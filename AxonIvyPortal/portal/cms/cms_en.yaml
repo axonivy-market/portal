@@ -999,6 +999,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processAriaLabel: 'Process name: {0}. Process description: {1}'
   documentFiles:
     PreviewDocument: Preview
+    RenameFile: Rename file
     deleteDocumentNote: '{0} has deleted {1}'
     deleteSuceed: File deleted successfully
     download: Download
@@ -1010,8 +1011,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     renamingDocument: Renaming document
     renamingDocumentNote: '{0} has renamed the file {1} to {2}'
     renamingDocumentSuccess: Rename successfully.
-    renamingDuplicateName: There is already a file with the same name in this location.
-    renamingErrorCharacters: 'A file name can''t contain any of the following characters: \ / : * ? " < > |'
     renamingFailed: An error occurs while renaming the document.
     size: File size
     type: Type

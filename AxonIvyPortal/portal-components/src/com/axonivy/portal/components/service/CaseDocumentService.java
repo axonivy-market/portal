@@ -91,21 +91,24 @@ public class CaseDocumentService {
 		return document != null && !document.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER);
 	}
 	
-    public boolean containsForbiddenChars(String filename) {
-        return FORBIDDEN_PATTERN.matcher(filename).find();
-    }
+  public boolean containsForbiddenChars(String filename) {
+    return FORBIDDEN_PATTERN.matcher(filename).find();
+  }
 	
-	public NewFilenameValidation isNewFilenameValid(IvyDocument modifiedDoc) {
-		if (this.containsForbiddenChars(modifiedDoc.getName()))
-			return NewFilenameValidation.INVALID_FORMAT;
-		
-		List<IDocument> documents = documentsOf(iCase).getAllDirectBelow(new Path("/"));
-		boolean isFilenameAlreadyExist = documents.stream().anyMatch(doc -> doc.getName().equalsIgnoreCase(modifiedDoc.getName()) 
-			&& !doc.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER) && !(doc.getId() == Long.valueOf(modifiedDoc.getId())));
-		if (isFilenameAlreadyExist) return NewFilenameValidation.ALREADY_EXIST;
-		
-		return NewFilenameValidation.VALID;
-	}
+  public NewFilenameValidation isNewFilenameValid(IvyDocument modifiedDoc) {
+    String newName = modifiedDoc.getName();
+    if (this.containsForbiddenChars(newName)) {
+      return NewFilenameValidation.INVALID_FORMAT;
+    }
+    
+    long modifiedId = Long.valueOf(modifiedDoc.getId());
+
+    boolean filenameExists = documentsOf(iCase).getAllDirectBelow(new Path("/")).stream()
+        .anyMatch(doc -> doc.getName().equalsIgnoreCase(newName) 
+            && !doc.getPath().asString().contains(EXPRESS_UPLOAD_FOLDER) && doc.getId() != modifiedId);
+
+    return filenameExists ? NewFilenameValidation.ALREADY_EXIST : NewFilenameValidation.VALID;
+  }
 
 	public static boolean isDocumentTypeValid(String filename, String allowedFileTypes) {
 		String fileType = FilenameUtils.getExtension(filename);
