@@ -13,7 +13,8 @@ public enum PortalCustomSignature {
   DELEGATE("portalCalculateTaskDelegate(java.util.List<com.axonivy.portal.components.dto.RoleDTO>,java.util.List<com.axonivy.portal.components.dto.UserDTO>,com.axonivy.portal.components.dto.SecurityMemberDTO,ch.ivyteam.ivy.workflow.ITask)"),
   GET_PAGE_HEADER_AND_FOOTER("portalGetPageHeaderAndFooter()"),
   GROWL_MESSAGE("portalGrowlMessage()"),
-  LOAD_SUB_MENU_ITEMS("portalLoadSubMenuItems()");
+  LOAD_SUB_MENU_ITEMS("portalLoadSubMenuItems()"),
+  RENAME_DOCUMENT("portalRenameDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)");
 
   private String signature;
 

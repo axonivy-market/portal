@@ -6,6 +6,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import com.axonivy.portal.components.constant.PortalComponentConstants;
 import com.axonivy.portal.components.persistence.converter.BusinessEntityConverter;
 
 /**
@@ -19,6 +20,10 @@ public class PortalComponentUtilsBean implements Serializable {
 
   public String convertToJSON(List<String> list) {
     return BusinessEntityConverter.entityToJsonValue(list);
+  }
+
+  public int getFilenameMaxLength() {
+    return PortalComponentConstants.FILENAME_MAX_LENGTH;
   }
 
 }

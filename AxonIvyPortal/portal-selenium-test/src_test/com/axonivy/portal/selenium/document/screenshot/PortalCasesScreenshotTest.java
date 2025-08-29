@@ -108,6 +108,11 @@ public class PortalCasesScreenshotTest extends ScreenshotBaseTest {
     detailsPage.waitForCaseDetailsDisplay();
     ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.getDeleteDocumentConfirmDialog(),
         ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-delete-an-attachment-from-case", new ScreenshotMargin(100, 200));
+    
+    refreshPage();
+    detailsPage.waitForCaseDetailsDisplay();
+    ScreenshotUtils.captureElementWithMarginOptionScreenshot(detailsPage.getRenameDocumentDialog(),
+        ScreenshotUtils.CASE_DETAIL_FOLDER + "how-to-rename-document", new ScreenshotMargin(10));
 
     refreshPage();
     detailsPage.waitForCaseDetailsDisplay();

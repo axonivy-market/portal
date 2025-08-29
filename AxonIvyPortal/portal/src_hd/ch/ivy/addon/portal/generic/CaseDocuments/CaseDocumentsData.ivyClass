@@ -12,3 +12,7 @@ streamedContent org.primefaces.model.StreamedContent #field
 streamedContent PERSISTENT #fieldModifier
 deleteDocumentMessage String #field
 deleteDocumentMessage PERSISTENT #fieldModifier
+renameDocumentMessage String #field
+renameDocumentMessage PERSISTENT #fieldModifier
+isRenameDocumentSuccess Boolean #field
+isRenameDocumentSuccess PERSISTENT #fieldModifier

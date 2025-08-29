@@ -27,6 +27,7 @@ import com.axonivy.portal.selenium.common.WaitHelper;
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 public class CaseDetailsPage extends TemplatePage {
@@ -252,6 +253,29 @@ public class CaseDetailsPage extends TemplatePage {
     $("a[id$='delete-file']").shouldBe(getClickableCondition()).click();
     $(By.cssSelector("div[id$='document-deletion-dialog']")).shouldBe(appear, DEFAULT_TIMEOUT);
     return $("div[id$='document-deletion-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public SelenideElement getRenameDocumentDialog() {
+    $("a[id$='edit-filename']").shouldBe(getClickableCondition()).click();
+    $(By.cssSelector("div[id$='document-renaming-dialog']")).shouldBe(appear, DEFAULT_TIMEOUT);
+    $("[id$='document-renaming-dialog_title']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    return $("div[id$='document-renaming-dialog']").shouldBe(appear, DEFAULT_TIMEOUT);
+  }
+
+  public String renameDocument(String newFilename) {
+    if ($("[id$='document-renaming-dialog_title']").isDisplayed()) {
+      $("[id$='document-rename-cancel-button']").shouldBe(getClickableCondition(), DEFAULT_TIMEOUT).click();
+    }
+    SelenideElement renameDialog = this.getRenameDocumentDialog();
+    renameDialog.$("input[id*='new-filename']").clear();
+    renameDialog.$("input[id*='new-filename']").setValue(newFilename);
+    renameDialog.$("button[id*='document-rename-save-button']").click();
+    Selenide.sleep(1000);
+    return $("span.js-document-name").getText();
+  }
+  
+  public String getRenamingFileMessage() {
+    return $("span.ui-messages-error-summary").getText();
   }
 
   public void waitForShowNoteHistory() {

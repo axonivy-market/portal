@@ -414,7 +414,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-document-name-text, .task-document-name-text {
-  width: calc(100% - 20px);
+  width: calc(100% - 90px);
   display: block;
   overflow: hidden;
 }
@@ -429,6 +429,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   right: 4px;
 }
 .document-preview{
+  position:absolute;
+  top:2px;
+  right:60px;
+}
+.document-renaming {
   position:absolute;
   top:2px;
   right:30px;
@@ -4797,7 +4802,7 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 
 .case-upload-dialog, .case-view-note-dialog, .document-upload-dialog, .task-note-dialog,
-.task-upload-dialog {
+.task-upload-dialog, .document-renaming-dialog {
   min-width: 50vw;
 }
 

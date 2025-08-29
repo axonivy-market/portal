@@ -131,3 +131,15 @@ body.serenity .document-table-component .upload-container .ui-widget.ui-selecton
 body.serenity .document-table-component .upload-container .ui-widget.ui-outputlabel {
   margin-top: 5px;
 }
+
+.w-full {
+  width: 100%;
+}
+
+.dialog-footer {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+}

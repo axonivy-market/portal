@@ -12,3 +12,4 @@ document com.axonivy.portal.components.ivydata.bo.IvyDocument #field
 streamedContent org.primefaces.model.StreamedContent #field
 documents java.util.List<com.axonivy.portal.components.ivydata.bo.IvyDocument> #field
 skip Boolean #field
+isRenamingSuccess Boolean #field
