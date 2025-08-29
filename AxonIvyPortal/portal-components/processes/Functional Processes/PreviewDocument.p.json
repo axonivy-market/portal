@@ -1,0 +1,76 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
+  "id" : "198F0658219A38DF",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.components.PreviewDocumentData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "previewDocumentWithDocFactory(StreamedContent)",
+      "config" : {
+        "signature" : "previewDocumentWithDocFactory",
+        "input" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+          ],
+          "map" : {
+            "out.streamedContent" : "param.streamedContent"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+          ],
+          "map" : {
+            "result.streamedContent" : "in.returnStreamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 512, "y" : 64 },
+        "labelOffset" : { "x" : 13, "y" : 33 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Find DocFactory and use if found",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.primefaces.model.StreamedContent;",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"streamedContent\", in.streamedContent);",
+            "Map response = IvyAdapterService.startSubProcessInSecurityContext(\"previewDocumentByStream(org.primefaces.model.StreamedContent)\", params);",
+            "if (response != null && response.get(\"streamedContent\") != null){",
+            "  ivy.log.error(\"FOUND preview signature\");",
+            "  in.returnStreamedContent = response.get(\"streamedContent\") as StreamedContent;",
+            "} else {",
+            "  ivy.log.error(\"NOT FOUND preview signature\");",
+            "  in.returnStreamedContent = in.streamedContent;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 336, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1", "color" : "default" }
+      ]
+    } ]
+}
