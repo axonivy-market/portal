@@ -1,7 +1,6 @@
 package com.axonivy.portal.selenium.test.dashboard;
 
 import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.Selenide.$$;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,6 @@ import com.axonivy.portal.selenium.page.ProcessWidgetNewDashBoardPage;
 import com.axonivy.portal.selenium.page.TaskDetailsPage;
 import com.axonivy.portal.selenium.page.TaskTemplateIFramePage;
 import com.axonivy.portal.selenium.page.TaskTemplatePage;
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 
 @IvyWebTest

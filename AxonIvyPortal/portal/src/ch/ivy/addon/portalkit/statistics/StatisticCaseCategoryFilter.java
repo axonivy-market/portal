@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.model.CheckboxTreeNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,7 +36,7 @@ public class StatisticCaseCategoryFilter implements Serializable {
     CaseQuery caseQuery = CaseUtils.createBusinessCaseQuery();
     IFilterQuery filterQuery = caseQuery.where();
     for (String category : categoryPaths) {
-      if (StringUtils.equals(category, CategoryUtils.NO_CATEGORY)) {
+      if (Strings.CS.equals(category, CategoryUtils.NO_CATEGORY)) {
         filterQuery.or().category().isEqual(StringUtils.EMPTY);
       } else {
         filterQuery.or().category().isEqualIgnoreCase(category);

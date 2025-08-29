@@ -196,7 +196,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   private void collectFiltersForDefaultFilterSet() {
     if (defaultCaseFilterData != null && CollectionUtils.isEmpty(defaultCaseFilterData.getFilters())) {
-      CaseFilterContainer tempFilterContainer = ObjectUtils.defaultIfNull(this.filterContainer, new DefaultCaseFilterContainer());
+      CaseFilterContainer tempFilterContainer = ObjectUtils.getIfNull(this.filterContainer, new DefaultCaseFilterContainer());
       setValuesForCaseStateFilter(criteria, tempFilterContainer);
       defaultCaseFilterData.setFilters(tempFilterContainer.getFilters().stream().filter(CaseFilter::defaultFilter).collect(Collectors.toList()));
     }

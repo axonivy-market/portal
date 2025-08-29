@@ -33,7 +33,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.time.DateUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
@@ -73,7 +73,7 @@ public class StatisticChartTimeUtils {
   }
 
   public static Date getFirstDateOfMonth(String selectedMonth) {
-    if (StringUtils.containsIgnoreCase(selectedMonth, Ivy.cms().co(THIS_MONTH_EXPIRY_KEY))) {
+    if (Strings.CI.contains(selectedMonth, Ivy.cms().co(THIS_MONTH_EXPIRY_KEY))) {
       return getFirstDateOfThisMonth();
     }
     Calendar cal = Calendar.getInstance();
@@ -91,22 +91,22 @@ public class StatisticChartTimeUtils {
   public static Date getFirstDateOfWeek(String selectedWeek, String selectedMonth) {
 
     Date firstDateOfWeek = new Date();
-    if (StringUtils.containsIgnoreCase(selectedWeek, Ivy.cms().co(THIS_WEEK_EXPIRY_KEY))) {
+    if (Strings.CI.contains(selectedWeek, Ivy.cms().co(THIS_WEEK_EXPIRY_KEY))) {
       firstDateOfWeek = getFirstDateOfWeekContainsDate(new Date());
     } else {
       Date firstDateOfMonth = getFirstDateOfMonth(selectedMonth);
       Date firstDateOfFirstWeek = getFirstDateOfWeekContainsDate(firstDateOfMonth);
-      if (StringUtils.containsIgnoreCase(selectedWeek, Ivy.cms().co(FIRSTWEEK_CMS))) {
+      if (Strings.CI.contains(selectedWeek, Ivy.cms().co(FIRSTWEEK_CMS))) {
         firstDateOfWeek = firstDateOfFirstWeek;
-      } else if (StringUtils.containsIgnoreCase(selectedWeek, Ivy.cms().co(SECONDWEEK_CMS))) {
+      } else if (Strings.CI.contains(selectedWeek, Ivy.cms().co(SECONDWEEK_CMS))) {
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 1));
-      } else if (StringUtils.containsIgnoreCase(selectedWeek, Ivy.cms().co(THIRDWEEK_CMS))) {
+      } else if (Strings.CI.contains(selectedWeek, Ivy.cms().co(THIRDWEEK_CMS))) {
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 2));
-      } else if (StringUtils.containsIgnoreCase(selectedWeek, Ivy.cms().co(FOURTHWEEK_CMS))) {
+      } else if (Strings.CI.contains(selectedWeek, Ivy.cms().co(FOURTHWEEK_CMS))) {
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 3));
-      } else if (StringUtils.containsIgnoreCase(selectedWeek, Ivy.cms().co(FIFTHWEEK_CMS))) {
+      } else if (Strings.CI.contains(selectedWeek, Ivy.cms().co(FIFTHWEEK_CMS))) {
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 4));
-      } else if (StringUtils.containsIgnoreCase(selectedWeek, Ivy.cms().co(SIXTHWEEK_CMS))) {
+      } else if (Strings.CI.contains(selectedWeek, Ivy.cms().co(SIXTHWEEK_CMS))) {
         firstDateOfWeek = truncateMinutesPart(DateUtils.addWeeks(firstDateOfFirstWeek, 5));
       }
     }
@@ -126,7 +126,7 @@ public class StatisticChartTimeUtils {
   public static boolean isSameDay(Date resultDate, String selectedDay, String previousSelectedWeek,
       String previousSelectedMonth) {
     int shiftDays = 0;
-    if (StringUtils.containsIgnoreCase(selectedDay, Ivy.cms().co(TODAY_EXPIRY_KEY))) {
+    if (Strings.CI.contains(selectedDay, Ivy.cms().co(TODAY_EXPIRY_KEY))) {
       return DateUtils.isSameDay(resultDate, new Date());
     } else {
       shiftDays = getShiftDaysFromDayOfWeek(selectedDay);

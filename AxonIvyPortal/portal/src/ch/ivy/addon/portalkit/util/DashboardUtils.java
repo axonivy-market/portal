@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
@@ -51,7 +51,7 @@ public class DashboardUtils {
   }
 
   private static boolean isSessionUserHasPermisson(String permission) {
-    return StringUtils.startsWith(permission, "#") ? StringUtils.equals(currentUser().getMemberName(), permission)
+    return Strings.CS.startsWith(permission, "#") ? Strings.CS.equals(currentUser().getMemberName(), permission)
         : PermissionUtils.doesSessionUserHaveRole(permission);
   }
 
@@ -164,8 +164,8 @@ public class DashboardUtils {
   }
 
   public static void updateSelectedDashboardToSession(String selectedMenuItemId) {
-    if (StringUtils.endsWith(selectedMenuItemId, DASHBOARD_MENU_POSTFIX)
-        || StringUtils.endsWith(selectedMenuItemId, DASHBOARD_MENU_ITEM_POSTFIX)) {
+    if (Strings.CS.endsWith(selectedMenuItemId, DASHBOARD_MENU_POSTFIX)
+        || Strings.CS.endsWith(selectedMenuItemId, DASHBOARD_MENU_ITEM_POSTFIX)) {
       var menuIds = selectedMenuItemId.split(":");
       var dashboardIds = menuIds[menuIds.length - 1].split(DASHBOARD_MENU_PREFIX);
       var dashboardId = dashboardIds[dashboardIds.length - 1];

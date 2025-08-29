@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Locale;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -144,8 +144,8 @@ public class UserProcess extends AbstractConfiguration {
   }
 
   private String getDisplayNameWithCms() {
-    return StringUtils.startsWithIgnoreCase(processName, DashboardConfigurationPrefix.CMS)
-        ? Ivy.cms().co(StringUtils.removeStart(processName, DashboardConfigurationPrefix.CMS))
+    return Strings.CI.startsWith(processName, DashboardConfigurationPrefix.CMS)
+        ? Ivy.cms().co(Strings.CS.removeStart(processName, DashboardConfigurationPrefix.CMS))
         : processName;
   }
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.model.CheckboxTreeNode;
 import org.primefaces.model.TreeNode;
 
@@ -51,7 +52,7 @@ public class CaseCategoryFilter extends CaseFilter {
     CaseQuery caseQuery = CaseUtils.createBusinessCaseQuery();
     IFilterQuery filterQuery = caseQuery.where();
     for (String category : categoryPaths) {
-      if (StringUtils.equals(category, CategoryUtils.NO_CATEGORY)) {
+      if (Strings.CS.equals(category, CategoryUtils.NO_CATEGORY)) {
         filterQuery.or().category().isEqual(StringUtils.EMPTY);
       } else {
         filterQuery.or().category().isEqualIgnoreCase(category);
@@ -96,7 +97,7 @@ public class CaseCategoryFilter extends CaseFilter {
         .map(TreeNode::getData)
         .map(data -> data.getValue())
         .orElse(StringUtils.EMPTY);
-    if (forceRebuildFilter || root == null || !StringUtils.equals(allCategoriesTextInTree, allCategoriesText)) {
+    if (forceRebuildFilter || root == null || !Strings.CS.equals(allCategoriesTextInTree, allCategoriesText)) {
       root = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
       categories = CategoryUtils.recoverSelectedCategories(root, categoryPaths);
     }

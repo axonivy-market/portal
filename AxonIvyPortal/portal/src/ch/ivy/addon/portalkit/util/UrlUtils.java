@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
@@ -31,9 +32,9 @@ public class UrlUtils {
 
   public static boolean isIvyUrl(String url) {
     return url == null
-        || (StringUtils.contains(url, ".ivp?")
-            || StringUtils.endsWith(url, ".ivp")
-            || StringUtils.endsWith(url, ".icm"));
+        || (Strings.CS.contains(url, ".ivp?")
+            || Strings.CS.endsWith(url, ".ivp")
+            || Strings.CS.endsWith(url, ".icm"));
   }
 
   public static String buildUrl(String url) {

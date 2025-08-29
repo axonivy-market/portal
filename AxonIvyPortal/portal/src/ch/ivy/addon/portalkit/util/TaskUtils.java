@@ -14,6 +14,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 
 import com.axonivy.portal.components.util.FacesMessageUtils;
@@ -203,7 +204,7 @@ public final class TaskUtils {
     } else {
       states.add(TaskState.DONE);
     }
-    return states.stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString()))
+    return states.stream().sorted((s1, s2) -> Strings.CS.compare(s1.toString(), s2.toString()))
         .collect(Collectors.toList());
   }
 
@@ -238,7 +239,7 @@ public final class TaskUtils {
     if (task == null) {
       return false;
     }
-    if (StringUtils.equals(task.names().current(), DummyTask.TASK_NAME)) {
+    if (Strings.CS.equals(task.names().current(), DummyTask.TASK_NAME)) {
       return true;
     }
     IUser sessionUser = Ivy.session().getSessionUser();

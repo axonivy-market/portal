@@ -6,6 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 @ManagedBean
 @ViewScoped
@@ -41,7 +42,7 @@ public class IconSelectionBean implements Serializable {
     if (StringUtils.isBlank(cssIcon)) {
       return false;
     }
-    return StringUtils.contains(cssIcon, STREAMLINE_ICON_PREFIX);
+    return Strings.CS.contains(cssIcon, STREAMLINE_ICON_PREFIX);
   }
 
   public String generateIconWithFontFamily(String cssIcon) {

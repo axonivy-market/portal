@@ -23,6 +23,7 @@ import javax.faces.event.ActionEvent;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
@@ -190,7 +191,7 @@ public class MenuView implements Serializable {
             dashboardMenu.setValue(title);
             dashboardGroupMenu.getElements().add(dashboardMenu);
           }
-          if (StringUtils.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)) {
+          if (Strings.CS.endsWith(Ivy.request().getRootRequest().getRequestPath(), DASHBOARD_PAGE_URL)) {
             dashboardGroupMenu.setExpanded(true);
           }
           return dashboardGroupMenu;

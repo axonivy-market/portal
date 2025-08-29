@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.model.CheckboxTreeNode;
 import org.primefaces.model.TreeNode;
 
@@ -50,7 +51,7 @@ public class TaskCategoryFilter extends TaskFilter {
     TaskQuery taskQuery = TaskQuery.create();
     IFilterQuery filterQuery = taskQuery.where();
     for (String category : categoryPaths) {
-      if (StringUtils.equals(category, CategoryUtils.NO_CATEGORY)) {
+      if (Strings.CS.equals(category, CategoryUtils.NO_CATEGORY)) {
         filterQuery.or().category().isEqual(StringUtils.EMPTY);
       } else {
         filterQuery.or().category().isEqualIgnoreCase(category);
@@ -95,7 +96,7 @@ public class TaskCategoryFilter extends TaskFilter {
         .map(TreeNode::getData)
         .map(data -> data.getValue())
         .orElse(StringUtils.EMPTY);
-    if (forceRebuildFilter || root == null || !StringUtils.equals(allCategoriesTextInTree, allCategoriesText)) {
+    if (forceRebuildFilter || root == null || !Strings.CS.equals(allCategoriesTextInTree, allCategoriesText)) {
       root = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
       categories = CategoryUtils.recoverSelectedCategories(root, categoryPaths);
     }

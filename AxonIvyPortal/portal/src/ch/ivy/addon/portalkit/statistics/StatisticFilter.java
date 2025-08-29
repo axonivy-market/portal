@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -102,7 +102,7 @@ public class StatisticFilter implements Cloneable {
     allRoles.removeIf(role -> role.getProperty(AdditionalProperty.HIDE.toString()) != null);
     List<IRole> distinctRoles = allRoles
         .stream()
-        .sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName()))
+        .sorted((r1, r2) -> Strings.CI.compare(r1.getDisplayName(), r2.getDisplayName()))
         .collect(Collectors.toList());
     return distinctRoles;
   }

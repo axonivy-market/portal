@@ -8,7 +8,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -26,7 +26,7 @@ public class ColumnModel extends AbstractColumn implements Serializable {
 
   @Override
   public String getHeaderText() {
-    if (getHeader() == null || StringUtils.equals(getHeader(), CMS + getDefaultHeaderCMS())) {
+    if (getHeader() == null || Strings.CS.equals(getHeader(), CMS + getDefaultHeaderCMS())) {
       return Ivy.cms().co(getDefaultHeaderCMS());
     }
     return getHeader();

@@ -13,11 +13,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
+import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import com.axonivy.portal.components.dto.UserDTO;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import com.axonivy.portal.components.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.dashboard.CaseDashboardWidget;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
@@ -38,7 +39,7 @@ public class DashboardCaseFilterBean implements Serializable {
   @PostConstruct
   public void init() {
     this.states = Arrays.asList(CaseState.values()).stream()
-        .sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
+        .sorted((s1, s2) -> Strings.CS.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
     this.creators = new ArrayList<>();
   }
 

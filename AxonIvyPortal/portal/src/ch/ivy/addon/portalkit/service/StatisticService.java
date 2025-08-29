@@ -93,6 +93,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.component.barchart.BarChart;
 import org.primefaces.component.donutchart.DonutChart;
@@ -1212,7 +1213,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   }
 
   public static boolean selectThisYear(String selectedItem) {
-    return StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(THIS_YEAR_EXPIRY_KEY));
+    return Strings.CI.contains(selectedItem, Ivy.cms().co(THIS_YEAR_EXPIRY_KEY));
   }
 
   public static boolean selectMonthOfYear(String selectedItem) {
@@ -1226,7 +1227,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
             Ivy.cms().co(DECEMBER_CMS)};
 
     return Arrays.asList(monthsOfYear).contains(selectedItem)
-        || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(THIS_MONTH_EXPIRY_KEY));
+        || Strings.CI.contains(selectedItem, Ivy.cms().co(THIS_MONTH_EXPIRY_KEY));
   }
 
   public static boolean selectWeekOfMonth(String selectedItem) {
@@ -1238,7 +1239,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
             Ivy.cms().co(FOURTHWEEK_CMS), Ivy.cms().co(FIFTHWEEK_CMS), Ivy.cms().co(SIXTHWEEK_CMS)};
 
     return Arrays.asList(weeksOfMonth).contains(selectedItem)
-        || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(THIS_WEEK_EXPIRY_KEY));
+        || Strings.CI.contains(selectedItem, Ivy.cms().co(THIS_WEEK_EXPIRY_KEY));
   }
 
   public static boolean selectDayOfWeek(String selectedItem) {
@@ -1250,7 +1251,7 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
             Ivy.cms().co(FRIDAY_CMS), Ivy.cms().co(SATURDAY_CMS), Ivy.cms().co(SUNDAY_CMS)};
 
     return Arrays.asList(daysOfWeek).contains(selectedItem)
-        || StringUtils.containsIgnoreCase(selectedItem, Ivy.cms().co(TODAY_EXPIRY_KEY));
+        || Strings.CI.contains(selectedItem, Ivy.cms().co(TODAY_EXPIRY_KEY));
   }
 
   public static boolean selectHourOfDay(String selectedItem) {
@@ -1375,11 +1376,11 @@ public class StatisticService extends JsonConfigurationService<StatisticChart> {
   }
 
   private boolean equalsDisplayName(String chartName, String language, DisplayName displayName) {
-    return equalsLanguageLocale(displayName, language) && StringUtils.equals(displayName.getValue(), chartName);
+    return equalsLanguageLocale(displayName, language) && Strings.CS.equals(displayName.getValue(), chartName);
   }
 
   public static boolean equalsLanguageLocale(DisplayName displayName, String language) {
-    return StringUtils.equalsIgnoreCase(displayName.getLocale().toString(), language);
+    return Strings.CI.equals(displayName.getLocale().toString(), language);
   }
 
   public boolean isDefaultChart(List<StatisticChart> statisticCharts) {

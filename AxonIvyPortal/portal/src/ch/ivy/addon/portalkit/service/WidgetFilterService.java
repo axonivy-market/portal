@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import ch.ivy.addon.portalkit.bean.WidgetFilterHelperBean;
@@ -227,8 +228,8 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
       if (filterOptionMap.containsKey(column.getField())) {
         var columnData = filterOptionMap.get(column.getField());
         if (isNotEqualStringFilter(column.getUserFilter(), columnData.getUserFilter())
-            || !StringUtils.equals(column.getUserFilterFrom(), columnData.getUserFilterFrom())
-            || !StringUtils.equals(column.getUserFilterTo(), columnData.getUserFilterTo())
+            || !Strings.CS.equals(column.getUserFilterFrom(), columnData.getUserFilterFrom())
+            || !Strings.CS.equals(column.getUserFilterTo(), columnData.getUserFilterTo())
             || isNotEqualListFilterSelection(column.getUserFilterList(), columnData.getUserFilterList())) {
           isFilterModified = true;
           break;
@@ -337,7 +338,7 @@ public class WidgetFilterService extends JsonConfigurationService<WidgetFilterMo
   }
 
   private boolean isNotEqualStringFilter(String value, String compareValue) {
-    if (value != null && compareValue != null && !StringUtils.equals(value, compareValue)) {
+    if (value != null && compareValue != null && !Strings.CS.equals(value, compareValue)) {
       return true;
     }
     return false;

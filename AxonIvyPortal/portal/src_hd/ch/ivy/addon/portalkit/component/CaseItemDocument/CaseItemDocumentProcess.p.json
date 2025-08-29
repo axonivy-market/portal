@@ -110,8 +110,8 @@
             "out.document" : "param.document"
           },
           "code" : [
-            "import org.apache.commons.lang3.StringUtils;",
-            "out.isImage = param.document!= null && StringUtils.startsWithIgnoreCase(param.document.getContentType(), \"image/\");"
+            "import org.apache.commons.lang3.Strings;",
+            "out.isImage = param.document!= null && Strings.CI.startsWith(param.document.getContentType(), \"image/\");"
           ]
         },
         "result" : {

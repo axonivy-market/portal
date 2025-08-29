@@ -26,6 +26,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.bean.DashboardProcessBean;
 import ch.ivy.addon.portalkit.configuration.ExternalLink;
@@ -174,8 +175,8 @@ public class DashboardWidgetUtils {
       return new ArrayList<>();
     }
     return columns.stream().filter(Objects::nonNull)
-        .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardTaskColumn.START.toString())
-                  && !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardTaskColumn.ID.toString()))
+        .filter(col -> !Strings.CI.equals(col.getField(), DashboardStandardTaskColumn.START.toString())
+                  && !Strings.CI.equals(col.getField(), DashboardStandardTaskColumn.ID.toString()))
         .collect(Collectors.toList());
   }
 
@@ -227,17 +228,17 @@ public class DashboardWidgetUtils {
     List<ColumnModel> filterableColumns = new ArrayList<>();
     if (CollectionUtils.isNotEmpty(caseColumns)) {
       filterableColumns = caseColumns.stream().filter(Objects::nonNull)
-          .filter(col -> !StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.ID.toString()))
+          .filter(col -> !Strings.CI.equals(col.getField(), DashboardStandardCaseColumn.ID.toString()))
           .collect(Collectors.toList());
     }
     var enableCaseOwner = GlobalSettingService.getInstance().isCaseOwnerEnabled();
     boolean disableCaseCreator = GlobalSettingService.getInstance().isHideCaseCreator();
     if (!enableCaseOwner) {
-      filterableColumns.removeIf(col -> StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.OWNER.toString()));
+      filterableColumns.removeIf(col -> Strings.CI.equals(col.getField(), DashboardStandardCaseColumn.OWNER.toString()));
     }
     if (disableCaseCreator) {
       filterableColumns
-          .removeIf(col -> StringUtils.equalsIgnoreCase(col.getField(), DashboardStandardCaseColumn.CREATOR.name()));
+          .removeIf(col -> Strings.CI.equals(col.getField(), DashboardStandardCaseColumn.CREATOR.name()));
     }
     return filterableColumns;
   }
@@ -282,13 +283,13 @@ public class DashboardWidgetUtils {
 
     if (column.getType() == DashboardColumnType.STANDARD) {
       column.setType(null);
-      if (StringUtils.equals(column.getHeader(), CMS + column.getDefaultHeaderCMS())) {
+      if (Strings.CS.equals(column.getHeader(), CMS + column.getDefaultHeaderCMS())) {
         column.setHeader(null);
       }
-      if (StringUtils.equals(column.getDefaultStyleClass(), column.getStyleClass())) {
+      if (Strings.CS.equals(column.getDefaultStyleClass(), column.getStyleClass())) {
         column.setStyleClass(null);
       }
-      if (StringUtils.equals(column.initDefaultStyle(), column.getStyle())) {
+      if (Strings.CS.equals(column.initDefaultStyle(), column.getStyle())) {
         column.setStyle(null);
       }
       if (column.getDefaultFormat() == column.getFormat()) {

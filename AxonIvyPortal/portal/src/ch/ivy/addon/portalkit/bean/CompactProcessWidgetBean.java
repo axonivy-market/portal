@@ -20,6 +20,7 @@ import javax.faces.convert.Converter;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.service.GlobalSearchService;
@@ -263,7 +264,7 @@ private static final long serialVersionUID = -5889375917550618261L;
 
   public boolean isRequiredLanguage(Locale locale) {
     final String requireLanguage = UserUtils.getUserLanguage();
-    return StringUtils.equalsIgnoreCase(requireLanguage, locale.getLanguage());
+    return Strings.CI.equals(requireLanguage, locale.getLanguage());
   }
   
   private void initDataForProcessAutoComplete() {
@@ -302,14 +303,14 @@ private static final long serialVersionUID = -5889375917550618261L;
 
   public List<UserProcess> completeUserProcess(String query) {
     return processesToAdd.stream()
-        .filter(processToAdd -> StringUtils.containsIgnoreCase(processToAdd.getProcessName(), query)
+        .filter(processToAdd -> Strings.CI.contains(processToAdd.getProcessName(), query)
             && !isUserProcess(processToAdd) && !isExternalLinkUserProcess(processToAdd) 
             && !isDefaultUserProcess(processToAdd))
         .collect(Collectors.toList());
   }
 
   public void sortUserProcessList(List<UserProcess> processes) {
-    processes.sort((process1, process2) -> StringUtils.compareIgnoreCase(process1.getProcessName(), process2.getProcessName().toLowerCase()));
+    processes.sort((process1, process2) -> Strings.CI.compare(process1.getProcessName(), process2.getProcessName().toLowerCase()));
   }
   
   public void startProcess(UserProcess userProcess) throws IOException {
@@ -341,16 +342,16 @@ private static final long serialVersionUID = -5889375917550618261L;
 
   private boolean isUserProcess(UserProcess processToAdd) {
     return userProcesses.stream().anyMatch(userProcess -> !isExternalLink(processToAdd)
-        && StringUtils.equalsIgnoreCase(userProcess.getLink(), processToAdd.getLink()));
+        && Strings.CI.equals(userProcess.getLink(), processToAdd.getLink()));
   }
   
   private boolean isExternalLinkUserProcess(UserProcess processToAdd) {
     return userProcesses.stream().anyMatch(userProcess -> isExternalLink(userProcess) && isExternalLink(processToAdd)
-        && StringUtils.equalsIgnoreCase(userProcess.getProcessId(), processToAdd.getProcessId()));
+        && Strings.CI.equals(userProcess.getProcessId(), processToAdd.getProcessId()));
   }
 
   private boolean isDefaultUserProcess(UserProcess processToAdd) {
-    return defaultProcesses.stream().anyMatch(userProcess -> StringUtils.equalsIgnoreCase(userProcess.getLink(), processToAdd.getLink()));
+    return defaultProcesses.stream().anyMatch(userProcess -> Strings.CI.equals(userProcess.getLink(), processToAdd.getLink()));
   }
 
   public UserProcess getEditingProcess() {

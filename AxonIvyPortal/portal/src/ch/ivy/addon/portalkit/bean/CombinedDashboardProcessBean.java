@@ -11,6 +11,7 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.dto.dashboard.CombinedProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
@@ -42,7 +43,7 @@ public class CombinedDashboardProcessBean
 
   public List<DashboardProcess> completeCombinedProcesses(String query) {
     return getPortalCombinedProcesses().stream()
-        .filter(process -> StringUtils.containsIgnoreCase(process.getName(), query))
+        .filter(process -> Strings.CI.contains(process.getName(), query))
         .collect(Collectors.toList());
   }
 

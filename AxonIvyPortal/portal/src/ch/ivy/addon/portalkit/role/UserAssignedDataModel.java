@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.model.FilterMeta;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortMeta;
@@ -104,8 +105,8 @@ public class UserAssignedDataModel extends LazyDataModel<UserHolder> {
   }
 
   private Predicate<? super UserHolder> filterUserByNameOrDisplayName() {
-    return user -> StringUtils.containsIgnoreCase(user.getName(), this.queryBuilder.toString())
-        || StringUtils.containsIgnoreCase(user.getDisplayName(), this.queryBuilder.toString());
+    return user -> Strings.CI.contains(user.getName(), this.queryBuilder.toString())
+        || Strings.CI.contains(user.getDisplayName(), this.queryBuilder.toString());
   }
 
   private List<UserHolder> findUserByCriteria(int first, int pageSize, Map<String, FilterMeta> filterBy) {

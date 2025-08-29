@@ -10,6 +10,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
@@ -40,7 +41,7 @@ public class UserProfileBean implements Serializable {
   public String getDisplayNameOfTaskSortField(String sortField) {
     List<String> sortFieldNames = Stream.of(TaskSortField.values()).map(Enum::name).collect(Collectors.toList());
 
-    if (StringUtils.equals(sortField, DEFAULT)) {
+    if (Strings.CS.equals(sortField, DEFAULT)) {
       GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
       String defaultSortField = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_FIELD_OF_TASK_LIST).getValue();
 
@@ -53,7 +54,7 @@ public class UserProfileBean implements Serializable {
 
   public String getDisplayNameOfCaseSortField(String sortField) {
     List<String> sortFieldNames = Stream.of(CaseSortField.values()).map(Enum::name).collect(Collectors.toList());
-    if (StringUtils.equals(sortField, DEFAULT)) {
+    if (Strings.CS.equals(sortField, DEFAULT)) {
       GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
       String defaultSortField = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST).getValue();
 
@@ -66,7 +67,7 @@ public class UserProfileBean implements Serializable {
 
   public String getDisplayNameOfTaskSortDirection(String sortDirection) {
     List<String> sortDirectionNames = Stream.of(SortDirection.values()).map(Enum::name).collect(Collectors.toList());
-    if (StringUtils.equals(sortDirection, DEFAULT)) {
+    if (Strings.CS.equals(sortDirection, DEFAULT)) {
       GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
       String defaultDirection = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST).getValue();
 
@@ -79,7 +80,7 @@ public class UserProfileBean implements Serializable {
 
   public String getDisplayNameOfCaseSortDirection(String sortDirection) {
     List<String> sortDirectionNames = Stream.of(SortDirection.values()).map(Enum::name).collect(Collectors.toList());
-    if (StringUtils.equals(sortDirection, DEFAULT)) {
+    if (Strings.CS.equals(sortDirection, DEFAULT)) {
       GlobalSettingService globalSettingService = GlobalSettingService.getInstance();
       String defaultDirection = globalSettingService.findGlobalSettingByGlobalVariable(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST).getValue();
       

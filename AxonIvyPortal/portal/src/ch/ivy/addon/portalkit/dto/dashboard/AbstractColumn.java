@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -379,7 +380,7 @@ public abstract class AbstractColumn implements Serializable {
     if (filterListOptions == null) {
       Recordset recordset = TaskQuery.create().groupBy().customField().stringField(field).executor().recordset();
       filterListOptions = recordset.getColumn(field).stream().filter(Objects::nonNull).map(Object::toString)
-          .sorted(StringUtils::compareIgnoreCase).collect(Collectors.toList());
+          .sorted(Strings.CI::compare).collect(Collectors.toList());
     }
     return filterListOptions;
   }

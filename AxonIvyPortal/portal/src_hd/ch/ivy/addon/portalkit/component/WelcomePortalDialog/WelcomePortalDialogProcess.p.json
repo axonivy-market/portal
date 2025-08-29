@@ -32,7 +32,7 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.application.IApplication;",
-            "import org.apache.commons.lang3.StringUtils;",
+            "import org.apache.commons.lang3.Strings;",
             "import ch.ivy.addon.portalkit.enums.PortalLibrary;",
             "import ch.ivyteam.ivy.application.ILibrary;",
             "",
@@ -40,7 +40,7 @@
             "String portalVersion = portalLibrary.getQualifiedVersion().toString();",
             "String latestPortalGuideLink = \"https://developer.axonivy.com/portal/dev/doc\";",
             "String portalGuideLink;",
-            "if (StringUtils.contains(portalVersion, \"SNAPSHOT\")) {",
+            "if (Strings.CS.contains(portalVersion, \"SNAPSHOT\")) {",
             "  portalGuideLink = latestPortalGuideLink;",
             "} else {",
             "  portalGuideLink = String.format(\"https://developer.axonivy.com/documentation/portal-guide/%s\", portalVersion);",
@@ -93,7 +93,7 @@
         "output" : {
           "code" : [
             "import ch.ivyteam.ivy.application.IApplication;",
-            "import org.apache.commons.lang3.StringUtils;",
+            "import org.apache.commons.lang3.Strings;",
             "import ch.ivy.addon.portalkit.enums.PortalLibrary;",
             "import ch.ivyteam.ivy.application.ILibrary;",
             "",
@@ -101,7 +101,7 @@
             "String portalVersion = portalLibrary.getQualifiedVersion().toString();",
             "String latestPortalGuideLink = \"https://developer.axonivy.com/portal/dev/doc\";",
             "String portalGuideLink;",
-            "if (StringUtils.contains(portalVersion, \"SNAPSHOT\")) {",
+            "if (Strings.CS.contains(portalVersion, \"SNAPSHOT\")) {",
             "  portalGuideLink = latestPortalGuideLink;",
             "} else {",
             "  portalGuideLink = String.format(\"https://developer.axonivy.com/documentation/portal-guide/\", portalVersion);",

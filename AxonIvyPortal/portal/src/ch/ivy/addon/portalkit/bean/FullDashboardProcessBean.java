@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.dto.dashboard.FullProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.process.DashboardProcess;
@@ -29,7 +30,7 @@ public class FullDashboardProcessBean implements DashboardProcessBeanHandler<Ful
 
   public List<DashboardProcess> completeProcesses(String query) {
     return dashboardProcessBean.getPortalDashboardProcesses().stream()
-        .filter(process -> StringUtils.containsIgnoreCase(process.getName(), query)).collect(Collectors.toList());
+        .filter(process -> Strings.CI.contains(process.getName(), query)).collect(Collectors.toList());
   }
 
   @Override

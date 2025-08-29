@@ -11,6 +11,7 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.event.ItemSelectEvent;
 
 import ch.ivy.addon.portalkit.dto.dashboard.StatisticDashboardWidget;
@@ -64,7 +65,7 @@ public class DashboardStatisticChartBean implements Serializable {
     if (CollectionUtils.isEmpty(availableCharts)) {
       fetchStatisticCharts();
     }
-    return availableCharts.stream().filter(chart -> StringUtils.containsAnyIgnoreCase(getDisplayChartName(chart), filter))
+    return availableCharts.stream().filter(chart -> Strings.CI.containsAny(getDisplayChartName(chart), filter))
       .collect(Collectors.toList());
   }
 
@@ -158,7 +159,7 @@ public class DashboardStatisticChartBean implements Serializable {
     String selectedChartId = (String) event.getComponent().getAttributes().get("selectedChartId");
     var charts = StatisticService.getInstance().findAll();
     return charts.stream()
-        .filter(chart -> StringUtils.equals(chart.getId(), selectedChartId))
+        .filter(chart -> Strings.CS.equals(chart.getId(), selectedChartId))
         .findFirst().orElse(null);
   }
 
