@@ -1,0 +1,12 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/data-class/13.2.0/data-class.json",
+  "simpleName" : "PreviewDocumentData",
+  "namespace" : "com.axonivy.portal.components",
+  "fields" : [ {
+    "name" : "streamedContent",
+    "type" : "org.primefaces.model.StreamedContent"
+  }, {
+    "name" : "returnStreamedContent",
+    "type" : "org.primefaces.model.StreamedContent"
+  } ]
+}
