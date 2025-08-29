@@ -72,14 +72,14 @@
                 <p:tooltip for="preview-file" trackMouse="true" hideEvent="mouseleave click"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" />
               </p:commandLink>
-              <p:commandLink id="edit-filename" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/editFilename')}"
+              <p:commandLink id="edit-filename" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/renamingDocument')}"
                 styleClass="si si-graphic-tablet-drawing-pen Fright document-renaming ui-sm-hidden"
                 rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
                 actionListener="#{data.setDocument(document)}"
                 update="#{cc.clientId}:document-renaming-dialog"
                 oncomplete="PF('document-renaming-dialog').show()">
                 <p:tooltip for="edit-filename" trackMouse="true" hideEvent="mouseleave click"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/editFilename')}" />
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/renamingDocument')}" />
               </p:commandLink>
               <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"
                 rendered="#{caseTaskDocumentBean.canWriteDocument(task)}"
@@ -161,7 +161,7 @@
   </p:dialog>
   
   <p:dialog id="document-renaming-dialog" widgetVar="document-renaming-dialog" appendTo="@(body)"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/renamingDocument')}" modal="true" resizable="false" showEffect="fade" hideEffect="fade"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/renamingDocument')}" modal="true" resizable="false" showEffect="fade" hideEffect="fade"
     styleClass="document-renaming-dialog" dynamic="true" fitViewport="true" responsive="true">
     <h:form id="document-renaming-form">
       <p:messages id="renaming-file-messages" escape="false" />

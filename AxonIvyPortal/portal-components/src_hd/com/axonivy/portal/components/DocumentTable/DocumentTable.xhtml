@@ -11,6 +11,7 @@
   <cc:attribute name="uploadRendered" default="true" />
   <cc:attribute name="downloadRendered" default="true" />
   <cc:attribute name="deleteRendered" default="true" />
+  <cc:attribute name="renameRendered" default="true" />
   <cc:attribute name="messageRendered" default="true" />
   <cc:attribute name="renderChooseUploadIcon" default="true" />
   
@@ -37,6 +38,11 @@
   <cc:attribute name="deleteIcon" default="si si-bin-1" />
   <cc:attribute name="deleteStyleClass" />
   <cc:attribute name="updatedComponentAfterDeleted" />
+  
+  <cc:attribute name="renameText" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocument')}" />
+  <cc:attribute name="renameTitle" default="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocument')}" />
+  <cc:attribute name="renameStyleClass" />
+  <cc:attribute name="updatedComponentAfterRenamed" />
   
   <cc:attribute name="selectedType" />
   <cc:attribute name="typeSelectionItems" shortDescription="Use #{documentUploadBean.documentTypes} if there are no custom Document Type" />
@@ -81,7 +87,7 @@
       <p:column styleClass="align-center-column document-action-column" rendered="#{cc.attrs.functionColumnRendered}"
         headerText="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/FileFunction')}">
         <div class="ui-g-12"></div>
-        <div class="ui-g-4">
+        <div class="ui-g-3">
         <p:commandLink id="document-preview" 
           ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" 
           title="#{cc.attrs.previewTitle}"
@@ -95,7 +101,17 @@
             value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Preview')}" />
         </p:commandLink>
         </div>
-        <div class="ui-g-4">
+        <div class="ui-g-3">
+        <p:commandLink id="edit-filename" ariaLabel="#{cc.attrs.renameText}"
+          rendered="#{cc.attrs.renameRendered}" styleClass="#{cc.attrs.renameStyleClass}"
+          actionListener="#{data.setSelectedDocument(document)}"
+          update="#{cc.clientId}:document-renaming-dialog"
+          oncomplete="PF('document-renaming-dialog').show()">
+          <i class="fa si si-graphic-tablet-drawing-pen " />
+          <p:tooltip for="edit-filename" trackMouse="true" hideEvent="mouseleave click" value="#{cc.attrs.renameText}" />
+        </p:commandLink>
+        </div>
+        <div class="ui-g-3">
         <p:commandLink id="document-download" styleClass="#{cc.attrs.downloadStyleClass}"
           immediate="true" ajax="false" process="@none" title="#{cc.attrs.downloadTitle}"
           ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/Download')}"
@@ -104,7 +120,7 @@
           <p:fileDownload value="#{logic.download(document)}" />
         </p:commandLink>
         </div>
-        <div class="ui-g-4">
+        <div class="ui-g-3">
         <p:commandLink id="document-delete" styleClass="#{cc.attrs.deleteStyleClass}"
           actionListener="#{data.setSelectedDocument(document)}" rendered="#{cc.attrs.deleteRendered}"
           update="#{cc.attrs.updatedComponentAfterDeleted}" immediate="true" title="#{cc.attrs.deleteTitle}"
@@ -165,6 +181,31 @@
           value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/No')}" type="button"
           onclick="PF('document-delete-dialog').hide()" />
       </f:facet>
+    </p:dialog>
+
+    <p:dialog id="document-renaming-dialog" widgetVar="document-renaming-dialog" appendTo="@(body)"
+      header="#{cc.attrs.renameTitle}"  modal="true" resizable="false" showEffect="fade" hideEffect="fade"
+      width="50vw" dynamic="true" fitViewport="true" responsive="true">
+      <h:form id="document-renaming-form">
+        <p:messages id="renaming-file-messages" escape="false" />
+        <p:inputText id="new-filename" value="#{data.selectedDocument.name}" converter="filenameConverter"
+          onfocus="this.select()" maxlength="255" styleClass="w-full"/>
+        <h:panelGroup layout="block" styleClass="dialog-footer">
+          <p:commandLink id="document-rename-cancel-button"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Cancel')}"
+            ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Cancel')}"
+            onclick="PF('document-renaming-dialog').hide();" />
+          <p:commandButton id="document-rename-save-button"
+            value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Save')}"
+            ariaLabel="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Save')}" 
+            icon="si si-floppy-disk"
+            process="@form"
+            actionListener="#{logic.renameDocument}"
+            update="#{cc.clientId}:document-table document-renaming-form:renaming-file-messages #{cc.attrs.updatedComponentAfterRenamed}"
+            oncomplete="if (document.getElementById('#{cc.clientId}:document-renaming-form:renaming-file-messages').querySelector('.ui-messages-info')) PF('document-renaming-dialog').hide()"
+          />
+        </h:panelGroup>
+      </h:form>
     </p:dialog>
   </div>
 

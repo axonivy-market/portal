@@ -16,6 +16,7 @@ Dialogs:
             Process:
               ProcessName: Nom du processus
             RequiredFieldMessage: Ce champ est obligatoire
+            Save: Enregistrer
             Task:
               Activator: Responsable
             Type: Type
@@ -35,7 +36,9 @@ Dialogs:
             Name: Nom du fichier
             NoFile: Aucun fichier trouvé !
             Preview: Aperçu
+            RenamingDocument: Renommage de document
             RenamingDocumentNote: '{0} a renommé le fichier {1} en {2}'
+            RenamingDocumentSuccess: Renommé avec succès.
             RenamingDuplicateName: Il existe déjà un fichier avec le même nom à cet emplacement.
             RenamingErrorCharacters: 'Un nom de fichier ne peut pas contenir les caractères suivants : \ / : * ? " < > |'
             RenamingFailed: Une erreur s'est produite lors du renommage du document.

@@ -21,7 +21,7 @@
             { "id" : "S10-f19", "to" : "S10-f18", "label" : {
                 "name" : "Yes"
               }, "condition" : "in.isSuccess" },
-            { "id" : "S10-f1", "to" : "S10-g1", "via" : [ { "x" : 328, "y" : 222 }, { "x" : 640, "y" : 222 } ], "label" : {
+            { "id" : "S10-f3", "to" : "S10-f2", "via" : [ { "x" : 328, "y" : 222 }, { "x" : 608, "y" : 222 } ], "label" : {
                 "name" : "No",
                 "segment" : 0.5
               }, "condition" : "!in.isSuccess" }
@@ -46,14 +46,14 @@
                 "",
                 "if (!document.getName().equals(in.document.name)) {",
                 "  ",
-                "  String note = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/renamingDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), document.getName(), in.document.getName()));",
+                "  String note = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), document.getName(), in.document.getName()));",
                 "  ",
                 "  if (document.getName().equalsIgnoreCase(in.document.name)) {",
                 "    try {",
                 "      in.businessCase.documents().move(document, new Path(in.document.name + System.currentTimeMillis().toString()));",
                 "    } catch (Exception e) {   ",
                 "      in.isSuccess = false;",
-                "      in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/renamingFailed\");",
+                "      in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingFailed\");",
                 "    }",
                 "  }",
                 "",
@@ -62,7 +62,7 @@
                 "    in.businessCase.createNote(ivy.session, note);",
                 "  } catch (Exception e) {   ",
                 "    in.isSuccess = false;",
-                "    in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/renamingFailed\");",
+                "    in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingFailed\");",
                 "  }",
                 "}"
               ]
@@ -71,7 +71,7 @@
           "visual" : {
             "at" : { "x" : 488, "y" : 160 }
           },
-          "connect" : { "id" : "S10-f2", "to" : "S10-g2" }
+          "connect" : { "id" : "S10-f1", "to" : "S10-f2" }
         }, {
           "id" : "S10-f15",
           "type" : "Script",
@@ -85,11 +85,11 @@
                 "NewFilenameValidation filenameValidation = CaseDocumentService.newInstance(in.businessCase).isNewFilenameValid(in.document);",
                 "",
                 "if (filenameValidation == NewFilenameValidation.INVALID_FORMAT) {",
-                "  in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/renamingErrorCharacters\");",
+                "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingErrorCharacters\");",
                 "  in.isSuccess = false;",
                 "}",
                 "else if (filenameValidation == NewFilenameValidation.ALREADY_EXIST) {",
-                "  in.message = ivy.cms.co(\"/ch.ivy.addon.portalkit.ui.jsf/documentFiles/renamingDuplicateName\");",
+                "  in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDuplicateName\");",
                 "  in.isSuccess = false;",
                 "}"
               ]
@@ -109,29 +109,26 @@
           "parentConnector" : "f4",
           "connect" : { "id" : "S10-f0", "to" : "S10-f15" }
         }, {
+          "id" : "S10-f2",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 608, "y" : 160 }
+          },
+          "connect" : [
+            { "id" : "S10-f4", "to" : "S10-g1" }
+          ]
+        }, {
           "id" : "S10-g1",
           "type" : "EmbeddedEnd",
-          "name" : "out 1",
           "visual" : {
-            "at" : { "x" : 640, "y" : 160 }
+            "at" : { "x" : 672, "y" : 160 }
           },
-          "parentConnector" : "f9"
-        }, {
-          "id" : "S10-g2",
-          "type" : "EmbeddedEnd",
-          "name" : "out 2",
-          "visual" : {
-            "at" : { "x" : 640, "y" : 160 }
-          },
-          "parentConnector" : "f10"
+          "parentConnector" : "f8"
         } ],
       "visual" : {
         "at" : { "x" : 840, "y" : 184 }
       },
-      "connect" : [
-        { "id" : "f9", "to" : "f11" },
-        { "id" : "f10", "to" : "f11" }
-      ]
+      "connect" : { "id" : "f8", "to" : "f11" }
     }, {
       "id" : "f0",
       "type" : "CallSubStart",

@@ -368,7 +368,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     noTasks: Sin tareas
     relatedTasks: Tareas relacionadas
     relatedTasksAndCases: Tareas y casos relacionados
-    renamingDocument: Renombrando documento
     runningTasks: Tareas pendientes
     showAdditionalPage: Detalles del negocio
     showAllTasks: Mostrar todas las tareas
@@ -1002,12 +1001,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteDocumentNote: '{0} ha eliminado {1}'
     deleteSuceed: Archivo eliminado con éxito
     download: Descargar
-    editFilename: ''
     fileContainScript: ¡Este archivo no puede cargarse porque contiene algunos scripts!
     fileContainVirus: Carga fallida, ¡se ha detectado un virus/infección!
     fileCouldNotParse: No se pudo analizar el archivo
     fileEmptyMessage: El archivo está vacío
     name: Nombre de archivo
+    renamingDocument: Renombrando documento
     renamingDocumentNote: '{0} ha renombrado el archivo {1} a {2}'
     renamingDocumentSuccess: Renombrado exitosamente.
     renamingDuplicateName: Ya existe un archivo con el mismo nombre en esta ubicación.

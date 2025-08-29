@@ -367,7 +367,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     noTasks: Keine Aufgabe
     relatedTasks: Zugehörige Aufgaben
     relatedTasksAndCases: Zugehörige Aufgaben und Vorgänge
-    renamingDocument: Dokument umbenennen
     runningTasks: Laufende Aufgaben
     showAdditionalPage: Geschäftsdetails
     showAllTasks: Alle Tasks anzeigen
@@ -1001,12 +1000,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
     deleteSuceed: Datei wurde erfolgreich gelöscht
     download: Herunterladen
-    editFilename: ''
     fileContainScript: Diese Datei darf aufgrund von Skript-Inhalten nicht hochgeladen werden!
     fileContainVirus: Upload fehlgeschlagen, Virus/Infektion erkannt!
     fileCouldNotParse: Die Datei konnte nicht analysiert werden
     fileEmptyMessage: Datei ist leer
     name: Dateiname
+    renamingDocument: Dokument umbenennen
     renamingDocumentNote: '{0} hat die Datei {1} in {2} umbenannt'
     renamingDocumentSuccess: Erfolgreich umbenannt.
     renamingDuplicateName: Es gibt bereits eine Datei mit diesem Namen an diesem Speicherort.

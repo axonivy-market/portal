@@ -366,7 +366,6 @@ ch.ivy.addon.portalkit.ui.jsf:
     noTasks: No tasks
     relatedTasks: Related tasks
     relatedTasksAndCases: Related tasks and cases
-    renamingDocument: Renaming Document
     runningTasks: Running tasks
     showAdditionalPage: Business details
     showAllTasks: Show all tasks
@@ -1003,12 +1002,12 @@ ch.ivy.addon.portalkit.ui.jsf:
     deleteDocumentNote: '{0} has deleted {1}'
     deleteSuceed: File deleted successfully
     download: Download
-    editFilename: Edit filename
     fileContainScript: This file is not allowed to upload because it contains some script!
     fileContainVirus: Upload failed, virus/infection detected!
     fileCouldNotParse: Could not parse the file
     fileEmptyMessage: File is empty
     name: Filename
+    renamingDocument: Renaming document
     renamingDocumentNote: '{0} has renamed the file {1} to {2}'
     renamingDocumentSuccess: Rename successfully.
     renamingDuplicateName: There is already a file with the same name in this location.

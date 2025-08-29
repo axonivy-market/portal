@@ -36,3 +36,7 @@ sizeLimit Long #field
 sizeLimit PERSISTENT #fieldModifier
 isImage Boolean #field
 isImage PERSISTENT #fieldModifier
+isRenameDocumentSuccess Boolean #field
+isRenameDocumentSuccess PERSISTENT #fieldModifier
+renameDocumentMessage String #field
+renameDocumentMessage PERSISTENT #fieldModifier
