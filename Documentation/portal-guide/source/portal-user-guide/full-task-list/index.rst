@@ -170,7 +170,7 @@ HowTo: Remove an attachment from the case
    Grant either permission :bdg-ref-warning:`🔑DocumentOfInvolvedCaseWrite <DocumentOfInvolvedCaseWrite>` or :bdg-ref-warning:`🔑DocumentWrite <DocumentWrite>` to allow a user to delete documents.
 
 
-HowTo: Preview a document of a case
+HowTo: Preview a document of a task
 ------------------------------------
 
 #. Open the task details of a task
@@ -186,9 +186,11 @@ HowTo: Preview a document of a case
 
 .. note::
 
-   Portal can preview images, plain text(txt and log) and pdf documents.
+    - Portal can preview images(jpg, jpeg, bmp and png), plain text(txt and log) and pdf documents by default.
 
-   Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
+    - Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents if :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` is deployed in the same security context.
+
+    - Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
 
 
 HowTo: Add a note to a task

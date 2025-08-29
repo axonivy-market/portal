@@ -1,0 +1,73 @@
+{
+  "$schema" : "https://json-schema.axonivy.com/process/13.1.2/process.json",
+  "id" : "198F4E5E3D960ED4",
+  "kind" : "CALLABLE_SUB",
+  "config" : {
+    "data" : "com.axonivy.portal.components.PreviewDocumentData"
+  },
+  "elements" : [ {
+      "id" : "f0",
+      "type" : "CallSubStart",
+      "name" : "previewDocumentWithDocFactory(StreamedContent)",
+      "config" : {
+        "signature" : "previewDocumentWithDocFactory",
+        "input" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+          ],
+          "map" : {
+            "out.streamedContent" : "param.streamedContent"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent", "desc" : "" }
+          ],
+          "map" : {
+            "result.streamedContent" : "in.returnStreamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 168, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f2", "to" : "f3" }
+      ]
+    }, {
+      "id" : "f1",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 704, "y" : 64 }
+      }
+    }, {
+      "id" : "f3",
+      "type" : "Script",
+      "name" : "Find DocFactory and use it if found",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import org.primefaces.model.StreamedContent;",
+            "import java.util.HashMap;",
+            "import java.util.Map;",
+            "import com.axonivy.portal.components.service.IvyAdapterService;",
+            "",
+            "Map params = new HashMap();",
+            "params.put(\"streamedContent\", in.streamedContent);",
+            "Map response = IvyAdapterService.startSubProcessInSecurityContext(\"previewDocumentByStream(org.primefaces.model.StreamedContent)\", params);",
+            "if (response != null && response.get(\"streamedContent\") != null){",
+            "  in.returnStreamedContent = response.get(\"streamedContent\") as StreamedContent;",
+            "} else {",
+            "  in.returnStreamedContent = in.streamedContent;",
+            "}"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 424, "y" : 64 }
+      },
+      "connect" : [
+        { "id" : "f4", "to" : "f1", "color" : "default" }
+      ]
+    } ]
+}

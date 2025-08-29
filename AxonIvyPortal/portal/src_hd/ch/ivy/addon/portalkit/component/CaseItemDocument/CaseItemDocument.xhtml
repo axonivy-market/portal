@@ -66,8 +66,8 @@
               <p:commandLink id="preview-file" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/PreviewDocument')}" 
                 process="@this"
                 styleClass="si si-view-1 Fright document-preview ui-sm-hidden"
-                actionListener="#{logic.downloadDocument(document)}"
-                rendered="#{caseTaskDocumentBean.canPreviewDocument(document)}"
+                actionListener="#{logic.previewDocument(document)}"
+                rendered="#{data.isDocumentPreviewEnabled and caseTaskDocumentBean.isSupportedPreviewType(document)}"
                 update="#{cc.clientId}:preview-document-dialog"
                 oncomplete="PF('preview-document-dialog').show()">
                 <p:tooltip for="preview-file" trackMouse="true" hideEvent="mouseleave click"
