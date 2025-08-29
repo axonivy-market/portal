@@ -87,7 +87,7 @@ public class ExternalLinkBean implements Serializable {
     Pair<String, String> imageInfo = ExternalLinkUtils.handleImageUpload(event);
     if (imageInfo.equals(Pair.of(null, null))) {
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-          "SVG file contains potentially malicious content and cannot be uploaded", null);
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/fileContainScript"), null);
       FacesContext.getCurrentInstance().addMessage("external-link-dialog-message", message);
       return;
     } else {

@@ -26,31 +26,22 @@ import ch.ivyteam.ivy.environment.Ivy;
  */
 public class SVGSecurityScanner implements DocumentDetector {
 
-  // URI schemes that can execute code
   private static final Pattern DANGEROUS_SCHEME =
       Pattern.compile("^\\s*(javascript|vbscript|data)\\s*:", Pattern.CASE_INSENSITIVE);
-  // CSS url(...) extractor
   private static final Pattern CSS_URL =
       Pattern.compile("url\\s*\\(\\s*(['\"]?)(.*?)\\1\\s*\\)", Pattern.CASE_INSENSITIVE);
-  // CSS expression(...)
   private static final Pattern CSS_EXPRESSION = Pattern.compile("expression\\s*\\(", Pattern.CASE_INSENSITIVE);
 
   private static final Set<String> HREF_ATTRS = Set.of("href", "xlink:href");
 
-  /** Convenience method for string content. */
   public static boolean isSafe(String svgContent) {
     try {
-      // Parse as XML; jsoup resolves common entity escapes for attributes
       Document doc = Jsoup.parse(svgContent, "", org.jsoup.parser.Parser.xmlParser());
 
-      // 1) Block elements that can execute/contain active script
       if (!doc.select("script, foreignObject").isEmpty()) {
         return false;
       }
-
-      // 2) Walk attributes and styles
       for (Element el : doc.getAllElements()) {
-        // 2a) Event handlers: any attribute starting with "on"
         for (Attribute attr : el.attributes()) {
           String key = attr.getKey().toLowerCase(Locale.ROOT);
           String val = attr.getValue();
@@ -60,14 +51,12 @@ public class SVGSecurityScanner implements DocumentDetector {
             return false;
           }
 
-          // 2b) Dangerous schemes in href/xlink:href
           if (HREF_ATTRS.contains(key) || key.endsWith(":href")) { // covers namespaced forms
             if (DANGEROUS_SCHEME.matcher(valLower).find()) {
               return false;
             }
           }
 
-          // 2c) Inline style attribute: check url(...) and expression(...)
           if ("style".equals(key)) {
             if (CSS_EXPRESSION.matcher(valLower).find()) {
               return false;
@@ -84,9 +73,8 @@ public class SVGSecurityScanner implements DocumentDetector {
         }
       }
 
-      // 3) <style> blocks: scan CSS text for url(...) and expression(...)
       for (Element style : doc.select("style")) {
-        String css = style.data(); // inside <style> ... CSS ... </style>
+        String css = style.data();
         String cssLower = css.toLowerCase(Locale.ROOT);
         if (CSS_EXPRESSION.matcher(cssLower).find()) {
           return false;
@@ -101,14 +89,13 @@ public class SVGSecurityScanner implements DocumentDetector {
         }
       }
 
-      return true; // no script-like constructs found
+      return true;
     } catch (Exception e) {
       Ivy.log().error("SVG security check failed", e);
-      return false; // fail closed
+      return false;
     }
   }
 
-  /** Implementation for DocumentDetector. */
   @Override
   public boolean isSafe(InputStream inputStream) {
     try {
@@ -117,7 +104,7 @@ public class SVGSecurityScanner implements DocumentDetector {
       return isSafe(svg);
     } catch (Exception e) {
       Ivy.log().error("SVG security check failed", e);
-      return false; // fail closed
+      return false;
     }
   }
 }

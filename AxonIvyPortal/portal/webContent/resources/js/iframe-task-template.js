@@ -2,7 +2,7 @@ var invalidIFrameSrcPath = false;
 
 let taskUrl = new URLSearchParams(window.location.search).get("taskUrl");
 let updateIframeSrc = (newSrc) => {
-  document.getElementById('iFrame').src = newSrc;
+  document.getElementById('iFrame').src = sanitizeRelative(newSrc);
 }
 if (taskUrl){
   updateIframeSrc(taskUrl)
@@ -120,16 +120,23 @@ function checkUrl(iFrame, appName) {
   if (path.match("/default/redirect.xhtml$")) {
     var redirectUrl = new URLSearchParams(iFrame.contentWindow.location.search).get("redirectPage");
     iFrame.src = "about:blank";
-    redirectToUrlCommand([{
-      name: 'url',
-      value: redirectUrl
-    }]);
+
+    // only allow relative redirect targets
+    const safeRedirect = sanitizeRelative(redirectUrl, "");
+    if (safeRedirect) {
+      redirectToUrlCommand([{ name: "url", value: safeRedirect }]);
+    } else {
+      console.warn("Blocked external redirect:", redirectUrl);
+    }
   } else {
-    useTaskInIFrame([{
-      name: 'url',
-      value: path
-    }]);
-    updateHistory(iFrame.contentWindow.location.href);
+    // only send relative path back to server
+    const safePath = sanitizeRelative(path, "");
+    if (safePath) {
+      useTaskInIFrame([{ name: "url", value: safePath }]);
+      updateHistory(iFrame.contentWindow.location.href);
+    } else {
+      console.warn("Blocked external path:", path);
+    }
   }
 }
 
@@ -192,4 +199,27 @@ const convertProcessSteps = processSteps => {
     let stepsCompatibleWithPortal8 = processSteps.split(',');
     return JSON.stringify(stepsCompatibleWithPortal8);
   }
+};
+
+function isRelativeUrl(u) {
+  if (!u) return false;
+  u = String(u).trim();
+
+  // block protocol-relative (//host) and obvious control chars
+  if (
+    u.startsWith("//") ||
+    u.includes("\r") ||
+    u.includes("\n") ||
+    u.indexOf("\0") >= 0
+  )
+    return false;
+
+  // block any scheme: http:, https:, javascript:, file:, data:, etc.
+  if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(u)) return false;
+
+  return true;
+}
+
+function sanitizeRelative(u, fallback = "about:blank") {
+  return isRelativeUrl(u) ? u.trim() : fallback;
 }
