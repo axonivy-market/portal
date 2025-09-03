@@ -26,5 +26,7 @@ businessCase ch.ivyteam.ivy.workflow.ICase #field
 businessCase PERSISTENT #fieldModifier
 deleteDocumentMessage String #field
 deleteDocumentMessage PERSISTENT #fieldModifier
+isDocumentPreviewEnabled Boolean #field
+isDocumentPreviewEnabled PERSISTENT #fieldModifier
 isImage Boolean #field
 isImage PERSISTENT #fieldModifier

@@ -297,18 +297,6 @@
       "name" : "download(IvyDocument)",
       "config" : {
         "callSignature" : "download",
-        "input" : {
-          "params" : [
-            { "name" : "selectedDocument", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
-          ],
-          "map" : {
-            "out.selectedDocument" : "param.selectedDocument"
-          },
-          "code" : [
-            "import org.apache.commons.lang3.StringUtils;",
-            "out.isImage = param.selectedDocument != null && StringUtils.startsWithIgnoreCase(param.selectedDocument.getContentType(), \"image/\");"
-          ]
-        },
         "result" : {
           "params" : [
             { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
@@ -317,10 +305,18 @@
             "result.streamedContent" : "in.streamedContent"
           }
         },
+        "input" : {
+          "params" : [
+            { "name" : "selectedDocument", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
+          ],
+          "map" : {
+            "out.selectedDocument" : "param.selectedDocument"
+          }
+        },
         "guid" : "16B214644C2FBAA8"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 736 }
+        "at" : { "x" : 88, "y" : 736 }
       },
       "connect" : { "id" : "f31", "to" : "f25" }
     }, {
@@ -347,7 +343,7 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 224, "y" : 736 },
+        "at" : { "x" : 216, "y" : 736 },
         "size" : { "width" : 128, "height" : 60 }
       },
       "connect" : { "id" : "f27", "to" : "f26" }
@@ -501,5 +497,97 @@
         "at" : { "x" : 224, "y" : 192 }
       },
       "connect" : { "id" : "f44", "to" : "f43" }
+    }, {
+      "id" : "f49",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "preview(IvyDocument)",
+      "config" : {
+        "callSignature" : "preview",
+        "input" : {
+          "params" : [
+            { "name" : "selectedDocument", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
+          ],
+          "map" : {
+            "out.selectedDocument" : "param.selectedDocument"
+          },
+          "code" : [
+            "import com.axonivy.portal.components.util.DocumentUtils;",
+            "",
+            "out.isImage = DocumentUtils.isImageDocument(param.selectedDocument);"
+          ]
+        },
+        "result" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
+          ],
+          "map" : {
+            "result.streamedContent" : "in.streamedContent"
+          }
+        },
+        "guid" : "198EF86323974D0A"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 832 }
+      },
+      "connect" : { "id" : "f55", "to" : "f52" }
+    }, {
+      "id" : "f52",
+      "type" : "SubProcessCall",
+      "name" : "DownloadDocument",
+      "config" : {
+        "processCall" : "Functional Processes/DownloadDocumentItem:downloadDocumentItem(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.streamedContent" : "result.streamedContent"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "bussinessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
+          ],
+          "map" : {
+            "param.bussinessCase" : "in.ivyCase",
+            "param.document" : "in.selectedDocument"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 832 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : { "id" : "f57", "to" : "f56" }
+    }, {
+      "id" : "f53",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 592, "y" : 832 }
+      }
+    }, {
+      "id" : "f56",
+      "type" : "SubProcessCall",
+      "name" : "Search for DocFactory",
+      "config" : {
+        "processCall" : "Functional Processes/PreviewDocument:previewDocumentWithDocFactory(org.primefaces.model.StreamedContent)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.streamedContent" : "result.streamedContent"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "streamedContent", "type" : "org.primefaces.model.StreamedContent" }
+          ],
+          "map" : {
+            "param.streamedContent" : "in.streamedContent"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 384, "y" : 832 }
+      },
+      "connect" : { "id" : "f54", "to" : "f53" }
     } ]
 }
