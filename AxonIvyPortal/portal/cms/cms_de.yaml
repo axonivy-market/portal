@@ -996,6 +996,8 @@ ch.ivy.addon.portalkit.ui.jsf:
     processAriaLabel: |
       Prozessname: {0}. Prozessbeschreibung: {1}
   documentFiles:
+    FilenameEmpty: |
+      Dateiname darf nicht leer sein.
     PreviewDocument: Vorschau
     RenameFile: Datei umbenennen
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'

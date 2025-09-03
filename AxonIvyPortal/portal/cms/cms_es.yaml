@@ -997,6 +997,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     processAriaLabel: |
       Nombre del proceso: {0}. Descripción del proceso: {1}
   documentFiles:
+    FilenameEmpty: El nombre del archivo no puede estar vacío.
     PreviewDocument: Vista previa
     RenameFile: Renombrar archivo
     deleteDocumentNote: '{0} ha eliminado {1}'
@@ -1007,7 +1008,7 @@ ch.ivy.addon.portalkit.ui.jsf:
     fileCouldNotParse: No se pudo analizar el archivo
     fileEmptyMessage: El archivo está vacío
     name: Nombre de archivo
-    renamingDocument: Renombrando documento
+    renamingDocument: Renombrar documento
     renamingDocumentNote: '{0} ha renombrado el archivo {1} a {2}'
     renamingDocumentSuccess: Renombrado exitosamente.
     renamingFailed: Se ha producido un error al renombrar el documento.

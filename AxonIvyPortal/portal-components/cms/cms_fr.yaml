@@ -32,11 +32,12 @@ Dialogs:
             FileContainVirus: Échec du téléchargement, virus/infection détecté !
             FileFunction: Fonctions
             FileLimitMessage: Le nombre maximum de fichiers à télécharger est atteint !
+            FilenameEmpty: Le nom du fichier ne peut pas être vide.
             InvalidFileMessage: Ce type de fichier n'est pas accepté!
             Name: Nom du fichier
             NoFile: Aucun fichier trouvé !
             Preview: Aperçu
-            RenamingDocument: Renommage de document
+            RenamingDocument: Renommer le document
             RenamingDocumentNote: '{0} a renommé le fichier {1} en {2}'
             RenamingDocumentSuccess: Renommé avec succès.
             RenamingFailed: Une erreur s'est produite lors du renommage du document.

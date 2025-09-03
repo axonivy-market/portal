@@ -32,11 +32,12 @@ Dialogs:
             FileContainVirus: Upload failed, virus/infection detected!
             FileFunction: Functions
             FileLimitMessage: The maximum number of files are already uploaded!
+            FilenameEmpty: Filename cannot be empty.
             InvalidFileMessage: This file type is not accepted!
             Name: Filename
             NoFile: No files are found!
             Preview: Preview
-            RenamingDocument: Renaming document
+            RenamingDocument: Rename document
             RenamingDocumentNote: '{0} has renamed the file {1} to {2}'
             RenamingDocumentSuccess: Rename successfully.
             RenamingFailed: An error occurs while renaming the document.

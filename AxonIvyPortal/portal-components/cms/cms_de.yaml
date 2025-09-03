@@ -32,6 +32,7 @@ Dialogs:
             FileContainVirus: Upload fehlgeschlagen, Virus/Infektion entdeckt!
             FileFunction: Funktionen
             FileLimitMessage: Limit an hochgeladenen Dateien erreicht!
+            FilenameEmpty: Dateiname darf nicht leer sein.
             InvalidFileMessage: Dateityp nicht gültig!
             Name: Dateiname
             NoFile: Keine Dateien vorhanden!

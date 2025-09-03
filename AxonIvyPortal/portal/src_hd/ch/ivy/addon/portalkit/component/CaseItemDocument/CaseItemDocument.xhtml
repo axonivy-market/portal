@@ -174,7 +174,8 @@
     <h:form id="document-renaming-form">
       <p:messages id="renaming-file-messages" escape="false" />
       <p:inputText id="new-filename" value="#{data.document.name}" converter="filenameConverter" 
-        onfocus="this.select()" styleClass="w-full" maxlength="#{portalComponentUtilsBean.filenameMaxLength}"/>
+        onfocus="this.select()" styleClass="w-full" maxlength="#{portalComponentUtilsBean.filenameMaxLength}"
+        required="true" requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/FilenameEmpty')}"/>
       <h:panelGroup layout="block" styleClass="MarTop20 u-text-align-right">
         <p:commandLink id="document-rename-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"

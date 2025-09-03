@@ -189,7 +189,8 @@
       <h:form id="document-renaming-form">
         <p:messages id="renaming-file-messages" escape="false" />
         <p:inputText id="new-filename" value="#{data.selectedDocument.name}" converter="filenameConverter"
-          onfocus="this.select()" maxlength="#{portalComponentUtilsBean.filenameMaxLength}" styleClass="w-full"/>
+          onfocus="this.select()" maxlength="#{portalComponentUtilsBean.filenameMaxLength}" styleClass="w-full"
+          required="true" requiredMessage="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/DocumentTable/FilenameEmpty')}"/>
         <h:panelGroup layout="block" styleClass="dialog-footer">
           <p:commandLink id="document-rename-cancel-button"
             value="#{ivy.cms.co('/Dialogs/com/axonivy/portal/components/Common/Cancel')}"
