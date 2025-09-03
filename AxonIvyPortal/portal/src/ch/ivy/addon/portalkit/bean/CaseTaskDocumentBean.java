@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.primefaces.model.SortMeta;
 
 import com.axonivy.portal.components.ivydata.bo.IvyDocument;
@@ -86,10 +86,10 @@ public class CaseTaskDocumentBean implements Serializable {
   
   public boolean canPreviewDocument(IvyDocument document) {
     boolean enablePreviewSetting = GlobalSettingService.getInstance().findBooleanGlobalSettingValue(GlobalVariable.ENABLE_DOCUMENT_PREVIEW);
-    if (document != null && StringUtils.startsWithIgnoreCase(document.getContentType(), "image/")) {
+    if (document != null && Strings.CI.startsWith(document.getContentType(), "image/")) {
       return enablePreviewSetting;
     }
-    boolean isSupportedPreviewType = document != null && StringUtils.endsWithAny(document.getPath().toLowerCase(), ".pdf", ".txt", ".log");
+    boolean isSupportedPreviewType = document != null && Strings.CS.endsWithAny(document.getPath().toLowerCase(), ".pdf", ".txt", ".log");
     return enablePreviewSetting && isSupportedPreviewType;
   }
 }

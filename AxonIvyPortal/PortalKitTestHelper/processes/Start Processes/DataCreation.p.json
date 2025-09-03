@@ -65,9 +65,10 @@
       "config" : {
         "output" : {
           "code" : [
+            "import org.apache.commons.lang3.Strings;",
             "import org.apache.commons.lang3.StringUtils;",
             "in.caseName = in.taskStructureInfo + \"_\" + ivy.case.getId();",
-            "in.caseStructureInfo = StringUtils.replace(in.taskStructureInfo,StringUtils.SPACE,\"_\");"
+            "in.caseStructureInfo = Strings.CS.replace(in.taskStructureInfo,StringUtils.SPACE,\"_\");"
           ]
         }
       },
