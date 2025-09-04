@@ -50,8 +50,8 @@
                     fileSize="#{masterDataBean.getReadableFileSize(document.size)}"
                     symbolStyleClass="case-details-document-download-icon"
                     fileNameStyleClass="js-document-name document-name" fileSizeStyleClass="document-size" />
+                    <p:tooltip for="download" trackMouse="true" hideEvent="mouseleave click" value="#{document.name}" />
                 </p:commandLink>
-                
                 <p:commandLink id="edit-filename" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/RenameFile')} #{document.name}"
                   styleClass="si si-graphic-tablet-drawing-pen Fright document-renaming ui-sm-hidden"
                   actionListener="#{data.setDocument(document)}"
