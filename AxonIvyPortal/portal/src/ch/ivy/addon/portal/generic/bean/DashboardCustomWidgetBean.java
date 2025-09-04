@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.service.impl.ProcessService;
 
@@ -56,7 +56,7 @@ public class DashboardCustomWidgetBean implements Serializable {
 
   public List<IvyProcessStartDTO> completeProcesses(String query) {
     return getAllCustomDashboardProcesses().stream()
-        .filter(process -> StringUtils.containsIgnoreCase(process.getName(), query))
+        .filter(process -> Strings.CI.contains(process.getName(), query))
         .map(IvyProcessStartDTO::new)
         .collect(Collectors.toList());
   }

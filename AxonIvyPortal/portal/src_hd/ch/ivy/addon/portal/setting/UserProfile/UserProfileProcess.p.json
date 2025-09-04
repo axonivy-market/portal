@@ -204,6 +204,7 @@
                 "import ch.ivy.addon.portalkit.enums.GlobalVariable;",
                 "import ch.ivy.addon.portalkit.configuration.GlobalSetting;",
                 "import ch.ivy.addon.portalkit.service.GlobalSettingService;",
+                "import org.apache.commons.lang3.Strings;",
                 "import org.apache.commons.lang3.StringUtils;",
                 "import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;",
                 "import ch.ivy.addon.portalkit.enums.ProcessMode;",
@@ -222,7 +223,7 @@
                 "}",
                 "",
                 "String userProcessSetting = UserSettingService.newInstance().getDefaultProcessMode();",
-                "if (StringUtils.isBlank(userProcessSetting) || StringUtils.equalsIgnoreCase(userProcessSetting, UserSettingService.DEFAULT)) {",
+                "if (StringUtils.isBlank(userProcessSetting) || Strings.CI.equals(userProcessSetting, UserSettingService.DEFAULT)) {",
                 "  userProcessSetting = defaultProcessModeSetting;",
                 "}",
                 "",
@@ -823,13 +824,13 @@
       "config" : {
         "output" : {
           "code" : [
-            "import org.apache.commons.lang3.StringUtils;",
+            "import org.apache.commons.lang3.Strings;",
             "import javax.faces.model.SelectItem;",
             "",
             "List<SelectItem> items = in.language.getFormattingLanguages();",
             "in.formatLanguages.clear();",
             "for (SelectItem item: items){",
-            "  if (StringUtils.containsIgnoreCase(item.label, in.queryLanguage)){",
+            "  if (Strings.CS.contains(item.label, in.queryLanguage)){",
             "    in.formatLanguages.add(item);",
             "  }",
             "}"

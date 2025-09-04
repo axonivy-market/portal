@@ -473,7 +473,7 @@
             { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.CaseCategoryStatistic" }
           ],
           "map" : {
-            "result.result" : "in.CaseCategoryStatisticResult"
+            "result.result" : "in.cazeCategoryStatisticResult"
           }
         }
       },
@@ -510,7 +510,7 @@
         "output" : {
           "map" : {
             "out" : "in",
-            "out.CaseCategoryStatisticResult" : "result.CaseCategoryStatistic"
+            "out.cazeCategoryStatisticResult" : "result.CaseCategoryStatistic"
           }
         },
         "call" : {
@@ -555,7 +555,7 @@
             { "name" : "result", "type" : "ch.ivy.addon.portalkit.bo.CaseCategoryStatistic" }
           ],
           "map" : {
-            "result.result" : "in.CaseCategoryStatisticResult"
+            "result.result" : "in.cazeCategoryStatisticResult"
           }
         }
       },
@@ -592,7 +592,7 @@
         "output" : {
           "map" : {
             "out" : "in",
-            "out.CaseCategoryStatisticResult" : "result.CaseCategoryStatistic"
+            "out.cazeCategoryStatisticResult" : "result.CaseCategoryStatistic"
           }
         },
         "call" : {

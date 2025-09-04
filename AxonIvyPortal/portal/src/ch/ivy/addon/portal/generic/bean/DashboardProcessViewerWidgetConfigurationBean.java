@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.service.impl.ProcessService;
 import com.axonivy.portal.components.util.ProcessViewerUtils;
@@ -32,7 +32,7 @@ public class DashboardProcessViewerWidgetConfigurationBean implements Serializab
   }
 
   public List<DashboardProcess> completeProcesses(String query) {
-    return defaultPortalProcesses.stream().filter(process -> StringUtils.containsIgnoreCase(process.getName(), query))
+    return defaultPortalProcesses.stream().filter(process -> Strings.CI.contains(process.getName(), query))
         .collect(Collectors.toList());
   }
 }

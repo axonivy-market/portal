@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
@@ -43,7 +44,7 @@ public final class CaseUtils {
     List<INote> notes = iCase.getNotes();
     if (excludeSystemNotes) {
       notes = notes.stream()
-          .filter(n -> !StringUtils.equals(n.getWritterName(), ISecurityConstants.SYSTEM_USER_NAME))
+          .filter(n -> !Strings.CS.equals(n.getWritterName(), ISecurityConstants.SYSTEM_USER_NAME))
           .collect(Collectors.toList());
     }
     return new ArrayList<>(notes);
@@ -68,7 +69,7 @@ public final class CaseUtils {
       states.add(CaseState.DONE);
     }
     return states.stream()
-        .sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString()))
+        .sorted((s1, s2) -> Strings.CS.compare(s1.toString(), s2.toString()))
         .collect(Collectors.toList());
   }
 

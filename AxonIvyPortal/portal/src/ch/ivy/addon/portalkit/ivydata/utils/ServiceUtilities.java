@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.RoleDTO;
 import com.axonivy.portal.components.dto.SecurityMemberDTO;
@@ -69,7 +69,7 @@ public class ServiceUtilities {
       .users()
       .paged()
       .stream()
-      .filter(user -> !StringUtils.equals(ISecurityConstants.SYSTEM_USER_NAME, user.getName()))
+      .filter(user -> !Strings.CS.equals(ISecurityConstants.SYSTEM_USER_NAME, user.getName()))
       .collect(Collectors.toList());
   }
 
@@ -98,7 +98,7 @@ public class ServiceUtilities {
 
     List<IRole> roles = new ArrayList<>(ISecurityContext.current().roles().all());
     roles.removeIf(role -> role.getProperty(AdditionalProperty.HIDE.toString()) != null);
-    roles.sort((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName()));
+    roles.sort((u1, u2) -> Strings.CI.compare(u1.getDisplayName(), u2.getDisplayName()));
 
     IvyCacheService.newInstance().setSessionCache(ISecurityContext.current().getName(), IvyCacheIdentifier.ROLES_IN_SECURITY_CONTEXT, roles);
     return roles;
@@ -182,7 +182,7 @@ public class ServiceUtilities {
 
   private static SecurityMemberDTO findSecurityRoleByName(String securityMemberName) {
     List<RoleDTO> roles = findAllRoleDTO().stream()
-                        .filter(role -> StringUtils.equalsIgnoreCase(role.getName(), securityMemberName))
+                        .filter(role -> Strings.CI.equals(role.getName(), securityMemberName))
                         .collect(Collectors.toList());
     return SecurityMemberDTOMapper.mapFromRoleDTOs(roles).stream().findFirst().orElse(null);
   }

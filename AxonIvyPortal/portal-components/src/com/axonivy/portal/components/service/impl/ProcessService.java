@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.BooleanUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.dto.IvyProcessResultDTO;
 import com.axonivy.portal.components.service.IProcessService;
@@ -61,7 +61,7 @@ public class ProcessService implements IProcessService {
 
   private boolean isNotPortalHomeAndMSTeamsProcess(IWebStartable process) {
     String relativeEncoded = process.getLink().getRelativeEncoded();
-    return !StringUtils.endsWithAny(relativeEncoded, PORTAL_START_REQUEST_PATH, PORTAL_IN_TEAMS_REQUEST_PATH);
+    return !Strings.CS.endsWithAny(relativeEncoded, PORTAL_START_REQUEST_PATH, PORTAL_IN_TEAMS_REQUEST_PATH);
   }
 
   public List<IWebStartable> findCustomDashboardProcesses() {

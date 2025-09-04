@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.axonivy.portal.components.constant.CustomFields;
 import com.axonivy.portal.components.dto.ProcessViewerDTO;
@@ -118,7 +119,7 @@ public class ProcessViewerUtils {
   }
 
   private static Predicate<? super IWebStartable> filterByRelativeLink(String startProcessId) {
-    return webStartable -> StringUtils.equals(startProcessId, webStartable.getLink().getRelative());
+    return webStartable -> Strings.CS.equals(startProcessId, webStartable.getLink().getRelative());
   }
 
   private static Predicate<? super IWebStartable> filterById(String startProcessId) {

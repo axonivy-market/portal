@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.event.ItemSelectEvent;
 
@@ -94,7 +95,7 @@ public class StatisticChartQueryUtils {
     Date fromDate;
     Date toDate;
     HashMap<String, Date> fromToDateMap;
-    if (StringUtils.equals(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/expired"), selectedValue)) {
+    if (Strings.CS.equals(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/expired"), selectedValue)) {
       query.where().isExpired().isEqual(true).and().state().isNotEqual(TaskState.DONE);
       return query;
     } else if (StatisticService.selectHourOfDay(selectedValue)) {
@@ -129,7 +130,7 @@ public class StatisticChartQueryUtils {
     Date toDate;
     HashMap<String, Date> fromToDate = new HashMap<>();
     Date currentDate;
-    if (StringUtils.containsIgnoreCase(previousSelectedDay, Ivy.cms().co(TODAY_EXPIRY_KEY))) {
+    if (Strings.CI.contains(previousSelectedDay, Ivy.cms().co(TODAY_EXPIRY_KEY))) {
       currentDate = new Date();
     } else {
       int shiftDays = StatisticChartTimeUtils.getShiftDaysFromDayOfWeek(previousSelectedDay);
@@ -156,7 +157,7 @@ public class StatisticChartQueryUtils {
     Date fromDate;
     Date toDate;
     HashMap<String, Date> fromToDate = new HashMap<>();
-    if (StringUtils.containsIgnoreCase(selectedValue, Ivy.cms().co(TODAY_EXPIRY_KEY))) {
+    if (Strings.CI.contains(selectedValue, Ivy.cms().co(TODAY_EXPIRY_KEY))) {
       fromDate = StatisticChartTimeUtils.truncateMinutesPart(new Date());
     } else {
       int shiftDays = StatisticChartTimeUtils.getShiftDaysFromDayOfWeek(selectedValue);
