@@ -35,6 +35,7 @@ public class TaskDetailsTest extends BaseTest {
       "Note is added on Task Details and the task has only Business Case";
 
   private static final String ACCESS_TASK_DETAILS = "ACCESS_TASK_DETAILS";
+  private static final String CREATE_NOTES = "InternalSupport/14B2FC03D2E87141/processWithSystemNote.ivp";
 
   @Override
   @BeforeEach
@@ -150,5 +151,40 @@ public class TaskDetailsTest extends BaseTest {
     taskWidget.applyFilter();
     taskWidget.openDashboardTaskDetails(TAKE_ORDER);
     taskDetailsPage.getStatusBanner().shouldBe(Condition.appear, DEFAULT_TIMEOUT);
+  }
+  
+  @Test
+  public void testUncheckSystemNotesByDefaultForAdminUser() {
+    updateGlobalVariable(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "false");
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(CREATE_NOTES);
+
+    redirectToNewDashBoard();
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("User: create note");
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(0));
+    taskDetailsPage.clickOnSystemNotesCheckbox(true);
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(1));
+  }
+
+  @Test
+  public void testCheckSystemNotesByDefaultForNormalUser() {
+    updateGlobalVariable(Variable.HIDE_SYSTEM_NOTES_FROM_HISTORY.getKey(), "false");
+    updateGlobalVariable(Variable.CHECK_SYSTEM_NOTES_BY_DEFAULT.getKey(), "true");
+    login(TestAccount.DEMO_USER);
+    redirectToRelativeLink(CREATE_NOTES);
+
+    redirectToNewDashBoard();
+    NavigationHelper.navigateToTaskList();
+    TopMenuTaskWidgetPage taskWidget = new TopMenuTaskWidgetPage();
+    taskWidget.openDashboardTaskDetails("User: create note");
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
+
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(1));
+    taskDetailsPage.clickOnSystemNotesCheckbox(false);
+    taskDetailsPage.getNotesWithContent("System note").shouldHave(size(0));
   }
 }
