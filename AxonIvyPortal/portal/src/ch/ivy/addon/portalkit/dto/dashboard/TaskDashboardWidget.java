@@ -19,6 +19,7 @@ import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
 import ch.ivy.addon.portalkit.dto.dashboard.taskcolumn.TaskColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.service.DashboardWidgetInformationService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.DashboardWidgetUtils;
 import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -94,6 +95,19 @@ public class TaskDashboardWidget extends DashboardWidget {
   
   public void setCanWorkOn(boolean canWorkOn) {
     this.dataModel.setCanWorkOn(canWorkOn);
+  }
+
+  public boolean isFilterTasksByCurrentCaseOwner() {
+    return this.dataModel.isFilterTasksByCurrentCaseOwner();
+  }
+
+  public void setFilterTasksByCurrentCaseOwner(boolean filterTasksByCurrentCaseOwner) {
+    this.dataModel.setFilterTasksByCurrentCaseOwner(filterTasksByCurrentCaseOwner);
+  }
+
+  @JsonIgnore
+  public boolean isCaseOwnerEnabled() {
+    return GlobalSettingService.getInstance().isCaseOwnerEnabled();
   }
 
   @JsonIgnore

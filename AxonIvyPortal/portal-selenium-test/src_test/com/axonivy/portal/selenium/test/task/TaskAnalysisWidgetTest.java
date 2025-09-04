@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import com.axonivy.ivy.webtest.IvyWebTest;
 import com.axonivy.portal.selenium.common.BaseTest;
 import com.axonivy.portal.selenium.common.TestAccount;
 import com.axonivy.portal.selenium.common.Variable;
@@ -25,7 +24,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
-@IvyWebTest(headless = false)
 public class TaskAnalysisWidgetTest extends BaseTest {
 
   private static final String ENABLE_CASE_OWNER_SETTING = Variable.ENABLE_CASE_OWNER.getKey();

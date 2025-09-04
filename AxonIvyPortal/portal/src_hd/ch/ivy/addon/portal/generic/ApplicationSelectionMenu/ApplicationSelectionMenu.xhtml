@@ -43,7 +43,6 @@
       <h:form id="main-navigator">
         <!-- Portal Main Menu -->
         <pm:menu id="main-menu" widgetVar="main-menu" model="#{menuView.mainMenuModel}" />
-
         <!-- Remote-command will be called when click on leave task -->
         <p:remoteCommand id="leave-task-rc" name="leaveTask" actionListener="#{logic.leave(task)}" immediate="true"
           process="@this" partialSubmit="true" oncomplete="resetPortalLeftMenuState();"/>
@@ -84,6 +83,7 @@
         $("#top-menu").find("> li.breadcrumb-container").css("display", "none");	
       }
     }
+    updateMainMenuAriaLabel();
   </script>
 </cc:implementation>
 </html>
