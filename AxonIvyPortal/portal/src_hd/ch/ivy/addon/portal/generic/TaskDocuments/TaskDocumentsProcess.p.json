@@ -250,5 +250,133 @@
         "labelOffset" : { "x" : 13, "y" : 35 }
       },
       "connect" : { "id" : "f17", "to" : "f11" }
+    }, {
+      "id" : "f13",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "renameDocument()",
+      "config" : {
+        "callSignature" : "renameDocument",
+        "guid" : "198E5B7AD2DBFE50"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 472 }
+      },
+      "connect" : { "id" : "f16", "to" : "f37" }
+    }, {
+      "id" : "f37",
+      "type" : "SubProcessCall",
+      "name" : "Rename Document",
+      "config" : {
+        "processCall" : "Functional Processes/RenameDocument:renameDocument(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.isRenameDocumentSuccess" : "result.isSuccess",
+            "out.renameDocumentMessage" : "result.message"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
+          ],
+          "map" : {
+            "param.businessCase" : "in.task.getCase()",
+            "param.document" : "in.document"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 232, "y" : 472 }
+      },
+      "connect" : { "id" : "f45", "to" : "f44" }
+    }, {
+      "id" : "f14",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 896, "y" : 472 }
+      }
+    }, {
+      "id" : "f41",
+      "type" : "Script",
+      "name" : "Show error message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.renameDocumentMessage, null));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 392, "y" : 567 },
+        "size" : { "width" : 116, "height" : 55 }
+      },
+      "connect" : { "id" : "f54", "to" : "f47", "via" : [ { "x" : 760, "y" : 567 } ] }
+    }, {
+      "id" : "f44",
+      "type" : "Alternative",
+      "name" : "rename successfully?",
+      "visual" : {
+        "at" : { "x" : 392, "y" : 472 },
+        "labelOffset" : { "x" : 16, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f43", "to" : "f41", "label" : {
+            "name" : "No"
+          }, "condition" : "!in.isRenameDocumentSuccess" },
+        { "id" : "f55", "to" : "f52" }
+      ]
+    }, {
+      "id" : "f47",
+      "type" : "SubProcessCall",
+      "name" : "Find documents",
+      "config" : {
+        "processCall" : "Functional Processes/GetDocumentList:getDocumentList(ch.ivyteam.ivy.workflow.ICase)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.documents" : "result.documents"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+          ],
+          "map" : {
+            "param.businessCase" : "in.task.getCase()"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 760, "y" : 472 }
+      },
+      "connect" : { "id" : "f40", "to" : "f14" }
+    }, {
+      "id" : "f52",
+      "type" : "Script",
+      "name" : [
+        "Show success",
+        "message"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(\"Renaming successfully\", \"\" ));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 560, "y" : 472 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : { "id" : "f48", "to" : "f47" }
     } ]
 }

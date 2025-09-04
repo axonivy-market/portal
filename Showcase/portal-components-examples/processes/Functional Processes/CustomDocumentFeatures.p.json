@@ -813,5 +813,235 @@
         "labelOffset" : { "x" : 9, "y" : 41 }
       },
       "connect" : { "id" : "f63", "to" : "f10", "via" : [ { "x" : 312, "y" : 592 } ] }
+    }, {
+      "id" : "f64",
+      "type" : "CallSubStart",
+      "name" : "portalRenameDocument(ICase,IvyDocument)",
+      "config" : {
+        "callSignature" : "portalRenameDocument",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase",
+            "out.document" : "param.document",
+            "out.isRenamingSuccess" : "true"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "message", "type" : "String" },
+            { "name" : "status", "type" : "String" },
+            { "name" : "isSuccess", "type" : "Boolean" }
+          ],
+          "map" : {
+            "result.message" : "in.message",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()",
+            "result.isSuccess" : "in.isRenamingSuccess"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 872 }
+      },
+      "connect" : { "id" : "f76", "to" : "f65" }
+    }, {
+      "id" : "f65",
+      "type" : "Script",
+      "name" : "detect if need to skip rename",
+      "config" : {
+        "output" : {
+          "code" : "in.skip = !Boolean.parseBoolean(in.businessCase.customFields().stringField(\"custom\").getOrDefault(\"false\"));"
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 304, "y" : 872 }
+      },
+      "connect" : { "id" : "f77", "to" : "f66" }
+    }, {
+      "id" : "f66",
+      "type" : "Alternative",
+      "name" : "skip custom rename?",
+      "visual" : {
+        "at" : { "x" : 456, "y" : 872 },
+        "labelOffset" : { "x" : 16, "y" : -24 }
+      },
+      "connect" : [
+        { "id" : "f86", "to" : "f68", "via" : [ { "x" : 456, "y" : 936 }, { "x" : 760, "y" : 936 } ], "label" : {
+            "name" : "Yes",
+            "segment" : 0.5,
+            "offset" : { "x" : -7, "y" : 3 }
+          }, "condition" : "in.skip" },
+        { "id" : "f67", "to" : "S10", "label" : {
+            "name" : "No"
+          } }
+      ]
+    }, {
+      "id" : "f68",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 760, "y" : 872 }
+      },
+      "connect" : [
+        { "id" : "f84", "to" : "f69" }
+      ]
+    }, {
+      "id" : "f69",
+      "type" : "CallSubEnd",
+      "visual" : {
+        "at" : { "x" : 856, "y" : 872 }
+      }
+    }, {
+      "id" : "f93",
+      "type" : "CallSubStart",
+      "name" : "portalRenameDocumentItem(ICase,IvyDocument)",
+      "config" : {
+        "callSignature" : "portalRenameDocumentItem",
+        "input" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
+          ],
+          "map" : {
+            "out.businessCase" : "param.businessCase",
+            "out.document" : "param.document",
+            "out.isRenamingSuccess" : "true"
+          }
+        },
+        "result" : {
+          "params" : [
+            { "name" : "message", "type" : "String" },
+            { "name" : "status", "type" : "String" },
+            { "name" : "isSuccess", "type" : "Boolean" }
+          ],
+          "map" : {
+            "result.message" : "in.message",
+            "result.status" : "in.skip ? com.axonivy.portal.components.enums.CustomProcessStatus.SKIP.name() : com.axonivy.portal.components.enums.CustomProcessStatus.OK.name()",
+            "result.isSuccess" : "in.isRenamingSuccess"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 96, "y" : 968 }
+      },
+      "connect" : { "id" : "f81", "to" : "f65", "via" : [ { "x" : 304, "y" : 968 } ] }
+    }, {
+      "id" : "S10",
+      "type" : "EmbeddedProcess",
+      "name" : "Custom update filename",
+      "elements" : [ {
+          "id" : "S10-f20",
+          "type" : "Alternative",
+          "name" : "valid?",
+          "visual" : {
+            "at" : { "x" : 328, "y" : 160 },
+            "labelOffset" : { "x" : 16, "y" : -16 }
+          },
+          "connect" : [
+            { "id" : "S10-f19", "to" : "S10-f18", "label" : {
+                "name" : "Yes"
+              }, "condition" : "in.isRenamingSuccess" },
+            { "id" : "S10-f3", "to" : "S10-f1", "via" : [ { "x" : 328, "y" : 216 }, { "x" : 616, "y" : 216 } ], "label" : {
+                "name" : "No"
+              } }
+          ]
+        }, {
+          "id" : "S10-f18",
+          "type" : "Script",
+          "name" : [
+            "Update filename ",
+            "and create note"
+          ],
+          "config" : {
+            "output" : {
+              "code" : [
+                "import java.util.Arrays;",
+                "import ch.ivyteam.ivy.environment.Ivy;",
+                "import ch.ivyteam.ivy.workflow.document.Path;",
+                "import ch.ivyteam.ivy.workflow.document.IDocument;",
+                "",
+                "Ivy.log().info(\"Updating filename in customized sub process\");",
+                "",
+                "IDocument document = in.businessCase.documents().get(Long.valueOf(in.document.id));",
+                "",
+                "if (!document.getName().equals(in.document.name)) {",
+                "  String note = \"Customized sub process: \" + ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocumentNote\", Arrays.asList(ivy.session.getSessionUserName(), document.getName(), in.document.getName()));",
+                "  ",
+                "  try {",
+                "    if (document.getName().equalsIgnoreCase(in.document.name)) {",
+                "      in.businessCase.documents().move(document, new Path(in.document.name + System.currentTimeMillis().toString()));",
+                "    }",
+                "    ",
+                "    in.businessCase.documents().move(document, new Path(in.document.name));",
+                "    in.businessCase.createNote(ivy.session, note);",
+                "  } catch (Exception e) {   ",
+                "    in.isRenamingSuccess = false;",
+                "    in.message = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingFailed\");",
+                "  }",
+                "}"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 488, "y" : 160 }
+          },
+          "connect" : { "id" : "S10-f2", "to" : "S10-f1" }
+        }, {
+          "id" : "S10-f15",
+          "type" : "Script",
+          "name" : "Validate new filename",
+          "config" : {
+            "output" : {
+              "code" : [
+                "import com.axonivy.portal.components.enums.NewFilenameValidation;",
+                "import com.axonivy.portal.components.service.CaseDocumentService;",
+                "",
+                "NewFilenameValidation filenameValidation = CaseDocumentService.newInstance(in.businessCase).isNewFilenameValid(in.document);",
+                "",
+                "in.isRenamingSuccess = NewFilenameValidation.VALID == filenameValidation;",
+                "",
+                "if (!in.isRenamingSuccess) {",
+                "  in.message = filenameValidation.getLabel();",
+                "}"
+              ]
+            }
+          },
+          "visual" : {
+            "at" : { "x" : 192, "y" : 160 }
+          },
+          "connect" : { "id" : "S10-f21", "to" : "S10-f20" }
+        }, {
+          "id" : "S10-g0",
+          "type" : "EmbeddedStart",
+          "name" : "in 1",
+          "visual" : {
+            "at" : { "x" : 64, "y" : 160 }
+          },
+          "parentConnector" : "f67",
+          "connect" : { "id" : "S10-f0", "to" : "S10-f15" }
+        }, {
+          "id" : "S10-g1",
+          "type" : "EmbeddedEnd",
+          "name" : "out 1",
+          "visual" : {
+            "at" : { "x" : 696, "y" : 160 }
+          },
+          "parentConnector" : "f82"
+        }, {
+          "id" : "S10-f1",
+          "type" : "Alternative",
+          "visual" : {
+            "at" : { "x" : 616, "y" : 160 }
+          },
+          "connect" : [
+            { "id" : "S10-f4", "to" : "S10-g1" }
+          ]
+        } ],
+      "visual" : {
+        "at" : { "x" : 624, "y" : 872 }
+      },
+      "connect" : { "id" : "f82", "to" : "f68" }
     } ]
 }

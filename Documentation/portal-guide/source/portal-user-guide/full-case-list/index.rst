@@ -72,7 +72,7 @@ The case details are separated into four different sections:
    |case-details-histories|
 
 #. Documents: Here, documents attached to the case are listed. You
-   may add, delete or preview documents as described in the HowTo’s below.
+   may add, delete, rename or preview documents as described in the HowTo’s below.
 
    |case-details-documents|
 
@@ -230,6 +230,24 @@ HowTo: Preview a document of a case
     - Portal can preview Word(doc, docx), Excel(xls, xlsx) and email(eml) documents if :dev-url:`DocFactory <https://market.axonivy.com/doc-factory#tab-description>` is deployed in the same security context.
 
     - Change :ref:`Portal settings <update-portal-settings>` :guilabel:`Portal.Document.EnablePreview` to true to enable this feature.
+
+HowTo: Rename a document of a case
+----------------------------------
+
+#. Open the case details
+
+#. Click on the |edit-icon| button next to the
+   attachment you want to rename
+
+#. A dialog is opened to rename the selected document
+
+#. Update filename as you expect in the input field
+
+#. Click the button :guilabel:`Save` to save your change
+
+#. Filename will be updated and a note about the renaming will be added
+
+|how-to-rename-document|
 
 HowTo: Remove an Attachment from the Case
 -----------------------------------------
@@ -450,3 +468,4 @@ HowTo: Share Case Details
 .. |portal-process-viewer| image:: ../../screenshots/case/portal-process-viewer.png
 .. |how-to-share-case-details| image:: ../../screenshots/case-detail/share-page-button.png
 .. |how-to-preview-document| image:: ../../screenshots/case-detail/how-to-preview-document.png
+.. |how-to-rename-document| image:: ../../screenshots/case-detail/how-to-rename-document.png

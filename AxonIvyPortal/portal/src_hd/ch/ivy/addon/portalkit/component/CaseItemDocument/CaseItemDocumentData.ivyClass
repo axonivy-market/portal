@@ -24,3 +24,7 @@ isImage Boolean #field
 isImage PERSISTENT #fieldModifier
 isDocumentPreviewEnabled Boolean #field
 isDocumentPreviewEnabled PERSISTENT #fieldModifier
+renameDocumentMessage String #field
+renameDocumentMessage PERSISTENT #fieldModifier
+isRenameDocumentSuccess Boolean #field
+isRenameDocumentSuccess PERSISTENT #fieldModifier

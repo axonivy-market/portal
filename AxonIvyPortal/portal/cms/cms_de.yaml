@@ -998,7 +998,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     processAriaLabel: |
       Prozessname: {0}. Prozessbeschreibung: {1}
   documentFiles:
+    FilenameEmpty: |
+      Dateiname darf nicht leer sein.
     PreviewDocument: Vorschau
+    RenameFile: Datei umbenennen
     deleteDocumentNote: '{0} hat folgendes gelöscht: {1}'
     deleteSuceed: Datei wurde erfolgreich gelöscht
     download: Herunterladen
@@ -1007,6 +1010,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     fileCouldNotParse: Die Datei konnte nicht analysiert werden
     fileEmptyMessage: Datei ist leer
     name: Dateiname
+    renamingDocument: Dokument umbenennen
+    renamingDocumentNote: '{0} hat die Datei {1} in {2} umbenannt'
+    renamingDocumentSuccess: Erfolgreich umbenannt.
+    renamingFailed: Beim Umbenennen des Dokuments ist ein Fehler aufgetreten.
     size: Dateigröße
     type: Typ
     upload: Neue Datei hochladen

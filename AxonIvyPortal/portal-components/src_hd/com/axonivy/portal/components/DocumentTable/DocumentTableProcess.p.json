@@ -25,7 +25,7 @@
         "at" : { "x" : 96, "y" : 96 },
         "labelOffset" : { "x" : 5, "y" : 35 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : { "id" : "f40", "to" : "f1" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
@@ -44,7 +44,7 @@
         "at" : { "x" : 96, "y" : 288 },
         "labelOffset" : { "x" : 20, "y" : 37 }
       },
-      "connect" : { "id" : "f8", "to" : "f6" }
+      "connect" : { "id" : "f37", "to" : "f6" }
     }, {
       "id" : "f6",
       "type" : "SubProcessCall",
@@ -70,7 +70,7 @@
       "visual" : {
         "at" : { "x" : 224, "y" : 288 }
       },
-      "connect" : { "id" : "f9", "to" : "f7" }
+      "connect" : { "id" : "f31", "to" : "f7" }
     }, {
       "id" : "f7",
       "type" : "HtmlDialogEnd",
@@ -107,12 +107,12 @@
         "labelOffset" : { "x" : 13, "y" : -19 }
       },
       "connect" : [
-        { "id" : "f40", "to" : "f39", "label" : {
+        { "id" : "f66", "to" : "f39", "label" : {
             "name" : "YES",
             "segment" : 0.29,
             "offset" : { "x" : 0, "y" : -7 }
           }, "condition" : "in.uploadDocumentCheckStatus == com.axonivy.portal.components.enums.UploadDocumentCheckStatus.OK" },
-        { "id" : "f37", "to" : "f36" }
+        { "id" : "f67", "to" : "f36" }
       ]
     }, {
       "id" : "f11",
@@ -197,7 +197,7 @@
         "at" : { "x" : 800, "y" : 384 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f47", "to" : "f45" }
+      "connect" : { "id" : "f69", "to" : "f45" }
     }, {
       "id" : "f3",
       "type" : "HtmlDialogMethodStart",
@@ -217,7 +217,7 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 544 }
       },
-      "connect" : { "id" : "f18", "to" : "f4" }
+      "connect" : { "id" : "f27", "to" : "f4" }
     }, {
       "id" : "f4",
       "type" : "HtmlDialogEnd",
@@ -284,7 +284,7 @@
       "visual" : {
         "at" : { "x" : 376, "y" : 640 }
       },
-      "connect" : { "id" : "f23", "to" : "f22" }
+      "connect" : { "id" : "f47", "to" : "f22" }
     }, {
       "id" : "f22",
       "type" : "HtmlDialogEnd",
@@ -318,7 +318,7 @@
       "visual" : {
         "at" : { "x" : 88, "y" : 736 }
       },
-      "connect" : { "id" : "f31", "to" : "f25" }
+      "connect" : { "id" : "f70", "to" : "f25" }
     }, {
       "id" : "f25",
       "type" : "SubProcessCall",
@@ -346,7 +346,7 @@
         "at" : { "x" : 216, "y" : 736 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f27", "to" : "f26" }
+      "connect" : { "id" : "f71", "to" : "f26" }
     }, {
       "id" : "f26",
       "type" : "HtmlDialogEnd",
@@ -395,7 +395,7 @@
         "at" : { "x" : 512, "y" : 480 }
       },
       "connect" : [
-        { "id" : "f12", "to" : "f11" }
+        { "id" : "f18", "to" : "f11" }
       ]
     }, {
       "id" : "f39",
@@ -475,7 +475,7 @@
       "visual" : {
         "at" : { "x" : 992, "y" : 384 }
       },
-      "connect" : { "id" : "f14", "to" : "f51" }
+      "connect" : { "id" : "f68", "to" : "f51" }
     }, {
       "id" : "f15",
       "type" : "Script",
@@ -529,7 +529,7 @@
       "visual" : {
         "at" : { "x" : 80, "y" : 832 }
       },
-      "connect" : { "id" : "f55", "to" : "f52" }
+      "connect" : { "id" : "f65", "to" : "f52" }
     }, {
       "id" : "f52",
       "type" : "SubProcessCall",
@@ -557,7 +557,7 @@
         "at" : { "x" : 208, "y" : 832 },
         "size" : { "width" : 128, "height" : 60 }
       },
-      "connect" : { "id" : "f57", "to" : "f56" }
+      "connect" : { "id" : "f23", "to" : "f56" }
     }, {
       "id" : "f53",
       "type" : "HtmlDialogEnd",
@@ -588,6 +588,137 @@
       "visual" : {
         "at" : { "x" : 384, "y" : 832 }
       },
-      "connect" : { "id" : "f54", "to" : "f53" }
+      "connect" : { "id" : "f14", "to" : "f53" }
+    }, {
+      "id" : "f2",
+      "type" : "HtmlDialogMethodStart",
+      "name" : "renameDocument()",
+      "config" : {
+        "callSignature" : "renameDocument",
+        "guid" : "198EF9EE4C19C319"
+      },
+      "visual" : {
+        "at" : { "x" : 80, "y" : 992 }
+      },
+      "connect" : { "id" : "f62", "to" : "f8" }
+    }, {
+      "id" : "f8",
+      "type" : "SubProcessCall",
+      "name" : "Rename Document",
+      "config" : {
+        "processCall" : "Functional Processes/RenameDocumentItem:renameDocumentItem(ch.ivyteam.ivy.workflow.ICase,com.axonivy.portal.components.ivydata.bo.IvyDocument)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.isRenameDocumentSuccess" : "result.isSuccess",
+            "out.renameDocumentMessage" : "result.message"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" },
+            { "name" : "document", "type" : "com.axonivy.portal.components.ivydata.bo.IvyDocument" }
+          ],
+          "map" : {
+            "param.businessCase" : "in.ivyCase",
+            "param.document" : "in.selectedDocument"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 208, "y" : 992 }
+      },
+      "connect" : { "id" : "f58", "to" : "f55" }
+    }, {
+      "id" : "f9",
+      "type" : "HtmlDialogEnd",
+      "visual" : {
+        "at" : { "x" : 840, "y" : 992 }
+      }
+    }, {
+      "id" : "f54",
+      "type" : "Script",
+      "name" : "Show error message",
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(FacesMessage.SEVERITY_ERROR, in.renameDocumentMessage, null));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 352, "y" : 1087 },
+        "size" : { "width" : 116, "height" : 55 }
+      },
+      "connect" : { "id" : "f64", "to" : "f12", "via" : [ { "x" : 720, "y" : 1087 } ] }
+    }, {
+      "id" : "f55",
+      "type" : "Alternative",
+      "name" : "rename successfully?",
+      "visual" : {
+        "at" : { "x" : 352, "y" : 992 },
+        "labelOffset" : { "x" : 16, "y" : -16 }
+      },
+      "connect" : [
+        { "id" : "f63", "to" : "f54", "label" : {
+            "name" : "No"
+          }, "condition" : "!in.isRenameDocumentSuccess" },
+        { "id" : "f61", "to" : "f57", "label" : {
+            "name" : "Yes"
+          } }
+      ]
+    }, {
+      "id" : "f12",
+      "type" : "SubProcessCall",
+      "name" : "Find documents",
+      "config" : {
+        "processCall" : "Functional Processes/GetDocumentItems:getDocumentItems(ch.ivyteam.ivy.workflow.ICase)",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.documents" : "result.documents"
+          }
+        },
+        "call" : {
+          "params" : [
+            { "name" : "businessCase", "type" : "ch.ivyteam.ivy.workflow.ICase" }
+          ],
+          "map" : {
+            "param.businessCase" : "in.ivyCase"
+          }
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 720, "y" : 992 }
+      },
+      "connect" : { "id" : "f60", "to" : "f9" }
+    }, {
+      "id" : "f57",
+      "type" : "Script",
+      "name" : [
+        "Show success",
+        "message"
+      ],
+      "config" : {
+        "output" : {
+          "code" : [
+            "import com.axonivy.portal.components.util.FacesMessageUtils;",
+            "import javax.faces.application.FacesMessage;",
+            "import javax.faces.context.FacesContext;",
+            "",
+            "String successMsg = ivy.cms.co(\"/Dialogs/com/axonivy/portal/components/DocumentTable/RenamingDocumentSuccess\");",
+            "FacesContext.getCurrentInstance().addMessage(null, FacesMessageUtils.sanitizedMessage(successMsg, \"\" ));"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 528, "y" : 992 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : { "id" : "f59", "to" : "f12" }
     } ]
 }

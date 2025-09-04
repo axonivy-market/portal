@@ -998,7 +998,9 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboardProcess:
     processAriaLabel: 'Nom du processus : {0}. Description du processus : {1}'
   documentFiles:
+    FilenameEmpty: Le nom du fichier ne peut pas être vide.
     PreviewDocument: Aperçu
+    RenameFile: Renommer le fichier
     deleteDocumentNote: '{0} a supprimé(e) {1}'
     deleteSuceed: Le fichier a été supprimé avec succès
     download: Télécharger
@@ -1007,6 +1009,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     fileCouldNotParse: Impossible d'analyser le fichier
     fileEmptyMessage: Le fichier est vide
     name: Nom du fichier
+    renamingDocument: Renommer le document
+    renamingDocumentNote: '{0} a renommé le fichier {1} en {2}'
+    renamingDocumentSuccess: Renommé avec succès.
+    renamingFailed: Une erreur s'est produite lors du renommage du document.
     size: Taille du fichier
     type: Type
     upload: Ajouter un nouveau fichier

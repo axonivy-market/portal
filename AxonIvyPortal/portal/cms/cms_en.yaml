@@ -999,7 +999,9 @@ ch.ivy.addon.portalkit.ui.jsf:
   dashboardProcess:
     processAriaLabel: 'Process name: {0}. Process description: {1}'
   documentFiles:
+    FilenameEmpty: Filename cannot be empty.
     PreviewDocument: Preview
+    RenameFile: Rename file
     deleteDocumentNote: '{0} has deleted {1}'
     deleteSuceed: File deleted successfully
     download: Download
@@ -1008,6 +1010,10 @@ ch.ivy.addon.portalkit.ui.jsf:
     fileCouldNotParse: Could not parse the file
     fileEmptyMessage: File is empty
     name: Filename
+    renamingDocument: Rename document
+    renamingDocumentNote: '{0} has renamed the file {1} to {2}'
+    renamingDocumentSuccess: Rename successfully.
+    renamingFailed: An error occurs while renaming the document.
     size: File size
     type: Type
     upload: Upload new file
