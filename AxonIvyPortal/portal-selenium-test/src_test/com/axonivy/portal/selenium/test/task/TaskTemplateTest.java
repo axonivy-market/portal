@@ -109,7 +109,7 @@ public class TaskTemplateTest extends BaseTest {
     taskWidget.applyFilter();
     TaskTemplatePage taskTemplatePage = taskWidget.startTaskByIndex(0);
     taskTemplatePage.clickTaskActionMenu();
-    taskTemplatePage.startSideStep();
+    taskTemplatePage.startCaseMapSideStep();
     NavigationHelper.navigateToTaskList();
     taskWidget = new TopMenuTaskWidgetPage();
     assertTrue("open".equalsIgnoreCase(taskWidget.stateOfFirstTask().text()));

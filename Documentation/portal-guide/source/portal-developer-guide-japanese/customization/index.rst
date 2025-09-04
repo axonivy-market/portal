@@ -25,3 +25,4 @@
    document-processes
    process-image
    process-information
+   side-step
