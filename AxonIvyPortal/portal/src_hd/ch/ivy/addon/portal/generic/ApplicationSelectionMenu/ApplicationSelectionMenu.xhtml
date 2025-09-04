@@ -20,14 +20,20 @@
 
   <!-- LOGO  -->
   <div class="sidebar-logo">
-    <p:commandLink id="logo" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" >
-      <p:graphicImage styleClass="portal-home-logo" name="#{ivyFreyaTheme.logo}" library="ivy-branding" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
+    <p:commandLink id="logo" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}"
+      action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}"
+      styleClass="js-logo-url-#{userMenuBean.base64EncodedHomeUrl}">
+      <p:graphicImage styleClass="portal-home-logo" name="#{ivyFreyaTheme.logo}" library="ivy-branding"
+        alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
 
-    <p:commandLink id="logo-small" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" styleClass="portal-home-logo-small">
-      <p:graphicImage styleClass="portal-home-logo portal-home-logo-small" name="logo_small" library="ivy-branding" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
+    <p:commandLink id="logo-small" ariaLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}"
+      action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}"
+      styleClass="portal-home-logo-small js-logo-url-#{userMenuBean.base64EncodedHomeUrl}">
+      <p:graphicImage styleClass="portal-home-logo portal-home-logo-small" name="logo_small" library="ivy-branding"
+        alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
-    
+
     <p:commandLink id="toggle-menu" styleClass="sidebar-pin" global="false" ariaLabel="#{ivy.cms.co('/Labels/ToggleMenu')}"
       onclick="hideBreadcrumb()" oncomplete="Portal.updateBreadcrumb();" >
       <span class="pin"></span>
@@ -72,16 +78,70 @@
     reserveActionListener="#{logic.fireEventClickOnMenuItem()}" reserveOnComplete="reserveTask();"
     cancelActionListener="#{logic.continueWorkingOnTask()}" cancelOnClick="PF('main-menu').restoreMenuState();">
     <f:facet name="event">
-      <p:ajax event="close" listener="#{logic.continueWorkingOnTask}" global="false" immediate="true"/>
+      <p:ajax event="close" listener="#{logic.continueWorkingOnTask}" global="false" immediate="true" />
     </f:facet>
   </ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask>
 
   <script type="text/javascript">
     function hideBreadcrumb() {
       if ($(".layout-static").length == 0) {
-        $("#top-menu").find("> li.breadcrumb-container").css("display", "none");	
+        $("#top-menu").find("> li.breadcrumb-container").css("display", "none");
       }
     }
+
+    function base64UrlDecode(str) {
+      // Convert URL-safe characters back to standard base64 characters
+      str = str.replace(/-/g, '+').replace(/_/g, '/');
+      try {
+        return atob(str);
+      } catch (e) {
+        console.warn("Failed to decode base64:", str, e);
+        return null;
+      }
+    }
+
+    function patchMenuHref() {
+      $('[id^="user-menu-required-login:main-navigator:main-menu"]').find('li a[class*="js-menu-url-"]').each(function () {
+        const $a = $(this);
+        const urlClass = $a.attr('class').match(/js-menu-url-([^ ]+)/)[1];
+        if (urlClass) {
+          const menuUrl = base64UrlDecode(urlClass);
+          if ($a.attr('href') !== menuUrl) {
+            $a.attr('href', menuUrl);
+          }
+        }
+      });
+
+      // Handle parent dashboard menu
+      $('[id^="user-menu-required-login:main-navigator:main-menu"]').find('li[class*="js-parent-dashboard-url-"] > a').each(function () {
+        const $submenuLink = $(this);
+        const $parentLi = $submenuLink.closest('li[class*="js-parent-dashboard-url-"]');
+        const urlClass = $parentLi.attr('class').match(/js-parent-dashboard-url-([^ ]+)/);
+
+        if (urlClass &amp;&amp; urlClass[1]) {
+          const menuUrl = base64UrlDecode(urlClass[1]);
+          if ($submenuLink.attr('href') !== menuUrl) {
+            $submenuLink.attr('href', menuUrl);
+          }
+        }
+      });
+
+      // Handle logo
+      $('a[class*="js-logo-url-"]').each(function () {
+        const $a = $(this);
+        const urlClass = $a.attr('class').match(/js-logo-url-([^ ]+)/);
+        if (urlClass &amp;&amp; urlClass[1]) {
+          const logoUrl = base64UrlDecode(urlClass[1]);
+          if ($a.attr('href') !== logoUrl) {
+            $a.attr('href', logoUrl);
+          }
+        }
+      });
+    }
+    // Initial patch
+    patchMenuHref();
+    // Reapply patch after each PF ajax update
+    $(document).on("pfAjaxComplete", patchMenuHref);
   </script>
 </cc:implementation>
 </html>

@@ -2,6 +2,7 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -404,5 +405,9 @@ public class UserMenuBean implements Serializable {
       caseIdToProcessViewerDisplayed.put(caze.getId(), PortalProcessViewerUtils.isShowProcessViewer(caze));
     }
     return caseIdToProcessViewerDisplayed.get(caze.getId());
+  }
+
+  public String getBase64EncodedHomeUrl() {
+    return Base64.getUrlEncoder().encodeToString(getHomePageURL().getBytes());
   }
 }
